@@ -72,6 +72,7 @@ export class TabPanel {
       font-family: var(--ui-font-family);
       line-height: var(--ui-line-height);
     }
+    :host([hidden]) { display: none; }
     [role='tablist'] {
       display: flex;
       flex-wrap: wrap;

@@ -19,6 +19,7 @@ import {
   `,
   styles: `
     :host { display: block; min-inline-size: 0; color: var(--ui-color-text); }
+    :host([hidden]) { display: none; }
     details { border: 1px solid var(--ui-color-border); border-radius: var(--ui-radius); }
     summary {
       box-sizing: border-box;

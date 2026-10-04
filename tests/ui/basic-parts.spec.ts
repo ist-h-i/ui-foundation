@@ -31,6 +31,33 @@ test('Disclosureはnative summaryで開閉し、閉じても入力を保持す�
   await expect(note).toHaveValue('閉じても保持する共有メモ');
 });
 
+test('TabsとDisclosureはhiddenで表示とタブ順から外れ、再表示しても入力を保持する', async ({ page }) => {
+  const tabs = page.getByRole('tablist', { name: '申請の関連情報', exact: true });
+  const memo = page.getByLabel('確認メモの入力', { exact: false });
+  const disclosure = page.getByTestId('optional-information');
+  const summary = disclosure.locator('summary');
+  const sharedMemo = disclosure.getByLabel('共有メモ', { exact: false });
+  await memo.fill('再表示しても残る確認メモ');
+  await summary.click();
+  await sharedMemo.fill('再表示しても残る共有メモ');
+  const hide = page.getByLabel('関連情報を非表示にする', { exact: true });
+  await hide.check();
+  await expect(tabs).toBeHidden();
+  await expect(summary).toBeHidden();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('radio', { name: 'メール', exact: true })).toBeFocused();
+  await memo.focus();
+  await expect(memo).not.toBeFocused();
+  await sharedMemo.focus();
+  await expect(sharedMemo).not.toBeFocused();
+  await hide.uncheck();
+  await page.keyboard.press('Tab');
+  await expect(tabs.getByRole('tab', { name: '確認メモ', exact: true })).toBeFocused();
+  await expect(memo).toHaveValue('再表示しても残る確認メモ');
+  await expect(sharedMemo).toBeVisible();
+  await expect(sharedMemo).toHaveValue('再表示しても残る共有メモ');
+});
+
 test('Dialogはmodalで開き、Escapeと明示的な閉じる操作で呼出元へfocusを戻す', async ({ page }) => {
   const opener = page.getByRole('button', { name: '表示設定を確認', exact: true });
   const dialog = page.getByRole('dialog', { name: '表示設定の確認', exact: true });

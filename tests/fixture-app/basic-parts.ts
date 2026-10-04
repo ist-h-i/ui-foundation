@@ -65,7 +65,9 @@ const REVIEW_ROWS: ReviewRow[] = [
 
       <section aria-labelledby="related-title">
         <h3 id="related-title">関連情報</h3>
-        <ui-tabs label="申請の関連情報" [selected]="selectedTab()" (selectedChange)="selectedTab.set($event)">
+        <label class="fixture-checkbox-label" for="related-information-hidden"><input id="related-information-hidden" type="checkbox"
+          [checked]="relatedInformationHidden()" (change)="relatedInformationHidden.set(checked($event))">関連情報を非表示にする</label>
+        <ui-tabs label="申請の関連情報" [hidden]="relatedInformationHidden()" [selected]="selectedTab()" (selectedChange)="selectedTab.set($event)">
           <ui-tab-panel panelId="review-notes" label="確認メモ">
             <ui-form-field controlId="review-memo" label="確認メモの入力">
               <input uiFieldControl [value]="reviewMemo()" (input)="reviewMemo.set(value($event))">
@@ -82,7 +84,7 @@ const REVIEW_ROWS: ReviewRow[] = [
             </ui-tabs>
           </ui-tab-panel>
         </ui-tabs>
-        <ui-disclosure data-testid="optional-information" title="共有事項" [open]="expanded()" (openChange)="expanded.set($event)">
+        <ui-disclosure data-testid="optional-information" title="共有事項" [hidden]="relatedInformationHidden()" [open]="expanded()" (openChange)="expanded.set($event)">
           <ui-form-field controlId="shared-memo" label="共有メモ" hint="必要なときだけ開いて参照できます。">
             <input uiFieldControl [value]="sharedMemo()" (input)="sharedMemo.set(value($event))">
           </ui-form-field>
@@ -136,6 +138,7 @@ export class BasicPartsFixture {
     return rows.slice((this.currentPage() - 1) * 2, this.currentPage() * 2);
   });
   readonly selectedTab = signal('review-notes');
+  readonly relatedInformationHidden = signal(false);
   readonly innerSelectedTab = signal('attachment-files');
   readonly reviewMemo = signal('');
   readonly attachmentMemo = signal('');

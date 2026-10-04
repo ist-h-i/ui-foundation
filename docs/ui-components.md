@@ -57,6 +57,8 @@ AsyncRegionとActionFeedbackは、初期のready/idleでも空のlive regionを�
 
 `<ui-disclosure title="詳細条件" [open]="expanded()" (openChange)="expanded.set($event)">…</ui-disclosure>`。native details/summaryを使う。title必須、openは既定false。開閉状態の所有者はアプリ。HTML標準のキーボード操作を維持する。
 
+TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキーボードのタブ順から外れる。再表示しても入力値と選択・開閉状態を保持する。
+
 ### Dialog
 
 `<dialog uiDialog label="申請の削除" [open]="dialogOpen()" (openChange)="dialogOpen.set($event)">…</dialog>`。native dialog上のcomponentでshowModal/closeを接続し、背景操作の抑止とフォーカス管理はブラウザーのmodal dialogを使用する。label必須。cancelled/closed outputでEscapeと閉じる動作を受け取る。アプリに閉じるボタンを置き、openをfalseへ更新する。SSR/hydration、多重モーダルは未検証。
@@ -80,9 +82,10 @@ AsyncRegionとActionFeedbackは、初期のready/idleでも空のlive regionを�
 ## 検証記録（2026-10-04）
 
 - `npm ci`: lockfileから依存を導入。Node 24.19.0。npm auditで検出された脆弱性は0件。esbuildの未承認install scriptに関するnpmの注意表示はあるが、ビルドと実行は成立。
-- `npm test`: AngularのstrictTemplates検査と、実アプリのAOTコンパイル／公式linker／Chromium操作試験が成功。24試験、retry 0。
+- `npm test`: AngularのstrictTemplates検査と、実アプリのAOTコンパイル／公式linker／Chromium操作試験が成功。25試験、retry 0。
 - 実操作: 保存中の再実行抑止、エラーと入力保持、独立領域の利用、部分欠損／更新失敗、局所再試行、実ローカルデータUndo、結果不明の確認、input/select/textarea/checkbox/radio、リンク、タブと入れ子、開閉、modal dialog、表の意味・ソート、ページ境界。
 - 自動アクセシビリティ: 初期、エラー、部分欠損、結果不明、開閉後、modal dialogの対象状態でaxe違反0件。キーボード、タッチ、320px、動きの低減を操作試験で確認。
 - 描画: PC 1280×900、スマートフォン幅390×844、モーダルのスクリーンショットを確認。スマートフォン幅のページ全体の横はみ出しなし。
 - DialogのTabはブラウザーUIへフォーカスを移すことがある。実際の背景入力がinertでフォーカスを受け取らないこと、Shift+Tabでdialogへ戻ること、Escape・閉じる操作で呼出元へ戻ることを試験する。
+- 独立レビューでTabs／Disclosureのhostのhidden指定がCSSで上書きされる問題を確認。修正前に回帰試験が失敗することと、修正後に非表示・タブ順除外・再表示時の入力保持が成立することを確認。
 - 未確認: Firefox／Safari、実スクリーンリーダーの読み上げ、SSR/hydration、多重modal、Angular forms／Routerの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。静的コンパイル・自動検査・画面描画だけでこれらの成立を主張しない。
