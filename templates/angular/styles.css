@@ -1,0 +1,223 @@
+/* Override semantic variables in the application theme. Native controls retain their semantics. */
+:root {
+  --ui-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ui-font-body: 1rem;
+  --ui-font-small: 0.875rem;
+  --ui-font-heading: 1.5rem;
+  --ui-line-height: 1.6;
+  --ui-color-text: #1c293d;
+  --ui-color-muted: #526075;
+  --ui-color-surface: #ffffff;
+  --ui-color-background: #f5f7fa;
+  --ui-color-border: #778496;
+  --ui-color-primary: #1856a6;
+  --ui-color-primary-hover: #10427f;
+  --ui-color-on-primary: #ffffff;
+  --ui-color-danger: #a32121;
+  --ui-color-danger-hover: #801919;
+  --ui-color-success: #175c3a;
+  --ui-color-success-surface: #eaf6ef;
+  --ui-color-warning: #694700;
+  --ui-color-warning-surface: #fff4d6;
+  --ui-color-error-surface: #fff0ef;
+  --ui-color-focus: #1856a6;
+  --ui-color-disabled-surface: #e7ebf0;
+  --ui-space-1: 0.25rem;
+  --ui-space-2: 0.5rem;
+  --ui-space-3: 0.75rem;
+  --ui-space-4: 1rem;
+  --ui-space-6: 1.5rem;
+  --ui-space-8: 2rem;
+  --ui-radius: 0.375rem;
+  --ui-control-height: 2.75rem;
+  --ui-motion-duration: 180ms;
+  --ui-motion-easing: ease-out;
+}
+
+[data-ui-density="compact"] { --ui-space-6: 1rem; --ui-space-8: 1.5rem; }
+
+.ui-page-frame, .ui-form-field, .ui-async-region, .ui-action-feedback {
+  display: block;
+  min-inline-size: 0;
+  color: var(--ui-color-text);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-font-body);
+  line-height: var(--ui-line-height);
+  overflow-wrap: anywhere;
+}
+
+/* Host display rules must not override the native hidden attribute. */
+.ui-action-feedback [hidden], .ui-async-region [hidden],
+.ui-page-frame[hidden], .ui-form-field[hidden], .ui-async-region[hidden],
+.ui-action-feedback[hidden], .ui-radio-group[hidden], .ui-action[hidden] { display: none; }
+.ui-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ui-page-frame__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--ui-space-4);
+  margin-block-end: var(--ui-space-6);
+}
+.ui-page-frame__heading { flex: 1 1 16rem; min-inline-size: 0; }
+.ui-page-frame__heading h1, .ui-page-frame__heading h2 {
+  margin: 0 0 var(--ui-space-2);
+  font-size: var(--ui-font-heading);
+  line-height: 1.35;
+}
+.ui-page-frame__actions { display: flex; flex-wrap: wrap; gap: var(--ui-space-2); }
+.ui-page-frame__body { display: grid; gap: var(--ui-space-6); }
+
+.ui-action {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-2);
+  min-block-size: var(--ui-control-height);
+  min-inline-size: var(--ui-control-height);
+  max-inline-size: 100%;
+  padding: var(--ui-space-2) var(--ui-space-4);
+  border: 1px solid var(--ui-color-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-color-surface);
+  color: var(--ui-color-text);
+  font: inherit;
+  font-family: var(--ui-font-family);
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--ui-motion-duration) var(--ui-motion-easing);
+}
+.ui-action[data-variant="primary"] {
+  border-color: var(--ui-color-primary);
+  background: var(--ui-color-primary);
+  color: var(--ui-color-on-primary);
+}
+.ui-action[data-variant="danger"] {
+  border-color: var(--ui-color-danger);
+  background: var(--ui-color-danger);
+  color: var(--ui-color-on-primary);
+}
+.ui-action:hover { background: var(--ui-color-background); }
+.ui-action[data-variant="primary"]:hover { background: var(--ui-color-primary-hover); }
+.ui-action[data-variant="danger"]:hover { background: var(--ui-color-danger-hover); }
+.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { transform: translateY(1px); }
+.ui-action:focus-visible, .ui-field-control:focus-visible {
+  outline: 3px solid var(--ui-color-focus);
+  outline-offset: 3px;
+}
+.ui-action:disabled, .ui-action--disabled, .ui-action--busy,
+.ui-action[data-variant]:disabled, .ui-action[data-variant].ui-action--disabled,
+.ui-action[data-variant].ui-action--busy {
+  border-color: var(--ui-color-border);
+  color: var(--ui-color-muted);
+  background: var(--ui-color-disabled-surface);
+  cursor: not-allowed;
+}
+.ui-action-busy { font-size: var(--ui-font-small); font-weight: 400; }
+
+.ui-form-field { margin-block-end: var(--ui-space-4); }
+.ui-form-field-label { display: block; font-weight: 600; margin-block-end: var(--ui-space-2); }
+.ui-form-field-requirement { margin-inline-start: var(--ui-space-2); font-size: var(--ui-font-small); font-weight: 400; color: var(--ui-color-muted); }
+.ui-form-field-hint, .ui-form-field-error {
+  font-size: var(--ui-font-small);
+  margin-block: var(--ui-space-2) 0;
+}
+.ui-form-field-hint { color: var(--ui-color-muted); }
+.ui-form-field-error { color: var(--ui-color-danger); }
+.ui-field-control {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-block-size: var(--ui-control-height);
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border: 1px solid var(--ui-color-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-color-surface);
+  color: var(--ui-color-text);
+  font: inherit;
+}
+input.ui-field-control:not([type="checkbox"]):not([type="radio"]), textarea.ui-field-control, select.ui-field-control { inline-size: 100%; }
+input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
+  min-block-size: 1.25rem;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin: var(--ui-space-2);
+  accent-color: var(--ui-color-primary);
+}
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  min-block-size: var(--ui-control-height);
+  margin-block-end: 0;
+  cursor: pointer;
+}
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) input { grid-column: 1; grid-row: 1; }
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-hint,
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-error { grid-column: 1 / -1; }
+.ui-field-control[aria-invalid="true"] { border-color: var(--ui-color-danger); }
+.ui-field-control:disabled { background: var(--ui-color-disabled-surface); color: var(--ui-color-muted); }
+
+.ui-async-region__notice, .ui-action-feedback__panel {
+  padding: var(--ui-space-4);
+  background: var(--ui-color-background);
+  border-radius: var(--ui-radius);
+}
+.ui-async-region__notice { margin-block-end: var(--ui-space-4); }
+.ui-async-region__message, .ui-action-feedback__message { margin-block: 0 var(--ui-space-2); }
+.ui-async-region[data-state="partial"] .ui-async-region__notice,
+.ui-async-region[data-state="stale"] .ui-async-region__notice,
+.ui-action-feedback[data-state="unknown"] .ui-action-feedback__panel,
+.ui-action-feedback[data-state="warning"] .ui-action-feedback__panel {
+  background: var(--ui-color-warning-surface);
+  color: var(--ui-color-warning);
+}
+.ui-async-region[data-state="error"] .ui-async-region__notice,
+.ui-action-feedback[data-state="error"] .ui-action-feedback__panel {
+  background: var(--ui-color-error-surface);
+  color: var(--ui-color-danger);
+}
+.ui-action-feedback[data-state="success"] .ui-action-feedback__panel {
+  background: var(--ui-color-success-surface);
+  color: var(--ui-color-success);
+}
+
+.ui-radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  min-block-size: var(--ui-control-height);
+  cursor: pointer;
+}
+.ui-radio-option__input { inline-size: 1.25rem; block-size: 1.25rem; accent-color: var(--ui-color-primary); }
+.ui-radio-option__input:focus-visible { outline: 3px solid var(--ui-color-focus); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-action { transition: none; }
+  .ui-action:active { transform: none !important; }
+}
+
+@media (forced-colors: active) {
+  .ui-action:focus-visible, .ui-field-control:focus-visible { outline-color: Highlight; }
+  .ui-action:disabled, .ui-action--disabled, .ui-action--busy { color: GrayText; border-color: GrayText; }
+}

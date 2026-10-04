@@ -4,7 +4,22 @@
 
 ## 現在の状態
 
-プロジェクトの初期化段階です。要件、設計、実装計画とフォルダ構成を保存しています。CLI、UI部品、Skill生成、静的検査、検証アプリはまだ実装していません。依存パッケージも導入していません。
+初版のUI部品と共通スタイル、Angularの検証アプリ、実ブラウザー試験を実装しています。五つの基盤部品に、画面構成で必要になる部品を追加しています。CLI、設定解析、Skill生成、逸脱の静的検査は未実装です。現在の部品はテンプレートのソースを直接コンパイルして利用します。
+
+| 部品群 | 提供する内容 |
+| --- | --- |
+| PageFrame | ページの見出し・判断材料・操作・本文 |
+| ActionControl / ActionLink | native button/link、処理中・無効・重大操作 |
+| FormField / FieldControl | input/select/textarea/checkbox、ラベル・補助・エラー |
+| RadioGroup / RadioOption | fieldset/legend、ラジオ選択、必須・エラー |
+| AsyncRegion | 取得中・空・失敗・部分欠損・既存情報維持・再試行 |
+| ActionFeedback | 結果・結果不明・復旧・Undo・影響説明 |
+| Navigation / Breadcrumb | 画面移動・現在地・パンくず |
+| Tabs / TabPanel | キーボードで選べるタブ、パネルの入力保持 |
+| Disclosure | 標準details/summaryによる開閉 |
+| Dialog | 標準modal dialog、Escape、フォーカス管理 |
+| DataTable / TableContainer | caption付き表、領域内スクロール |
+| Pagination | 現在頁・総頁・前後操作・境界の抑止 |
 
 初版は単一リポジトリ・単一npmパッケージで、Angular／TypeScriptを対象にします。ASKとは独立したプロジェクトです。実行時のLLM API、サーバー、データベースは使いません。
 
@@ -15,6 +30,22 @@
 - [実装・検証計画](docs/implementation-plan.md)：小さな段階と観測可能な完了条件。
 - [開発方針](docs/development.md)：変更、検証、依存、ライセンスの扱い。
 - [設定例](examples/ui.config.example.yaml)：未実装のスキーマ案。現在はCLIへ入力できません。
+- [UI部品のAPIと責任](docs/ui-components.md)：利用方法、状態、共通スタイル、初版の検証範囲。
+
+## 部品を試す
+
+Node.js 24.19.0で検証します。対応範囲はpackage.jsonのenginesに記載し、Angular 22.2.1・TypeScript 6.0.3をlockfileで固定しています。[Angular公式の対応版](https://angular.dev/reference/versions)を参照しています。
+
+```sh
+npm ci
+npm exec playwright -- install chromium --no-shell
+npm test
+npm start
+```
+
+`npm start` はローカル検証アプリを http://127.0.0.1:4183 で開くためのサーバーです。`npm run typecheck` はAngularの厳密なテンプレート検査、`npm run build` はAngular compilerと公式linkerを使う実アプリのコンパイル、`npm run test:ui` はChromiumによる操作と自動アクセシビリティ検査です。試験用の状態操作を画面に設けています。Playwrightの `channel: 'chromium'` で新しいheadlessモードを使用し、headless shellは不要です。[Playwright公式の説明](https://playwright.dev/docs/browsers#chromium-new-headless-mode)を参照しています。
+
+利用アプリへ `templates/angular/` のTypeScriptとCSSをコピーし、部品をstandalone componentのimportsへ追加してCSSを読み込みます。具体例は [検証アプリ](tests/fixture-app/app.ts) を参照してください。自動コピー／同期はまだ提供していません。
 
 ## 予定する使い方
 
@@ -49,7 +80,7 @@ ui-foundation/
     └── fixture-app/
 ```
 
-`src/` 以下とテンプレート・Skill・試験のディレクトリは、これから実装するための置き場です。最初の部品群は PageFrame、ActionControl、FormField、AsyncRegion、ActionFeedback に限定します。全画面を同じ見た目にすることや、画面仕様をYAMLへ集約することは目的にしません。
+`templates/angular/` に上記の基本部品と共通CSSを置き、`tests/fixture-app/` と `tests/ui/` で検証します。`src/`、プリセット、Skill生成は今後の実装です。全画面を同じ見た目にすることや、画面仕様をYAMLへ集約することは目的にしません。
 
 静的検査の成功を、実操作やUX全体の合格と扱いません。実データのUndo、業務上の正しさ、安全に継続できる範囲は利用アプリが保証します。
 
