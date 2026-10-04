@@ -11,6 +11,7 @@ import {
   type AsyncRegionState,
 } from '../../templates/angular/index';
 import { BasicPartsFixture } from './basic-parts';
+import { LayoutRegressionsFixture } from './layout-regressions';
 
 type SaveOutcome = 'success' | 'error' | 'unknown';
 type RegionKind = AsyncRegionState['kind'];
@@ -40,7 +41,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
 
 @Component({
   selector: 'fixture-app',
-  imports: [PageFrame, ActionControl, ActionLink, FormField, FieldControl, AsyncRegion, ActionFeedback, BasicPartsFixture],
+  imports: [PageFrame, ActionControl, ActionLink, FormField, FieldControl, AsyncRegion, ActionFeedback, BasicPartsFixture, LayoutRegressionsFixture],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <main id="main-content" class="fixture-main">
@@ -138,6 +139,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
         </section>
 
         <fixture-basic-parts />
+        <fixture-layout-regressions />
 
         <section class="fixture-controls" aria-labelledby="controls-title">
           <h2 id="controls-title">検証用の状態操作</h2>

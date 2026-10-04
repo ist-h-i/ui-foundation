@@ -23,9 +23,13 @@
 
 consumerのイベント処理より前に抑止するため、ActionControl/ActionLinkはRenderer2のcapture listenerを持ち、DestroyRefで解除する。DOMへのアクセスはこの操作ガードに限定する。サーバーレンダリング／hydrationは検証対象外。
 
+ラベルは部品内の `.ui-action-label` に投影する。長い操作名や区切りのない文字列は折り返し、処理中表示は縮めない。ラベルを省略・切り詰めず、狭い画面や文字拡大時にも操作名と処理中表示を枠内に収める。
+
 ### FormField / FieldControl
 
 `<ui-form-field controlId="name" label="申請名" [required]="true" hint="…" [error]="error()"><input uiFieldControl …></ui-form-field>`。FormFieldは一つのHTML標準input/select/textareaを扱い、FieldControlがid、required、aria-invalid、aria-describedbyを接続する。追加の説明IDは `describedBy`（空白区切り）に渡す。controlIdはアプリ内で一意、空白なしとする。labelは空にせず、input/select/textareaにuiFieldControlを付ける。値と入力イベントは標準HTML／Angular formsでアプリが所有する。checkbox/selectの選択状態も標準要素を使う。radioグループは後述RadioGroupを使う。複合コントロール、独自ControlValueAccessorは初版の範囲外。Angular formsとの接続は標準要素にformControl等を置ける構造で、初版試験はnative value/input/changeのみ。
+
+FormFieldのhostへ `[hidden]="true"` を指定すると、チェックボックスのレイアウトを含めて非表示とし、入力はタブ順から外れる。入力のインスタンスは維持し、再表示時に値・選択状態を保持する。
 
 ### AsyncRegion
 
@@ -89,3 +93,11 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 - DialogのTabはブラウザーUIへフォーカスを移すことがある。実際の背景入力がinertでフォーカスを受け取らないこと、Shift+Tabでdialogへ戻ること、Escape・閉じる操作で呼出元へ戻ることを試験する。
 - 独立レビューでTabs／Disclosureのhostのhidden指定がCSSで上書きされる問題を確認。修正前に回帰試験が失敗することと、修正後に非表示・タブ順除外・再表示時の入力保持が成立することを確認。
 - 未確認: Firefox／Safari、実スクリーンリーダーの読み上げ、SSR/hydration、多重modal、Angular forms／Routerの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。静的コンパイル・自動検査・画面描画だけでこれらの成立を主張しない。
+
+## レビュー指摘の修正と検証（2026-10-05）
+
+- 対象: PR #1の `ec2699472485a9d9a59cb13cde967b2d346fa8fc`。チェックボックスを含むFormFieldのhidden指定と、狭幅での長い操作名／処理中表示を修正。
+- 修正前: `npm run test:ui -- tests/ui/layout-regressions.spec.ts` は2試験が失敗。hidden属性付きの確認欄が表示・Tab順・直接focusに残ること、操作名と処理中の文字領域がボタン枠から出ることをAngularの実アプリで再現。
+- 修正後: `npm test` 成功。strictTemplates、AOTコンパイル／公式linker、Chromiumの27試験、retry 0。既存のaxe対象状態でも違反0件。
+- 確認欄: Spaceで変更したchecked値とDOMを非表示中も保持し、Tab順と直接focusから外れる。再表示後に値を保持し、Spaceで再操作できる。
+- 長い操作名: buttonとa、日本語と区切りのないASCII文字列、通常／処理中、320px幅と100%／200%文字サイズを確認。各text nodeの `Range.getClientRects()` と処理中要素の矩形が、操作部品の内容領域内に収まることを測定。ページ全体の横スクロール検査だけに依存しない。操作名は省略せず、処理中の操作抑止と通常状態への復帰も確認。

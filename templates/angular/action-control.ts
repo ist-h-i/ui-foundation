@@ -42,7 +42,7 @@ function guardActivation(isBlocked: () => boolean): void {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-content />
+    <span class="ui-action-label"><ng-content /></span>
     @if (busy()) {
       <span class="ui-action-busy">処理中</span>
     }
@@ -74,7 +74,7 @@ export class ActionControl {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-content />
+    <span class="ui-action-label"><ng-content /></span>
     @if (busy()) {
       <span class="ui-action-busy">処理中</span>
     }

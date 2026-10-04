@@ -128,7 +128,8 @@
   background: var(--ui-color-disabled-surface);
   cursor: not-allowed;
 }
-.ui-action-busy { font-size: var(--ui-font-small); font-weight: 400; }
+.ui-action-label { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; }
+.ui-action-busy { flex-shrink: 0; white-space: nowrap; font-size: var(--ui-font-small); font-weight: 400; }
 
 .ui-form-field { margin-block-end: var(--ui-space-4); }
 .ui-form-field-label { display: block; font-weight: 600; margin-block-end: var(--ui-space-2); }
@@ -158,7 +159,7 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   margin: var(--ui-space-2);
   accent-color: var(--ui-color-primary);
 }
-.ui-form-field:has(input.ui-field-control[type="checkbox"]) {
+.ui-form-field:not([hidden]):has(input.ui-field-control[type="checkbox"]) {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
