@@ -1,41 +1,161 @@
-# スキーマ案。現在は設定解析・生成CLIが未実装です。
-# contextは人・AIの判断材料。以下の文章から機械設定を推測しません。
+# 人とAIが採用した値と対応関係を確定する正本。
+# context/guidanceは画面設計の判断材料であり、CLIは文章から値を推測しません。
 schema_version: 1
-
 context:
   product: 申請管理
-  users:
-    - 申請者
-    - 承認担当者
   goals:
     - 必要な情報を確認して、提出・承認・差し戻しを判断する
-  usage: 業務中に繰り返し利用する
   constraints:
-    - 未取得の情報を、確認済みの情報として表示しない
-    - 入力内容を部分障害で失わせない
+    - 未取得の情報を確認済みの情報として表示しない
+    - 部分障害でも入力内容を保持する
+output: .ui/generated
+default_profile: guided
 
-target:
-  framework: angular
-  source: src/app
-  generated_ui: src/app/shared/ui/generated
+primitives:
+  ink: { type: color, value: '#1c293d' }
+  muted: { type: color, value: '#526075' }
+  white: { type: color, value: '#ffffff' }
+  canvas: { type: color, value: '#f5f7fa' }
+  outline: { type: color, value: '#778496' }
+  blue: { type: color, value: '#1856a6' }
+  blue-hover: { type: color, value: '#10427f' }
+  green: { type: color, value: '#175c3a' }
+  green-hover: { type: color, value: '#0f462c' }
+  red: { type: color, value: '#a32121' }
+  red-hover: { type: color, value: '#801919' }
+  success-wash: { type: color, value: '#eaf6ef' }
+  warning-ink: { type: color, value: '#694700' }
+  warning-wash: { type: color, value: '#fff4d6' }
+  error-wash: { type: color, value: '#fff0ef' }
+  disabled-wash: { type: color, value: '#e7ebf0' }
+  backdrop: { type: color, value: '#172033' }
+  system-font:
+    type: fontFamily
+    value: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+  text-guided: { type: length, value: 1.125rem }
+  text-dense: { type: length, value: 1rem }
+  small-guided: { type: length, value: 1rem }
+  small-dense: { type: length, value: 0.875rem }
+  heading-guided: { type: length, value: 1.75rem }
+  heading-dense: { type: length, value: 1.5rem }
+  leading-body: { type: number, value: 1.6 }
+  leading-heading: { type: number, value: 1.35 }
+  leading-control: { type: number, value: 1.5 }
+  regular: { type: number, value: 400 }
+  semibold: { type: number, value: 600 }
+  bold: { type: number, value: 700 }
+  space-8: { type: length, value: 8px }
+  space-12: { type: length, value: 12px }
+  space-16: { type: length, value: 16px }
+  space-24: { type: length, value: 24px }
+  space-32: { type: length, value: 32px }
+  round-guided: { type: length, value: 12px }
+  round-dense: { type: length, value: 4px }
+  surface-guided: { type: length, value: 16px }
+  surface-dense: { type: length, value: 6px }
+  control-minimum: { type: length, value: 44px }
+  icon: { type: length, value: 20px }
+  dialog: { type: length, value: 640px }
+  content: { type: length, value: 1120px }
+  border-thin: { type: length, value: 1px }
+  focus-width: { type: length, value: 3px }
+  focus-offset: { type: length, value: 3px }
+  duration: { type: duration, value: 180ms }
+  easing: { type: easing, value: ease-out }
 
-design:
-  preset: task-oriented
-  density: standard
-  locale: ja
+semantic:
+  color.text: ink
+  color.muted: muted
+  color.surface: white
+  color.background: canvas
+  color.border: outline
+  color.action: blue
+  color.action-hover: blue-hover
+  color.on-action: white
+  color.danger: red
+  color.danger-hover: red-hover
+  color.on-danger: white
+  color.success: green
+  color.success-surface: success-wash
+  color.warning: warning-ink
+  color.warning-surface: warning-wash
+  color.error-surface: error-wash
+  color.focus: blue
+  color.disabled-surface: disabled-wash
+  color.backdrop: backdrop
+  font.body: system-font
+  text.body: text-guided
+  text.small: small-guided
+  text.heading: heading-guided
+  leading.body: leading-body
+  leading.heading: leading-heading
+  leading.control: leading-control
+  weight.body: regular
+  weight.heading: bold
+  weight.control: semibold
+  space.page: space-32
+  space.section: space-24
+  space.field: space-24
+  space.control-x: space-24
+  space.control-y: space-12
+  space.control-gap: space-12
+  space.table-x: space-16
+  space.table-y: space-12
+  radius.control: round-guided
+  radius.surface: surface-guided
+  size.control: control-minimum
+  size.icon: icon
+  size.dialog: dialog
+  size.content: content
+  border.control: border-thin
+  border.focus: focus-width
+  border.focus-offset: focus-offset
+  motion.duration: duration
+  motion.easing: easing
 
-components:
-  - page-frame
-  - action-control
-  - form-field
-  - async-region
-  - action-feedback
-
-checks:
-  include:
-    - src/app/features/**
-  raw_design_values: error
-  unapproved_controls: error
-  copy_candidates: warning
-
-exceptions: []
+profiles:
+  guided:
+    label: 手順を確認しながら使う
+    context:
+      audience:
+        - 利用頻度が低く、申請手順を確認したい人
+      usage: 必要な説明を確認しながら一件ずつ申請する
+      goals:
+        - 必須項目と提出前の確認内容を理解する
+      constraints:
+        - 説明を増やして主操作を埋もれさせない
+    guidance: >-
+      目的、必須項目、操作結果を順に示す。初回に必要な補助説明を入力の近くに置き、
+      段階的な入力が適切か業務の手順から判断する。重要な比較情報は残す。
+    semantic: {}
+  dense:
+    label: 一覧と入力を繰り返し使う
+    context:
+      audience:
+        - 手順を把握し、複数件を比較して処理する人
+      usage: 業務中に一覧の比較と入力を繰り返す
+      goals:
+        - 必要な比較情報を保ち、対象の申請を効率よく処理する
+      constraints:
+        - 操作の対象と結果を省略しない
+        - 入力方法と44px以上の主操作領域を維持する
+    guidance: >-
+      一覧の比較軸を揃え、繰り返す操作を対象の近くに置く。詳細説明の開閉は
+      必要性から判断し、欠損と復旧経路を密度のために隠さない。
+    semantic:
+      color.action: green
+      color.action-hover: green-hover
+      color.focus: green
+      text.body: text-dense
+      text.small: small-dense
+      text.heading: heading-dense
+      space.page: space-16
+      space.section: space-16
+      space.field: space-16
+      space.control-x: space-16
+      space.control-y: space-8
+      space.control-gap: space-8
+      space.table-x: space-12
+      space.table-y: space-8
+      radius.control: round-dense
+      radius.surface: surface-dense

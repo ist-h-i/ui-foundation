@@ -26,9 +26,9 @@ import {
     tabindex: '0',
   },
   styles: `
-    :host { display: block; min-inline-size: 0; padding-block: var(--ui-space-4); }
+    :host { display: block; min-inline-size: 0; padding-block: var(--ui-space-field); }
     :host([hidden]) { display: none; }
-    :host:focus-visible { outline: 3px solid var(--ui-color-focus); outline-offset: 3px; }
+    :host:focus-visible { outline: var(--ui-border-focus) solid var(--ui-color-focus); outline-offset: var(--ui-border-focus-offset); }
   `,
 })
 export class TabPanel {
@@ -69,36 +69,40 @@ export class TabPanel {
       display: block;
       min-inline-size: 0;
       color: var(--ui-color-text);
-      font-family: var(--ui-font-family);
-      line-height: var(--ui-line-height);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
     }
     :host([hidden]) { display: none; }
     [role='tablist'] {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--ui-space-2);
-      border-block-end: 1px solid var(--ui-color-border);
+      gap: var(--ui-space-control-gap);
+      border-block-end: var(--ui-border-control) solid var(--ui-color-border);
     }
     [role='tab'] {
       box-sizing: border-box;
-      min-block-size: var(--ui-control-height);
-      min-inline-size: var(--ui-control-height);
+      min-block-size: var(--ui-size-control);
+      min-inline-size: var(--ui-size-control);
       max-inline-size: 100%;
-      padding: var(--ui-space-2) var(--ui-space-4);
-      border: 1px solid transparent;
-      border-block-end: 3px solid transparent;
+      padding: var(--ui-space-control-y) var(--ui-space-control-x);
+      border: var(--ui-border-control) solid transparent;
+      border-block-end: var(--ui-border-focus) solid transparent;
       background: var(--ui-color-surface);
       color: var(--ui-color-text);
       font: inherit;
+      font-weight: var(--ui-weight-control);
+      line-height: var(--ui-leading-control);
       cursor: pointer;
       overflow-wrap: anywhere;
     }
     [role='tab'][aria-selected='true'] {
-      border-block-end-color: var(--ui-color-primary);
-      color: var(--ui-color-primary);
-      font-weight: 700;
+      border-block-end-color: var(--ui-color-action);
+      color: var(--ui-color-action);
+      font-weight: var(--ui-weight-heading);
     }
-    [role='tab']:focus-visible { outline: 3px solid var(--ui-color-focus); outline-offset: 3px; }
+    [role='tab']:focus-visible { outline: var(--ui-border-focus) solid var(--ui-color-focus); outline-offset: var(--ui-border-focus-offset); }
   `,
 })
 export class Tabs implements AfterContentChecked {

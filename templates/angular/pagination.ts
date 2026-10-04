@@ -41,11 +41,12 @@ import { ActionControl } from './action-control';
       flex-wrap: wrap;
       align-items: center;
       justify-content: start;
-      gap: var(--ui-space-3);
+      gap: var(--ui-space-field);
       color: var(--ui-color-text);
-      font-family: var(--ui-font-family);
-      font-size: var(--ui-font-body);
-      line-height: var(--ui-line-height);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
     }
     p { margin: 0; }
   `,

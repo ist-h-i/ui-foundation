@@ -1,15 +1,25 @@
 # 初版のUI部品
 
-今回の範囲は五つの基盤部品群、ラジオグループ、ナビゲーション／パンくず、タブ、開閉領域、ダイアログ、表、ページ送りと共通CSS、Angular検証アプリ、実ブラウザー試験です。設定解析、生成CLI、Skill生成、逸脱の静的検査は次の段階に残します。テンプレートのTypeScriptを直接コンパイルして使うため、未実装の生成経路を経由した成功とは扱いません。
+五つの基盤部品群、ラジオグループ、ナビゲーション／パンくず、タブ、開閉領域、ダイアログ、表、ページ送りを、プロファイルと二段階トークンへ接続します。検証アプリはCLIが生成したAngularソースとCSSを使用します。設定・生成・型検査・ビルド・実操作・自動アクセシビリティは別々に検証します。
 
 ## 実装と受入条件
 
 - Angular 22.2.1、TypeScript 6.0.3、Node 24.19.0を採用する。standalone、signal input/output、OnPush、通常のCSSとHTML標準要素を使う。新しいフォームライブラリや実行時APIは不要。
-- `templates/angular/index.ts` から各部品をimportする。共通CSSは `templates/angular/styles.css`。将来の生成元とし、現在は利用アプリへこのディレクトリをコピーして使用する。
+- `templates/angular/`は生成元。CLIで同期した`output/angular/index.ts`から各部品をimportする。共通CSSは生成した`tokens.css`、`tailwind.css`、`angular/styles.css`を読み込む。検証アプリは`.ui/generated/angular/index.ts`を使用する。
 - 表示の意味、入力と業務状態の所有権は利用アプリに残す。部品はHTTP、実データ復元、業務判断を行わない。
 - 操作テストで処理中の再操作抑止、buttonとlinkの意味、入力とエラーの関連付け、入力保持、選択、局所再試行、部分欠損、結果不明、実状態を戻すUndo、キーボード、狭い画面、動きの低減を確認する。
 - 拡張部品ではナビゲーションの現在地、タブのキーボードと入力保持、開閉、モーダルのEscapeとフォーカス復帰、表の見出し・ソート表示・欠損表現、ページ送りの境界、ラジオ選択を確認する。
 - 静的コンパイル、実操作、自動アクセシビリティ、表示レビューを分ける。利用者による理解や実業務の有効性は未確認。
+
+## トークンとプロファイル
+
+具体値はYAMLの`primitives`、役割との対応は`semantic`、利用者別の上書きは`profiles.<id>.semantic`に置く。必須roleと型は[設計](design.md)を参照。部品のCSSは`--ui-color-action`、`--ui-text-body`、`--ui-space-control-x`等の意味トークンを参照し、色・文字・余白・寸法・角丸・border・weight・line height・motionの具体値を持たない。`--ui-font-body`は書体であり、文字サイズは`--ui-text-body`。旧テーマ変数やdensityの互換層は持たない。
+
+生成したTailwindテーマの`bg-action`、`text-on-action`、`px-control-x`、`py-control-y`、`font-body`、`text-body`、`rounded-control`も同じ意味トークンへ接続する。検証アプリの`styles.css`をTailwind CLIの入力にし、トークン、adapter、部品CSS、アプリCSSを読み込んで実際のutilityを生成する。
+
+`:root`は既定プロファイル。`data-ui-profile="guided"`または`"dense"`を持つスコープでは全意味トークンを再定義する。検証アプリの初期値とlabel付きselect「表示設定」のID・labelは、同じYAMLから生成した`.ui/generated/profiles.ts`の`uiProfiles`を使う。設定例の既定はguided。選択で同じmain要素の属性を変更し、入力・選択・取得状態・処理中・実行結果をアプリのsignalと同じDOMへ保持する。生成メタデータにないIDはアプリ側で選択を受け付けない。
+
+guidedは青の主操作、初期本文18px、広い余白、12pxの操作角丸。denseは緑の主操作、初期本文16px、狭い余白、4pxの操作角丸。文字サイズはremで定義し、root文字サイズの変更に追随する。検証アプリの入れ子ではdenseの内側へguided、guidedの内側へdenseを適用する。プロファイルのcontext/guidanceはAIが構成を判断する材料であり、runtimeの部品は対象利用者や画面構成を自動推定しない。
 
 ## 公開API
 
@@ -81,23 +91,19 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 
 ## 表示方針
 
-検証アプリは申請の一覧と編集フォームを持つ作業画面。最初に現在の申請、入力欄、保存操作を示す。主操作は保存、破壊的操作は対象と不可逆性の説明を添える。不要なHero、カードの入れ子、繰り返し説明は置かない。OS標準フォント、落ち着いた明るい背景、意味別の色、44px以上の操作領域、見えるfocus、CSS変数による余白と文字を採用する。外部フォント・画像を読み込まない。
+検証アプリは申請の一覧と編集フォームを持つ作業画面。最初に現在の申請、保存操作、表示設定と入力欄を示す。主操作は保存、破壊的操作は対象と不可逆性の説明を添える。不要なHero、カードの入れ子、繰り返し説明は置かない。両プロファイルでOS標準フォント、意味別の色、44px以上の操作領域、見えるfocusを採用し、外部フォント・画像を読み込まない。入れ子のスコープは下部の表示比較例へ限定する。
 
-## 検証記録（2026-10-04）
+## 今回の検証範囲
 
-- `npm ci`: lockfileから依存を導入。Node 24.19.0。npm auditで検出された脆弱性は0件。esbuildの未承認install scriptに関するnpmの注意表示はあるが、ビルドと実行は成立。
-- `npm test`: AngularのstrictTemplates検査と、実アプリのAOTコンパイル／公式linker／Chromium操作試験が成功。25試験、retry 0。
-- 実操作: 保存中の再実行抑止、エラーと入力保持、独立領域の利用、部分欠損／更新失敗、局所再試行、実ローカルデータUndo、結果不明の確認、input/select/textarea/checkbox/radio、リンク、タブと入れ子、開閉、modal dialog、表の意味・ソート、ページ境界。
-- 自動アクセシビリティ: 初期、エラー、部分欠損、結果不明、開閉後、modal dialogの対象状態でaxe違反0件。キーボード、タッチ、320px、動きの低減を操作試験で確認。
-- 描画: PC 1280×900、スマートフォン幅390×844、モーダルのスクリーンショットを確認。スマートフォン幅のページ全体の横はみ出しなし。
-- DialogのTabはブラウザーUIへフォーカスを移すことがある。実際の背景入力がinertでフォーカスを受け取らないこと、Shift+Tabでdialogへ戻ること、Escape・閉じる操作で呼出元へ戻ることを試験する。
-- 独立レビューでTabs／Disclosureのhostのhidden指定がCSSで上書きされる問題を確認。修正前に回帰試験が失敗することと、修正後に非表示・タブ順除外・再表示時の入力保持が成立することを確認。
-- 未確認: Firefox／Safari、実スクリーンリーダーの読み上げ、SSR/hydration、多重modal、Angular forms／Routerの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。静的コンパイル・自動検査・画面描画だけでこれらの成立を主張しない。
+`tests/ui/`は既存の27操作シナリオをguided/denseの両方へ適用する。色・書体・文字サイズ・余白・角丸・checkbox寸法・表の余白はcomputed styleで確認する。プロファイル変更前後の同じ入力DOM、部分欠損・非表示領域・処理中の一回だけの実行・完了結果を確認し、入れ子の全必須意味トークンと実際の部品／utilityの見た目を比較する。
 
-## レビュー指摘の修正と検証（2026-10-05）
+狭幅、文字サイズ100%／200%、キーボード、正常／エラー／部分欠損／結果不明／処理中、展開とdialog、reduced-motion、touch、自動axeの試験を両プロファイルで実行する。文字拡大試験では実際のfont-sizeが2倍になったことも確認する。実行結果は後続の検証記録に記載し、未実行を合格扱いしない。
 
-- 対象: PR #1の `ec2699472485a9d9a59cb13cde967b2d346fa8fc`。チェックボックスを含むFormFieldのhidden指定と、狭幅での長い操作名／処理中表示を修正。
-- 修正前: `npm run test:ui -- tests/ui/layout-regressions.spec.ts` は2試験が失敗。hidden属性付きの確認欄が表示・Tab順・直接focusに残ること、操作名と処理中の文字領域がボタン枠から出ることをAngularの実アプリで再現。
-- 修正後: `npm test` 成功。strictTemplates、AOTコンパイル／公式linker、Chromiumの27試験、retry 0。既存のaxe対象状態でも違反0件。
-- 確認欄: Spaceで変更したchecked値とDOMを非表示中も保持し、Tab順と直接focusから外れる。再表示後に値を保持し、Spaceで再操作できる。
-- 長い操作名: buttonとa、日本語と区切りのないASCII文字列、通常／処理中、320px幅と100%／200%文字サイズを確認。各text nodeの `Range.getClientRects()` と処理中要素の矩形が、操作部品の内容領域内に収まることを測定。ページ全体の横スクロール検査だけに依存しない。操作名は省略せず、処理中の操作抑止と通常状態への復帰も確認。
+## 検証記録（2026-10-05）
+
+- 実行環境: Node 24.19.0、Angular 22.2.1、Tailwind CLI 4.3.0、Chromium。
+- 生成: `npm run ui:sync -- --dry-run`で差分を表示し、`npm run ui:sync`で同期した。`npm run ui:check`で設定と生成物の一致を確認した。型検査とビルドも成功し、生成したAngularソースのAOTコンパイル／公式linkerとTailwind CSSの実生成を実行した。
+- 全体検証: `npm ci`後に`npm test`を実行し、設定45件、生成14件、Chromiumの操作61件がすべて成功した。skip／retryは0。操作61件は既存27シナリオの両プロファイル実行54件と、切替・生成metadata・入れ子等の7件。対象状態のaxe自動検査違反は0件。
+- 表示: guided／denseの部品とutilityが同じroleから青／緑、本文18px／16px、余白、角丸を解決することをcomputed styleで確認した。checkboxの20px寸法、表の余白、全48必須roleを持つ入れ子、100%／200%の文字サイズ、320pxの横はみ出し、dialogの中央配置を測定した。
+- 描画レビュー: Chromiumで両プロファイルの1280×1000／390×844の初期画面、保存失敗・部分欠損、modal dialogを撮影して確認した。主操作の色と寸法、本文と補助文の読み分け、狭幅での折返し、入力を残す障害表示、dialogの中央配置と操作名の表示を確認した。静止画の確認を実利用者による理解評価とは扱わない。
+- 未確認: Firefox／Safari、実スクリーンリーダー、SSR／hydration、多重modal、Angular forms／Routerとの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。自動コンパイル・操作・axeの成功から、これらの成立は推測しない。

@@ -40,8 +40,8 @@ export class RadioOption {
   styles: `
     :host { display: block; }
     .ui-radio-group__fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
-    .ui-radio-group__legend { padding: 0; font-weight: 600; }
-    .ui-radio-group__legend span { color: var(--ui-color-muted); font-size: var(--ui-font-small); font-weight: 400; margin-inline-start: var(--ui-space-2); }
+    .ui-radio-group__legend { padding: 0; font-weight: var(--ui-weight-control); }
+    .ui-radio-group__legend span { color: var(--ui-color-muted); font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); margin-inline-start: var(--ui-space-control-gap); }
   `,
 })
 export class RadioGroup {

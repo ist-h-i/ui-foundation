@@ -24,13 +24,14 @@ import {
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       color: var(--ui-color-text);
-      font-family: var(--ui-font-family);
-      font-size: var(--ui-font-body);
-      line-height: var(--ui-line-height);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
     }
     :host:focus-visible {
-      outline: 3px solid var(--ui-color-focus);
-      outline-offset: 3px;
+      outline: var(--ui-border-focus) solid var(--ui-color-focus);
+      outline-offset: var(--ui-border-focus-offset);
     }
     :host([hidden]) { display: none; }
     @media (forced-colors: active) {
@@ -61,30 +62,31 @@ export class TableContainer {
       inline-size: 100%;
       border-collapse: collapse;
       color: var(--ui-color-text);
-      font-family: var(--ui-font-family);
-      font-size: var(--ui-font-body);
-      line-height: var(--ui-line-height);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
     }
     .ui-table > caption {
-      padding: var(--ui-space-3) 0;
+      padding: var(--ui-space-table-y) 0;
       text-align: start;
-      font-weight: 600;
+      font-weight: var(--ui-weight-control);
     }
     .ui-table > thead > tr > th,
     .ui-table > tbody > tr > th,
     .ui-table > tbody > tr > td,
     .ui-table > tfoot > tr > th,
     .ui-table > tfoot > tr > td {
-      padding: var(--ui-space-3) var(--ui-space-4);
-      border-block-end: 1px solid var(--ui-color-border);
+      padding: var(--ui-space-table-y) var(--ui-space-table-x);
+      border-block-end: var(--ui-border-control) solid var(--ui-color-border);
       text-align: start;
       vertical-align: top;
     }
     .ui-table > thead > tr > th {
       background: var(--ui-color-background);
-      font-weight: 600;
+      font-weight: var(--ui-weight-control);
     }
-    .ui-table > tbody > tr > th { font-weight: 600; }
+    .ui-table > tbody > tr > th { font-weight: var(--ui-weight-control); }
     .ui-table[hidden] { display: none; }
   `,
 })

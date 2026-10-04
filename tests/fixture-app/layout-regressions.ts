@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ActionControl, ActionLink, FieldControl, FormField } from '../../templates/angular/index';
+import { ActionControl, ActionLink, FieldControl, FormField } from '../../.ui/generated/angular/index';
 
 @Component({
   selector: 'fixture-layout-regressions',
@@ -7,7 +7,7 @@ import { ActionControl, ActionLink, FieldControl, FormField } from '../../templa
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: `
     :host { display: block; min-inline-size: 0; }
-    .layout-action-examples { display: grid; gap: 1rem; min-inline-size: 0; }
+    .layout-action-examples { display: grid; gap: var(--ui-space-field); min-inline-size: 0; }
     .layout-action-examples > div { min-inline-size: 0; }
   `,
   template: `

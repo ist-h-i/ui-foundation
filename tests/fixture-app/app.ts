@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { uiProfiles } from '../../.ui/generated/profiles';
 import {
   ActionControl,
   ActionFeedback,
@@ -9,13 +10,14 @@ import {
   PageFrame,
   type ActionFeedbackState,
   type AsyncRegionState,
-} from '../../templates/angular/index';
+} from '../../.ui/generated/angular/index';
 import { BasicPartsFixture } from './basic-parts';
 import { LayoutRegressionsFixture } from './layout-regressions';
 
 type SaveOutcome = 'success' | 'error' | 'unknown';
 type RegionKind = AsyncRegionState['kind'];
 type Category = 'general' | 'equipment' | 'travel';
+type DisplayProfile = typeof uiProfiles.profiles[number]['id'];
 interface Application {
   id: number;
   name: string;
@@ -44,7 +46,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
   imports: [PageFrame, ActionControl, ActionLink, FormField, FieldControl, AsyncRegion, ActionFeedback, BasicPartsFixture, LayoutRegressionsFixture],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main id="main-content" class="fixture-main">
+    <main id="main-content" class="fixture-main" [attr.data-ui-profile]="profile()">
       <ui-page-frame title="申請の編集">
         <p uiPageContext class="fixture-context">{{ selectedApplication()?.name || '削除済みの申請' }} · {{ selectedApplication()?.approved ? '承認済み' : '下書き' }}の内容を確認して保存します。</p>
         <div uiPageActions class="fixture-actions">
@@ -52,6 +54,18 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
             [busy]="saving()" [disabled]="saveDisabled()">変更を保存</button>
           <a uiAction href="#application-details" [disabled]="linksDisabled()" [busy]="linksBusy()"
             (click)="countLink()" (auxclick)="countLink()">申請の詳細</a>
+        </div>
+
+        <div class="fixture-display-settings">
+          <div class="fixture-control-label">
+            <label for="display-profile">表示設定</label>
+            <select id="display-profile" class="ui-field-control" [value]="profile()" (change)="changeProfile($event)">
+              @for (option of displayProfiles; track option.id) {
+                <option [value]="option.id" [selected]="option.id === profile()">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+          <p data-testid="profile-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">選んだ設定で編集を続けられます。</p>
         </div>
 
         <div class="fixture-workspace">
@@ -141,6 +155,24 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
         <fixture-basic-parts />
         <fixture-layout-regressions />
 
+        <section class="fixture-profile-examples" aria-labelledby="profile-examples-title">
+          <h2 id="profile-examples-title">表示設定の比較</h2>
+          <div class="fixture-profile-scope" data-ui-profile="dense" data-testid="nested-dense-outer">
+            <button uiAction variant="primary" data-testid="nested-dense-action">密度重視の操作</button>
+            <div class="fixture-profile-scope" data-ui-profile="guided" data-testid="nested-guided-inner">
+              <button uiAction variant="primary" data-testid="nested-guided-action">案内重視の操作</button>
+              <p data-testid="nested-guided-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">入力内容を順に確認します。</p>
+            </div>
+          </div>
+          <div class="fixture-profile-scope" data-ui-profile="guided" data-testid="nested-guided-outer">
+            <button uiAction variant="primary" data-testid="nested-guided-outer-action">案内重視の操作</button>
+            <div class="fixture-profile-scope" data-ui-profile="dense" data-testid="nested-dense-inner">
+              <button uiAction variant="primary" data-testid="nested-dense-inner-action">密度重視の操作</button>
+              <p data-testid="nested-dense-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">一覧の内容を比較します。</p>
+            </div>
+          </div>
+        </section>
+
         <section class="fixture-controls" aria-labelledby="controls-title">
           <h2 id="controls-title">検証用の状態操作</h2>
           <p>この画面のデータはメモリ内だけに保存され、再読み込みで初期状態に戻ります。保存先への反映と画面への応答を分け、応答が届かない状態を再現できます。</p>
@@ -176,6 +208,8 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
   `,
 })
 export class FixtureApp {
+  readonly displayProfiles = uiProfiles.profiles;
+  readonly profile = signal<DisplayProfile>(uiProfiles.defaultProfile);
   readonly applications = signal<Application[]>(structuredClone(INITIAL_APPLICATIONS));
   readonly name = signal(INITIAL_APPLICATIONS[0]!.name);
   readonly category = signal<Category>(INITIAL_APPLICATIONS[0]!.category);
@@ -210,6 +244,11 @@ export class FixtureApp {
 
   value(event: Event): string { return (event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).value; }
   checked(event: Event): boolean { return (event.target as HTMLInputElement).checked; }
+  changeProfile(event: Event): void {
+    const selected = this.value(event);
+    const profile = this.displayProfiles.find((candidate) => candidate.id === selected);
+    if (profile) this.profile.set(profile.id);
+  }
   changeCategory(event: Event): void { this.category.set(this.value(event) as Category); }
   changeOutcome(event: Event): void { this.saveOutcome.set(this.value(event) as SaveOutcome); }
   changeRegion(event: Event): void {

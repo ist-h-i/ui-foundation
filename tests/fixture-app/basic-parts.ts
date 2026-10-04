@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import {
   ActionControl, Breadcrumb, DataTable, Dialog, Disclosure, FieldControl, FormField,
   Navigation, NavigationItem, Pagination, RadioGroup, RadioOption, TableContainer, TabPanel, Tabs,
-} from '../../templates/angular/index';
+} from '../../.ui/generated/angular/index';
 
 interface ReviewRow { name: string; confirmedAt: string | null; }
 const REVIEW_ROWS: ReviewRow[] = [

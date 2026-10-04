@@ -18,19 +18,27 @@ import {
     </details>
   `,
   styles: `
-    :host { display: block; min-inline-size: 0; color: var(--ui-color-text); }
+    :host {
+      display: block;
+      min-inline-size: 0;
+      color: var(--ui-color-text);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
+    }
     :host([hidden]) { display: none; }
-    details { border: 1px solid var(--ui-color-border); border-radius: var(--ui-radius); }
+    details { border: var(--ui-border-control) solid var(--ui-color-border); border-radius: var(--ui-radius-surface); }
     summary {
       box-sizing: border-box;
-      min-block-size: var(--ui-control-height);
-      padding: var(--ui-space-2) var(--ui-space-4);
-      font-weight: 600;
+      min-block-size: var(--ui-size-control);
+      padding: var(--ui-space-control-y) var(--ui-space-control-x);
+      font-weight: var(--ui-weight-control);
       cursor: pointer;
       overflow-wrap: anywhere;
     }
-    summary:focus-visible { outline: 3px solid var(--ui-color-focus); outline-offset: 3px; }
-    .ui-disclosure-content { padding: var(--ui-space-4); border-block-start: 1px solid var(--ui-color-border); }
+    summary:focus-visible { outline: var(--ui-border-focus) solid var(--ui-color-focus); outline-offset: var(--ui-border-focus-offset); }
+    .ui-disclosure-content { padding: var(--ui-space-field); border-block-start: var(--ui-border-control) solid var(--ui-color-border); }
   `,
 })
 export class Disclosure {

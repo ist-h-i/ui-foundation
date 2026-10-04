@@ -30,21 +30,23 @@ import {
   styles: `
     :host {
       box-sizing: border-box;
-      inline-size: min(var(--ui-dialog-width, 36rem), calc(100vw - 2 * var(--ui-space-6)));
-      max-block-size: calc(100dvh - 2 * var(--ui-space-6));
-      padding: var(--ui-space-6);
-      border: 1px solid var(--ui-color-border);
-      border-radius: var(--ui-radius);
+      inline-size: min(var(--ui-size-dialog), calc(100vw - 2 * var(--ui-space-section)));
+      max-block-size: calc(100dvh - 2 * var(--ui-space-section));
+      margin: auto;
+      padding: var(--ui-space-section);
+      border: var(--ui-border-control) solid var(--ui-color-border);
+      border-radius: var(--ui-radius-surface);
       background: var(--ui-color-surface);
       color: var(--ui-color-text);
-      font-family: var(--ui-font-family);
-      font-size: var(--ui-font-body);
-      line-height: var(--ui-line-height);
+      font-family: var(--ui-font-body);
+      font-size: var(--ui-text-body);
+      font-weight: var(--ui-weight-body);
+      line-height: var(--ui-leading-body);
       overflow: auto;
       overflow-wrap: anywhere;
     }
     :host::backdrop {
-      background: var(--ui-dialog-backdrop, color-mix(in srgb, var(--ui-color-text) 40%, transparent));
+      background: var(--ui-color-backdrop);
     }
   `,
 })

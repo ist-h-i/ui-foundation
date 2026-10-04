@@ -12,15 +12,16 @@ import {
 const navigationStyles = `
   .ui-navigation, .ui-breadcrumb {
     color: var(--ui-color-text);
-    font-family: var(--ui-font-family);
-    font-size: var(--ui-font-body);
-    line-height: var(--ui-line-height);
+    font-family: var(--ui-font-body);
+    font-size: var(--ui-text-body);
+    font-weight: var(--ui-weight-body);
+    line-height: var(--ui-leading-body);
   }
   .ui-navigation > ul, .ui-breadcrumb > ol {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--ui-space-2);
+    gap: var(--ui-space-control-gap);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -30,34 +31,34 @@ const navigationStyles = `
     align-items: center;
   }
   .ui-breadcrumb > ol > li + li {
-    padding-inline-start: var(--ui-space-2);
-    border-inline-start: 1px solid var(--ui-color-border);
+    padding-inline-start: var(--ui-space-control-gap);
+    border-inline-start: var(--ui-border-control) solid var(--ui-color-border);
   }
   .ui-navigation-item {
     display: inline-flex;
     box-sizing: border-box;
     align-items: center;
-    min-block-size: var(--ui-control-height);
-    min-inline-size: var(--ui-control-height);
-    padding: var(--ui-space-2) var(--ui-space-3);
-    border-radius: var(--ui-radius);
-    color: var(--ui-color-primary);
-    text-underline-offset: var(--ui-space-1);
+    min-block-size: var(--ui-size-control);
+    min-inline-size: var(--ui-size-control);
+    padding: var(--ui-space-control-y) var(--ui-space-control-x);
+    border-radius: var(--ui-radius-control);
+    color: var(--ui-color-action);
+    text-underline-offset: var(--ui-border-focus-offset);
     white-space: nowrap;
   }
   .ui-navigation-item:hover {
     background: var(--ui-color-background);
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: var(--ui-border-control);
   }
   .ui-navigation-item[aria-current="page"] {
     background: var(--ui-color-background);
-    font-weight: 700;
+    font-weight: var(--ui-weight-heading);
     text-decoration: underline;
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: var(--ui-border-focus);
   }
   .ui-navigation-item:focus-visible {
-    outline: 3px solid var(--ui-color-focus);
-    outline-offset: 3px;
+    outline: var(--ui-border-focus) solid var(--ui-color-focus);
+    outline-offset: var(--ui-border-focus-offset);
   }
   .ui-navigation[hidden], .ui-breadcrumb[hidden], .ui-navigation-item[hidden] {
     display: none;

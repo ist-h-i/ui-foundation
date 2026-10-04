@@ -2,7 +2,7 @@ import { build } from 'esbuild';
 import { transformAsync } from '@babel/core';
 import linkerPlugin from '@angular/compiler-cli/linker/babel';
 import { needsLinking } from '@angular/compiler-cli/linker';
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile } from 'node:fs/promises';
 
 await mkdir('dist/fixture-app', { recursive: true });
 await build({
@@ -33,9 +33,4 @@ await build({
   }],
 });
 await copyFile('tests/fixture-app/index.html', 'dist/fixture-app/index.html');
-const styles = await Promise.all([
-  readFile('templates/angular/styles.css', 'utf8'),
-  readFile('tests/fixture-app/app.css', 'utf8'),
-]);
-await writeFile('dist/fixture-app/styles.css', styles.join('\n'));
 console.log('Built Angular fixture app in dist/fixture-app');
