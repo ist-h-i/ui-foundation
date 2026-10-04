@@ -1,0 +1,41 @@
+# スキーマ案。現在は設定解析・生成CLIが未実装です。
+# contextは人・AIの判断材料。以下の文章から機械設定を推測しません。
+schema_version: 1
+
+context:
+  product: 申請管理
+  users:
+    - 申請者
+    - 承認担当者
+  goals:
+    - 必要な情報を確認して、提出・承認・差し戻しを判断する
+  usage: 業務中に繰り返し利用する
+  constraints:
+    - 未取得の情報を、確認済みの情報として表示しない
+    - 入力内容を部分障害で失わせない
+
+target:
+  framework: angular
+  source: src/app
+  generated_ui: src/app/shared/ui/generated
+
+design:
+  preset: task-oriented
+  density: standard
+  locale: ja
+
+components:
+  - page-frame
+  - action-control
+  - form-field
+  - async-region
+  - action-feedback
+
+checks:
+  include:
+    - src/app/features/**
+  raw_design_values: error
+  unapproved_controls: error
+  copy_candidates: warning
+
+exceptions: []

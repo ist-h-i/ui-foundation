@@ -1,0 +1,27 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Browser test outputs
+playwright-report/
+test-results/
+blob-report/
+
+# Local secrets and runtime records
+.env
+.env.*
+!.env.example
+.npmrc
+.auth/
+.local/
+*.log
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Future source configuration and generated UI/Skill files must remain tracked.
