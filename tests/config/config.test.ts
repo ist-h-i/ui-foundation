@@ -88,6 +88,7 @@ test('root defaults and every nested profile emit all roles rather than partial 
 test('additional roles are resolved for all scopes and supported Tailwind namespaces', () => {
   const result = resolve(edited((config) => {
     config.semantic['color.link'] = 'blue';
+    config.semantic['font.weight-body'] = 'system-font';
     config.semantic['space.hero-gap'] = 'space-32';
     config.semantic['motion.enter'] = 'duration';
     config.profiles.dense.semantic['color.link'] = 'green';
@@ -96,11 +97,12 @@ test('additional roles are resolved for all scopes and supported Tailwind namesp
   assert.match(renderTokens(result), /--ui-motion-enter: var\(--ui-p-duration\);/);
   const tailwind = renderTailwind(result);
   assert.match(tailwind, /@theme inline \{/);
-  assert.match(tailwind, /--color-link: var\(--ui-color-link\);/);
+  assert.match(tailwind, /--color-color-link: var\(--ui-color-link\);/);
   assert.match(tailwind, /--spacing-hero-gap: var\(--ui-space-hero-gap\);/);
-  assert.match(tailwind, /--font-body: var\(--ui-font-body\);/);
-  assert.match(tailwind, /--text-body: var\(--ui-text-body\);/);
-  assert.match(tailwind, /--font-weight-control: var\(--ui-weight-control\);/);
+  assert.match(tailwind, /--font-family-body: var\(--ui-font-body\);/);
+  assert.match(tailwind, /--font-family-weight-body: var\(--ui-font-weight-body\);/);
+  assert.match(tailwind, /--text-size-body: var\(--ui-text-body\);/);
+  assert.match(tailwind, /--font-weight-weight-control: var\(--ui-weight-control\);/);
   assert.match(tailwind, /--spacing-size-control: var\(--ui-size-control\);/);
   assert.doesNotMatch(tailwind, /--motion-|--border-/);
 });
@@ -214,8 +216,7 @@ test('profile overrides cannot hide broken base references', () => {
   }), /Unknown primitive reference/);
 });
 
-test('CSS and Tailwind variable collisions are rejected, including cross-category additions', () => {
-  rejects(edited((c) => { c.semantic['font.weight-body'] = 'system-font'; }), /collision|衝突/);
+test('Tailwind variable collisions across spacing and size are rejected', () => {
   rejects(edited((c) => { c.semantic['space.size-control'] = 'space-16'; }), /collision|衝突/);
 });
 

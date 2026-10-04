@@ -55,6 +55,8 @@ for (const profile of ['guided', 'dense'] as const) {
       await sharedMemo.focus();
       await expect(sharedMemo).not.toBeFocused();
       await hide.uncheck();
+      await expect(tabs).toBeVisible();
+      await expect(summary).toBeVisible();
       await page.keyboard.press('Tab');
       await expect(tabs.getByRole('tab', { name: '確認メモ', exact: true })).toBeFocused();
       await expect(memo).toHaveValue('再表示しても残る確認メモ');

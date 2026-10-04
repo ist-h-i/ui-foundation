@@ -42,11 +42,15 @@ export const CONTRAST_PAIRS: readonly (readonly [string, string])[] = [
 export const primitiveVariable = (name: string): string => `--ui-p-${name}`;
 export const semanticVariable = (role: string): string => `--ui-${role.replace('.', '-')}`;
 
-/** Border widths and motion have no corresponding theme namespace in Tailwind v4. */
+/**
+ * Tailwind shares text-* between colors/sizes and font-* between families/weights.
+ * Type prefixes keep these roles independent, including additional roles.
+ * Border widths and motion are referenced directly from semantic CSS variables.
+ */
 export function tailwindVariable(role: string): string | undefined {
   const [category, name] = role.split('.');
   const namespace: Record<string, string> = {
-    color: 'color', font: 'font', text: 'text', leading: 'leading', weight: 'font-weight',
+    color: 'color-color', font: 'font-family', text: 'text-size', leading: 'leading', weight: 'font-weight-weight',
     space: 'spacing', radius: 'radius', size: 'spacing-size',
   };
   return namespace[category] ? `--${namespace[category]}-${name}` : undefined;

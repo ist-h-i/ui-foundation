@@ -53,7 +53,9 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
       └─ .agents/skills/project-ui/（利用者の文脈とAIの設計手順）
 ```
 
-CSS変数は`--ui-p-...`と`--ui-カテゴリ-役割`。部品と画面はセマンティックだけを参照する。Tailwindの`bg-action`、`px-control-x`、`font-body`等も同じ変数へ接続する。数字のutilityや任意値を使うことを設計の標準経路にしない。
+CSS変数は`--ui-p-...`と`--ui-カテゴリ-役割`。部品と画面はセマンティックだけを参照する。Tailwindの`bg-color-action`、`px-control-x`、`font-family-body`等も同じ変数へ接続する。数字のutilityや任意値を使うことを設計の標準経路にしない。
+
+Tailwindでは色と文字サイズが`text-*`、書体と太さが`font-*`を共有するため、生成するutilityは用途を区別する。色は`bg-color-action`／`text-color-on-action`、文字サイズは`text-size-body`、書体は`font-family-body`、太さは`font-weight-body`。同じbodyやcontrolの役割名を追加しても互いを上書きしない。余白とsize等で同じtheme変数を生成する追加roleは位置付きで拒否する。旧utility名のaliasは作らない。
 
 `:root`へ既定プロファイルを出力する。`data-ui-profile="ID"`を持つスコープではそのプロファイルの全セマンティック対応を再定義する。部分上書きだけを継承させないため、入れ子でも外側のプロファイルが漏れない。未知IDの選択は利用アプリ側で防ぐ。
 

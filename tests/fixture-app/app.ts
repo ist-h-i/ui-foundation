@@ -65,7 +65,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
               }
             </select>
           </div>
-          <p data-testid="profile-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">選んだ設定で編集を続けられます。</p>
+          <p data-testid="profile-utility" class="bg-color-action text-color-on-action px-control-x py-control-y font-family-body text-size-body rounded-control">選んだ設定で編集を続けられます。</p>
         </div>
 
         <div class="fixture-workspace">
@@ -161,14 +161,14 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
             <button uiAction variant="primary" data-testid="nested-dense-action">密度重視の操作</button>
             <div class="fixture-profile-scope" data-ui-profile="guided" data-testid="nested-guided-inner">
               <button uiAction variant="primary" data-testid="nested-guided-action">案内重視の操作</button>
-              <p data-testid="nested-guided-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">入力内容を順に確認します。</p>
+              <p data-testid="nested-guided-utility" class="bg-color-action text-color-on-action px-control-x py-control-y font-family-body text-size-body rounded-control">入力内容を順に確認します。</p>
             </div>
           </div>
           <div class="fixture-profile-scope" data-ui-profile="guided" data-testid="nested-guided-outer">
             <button uiAction variant="primary" data-testid="nested-guided-outer-action">案内重視の操作</button>
             <div class="fixture-profile-scope" data-ui-profile="dense" data-testid="nested-dense-inner">
               <button uiAction variant="primary" data-testid="nested-dense-inner-action">密度重視の操作</button>
-              <p data-testid="nested-dense-utility" class="bg-action text-on-action px-control-x py-control-y font-body text-body rounded-control">一覧の内容を比較します。</p>
+              <p data-testid="nested-dense-utility" class="bg-color-action text-color-on-action px-control-x py-control-y font-family-body text-size-body rounded-control">一覧の内容を比較します。</p>
             </div>
           </div>
         </section>
