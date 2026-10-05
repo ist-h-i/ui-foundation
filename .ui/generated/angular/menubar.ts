@@ -69,7 +69,9 @@ export class Menubar {
         selected = next.find(node => node.id === item.id)!;
     } this.closeOthers(null); this.selected.emit({ item: selected, path: [item.id] }); }
     protected boundary(id: string, event: MenuRootNavigation): void { if (event.direction === 'exit') {
+        this.focused.set(id);
         this.closeOthers(null);
+        this.syncTabStops();
         this.focusOutside(!!event.backwards);
         return;
     } this.move(id, event.direction === 'next' ? 1 : -1, true); }
@@ -77,6 +79,13 @@ export class Menubar {
         return; this.closeOthers(null); this.focusRoot(next.id); if (open && !this.disabled() && !next.disabled)
         this.menu(next.id)?.openMenu(); }
     private focusOutside(backwards: boolean): void { const scope = this.element.closest('dialog:modal') ?? this.element.ownerDocument.body; const candidates = tabbableElements(scope).filter(node => !this.element.contains(node)); const side = candidates.filter(node => !!(this.element.compareDocumentPosition(node) & (backwards ? Node.DOCUMENT_POSITION_PRECEDING : Node.DOCUMENT_POSITION_FOLLOWING))); const target = backwards ? side.at(-1) : side[0]; (target ?? (backwards ? candidates.at(-1) : candidates[0]))?.focus(); }
+    private syncTabStops(): void {
+        const focused = this.focusId();
+        for (const root of this.roots()) {
+            const trigger = this.element.querySelector<HTMLElement>('#' + CSS.escape(this.controlId() + '-' + encodeURIComponent(root.id) + '-trigger'));
+            if (trigger) trigger.tabIndex = root.id === focused ? 0 : -1;
+        }
+    }
     protected rootKey(event: KeyboardEvent, item: MenuItem): void {
         if (event.defaultPrevented || event.isComposing || event.keyCode === 229)
             return;
@@ -89,6 +98,8 @@ export class Menubar {
             // new roving tabindex. Exit the whole composite in either state.
             event.preventDefault();
             this.closeOthers(null);
+            // Immediate Shift+Tab reentry also needs the native tab stop now.
+            this.syncTabStops();
             this.focusOutside(event.shiftKey);
             return;
         }
