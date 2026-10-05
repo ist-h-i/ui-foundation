@@ -2696,7 +2696,10 @@
         "日セルの内容"
       ],
       "remainingControls": [],
-      "verificationPending": []
+      "verificationPending": [],
+      "knownIssues": [
+        "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。"
+      ]
     },
     {
       "id": "dates-02",
@@ -2802,7 +2805,10 @@
         "複数月表示"
       ],
       "remainingControls": [],
-      "verificationPending": []
+      "verificationPending": [],
+      "knownIssues": [
+        "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。"
+      ]
     },
     {
       "id": "dates-04",
@@ -4142,8 +4148,10 @@
       "requestedControls": "通知一覧、未読、既読、分類、削除、追加読込み",
       "sourceLine": 131,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/notification-center.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4169,9 +4177,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "通知一覧、未読、既読、分類、削除、追加読込み"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-04",
@@ -4180,8 +4199,10 @@
       "requestedControls": "意味種別、タイトル、本文、操作、閉じる",
       "sourceLine": 132,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4207,9 +4228,23 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "意味種別、タイトル、本文、操作、閉じる"
+      ],
+      "remainingControls": [],
+      "verificationPending": [],
+      "knownIssues": [
+        "P2: 外部closable=false/actionLabel=\"\"でfocused自前操作を除去した場合のfocus復帰。次PRで修正。"
+      ]
     },
     {
       "id": "feedback-05",
@@ -4218,7 +4253,7 @@
       "requestedControls": "成功・失敗・結果不明、説明、復旧操作、処理中",
       "sourceLine": 133,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/action-feedback.ts"
       ],
@@ -4247,9 +4282,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "成功・失敗・結果不明、説明、復旧操作、処理中"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-06",
@@ -4258,7 +4304,7 @@
       "requestedControls": "取得中、更新中、空、エラー、部分欠損、再試行",
       "sourceLine": 134,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/async-region.ts"
       ],
@@ -4287,9 +4333,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "取得中、更新中、空、エラー、部分欠損、再試行"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-07",
@@ -4298,8 +4355,10 @@
       "requestedControls": "0件・検索結果なしの説明、補助操作、図",
       "sourceLine": 135,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4325,9 +4384,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "0件・検索結果なしの説明、補助操作、図"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-08",
@@ -4336,8 +4406,10 @@
       "requestedControls": "完了・失敗などの結果、詳細、次の操作",
       "sourceLine": 136,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4363,9 +4435,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "完了・失敗などの結果、詳細、次の操作"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-09",
@@ -4374,8 +4457,11 @@
       "requestedControls": "進捗値、総量、不定状態、ラベル、取消操作",
       "sourceLine": 137,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts",
+        "templates/angular/feedback-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4401,9 +4487,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "進捗値、総量、不定状態、ラベル、取消操作"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-10",
@@ -4412,8 +4509,11 @@
       "requestedControls": "サイズ、進捗の有無、説明、表示遅延",
       "sourceLine": 138,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts",
+        "templates/angular/feedback-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4439,9 +4539,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "サイズ、進捗の有無、説明、表示遅延"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-11",
@@ -4450,8 +4561,10 @@
       "requestedControls": "形状、行数、サイズ、動きの有無",
       "sourceLine": 139,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4477,9 +4590,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "形状、行数、サイズ、動きの有無"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-12",
@@ -4488,8 +4612,10 @@
       "requestedControls": "対象領域、操作抑止、説明、取消操作",
       "sourceLine": 140,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/feedback.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4515,9 +4641,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "対象領域、操作抑止、説明、取消操作"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-13",
@@ -4526,8 +4663,11 @@
       "requestedControls": "対象、段階、次・戻る・終了、再開、表示済み状態",
       "sourceLine": 141,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/tour.ts",
+        "templates/angular/overlay.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -4553,9 +4693,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/feedback-catalog.spec.ts",
+        "tests/model/feedback.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-feedback-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "対象、段階、次・戻る・終了、再開、表示済み状態"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "data-01",
@@ -8204,8 +8355,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-and-actions",
-    "verificationStatus": "verified-four-stages",
+    "stage": "business-priority-overlays-layout-actions-and-feedback",
+    "verificationStatus": "verified-five-stages",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8214,13 +8365,32 @@
       "overlays": "approve after fixes; both profiles and narrow pointer verified",
       "notifications": "approve after scope-focus, RTL and viewport fixes",
       "layout": "approve after fixed-region, intrinsic media, external collapse, focus, drag cancellation and zero-size pane fixes",
-      "actions": "approve after scoped Toolbar focus, dynamic replacements and rapid Menu key fixes"
+      "actions": "approve after scoped Toolbar focus, dynamic replacements and rapid Menu key fixes",
+      "feedback": "approve with comments; Tour scope/focus and notification category fixes independently verified; Alert dynamic control removal focus remains P2",
+      "pr3Integration": "approve with comments after semantic selected-surface fix; UTC default date and Alert focus removal remain P2"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "pending": 99,
-      "verified": 66,
+      "verified": 77,
+      "pending": 88,
       "partial": 16
-    }
+    },
+    "knownIssues": [
+      {
+        "severity": "P2",
+        "issue": "Calendar.today/DateRangePicker.initialMonth UTC default at local day/month boundary",
+        "followup": "next PR"
+      },
+      {
+        "severity": "P2",
+        "issue": "Alert focused action removal on closable=false/actionLabel=\"\"",
+        "followup": "next PR"
+      },
+      {
+        "severity": "P2",
+        "issue": "Existing output relocation loses Skill ownership metadata",
+        "followup": "output migration change; current output sync unaffected"
+      }
+    ]
   }
 }
