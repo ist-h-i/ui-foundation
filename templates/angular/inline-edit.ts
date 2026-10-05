@@ -1,0 +1,111 @@
+import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, forwardRef, inject, input, output, signal, untracked, viewChild } from '@angular/core';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
+import { ActionControl } from './action-control';
+import { ValueControl } from './value-control';
+import { canFocus } from './focus';
+export interface InlineEditRequest { requestId: number; value: string; previousValue: string; }
+/** Saving emits intent. Only an app-confirmed, matching result publishes the value. */
+@Component({ selector: 'ui-inline-edit', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InlineEdit), multi: true }, { provide: NG_VALIDATORS, useExisting: forwardRef(() => InlineEdit), multi: true }],
+  template: `<section [attr.aria-label]="label()" [attr.aria-busy]="busy()||!!pending()" [attr.aria-describedby]="descriptions()"><div class="ui-inline-display" [hidden]="editing()"><span class="ui-inline-value">{{current()||emptyLabel()}}</span><button #start uiAction type="button" [disabled]="blocked()||readonly()" (click)="begin()">{{editLabel()}}</button></div><div [hidden]="!editing()"><label [for]="controlId()">{{label()}}@if(required()){<span class="ui-inline-required"> (必須)</span>}</label>@if(multiline()){<textarea #editor class="ui-field-control" [id]="controlId()" [name]="name()" [value]="draft()" [rows]="rows()" [disabled]="disabledState()" [readOnly]="blocked()||readonly()||!!pending()" [attr.aria-required]="required()" [attr.aria-invalid]="error()||problem()?'true':null" [attr.aria-describedby]="descriptions()" (input)="edit($event)" (keydown)="key($event)" (blur)="touch()"></textarea>}@else{<input #editor class="ui-field-control" type="text" [id]="controlId()" [name]="name()" [value]="draft()" [disabled]="disabledState()" [readOnly]="blocked()||readonly()||!!pending()" [attr.aria-required]="required()" [attr.aria-invalid]="error()||problem()?'true':null" [attr.aria-describedby]="descriptions()" (input)="edit($event)" (keydown)="key($event)" (blur)="touch()">}<div class="ui-inline-actions"><button uiAction type="button" [disabled]="blocked()||readonly()||!!pending()||!!draftError()" (click)="save()">{{saveLabel()}}</button><button uiAction type="button" [disabled]="blocked()||readonly()||!!pending()" (click)="cancel()">{{cancelLabel()}}</button></div></div>@if(hint()){<p class="ui-inline-hint" [id]="controlId()+'-hint'">{{hint()}}</p>}@if(error()||problem()){<p class="ui-inline-error" [id]="controlId()+'-error'" role="status">{{error()||problem()}}</p>}@if(pending()||busy()){<p class="ui-inline-hint" role="status">{{busyLabel()}}</p>}</section>`,
+  styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}section,label{display:block;min-inline-size:0;overflow-wrap:anywhere;}label{font-weight:var(--ui-weight-control);margin-block-end:var(--ui-space-control-gap);}.ui-inline-display,.ui-inline-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-inline-display[hidden]{display:none;}.ui-inline-value{flex:1 1 calc(var(--ui-text-body) * 8);min-inline-size:0;white-space:pre-wrap;overflow-wrap:anywhere;}.ui-inline-actions{margin-block-start:var(--ui-space-control-gap);}.ui-inline-hint{color:var(--ui-color-muted);font-size:var(--ui-text-small);margin-block:var(--ui-space-control-gap);}.ui-inline-error,.ui-inline-required{color:var(--ui-color-danger);}` })
+export class InlineEdit extends ValueControl<string> implements Validator {
+  protected readonly emptyValue = '';
+  readonly multiline = input(false, { transform: booleanAttribute });
+  readonly rows = input(3);
+  readonly maxLength = input<number | null>(null);
+  readonly validateValue = input<((value: string) => string | null) | null>(null);
+  readonly editLabel = input('編集');
+  readonly saveLabel = input('保存');
+  readonly cancelLabel = input('取消');
+  readonly emptyLabel = input('未入力');
+  readonly busyLabel = input('保存結果を確認しています。');
+  readonly saveRequested = output<InlineEditRequest>();
+  readonly editingChange = output<boolean>();
+  protected readonly editing = signal(false);
+  protected readonly draft = signal('');
+  protected readonly pending = signal<InlineEditRequest | null>(null);
+  private readonly resultError = signal('');
+  private readonly editor = viewChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('editor');
+  private readonly start = viewChild<unknown, ElementRef<HTMLButtonElement>>('start', {read: ElementRef});
+  private readonly destroy = inject(DestroyRef);
+  private sequence = 0;
+  private focusAfterStart = false;
+  private focusAfterFinish = false;
+  private validatorChanged: () => void = () => {};
+  protected readonly configurationError = computed(() => ![this.label(), this.editLabel(), this.saveLabel(), this.cancelLabel(), this.emptyLabel(), this.busyLabel()].every(value => value.trim()) || !Number.isSafeInteger(this.rows()) || this.rows() < 1 || this.maxLength() !== null && (!Number.isSafeInteger(this.maxLength()) || this.maxLength()! < 0) ? '編集欄の説明、行数、最大文字数を確認してください。' : null);
+  protected readonly draftError = computed(() => this.configurationError() ?? this.checkValue(this.draft()));
+  protected readonly problem = computed(() => this.resultError() || (this.editing() ? this.draftError() : this.configurationError()));
+  protected readonly descriptions = computed(() => [this.hint() ? this.controlId() + '-hint' : '', this.error() || this.problem() ? this.controlId() + '-error' : ''].filter(Boolean).join(' ') || null);
+  constructor() {
+    super();
+    afterRenderEffect(() => {
+      this.editing(); this.editor(); this.configurationError(); this.draft(); this.required(); this.maxLength(); this.validateValue();
+      untracked(() => { this.validatorChanged(); if (this.focusAfterStart && this.editing() && canFocus(this.editor()?.nativeElement ?? null)) { this.focusAfterStart = false; this.editor()!.nativeElement.focus(); }
+        if (this.focusAfterFinish && !this.editing() && canFocus(this.start()?.nativeElement ?? null)) { this.focusAfterFinish = false; this.start()!.nativeElement.focus({ preventScroll: true }); }
+      });
+    });
+  }
+  protected coerce(value: unknown): string { return typeof value === 'string' ? value : ''; }
+  override writeValue(value: unknown): void {
+    super.writeValue(value); this.draft.set(this.coerce(value)); this.resultError.set('');
+    // A reset supersedes an outstanding UI request. It does not abort backend I/O.
+    this.pending.set(null);
+  }
+  private checkValue(value: string): string | null {
+    if (this.required() && !value.trim()) return '入力してください。';
+    if (this.maxLength() !== null && [...value].length > this.maxLength()!) return `${this.maxLength()}文字以内で入力してください。`;
+    try { return this.validateValue()?.(value) ?? null; } catch { return '入力内容の検証を完了できませんでした。'; }
+  }
+  protected begin(): void {
+    if (this.blocked() || this.readonly() || this.configurationError() || this.editing()) return;
+    this.draft.set(this.current()); this.resultError.set(''); this.focusAfterStart = true;
+    this.editing.set(true); this.editingChange.emit(true);
+  }
+  protected edit(event: Event): void {
+    if (this.blocked() || this.readonly() || this.pending()) return;
+    this.draft.set(this.text(event)); this.resultError.set('');
+  }
+  protected save(): void {
+    if (!this.editing() || this.blocked() || this.readonly() || this.pending() || this.draftError()) return;
+    this.touch(); this.resultError.set('');
+    const request = { requestId: ++this.sequence, value: this.draft(), previousValue: this.current() };
+    this.pending.set(request); this.saveRequested.emit(request);
+  }
+  /** App-owned result; reject stale/destroyed requests and retain the failed draft. */
+  fail(requestId: number, message: string): boolean {
+    if (this.destroy.destroyed || this.pending()?.requestId !== requestId || !message.trim()) return false;
+    this.pending.set(null); this.resultError.set(message); return true;
+  }
+  complete(requestId: number, value?: string): boolean {
+    const request = this.pending();
+    if (this.destroy.destroyed || !request || request.requestId !== requestId) return false;
+    const confirmed = value ?? request.value;
+    if (this.checkValue(confirmed)) return false;
+    this.pending.set(null); this.resultError.set('');
+    // ValueControl.publishValue is the shared CVA publication primitive;
+    // user commits still honor blocked/readonly, app-confirmed results do not.
+    this.publishValue(confirmed);
+    this.finishEditing(); return true;
+  }
+  protected cancel(): void {
+    if (!this.editing() || this.blocked() || this.readonly() || this.pending()) return;
+    this.draft.set(this.current()); this.resultError.set(''); this.touch(); this.finishEditing();
+  }
+  private finishEditing(): void {
+    const active = this.editor()?.nativeElement.ownerDocument.activeElement;
+    const owned = active === this.editor()?.nativeElement || !!active?.closest('ui-inline-edit') && active.closest('ui-inline-edit') === this.start()?.nativeElement.closest('ui-inline-edit');
+    this.editing.set(false); this.editingChange.emit(false);
+    this.focusAfterFinish = owned;
+  }
+  protected key(event: KeyboardEvent): void {
+    if (event.defaultPrevented || event.isComposing || event.keyCode === 229) return;
+    if (event.key === 'Escape') { event.preventDefault(); this.cancel(); }
+    else if (event.key === 'Enter' && (!this.multiline() || event.ctrlKey || event.metaKey)) { event.preventDefault(); this.save(); }
+  }
+  registerOnValidatorChange(callback: () => void): void { this.validatorChanged = callback; }
+  validate(control: AbstractControl): ValidationErrors | null {
+    const error = this.configurationError() ?? this.checkValue(this.editing() ? this.draft() : this.coerce(control.value));
+    return error ? { inlineEdit: error } : null;
+  }
+}

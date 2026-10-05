@@ -269,6 +269,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "320px"
         },
+        "size.knob": {
+          "reference": "knob-dense",
+          "type": "length",
+          "value": "128px"
+        },
         "size.mega-menu": {
           "reference": "mega-menu-dense",
           "type": "length",
@@ -626,6 +631,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.knob": {
+          "reference": "knob-guided",
+          "type": "length",
+          "value": "160px"
         },
         "size.mega-menu": {
           "reference": "mega-menu-guided",

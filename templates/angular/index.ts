@@ -20,6 +20,12 @@ export { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, typ
 export { Tabs, TabPanel } from './tabs';
 export { TextInput, Textarea, NumberInput, PasswordInput, SearchInput, type SearchRequest } from './text-input';
 export { MaskedInput, OTPInput, TagInput } from './structured-input';
+export { Slider, RangeSlider, Knob, Rating, ColorPicker, type SliderTick, type ColorChoice } from './choice-controls';
+export { numberDomain, snapNumber, numericValueError, numericRangeError, parseColor, formatColor, type NumberDomain, type NumericRange, type RgbaColor, type ColorFormat } from './choice-model';
+export { InlineEdit, type InlineEditRequest } from './inline-edit';
+export { Wizard, WizardStep, type WizardTransition } from './wizard';
+export { FilterBuilder, FilterGroupContext, type FilterTemplateContext, type FilterSaveRequest } from './filter-builder';
+export { emptyFilter, filterOperators, filterProblems, compileFilter, cloneFilter, editFilter, removeFilter, type FilterFieldType, type FilterOperator, type FilterField, type FilterRule, type FilterGroup, type FilterNode, type FilterProblem } from './filter-model';
 export { Checkbox, Switch, Select, MultiSelect, Combobox, ComboboxOption, type ComboboxOptionContext, type SelectOption } from './selection-input';
 export { FormLayout, FormGroup, FormActions, InputGroup, FormErrorSummary, type FormError } from './form-layout';
 export { Calendar, CalendarDay, type CalendarDayContext } from './calendar';

@@ -7,3 +7,5 @@ PageFrame、ActionControl／ActionLink、FormField／FieldControl、AsyncRegion�
 グローバルCSSは生成した`tokens.css`、`tailwind.css`、`angular/styles.css`を読み込みます。部品とTailwind utilityは`--ui-カテゴリ-役割`の意味トークンだけを参照し、具体値や既定テーマは持ちません。`--ui-font-body`は書体、`--ui-text-body`は文字サイズです。`data-ui-profile`を持つスコープで設定済みプロファイルを明示適用します。色・寸法を変えても部品の入力や処理状態を作り直す必要はありません。
 
 標準HTML要素を使い、アプリの業務判断・実Undo・安全な継続範囲を推測しません。画面構成のguidanceはAI向けの判断材料であり、部品は文章から画面構成を自動で推定しません。
+
+数値・色・編集・段階・条件はSlider/RangeSlider、Knob、Rating、ColorPicker、InlineEdit、Wizard/WizardStep、FilterBuilderの生成元を使います。native controlsとCVA、保持中の不正値、アプリの保存/移動承認を接続します。Knobの寸法はsize.knob、条件の純粋評価はcompileFilterへ対応付けます。保存結果や永続化は利用アプリの責任です。

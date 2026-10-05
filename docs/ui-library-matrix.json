@@ -2346,13 +2346,15 @@
       "sourceLine": 70,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2374,9 +2376,28 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "最小・最大",
+        "刻み",
+        "目盛り",
+        "単一値／範囲"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-23",
@@ -2386,13 +2407,15 @@
       "sourceLine": 71,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2414,9 +2437,29 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "値",
+        "範囲",
+        "刻み",
+        "単位",
+        "読取り専用"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-24",
@@ -2426,13 +2469,15 @@
       "sourceLine": 72,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2454,9 +2499,28 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "評価数",
+        "半段階",
+        "クリア",
+        "読取り専用"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-25",
@@ -2466,13 +2530,15 @@
       "sourceLine": 73,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2494,9 +2560,28 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "色形式",
+        "透明度",
+        "パレット",
+        "自由選択"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-26",
@@ -2506,13 +2591,15 @@
       "sourceLine": 74,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/inline-edit.ts",
+        "templates/angular/value-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2534,9 +2621,28 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "表示／編集",
+        "保存",
+        "取消",
+        "エラー",
+        "処理中"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-27",
@@ -2654,13 +2760,15 @@
       "sourceLine": 77,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/wizard.ts",
+        "templates/angular/focus.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2682,9 +2790,28 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "implementedControls": [
+        "現在段階",
+        "進行可否",
+        "戻る",
+        "分岐",
+        "入力保持"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "forms-30",
@@ -2694,13 +2821,16 @@
       "sourceLine": 78,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/filter-model.ts",
+        "templates/angular/filter-builder.ts",
+        "templates/angular/value-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2722,9 +2852,29 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/filter-model.test.ts"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "条件",
+        "演算子",
+        "AND/OR",
+        "入れ子",
+        "保存・解除"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "generated consumer",
+        "formal interaction/axe/drawing",
+        "fixed HEAD full npm test",
+        "fresh independent review"
+      ]
     },
     {
       "id": "dates-01",
