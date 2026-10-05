@@ -3108,7 +3108,7 @@
       "requestedControls": "移動先、現在地、方向、アイコン、狭幅時の表示",
       "sourceLine": 96,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/navigation.ts"
       ],
@@ -3138,18 +3138,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "移動先、現在地、方向、アイコン、狭幅時の表示"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-02",
@@ -3158,7 +3161,7 @@
       "requestedControls": "入れ子、展開、折畳み、幅、現在地",
       "sourceLine": 97,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/navigation-tree.ts",
         "templates/angular/navigation-model.ts"
@@ -3189,18 +3192,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "入れ子、展開、折畳み、幅、現在地"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-03",
@@ -3209,7 +3215,7 @@
       "requestedControls": "項目、選択、ラベル、固定位置",
       "sourceLine": 98,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/navigation-tree.ts",
         "templates/angular/navigation-model.ts"
@@ -3240,18 +3246,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "項目、選択、ラベル、固定位置"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-04",
@@ -3260,7 +3269,7 @@
       "requestedControls": "階層、区切り、長い階層の折畳み",
       "sourceLine": 99,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/navigation.ts",
         "templates/angular/navigation-model.ts"
@@ -3291,18 +3300,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "階層、区切り、長い階層の折畳み"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-05",
@@ -3311,7 +3323,7 @@
       "requestedControls": "選択、縦横方向、スクロール、無効、閉じる、並べ替え",
       "sourceLine": 100,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/tabs.ts",
         "templates/angular/navigation-model.ts"
@@ -3342,18 +3354,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "選択、縦横方向、スクロール、無効、閉じる、並べ替え"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-06",
@@ -3362,7 +3377,7 @@
       "requestedControls": "ページ内移動、現在位置、固定、移動時の余白",
       "sourceLine": 101,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/anchor-navigation.ts",
         "templates/angular/focus.ts"
@@ -3393,18 +3408,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "ページ内移動、現在位置、固定、移動時の余白"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-07",
@@ -3574,7 +3592,7 @@
       "requestedControls": "横方向のメニュー、入れ子、選択、操作項目",
       "sourceLine": 105,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/menubar.ts",
         "templates/angular/menu.ts",
@@ -3606,18 +3624,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "横方向のメニュー、入れ子、選択、操作項目"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-11",
@@ -3626,7 +3647,7 @@
       "requestedControls": "複数列、グループ、見出し、補助情報",
       "sourceLine": 106,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/mega-menu.ts",
         "templates/angular/floating-panel.ts",
@@ -3658,18 +3679,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "複数列、グループ、見出し、補助情報"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "navigation-12",
@@ -3678,7 +3702,7 @@
       "requestedControls": "コマンド検索、グループ、ショートカット、履歴",
       "sourceLine": 107,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/command-palette.ts",
         "templates/angular/navigation-model.ts",
@@ -3710,18 +3734,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/navigation-catalog.spec.ts",
+        "tests/model/navigation.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-navigation-2026-10-05.md",
+        "docs/verification/ui-library-navigation-2026-10-05.json"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
       "implementedControls": [
         "コマンド検索、グループ、ショートカット、履歴"
       ],
       "remainingControls": [],
-      "verificationPending": [
-        "fixed HEAD full checks",
-        "independent review",
-        "drawing evidence and proof reconciliation"
-      ]
+      "verificationPending": []
     },
     {
       "id": "overlays-01",
@@ -8858,8 +8885,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating",
-    "verificationStatus": "verified-eight-stages-and-local-default-focus-fixes",
+    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating-navigation",
+    "verificationStatus": "verified-nine-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8874,12 +8901,13 @@
       "pr4LocalDefaults": "approve after scoped nested Alert focus fix; independently operated natural projection in guided/dense",
       "display": "approve after six P2 fixes; independent 28 browser cases, 18 images and full 452 log verified",
       "structuredForms": "approve after Unicode letter grapheme fix; independent native operations, full 518 log/exit and 59 manifest hashes verified",
-      "floating": "approve after pending key and root mutation P2 fixes; independent 48 scenarios/274 assertions, 18 axe states with incomplete limits, 62 manifest hashes/16 images and full 608 log/exit verified"
+      "floating": "approve after pending key and root mutation P2 fixes; independent 48 scenarios/274 assertions, 18 axe states with incomplete limits, 62 manifest hashes/16 images and full 608 log/exit verified",
+      "navigation": "source review approve after R1–R7 corrections; independent native keyboard/modal/visibility/lifecycle, manifest68/runtime14, axe limits and full 683 actual exit0"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "verified": 105,
-      "pending": 65,
+      "verified": 114,
+      "pending": 56,
       "partial": 11
     },
     "knownIssues": [
@@ -8973,6 +9001,55 @@
         "followup": "PR #7 corrected and independently verified",
         "codeHead": "7475ce3566699680d60beb1ac192e6b35d06a181",
         "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
+      },
+      {
+        "severity": "P1",
+        "issue": "Nested native modal shortcut scope",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Closed details target availability",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Sticky anchor fixture missing reserved scroll space",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "CSS priority lost during anchor lease restoration",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Anchor current position ignored scroll padding",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Menubar rapid Tab exit/reentry used stale native tabstop",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Palette active command primary label outside viewport",
+        "followup": "PR #8 corrected and independently verified",
+        "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+        "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
       }
     ],
     "maintenanceVerification": {
@@ -9026,6 +9103,19 @@
         "total": 608
       },
       "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
+    },
+    "navigationVerification": {
+      "pullRequest": 8,
+      "baseCommit": "298fb3653e1008f1a55d6a723cedc903779476e4",
+      "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
+      "testCounts": {
+        "config": 66,
+        "generation": 15,
+        "model": 54,
+        "ui": 548,
+        "total": 683
+      },
+      "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
     }
   }
 }
