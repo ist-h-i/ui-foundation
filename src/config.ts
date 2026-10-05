@@ -273,6 +273,9 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
     if (role.startsWith('weight.') && (Number(primitive.value) < 100 || Number(primitive.value) > 900)) {
       validator.issue(path, `Font weight role "${role}" must be between 100 and 900`);
     }
+    if (role.startsWith('opacity.') && Number(primitive.value) > 1) {
+      validator.issue(path, `Opacity role "${role}" must be between 0 and 1`);
+    }
     if ((role.startsWith('leading.') || role.startsWith('text.') || role.startsWith('size.') || role === 'border.focus')
       && parseFloat(String(primitive.value)) <= 0) {
       validator.issue(path, `Role "${role}" value must be greater than zero`);

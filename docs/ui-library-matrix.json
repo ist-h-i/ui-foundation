@@ -6449,8 +6449,12 @@
       "requestedControls": "意味、階層、強調、整列、折返し",
       "sourceLine": 193,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6475,9 +6479,24 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "意味",
+        "階層",
+        "強調",
+        "整列",
+        "折返し"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-02",
@@ -6486,8 +6505,12 @@
       "requestedControls": "数値、上限表示、ドット、位置、意味色",
       "sourceLine": 194,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6512,9 +6535,24 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "数値",
+        "上限表示",
+        "ドット",
+        "位置",
+        "意味色"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-03",
@@ -6523,8 +6561,12 @@
       "requestedControls": "ラベル、アイコン、選択、削除、無効",
       "sourceLine": 195,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6549,9 +6591,24 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "ラベル",
+        "アイコン",
+        "選択",
+        "削除",
+        "無効"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-04",
@@ -6560,8 +6617,12 @@
       "requestedControls": "画像、代替文字、サイズ、形状、表示上限",
       "sourceLine": 196,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6586,9 +6647,24 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "画像",
+        "代替文字",
+        "サイズ",
+        "形状",
+        "表示上限"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-05",
@@ -6597,8 +6673,12 @@
       "requestedControls": "項目名と値、列数、方向、欠損表示",
       "sourceLine": 197,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6623,9 +6703,23 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "項目名と値",
+        "列数",
+        "方向",
+        "欠損表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-06",
@@ -6634,8 +6728,12 @@
       "requestedControls": "値、単位、増減、比較値、表示形式",
       "sourceLine": 198,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6660,9 +6758,24 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "値",
+        "単位",
+        "増減",
+        "比較値",
+        "表示形式"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-07",
@@ -6671,8 +6784,12 @@
       "requestedControls": "値、範囲、区分、ラベル",
       "sourceLine": 199,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6697,9 +6814,23 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "値",
+        "範囲",
+        "区分",
+        "ラベル"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-08",
@@ -6708,8 +6839,12 @@
       "requestedControls": "補助説明、キー表記、表示位置",
       "sourceLine": 200,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6734,9 +6869,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "補助説明",
+        "キー表記",
+        "表示位置"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-09",
@@ -6745,8 +6893,12 @@
       "requestedControls": "行数、展開・折畳み、全文表示",
       "sourceLine": 201,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display-content.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6771,9 +6923,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "行数",
+        "展開・折畳み",
+        "全文表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-10",
@@ -6782,8 +6947,12 @@
       "requestedControls": "言語、整形、行番号、コピー",
       "sourceLine": 202,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display-content.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6808,9 +6977,23 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "言語",
+        "整形",
+        "行番号",
+        "コピー"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "display-11",
@@ -6819,8 +7002,12 @@
       "requestedControls": "内容、位置、繰返し、濃さ",
       "sourceLine": 203,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/display-content.ts",
+        "templates/angular/display-model.ts",
+        "templates/angular/display-style.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale"
@@ -6845,9 +7032,23 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/display-catalog.spec.ts",
+        "tests/model/display.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-display-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "内容",
+        "位置",
+        "繰返し",
+        "濃さ"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "media-01",
@@ -8372,8 +8573,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-actions-and-feedback",
-    "verificationStatus": "verified-five-stages-and-local-default-focus-fixes",
+    "stage": "business-priority-overlays-layout-actions-feedback-and-display",
+    "verificationStatus": "verified-six-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8385,12 +8586,13 @@
       "actions": "approve after scoped Toolbar focus, dynamic replacements and rapid Menu key fixes",
       "feedback": "approve with comments; Tour scope/focus and notification category fixes independently verified; Alert dynamic control removal focus remains P2",
       "pr3Integration": "approve with comments after semantic selected-surface fix; UTC default date and Alert focus removal remain P2",
-      "pr4LocalDefaults": "approve after scoped nested Alert focus fix; independently operated natural projection in guided/dense"
+      "pr4LocalDefaults": "approve after scoped nested Alert focus fix; independently operated natural projection in guided/dense",
+      "display": "approve after six P2 fixes; independent 28 browser cases, 18 images and full 452 log verified"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "verified": 77,
-      "pending": 88,
+      "verified": 88,
+      "pending": 77,
       "partial": 16
     },
     "knownIssues": [
@@ -8414,6 +8616,48 @@
         "followup": "PR #4 corrected and independently verified",
         "codeHead": "91107d1fa5c74ff639463511203641750958b2c4",
         "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Wrapped CodeBlock lines detached from line numbers",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Centered Badge displaced by mixed ancestor and own direction",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Decimal MeterGroup sum rejected by final floating-point rounding",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Meter numeric value/unit/maximum reordered in RTL",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "CopyButton native busy blur lost focus before CodeBlock removal",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Avatar initials wrapped and clipped at small size and 200% text",
+        "followup": "PR #5 corrected and independently verified",
+        "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+        "evidence": "docs/verification/ui-library-display-2026-10-05.md"
       }
     ],
     "maintenanceVerification": {
@@ -8428,6 +8672,19 @@
         "total": 400
       },
       "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+    },
+    "displayVerification": {
+      "pullRequest": 5,
+      "baseCommit": "1a06b5434e0ef69a13e166948343ab2bf05a6791",
+      "codeHead": "9b8fc123de963ed00a4b78d948f824ce41772f64",
+      "testCounts": {
+        "config": 62,
+        "generation": 15,
+        "model": 33,
+        "ui": 342,
+        "total": 452
+      },
+      "evidence": "docs/verification/ui-library-display-2026-10-05.md"
     }
   }
 }

@@ -12,6 +12,18 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('display roles resolve from the source configuration and generate supported namespaces',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.avatar'].value,'64px');assert.equal(result.profiles.dense.semantic['size.avatar'].value,'48px');
+ assert.match(String(result.profiles.guided.semantic['font.code'].value),/monospace/);assert.equal(result.profiles.guided.semantic['opacity.watermark'].value,.12);
+ assert.match(renderTailwind(result),/--font-family-code: var\(--ui-font-code\)/);assert.match(renderTailwind(result),/--spacing-size-avatar: var\(--ui-size-avatar\)/);
+ assert.doesNotMatch(renderTailwind(result),/--opacity-/);assert.match(renderTokens(result),/--ui-opacity-watermark: var\(--ui-p-watermark-opacity\)/);
+});
+test('opacity values reject out-of-range overrides with source locations',()=>{
+ rejects(edited(c=>{c.primitives['watermark-opacity'].value=1.01;}),/Opacity.*between 0 and 1/);
+ rejects(edited(c=>{c.primitives['watermark-opacity'].value=-.1;}),/Invalid number/);
+ rejects(edited(c=>{c.primitives['too-opaque']={type:'number',value:2};c.profiles.dense.semantic['opacity.watermark']='too-opaque';}),/Opacity.*between 0 and 1/);
+ assert.equal(resolve(edited(c=>{c.primitives['watermark-opacity'].value=0;})).profiles.guided.semantic['opacity.watermark'].value,0);
+});
 function rejects(source: string, message: RegExp) {
   assert.throws(() => resolve(source), (error: unknown) => {
     assert.ok(error instanceof ConfigValidationError);

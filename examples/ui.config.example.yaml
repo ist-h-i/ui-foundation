@@ -32,6 +32,10 @@ primitives:
   system-font:
     type: fontFamily
     value: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+  code-font: { type: fontFamily, value: 'ui-monospace, "SFMono-Regular", Consolas, monospace' }
+  avatar-guided: { type: length, value: 64px }
+  avatar-dense: { type: length, value: 48px }
+  watermark-opacity: { type: number, value: 0.12 }
   text-guided: { type: length, value: 1.125rem }
   text-dense: { type: length, value: 1rem }
   small-guided: { type: length, value: 1rem }
@@ -95,6 +99,9 @@ semantic:
   color.backdrop: backdrop
   color.shadow: outline
   font.body: system-font
+  font.code: code-font
+  size.avatar: avatar-guided
+  opacity.watermark: watermark-opacity
   text.body: text-guided
   text.small: small-guided
   text.heading: heading-guided
@@ -162,6 +169,7 @@ profiles:
       一覧の比較軸を揃え、繰り返す操作を対象の近くに置く。詳細説明の開閉は
       必要性から判断し、欠損と復旧経路を密度のために隠さない。
     semantic:
+      size.avatar: avatar-dense
       color.action: green
       color.action-hover: green-hover
       color.link: green

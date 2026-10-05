@@ -1,4 +1,4 @@
-/* Tailwind v4: import alongside tokens.css; border and motion roles use CSS directly. */
+/* Tailwind v4: import alongside tokens.css; border, motion and opacity roles use CSS directly. */
 @theme inline {
   --color-color-action: var(--ui-color-action);
   --color-color-action-hover: var(--ui-color-action-hover);
@@ -23,11 +23,13 @@
   --color-color-warning: var(--ui-color-warning);
   --color-color-warning-surface: var(--ui-color-warning-surface);
   --font-family-body: var(--ui-font-body);
+  --font-family-code: var(--ui-font-code);
   --leading-body: var(--ui-leading-body);
   --leading-control: var(--ui-leading-control);
   --leading-heading: var(--ui-leading-heading);
   --radius-control: var(--ui-radius-control);
   --radius-surface: var(--ui-radius-surface);
+  --spacing-size-avatar: var(--ui-size-avatar);
   --spacing-size-content: var(--ui-size-content);
   --spacing-size-control: var(--ui-size-control);
   --spacing-size-dialog: var(--ui-size-dialog);

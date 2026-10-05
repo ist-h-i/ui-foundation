@@ -27,15 +27,16 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | カテゴリ | 必須の役割 | 型 |
 | --- | --- | --- |
 | color | text, muted, surface, background, border, action, action-hover, on-action, link, tab-selected, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop, shadow | color |
-| font | body | fontFamily |
+| font | body, code | fontFamily |
 | text | body, small, heading | length |
 | leading | body, heading, control | number |
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
 | radius | control, surface | length |
-| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, sidebar, elevation-blur, overlay-min, dialog-min | length |
+| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
+| opacity | watermark | number（0〜1） |
 
 未対応版、未知の構造項目、重複キー、参照切れ、型違い、必須役割不足、未知のdefault_profile、危険な値を位置・理由付きで拒否する。各プロファイルで定義済みの文字/背景ペアのコントラストを検査する。この数値検査をUXやアクセシビリティ全体の合格とは扱わない。
 

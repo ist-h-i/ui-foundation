@@ -26,7 +26,7 @@ export function renderTailwind(config: ResolvedConfig): string {
     return variable ? [`  ${variable}: var(${semanticVariable(role)});`] : [];
   });
   return [
-    '/* Tailwind v4: import alongside tokens.css; border and motion roles use CSS directly. */',
+    '/* Tailwind v4: import alongside tokens.css; border, motion and opacity roles use CSS directly. */',
     '@theme inline {', ...declarations, '}', '',
   ].join('\n');
 }
