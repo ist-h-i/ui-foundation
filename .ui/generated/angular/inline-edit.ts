@@ -32,6 +32,7 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   private sequence = 0;
   private focusAfterStart = false;
   private focusAfterFinish = false;
+  private observedCurrent: string | undefined;
   private validatorChanged: () => void = () => {};
   protected readonly configurationError = computed(() => ![this.label(), this.editLabel(), this.saveLabel(), this.cancelLabel(), this.emptyLabel(), this.busyLabel()].every(value => value.trim()) || !Number.isSafeInteger(this.rows()) || this.rows() < 1 || this.maxLength() !== null && (!Number.isSafeInteger(this.maxLength()) || this.maxLength()! < 0) ? '編集欄の説明、行数、最大文字数を確認してください。' : null);
   protected readonly draftError = computed(() => this.configurationError() ?? this.checkValue(this.draft()));
@@ -40,8 +41,9 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   constructor() {
     super();
     afterRenderEffect(() => {
+      const current = this.current();
       this.editing(); this.editor(); this.configurationError(); this.draft(); this.required(); this.maxLength(); this.validateValue();
-      untracked(() => { this.validatorChanged(); if (this.focusAfterStart && this.editing() && canFocus(this.editor()?.nativeElement ?? null)) { this.focusAfterStart = false; this.editor()!.nativeElement.focus(); }
+      untracked(() => { this.syncExternalValue(current); this.validatorChanged(); if (this.focusAfterStart && this.editing() && canFocus(this.editor()?.nativeElement ?? null)) { this.focusAfterStart = false; this.editor()!.nativeElement.focus(); }
         if (this.focusAfterFinish && !this.editing() && canFocus(this.start()?.nativeElement ?? null)) { this.focusAfterFinish = false; this.start()!.nativeElement.focus({ preventScroll: true }); }
       });
     });
@@ -52,6 +54,20 @@ export class InlineEdit extends ValueControl<string> implements Validator {
     // A reset supersedes an outstanding UI request. It does not abort backend I/O.
     this.pending.set(null);
   }
+  /** Invalidate UI acknowledgement before a parent change that has not reached this input yet. No I/O is aborted. */
+  invalidatePending(): void {
+    if (this.destroy.destroyed) return;
+    this.pending.set(null); this.resultError.set('');
+  }
+  private syncExternalValue(current: string): void {
+    if (this.observedCurrent === current) return;
+    this.observedCurrent = current; this.invalidatePending();
+    if (this.editing()) this.draft.set(current);
+  }
+  private requestIsCurrent(request: InlineEditRequest): boolean {
+    if (this.current() === request.previousValue) return true;
+    this.syncExternalValue(this.current()); return false;
+  }
   private checkValue(value: string): string | null {
     if (this.required() && !value.trim()) return '入力してください。';
     if (this.maxLength() !== null && [...value].length > this.maxLength()!) return `${this.maxLength()}文字以内で入力してください。`;
@@ -59,6 +75,7 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   }
   protected begin(): void {
     if (this.blocked() || this.readonly() || this.configurationError() || this.editing()) return;
+    this.observedCurrent = this.current();
     this.draft.set(this.current()); this.resultError.set(''); this.focusAfterStart = true;
     this.editing.set(true); this.editingChange.emit(true);
   }
@@ -74,12 +91,13 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   }
   /** App-owned result; reject stale/destroyed requests and retain the failed draft. */
   fail(requestId: number, message: string): boolean {
-    if (this.destroy.destroyed || this.pending()?.requestId !== requestId || !message.trim()) return false;
+    const request = this.pending();
+    if (this.destroy.destroyed || !request || request.requestId !== requestId || !message.trim() || !this.requestIsCurrent(request)) return false;
     this.pending.set(null); this.resultError.set(message); return true;
   }
   complete(requestId: number, value?: string): boolean {
     const request = this.pending();
-    if (this.destroy.destroyed || !request || request.requestId !== requestId) return false;
+    if (this.destroy.destroyed || !request || request.requestId !== requestId || !this.requestIsCurrent(request)) return false;
     const confirmed = value ?? request.value;
     if (this.checkValue(confirmed)) return false;
     this.pending.set(null); this.resultError.set('');

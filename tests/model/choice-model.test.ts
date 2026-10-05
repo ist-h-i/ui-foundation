@@ -7,6 +7,11 @@ test('numeric snapping is anchored to min, respects bounds and keeps decimal end
 test('unrepresentable, degenerate and nonfinite domains fail before a control is rendered',()=>{
  for(const domain of [{min:0,max:0,step:1},{min:1,max:0,step:1},{min:0,max:1,step:0},{min:0,max:Infinity,step:1},{min:1e20,max:1e21,step:1},{min:-1e308,max:1e308,step:1}])assert.throws(()=>numberDomain(domain));assert.throws(()=>snapNumber(NaN,{min:0,max:100,step:1}));
 });
+test('representable large integer and fractional increments are not rounded away',()=>{
+ for(const domain of [{min:1e15,max:1e15+10,step:1},{min:1e15+.25,max:1e15+10.25,step:.25},{min:-1e15,max:-1e15+10,step:1}]){
+  numberDomain(domain);for(let index=0;index<=10;index++){const value=domain.min+index*domain.step;assert.equal(numericValueError(value,domain),null);assert.equal(snapNumber(value,domain),value);}
+ }
+});
 test('ranges preserve invalid app data for validation and reject reversed or off-step endpoints',()=>{
  const domain={min:0,max:10,step:.5};assert.equal(numericRangeError({start:1.5,end:10},domain),null);assert.match(numericRangeError({start:5,end:2},domain)!,/開始値/);assert.match(numericRangeError({start:.2,end:2},domain)!,/刻み/);assert.match(numericRangeError(null,domain)!,/開始値/);assert.match(numericRangeError({start:NaN,end:2},domain)!,/数値/);
 });

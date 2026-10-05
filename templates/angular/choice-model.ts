@@ -9,13 +9,19 @@ export function numberDomain(domain: NumberDomain): NumberDomain {
     throw new Error('Numeric controls require finite min < max and a representable positive step.');
   return domain;
 }
-function rounded(value: number): number { return Number(value.toPrecision(15)); }
+function rounded(value: number, step: number): number {
+  if (Number.isSafeInteger(value)) return value;
+  const cleaned = Number(value.toPrecision(15));
+  // Clean up decimal arithmetic only below a tiny fraction of one step.
+  // A fixed significant-digit limit must not erase representable increments.
+  return Math.abs(cleaned - value) <= step * 1e-8 ? cleaned : value;
+}
 export function snapNumber(value: number, domain: NumberDomain): number {
   numberDomain(domain);
   if (!Number.isFinite(value)) throw new Error('A numeric value must be finite.');
   const steps = Math.floor((domain.max - domain.min) / domain.step + 1e-9);
   const index = Math.min(steps, Math.max(0, Math.round((value - domain.min) / domain.step)));
-  return Math.max(domain.min, Math.min(domain.max, rounded(domain.min + index * domain.step)));
+  return Math.max(domain.min, Math.min(domain.max, rounded(domain.min + index * domain.step, domain.step)));
 }
 export function numericValueError(value: unknown, domain: NumberDomain): string | null {
   numberDomain(domain);
