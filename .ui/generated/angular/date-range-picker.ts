@@ -5,7 +5,7 @@ import {ValueControl} from './value-control';
 import {ActionControl} from './action-control';
 import {DatePicker} from './date-input';
 import {Calendar,CalendarDay} from './calendar';
-import {civilDate,civilISO,dateRangeError,shiftCivilMonth,type DateInputFormat} from './date-model';
+import {civilDate,localCivilISO,dateRangeError,shiftCivilMonth,type DateInputFormat} from './date-model';
 export interface DateRange{start:string|null;end:string|null}
 export interface DatePreset{label:string;range:DateRange}
 @Component({selector:'ui-date-range-picker',standalone:true,imports:[ReactiveFormsModule,ActionControl,DatePicker,Calendar,CalendarDay],changeDetection:ChangeDetectionStrategy.OnPush,
@@ -25,7 +25,7 @@ export interface DatePreset{label:string;range:DateRange}
 })
 export class DateRangePicker extends ValueControl<DateRange> implements Validator{
  protected readonly emptyValue:DateRange={start:null,end:null};readonly min=input<string|null>(null);readonly max=input<string|null>(null);readonly maxDays=input<number|null>(null);readonly disabledDates=input<readonly string[]>([]);readonly dateDisabled=input<((date:string)=>boolean)|null>(null);
- readonly months=input(2);readonly weekStartsOn=input(0);readonly locale=input('ja-JP');readonly inputFormat=input<DateInputFormat>('native');readonly initialMonth=input(civilISO(new Date()).slice(0,7));readonly presets=input<readonly DatePreset[]>([]);readonly clearable=input(true,{transform:booleanAttribute});
+ readonly months=input(2);readonly weekStartsOn=input(0);readonly locale=input('ja-JP');readonly inputFormat=input<DateInputFormat>('native');readonly initialMonth=input(localCivilISO(new Date()).slice(0,7));readonly presets=input<readonly DatePreset[]>([]);readonly clearable=input(true,{transform:booleanAttribute});
  protected readonly start=new FormControl<string|null>(null);protected readonly end=new FormControl<string|null>(null);
  protected readonly selecting=signal<'start'|'end'>('start');private readonly baseMonth=linkedSignal(()=>this.current().start?.slice(0,7)??this.initialMonth());
  protected readonly calendarMonths=computed(()=>Array.from({length:Number.isSafeInteger(this.months())?Math.max(1,Math.min(12,this.months())):1},(_,index)=>shiftCivilMonth(this.baseMonth()+'-01',index).slice(0,7)));

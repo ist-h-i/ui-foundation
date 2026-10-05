@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
-import {civilDate,civilISO,addCivilDays,shiftCivilMonth,calendarDays,dateRangeError,timeSeconds,parseCivilInput,formatCivilInput,localDateTimeSeconds} from '../../templates/angular/date-model.ts';
+import {civilDate,civilISO,localCivilISO,addCivilDays,shiftCivilMonth,calendarDays,dateRangeError,timeSeconds,parseCivilInput,formatCivilInput,localDateTimeSeconds} from '../../templates/angular/date-model.ts';
+test('local calendar defaults snapshot local fields and reject invalid or unsupported years',()=>{
+ const local=new Date(0);local.setFullYear(99,1,28);local.setHours(23,30,0,0);
+ assert.equal(localCivilISO(local),'0099-02-28');
+ assert.throws(()=>localCivilISO(new Date(NaN)),RangeError);
+ local.setFullYear(0);assert.throws(()=>localCivilISO(local),RangeError);
+ local.setFullYear(10000);assert.throws(()=>localCivilISO(local),RangeError);
+});
 test('civil dates reject normalization and retain years/leap days across month/year shifts',()=>{
  assert.equal(civilDate('2025-02-29'),null);assert.equal(civilDate('2024-02-29')?.getUTCDate(),29);assert.equal(civilDate('0000-01-01'),null);
  assert.equal(civilISO(civilDate('0099-01-01')!),'0099-01-01');assert.equal(shiftCivilMonth('2024-01-31',1),'2024-02-29');assert.equal(shiftCivilMonth('2024-02-29',12),'2025-02-28');
