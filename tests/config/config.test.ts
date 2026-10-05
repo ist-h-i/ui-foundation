@@ -12,6 +12,13 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('drawer dimensions are dedicated positive semantics with explicit profile mappings',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.drawer-inline'].value,'384px');assert.equal(result.profiles.dense.semantic['size.drawer-inline'].value,'320px');
+ assert.equal(result.profiles.guided.semantic['size.drawer-block'].value,'480px');assert.equal(result.profiles.dense.semantic['size.drawer-block'].value,'400px');
+ assert.match(renderTailwind(result),/--spacing-size-drawer-inline: var\(--ui-size-drawer-inline\)/);assert.match(renderTokens(result),/--ui-size-drawer-block: var\(--ui-p-drawer-block-guided\)/);
+ rejects(edited(config=>{delete config.semantic['size.drawer-inline'];}),/size.drawer-inline/);
+ rejects(edited(config=>{config.primitives['drawer-block-guided'].value='0px';}),/greater than zero/);
+});
 test('form label width has its own required semantic role and profile mapping',()=>{
  const result=resolve();assert.equal(result.profiles.guided.semantic['size.form-label'].value,'12rem');assert.equal(result.profiles.dense.semantic['size.form-label'].value,'9rem');
  assert.match(renderTailwind(result),/--spacing-size-form-label: var\(--ui-size-form-label\)/);assert.match(renderTokens(result),/--ui-size-form-label: var\(--ui-p-form-label-guided\)/);

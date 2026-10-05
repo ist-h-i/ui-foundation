@@ -234,6 +234,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "280px"
         },
+        "size.drawer-block": {
+          "reference": "drawer-block-dense",
+          "type": "length",
+          "value": "400px"
+        },
+        "size.drawer-inline": {
+          "reference": "drawer-inline-dense",
+          "type": "length",
+          "value": "320px"
+        },
         "size.elevation-blur": {
           "reference": "elevation-blur",
           "type": "length",
@@ -566,6 +576,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "dialog-min",
           "type": "length",
           "value": "280px"
+        },
+        "size.drawer-block": {
+          "reference": "drawer-block-guided",
+          "type": "length",
+          "value": "480px"
+        },
+        "size.drawer-inline": {
+          "reference": "drawer-inline-guided",
+          "type": "length",
+          "value": "384px"
         },
         "size.elevation-blur": {
           "reference": "elevation-blur",

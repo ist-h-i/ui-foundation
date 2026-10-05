@@ -46,3 +46,5 @@ export { Tour, type TourStep, type TourCloseReason } from './tour';
 export { Typography, Badge, Tag, Avatar, AvatarGroup, Descriptions, DescriptionTemplate, Statistic, Meter, MeterGroup, HelpText, ShortcutHint, type AvatarItem, type DescriptionItem, type DescriptionContext } from './display';
 export { ReadMore, CodeBlock, InlineCode, Watermark, type WatermarkPosition } from './display-content';
 export { type DisplayTone, type MeterSegment } from './display-model';
+export { Drawer, BottomSheet } from './drawer';
+export { Popover, Tooltip, HoverCard, ConfirmPopover, PopupTemplate, PopupCloseRequest, type PopupTrigger, type PopupArea, type PopupContext, type PopupCloseReason, type PopupResult } from './floating-panel';

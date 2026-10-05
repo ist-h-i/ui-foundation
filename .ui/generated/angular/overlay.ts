@@ -32,13 +32,13 @@ export class OverlayRegistry {
     private readonly entries = stacks.get(this.document) ?? [];
     constructor() {
         stacks.set(this.document, this.entries);
-        this.document.addEventListener('keydown', this.keydown, true);
+        this.document.addEventListener('keydown', this.keydown);
         this.document.addEventListener('pointerdown', this.pointerdown, true);
         this.document.addEventListener('close', this.closed, true);
         const observer = typeof MutationObserver === 'undefined' ? null : new MutationObserver(() => this.prune());
-        if (this.document.body)
-            observer?.observe(this.document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
-        inject(DestroyRef).onDestroy(() => { this.document.removeEventListener('keydown', this.keydown, true); this.document.removeEventListener('pointerdown', this.pointerdown, true); this.document.removeEventListener('close', this.closed, true); observer?.disconnect(); for (let index = this.entries.length - 1; index >= 0; index--)
+        if (this.document.documentElement)
+            observer?.observe(this.document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
+        inject(DestroyRef).onDestroy(() => { this.document.removeEventListener('keydown', this.keydown); this.document.removeEventListener('pointerdown', this.pointerdown, true); this.document.removeEventListener('close', this.closed, true); observer?.disconnect(); for (let index = this.entries.length - 1; index >= 0; index--)
             if (this.entries[index]!.owner === this)
                 this.entries.splice(index, 1); });
     }
@@ -56,8 +56,10 @@ export class OverlayRegistry {
             record.entry.dismiss('scope-exit'); };
     private readonly keydown = (event: KeyboardEvent): void => {
         const record = this.entries.at(-1), top = record?.entry;
-        if (record?.owner !== this || event.defaultPrevented || event.key !== 'Escape' || !top || top.kind === 'native-dialog')
+        if (record?.owner !== this || event.defaultPrevented || event.isComposing || event.keyCode === 229 || event.key !== 'Escape' || !top)
             return;
+        // Give child widgets and IME composition priority. Native CloseWatcher can
+        // make repeated cancel events noncancelable, so route unconsumed Escape here.
         event.preventDefault();
         event.stopPropagation();
         top.dismiss('escape');

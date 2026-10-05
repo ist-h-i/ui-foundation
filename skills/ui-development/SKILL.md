@@ -69,3 +69,11 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - MaskedInputはraw CVA値と書式付きnative表示を分け、未入力placeholderを値へ入れない。不正draft/超過/IME/区切り削除と再入力を保持し、clearIncompleteOnBlurの明示設定だけで途中入力を消す。OTPは先頭0と全コードを保持し、桁違いを切り詰めない。one-time-codeはDOM契約で、認証とOS自動入力の成功はアプリ/環境側にある。
 - TagInputはcollectionにrequired/max/duplicate/候補検証を接続し、空のnative editorのrequiredと混同しない。拒否draftと復元された値を残し、個別削除でeditorへfocusを移す。RadioGroupはnative矢印、CVA初期値/reset、個別disabledとグループ離脱を確認する。
 - FormActionsはnative submit/resetとcancelledの意図を接続する。busyで再操作を抑止して入力を保持し、自前focusだけを戻す。実保存/取消/Undoの結果は利用アプリが所有する。全prop、入力書式、nullable reset、template contextはdocs/ui-components.mdの契約を参照する。
+## 端の領域と浮動表示
+
+- Drawerはnative dialogへuiDrawer、BottomSheetはuiBottomSheetを付け、Dialogのslots/終了保留/結果を使う。左右上下のedgeは物理位置。専用size.drawer-inline/blockと正のpixel寸法、Sheetの昇順比率とnative段階操作を接続し、段階/profile/幅変更で入力を作り直さない。
+- Popover/Tooltip/HoverCard/ConfirmPopoverへ実HTMLElementのanchorを渡す。component/directive付き要素はviewChildのread:ElementRefを明示する。native top layerでも元のprofile/RTL/DOMを保ち、modal内のanchorと内容は同じmodal内へ置く。
+- Tooltipはmessage/role=tooltip/aria-describedbyだけで操作を入れない。遅延、Escape前後、hover/focus保持、説明参照の所有範囲とtimer破棄を確認する。HoverCardの補助操作へkeyboard/明示clickでも入れるようにし、必須情報をhoverだけへ隠さない。
+- Popoverのheader/body/actionsにはtyped uiPopupTemplateを使う。終了理由/同期保留/busyをアプリへ返し、scope喪失/hidden/破棄で終了保留を延命しない。連続Escape、外部focus、対象変更、狭幅/RTL、入力保持を検証する。
+- ConfirmPopoverのconfirmRequestedは意思表示。busy/error/retryを接続し、結果後にcompleteまたは明示open=falseを行う。保存/Undoを先取りしない。全propと責任範囲はdocs/ui-components.mdの端の領域と浮動表示を参照する。
+- 共通Escapeと表示待ちの取消は子のキー処理後に行い、defaultPrevented/IME変換中は処理しない。連続Escapeのbusy/終了保留、非modalの外部focus、hiddenのDrawer/Sheetでmodalが解放されることを確認する。documentElementを含む根スコープのdir/profile/style/inert変更でも再配置と後始末を確かめる。キー以外のnative終了要求の保留は保証しない。判断はdocs/adr/0001-overlay-escape.mdを参照する。

@@ -311,3 +311,28 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 追加の必須役割はfont.code、size.avatar、opacity.watermarkです。設定正本から両profileへ解決し、code書体/avatar寸法はTailwindの対応namespaceへ、opacityはsemantic CSSへ直接接続します。
 
 参考: [HTML meter](https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element)、[HTML code/kbd](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element)、[APG disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)、[W3C bidi isolation](https://www.w3.org/International/articles/inline-bidi-markup/)。
+## 端の領域と浮動表示
+
+`dialog[uiDrawer]`のDrawerと`dialog[uiBottomSheet]`のBottomSheetはnative Dialogの実装を継承する。`label`、`open/openChange`、`modal`、`closeOnEscape`、`closeOnOutsideClick`、`closable`、`busy`、終了保留の`closeRequested.preventDefault()`、`completed`の理由/値、`finish()`とアプリの結果後の`complete()`はDialogと同じ。`showHeader`はtrueが既定。`uiDialogTemplate=header/body/footer`のtyped contextと領域の投影をそのまま使う。
+
+Drawerの`edge=left/right/top/bottom`は物理位置（既定right）。RTLで左右を反転しない。`width/height`は正の有限pixelまたはnull。nullでは左右端の幅は`size.drawer-inline`、上下端の高さは`size.drawer-block`、反対方向はviewport。viewportを超えず内部scrollを持つ。明示寸法/edge変更は以前の移動/resizeを解除し、内容を作り直さない。Dialogのmove/resize/maximizeを選んだ場合は同じnative keyboard handleを使う。通常のDialogのpositionよりedgeを優先し、最大化はviewportになる。Drawer/BottomSheetがhidden/inert/切離しで利用不能になる場合はnative closeでmodalの背景抑止を解除し、理由nativeを返す。この後始末をUIの終了保留で妨げない。nonmodalの外部終了では、すでに別の操作へ移ったfocusを奪わない。
+
+BottomSheetの`stages`は昇順の正の比率（最大1、既定[.4,.7,1]）、`stage/stageChange`は有効index（既定1）。高さはviewportまたは明示`height`に選択比率を掛けた値。native rangeと`reduceLabel/expandLabel`のbuttons、`setStage(index)`が段階を変更する。`stageLabel`と現在の段階/百分率の説明を残す。busyでは段階の再操作を抑止し、無効になる組込み操作のfocusを領域へ保持する。端の段階で無効になる増減buttonからはrangeへ移す。閉じ方と操作領域はDialogの契約で、pointerのドラッグに依存しない。
+
+Popover/Tooltip/HoverCard/ConfirmPopoverの対象は実`HTMLElement|null`の`anchor`。directive/component付き要素はtemplate referenceがcomponentになる場合があるため、`viewChild(...,{read:ElementRef})`の`nativeElement`を渡す。対象と内容は同じdocument、modal内は同じnative modalのDOM内へ置く。top layerへ入っても元のDOMのprofile/RTLを継承し、anchorへ瞬間移動しない。`controlId`は空白を含まない固有のID。
+
+共通`trigger=click/hover/focus/manual`（Popover/ConfirmPopoverはclick、Tooltip/HoverCardはhover）、`placement`（既定bottom-start、共通Overlayの6種）、`open/openChange`、`disabled`、`busy`、`closeOnEscape/closeOnOutsideClick`（true）、`showDelayMs/hideDelayMs`（有限・0以上・native timer上限内）、`focusFallback`を扱う。hoverにはkeyboard focusと明示clickの経路がある。`show()`で明示開始できる。対象の変更/位置変更を再配置し、対象/内容のhidden/inert/modal scope喪失で後始末する。
+
+`close(reason)`は同期の`PopupCloseRequest`を出力し、アプリが保留できる。busyはUI終了を保留する。`closed`は`{reason,value}`、理由はescape/outside/scope-exit/target-unavailable/close-button/cancel/confirm/programmatic/leave。明示`open=false`、対象喪失と破棄はtimer/listener/Overlayを後始末する。外部操作のfocusを奪わず、自前focusが内容に残る終了では可用なanchorまたは`focusFallback`へ戻す。scope喪失を終了保留で延命しない。native popupを同期で閉じ、次のEscapeを親Dialogへ渡す。
+
+Popover/HoverCardは非modal dialogと`label`、`showHeader/showCloseButton`（true）、`closeLabel/busyLabel`、`focusOnOpen`（true）を持つ。click/明示開始では操作へfocusを移し、hover/focusからの自動表示ではanchorのfocusを残す。自動表示済みのHoverCardをclick/Enterで明示起動した場合も操作へ入れる。Tabも内容へ移動できる。`uiPopupTemplate=header/body/actions`のcontextは`busy/close()`。投影は`uiPopupHeader/uiPopupActions`と本文。内容を閉じてもDOMと入力を保持する。trigger/RTL/profileの実行中の変更でも自前focusと配置を維持する。anchorのaria-controls/haspopup/expandedを部品が所有するので他のcontrollerと共有しない。破棄/対象変更で自分の属性だけを復元する。明示破棄は内容の入力保持を保証せず、利用アプリにopen=trueが残る場合は再作成した部品も開く。
+
+Tooltipは必須`message`だけを表示し、操作を投影しない。既定500ms/100ms、HoverCardは300ms/150ms（明示で変更できる）。Tooltipのrole=tooltipはfocusを受け取らず、anchorの既存`aria-describedby`へ自分のIDだけを足し、対象変更/破棄でそのIDだけを外す。未処理のEscapeは表示前timerも破棄し、同じhover/focusが続く間は再開しない。入力が消費したキーやIME変換中のキーでは待機表示を取り消さない。内容へpointerが移っても保持する。必須の説明はTooltipだけに依存させず常設の説明にも置く。
+
+ConfirmPopoverは必須`label/message`、`confirmLabel/cancelLabel/busyLabel`、`error`を持つ。初期focusは取消。`confirmRequested`はUIの意思表示で、自動で閉じない。アプリがbusy/error/retryを接続し、結果後に`complete(value)`または明示open=falseを行う。取消はcancelで閉じる。処理失敗は入力とerrorを残し、再試行できる。ライブラリはbackendの保存成功・実Undoを保証しない。
+
+共通Escapeは子のキー処理の後で最上位Overlayへ渡し、defaultPreventedまたはIME変換中のキーでは終了しない。busy/終了保留の連続Escapeも保持する。native Dialogはmodalの背景抑止とTabを所有する。native cancelの拒否だけでは連続した閉じ要求を必ず保留できないため、アプリのキー契約を共通Registryで扱う。[判断と制限](adr/0001-overlay-escape.md)を参照する。OSの戻る操作など、キー以外の終了要求の保留を保証しない。
+
+対象/内容の監視はdocumentElementを含む。根のdir/profile/style変更でもPopupを再配置し、根がhidden/inertとなる場合もMenu/Popupの後始末とDrawer/Sheetのnative modal解除を行う。根の利用可能状態を戻した後、別の操作へ移ったfocusを奪わない。
+
+参照は[HTML popover](https://html.spec.whatwg.org/multipage/popover.html)、[APG modal Dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)、[APG Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)。Tooltip patternはwork in progress。native意味/実操作/axe/描画と実screen reader・利用者理解を区別する。
