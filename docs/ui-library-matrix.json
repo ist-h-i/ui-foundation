@@ -3140,7 +3140,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "移動先、現在地、方向、アイコン、狭幅時の表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-02",
@@ -3150,7 +3159,10 @@
       "sourceLine": 97,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/navigation-tree.ts",
+        "templates/angular/navigation-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3179,7 +3191,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "入れ子、展開、折畳み、幅、現在地"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-03",
@@ -3189,7 +3210,10 @@
       "sourceLine": 98,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/navigation-tree.ts",
+        "templates/angular/navigation-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3218,7 +3242,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "項目、選択、ラベル、固定位置"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-04",
@@ -3229,7 +3262,8 @@
       "baseline": "partial",
       "status": "pending",
       "implementation": [
-        "templates/angular/navigation.ts"
+        "templates/angular/navigation.ts",
+        "templates/angular/navigation-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -3259,7 +3293,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "階層、区切り、長い階層の折畳み"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-05",
@@ -3270,7 +3313,8 @@
       "baseline": "partial",
       "status": "pending",
       "implementation": [
-        "templates/angular/tabs.ts"
+        "templates/angular/tabs.ts",
+        "templates/angular/navigation-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -3300,7 +3344,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "選択、縦横方向、スクロール、無効、閉じる、並べ替え"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-06",
@@ -3310,7 +3363,10 @@
       "sourceLine": 101,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/anchor-navigation.ts",
+        "templates/angular/focus.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3339,7 +3395,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "ページ内移動、現在位置、固定、移動時の余白"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-07",
@@ -3510,7 +3575,11 @@
       "sourceLine": 105,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/menubar.ts",
+        "templates/angular/menu.ts",
+        "templates/angular/menu-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3539,7 +3608,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "横方向のメニュー、入れ子、選択、操作項目"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-11",
@@ -3549,7 +3627,11 @@
       "sourceLine": 106,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/mega-menu.ts",
+        "templates/angular/floating-panel.ts",
+        "templates/angular/navigation-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3578,7 +3660,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "複数列、グループ、見出し、補助情報"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "navigation-12",
@@ -3588,7 +3679,11 @@
       "sourceLine": 107,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/command-palette.ts",
+        "templates/angular/navigation-model.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3617,7 +3712,16 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "コマンド検索、グループ、ショートカット、履歴"
+      ],
+      "remainingControls": [],
+      "verificationPending": [
+        "fixed HEAD full checks",
+        "independent review",
+        "drawing evidence and proof reconciliation"
+      ]
     },
     {
       "id": "overlays-01",

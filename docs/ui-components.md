@@ -61,13 +61,19 @@ AsyncRegionとActionFeedbackは、初期のready/idleでも空のlive regionを�
 
 ### Navigation / Breadcrumb / NavigationItem
 
-`<nav uiNavigation label="主要画面">`、`<nav uiBreadcrumb>` にnative linkやol/liを置く。Navigationはlabel必須、Breadcrumbは既定label「パンくず」。`<a uiNavigationItem href="…" [currentPage]="true">` は現在地をaria-current="page"で示す。リンク先と現在のページはアプリが決定する。Angular Routerとの合成は未検証。
+`<nav uiNavigation label="主要画面">`へnative ul/li/linkを投影する。`direction='horizontal'|'vertical'`、`narrow='wrap'|'scroll'`で方向と狭幅時の配置を指定する。アイコンもリンク内へ投影できる。Navigationはlabel必須、Breadcrumbは既定label「パンくず」。`<a uiNavigationItem href="…" [currentPage]="true">` は現在地をaria-current="page"で示す。リンク先と現在のページはアプリが決定する。Angular Routerとの合成は未検証。
+
+Breadcrumbは従来のnative ol/li投影、または`items: readonly BreadcrumbItem[]`を選ぶ。項目は一意なid/labelと任意のhref/current、currentは最大1件、省略時は最後。`separator`は装飾、`maxItems`は3以上の整数で折畳み操作を含む表示件数、`expanded/expandedChange`で中間階層を開閉する。折畳みはリンクを破棄せずnative detailsへ入れ、全階層へ到達できる。hrefなしの現在地はspan。実行可能なjavascript/data/vbscript URLと空URLを拒否する。
 
 リンク文字は`color.link`を使い、主操作背景の`color.action`と分離する。通常の透明背景ではsurface／background上へ配置し、hover／現在地の背景にはbackgroundを使用する。部品側でlist itemとリンクの幅を制御し、長い日本語・連続英字を折り返す。文言の短縮・省略やoverflowの隠蔽を利用側に要求しない。
 
 ### Tabs / TabPanel
 
-`<ui-tabs label="申請の情報" [selected]="panelId()" (selectedChange)="panelId.set($event)"><ui-tab-panel panelId="summary" label="概要">…</ui-tab-panel>…</ui-tabs>`。panelIdはアプリ内で一意。selectedが空の場合は先頭、指定する場合は存在するpanelIdを渡す。横方向の手動アクティベーションで、左右/Home/Endはフォーカス移動、Enter/Space/クリックは選択する。タブとパネルのARIAを接続し、非表示パネルをhiddenにして入力のインスタンスを保持する。縦タブは初版の範囲外。
+`<ui-tabs label="申請の情報" [selected]="panelId()" (selectedChange)="panelId.set($event)"><ui-tab-panel panelId="summary" label="概要">…</ui-tab-panel>…</ui-tabs>`。panelIdはアプリ内で一意で、空白や自動生成tab IDとの衝突を拒否する。selectedは空なら最初の有効panel、指定する場合は存在するpanelId。個別disabledを飛ばし、指定panelがdisabledなら最初の有効panelを表示する。選択値自体の更新はアプリが行う。
+
+`orientation='horizontal'|'vertical'`（既定horizontal）、`scrollable`（既定false）はtablist内の局所scroll。手動アクティベーションで横は左右（RTL反転）、縦は上下、Home/Endはfocusだけ、Enter/Space/クリックは選択。Tabは表示panelへ移る。パネルはhiddenで入力のインスタンスを保持し、入れ子のTabsは所有するTabPanelだけを扱う。
+
+TabPanelの`closable`（既定false）とTabsの`closeRequested: string`はDeleteまたは選択中の閉じる操作でidを返す。アプリが未保存判断を行い、panelデータとselectedを同時に更新する。`reorderable/orderChange`はAlt＋方向キーまたは前後の操作で新しいid順を返し、アプリは`@for(...;track panelId)`で実データを並べ替える。ライブラリは入力を再生成しない。`allowEmpty`（既定false）、`focusFallback: HTMLElement|null`は最後のpanel除去と退避先の明示に使う。空になった時はtablistと選択中の操作を表示せず、指定した退避先へfocusを移す。動的除去/disabledで自前focusが失われた際は次/前の有効tabへ移す。別領域にあるfocusは奪わない。
 
 選択中タブの文字と下線は`color.tab-selected`、タブの背景はsurfaceを使う。文字／背景のコントラストを検証し、ボタンの背景色へ結び付けない。
 
@@ -76,6 +82,36 @@ AsyncRegionとActionFeedbackは、初期のready/idleでも空のlive regionを�
 `<ui-disclosure title="詳細条件" [open]="expanded()" (openChange)="expanded.set($event)">…</ui-disclosure>`。native details/summaryを使う。title必須、openは既定false。開閉状態の所有者はアプリ。HTML標準のキーボード操作を維持する。
 
 TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキーボードのタブ順から外れる。再表示しても入力値と選択・開閉状態を保持する。
+
+### SideNav / NavigationRail / BottomNavigation / Dock
+
+`<ui-side-nav>`（同じ実装の`ui-navigation-rail`）は必須`navId/label`、`items: readonly NavigationNode[]`、`current`、`expandedIds/expandedIdsChange`、`collapsed/collapsedChange`、任意の正のpixel `width`、`selected: NavigationNode`を持つ。NavigationNodeはid/label、任意のhref/icon/description/disabled/visible/再帰children。IDは全階層で一意、循環を拒否する。native nav/list/details/summaryとリンクを使い、menu-widgetの矢印操作をサイトリンクへ強制しない。親にもhrefがあれば開いた階層内に親へのリンクを表示する。disabledの親はUI展開を拒否し、disabledのリンクは説明可能なまま遷移を拒否する。visible=falseの階層は表示しない。
+
+widthは展開時の幅、省略時はsize.sidebar。全体の折畳みはsize.navigation-railへ切り替え、開いていた階層を記憶する。アイコン/頭文字の表示でも完全なラベルを保つ。折畳み中に親summaryを選ぶとナビを展開してその親を開く。外部collapse/親の終了/項目除去では自前focusだけを残った親summaryまたは折畳み操作へ退避する。
+
+`<ui-bottom-navigation>`（`ui-dock`）は必須label、items/current、`showLabels=true`、`fixed=false`、物理`edge='top'|'bottom'|'left'|'right'`、selectedを持つ。項目は同じNavigationNodeの平坦な移動先で、children付き入力はエラーとしてSideNavへ誘導する。ラベル非表示でもリンクの名前を残し、左右端は縦配置、上下端は横配置で局所scrollする。固定領域が本文を覆わない余白はアプリの画面構成で確保する。URL遷移、現在地、Router、履歴はアプリが所有する。
+
+### AnchorNavigation
+
+`<ui-anchor-navigation>`は必須label、`items: readonly {id;label;target:HTMLElement|null}[]`、任意`scrollRoot:HTMLElement|null`、非負pixel `offset=0`、`position='static'|'sticky'|'fixed'`、`behavior='auto'|'smooth'`、`updateHash=true`、currentChange/selectedを持つ。targetは同一documentの実要素で有効なidを持ち、scrollRootを使う場合はその内部へ置く。target=null/hidden/inert/切断時はリンクを無効にして説明を残す。native hrefを保ち、修飾キー付きクリックを横取りしない。
+
+通常のクリックはtargetへ実scrollし、見出しへfocusし、必要なら元のhistory.stateを保ってhashを更新する。offsetはscroll-margin-block-startへ接続、local rootではそのscrollTopへ反映する。reduced motion時はsmoothを使わない。scroll/resize/targetの表示/根dir/profile/style変更で現在位置を追跡する。stickyはhost自体を直近scroll領域内に配置する。破棄/対象変更で自前のmargin/tabindexだけを元へ戻し、その間のアプリ変更を上書きしない。固定領域の予約幅、業務上の現在地解釈、URL同期の追加制約はアプリが決める。
+
+### Menubar / MegaMenu
+
+`<ui-menubar>`は必須controlId/label、`items: readonly MenuItem[]`、itemsChange/selected、`disabled=false`、`closeOnSelect=true`を持つ。常時見えるrootは横方向のroving focus、rootのcommand/check/radioと再帰Menuを組み合わせる。rootのgroup/separatorは拒否し、popupのchildrenに置く。子popupを持つrootはtype=itemとし、checkbox/radioの選択項目はpopup内に置く。disabled項目はfocusで説明を確認でき、実行を拒否する。選択はrootを含むid pathとitemを返す。itemsChangeはcheck/radioの新しいdataであり、実行成功を意味しない。
+
+rootの左右（RTL反転）/Home/End/typeahead、popupの上下/Enter/Space、前方キーによる子展開、後方/Escapeによる親へのfocus復帰を接続する。popup内のleafで前方キーを押すと次rootへ移り、そこにpopupがあれば最初の項目へ入る。最上位popupで後方キーは前root。Tab/Shift+Tabで全popupを閉じ、Menubar全体の外へ退出する。root間や深い階層の連続キー、項目除去時の自前focusを検証する。既存Menuの`menubar/rootNavigation`と`openMenu/dismiss/focusTrigger`はこの合成にも使う。
+
+`<ui-mega-menu>`は実anchorを使うnative popupで、Popover共通契約（controlId/anchor/open/trigger/placement/busy/終了理由/保留/対象喪失）を継承する。必須label、`groups: readonly MegaMenuGroup[]`（group=id/label/description/items）、正の整数`columns=3`、current、closeOnSelect=true、closeLabel、selectedを追加する。各groupの見出し/説明、native links/detailsによる子階層と親リンクを実描画し、size.mega-menu/size.navigation-columnで最大列数と折返しを決める。通常のサイト移動なので矢印によるmenu操作を強制しない。Tabで全リンクとsummaryへ到達し、外側/終了時のfocusは共通popupが管理する。遷移先とcurrentの更新はアプリへ返す。通常リンクの移動先がfocusを受け取る場合はnative遷移を優先し、Escape/取消では起動要素へ戻す。
+
+### CommandPalette
+
+`<ui-command-palette>`は必須controlId/label、`commands: readonly PaletteCommand[]`、open/openChange、query/queryChange、recentIds/historyChange、正の整数historyLimit=10を持つ。PaletteCommandは一意id/label、任意description/group/keywords/shortcut/disabled/visible/icon。検索語を空白で分割し、label/description/group/keywordsすべてを対象にAND検索する。groupをまとめ、検索が空なら最近呼び出した項目を優先する。履歴は呼出し履歴であり成功した業務処理の履歴と断定しない。永続化はアプリが行う。
+
+native modal Dialogと入力focusを維持するcombobox/listbox、group名と候補説明を使う。上下は候補移動、EnterはcommandRequested、disabledは表示して実行を拒否する。defaultPrevented/IME変換中のキーは処理しない。検索draftと同じnative editorをclose/reopenや候補差替えでも保持する。busy/error/busyLabel/retryLabelを接続し、busy中の再要求を抑止、エラー後は選択と検索を保って再試行する。closeRequested/completedはDialogの終了保留/結果、`close()`は取消、`complete(value)`はアプリ結果を返す。closeOnSelectは既定falseで、既定では実行要求だけで閉じない。明示trueは即時完了できるアプリ操作に限って接続する。closeOnOutsideClick=false、size=largeが既定。searchLabel/resultsLabel/defaultGroup/emptyLabelも差替え可能。アプリ補助操作は内容投影でDialog内へ置ける。
+
+`shortcut: string|null=null`は開くキーの明示opt-in、`shortcutScope: HTMLElement|null`は監視範囲（既定は同じOverlayHost、なければbody）。Control/Alt/Metaのどれかを含む厳密な修飾キーと文字/数字/F1..12/Enter/Space/方向キーの組合せを使う（例Control+k、Meta+Shift+k）。Shiftだけ、重複修飾子、曖昧なCtrl等は拒否する。候補のshortcutはpaletteが開いている間だけ実行する。通常の入力、既に処理したキー、IME、repeat、別modalの外側にあるpaletteは横取りしない。画面固有のショートカット衝突、OS/SR予約キー、実コマンドとbackend結果はアプリが確認する。全ショートカットに表示上の操作経路も残す。
 
 ### Dialog
 
