@@ -9,7 +9,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'color.danger-hover': 'color', 'color.on-danger': 'color', 'color.success': 'color',
   'color.success-surface': 'color', 'color.warning': 'color', 'color.warning-surface': 'color',
   'color.error-surface': 'color', 'color.focus': 'color', 'color.disabled-surface': 'color',
-  'color.backdrop': 'color', 'color.shadow': 'color', 'font.body': 'fontFamily',
+  'color.backdrop': 'color', 'color.shadow': 'color', 'font.body': 'fontFamily', 'font.code': 'fontFamily',
   'text.body': 'length', 'text.small': 'length', 'text.heading': 'length',
   'leading.body': 'number', 'leading.heading': 'number', 'leading.control': 'number',
   'weight.body': 'number', 'weight.heading': 'number', 'weight.control': 'number',
@@ -20,16 +20,16 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'size.control': 'length', 'size.icon': 'length', 'size.dialog': 'length', 'size.content': 'length',
   'size.table-column-min': 'length', 'size.table-viewport': 'length',
   'size.input-max-height': 'length',
-  'size.grid-item': 'length', 'size.sidebar': 'length',
+  'size.grid-item': 'length', 'size.sidebar': 'length', 'size.avatar': 'length',
   'size.elevation-blur': 'length', 'size.overlay-min': 'length', 'size.dialog-min': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
-  'motion.duration': 'duration', 'motion.easing': 'easing',
+  'motion.duration': 'duration', 'motion.easing': 'easing', 'opacity.watermark': 'number',
 };
 
 export const CATEGORY_TYPES: Readonly<Record<string, readonly PrimitiveType[]>> = {
   color: ['color'], font: ['fontFamily'], text: ['length'], leading: ['number'], weight: ['number'],
   space: ['length'], radius: ['length'], size: ['length'], border: ['length'],
-  motion: ['duration', 'easing'],
+  motion: ['duration', 'easing'], opacity: ['number'],
 };
 
 /** Only these component text/background pairs are checked; this is not a UX/a11y certification. */

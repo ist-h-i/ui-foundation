@@ -1,11 +1,14 @@
 /* Generated from explicit primitives and references. Edit ui.config.yaml, then sync. */
 :root {
+  --ui-p-avatar-dense: 48px;
+  --ui-p-avatar-guided: 64px;
   --ui-p-backdrop: #172033;
   --ui-p-blue: #1856a6;
   --ui-p-blue-hover: #10427f;
   --ui-p-bold: 700;
   --ui-p-border-thin: 1px;
   --ui-p-canvas: #f5f7fa;
+  --ui-p-code-font: ui-monospace, "SFMono-Regular", Consolas, monospace;
   --ui-p-content: 1120px;
   --ui-p-control-minimum: 44px;
   --ui-p-dialog: 640px;
@@ -55,6 +58,7 @@
   --ui-p-text-guided: 1.125rem;
   --ui-p-warning-ink: #694700;
   --ui-p-warning-wash: #fff4d6;
+  --ui-p-watermark-opacity: 0.12;
   --ui-p-white: #ffffff;
   --ui-border-control: var(--ui-p-border-thin);
   --ui-border-focus: var(--ui-p-focus-width);
@@ -82,13 +86,16 @@
   --ui-color-warning: var(--ui-p-warning-ink);
   --ui-color-warning-surface: var(--ui-p-warning-wash);
   --ui-font-body: var(--ui-p-system-font);
+  --ui-font-code: var(--ui-p-code-font);
   --ui-leading-body: var(--ui-p-leading-body);
   --ui-leading-control: var(--ui-p-leading-control);
   --ui-leading-heading: var(--ui-p-leading-heading);
   --ui-motion-duration: var(--ui-p-duration);
   --ui-motion-easing: var(--ui-p-easing);
+  --ui-opacity-watermark: var(--ui-p-watermark-opacity);
   --ui-radius-control: var(--ui-p-round-guided);
   --ui-radius-surface: var(--ui-p-surface-guided);
+  --ui-size-avatar: var(--ui-p-avatar-guided);
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);
@@ -144,13 +151,16 @@
   --ui-color-warning: var(--ui-p-warning-ink);
   --ui-color-warning-surface: var(--ui-p-warning-wash);
   --ui-font-body: var(--ui-p-system-font);
+  --ui-font-code: var(--ui-p-code-font);
   --ui-leading-body: var(--ui-p-leading-body);
   --ui-leading-control: var(--ui-p-leading-control);
   --ui-leading-heading: var(--ui-p-leading-heading);
   --ui-motion-duration: var(--ui-p-duration);
   --ui-motion-easing: var(--ui-p-easing);
+  --ui-opacity-watermark: var(--ui-p-watermark-opacity);
   --ui-radius-control: var(--ui-p-round-dense);
   --ui-radius-surface: var(--ui-p-surface-dense);
+  --ui-size-avatar: var(--ui-p-avatar-dense);
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);
@@ -206,13 +216,16 @@
   --ui-color-warning: var(--ui-p-warning-ink);
   --ui-color-warning-surface: var(--ui-p-warning-wash);
   --ui-font-body: var(--ui-p-system-font);
+  --ui-font-code: var(--ui-p-code-font);
   --ui-leading-body: var(--ui-p-leading-body);
   --ui-leading-control: var(--ui-p-leading-control);
   --ui-leading-heading: var(--ui-p-leading-heading);
   --ui-motion-duration: var(--ui-p-duration);
   --ui-motion-easing: var(--ui-p-easing);
+  --ui-opacity-watermark: var(--ui-p-watermark-opacity);
   --ui-radius-control: var(--ui-p-round-guided);
   --ui-radius-surface: var(--ui-p-surface-guided);
+  --ui-size-avatar: var(--ui-p-avatar-guided);
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);

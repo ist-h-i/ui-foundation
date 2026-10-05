@@ -164,6 +164,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "fontFamily",
           "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
         },
+        "font.code": {
+          "reference": "code-font",
+          "type": "fontFamily",
+          "value": "ui-monospace, \"SFMono-Regular\", Consolas, monospace"
+        },
         "leading.body": {
           "reference": "leading-body",
           "type": "number",
@@ -189,6 +194,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.watermark": {
+          "reference": "watermark-opacity",
+          "type": "number",
+          "value": 0.12
+        },
         "radius.control": {
           "reference": "round-dense",
           "type": "length",
@@ -198,6 +208,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "surface-dense",
           "type": "length",
           "value": "6px"
+        },
+        "size.avatar": {
+          "reference": "avatar-dense",
+          "type": "length",
+          "value": "48px"
         },
         "size.content": {
           "reference": "content",
@@ -477,6 +492,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "fontFamily",
           "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
         },
+        "font.code": {
+          "reference": "code-font",
+          "type": "fontFamily",
+          "value": "ui-monospace, \"SFMono-Regular\", Consolas, monospace"
+        },
         "leading.body": {
           "reference": "leading-body",
           "type": "number",
@@ -502,6 +522,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.watermark": {
+          "reference": "watermark-opacity",
+          "type": "number",
+          "value": 0.12
+        },
         "radius.control": {
           "reference": "round-guided",
           "type": "length",
@@ -511,6 +536,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "surface-guided",
           "type": "length",
           "value": "16px"
+        },
+        "size.avatar": {
+          "reference": "avatar-guided",
+          "type": "length",
+          "value": "64px"
         },
         "size.content": {
           "reference": "content",

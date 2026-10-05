@@ -271,3 +271,31 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 `uiAction`などdirective付き要素をtarget/focusFallbackに使う場合、Angularのqueryは`viewChild<unknown, ElementRef<HTMLElement>>(name, {read: ElementRef})`のnativeElementを明示して取得する。directiveのtemplate referenceをHTMLElementとして扱わない。
 
 参考: [APG Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)、[HTML progress](https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element)、[native modalと背景のinert](https://html.spec.whatwg.org/multipage/interaction.html#modal-dialogs-and-inert-subtrees)。
+
+## 文字・情報・数値表示
+
+`Typography`はnative h1〜h6/p/span/strong/em等へ`uiTypography`/`uiHeading`/`uiText`を付けるdirectiveです。意味と見出し階層は実タグで決まり、`uiTypography=body/heading/small`、tone=neutral/muted/info/success/warning/error、align=start/center/end/justify、wrap=wrap/nowrap/balance、emphasis=normal/strong/italicが見た目を制御します。native strong/emの意味を保ちます。nowrapは内容を局所scrollでき、既にtabindexやnative操作を持たない要素へtab stopを追加します。アプリが指定したtabindexは保持します。
+
+`Badge`はcount、maximum、showZero、dot、label、toneと、inline/top・bottom×start・center・endのpositionを持ちます。上限表示が99+でも完全数値を説明し、dotはlabelを説明に使います。位置は論理方向でRTLへ接続します。投影した対象の上に重ねる場合も枠内へ収めます。
+
+`Tag`（ui-tag/ui-chip）はlabel/icon/tone、selectable、selected/selectedChange、removable/removed、disabled/busy、focusFallbackを持ちます。選択と削除は別のnative buttonです。選択はaria-pressedで示し、削除要求の前に内側のfocusを外へ退避します。組込み操作が動的に除去/無効化されたらTagへfocusを保持し、外側のfocusを奪いません。実際のデータ削除・検証・失敗からの復旧は利用アプリが所有します。
+
+`Avatar`はname/src/alt、decorative、locale、size=small/medium/large、shape=circle/squareを持ちます。画像取得が失敗するとグラフェムを分断しない氏名頭文字と代替説明を表示し、src変更で画像を再試行します。`imageFailed`は失敗したsrcを返します。`AvatarGroup`はtyped items(id/name/src/alt)、maximum、label、size/shape/localeを持ち、上限を超えた担当者はnative detailsから氏名付きで確認できます。上限変更でsummaryが消える場合はGroupへfocusを保持します。
+
+`Descriptions`（ui-descriptions/ui-key-value）はnative dl/dt/dd、typed items(id/label/value)、columns、direction=horizontal/vertical、label、missingLabel、emptyLabelを持ちます。null/undefined、0、false、空の文字列を区別します。狭幅では1列へ折返します。`DescriptionTemplate`（ng-template[uiDescriptionValue]）は$implicit:DescriptionItem、value、missingを型付きで渡します。
+
+`Statistic`（ui-statistic/ui-metric-card）はlabel/value/unit、comparison/comparisonLabel、deltaMode=absolute/percent、deltaLabel/deltaTone、localeとIntl.NumberFormatOptionsのformat、missingLabel/unavailableDeltaLabelを持ちます。有限数またはnullを受け付け、0件と未取得を区別します。百分率は(value−comparison)/abs(comparison)で、比較値0・欠損・表現可能範囲を超える増減は比較不能と説明します。増加を業務上の成功と推定せず、意味色はアプリが指定します。
+
+`Meter`はcontrolId/label、value/minimum/maximum、low/high/optimum、unit/locale、missingLabelをnative meterへ接続します。minimum < maximum、範囲内の有限値、low ≤ highを検証し、nullは数値メーターを作らず未取得と表示します。進捗には既存ProgressBarを使います。`MeterGroup`はcontrolId/label、typed items(id/label/value/tone)、maximum、unit/localeを持ち、取得済みの合計と未知項目数、各区分のnative meterと装飾の比例帯を表示します。重複IDや上限超過の合計を拒否します。未知を空き容量0と扱いません。
+
+`HelpText`は投影内容、id、position=inline/above/belowを持ち、入力のaria-describedbyへ明示接続します。`ShortcutHint`はkeys、任意の読み上げlabel、position=inline/belowをnative kbdへ接続します。⌘等の記号には説明labelを指定できます。キーコマンドの実行はアプリが接続します。
+
+`ReadMore`（ui-read-more/ui-truncated-text）はcontrolId/text、正のlines、expanded/expandedChange、expandLabel/collapseLabelを持ちます。実描画のoverflowをResizeObserverで測定し、必要な場合だけnative buttonで全文/折畳みを切り替えます。全文をDOMから捨てず、視覚的な行数制限を行います。短文/行数/幅変更で操作が消える場合はReadMoreへfocusを保持します。
+
+`CodeBlock`はsource、language、label、format=preserve/json、indent、任意の同期formatter(source,language)、lineNumbers、wrap、copyable/copyLabel/copyDurationSeconds、copied/copyFailedを持ちます。pre/codeの文字補間で表示し、HTMLとして実行しません。JSON整形は重複キーや数値/文字列の生トークンを保持して空白だけを変更します。整形失敗は原文と説明を表示します。行番号は支援技術と選択コピーから除き、コードは名前付き局所scroll領域に収めます。実CopyButtonで表示内容をコピーし、失敗時も原文を保ちます。コピー操作の外部除去時はコード領域へfocusを保持します。`InlineCode`はnative code[uiInlineCode]へ同じ書体を接続します。ハイライトや言語補完はこの表示部品の契約に含みません。
+
+`Watermark`はcontrolId/content、repeat、position=top/center/bottom×start/center/end、opacity、tileWidth/tileHeightを持ちます。繰返しはnative SVG patternで実領域を覆い、単発は論理位置へ置きます。opacity=nullは意味トークン、明示値は0〜1、tile寸法は正のpxまたは用途別profile寸法を使います。装飾を支援技術から除外し、pointer-events:noneで下の入力/操作を遮りません。透かしは認証やコピー防止の保証ではありません。
+
+追加の必須役割はfont.code、size.avatar、opacity.watermarkです。設定正本から両profileへ解決し、code書体/avatar寸法はTailwindの対応namespaceへ、opacityはsemantic CSSへ直接接続します。
+
+参考: [HTML meter](https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element)、[HTML code/kbd](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element)、[APG disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)。
