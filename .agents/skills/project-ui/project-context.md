@@ -99,6 +99,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "color",
           "value": "#175c3a"
         },
+        "color.link": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
         "color.muted": {
           "reference": "muted",
           "type": "color",
@@ -128,6 +133,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "white",
           "type": "color",
           "value": "#ffffff"
+        },
+        "color.tab-selected": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
         },
         "color.text": {
           "reference": "ink",
@@ -357,6 +367,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "color",
           "value": "#1856a6"
         },
+        "color.link": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
+        },
         "color.muted": {
           "reference": "muted",
           "type": "color",
@@ -386,6 +401,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "white",
           "type": "color",
           "value": "#ffffff"
+        },
+        "color.tab-selected": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
         },
         "color.text": {
           "reference": "ink",

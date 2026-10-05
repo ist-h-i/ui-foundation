@@ -4,7 +4,8 @@ export type PrimitiveType = 'color' | 'length' | 'fontFamily' | 'number' | 'dura
 export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'color.text': 'color', 'color.muted': 'color', 'color.surface': 'color',
   'color.background': 'color', 'color.border': 'color', 'color.action': 'color',
-  'color.action-hover': 'color', 'color.on-action': 'color', 'color.danger': 'color',
+  'color.action-hover': 'color', 'color.on-action': 'color',
+  'color.link': 'color', 'color.tab-selected': 'color', 'color.danger': 'color',
   'color.danger-hover': 'color', 'color.on-danger': 'color', 'color.success': 'color',
   'color.success-surface': 'color', 'color.warning': 'color', 'color.warning-surface': 'color',
   'color.error-surface': 'color', 'color.focus': 'color', 'color.disabled-surface': 'color',
@@ -34,6 +35,8 @@ export const CONTRAST_PAIRS: readonly (readonly [string, string])[] = [
   ['color.muted', 'color.surface'], ['color.muted', 'color.background'],
   ['color.muted', 'color.disabled-surface'],
   ['color.on-action', 'color.action'], ['color.on-action', 'color.action-hover'],
+  ['color.link', 'color.surface'], ['color.link', 'color.background'],
+  ['color.tab-selected', 'color.surface'],
   ['color.on-danger', 'color.danger'], ['color.on-danger', 'color.danger-hover'],
   ['color.danger', 'color.surface'], ['color.danger', 'color.error-surface'],
   ['color.success', 'color.success-surface'], ['color.warning', 'color.warning-surface'],

@@ -31,6 +31,10 @@ test('the approved example resolves explicit profile differences and preserves c
   assert.equal(result.output, '.ui/generated');
   assert.equal(result.profiles.guided.semantic['color.action'].value, '#1856a6');
   assert.equal(result.profiles.dense.semantic['color.action'].value, '#175c3a');
+  for (const role of ['color.link', 'color.tab-selected']) {
+    assert.equal(result.profiles.guided.semantic[role].reference, 'blue');
+    assert.equal(result.profiles.dense.semantic[role].reference, 'green');
+  }
   assert.equal(result.profiles.guided.semantic['text.body'].value, '1.125rem');
   assert.equal(result.profiles.dense.semantic['text.body'].value, '1rem');
   assert.equal(result.profiles.guided.semantic['radius.control'].value, '12px');
@@ -87,17 +91,17 @@ test('root defaults and every nested profile emit all roles rather than partial 
 
 test('additional roles are resolved for all scopes and supported Tailwind namespaces', () => {
   const result = resolve(edited((config) => {
-    config.semantic['color.link'] = 'blue';
+    config.semantic['color.extra-link'] = 'blue';
     config.semantic['font.weight-body'] = 'system-font';
     config.semantic['space.hero-gap'] = 'space-32';
     config.semantic['motion.enter'] = 'duration';
-    config.profiles.dense.semantic['color.link'] = 'green';
+    config.profiles.dense.semantic['color.extra-link'] = 'green';
   }));
-  assert.equal(result.profiles.dense.semantic['color.link'].reference, 'green');
+  assert.equal(result.profiles.dense.semantic['color.extra-link'].reference, 'green');
   assert.match(renderTokens(result), /--ui-motion-enter: var\(--ui-p-duration\);/);
   const tailwind = renderTailwind(result);
   assert.match(tailwind, /@theme inline \{/);
-  assert.match(tailwind, /--color-color-link: var\(--ui-color-link\);/);
+  assert.match(tailwind, /--color-color-extra-link: var\(--ui-color-extra-link\);/);
   assert.match(tailwind, /--spacing-hero-gap: var\(--ui-space-hero-gap\);/);
   assert.match(tailwind, /--font-family-body: var\(--ui-font-body\);/);
   assert.match(tailwind, /--font-family-weight-body: var\(--ui-font-weight-body\);/);
@@ -108,7 +112,7 @@ test('additional roles are resolved for all scopes and supported Tailwind namesp
 });
 
 test('a role added in only one profile is rejected to prevent nested inheritance leaks', () => {
-  rejects(edited((config) => { config.profiles.dense.semantic['color.link'] = 'green'; }), /every profile|全プロファイル/);
+  rejects(edited((config) => { config.profiles.dense.semantic['color.extra-link'] = 'green'; }), /every profile|全プロファイル/);
 });
 
 test('structure diagnostics identify the exact YAML key location', () => {
@@ -154,12 +158,12 @@ test('supported literal variants remain usable without granting free CSS syntax'
 
 test('additional roles defined by all profiles need no implicit default inference', () => {
   const result = resolve(edited((c) => {
-    c.profiles.guided.semantic['color.link'] = 'blue';
-    c.profiles.dense.semantic['color.link'] = 'green';
+    c.profiles.guided.semantic['color.extra-link'] = 'blue';
+    c.profiles.dense.semantic['color.extra-link'] = 'green';
   }));
-  assert.equal(result.profiles.guided.semantic['color.link'].reference, 'blue');
-  assert.equal(result.profiles.dense.semantic['color.link'].reference, 'green');
-  assert.match(renderTokens(result), /:root \{[^}]*--ui-color-link: var\(--ui-p-blue\);/);
+  assert.equal(result.profiles.guided.semantic['color.extra-link'].reference, 'blue');
+  assert.equal(result.profiles.dense.semantic['color.extra-link'].reference, 'green');
+  assert.match(renderTokens(result), /:root \{[^}]*--ui-color-extra-link: var\(--ui-p-blue\);/);
 });
 
 const invalidStructures: Array<[string, (config: any) => void, RegExp]> = [
@@ -235,3 +239,66 @@ test('defined text/background pairs are checked for each profile, including hove
   const safeBorderEdit = resolve(edited((c) => { c.primitives.outline.value = '#ffffff'; }));
   assert.equal(safeBorderEdit.profiles.guided.semantic['color.border'].value, '#ffffff');
 });
+
+const independentActionColors = (c: any) => {
+  c.semantic['color.action'] = 'white';
+  c.semantic['color.action-hover'] = 'white';
+  c.semantic['color.on-action'] = 'ink';
+  c.semantic['color.link'] = 'blue';
+  c.semantic['color.tab-selected'] = 'blue';
+  c.profiles.dense.semantic['color.action'] = 'white';
+  c.profiles.dense.semantic['color.action-hover'] = 'white';
+  c.profiles.dense.semantic['color.link'] = 'green';
+  c.profiles.dense.semantic['color.tab-selected'] = 'green';
+};
+
+test('light action backgrounds are valid with dark button text and independent link and tab colors', () => {
+  const result = resolve(edited(independentActionColors));
+  for (const profile of Object.values(result.profiles)) {
+    assert.equal(profile.semantic['color.action'].value, '#ffffff');
+    assert.equal(profile.semantic['color.action-hover'].value, '#ffffff');
+    assert.equal(profile.semantic['color.on-action'].value, '#1c293d');
+  }
+});
+
+for (const id of ['guided', 'dense']) {
+  for (const background of ['surface', 'background']) {
+    test(`${id} link text must contrast against color.${background}`, () => {
+      rejects(edited((c) => {
+        independentActionColors(c);
+        c.profiles[id].semantic['color.link'] = 'white';
+      }), new RegExp(`${id}.*color.link / color.${background}.*4\\.5`));
+    });
+  }
+  test(`${id} selected tab text must contrast against its surface`, () => {
+    rejects(edited((c) => {
+      independentActionColors(c);
+      c.profiles[id].semantic['color.tab-selected'] = 'white';
+    }), new RegExp(`${id}.*color.tab-selected / color.surface.*4\\.5`));
+  });
+}
+
+for (const role of ['color.link', 'color.tab-selected']) {
+  const invalidRoleMappings: Array<[string, (c: any) => void, string, RegExp]> = [
+    ['missing base mapping', (c) => {
+      delete c.semantic[role];
+      c.profiles.guided.semantic[role] = 'blue';
+      c.profiles.dense.semantic[role] = 'green';
+    }, `semantic.${role}`, /Required role/],
+    ['wrong base primitive type', (c) => { c.semantic[role] = 'space-16'; }, `semantic.${role}`, /requires color/],
+    ['unknown profile primitive', (c) => { c.profiles.dense.semantic[role] = 'missing'; }, `profiles.dense.semantic.${role}`, /Unknown primitive reference/],
+    ['wrong profile primitive type', (c) => { c.profiles.dense.semantic[role] = 'space-16'; }, `profiles.dense.semantic.${role}`, /requires color/],
+  ];
+  for (const [name, change, path, message] of invalidRoleMappings) {
+    test(`${role} rejects ${name} at its YAML field`, () => {
+      assert.throws(() => resolve(edited(change)), (error: unknown) => {
+        assert.ok(error instanceof ConfigValidationError);
+        const issue = error.issues.find((issue) => issue.path === path && message.test(issue.message));
+        assert.ok(issue, error.message);
+        assert.ok(issue.line >= 1);
+        assert.ok(issue.column >= 1);
+        return true;
+      });
+    });
+  }
+}

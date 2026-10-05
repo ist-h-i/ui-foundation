@@ -98,8 +98,8 @@ export class TabPanel {
       overflow-wrap: anywhere;
     }
     [role='tab'][aria-selected='true'] {
-      border-block-end-color: var(--ui-color-action);
-      color: var(--ui-color-action);
+      border-block-end-color: var(--ui-color-tab-selected);
+      color: var(--ui-color-tab-selected);
       font-weight: var(--ui-weight-heading);
     }
     [role='tab']:focus-visible { outline: var(--ui-border-focus) solid var(--ui-color-focus); outline-offset: var(--ui-border-focus-offset); }

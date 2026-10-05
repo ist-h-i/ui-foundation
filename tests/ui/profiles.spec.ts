@@ -16,6 +16,7 @@ const semanticVariables = [
   'color-action', 'color-action-hover', 'color-on-action', 'color-danger', 'color-danger-hover',
   'color-on-danger', 'color-success', 'color-success-surface', 'color-warning', 'color-warning-surface',
   'color-error-surface', 'color-focus', 'color-disabled-surface', 'color-backdrop',
+  'color-link', 'color-tab-selected',
   'font-body', 'text-body', 'text-small', 'text-heading', 'leading-body', 'leading-heading',
   'leading-control', 'weight-body', 'weight-heading', 'weight-control', 'space-page', 'space-section',
   'space-field', 'space-control-x', 'space-control-y', 'space-control-gap', 'space-table-x', 'space-table-y',

@@ -63,9 +63,13 @@ AsyncRegionとActionFeedbackは、初期のready/idleでも空のlive regionを�
 
 `<nav uiNavigation label="主要画面">`、`<nav uiBreadcrumb>` にnative linkやol/liを置く。Navigationはlabel必須、Breadcrumbは既定label「パンくず」。`<a uiNavigationItem href="…" [currentPage]="true">` は現在地をaria-current="page"で示す。リンク先と現在のページはアプリが決定する。Angular Routerとの合成は未検証。
 
+リンク文字は`color.link`を使い、主操作背景の`color.action`と分離する。通常の透明背景ではsurface／background上へ配置し、hover／現在地の背景にはbackgroundを使用する。部品側でlist itemとリンクの幅を制御し、長い日本語・連続英字を折り返す。文言の短縮・省略やoverflowの隠蔽を利用側に要求しない。
+
 ### Tabs / TabPanel
 
 `<ui-tabs label="申請の情報" [selected]="panelId()" (selectedChange)="panelId.set($event)"><ui-tab-panel panelId="summary" label="概要">…</ui-tab-panel>…</ui-tabs>`。panelIdはアプリ内で一意。selectedが空の場合は先頭、指定する場合は存在するpanelIdを渡す。横方向の手動アクティベーションで、左右/Home/Endはフォーカス移動、Enter/Space/クリックは選択する。タブとパネルのARIAを接続し、非表示パネルをhiddenにして入力のインスタンスを保持する。縦タブは初版の範囲外。
+
+選択中タブの文字と下線は`color.tab-selected`、タブの背景はsurfaceを使う。文字／背景のコントラストを検証し、ボタンの背景色へ結び付けない。
 
 ### Disclosure
 
@@ -103,10 +107,12 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 
 - 実行環境: Node 24.19.0、Angular 22.2.1、Tailwind CLI 4.3.0、Chromium。
 - 生成: `npm run ui:sync -- --dry-run`で差分を表示し、`npm run ui:sync`で同期した。`npm run ui:check`で設定と生成物の一致を確認した。型検査とビルドも成功し、生成したAngularソースのAOTコンパイル／公式linkerとTailwind CSSの実生成を実行した。
-- 全体検証: `npm ci`後に`npm test`を実行し、設定45件、生成14件、Chromiumの操作62件がすべて成功した。skip／retryは0。操作62件は既存27シナリオの両プロファイル実行54件、切替・生成metadata・入れ子等の7件、追加roleのTailwind実生成・描画1件。対象状態のaxe自動検査違反は0件。
+- 全体検証: `npm ci`後に`npm test`を実行し、設定60件、生成14件、Chromiumの操作66件（計140件）がすべて成功した。skip／retryは0。操作66件は既存27シナリオの両プロファイル実行54件、切替・生成metadata・入れ子等の7件、追加roleのTailwind実生成・描画1件、ナビゲーションの配色・長いラベルの回帰4件。対象状態のaxe自動検査違反は0件。
 - 独立検証で、hidden解除直後のTab操作がAngularの再表示より先に進む試験のraceを確認した。主担当も修正前の両プロファイルの失敗を再現し、Tabs／Disclosureの再表示をassertionで待ってからTabを送るよう修正した。`--workers=1 --repeat-each=3`で対象2件を各3回実行し、6件すべて成功した。固定時間のsleepやretryによる回避は使わない。
 - 追加roleによるTailwindのutility名衝突を確認し、色・文字サイズ・書体・太さを用途別の名称へ統一した。修正前の描画試験の失敗を確認し、修正後は同じbody／controlの役割名を色と書体へ追加しても、両プロファイルの色・文字サイズ・書体・太さが独立して適用されることをTailwind CLIとChromiumで確認した。生成Skillの実装例も同じ名称へ揃えた。
 - 外部ディレクトリの新規利用アプリからcheckoutのCLIを実行し、init／sync --dry-run／sync／checkとprofile metadata・Skillの生成を確認した。
-- 表示: guided／denseの部品とutilityが同じroleから青／緑、本文18px／16px、余白、角丸を解決することをcomputed styleで確認した。checkboxの20px寸法、表の余白、全48必須roleを持つ入れ子、100%／200%の文字サイズ、320pxの横はみ出し、dialogの中央配置を測定した。
+- 表示: guided／denseの部品とutilityが同じroleから青／緑、本文18px／16px、余白、角丸を解決することをcomputed styleで確認した。checkboxの20px寸法、表の余白、全50必須roleを持つ入れ子、100%／200%の文字サイズ、320pxの横はみ出し、dialogの中央配置を測定した。
 - 描画レビュー: Chromiumで両プロファイルの1280×1000／390×844の初期画面、保存失敗・部分欠損、modal dialogを撮影して確認した。主操作の色と寸法、本文と補助文の読み分け、狭幅での折返し、入力を残す障害表示、dialogの中央配置と操作名の表示を確認した。静止画の確認を実利用者による理解評価とは扱わない。
+- 今回のP2回帰: 修正前のテンプレートで両プロファイルの4件が失敗することを確認した。修正後は白いaction／action-hoverとinkのon-actionを持つ設定が通り、nav／パンくずの通常・現在地・hover、surface／backgroundの実背景、選択タブの文字・下線が4.5:1以上となる。不適切なlink／tab-selectedの配色、必須参照の不足・型違い・参照切れは設定検証で拒否する。
+- 長い移動先: 実Angular部品のnav／パンくずを両プロファイル、320px、100%／200%、日本語／連続英字で検証した。全文の各描画行がリンク・list itemの枠内に収まり、ページの横スクロールを生じさせない。nativeのTab／Enter、href、aria-current、hidden／再表示も確認した。Chromium 153.0.8010.12で320px・200%の両部品、白い主操作背景、独立したリンク・選択タブの色を撮影し、実描画を確認した。
 - 未確認: Firefox／Safari、実スクリーンリーダー、SSR／hydration、多重modal、Angular forms／Routerとの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。自動コンパイル・操作・axeの成功から、これらの成立は推測しない。

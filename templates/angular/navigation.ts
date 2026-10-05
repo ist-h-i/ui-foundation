@@ -11,6 +11,8 @@ import {
 // styles intentionally cover projected elements without ::ng-deep.
 const navigationStyles = `
   .ui-navigation, .ui-breadcrumb {
+    min-inline-size: 0;
+    max-inline-size: 100%;
     color: var(--ui-color-text);
     font-family: var(--ui-font-body);
     font-size: var(--ui-text-body);
@@ -25,6 +27,13 @@ const navigationStyles = `
     margin: 0;
     padding: 0;
     list-style: none;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+  .ui-navigation > ul > li, .ui-breadcrumb > ol > li {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    max-inline-size: 100%;
   }
   .ui-breadcrumb > ol > li {
     display: flex;
@@ -40,11 +49,13 @@ const navigationStyles = `
     align-items: center;
     min-block-size: var(--ui-size-control);
     min-inline-size: var(--ui-size-control);
+    max-inline-size: 100%;
     padding: var(--ui-space-control-y) var(--ui-space-control-x);
     border-radius: var(--ui-radius-control);
-    color: var(--ui-color-action);
+    color: var(--ui-color-link);
     text-underline-offset: var(--ui-border-focus-offset);
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   .ui-navigation-item:hover {
     background: var(--ui-color-background);

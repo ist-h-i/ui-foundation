@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ActionControl, ActionLink, FieldControl, FormField } from '../../.ui/generated/angular/index';
+import { ActionControl, ActionLink, Breadcrumb, FieldControl, FormField, Navigation, NavigationItem } from '../../.ui/generated/angular/index';
 
 @Component({
   selector: 'fixture-layout-regressions',
-  imports: [ActionControl, ActionLink, FieldControl, FormField],
+  imports: [ActionControl, ActionLink, Breadcrumb, FieldControl, FormField, Navigation, NavigationItem],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: `
     :host { display: block; min-inline-size: 0; }
@@ -25,6 +25,32 @@ import { ActionControl, ActionLink, FieldControl, FormField } from '../../.ui/ge
           <input uiFieldControl type="checkbox" [checked]="confirmed()" (change)="confirmed.set(checked($event))">
         </ui-form-field>
         <button uiAction data-testid="layout-after-confirmation">確認後の操作</button>
+      </section>
+
+      <section aria-labelledby="long-navigation-title">
+        <h3 id="long-navigation-title">長い移動先のラベル</h3>
+        <label class="fixture-checkbox-label" for="layout-navigation-hidden">
+          <input id="layout-navigation-hidden" type="checkbox" [checked]="navigationHidden()"
+            (change)="navigationHidden.set(checked($event))">長い移動先のナビを非表示にする
+        </label>
+        <nav uiNavigation label="長い移動先のメニュー" data-testid="layout-navigation" [hidden]="navigationHidden()">
+          <ul>
+            <li><a uiNavigationItem data-testid="layout-nav-japanese" href="#layout-navigation-japanese"
+              [currentPage]="navigationDestination() === 'japanese'" (click)="navigationDestination.set('japanese')">申請内容と承認履歴を確認する</a></li>
+            <li><a uiNavigationItem data-testid="layout-nav-ascii" href="#layout-navigation-ascii"
+              [currentPage]="navigationDestination() === 'ascii'" (click)="navigationDestination.set('ascii')">ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing</a></li>
+          </ul>
+        </nav>
+        <nav uiBreadcrumb label="長い移動先のパンくず" data-testid="layout-breadcrumb" [hidden]="navigationHidden()">
+          <ol>
+            <li><a uiNavigationItem data-testid="layout-breadcrumb-japanese" href="#layout-navigation-japanese"
+              [currentPage]="navigationDestination() === 'japanese'" (click)="navigationDestination.set('japanese')">申請内容と承認履歴を確認する</a></li>
+            <li><a uiNavigationItem data-testid="layout-breadcrumb-ascii" href="#layout-navigation-ascii"
+              [currentPage]="navigationDestination() === 'ascii'" (click)="navigationDestination.set('ascii')">ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing</a></li>
+          </ol>
+        </nav>
+        <p id="layout-navigation-japanese">申請内容と承認履歴の確認位置</p>
+        <p id="layout-navigation-ascii">次の手続きの履歴確認位置</p>
       </section>
 
       <section aria-labelledby="long-action-title">
@@ -53,6 +79,8 @@ import { ActionControl, ActionLink, FieldControl, FormField } from '../../.ui/ge
   `,
 })
 export class LayoutRegressionsFixture {
+  readonly navigationHidden = signal(false);
+  readonly navigationDestination = signal<'japanese' | 'ascii'>('japanese');
   readonly confirmationHidden = signal(false);
   readonly confirmed = signal(false);
   readonly actionsBusy = signal(false);

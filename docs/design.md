@@ -26,7 +26,7 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 
 | カテゴリ | 必須の役割 | 型 |
 | --- | --- | --- |
-| color | text, muted, surface, background, border, action, action-hover, on-action, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop | color |
+| color | text, muted, surface, background, border, action, action-hover, on-action, link, tab-selected, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop | color |
 | font | body | fontFamily |
 | text | body, small, heading | length |
 | leading | body, heading, control | number |
@@ -38,6 +38,8 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | motion | duration, easing | duration / easing |
 
 未対応版、未知の構造項目、重複キー、参照切れ、型違い、必須役割不足、未知のdefault_profile、危険な値を位置・理由付きで拒否する。各プロファイルで定義済みの文字/背景ペアのコントラストを検査する。この数値検査をUXやアクセシビリティ全体の合格とは扱わない。
+
+`color.action`／`color.action-hover`は主操作の背景、`color.on-action`はその文字色。ナビゲーションとパンくずのリンク文字は`color.link`、選択中タブの文字と下線は`color.tab-selected`を使う。同じ具体色を採用する場合は同じプリミティブを参照する。リンクは透明背景の通常時にsurface／background上、hover／現在地ではbackground上で使い、両背景との4.5:1を検査する。選択タブは明示したsurface背景との4.5:1を検査する。明るい主操作の背景を使っても、リンクや選択中タブの文字色へ流用しない。利用アプリが独自の背景を追加する場合は、その組合せも利用側で確認する。
 
 ## 生成と利用
 
@@ -78,3 +80,5 @@ Tailwind v4のテーマ定義はトップレベルの`@theme inline`。YAMLを�
 5. 実ブラウザーでプロファイル変更後も入力・取得状態・実行結果を保持し、入れ子のスコープも正しく解決する。
 6. 両プロファイルで通常/処理中/エラー/部分欠損/復旧、狭い画面、文字拡大、キーボードと自動アクセシビリティを確認する。
 7. 設定、生成、型検査、ビルド、操作試験を別々に報告し、未実施の実利用評価を合格扱いしない。
+8. 明るい主操作背景の設定でもリンク・選択中タブの読みやすさを維持し、不適切な文字／背景の組合せは設定検証で拒否する。
+9. ナビゲーションとパンくずの長い日本語／連続英字を、両プロファイルの320px幅・100%／200%文字サイズで全文表示し、ページの横はみ出しを生じさせない。
