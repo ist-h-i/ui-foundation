@@ -209,10 +209,30 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "640px"
         },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-8",
@@ -477,10 +497,30 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "640px"
         },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-12",

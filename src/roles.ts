@@ -18,6 +18,9 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'space.table-x': 'length', 'space.table-y': 'length',
   'radius.control': 'length', 'radius.surface': 'length',
   'size.control': 'length', 'size.icon': 'length', 'size.dialog': 'length', 'size.content': 'length',
+  'size.table-column-min': 'length', 'size.table-viewport': 'length',
+  'size.input-max-height': 'length',
+  'size.grid-item': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
   'motion.duration': 'duration', 'motion.easing': 'easing',
 };

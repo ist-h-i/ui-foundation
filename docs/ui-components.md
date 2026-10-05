@@ -116,3 +116,62 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 - 今回のP2回帰: 修正前のテンプレートで両プロファイルの4件が失敗することを確認した。修正後は白いaction／action-hoverとinkのon-actionを持つ設定が通り、nav／パンくずの通常・現在地・hover、surface／backgroundの実背景、選択タブの文字・下線が4.5:1以上となる。不適切なlink／tab-selectedの配色、必須参照の不足・型違い・参照切れは設定検証で拒否する。
 - 長い移動先: 実Angular部品のnav／パンくずを両プロファイル、320px、100%／200%、日本語／連続英字で検証した。全文の各描画行がリンク・list itemの枠内に収まり、ページの横スクロールを生じさせない。nativeのTab／Enter、href、aria-current、hidden／再表示も確認した。Chromium 153.0.8010.12で320px・200%の両部品、白い主操作背景、独立したリンク・選択タブの色を撮影し、実描画を確認した。
 - 未確認: Firefox／Safari、実スクリーンリーダー、SSR／hydration、多重modal、Angular forms／Routerとの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。自動コンパイル・操作・axeの成功から、これらの成立は推測しない。
+
+## 共通ライブラリの拡張
+
+全依頼は[原文](ui-library-request.ja.md)と[要求マトリクス](ui-library-matrix.json)で追跡します。下記は実装したAPIの契約であり、全カタログの完了を意味しません。高度な表編集、集計・グループ、仮想化、出力、専門部品などの残件はマトリクスに保持します。
+
+Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`、Iconを使うconsumerは`@lucide/angular`を導入します。このrepoでは22.2.1／1.52.0を固定し、AOTで利用します。Lucideは[公式Angular adapter](https://lucide.dev/guide/angular)と[ISCライセンス](https://lucide.dev/license)を確認しました。追加のアカウントや有償serviceは使用しません。アイコンの依存ソースはAngular linkerを通し、実際に描画したSVGで検証します。
+
+### DataTableView と Pagination
+
+既存の`table[uiTable]`（native HTMLのDataTable adapter）に加えて、列とレコードを渡す`<ui-data-table>`（DataTableView）を提供します。`rows`、`columns`、`keyField`、`tableId`、`caption`は必須です。行キーは一意な文字列または有限の数値、列IDは一意な非空文字列とします。欠損、無効な数値／日付、0とfalseを区別します。欠損は両ソート方向で最後へ置きます。
+
+`TableColumn<T>`は`id/field/header/type/format/sortable/filterable/options/width/minWidth/maxWidth/pinned`。`TableState`は`page/pageSize/search/sort/filters/columnOrder/hiddenColumns/columnWidths/pinnedColumns`を持ち、`createTableState()`で初期化します。状態は`state` inputと`stateChange` outputでアプリが保持し、永続化／復元へ接続します。部品はHTTPやlocalStorageへ書き込みません。
+
+- `sortable/sortMode`はOFF／単一／複数ソート。昇順→降順→解除の順で循環します。
+- `columnFilters/globalSearch/searchColumns`は列の文字・数値・日付・選択肢条件と対象列を指定した全体検索。`TableFilter`はAND/ORと複数条件を表現します。未入力の比較は条件として実行せず、選んだ演算子を保持します。現UIは各列の先頭条件を編集し、複数条件エディターは後続要求です。
+- `pagination/pageSizeOptions`はページ操作と件数。clientの絞込みでページ数が減れば有効なページへ補正して状態を返します。`mode='server'`では供給された行へローカル検索／ソート／ページ分割をせず、状態を返します。totalItemsはアプリが供給します。
+- `autoWidth/autoFit='content'|'available'`は内容／領域に合わせた幅。DOMで測った幅を上下限へ収め、収まり切らないときは表領域内でスクロールします。`resizableColumns`のスライダーはpointerとキーボードで操作できます。
+- `stickyHeader/columnControls`は固定見出し、表示・順序・左右固定・幅・リセットの設定。左右固定はRTLにも論理方向で適用します。最後の一列はUIから隠せません。
+- `selectionMode/selectedKeys/selectedKeysChange/rowSelectable/selectAllScope`はnative checkbox/radioで選択します。選択不可行を除外し、他ページの選択を保持します。serverの全選択対象は供給されたページです。
+- `expandedKeys/expandedKeysChange/rowActions/rowAction`は詳細表示と操作。詳細は同じDOMをhiddenにし、そのページに留まる間の入力を保持します。アプリが別ページへ移した行の入力保持はアプリが所有します。
+- `striped/borders/hover/rowSpacing/wrap/ellipsis`と`dataState/retryAvailable/retry`は表示と取得・更新・失敗・部分欠損。busyはqueryと選択を抑止し、前回の内容を残します。部分欠損で安全に実行できる業務操作はアプリが決めます。
+
+セルは`<ng-template uiTableCell="amount" [uiTableTemplateOf]="rows" let-row let-value="value">`、詳細は`uiTableDetail`で差し替えます。`uiTableTemplateOf`はtemplate contextの型推論に使います。アプリはTableTemplateもimportします。
+
+Paginationは既存の`page/totalPages/pageChange`に加え`totalItems/pageSize/pageSizeOptions/pageSizeChange/showFirstLast/busy/disabled/label`を受け取ります。既知の件数から総ページ数を計算し、先頭／前／次／末尾の境界と無効な設定を抑止します。件数変更に伴うサーバー取得やページ状態の保存はアプリの責任です。
+
+### フォームと候補入力
+
+TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Switch、Select、MultiSelect、Comboboxはnative要素を使うControlValueAccessorです。`controlId/label`は必須、共通で`hint/error/required/disabled/busy/readonly/value/valueChange/name`を持ちます。`[formControl]`／`formControlName`または制御された`value/valueChange`を使い、同じ部品で二つの値の所有者を併用しません。`writeValue`でアプリへ値を返さず、disabled・readonly・busyでは編集を抑止します。表示エラーの文言と表示時機、送信時の最終検証はアプリが所有します。
+
+- TextInput: placeholder、maxLength、autocomplete、clearable、showCount。文字数／maxlengthはnativeのUTF-16単位で扱います。
+- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。
+- NumberInput: min/max/step/fractionDigits/grouping/locale/unit。編集はnative number、桁区切りと小数桁は補助表示へ適用します。CVA validatorは範囲・刻み・必須とbadInputを扱い、範囲変更時も再検証します。無効な数値ドラフトで古い値を有効扱いしません。
+- PasswordInput: autocomplete、表示切替とアプリが渡すstrength。強度の安全性を部品が保証したとは扱いません。
+- SearchInput: debounceMs、loading、suggestions/suggestionsQuery、`searchRequest:{query,requestId}`。入力値は即時更新し、待ち時間後は最新語を一度返します。Enter／検索ボタンは待機を取消して即時に返し、IME変換Enterは処理しません。native searchイベントとの衝突を避けた出力名です。
+- Checkbox: boolとindeterminate。Switch: bool、busy、native role=switch。操作後の値とCVA touchedを接続します。
+- Select: optionsのlabel/value/disabled/group、placeholder、clearable。標準select/optgroupを使います。
+- MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
+- Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。候補の高度なtemplate差替え／top-layer overlayは後続契約です。
+
+FormLayout（`[uiFormLayout]`）はcolumnsとdirection、InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。ラベル幅・配置とFormGroupの拡張、他の入力カテゴリはマトリクスで追跡します。
+
+### Calendar と日付入力
+
+日付は`YYYY-MM-DD`、月は`YYYY-MM`、年は文字列、時刻は`HH:mm[:ss]`。日付だけの値を地域時刻へ変換しません。CalendarとDatePickerはmin/max、disabledDates/dateDisabled、weekStartsOn（0～6）、localeを受け取ります。Calendarはvalue/CVA、today、initialMonth、displayMonth/monthChange、view=month/year、selectedDatesと`ng-template[uiCalendarDay]`を持ちます。日セルのcontextはdate（$implicit）/day/inMonth/selected/disabled。日セル内に別の操作要素を入れず、選択操作はCalendarに任せます。
+
+Calendarの日付は一つのタブ停止を持つgrid。左右／上下、Home/End、PageUp/PageDown、Shift+PageUp/PageDownで日・週・月・年を移動します。選択不可日はfocusで確認でき、確定はできません。狭幅・文字拡大時は日付一覧の名前付き領域で横スクロールし、数字を分割しません。追加の日セル情報は`dayDescription(date)`でも伝え、日付ボタンの名前に含めます。DatePickerのnative dialogを開くと選択日へfocusを置き、Escapeまたは確定後に起動ボタンへ戻します。ネイティブdialogは同じプロファイル／RTLスコープ内に残します。
+
+DatePicker/DateRangePickerの`inputFormat`を変更すると最後に確定した値を新しい書式で表示し、未確定の文字とそのエラーを解除します。期間入力は内部の両端のvalidatorを親フォームへ伝え、部分入力がある間は確定済みの期間を保持して親をinvalidにします。preset/clear/reset/カレンダー選択で修復できます。日時の刻みはmin（未指定時はcivil epoch）を起点に日付と時刻の両方で計算します。
+
+DatePickerの`inputFormat`はnative、yyyy-MM-dd、yyyy/MM/dd、dd/MM/yyyy、MM/dd/yyyy。手動書式は明示して解析し、地域から曖昧な順序を推測しません。無効ドラフトは表示を残してvalidatorをinvalidにし、clear/resetで復旧できます。`format`は補助表示のlocale/iso。TimePickerはseconds/stepSeconds/hourFormat=12|24/timeAllowedを持ち、刻みと時間範囲を検証します。DateTimePickerはtimeZoneを明示し、native datetime-local文字列を保持します。Instantへの変換、DSTの重複／欠落時刻の業務上の扱いはアプリが所有し、部品は暗黙変換しません。MonthPicker/YearPickerはmin/maxとclearを持ちます。
+
+DateRangePickerの値は`{start,end}`。min/max、maxDays（両端を含む）、disabledDates/dateDisabled、presets、months、weekStartsOn、locale、initialMonth、clearableを受け取ります。順序、期間上限、期間内部の選択不可日を検証し、入力を保持します。複数月の起点を連動し、開始／終了の選択先を明示します。Schedulerの資源・予定移動は別要求です。
+
+### GridList と Icon
+
+GridListはitems/keyField/labelField/controlId/labelと、`ng-template uiGridItem [uiGridItemOf]="items"`を受け取ります。contextはitem（$implicit）/index/selected。columns=nullは実際の領域幅と意味トークンsize.grid-itemで列数を計算し、columns/maxColumns/minimumItemWidth/itemSize/gap/breakpointsで配置を制御します。breakpointsは`{minWidth,columns}`の領域幅条件です。selectionMode、selectedKeys/selectedKeysChange、itemSelectable、showSelectAll、busy/disabled、emptyMessageを持ちます。選択はnative checkbox/radio。busyは部品の選択操作を抑止し、投影した業務操作はアプリが接続します。
+
+Iconはname、size=small/medium/large、severity、decorative、label。装飾アイコンは支援技術から隠し、意味を持つものはlabelを必須とします。`provideUiIcons()`で業務の基本12種類を登録し、`provideUiIcons(LucideFileText, …)`で必要なアイコンだけ追加できます。同じDI階層で別のLucide providerを置くと登録が上書きされるため、追加も一つのproviderへ渡します。名前だけを登録して描画済み扱いにはせず、SVGの実パスを検証します。

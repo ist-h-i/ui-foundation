@@ -57,6 +57,10 @@ primitives:
   icon: { type: length, value: 20px }
   dialog: { type: length, value: 640px }
   content: { type: length, value: 1120px }
+  table-column-min: { type: length, value: 128px }
+  table-viewport: { type: length, value: 480px }
+  input-max-height: { type: length, value: 320px }
+  grid-item: { type: length, value: 256px }
   border-thin: { type: length, value: 1px }
   focus-width: { type: length, value: 3px }
   focus-offset: { type: length, value: 3px }
@@ -109,6 +113,10 @@ semantic:
   size.icon: icon
   size.dialog: dialog
   size.content: content
+  size.table-column-min: table-column-min
+  size.table-viewport: table-viewport
+  size.input-max-height: input-max-height
+  size.grid-item: grid-item
   border.control: border-thin
   border.focus: focus-width
   border.focus-offset: focus-offset

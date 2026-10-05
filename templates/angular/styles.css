@@ -1,4 +1,9 @@
 /* Generated tokens.css owns concrete values. Components consume semantic roles. */
+.ui-form-layout { display: grid; grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr)); gap: var(--ui-space-field); min-inline-size: 0; }
+.ui-form-layout[data-direction="horizontal"] { display: flex; flex-wrap: wrap; }
+.ui-form-layout[data-direction="horizontal"] > * { flex: 1 1 var(--ui-size-table-column-min); min-inline-size: 0; }
+.ui-form-layout[hidden] { display: none; }
+@media (max-width: 40rem) { .ui-form-layout { grid-template-columns: minmax(0, 1fr); } }
 .ui-page-frame, .ui-form-field, .ui-async-region, .ui-action-feedback, .ui-radio-group {
   display: block;
   min-inline-size: 0;

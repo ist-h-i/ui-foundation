@@ -80,6 +80,10 @@
       "type": "color",
       "value": "#0f462c"
     },
+    "grid-item": {
+      "type": "length",
+      "value": "256px"
+    },
     "heading-dense": {
       "type": "length",
       "value": "1.5rem"
@@ -95,6 +99,10 @@
     "ink": {
       "type": "color",
       "value": "#1c293d"
+    },
+    "input-max-height": {
+      "type": "length",
+      "value": "320px"
     },
     "leading-body": {
       "type": "number",
@@ -183,6 +191,14 @@
     "system-font": {
       "type": "fontFamily",
       "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    "table-column-min": {
+      "type": "length",
+      "value": "128px"
+    },
+    "table-viewport": {
+      "type": "length",
+      "value": "480px"
     },
     "text-dense": {
       "type": "length",
@@ -398,10 +414,30 @@
           "type": "length",
           "value": "640px"
         },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-8",
@@ -666,10 +702,30 @@
           "type": "length",
           "value": "640px"
         },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-12",

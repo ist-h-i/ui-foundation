@@ -32,6 +32,6 @@ fixtureは生成した部品をコンパイルし、Tailwind CLIでCSSを作る�
 
 ## 実行とレビュー
 
-`npm run ui:sync`→`npm run ui:check`→`npm run typecheck`→`npm run test:config`→`npm run test:generation`→`npm run test:ui`。`npm test`は同期済みであることを確認して全検査を実行する。`npm run build`も未同期を拒否する。
+`npm run ui:sync`→`npm run ui:check`→`npm run typecheck`→`npm run test:config`→`npm run test:generation`→`npm run test:model`→`npm run test:ui`。`npm test`は同期済みであることを確認して全検査を実行する。`npm run build`も未同期を拒否する。
 
 実装後は正確なbase/headと実diffをfresh context reviewerへ渡す。結果はソース/試験を主担当が確認する。コミット・Draft PR更新後もマージやReady化は別の判断。全ソースASTによる逸脱検査、Skillの自動選択の評価、Firefox/Safari、実スクリーンリーダー、実サービスの復元、実利用での有効性はこの初版で確認済みとは扱わない。
