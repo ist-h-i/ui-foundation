@@ -5,7 +5,7 @@
 - FormField: labelPosition=above/inline。labelWidthはFormLayoutから継承し、狭幅では縦配置する。label/required/describedBy/errorは単一native controlへ接続し、入力を移し替えない。
 - FormLayout/FormGroup: 列数・方向・label幅・semantic gapを制御する。FormGroupはnative fieldset/legendでグループ名とdisabledを持ち、子フォーム値を保持する。新しいlabel幅の既定値は専用semantic size役割をYAMLから生成する。
 - Textarea: ResizeObserverで幅・profile・表示復帰の後にautoResizeを再計算する。min rows、max height、native manual resize、文字数と値保持を確認する。
-- SearchInput: SearchRequest.requestIdとoptionsRequestIdを照合し、同じ語へ戻った場合も古い応答を表示しない。debounce、clear/Enter、IME、loadingを既存候補契約へ統合する。
+- SearchInput: SearchRequest.requestIdとsuggestionsRequestIdを照合し、同じ語へ戻った場合も古い応答を表示しない。debounce、clear/Enter、IME、loadingを既存候補契約へ統合する。
 - CheckboxGroup: MultiSelectのnative選択/上限/全選択を保ち、direction/columnsを制御する。RadioGroup: 初期値・方向・個別disabledとnative arrowを保持する。
 - Combobox: typed option templateと共通Overlay配置を接続する。options requestの破棄、選択/自由入力、roving/IME/keyup/blur、条件付き候補focusを再検証する。
 - MaskedInput: 9=数字、A=文字、*=英数字とescape literalのmaskを解析する。未入力のplaceholder表示とincomplete保持/明示clearOnBlurを選べる。raw valueと書式付き表示を区別し、不正draftとlast accepted valueを保持する。caret、削除、IME、paste、CVA reset/disabled/validationを検証する。

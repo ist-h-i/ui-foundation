@@ -6,7 +6,10 @@ export function parseMask(mask:string):readonly MaskPart[] {
  const slots=parts.filter(part=>part.kind!=='literal').length;
  if(escaped||!slots||slots>128||parts.length>256)throw new Error('Mask requires 1–128 value slots, at most 256 parts, and a complete escape.');return parts;
 }
-const matches=(part:MaskPart,character:string):boolean=>part.kind==='literal'?part.value===character:part.kind==='digit'?/^[0-9]$/.test(character):part.kind==='letter'?/^\p{L}\p{M}*$/u.test(character):/^(?:\p{L}\p{M}*|[0-9])$/u.test(character);
+// A grapheme may contain several Unicode letters (Hangul Jamo or Indic conjuncts).
+// readMasked segments first; these tests never accept multiple adjacent graphemes.
+const letterGrapheme=/^\p{L}[\p{L}\p{M}\u200c\u200d]*$/u;
+const matches=(part:MaskPart,character:string):boolean=>part.kind==='literal'?part.value===character:part.kind==='digit'?/^[0-9]$/.test(character):part.kind==='letter'?letterGrapheme.test(character):letterGrapheme.test(character)||/^[0-9]$/.test(character);
 /** Accept a raw prefix or its formatted representation. Never discard an invalid character. */
 export function readMasked(value:string,parts:readonly MaskPart[]):string|null {
  const characters=graphemes(value),slots=parts.filter(part=>part.kind!=='literal');

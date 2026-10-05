@@ -23,6 +23,9 @@ for(const profile of ['guided','dense'])test.describe(`structured forms ${profil
  test('letter masks preserve Unicode graphemes and IME drafts until composition ends',async({page})=>{
   const editor=page.locator('#letter-mask');await editor.dispatchEvent('compositionstart',{bubbles:true});await editor.fill('山田01');await expect(editor).toHaveValue('山田01');await editor.dispatchEvent('compositionend',{data:'山田01',bubbles:true});await expect(editor).toHaveValue('山田-01');await expect(editor).not.toHaveAttribute('aria-invalid');await editor.fill('e\u0301山01');await expect(editor).toHaveValue('e\u0301山-01');
  });
+ test('decomposed Hangul and Indic conjuncts occupy one letter slot without losing the original code points',async({page})=>{
+  const editor=page.locator('#letter-mask');for(const letter of ['가','क्ष','क्‍ष']){await editor.fill(letter+'山01');await expect(editor).toHaveValue(letter+'山-01');await expect(editor).not.toHaveAttribute('aria-invalid');}await editor.fill('가山X1');await expect(editor).toHaveValue('가山X1');await expect(editor).toHaveAttribute('aria-invalid','true');
+ });
  test('OTP exposes native completion and exact type while retaining invalid and overlong codes',async({page})=>{
   const editor=page.locator('#structured-otp');await expect(editor).toHaveAttribute('type','text');await expect(editor).toHaveAttribute('autocomplete','one-time-code');await expect(editor).toHaveAttribute('inputmode','numeric');await expect(editor).not.toHaveAttribute('maxlength');await editor.fill('001234');await expectValues(page,{otp:'001234'});await expect(editor).not.toHaveAttribute('aria-invalid');
   for(const value of ['0012345','0012X4']){await editor.fill(value);await expect(editor).toHaveValue(value);await expectValues(page,{otp:value});await expect(editor).toHaveAttribute('aria-invalid','true');}
