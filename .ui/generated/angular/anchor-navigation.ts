@@ -33,6 +33,7 @@ export class AnchorNavigation {
         changedTab: boolean;
     }>();
     private cleanup: (() => void) | null = null;
+    private paddingMeasure: { box: HTMLElement; marker: HTMLElement } | null = null;
     protected readonly entries = computed(() => { this.revision(); const items = this.items(), ids = new Set<string>(); for (const item of items) {
         if (!validNavigationId(item.id) || ids.has(item.id) || !item.label.trim())
             throw new Error('Anchor navigation requires unique IDs and labels.');
@@ -94,7 +95,7 @@ export class AnchorNavigation {
                 this.track();
             });
         });
-        inject(DestroyRef).onDestroy(() => { this.cleanup?.(); for (const [target, lease] of [...this.leases])
+        inject(DestroyRef).onDestroy(() => { this.cleanup?.(); this.paddingMeasure?.box.remove(); for (const [target, lease] of [...this.leases])
             this.release(target, lease); });
     }
     protected available(target: HTMLElement | null): target is HTMLElement {
@@ -138,14 +139,39 @@ export class AnchorNavigation {
             view.history.pushState(view.history.state, '', '#' + encodeURIComponent(target.id));
         const behavior = view.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : this.behavior(), root = this.scrollRoot();
         if (root && root.contains(target))
-            root.scrollTo({ top: root.scrollTop + target.getBoundingClientRect().top - root.getBoundingClientRect().top - root.clientTop - this.offset(), behavior });
+            root.scrollTo({ top: root.scrollTop + target.getBoundingClientRect().top - root.getBoundingClientRect().top - root.clientTop - this.offset() - this.scrollPadding(root), behavior });
         else
             target.scrollIntoView({ block: 'start', behavior });
         target.focus({ preventScroll: true });
         this.selected.emit(item);
         this.track();
     }
-    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.offset(), items = this.items().filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
+    /** Match native scrollIntoView's scrollport padding, including percentage/calc values. */
+    private scrollPadding(root: HTMLElement | null): number {
+        const document = this.element.ownerDocument, view = document.defaultView;
+        if (!view) return 0;
+        const css = view.getComputedStyle(root ?? document.documentElement).scrollPaddingBlockStart;
+        if (!css || css === 'auto') return 0;
+        const height = root?.clientHeight ?? document.documentElement.clientHeight;
+        if (/^[\d.e+-]+px$/i.test(css)) return Math.max(0, parseFloat(css) || 0);
+        if (/^[\d.e+-]+%$/i.test(css)) return Math.max(0, (parseFloat(css) || 0) * height / 100);
+        // Resolve CSS arithmetic with native layout rather than approximating calc().
+        // Reuse one noninteractive zero-width measure; unchanged styles do not
+        // retrigger the document observer, and destruction removes the measure.
+        if (!this.paddingMeasure) {
+            const box = document.createElement('div'), marker = document.createElement('div');
+            box.setAttribute('aria-hidden', 'true');
+            box.style.cssText = 'position:fixed;inset:0 auto auto 0;visibility:hidden;pointer-events:none;width:0;height:0;padding:0;border:0;margin:0;overflow:hidden;contain:strict;';
+            marker.style.cssText = 'position:absolute;left:0;width:0;height:0;padding:0;border:0;margin:0;';
+            box.append(marker); document.documentElement.append(box);
+            this.paddingMeasure = { box, marker };
+        }
+        const { box, marker } = this.paddingMeasure;
+        if (box.style.height !== height + 'px') box.style.height = height + 'px';
+        if (marker.style.top !== css) marker.style.top = css;
+        return Math.max(0, parseFloat(view.getComputedStyle(marker).top) || 0);
+    }
+    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.offset() + this.scrollPadding(root), items = this.items().filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
         this.current.set(current);
         this.currentChange.emit(current);
     } }

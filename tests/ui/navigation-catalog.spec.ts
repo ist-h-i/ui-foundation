@@ -56,7 +56,7 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
   const nav=page.getByRole('navigation',{name:'領域内の見出し',exact:true}),heading=page.locator('#local-second');await nav.getByRole('link',{name:'領域内の確認へ',exact:true}).click();await expect(heading).toBeFocused();await expect.poll(()=>heading.evaluate(element=>{const root=element.closest('.local-scroll')!,r=root.getBoundingClientRect();return Math.round(element.getBoundingClientRect().top-r.top-(root as HTMLElement).clientTop);})).toBe(20);await page.getByTestId('anchor-hide').click();await expect(nav.getByRole('link',{name:'領域内の確認へ',exact:true})).toHaveAttribute('aria-disabled','true');await page.getByTestId('anchor-hide').click();await expect(nav.getByRole('link',{name:'領域内の確認へ',exact:true})).not.toHaveAttribute('aria-disabled');const global=page.getByRole('navigation',{name:'ページ内の見出し',exact:true});for(const position of ['sticky','fixed']){await page.getByRole('combobox',{name:'ページ内移動の固定',exact:true}).selectOption(position);expect(await global.evaluate(element=>getComputedStyle(element.parentElement!).position)).toBe(position);}
  });
  test('320px and 200% text preserve all navigation labels and constrain popups to the viewport',async({page})=>{
-  await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await noPageOverflow(page);await expect(page.getByRole('navigation',{name:'画面の移動',exact:true})).toContainText('ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing');await page.getByTestId('mega-anchor').click();const mega=page.locator('#catalog-mega');await expect(mega).toBeVisible();const size=(await mega.boundingBox())!;expect(size.x).toBeGreaterThanOrEqual(-1);expect(size.x+size.width).toBeLessThanOrEqual(321);expect(await mega.locator('nav').evaluate(element=>getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);await page.keyboard.press('Escape');await page.getByTestId('palette-anchor').click();const dialog=page.getByRole('dialog',{name:'業務のコマンド',exact:true});await expect(dialog.getByRole('combobox')).toBeFocused();const d=(await dialog.boundingBox())!;expect(d.x).toBeGreaterThanOrEqual(-1);expect(d.x+d.width).toBeLessThanOrEqual(321);expect(d.y+d.height).toBeLessThanOrEqual(801);await noPageOverflow(page);
+  await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await noPageOverflow(page);await expect(page.getByRole('navigation',{name:'画面の移動',exact:true})).toContainText('ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing');await page.getByTestId('mega-anchor').click();const mega=page.locator('#catalog-mega');await expect(mega).toBeVisible();const size=(await mega.boundingBox())!;expect(size.x).toBeGreaterThanOrEqual(-1);expect(size.x+size.width).toBeLessThanOrEqual(321);expect(await mega.locator('nav').evaluate(element=>getComputedStyle(element).gridTemplateColumns.split(' ').length)).toBe(1);const title=(await mega.getByRole('heading',{name:'業務の移動先',exact:true}).boundingBox())!,close=(await mega.getByRole('button',{name:'閉じる',exact:true}).boundingBox())!;expect(close.y).toBeGreaterThanOrEqual(title.y+title.height-1);await page.keyboard.press('Escape');await page.getByTestId('palette-anchor').click();const dialog=page.getByRole('dialog',{name:'業務のコマンド',exact:true});await expect(dialog.getByRole('combobox')).toBeFocused();const d=(await dialog.boundingBox())!;expect(d.x).toBeGreaterThanOrEqual(-1);expect(d.x+d.width).toBeLessThanOrEqual(321);expect(d.y+d.height).toBeLessThanOrEqual(801);await noPageOverflow(page);
   const lastTab=page.getByRole('tab',{name:'ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing',exact:true});expect(await lastTab.evaluate(element=>{const range=document.createRange();range.selectNodeContents(element);return range.getClientRects().length;})).toBe(1);
  });
  test('final tab removal uses the explicit fallback and leaves no empty tab composite',async({page})=>{
@@ -118,6 +118,8 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
    const point=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
    return r.top>=nav.bottom-1&&r.bottom<=innerHeight&&(element===point||element.contains(point));
   })).toBe(true);
+  await expect(nav.getByRole('link',{name:'確認内容へ',exact:true})).toHaveAttribute('aria-current','location');
+  await expect(page.getByTestId('anchor-current')).toHaveText('details');
   await page.getByTestId('anchors-destroy').click();
   await expect.poll(()=>page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart)).toBe(original);
   await page.getByTestId('anchors-destroy').click();
@@ -126,6 +128,30 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
   await expect.poll(()=>nav.evaluate(element=>(parseFloat(getComputedStyle(document.documentElement).scrollPaddingBlockStart)||0)-Math.ceil(element.getBoundingClientRect().height))).toBe(33);
   await page.getByTestId('anchors-destroy').click();
   await expect.poll(()=>page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart)).toBe('33px');
+ });
+ test('anchor movement and current position honor CSS arithmetic padding of window and local scrollports',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.setViewportSize({width:800,height:800});
+  await page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart='calc(10% + 20px)');
+  const global=page.getByRole('navigation',{name:'ページ内の見出し',exact:true}),heading=page.locator('#navigation-details');
+  await global.getByRole('link',{name:'確認内容へ',exact:true}).click();
+  await expect(heading).toBeFocused();
+  await expect.poll(()=>heading.evaluate(element=>Math.round(element.getBoundingClientRect().top))).toBe(140);
+  await expect(global.getByRole('link',{name:'確認内容へ',exact:true})).toHaveAttribute('aria-current','location');
+  await page.evaluate(()=>window.scrollBy({top:-80,behavior:'instant'}));
+  await expect(global.getByRole('link',{name:'申請一覧へ',exact:true})).toHaveAttribute('aria-current','location');
+  await page.evaluate(()=>window.scrollBy({top:80,behavior:'instant'}));
+  await expect(global.getByRole('link',{name:'確認内容へ',exact:true})).toHaveAttribute('aria-current','location');
+  const local=page.getByRole('navigation',{name:'領域内の見出し',exact:true}),target=page.locator('#local-second'),root=page.locator('.local-scroll');
+  await root.evaluate(element=>(element as HTMLElement).style.scrollPaddingBlockStart='calc(10% + 12px)');
+  await local.getByRole('link',{name:'領域内の確認へ',exact:true}).click();
+  await expect(target).toBeFocused();
+  await expect.poll(()=>target.evaluate(element=>{const root=element.closest('.local-scroll')! as HTMLElement;return Math.abs(element.getBoundingClientRect().top-root.getBoundingClientRect().top-root.clientTop-(20+root.clientHeight*.1+12));})).toBeLessThanOrEqual(1);
+  await expect(local.getByRole('link',{name:'領域内の確認へ',exact:true})).toHaveAttribute('aria-current','location');
+  await root.evaluate(element=>element.scrollBy({top:-40,behavior:'instant'}));
+  await expect(local.getByRole('link',{name:'領域内の最初へ',exact:true})).toHaveAttribute('aria-current','location');
+  await root.evaluate(element=>element.scrollBy({top:40,behavior:'instant'}));
+  await expect(local.getByRole('link',{name:'領域内の確認へ',exact:true})).toHaveAttribute('aria-current','location');
  });
  test('automated accessibility finds no violations in default, menu, mega menu and palette states',async({page})=>{
   for(const state of ['default','menu','mega','palette']){if(state==='menu'){await page.getByRole('menubar').getByRole('menuitem',{name:'File',exact:true}).click();}else if(state==='mega'){await page.keyboard.press('Escape');await page.getByTestId('mega-anchor').click();}else if(state==='palette'){await page.keyboard.press('Escape');await page.getByTestId('palette-anchor').click();}const result=await new AxeBuilder({page}).analyze();expect(result.violations.map(item=>({id:item.id,nodes:item.nodes.map(node=>node.target)})),state).toEqual([]);}

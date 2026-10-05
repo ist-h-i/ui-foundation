@@ -83,7 +83,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - サイト移動はnative nav/list/link、階層はSideNavのdetails/summaryを使う。Menu/Menubarの複合widget操作と区別する。URL/currentとRouterはアプリが決め、親のhref、disabled/visible、全ラベルを保持する。折畳みの幅はsize.navigation-rail、MegaMenuはsize.mega-menu/navigation-columnへ設定正本から対応付ける。
 - Breadcrumbの中間階層はnative detailsへ残す。外部collapse/項目除去では自前focusだけを親summaryへ戻す。closed detailsの子は矩形が残る場合があり、矩形だけでfocus/Tab候補/overlay対象を判断しない。
 - Tabsはmanual activationの縦横/RTL、局所scroll、個別disabledを接続する。closeRequested/orderChangeを受けるアプリが未保存判断、実データ除去/並べ替え、selected更新を行い、安定idで同じnative editorを保持する。最後のpanelにはallowEmpty/focusFallbackを明示する。Arrow/Home/End/Enter/Space/Delete/Alt＋方向と表示上の操作を確認する。
-- AnchorNavigationへ実target/同一documentのscrollRootを渡す。hash、実scroll、移動余白、現在位置、target focus、reduced motion、sticky host、対象喪失とmargin/tabindexの所有範囲を確認する。固定領域の予約余白は画面が確保する。
+- AnchorNavigationへ実target/同一documentのscrollRootを渡す。hash、実scroll、移動余白、現在位置、target focus、reduced motion、sticky host、対象喪失とmargin/tabindexの所有範囲を確認する。固定領域の予約余白は画面が確保する。window/領域内のscroll-padding-block-startとoffsetの合計で移動/現在位置を照合し、比率・calc、CSS priorityの復元と後からのアプリ変更保持も確認する。
 - Menubarのroot rovingと再帰Menuの階層focus、左右によるroot間移動、Tab全体退出、disabled/typeahead/check/radio、描画前の連続キーを確認する。Rootは操作項目、group/separatorはpopup内に置く。MegaMenuはgroupの見出し/説明とnativeリンク/階層を使い、全リンクへTabで到達できるようにする。
 - CommandPaletteはnative modal Dialogとcombobox/listboxを使い、検索/グループ/明示shortcut/呼出し履歴を接続する。commandRequestedは実行の意思で、busy/error/再試行/completeはアプリ結果を反映する。成功履歴やbackend更新を先取りしない。通常の入力/defaultPrevented/IME/repeat/別modalを横取りしない。検索と同じnative editorを閉じ戻る/候補差替えでも保持する。
 - 方向・profile等の外部設定変更後の試験は、実DOM/ARIAへの反映を観測してからキーを送る。固定sleep/retryでraceを隠さない。全propとアプリ責任はdocs/ui-components.mdのナビゲーション各節を参照する。
