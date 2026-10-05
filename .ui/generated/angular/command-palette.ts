@@ -7,8 +7,8 @@ import { commandShortcut, matchesCommandShortcut, searchCommands, validNavigatio
 /** The palette emits invocation intent. Execution, result and persistent history belong to the app. */
 @Component({ selector: 'ui-command-palette', standalone: true, imports: [ActionControl, Dialog, ShortcutHint, Icon], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<dialog uiDialog #dialog [id]="controlId()" [label]="label()" [open]="opened()" (openChange)="setOpen($event)" [showHeader]="true" [showFooter]="false" [busy]="busy()" [busyLabel]="busyLabel()" [size]="size()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)">
- <label [for]="controlId()+'-search'">{{searchLabel()}}</label><input #search autofocus class="ui-field-control" type="search" [id]="controlId()+'-search'" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="opened()" [attr.aria-controls]="controlId()+'-results'" [attr.aria-activedescendant]="activeId()?optionId(activeId()!):null" autocomplete="off" [value]="currentQuery()" (input)="searchChanged($event)" (keydown)="key($event)">
- <p class="ui-palette-summary" role="status" aria-atomic="true">{{busy()?busyLabel():results().length+'件のコマンド'}} </p>
+ <div #controls class="ui-palette-controls"><label [for]="controlId()+'-search'">{{searchLabel()}}</label><input #search autofocus class="ui-field-control" type="search" [id]="controlId()+'-search'" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="opened()" [attr.aria-controls]="controlId()+'-results'" [attr.aria-activedescendant]="activeId()?optionId(activeId()!):null" autocomplete="off" (focus)="revealActive()" [value]="currentQuery()" (input)="searchChanged($event)" (keydown)="key($event)">
+ <p class="ui-palette-summary" role="status" aria-atomic="true">{{busy()?busyLabel():results().length+'件のコマンド'}} </p></div>
  @if(error()){<p role="alert" class="ui-palette-error">{{error()}}</p><button uiAction [disabled]="busy()||!activeCommand()||!!activeCommand()?.disabled" (click)="invoke(activeId())">{{retryLabel()}}</button>}
  <div [id]="controlId()+'-results'" role="listbox" [attr.aria-label]="resultsLabel()" class="ui-palette-results">
  @for(group of groups();track group.name){<div role="group" [attr.aria-labelledby]="groupId(group.name)"><h3 role="presentation" aria-hidden="true" [id]="groupId(group.name)">{{group.name}}</h3>
@@ -17,7 +17,7 @@ import { commandShortcut, matchesCommandShortcut, searchCommands, validNavigatio
  </div>@if(!results().length){<p>{{emptyLabel()}}</p>}
  <ng-content />
  </dialog>`,
-    styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}label{display:block;font-weight:var(--ui-weight-control);margin-block-end:var(--ui-space-control-gap);}.ui-palette-summary{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}.ui-palette-error{color:var(--ui-color-danger);}.ui-palette-results{max-block-size:calc(100dvh / 2);overflow:auto;overscroll-behavior:contain;}h3{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}[role='option']{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);min-block-size:var(--ui-size-control);padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid transparent;border-radius:var(--ui-radius-control);cursor:pointer;overflow-wrap:anywhere;}[role='option'][aria-selected='true']{border-color:var(--ui-color-focus);background:var(--ui-color-background);}[role='option'][aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}.ui-palette-label{flex:1 1 calc(var(--ui-text-body) * 6);min-inline-size:0;}.ui-palette-description{display:block;font-size:var(--ui-text-small);color:var(--ui-color-muted);}` })
+    styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}label{display:block;font-weight:var(--ui-weight-control);margin-block-end:var(--ui-space-control-gap);}.ui-palette-controls{position:sticky;inset-block-start:0;z-index:1;display:flow-root;background:var(--ui-color-surface);margin-block-end:var(--ui-space-control-gap);}.ui-palette-summary{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}.ui-palette-error{color:var(--ui-color-danger);}.ui-palette-results{max-block-size:calc(100dvh / 2);overflow:auto;overscroll-behavior:contain;}h3{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}[role='option']{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);min-block-size:var(--ui-size-control);padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid transparent;border-radius:var(--ui-radius-control);cursor:pointer;overflow-wrap:anywhere;}[role='option'][aria-selected='true']{border-color:var(--ui-color-focus);background:var(--ui-color-background);}[role='option'][aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}.ui-palette-label{flex:1 1 calc(var(--ui-text-body) * 4);min-inline-size:0;}.ui-palette-description{display:block;font-size:var(--ui-text-small);color:var(--ui-color-muted);}` })
 export class CommandPalette {
     readonly controlId = input.required<string>();
     readonly label = input.required<string>();
@@ -61,7 +61,9 @@ export class CommandPalette {
     private readonly displayed = computed(() => this.groups().flatMap(group => group.items));
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     private readonly dialog = viewChild(Dialog);
+    private readonly controls = viewChild<ElementRef<HTMLElement>>('controls');
     private readonly search = viewChild<ElementRef<HTMLInputElement>>('search');
+    private revealFrame: number | null = null;
     protected readonly shortcutKeys = (value: string) => value.split('+');
     constructor() {
         const listener = (event: KeyboardEvent) => {
@@ -94,14 +96,38 @@ export class CommandPalette {
                 }
             }
         };
+        const resize = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(() => this.revealActive());
+        afterRenderEffect(() => { const controls = this.controls()?.nativeElement; if (controls) resize?.observe(controls); });
         this.element.ownerDocument.addEventListener('keydown', listener);
-        inject(DestroyRef).onDestroy(() => this.element.ownerDocument.removeEventListener('keydown', listener));
+        inject(DestroyRef).onDestroy(() => {
+            this.element.ownerDocument.removeEventListener('keydown', listener);
+            resize?.disconnect();
+            if (this.revealFrame !== null) this.element.ownerDocument.defaultView?.cancelAnimationFrame(this.revealFrame);
+        });
         afterRenderEffect(() => { if (!validNavigationId(this.controlId()) || [this.label(), this.busyLabel(), this.searchLabel(), this.resultsLabel(), this.defaultGroup(), this.emptyLabel(), this.retryLabel()].some(value => !value.trim()))
             throw new Error('CommandPalette requires a valid controlId and nonempty labels.'); if (!Number.isSafeInteger(this.historyLimit()) || this.historyLimit() < 1)
             throw new Error('CommandPalette historyLimit must be a positive integer.'); commandShortcut(this.shortcut()); const scope = this.shortcutScope(); if (scope && scope.ownerDocument !== this.element.ownerDocument)
-            throw new Error('CommandPalette shortcutScope must belong to the same document.'); this.results(); this.pending(); const busy = this.busy(), active = this.activeId(); untracked(() => { if (!busy)
-            this.pending.set(false); if (active && this.opened())
-            this.element.querySelector<HTMLElement>('#' + CSS.escape(this.optionId(active)))?.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }); });
+            throw new Error('CommandPalette shortcutScope must belong to the same document.'); this.results(); this.pending(); const busy = this.busy(), active = this.activeId(), open = this.opened(); this.error(); untracked(() => { if (!busy)
+            this.pending.set(false); if (active && open) this.revealActive(); }); });
+    }
+    protected revealActive(): void {
+        const view = this.element.ownerDocument.defaultView;
+        if (!view) return;
+        if (this.revealFrame !== null) view.cancelAnimationFrame(this.revealFrame);
+        this.revealFrame = view.requestAnimationFrame(() => {
+            this.revealFrame = null;
+            const id = this.activeId();
+            if (!id || !this.opened() || !this.dialogElement()?.open) return;
+            const option = this.element.querySelector<HTMLElement>('#' + CSS.escape(this.optionId(id)));
+            // Reveal the command name, which identifies Enter's action; a tall
+            // description/shortcut must not align its bottom and hide the name.
+            const name = option?.querySelector<HTMLElement>('.ui-palette-label > span'), controls = this.controls()?.nativeElement;
+            if (name && controls) {
+                const margin = controls.getBoundingClientRect().height + (parseFloat(view.getComputedStyle(controls).marginBlockEnd) || 0), value = margin + 'px';
+                if (name.style.scrollMarginBlockStart !== value) name.style.scrollMarginBlockStart = value;
+                name.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+            }
+        });
     }
     private dialogElement(): HTMLDialogElement | null { return this.element.querySelector('dialog'); }
     protected optionId(id: string): string { return this.controlId() + '-command-' + encodeURIComponent(id); }

@@ -113,6 +113,8 @@ native modal Dialogと入力focusを維持するcombobox/listbox、group名と�
 
 `shortcut: string|null=null`は開くキーの明示opt-in、`shortcutScope: HTMLElement|null`は監視範囲（既定は同じOverlayHost、なければbody）。Control/Alt/Metaのどれかを含む厳密な修飾キーと文字/数字/F1..12/Enter/Space/方向キーの組合せを使う（例Control+k、Meta+Shift+k）。Shiftだけ、重複修飾子、曖昧なCtrl等は拒否する。候補のshortcutはpaletteが開いている間だけ実行する。通常の入力、既に処理したキー、IME、repeat、別modalの外側にあるpaletteは横取りしない。画面固有のショートカット衝突、OS/SR予約キー、実コマンドとbackend結果はアプリが確認する。全ショートカットに表示上の操作経路も残す。
 
+狭幅・拡大ではDialog見出しを閉じる操作と折り返し、検索label/input/statusを内部スクロール中も固定する。開く・矢印移動・エラー・再検索の描画後に、選択中の操作名を検索領域の実高さに合わせて表示する。長い説明やshortcutの下端だけを表示して操作名を隠さない。文字サイズ変更はResizeObserverへ接続し、破棄ではobserverと予約した描画処理を解除する。
+
 ### Dialog
 
 `<dialog uiDialog label="申請の削除" [open]="dialogOpen()" (openChange)="dialogOpen.set($event)">…</dialog>`。native dialog上のcomponentでshowModal/closeを接続し、背景操作の抑止とフォーカス管理はブラウザーのmodal dialogを使用する。label必須。cancelled/closed outputでEscapeと閉じる動作を受け取る。アプリに閉じるボタンを置き、openをfalseへ更新する。SSR/hydration、多重モーダルは未検証。

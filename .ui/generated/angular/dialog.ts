@@ -73,7 +73,7 @@ export const DIALOG_STYLES = `
     [hidden] { display:none!important; }
     .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }
     .ui-dialog__header { margin-block-end:var(--ui-space-field); }
-    .ui-dialog__title { flex:1; min-inline-size:0; }
+    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }
     h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); }
     .ui-dialog__footer { margin-block-start:var(--ui-space-field); }
     .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }
