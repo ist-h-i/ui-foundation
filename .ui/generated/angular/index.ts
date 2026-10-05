@@ -1,5 +1,5 @@
 export { PageFrame } from './page-frame';
-export { ActionControl, ActionLink, type ActionVariant } from './action-control';
+export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';
 export { FormField, FieldControl } from './form-field';
 export { AsyncRegion, type AsyncRegionState } from './async-region';
 export { ActionFeedback, type ActionFeedbackState } from './action-feedback';
@@ -35,3 +35,6 @@ export {Container, Stack, Grid, GridCell, Divider, Spacer, ScrollArea, StickyReg
 export {type LayoutSpace, type LayoutBreakpoint, type GridPlacement} from './layout-model';
 export {Panel, Accordion, AccordionItem} from './panels';
 export {Splitter} from './splitter';
+
+export {IconButton, ButtonGroup, ToggleButton, SegmentedControl, SplitButton, FloatingActionButton, CopyButton, UI_CLIPBOARD_WRITER, type ClipboardWriter, type SegmentOption, type SegmentValue} from './actions';
+export {Toolbar, type ToolbarItem} from './toolbar';

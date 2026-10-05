@@ -89,9 +89,9 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 
 `<ui-pagination [page]="page()" [totalPages]="totalPages()" (pageChange)="page.set($event)" label="申請一覧のページ" />`。pageは1以上、totalPagesは0以上のsafe integer。totalPages>0ではpage<=totalPages、既知の0件ではpage=1を渡す。範囲外や不明な数値は『ページ情報を表示できません』と示して操作を抑止する。取得前の総頁数を0に置き換えず、AsyncRegion等で状態を分ける。disabledは既定false。前後操作と現在頁／総頁を示し、全頁分のボタンを大量生成しない。
 
-## 今後必要に応じて追加する部品
+## 初版で対象外だった部品と拡張範囲
 
-検索付きcombobox、メニュー、ツールチップ、日付選択、ファイルアップロード、仮想化表、ドラッグ操作は今回のセットに含めない。単純な日付・ファイル入力はFormField内の標準inputで構成できるが、アップロード処理やブラウザー固有のpicker挙動は未検証。今回の整備を、すべてのアプリの部品が揃ったという一般保証にはしない。
+初版では検索付きcombobox、メニュー、日付選択等を対象外とした。拡張依頼により現在は全181要求行を実装対象としている。各部品の現契約はこの文書の拡張節、実装・検証済みと残件は`docs/ui-library-matrix.json`に記録する。ファイルアップロード、仮想化、専門部品等を、名称や単純な標準inputの配置だけで完成とは扱わない。
 
 ## 表示方針
 
@@ -233,3 +233,19 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 `AspectRatio`は正のratioとcontain/cover/fillを持ち、直接投影するnative img/video/iframeを収める。`ResponsiveVisibility`はviewportのminWidth/maxWidth（含む）の範囲で投影内容を保持して表示し、非表示前のfocusFallbackを受け取る。業務上必須の入力や操作を画面幅だけで消すかどうかは利用アプリが判断する。
 
 配置パターンの参照: [APG Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)、[APG Window Splitter](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)。APGのWindow Splitterは例の整備・task forceレビューが継続中と記されており、ここでの対応は記載されたrole/value/keyboard契約と対象操作の実証を示す。
+
+## 操作部品
+
+`ActionControl`（`button[uiAction]`）のvariant/type/busy/disabledに、size=small/medium/large、width=auto/full、icon、iconPosition=start/end、`uiActionIcon`の投影を接続する。サイズは現profileのsemantic値に追随し、小サイズも最小操作寸法を縮めない。処理中/無効はnative disabledとcapture guardでconsumerのclickも抑止する。`ActionLink`（`a[uiAction]`）はhref、external、target、relを持ち、externalは「外部リンク」を示し既定target=_blank、noopener/noreferrerを追加する。指定したrelを保持し、無効/処理中はhrefとTab順を外す。
+
+`IconButton`（`button[uiIconButton]`）はicon/label必須、shape=square/round、sizeとselected=null/boolean。選択状態を持つ場合はaria-pressedを接続する。`ToggleButton`（`button[uiToggleButton]`）はlabel、checked/checkedChange、on/offLabel、on/offIconを持つ。labelを一定にしてaria-pressedを伝え、状態文言と装飾iconを差し替える。共通icon/iconPositionも使用できる。`ButtonGroup`はlabel、direction、gap、connected、共通sizeを持ち、投影したnative uiActionの明示sizeは共通設定より優先する。
+
+`SegmentedControl`はcontrolId/label、options=value/label/icon/disabled、multiple、direction、equalWidthを持つ。単一はnative radio、複数はcheckboxで、CVA/required/option/mode validation、disabled/busy/readonly、hint/errorと退出時touchedを接続する。値は単一string/null、複数readonly string[]。選択方式を変える際の値変換は利用アプリが決める。
+
+`SplitButton`は主操作actionとMenuのselectedを分け、items、placement、open/openChange、closeOnSelect、busy/disabledを持つ。`FloatingActionButton`（`ui-floating-action-button` / `ui-speed-dial`）は主操作、補助items、四隅の論理position、up/down/left/rightのpopup direction、open/openChangeを持つ。native modal外では背景操作の抑止を越えない。
+
+`Toolbar`（`ui-toolbar` / `ui-action-bar`）はcontrolId/label、typed itemsの操作/区切り、direction、overflow=menu/wrap、fixed=none/top/bottom、disabledを持つ。実測幅で収まらない操作をMenuへ移す。横方向はRTLを含むLeft/Right、縦方向はUp/Down、Home/Endでroving focus。移動先が非表示になる前に可視の主操作/Moreへ復帰し、popup内の操作が主配置へ戻る場合はその操作へ戻す。fixedはnative stickyの最寄りscroll領域で作用する。
+
+`CopyButton`はtext、label、busy/disabled、successMessage/errorMessage、正のdurationSeconds（既定3）、copied/failedを持つ。既定は実Clipboard APIのwriteTextで、成功したpromiseの後だけ成功を伝える。不可用/拒否を失敗として表示し、再試行できる。処理中の重複と破棄後の古い結果を抑止し、結果表示は完了時から設定時間で消す。`UI_CLIPBOARD_WRITER`で環境のwriterを注入できるが、実コピーの意味とpromiseの成否はそのadapterが所有する。画面外のclip内容は取得しない。
+
+操作パターン: [APG Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/)、[APG Toolbar](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)、[APG Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)、[Clipboard API](https://www.w3.org/TR/clipboard-apis/#async-clipboard-api)。

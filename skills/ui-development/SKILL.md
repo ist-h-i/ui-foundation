@@ -38,3 +38,5 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 各採用profileで狭い画面、文字拡大、キーボード、動きの低減、正常/処理中/エラー/欠損/復旧を確認する。描画・操作・自動アクセシビリティ・意味レビュー・利用者確認を分けて報告する。未実行を合格扱いしない。詳細な判断例は必要時に[参照](references/token-design.md)を読む。
 
 配置部品は`docs/ui-components.md`の配置とコンテナを参照する。Gridのbreakpointsはcontainer幅、ResponsiveVisibilityはviewport幅。stickyは直近scroll領域内で作用する。Panel/Accordion/Splitterや領域の非表示で入力を破棄せず、focusを隠れた部分から退避する。必須操作を幅だけで除外するかは利用アプリの目的に照らして判断する。
+
+操作部品は`docs/ui-components.md`の操作部品を参照する。native button/linkと処理中のcapture guardを保つ。Toggleのaccessible labelは状態によって変えずaria-pressedを使う。SegmentedControlは選択方式に応じたCVA値をアプリが用意する。Toolbarは実幅による退避時と復帰時のfocusを確認する。CopyButtonはwriterの成功後だけ成功を表示し、拒否・再試行・表示期限・破棄後の結果を検証する。

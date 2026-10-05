@@ -202,3 +202,25 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 
 /* Projected native media deliberately uses this owned, component-scoped global rule. */
 ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-sizing:border-box; inline-size:100%; block-size:100%; min-inline-size:0; min-block-size:0; object-fit:var(--ui-content-fit); }
+/* Sizes stay connected to the current semantic profile; small targets stay usable. */
+.ui-action { --ui-action-size-factor:1; font-size:calc(var(--ui-text-body)*var(--ui-action-size-factor)); min-block-size:max(var(--ui-size-control),calc(var(--ui-size-control)*var(--ui-action-size-factor))); min-inline-size:max(var(--ui-size-control),calc(var(--ui-size-control)*var(--ui-action-size-factor))); }
+.ui-action[data-size="small"],.ui-button-group[data-size="small"]>.ui-action:not([data-size]) { --ui-action-size-factor:0.875; }
+.ui-action[data-size="medium"],.ui-button-group[data-size="medium"]>.ui-action:not([data-size]) { --ui-action-size-factor:1; }
+.ui-action[data-size="large"],.ui-button-group[data-size="large"]>.ui-action:not([data-size]) { --ui-action-size-factor:1.25; }
+.ui-action[data-width="full"] { inline-size:100%; }
+.ui-action-icon { display:inline-flex;flex:0 0 auto; }
+.ui-action-icon:empty { display:none; }
+.ui-action-busy { order:4; }
+.ui-action-external { font-size:var(--ui-text-small);white-space:normal;overflow-wrap:anywhere;min-inline-size:0; }
+.ui-icon-button { padding:var(--ui-space-control-y); }
+.ui-icon-button[data-shape="round"] { border-radius:50%; }
+.ui-icon-button[aria-pressed="true"],.ui-toggle-button[aria-pressed="true"] { background:var(--ui-color-tab-selected-surface);color:var(--ui-color-tab-selected); }
+.ui-button-group { display:flex;flex-wrap:wrap;min-inline-size:0;max-inline-size:100%;font:inherit; }
+.ui-button-group[hidden] { display:none; }
+.ui-button-group[data-direction="vertical"] { flex-direction:column; }
+.ui-button-group[data-connected="true"] { flex-wrap:nowrap; }
+.ui-button-group[data-connected="true"]>.ui-action { flex:1 1 auto; }
+.ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:first-child) { border-inline-start-width:0;border-start-start-radius:0;border-end-start-radius:0; }
+.ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:last-child) { border-start-end-radius:0;border-end-end-radius:0; }
+.ui-button-group[data-connected="true"][data-direction="vertical"]>.ui-action:not(:first-child) { border-block-start-width:0;border-start-start-radius:0;border-start-end-radius:0; }
+.ui-button-group[data-connected="true"][data-direction="vertical"]>.ui-action:not(:last-child) { border-end-start-radius:0;border-end-end-radius:0; }

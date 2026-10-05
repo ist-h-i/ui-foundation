@@ -11,6 +11,9 @@ import {
   Renderer2,
 } from '@angular/core';
 
+import { Icon } from './icon';
+
+export type ActionSize = 'small' | 'medium' | 'large';
 export type ActionVariant = 'primary' | 'secondary' | 'danger';
 
 /**
@@ -40,9 +43,11 @@ function guardActivation(isBlocked: () => boolean): void {
 @Component({
   selector: 'button[uiAction]',
   standalone: true,
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <span class="ui-action-label"><ng-content /></span>
+    <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
+    <span class="ui-action-label" style="order:1"><ng-content /></span>
     @if (busy()) {
       <span class="ui-action-busy">処理中</span>
     }
@@ -53,12 +58,18 @@ function guardActivation(isBlocked: () => boolean): void {
     '[disabled]': 'blocked()',
     '[attr.aria-busy]': 'busy() ? "true" : null',
     '[attr.data-variant]': 'variant()',
+    '[attr.data-size]': 'size()',
+    '[attr.data-width]': 'width()',
     '[class.ui-action--busy]': 'busy()',
     '[class.ui-action--disabled]': 'blocked()',
   },
 })
 export class ActionControl {
   readonly variant = input<ActionVariant>('secondary');
+  readonly size = input<ActionSize | null>(null);
+  readonly width = input<'auto' | 'full'>('auto');
+  readonly icon = input<string | null>(null);
+  readonly iconPosition = input<'start' | 'end'>('start');
   readonly busy = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly type = input<'button' | 'submit' | 'reset'>('button');
@@ -72,9 +83,12 @@ export class ActionControl {
 @Component({
   selector: 'a[uiAction]',
   standalone: true,
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <span class="ui-action-label"><ng-content /></span>
+    <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
+    <span class="ui-action-label" style="order:1"><ng-content /></span>
+    @if (external()) {<span class="ui-action-external" style="order:3">外部リンク<span aria-hidden="true">↗</span></span>}
     @if (busy()) {
       <span class="ui-action-busy">処理中</span>
     }
@@ -82,20 +96,32 @@ export class ActionControl {
   host: {
     class: 'ui-action',
     '[attr.href]': 'blocked() ? null : href()',
+    '[attr.target]': 'target() ?? (external() ? "_blank" : null)',
+    '[attr.rel]': 'linkRel()',
     '[attr.role]': 'blocked() ? "link" : null',
     '[attr.tabindex]': 'blocked() ? -1 : tabIndex()',
     '[attr.aria-disabled]': 'blocked() ? "true" : null',
     '[attr.aria-busy]': 'busy() ? "true" : null',
     '[attr.data-variant]': 'variant()',
+    '[attr.data-size]': 'size()',
+    '[attr.data-width]': 'width()',
     '[class.ui-action--busy]': 'busy()',
     '[class.ui-action--disabled]': 'blocked()',
   },
 })
 export class ActionLink {
   readonly variant = input<ActionVariant>('secondary');
+  readonly size = input<ActionSize | null>(null);
+  readonly width = input<'auto' | 'full'>('auto');
+  readonly icon = input<string | null>(null);
+  readonly iconPosition = input<'start' | 'end'>('start');
   readonly busy = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly href = input<string | null>(null);
+  readonly external = input(false, { transform: booleanAttribute });
+  readonly target = input<string | null>(null);
+  readonly rel = input<string | null>(null);
+  protected readonly linkRel = computed(() => {const values=(this.rel()??'').split(/\s+/).filter(Boolean);if(this.external()||this.target()==='_blank')values.push('noopener','noreferrer');return [...new Set(values)].join(' ')||null;});
   readonly tabIndex = input(0, { alias: 'tabindex', transform: numberAttribute });
   protected readonly blocked = computed(() => this.busy() || this.disabled());
 

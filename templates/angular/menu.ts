@@ -7,7 +7,7 @@ import { OverlayRegistry, observeOverlay, positionOverlay, type OverlayPlacement
 import { menuCommands, menuPath, selectMenuCheck, validateMenu, visibleMenuItems, type MenuItem, type MenuSelection } from './menu-model';
 export * from './menu-model';
 @Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="disabled()||!commands(nodes()).length" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
+    template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="disabled()||!commands(nodes()).length" [attr.tabindex]="triggerTabIndex()" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
   <ng-content select="[uiMenuTrigger]" />{{label()}}</button>
   @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="label()+'の対象'" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
   <div #popup popover="manual" class="ui-menu__popup" [id]="menuId()" (pointerleave)="hoverLeave($event)" (pointerenter)="stopHoverClose()">
@@ -39,11 +39,13 @@ export class Menu {
     readonly placement = input<OverlayPlacement>('bottom-start');
     readonly closeOnSelect = input(true, { transform: booleanAttribute });
     readonly disabled = input(false, { transform: booleanAttribute });
+    readonly triggerTabIndex = input<0 | -1>(0);
     protected readonly opened = linkedSignal(() => this.open());
     private readonly currentItems = linkedSignal(() => this.items());
     protected readonly nodes = computed(() => validateMenu(this.currentItems()));
     protected readonly expanded = signal<readonly string[]>([]);
     private readonly pendingFocus = signal<string | null>(null);
+    private readonly pendingBack = signal<string | null>(null);
     protected readonly visible = visibleMenuItems;
     protected readonly commands = menuCommands;
     private readonly anchor = viewChild<unknown, ElementRef<HTMLButtonElement>>('anchor', { read: ElementRef });
@@ -67,29 +69,32 @@ export class Menu {
     private prefix = '';
     private prefixAt = 0;
     constructor() {
-        effect(() => { if (!this.menuId().trim() || !this.label().trim())
-            throw new Error('Menu menuId and label must be nonempty.'); const nodes = this.nodes(), disabled = this.disabled(), open = this.opened(); untracked(() => { if (disabled || !menuCommands(nodes).length) {
-            this.close(true);
-            return;
-        } if (open)
-            this.reconcile(nodes); }); });
+        effect(() => {
+            if (!this.menuId().trim() || !this.label().trim())
+                throw new Error('Menu menuId and label must be nonempty.');
+            const nodes = this.nodes(), disabled = this.disabled(), open = this.opened();
+            untracked(() => {
+                if (disabled || !menuCommands(nodes).length) {
+                    this.close(true);
+                    return;
+                }
+                if (open)
+                    this.reconcile(nodes);
+            });
+        });
         afterRenderEffect(() => {
             const open = this.opened();
             this.placement();
             this.expanded();
             this.nodes();
             this.pendingFocus();
+            this.pendingBack();
             const popup = this.popup()?.nativeElement, anchor = this.anchor()?.nativeElement;
             if (!popup || !anchor)
                 return;
             untracked(() => {
                 if (open && !popup.matches(':popover-open')) {
-                    this.returnFocus ??= popup.ownerDocument.activeElement as HTMLElement | null;
-                    popup.showPopover();
-                    this.cleanup = this.registry.register({ element: popup, anchor, kind: 'popup', outside: true, dismiss: reason => reason === 'escape' ? this.closeLevel(this.focusedDepth()) : this.close(false) });
-                    this.cleanup = this.combine(this.cleanup, observeOverlay(popup, anchor, () => this.position()));
-                    if (this.shouldFocus && !this.pendingFocus())
-                        this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null);
+                    this.showPopup(popup, anchor);
                 }
                 else if (!open && popup.matches(':popover-open')) {
                     popup.hidePopover();
@@ -98,6 +103,14 @@ export class Menu {
                 }
                 if (open) {
                     this.position();
+                    const back = this.pendingBack();
+                    if (back) {
+                        const button = popup.querySelector<HTMLElement>('[data-menu-back="' + CSS.escape(back) + '"]');
+                        if (button) {
+                            button.focus();
+                            this.pendingBack.set(null);
+                        }
+                    }
                     const id = this.pendingFocus();
                     if (id) {
                         const button = popup.querySelector<HTMLElement>('#' + CSS.escape(this.itemId(id)));
@@ -109,8 +122,15 @@ export class Menu {
                 }
             });
         });
-        inject(DestroyRef).onDestroy(() => { this.stopHold(); this.stopHoverClose(); this.cleanup?.(); this.cleanup = null; const popup = this.popup()?.nativeElement; if (popup?.matches(':popover-open'))
-            popup.hidePopover(); });
+        inject(DestroyRef).onDestroy(() => {
+            this.stopHold();
+            this.stopHoverClose();
+            this.cleanup?.();
+            this.cleanup = null;
+            const popup = this.popup()?.nativeElement;
+            if (popup?.matches(':popover-open'))
+                popup.hidePopover();
+        });
     }
     private reconcile(nodes: readonly MenuItem[]): void {
         const popup = this.popup()?.nativeElement, active = popup?.ownerDocument.activeElement as HTMLElement | null;
@@ -137,24 +157,67 @@ export class Menu {
         if (depth > path.length || id && !level.some(item => item.id === id))
             this.pendingFocus.set(level[0]?.id ?? path.at(-1) ?? null);
     }
+    private showPopup(popup: HTMLElement, anchor: HTMLElement): void { this.returnFocus ??= popup.ownerDocument.activeElement as HTMLElement | null; popup.showPopover(); this.cleanup = this.registry.register({ element: popup, anchor, kind: 'popup', outside: true, dismiss: reason => reason === 'escape' ? this.closeLevel(this.focusedDepth()) : this.close(false) }); this.cleanup = this.combine(this.cleanup, observeOverlay(popup, anchor, () => this.position())); if (this.shouldFocus && !this.pendingFocus() && !this.pendingBack())
+        this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null); }
+    private focusCommand(id: string): void { this.pendingBack.set(null); this.pendingFocus.set(id); const popup = this.popup()?.nativeElement, button = popup?.querySelector<HTMLElement>('#' + CSS.escape(this.itemId(id))); if (popup?.matches(':popover-open') && button) {
+        button.focus();
+        if (popup.ownerDocument.activeElement === button)
+            this.pendingFocus.set(null);
+    } }
+    private focusBack(id: string): void { this.pendingFocus.set(null); this.pendingBack.set(id); const popup = this.popup()?.nativeElement, button = popup?.querySelector<HTMLElement>('[data-menu-back="' + CSS.escape(id) + '"]'); if (popup?.matches(':popover-open') && button) {
+        button.focus();
+        if (popup.ownerDocument.activeElement === button)
+            this.pendingBack.set(null);
+    } }
+    private logicalContext(id: string | null, back: string | null): {
+        item: MenuItem | null;
+        parent: MenuItem | null;
+        depth: number;
+    } | null { let level = menuCommands(this.nodes()), parent: MenuItem | null = null; for (let depth = 0; depth <= this.expanded().length; depth++) {
+        const item = id ? level.find(item => item.id === id) : null;
+        if (item || back && parent?.id === back)
+            return { item: item ?? null, parent, depth };
+        const next = level.find(item => item.id === this.expanded()[depth]);
+        if (!next)
+            break;
+        parent = next;
+        level = menuCommands(next.children ?? []);
+    } return null; }
     private combine(first: () => void, second: () => void): () => void { return () => { first(); second(); }; }
+    focusTrigger(): void { this.anchor()?.nativeElement.focus(); }
     protected itemId(id: string): string { return this.menuId() + '-item-' + encodeURIComponent(id); }
     protected role(item: MenuItem): string { return item.type === 'checkbox' ? 'menuitemcheckbox' : item.type === 'radio' ? 'menuitemradio' : 'menuitem'; }
-    protected toggle(): void { this.shouldFocus = true; if (this.opened()) {
-        this.close(true);
-        return;
-    } this.point = null; this.returnFocus = this.anchor()?.nativeElement ?? null; this.opened.set(true); this.openChange.emit(true); }
-    protected triggerKey(event: KeyboardEvent): void { if (this.disabled())
-        return; if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
+    protected toggle(): void {
         this.shouldFocus = true;
+        if (this.opened()) {
+            this.close(true);
+            return;
+        }
         this.point = null;
         this.returnFocus = this.anchor()?.nativeElement ?? null;
         this.opened.set(true);
         this.openChange.emit(true);
-        const commands = menuCommands(this.nodes());
-        this.pendingFocus.set((event.key === 'ArrowUp' ? commands.at(-1) : commands[0])?.id ?? null);
-    } }
+    }
+    protected triggerKey(event: KeyboardEvent): void {
+        if (this.disabled())
+            return;
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            this.shouldFocus = true;
+            this.point = null;
+            this.returnFocus = this.anchor()?.nativeElement ?? null;
+            this.opened.set(true);
+            this.openChange.emit(true);
+            const commands = menuCommands(this.nodes());
+            const id = (event.key === 'ArrowUp' ? commands.at(-1) : commands[0])?.id;
+            const popup = this.popup()?.nativeElement, anchor = this.anchor()?.nativeElement;
+            if (popup && anchor && !popup.matches(':popover-open'))
+                this.showPopup(popup, anchor);
+            this.position();
+            if (id)
+                this.focusCommand(id);
+        }
+    }
     protected select(item: MenuItem, depth: number): void {
         if (item.disabled || this.disabled())
             return;
@@ -167,41 +230,70 @@ export class Menu {
             const next = selectMenuCheck(this.currentItems(), item);
             this.currentItems.set(next);
             this.itemsChange.emit(next);
-            const find = (nodes: readonly MenuItem[]): MenuItem | undefined => { for (const node of nodes) {
-                if (node.id === item.id)
-                    return node;
-                const child = find(node.children ?? []);
-                if (child)
-                    return child;
-            } return undefined; };
+            const find = (nodes: readonly MenuItem[]): MenuItem | undefined => {
+                for (const node of nodes) {
+                    if (node.id === item.id)
+                        return node;
+                    const child = find(node.children ?? []);
+                    if (child)
+                        return child;
+                }
+                return undefined;
+            };
             chosen = find(next)!;
         }
         this.selected.emit({ item: chosen, path: menuPath(this.currentItems(), item.id) });
         if (this.closeOnSelect())
             this.close(true);
     }
-    private openChildren(item: MenuItem, depth: number, focus: boolean): void { if (item.disabled || !menuCommands(item.children ?? []).length)
-        return; this.expanded.update(path => [...path.slice(0, depth), item.id]); if (focus)
-        this.pendingFocus.set(menuCommands(item.children ?? [])[0]!.id); }
-    protected closeLevel(depth: number): void { if (depth <= 0) {
-        this.close(true);
-        return;
-    } const parent = this.expanded()[depth - 1]; this.expanded.update(path => path.slice(0, depth - 1)); if (parent)
-        this.pendingFocus.set(parent); }
-    private close(restore: boolean): void { if (!this.opened())
-        return; this.opened.set(false); this.expanded.set([]); this.pendingFocus.set(null); const popup = this.popup()?.nativeElement; if (popup?.matches(':popover-open'))
-        popup.hidePopover(); this.cleanup?.(); this.cleanup = null; this.openChange.emit(false); if (restore)
-        restoreFocus(this.returnFocus, this.anchor()?.nativeElement ?? null); this.returnFocus = null; }
+    private openChildren(item: MenuItem, depth: number, focus: boolean): void {
+        if (item.disabled || !menuCommands(item.children ?? []).length)
+            return;
+        this.expanded.update(path => [...path.slice(0, depth), item.id]);
+        if (focus)
+            this.focusCommand(menuCommands(item.children ?? [])[0]!.id);
+    }
+    protected closeLevel(depth: number): void {
+        if (depth <= 0) {
+            this.close(true);
+            return;
+        }
+        const parent = this.expanded()[depth - 1];
+        this.expanded.update(path => path.slice(0, depth - 1));
+        if (parent)
+            this.focusCommand(parent);
+    }
+    private close(restore: boolean): void {
+        if (!this.opened())
+            return;
+        this.opened.set(false);
+        this.expanded.set([]);
+        this.pendingFocus.set(null);
+        this.pendingBack.set(null);
+        const popup = this.popup()?.nativeElement;
+        if (popup?.matches(':popover-open'))
+            popup.hidePopover();
+        this.cleanup?.();
+        this.cleanup = null;
+        this.openChange.emit(false);
+        if (restore)
+            restoreFocus(this.returnFocus, this.anchor()?.nativeElement ?? null);
+        this.returnFocus = null;
+    }
     protected key(event: KeyboardEvent, item: MenuItem | null, parent: MenuItem | null, depth: number): void {
         if (event.isComposing)
             return;
+        const pending = this.logicalContext(this.pendingFocus(), this.pendingBack());
+        if (pending) {
+            item = pending.item;
+            parent = pending.parent;
+            depth = pending.depth;
+        }
         if (event.key.length !== 1 || event.key === ' ') {
             this.prefix = '';
             this.prefixAt = 0;
         }
-        const menu = (event.currentTarget as HTMLElement).closest('[role="menu"]')!;
-        const buttons = Array.from(menu.querySelectorAll<HTMLButtonElement>('button[role^="menuitem"]')).filter(button => button.closest('[role="menu"]') === menu);
-        const index = buttons.indexOf(event.currentTarget as HTMLButtonElement);
+        const commands = menuCommands(parent?.children ?? this.nodes()), index = item ? commands.findIndex(command => command.id === item!.id) : commands.length;
         const rtl = this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction === 'rtl';
         if (event.key === 'Tab') {
             event.preventDefault();
@@ -234,58 +326,115 @@ export class Menu {
                 this.closeLevel(depth);
             return;
         }
-        let target: HTMLButtonElement | undefined;
+        const count = commands.length + (parent ? 1 : 0);
+        let target: number | undefined;
         if (event.key === 'ArrowDown')
-            target = buttons[(index + 1) % buttons.length];
+            target = (index + 1) % count;
         else if (event.key === 'ArrowUp')
-            target = buttons[(index - 1 + buttons.length) % buttons.length];
+            target = (index - 1 + count) % count;
         else if (event.key === 'Home')
-            target = buttons[0];
+            target = 0;
         else if (event.key === 'End')
-            target = buttons.at(-1);
+            target = count - 1;
         else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
             const now = performance.now();
             this.prefix = now - this.prefixAt > 600 ? event.key : this.prefix + event.key;
             this.prefixAt = now;
-            const repeated = new Set(this.prefix).size === 1;
-            const prefix = (repeated ? event.key : this.prefix).toLocaleLowerCase();
-            target = [...buttons.slice(index + 1), ...buttons.slice(0, index + 1)].find(button => (button.querySelector('.ui-menu__label')?.textContent ?? button.textContent)?.trim().toLocaleLowerCase().startsWith(prefix));
+            const repeated = new Set(this.prefix).size === 1, prefix = (repeated ? event.key : this.prefix).toLocaleLowerCase();
+            const ordered = [...commands.slice(index + 1), ...commands.slice(0, index + 1)], match = ordered.find(command => command.label?.trim().toLocaleLowerCase().startsWith(prefix));
+            if (match)
+                target = commands.findIndex(command => command.id === match.id);
         }
-        if (target) {
+        if (target !== undefined) {
             event.preventDefault();
-            target.focus();
+            const command = commands[target];
+            if (command)
+                this.focusCommand(command.id);
+            else if (parent)
+                this.focusBack(parent.id);
         }
     }
-    private position(): void { const popup = this.popup()?.nativeElement, anchor = this.anchor()?.nativeElement; if (!popup || !anchor || !popup.matches(':popover-open'))
-        return; positionOverlay(popup, anchor, this.placement(), this.point); for (const submenu of popup.querySelectorAll<HTMLElement>('[data-menu-parent]')) {
-        const parent = popup.querySelector<HTMLElement>('#' + CSS.escape(this.itemId(submenu.dataset['menuParent']!)));
-        if (parent)
-            positionOverlay(submenu, parent, 'right-start');
-    } }
+    private position(): void {
+        const popup = this.popup()?.nativeElement, anchor = this.anchor()?.nativeElement;
+        if (!popup || !anchor || !popup.matches(':popover-open'))
+            return;
+        positionOverlay(popup, anchor, this.placement(), this.point);
+        for (const submenu of popup.querySelectorAll<HTMLElement>('[data-menu-parent]')) {
+            const parent = popup.querySelector<HTMLElement>('#' + CSS.escape(this.itemId(submenu.dataset['menuParent']!)));
+            if (parent)
+                positionOverlay(submenu, parent, 'right-start');
+        }
+    }
     private focusedDepth(): number { const parent = (this.element.ownerDocument.activeElement as HTMLElement | null)?.closest<HTMLElement>('[data-menu-parent]')?.dataset['menuParent']; return parent ? this.expanded().indexOf(parent) + 1 : 0; }
-    protected hoverOpen(): void { this.stopHoverClose(); if (this.trigger() === 'hover' && !this.disabled() && !this.opened()) {
-        this.shouldFocus = false;
-        this.point = null;
-        this.returnFocus = this.element.ownerDocument.activeElement as HTMLElement | null;
+    protected hoverOpen(): void {
+        this.stopHoverClose();
+        if (this.trigger() === 'hover' && !this.disabled() && !this.opened()) {
+            this.shouldFocus = false;
+            this.point = null;
+            this.returnFocus = this.element.ownerDocument.activeElement as HTMLElement | null;
+            this.opened.set(true);
+            this.openChange.emit(true);
+        }
+    }
+    protected hoverLeave(event: PointerEvent): void {
+        if (this.trigger() !== 'hover' || this.popup()?.nativeElement.contains(this.element.ownerDocument.activeElement))
+            return;
+        const target = event.relatedTarget as Node | null;
+        if (target && this.element.contains(target))
+            return;
+        this.hoverTimer = setTimeout(() => this.close(false), 200);
+    }
+    protected stopHoverClose(): void {
+        if (this.hoverTimer !== null)
+            clearTimeout(this.hoverTimer);
+        this.hoverTimer = null;
+    }
+    protected contextMenu(event: MouseEvent): void {
+        if (this.trigger() !== 'context' || this.disabled())
+            return;
+        event.preventDefault();
+        this.point = { x: event.clientX, y: event.clientY };
+        this.contextOrigin();
         this.opened.set(true);
         this.openChange.emit(true);
-    } }
-    protected hoverLeave(event: PointerEvent): void { if (this.trigger() !== 'hover' || this.popup()?.nativeElement.contains(this.element.ownerDocument.activeElement))
-        return; const target = event.relatedTarget as Node | null; if (target && this.element.contains(target))
-        return; this.hoverTimer = setTimeout(() => this.close(false), 200); }
-    protected stopHoverClose(): void { if (this.hoverTimer !== null)
-        clearTimeout(this.hoverTimer); this.hoverTimer = null; }
-    protected contextMenu(event: MouseEvent): void { if (this.trigger() !== 'context' || this.disabled())
-        return; event.preventDefault(); this.point = { x: event.clientX, y: event.clientY }; this.contextOrigin(); this.opened.set(true); this.openChange.emit(true); this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null); }
-    protected contextKey(event: KeyboardEvent): void { if (this.disabled() || !(event.key === 'ContextMenu' || event.key === 'F10' && event.shiftKey))
-        return; event.preventDefault(); const target = this.contextTarget()?.nativeElement; if (!target)
-        return; const rect = target.getBoundingClientRect(); this.point = { x: rect.left, y: rect.bottom }; this.contextOrigin(); this.opened.set(true); this.openChange.emit(true); this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null); }
-    private contextOrigin(): void { this.shouldFocus = true; const target = this.contextTarget()?.nativeElement, active = this.element.ownerDocument.activeElement as HTMLElement | null; if (target && (!active || !target.contains(active)))
-        target.focus({ preventScroll: true }); this.returnFocus = this.element.ownerDocument.activeElement as HTMLElement | null; }
-    protected hold(event: PointerEvent): void { if (this.disabled() || event.pointerType !== 'touch')
-        return; this.stopHold(); this.holdStart = { x: event.clientX, y: event.clientY }; this.holdTimer = setTimeout(() => { this.point = this.holdStart; this.contextOrigin(); this.opened.set(true); this.openChange.emit(true); this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null); }, 500); }
-    protected moveHold(event: PointerEvent): void { if (this.holdStart && Math.hypot(event.clientX - this.holdStart.x, event.clientY - this.holdStart.y) > 8)
-        this.stopHold(); }
-    protected stopHold(): void { if (this.holdTimer !== null)
-        clearTimeout(this.holdTimer); this.holdTimer = null; this.holdStart = null; }
+        this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null);
+    }
+    protected contextKey(event: KeyboardEvent): void {
+        if (this.disabled() || !(event.key === 'ContextMenu' || event.key === 'F10' && event.shiftKey))
+            return;
+        event.preventDefault();
+        const target = this.contextTarget()?.nativeElement;
+        if (!target)
+            return;
+        const rect = target.getBoundingClientRect();
+        this.point = { x: rect.left, y: rect.bottom };
+        this.contextOrigin();
+        this.opened.set(true);
+        this.openChange.emit(true);
+        this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null);
+    }
+    private contextOrigin(): void {
+        this.shouldFocus = true;
+        const target = this.contextTarget()?.nativeElement, active = this.element.ownerDocument.activeElement as HTMLElement | null;
+        if (target && (!active || !target.contains(active)))
+            target.focus({ preventScroll: true });
+        this.returnFocus = this.element.ownerDocument.activeElement as HTMLElement | null;
+    }
+    protected hold(event: PointerEvent): void {
+        if (this.disabled() || event.pointerType !== 'touch')
+            return;
+        this.stopHold();
+        this.holdStart = { x: event.clientX, y: event.clientY };
+        this.holdTimer = setTimeout(() => { this.point = this.holdStart; this.contextOrigin(); this.opened.set(true); this.openChange.emit(true); this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null); }, 500);
+    }
+    protected moveHold(event: PointerEvent): void {
+        if (this.holdStart && Math.hypot(event.clientX - this.holdStart.x, event.clientY - this.holdStart.y) > 8)
+            this.stopHold();
+    }
+    protected stopHold(): void {
+        if (this.holdTimer !== null)
+            clearTimeout(this.holdTimer);
+        this.holdTimer = null;
+        this.holdStart = null;
+    }
 }

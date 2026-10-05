@@ -689,7 +689,7 @@
       "requestedControls": "種別、サイズ、処理中、無効、幅、アイコン位置",
       "sourceLine": 33,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/action-control.ts"
       ],
@@ -719,9 +719,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "種別、サイズ、処理中、無効、幅、アイコン位置"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-02",
@@ -730,8 +740,10 @@
       "requestedControls": "アイコン、説明ラベル、形状、サイズ、選択状態",
       "sourceLine": 34,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -758,9 +770,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "アイコン、説明ラベル、形状、サイズ、選択状態"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-03",
@@ -769,7 +791,7 @@
       "requestedControls": "遷移先、外部リンク表示、無効、処理中",
       "sourceLine": 35,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/action-control.ts"
       ],
@@ -799,9 +821,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "遷移先、外部リンク表示、無効、処理中"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-04",
@@ -810,8 +842,10 @@
       "requestedControls": "方向、間隔、連結表示、共通サイズ",
       "sourceLine": 36,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -838,9 +872,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "方向、間隔、連結表示、共通サイズ"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-05",
@@ -849,8 +893,10 @@
       "requestedControls": "ON/OFF、選択時の文言・アイコン",
       "sourceLine": 37,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -877,9 +923,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "ON/OFF、選択時の文言・アイコン"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-06",
@@ -888,8 +944,10 @@
       "requestedControls": "単一・複数選択、選択肢、方向、均等幅",
       "sourceLine": 38,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -916,9 +974,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "単一・複数選択、選択肢、方向、均等幅"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-07",
@@ -927,8 +995,10 @@
       "requestedControls": "主操作、補助メニュー、メニュー位置、無効",
       "sourceLine": 39,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -955,9 +1025,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "主操作、補助メニュー、メニュー位置、無効"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-08",
@@ -966,8 +1046,10 @@
       "requestedControls": "固定位置、展開方向、補助操作、開閉",
       "sourceLine": 40,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -994,9 +1076,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "固定位置、展開方向、補助操作、開閉"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-09",
@@ -1005,8 +1097,10 @@
       "requestedControls": "操作の配置、区切り、狭幅時の退避メニュー、固定",
       "sourceLine": 41,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/toolbar.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -1033,9 +1127,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "操作の配置、区切り、狭幅時の退避メニュー、固定"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-10",
@@ -1097,8 +1201,10 @@
       "requestedControls": "コピー対象、成功・失敗表示、表示時間",
       "sourceLine": 43,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/actions.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -1125,9 +1231,19 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/actions-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-actions-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "コピー対象、成功・失敗表示、表示時間"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-01",
@@ -8088,8 +8204,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-and-layout",
-    "verificationStatus": "verified-three-stages",
+    "stage": "business-priority-overlays-layout-and-actions",
+    "verificationStatus": "verified-four-stages",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8097,12 +8213,13 @@
       "datesGridIcon": "review fixes verified in both profiles; configuration warnings additionally fixed and tested",
       "overlays": "approve after fixes; both profiles and narrow pointer verified",
       "notifications": "approve after scope-focus, RTL and viewport fixes",
-      "layout": "approve after fixed-region, intrinsic media, external collapse, focus, drag cancellation and zero-size pane fixes"
+      "layout": "approve after fixed-region, intrinsic media, external collapse, focus, drag cancellation and zero-size pane fixes",
+      "actions": "approve after scoped Toolbar focus, dynamic replacements and rapid Menu key fixes"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "pending": 109,
-      "verified": 56,
+      "pending": 99,
+      "verified": 66,
       "partial": 16
     }
   }

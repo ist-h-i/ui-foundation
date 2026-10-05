@@ -15,7 +15,7 @@ PageFrame/AppShellの各領域と固定、Container、Stack、幅別Gridとセ�
 
 ## 独立レビューと描画
 
-fresh-context reviewerの配置判定はapprove、未解決P0/P1/P2はない。固定headerがsidebarを覆う、AspectRatioのcontainで画像が切れる、外部collapseが古い比率へ戻る、Panelの無効化でfocusがBODYへ落ちる、drag中の方向変更が旧軸を使う、0/100比率のゼロ領域へfocusが入る問題を再現して修正した。
+fresh-context reviewerの配置判定はapprove、未解決P0/P1/P2はない。Calendarの追加差分も別のfresh-context reviewerが両profileの即Enter/Space、連打、無効日/上限越え、月境界、pending中のcloseと再openを独立確認しapprove。browser error/warningは0件。固定headerがsidebarを覆う、AspectRatioのcontainで画像が切れる、外部collapseが古い比率へ戻る、Panelの無効化でfocusがBODYへ落ちる、drag中の方向変更が旧軸を使う、0/100比率のゼロ領域へfocusが入る問題を再現して修正した。
 
 固定領域はheader/footerと最寄りのnative scroll領域を測り、80pxの短いscroll領域では通常配置に戻す。独立したhit testは両profile・100/200%でsidebar操作が覆われないことを確認した。画像は標準/縦長/横長×contain/cover/fill×両profileの18条件でhost/media256×128、overflow0。ドラッグは両profile×方向/RTL/resizableの変更6条件でcaptureを解除し、その後の移動で比率が変わらないことを確認した。
 
