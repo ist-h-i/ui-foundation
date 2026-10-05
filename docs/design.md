@@ -85,3 +85,5 @@ Tailwind v4のテーマ定義はトップレベルの`@theme inline`。YAMLを�
 9. ナビゲーションとパンくずの長い日本語／連続英字を、両プロファイルの320px幅・100%／200%文字サイズで全文表示し、ページの横はみ出しを生じさせない。
 
 `size.sidebar`はPageFrameのsidebar幅を用途別に指定する。ContainerやGridの標準余白・gapは既存space役割を使用し、利用アプリが明示する幅/比率/scroll座標は配置制御として扱う。
+
+`size.drawer-inline`と`size.drawer-block`はDrawerの標準幅/高さ。左右端の幅と上下端の高さを別用途とし、guided/denseへ正本YAMLで明示対応する。明示pixel寸法とBottomSheetのviewport比率は配置制御であり、色/文字/余白のプリミティブを部品から参照するものではない。

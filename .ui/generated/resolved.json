@@ -68,6 +68,22 @@
       "type": "color",
       "value": "#e7ebf0"
     },
+    "drawer-block-dense": {
+      "type": "length",
+      "value": "400px"
+    },
+    "drawer-block-guided": {
+      "type": "length",
+      "value": "480px"
+    },
+    "drawer-inline-dense": {
+      "type": "length",
+      "value": "320px"
+    },
+    "drawer-inline-guided": {
+      "type": "length",
+      "value": "384px"
+    },
     "duration": {
       "type": "duration",
       "value": "180ms"
@@ -479,6 +495,16 @@
           "type": "length",
           "value": "280px"
         },
+        "size.drawer-block": {
+          "reference": "drawer-block-dense",
+          "type": "length",
+          "value": "400px"
+        },
+        "size.drawer-inline": {
+          "reference": "drawer-inline-dense",
+          "type": "length",
+          "value": "320px"
+        },
         "size.elevation-blur": {
           "reference": "elevation-blur",
           "type": "length",
@@ -811,6 +837,16 @@
           "reference": "dialog-min",
           "type": "length",
           "value": "280px"
+        },
+        "size.drawer-block": {
+          "reference": "drawer-block-guided",
+          "type": "length",
+          "value": "480px"
+        },
+        "size.drawer-inline": {
+          "reference": "drawer-inline-guided",
+          "type": "length",
+          "value": "384px"
         },
         "size.elevation-blur": {
           "reference": "elevation-blur",

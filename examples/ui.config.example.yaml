@@ -71,6 +71,10 @@ primitives:
   elevation-blur: { type: length, value: 12px }
   overlay-min: { type: length, value: 192px }
   dialog-min: { type: length, value: 280px }
+  drawer-inline-guided: { type: length, value: 384px }
+  drawer-inline-dense: { type: length, value: 320px }
+  drawer-block-guided: { type: length, value: 480px }
+  drawer-block-dense: { type: length, value: 400px }
   border-thin: { type: length, value: 1px }
   focus-width: { type: length, value: 3px }
   focus-offset: { type: length, value: 3px }
@@ -136,6 +140,8 @@ semantic:
   size.elevation-blur: elevation-blur
   size.overlay-min: overlay-min
   size.dialog-min: dialog-min
+  size.drawer-inline: drawer-inline-guided
+  size.drawer-block: drawer-block-guided
   border.control: border-thin
   border.focus: focus-width
   border.focus-offset: focus-offset
@@ -174,6 +180,8 @@ profiles:
     semantic:
       size.avatar: avatar-dense
       size.form-label: form-label-dense
+      size.drawer-inline: drawer-inline-dense
+      size.drawer-block: drawer-block-dense
       color.action: green
       color.action-hover: green-hover
       color.link: green

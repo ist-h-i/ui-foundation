@@ -32,12 +32,8 @@ export class DialogTemplate {
         $implicit: DialogContext;
     } { return true; }
 }
-/** Native HTML owns modal inertness and Tab confinement. DOM ancestry keeps profiles/RTL. */
-@Component({
-    selector: 'dialog[uiDialog]', standalone: true,
-    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
+/** Shared native panel rendering; Drawer and BottomSheet add concrete geometry. */
+export const DIALOG_TEMPLATE = `
     <header [hidden]="!showHeader()" class="ui-dialog__header">
       <div class="ui-dialog__title">
         @if (template('header'); as header) { <ng-container [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
@@ -63,15 +59,8 @@ export class DialogTemplate {
     </footer>
     @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" aria-label="ダイアログのサイズを変更" title="矢印キーで幅と高さを変更、Shiftで大きく変更">サイズ変更</button></div> }
     <p role="status" aria-atomic="true" class="ui-dialog__status">{{ busy() ? busyLabel() : '' }}</p>
-  `,
-    host: {
-        '[attr.aria-label]': 'label()', '[attr.aria-modal]': 'open() && modal() ? "true" : null',
-        '[attr.aria-busy]': 'busy()', '[attr.data-size]': 'size()',
-        '[attr.data-position]': 'position()', '[attr.data-maximized]': 'maximized()',
-        '(cancel)': 'onCancelled($event)', '(close)': 'onClosed()',
-        '(pointerdown)': 'backdropStart($event)', '(pointerup)': 'backdropEnd($event)',
-    },
-    styles: `
+  `;
+export const DIALOG_STYLES = `
     :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }
     :host::backdrop { background:var(--ui-color-backdrop); }
     :host([data-size="small"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }
@@ -89,7 +78,21 @@ export class DialogTemplate {
     .ui-dialog__footer { margin-block-start:var(--ui-space-field); }
     .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }
     .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
-  `,
+  `;
+/** Native HTML owns modal inertness and Tab confinement. DOM ancestry keeps profiles/RTL. */
+@Component({
+    selector: 'dialog[uiDialog]', standalone: true,
+    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: DIALOG_TEMPLATE,
+    host: {
+        '[attr.aria-label]': 'label()', '[attr.aria-modal]': 'open() && modal() ? "true" : null',
+        '[attr.aria-busy]': 'busy()', '[attr.data-size]': 'size()',
+        '[attr.data-position]': 'position()', '[attr.data-maximized]': 'maximized()',
+        '(cancel)': 'onCancelled($event)', '(close)': 'onClosed()',
+        '(pointerdown)': 'backdropStart($event)', '(pointerup)': 'backdropEnd($event)',
+    },
+    styles: DIALOG_STYLES,
 })
 export class Dialog {
     readonly label = input.required<string>();
@@ -173,8 +176,9 @@ export class Dialog {
             this.unregister?.();
             this.unregister = null;
             if (this.element.open) {
+                const owned = this.element.contains(this.element.ownerDocument.activeElement);
                 this.element.close();
-                restoreFocus(this.origin);
+                if (owned) restoreFocus(this.origin);
             }
         });
     }
@@ -195,6 +199,8 @@ export class Dialog {
             return false;
         this.pending = { reason, value, returnValue };
         this.accepted = true;
+        this.unregister?.();
+        this.unregister = null;
         if (reason === 'escape')
             this.cancelled.emit();
         this.element.close(returnValue);
@@ -213,7 +219,10 @@ export class Dialog {
         this.openChange.emit(false);
         this.closed.emit();
         this.completed.emit(result);
-        restoreFocus(this.origin);
+        const active = this.element.ownerDocument.activeElement;
+        // UA close usually restores the invoker. A nonmodal external close must
+        // not take focus from an unrelated action selected in the meantime.
+        if (active === this.origin || active === this.element.ownerDocument.body || this.element.contains(active)) restoreFocus(this.origin);
         this.origin = null;
     }
     private outside(event: PointerEvent): boolean { const box = this.element.getBoundingClientRect(); return event.target === this.element && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom); }
@@ -221,6 +230,7 @@ export class Dialog {
     protected backdropEnd(event: PointerEvent): void { const dismiss = this.backdropPointer === event.pointerId && this.outside(event); this.backdropPointer = null; if (dismiss)
         this.finish('outside'); }
     protected setRect(rect: PanelRect): void { this.rectangle.set(rect); }
+    protected resetGeometry(): void { this.rectangle.set(null); }
     protected toggleMaximized(): void { if (!this.busy())
         this.maximized.update(value => !value); }
     private layout(rect: PanelRect | null, _size: string, _position: string, max: boolean): void {

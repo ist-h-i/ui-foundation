@@ -1,0 +1,23 @@
+# 0001: 子のキー処理後に共通OverlayでEscapeを扱う
+
+状態: 採用。2026-10-05。
+
+## 背景
+
+Dialog/Drawer/BottomSheetの終了保留、Menu/Comboboxの候補終了、浮動表示の最上位だけの終了が同じEscapeを扱う。native Dialogのcancelだけを保留すると、直前の利用者操作がない連続した閉じ要求で2回目がnoncancelableになり、busy/未保存のUI終了契約を維持できなかった。これは[HTML CloseWatcher](https://html.spec.whatwg.org/multipage/interaction.html#close-watcher-infrastructure)のcanPreventCloseに沿う挙動である。
+
+documentのcaptureでEscapeを奪う案は入力部品のpreventDefaultより先に親を閉じ、IME変換中も閉じてしまった。浮動表示の両profileの追加4試験で再現した。native cancelだけ、document capture、document bubbleの3案を比較する。
+
+## 判断
+
+共通OverlayRegistryはdocumentのbubbleで未処理のEscapeだけを最上位へ渡し、keydownをpreventDefaultしてnativeの追加終了を止める。子のdefaultPrevented、isComposing、IME互換のkeyCode=229を尊重する。最上位が終了を保留する場合もそのキーを消費し、下位のDialogを閉じない。子を終了した直後は同期でstackから外し、次の独立したEscapeが親へ届く。
+
+native Dialogはmodalのinertness、Tab、意味とnative終了イベントを所有する。別scopeのRegistryもdocumentの共有stackに従う。自前のフォーカスだけを復帰し、nonmodalで外へ移ったfocusを奪わない。
+
+## 結果と制限
+
+入力の取消、候補/浮動表示の終了、親の終了を順に扱え、連続Escapeでbusy/終了保留を維持する。keydownをstopPropagation/preventDefaultした利用アプリは、そのキーの意味と操作経路を所有する。OSの戻る、native requestClose、直接closeなどキー以外の終了要求について保留成功を保証しない。利用不能なDrawer/Sheetはnative closeでmodalを解除し、理由nativeで後始末する。
+
+静的型検査だけではこの契約を証明しない。固定HEADの実ブラウザで入力の取消/IME event、入れ子/連続Escape、busy/保留、外部focusを確認する。合成composition eventの試験はOS IMEの認証ではない。
+
+再検討条件: native CloseWatcher仕様または対象browserの挙動変更、shadow DOM/別document/SSRの採用、keyup/shortcutの共通契約を導入する場合。変更時は入力・候補・native Dialogを横断する試験と契約を更新する。
