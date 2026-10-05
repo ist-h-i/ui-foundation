@@ -144,19 +144,31 @@ Paginationは既存の`page/totalPages/pageChange`に加え`totalItems/pageSize/
 
 ### フォームと候補入力
 
-TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Switch、Select、MultiSelect、Comboboxはnative要素を使うControlValueAccessorです。`controlId/label`は必須、共通で`hint/error/required/disabled/busy/readonly/value/valueChange/name`を持ちます。`[formControl]`／`formControlName`または制御された`value/valueChange`を使い、同じ部品で二つの値の所有者を併用しません。`writeValue`でアプリへ値を返さず、disabled・readonly・busyでは編集を抑止します。表示エラーの文言と表示時機、送信時の最終検証はアプリが所有します。
+TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Switch、Select、MultiSelect、Comboboxはnative要素を使うControlValueAccessorです。`controlId/label`は必須、共通で`hint/error/required/disabled/busy/readonly/value/valueChange/name`を持ちます。`[formControl]`／`formControlName`または制御された`value/valueChange`を使い、同じ部品で二つの値の所有者を併用しません。`writeValue`でアプリへ値を返さず、disabled・readonly・busyでは編集を抑止します。表示エラーの文言と表示時機、送信時の最終検証はアプリが所有します。FormFieldで表示するCVAにはlabelPositionも接続し、native fieldsetの選択群はlegendとdirectionを使います。
 
 - TextInput: placeholder、maxLength、autocomplete、clearable、showCount。文字数／maxlengthはnativeのUTF-16単位で扱います。
-- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。
+- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。autoResizeは入力/CVA更新だけでなく幅、profile、hidden復帰も再計算します。
 - NumberInput: min/max/step/fractionDigits/grouping/locale/unit。編集はnative number、桁区切りと小数桁は補助表示へ適用します。CVA validatorは範囲・刻み・必須とbadInputを扱い、範囲変更時も再検証します。無効な数値ドラフトで古い値を有効扱いしません。
 - PasswordInput: autocomplete、表示切替とアプリが渡すstrength。強度の安全性を部品が保証したとは扱いません。
-- SearchInput: debounceMs、loading、suggestions/suggestionsQuery、`searchRequest:{query,requestId}`。入力値は即時更新し、待ち時間後は最新語を一度返します。Enter／検索ボタンは待機を取消して即時に返し、IME変換Enterは処理しません。native searchイベントとの衝突を避けた出力名です。
+- SearchInput: debounceMs、loading、suggestions/suggestionsQuery/suggestionsRequestId、`searchRequest:{query,requestId}`。入力値は即時更新し、待ち時間後は最新語を一度返します。Enter／検索ボタンは待機を取消して即時に返し、IME変換Enterは処理しません。native searchイベントとの衝突を避けた出力名です。非同期応答はqueryとrequestIdの両方を渡し、同じ語に戻った場合も新しいIDを待ちます。同値CVA resetは応答と待機を無効にします。静的候補だけはsuggestionsRequestId=nullにします。
 - Checkbox: boolとindeterminate。Switch: bool、busy、native role=switch。操作後の値とCVA touchedを接続します。
 - Select: optionsのlabel/value/disabled/group、placeholder、clearable。標準select/optgroupを使います。
-- MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
-- Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。候補の高度なtemplate差替え／top-layer overlayは後続契約です。
+- MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除、direction=vertical/horizontal、columns。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
+- Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。`ng-template[uiComboboxOption]`のtyped contextは`$implicit:SelectOption`、active/selected。候補templateは表示内容だけに使い、入れ子の別操作を置きません。native popoverとOverlayRegistry、placementとviewport反転/クランプを使い、native modal内にも留めます。最初のEscapeは候補、その後のEscapeはDialogへ届きます。Tab/outside/選択で同期して登録を解除し、入力focusを別の操作から奪いません。
 
-FormLayout（`[uiFormLayout]`）はcolumnsとdirection、InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。ラベル幅・配置とFormGroupの拡張、他の入力カテゴリはマトリクスで追跡します。
+FormLayout（`[uiFormLayout]`）はcolumns、direction、gap=none/compact/normal/wide、labelPosition=above/inline、labelWidth（正のpx、nullはsize.form-label）を持ちます。FormFieldのlabelPosition=inherit/above/inlineは既定でlayoutを継承し、inline幅は入力を保つため領域の40%まで、viewport 40rem以下では文字入力を縦に戻します。native checkboxは明示above/inlineも指定できます。InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。FormGroupはgroupId/label/hint/disabledと同じlayout設定を持つnative fieldset/legendです。disabledはnative子操作を無効にし、値を消しません。Angularのvalidationからも除外する場合はアプリがFormGroup.disable()を使います。他の入力カテゴリはマトリクスで追跡します。
+
+### 構造化入力とフォーム操作
+
+MaskedInput、OTPInput、TagInputも共通CVAに接続します。書式/未確定draftのvalidatorと表示説明を持ち、業務検証と実送信はアプリが所有します。利用側はAngular formsの値をシリアライズします。
+
+- MaskedInput: mask（必須、9=ASCII数字、A=Unicode文字、*=文字またはASCII数字、バックスラッシュでliteralをescape）、placeholderCharacter（1グラフェム）、showPlaceholders、clearIncompleteOnBlur、autocomplete。CVA値は区切りを含まないraw string、native inputは書式付き文字列です。native FormDataは表示文字列を読むため、raw値を送る場合はCVA値を使います。未入力部分はplaceholder/書式の説明として示し、値へ混入させません。途中の値は保持し、明示clearIncompleteOnBlur=trueだけが離脱時に消します。不正文字/超過はdraftに残し、前の受理値でvalidを偽装しません。固定区切りの削除/再入力とcaret、Unicode/IME、CVAの同値resetを扱います。1〜128 slots、256 partsまで。書式変更時も値を捨てず再検証します。
+- OTPInput: digits=1..64（既定6）、kind=numeric/alphanumeric（ASCII英数字）、stripPasteSeparators（既定false）。native text/inputmode/patternとautocomplete=one-time-codeを使います。先頭0、全コードの貼付けを保ち、超過/文字種違いも切り詰めません。明示設定した貼付けだけ空白・ハイフンを除きます。OSからの自動入力と認証成否はこのDOM/操作検証の範囲に含めません。
+- TagInput／ui-token-input: readonly string[]、options、freeInput、allowDuplicates、caseSensitive、maxTokens（nullまたは0以上の整数）。native editor/datalist、追加/個別削除を使います。重複/候補外/上限で拒否したdraftと、復元された不正なcollectionは残して修正できます。未追加のdraftもvalidatorで区別し、resetがdraftを消します。collectionのrequiredを検証し、空のeditorへnative requiredを付けません。削除前はeditorへfocusを残します。データ更新の結果はアプリから受け取ります。
+- RadioGroup: name/label/value/valueChange/required/disabled/hint/errorとdirection。CVAまたは制御された値で初期選択を渡し、各input[uiRadioOption]のvalue/disabledを使います。native矢印で無効候補を飛ばし、グループ退出をtouchedへ接続します。CVA reset後の値はFormControlのnullable/nonNullableとアプリのreset値に従います。
+- FormActions: native submit/reset/cancel、formId（外部formとの関連）、busy/disabled、showSubmit/showReset/showCancel、各label、direction/align、groupのlabel。cancelledは意思表示です。native resetはAngular FormGroupDirective/アプリのreset契約へ届きます。busyで各操作と投影したclickを抑止し、組込み操作のfocusを自領域へ留め、完了後は同じ操作へ戻します。外部focusは奪いません。投影した追加操作のdisabled表示/フォーム対象は利用側が接続します。保存成功・戻る先・取消の結果を部品で先取りしません。
+
+一次資料: [HTML autofill](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill)、[APG Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)。
 
 ### Calendar と日付入力
 

@@ -2,13 +2,13 @@ import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,com
 import {NG_VALIDATORS,NG_VALUE_ACCESSOR,type AbstractControl,type ValidationErrors,type Validator} from '@angular/forms';
 import {ActionControl} from './action-control';
 import {FormField,FieldControl} from './form-field';
-import {ValueControl} from './value-control';
+import {FieldValueControl} from './value-control';
 import {Calendar} from './calendar';
 import {Dialog} from './dialog';
 import {civilDate,civilLabel,formatCivilInput,parseCivilInput,timeSeconds,localDateTimeSeconds,type DateInputFormat} from './date-model';
 const temporalStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}.ui-date-controls{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;}.ui-date-controls input{flex:1 1 12ch;min-inline-size:min(100%,12ch);max-inline-size:100%;}.ui-date-format{color:var(--ui-color-muted);font-size:var(--ui-text-small);overflow-wrap:anywhere;}`;
 @Directive({standalone:true})
-abstract class TemporalControl extends ValueControl<string|null> implements Validator{
+abstract class TemporalControl extends FieldValueControl<string|null> implements Validator{
  protected readonly emptyValue=null;protected abstract readonly kind:'date'|'time'|'datetime-local'|'month'|'year';
  readonly min=input<string|null>(null);readonly max=input<string|null>(null);readonly clearable=input(true,{transform:booleanAttribute});readonly locale=input('ja-JP');
  protected readonly invalidDraft=signal(false);private validatorChanged:()=>void=()=>{};
@@ -36,7 +36,7 @@ abstract class TemporalControl extends ValueControl<string|null> implements Vali
 }
 @Component({selector:'ui-date-picker',standalone:true,imports:[FormField,FieldControl,ActionControl,Calendar,Dialog],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>DatePicker),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>DatePicker),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [required]="required()" [hint]="hint()" [error]="error()"><div class="ui-date-controls">
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()"><div class="ui-date-controls">
   <input #editor uiFieldControl [type]="inputFormat()==='native'?'date':'text'" [value]="editorValue()" [name]="name()" [attr.min]="min()" [attr.max]="max()" [attr.placeholder]="inputFormat()==='native'?null:inputFormat()" [disabled]="blocked()" [readOnly]="readonly()" (input)="dateChanged($event)" (blur)="touch()">
   <button uiAction [disabled]="blocked()||readonly()" [attr.aria-label]="label()+'のカレンダーを開く'" aria-haspopup="dialog" (click)="calendarOpen.set(true)">カレンダー</button>
   @if(clearable()){<button uiAction [disabled]="blocked()||readonly()||current()===null&&!invalidDraft()" [attr.aria-label]="label()+'をクリア'" (click)="clear()">クリア</button>}</div>
@@ -58,7 +58,7 @@ export class DatePicker extends TemporalControl{
  protected override validateExtra(value:string):ValidationErrors|null{return this.disabledDates().includes(value)||this.dateDisabled()?.(value)?{disabledDate:true}:null;}
  protected choose(date:string|null):void{if(date){this.draftInvalid(false);this.commit(date);const value=formatCivilInput(date,this.inputFormat());this.editorValue.set(value);this.writeEditor(value);this.touch();this.calendarOpen.set(false);}}
 }
-const nativeTemplate=`<ui-form-field [controlId]="controlId()" [label]="label()" [required]="required()" [hint]="hint()" [error]="error()"><div class="ui-date-controls">
+const nativeTemplate=`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()"><div class="ui-date-controls">
  <input #editor uiFieldControl [type]="nativeType" [value]="current()??''" [name]="name()" [attr.min]="min()" [attr.max]="max()" [attr.step]="inputStep()" [disabled]="blocked()" [readOnly]="readonly()" (input)="changed($event)" (blur)="touch()">
  @if(clearable()){<button uiAction [disabled]="blocked()||readonly()||current()===null&&!invalidDraft()" [attr.aria-label]="label()+'をクリア'" (click)="clear()">クリア</button>}</div><p class="ui-date-format">{{display()}}</p></ui-form-field>`;
 @Component({selector:'ui-time-picker',standalone:true,imports:[FormField,FieldControl,ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,

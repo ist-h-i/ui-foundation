@@ -60,3 +60,12 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - font.code/size.avatar/opacity.watermarkを設定正本で対応付ける。opacityは0〜1のsemantic CSS、書体/寸法は対応するTailwind namespaceへ同期する。
 
 契約の全propとapp責任は、プロジェクトルートの`docs/ui-components.md`の文字・情報・数値表示を参照する。
+
+## フォーム基盤と構造化入力
+
+- FormFieldのlabelPositionはlayoutを継承し、FormLayout/FormGroupでcolumns/direction/semantic gap/size.form-labelを使う。幅とprofileを変えてもnative editorを再生成しない。FormGroupのnative disabledとAngular form.disable()によるvalidation除外を区別する。
+- Textareaは幅・profile・hidden復帰でもautoResizeを確認する。SearchInputの非同期候補にはsuggestionsQueryとsuggestionsRequestIdを必ず渡し、同じ検索語と同値resetの古い応答/待機を破棄する。静的候補だけIDを省略できる。
+- ComboboxOptionのtyped contextを使い、候補内へ独立した操作を入れない。native popoverと共通Overlayを使い、modal内、Escape→Dialog、Tab/outside、狭幅/RTLと連続キーを実操作で確認する。
+- MaskedInputはraw CVA値と書式付きnative表示を分け、未入力placeholderを値へ入れない。不正draft/超過/IME/区切り削除と再入力を保持し、clearIncompleteOnBlurの明示設定だけで途中入力を消す。OTPは先頭0と全コードを保持し、桁違いを切り詰めない。one-time-codeはDOM契約で、認証とOS自動入力の成功はアプリ/環境側にある。
+- TagInputはcollectionにrequired/max/duplicate/候補検証を接続し、空のnative editorのrequiredと混同しない。拒否draftと復元された値を残し、個別削除でeditorへfocusを移す。RadioGroupはnative矢印、CVA初期値/reset、個別disabledとグループ離脱を確認する。
+- FormActionsはnative submit/resetとcancelledの意図を接続する。busyで再操作を抑止して入力を保持し、自前focusだけを戻す。実保存/取消/Undoの結果は利用アプリが所有する。全prop、入力書式、nullable reset、template contextはdocs/ui-components.mdの契約を参照する。

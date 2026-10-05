@@ -239,6 +239,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "12px"
         },
+        "size.form-label": {
+          "reference": "form-label-dense",
+          "type": "length",
+          "value": "9rem"
+        },
         "size.grid-item": {
           "reference": "grid-item",
           "type": "length",
@@ -566,6 +571,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "elevation-blur",
           "type": "length",
           "value": "12px"
+        },
+        "size.form-label": {
+          "reference": "form-label-guided",
+          "type": "length",
+          "value": "12rem"
         },
         "size.grid-item": {
           "reference": "grid-item",

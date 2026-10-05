@@ -36,3 +36,9 @@ export abstract class ValueControl<T> implements ControlValueAccessor {
   protected text(event: Event): string { return (event.target as HTMLInputElement).value; }
   protected checked(event: Event): boolean { return (event.target as HTMLInputElement).checked; }
 }
+
+/** Only controls rendered through FormField expose its label-position contract. */
+@Directive({standalone:true})
+export abstract class FieldValueControl<T> extends ValueControl<T> {
+  readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');
+}

@@ -19,7 +19,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'radius.control': 'length', 'radius.surface': 'length',
   'size.control': 'length', 'size.icon': 'length', 'size.dialog': 'length', 'size.content': 'length',
   'size.table-column-min': 'length', 'size.table-viewport': 'length',
-  'size.input-max-height': 'length',
+  'size.input-max-height': 'length', 'size.form-label': 'length',
   'size.grid-item': 'length', 'size.sidebar': 'length', 'size.avatar': 'length',
   'size.elevation-blur': 'length', 'size.overlay-min': 'length', 'size.dialog-min': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
