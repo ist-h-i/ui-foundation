@@ -249,3 +249,23 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 `CopyButton`はtext、label、busy/disabled、successMessage/errorMessage、正のdurationSeconds（既定3）、copied/failedを持つ。既定は実Clipboard APIのwriteTextで、成功したpromiseの後だけ成功を伝える。不可用/拒否を失敗として表示し、再試行できる。処理中の重複と破棄後の古い結果を抑止し、結果表示は完了時から設定時間で消す。`UI_CLIPBOARD_WRITER`で環境のwriterを注入できるが、実コピーの意味とpromiseの成否はそのadapterが所有する。画面外のclip内容は取得しない。
 
 操作パターン: [APG Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/)、[APG Toolbar](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)、[APG Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)、[Clipboard API](https://www.w3.org/TR/clipboard-apis/#async-clipboard-api)。
+
+## 通知一覧と状態表示
+
+`NotificationCenter`はcontrolId/label、typed `items`（id/title/message/category/read/severity/disabled/busy）、filter/categoryと変更出力、disabled/loading/hasMore/error、追加取得/再試行の文言を持つ。未読件数と分類を表示し、`readRequested:{id,read}`、`deleteRequested:id`、`loadMoreRequested`を利用アプリへ返す。部品は既読・削除・取得成功を先取りせず、アプリから受け取る一覧を表示する。取得中は既存一覧を保持して連打を抑止し、失敗時は再試行する。行がfilter/削除で消える前、操作がbusyで無効になる前に可視操作または状態説明へfocusを移す。
+
+`Alert`（`ui-alert` / `ui-banner` / `ui-inline-message`）はopen/openChange、title/message、severity、announcement=polite/assertive/off、closable/closeLabel、actionLabel/action、busy/disabledとfocusFallbackを持つ。本文と`uiAlertActions`を投影でき、明示終了まで保持する。通知を出しただけでfocusを奪わず、閉じる際だけ内側のfocusを外へ移す。投影した独自操作のbusy契約は利用アプリが接続する。
+
+`ActionFeedback`は既存state（idle/success/error/warning/unknown）、recoveryLabel/recover/recoveryBusy/recoveryDisabledにbusy/busyMessage、focusFallbackを接続する。結果不明を成功と扱わず、説明と入力を保持する。`AsyncRegion`はready/loading/empty/error/refreshing/partial/stale、retryAvailable/retryBusy/retryを持ち、取得/欠損の意味を区別する。通常の内容をDOMに保持し、更新中・部分欠損・古い情報では取得済みの内容を表示する。内容と通知の切替前にfocusを退避し、処理中に無効になる復旧操作は状態説明へfocusを残す。
+
+`EmptyState`はkind=empty/search、title/message、image/imageAltと補助操作を持つ。図が取得できなくても説明を残す。`ResultState`はstatus=info/success/warning/error/unknown、title/message/details、native detailsの展開状態、次の操作を持つ。両部品ともbusy/disabled/actionと投影内容・補助操作に対応する。
+
+`ProgressBar`はnative progressにcontrolId/label、value/total/valueTextと取消要求を接続する。totalは正の有限値、valueは有限値またはnull。不定はvalue属性を外し、数値は0〜totalへ収める。`Spinner`（`ui-spinner` / `ui-circular-progress`）は同じ進捗、label、small/medium/large/正のpxのsize、activeとdelayMillisecondsを持つ。表示前の停止と破棄でtimerを取消し、動き低減では回転しない。`Skeleton`はline/rectangle/circle、rows、width/height/diameter、motionを持ち、装飾として支援技術から除外する。円は狭い親へ収めても縦横比を保つ。
+
+`LoadingOverlay`（`ui-loading-overlay` / `ui-block-ui`）は投影した対象領域だけをactiveでinertにし、messageとcancelLabel/cancelRequested、cancelBusy/disabledを表示する。入力を破棄せず、外側の操作を抑止しない。抑止開始時に対象内のfocusだけを退避し、解除後に元の入力、focusFallback、利用可能な内容内操作の順で復帰する。説明が領域より大きい場合は先頭からscrollでき、取消操作へキーボードで到達できる。取消イベントはUIの意思表示であり、処理が停止した保証ではない。
+
+`Tour`（`ui-tour` / `ui-coachmark`）は実HTMLElementをtargetとするtyped steps（id/title/message/placement）、open/openChange、index/indexChange、seen/seenChange、next/back/finish/closeLabelを持つ。対象にscrollし非modal popoverを配置する。対象の操作・入力を許し、次/戻る/再開と表示済みIDをアプリへ返す。closedはcompleted/dismissed/escape/target-unavailable/scope-exitを返す。popup内のfocusは終了後に起動操作へ戻し、対象や外部へ既に移ったfocusは奪わない。外部open=falseも同じfocus復帰を行う。native modalへの移行やCSS不可視で対象が利用できなくなった案内は終了する。表示済みの永続化と再開位置、業務手順の完了判断は利用アプリが所有する。
+
+`uiAction`などdirective付き要素をtarget/focusFallbackに使う場合、Angularのqueryは`viewChild<unknown, ElementRef<HTMLElement>>(name, {read: ElementRef})`のnativeElementを明示して取得する。directiveのtemplate referenceをHTMLElementとして扱わない。
+
+参考: [APG Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)、[HTML progress](https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element)、[native modalと背景のinert](https://html.spec.whatwg.org/multipage/interaction.html#modal-dialogs-and-inert-subtrees)。

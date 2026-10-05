@@ -29,7 +29,7 @@ UI intent: screen_type=component verification workspace、user_decision=部品�
 
 PR #1のoutput変更時にSkill所有情報が失われる指摘は現行src/sync.tsにもある。今回の出力先を変える必要はないため、既存生成物の手削除で回避しない。出力移動の実装時には旧manifestを明示的に検証する移行経路を別差分で追加する。
 
-全要求完了までマトリクスとIssueをopenで管理し、段階完了を全体完了としない。Draft PRを提出し、merge/Ready化/npm公開は行わない。
+全要求完了までマトリクスとIssueをopenで管理し、段階完了を全体完了としない。各段階をDraft PRへ提出し、独立レビューと最終HEADの全体検査・生成consumer・ブラウザー実証を経て、2026-10-05のユーザー指示に従いReady化・mainへのマージまで進める。全181要求は未完了のまま正確に追跡し、残件を次PRへ分けて継続する。npm公開、有償契約、OSセキュリティ設定変更は含まない。
 
 ## 参照（2026-10-05に公式ページを確認）
 

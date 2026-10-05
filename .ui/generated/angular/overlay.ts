@@ -14,6 +14,17 @@ const stacks = new WeakMap<Document, Array<{
     owner: OverlayRegistry;
     entry: OverlayEntry;
 }>>();
+/** UA modal inertness does not add an inert attribute to the background. */
+export function availableOverlayAnchor(anchor: HTMLElement): boolean {
+    if (!anchor.isConnected || anchor.closest('[hidden],[inert]') || !anchor.getClientRects().length)
+        return false;
+    if (anchor.ownerDocument.defaultView?.getComputedStyle(anchor).visibility !== 'visible')
+        return false;
+    const document = anchor.ownerDocument;
+    const modal = document.activeElement?.closest<HTMLDialogElement>('dialog:modal')
+        ?? Array.from(document.querySelectorAll<HTMLDialogElement>('dialog:modal')).at(-1);
+    return !modal || modal.contains(anchor);
+}
 /** Scope a coordinator with OverlayHost, or use the application root default. */
 @Injectable({ providedIn: 'root' })
 export class OverlayRegistry {
@@ -26,7 +37,7 @@ export class OverlayRegistry {
         this.document.addEventListener('close', this.closed, true);
         const observer = typeof MutationObserver === 'undefined' ? null : new MutationObserver(() => this.prune());
         if (this.document.body)
-            observer?.observe(this.document.body, { subtree: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
+            observer?.observe(this.document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
         inject(DestroyRef).onDestroy(() => { this.document.removeEventListener('keydown', this.keydown, true); this.document.removeEventListener('pointerdown', this.pointerdown, true); this.document.removeEventListener('close', this.closed, true); observer?.disconnect(); for (let index = this.entries.length - 1; index >= 0; index--)
             if (this.entries[index]!.owner === this)
                 this.entries.splice(index, 1); });
@@ -36,7 +47,7 @@ export class OverlayRegistry {
         this.entries.splice(index, 1); }; }
     private prune(): void { for (const record of [...this.entries].reverse()) {
         const entry = record.entry;
-        if (record.owner === this && entry.kind === 'popup' && (!entry.element.isConnected || entry.anchor && (!entry.anchor.isConnected || entry.anchor.closest('[hidden],[inert]') || !entry.anchor.getClientRects().length)))
+        if (record.owner === this && entry.kind === 'popup' && (!entry.element.isConnected || entry.anchor && !availableOverlayAnchor(entry.anchor)))
             entry.dismiss('scope-exit');
     } }
     private readonly closed = (event: Event): void => { const target = event.target as HTMLElement | null; if (!target || target.tagName !== 'DIALOG' || (target as HTMLDialogElement).open)

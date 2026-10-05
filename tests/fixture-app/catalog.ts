@@ -13,7 +13,7 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
  selector: 'fixture-app', imports: [DataTableView, TableTemplate, ActionControl, InputCatalog, DateCatalog, GridCatalog, OverlayCatalog], changeDetection: ChangeDetectionStrategy.OnPush,
  template: `
   <main class="catalog" [attr.data-ui-profile]="profile()" [attr.dir]="rtl() ? 'rtl' : 'ltr'">
-    <h1>共通部品の操作確認</h1><a href="/catalog/actions">操作部品の確認</a><a href="/catalog/layout">配置部品の操作確認</a>
+    <h1>共通部品の操作確認</h1><a href="/catalog/feedback">状態表示の確認</a> <a href="/catalog/actions">操作部品の確認</a><a href="/catalog/layout">配置部品の操作確認</a>
     <div><label for="catalog-profile">表示設定</label><select id="catalog-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(value($event))">@for (item of profiles; track item.id) { <option [value]="item.id">{{ item.label }}</option> }</select></div>
     <div class="catalog-options">
       <label><input type="checkbox" [checked]="rtl()" (change)="rtl.set(checked($event))">RTL</label>
