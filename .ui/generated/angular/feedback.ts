@@ -36,7 +36,8 @@ export class Alert {
             if (!open) { focusBeforeHiding(this.element, fallback); return; }
             const active = this.element.ownerDocument.activeElement;
             const ownsFocus = (kind: 'action' | 'close') => !!active && !!this.element.querySelector(':scope > .ui-feedback-frame > .ui-feedback-actions > [data-feedback-action="' + kind + '"]')?.contains(active);
-            holdBlockedFeedbackAction(this.element, blocked || !actionVisible && ownsFocus('action') || !closeVisible && ownsFocus('close'));
+            if ((blocked || !actionVisible) && ownsFocus('action') || (blocked || !closeVisible) && ownsFocus('close'))
+                this.element.querySelector<HTMLElement>('.ui-feedback-message')?.focus();
         });
     }); }
     protected requestAction(): void {
