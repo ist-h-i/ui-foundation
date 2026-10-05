@@ -26,7 +26,9 @@ export class AnchorNavigation {
     private readonly revision = signal(0);
     private readonly leases = new Map<HTMLElement, {
         margin: string;
+        marginPriority: string;
         last: string;
+        lastPriority: string;
         tabindex: string | null;
         changedTab: boolean;
     }>();
@@ -56,15 +58,19 @@ export class AnchorNavigation {
                         this.release(target, lease);
                 for (const target of targets) {
                     const margin = offset + 'px', lease = this.leases.get(target);
+                    const priority = target.style.getPropertyPriority('scroll-margin-block-start');
                     if (lease) {
-                        if (target.style.scrollMarginBlockStart !== lease.last)
+                        if (target.style.scrollMarginBlockStart !== lease.last || priority !== lease.lastPriority) {
                             lease.margin = target.style.scrollMarginBlockStart;
+                            lease.marginPriority = priority;
+                        }
                         lease.last = margin;
+                        lease.lastPriority = '';
                     }
                     else
-                        this.leases.set(target, { margin: target.style.scrollMarginBlockStart, last: margin, tabindex: target.getAttribute('tabindex'), changedTab: false });
-                    if (target.style.scrollMarginBlockStart !== margin)
-                        target.style.scrollMarginBlockStart = margin;
+                        this.leases.set(target, { margin: target.style.scrollMarginBlockStart, marginPriority: priority, last: margin, lastPriority: '', tabindex: target.getAttribute('tabindex'), changedTab: false });
+                    if (target.style.scrollMarginBlockStart !== margin || priority !== '')
+                        target.style.setProperty('scroll-margin-block-start', margin);
                 }
                 const view = this.element.ownerDocument.defaultView;
                 if (!view)
@@ -99,11 +105,13 @@ export class AnchorNavigation {
     }
     private release(target: HTMLElement, lease: {
         margin: string;
+        marginPriority: string;
         last: string;
+        lastPriority: string;
         tabindex: string | null;
         changedTab: boolean;
-    }): void { if (target.style.scrollMarginBlockStart === lease.last)
-        target.style.scrollMarginBlockStart = lease.margin; if (lease.changedTab && target.getAttribute('tabindex') === '-1') {
+    }): void { if (target.style.scrollMarginBlockStart === lease.last && target.style.getPropertyPriority('scroll-margin-block-start') === lease.lastPriority)
+        target.style.setProperty('scroll-margin-block-start', lease.margin, lease.marginPriority); if (lease.changedTab && target.getAttribute('tabindex') === '-1') {
         if (lease.tabindex === null)
             target.removeAttribute('tabindex');
         else

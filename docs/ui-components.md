@@ -95,7 +95,7 @@ widthは展開時の幅、省略時はsize.sidebar。全体の折畳みはsize.n
 
 `<ui-anchor-navigation>`は必須label、`items: readonly {id;label;target:HTMLElement|null}[]`、任意`scrollRoot:HTMLElement|null`、非負pixel `offset=0`、`position='static'|'sticky'|'fixed'`、`behavior='auto'|'smooth'`、`updateHash=true`、currentChange/selectedを持つ。targetは同一documentの実要素で有効なidを持ち、scrollRootを使う場合はその内部へ置く。target=null/hidden/inert/切断時はリンクを無効にして説明を残す。native hrefを保ち、修飾キー付きクリックを横取りしない。
 
-通常のクリックはtargetへ実scrollし、見出しへfocusし、必要なら元のhistory.stateを保ってhashを更新する。offsetはscroll-margin-block-startへ接続、local rootではそのscrollTopへ反映する。reduced motion時はsmoothを使わない。scroll/resize/targetの表示/根dir/profile/style変更で現在位置を追跡する。stickyはhost自体を直近scroll領域内に配置する。破棄/対象変更で自前のmargin/tabindexだけを元へ戻し、その間のアプリ変更を上書きしない。固定領域の予約幅、業務上の現在地解釈、URL同期の追加制約はアプリが決める。
+通常のクリックはtargetへ実scrollし、見出しへfocusし、必要なら元のhistory.stateを保ってhashを更新する。offsetはscroll-margin-block-startへ接続、local rootではそのscrollTopへ反映する。reduced motion時はsmoothを使わない。scroll/resize/targetの表示/根dir/profile/style変更で現在位置を追跡する。stickyはhost自体を直近scroll領域内に配置する。破棄/対象変更で自前のmargin/tabindexだけを元へ戻し、その間のアプリ変更を上書きしない。CSS値の保存・所有判定・復元は!importantの優先度も含める。固定領域の予約余白、業務上の現在地解釈、URL同期の追加制約はアプリが決める。windowの移動では画面がhtmlのscroll-padding-block-startを設定する。デモはResizeObserverで実ナビ高さを予約し、static/破棄時に自分の値だけ復元する。local scrollRootのoffsetは実際のレイアウトに合わせる。
 
 ### Menubar / MegaMenu
 

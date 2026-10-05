@@ -71,6 +71,21 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
  test('anchor cleanup preserves app replacements to target attributes and unrelated focus',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.getByRole('navigation',{name:'ページ内の見出し',exact:true}).getByRole('link',{name:'確認内容へ',exact:true}).click();const target=page.locator('#navigation-details');await expect(target).toBeFocused();await target.evaluate(element=>{element.setAttribute('tabindex','0');(element as HTMLElement).style.scrollMarginBlockStart='13px';});await page.getByTestId('anchors-destroy').click();await expect(target).toHaveAttribute('tabindex','0');expect(await target.evaluate(element=>(element as HTMLElement).style.scrollMarginBlockStart)).toBe('13px');await expect(page.getByTestId('anchors-destroy')).toBeFocused();
  });
+ test('anchor release preserves inline priority and application changes to priority only',async({page})=>{
+  const toggle=page.getByTestId('anchors-destroy'),target=page.locator('#navigation-intro');
+  await toggle.click();
+  await expect(page.locator('.anchor-layout ui-anchor-navigation')).toHaveCount(0);
+  await target.evaluate(element=>(element as HTMLElement).style.setProperty('scroll-margin-block-start','7px','important'));
+  await toggle.click();
+  await expect.poll(()=>target.evaluate(element=>(element as HTMLElement).style.scrollMarginBlockStart)).toBe('40px');
+  await toggle.click();
+  await expect.poll(()=>target.evaluate(element=>[(element as HTMLElement).style.scrollMarginBlockStart,(element as HTMLElement).style.getPropertyPriority('scroll-margin-block-start')])).toEqual(['7px','important']);
+  await toggle.click();
+  await expect.poll(()=>target.evaluate(element=>(element as HTMLElement).style.scrollMarginBlockStart)).toBe('40px');
+  await target.evaluate(element=>(element as HTMLElement).style.setProperty('scroll-margin-block-start','40px','important'));
+  await toggle.click();
+  await expect.poll(()=>target.evaluate(element=>[(element as HTMLElement).style.scrollMarginBlockStart,(element as HTMLElement).style.getPropertyPriority('scroll-margin-block-start')])).toEqual(['40px','important']);
+ });
  test('palette arrows use displayed group order and leave disabled choices unexecuted',async({page})=>{
   await page.getByTestId('palette-anchor').click();const dialog=page.getByRole('dialog',{name:'業務のコマンド',exact:true}),search=dialog.getByRole('combobox'),options=dialog.getByRole('option');await expect(options).toHaveCount(4);await page.keyboard.press('ArrowUp');await expect(search).toHaveAttribute('aria-activedescendant','catalog-palette-command-command-blocked');await page.keyboard.press('Enter');await expect(page.getByTestId('command-count')).toHaveText('0');await page.keyboard.press('ArrowDown');await expect(search).toHaveAttribute('aria-activedescendant','catalog-palette-command-open');await page.keyboard.press('ArrowDown');await expect(search).toHaveAttribute('aria-activedescendant','catalog-palette-command-save');await search.evaluate(element=>{for(const params of [{key:'Enter',isComposing:true},{key:'Enter',keyCode:229}])element.dispatchEvent(new KeyboardEvent('keydown',{...params,bubbles:true,cancelable:true}));const handled=new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true});handled.preventDefault();element.dispatchEvent(handled);});await expect(page.getByTestId('command-count')).toHaveText('0');await page.keyboard.press('Escape');await expect(dialog).toBeHidden();
  });
@@ -86,6 +101,31 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
  });
  test('anchor destination follows native disclosure visibility and recovers after reopening',async({page})=>{
   await page.evaluate(()=>{const target=document.querySelector('#local-second')!,details=document.createElement('details'),summary=document.createElement('summary');details.id='anchor-target-disclosure';details.open=true;summary.textContent='移動先の詳細を切替';target.before(details);details.append(summary,target);});const link=page.getByRole('navigation',{name:'領域内の見出し',exact:true}).getByRole('link',{name:'領域内の確認へ',exact:true}),summary=page.locator('#anchor-target-disclosure>summary');await expect(link).toHaveAttribute('href','#local-second');await summary.click();await expect(page.locator('#local-second')).toBeHidden();await expect(link).toHaveAttribute('aria-disabled','true');await expect(link).not.toHaveAttribute('href',/.+/);await link.focus();await page.keyboard.press('Enter');await expect(page.locator('#local-second')).not.toBeFocused();await summary.click();await expect(link).not.toHaveAttribute('aria-disabled','true');await expect(link).toHaveAttribute('href','#local-second');await link.click();await expect(page.locator('#local-second')).toBeFocused();
+ });
+ test('the page reserves a sticky region at enlarged text so the focused heading stays visible and releases its reservation',async({page})=>{
+  await page.setViewportSize({width:320,height:800});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.getByLabel('RTL',{exact:true}).check();
+  await expect(page.locator('main')).toHaveAttribute('dir','rtl');
+  const original=await page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart);
+  await page.getByRole('combobox',{name:'ページ内移動の固定',exact:true}).selectOption('sticky');
+  const nav=page.locator('.anchor-layout ui-anchor-navigation'),target=page.locator('#navigation-details');
+  await expect.poll(()=>page.evaluate(()=>parseFloat(getComputedStyle(document.documentElement).scrollPaddingBlockStart)||0)).toBeGreaterThan(0);
+  await nav.getByRole('link',{name:'確認内容へ',exact:true}).click();
+  await expect(target).toBeFocused();
+  await expect.poll(()=>target.evaluate(element=>{
+   const r=element.getBoundingClientRect(),nav=document.querySelector('.anchor-layout ui-anchor-navigation')!.getBoundingClientRect();
+   const point=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
+   return r.top>=nav.bottom-1&&r.bottom<=innerHeight&&(element===point||element.contains(point));
+  })).toBe(true);
+  await page.getByTestId('anchors-destroy').click();
+  await expect.poll(()=>page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart)).toBe(original);
+  await page.getByTestId('anchors-destroy').click();
+  await expect.poll(()=>page.evaluate(()=>parseFloat(getComputedStyle(document.documentElement).scrollPaddingBlockStart)||0)).toBeGreaterThan(0);
+  await page.evaluate(()=>{document.documentElement.style.scrollPaddingBlockStart='33px';document.documentElement.style.fontSize='175%';});
+  await expect.poll(()=>nav.evaluate(element=>(parseFloat(getComputedStyle(document.documentElement).scrollPaddingBlockStart)||0)-Math.ceil(element.getBoundingClientRect().height))).toBe(33);
+  await page.getByTestId('anchors-destroy').click();
+  await expect.poll(()=>page.evaluate(()=>document.documentElement.style.scrollPaddingBlockStart)).toBe('33px');
  });
  test('automated accessibility finds no violations in default, menu, mega menu and palette states',async({page})=>{
   for(const state of ['default','menu','mega','palette']){if(state==='menu'){await page.getByRole('menubar').getByRole('menuitem',{name:'File',exact:true}).click();}else if(state==='mega'){await page.keyboard.press('Escape');await page.getByTestId('mega-anchor').click();}else if(state==='palette'){await page.keyboard.press('Escape');await page.getByTestId('palette-anchor').click();}const result=await new AxeBuilder({page}).analyze();expect(result.violations.map(item=>({id:item.id,nodes:item.nodes.map(node=>node.target)})),state).toEqual([]);}
