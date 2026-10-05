@@ -33,7 +33,7 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
 | radius | control, surface | length |
-| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, elevation-blur, overlay-min, dialog-min | length |
+| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, sidebar, elevation-blur, overlay-min, dialog-min | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
 
@@ -82,3 +82,5 @@ Tailwind v4のテーマ定義はトップレベルの`@theme inline`。YAMLを�
 7. 設定、生成、型検査、ビルド、操作試験を別々に報告し、未実施の実利用評価を合格扱いしない。
 8. 明るい主操作背景の設定でもリンク・選択中タブの読みやすさを維持し、不適切な文字／背景の組合せは設定検証で拒否する。
 9. ナビゲーションとパンくずの長い日本語／連続英字を、両プロファイルの320px幅・100%／200%文字サイズで全文表示し、ページの横はみ出しを生じさせない。
+
+`size.sidebar`はPageFrameのsidebar幅を用途別に指定する。ContainerやGridの標準余白・gapは既存space役割を使用し、利用アプリが明示する幅/比率/scroll座標は配置制御として扱う。

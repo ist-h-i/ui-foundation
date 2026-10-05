@@ -27,10 +27,10 @@ test('a separate generated consumer compiles and operates with strict forms and 
  const consumer=`import {Component} from '@angular/core';
 import {bootstrapApplication} from '@angular/platform-browser';
 import {FormControl,ReactiveFormsModule} from '@angular/forms';
-import {DataTableView,TableTemplate,createTableState,type TableColumn,TextInput,NumberInput,Select,Combobox,MultiSelect,DatePicker,TimePicker,DateTimePicker,DateRangePicker,GridList,GridItem,Calendar,CalendarDay,Icon,provideUiIcons,Card,CardTemplate,Menu,Dialog,DialogTemplate,ConfirmDialog,AlertDialog,FormDialog,DynamicDialogHost,OverlayHost,Snackbar,NotificationHost} from './foundation/angular';
+import {DataTableView,TableTemplate,createTableState,type TableColumn,TextInput,NumberInput,Select,Combobox,MultiSelect,DatePicker,TimePicker,DateTimePicker,DateRangePicker,GridList,GridItem,Calendar,CalendarDay,Icon,provideUiIcons,Card,CardTemplate,Menu,Dialog,DialogTemplate,ConfirmDialog,AlertDialog,FormDialog,DynamicDialogHost,OverlayHost,Snackbar,NotificationHost,Container,Stack,Grid,GridCell,Panel,Accordion,AccordionItem,Splitter,Divider,Spacer,ScrollArea,StickyRegion,AspectRatio,ResponsiveVisibility,PageFrame} from './foundation/angular';
 export const providers=[provideUiIcons()];
 interface Row {id:number;name:string;amount:number|null}
-@Component({selector:'consumer-app',standalone:true,imports:[ReactiveFormsModule,DataTableView,TableTemplate,TextInput,NumberInput,Select,Combobox,MultiSelect,DatePicker,TimePicker,DateTimePicker,DateRangePicker,GridList,GridItem,Calendar,CalendarDay,Icon,Card,CardTemplate,Menu,Dialog,DialogTemplate,ConfirmDialog,AlertDialog,FormDialog,DynamicDialogHost,OverlayHost,Snackbar,NotificationHost],template:\`
+@Component({selector:'consumer-app',standalone:true,imports:[ReactiveFormsModule,DataTableView,TableTemplate,TextInput,NumberInput,Select,Combobox,MultiSelect,DatePicker,TimePicker,DateTimePicker,DateRangePicker,GridList,GridItem,Calendar,CalendarDay,Icon,Card,CardTemplate,Menu,Dialog,DialogTemplate,ConfirmDialog,AlertDialog,FormDialog,DynamicDialogHost,OverlayHost,Snackbar,NotificationHost,Container,Stack,Grid,GridCell,Panel,Accordion,AccordionItem,Splitter,Divider,Spacer,ScrollArea,StickyRegion,AspectRatio,ResponsiveVisibility,PageFrame],template:\`
  <ui-data-table tableId="records" caption="記録" [rows]="rows" [columns]="columns" keyField="id" [state]="state">
   <ng-template uiTableCell="name" [uiTableTemplateOf]="rows" let-row>{{row.name}}</ng-template>
  </ui-data-table>
@@ -52,6 +52,13 @@ interface Row {id:number;name:string;amount:number|null}
  <ui-confirm-dialog label="確認" message="確認しますか" /><ui-alert-dialog label="通知" message="必要な説明" />
  <ui-form-dialog label="編集"><ui-text-input controlId="dialog-title" label="編集する件名" [formControl]="title" /></ui-form-dialog><ui-dynamic-dialog-host />
  <button (click)="noticeOpen=true">生成先通知を表示</button><ui-snackbar message="生成先の通知" [open]="noticeOpen" (openChange)="noticeOpen=$event" actionLabel="内容を確認" [autoDismiss]="false" [durationSeconds]="0" /><ui-notification-host [maxConcurrency]="2" dedup="replace" />
+ <ui-page-frame title="生成先の配置" [headingLevel]="2"><span uiPageFooter>生成したfooter</span><ui-container heading="配置の確認"><ui-stack><ui-grid [columns]="1" [rows]="2" [breakpoints]="[{minWidth:640,columns:2}]"><p uiGridCell [columnSpan]="2">結合したセル</p><p uiGridCell>次のセル</p></ui-grid></ui-stack></ui-container></ui-page-frame>
+ <ui-panel panelId="consumer-panel" title="生成したPanel" [collapsible]="true"><input aria-label="生成したPanel入力"></ui-panel>
+ <ui-accordion [initialExpanded]="['consumer-accordion']"><ui-accordion-item itemId="consumer-accordion" title="生成したAccordion"><input aria-label="生成したAccordion入力"></ui-accordion-item><ui-accordion-item itemId="consumer-second" title="次のAccordion">生成した本文</ui-accordion-item></ui-accordion>
+ <ui-splitter splitterId="consumer-split" primaryLabel="生成した左領域" secondaryLabel="生成した右領域" [initialRatio]="40" [height]="240"><div uiSplitPrimary><input aria-label="生成したSplitter入力"></div><p>右領域</p></ui-splitter>
+ <ui-divider label="生成した境界" /><ui-spacer size="compact" />
+ <ui-scroll-area label="生成したScroll" [height]="120"><div style="height:400px"><ui-sticky-region>固定した本文</ui-sticky-region></div></ui-scroll-area>
+ <ui-aspect-ratio [ratio]="2"><span>比率を保持</span></ui-aspect-ratio><ui-aspect-ratio [ratio]="2"><iframe title="生成した埋込プレビュー" srcdoc="生成した表示内容"></iframe></ui-aspect-ratio><ui-responsive-visibility [minWidth]="600"><span>広幅で表示</span></ui-responsive-visibility>
  <ui-icon name="circle-check" [decorative]="false" label="確認" />
 \`})
 export class Consumer{folded=false;dialogOpen=false;noticeOpen=false;menuResult='';closeReason='';rows:Row[]=[{id:1,name:'確認',amount:null}];columns:TableColumn<Row>[]=[{id:'name',field:'name',header:'名前'}];state=createTableState();options=[{value:'a',label:'総務'}];title=new FormControl('');amount=new FormControl<number|null>(null);team=new FormControl<string|null>(null);reviewers=new FormControl<string[]>([]);date=new FormControl<string|null>(null);time=new FormControl<string|null>(null);datetime=new FormControl<string|null>(null);range=new FormControl<{start:string|null;end:string|null}|null>(null);}

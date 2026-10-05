@@ -199,3 +199,6 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   .ui-action:focus-visible, .ui-field-control:focus-visible { outline-color: Highlight; }
   .ui-action:disabled, .ui-action--disabled, .ui-action--busy { color: GrayText; border-color: GrayText; }
 }
+
+/* Projected native media deliberately uses this owned, component-scoped global rule. */
+ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-sizing:border-box; inline-size:100%; block-size:100%; min-inline-size:0; min-block-size:0; object-fit:var(--ui-content-fit); }

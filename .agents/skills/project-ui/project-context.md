@@ -244,6 +244,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "192px"
         },
+        "size.sidebar": {
+          "reference": "sidebar",
+          "type": "length",
+          "value": "256px"
+        },
         "size.table-column-min": {
           "reference": "table-column-min",
           "type": "length",
@@ -551,6 +556,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "overlay-min",
           "type": "length",
           "value": "192px"
+        },
+        "size.sidebar": {
+          "reference": "sidebar",
+          "type": "length",
+          "value": "256px"
         },
         "size.table-column-min": {
           "reference": "table-column-min",

@@ -7,7 +7,7 @@ const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://127.0.0.1:4183').pathname);
-    const path = resolve(root, '.' + (pathname === '/' || pathname === '/catalog' ? '/index.html' : pathname));
+    const path = resolve(root, '.' + (pathname === '/' || pathname === '/catalog' || pathname.startsWith('/catalog/') ? '/index.html' : pathname));
     if (!path.startsWith(root + sep)) {
       response.writeHead(403).end();
       return;

@@ -215,3 +215,21 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 中央配置は入れ子の異なるdirにも対応します。画面より長い通知は表示領域内でスクロールでき、本文と操作へ到達できます。dismiss/clearは自scopeで操作中の通知からだけfocusを復帰し、別scopeの通知操作へ干渉しません。IDはNotificationServiceごとのローカル識別子です。
 
 同時表示数を減らして待機へ戻した通知や位置の変更で描画し直した通知は、次の表示で設定時間から開始します。これらは全体の経過時間を保証するTTLではありません。同じNotificationServiceに一つのhostを置きます。modal内の操作付き通知はuiNotificationScopeまたは専用NotificationService providerと、そのDOM内のNotificationHostを使います。native modalの外の通知は背景として扱い、背景操作を許可しません。実際のUndo、バックエンド保存、通知本文の業務意味、重複キーの設計はアプリが所有します。
+
+## 配置とコンテナ
+
+`PageFrame`（`ui-page-frame` / `ui-app-shell`）はheader/sidebar/body/footer/actionsを投影し、各表示とheader/sidebar/footerのsticky表示を制御する。`uiPageHeader`・`uiPageContext`・`uiPageSidebar`・`uiPageFooter`・`uiPageActions`が投影先。非表示で子の入力を破棄しない。sidebarの標準幅は`size.sidebar`を使用し、狭幅では本文の前に積む。stickyは配置されたスクロール領域内で作用する。header/footerの実高さに追随してsidebarのoffsetと表示高さを計算し、文字拡大などで固定領域と操作1件分の空間を確保できないscroll領域の高さでは通常フローに戻す（documentの場合はviewport）。外部から領域を非表示にする場合は`focusFallback`を指定でき、指定が使えない場合は同じmodal内の外側操作へfocusを移す。
+
+`Container`（`ui-container` / `ui-section`）はcontent/full/明示pxの最大幅、semanticのpadding、start/center/endの配置、surface/muted/transparent背景、heading/headingLevelを扱う。最大幅は利用領域内に収める。`Stack`（`ui-stack` / `ui-flex` / `ui-space`）はvertical/horizontal・gap・align・justify・wrapを扱う。gap/paddingはnone/compact/normal/wideで意味トークンを選び、nowrapを選んだ利用アプリは内容の収め方を決める。
+
+`Grid`はcolumns/rows/gapとコンテナ幅別の`breakpoints`を持つ。幅の境界は含み、該当する最大のminWidthを使用する。`uiGridCell`はcolumn/row/columnSpan/rowSpanと幅別placementsを持ち、結合は現在の列数・明示行数に収める。入力をDOMに保持したままResizeObserverで配置を更新する。breakpointの重複、空/小数の列行数、負の幅・位置は拒否する。
+
+`Panel`（`ui-panel` / `ui-fieldset`）はtitle、`uiPanelActions`、bordered、collapsible/collapsed/collapsedChange、disabledを持つ。本文のnative fieldsetとinert、操作領域のinertで無効状態を表し、collapseとdisableで投影した入力を保持する。`Accordion` / `AccordionItem`はsingle/multiple、initialExpandedまたはexpanded/expandedChange、itemId/title、開閉アイコン、disabledを持つ。入れ子のitemは直近のAccordionに属する。Enter/Spaceで開閉し、Up/Down/Home/Endは利用可能な見出しへ移動する。非表示前に本文focusを見出しへ戻す。regionは必要なitemだけ明示してlandmarkの増殖を避ける。
+
+`Splitter`は`uiSplitPrimary`と本文の2領域を保持し、horizontal（左右）/vertical（上下）、initialRatioまたはratio/ratioChange、minRatio/maxRatio、step、height、resizable、disabled、collapsible/collapsed/collapsedChangeを扱う。比率はハンドルを除いた利用可能領域の百分率。min/maxは0〜100の有効区間で、collapse時はprimaryを0とする。ratioが0/100の領域はhiddenにしてfocusから除外し、内容を保持する。0%からの展開は直前の正の比率（未操作なら有効なinitialRatioまたは範囲の中間）へ戻す。pointer capture・cancel/destroyと操作中の方向変更を扱い、キーと縮小/拡大/開閉ボタンを代替操作にする。左右分割のLeft/RightはRTLの物理方向、上下分割のUp/Down、Home/Endは境界、Enterはcollapseと保持比率への復帰。折畳み中もratioを保持し、利用アプリからの明示ratio更新を優先する。
+
+`Divider` / `Spacer`は方向、semanticの間隔、線種とラベル、growを扱う。`ScrollArea`は方向・高さ・position/positionChangeを持ち、nativeのキーボードスクロールと実scroll座標を使用する。`StickyRegion`（`ui-sticky-region` / `ui-affix`）の対象は直近のnativeスクロール領域で、edge/offset/enabledを制御する。任意の離れたDOMへportalを作らず、固定はその要素の通常位置がoffsetを越えた時点から作用する。
+
+`AspectRatio`は正のratioとcontain/cover/fillを持ち、直接投影するnative img/video/iframeを収める。`ResponsiveVisibility`はviewportのminWidth/maxWidth（含む）の範囲で投影内容を保持して表示し、非表示前のfocusFallbackを受け取る。業務上必須の入力や操作を画面幅だけで消すかどうかは利用アプリが判断する。
+
+配置パターンの参照: [APG Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)、[APG Window Splitter](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)。APGのWindow Splitterは例の整備・task forceレビューが継続中と記されており、ここでの対応は記載されたrole/value/keyboard契約と対象操作の実証を示す。

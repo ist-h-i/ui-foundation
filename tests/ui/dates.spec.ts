@@ -20,6 +20,11 @@ for(const profile of ['guided','dense']){
    await trigger.click();await dialog.locator('button[data-date="2026-10-05"]').press('ArrowRight');await page.keyboard.press('Enter');await expect(dialog).toBeHidden();await expectValues(page,{date:'2026-10-06'});await expect(trigger).toBeFocused();
    await page.locator('date-catalog').getByLabel('日付の初期表示を3月にする',{exact:true}).check();await page.getByRole('button',{name:'予定日をクリア',exact:true}).click();await trigger.click();await expect(dialog.locator('button[data-date="2026-03-01"]')).toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
   });
+  test('rapid calendar keys continue across render boundaries and commit the logical destination',async({page})=>{
+   const trigger=page.getByRole('button',{name:'予定日のカレンダーを開く',exact:true});await trigger.click();const dialog=page.getByRole('dialog',{name:'予定日の日付を選択',exact:true});const day=dialog.locator('button[data-date="2026-10-05"]');await expect(day).toBeFocused();
+   await day.evaluate(element=>{element.dispatchEvent(new KeyboardEvent('keydown',{key:'PageDown',bubbles:true,cancelable:true}));const target=document.activeElement!;target.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));document.activeElement!.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));});
+   await expectValues(page,{date:'2026-11-06'});await expect(dialog).toBeHidden();await expect(trigger).toBeFocused();
+  });
   test('explicit edit formats retain invalid drafts, clear/reset repair them and parse without guessing',async({page})=>{
    const date=page.locator('#event-date');await page.getByLabel('日付の入力書式',{exact:true}).selectOption('dd/MM/yyyy');await expect(date).toHaveValue('05/10/2026');
    await date.fill('31/02/2026');await page.locator('date-catalog').getByLabel('月曜から表示',{exact:true}).focus();await expect(date).toHaveAttribute('aria-invalid','true');await expect(date).toHaveValue('31/02/2026');await expectValues(page,{date:'2026-10-05'});

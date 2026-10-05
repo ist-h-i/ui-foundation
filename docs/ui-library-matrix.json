@@ -10,7 +10,7 @@
       "requestedControls": "ヘッダー、サイドバー、本文、フッター、操作領域、固定表示",
       "sourceLine": 15,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/page-frame.ts"
       ],
@@ -39,9 +39,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "ヘッダー、サイドバー、本文、フッター、操作領域、固定表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-02",
@@ -50,8 +62,10 @@
       "requestedControls": "最大幅、余白、配置、背景、見出し",
       "sourceLine": 16,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -77,9 +91,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "最大幅、余白、配置、背景、見出し"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-03",
@@ -88,8 +114,10 @@
       "requestedControls": "縦横方向、間隔、整列、折返し",
       "sourceLine": 17,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -115,9 +143,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "縦横方向、間隔、整列、折返し"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-04",
@@ -126,8 +166,11 @@
       "requestedControls": "列数、行数、間隔、セル結合、画面幅別の配置",
       "sourceLine": 18,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts",
+        "templates/angular/layout-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -153,9 +196,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "列数、行数、間隔、セル結合、画面幅別の配置"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-05",
@@ -215,8 +270,10 @@
       "requestedControls": "見出し、操作領域、枠、開閉、無効状態",
       "sourceLine": 20,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/panels.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -242,9 +299,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "見出し、操作領域、枠、開閉、無効状態"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-07",
@@ -253,8 +322,9 @@
       "requestedControls": "単一・複数展開、初期展開、展開状態、開閉アイコン",
       "sourceLine": 21,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
+        "templates/angular/panels.ts",
         "templates/angular/disclosure.ts"
       ],
       "dependencies": [
@@ -282,9 +352,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "単一・複数展開、初期展開、展開状態、開閉アイコン"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-08",
@@ -293,8 +375,11 @@
       "requestedControls": "分割方向、初期比率、最小・最大サイズ、リサイズ、折畳み",
       "sourceLine": 22,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/splitter.ts",
+        "templates/angular/layout-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -320,9 +405,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "分割方向、初期比率、最小・最大サイズ、リサイズ、折畳み"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-09",
@@ -331,8 +428,10 @@
       "requestedControls": "縦横方向、線種、間隔、ラベル",
       "sourceLine": 23,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -358,9 +457,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "縦横方向、線種、間隔、ラベル"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-10",
@@ -369,8 +480,10 @@
       "requestedControls": "スクロール方向、高さ、スクロール位置",
       "sourceLine": 24,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -396,9 +509,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "スクロール方向、高さ、スクロール位置"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-11",
@@ -407,8 +532,10 @@
       "requestedControls": "固定位置、固定開始位置、対象スクロール領域",
       "sourceLine": 25,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -434,9 +561,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "固定位置、固定開始位置、対象スクロール領域"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-12",
@@ -445,8 +584,11 @@
       "requestedControls": "縦横比、内容の収め方",
       "sourceLine": 26,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts",
+        "templates/angular/styles.css"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -472,9 +614,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "縦横比、内容の収め方"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-13",
@@ -483,8 +637,10 @@
       "requestedControls": "画面幅に応じた表示・非表示",
       "sourceLine": 27,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/layout.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -510,9 +666,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-layout-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "画面幅に応じた表示・非表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "actions-01",
@@ -7741,7 +7909,11 @@
         "tests/model/overlay.test.ts",
         "tests/generation/consumer.test.ts",
         "scripts/consumer-browser.mjs",
-        "docs/verification/ui-library-overlays-2026-10-05.md"
+        "docs/verification/ui-library-overlays-2026-10-05.md",
+        "tests/ui/layout-catalog.spec.ts",
+        "tests/ui/layout-regressions.spec.ts",
+        "tests/model/layout.test.ts",
+        "docs/verification/ui-library-layout-2026-10-05.md"
       ],
       "priority": 6,
       "deliveryScope": "business-first",
@@ -7916,20 +8088,21 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-and-overlays",
-    "verificationStatus": "verified-two-stages",
+    "stage": "business-priority-overlays-and-layout",
+    "verificationStatus": "verified-three-stages",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
       "inputs": "approve with comments after corrections",
       "datesGridIcon": "review fixes verified in both profiles; configuration warnings additionally fixed and tested",
       "overlays": "approve after fixes; both profiles and narrow pointer verified",
-      "notifications": "approve after scope-focus, RTL and viewport fixes"
+      "notifications": "approve after scope-focus, RTL and viewport fixes",
+      "layout": "approve after fixed-region, intrinsic media, external collapse, focus, drag cancellation and zero-size pane fixes"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "pending": 121,
-      "verified": 44,
+      "pending": 109,
+      "verified": 56,
       "partial": 16
     }
   }

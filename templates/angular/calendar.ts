@@ -54,9 +54,14 @@ export class Calendar extends ValueControl<string|null>{
  protected choose(date:string):void{if(this.blocked()||this.readonly()||this.unavailable(date))return;this.commit(date);this.touch();}
  focusDate(date:string=this.current()??this.focused()):void{if(!civilDate(date)||this.blocked())return;this.month.set(date.slice(0,7));this.focused.set(date);this.pendingFocus.set(date);}
  protected key(event:KeyboardEvent,date:string):void{
-  if(this.blocked())return;const weekday=(civilDate(date)!.getUTCDay()-this.weekStartsOn()+7)%7;const rtl=this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction==='rtl';
+  if(this.blocked()||event.isComposing||event.keyCode===229)return;
+  // A second key may arrive before Angular renders a changed month. Continue
+  // from the logical destination and prevent native activation of the old day.
+  const pending=this.pendingFocus();date=pending??date;
+  if(pending&&(event.key==='Enter'||event.key===' ')){event.preventDefault();this.choose(date);return;}
+  const weekday=(civilDate(date)!.getUTCDay()-this.weekStartsOn()+7)%7;const rtl=this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction==='rtl';
   const offset=event.key==='ArrowDown'?7:event.key==='ArrowUp'?-7:event.key==='ArrowRight'?(rtl?-1:1):event.key==='ArrowLeft'?(rtl?1:-1):event.key==='Home'?-weekday:event.key==='End'?6-weekday:null;
   let next:string|null=offset!==null?addCivilDays(date,offset):event.key==='PageUp'?shiftCivilMonth(date,event.shiftKey?-12:-1):event.key==='PageDown'?shiftCivilMonth(date,event.shiftKey?12:1):null;
-  if(next){event.preventDefault();this.month.set(next.slice(0,7));this.focused.set(next);this.pendingFocus.set(next);this.monthChange.emit(next.slice(0,7));}
+  if(next){event.preventDefault();this.month.set(next.slice(0,7));this.focused.set(next);this.pendingFocus.set(next);this.dayButtons().find(button=>button.nativeElement.dataset['date']===next)?.nativeElement.focus();this.monthChange.emit(next.slice(0,7));}
  }
 }

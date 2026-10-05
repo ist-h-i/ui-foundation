@@ -78,7 +78,13 @@ try{
     await mark('notification',profile);
     const notice=page.locator('ui-snackbar').filter({hasText:'生成先の通知'});await expect(notice.getByRole('status')).toBeVisible();
     await notice.getByRole('button',{name:'内容を確認'}).click();await expect(notice.getByRole('status')).toBeHidden();
-    assert.deepEqual(errors,[]);results.push({profile,forms:true,cardRetention:true,recursiveMenu:true,dialogResultFocus:true,civilDate:true,notificationAction:true,consoleErrors:errors});
+    await mark('layout',profile);
+    const panel=page.locator('ui-panel');await page.getByRole('textbox',{name:'生成したPanel入力'}).fill('別出力のPanel');await panel.getByRole('button',{name:'折り畳む: 生成したPanel'}).click();await expect(page.getByRole('textbox',{name:'生成したPanel入力'})).toBeHidden();await panel.getByRole('button',{name:'展開: 生成したPanel'}).click();await expect(page.getByRole('textbox',{name:'生成したPanel入力'})).toHaveValue('別出力のPanel');
+    await page.getByRole('textbox',{name:'生成したAccordion入力'}).fill('別出力のAccordion');await page.getByRole('button',{name:'次のAccordion',exact:true}).click();await expect(page.getByRole('textbox',{name:'生成したAccordion入力'})).toBeHidden();await page.getByRole('button',{name:'生成したAccordion',exact:true}).click();await expect(page.getByRole('textbox',{name:'生成したAccordion入力'})).toHaveValue('別出力のAccordion');
+    const splitter=page.locator('ui-splitter');await splitter.getByRole('separator').press('ArrowRight');await expect(splitter.getByRole('separator')).toHaveAttribute('aria-valuenow','45');await page.getByRole('textbox',{name:'生成したSplitter入力'}).fill('別出力の分割');await splitter.getByRole('separator').press('Enter');await expect(page.getByRole('textbox',{name:'生成したSplitter入力'})).toBeHidden();await splitter.getByRole('separator').press('Enter');await expect(page.getByRole('textbox',{name:'生成したSplitter入力'})).toHaveValue('別出力の分割');await expect(page.locator('ui-grid')).toHaveAttribute('data-columns','1');
+    const scroll=page.getByRole('region',{name:'生成したScroll',exact:true});await scroll.evaluate(element=>element.scrollTo({top:100}));await expect.poll(()=>scroll.evaluate(element=>element.scrollTop)).toBe(100);
+    const mediaGeometry=await page.getByTitle('生成した埋込プレビュー',{exact:true}).evaluate(element=>{const media=element.getBoundingClientRect(),host=element.parentElement.getBoundingClientRect();return {media:[media.width,media.height],host:[host.width,host.height],overflow:element.parentElement.scrollHeight-element.parentElement.clientHeight};});assert.ok(Math.abs(mediaGeometry.media[0]-mediaGeometry.host[0])<1&&Math.abs(mediaGeometry.media[1]-mediaGeometry.host[1])<1&&mediaGeometry.overflow<=1);
+    assert.deepEqual(errors,[]);results.push({profile,forms:true,cardRetention:true,recursiveMenu:true,dialogResultFocus:true,civilDate:true,notificationAction:true,layoutRetention:true,splitterKeyboard:true,scroll:true,consoleErrors:errors});
     await page.close();
   }
 }finally{
