@@ -1,58 +1,85 @@
 # ui-foundation
 
-プロジェクトのUI方針から、共通部品・AI向けSkill・検査設定を同じ設定で生成する小さな開発ツールです。人が方針を決め、AIが設計を支援し、承認した設定を通常のコードと検査に固定します。
+利用者の目的と利用環境から、プロファイルごとのUI基盤を作る開発ツールです。AIが配色・文字・余白の体系と画面構成を提案し、確定した一つのYAMLから、Angular部品・Tailwindテーマ・プロジェクト用Skill・検査設定を生成します。
 
-## 現在の状態
+## 二段階のトークン
 
-プロジェクトの初期化段階です。要件、設計、実装計画とフォルダ構成を保存しています。CLI、UI部品、Skill生成、静的検査、検証アプリはまだ実装していません。依存パッケージも導入していません。
+具体値を持つ**プリミティブ**と、用途を表す**セマンティック**を分けます。部品と画面はセマンティックだけを参照します。プロファイルで対応関係を変えると、同じ部品の色、文字、余白、寸法、角丸を一括して変更できます。
 
-初版は単一リポジトリ・単一npmパッケージで、Angular／TypeScriptを対象にします。ASKとは独立したプロジェクトです。実行時のLLM API、サーバー、データベースは使いません。
-
-## 文書
-
-- [ユーザーの要件原文](docs/project-brief.ja.md)：今回の設計の出発点。設定例やパッケージ名は原文でも提案・仮称です。
-- [初期設計](docs/design.md)：設定、生成物の所有範囲、アプリとの責任境界、機械検査の範囲。
-- [実装・検証計画](docs/implementation-plan.md)：小さな段階と観測可能な完了条件。
-- [開発方針](docs/development.md)：変更、検証、依存、ライセンスの扱い。
-- [設定例](examples/ui.config.example.yaml)：未実装のスキーマ案。現在はCLIへ入力できません。
-
-## 予定する使い方
-
-利用アプリが持つ `ui.config.yaml` を唯一の設定の正本とし、解決した同じ設定から、UI部品とスタイル・プロジェクト用Skill・静的検査設定を生成します。
-
-| 予定するコマンド | 役割 |
-| --- | --- |
-| `ui-foundation init` | 設定雛形、Skillへの導線、開発コマンドの追加。既存設定を保全する。 |
-| `ui-foundation sync --dry-run` | 変更対象と差分の確認。 |
-| `ui-foundation sync` | 決定的な生成・同期。手編集を黙って上書きしない。 |
-| `ui-foundation check` | 設定と生成物の整合性、解析可能な逸脱、例外・判定不能箇所の報告。 |
-
-これらのコマンドは未実装です。`postinstall` で利用者のソースを変更する仕組みは設けません。利用アプリでは将来 `ui:sync`・`ui:check` と、実ブラウザー操作用の `ui:test` を分けて使います。このリポジトリに成功するだけの代用コマンドは置きません。
-
-## 最小構成
-
-```text
-ui-foundation/
-├── AGENTS.md
-├── package.json
-├── docs/
-├── examples/ui.config.example.yaml
-├── src/
-│   └── checks/
-├── presets/task-oriented/
-├── templates/angular/
-├── skills/ui-development/
-└── tests/
-    ├── config/
-    ├── generation/
-    ├── checks/
-    └── fixture-app/
+```yaml
+primitives:
+  blue-700: { type: color, value: "#1856a6" }
+  green-700: { type: color, value: "#17634a" }
+semantic:
+  color.action: blue-700
+profiles:
+  dense:
+    semantic:
+      color.action: green-700
 ```
 
-`src/` 以下とテンプレート・Skill・試験のディレクトリは、これから実装するための置き場です。最初の部品群は PageFrame、ActionControl、FormField、AsyncRegion、ActionFeedback に限定します。全画面を同じ見た目にすることや、画面仕様をYAMLへ集約することは目的にしません。
+これは構造の抜粋です。必須役割や利用者の文脈を含む実行可能な設定は[設定例](examples/ui.config.example.yaml)を参照してください。旧preset/density方式との互換は提供しません。
 
-静的検査の成功を、実操作やUX全体の合格と扱いません。実データのUndo、業務上の正しさ、安全に継続できる範囲は利用アプリが保証します。
+## 試す
 
-## 公開とライセンス
+Node.js 24.19.0で検証します。依存はlockfileで固定します。
 
-パッケージは `private: true` とし、npmへの公開や名前の予約は行いません。ライセンスは未決定です。現時点では第三者への権利許諾を指定していません。
+```sh
+npm ci
+npm exec playwright -- install chromium --no-shell
+npm run ui:sync
+npm test
+npm start
+```
+
+http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替えると、guidedとdenseの違いを比較できます。入力や取得・実行状態を保持したまま同じ部品の見た目を変更します。Tailwind utilityも部品CSSも同じ意味トークンを参照します。
+
+| コマンド | 実際に確認・実行する内容 |
+| --- | --- |
+| `npm run ui:sync -- --dry-run` | 生成予定の差分を表示。書き込みなし。 |
+| `npm run ui:sync` | 設定検証、全プロファイルの解決、生成・同期。 |
+| `npm run ui:check` | 設定検証と生成物の一致。欠損・変更・未管理ファイルで失敗。 |
+| `npm run typecheck` | 設定/CLIのTypeScriptと生成Angular部品のstrictTemplates。 |
+| `npm run test:config` | 型、参照、必須役割、プロファイル、色ペアの検査。 |
+| `npm run test:generation` | 冪等性、dry-run、衝突、パス境界、CLIの失敗状態。 |
+| `npm run test:ui` | 実ブラウザーの操作・表示・自動アクセシビリティ。 |
+
+ビルドは`ui:check`を通し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。
+
+## 利用アプリに導入する
+
+現在はソースcheckoutからCLIを実行します。npmへの公開はしていません。利用アプリのディレクトリを作業ディレクトリにし、checkout内のtsxとCLIを指定します。
+
+```sh
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts init
+# ui.config.yamlの利用者・トークン・プロファイルを編集
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync --dry-run
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts check
+```
+
+`init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。
+
+利用アプリは生成されたangular/indexからstandalone部品をimportします。Tailwind v4を利用アプリ側で導入し、CSS入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
+
+`default_profile`が初期値です。実行時の切替が必要なら、利用アプリが設定に存在するIDを選び、スコープに`data-ui-profile="ID"`を付けます。初期化時に一つだけを選ぶ利用もできます。CLIは利用者の属性から勝手に選択しません。
+
+## AIが担当する設計
+
+生成Skillは利用者の文脈と、解決したトークンの対応を読みます。AIは新しいプリミティブや対応関係も提案できます。プレビューで採用する設定を決め、その設定をコードと検査へ固定します。実行時のLLM API、モデル選択、課金、サーバー、DBは持ちません。
+
+画面構成や補助説明の出し方はプロファイルのguidanceを参照してAIが実装します。全画面のDOMや業務仕様をYAMLに記述しません。処理中・エラー・復旧・入力保持の意味、業務上の判断、実データのUndoは、それぞれ部品と利用アプリが責任を持ちます。
+
+## 検査の範囲と文書
+
+`ui:check`は全ソースのASTによる逸脱検査、業務の正しさ、利用者の理解を確認しません。定義済み色ペアの数値検査、自動アクセシビリティ、実操作、意味・視覚レビューを区別します。Firefox/Safari、実スクリーンリーダー、実サービスの復元、実利用での有効性は別途確認が必要です。
+
+- [要件](docs/project-brief.ja.md)
+- [設定・生成・責任境界](docs/design.md)
+- [実装・検証計画](docs/implementation-plan.md)
+- [部品APIと検証範囲](docs/ui-components.md)
+- [開発方針](docs/development.md)
+
+生成物もGitで追跡します。手編集や未所有ファイルとの衝突、symlink、プロジェクト外出力は拒否します。通常の書込み失敗では完了済みの書込みを復元しますが、プロセス強制終了を含む複数ディレクトリの原子的な更新は保証しません。生成後にoutputを移す場合は、従来の生成物をGitで確認してから整理してください。
+
+パッケージは`private: true`、ライセンスは未決定です。npmへの公開や権利許諾を指定していません。

@@ -1,0 +1,559 @@
+# プロジェクトのUI設定
+
+YAMLから生成した判断材料です。変更は設定の正本へ戻してください。利用者の文脈からCLIが見た目を推測することはありません。
+
+```json
+{
+  "context": {
+    "constraints": [
+      "未取得の情報を確認済みの情報として表示しない",
+      "部分障害でも入力内容を保持する"
+    ],
+    "goals": [
+      "必要な情報を確認して、提出・承認・差し戻しを判断する"
+    ],
+    "product": "申請管理"
+  },
+  "default_profile": "guided",
+  "output": ".ui/generated",
+  "profiles": {
+    "dense": {
+      "context": {
+        "audience": [
+          "手順を把握し、複数件を比較して処理する人"
+        ],
+        "constraints": [
+          "操作の対象と結果を省略しない",
+          "入力方法と44px以上の主操作領域を維持する"
+        ],
+        "goals": [
+          "必要な比較情報を保ち、対象の申請を効率よく処理する"
+        ],
+        "usage": "業務中に一覧の比較と入力を繰り返す"
+      },
+      "guidance": "一覧の比較軸を揃え、繰り返す操作を対象の近くに置く。詳細説明の開閉は 必要性から判断し、欠損と復旧経路を密度のために隠さない。",
+      "label": "一覧と入力を繰り返し使う",
+      "semantic": {
+        "border.control": {
+          "reference": "border-thin",
+          "type": "length",
+          "value": "1px"
+        },
+        "border.focus": {
+          "reference": "focus-width",
+          "type": "length",
+          "value": "3px"
+        },
+        "border.focus-offset": {
+          "reference": "focus-offset",
+          "type": "length",
+          "value": "3px"
+        },
+        "color.action": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.action-hover": {
+          "reference": "green-hover",
+          "type": "color",
+          "value": "#0f462c"
+        },
+        "color.backdrop": {
+          "reference": "backdrop",
+          "type": "color",
+          "value": "#172033"
+        },
+        "color.background": {
+          "reference": "canvas",
+          "type": "color",
+          "value": "#f5f7fa"
+        },
+        "color.border": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
+        "color.danger": {
+          "reference": "red",
+          "type": "color",
+          "value": "#a32121"
+        },
+        "color.danger-hover": {
+          "reference": "red-hover",
+          "type": "color",
+          "value": "#801919"
+        },
+        "color.disabled-surface": {
+          "reference": "disabled-wash",
+          "type": "color",
+          "value": "#e7ebf0"
+        },
+        "color.error-surface": {
+          "reference": "error-wash",
+          "type": "color",
+          "value": "#fff0ef"
+        },
+        "color.focus": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.link": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.muted": {
+          "reference": "muted",
+          "type": "color",
+          "value": "#526075"
+        },
+        "color.on-action": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.on-danger": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.success": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.success-surface": {
+          "reference": "success-wash",
+          "type": "color",
+          "value": "#eaf6ef"
+        },
+        "color.surface": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.tab-selected": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.text": {
+          "reference": "ink",
+          "type": "color",
+          "value": "#1c293d"
+        },
+        "color.warning": {
+          "reference": "warning-ink",
+          "type": "color",
+          "value": "#694700"
+        },
+        "color.warning-surface": {
+          "reference": "warning-wash",
+          "type": "color",
+          "value": "#fff4d6"
+        },
+        "font.body": {
+          "reference": "system-font",
+          "type": "fontFamily",
+          "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+        },
+        "leading.body": {
+          "reference": "leading-body",
+          "type": "number",
+          "value": 1.6
+        },
+        "leading.control": {
+          "reference": "leading-control",
+          "type": "number",
+          "value": 1.5
+        },
+        "leading.heading": {
+          "reference": "leading-heading",
+          "type": "number",
+          "value": 1.35
+        },
+        "motion.duration": {
+          "reference": "duration",
+          "type": "duration",
+          "value": "180ms"
+        },
+        "motion.easing": {
+          "reference": "easing",
+          "type": "easing",
+          "value": "ease-out"
+        },
+        "radius.control": {
+          "reference": "round-dense",
+          "type": "length",
+          "value": "4px"
+        },
+        "radius.surface": {
+          "reference": "surface-dense",
+          "type": "length",
+          "value": "6px"
+        },
+        "size.content": {
+          "reference": "content",
+          "type": "length",
+          "value": "1120px"
+        },
+        "size.control": {
+          "reference": "control-minimum",
+          "type": "length",
+          "value": "44px"
+        },
+        "size.dialog": {
+          "reference": "dialog",
+          "type": "length",
+          "value": "640px"
+        },
+        "size.icon": {
+          "reference": "icon",
+          "type": "length",
+          "value": "20px"
+        },
+        "space.control-gap": {
+          "reference": "space-8",
+          "type": "length",
+          "value": "8px"
+        },
+        "space.control-x": {
+          "reference": "space-16",
+          "type": "length",
+          "value": "16px"
+        },
+        "space.control-y": {
+          "reference": "space-8",
+          "type": "length",
+          "value": "8px"
+        },
+        "space.field": {
+          "reference": "space-16",
+          "type": "length",
+          "value": "16px"
+        },
+        "space.page": {
+          "reference": "space-16",
+          "type": "length",
+          "value": "16px"
+        },
+        "space.section": {
+          "reference": "space-16",
+          "type": "length",
+          "value": "16px"
+        },
+        "space.table-x": {
+          "reference": "space-12",
+          "type": "length",
+          "value": "12px"
+        },
+        "space.table-y": {
+          "reference": "space-8",
+          "type": "length",
+          "value": "8px"
+        },
+        "text.body": {
+          "reference": "text-dense",
+          "type": "length",
+          "value": "1rem"
+        },
+        "text.heading": {
+          "reference": "heading-dense",
+          "type": "length",
+          "value": "1.5rem"
+        },
+        "text.small": {
+          "reference": "small-dense",
+          "type": "length",
+          "value": "0.875rem"
+        },
+        "weight.body": {
+          "reference": "regular",
+          "type": "number",
+          "value": 400
+        },
+        "weight.control": {
+          "reference": "semibold",
+          "type": "number",
+          "value": 600
+        },
+        "weight.heading": {
+          "reference": "bold",
+          "type": "number",
+          "value": 700
+        }
+      }
+    },
+    "guided": {
+      "context": {
+        "audience": [
+          "利用頻度が低く、申請手順を確認したい人"
+        ],
+        "constraints": [
+          "説明を増やして主操作を埋もれさせない"
+        ],
+        "goals": [
+          "必須項目と提出前の確認内容を理解する"
+        ],
+        "usage": "必要な説明を確認しながら一件ずつ申請する"
+      },
+      "guidance": "目的、必須項目、操作結果を順に示す。初回に必要な補助説明を入力の近くに置き、 段階的な入力が適切か業務の手順から判断する。重要な比較情報は残す。",
+      "label": "手順を確認しながら使う",
+      "semantic": {
+        "border.control": {
+          "reference": "border-thin",
+          "type": "length",
+          "value": "1px"
+        },
+        "border.focus": {
+          "reference": "focus-width",
+          "type": "length",
+          "value": "3px"
+        },
+        "border.focus-offset": {
+          "reference": "focus-offset",
+          "type": "length",
+          "value": "3px"
+        },
+        "color.action": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
+        },
+        "color.action-hover": {
+          "reference": "blue-hover",
+          "type": "color",
+          "value": "#10427f"
+        },
+        "color.backdrop": {
+          "reference": "backdrop",
+          "type": "color",
+          "value": "#172033"
+        },
+        "color.background": {
+          "reference": "canvas",
+          "type": "color",
+          "value": "#f5f7fa"
+        },
+        "color.border": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
+        "color.danger": {
+          "reference": "red",
+          "type": "color",
+          "value": "#a32121"
+        },
+        "color.danger-hover": {
+          "reference": "red-hover",
+          "type": "color",
+          "value": "#801919"
+        },
+        "color.disabled-surface": {
+          "reference": "disabled-wash",
+          "type": "color",
+          "value": "#e7ebf0"
+        },
+        "color.error-surface": {
+          "reference": "error-wash",
+          "type": "color",
+          "value": "#fff0ef"
+        },
+        "color.focus": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
+        },
+        "color.link": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
+        },
+        "color.muted": {
+          "reference": "muted",
+          "type": "color",
+          "value": "#526075"
+        },
+        "color.on-action": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.on-danger": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.success": {
+          "reference": "green",
+          "type": "color",
+          "value": "#175c3a"
+        },
+        "color.success-surface": {
+          "reference": "success-wash",
+          "type": "color",
+          "value": "#eaf6ef"
+        },
+        "color.surface": {
+          "reference": "white",
+          "type": "color",
+          "value": "#ffffff"
+        },
+        "color.tab-selected": {
+          "reference": "blue",
+          "type": "color",
+          "value": "#1856a6"
+        },
+        "color.text": {
+          "reference": "ink",
+          "type": "color",
+          "value": "#1c293d"
+        },
+        "color.warning": {
+          "reference": "warning-ink",
+          "type": "color",
+          "value": "#694700"
+        },
+        "color.warning-surface": {
+          "reference": "warning-wash",
+          "type": "color",
+          "value": "#fff4d6"
+        },
+        "font.body": {
+          "reference": "system-font",
+          "type": "fontFamily",
+          "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+        },
+        "leading.body": {
+          "reference": "leading-body",
+          "type": "number",
+          "value": 1.6
+        },
+        "leading.control": {
+          "reference": "leading-control",
+          "type": "number",
+          "value": 1.5
+        },
+        "leading.heading": {
+          "reference": "leading-heading",
+          "type": "number",
+          "value": 1.35
+        },
+        "motion.duration": {
+          "reference": "duration",
+          "type": "duration",
+          "value": "180ms"
+        },
+        "motion.easing": {
+          "reference": "easing",
+          "type": "easing",
+          "value": "ease-out"
+        },
+        "radius.control": {
+          "reference": "round-guided",
+          "type": "length",
+          "value": "12px"
+        },
+        "radius.surface": {
+          "reference": "surface-guided",
+          "type": "length",
+          "value": "16px"
+        },
+        "size.content": {
+          "reference": "content",
+          "type": "length",
+          "value": "1120px"
+        },
+        "size.control": {
+          "reference": "control-minimum",
+          "type": "length",
+          "value": "44px"
+        },
+        "size.dialog": {
+          "reference": "dialog",
+          "type": "length",
+          "value": "640px"
+        },
+        "size.icon": {
+          "reference": "icon",
+          "type": "length",
+          "value": "20px"
+        },
+        "space.control-gap": {
+          "reference": "space-12",
+          "type": "length",
+          "value": "12px"
+        },
+        "space.control-x": {
+          "reference": "space-24",
+          "type": "length",
+          "value": "24px"
+        },
+        "space.control-y": {
+          "reference": "space-12",
+          "type": "length",
+          "value": "12px"
+        },
+        "space.field": {
+          "reference": "space-24",
+          "type": "length",
+          "value": "24px"
+        },
+        "space.page": {
+          "reference": "space-32",
+          "type": "length",
+          "value": "32px"
+        },
+        "space.section": {
+          "reference": "space-24",
+          "type": "length",
+          "value": "24px"
+        },
+        "space.table-x": {
+          "reference": "space-16",
+          "type": "length",
+          "value": "16px"
+        },
+        "space.table-y": {
+          "reference": "space-12",
+          "type": "length",
+          "value": "12px"
+        },
+        "text.body": {
+          "reference": "text-guided",
+          "type": "length",
+          "value": "1.125rem"
+        },
+        "text.heading": {
+          "reference": "heading-guided",
+          "type": "length",
+          "value": "1.75rem"
+        },
+        "text.small": {
+          "reference": "small-guided",
+          "type": "length",
+          "value": "1rem"
+        },
+        "weight.body": {
+          "reference": "regular",
+          "type": "number",
+          "value": 400
+        },
+        "weight.control": {
+          "reference": "semibold",
+          "type": "number",
+          "value": 600
+        },
+        "weight.heading": {
+          "reference": "bold",
+          "type": "number",
+          "value": 700
+        }
+      }
+    }
+  }
+}
+```

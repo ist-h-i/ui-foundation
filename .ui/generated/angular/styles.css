@@ -1,0 +1,196 @@
+/* Generated tokens.css owns concrete values. Components consume semantic roles. */
+.ui-page-frame, .ui-form-field, .ui-async-region, .ui-action-feedback, .ui-radio-group {
+  display: block;
+  min-inline-size: 0;
+  color: var(--ui-color-text);
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-body);
+  font-weight: var(--ui-weight-body);
+  line-height: var(--ui-leading-body);
+  overflow-wrap: anywhere;
+}
+
+/* Host display rules must not override the native hidden attribute. */
+.ui-action-feedback [hidden], .ui-async-region [hidden],
+.ui-page-frame[hidden], .ui-form-field[hidden], .ui-async-region[hidden],
+.ui-action-feedback[hidden], .ui-radio-group[hidden], .ui-action[hidden] { display: none; }
+.ui-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ui-page-frame__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--ui-space-field);
+  margin-block-end: var(--ui-space-section);
+}
+.ui-page-frame__heading { flex: 1 1 16rem; min-inline-size: 0; }
+.ui-page-frame__heading h1, .ui-page-frame__heading h2 {
+  margin: 0 0 var(--ui-space-control-gap);
+  font-size: var(--ui-text-heading);
+  font-weight: var(--ui-weight-heading);
+  line-height: var(--ui-leading-heading);
+}
+.ui-page-frame__actions { display: flex; flex-wrap: wrap; gap: var(--ui-space-control-gap); }
+.ui-page-frame__body { display: grid; gap: var(--ui-space-section); }
+
+.ui-action {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-control-gap);
+  min-block-size: var(--ui-size-control);
+  min-inline-size: var(--ui-size-control);
+  max-inline-size: 100%;
+  padding: var(--ui-space-control-y) var(--ui-space-control-x);
+  border: var(--ui-border-control) solid var(--ui-color-border);
+  border-radius: var(--ui-radius-control);
+  background: var(--ui-color-surface);
+  color: var(--ui-color-text);
+  font: inherit;
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-body);
+  font-weight: var(--ui-weight-control);
+  line-height: var(--ui-leading-control);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--ui-motion-duration) var(--ui-motion-easing);
+}
+.ui-action[data-variant="primary"] {
+  border-color: var(--ui-color-action);
+  background: var(--ui-color-action);
+  color: var(--ui-color-on-action);
+}
+.ui-action[data-variant="danger"] {
+  border-color: var(--ui-color-danger);
+  background: var(--ui-color-danger);
+  color: var(--ui-color-on-danger);
+}
+.ui-action:hover { background: var(--ui-color-background); }
+.ui-action[data-variant="primary"]:hover { background: var(--ui-color-action-hover); }
+.ui-action[data-variant="danger"]:hover { background: var(--ui-color-danger-hover); }
+.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+  box-shadow: inset 0 0 0 var(--ui-border-control) currentColor;
+}
+.ui-action:focus-visible, .ui-field-control:focus-visible {
+  outline: var(--ui-border-focus) solid var(--ui-color-focus);
+  outline-offset: var(--ui-border-focus-offset);
+}
+.ui-action:disabled, .ui-action--disabled, .ui-action--busy,
+.ui-action[data-variant]:disabled, .ui-action[data-variant].ui-action--disabled,
+.ui-action[data-variant].ui-action--busy {
+  border-color: var(--ui-color-border);
+  color: var(--ui-color-muted);
+  background: var(--ui-color-disabled-surface);
+  cursor: not-allowed;
+}
+.ui-action-label { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; }
+.ui-action-busy { flex-shrink: 0; white-space: nowrap; font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); }
+
+.ui-form-field { margin-block-end: var(--ui-space-field); }
+.ui-form-field-label { display: block; font-weight: var(--ui-weight-control); margin-block-end: var(--ui-space-control-gap); }
+.ui-form-field-requirement { margin-inline-start: var(--ui-space-control-gap); font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); color: var(--ui-color-muted); }
+.ui-form-field-hint, .ui-form-field-error {
+  font-size: var(--ui-text-small);
+  margin-block: var(--ui-space-control-gap) 0;
+}
+.ui-form-field-hint { color: var(--ui-color-muted); }
+.ui-form-field-error { color: var(--ui-color-danger); }
+.ui-field-control {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-block-size: var(--ui-size-control);
+  padding: var(--ui-space-control-y) var(--ui-space-control-x);
+  border: var(--ui-border-control) solid var(--ui-color-border);
+  border-radius: var(--ui-radius-control);
+  background: var(--ui-color-surface);
+  color: var(--ui-color-text);
+  font: inherit;
+  font-family: var(--ui-font-body);
+  font-size: var(--ui-text-body);
+  font-weight: var(--ui-weight-body);
+  line-height: var(--ui-leading-control);
+}
+input.ui-field-control:not([type="checkbox"]):not([type="radio"]), textarea.ui-field-control, select.ui-field-control { inline-size: 100%; }
+input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
+  padding: 0;
+  min-block-size: var(--ui-size-icon);
+  inline-size: var(--ui-size-icon);
+  block-size: var(--ui-size-icon);
+  margin: var(--ui-space-control-gap);
+  accent-color: var(--ui-color-action);
+}
+.ui-form-field:not([hidden]):has(input.ui-field-control[type="checkbox"]) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  min-block-size: var(--ui-size-control);
+  margin-block-end: 0;
+  cursor: pointer;
+}
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) input { grid-column: 1; grid-row: 1; }
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-hint,
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-error { grid-column: 1 / -1; }
+.ui-field-control[aria-invalid="true"] { border-color: var(--ui-color-danger); }
+.ui-field-control:disabled { background: var(--ui-color-disabled-surface); color: var(--ui-color-muted); }
+
+.ui-async-region__notice, .ui-action-feedback__panel {
+  padding: var(--ui-space-field);
+  background: var(--ui-color-background);
+  border-radius: var(--ui-radius-surface);
+}
+.ui-async-region__notice { margin-block-end: var(--ui-space-field); }
+.ui-async-region__message, .ui-action-feedback__message { margin-block: 0 var(--ui-space-control-gap); }
+.ui-async-region[data-state="partial"] .ui-async-region__notice,
+.ui-async-region[data-state="stale"] .ui-async-region__notice,
+.ui-action-feedback[data-state="unknown"] .ui-action-feedback__panel,
+.ui-action-feedback[data-state="warning"] .ui-action-feedback__panel {
+  background: var(--ui-color-warning-surface);
+  color: var(--ui-color-warning);
+}
+.ui-async-region[data-state="error"] .ui-async-region__notice,
+.ui-action-feedback[data-state="error"] .ui-action-feedback__panel {
+  background: var(--ui-color-error-surface);
+  color: var(--ui-color-danger);
+}
+.ui-action-feedback[data-state="success"] .ui-action-feedback__panel {
+  background: var(--ui-color-success-surface);
+  color: var(--ui-color-success);
+}
+
+.ui-radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-control-gap);
+  min-block-size: var(--ui-size-control);
+  cursor: pointer;
+}
+.ui-radio-option__input { inline-size: var(--ui-size-icon); block-size: var(--ui-size-icon); accent-color: var(--ui-color-action); }
+.ui-radio-option__input:focus-visible { outline: var(--ui-border-focus) solid var(--ui-color-focus); outline-offset: var(--ui-border-focus-offset); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-action { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .ui-action:focus-visible, .ui-field-control:focus-visible { outline-color: Highlight; }
+  .ui-action:disabled, .ui-action--disabled, .ui-action--busy { color: GrayText; border-color: GrayText; }
+}

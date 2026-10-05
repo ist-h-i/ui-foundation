@@ -1,3 +1,5 @@
-# 試験の置き場
+# 検証
 
-現在は試験未実装です。`config/` は設定の検証・解決、`generation/` は同期と保全、`checks/` は適合・逸脱・例外・判定不能、`fixture-app/` はAngularの実操作検証に使います。対象シナリオと観測する結果は [実装・検証計画](../docs/implementation-plan.md) に記録しています。静的な合格を実操作・UX全体の合格として扱いません。
+config/はYAML構造・型・参照・プロファイル・定義済み色ペア、generation/は実生成・所有範囲・CLI、fixture-app/とui/は生成Angular部品とTailwindの実ブラウザー操作を確認します。
+
+`npm run ui:sync`で同期後、`npm test`を実行します。ビルドと試験の前にcheckが未同期を拒否します。fixtureのデータはローカル試験用で、実サービスの通信/Undo/安全性を証明しません。自動アクセシビリティ、描画、操作、利用者の理解を区別します。
