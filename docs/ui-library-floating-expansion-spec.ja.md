@@ -11,7 +11,7 @@
 
 共通Overlayのstack、可用な対象、scope-exit、observe/position、既存focus/native Dialogを利用する。timer/listener/attribute/observerを破棄し、対象変更、hidden/inert、連続Escape、外部更新、狭幅/200%/RTL/reduced motion、エラーと入力保持を検証する。名称のみ/未実装stub/コンパイルだけでverifiedにしない。
 
-子の入力/候補が消費したEscapeとIME変換中のEscapeを親終了に使わない。共通Registryのbubble処理とnative cancelの制限は[ADR](adr/0001-overlay-escape.md)へ記録する。hiddenのDrawer/Sheetはnative closeでmodalを解放する。閉じて開く際の入力保持と、明示破棄後のアプリ所有open状態を区別する。
+子の入力/候補が消費したEscapeとIME変換中のEscapeを親終了や表示待ちの取消に使わない。共通Registryのbubble処理とnative cancelの制限は[ADR](adr/0001-overlay-escape.md)へ記録する。hidden/inertのDrawer/Sheetはnative closeでmodalを解放する。documentElementを含む根スコープのdir/profile/style/inert変更を観測して再配置と後始末へ接続する。閉じて開く際の入力保持と、明示破棄後のアプリ所有open状態を区別する。
 
 テンプレート、正本YAML/schema、semantic roles、Skill、fixture `/catalog/floating`、モデル、strictTemplates/AOT、別生成production consumerを揃え、rootの全検査とfresh-context独立レビュー・描画を分けて記録する。
 

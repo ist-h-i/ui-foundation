@@ -36,8 +36,8 @@ export class OverlayRegistry {
         this.document.addEventListener('pointerdown', this.pointerdown, true);
         this.document.addEventListener('close', this.closed, true);
         const observer = typeof MutationObserver === 'undefined' ? null : new MutationObserver(() => this.prune());
-        if (this.document.body)
-            observer?.observe(this.document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
+        if (this.document.documentElement)
+            observer?.observe(this.document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['open', 'hidden', 'inert', 'class', 'style'] });
         inject(DestroyRef).onDestroy(() => { this.document.removeEventListener('keydown', this.keydown); this.document.removeEventListener('pointerdown', this.pointerdown, true); this.document.removeEventListener('close', this.closed, true); observer?.disconnect(); for (let index = this.entries.length - 1; index >= 0; index--)
             if (this.entries[index]!.owner === this)
                 this.entries.splice(index, 1); });

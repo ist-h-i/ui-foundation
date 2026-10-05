@@ -33,6 +33,13 @@ for(const profile of ['guided','dense'])test.describe(`floating catalog ${profil
  test('a live RTL change repositions the popup while the same editor keeps its draft',async({page})=>{
   const anchor=page.getByTestId('popup-anchor'),popup=page.locator('#floating-popup');await anchor.click();await popup.getByRole('textbox').fill('方向変更でも保持');const handle=await popup.getByRole('textbox').elementHandle();await page.getByLabel('RTL',{exact:true}).evaluate(element=>{(element as HTMLInputElement).checked=true;element.dispatchEvent(new Event('change',{bubbles:true}));});await expect(page.locator('main')).toHaveAttribute('dir','rtl');await expect.poll(async()=>{const a=(await anchor.boundingBox())!,p=(await popup.boundingBox())!;return Math.abs((a.x+a.width)-(p.x+p.width));}).toBeLessThan(2);await expect(popup.getByRole('textbox')).toHaveValue('方向変更でも保持');expect(await popup.getByRole('textbox').evaluate((element,other)=>element===other,handle)).toBe(true);
  });
+ test('root RTL, profile and text-size changes reposition the popup without replacing its editor',async({page})=>{
+  await page.evaluate(profile=>{document.querySelector('main')!.removeAttribute('dir');document.querySelector('main')!.removeAttribute('data-ui-profile');document.documentElement.dir='ltr';document.documentElement.dataset.uiProfile=profile;},profile);
+  const anchor=page.getByTestId('popup-anchor'),popup=page.locator('#floating-popup');await anchor.click();const editor=popup.getByRole('textbox');await editor.fill('根の設定変更でも保持');const handle=await editor.elementHandle();
+  await page.evaluate(()=>document.documentElement.dir='rtl');await expect.poll(async()=>{const a=(await anchor.boundingBox())!,p=(await popup.boundingBox())!;return Math.abs((a.x+a.width)-(p.x+p.width));}).toBeLessThan(2);
+  await page.evaluate(profile=>{document.documentElement.dataset.uiProfile=profile==='guided'?'dense':'guided';document.documentElement.style.fontSize='200%';},profile);
+  await expect.poll(async()=>{const a=(await anchor.boundingBox())!,p=(await popup.boundingBox())!;return Math.abs((a.x+a.width)-(p.x+p.width));}).toBeLessThan(2);await insideViewport(page,'#floating-popup');await expect(editor).toHaveValue('根の設定変更でも保持');expect(await editor.evaluate((element,other)=>element===other,handle)).toBe(true);await expect(editor).toBeFocused();
+ });
  test('changing to hover while editing keeps the active popup when the pointer leaves',async({page})=>{
   const popup=page.locator('#floating-popup');await page.getByTestId('popup-anchor').click();await popup.getByRole('textbox').fill('開く契機を変更しても保持');await clock(page);await page.getByRole('combobox',{name:'開く契機',exact:true}).evaluate(element=>{(element as HTMLSelectElement).value='hover';element.dispatchEvent(new Event('change',{bubbles:true}));});await page.clock.runFor(20);await page.mouse.move(0,0);await page.clock.runFor(200);await expect(popup).toBeVisible();await expect(popup.getByRole('textbox')).toBeFocused();await expect(popup.getByRole('textbox')).toHaveValue('開く契機を変更しても保持');
  });
@@ -48,6 +55,13 @@ for(const profile of ['guided','dense'])test.describe(`floating catalog ${profil
  });
  test('tooltip cancels a pending show on Escape and shows again only after focus leaves',async({page})=>{
   await clock(page);const anchor=page.getByTestId('tooltip-anchor'),tip=page.locator('#floating-tooltip');await anchor.focus();await page.clock.runFor(100);await page.keyboard.press('Escape');await page.clock.runFor(400);await expect(tip).toBeHidden();await page.getByTestId('outside').focus();await anchor.focus();await page.clock.runFor(220);await expect(tip).toBeVisible();
+ });
+ for(const mode of ['prevented','composing','229'])test(`pending tooltip respects ${mode} Escape before it is displayed`,async({page})=>{
+  await clock(page);const anchor=page.getByTestId('tooltip-anchor'),tip=page.locator('#floating-tooltip');await anchor.focus();await page.clock.runFor(50);
+  if(mode==='prevented'){await anchor.evaluate(element=>element.addEventListener('keydown',event=>event.preventDefault(),{capture:true,once:true}));await anchor.press('Escape');}
+  else await anchor.dispatchEvent('keydown',{key:'Escape',isComposing:mode==='composing',keyCode:mode==='229'?229:27,bubbles:true,cancelable:true});
+  await page.clock.runFor(200);await expect(tip).toBeVisible();await expect(anchor).toBeFocused();await expect(anchor).toHaveAttribute('aria-describedby','permanent-description floating-tooltip');
+  await anchor.press('Escape');await page.clock.runFor(20);await expect(tip).toBeHidden();
  });
  test('tooltip pointer can cross onto its content and hide after the configured delay',async({page})=>{
   await clock(page);const anchor=page.getByTestId('tooltip-anchor'),tip=page.locator('#floating-tooltip');await anchor.hover();await page.clock.runFor(220);await expect(tip).toBeVisible();await tip.hover();await page.clock.runFor(200);await expect(tip).toBeVisible();await page.getByTestId('outside').hover();await page.clock.runFor(119);await expect(tip).toBeVisible();await page.clock.runFor(21);await expect(tip).toBeHidden();
@@ -102,6 +116,13 @@ for(const profile of ['guided','dense'])test.describe(`floating catalog ${profil
  });
  test('hidden drawer relinquishes native modal inertness',async({page})=>{
   await page.getByRole('button',{name:'右の領域を開く',exact:true}).click();const drawer=page.locator('dialog[uiDrawer]');await page.getByTestId('drawer-hidden').dispatchEvent('click');await expect.poll(()=>drawer.evaluate(element=>(element as HTMLDialogElement).open)).toBe(false);await page.getByTestId('outside').click();await expect(page.getByTestId('outside-count')).toHaveText('1');
+ });
+ for(const kind of ['drawer','sheet'])test(`root inert closes the ${kind} and restoring the scope keeps outside focus`,async({page})=>{
+  if(kind==='drawer')await page.getByRole('button',{name:'右の領域を開く',exact:true}).click();else await page.getByTestId('sheet-anchor').click();
+  const panel=page.locator(kind==='drawer'?'dialog[uiDrawer]':'dialog[uiBottomSheet]');await panel.getByRole('textbox').fill('利用不能になっても保持');const handle=await panel.getByRole('textbox').elementHandle();
+  try{await page.evaluate(()=>document.documentElement.inert=true);await expect.poll(()=>panel.evaluate(element=>(element as HTMLDialogElement).open)).toBe(false);expect(await panel.evaluate(element=>element.matches(':modal'))).toBe(false);await expect(page.getByTestId(kind+'-reason')).toHaveText('native');}
+  finally{await page.evaluate(()=>document.documentElement.inert=false);}
+  await page.getByTestId('outside').click();await expect(page.getByTestId('outside-count')).toHaveText('1');await expect(page.getByTestId('outside')).toBeFocused();expect(await handle!.evaluate(element=>element.value)).toBe('利用不能になっても保持');await expect(panel).toBeHidden();
  });
  test('bottom sheet keyboard buttons and native range retain its editor at every stage',async({page})=>{
   await page.setViewportSize({width:1000,height:800});await page.getByTestId('sheet-anchor').click();const sheet=page.locator('dialog[uiBottomSheet]'),editor=sheet.getByRole('textbox'),range=sheet.getByRole('slider');await editor.fill('シートの入力');const handle=await editor.elementHandle();await expect(sheet).toHaveCSS('height','520px');await sheet.getByRole('button',{name:'高くする',exact:true}).press('Enter');await expect(sheet).toHaveCSS('height','800px');await expect(sheet.getByRole('button',{name:'高くする',exact:true})).toBeDisabled();await expect(range).toBeFocused();await range.focus();await range.press('ArrowLeft');await expect(sheet).toHaveCSS('height','520px');await range.press('Home');await expect(sheet).toHaveCSS('height','280px');await expect(range).toHaveAttribute('aria-valuetext','1 / 3 (35%)');await expect(editor).toHaveValue('シートの入力');expect(await editor.evaluate((element,other)=>element===other,handle)).toBe(true);await expect(sheet).toContainText('操作領域の内容');await page.keyboard.press('Escape');await expect(page.getByTestId('sheet-anchor')).toBeFocused();

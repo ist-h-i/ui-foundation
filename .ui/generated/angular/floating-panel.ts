@@ -121,7 +121,7 @@ abstract class AnchoredPopup {
                         if(records.some(record=>record.target!==this.element||record.attributeName!=='style'))this.position();
                         else if(!this.eligible(anchor))this.close('scope-exit',undefined,true);
                     });
-                    observer.observe(this.element.ownerDocument.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','inert','open','class','style','dir','data-ui-profile']});
+                    observer.observe(this.element.ownerDocument.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','inert','open','class','style','dir','data-ui-profile']});
                     this.cleanup=()=>{unregister();stop();observer.disconnect();};
                 }
                 positionOverlay(this.element,anchor,placement);
@@ -187,7 +187,7 @@ abstract class AnchoredPopup {
         if(trigger==='hover'||trigger==='focus') {
             on('focusin',()=>{this.focusAnchor=true;this.schedule(true);});
             on('focusout',event=>{this.focusAnchor=anchor.contains((event as FocusEvent).relatedTarget as Node|null);this.leave();});
-            on('keydown',event=>{if((event as KeyboardEvent).key==='Escape'&&!this.opened()){this.clearTimer();this.dismissedUntilLeave=true;}});
+            on('keydown',event=>{const key=event as KeyboardEvent;if(key.key==='Escape'&&!key.defaultPrevented&&!key.isComposing&&key.keyCode!==229&&!this.opened()){this.clearTimer();this.dismissedUntilLeave=true;}});
         }
         return ()=>{for(const [name,handler] of handlers)anchor.removeEventListener(name,handler);};
     }

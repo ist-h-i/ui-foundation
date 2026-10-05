@@ -37,7 +37,7 @@ abstract class EdgePanel extends Dialog {
             if(this.element.open&&(!this.element.isConnected||this.element.closest('[hidden],[inert]')||!this.element.getClientRects().length||this.element.ownerDocument.defaultView?.getComputedStyle(this.element).visibility!=='visible'))this.element.close();
         };
         const observer=new MutationObserver(ensureAvailable);
-        observer.observe(this.element.ownerDocument.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','inert','open','class','style']});
+        observer.observe(this.element.ownerDocument.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','inert','open','class','style']});
         afterRenderEffect(ensureAvailable);
         inject(DestroyRef).onDestroy(()=>observer.disconnect());
         afterRenderEffect(() => {

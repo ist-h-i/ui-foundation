@@ -327,10 +327,12 @@ Popover/Tooltip/HoverCard/ConfirmPopoverの対象は実`HTMLElement|null`の`anc
 
 Popover/HoverCardは非modal dialogと`label`、`showHeader/showCloseButton`（true）、`closeLabel/busyLabel`、`focusOnOpen`（true）を持つ。click/明示開始では操作へfocusを移し、hover/focusからの自動表示ではanchorのfocusを残す。自動表示済みのHoverCardをclick/Enterで明示起動した場合も操作へ入れる。Tabも内容へ移動できる。`uiPopupTemplate=header/body/actions`のcontextは`busy/close()`。投影は`uiPopupHeader/uiPopupActions`と本文。内容を閉じてもDOMと入力を保持する。trigger/RTL/profileの実行中の変更でも自前focusと配置を維持する。anchorのaria-controls/haspopup/expandedを部品が所有するので他のcontrollerと共有しない。破棄/対象変更で自分の属性だけを復元する。明示破棄は内容の入力保持を保証せず、利用アプリにopen=trueが残る場合は再作成した部品も開く。
 
-Tooltipは必須`message`だけを表示し、操作を投影しない。既定500ms/100ms、HoverCardは300ms/150ms（明示で変更できる）。Tooltipのrole=tooltipはfocusを受け取らず、anchorの既存`aria-describedby`へ自分のIDだけを足し、対象変更/破棄でそのIDだけを外す。Escapeは表示前timerも破棄し、同じhover/focusが続く間は再開しない。内容へpointerが移っても保持する。必須の説明はTooltipだけに依存させず常設の説明にも置く。
+Tooltipは必須`message`だけを表示し、操作を投影しない。既定500ms/100ms、HoverCardは300ms/150ms（明示で変更できる）。Tooltipのrole=tooltipはfocusを受け取らず、anchorの既存`aria-describedby`へ自分のIDだけを足し、対象変更/破棄でそのIDだけを外す。未処理のEscapeは表示前timerも破棄し、同じhover/focusが続く間は再開しない。入力が消費したキーやIME変換中のキーでは待機表示を取り消さない。内容へpointerが移っても保持する。必須の説明はTooltipだけに依存させず常設の説明にも置く。
 
 ConfirmPopoverは必須`label/message`、`confirmLabel/cancelLabel/busyLabel`、`error`を持つ。初期focusは取消。`confirmRequested`はUIの意思表示で、自動で閉じない。アプリがbusy/error/retryを接続し、結果後に`complete(value)`または明示open=falseを行う。取消はcancelで閉じる。処理失敗は入力とerrorを残し、再試行できる。ライブラリはbackendの保存成功・実Undoを保証しない。
 
 共通Escapeは子のキー処理の後で最上位Overlayへ渡し、defaultPreventedまたはIME変換中のキーでは終了しない。busy/終了保留の連続Escapeも保持する。native Dialogはmodalの背景抑止とTabを所有する。native cancelの拒否だけでは連続した閉じ要求を必ず保留できないため、アプリのキー契約を共通Registryで扱う。[判断と制限](adr/0001-overlay-escape.md)を参照する。OSの戻る操作など、キー以外の終了要求の保留を保証しない。
+
+対象/内容の監視はdocumentElementを含む。根のdir/profile/style変更でもPopupを再配置し、根がhidden/inertとなる場合もMenu/Popupの後始末とDrawer/Sheetのnative modal解除を行う。根の利用可能状態を戻した後、別の操作へ移ったfocusを奪わない。
 
 参照は[HTML popover](https://html.spec.whatwg.org/multipage/popover.html)、[APG modal Dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)、[APG Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)。Tooltip patternはwork in progress。native意味/実操作/axe/描画と実screen reader・利用者理解を区別する。

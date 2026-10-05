@@ -76,4 +76,4 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - Tooltipはmessage/role=tooltip/aria-describedbyだけで操作を入れない。遅延、Escape前後、hover/focus保持、説明参照の所有範囲とtimer破棄を確認する。HoverCardの補助操作へkeyboard/明示clickでも入れるようにし、必須情報をhoverだけへ隠さない。
 - Popoverのheader/body/actionsにはtyped uiPopupTemplateを使う。終了理由/同期保留/busyをアプリへ返し、scope喪失/hidden/破棄で終了保留を延命しない。連続Escape、外部focus、対象変更、狭幅/RTL、入力保持を検証する。
 - ConfirmPopoverのconfirmRequestedは意思表示。busy/error/retryを接続し、結果後にcompleteまたは明示open=falseを行う。保存/Undoを先取りしない。全propと責任範囲はdocs/ui-components.mdの端の領域と浮動表示を参照する。
-- 共通Escapeは子のキー処理後に最上位Overlayへ渡し、defaultPrevented/IME変換中は処理しない。連続Escapeのbusy/終了保留、非modalの外部focus、hiddenのDrawer/Sheetでmodalが解放されることを確認する。キー以外のnative終了要求の保留は保証しない。判断はdocs/adr/0001-overlay-escape.mdを参照する。
+- 共通Escapeと表示待ちの取消は子のキー処理後に行い、defaultPrevented/IME変換中は処理しない。連続Escapeのbusy/終了保留、非modalの外部focus、hiddenのDrawer/Sheetでmodalが解放されることを確認する。documentElementを含む根スコープのdir/profile/style/inert変更でも再配置と後始末を確かめる。キー以外のnative終了要求の保留は保証しない。判断はdocs/adr/0001-overlay-escape.mdを参照する。

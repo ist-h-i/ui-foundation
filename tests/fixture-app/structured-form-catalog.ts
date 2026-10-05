@@ -21,7 +21,7 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
    <button uiAction (click)="toggleDisabled()">フォームの無効状態を切替</button><button uiAction (click)="busy.set(!busy())">操作の処理中を切替</button><button uiAction (click)="reset()">フォームを初期化</button>
   </div>
   <form id="structured-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-   <ui-form-group groupId="structured-fields" label="提出する内容" hint="未完成の入力は保持します。" [disabled]="groupDisabled()" [labelPosition]="inline()?'inline':'above'">
+   <ui-form-group groupId="structured-fields" label="提出する内容" [hint]="clearIncomplete()?'整理番号の途中入力は離脱時にクリアします。':'未完成の入力は保持します。'" [disabled]="groupDisabled()" [labelPosition]="inline()?'inline':'above'">
     <ui-masked-input controlId="structured-mask" label="整理番号" mask="999-99" formControlName="mask" [clearIncompleteOnBlur]="clearIncomplete()" [readonly]="readOnly()" hint="数字3桁と2桁。例: 001-23" />
     <ui-otp-input controlId="structured-otp" label="確認コード" formControlName="otp" [digits]="6" [required]="true" [stripPasteSeparators]="stripSeparators()" [readonly]="readOnly()" />
     <ui-tag-input controlId="structured-tags" label="対象のタグ" formControlName="tags" [options]="['申請','承認','確認']" [freeInput]="freeTags()" [allowDuplicates]="duplicates()" [caseSensitive]="false" [maxTokens]="3" [readonly]="readOnly()" [required]="true" />

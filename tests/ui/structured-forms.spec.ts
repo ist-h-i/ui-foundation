@@ -18,7 +18,7 @@ for(const profile of ['guided','dense'])test.describe(`structured forms ${profil
  });
  test('incomplete mask is retained by default and cleared only with the explicit blur option',async({page})=>{
   const editor=page.locator('#structured-mask');await editor.fill('12');await editor.press('Tab');await expect(editor).toHaveValue('12');await expectValues(page,{mask:'12'});await expect(page.locator('ui-masked-input').first()).toContainText('入力が途中です。');
-  await page.getByLabel('途中の書式入力を離脱時にクリア',{exact:true}).check();await editor.focus();await editor.press('Tab');await expect(editor).toHaveValue('');await expectValues(page,{mask:''});
+  await page.getByLabel('途中の書式入力を離脱時にクリア',{exact:true}).check();await expect(page.getByText('整理番号の途中入力は離脱時にクリアします。',{exact:true})).toBeVisible();await editor.focus();await editor.press('Tab');await expect(page.locator('#structured-otp')).toBeFocused();await expect(editor).toHaveValue('');await expectValues(page,{mask:''});
  });
  test('letter masks preserve Unicode graphemes and IME drafts until composition ends',async({page})=>{
   const editor=page.locator('#letter-mask');await editor.dispatchEvent('compositionstart',{bubbles:true});await editor.fill('山田01');await expect(editor).toHaveValue('山田01');await editor.dispatchEvent('compositionend',{data:'山田01',bubbles:true});await expect(editor).toHaveValue('山田-01');await expect(editor).not.toHaveAttribute('aria-invalid');await editor.fill('e\u0301山01');await expect(editor).toHaveValue('e\u0301山-01');
