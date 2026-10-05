@@ -3844,7 +3844,7 @@
       "requestedControls": "左右上下の位置、幅・高さ、背景操作、閉じ方",
       "sourceLine": 117,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/drawer.ts",
         "templates/angular/dialog.ts",
@@ -3879,14 +3879,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "左右上下の位置",
+        "幅・高さ",
+        "背景操作",
+        "閉じ方"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-06",
@@ -3895,7 +3903,7 @@
       "requestedControls": "高さ、展開段階、閉じ方、操作領域",
       "sourceLine": 118,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/drawer.ts",
         "templates/angular/dialog.ts",
@@ -3930,14 +3938,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "高さ",
+        "展開段階",
+        "閉じ方",
+        "操作領域"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-07",
@@ -3946,7 +3962,7 @@
       "requestedControls": "対象要素、表示位置、開く契機、外側クリック",
       "sourceLine": 119,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/floating-panel.ts",
         "templates/angular/floating-model.ts",
@@ -3978,14 +3994,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "対象要素",
+        "表示位置",
+        "開く契機",
+        "外側クリック"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-08",
@@ -3994,7 +4018,7 @@
       "requestedControls": "内容、位置、表示・非表示までの待ち時間",
       "sourceLine": 120,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/floating-panel.ts",
         "templates/angular/floating-model.ts",
@@ -4026,14 +4050,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "内容",
+        "位置",
+        "表示・非表示までの待ち時間"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-09",
@@ -4042,7 +4073,7 @@
       "requestedControls": "プレビュー内容、表示遅延、操作領域",
       "sourceLine": 121,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/floating-panel.ts",
         "templates/angular/floating-model.ts",
@@ -4074,14 +4105,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "プレビュー内容",
+        "表示遅延",
+        "操作領域"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-10",
@@ -4090,7 +4128,7 @@
       "requestedControls": "対象操作、確認・取消、処理中",
       "sourceLine": 122,
       "baseline": "new",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
         "templates/angular/floating-panel.ts",
         "templates/angular/floating-model.ts",
@@ -4122,14 +4160,21 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/floating-catalog.spec.ts",
+        "tests/model/floating-panel.test.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-floating-2026-10-05.md"
+      ],
       "priority": 6,
       "deliveryScope": "business-first",
-      "verificationPending": [
-        "fixed-head full npm test",
-        "fresh-context independent review",
-        "final drawing review"
-      ]
+      "verificationPending": [],
+      "implementedControls": [
+        "対象操作",
+        "確認・取消",
+        "処理中"
+      ],
+      "remainingControls": []
     },
     {
       "id": "overlays-11",
@@ -8709,8 +8754,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-actions-feedback-display-and-structured-forms",
-    "verificationStatus": "verified-seven-stages-and-local-default-focus-fixes",
+    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating",
+    "verificationStatus": "verified-eight-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8724,12 +8769,13 @@
       "pr3Integration": "approve with comments after semantic selected-surface fix; UTC default date and Alert focus removal remain P2",
       "pr4LocalDefaults": "approve after scoped nested Alert focus fix; independently operated natural projection in guided/dense",
       "display": "approve after six P2 fixes; independent 28 browser cases, 18 images and full 452 log verified",
-      "structuredForms": "approve after Unicode letter grapheme fix; independent native operations, full 518 log/exit and 59 manifest hashes verified"
+      "structuredForms": "approve after Unicode letter grapheme fix; independent native operations, full 518 log/exit and 59 manifest hashes verified",
+      "floating": "approve after pending key and root mutation P2 fixes; independent 48 scenarios/274 assertions, 18 axe states with incomplete limits, 62 manifest hashes/16 images and full 608 log/exit verified"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "verified": 99,
-      "pending": 71,
+      "verified": 105,
+      "pending": 65,
       "partial": 11
     },
     "knownIssues": [
@@ -8802,6 +8848,27 @@
         "followup": "PR #6 corrected and independently verified",
         "codeHead": "0c39c4e0739417fdb33b16b5e3f287b3d6440b0d",
         "evidence": "docs/verification/ui-library-forms-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Pending Tooltip Escape consumed child-handled or IME keys",
+        "followup": "PR #7 corrected and independently verified",
+        "codeHead": "7475ce3566699680d60beb1ac192e6b35d06a181",
+        "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Root RTL changes did not reposition anchored popup",
+        "followup": "PR #7 corrected and independently verified",
+        "codeHead": "7475ce3566699680d60beb1ac192e6b35d06a181",
+        "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Root inert changes did not release Drawer/Sheet modal and shared Menu popup",
+        "followup": "PR #7 corrected and independently verified",
+        "codeHead": "7475ce3566699680d60beb1ac192e6b35d06a181",
+        "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
       }
     ],
     "maintenanceVerification": {
@@ -8842,6 +8909,19 @@
         "total": 518
       },
       "evidence": "docs/verification/ui-library-forms-2026-10-05.md"
+    },
+    "floatingVerification": {
+      "pullRequest": 7,
+      "baseCommit": "01a95d8548e71cfa51be04eafae8fa4b07c351d8",
+      "codeHead": "7475ce3566699680d60beb1ac192e6b35d06a181",
+      "testCounts": {
+        "config": 64,
+        "generation": 15,
+        "model": 47,
+        "ui": 482,
+        "total": 608
+      },
+      "evidence": "docs/verification/ui-library-floating-2026-10-05.md"
     }
   }
 }
