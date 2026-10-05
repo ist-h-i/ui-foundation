@@ -71,7 +71,7 @@ Breadcrumbは従来のnative ol/li投影、または`items: readonly BreadcrumbI
 
 `<ui-tabs label="申請の情報" [selected]="panelId()" (selectedChange)="panelId.set($event)"><ui-tab-panel panelId="summary" label="概要">…</ui-tab-panel>…</ui-tabs>`。panelIdはアプリ内で一意で、空白や自動生成tab IDとの衝突を拒否する。selectedは空なら最初の有効panel、指定する場合は存在するpanelId。個別disabledを飛ばし、指定panelがdisabledなら最初の有効panelを表示する。選択値自体の更新はアプリが行う。
 
-`orientation='horizontal'|'vertical'`（既定horizontal）、`scrollable`（既定false）はtablist内の局所scroll。手動アクティベーションで横は左右（RTL反転）、縦は上下、Home/Endはfocusだけ、Enter/Space/クリックは選択。Tabは表示panelへ移る。パネルはhiddenで入力のインスタンスを保持し、入れ子のTabsは所有するTabPanelだけを扱う。
+`orientation='horizontal'|'vertical'`（既定horizontal）、`scrollable`（既定false）はtablist内の局所scroll。横方向のscrollでは長いtabラベルも一行で保ち、行高を他tabへ波及させない。手動アクティベーションで横は左右（RTL反転）、縦は上下、Home/Endはfocusだけ、Enter/Space/クリックは選択。Tabは表示panelへ移る。パネルはhiddenで入力のインスタンスを保持し、入れ子のTabsは所有するTabPanelだけを扱う。
 
 TabPanelの`closable`（既定false）とTabsの`closeRequested: string`はDeleteまたは選択中の閉じる操作でidを返す。アプリが未保存判断を行い、panelデータとselectedを同時に更新する。`reorderable/orderChange`はAlt＋方向キーまたは前後の操作で新しいid順を返し、アプリは`@for(...;track panelId)`で実データを並べ替える。ライブラリは入力を再生成しない。`allowEmpty`（既定false）、`focusFallback: HTMLElement|null`は最後のpanel除去と退避先の明示に使う。空になった時はtablistと選択中の操作を表示せず、指定した退避先へfocusを移す。動的除去/disabledで自前focusが失われた際は次/前の有効tabへ移す。別領域にあるfocusは奪わない。
 

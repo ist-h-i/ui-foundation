@@ -70,7 +70,12 @@ export class CommandPalette {
             const scope = this.shortcutScope() ?? this.element.closest('ui-overlay-host') ?? this.element.ownerDocument.body;
             if (!scope.contains(event.target as Node) || scope.closest('[hidden],[inert]'))
                 return;
-            const modal = this.element.ownerDocument.querySelector('dialog:modal');
+            // Native modal inertness is not reflected as an inert attribute.
+            // The focused modal is the active scope, including nested dialogs;
+            // DOM order alone does not describe the browser's top-layer stack.
+            const document = this.element.ownerDocument;
+            const modal = document.activeElement?.closest<HTMLDialogElement>('dialog:modal')
+                ?? Array.from(document.querySelectorAll<HTMLDialogElement>('dialog:modal')).at(-1);
             if (modal && !modal.contains(this.element) && modal !== this.dialogElement())
                 return;
             if (matchesCommandShortcut(event, commandShortcut(this.shortcut()))) {

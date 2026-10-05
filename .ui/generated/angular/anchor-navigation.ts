@@ -82,7 +82,7 @@ export class AnchorNavigation {
                 if (root)
                     resize.observe(root);
                 const observer = new MutationObserver(() => { this.revision.update(value => value + 1); schedule(); });
-                observer.observe(this.element.ownerDocument.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['hidden', 'inert', 'id', 'class', 'style', 'dir', 'data-ui-profile'] });
+                observer.observe(this.element.ownerDocument.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['hidden', 'inert', 'open', 'id', 'class', 'style', 'dir', 'data-ui-profile'] });
                 this.cleanup = () => { (root ?? view).removeEventListener('scroll', schedule); view.removeEventListener('resize', schedule); view.removeEventListener('hashchange', schedule); resize.disconnect(); observer.disconnect(); if (frame !== null)
                     view.cancelAnimationFrame(frame); };
                 this.track();
@@ -91,7 +91,12 @@ export class AnchorNavigation {
         inject(DestroyRef).onDestroy(() => { this.cleanup?.(); for (const [target, lease] of [...this.leases])
             this.release(target, lease); });
     }
-    protected available(target: HTMLElement | null): target is HTMLElement { return canFocus(target) && !!target.id; }
+    protected available(target: HTMLElement | null): target is HTMLElement {
+        // DOM availability can change without replacing the items array. Read
+        // the observed revision in the template, even when entries stays equal.
+        this.revision();
+        return canFocus(target) && !!target.id;
+    }
     private release(target: HTMLElement, lease: {
         margin: string;
         last: string;
