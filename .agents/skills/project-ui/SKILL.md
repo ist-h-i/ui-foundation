@@ -54,7 +54,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - Meterは既知範囲のnative meter、進捗はProgressBar。未知値は説明し、MeterGroupでは未取得区分を0/空き容量と扱わない。finite/range/threshold/order/sumを検証する。
 - HelpTextのidをaria-describedbyへ明示接続し、ShortcutHintはnative kbdと必要な読み上げlabelを使う。キー実行はアプリが接続する。
 - ReadMoreは実overflowを観測して全文/折畳みを切り替える。全文を捨てず、短文化/行数/幅変更でtoggleが消える際のfocusを確認する。
-- CodeBlockはpre/codeの文字補間で安全に表示し、整形失敗も原文を保持する。JSONの重複キー・生数値/文字列トークンを失わない。行番号を支援技術とコピーから除き、実Clipboardと失敗/再試行/表示時間を検証する。外部copyable=falseでfocusをコード領域へ保持する。
+- CodeBlockはpre/codeの文字補間で安全に表示し、整形失敗も原文を保持する。JSONの重複キー・生数値/文字列トークンを失わない。行番号はsource lineごとのrowへ置いて折返し/空行との対応を保ち、支援技術とコピーから除く。実Clipboardと失敗/再試行/表示時間を検証する。外部copyable=falseでfocusをコード領域へ保持する。
 - Watermarkはnative SVG pattern/論理位置/濃度を実描画し、aria-hidden/pointer-events:noneで入力・操作を遮らない。認証やコピー防止を保証する部品として使わない。
 - font.code/size.avatar/opacity.watermarkを設定正本で対応付ける。opacityは0〜1のsemantic CSS、書体/寸法は対応するTailwind namespaceへ同期する。
 

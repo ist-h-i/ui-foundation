@@ -33,10 +33,12 @@ export function meterValues(value:number|null,min:number,max:number,low:number|n
 export interface MeterSegment { id:string;label:string;value:number|null;tone?:DisplayTone }
 export function meterGroupValues(items:readonly MeterSegment[],maximum:number):{sum:number;unknown:number}{
  finiteDisplayValue(maximum,'maximum');if(maximum<=0)throw new RangeError('MeterGroup maximum must be positive.');
- const ids=new Set<string>();let sum=0,unknown=0;
- for(const item of items){if(!item.id.trim()||!item.label.trim()||ids.has(item.id))throw new Error('MeterGroup items need unique IDs and nonempty labels.');ids.add(item.id);meterValues(item.value,0,maximum);if(item.value===null)unknown++;else sum+=item.value;}
- if(!Number.isFinite(sum)||sum>maximum)throw new RangeError('MeterGroup sum must not exceed its maximum.');
- return {sum,unknown};
+ const ids=new Set<string>();let sum=0,correction=0,unknown=0;
+ for(const item of items){if(!item.id.trim()||!item.label.trim()||ids.has(item.id))throw new Error('MeterGroup items need unique IDs and nonempty labels.');ids.add(item.id);meterValues(item.value,0,maximum);if(item.value===null)unknown++;else {const remainder=item.value-correction,next=sum+remainder;correction=(next-sum)-remainder;sum=next;}}
+ // Compensated positive summation limits accumulation error; allow only its final rounding margin.
+ const roundingMargin=Number.EPSILON*Math.max(sum,maximum)*2;
+ if(!Number.isFinite(sum)||sum-maximum>roundingMargin)throw new RangeError('MeterGroup sum must not exceed its maximum.');
+ return {sum:Math.min(sum,maximum),unknown};
 }
 /** Preserve raw keys, strings and number tokens while changing JSON whitespace. */
 export function formatJSONCode(source:string,indent=2):string{

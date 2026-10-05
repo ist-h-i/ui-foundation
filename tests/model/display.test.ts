@@ -38,6 +38,12 @@ test('JSON formatting preserves duplicate keys, raw number tokens, escapes and s
  assert.equal(formatJSONCode('false'),'false');assert.equal(formatJSONCode('0'),'0');assert.equal(formatJSONCode('"a:b,{[]}"'),'"a:b,{[]}"');
  assert.throws(()=>formatJSONCode('{bad}'),SyntaxError);assert.throws(()=>formatJSONCode('{}',9),RangeError);
 });
+test('decimal meter sums tolerate final rounding and still reject a meaningful overflow',()=>{
+ const items=[{id:'a',label:'A',value:.1},{id:'b',label:'B',value:.2}];assert.deepEqual(meterGroupValues(items,.3),{sum:.3,unknown:0});
+ assert.throws(()=>meterGroupValues([items[0],{...items[1],value:.200000000001}],.3),RangeError);
+ const many=Array.from({length:10000},(_,index)=>({id:String(index),label:'区分 '+index,value:.0001}));assert.equal(meterGroupValues(many,1).sum,1);
+ assert.throws(()=>meterGroupValues([{id:'a',label:'A',value:Number.MIN_VALUE},{id:'b',label:'B',value:Number.MIN_VALUE}],Number.MIN_VALUE),RangeError);
+});
 test('format errors retain the original and custom formatters return actual text',()=>{
  assert.deepEqual(codePresentation('{bad}','json','json'),{text:'{bad}',error:'整形できませんでした。原文を表示しています。'});
  assert.deepEqual(codePresentation('<b>x</b>','html','preserve'),{text:'<b>x</b>',error:null});

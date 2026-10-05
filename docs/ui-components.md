@@ -286,13 +286,13 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 
 `Statistic`（ui-statistic/ui-metric-card）はlabel/value/unit、comparison/comparisonLabel、deltaMode=absolute/percent、deltaLabel/deltaTone、localeとIntl.NumberFormatOptionsのformat、missingLabel/unavailableDeltaLabelを持ちます。有限数またはnullを受け付け、0件と未取得を区別します。百分率は(value−comparison)/abs(comparison)で、比較値0・欠損・表現可能範囲を超える増減は比較不能と説明します。増加を業務上の成功と推定せず、意味色はアプリが指定します。
 
-`Meter`はcontrolId/label、value/minimum/maximum、low/high/optimum、unit/locale、missingLabelをnative meterへ接続します。minimum < maximum、範囲内の有限値、low ≤ highを検証し、nullは数値メーターを作らず未取得と表示します。進捗には既存ProgressBarを使います。`MeterGroup`はcontrolId/label、typed items(id/label/value/tone)、maximum、unit/localeを持ち、取得済みの合計と未知項目数、各区分のnative meterと装飾の比例帯を表示します。重複IDや上限超過の合計を拒否します。未知を空き容量0と扱いません。
+`Meter`はcontrolId/label、value/minimum/maximum、low/high/optimum、unit/locale、Intl書式のformat、missingLabelをnative meterへ接続します。minimum < maximum、範囲内の有限値、low ≤ highを検証し、nullは数値メーターを作らず未取得と表示します。進捗には既存ProgressBarを使います。`MeterGroup`はcontrolId/label、typed items(id/label/value/tone)、maximum、unit/locale/formatを持ち、取得済みの合計と未知項目数、各区分のnative meterと装飾の比例帯を表示します。重複IDや上限超過の合計を拒否します。補償加算と最終丸め誤差の範囲だけを考慮し、0.1＋0.2が上限0.3の区分を拒否しません。値と合計/上限を同じIntl書式へ接続します。未知を空き容量0と扱いません。
 
 `HelpText`は投影内容、id、position=inline/above/belowを持ち、入力のaria-describedbyへ明示接続します。`ShortcutHint`はkeys、任意の読み上げlabel、position=inline/belowをnative kbdへ接続します。⌘等の記号には説明labelを指定できます。キーコマンドの実行はアプリが接続します。
 
 `ReadMore`（ui-read-more/ui-truncated-text）はcontrolId/text、正のlines、expanded/expandedChange、expandLabel/collapseLabelを持ちます。実描画のoverflowをResizeObserverで測定し、必要な場合だけnative buttonで全文/折畳みを切り替えます。全文をDOMから捨てず、視覚的な行数制限を行います。短文/行数/幅変更で操作が消える場合はReadMoreへfocusを保持します。
 
-`CodeBlock`はsource、language、label、format=preserve/json、indent、任意の同期formatter(source,language)、lineNumbers、wrap、copyable/copyLabel/copyDurationSeconds、copied/copyFailedを持ちます。pre/codeの文字補間で表示し、HTMLとして実行しません。JSON整形は重複キーや数値/文字列の生トークンを保持して空白だけを変更します。整形失敗は原文と説明を表示します。行番号は支援技術と選択コピーから除き、コードは名前付き局所scroll領域に収めます。実CopyButtonで表示内容をコピーし、失敗時も原文を保ちます。コピー操作の外部除去時はコード領域へfocusを保持します。`InlineCode`はnative code[uiInlineCode]へ同じ書体を接続します。ハイライトや言語補完はこの表示部品の契約に含みません。
+`CodeBlock`はsource、language、label、format=preserve/json、indent、任意の同期formatter(source,language)、lineNumbers、wrap、direction=ltr/rtl/auto（既定ltr）、copyable/copyLabel/copyDurationSeconds、copied/copyFailedを持ちます。pre/codeの文字補間で表示し、HTMLとして実行しません。JSON整形は重複キーや数値/文字列の生トークンを保持して空白だけを変更します。整形失敗は原文と説明を表示します。行番号はsourceの各行と同じrowへ置き、折返した継続行に新しい番号を付けません。空行も行高と番号を保ちます。行番号は支援技術と選択コピーから除き、コードは名前付き局所scroll領域に収めます。実CopyButtonで表示内容をコピーし、失敗時も原文を保ちます。コピー操作の外部除去時はコード領域へfocusを保持します。`InlineCode`はnative code[uiInlineCode]へ同じ書体を接続します。ハイライトや言語補完はこの表示部品の契約に含みません。
 
 `Watermark`はcontrolId/content、repeat、position=top/center/bottom×start/center/end、opacity、tileWidth/tileHeightを持ちます。繰返しはnative SVG patternで実領域を覆い、単発は論理位置へ置きます。opacity=nullは意味トークン、明示値は0〜1、tile寸法は正のpxまたは用途別profile寸法を使います。装飾を支援技術から除外し、pointer-events:noneで下の入力/操作を遮りません。透かしは認証やコピー防止の保証ではありません。
 
