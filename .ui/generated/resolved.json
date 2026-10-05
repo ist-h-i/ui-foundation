@@ -48,6 +48,10 @@
       "type": "length",
       "value": "640px"
     },
+    "dialog-min": {
+      "type": "length",
+      "value": "280px"
+    },
     "disabled-wash": {
       "type": "color",
       "value": "#e7ebf0"
@@ -59,6 +63,10 @@
     "easing": {
       "type": "easing",
       "value": "ease-out"
+    },
+    "elevation-blur": {
+      "type": "length",
+      "value": "12px"
     },
     "error-wash": {
       "type": "color",
@@ -80,6 +88,10 @@
       "type": "color",
       "value": "#0f462c"
     },
+    "grid-item": {
+      "type": "length",
+      "value": "256px"
+    },
     "heading-dense": {
       "type": "length",
       "value": "1.5rem"
@@ -95,6 +107,10 @@
     "ink": {
       "type": "color",
       "value": "#1c293d"
+    },
+    "input-max-height": {
+      "type": "length",
+      "value": "320px"
     },
     "leading-body": {
       "type": "number",
@@ -115,6 +131,10 @@
     "outline": {
       "type": "color",
       "value": "#778496"
+    },
+    "overlay-min": {
+      "type": "length",
+      "value": "192px"
     },
     "red": {
       "type": "color",
@@ -139,6 +159,10 @@
     "semibold": {
       "type": "number",
       "value": 600
+    },
+    "sidebar": {
+      "type": "length",
+      "value": "256px"
     },
     "small-dense": {
       "type": "length",
@@ -183,6 +207,14 @@
     "system-font": {
       "type": "fontFamily",
       "value": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    "table-column-min": {
+      "type": "length",
+      "value": "128px"
+    },
+    "table-viewport": {
+      "type": "length",
+      "value": "480px"
     },
     "text-dense": {
       "type": "length",
@@ -308,6 +340,11 @@
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -398,10 +435,50 @@
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
+        },
+        "size.sidebar": {
+          "reference": "sidebar",
+          "type": "length",
+          "value": "256px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-8",
@@ -576,6 +653,11 @@
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -666,10 +748,50 @@
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
+        "size.grid-item": {
+          "reference": "grid-item",
+          "type": "length",
+          "value": "256px"
+        },
         "size.icon": {
           "reference": "icon",
           "type": "length",
           "value": "20px"
+        },
+        "size.input-max-height": {
+          "reference": "input-max-height",
+          "type": "length",
+          "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
+        },
+        "size.sidebar": {
+          "reference": "sidebar",
+          "type": "length",
+          "value": "256px"
+        },
+        "size.table-column-min": {
+          "reference": "table-column-min",
+          "type": "length",
+          "value": "128px"
+        },
+        "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
         },
         "space.control-gap": {
           "reference": "space-12",

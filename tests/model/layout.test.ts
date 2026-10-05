@@ -1,0 +1,6 @@
+import assert from 'node:assert/strict';
+import {test} from 'node:test';
+import {gridAtWidth,splitterBounds} from '../../templates/angular/layout-model.ts';
+test('grid breakpoints choose the greatest inclusive container width and preserve default rows',()=>{const points=[{minWidth:900,columns:4,rows:3},{minWidth:640,columns:2}];assert.deepEqual(gridAtWidth(639,1,2,points),{columns:1,rows:2});assert.deepEqual(gridAtWidth(640,1,2,points),{columns:2,rows:2});assert.deepEqual(gridAtWidth(900,1,2,points),{columns:4,rows:3});});
+test('grid rejects fractional/empty counts, invalid widths and ambiguous breakpoints',()=>{for(const count of [0,-1,1.5,NaN,Infinity])assert.throws(()=>gridAtWidth(320,count,1,[]));assert.throws(()=>gridAtWidth(320,1,1,[{minWidth:0,columns:1},{minWidth:0,columns:2}]));assert.throws(()=>gridAtWidth(320,1,1,[{minWidth:-1,columns:2}]));});
+test('splitter ratios clamp to explicit limits while invalid ranges fail',()=>{assert.equal(splitterBounds(25,75,-200),25);assert.equal(splitterBounds(25,75,200),75);assert.equal(splitterBounds(25,75,40),40);for(const [min,max,value]of [[50,50,40],[-1,70,40],[10,101,40],[0,100,NaN]])assert.throws(()=>splitterBounds(min,max,value));});

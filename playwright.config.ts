@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/ui',
   fullyParallel: true,
+  workers: 2,
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   reporter: 'list',
@@ -17,6 +18,6 @@ export default defineConfig({
     command: 'npm run build && node scripts/serve.mjs',
     url: 'http://127.0.0.1:4183',
     reuseExistingServer: false,
-    timeout: 60_000,
+    timeout: 120_000,
   },
 });

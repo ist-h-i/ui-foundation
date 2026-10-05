@@ -89,9 +89,9 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 
 `<ui-pagination [page]="page()" [totalPages]="totalPages()" (pageChange)="page.set($event)" label="申請一覧のページ" />`。pageは1以上、totalPagesは0以上のsafe integer。totalPages>0ではpage<=totalPages、既知の0件ではpage=1を渡す。範囲外や不明な数値は『ページ情報を表示できません』と示して操作を抑止する。取得前の総頁数を0に置き換えず、AsyncRegion等で状態を分ける。disabledは既定false。前後操作と現在頁／総頁を示し、全頁分のボタンを大量生成しない。
 
-## 今後必要に応じて追加する部品
+## 初版で対象外だった部品と拡張範囲
 
-検索付きcombobox、メニュー、ツールチップ、日付選択、ファイルアップロード、仮想化表、ドラッグ操作は今回のセットに含めない。単純な日付・ファイル入力はFormField内の標準inputで構成できるが、アップロード処理やブラウザー固有のpicker挙動は未検証。今回の整備を、すべてのアプリの部品が揃ったという一般保証にはしない。
+初版では検索付きcombobox、メニュー、日付選択等を対象外とした。拡張依頼により現在は全181要求行を実装対象としている。各部品の現契約はこの文書の拡張節、実装・検証済みと残件は`docs/ui-library-matrix.json`に記録する。ファイルアップロード、仮想化、専門部品等を、名称や単純な標準inputの配置だけで完成とは扱わない。
 
 ## 表示方針
 
@@ -116,3 +116,156 @@ TabsとDisclosureのhostに `[hidden]="true"` を指定すると、表示とキ�
 - 今回のP2回帰: 修正前のテンプレートで両プロファイルの4件が失敗することを確認した。修正後は白いaction／action-hoverとinkのon-actionを持つ設定が通り、nav／パンくずの通常・現在地・hover、surface／backgroundの実背景、選択タブの文字・下線が4.5:1以上となる。不適切なlink／tab-selectedの配色、必須参照の不足・型違い・参照切れは設定検証で拒否する。
 - 長い移動先: 実Angular部品のnav／パンくずを両プロファイル、320px、100%／200%、日本語／連続英字で検証した。全文の各描画行がリンク・list itemの枠内に収まり、ページの横スクロールを生じさせない。nativeのTab／Enter、href、aria-current、hidden／再表示も確認した。Chromium 153.0.8010.12で320px・200%の両部品、白い主操作背景、独立したリンク・選択タブの色を撮影し、実描画を確認した。
 - 未確認: Firefox／Safari、実スクリーンリーダー、SSR／hydration、多重modal、Angular forms／Routerとの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。自動コンパイル・操作・axeの成功から、これらの成立は推測しない。
+
+## 共通ライブラリの拡張
+
+全依頼は[原文](ui-library-request.ja.md)と[要求マトリクス](ui-library-matrix.json)で追跡します。下記は実装したAPIの契約であり、全カタログの完了を意味しません。高度な表編集、集計・グループ、仮想化、出力、専門部品などの残件はマトリクスに保持します。
+
+Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`、Iconを使うconsumerは`@lucide/angular`を導入します。このrepoでは22.2.1／1.52.0を固定し、AOTで利用します。Lucideは[公式Angular adapter](https://lucide.dev/guide/angular)と[ISCライセンス](https://lucide.dev/license)を確認しました。追加のアカウントや有償serviceは使用しません。アイコンの依存ソースはAngular linkerを通し、実際に描画したSVGで検証します。
+
+### DataTableView と Pagination
+
+既存の`table[uiTable]`（native HTMLのDataTable adapter）に加えて、列とレコードを渡す`<ui-data-table>`（DataTableView）を提供します。`rows`、`columns`、`keyField`、`tableId`、`caption`は必須です。行キーは一意な文字列または有限の数値、列IDは一意な非空文字列とします。欠損、無効な数値／日付、0とfalseを区別します。欠損は両ソート方向で最後へ置きます。
+
+`TableColumn<T>`は`id/field/header/type/format/sortable/filterable/options/width/minWidth/maxWidth/pinned`。`TableState`は`page/pageSize/search/sort/filters/columnOrder/hiddenColumns/columnWidths/pinnedColumns`を持ち、`createTableState()`で初期化します。状態は`state` inputと`stateChange` outputでアプリが保持し、永続化／復元へ接続します。部品はHTTPやlocalStorageへ書き込みません。
+
+- `sortable/sortMode`はOFF／単一／複数ソート。昇順→降順→解除の順で循環します。
+- `columnFilters/globalSearch/searchColumns`は列の文字・数値・日付・選択肢条件と対象列を指定した全体検索。`TableFilter`はAND/ORと複数条件を表現します。未入力の比較は条件として実行せず、選んだ演算子を保持します。現UIは各列の先頭条件を編集し、複数条件エディターは後続要求です。
+- `pagination/pageSizeOptions`はページ操作と件数。clientの絞込みでページ数が減れば有効なページへ補正して状態を返します。`mode='server'`では供給された行へローカル検索／ソート／ページ分割をせず、状態を返します。totalItemsはアプリが供給します。
+- `autoWidth/autoFit='content'|'available'`は内容／領域に合わせた幅。DOMで測った幅を上下限へ収め、収まり切らないときは表領域内でスクロールします。`resizableColumns`のスライダーはpointerとキーボードで操作できます。
+- `stickyHeader/columnControls`は固定見出し、表示・順序・左右固定・幅・リセットの設定。左右固定はRTLにも論理方向で適用します。最後の一列はUIから隠せません。
+- `selectionMode/selectedKeys/selectedKeysChange/rowSelectable/selectAllScope`はnative checkbox/radioで選択します。選択不可行を除外し、他ページの選択を保持します。serverの全選択対象は供給されたページです。
+- `expandedKeys/expandedKeysChange/rowActions/rowAction`は詳細表示と操作。詳細は同じDOMをhiddenにし、そのページに留まる間の入力を保持します。アプリが別ページへ移した行の入力保持はアプリが所有します。
+- `striped/borders/hover/rowSpacing/wrap/ellipsis`と`dataState/retryAvailable/retry`は表示と取得・更新・失敗・部分欠損。busyはqueryと選択を抑止し、前回の内容を残します。部分欠損で安全に実行できる業務操作はアプリが決めます。
+
+セルは`<ng-template uiTableCell="amount" [uiTableTemplateOf]="rows" let-row let-value="value">`、詳細は`uiTableDetail`で差し替えます。`uiTableTemplateOf`はtemplate contextの型推論に使います。アプリはTableTemplateもimportします。
+
+Paginationは既存の`page/totalPages/pageChange`に加え`totalItems/pageSize/pageSizeOptions/pageSizeChange/showFirstLast/busy/disabled/label`を受け取ります。既知の件数から総ページ数を計算し、先頭／前／次／末尾の境界と無効な設定を抑止します。件数変更に伴うサーバー取得やページ状態の保存はアプリの責任です。
+
+### フォームと候補入力
+
+TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Switch、Select、MultiSelect、Comboboxはnative要素を使うControlValueAccessorです。`controlId/label`は必須、共通で`hint/error/required/disabled/busy/readonly/value/valueChange/name`を持ちます。`[formControl]`／`formControlName`または制御された`value/valueChange`を使い、同じ部品で二つの値の所有者を併用しません。`writeValue`でアプリへ値を返さず、disabled・readonly・busyでは編集を抑止します。表示エラーの文言と表示時機、送信時の最終検証はアプリが所有します。
+
+- TextInput: placeholder、maxLength、autocomplete、clearable、showCount。文字数／maxlengthはnativeのUTF-16単位で扱います。
+- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。
+- NumberInput: min/max/step/fractionDigits/grouping/locale/unit。編集はnative number、桁区切りと小数桁は補助表示へ適用します。CVA validatorは範囲・刻み・必須とbadInputを扱い、範囲変更時も再検証します。無効な数値ドラフトで古い値を有効扱いしません。
+- PasswordInput: autocomplete、表示切替とアプリが渡すstrength。強度の安全性を部品が保証したとは扱いません。
+- SearchInput: debounceMs、loading、suggestions/suggestionsQuery、`searchRequest:{query,requestId}`。入力値は即時更新し、待ち時間後は最新語を一度返します。Enter／検索ボタンは待機を取消して即時に返し、IME変換Enterは処理しません。native searchイベントとの衝突を避けた出力名です。
+- Checkbox: boolとindeterminate。Switch: bool、busy、native role=switch。操作後の値とCVA touchedを接続します。
+- Select: optionsのlabel/value/disabled/group、placeholder、clearable。標準select/optgroupを使います。
+- MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
+- Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。候補の高度なtemplate差替え／top-layer overlayは後続契約です。
+
+FormLayout（`[uiFormLayout]`）はcolumnsとdirection、InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。ラベル幅・配置とFormGroupの拡張、他の入力カテゴリはマトリクスで追跡します。
+
+### Calendar と日付入力
+
+日付は`YYYY-MM-DD`、月は`YYYY-MM`、年は文字列、時刻は`HH:mm[:ss]`。日付だけの値を地域時刻へ変換しません。CalendarとDatePickerはmin/max、disabledDates/dateDisabled、weekStartsOn（0～6）、localeを受け取ります。Calendarはvalue/CVA、today、initialMonth、displayMonth/monthChange、view=month/year、selectedDatesと`ng-template[uiCalendarDay]`を持ちます。日セルのcontextはdate（$implicit）/day/inMonth/selected/disabled。日セル内に別の操作要素を入れず、選択操作はCalendarに任せます。
+
+Calendarの日付は一つのタブ停止を持つgrid。左右／上下、Home/End、PageUp/PageDown、Shift+PageUp/PageDownで日・週・月・年を移動します。選択不可日はfocusで確認でき、確定はできません。狭幅・文字拡大時は日付一覧の名前付き領域で横スクロールし、数字を分割しません。追加の日セル情報は`dayDescription(date)`でも伝え、日付ボタンの名前に含めます。DatePickerのnative dialogを開くと選択日へfocusを置き、Escapeまたは確定後に起動ボタンへ戻します。ネイティブdialogは同じプロファイル／RTLスコープ内に残します。
+
+DatePicker/DateRangePickerの`inputFormat`を変更すると最後に確定した値を新しい書式で表示し、未確定の文字とそのエラーを解除します。期間入力は内部の両端のvalidatorを親フォームへ伝え、部分入力がある間は確定済みの期間を保持して親をinvalidにします。preset/clear/reset/カレンダー選択で修復できます。日時の刻みはmin（未指定時はcivil epoch）を起点に日付と時刻の両方で計算します。
+
+DatePickerの`inputFormat`はnative、yyyy-MM-dd、yyyy/MM/dd、dd/MM/yyyy、MM/dd/yyyy。手動書式は明示して解析し、地域から曖昧な順序を推測しません。無効ドラフトは表示を残してvalidatorをinvalidにし、clear/resetで復旧できます。`format`は補助表示のlocale/iso。TimePickerはseconds/stepSeconds/hourFormat=12|24/timeAllowedを持ち、刻みと時間範囲を検証します。DateTimePickerはtimeZoneを明示し、native datetime-local文字列を保持します。Instantへの変換、DSTの重複／欠落時刻の業務上の扱いはアプリが所有し、部品は暗黙変換しません。MonthPicker/YearPickerはmin/maxとclearを持ちます。
+
+DateRangePickerの値は`{start,end}`。min/max、maxDays（両端を含む）、disabledDates/dateDisabled、presets、months、weekStartsOn、locale、initialMonth、clearableを受け取ります。順序、期間上限、期間内部の選択不可日を検証し、入力を保持します。複数月の起点を連動し、開始／終了の選択先を明示します。Schedulerの資源・予定移動は別要求です。
+
+### GridList と Icon
+
+GridListはitems/keyField/labelField/controlId/labelと、`ng-template uiGridItem [uiGridItemOf]="items"`を受け取ります。contextはitem（$implicit）/index/selected。columns=nullは実際の領域幅と意味トークンsize.grid-itemで列数を計算し、columns/maxColumns/minimumItemWidth/itemSize/gap/breakpointsで配置を制御します。breakpointsは`{minWidth,columns}`の領域幅条件です。selectionMode、selectedKeys/selectedKeysChange、itemSelectable、showSelectAll、busy/disabled、emptyMessageを持ちます。選択はnative checkbox/radio。busyは部品の選択操作を抑止し、投影した業務操作はアプリが接続します。
+
+Iconはname、size=small/medium/large、severity、decorative、label。装飾アイコンは支援技術から隠し、意味を持つものはlabelを必須とします。`provideUiIcons()`で業務の基本12種類を登録し、`provideUiIcons(LucideFileText, …)`で必要なアイコンだけ追加できます。同じDI階層で別のLucide providerを置くと登録が上書きされるため、追加も一つのproviderへ渡します。名前だけを登録して描画済み扱いにはせず、SVGの実パスを検証します。
+
+### Cardと領域
+
+`<ui-card cardId="record" title="申請内容" [collapsible]="true" [(collapsed)]="folded">`。`showHeader/showBody/showFooter/showMedia/showActions`はそれぞれの領域をhiddenで制御します。`orientation=vertical|horizontal`、`appearance=outlined|plain|raised`、`padding=none|compact|normal`、`title/subtitle/label`、`loading/loadingLabel`を持ちます。折り畳み・非表示・読込みで入力のインスタンスを維持し、操作中の領域が消えると展開操作またはarticleへfocusを移します。loadingは本文の業務操作を自動で無効にしません。アプリが取得状態の意味に合わせて操作を設定します。
+
+`ui-card-header/body/footer/media/actions`の投影部品は`align=start|center|end`と`padding`を受け取ります。代わりに`<ng-template uiCardTemplate="header|body|footer|media|actions" let-context>`で各領域を差し替えられます。一領域に一テンプレート、contextはtitle/subtitle/collapsed/loading。同じ領域のテンプレートがある場合はそのテンプレートを使います。CardTemplateと投影部品をconsumerのimportsに含めます。
+
+### MenuとOverlay
+
+Menuは`ui-menu/ui-dropdown-menu/ui-context-menu`。`menuId/label`必須、`items`は一意のidを持つ再帰MenuItemで、type=item|checkbox|radio|group|separator、label/icon/disabled/visible/checked/radioGroup/value/childrenを受け取ります。選択は`selected:{item,path}`、チェック変更は`itemsChange`。`open/openChange`、`trigger=click|hover|context`、`placement`、`closeOnSelect`、`disabled`を制御します。radioは明示radioGroup、未指定時は同じ親のグループで排他的に選択します。存在しない/重複ID、循環、空ラベルは拒否します。
+
+矢印、Home/End、Enter/Space、文字検索で操作し、RTLでは階層方向を反転します。無効項目はfocusで確認できますが実行しません。Escapeはfocusのある階層から一段ずつ戻り、親項目へ復帰します。TabはMenuを終了して隣の操作へ移動します。子階層の「親メニューに戻る」はtouchの代替操作です。contextは対象の右クリック、Shift+F10/ContextMenu、500ms長押し、常設の起動ボタンに対応します。context対象は`uiMenuContext`へ投影します。hoverは起動ボタンと内容の間を移動でき、外れた後の200msで終了します。
+
+hover表示は編集中の入力からfocusを奪いません。triggerはメニュー全体の起動を設定し、子階層はクリック・矢印・Enter/Spaceで展開します。狭幅で子メニューが親を覆う場合も、クリック直前のhoverで別項目へ切り替えません。項目の削除・非表示更新では残る同階層の項目、親項目、起動ボタンの順にfocusを修復します。親Dialog終了やanchorのhidden/inert/破棄では内部popupを`scope-exit`で終了します。異なるOverlayHostの外側クリックも、一つのpointerイベントで最上位だけを終了します。
+
+native popoverでトップレイヤーへ移しますが、DOMのプロファイルとRTLスコープを維持します。OverlayHostは任意のスコープでOverlayRegistryを提供し、各scopeを同じDocumentの最上位順で調停します。位置はanchor、visual viewport、RTL、外周余白に応じて反転/制限し、scroll/resizeへ追随します。native modalのinertnessとTabはブラウザーが担当します。MoveHandle/ResizeHandle（button[uiMoveHandle/uiResizeHandle]）はtarget、uiHandleDisabled、rectChangeを受け取り、pointer captureまたは矢印キー、Shiftで移動/リサイズします。
+
+### Dialogの拡張と各種Dialog
+
+Dialogは`dialog[uiDialog]`。`open/openChange/modal`、`showHeader/showFooter`、`closable/closeOnEscape/closeOnOutsideClick`、`size=small|normal|large|full`、`position=center|top|bottom|start|end`、`draggable/resizable/maximizable/busy`を受け取ります。元の投影内容だけで利用する場合、showHeaderの既定はfalse。ヘッダー・フッターは`uiDialogHeader/uiDialogFooter`または`ng-template[uiDialogTemplate]`のheader/body/footerで差し替えます。template contextはbusyとfinish(reason,value,returnValue)。ヘッダーの移動、最大化、閉じる操作と独立したサイズ操作を配置できます。
+
+showHeader=falseでもdraggable/maximizableの操作を本文の前に配置します。表示中のmodal切替はnative close→show/showModalでトップレイヤーの状態を変更し、切替だけではcompletedを通知しません。
+
+`finish(reason,value?,returnValue?)`は`closeRequested:DialogCloseRequest`を同期通知します。アプリの`preventDefault()`で終了を保留でき、未保存確認後にfinishを呼びます。busy中はユーザーの終了を抑止します。確定済み処理の後は`complete(value,returnValue)`でconfirm理由の終了を行い、UIのbusy抑止を越えて確定結果を返せますが、アプリのcloseRequestedによる保留は維持します。明示inputのopen=falseはprogrammatic終了です。`completed:{reason,value,returnValue}`、既存のcancelled/closedを通知し、呼出元へfocusを復帰します。終了理由はescape/outside/close-button/confirm/cancel/programmatic/native。アプリが直接native close()やmethod=dialogを使う場合はnative理由となり、finishの保留契約を通りません。
+
+ConfirmDialogはlabel/message、confirmLabel/cancelLabel、busy、closeOnOutsideClick、open、closeRequested/completedで確認意図を返します。AlertDialogはrole=alertdialogで明示応答するまで保持し、Escapeと外側クリックで閉じません。いずれも通知した確認結果をHTTP更新の成功とは扱いません。
+
+FormDialogはlabel、open、busy、dirty、valid、error、saveLabel、closeOnOutsideClickと投影入力を受け取ります。dirtyでの終了要求を保留し、「編集を続ける／変更を破棄して閉じる」を表示します。saveRequestedでアプリへ検証・保存を委ね、成功時にアプリがcompleteを呼びます。失敗はerrorで伝え、入力を保持します。アプリの追加closeRequestedによる保留も可能です。open=falseはアプリの明示指示なので、未保存確認を経る終了はfinishを使います。
+
+DynamicDialogServiceはDynamicDialogHostを先に配置し、`open<T>({component,label,data,inputs,modal,...})`でAngular componentを実際に描画します。contentはUI_DYNAMIC_DIALOG_DATAとUI_DYNAMIC_DIALOG_REFをinjectでき、ref.finish(reason,value)またはEscape等で終了し、ref.resultがDialogResultを返します。updateInputsはcomponentを作り直さず入力を更新します。一scopeに一host、一つの動的Dialogを扱い、未接続や重複openはエラーにします。host破棄時もresultを解決します。
+
+### Snackbar・Toast・通知ホスト
+
+Snackbarは`ui-snackbar/ui-toast`。`open/openChange/message/severity/autoDismiss/durationSeconds/position/showCloseButton/actionLabel/pauseOnHover/pauseOnFocus`、action、dismissed=close|action|timeoutを受け取ります。ONの既定は5秒で、有限の正の秒数を必要とします。OFFは秒数を参照せず、0やNaNもタイマーへ使用しません。hoverとfocusが重なったpauseは両方を解除してから残り時間を再開します。action/closeは通知を終了し、操作中だったfocusを呼出元へ戻します。focusReturnで復帰先を明示できます。
+
+NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHostのmaxConcurrency、dedup=ignore|replace|allow、positionを設定します。queuedの通知は描画されるまでタイマーを開始しません。dedupKey、未指定時はmessage/severity/positionの組合せで同一とみなします。replaceは同じIDのrevisionを更新して表示時間を再開し、古いaction/timeoutの終了が新しい通知を消しません。dismiss(id)とclearで明示終了できます。位置はtop/bottomとstart/center/endの六種類で、start/endはRTLの論理方向です。
+
+中央配置は入れ子の異なるdirにも対応します。画面より長い通知は表示領域内でスクロールでき、本文と操作へ到達できます。dismiss/clearは自scopeで操作中の通知からだけfocusを復帰し、別scopeの通知操作へ干渉しません。IDはNotificationServiceごとのローカル識別子です。
+
+同時表示数を減らして待機へ戻した通知や位置の変更で描画し直した通知は、次の表示で設定時間から開始します。これらは全体の経過時間を保証するTTLではありません。同じNotificationServiceに一つのhostを置きます。modal内の操作付き通知はuiNotificationScopeまたは専用NotificationService providerと、そのDOM内のNotificationHostを使います。native modalの外の通知は背景として扱い、背景操作を許可しません。実際のUndo、バックエンド保存、通知本文の業務意味、重複キーの設計はアプリが所有します。
+
+## 配置とコンテナ
+
+`PageFrame`（`ui-page-frame` / `ui-app-shell`）はheader/sidebar/body/footer/actionsを投影し、各表示とheader/sidebar/footerのsticky表示を制御する。`uiPageHeader`・`uiPageContext`・`uiPageSidebar`・`uiPageFooter`・`uiPageActions`が投影先。非表示で子の入力を破棄しない。sidebarの標準幅は`size.sidebar`を使用し、狭幅では本文の前に積む。stickyは配置されたスクロール領域内で作用する。header/footerの実高さに追随してsidebarのoffsetと表示高さを計算し、文字拡大などで固定領域と操作1件分の空間を確保できないscroll領域の高さでは通常フローに戻す（documentの場合はviewport）。外部から領域を非表示にする場合は`focusFallback`を指定でき、指定が使えない場合は同じmodal内の外側操作へfocusを移す。
+
+`Container`（`ui-container` / `ui-section`）はcontent/full/明示pxの最大幅、semanticのpadding、start/center/endの配置、surface/muted/transparent背景、heading/headingLevelを扱う。最大幅は利用領域内に収める。`Stack`（`ui-stack` / `ui-flex` / `ui-space`）はvertical/horizontal・gap・align・justify・wrapを扱う。gap/paddingはnone/compact/normal/wideで意味トークンを選び、nowrapを選んだ利用アプリは内容の収め方を決める。
+
+`Grid`はcolumns/rows/gapとコンテナ幅別の`breakpoints`を持つ。幅の境界は含み、該当する最大のminWidthを使用する。`uiGridCell`はcolumn/row/columnSpan/rowSpanと幅別placementsを持ち、結合は現在の列数・明示行数に収める。入力をDOMに保持したままResizeObserverで配置を更新する。breakpointの重複、空/小数の列行数、負の幅・位置は拒否する。
+
+`Panel`（`ui-panel` / `ui-fieldset`）はtitle、`uiPanelActions`、bordered、collapsible/collapsed/collapsedChange、disabledを持つ。本文のnative fieldsetとinert、操作領域のinertで無効状態を表し、collapseとdisableで投影した入力を保持する。`Accordion` / `AccordionItem`はsingle/multiple、initialExpandedまたはexpanded/expandedChange、itemId/title、開閉アイコン、disabledを持つ。入れ子のitemは直近のAccordionに属する。Enter/Spaceで開閉し、Up/Down/Home/Endは利用可能な見出しへ移動する。非表示前に本文focusを見出しへ戻す。regionは必要なitemだけ明示してlandmarkの増殖を避ける。
+
+`Splitter`は`uiSplitPrimary`と本文の2領域を保持し、horizontal（左右）/vertical（上下）、initialRatioまたはratio/ratioChange、minRatio/maxRatio、step、height、resizable、disabled、collapsible/collapsed/collapsedChangeを扱う。比率はハンドルを除いた利用可能領域の百分率。min/maxは0〜100の有効区間で、collapse時はprimaryを0とする。ratioが0/100の領域はhiddenにしてfocusから除外し、内容を保持する。0%からの展開は直前の正の比率（未操作なら有効なinitialRatioまたは範囲の中間）へ戻す。pointer capture・cancel/destroyと操作中の方向変更を扱い、キーと縮小/拡大/開閉ボタンを代替操作にする。左右分割のLeft/RightはRTLの物理方向、上下分割のUp/Down、Home/Endは境界、Enterはcollapseと保持比率への復帰。折畳み中もratioを保持し、利用アプリからの明示ratio更新を優先する。
+
+`Divider` / `Spacer`は方向、semanticの間隔、線種とラベル、growを扱う。`ScrollArea`は方向・高さ・position/positionChangeを持ち、nativeのキーボードスクロールと実scroll座標を使用する。`StickyRegion`（`ui-sticky-region` / `ui-affix`）の対象は直近のnativeスクロール領域で、edge/offset/enabledを制御する。任意の離れたDOMへportalを作らず、固定はその要素の通常位置がoffsetを越えた時点から作用する。
+
+`AspectRatio`は正のratioとcontain/cover/fillを持ち、直接投影するnative img/video/iframeを収める。`ResponsiveVisibility`はviewportのminWidth/maxWidth（含む）の範囲で投影内容を保持して表示し、非表示前のfocusFallbackを受け取る。業務上必須の入力や操作を画面幅だけで消すかどうかは利用アプリが判断する。
+
+配置パターンの参照: [APG Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)、[APG Window Splitter](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)。APGのWindow Splitterは例の整備・task forceレビューが継続中と記されており、ここでの対応は記載されたrole/value/keyboard契約と対象操作の実証を示す。
+
+## 操作部品
+
+`ActionControl`（`button[uiAction]`）のvariant/type/busy/disabledに、size=small/medium/large、width=auto/full、icon、iconPosition=start/end、`uiActionIcon`の投影を接続する。サイズは現profileのsemantic値に追随し、小サイズも最小操作寸法を縮めない。処理中/無効はnative disabledとcapture guardでconsumerのclickも抑止する。`ActionLink`（`a[uiAction]`）はhref、external、target、relを持ち、externalは「外部リンク」を示し既定target=_blank、noopener/noreferrerを追加する。指定したrelを保持し、無効/処理中はhrefとTab順を外す。
+
+`IconButton`（`button[uiIconButton]`）はicon/label必須、shape=square/round、sizeとselected=null/boolean。選択状態を持つ場合はaria-pressedを接続する。`ToggleButton`（`button[uiToggleButton]`）はlabel、checked/checkedChange、on/offLabel、on/offIconを持つ。labelを一定にしてaria-pressedを伝え、状態文言と装飾iconを差し替える。共通icon/iconPositionも使用できる。`ButtonGroup`はlabel、direction、gap、connected、共通sizeを持ち、投影したnative uiActionの明示sizeは共通設定より優先する。
+
+`SegmentedControl`はcontrolId/label、options=value/label/icon/disabled、multiple、direction、equalWidthを持つ。単一はnative radio、複数はcheckboxで、CVA/required/option/mode validation、disabled/busy/readonly、hint/errorと退出時touchedを接続する。値は単一string/null、複数readonly string[]。選択方式を変える際の値変換は利用アプリが決める。
+
+`SplitButton`は主操作actionとMenuのselectedを分け、items、placement、open/openChange、closeOnSelect、busy/disabledを持つ。`FloatingActionButton`（`ui-floating-action-button` / `ui-speed-dial`）は主操作、補助items、四隅の論理position、up/down/left/rightのpopup direction、open/openChangeを持つ。native modal外では背景操作の抑止を越えない。
+
+`Toolbar`（`ui-toolbar` / `ui-action-bar`）はcontrolId/label、typed itemsの操作/区切り、direction、overflow=menu/wrap、fixed=none/top/bottom、disabledを持つ。実測幅で収まらない操作をMenuへ移す。横方向はRTLを含むLeft/Right、縦方向はUp/Down、Home/Endでroving focus。移動先が非表示になる前に可視の主操作/Moreへ復帰し、popup内の操作が主配置へ戻る場合はその操作へ戻す。fixedはnative stickyの最寄りscroll領域で作用する。
+
+`CopyButton`はtext、label、busy/disabled、successMessage/errorMessage、正のdurationSeconds（既定3）、copied/failedを持つ。既定は実Clipboard APIのwriteTextで、成功したpromiseの後だけ成功を伝える。不可用/拒否を失敗として表示し、再試行できる。処理中の重複と破棄後の古い結果を抑止し、結果表示は完了時から設定時間で消す。`UI_CLIPBOARD_WRITER`で環境のwriterを注入できるが、実コピーの意味とpromiseの成否はそのadapterが所有する。画面外のclip内容は取得しない。
+
+操作パターン: [APG Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/)、[APG Toolbar](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)、[APG Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)、[Clipboard API](https://www.w3.org/TR/clipboard-apis/#async-clipboard-api)。
+
+## 通知一覧と状態表示
+
+`NotificationCenter`はcontrolId/label、typed `items`（id/title/message/category/read/severity/disabled/busy）、filter/categoryと変更出力、disabled/loading/hasMore/error、追加取得/再試行の文言を持つ。未読件数と分類を表示し、`readRequested:{id,read}`、`deleteRequested:id`、`loadMoreRequested`を利用アプリへ返す。部品は既読・削除・取得成功を先取りせず、アプリから受け取る一覧を表示する。取得中は既存一覧を保持して連打を抑止し、失敗時は再試行する。行がfilter/削除で消える前、操作がbusyで無効になる前に可視操作または状態説明へfocusを移す。
+
+`Alert`（`ui-alert` / `ui-banner` / `ui-inline-message`）はopen/openChange、title/message、severity、announcement=polite/assertive/off、closable/closeLabel、actionLabel/action、busy/disabledとfocusFallbackを持つ。本文と`uiAlertActions`を投影でき、明示終了まで保持する。通知を出しただけでfocusを奪わず、閉じる際だけ内側のfocusを外へ移す。投影した独自操作のbusy契約は利用アプリが接続する。
+
+`ActionFeedback`は既存state（idle/success/error/warning/unknown）、recoveryLabel/recover/recoveryBusy/recoveryDisabledにbusy/busyMessage、focusFallbackを接続する。結果不明を成功と扱わず、説明と入力を保持する。`AsyncRegion`はready/loading/empty/error/refreshing/partial/stale、retryAvailable/retryBusy/retryを持ち、取得/欠損の意味を区別する。通常の内容をDOMに保持し、更新中・部分欠損・古い情報では取得済みの内容を表示する。内容と通知の切替前にfocusを退避し、処理中に無効になる復旧操作は状態説明へfocusを残す。
+
+`EmptyState`はkind=empty/search、title/message、image/imageAltと補助操作を持つ。図が取得できなくても説明を残す。`ResultState`はstatus=info/success/warning/error/unknown、title/message/details、native detailsの展開状態、次の操作を持つ。両部品ともbusy/disabled/actionと投影内容・補助操作に対応する。
+
+`ProgressBar`はnative progressにcontrolId/label、value/total/valueTextと取消要求を接続する。totalは正の有限値、valueは有限値またはnull。不定はvalue属性を外し、数値は0〜totalへ収める。`Spinner`（`ui-spinner` / `ui-circular-progress`）は同じ進捗、label、small/medium/large/正のpxのsize、activeとdelayMillisecondsを持つ。表示前の停止と破棄でtimerを取消し、動き低減では回転しない。`Skeleton`はline/rectangle/circle、rows、width/height/diameter、motionを持ち、装飾として支援技術から除外する。円は狭い親へ収めても縦横比を保つ。
+
+`LoadingOverlay`（`ui-loading-overlay` / `ui-block-ui`）は投影した対象領域だけをactiveでinertにし、messageとcancelLabel/cancelRequested、cancelBusy/disabledを表示する。入力を破棄せず、外側の操作を抑止しない。抑止開始時に対象内のfocusだけを退避し、解除後に元の入力、focusFallback、利用可能な内容内操作の順で復帰する。説明が領域より大きい場合は先頭からscrollでき、取消操作へキーボードで到達できる。取消イベントはUIの意思表示であり、処理が停止した保証ではない。
+
+`Tour`（`ui-tour` / `ui-coachmark`）は実HTMLElementをtargetとするtyped steps（id/title/message/placement）、open/openChange、index/indexChange、seen/seenChange、next/back/finish/closeLabelを持つ。対象にscrollし非modal popoverを配置する。対象の操作・入力を許し、次/戻る/再開と表示済みIDをアプリへ返す。closedはcompleted/dismissed/escape/target-unavailable/scope-exitを返す。popup内のfocusは終了後に起動操作へ戻し、対象や外部へ既に移ったfocusは奪わない。外部open=falseも同じfocus復帰を行う。native modalへの移行やCSS不可視で対象が利用できなくなった案内は終了する。表示済みの永続化と再開位置、業務手順の完了判断は利用アプリが所有する。
+
+`uiAction`などdirective付き要素をtarget/focusFallbackに使う場合、Angularのqueryは`viewChild<unknown, ElementRef<HTMLElement>>(name, {read: ElementRef})`のnativeElementを明示して取得する。directiveのtemplate referenceをHTMLElementとして扱わない。
+
+参考: [APG Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)、[HTML progress](https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element)、[native modalと背景のinert](https://html.spec.whatwg.org/multipage/interaction.html#modal-dialogs-and-inert-subtrees)。

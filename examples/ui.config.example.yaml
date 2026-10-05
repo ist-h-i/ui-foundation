@@ -57,6 +57,14 @@ primitives:
   icon: { type: length, value: 20px }
   dialog: { type: length, value: 640px }
   content: { type: length, value: 1120px }
+  table-column-min: { type: length, value: 128px }
+  table-viewport: { type: length, value: 480px }
+  input-max-height: { type: length, value: 320px }
+  grid-item: { type: length, value: 256px }
+  sidebar: { type: length, value: 256px }
+  elevation-blur: { type: length, value: 12px }
+  overlay-min: { type: length, value: 192px }
+  dialog-min: { type: length, value: 280px }
   border-thin: { type: length, value: 1px }
   focus-width: { type: length, value: 3px }
   focus-offset: { type: length, value: 3px }
@@ -85,6 +93,7 @@ semantic:
   color.focus: blue
   color.disabled-surface: disabled-wash
   color.backdrop: backdrop
+  color.shadow: outline
   font.body: system-font
   text.body: text-guided
   text.small: small-guided
@@ -109,6 +118,14 @@ semantic:
   size.icon: icon
   size.dialog: dialog
   size.content: content
+  size.table-column-min: table-column-min
+  size.table-viewport: table-viewport
+  size.input-max-height: input-max-height
+  size.grid-item: grid-item
+  size.sidebar: sidebar
+  size.elevation-blur: elevation-blur
+  size.overlay-min: overlay-min
+  size.dialog-min: dialog-min
   border.control: border-thin
   border.focus: focus-width
   border.focus-offset: focus-offset

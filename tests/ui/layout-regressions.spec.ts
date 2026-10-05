@@ -58,6 +58,8 @@ for (const profile of ['guided', 'dense'] as const) {
 
     async function expectTextInsideAction(action: Locator, label: string, context: string, busy: boolean): Promise<void> {
       await expect(action).toContainText(label);
+      if (busy) await expect(action).toHaveAttribute('aria-busy', 'true');
+      else await expect(action).not.toHaveAttribute('aria-busy', 'true');
       const geometry = await action.evaluate((host) => {
         const rect = host.getBoundingClientRect();
         const css = getComputedStyle(host);
