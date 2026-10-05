@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, InjectionToken, input, linkedSignal, output, signal } from '@angular/core';
+import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, InjectionToken, input, linkedSignal, output, signal } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { ActionControl, type ActionSize } from './action-control';
 import { Icon } from './icon';
@@ -9,6 +9,7 @@ import { layoutSpace, type LayoutSpace } from './layout-model';
 import { PausableDeadline } from './notification-model';
 import { ValueControl } from './value-control';
 import { focusBeforeHiding } from './layout';
+import { restoreFocus } from './focus';
 @Component({ selector: 'button[uiIconButton]', standalone: true, imports: [Icon], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<ui-icon [name]="icon()!" />@if(busy()){<span class="ui-sr-only">処理中</span>}`,
     host: { class: 'ui-action ui-icon-button', '[attr.aria-label]': 'label()', '[attr.aria-pressed]': 'selected()===null?null:selected()', '[attr.data-shape]': 'shape()' } })
@@ -187,8 +188,9 @@ export const UI_CLIPBOARD_WRITER = new InjectionToken<ClipboardWriter>('UI_CLIPB
         };
     } });
 @Component({ selector: 'ui-copy-button', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { tabindex: '-1' },
     template: `<button uiAction icon="copy" [disabled]="disabled()" [busy]="pending()||busy()" (click)="copy()">{{label()}}</button><p role="status" aria-atomic="true" class="ui-copy-result" [attr.data-result]="state()">{{state()==='success'?successMessage():state()==='error'?errorMessage():''}}</p>`,
-    styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}.ui-copy-result{margin-block:var(--ui-space-control-gap) 0;font-size:var(--ui-text-small);overflow-wrap:anywhere;}.ui-copy-result[data-result="success"]{color:var(--ui-color-success);}.ui-copy-result[data-result="error"]{color:var(--ui-color-danger);}` })
+    styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}:host(:focus-visible){outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}.ui-copy-result{margin-block:var(--ui-space-control-gap) 0;font-size:var(--ui-text-small);overflow-wrap:anywhere;}.ui-copy-result[data-result="success"]{color:var(--ui-color-success);}.ui-copy-result[data-result="error"]{color:var(--ui-color-danger);}` })
 export class CopyButton {
     readonly text = input.required<string>();
     readonly label = input('コピー');
@@ -202,6 +204,7 @@ export class CopyButton {
     protected readonly pending = signal(false);
     protected readonly state = signal<'idle' | 'success' | 'error'>('idle');
     private readonly writer = inject(UI_CLIPBOARD_WRITER);
+    private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     private deadline: PausableDeadline | null = null;
     private alive = true;
     constructor() {
@@ -209,6 +212,12 @@ export class CopyButton {
             const seconds = this.durationSeconds();
             if (!Number.isFinite(seconds) || seconds <= 0 || seconds * 1000 > Number.MAX_SAFE_INTEGER)
                 throw new Error('CopyButton durationSeconds must be positive and representable in milliseconds.');
+        });
+        effect(() => {
+            if ((this.pending() || this.busy() || this.disabled()) && this.element.ownerDocument.activeElement === this.element.querySelector(':scope > button')) restoreFocus(this.element);
+        });
+        afterRenderEffect(() => {
+            if (!this.pending() && !this.busy() && !this.disabled() && this.element.ownerDocument.activeElement === this.element) restoreFocus(this.element.querySelector<HTMLElement>(':scope > button'));
         });
         inject(DestroyRef).onDestroy(() => { this.alive = false; this.deadline?.cancel(); });
     }

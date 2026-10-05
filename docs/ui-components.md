@@ -248,7 +248,7 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 
 `Toolbar`（`ui-toolbar` / `ui-action-bar`）はcontrolId/label、typed itemsの操作/区切り、direction、overflow=menu/wrap、fixed=none/top/bottom、disabledを持つ。実測幅で収まらない操作をMenuへ移す。横方向はRTLを含むLeft/Right、縦方向はUp/Down、Home/Endでroving focus。移動先が非表示になる前に可視の主操作/Moreへ復帰し、popup内の操作が主配置へ戻る場合はその操作へ戻す。fixedはnative stickyの最寄りscroll領域で作用する。
 
-`CopyButton`はtext、label、busy/disabled、successMessage/errorMessage、正のdurationSeconds（既定3）、copied/failedを持つ。既定は実Clipboard APIのwriteTextで、成功したpromiseの後だけ成功を伝える。不可用/拒否を失敗として表示し、再試行できる。処理中の重複と破棄後の古い結果を抑止し、結果表示は完了時から設定時間で消す。`UI_CLIPBOARD_WRITER`で環境のwriterを注入できるが、実コピーの意味とpromiseの成否はそのadapterが所有する。画面外のclip内容は取得しない。
+`CopyButton`はtext、label、busy/disabled、successMessage/errorMessage、正のdurationSeconds（既定3）、copied/failedを持つ。既定は実Clipboard APIのwriteTextで、成功したpromiseの後だけ成功を伝える。不可用/拒否を失敗として表示し、再試行できる。処理中の重複と破棄後の古い結果を抑止し、自前buttonにfocusがある場合は処理中に操作内へ退避して完了後に復帰する。外側のfocusは奪わず、結果表示は完了時から設定時間で消す。`UI_CLIPBOARD_WRITER`で環境のwriterを注入できるが、実コピーの意味とpromiseの成否はそのadapterが所有する。画面外のclip内容は取得しない。
 
 操作パターン: [APG Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/)、[APG Toolbar](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)、[APG Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)、[Clipboard API](https://www.w3.org/TR/clipboard-apis/#async-clipboard-api)。
 
@@ -280,22 +280,22 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 
 `Tag`（ui-tag/ui-chip）はlabel/icon/tone、selectable、selected/selectedChange、removable/removed、disabled/busy、focusFallbackを持ちます。選択と削除は別のnative buttonです。選択はaria-pressedで示し、削除要求の前に内側のfocusを外へ退避します。組込み操作が動的に除去/無効化されたらTagへfocusを保持し、外側のfocusを奪いません。実際のデータ削除・検証・失敗からの復旧は利用アプリが所有します。
 
-`Avatar`はname/src/alt、decorative、locale、size=small/medium/large、shape=circle/squareを持ちます。画像取得が失敗するとグラフェムを分断しない氏名頭文字と代替説明を表示し、src変更で画像を再試行します。`imageFailed`は失敗したsrcを返します。`AvatarGroup`はtyped items(id/name/src/alt)、maximum、label、size/shape/localeを持ち、上限を超えた担当者はnative detailsから氏名付きで確認できます。上限変更でsummaryが消える場合はGroupへfocusを保持します。
+`Avatar`はname/src/alt、decorative、locale、size=small/medium/large、shape=circle/squareを持ちます。画像取得が失敗するとグラフェムを分断しない氏名頭文字と代替説明を表示し、src変更で画像を再試行します。`imageFailed`は失敗したsrcを返します。代替の頭文字は画像の寸法から文字サイズを求め、拡大時も折返さず枠内へ収めます。`AvatarGroup`はtyped items(id/name/src/alt)、maximum、label、size/shape/localeを持ち、上限を超えた担当者はnative detailsから氏名付きで確認できます。上限変更でsummaryが消える場合はGroupへfocusを保持します。
 
 `Descriptions`（ui-descriptions/ui-key-value）はnative dl/dt/dd、typed items(id/label/value)、columns、direction=horizontal/vertical、label、missingLabel、emptyLabelを持ちます。null/undefined、0、false、空の文字列を区別します。狭幅では1列へ折返します。`DescriptionTemplate`（ng-template[uiDescriptionValue]）は$implicit:DescriptionItem、value、missingを型付きで渡します。
 
 `Statistic`（ui-statistic/ui-metric-card）はlabel/value/unit、comparison/comparisonLabel、deltaMode=absolute/percent、deltaLabel/deltaTone、localeとIntl.NumberFormatOptionsのformat、missingLabel/unavailableDeltaLabelを持ちます。有限数またはnullを受け付け、0件と未取得を区別します。百分率は(value−comparison)/abs(comparison)で、比較値0・欠損・表現可能範囲を超える増減は比較不能と説明します。増加を業務上の成功と推定せず、意味色はアプリが指定します。
 
-`Meter`はcontrolId/label、value/minimum/maximum、low/high/optimum、unit/locale、Intl書式のformat、missingLabelをnative meterへ接続します。minimum < maximum、範囲内の有限値、low ≤ highを検証し、nullは数値メーターを作らず未取得と表示します。進捗には既存ProgressBarを使います。`MeterGroup`はcontrolId/label、typed items(id/label/value/tone)、maximum、unit/locale/formatを持ち、取得済みの合計と未知項目数、各区分のnative meterと装飾の比例帯を表示します。重複IDや上限超過の合計を拒否します。補償加算と最終丸め誤差の範囲だけを考慮し、0.1＋0.2が上限0.3の区分を拒否しません。値と合計/上限を同じIntl書式へ接続します。未知を空き容量0と扱いません。
+`Meter`はcontrolId/label、value/minimum/maximum、low/high/optimum、unit/locale、Intl書式のformat、missingLabelをnative meterへ接続します。minimum < maximum、範囲内の有限値、low ≤ highを検証し、nullは数値メーターを作らず未取得と表示します。進捗には既存ProgressBarを使います。`MeterGroup`はcontrolId/label、typed items(id/label/value/tone)、maximum、unit/locale/formatを持ち、取得済みの合計と未知項目数、各区分のnative meterと装飾の比例帯を表示します。重複IDや上限超過の合計を拒否します。補償加算と最終丸め誤差の範囲だけを考慮し、0.1＋0.2が上限0.3の区分を拒否しません。値と合計/上限を同じIntl書式へ接続します。量＋単位／上限、合計／上限はLTRのbdiで周囲の方向から隔離し、単位内部はbdiの自動方向を使います。RTLでも数値の比率の順を保ちます。未知を空き容量0と扱いません。
 
 `HelpText`は投影内容、id、position=inline/above/belowを持ち、入力のaria-describedbyへ明示接続します。`ShortcutHint`はkeys、任意の読み上げlabel、position=inline/belowをnative kbdへ接続します。⌘等の記号には説明labelを指定できます。キーコマンドの実行はアプリが接続します。
 
 `ReadMore`（ui-read-more/ui-truncated-text）はcontrolId/text、正のlines、expanded/expandedChange、expandLabel/collapseLabelを持ちます。実描画のoverflowをResizeObserverで測定し、必要な場合だけnative buttonで全文/折畳みを切り替えます。全文をDOMから捨てず、視覚的な行数制限を行います。短文/行数/幅変更で操作が消える場合はReadMoreへfocusを保持します。
 
-`CodeBlock`はsource、language、label、format=preserve/json、indent、任意の同期formatter(source,language)、lineNumbers、wrap、direction=ltr/rtl/auto（既定ltr）、copyable/copyLabel/copyDurationSeconds、copied/copyFailedを持ちます。pre/codeの文字補間で表示し、HTMLとして実行しません。JSON整形は重複キーや数値/文字列の生トークンを保持して空白だけを変更します。整形失敗は原文と説明を表示します。行番号はsourceの各行と同じrowへ置き、折返した継続行に新しい番号を付けません。空行も行高と番号を保ちます。行番号は支援技術と選択コピーから除き、コードは名前付き局所scroll領域に収めます。実CopyButtonで表示内容をコピーし、失敗時も原文を保ちます。コピー操作の外部除去時はコード領域へfocusを保持します。`InlineCode`はnative code[uiInlineCode]へ同じ書体を接続します。ハイライトや言語補完はこの表示部品の契約に含みません。
+`CodeBlock`はsource、language、label、format=preserve/json、indent、任意の同期formatter(source,language)、lineNumbers、wrap、direction=ltr/rtl/auto（既定ltr）、copyable/copyLabel/copyDurationSeconds、copied/copyFailedを持ちます。pre/codeの文字補間で表示し、HTMLとして実行しません。JSON整形は重複キーや数値/文字列の生トークンを保持して空白だけを変更します。整形失敗は原文と説明を表示します。行番号はsourceの各行と同じrowへ置き、折返した継続行に新しい番号を付けません。空行も行高と番号を保ちます。行番号は支援技術と選択コピーから除き、コードは名前付き局所scroll領域に収めます。実CopyButtonで表示内容をコピーし、失敗時も原文を保ちます。コピーの応答待ちで自前buttonが無効になる前にCopyButton内へfocusを保持し、操作内にfocusが残っている場合だけ完了後にbuttonへ復帰します。操作の外部除去時はコード領域へfocusを保持します。破棄後にClipboard処理が完了しても部品の結果出力は発火しません。開始したOSの書込みを取り消す保証はありません。`InlineCode`はnative code[uiInlineCode]へ同じ書体を接続します。ハイライトや言語補完はこの表示部品の契約に含みません。
 
 `Watermark`はcontrolId/content、repeat、position=top/center/bottom×start/center/end、opacity、tileWidth/tileHeightを持ちます。繰返しはnative SVG patternで実領域を覆い、単発は論理位置へ置きます。opacity=nullは意味トークン、明示値は0〜1、tile寸法は正のpxまたは用途別profile寸法を使います。装飾を支援技術から除外し、pointer-events:noneで下の入力/操作を遮りません。透かしは認証やコピー防止の保証ではありません。
 
 追加の必須役割はfont.code、size.avatar、opacity.watermarkです。設定正本から両profileへ解決し、code書体/avatar寸法はTailwindの対応namespaceへ、opacityはsemantic CSSへ直接接続します。
 
-参考: [HTML meter](https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element)、[HTML code/kbd](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element)、[APG disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)。
+参考: [HTML meter](https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element)、[HTML code/kbd](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element)、[APG disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)、[W3C bidi isolation](https://www.w3.org/International/articles/inline-bidi-markup/)。

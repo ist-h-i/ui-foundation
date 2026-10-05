@@ -51,11 +51,12 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - Badgeの上限99+にも完全件数の説明を残す。Tagの選択/削除は別native操作にし、削除は利用アプリへの意図として接続する。外部非表示/無効化と削除前のfocusを確認する。
 - Avatar画像失敗は代替説明と氏名のグラフェムを保ち、src変更で再取得できる。AvatarGroupの超過一覧はnative detailsで確認でき、表示上限変更で操作が消える際のfocusを保つ。
 - Descriptionsはnative dl/dt/ddとtyped DescriptionTemplateを使い、0/false/空文字/未取得を区別する。StatisticはIntl書式と比較値を残し、比較値0の百分率を数値に偽装しない。増減の良否はアプリが判断する。
-- Meterは既知範囲のnative meter、進捗はProgressBar。未知値は説明し、MeterGroupでは未取得区分を0/空き容量と扱わない。finite/range/threshold/order/sumを検証する。
+- Meterは既知範囲のnative meter、進捗はProgressBar。未知値は説明し、MeterGroupでは未取得区分を0/空き容量と扱わない。finite/range/threshold/order/sumを検証する。RTLでは値/単位/上限と合計/上限をbidi隔離し、不均等な値の実描画順も確認する。
 - HelpTextのidをaria-describedbyへ明示接続し、ShortcutHintはnative kbdと必要な読み上げlabelを使う。キー実行はアプリが接続する。
 - ReadMoreは実overflowを観測して全文/折畳みを切り替える。全文を捨てず、短文化/行数/幅変更でtoggleが消える際のfocusを確認する。
-- CodeBlockはpre/codeの文字補間で安全に表示し、整形失敗も原文を保持する。JSONの重複キー・生数値/文字列トークンを失わない。行番号はsource lineごとのrowへ置いて折返し/空行との対応を保ち、支援技術とコピーから除く。実Clipboardと失敗/再試行/表示時間を検証する。外部copyable=falseでfocusをコード領域へ保持する。
+- CodeBlockはpre/codeの文字補間で安全に表示し、整形失敗も原文を保持する。JSONの重複キー・生数値/文字列トークンを失わない。行番号はsource lineごとのrowへ置いて折返し/空行との対応を保ち、支援技術とコピーから除く。実Clipboardと失敗/再試行/表示時間を検証する。応答待ち時にCopyButton内へfocusを保持し、完了時は自前focusだけを復帰する。外部copyable=falseでfocusをコード領域へ保持し、破棄後の結果出力を抑止する。
 - Watermarkはnative SVG pattern/論理位置/濃度を実描画し、aria-hidden/pointer-events:noneで入力・操作を遮らない。認証やコピー防止を保証する部品として使わない。
+- Avatarの代替頭文字は画像の寸法に収め、small/medium/largeと拡大表示で折返し/clipを検証する。
 - font.code/size.avatar/opacity.watermarkを設定正本で対応付ける。opacityは0〜1のsemantic CSS、書体/寸法は対応するTailwind namespaceへ同期する。
 
 契約の全propとapp責任は、プロジェクトルートの`docs/ui-components.md`の文字・情報・数値表示を参照する。
