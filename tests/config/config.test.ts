@@ -12,6 +12,11 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('form label width has its own required semantic role and profile mapping',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.form-label'].value,'12rem');assert.equal(result.profiles.dense.semantic['size.form-label'].value,'9rem');
+ assert.match(renderTailwind(result),/--spacing-size-form-label: var\(--ui-size-form-label\)/);assert.match(renderTokens(result),/--ui-size-form-label: var\(--ui-p-form-label-guided\)/);
+ rejects(edited(config=>{delete config.semantic['size.form-label'];}),/size.form-label/);
+});
 test('display roles resolve from the source configuration and generate supported namespaces',()=>{
  const result=resolve();assert.equal(result.profiles.guided.semantic['size.avatar'].value,'64px');assert.equal(result.profiles.dense.semantic['size.avatar'].value,'48px');
  assert.match(String(result.profiles.guided.semantic['font.code'].value),/monospace/);assert.equal(result.profiles.guided.semantic['opacity.watermark'].value,.12);

@@ -64,6 +64,8 @@ primitives:
   table-column-min: { type: length, value: 128px }
   table-viewport: { type: length, value: 480px }
   input-max-height: { type: length, value: 320px }
+  form-label-guided: { type: length, value: 12rem }
+  form-label-dense: { type: length, value: 9rem }
   grid-item: { type: length, value: 256px }
   sidebar: { type: length, value: 256px }
   elevation-blur: { type: length, value: 12px }
@@ -128,6 +130,7 @@ semantic:
   size.table-column-min: table-column-min
   size.table-viewport: table-viewport
   size.input-max-height: input-max-height
+  size.form-label: form-label-guided
   size.grid-item: grid-item
   size.sidebar: sidebar
   size.elevation-blur: elevation-blur
@@ -170,6 +173,7 @@ profiles:
       必要性から判断し、欠損と復旧経路を密度のために隠さない。
     semantic:
       size.avatar: avatar-dense
+      size.form-label: form-label-dense
       color.action: green
       color.action-hover: green-hover
       color.link: green

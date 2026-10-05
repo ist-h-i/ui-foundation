@@ -33,7 +33,7 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
 | radius | control, surface | length |
-| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min | length |
+| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
 | opacity | watermark | number（0〜1） |
