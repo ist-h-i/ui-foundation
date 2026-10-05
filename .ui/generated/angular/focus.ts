@@ -1,6 +1,15 @@
 /** Focus utilities operate in the existing DOM/profile scope. No document-wide trap. */
 export function canFocus(element: HTMLElement | null): element is HTMLElement {
-    return !!element && element.isConnected && !element.closest('[inert],[hidden]') && !element.matches(':disabled') && element.getClientRects().length > 0;
+    if (!element || !element.isConnected || element.closest('[inert],[hidden]') || element.matches(':disabled') || !element.getClientRects().length || element.ownerDocument.defaultView?.getComputedStyle(element).visibility !== 'visible') return false;
+    // Closed details retain layout rectangles in Chromium. Only the first
+    // summary and its descendants remain visible in each closed ancestor.
+    let details = element.closest('details:not([open])');
+    while (details) {
+        const summary = [...details.children].find(child => child.tagName === 'SUMMARY');
+        if (!summary?.contains(element)) return false;
+        details = details.parentElement?.closest('details:not([open])') ?? null;
+    }
+    return true;
 }
 export function restoreFocus(origin: HTMLElement | null, fallback: HTMLElement | null = null): boolean {
     const element = canFocus(origin) ? origin : canFocus(fallback) ? fallback : null;

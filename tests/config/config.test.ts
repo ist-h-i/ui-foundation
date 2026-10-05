@@ -12,6 +12,16 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('navigation rail has a required positive semantic width in each profile',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.navigation-rail'].value,'72px');assert.equal(result.profiles.dense.semantic['size.navigation-rail'].value,'64px');
+ assert.match(renderTailwind(result),/--spacing-size-navigation-rail: var\(--ui-size-navigation-rail\)/);assert.match(renderTokens(result),/--ui-size-navigation-rail: var\(--ui-p-navigation-rail-guided\)/);
+ rejects(edited(config=>{delete config.semantic['size.navigation-rail'];}),/size.navigation-rail/);rejects(edited(config=>{config.primitives['navigation-rail-guided'].value='0px';}),/greater than zero/);
+});
+test('mega menu and column widths have dedicated positive semantics and explicit profile mappings',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.mega-menu'].value,'960px');assert.equal(result.profiles.dense.semantic['size.mega-menu'].value,'768px');assert.equal(result.profiles.guided.semantic['size.navigation-column'].value,'192px');assert.equal(result.profiles.dense.semantic['size.navigation-column'].value,'160px');
+ assert.match(renderTailwind(result),/--spacing-size-navigation-column: var\(--ui-size-navigation-column\)/);assert.match(renderTokens(result),/--ui-size-mega-menu: var\(--ui-p-mega-menu-guided\)/);
+ for(const role of ['size.mega-menu','size.navigation-column'])rejects(edited(config=>{delete config.semantic[role];}),new RegExp(role));rejects(edited(config=>{config.primitives['mega-menu-guided'].value='0px';}),/greater than zero/);
+});
 test('drawer dimensions are dedicated positive semantics with explicit profile mappings',()=>{
  const result=resolve();assert.equal(result.profiles.guided.semantic['size.drawer-inline'].value,'384px');assert.equal(result.profiles.dense.semantic['size.drawer-inline'].value,'320px');
  assert.equal(result.profiles.guided.semantic['size.drawer-block'].value,'480px');assert.equal(result.profiles.dense.semantic['size.drawer-block'].value,'400px');

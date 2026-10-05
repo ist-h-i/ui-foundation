@@ -269,6 +269,21 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "320px"
         },
+        "size.mega-menu": {
+          "reference": "mega-menu-dense",
+          "type": "length",
+          "value": "768px"
+        },
+        "size.navigation-column": {
+          "reference": "navigation-column-dense",
+          "type": "length",
+          "value": "160px"
+        },
+        "size.navigation-rail": {
+          "reference": "navigation-rail-dense",
+          "type": "length",
+          "value": "64px"
+        },
         "size.overlay-min": {
           "reference": "overlay-min",
           "type": "length",
@@ -611,6 +626,21 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.mega-menu": {
+          "reference": "mega-menu-guided",
+          "type": "length",
+          "value": "960px"
+        },
+        "size.navigation-column": {
+          "reference": "navigation-column-guided",
+          "type": "length",
+          "value": "192px"
+        },
+        "size.navigation-rail": {
+          "reference": "navigation-rail-guided",
+          "type": "length",
+          "value": "72px"
         },
         "size.overlay-min": {
           "reference": "overlay-min",

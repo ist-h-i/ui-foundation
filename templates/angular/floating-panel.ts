@@ -41,7 +41,7 @@ const interactiveHost = {...popupHost,'role':'dialog','aria-modal':'false','tabi
 
 /** Native top-layer rendering stays in the app DOM, including modal and profile ancestry. */
 @Directive({standalone:true})
-abstract class AnchoredPopup {
+export abstract class AnchoredPopup {
     readonly controlId = input.required<string>();
     readonly anchor = input.required<HTMLElement | null>();
     readonly placement = input<OverlayPlacement>('bottom-start');

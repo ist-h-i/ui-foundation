@@ -68,6 +68,12 @@ primitives:
   form-label-dense: { type: length, value: 9rem }
   grid-item: { type: length, value: 256px }
   sidebar: { type: length, value: 256px }
+  navigation-rail-guided: { type: length, value: 72px }
+  navigation-rail-dense: { type: length, value: 64px }
+  mega-menu-guided: { type: length, value: 960px }
+  mega-menu-dense: { type: length, value: 768px }
+  navigation-column-guided: { type: length, value: 192px }
+  navigation-column-dense: { type: length, value: 160px }
   elevation-blur: { type: length, value: 12px }
   overlay-min: { type: length, value: 192px }
   dialog-min: { type: length, value: 280px }
@@ -137,6 +143,9 @@ semantic:
   size.form-label: form-label-guided
   size.grid-item: grid-item
   size.sidebar: sidebar
+  size.navigation-rail: navigation-rail-guided
+  size.mega-menu: mega-menu-guided
+  size.navigation-column: navigation-column-guided
   size.elevation-blur: elevation-blur
   size.overlay-min: overlay-min
   size.dialog-min: dialog-min
@@ -182,6 +191,9 @@ profiles:
       size.form-label: form-label-dense
       size.drawer-inline: drawer-inline-dense
       size.drawer-block: drawer-block-dense
+      size.navigation-rail: navigation-rail-dense
+      size.mega-menu: mega-menu-dense
+      size.navigation-column: navigation-column-dense
       color.action: green
       color.action-hover: green-hover
       color.link: green

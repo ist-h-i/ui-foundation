@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, Injectable } from '@angular/core';
+import {canFocus} from './focus';
 export type OverlayCloseReason = 'escape' | 'outside' | 'scope-exit';
 export type OverlayPlacement = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start';
 export interface OverlayEntry {
@@ -16,9 +17,7 @@ const stacks = new WeakMap<Document, Array<{
 }>>();
 /** UA modal inertness does not add an inert attribute to the background. */
 export function availableOverlayAnchor(anchor: HTMLElement): boolean {
-    if (!anchor.isConnected || anchor.closest('[hidden],[inert]') || !anchor.getClientRects().length)
-        return false;
-    if (anchor.ownerDocument.defaultView?.getComputedStyle(anchor).visibility !== 'visible')
+    if (!canFocus(anchor))
         return false;
     const document = anchor.ownerDocument;
     const modal = document.activeElement?.closest<HTMLDialogElement>('dialog:modal')

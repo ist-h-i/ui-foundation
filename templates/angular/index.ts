@@ -5,6 +5,12 @@ export { AsyncRegion, type AsyncRegionState } from './async-region';
 export { ActionFeedback, type ActionFeedbackState } from './action-feedback';
 export { RadioGroup, RadioOption } from './radio-group';
 export { Navigation, Breadcrumb, NavigationItem } from './navigation';
+export {SideNav,BottomNavigation} from './navigation-tree';
+export {AnchorNavigation,type AnchorNavigationItem} from './anchor-navigation';
+export {type NavigationNode,type BreadcrumbItem,type MegaMenuGroup,type PaletteCommand} from './navigation-model';
+export {Menubar} from './menubar';
+export {MegaMenu} from './mega-menu';
+export {CommandPalette} from './command-palette';
 export { DataTable, TableContainer } from './data-table';
 export { DataTableView, TableTemplate, type TableDataState, type TableRowAction, type TableTemplateContext } from './data-table-view';
 export { createTableState, type TableColumn, type TableState, type TableKey, type TableSort, type TableFilter, type TableConstraint, type TableOperator } from './table-model';
@@ -24,7 +30,7 @@ export { GridList, GridItem, type GridItemContext, type GridBreakpoint } from '.
 export { Icon, provideUiIcons } from './icon';
 
 export { Card, CardHeader, CardBody, CardFooter, CardMedia, CardActions, CardTemplate, type CardArea, type CardContext } from './card';
-export { Menu, type MenuItem, type MenuSelection } from './menu';
+export { Menu, type MenuItem, type MenuSelection, type MenuRootNavigation } from './menu';
 export { OverlayHost, OverlayRegistry, type OverlayPlacement, type OverlayCloseReason } from './overlay';
 export { MoveHandle, ResizeHandle, type PanelRect } from './panel-handle';
 export { Snackbar, NotificationHost, NotificationService, NotificationScope, type NotificationOptions, type ScopedNotificationRecord } from './notifications';

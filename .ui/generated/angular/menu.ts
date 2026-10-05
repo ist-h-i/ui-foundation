@@ -6,8 +6,9 @@ import { focusOutsideMenu, restoreFocus } from './focus';
 import { OverlayRegistry, observeOverlay, positionOverlay, type OverlayPlacement } from './overlay';
 import { menuCommands, menuPath, selectMenuCheck, validateMenu, visibleMenuItems, type MenuItem, type MenuSelection } from './menu-model';
 export * from './menu-model';
+export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backwards?:boolean}
 @Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="disabled()||!commands(nodes()).length" [attr.tabindex]="triggerTabIndex()" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
+    template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="!menubar()&&(disabled()||!commands(nodes()).length)" [attr.aria-disabled]="disabled()||!commands(nodes()).length?'true':null" [attr.role]="menubar()?'menuitem':null" [attr.tabindex]="triggerTabIndex()" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
   <ng-content select="[uiMenuTrigger]" />{{label()}}</button>
   @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="label()+'の対象'" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
   <div #popup popover="manual" class="ui-menu__popup" [id]="menuId()" (pointerleave)="hoverLeave($event)" (pointerenter)="stopHoverClose()">
@@ -40,6 +41,9 @@ export class Menu {
     readonly closeOnSelect = input(true, { transform: booleanAttribute });
     readonly disabled = input(false, { transform: booleanAttribute });
     readonly triggerTabIndex = input<0 | -1>(0);
+    /** A Menubar owns root roving focus and handles boundary/Tab navigation. */
+    readonly menubar = input(false,{transform:booleanAttribute});
+    readonly rootNavigation = output<MenuRootNavigation>();
     protected readonly opened = linkedSignal(() => this.open());
     private readonly currentItems = linkedSignal(() => this.items());
     protected readonly nodes = computed(() => validateMenu(this.currentItems()));
@@ -185,9 +189,21 @@ export class Menu {
     } return null; }
     private combine(first: () => void, second: () => void): () => void { return () => { first(); second(); }; }
     focusTrigger(): void { this.anchor()?.nativeElement.focus(); }
+    openMenu(edge:'first'|'last'='first'):void {
+        if(this.disabled())return;
+        const commands=menuCommands(this.nodes()),id=(edge==='last'?commands.at(-1):commands[0])?.id;
+        if(!id)return;
+        this.shouldFocus=true;this.point=null;this.returnFocus=this.anchor()?.nativeElement??null;
+        if(!this.opened()){this.opened.set(true);this.openChange.emit(true);}
+        const popup=this.popup()?.nativeElement,anchor=this.anchor()?.nativeElement;
+        if(popup&&anchor&&!popup.matches(':popover-open'))this.showPopup(popup,anchor);
+        this.position();this.focusCommand(id);
+    }
+    dismiss(restore=true):void {this.close(restore);}
     protected itemId(id: string): string { return this.menuId() + '-item-' + encodeURIComponent(id); }
     protected role(item: MenuItem): string { return item.type === 'checkbox' ? 'menuitemcheckbox' : item.type === 'radio' ? 'menuitemradio' : 'menuitem'; }
     protected toggle(): void {
+        if(this.disabled()||!menuCommands(this.nodes()).length)return;
         this.shouldFocus = true;
         if (this.opened()) {
             this.close(true);
@@ -199,23 +215,11 @@ export class Menu {
         this.openChange.emit(true);
     }
     protected triggerKey(event: KeyboardEvent): void {
-        if (this.disabled())
+        if (this.disabled()||event.defaultPrevented||event.isComposing||event.keyCode===229)
             return;
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
             event.preventDefault();
-            this.shouldFocus = true;
-            this.point = null;
-            this.returnFocus = this.anchor()?.nativeElement ?? null;
-            this.opened.set(true);
-            this.openChange.emit(true);
-            const commands = menuCommands(this.nodes());
-            const id = (event.key === 'ArrowUp' ? commands.at(-1) : commands[0])?.id;
-            const popup = this.popup()?.nativeElement, anchor = this.anchor()?.nativeElement;
-            if (popup && anchor && !popup.matches(':popover-open'))
-                this.showPopup(popup, anchor);
-            this.position();
-            if (id)
-                this.focusCommand(id);
+            this.openMenu(event.key==='ArrowUp'?'last':'first');
         }
     }
     protected select(item: MenuItem, depth: number): void {
@@ -281,7 +285,7 @@ export class Menu {
         this.returnFocus = null;
     }
     protected key(event: KeyboardEvent, item: MenuItem | null, parent: MenuItem | null, depth: number): void {
-        if (event.isComposing)
+        if (event.defaultPrevented||event.isComposing||event.keyCode===229)
             return;
         const pending = this.logicalContext(this.pendingFocus(), this.pendingBack());
         if (pending) {
@@ -297,6 +301,7 @@ export class Menu {
         const rtl = this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction === 'rtl';
         if (event.key === 'Tab') {
             event.preventDefault();
+            if(this.menubar()){this.close(false);this.rootNavigation.emit({direction:'exit',backwards:event.shiftKey});return;}
             const anchor = this.point ? (this.returnFocus ?? this.contextTarget()?.nativeElement) : this.anchor()?.nativeElement;
             this.close(false);
             if (anchor)
@@ -310,7 +315,8 @@ export class Menu {
         }
         if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight') && item) {
             event.preventDefault();
-            this.openChildren(item, depth, true);
+            if(menuCommands(item.children??[]).length)this.openChildren(item, depth, true);
+            else if(this.menubar()){this.close(false);this.rootNavigation.emit({direction:'next'});}
             return;
         }
         if (event.key === (rtl ? 'ArrowRight' : 'ArrowLeft') && parent) {
@@ -318,6 +324,7 @@ export class Menu {
             this.closeLevel(depth);
             return;
         }
+        if(this.menubar()&&!parent&&event.key===(rtl?'ArrowRight':'ArrowLeft')){event.preventDefault();this.close(false);this.rootNavigation.emit({direction:'previous'});return;}
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             if (item)

@@ -37,7 +37,13 @@
   --ui-p-leading-body: 1.6;
   --ui-p-leading-control: 1.5;
   --ui-p-leading-heading: 1.35;
+  --ui-p-mega-menu-dense: 768px;
+  --ui-p-mega-menu-guided: 960px;
   --ui-p-muted: #526075;
+  --ui-p-navigation-column-dense: 160px;
+  --ui-p-navigation-column-guided: 192px;
+  --ui-p-navigation-rail-dense: 64px;
+  --ui-p-navigation-rail-guided: 72px;
   --ui-p-outline: #778496;
   --ui-p-overlay-min: 192px;
   --ui-p-red: #a32121;
@@ -113,6 +119,9 @@
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-mega-menu: var(--ui-p-mega-menu-guided);
+  --ui-size-navigation-column: var(--ui-p-navigation-column-guided);
+  --ui-size-navigation-rail: var(--ui-p-navigation-rail-guided);
   --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-sidebar: var(--ui-p-sidebar);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
@@ -181,6 +190,9 @@
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-mega-menu: var(--ui-p-mega-menu-dense);
+  --ui-size-navigation-column: var(--ui-p-navigation-column-dense);
+  --ui-size-navigation-rail: var(--ui-p-navigation-rail-dense);
   --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-sidebar: var(--ui-p-sidebar);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
@@ -249,6 +261,9 @@
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-mega-menu: var(--ui-p-mega-menu-guided);
+  --ui-size-navigation-column: var(--ui-p-navigation-column-guided);
+  --ui-size-navigation-rail: var(--ui-p-navigation-rail-guided);
   --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-sidebar: var(--ui-p-sidebar);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
