@@ -9,9 +9,11 @@
   --ui-p-content: 1120px;
   --ui-p-control-minimum: 44px;
   --ui-p-dialog: 640px;
+  --ui-p-dialog-min: 280px;
   --ui-p-disabled-wash: #e7ebf0;
   --ui-p-duration: 180ms;
   --ui-p-easing: ease-out;
+  --ui-p-elevation-blur: 12px;
   --ui-p-error-wash: #fff0ef;
   --ui-p-focus-offset: 3px;
   --ui-p-focus-width: 3px;
@@ -28,6 +30,7 @@
   --ui-p-leading-heading: 1.35;
   --ui-p-muted: #526075;
   --ui-p-outline: #778496;
+  --ui-p-overlay-min: 192px;
   --ui-p-red: #a32121;
   --ui-p-red-hover: #801919;
   --ui-p-regular: 400;
@@ -69,6 +72,7 @@
   --ui-color-muted: var(--ui-p-muted);
   --ui-color-on-action: var(--ui-p-white);
   --ui-color-on-danger: var(--ui-p-white);
+  --ui-color-shadow: var(--ui-p-outline);
   --ui-color-success: var(--ui-p-green);
   --ui-color-success-surface: var(--ui-p-success-wash);
   --ui-color-surface: var(--ui-p-white);
@@ -87,9 +91,12 @@
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);
+  --ui-size-dialog-min: var(--ui-p-dialog-min);
+  --ui-size-elevation-blur: var(--ui-p-elevation-blur);
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
   --ui-size-table-viewport: var(--ui-p-table-viewport);
   --ui-space-control-gap: var(--ui-p-space-12);
@@ -126,6 +133,7 @@
   --ui-color-muted: var(--ui-p-muted);
   --ui-color-on-action: var(--ui-p-white);
   --ui-color-on-danger: var(--ui-p-white);
+  --ui-color-shadow: var(--ui-p-outline);
   --ui-color-success: var(--ui-p-green);
   --ui-color-success-surface: var(--ui-p-success-wash);
   --ui-color-surface: var(--ui-p-white);
@@ -144,9 +152,12 @@
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);
+  --ui-size-dialog-min: var(--ui-p-dialog-min);
+  --ui-size-elevation-blur: var(--ui-p-elevation-blur);
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
   --ui-size-table-viewport: var(--ui-p-table-viewport);
   --ui-space-control-gap: var(--ui-p-space-8);
@@ -183,6 +194,7 @@
   --ui-color-muted: var(--ui-p-muted);
   --ui-color-on-action: var(--ui-p-white);
   --ui-color-on-danger: var(--ui-p-white);
+  --ui-color-shadow: var(--ui-p-outline);
   --ui-color-success: var(--ui-p-green);
   --ui-color-success-surface: var(--ui-p-success-wash);
   --ui-color-surface: var(--ui-p-white);
@@ -201,9 +213,12 @@
   --ui-size-content: var(--ui-p-content);
   --ui-size-control: var(--ui-p-control-minimum);
   --ui-size-dialog: var(--ui-p-dialog);
+  --ui-size-dialog-min: var(--ui-p-dialog-min);
+  --ui-size-elevation-blur: var(--ui-p-elevation-blur);
   --ui-size-grid-item: var(--ui-p-grid-item);
   --ui-size-icon: var(--ui-p-icon);
   --ui-size-input-max-height: var(--ui-p-input-max-height);
+  --ui-size-overlay-min: var(--ui-p-overlay-min);
   --ui-size-table-column-min: var(--ui-p-table-column-min);
   --ui-size-table-viewport: var(--ui-p-table-viewport);
   --ui-space-control-gap: var(--ui-p-space-12);

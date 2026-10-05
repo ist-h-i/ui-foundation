@@ -164,8 +164,10 @@
       "requestedControls": "各領域の表示、内容、配置、余白、枠、影、折畳み、読込み状態",
       "sourceLine": 19,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/card.ts"
+      ],
       "dependencies": [
         "tokens",
         "resize",
@@ -191,9 +193,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "各領域の表示、内容、配置、余白、枠、影、折畳み、読込み状態"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "layout-06",
@@ -2951,8 +2964,13 @@
       "requestedControls": "再帰的な入れ子、項目種別、開閉、選択、無効、非表示",
       "sourceLine": 102,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/menu.ts",
+        "templates/angular/menu-model.ts",
+        "templates/angular/overlay.ts",
+        "templates/angular/focus.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -2979,9 +2997,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "再帰的な入れ子、項目種別、開閉、選択、無効、非表示"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "navigation-08",
@@ -2990,8 +3019,11 @@
       "requestedControls": "起動ボタン、配置、開く契機、選択後の終了",
       "sourceLine": 103,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/menu.ts",
+        "templates/angular/overlay.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3018,9 +3050,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "起動ボタン、配置、開く契機、選択後の終了"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "navigation-09",
@@ -3029,8 +3072,11 @@
       "requestedControls": "右クリック・長押し、対象、表示位置",
       "sourceLine": 104,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/menu.ts",
+        "templates/angular/overlay.ts"
+      ],
       "dependencies": [
         "tokens",
         "focus",
@@ -3057,9 +3103,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "右クリック・長押し、対象、表示位置"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "navigation-10",
@@ -3185,8 +3242,65 @@
       "requestedControls": "開閉、modal、ヘッダー・本文・フッター、サイズ、位置、終了条件",
       "sourceLine": 113,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
+        "templates/angular/dialog.ts",
+        "templates/angular/overlay.ts",
+        "templates/angular/panel-handle.ts",
+        "templates/angular/focus.ts"
+      ],
+      "dependencies": [
+        "tokens",
+        "overlay",
+        "focus",
+        "resize",
+        "drag"
+      ],
+      "verification": {
+        "static": [
+          "ui:check",
+          "typecheck",
+          "build"
+        ],
+        "interaction": [
+          "guided/dense",
+          "keyboard/focus",
+          "narrow/200%",
+          "disabled/busy/hidden/recovery"
+        ],
+        "accessibility": [
+          "axe",
+          "APG pattern review"
+        ],
+        "consumer": [
+          "generated AOT strictTemplates"
+        ]
+      },
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
+      "priority": 6,
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "開閉、modal、ヘッダー・本文・フッター、サイズ、位置、終了条件"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
+    },
+    {
+      "id": "overlays-02",
+      "category": "overlays",
+      "component": "ConfirmDialog",
+      "requestedControls": "確認内容、確認・取消操作、処理中、確認結果",
+      "sourceLine": 114,
+      "baseline": "new",
+      "status": "verified",
+      "implementation": [
+        "templates/angular/dialog-variants.ts",
         "templates/angular/dialog.ts"
       ],
       "dependencies": [
@@ -3216,49 +3330,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
-      "priority": 6,
-      "deliveryScope": "business-first"
-    },
-    {
-      "id": "overlays-02",
-      "category": "overlays",
-      "component": "ConfirmDialog",
-      "requestedControls": "確認内容、確認・取消操作、処理中、確認結果",
-      "sourceLine": 114,
-      "baseline": "new",
-      "status": "pending",
-      "implementation": [],
-      "dependencies": [
-        "tokens",
-        "overlay",
-        "focus",
-        "resize",
-        "drag"
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
       ],
-      "verification": {
-        "static": [
-          "ui:check",
-          "typecheck",
-          "build"
-        ],
-        "interaction": [
-          "guided/dense",
-          "keyboard/focus",
-          "narrow/200%",
-          "disabled/busy/hidden/recovery"
-        ],
-        "accessibility": [
-          "axe",
-          "APG pattern review"
-        ],
-        "consumer": [
-          "generated AOT strictTemplates"
-        ]
-      },
-      "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "確認内容、確認・取消操作、処理中、確認結果"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "overlays-03",
@@ -3267,8 +3352,11 @@
       "requestedControls": "重要な通知、応答操作、終了条件",
       "sourceLine": 115,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/dialog-variants.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -3296,9 +3384,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "重要な通知、応答操作、終了条件"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "overlays-04",
@@ -3307,8 +3406,11 @@
       "requestedControls": "入力内容、検証、保存・取消、未保存時の終了確認",
       "sourceLine": 116,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/dialog-variants.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -3336,9 +3438,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "入力内容、検証、保存・取消、未保存時の終了確認"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "overlays-05",
@@ -3587,8 +3700,11 @@
       "requestedControls": "差替え内容、渡すデータ、戻り値、終了理由",
       "sourceLine": 123,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/dialog-variants.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -3616,9 +3732,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "差替え内容、渡すデータ、戻り値、終了理由"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-01",
@@ -3627,8 +3754,11 @@
       "requestedControls": "自動消去ON/OFF、表示秒数、位置、操作、閉じるボタン",
       "sourceLine": 129,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/notifications.ts",
+        "templates/angular/notification-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -3654,9 +3784,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "自動消去ON/OFF、表示秒数、位置、操作、閉じるボタン"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-02",
@@ -3665,8 +3806,11 @@
       "requestedControls": "表示時間、保持、位置、複数表示、積重ね、重複処理",
       "sourceLine": 130,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/notifications.ts",
+        "templates/angular/notification-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "notifications",
@@ -3692,9 +3836,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "表示時間、保持、位置、複数表示、積重ね、重複処理"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "feedback-03",
@@ -7185,8 +7340,10 @@
       "requestedControls": "`showHeader`、`showBody`、`showFooter`、`showMedia`、`showActions`、`title`、`subtitle`、`orientation`、`appearance`、`padding`、`collapsible`、`collapsed`、`loading`",
       "sourceLine": 243,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/card.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7215,9 +7372,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "`showHeader`、`showBody`、`showFooter`、`showMedia`、`showActions`、`title`、`subtitle`、`orientation`、`appearance`、`padding`、`collapsible`、`collapsed`、`loading`"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "priority-properties-02",
@@ -7226,8 +7394,11 @@
       "requestedControls": "再帰的な`items[].children`、項目の`type`・`icon`・`disabled`・`visible`・`checked`、`open`、`trigger`、`placement`、`closeOnSelect`",
       "sourceLine": 244,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/menu.ts",
+        "templates/angular/menu-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7256,9 +7427,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "再帰的な`items[].children`、項目の`type`・`icon`・`disabled`・`visible`・`checked`、`open`、`trigger`、`placement`、`closeOnSelect`"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "priority-properties-03",
@@ -7267,9 +7449,10 @@
       "requestedControls": "`open`、`modal`、`showHeader`、`showFooter`、`closable`、`closeOnEscape`、`closeOnOutsideClick`、`size`、`position`、`draggable`、`resizable`、`maximizable`、`busy`",
       "sourceLine": 245,
       "baseline": "partial",
-      "status": "pending",
+      "status": "verified",
       "implementation": [
-        "templates/angular/dialog.ts"
+        "templates/angular/dialog.ts",
+        "templates/angular/dialog-variants.ts"
       ],
       "dependencies": [
         "tokens",
@@ -7299,9 +7482,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "`open`、`modal`、`showHeader`、`showFooter`、`closable`、`closeOnEscape`、`closeOnOutsideClick`、`size`、`position`、`draggable`、`resizable`、`maximizable`、`busy`"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "priority-properties-04",
@@ -7310,8 +7504,11 @@
       "requestedControls": "`open`、`message`、`severity`、`autoDismiss`、`durationSeconds`、`position`、`showCloseButton`、`actionLabel`、`pauseOnHover`、`pauseOnFocus`",
       "sourceLine": 246,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/notifications.ts",
+        "templates/angular/notification-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7340,9 +7537,20 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "`open`、`message`、`severity`、`autoDismiss`、`durationSeconds`、`position`、`showCloseButton`、`actionLabel`、`pauseOnHover`、`pauseOnFocus`"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "foundation-01",
@@ -7350,8 +7558,10 @@
       "component": "OverlayHost",
       "requestedControls": "OverlayHost",
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/overlay.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -7368,9 +7578,20 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "OverlayHost"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "foundation-02",
@@ -7378,8 +7599,11 @@
       "component": "通知ホスト",
       "requestedControls": "通知ホスト",
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/notifications.ts",
+        "templates/angular/notification-model.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -7396,9 +7620,20 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "通知ホスト"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "foundation-03",
@@ -7406,8 +7641,15 @@
       "component": "フォーカス管理",
       "requestedControls": "フォーカス管理",
       "baseline": "partial",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/focus.ts",
+        "templates/angular/overlay.ts",
+        "templates/angular/card.ts",
+        "templates/angular/menu.ts",
+        "templates/angular/dialog.ts",
+        "templates/angular/notifications.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -7424,9 +7666,20 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "フォーカス管理"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "foundation-04",
@@ -7462,8 +7715,11 @@
       "component": "リサイズ",
       "requestedControls": "リサイズ",
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/panel-handle.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -7480,9 +7736,20 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/overlay-catalog.spec.ts",
+        "tests/model/overlay.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "リサイズ"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "foundation-06",
@@ -7541,7 +7808,10 @@
       "evidence": [
         "tests/ui/inputs.spec.ts",
         "tests/generation/consumer.test.ts",
-        "docs/verification/ui-library-priority-2026-10-05.md"
+        "docs/verification/ui-library-priority-2026-10-05.md",
+        "tests/ui/overlay-catalog.spec.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
       ],
       "priority": 6,
       "deliveryScope": "business-first",
@@ -7583,7 +7853,10 @@
       "evidence": [
         "tests/ui/dates.spec.ts",
         "tests/generation/consumer.test.ts",
-        "docs/verification/ui-library-priority-2026-10-05.md"
+        "docs/verification/ui-library-priority-2026-10-05.md",
+        "tests/ui/overlay-catalog.spec.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
       ],
       "priority": 6,
       "deliveryScope": "business-first",
@@ -7625,7 +7898,10 @@
       "evidence": [
         "tests/ui/grid-icon.spec.ts",
         "tests/generation/consumer.test.ts",
-        "docs/verification/ui-library-priority-2026-10-05.md"
+        "docs/verification/ui-library-priority-2026-10-05.md",
+        "tests/ui/overlay-catalog.spec.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-overlays-2026-10-05.md"
       ],
       "priority": 6,
       "deliveryScope": "business-first",
@@ -7640,14 +7916,21 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority",
-    "verificationStatus": "verified-priority-stage",
+    "stage": "business-priority-and-overlays",
+    "verificationStatus": "verified-two-stages",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
       "inputs": "approve with comments after corrections",
-      "datesGridIcon": "review fixes verified in both profiles; configuration warnings additionally fixed and tested"
+      "datesGridIcon": "review fixes verified in both profiles; configuration warnings additionally fixed and tested",
+      "overlays": "approve after fixes; both profiles and narrow pointer verified",
+      "notifications": "approve after scope-focus, RTL and viewport fixes"
     },
-    "fullCatalogComplete": false
+    "fullCatalogComplete": false,
+    "statusCounts": {
+      "pending": 121,
+      "verified": 44,
+      "partial": 16
+    }
   }
 }

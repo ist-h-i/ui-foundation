@@ -9,7 +9,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'color.danger-hover': 'color', 'color.on-danger': 'color', 'color.success': 'color',
   'color.success-surface': 'color', 'color.warning': 'color', 'color.warning-surface': 'color',
   'color.error-surface': 'color', 'color.focus': 'color', 'color.disabled-surface': 'color',
-  'color.backdrop': 'color', 'font.body': 'fontFamily',
+  'color.backdrop': 'color', 'color.shadow': 'color', 'font.body': 'fontFamily',
   'text.body': 'length', 'text.small': 'length', 'text.heading': 'length',
   'leading.body': 'number', 'leading.heading': 'number', 'leading.control': 'number',
   'weight.body': 'number', 'weight.heading': 'number', 'weight.control': 'number',
@@ -21,6 +21,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'size.table-column-min': 'length', 'size.table-viewport': 'length',
   'size.input-max-height': 'length',
   'size.grid-item': 'length',
+  'size.elevation-blur': 'length', 'size.overlay-min': 'length', 'size.dialog-min': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
   'motion.duration': 'duration', 'motion.easing': 'easing',
 };

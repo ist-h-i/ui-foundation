@@ -26,14 +26,14 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 
 | カテゴリ | 必須の役割 | 型 |
 | --- | --- | --- |
-| color | text, muted, surface, background, border, action, action-hover, on-action, link, tab-selected, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop | color |
+| color | text, muted, surface, background, border, action, action-hover, on-action, link, tab-selected, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop, shadow | color |
 | font | body | fontFamily |
 | text | body, small, heading | length |
 | leading | body, heading, control | number |
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
 | radius | control, surface | length |
-| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item | length |
+| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, grid-item, elevation-blur, overlay-min, dialog-min | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
 

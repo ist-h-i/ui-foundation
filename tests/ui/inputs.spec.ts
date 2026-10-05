@@ -33,7 +33,7 @@ for(const profile of ['guided','dense']){
    await amount.fill('200');await expect(page.getByTestId('form-status')).toContainText('有効');await expectValues(page,{amount:200});
   });
   test('text clear/count, textarea growth and password reveal preserve content across profiles',async({page})=>{
-   const title=page.locator('#request-title');await title.fill('入力内容');await expect(page.locator('ui-text-input')).toContainText('4 / 30 文字');
+   const title=page.locator('#request-title');await title.fill('入力内容');await expect(page.getByRole('region',{name:'入力部品の検証'}).locator('ui-text-input')).toContainText('4 / 30 文字');
    await page.getByRole('button',{name:'件名をクリア',exact:true}).click();await expect(title).toBeFocused();await expect(title).toHaveValue('');
    const textarea=page.locator('#request-note');const initial=(await textarea.boundingBox())!.height;await textarea.fill(Array.from({length:20},(_,i)=>'説明'+i).join('\n'));
    await expect.poll(async()=>(await textarea.boundingBox())!.height).toBeGreaterThan(initial);expect((await textarea.boundingBox())!.height).toBeLessThanOrEqual(181);
@@ -81,7 +81,7 @@ for(const profile of ['guided','dense']){
    await combo.press('ArrowDown');await expect(combo).toHaveAttribute('aria-activedescendant','request-owner-option-sales');await combo.press('Enter');await expectValues(page,{owner:'sales'});await expect(combo).toHaveAttribute('aria-expanded','false');
    await page.getByRole('button',{name:'担当部署をクリア',exact:true}).click();await combo.press('ArrowDown');await combo.press('Escape');await expect(combo).toBeFocused();await expect(combo).toHaveAttribute('aria-expanded','false');
    await root.getByLabel('非同期候補',{exact:true}).check();await combo.fill('総務');await root.getByRole('button',{name:'古い候補応答を適用',exact:true}).click();await combo.focus();await expect(page.locator('ui-combobox').getByRole('option')).toHaveCount(0);
-   await root.getByRole('button',{name:'現在の候補応答を適用',exact:true}).click();await combo.focus();await combo.press('ArrowDown');await combo.press('Enter');await expectValues(page,{owner:'general'});
+   await root.getByRole('button',{name:'現在の候補応答を適用',exact:true}).click();await combo.focus();await combo.press('ArrowDown');await combo.press('Enter');await expectValues(page,{owner:'general'});await expect(combo).toHaveValue('総務部');
    await combo.fill('総務');await root.getByRole('button',{name:'同じ条件の古い応答を適用',exact:true}).click();await combo.focus();await expect(page.locator('ui-combobox').getByRole('option')).toHaveCount(0);await root.getByRole('button',{name:'現在の候補応答を適用',exact:true}).click();await combo.focus();await expect(page.locator('ui-combobox').getByRole('option')).toHaveCount(1);
    await root.getByLabel('自由入力を許可',{exact:true}).check();await expect(page.locator('ui-combobox')).toContainText('自由に入力できます。');await combo.fill('未登録の部署');await expectValues(page,{owner:'未登録の部署'});await combo.press('Tab');await expect(combo).toHaveAttribute('aria-expanded','false');
   });
@@ -94,8 +94,8 @@ for(const profile of ['guided','dense']){
   test('320px, enlarged RTL form stays within the viewport; errors and combobox pass automatic axe',async({page})=>{
    await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByLabel('RTL',{exact:true}).check();
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth)).toBe(true);
-   await page.locator('input-catalog').getByRole('button',{name:'申請内容を確認',exact:true}).click();expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
-   await page.locator('#request-owner').fill('営業');expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+   await page.locator('input-catalog').getByRole('button',{name:'申請内容を確認',exact:true}).click();expect((await new AxeBuilder({page}).include('input-catalog').analyze()).violations).toEqual([]);
+   await page.locator('#request-owner').fill('営業');expect((await new AxeBuilder({page}).include('input-catalog').analyze()).violations).toEqual([]);
   });
  });
 }

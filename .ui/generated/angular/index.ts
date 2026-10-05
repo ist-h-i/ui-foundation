@@ -10,7 +10,7 @@ export { DataTableView, TableTemplate, type TableDataState, type TableRowAction,
 export { createTableState, type TableColumn, type TableState, type TableKey, type TableSort, type TableFilter, type TableConstraint, type TableOperator } from './table-model';
 export { Pagination } from './pagination';
 export { Disclosure } from './disclosure';
-export { Dialog } from './dialog';
+export { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult, type DialogContext } from './dialog';
 export { Tabs, TabPanel } from './tabs';
 export { TextInput, Textarea, NumberInput, PasswordInput, SearchInput, type SearchRequest } from './text-input';
 export { Checkbox, Switch, Select, MultiSelect, Combobox, type SelectOption } from './selection-input';
@@ -21,3 +21,12 @@ export { DateRangePicker, type DateRange, type DatePreset } from './date-range-p
 export { type DateInputFormat } from './date-model';
 export { GridList, GridItem, type GridItemContext, type GridBreakpoint } from './grid-list';
 export { Icon, provideUiIcons } from './icon';
+
+export { Card, CardHeader, CardBody, CardFooter, CardMedia, CardActions, CardTemplate, type CardArea, type CardContext } from './card';
+export { Menu, type MenuItem, type MenuSelection } from './menu';
+export { OverlayHost, OverlayRegistry, type OverlayPlacement, type OverlayCloseReason } from './overlay';
+export { MoveHandle, ResizeHandle, type PanelRect } from './panel-handle';
+export { Snackbar, NotificationHost, NotificationService, NotificationScope, type NotificationOptions, type ScopedNotificationRecord } from './notifications';
+export { type NotificationRequest, type NotificationRecord, type NotificationSeverity, type NotificationPosition, type NotificationDismissReason, type NotificationDedup } from './notification-model';
+
+export { ConfirmDialog, AlertDialog, FormDialog, DynamicDialogHost, DynamicDialogService, DynamicDialogRef, UI_DYNAMIC_DIALOG_DATA, UI_DYNAMIC_DIALOG_REF, type DynamicDialogConfiguration } from './dialog-variants';

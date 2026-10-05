@@ -175,3 +175,43 @@ DateRangePickerの値は`{start,end}`。min/max、maxDays（両端を含む）�
 GridListはitems/keyField/labelField/controlId/labelと、`ng-template uiGridItem [uiGridItemOf]="items"`を受け取ります。contextはitem（$implicit）/index/selected。columns=nullは実際の領域幅と意味トークンsize.grid-itemで列数を計算し、columns/maxColumns/minimumItemWidth/itemSize/gap/breakpointsで配置を制御します。breakpointsは`{minWidth,columns}`の領域幅条件です。selectionMode、selectedKeys/selectedKeysChange、itemSelectable、showSelectAll、busy/disabled、emptyMessageを持ちます。選択はnative checkbox/radio。busyは部品の選択操作を抑止し、投影した業務操作はアプリが接続します。
 
 Iconはname、size=small/medium/large、severity、decorative、label。装飾アイコンは支援技術から隠し、意味を持つものはlabelを必須とします。`provideUiIcons()`で業務の基本12種類を登録し、`provideUiIcons(LucideFileText, …)`で必要なアイコンだけ追加できます。同じDI階層で別のLucide providerを置くと登録が上書きされるため、追加も一つのproviderへ渡します。名前だけを登録して描画済み扱いにはせず、SVGの実パスを検証します。
+
+### Cardと領域
+
+`<ui-card cardId="record" title="申請内容" [collapsible]="true" [(collapsed)]="folded">`。`showHeader/showBody/showFooter/showMedia/showActions`はそれぞれの領域をhiddenで制御します。`orientation=vertical|horizontal`、`appearance=outlined|plain|raised`、`padding=none|compact|normal`、`title/subtitle/label`、`loading/loadingLabel`を持ちます。折り畳み・非表示・読込みで入力のインスタンスを維持し、操作中の領域が消えると展開操作またはarticleへfocusを移します。loadingは本文の業務操作を自動で無効にしません。アプリが取得状態の意味に合わせて操作を設定します。
+
+`ui-card-header/body/footer/media/actions`の投影部品は`align=start|center|end`と`padding`を受け取ります。代わりに`<ng-template uiCardTemplate="header|body|footer|media|actions" let-context>`で各領域を差し替えられます。一領域に一テンプレート、contextはtitle/subtitle/collapsed/loading。同じ領域のテンプレートがある場合はそのテンプレートを使います。CardTemplateと投影部品をconsumerのimportsに含めます。
+
+### MenuとOverlay
+
+Menuは`ui-menu/ui-dropdown-menu/ui-context-menu`。`menuId/label`必須、`items`は一意のidを持つ再帰MenuItemで、type=item|checkbox|radio|group|separator、label/icon/disabled/visible/checked/radioGroup/value/childrenを受け取ります。選択は`selected:{item,path}`、チェック変更は`itemsChange`。`open/openChange`、`trigger=click|hover|context`、`placement`、`closeOnSelect`、`disabled`を制御します。radioは明示radioGroup、未指定時は同じ親のグループで排他的に選択します。存在しない/重複ID、循環、空ラベルは拒否します。
+
+矢印、Home/End、Enter/Space、文字検索で操作し、RTLでは階層方向を反転します。無効項目はfocusで確認できますが実行しません。Escapeはfocusのある階層から一段ずつ戻り、親項目へ復帰します。TabはMenuを終了して隣の操作へ移動します。子階層の「親メニューに戻る」はtouchの代替操作です。contextは対象の右クリック、Shift+F10/ContextMenu、500ms長押し、常設の起動ボタンに対応します。context対象は`uiMenuContext`へ投影します。hoverは起動ボタンと内容の間を移動でき、外れた後の200msで終了します。
+
+hover表示は編集中の入力からfocusを奪いません。triggerはメニュー全体の起動を設定し、子階層はクリック・矢印・Enter/Spaceで展開します。狭幅で子メニューが親を覆う場合も、クリック直前のhoverで別項目へ切り替えません。項目の削除・非表示更新では残る同階層の項目、親項目、起動ボタンの順にfocusを修復します。親Dialog終了やanchorのhidden/inert/破棄では内部popupを`scope-exit`で終了します。異なるOverlayHostの外側クリックも、一つのpointerイベントで最上位だけを終了します。
+
+native popoverでトップレイヤーへ移しますが、DOMのプロファイルとRTLスコープを維持します。OverlayHostは任意のスコープでOverlayRegistryを提供し、各scopeを同じDocumentの最上位順で調停します。位置はanchor、visual viewport、RTL、外周余白に応じて反転/制限し、scroll/resizeへ追随します。native modalのinertnessとTabはブラウザーが担当します。MoveHandle/ResizeHandle（button[uiMoveHandle/uiResizeHandle]）はtarget、uiHandleDisabled、rectChangeを受け取り、pointer captureまたは矢印キー、Shiftで移動/リサイズします。
+
+### Dialogの拡張と各種Dialog
+
+Dialogは`dialog[uiDialog]`。`open/openChange/modal`、`showHeader/showFooter`、`closable/closeOnEscape/closeOnOutsideClick`、`size=small|normal|large|full`、`position=center|top|bottom|start|end`、`draggable/resizable/maximizable/busy`を受け取ります。元の投影内容だけで利用する場合、showHeaderの既定はfalse。ヘッダー・フッターは`uiDialogHeader/uiDialogFooter`または`ng-template[uiDialogTemplate]`のheader/body/footerで差し替えます。template contextはbusyとfinish(reason,value,returnValue)。ヘッダーの移動、最大化、閉じる操作と独立したサイズ操作を配置できます。
+
+showHeader=falseでもdraggable/maximizableの操作を本文の前に配置します。表示中のmodal切替はnative close→show/showModalでトップレイヤーの状態を変更し、切替だけではcompletedを通知しません。
+
+`finish(reason,value?,returnValue?)`は`closeRequested:DialogCloseRequest`を同期通知します。アプリの`preventDefault()`で終了を保留でき、未保存確認後にfinishを呼びます。busy中はユーザーの終了を抑止します。確定済み処理の後は`complete(value,returnValue)`でconfirm理由の終了を行い、UIのbusy抑止を越えて確定結果を返せますが、アプリのcloseRequestedによる保留は維持します。明示inputのopen=falseはprogrammatic終了です。`completed:{reason,value,returnValue}`、既存のcancelled/closedを通知し、呼出元へfocusを復帰します。終了理由はescape/outside/close-button/confirm/cancel/programmatic/native。アプリが直接native close()やmethod=dialogを使う場合はnative理由となり、finishの保留契約を通りません。
+
+ConfirmDialogはlabel/message、confirmLabel/cancelLabel、busy、closeOnOutsideClick、open、closeRequested/completedで確認意図を返します。AlertDialogはrole=alertdialogで明示応答するまで保持し、Escapeと外側クリックで閉じません。いずれも通知した確認結果をHTTP更新の成功とは扱いません。
+
+FormDialogはlabel、open、busy、dirty、valid、error、saveLabel、closeOnOutsideClickと投影入力を受け取ります。dirtyでの終了要求を保留し、「編集を続ける／変更を破棄して閉じる」を表示します。saveRequestedでアプリへ検証・保存を委ね、成功時にアプリがcompleteを呼びます。失敗はerrorで伝え、入力を保持します。アプリの追加closeRequestedによる保留も可能です。open=falseはアプリの明示指示なので、未保存確認を経る終了はfinishを使います。
+
+DynamicDialogServiceはDynamicDialogHostを先に配置し、`open<T>({component,label,data,inputs,modal,...})`でAngular componentを実際に描画します。contentはUI_DYNAMIC_DIALOG_DATAとUI_DYNAMIC_DIALOG_REFをinjectでき、ref.finish(reason,value)またはEscape等で終了し、ref.resultがDialogResultを返します。updateInputsはcomponentを作り直さず入力を更新します。一scopeに一host、一つの動的Dialogを扱い、未接続や重複openはエラーにします。host破棄時もresultを解決します。
+
+### Snackbar・Toast・通知ホスト
+
+Snackbarは`ui-snackbar/ui-toast`。`open/openChange/message/severity/autoDismiss/durationSeconds/position/showCloseButton/actionLabel/pauseOnHover/pauseOnFocus`、action、dismissed=close|action|timeoutを受け取ります。ONの既定は5秒で、有限の正の秒数を必要とします。OFFは秒数を参照せず、0やNaNもタイマーへ使用しません。hoverとfocusが重なったpauseは両方を解除してから残り時間を再開します。action/closeは通知を終了し、操作中だったfocusを呼出元へ戻します。focusReturnで復帰先を明示できます。
+
+NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHostのmaxConcurrency、dedup=ignore|replace|allow、positionを設定します。queuedの通知は描画されるまでタイマーを開始しません。dedupKey、未指定時はmessage/severity/positionの組合せで同一とみなします。replaceは同じIDのrevisionを更新して表示時間を再開し、古いaction/timeoutの終了が新しい通知を消しません。dismiss(id)とclearで明示終了できます。位置はtop/bottomとstart/center/endの六種類で、start/endはRTLの論理方向です。
+
+中央配置は入れ子の異なるdirにも対応します。画面より長い通知は表示領域内でスクロールでき、本文と操作へ到達できます。dismiss/clearは自scopeで操作中の通知からだけfocusを復帰し、別scopeの通知操作へ干渉しません。IDはNotificationServiceごとのローカル識別子です。
+
+同時表示数を減らして待機へ戻した通知や位置の変更で描画し直した通知は、次の表示で設定時間から開始します。これらは全体の経過時間を保証するTTLではありません。同じNotificationServiceに一つのhostを置きます。modal内の操作付き通知はuiNotificationScopeまたは専用NotificationService providerと、そのDOM内のNotificationHostを使います。native modalの外の通知は背景として扱い、背景操作を許可しません。実際のUndo、バックエンド保存、通知本文の業務意味、重複キーの設計はアプリが所有します。

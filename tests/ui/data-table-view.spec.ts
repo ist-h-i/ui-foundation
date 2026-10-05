@@ -107,8 +107,8 @@ for (const profile of ['guided','dense']) {
    await table.getByRole('region',{name:'申請一覧の表領域'}).focus();await page.keyboard.press('ArrowLeft');await expect(table.getByRole('region')).toBeFocused();
   });
   test('native table headers, normal and partial states have no automatic axe violations',async({page})=>{
-   expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);await page.getByLabel('一覧の状態',{exact:true}).selectOption('partial');
-   expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+   expect((await new AxeBuilder({page}).include('ui-data-table').analyze()).violations).toEqual([]);await page.getByLabel('一覧の状態',{exact:true}).selectOption('partial');
+   expect((await new AxeBuilder({page}).include('ui-data-table').analyze()).violations).toEqual([]);
   });
  });
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { uiProfiles } from '../../.ui/generated/profiles';
+import { OverlayCatalog } from './overlay-catalog';
 import { InputCatalog } from './input-catalog';
 import { DateCatalog } from './date-catalog';
 import { GridCatalog } from './grid-catalog';
@@ -9,7 +10,7 @@ import {
 } from '../../.ui/generated/angular/index';
 interface RecordRow { id: number; name: string; amount: number | null; date: string; status: string }
 @Component({
- selector: 'fixture-app', imports: [DataTableView, TableTemplate, ActionControl, InputCatalog, DateCatalog, GridCatalog], changeDetection: ChangeDetectionStrategy.OnPush,
+ selector: 'fixture-app', imports: [DataTableView, TableTemplate, ActionControl, InputCatalog, DateCatalog, GridCatalog, OverlayCatalog], changeDetection: ChangeDetectionStrategy.OnPush,
  template: `
   <main class="catalog" [attr.data-ui-profile]="profile()" [attr.dir]="rtl() ? 'rtl' : 'ltr'">
     <h1>共通部品の操作確認</h1>
@@ -51,6 +52,7 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
     <input-catalog />
     <date-catalog />
     <grid-catalog />
+    <overlay-catalog />
   </main>
  `,
  styles: `

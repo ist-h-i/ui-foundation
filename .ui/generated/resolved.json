@@ -48,6 +48,10 @@
       "type": "length",
       "value": "640px"
     },
+    "dialog-min": {
+      "type": "length",
+      "value": "280px"
+    },
     "disabled-wash": {
       "type": "color",
       "value": "#e7ebf0"
@@ -59,6 +63,10 @@
     "easing": {
       "type": "easing",
       "value": "ease-out"
+    },
+    "elevation-blur": {
+      "type": "length",
+      "value": "12px"
     },
     "error-wash": {
       "type": "color",
@@ -123,6 +131,10 @@
     "outline": {
       "type": "color",
       "value": "#778496"
+    },
+    "overlay-min": {
+      "type": "length",
+      "value": "192px"
     },
     "red": {
       "type": "color",
@@ -324,6 +336,11 @@
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -414,6 +431,16 @@
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
         "size.grid-item": {
           "reference": "grid-item",
           "type": "length",
@@ -428,6 +455,11 @@
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
         },
         "size.table-column-min": {
           "reference": "table-column-min",
@@ -612,6 +644,11 @@
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -702,6 +739,16 @@
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
         "size.grid-item": {
           "reference": "grid-item",
           "type": "length",
@@ -716,6 +763,11 @@
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
         },
         "size.table-column-min": {
           "reference": "table-column-min",

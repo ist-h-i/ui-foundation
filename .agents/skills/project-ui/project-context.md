@@ -119,6 +119,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -209,6 +214,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
         "size.grid-item": {
           "reference": "grid-item",
           "type": "length",
@@ -223,6 +238,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
         },
         "size.table-column-min": {
           "reference": "table-column-min",
@@ -407,6 +427,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "color",
           "value": "#ffffff"
         },
+        "color.shadow": {
+          "reference": "outline",
+          "type": "color",
+          "value": "#778496"
+        },
         "color.success": {
           "reference": "green",
           "type": "color",
@@ -497,6 +522,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "640px"
         },
+        "size.dialog-min": {
+          "reference": "dialog-min",
+          "type": "length",
+          "value": "280px"
+        },
+        "size.elevation-blur": {
+          "reference": "elevation-blur",
+          "type": "length",
+          "value": "12px"
+        },
         "size.grid-item": {
           "reference": "grid-item",
           "type": "length",
@@ -511,6 +546,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.overlay-min": {
+          "reference": "overlay-min",
+          "type": "length",
+          "value": "192px"
         },
         "size.table-column-min": {
           "reference": "table-column-min",
