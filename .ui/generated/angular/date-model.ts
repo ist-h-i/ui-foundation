@@ -6,6 +6,11 @@ export function civilDate(value:string|null|undefined):Date|null{
  return date.getUTCFullYear()===year&&date.getUTCMonth()===month!-1&&date.getUTCDate()===day?date:null;
 }
 export function civilISO(date:Date):string{return String(date.getUTCFullYear()).padStart(4,'0')+'-'+String(date.getUTCMonth()+1).padStart(2,'0')+'-'+String(date.getUTCDate()).padStart(2,'0');}
+/** Snapshot the device's local day for defaults; civil arithmetic stays in UTC. */
+export function localCivilISO(date:Date):string{
+ const year=date.getFullYear();if(!Number.isInteger(year)||year<1||year>9999)throw new RangeError('Local calendar date must have a year between 1 and 9999.');
+ return String(year).padStart(4,'0')+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+}
 export function addCivilDays(value:string,amount:number):string{const date=civilDate(value);if(!date||!Number.isInteger(amount))return value;date.setUTCDate(date.getUTCDate()+amount);return date.getUTCFullYear()<1||date.getUTCFullYear()>9999?value:civilISO(date);}
 export function shiftCivilMonth(value:string,months:number):string{
  const date=civilDate(value);if(!date||!Number.isInteger(months))return value;const day=date.getUTCDate();date.setUTCDate(1);date.setUTCMonth(date.getUTCMonth()+months);

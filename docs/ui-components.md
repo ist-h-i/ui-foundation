@@ -162,6 +162,8 @@ FormLayout（`[uiFormLayout]`）はcolumnsとdirection、InputGroupは前後の`
 
 日付は`YYYY-MM-DD`、月は`YYYY-MM`、年は文字列、時刻は`HH:mm[:ss]`。日付だけの値を地域時刻へ変換しません。CalendarとDatePickerはmin/max、disabledDates/dateDisabled、weekStartsOn（0～6）、localeを受け取ります。Calendarはvalue/CVA、today、initialMonth、displayMonth/monthChange、view=month/year、selectedDatesと`ng-template[uiCalendarDay]`を持ちます。日セルのcontextはdate（$implicit）/day/inMonth/selected/disabled。日セル内に別の操作要素を入れず、選択操作はCalendarに任せます。
 
+Calendarの`today`とDateRangePickerの`initialMonth`を省略した場合は、部品作成時の端末ローカル日付／月を使用します。午前0時をまたいでも自動で選択や表示月を変更しません。業務のタイムゾーンや日付更新が必要なアプリは明示値を渡します。localeは表示書式だけを変更し、確定済みcivil値と日付演算はタイムゾーンでずれません。
+
 Calendarの日付は一つのタブ停止を持つgrid。左右／上下、Home/End、PageUp/PageDown、Shift+PageUp/PageDownで日・週・月・年を移動します。選択不可日はfocusで確認でき、確定はできません。狭幅・文字拡大時は日付一覧の名前付き領域で横スクロールし、数字を分割しません。追加の日セル情報は`dayDescription(date)`でも伝え、日付ボタンの名前に含めます。DatePickerのnative dialogを開くと選択日へfocusを置き、Escapeまたは確定後に起動ボタンへ戻します。ネイティブdialogは同じプロファイル／RTLスコープ内に残します。
 
 DatePicker/DateRangePickerの`inputFormat`を変更すると最後に確定した値を新しい書式で表示し、未確定の文字とそのエラーを解除します。期間入力は内部の両端のvalidatorを親フォームへ伝え、部分入力がある間は確定済みの期間を保持して親をinvalidにします。preset/clear/reset/カレンダー選択で修復できます。日時の刻みはmin（未指定時はcivil epoch）を起点に日付と時刻の両方で計算します。
@@ -254,7 +256,7 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 
 `NotificationCenter`はcontrolId/label、typed `items`（id/title/message/category/read/severity/disabled/busy）、filter/categoryと変更出力、disabled/loading/hasMore/error、追加取得/再試行の文言を持つ。未読件数と分類を表示し、`readRequested:{id,read}`、`deleteRequested:id`、`loadMoreRequested`を利用アプリへ返す。部品は既読・削除・取得成功を先取りせず、アプリから受け取る一覧を表示する。取得中は既存一覧を保持して連打を抑止し、失敗時は再試行する。行がfilter/削除で消える前、操作がbusyで無効になる前に可視操作または状態説明へfocusを移す。
 
-`Alert`（`ui-alert` / `ui-banner` / `ui-inline-message`）はopen/openChange、title/message、severity、announcement=polite/assertive/off、closable/closeLabel、actionLabel/action、busy/disabledとfocusFallbackを持つ。本文と`uiAlertActions`を投影でき、明示終了まで保持する。通知を出しただけでfocusを奪わず、閉じる際だけ内側のfocusを外へ移す。投影した独自操作のbusy契約は利用アプリが接続する。
+`Alert`（`ui-alert` / `ui-banner` / `ui-inline-message`）はopen/openChange、title/message、severity、announcement=polite/assertive/off、closable/closeLabel、actionLabel/action、busy/disabledとfocusFallbackを持つ。本文と`uiAlertActions`を投影でき、明示終了まで保持する。通知を出しただけでfocusを奪わず、閉じる際だけ内側のfocusを外へ移す。組込みの確認／閉じる操作を外部から非表示にすると、その操作にあったfocusだけを本文へ移します。残る操作や補助入力、領域外のfocusは保持します。投影した独自操作のbusy契約は利用アプリが接続する。
 
 `ActionFeedback`は既存state（idle/success/error/warning/unknown）、recoveryLabel/recover/recoveryBusy/recoveryDisabledにbusy/busyMessage、focusFallbackを接続する。結果不明を成功と扱わず、説明と入力を保持する。`AsyncRegion`はready/loading/empty/error/refreshing/partial/stale、retryAvailable/retryBusy/retryを持ち、取得/欠損の意味を区別する。通常の内容をDOMに保持し、更新中・部分欠損・古い情報では取得済みの内容を表示する。内容と通知の切替前にfocusを退避し、処理中に無効になる復旧操作は状態説明へfocusを残す。
 

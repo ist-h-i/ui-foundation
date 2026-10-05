@@ -2684,7 +2684,9 @@
       "evidence": [
         "tests/ui/dates.spec.ts",
         "tests/generation/consumer.test.ts",
-        "docs/verification/ui-library-priority-2026-10-05.md"
+        "docs/verification/ui-library-priority-2026-10-05.md",
+        "docs/verification/ui-library-local-defaults-2026-10-05.md",
+        "tests/ui/local-date-defaults.spec.ts"
       ],
       "priority": 3,
       "deliveryScope": "business-first",
@@ -2697,8 +2699,12 @@
       ],
       "remainingControls": [],
       "verificationPending": [],
-      "knownIssues": [
-        "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。"
+      "knownIssues": [],
+      "resolvedIssues": [
+        {
+          "issue": "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。",
+          "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+        }
       ]
     },
     {
@@ -2794,7 +2800,9 @@
       "evidence": [
         "tests/ui/dates.spec.ts",
         "tests/generation/consumer.test.ts",
-        "docs/verification/ui-library-priority-2026-10-05.md"
+        "docs/verification/ui-library-priority-2026-10-05.md",
+        "docs/verification/ui-library-local-defaults-2026-10-05.md",
+        "tests/ui/local-date-defaults.spec.ts"
       ],
       "priority": 3,
       "deliveryScope": "business-first",
@@ -2806,8 +2814,12 @@
       ],
       "remainingControls": [],
       "verificationPending": [],
-      "knownIssues": [
-        "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。"
+      "knownIssues": [],
+      "resolvedIssues": [
+        {
+          "issue": "P2: Calendar.today / DateRangePicker.initialMonthのUTC既定とブラウザーの現地日/月境界。次PRで修正。",
+          "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+        }
       ]
     },
     {
@@ -4233,7 +4245,8 @@
         "tests/model/feedback.test.ts",
         "tests/generation/consumer.test.ts",
         "scripts/consumer-browser.mjs",
-        "docs/verification/ui-library-feedback-2026-10-05.md"
+        "docs/verification/ui-library-feedback-2026-10-05.md",
+        "docs/verification/ui-library-local-defaults-2026-10-05.md"
       ],
       "priority": 6,
       "deliveryScope": "business-first",
@@ -4242,8 +4255,12 @@
       ],
       "remainingControls": [],
       "verificationPending": [],
-      "knownIssues": [
-        "P2: 外部closable=false/actionLabel=\"\"でfocused自前操作を除去した場合のfocus復帰。次PRで修正。"
+      "knownIssues": [],
+      "resolvedIssues": [
+        {
+          "issue": "P2: 外部closable=false/actionLabel=\"\"でfocused自前操作を除去した場合のfocus復帰。次PRで修正。",
+          "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+        }
       ]
     },
     {
@@ -8356,7 +8373,7 @@
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
     "stage": "business-priority-overlays-layout-actions-and-feedback",
-    "verificationStatus": "verified-five-stages",
+    "verificationStatus": "verified-five-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8367,7 +8384,8 @@
       "layout": "approve after fixed-region, intrinsic media, external collapse, focus, drag cancellation and zero-size pane fixes",
       "actions": "approve after scoped Toolbar focus, dynamic replacements and rapid Menu key fixes",
       "feedback": "approve with comments; Tour scope/focus and notification category fixes independently verified; Alert dynamic control removal focus remains P2",
-      "pr3Integration": "approve with comments after semantic selected-surface fix; UTC default date and Alert focus removal remain P2"
+      "pr3Integration": "approve with comments after semantic selected-surface fix; UTC default date and Alert focus removal remain P2",
+      "pr4LocalDefaults": "approve after scoped nested Alert focus fix; independently operated natural projection in guided/dense"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
@@ -8378,19 +8396,38 @@
     "knownIssues": [
       {
         "severity": "P2",
+        "issue": "Existing output relocation loses Skill ownership metadata",
+        "followup": "output migration change; current output sync unaffected"
+      }
+    ],
+    "resolvedIssues": [
+      {
+        "severity": "P2",
         "issue": "Calendar.today/DateRangePicker.initialMonth UTC default at local day/month boundary",
-        "followup": "next PR"
+        "followup": "PR #4 corrected and independently verified",
+        "codeHead": "91107d1fa5c74ff639463511203641750958b2c4",
+        "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
       },
       {
         "severity": "P2",
         "issue": "Alert focused action removal on closable=false/actionLabel=\"\"",
-        "followup": "next PR"
-      },
-      {
-        "severity": "P2",
-        "issue": "Existing output relocation loses Skill ownership metadata",
-        "followup": "output migration change; current output sync unaffected"
+        "followup": "PR #4 corrected and independently verified",
+        "codeHead": "91107d1fa5c74ff639463511203641750958b2c4",
+        "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
       }
-    ]
+    ],
+    "maintenanceVerification": {
+      "pullRequest": 4,
+      "baseCommit": "ad37e61496a7fe9707e9057151702d678009e25b",
+      "codeHead": "91107d1fa5c74ff639463511203641750958b2c4",
+      "testCounts": {
+        "config": 60,
+        "generation": 15,
+        "model": 25,
+        "ui": 300,
+        "total": 400
+      },
+      "evidence": "docs/verification/ui-library-local-defaults-2026-10-05.md"
+    }
   }
 }

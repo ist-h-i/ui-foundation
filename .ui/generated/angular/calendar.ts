@@ -3,7 +3,7 @@ import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,com
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ActionControl} from './action-control';
 import {ValueControl} from './value-control';
-import {addCivilDays,calendarDays,civilDate,civilISO,civilLabel,shiftCivilMonth} from './date-model';
+import {addCivilDays,calendarDays,civilDate,localCivilISO,civilLabel,shiftCivilMonth} from './date-model';
 export interface CalendarDayContext{$implicit:string;day:number;inMonth:boolean;selected:boolean;disabled:boolean}
 @Directive({selector:'ng-template[uiCalendarDay]',standalone:true})
 export class CalendarDay{readonly template=inject<TemplateRef<CalendarDayContext>>(TemplateRef);static ngTemplateContextGuard(_directive:CalendarDay,_context:unknown):_context is CalendarDayContext{return true;}}
@@ -34,7 +34,7 @@ export class CalendarDay{readonly template=inject<TemplateRef<CalendarDayContext
 })
 export class Calendar extends ValueControl<string|null>{
  protected readonly emptyValue=null;readonly min=input<string|null>(null);readonly max=input<string|null>(null);readonly disabledDates=input<readonly string[]>([]);readonly dateDisabled=input<((date:string)=>boolean)|null>(null);
- readonly weekStartsOn=input(0);readonly locale=input('ja-JP');readonly today=input(civilISO(new Date()));readonly initialMonth=input<string|null>(null);readonly displayMonth=input<string|null>(null);readonly selectedDates=input<readonly string[]>([]);readonly view=input<'month'|'year'>('month');readonly monthChange=output<string>();
+ readonly weekStartsOn=input(0);readonly locale=input('ja-JP');readonly today=input(localCivilISO(new Date()));readonly initialMonth=input<string|null>(null);readonly displayMonth=input<string|null>(null);readonly selectedDates=input<readonly string[]>([]);readonly view=input<'month'|'year'>('month');readonly monthChange=output<string>();
  protected readonly Number=Number;protected readonly months=Array.from({length:12},(_,index)=>String(index+1).padStart(2,'0'));
  protected readonly dayTemplate=contentChild(CalendarDay);private readonly dayButtons=viewChildren<ElementRef<HTMLButtonElement>>('dayButton');
  protected readonly month=linkedSignal(()=>this.displayMonth()??this.current()?.slice(0,7)??(civilDate(this.initialMonth()+'-01')?this.initialMonth()!:this.today().slice(0,7)));

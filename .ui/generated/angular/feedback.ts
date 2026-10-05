@@ -11,7 +11,7 @@ function holdBlockedFeedbackAction(element: HTMLElement, blocked: boolean): void
 const common = `:host{box-sizing:border-box;display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);overflow-wrap:anywhere;}:host([hidden]),[hidden]{display:none!important;}h2{margin:0;font-size:var(--ui-text-heading);font-weight:var(--ui-weight-heading);line-height:var(--ui-leading-heading);}p{margin-block:var(--ui-space-control-gap);}button{max-inline-size:100%;}.ui-feedback-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}.ui-feedback-frame{padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-background);}`;
 const severity = `:host([data-severity="success"]){--ui-feedback-ink:var(--ui-color-success);--ui-feedback-surface:var(--ui-color-success-surface);}:host([data-severity="warning"]){--ui-feedback-ink:var(--ui-color-warning);--ui-feedback-surface:var(--ui-color-warning-surface);}:host([data-severity="error"]){--ui-feedback-ink:var(--ui-color-danger);--ui-feedback-surface:var(--ui-color-error-surface);}.ui-feedback-frame{color:var(--ui-feedback-ink,var(--ui-color-text));background:var(--ui-feedback-surface,var(--ui-color-background));}`;
 @Component({ selector: 'ui-alert,ui-banner,ui-inline-message', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush, host: { '[hidden]': '!opened()', '[attr.data-severity]': 'severity()' },
-    template: `<div class="ui-feedback-frame"><div [attr.role]="announcement()==='off'?null:announcement()==='assertive'?'alert':'status'" aria-atomic="true">@if(title()){<h2>{{title()}}</h2>}<p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div><ng-content /><div class="ui-feedback-actions"><ng-content select="[uiAlertActions]" />@if(actionLabel()){<button uiAction data-feedback-action [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}@if(closable()){<button uiAction data-feedback-action [disabled]="busy()||disabled()" (click)="close()">{{closeLabel()}}</button>}</div></div>`, styles: common + severity })
+    template: `<div class="ui-feedback-frame"><div [attr.role]="announcement()==='off'?null:announcement()==='assertive'?'alert':'status'" aria-atomic="true">@if(title()){<h2>{{title()}}</h2>}<p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div><ng-content /><div class="ui-feedback-actions"><ng-content select="[uiAlertActions]" />@if(actionLabel()){<button uiAction data-feedback-action="action" [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}@if(closable()){<button uiAction data-feedback-action="close" [disabled]="busy()||disabled()" (click)="close()">{{closeLabel()}}</button>}</div></div>`, styles: common + severity })
 export class Alert {
     readonly open = input(true, { transform: booleanAttribute });
     readonly openChange = output<boolean>();
@@ -29,10 +29,17 @@ export class Alert {
     readonly focusFallback = input<HTMLElement | null>(null);
     protected readonly opened = linkedSignal(() => this.open());
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-    constructor() { effect(() => { const open = this.opened(), blocked = this.busy() || this.disabled(), fallback = this.focusFallback(); untracked(() => { if (!open)
-        focusBeforeHiding(this.element, fallback);
-    else
-        holdBlockedFeedbackAction(this.element, blocked); }); }); }
+    constructor() { effect(() => {
+        const open = this.opened(), blocked = this.busy() || this.disabled(), fallback = this.focusFallback();
+        const actionVisible = !!this.actionLabel(), closeVisible = this.closable();
+        untracked(() => {
+            if (!open) { focusBeforeHiding(this.element, fallback); return; }
+            const active = this.element.ownerDocument.activeElement;
+            const ownsFocus = (kind: 'action' | 'close') => !!active && !!this.element.querySelector(':scope > .ui-feedback-frame > .ui-feedback-actions > [data-feedback-action="' + kind + '"]')?.contains(active);
+            if ((blocked || !actionVisible) && ownsFocus('action') || (blocked || !closeVisible) && ownsFocus('close'))
+                this.element.querySelector<HTMLElement>('.ui-feedback-message')?.focus();
+        });
+    }); }
     protected requestAction(): void {
         if (this.opened() && !this.busy() && !this.disabled())
             this.action.emit();

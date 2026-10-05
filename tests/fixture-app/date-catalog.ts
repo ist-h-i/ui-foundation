@@ -22,11 +22,19 @@ import {ActionControl,Calendar,CalendarDay,DatePicker,DateRangePicker,TimePicker
    <ui-date-range-picker controlId="event-range" label="対象期間" formControlName="range" [maxDays]="7" min="2026-01-01" max="2026-12-31" [disabledDates]="['2026-10-03']" [months]="2" [initialMonth]="'2026-10'" [weekStartsOn]="monday()?1:0" [inputFormat]="inputFormat()" [error]="error('range')" [presets]="presets" />
   </form>
   <button uiAction (click)="yearView.set(!yearView())">年の月一覧を切替</button>
+  <label><input type="checkbox" [checked]="showDefaults()" (change)="showDefaults.set(checked($event))">端末日付の既定値を表示</label>
+  @if(showDefaults()){
+   <section aria-label="端末日付の既定値"><ui-calendar data-testid="local-calendar" controlId="local-calendar" label="端末カレンダー" [formControl]="defaultDate" />
+    <ui-date-range-picker data-testid="local-range" controlId="local-range" label="端末の期間" [formControl]="defaultRange" />
+    <p data-testid="local-date">{{defaultDate.value}}</p>
+   </section>
+  }
   <pre data-testid="date-values">{{snapshot().value}}</pre><p data-testid="date-status">日付: {{snapshot().valid?'有効':'要確認'}}</p>
  </section>`,styles:`:host{display:block;min-inline-size:0;max-inline-size:100%;}form{margin-block:var(--ui-space-section);}h2{font-size:var(--ui-text-heading);}pre{white-space:pre-wrap;overflow-wrap:anywhere;}small{display:block;font-size:var(--ui-text-small);}`})
 export class DateCatalog{
  readonly form=new FormGroup({date:new FormControl<string|null>('2026-10-05'),time:new FormControl<string|null>('09:00'),datetime:new FormControl<string|null>(null),month:new FormControl<string|null>('2026-10'),year:new FormControl<string|null>('2026'),calendar:new FormControl<string|null>('2026-10-05'),range:new FormControl<DateRange>({start:null,end:null},{nonNullable:true})});
  readonly snapshot=toSignal(this.form.events.pipe(map(()=>this.read())),{initialValue:this.read()});readonly inputFormat=signal<DateInputFormat>('native');readonly monday=signal(false);readonly yearView=signal(false);readonly offsetStep=signal(false);readonly marchInitial=signal(false);
+ readonly showDefaults=signal(false);readonly defaultDate=new FormControl<string|null>(null);readonly defaultRange=new FormControl<DateRange>({start:null,end:null},{nonNullable:true});
  readonly dayDescription=(date:string)=>date==='2026-10-05'?'予定あり':'';
  readonly presets=[{label:'翌週の平日',range:{start:'2026-10-05',end:'2026-10-09'}},{label:'選択不可日を含む期間',range:{start:'2026-10-01',end:'2026-10-05'}}];
  private read(){return {value:JSON.stringify(this.form.getRawValue()),valid:this.form.valid};}
