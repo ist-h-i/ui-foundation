@@ -84,6 +84,14 @@ export class Menubar {
         if (target.id !== this.controlId() + '-' + encodeURIComponent(item.id) + '-trigger')
             return;
         const nodes = this.roots(), logical = nodes.find(node => node.id === this.focusId()) ?? item, rtl = this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction === 'rtl';
+        if (event.key === 'Tab') {
+            // A preceding root key can move focus before Angular renders its
+            // new roving tabindex. Exit the whole composite in either state.
+            event.preventDefault();
+            this.closeOthers(null);
+            this.focusOutside(event.shiftKey);
+            return;
+        }
         if (event.key.length !== 1 || event.key === ' ') {
             this.prefix = '';
             this.prefixAt = 0;

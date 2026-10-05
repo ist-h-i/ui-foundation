@@ -101,7 +101,7 @@ widthは展開時の幅、省略時はsize.sidebar。全体の折畳みはsize.n
 
 `<ui-menubar>`は必須controlId/label、`items: readonly MenuItem[]`、itemsChange/selected、`disabled=false`、`closeOnSelect=true`を持つ。常時見えるrootは横方向のroving focus、rootのcommand/check/radioと再帰Menuを組み合わせる。rootのgroup/separatorは拒否し、popupのchildrenに置く。子popupを持つrootはtype=itemとし、checkbox/radioの選択項目はpopup内に置く。disabled項目はfocusで説明を確認でき、実行を拒否する。選択はrootを含むid pathとitemを返す。itemsChangeはcheck/radioの新しいdataであり、実行成功を意味しない。
 
-rootの左右（RTL反転）/Home/End/typeahead、popupの上下/Enter/Space、前方キーによる子展開、後方/Escapeによる親へのfocus復帰を接続する。popup内のleafで前方キーを押すと次rootへ移り、そこにpopupがあれば最初の項目へ入る。最上位popupで後方キーは前root。Tab/Shift+Tabで全popupを閉じ、Menubar全体の外へ退出する。root間や深い階層の連続キー、項目除去時の自前focusを検証する。既存Menuの`menubar/rootNavigation`と`openMenu/dismiss/focusTrigger`はこの合成にも使う。
+rootの左右（RTL反転）/Home/End/typeahead、popupの上下/Enter/Space、前方キーによる子展開、後方/Escapeによる親へのfocus復帰を接続する。popup内のleafで前方キーを押すと次rootへ移り、そこにpopupがあれば最初の項目へ入る。最上位popupで後方キーは前root。rootとpopupのTab/Shift+Tabで全popupを閉じ、Menubar全体の外へ退出する。root移動直後の`tabindex`描画待ちにも依存しない。root間や深い階層の連続キー、項目除去時の自前focusを検証する。既存Menuの`menubar/rootNavigation`と`openMenu/dismiss/focusTrigger`はこの合成にも使う。
 
 `<ui-mega-menu>`は実anchorを使うnative popupで、Popover共通契約（controlId/anchor/open/trigger/placement/busy/終了理由/保留/対象喪失）を継承する。必須label、`groups: readonly MegaMenuGroup[]`（group=id/label/description/items）、正の整数`columns=3`、current、closeOnSelect=true、closeLabel、selectedを追加する。各groupの見出し/説明、native links/detailsによる子階層と親リンクを実描画し、size.mega-menu/size.navigation-columnで最大列数と折返しを決める。通常のサイト移動なので矢印によるmenu操作を強制しない。Tabで全リンクとsummaryへ到達し、外側/終了時のfocusは共通popupが管理する。遷移先とcurrentの更新はアプリへ返す。通常リンクの移動先がfocusを受け取る場合はnative遷移を優先し、Escape/取消では起動要素へ戻す。
 
