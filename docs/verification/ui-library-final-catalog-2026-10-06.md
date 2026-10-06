@@ -95,7 +95,7 @@ Masonryはnative handlerの要求2に対してdirect検査が旧3/4列を読み�
 
 Lightboxは原traceのキー入力時に400%・270度・scrollLeft348の旧DOMが残り、期待確認の開始後に100%・0度へ更新されていた。横overflow中はnative panへ返す製品契約に沿い、画像移動の前提が未成立だった。[追加媒体報告](ui-library-final-catalog/lightbox-render-followup/lightbox-followup-review.ja.md)と[別criticの独立復号/差分審査](ui-library-final-catalog/lightbox-second-review/REVIEW.ja.md)はreset後の実横overflow解除を待つ1行のみをapprove。全元geometry/axe/青い画像/Escape/外側focusのassertionを保持し、逆変換で全旧bytes一致。[正式への採用](ui-library-final-catalog/lightbox-render-root-adoption.json)を保存する。
 
-独立媒体担当の正式spec反復4/4はown public consumer上の実行で、root fixture全体のbyteexact cloneとは主張しない。追加32samplesは元手順16＋guard16、元の競合は再現未達で、7.484msの原traceと分ける。全UI specの追加strict tscはbefore24/after24の既存generic型診断、actual exit2・正規化差分0。新guard単体strict/構文はactual0だがwhole-spec strict成功へ読み替えない。標準の製品strict Templates/AOTは別のactual0である。
+独立媒体担当の正式spec反復4/4はown public consumer上の実行で、root fixture全体のbyteexact cloneとは主張しない。追加32samplesは元手順16＋guard16、元の競合は再現未達で、7.484msの原traceと分ける。媒体回帰spec全体の追加strict tscは元/guard付きの2コピーを対象とし、before24/after24の既存generic型診断、actual exit2・正規化差分0。新guard単体strict/構文はactual0だが媒体回帰spec全体のstrict成功へ読み替えない。標準の製品strict Templates/AOTは別のactual0である。
 
 [元93entry archive](ui-library-final-catalog/lightbox-render-followup/lightbox-followup-evidence.tar.gz)はSHA256 `7ebf3804841e9f906d3e1bf980cb41d7f1880650f75269ee407e758fb5cc9079`、29,098,433bytes。[元manifest](ui-library-final-catalog/lightbox-render-followup/evidence-manifest.json)の92artifacts＋自身の93全entryをSHA照合し、[本体採用](ui-library-final-catalog/lightbox-render-followup/root-adoption-manifest.json)で76の読取/元archiveファイルを保管。画像/trace ZIPの重複はこの検証済archive内に保持する。別criticの22 artifacts＋元manifestも同一SHAで保存した。
 
