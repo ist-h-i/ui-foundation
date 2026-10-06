@@ -181,6 +181,7 @@ test('open Lightbox named zoomed image scrolling surface passes actual axe in bo
    observations.push({profile,rotation,zoom:4,start,end,violations:analysis.violations});
   }
   await dialog.getByRole('button',{name:'表示をリセット',exact:true}).click();
+  await expect.poll(()=>viewport.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
   await dialog.locator('.ui-image-viewport').focus();await page.keyboard.press('ArrowLeft');
   await expect(dialog.getByRole('img',{name:'青い写真'})).toBeVisible();
   await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);
