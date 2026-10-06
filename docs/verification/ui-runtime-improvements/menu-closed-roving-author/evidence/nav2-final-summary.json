@@ -1,0 +1,305 @@
+{
+  "scope": "Fresh author Nav2 from readonly root37 clone with Menu cd2 guarded delta and controlled open fixture497; final root Menu/Dialog12 pending separately",
+  "stats": {
+    "startTime": "2026-10-06T13:48:35.616Z",
+    "duration": 8064.121999999999,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "actualExit": 0,
+  "receipt": {
+    "startedAtUtc": "2026-10-06T13:48:03.666Z",
+    "engines": [
+      "chromium"
+    ],
+    "explicitPlaywrightFilters": [
+      "--grep",
+      "root Tab exits in both directions before a preceding key renders its roving tabindex"
+    ],
+    "playwright": "1.63.0",
+    "scope": "Private focused unchanged Nav assert plus public controlled-close contract; default UI discovery unchanged",
+    "build": {
+      "code": 0,
+      "signal": null
+    },
+    "native": {
+      "code": 0,
+      "signal": null
+    },
+    "serverClosed": true,
+    "bundleSha256": "f2e38c5c2fea7493b62620d6260d6ad919030bce0a9b51b83beb9d68cf15f22f",
+    "origin": "http://127.0.0.1:63853",
+    "completedAtUtc": "2026-10-06T13:48:43.688Z"
+  },
+  "cases": [
+    {
+      "suite": "navigation catalog guided",
+      "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+      "status": "passed",
+      "errors": [],
+      "retry": 0,
+      "attachments": {
+        "native-menu-closed-contract": {
+          "opened": {
+            "open": true,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": 0,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": ""
+          },
+          "closed": {
+            "open": false,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": -1,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": ""
+          },
+          "reopened": {
+            "open": true,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": -1,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": "external-open-menu-item-parent"
+          }
+        },
+        "native-menu-closed-axe": {
+          "violations": 0,
+          "incompleteRules": 1,
+          "incompleteNodes": 1,
+          "testEnvironment": {
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36",
+            "windowWidth": 320,
+            "windowHeight": 800,
+            "orientationAngle": 0,
+            "orientationType": "landscape-primary"
+          }
+        }
+      }
+    },
+    {
+      "suite": "navigation catalog dense",
+      "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+      "status": "passed",
+      "errors": [],
+      "retry": 0,
+      "attachments": {
+        "native-menu-closed-contract": {
+          "opened": {
+            "open": true,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": 0,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": ""
+          },
+          "closed": {
+            "open": false,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": -1,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": ""
+          },
+          "reopened": {
+            "open": true,
+            "items": [
+              {
+                "id": "external-open-menu-item-parent",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-child",
+                "tabIndex": 0,
+                "back": false
+              },
+              {
+                "id": "external-open-menu-item-nested",
+                "tabIndex": -1,
+                "back": false
+              },
+              {
+                "id": "parent",
+                "tabIndex": -1,
+                "back": true
+              },
+              {
+                "id": "external-open-menu-item-other",
+                "tabIndex": -1,
+                "back": false
+              }
+            ],
+            "focus": "external-open-menu-item-parent"
+          }
+        },
+        "native-menu-closed-axe": {
+          "violations": 0,
+          "incompleteRules": 1,
+          "incompleteNodes": 1,
+          "testEnvironment": {
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36",
+            "windowWidth": 320,
+            "windowHeight": 800,
+            "orientationAngle": 0,
+            "orientationType": "landscape-primary"
+          }
+        }
+      }
+    }
+  ],
+  "sources": {
+    "templates/angular/menu.ts": {
+      "sha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "bytes": 28668
+    },
+    "tests/ui/navigation-catalog.spec.ts": {
+      "sha256": "3bd18bff61e2cf289f24b0fa8a7d8db222011cf49a3ab92ba7d75a8f3aa32010",
+      "bytes": 47345
+    },
+    "tests/fixture-app/main.ts": {
+      "sha256": "17f790771ce470ca910e010456828f7c45af317000427faa800451276abc24c7",
+      "bytes": 3550
+    },
+    "tests/fixture-app/menu-closed-roving-catalog.ts": {
+      "sha256": "4971cf896c80f1c4085f714121a54a97c5564ee0711b29be2687871c287c0958",
+      "bytes": 2157
+    }
+  },
+  "generatedMenuByteEqual": true,
+  "originalForwardBackwardAssertionsPreserved": true,
+  "finalFocusedStrictActualExit": 0,
+  "registration": {
+    "actualExit": 0,
+    "observedCount": 1006,
+    "files": 48,
+    "qualification": "root37 registrations; this delta adds assertion bodies, no new test registrations"
+  },
+  "firstSourceSyncSandboxActualExit": 1,
+  "normalSourceSyncWithLocalIPCActualExit": 0,
+  "firstFixtureLabelAttempt": {
+    "actualExit": 1,
+    "scope": "2 added fixture profile-name timeouts after original assertions; raw preserved"
+  },
+  "runtimeErrorsAndWarnings": "catalog-test auto assertion matched [] for both passing cases; no filters",
+  "sharedRootWrites": 0
+}

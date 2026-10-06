@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+browserType.launch: Executable doesn't exist at /tmp/ui-foundation-cross-browser-stage/browser-cache/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at /private/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/ui-svg-paint-tynajz/harness/verify-paint.mjs:5:123
+    at async node:internal/modules/esm/loader:643:26 {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v24.19.0

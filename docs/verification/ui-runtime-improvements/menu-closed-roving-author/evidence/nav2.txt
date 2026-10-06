@@ -1,0 +1,92 @@
+
+> ui-foundation@0.0.0 build
+> npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+≈ tailwindcss v4.3.0
+
+Done in 90ms
+
+Running 2 tests using 1 worker
+
+(node:39751) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex (45.1s)
+(node:40605) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex (45.1s)
+
+
+  1) [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Menu検証profile', { exact: true })
+
+
+      50 |   expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();
+      51 |   // Native public open input keeps the collapsed popup/back DOM while removing every tab stop.
+    > 52 |   await page.goto('/catalog/menu-closed-roving');await expect(page.getByRole('heading',{name:'Menu外部入力の終了検証',exact:true})).toBeVisible();await page.getByLabel('Menu検証profile',{exact:true}).selectOption(profile);await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+         |                                                                                                                                                                                              ^
+      53 |   const external=page.getByTestId('menu-external-open'),popup=page.locator('#external-open-menu'),state=page.getByTestId('menu-external-state');
+      54 |   const snapshot=()=>popup.evaluate(element=>({open:element.matches(':popover-open'),items:[...element.querySelectorAll<HTMLElement>('[data-menu-item],[data-menu-back]')].map(item=>({id:item.id||item.dataset.menuBack,tabIndex:item.tabIndex,back:!!item.dataset.menuBack})),focus:element.ownerDocument.activeElement?.id}));
+      55 |   await expect(popup).toBeHidden();await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.length>0&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);
+        at /private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts:52:190
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Menu検証profile', { exact: true })
+
+
+      50 |   expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();
+      51 |   // Native public open input keeps the collapsed popup/back DOM while removing every tab stop.
+    > 52 |   await page.goto('/catalog/menu-closed-roving');await expect(page.getByRole('heading',{name:'Menu外部入力の終了検証',exact:true})).toBeVisible();await page.getByLabel('Menu検証profile',{exact:true}).selectOption(profile);await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+         |                                                                                                                                                                                              ^
+      53 |   const external=page.getByTestId('menu-external-open'),popup=page.locator('#external-open-menu'),state=page.getByTestId('menu-external-state');
+      54 |   const snapshot=()=>popup.evaluate(element=>({open:element.matches(':popover-open'),items:[...element.querySelectorAll<HTMLElement>('[data-menu-item],[data-menu-back]')].map(item=>({id:item.id||item.dataset.menuBack,tabIndex:item.tabIndex,back:!!item.dataset.menuBack})),focus:element.ownerDocument.activeElement?.id}));
+      55 |   await expect(popup).toBeHidden();await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.length>0&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);
+        at /private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts:52:190
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex 
+    [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex 

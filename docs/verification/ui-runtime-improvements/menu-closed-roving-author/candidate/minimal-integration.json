@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "baseline": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "scope": "Menu closed item/back tabIndex guard, unchanged original Nav asserts plus native public open-input proof",
+  "deltas": [
+    {
+      "path": "templates/angular/menu.ts",
+      "beforeSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+      "afterSha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "beforeBytes": 28640,
+      "afterBytes": 28668,
+      "guards": [
+        {
+          "before": "if (this.focusedBack() === parent?.id) return -1;",
+          "after": "if (!this.opened() || this.focusedBack() === parent?.id) return -1;",
+          "expectedOccurrences": 1
+        },
+        {
+          "before": "[attr.tabindex]=\"focusedBack()===item.id?0:-1\"",
+          "after": "[attr.tabindex]=\"opened()&&focusedBack()===item.id?0:-1\"",
+          "expectedOccurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/ui/navigation-catalog.spec.ts",
+      "beforeSha256": "badcb31c6f7670e4b2ecb2e908a51adc78b10dbf4328710619464ea65939c040",
+      "afterSha256": "3bd18bff61e2cf289f24b0fa8a7d8db222011cf49a3ab92ba7d75a8f3aa32010",
+      "beforeBytes": 43759,
+      "afterBytes": 47345,
+      "guards": [
+        {
+          "before": "test('root Tab exits in both directions before a preceding key renders its roving tabindex',async({page})=>{",
+          "after": "test('root Tab exits in both directions before a preceding key renders its roving tabindex',async({page},info)=>{",
+          "expectedOccurrences": 1
+        },
+        {
+          "before": "  await last.focus();await expect(last).toHaveAttribute('tabindex','0');\n  const forward=await bar.evaluate(element=>{",
+          "after": "  const closedItems=bar.locator('[popover] button[role^=menuitem]');expect(await closedItems.count()).toBeGreaterThan(0);await expect.poll(()=>closedItems.evaluateAll(items=>items.every(item=>(item as HTMLElement).tabIndex===-1))).toBe(true);\n  await last.focus();await expect(last).toHaveAttribute('tabindex','0');\n  const forward=await bar.evaluate(element=>{",
+          "expectedOccurrences": 1
+        },
+        {
+          "before": "  expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();\n });\n test('three-level menubar",
+          "after": "  expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();\n  // Native public open input keeps the collapsed popup/back DOM while removing every tab stop.\n  await page.goto('/catalog/menu-closed-roving');await expect(page.getByRole('heading',{name:'Menu外部入力の終了検証',exact:true})).toBeVisible();await page.getByLabel('Menu検証profile',{exact:true}).selectOption(profile);await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');\n  const external=page.getByTestId('menu-external-open'),popup=page.locator('#external-open-menu'),state=page.getByTestId('menu-external-state');\n  const snapshot=()=>popup.evaluate(element=>({open:element.matches(':popover-open'),items:[...element.querySelectorAll<HTMLElement>('[data-menu-item],[data-menu-back]')].map(item=>({id:item.id||item.dataset.menuBack,tabIndex:item.tabIndex,back:!!item.dataset.menuBack})),focus:element.ownerDocument.activeElement?.id}));\n  await expect(popup).toBeHidden();await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.length>0&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);\n  await external.focus();await external.press('Space');await expect(external).toBeChecked();await expect(state).toHaveText('open');await expect(popup).toBeVisible();const parent=popup.getByRole('menuitem',{name:'階層の親',exact:true});await expect(parent).toBeFocused();await parent.press('ArrowLeft');const child=popup.getByRole('menuitem',{name:'外部入力の子',exact:true}),back=popup.locator('[data-menu-back=parent]');await expect(child).toBeFocused();await child.press('End');await expect(back).toBeFocused();await expect(back).toHaveAttribute('tabindex','0');\n  const opened=await snapshot();await expect.poll(()=>popup.locator('[role=menu]').evaluateAll(menus=>menus.every(menu=>[...menu.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(item=>item.closest('[role=menu]')===menu&&item.tabIndex===0).length===1))).toBe(true);\n  await external.focus();await external.press('Space');await expect(external).not.toBeChecked();await expect(state).toHaveText('closed');await expect(popup).toBeHidden();await expect(back).toHaveCount(1);await expect(back).toHaveAttribute('tabindex','-1');await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);await expect(external).toBeFocused();const closed=await snapshot();\n  await external.press('Space');await expect(popup).toBeVisible();await expect(parent).toBeFocused();await expect.poll(()=>popup.locator('[role=menu]').evaluateAll(menus=>menus.every(menu=>[...menu.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(item=>item.closest('[role=menu]')===menu&&item.tabIndex===0).length===1))).toBe(true);const reopened=await snapshot();await external.focus();await external.press('Space');await expect(popup).toBeHidden();await expect(back).toHaveAttribute('tabindex','-1');\n  await info.attach('native-menu-closed-contract',{body:JSON.stringify({opened,closed,reopened},null,2),contentType:'application/json'});const axe=await new AxeBuilder({page}).include('#menu-closed-proof').analyze();await info.attach('native-menu-closed-axe',{body:JSON.stringify(axe,null,2),contentType:'application/json'});expect(axe.violations).toEqual([]);\n });\n test('three-level menubar",
+          "expectedOccurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/fixture-app/main.ts",
+      "beforeSha256": "5cfc812c86c7707001a148117cd5b36df3945d7e689504e06f6921a39be15587",
+      "afterSha256": "17f790771ce470ca910e010456828f7c45af317000427faa800451276abc24c7",
+      "beforeBytes": 3400,
+      "afterBytes": 3550,
+      "guards": [
+        {
+          "before": "import {DiagramValidationCatalog} from './diagram-validation-catalog';",
+          "after": "import {MenuClosedRovingCatalog} from './menu-closed-roving-catalog';\nimport {DiagramValidationCatalog} from './diagram-validation-catalog';",
+          "expectedOccurrences": 1
+        },
+        {
+          "before": "bootstrapApplication(location.pathname === '/catalog/diagram-validation' ? DiagramValidationCatalog :",
+          "after": "bootstrapApplication(location.pathname === '/catalog/menu-closed-roving' ? MenuClosedRovingCatalog : location.pathname === '/catalog/diagram-validation' ? DiagramValidationCatalog :",
+          "expectedOccurrences": 1
+        }
+      ]
+    }
+  ],
+  "copyActions": [
+    {
+      "path": "tests/fixture-app/menu-closed-roving-catalog.ts",
+      "before": "absent",
+      "afterSha256": "4971cf896c80f1c4085f714121a54a97c5564ee0711b29be2687871c287c0958",
+      "bytes": 2157
+    }
+  ],
+  "crossSpecUnchangedSha256": "ebc1e70aefc60ddd777ab1598955132c4da3bdd51ac84ceaa90d7bdde6511ba7",
+  "native": "First fixture label selector timeout actual1 preserved; final Nav2 pending",
+  "sourceScope": "Own tmp only"
+}

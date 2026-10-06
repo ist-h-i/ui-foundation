@@ -1,0 +1,57 @@
+
+> ui-foundation@0.0.0 test:ui
+> playwright test tests/ui/navigation-catalog.spec.ts:34 tests/ui/navigation-catalog.spec.ts:37 tests/ui/navigation-catalog.spec.ts:62 tests/ui/navigation-catalog.spec.ts:65 tests/ui/navigation-catalog.spec.ts:102 tests/ui/overlay-catalog.spec.ts:18 tests/ui/overlay-catalog.spec.ts:24 tests/ui/overlay-catalog.spec.ts:25 tests/ui/overlay-catalog.spec.ts:31 tests/ui/overlay-catalog.spec.ts:36 tests/ui/overlay-catalog.spec.ts:40 tests/ui/overlay-catalog.spec.ts:43 tests/ui/overlay-catalog.spec.ts:46 tests/ui/overlay-catalog.spec.ts:53 --forbid-only --reporter=list,json --output=/tmp/ui-foundation-runtime-improvements/native-focused28-a1ed5c0/artifacts
+
+[WebServer] (node:50619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:50620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:50621) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:50668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+[WebServer] (node:51376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ≈ tailwindcss v4.3.0
+[WebServer] 
+[WebServer] Done in 120ms
+[WebServer] (node:51381) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 28 tests using 2 workers
+
+(node:51388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:51389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/ui/navigation-catalog.spec.ts:34:2 › navigation catalog guided › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite (3.8s)
+  ✓   3 [chromium] › tests/ui/navigation-catalog.spec.ts:62:2 › navigation catalog guided › three-level menubar restores parents and crosses popup boundaries to the next root (3.5s)
+  ✓   2 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex (7.5s)
+  ✓   4 [chromium] › tests/ui/navigation-catalog.spec.ts:65:2 › navigation catalog guided › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus (4.0s)
+  ✓   5 [chromium] › tests/ui/navigation-catalog.spec.ts:102:2 › navigation catalog guided › menubar preserves symbolic IDs, leaf radio groups and rapid root movement (4.0s)
+  ✓   6 [chromium] › tests/ui/navigation-catalog.spec.ts:34:2 › navigation catalog dense › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite (3.5s)
+  ✓   8 [chromium] › tests/ui/navigation-catalog.spec.ts:62:2 › navigation catalog dense › three-level menubar restores parents and crosses popup boundaries to the next root (6.1s)
+  ✓   7 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex (11.0s)
+  ✓   9 [chromium] › tests/ui/navigation-catalog.spec.ts:65:2 › navigation catalog dense › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus (4.5s)
+  ✓  10 [chromium] › tests/ui/navigation-catalog.spec.ts:102:2 › navigation catalog dense › menubar preserves symbolic IDs, leaf radio groups and rapid root movement (3.8s)
+  ✓  11 [chromium] › tests/ui/overlay-catalog.spec.ts:18:3 › dense floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert (5.4s)
+  ✓  12 [chromium] › tests/ui/overlay-catalog.spec.ts:24:3 › dense floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く (5.7s)
+  ✓  13 [chromium] › tests/ui/overlay-catalog.spec.ts:25:3 › dense floating regions › root inert removes the native menu popup through the shared registry (5.7s)
+  ✓  14 [chromium] › tests/ui/overlay-catalog.spec.ts:31:3 › dense floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close (6.9s)
+  ✓  15 [chromium] › tests/ui/overlay-catalog.spec.ts:36:3 › dense floating regions › hover and context triggers close and restore the context target (4.5s)
+  ✓  16 [chromium] › tests/ui/overlay-catalog.spec.ts:40:3 › dense floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers (5.1s)
+  ✓  17 [chromium] › tests/ui/overlay-catalog.spec.ts:43:3 › dense floating regions › Separate OverlayHost scopes consume one outside event for only the top popup (3.9s)
+  ✓  18 [chromium] › tests/ui/overlay-catalog.spec.ts:46:3 › dense floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup (4.4s)
+  ✓  19 [chromium] › tests/ui/overlay-catalog.spec.ts:53:3 › dense floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result (3.9s)
+  ✓  20 [chromium] › tests/ui/overlay-catalog.spec.ts:18:3 › guided floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert (3.6s)
+  ✓  21 [chromium] › tests/ui/overlay-catalog.spec.ts:24:3 › guided floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く (3.6s)
+  ✓  22 [chromium] › tests/ui/overlay-catalog.spec.ts:25:3 › guided floating regions › root inert removes the native menu popup through the shared registry (3.5s)
+  ✓  23 [chromium] › tests/ui/overlay-catalog.spec.ts:31:3 › guided floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close (4.2s)
+  ✓  24 [chromium] › tests/ui/overlay-catalog.spec.ts:36:3 › guided floating regions › hover and context triggers close and restore the context target (3.4s)
+  ✓  25 [chromium] › tests/ui/overlay-catalog.spec.ts:40:3 › guided floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers (3.2s)
+  ✓  26 [chromium] › tests/ui/overlay-catalog.spec.ts:43:3 › guided floating regions › Separate OverlayHost scopes consume one outside event for only the top popup (3.6s)
+  ✓  27 [chromium] › tests/ui/overlay-catalog.spec.ts:46:3 › guided floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup (4.0s)
+  ✓  28 [chromium] › tests/ui/overlay-catalog.spec.ts:53:3 › guided floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result (3.1s)
+
+  28 passed (2.0m)

@@ -1,0 +1,229 @@
+{
+  "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "stats": {
+    "startTime": "2026-10-06T14:03:15.856Z",
+    "duration": 117515.152,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": 28,
+  "retryCount": 0,
+  "topLevelErrors": 0,
+  "closedMenuCases": [
+    {
+      "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+      "status": "passed",
+      "contract": {
+        "opened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": 0,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "closed": {
+          "open": false,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "reopened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": "external-open-menu-item-parent"
+        }
+      },
+      "axeViolations": 0,
+      "axeIncomplete": [
+        [
+          "aria-valid-attr-value",
+          1
+        ]
+      ]
+    },
+    {
+      "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+      "status": "passed",
+      "contract": {
+        "opened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": 0,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "closed": {
+          "open": false,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "reopened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": "external-open-menu-item-parent"
+        }
+      },
+      "axeViolations": 0,
+      "axeIncomplete": [
+        [
+          "aria-valid-attr-value",
+          1
+        ]
+      ]
+    }
+  ],
+  "scope": "Related Navigation10 + Overlay18, includes original forward/backward assertions and public controlled close with Back DOM retained; not full default UI suite"
+}

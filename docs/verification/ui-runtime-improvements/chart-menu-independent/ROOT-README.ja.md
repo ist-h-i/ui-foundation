@@ -1,0 +1,1 @@
+Chart18・最終Menu7・SVG runner境界11の作者外承認パック。製品の採用対象20fileは読み取り照合だけで、sourceへの書込みは行っていません。全1,283 payloadと2manifestを元のtar.gzで保存し、rootがarchive内の全SHA/bytes・安全なpath・重複なしを再確認しました。raw evidenceの相対参照はarchive内部のchart-menu-independent-proof/を起点とします。REVIEW/VERDICT/READMEとmanifestは索引として外にもコピーしました。対象範囲承認であり、PR全体・Safari実機・実スクリーンリーダー発話の承認ではありません。
