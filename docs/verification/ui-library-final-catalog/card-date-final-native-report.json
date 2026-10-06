@@ -1,0 +1,264 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/.bin/playwright",
+      "test",
+      "tests/ui/card-slot-responsive.spec.ts",
+      "tests/ui/dates.spec.ts",
+      "--grep",
+      "horizontal slots|explicit edit formats",
+      "--reporter=list,json"
+    ],
+    "configFile": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/playwright.config.ts",
+    "rootDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run build && node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5187",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "card-slot-responsive.spec.ts",
+      "file": "card-slot-responsive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Card guided: horizontal slots remain within the narrow viewport in both text directions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7601,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:00:54.000Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "card-narrow-slot-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJydGwiOiBmYWxzZSwKICAgICJib3VuZHMiOiB7CiAgICAgICJjYXJkIjogewogICAgICAgICJsZWZ0IjogMzIsCiAgICAgICAgInJpZ2h0IjogMjg4LAogICAgICAgICJ3aWR0aCI6IDI1NgogICAgICB9LAogICAgICAiY29udGVudCI6IHsKICAgICAgICAibGVmdCI6IDMzLAogICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgfSwKICAgICAgImlucHV0IjogewogICAgICAgICJsZWZ0IjogNTcsCiAgICAgICAgInJpZ2h0IjogMjYzLAogICAgICAgICJ3aWR0aCI6IDIwNgogICAgICB9LAogICAgICAiYXJlYXMiOiBbCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiaGVhZGVyIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogIm1lZGlhIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImJvZHkiLAogICAgICAgICAgImxlZnQiOiAzMywKICAgICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAgICJ3aWR0aCI6IDI1NAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiZm9vdGVyIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImFjdGlvbnMiLAogICAgICAgICAgImxlZnQiOiAzMywKICAgICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAgICJ3aWR0aCI6IDI1NAogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAiaW5jb21wbGV0ZSI6IFtdCiAgfSwKICB7CiAgICAicnRsIjogdHJ1ZSwKICAgICJib3VuZHMiOiB7CiAgICAgICJjYXJkIjogewogICAgICAgICJsZWZ0IjogMzIsCiAgICAgICAgInJpZ2h0IjogMjg4LAogICAgICAgICJ3aWR0aCI6IDI1NgogICAgICB9LAogICAgICAiY29udGVudCI6IHsKICAgICAgICAibGVmdCI6IDMzLAogICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgfSwKICAgICAgImlucHV0IjogewogICAgICAgICJsZWZ0IjogNTcsCiAgICAgICAgInJpZ2h0IjogMjYzLAogICAgICAgICJ3aWR0aCI6IDIwNgogICAgICB9LAogICAgICAiYXJlYXMiOiBbCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiaGVhZGVyIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogIm1lZGlhIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImJvZHkiLAogICAgICAgICAgImxlZnQiOiAzMywKICAgICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAgICJ3aWR0aCI6IDI1NAogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiZm9vdGVyIiwKICAgICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgICAicmlnaHQiOiAyODcsCiAgICAgICAgICAid2lkdGgiOiAyNTQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImFjdGlvbnMiLAogICAgICAgICAgImxlZnQiOiAzMywKICAgICAgICAgICJyaWdodCI6IDI4NywKICAgICAgICAgICJ3aWR0aCI6IDI1NAogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAiaW5jb21wbGV0ZSI6IFtdCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37c038161032ea1f46d2-e9fd9ac5bd685d535582",
+          "file": "card-slot-responsive.spec.ts",
+          "line": 4,
+          "column": 41
+        },
+        {
+          "title": "Card dense: horizontal slots remain within the narrow viewport in both text directions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7711,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:00:54.017Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "card-narrow-slot-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJydGwiOiBmYWxzZSwKICAgICJib3VuZHMiOiB7CiAgICAgICJjYXJkIjogewogICAgICAgICJsZWZ0IjogMTYsCiAgICAgICAgInJpZ2h0IjogMzA0LAogICAgICAgICJ3aWR0aCI6IDI4OAogICAgICB9LAogICAgICAiY29udGVudCI6IHsKICAgICAgICAibGVmdCI6IDE3LAogICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAid2lkdGgiOiAyODYKICAgICAgfSwKICAgICAgImlucHV0IjogewogICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgInJpZ2h0IjogMjg3LAogICAgICAgICJ3aWR0aCI6IDI1NAogICAgICB9LAogICAgICAiYXJlYXMiOiBbCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiaGVhZGVyIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogIm1lZGlhIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImJvZHkiLAogICAgICAgICAgImxlZnQiOiAxNywKICAgICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAgICJ3aWR0aCI6IDI4NgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiZm9vdGVyIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImFjdGlvbnMiLAogICAgICAgICAgImxlZnQiOiAxNywKICAgICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAgICJ3aWR0aCI6IDI4NgogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAiaW5jb21wbGV0ZSI6IFtdCiAgfSwKICB7CiAgICAicnRsIjogdHJ1ZSwKICAgICJib3VuZHMiOiB7CiAgICAgICJjYXJkIjogewogICAgICAgICJsZWZ0IjogMTYsCiAgICAgICAgInJpZ2h0IjogMzA0LAogICAgICAgICJ3aWR0aCI6IDI4OAogICAgICB9LAogICAgICAiY29udGVudCI6IHsKICAgICAgICAibGVmdCI6IDE3LAogICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAid2lkdGgiOiAyODYKICAgICAgfSwKICAgICAgImlucHV0IjogewogICAgICAgICJsZWZ0IjogMzMsCiAgICAgICAgInJpZ2h0IjogMjg3LAogICAgICAgICJ3aWR0aCI6IDI1NAogICAgICB9LAogICAgICAiYXJlYXMiOiBbCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiaGVhZGVyIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogIm1lZGlhIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImJvZHkiLAogICAgICAgICAgImxlZnQiOiAxNywKICAgICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAgICJ3aWR0aCI6IDI4NgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImFyZWEiOiAiZm9vdGVyIiwKICAgICAgICAgICJsZWZ0IjogMTcsCiAgICAgICAgICAicmlnaHQiOiAzMDMsCiAgICAgICAgICAid2lkdGgiOiAyODYKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJhcmVhIjogImFjdGlvbnMiLAogICAgICAgICAgImxlZnQiOiAxNywKICAgICAgICAgICJyaWdodCI6IDMwMywKICAgICAgICAgICJ3aWR0aCI6IDI4NgogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAiaW5jb21wbGV0ZSI6IFtdCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37c038161032ea1f46d2-05b2654c6af18258b366",
+          "file": "card-slot-responsive.spec.ts",
+          "line": 4,
+          "column": 41
+        }
+      ]
+    },
+    {
+      "title": "dates.spec.ts",
+      "file": "dates.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "dates guided",
+          "file": "dates.spec.ts",
+          "line": 7,
+          "column": 7,
+          "specs": [
+            {
+              "title": "explicit edit formats retain invalid drafts, clear/reset repair them and parse without guessing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3382,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:01:02.645Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7e96ffc28cfcfe4474bb-807ebfe95fccd80e92ab",
+              "file": "dates.spec.ts",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "dates dense",
+          "file": "dates.spec.ts",
+          "line": 7,
+          "column": 7,
+          "specs": [
+            {
+              "title": "explicit edit formats retain invalid drafts, clear/reset repair them and parse without guessing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3489,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:01:02.786Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7e96ffc28cfcfe4474bb-dd165d2644c8da5e203b",
+              "file": "dates.spec.ts",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T09:00:12.492Z",
+    "duration": 53908.388,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

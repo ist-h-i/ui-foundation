@@ -1,0 +1,6 @@
+{
+  "path": "tests/ui/dates.spec.ts",
+  "beforeSha256": "ce08e47f9d149eeb301897fb7bcefca51b0ece246cf2a5e482aa202fb1beac48",
+  "afterSha256": "babf5e8012f163170abab6b8d7be210c3e48185e595f198520a5e3d478d937e7",
+  "reason": "The old final assertion expected a format change to discard the invalid draft. The explicit input-preservation contract and the independently proven fix require retaining raw/invalid/model, then applying pending native format on explicit reset. All preceding valid/invalid/parse/reset assertions remain."
+}
