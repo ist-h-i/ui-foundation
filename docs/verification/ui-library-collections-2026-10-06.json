@@ -1,0 +1,2290 @@
+{
+  "pullRequest": 10,
+  "baseCommit": "04dc3f4bc71161a5fff0860d810e73272a729499",
+  "codeHead": "d81d6177166f419d5656440d217cb7d9849b7a22",
+  "runtimeHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+  "productFilesUnchangedAcrossTabExpectationCommit": true,
+  "changedTestOnly": [
+    "tests/ui/collection-catalog.spec.ts"
+  ],
+  "fullRun": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "actualExitCode": 0,
+    "headBefore": "d81d6177166f419d5656440d217cb7d9849b7a22",
+    "headAfter": "d81d6177166f419d5656440d217cb7d9849b7a22",
+    "started": "2026-10-06T03:15:38.866370+00:00",
+    "finished": "2026-10-06T03:42:48.488446+00:00",
+    "headUnchanged": true
+  },
+  "testCounts": {
+    "config": 68,
+    "generation": 15,
+    "model": 93,
+    "ui": 704,
+    "total": 880
+  },
+  "fullLogSha256": "26ba121d338319d174d4fbf04104c7a1ac3e92321f91a4e13cdb8a55c3b1e41f",
+  "generatedManifestEntries": 85,
+  "generatedManifestSha256": "e96d5a123b1a2a0ee5898dcc6799282bcc7787b246af3f943f4ae2315b074020",
+  "independentSourceReview": "approve at 85c5ffd; original idle IO and long default-label width findings resolved; no observed unresolved product P1/P2",
+  "independentReviewReport": "ui-library-collections-review-2026-10-06.md",
+  "independentReviewReportSha256": "5a431df3b0f29c3e8157715f16946ab9d22afbe68021fd90029cb90d6fd9b879",
+  "independentVerification": {
+    "sourceSnapshotTrackedFiles": 399,
+    "configAndModelPassed": 161,
+    "nativeBrowserPassed": 32,
+    "idleAndStaleIOPassed": 2,
+    "minimalVirtualPublicCases": 4,
+    "minimalListboxPublicCases": 4,
+    "positiveStrictGeneratedAotExit": 0,
+    "negativeTypedContextsRejected": 5,
+    "publicLinkedModules": 20,
+    "actualProductionConsumerOperations": 2,
+    "finalImagesInspected": 12
+  },
+  "finalApprovalRequirement": "fresh independent proof-only final-head delta review before merge",
+  "bundleMeasurement": {
+    "file": "ui-library-collections-consumer-2026-10-06.json",
+    "sourceHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+    "baselineJsRawBytes": 324236,
+    "collectionJsRawBytes": 581408,
+    "baselineJsGzipBytes": 104413,
+    "collectionJsGzipBytes": 167208,
+    "jsDifferenceRawBytes": 257172,
+    "jsDifferenceGzipBytes": 62795,
+    "scope": "complete adapters + Forms + CDK + shared code; direct public-module imports; not CDK alone",
+    "barrelAutomaticTreeShakingGuaranteed": false
+  },
+  "drawing": {
+    "provenance": {
+      "codeHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "startedAt": "2026-10-06T02:44:30.508Z",
+      "browserVersion": "153.0.8010.12",
+      "assets": {
+        "index.html": "372da4417e1eee17078f9ec7802bfd91fcd0458babdb934e966402005070d0e7",
+        "main.js": "dc1379b83566b1b5b871142b7caeb567e6d079d1299a61858fb03c5e7050fe38",
+        "styles.css": "0fecefe006af98956cc68db62b4de50feaea117eb84d7ecc939ecfde6491bca6"
+      },
+      "finishedAt": "2026-10-06T02:45:45.687Z"
+    },
+    "images": [
+      {
+        "profile": "guided",
+        "name": "view-1280",
+        "path": "docs/verification/images/collections-view-1280-guided.png",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": 0.0625,
+          "width": 1056,
+          "height": 792.0625
+        },
+        "sha256": "dae3982c6bcb7ef299a1770ae46f1fd8a23122320deac5876d6d586e7b3df453",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:34.116Z"
+      },
+      {
+        "profile": "guided",
+        "name": "listbox-320-200-rtl",
+        "path": "docs/verification/images/collections-listbox-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": -0.3125,
+          "width": 256,
+          "height": 1232.78125
+        },
+        "sha256": "a6df9a05eb8dc748215f7760f7eb5335a28498f575fbedfb1980eb6ec85e3ad5",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:39.298Z"
+      },
+      {
+        "profile": "guided",
+        "name": "listbox-long-label-320-200-rtl",
+        "path": "docs/verification/images/collections-listbox-long-label-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": -0.3125,
+          "width": 256,
+          "height": 1232.78125
+        },
+        "sha256": "e5a420dbc1f861a9ce24edc805bc8b599637c75bdd75a21fb7e6c40ef1b4dd55",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:46.637Z"
+      },
+      {
+        "profile": "guided",
+        "name": "sort-cancel-320-200-rtl",
+        "path": "docs/verification/images/collections-sort-cancel-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": -0.46875,
+          "width": 256,
+          "height": 1623.53125
+        },
+        "sha256": "2d202e1a10108fda019ca34fc1c4b0af19fd0adc33e9d165c4fbe46ae5df040f",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:51.137Z"
+      },
+      {
+        "profile": "guided",
+        "name": "virtual-end-320-200-rtl",
+        "path": "docs/verification/images/collections-virtual-end-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 0.40625,
+          "width": 256,
+          "height": 640
+        },
+        "sha256": "48e8a7fd2ef540bf229db95c22105ef6ebfbfb5765b7bb81ba93a6d40e9e5c47",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:52.646Z"
+      },
+      {
+        "profile": "guided",
+        "name": "virtual-long-label-320-200-rtl",
+        "path": "docs/verification/images/collections-virtual-long-label-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 0.40625,
+          "width": 256,
+          "height": 640
+        },
+        "sha256": "c31f14e76f01ea7ecd77704f3f3cbbd737e9f1383c56c6f10572073174b01183",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:54.332Z"
+      },
+      {
+        "profile": "guided",
+        "name": "transfer-320-200-rtl",
+        "path": "docs/verification/images/collections-transfer-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 0.21875,
+          "width": 256,
+          "height": 1249.3125
+        },
+        "sha256": "f0ac0dac3037332924a6f20276b796eb60214ac68c731f999577b2ae18b830d8",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:44:58.196Z"
+      },
+      {
+        "profile": "guided",
+        "name": "timeline-error-320-200-rtl",
+        "path": "docs/verification/images/collections-timeline-error-320-200-rtl-guided.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 451.78125,
+          "width": 256,
+          "height": 172.78125
+        },
+        "sha256": "f89fa86df2a04e3a4439e1fd7075f9283938d01e269ddbed4519af01353c60b7",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:00.100Z"
+      },
+      {
+        "profile": "dense",
+        "name": "view-1280",
+        "path": "docs/verification/images/collections-view-1280-dense.png",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": -0.46875,
+          "width": 1088,
+          "height": 642.125
+        },
+        "sha256": "14e8f18fb257214a4e0b8906467e5a66dbbc37a1bbd07909d1f19cb0d287af87",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:05.515Z"
+      },
+      {
+        "profile": "dense",
+        "name": "listbox-320-200-rtl",
+        "path": "docs/verification/images/collections-listbox-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": -0.140625,
+          "width": 288,
+          "height": 1007.5625
+        },
+        "sha256": "2cbc642c937b2251a7ea3d741794a2284f7604124237ca551373c244ebc24fb8",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:10.622Z"
+      },
+      {
+        "profile": "dense",
+        "name": "listbox-long-label-320-200-rtl",
+        "path": "docs/verification/images/collections-listbox-long-label-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": -0.140625,
+          "width": 288,
+          "height": 1007.5625
+        },
+        "sha256": "05e725f9668126156da9faa59bfbe16a5a238639c7c9ac22dec9748f534f52c7",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:18.935Z"
+      },
+      {
+        "profile": "dense",
+        "name": "sort-cancel-320-200-rtl",
+        "path": "docs/verification/images/collections-sort-cancel-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": 0.421875,
+          "width": 288,
+          "height": 1065.875
+        },
+        "sha256": "e0781a1a8fa28fb7d0662637ac6fc44413f8b4be5359b67557109c24075d6cb2",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:25.287Z"
+      },
+      {
+        "profile": "dense",
+        "name": "virtual-end-320-200-rtl",
+        "path": "docs/verification/images/collections-virtual-end-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": -0.265625,
+          "width": 288,
+          "height": 512
+        },
+        "sha256": "8589f34789b56da267a1c981485330d55392c046e7938ceb52a0f049eb0040a4",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:27.634Z"
+      },
+      {
+        "profile": "dense",
+        "name": "virtual-long-label-320-200-rtl",
+        "path": "docs/verification/images/collections-virtual-long-label-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": -0.265625,
+          "width": 288,
+          "height": 512
+        },
+        "sha256": "abbc22b85ef985390f10db52805973151b458c4a023b5920425b3eda9dc87ecb",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:29.866Z"
+      },
+      {
+        "profile": "dense",
+        "name": "transfer-320-200-rtl",
+        "path": "docs/verification/images/collections-transfer-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": 0.484375,
+          "width": 288,
+          "height": 647.75
+        },
+        "sha256": "07756b7470ab32b1e298c32565c6e548db4a639d3a47c1e387efb9527edddf71",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:37.744Z"
+      },
+      {
+        "profile": "dense",
+        "name": "timeline-error-320-200-rtl",
+        "path": "docs/verification/images/collections-timeline-error-320-200-rtl-dense.png",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": 529.859375,
+          "width": 288,
+          "height": 153.5625
+        },
+        "sha256": "11adb074d5891bd2fab11b2bc899c1f52b69221e32a9e27ea13c4fb3d3f4ffaa",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-06T02:45:41.947Z"
+      }
+    ],
+    "axe": [
+      {
+        "profile": "guided",
+        "state": "initial-grid",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "guided",
+        "state": "narrow-listbox",
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "profile": "guided",
+        "state": "invalid-preserved-cva",
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "profile": "guided",
+        "state": "long-listbox-width",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "guided",
+        "state": "long-virtual-width",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "guided",
+        "state": "narrow-transfer",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "guided",
+        "state": "timeline-error",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "state": "initial-grid",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "state": "narrow-listbox",
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "profile": "dense",
+        "state": "invalid-preserved-cva",
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-34 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-35 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > .ui-listbox-group[_ngcontent-ng-c2047250294=\"\"][aria-hidden=\"true\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              },
+              {
+                "target": [
+                  "#listbox-option-6f-70-74-69-6f-6e-30-39-39-36 > span[_ngcontent-ng-c2047250294=\"\"]:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "profile": "dense",
+        "state": "long-listbox-width",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "state": "long-virtual-width",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "state": "narrow-transfer",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "state": "timeline-error",
+        "violations": [],
+        "incomplete": []
+      }
+    ],
+    "checks": [
+      {
+        "profile": "guided",
+        "state": "narrow-listbox-end",
+        "ariaOwns": "listbox-group-5f8c-534a-306e-5019-88dc",
+        "active": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30",
+        "visibleOptions": 7,
+        "ax": [
+          {
+            "role": "listbox",
+            "name": "確認する候補",
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "focused",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "multiselectable",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "orientation",
+                "value": {
+                  "type": "token",
+                  "value": "vertical"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": false
+                }
+              },
+              {
+                "name": "owns",
+                "value": {
+                  "type": "idrefList",
+                  "value": "listbox-group-5f8c-534a-306e-5019-88dc",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 327,
+                      "idref": "listbox-group-5f8c-534a-306e-5019-88dc"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "activedescendant",
+                "value": {
+                  "type": "idref",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 353,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 311,
+                      "idref": "listbox-label",
+                      "text": "確認する候補"
+                    }
+                  ]
+                }
+              }
+            ],
+            "childIds": [
+              "326",
+              "356",
+              "327"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "guided",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "dense",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "group",
+            "name": "後半の候補",
+            "properties": [
+              {
+                "name": "owns",
+                "value": {
+                  "type": "idrefList",
+                  "value": "listbox-option-6f-70-74-69-6f-6e-30-39-39-34 listbox-option-6f-70-74-69-6f-6e-30-39-39-35 listbox-option-6f-70-74-69-6f-6e-30-39-39-36 listbox-option-6f-70-74-69-6f-6e-30-39-39-37 listbox-option-6f-70-74-69-6f-6e-30-39-39-38 listbox-option-6f-70-74-69-6f-6e-30-39-39-39 listbox-option-6f-70-74-69-6f-6e-31-30-30-30",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 329,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-34"
+                    },
+                    {
+                      "backendDOMNodeId": 333,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-35"
+                    },
+                    {
+                      "backendDOMNodeId": 337,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-36"
+                    },
+                    {
+                      "backendDOMNodeId": 341,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-37"
+                    },
+                    {
+                      "backendDOMNodeId": 345,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-38"
+                    },
+                    {
+                      "backendDOMNodeId": 349,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-39"
+                    },
+                    {
+                      "backendDOMNodeId": 353,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30"
+                    }
+                  ]
+                }
+              }
+            ],
+            "childIds": [
+              "329",
+              "333",
+              "337",
+              "341",
+              "345",
+              "349",
+              "353"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0994",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "331"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0995",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "335"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0996",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "339"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0997",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "343"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0998",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "347"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0999",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "351"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補1000",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "355"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "元の順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "昇順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "降順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "2件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "3件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "5件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          }
+        ]
+      },
+      {
+        "profile": "guided",
+        "state": "long-listbox-width",
+        "geometry": {
+          "clientWidth": 254,
+          "scrollWidth": 254,
+          "rows": [
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 2431,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 3191,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "profile": "guided",
+        "state": "native-keyboard-cancel",
+        "focus": "記録2の移動位置を選ぶ",
+        "order": "1,2,3"
+      },
+      {
+        "profile": "guided",
+        "state": "1000th-row",
+        "rowsInDom": 7,
+        "geometry": {
+          "scrollTop": 159362,
+          "clientHeight": 638,
+          "scrollHeight": 160000,
+          "rowSize": 160
+        }
+      },
+      {
+        "profile": "guided",
+        "state": "long-virtual-width",
+        "geometry": {
+          "clientWidth": 254,
+          "scrollWidth": 254,
+          "rows": [
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 2431,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 3590,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 254,
+              "labels": [
+                {
+                  "width": 206,
+                  "scrollWidth": 206,
+                  "overflow": "ellipsis"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "profile": "guided",
+        "state": "timeline-failure",
+        "memo": "失敗しても残る詳細メモ",
+        "sameEditor": true,
+        "dateTime": "2026-10-06T01:00:00.000Z",
+        "label": "2026/10/06 10:00"
+      },
+      {
+        "profile": "dense",
+        "state": "narrow-listbox-end",
+        "ariaOwns": "listbox-group-5f8c-534a-306e-5019-88dc",
+        "active": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30",
+        "visibleOptions": 7,
+        "ax": [
+          {
+            "role": "listbox",
+            "name": "確認する候補",
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "focused",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "multiselectable",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "orientation",
+                "value": {
+                  "type": "token",
+                  "value": "vertical"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": false
+                }
+              },
+              {
+                "name": "owns",
+                "value": {
+                  "type": "idrefList",
+                  "value": "listbox-group-5f8c-534a-306e-5019-88dc",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 384,
+                      "idref": "listbox-group-5f8c-534a-306e-5019-88dc"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "activedescendant",
+                "value": {
+                  "type": "idref",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 410,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 368,
+                      "idref": "listbox-label",
+                      "text": "確認する候補"
+                    }
+                  ]
+                }
+              }
+            ],
+            "childIds": [
+              "383",
+              "413",
+              "384"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "guided",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "dense",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "group",
+            "name": "後半の候補",
+            "properties": [
+              {
+                "name": "owns",
+                "value": {
+                  "type": "idrefList",
+                  "value": "listbox-option-6f-70-74-69-6f-6e-30-39-39-34 listbox-option-6f-70-74-69-6f-6e-30-39-39-35 listbox-option-6f-70-74-69-6f-6e-30-39-39-36 listbox-option-6f-70-74-69-6f-6e-30-39-39-37 listbox-option-6f-70-74-69-6f-6e-30-39-39-38 listbox-option-6f-70-74-69-6f-6e-30-39-39-39 listbox-option-6f-70-74-69-6f-6e-31-30-30-30",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 386,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-34"
+                    },
+                    {
+                      "backendDOMNodeId": 390,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-35"
+                    },
+                    {
+                      "backendDOMNodeId": 394,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-36"
+                    },
+                    {
+                      "backendDOMNodeId": 398,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-37"
+                    },
+                    {
+                      "backendDOMNodeId": 402,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-38"
+                    },
+                    {
+                      "backendDOMNodeId": 406,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-30-39-39-39"
+                    },
+                    {
+                      "backendDOMNodeId": 410,
+                      "idref": "listbox-option-6f-70-74-69-6f-6e-31-30-30-30"
+                    }
+                  ]
+                }
+              }
+            ],
+            "childIds": [
+              "386",
+              "390",
+              "394",
+              "398",
+              "402",
+              "406",
+              "410"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0994",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "388"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0995",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "392"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0996",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "396"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0997",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "400"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0998",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "404"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補0999",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "408"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "候補1000",
+            "properties": [
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": [
+              "412"
+            ]
+          },
+          {
+            "role": "option",
+            "name": "元の順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "昇順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "降順",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "2件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "3件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          },
+          {
+            "role": "option",
+            "name": "5件",
+            "properties": [
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "selected",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              }
+            ],
+            "childIds": []
+          }
+        ]
+      },
+      {
+        "profile": "dense",
+        "state": "long-listbox-width",
+        "geometry": {
+          "clientWidth": 286,
+          "scrollWidth": 286,
+          "rows": [
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 2170,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 2837,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                },
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "profile": "dense",
+        "state": "native-keyboard-cancel",
+        "focus": "記録2の移動位置を選ぶ",
+        "order": "1,2,3"
+      },
+      {
+        "profile": "dense",
+        "state": "1000th-row",
+        "rowsInDom": 7,
+        "geometry": {
+          "scrollTop": 127490,
+          "clientHeight": 510,
+          "scrollHeight": 128000,
+          "rowSize": 128
+        }
+      },
+      {
+        "profile": "dense",
+        "state": "long-virtual-width",
+        "geometry": {
+          "clientWidth": 286,
+          "scrollWidth": 286,
+          "rows": [
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 2170,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 3191,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            },
+            {
+              "width": 286,
+              "labels": [
+                {
+                  "width": 254,
+                  "scrollWidth": 254,
+                  "overflow": "ellipsis"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "profile": "dense",
+        "state": "timeline-failure",
+        "memo": "失敗しても残る詳細メモ",
+        "sameEditor": true,
+        "dateTime": "2026-10-06T01:00:00.000Z",
+        "label": "2026/10/06 10:00"
+      }
+    ],
+    "actualImageInspection": {
+      "actor": "root",
+      "count": 16,
+      "method": "tools.view_image; all sixteen final PNGs opened in four batches before the final full-suite result",
+      "scope": "same exact runtime source; narrow/200%/RTL/reduced motion and default long labels",
+      "imagesShaVerifiedAtProof": true
+    }
+  },
+  "fullSuiteHistory": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "actualExitCode": 1,
+      "headBefore": "62fbe8597444228df04c6dc4e0da85d72380fbc2",
+      "headAfter": "62fbe8597444228df04c6dc4e0da85d72380fbc2",
+      "started": "2026-10-06T01:53:30.956217+00:00",
+      "finished": "2026-10-06T01:54:53.695030+00:00",
+      "headUnchanged": true,
+      "logSha256": "8d61c5ebbec9b451f042bf1a59c25c36131db76756160ca4cec025a9870aa19e",
+      "abortReason": null
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "actualExitCode": 130,
+      "headBefore": "a1886aaf2002b2b1828f6e6cba227bbf9d205936",
+      "headAfter": "a1886aaf2002b2b1828f6e6cba227bbf9d205936",
+      "started": "2026-10-06T01:59:29.921423+00:00",
+      "finished": "2026-10-06T02:06:07.974512+00:00",
+      "headUnchanged": true,
+      "logSha256": "0b0887676272664cb00b7c003f253bff2d6679df24782def5580cb0e9a9d3436",
+      "abortReason": "Independent P2: idle InfiniteScroll invalidation cancels observer generation without tracked effect re-registration. Stop before source mutation; add real intersection regression and rerun all npm on new fixed HEAD.\n"
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "actualExitCode": 130,
+      "headBefore": "001c99b32c79128dc7dd0d2ff7561837b5338b53",
+      "headAfter": "001c99b32c79128dc7dd0d2ff7561837b5338b53",
+      "started": "2026-10-06T02:12:05.933155+00:00",
+      "finished": "2026-10-06T02:28:58.407674+00:00",
+      "headUnchanged": true,
+      "logSha256": "4b0c11225797b150454661f8f38c8c39d02eb755494fc417b78d2e1b5e0f1a93",
+      "abortReason": "Independent P2: VirtualList own row width grows with long default labels through CDK intrinsic wrapper, preventing ellipsis. Public viewport clientWidth adapter and long-label/projected-input real regression required. Stop before source mutation.\n"
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "actualExitCode": 1,
+      "headBefore": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "headAfter": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "started": "2026-10-06T02:40:18.981203+00:00",
+      "finished": "2026-10-06T03:08:24.075497+00:00",
+      "headUnchanged": true,
+      "logSha256": "c2c2a4a2cac9bc83c39bea394f78754320c25c9b54042d2c84e44a928607c8e1",
+      "abortReason": null
+    }
+  ],
+  "targetedWidth": {
+    "command": [
+      "npm",
+      "run",
+      "test:ui",
+      "--",
+      "tests/ui/collection-catalog.spec.ts",
+      "--grep",
+      "public viewport width|public listbox viewport|settled 200%|profile measurement|virtual viewport reaches"
+    ],
+    "actualExitCode": 0,
+    "diffBefore": "ddfbce3991747301403d4b698077267e71d8c7168a4199fd20171a12debab1fd",
+    "diffAfter": "ddfbce3991747301403d4b698077267e71d8c7168a4199fd20171a12debab1fd",
+    "started": "2026-10-06T02:37:20.868127+00:00",
+    "finished": "2026-10-06T02:38:18.398078+00:00",
+    "diffUnchanged": true
+  },
+  "actualNativeTabOrder": {
+    "browser": "153.0.8010.12",
+    "results": [
+      {
+        "profile": "guided",
+        "firstTab": "listbox-long-labels",
+        "secondTab": "listbox-mode",
+        "runtimeSource": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+        "result": "passed"
+      },
+      {
+        "profile": "dense",
+        "firstTab": "listbox-long-labels",
+        "secondTab": "listbox-mode",
+        "runtimeSource": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+        "result": "passed"
+      }
+    ],
+    "assets": {
+      "main": "dc1379b83566b1b5b871142b7caeb567e6d079d1299a61858fb03c5e7050fe38"
+    }
+  },
+  "knownLimits": [
+    "fixed-height virtual rows; application retains editor value by stable item key",
+    "application owns real I/O, backend updates, abort, business permissions and Undo",
+    "axe color-contrast incomplete24 node occurrences; no WCAG or human comprehension certification",
+    "Chromium153; no physical assistive technology, Safari/Firefox, shadow DOM, separate document or SSR certification",
+    "known generator Skill ownership loss on output migration remains separately tracked; fixed canonical output unaffected"
+  ],
+  "requestRowsRetained": 181,
+  "updatedRows": [
+    "forms-18",
+    "forms-21",
+    "data-01",
+    "data-02",
+    "data-04",
+    "data-05",
+    "data-06",
+    "data-07",
+    "data-10",
+    "data-11",
+    "foundation-04",
+    "foundation-06"
+  ],
+  "statusCounts": {
+    "verified": 133,
+    "partial": 11,
+    "pending": 37
+  },
+  "fullCatalogComplete": false
+}

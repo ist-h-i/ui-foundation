@@ -1,0 +1,1536 @@
+{
+  "schemaVersion": 1,
+  "measuredAtUTC": "2026-10-06T02:45:48.146Z",
+  "result": "passed",
+  "source": {
+    "repository": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+    "exactHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+    "commitDate": "2026-10-06T11:39:25+09:00",
+    "commitSubject": "fix: bound virtual rows to their public viewport width",
+    "headBefore": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+    "headAfter": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+    "sharedStatusBefore": "?? docs/verification/images/collections-listbox-320-200-rtl-dense.png\n?? docs/verification/images/collections-listbox-320-200-rtl-guided.png\n?? docs/verification/images/collections-sort-cancel-320-200-rtl-dense.png\n?? docs/verification/images/collections-sort-cancel-320-200-rtl-guided.png\n?? docs/verification/images/collections-timeline-error-320-200-rtl-dense.png\n?? docs/verification/images/collections-timeline-error-320-200-rtl-guided.png\n?? docs/verification/images/collections-transfer-320-200-rtl-dense.png\n?? docs/verification/images/collections-transfer-320-200-rtl-guided.png\n?? docs/verification/images/collections-view-1280-dense.png\n?? docs/verification/images/collections-view-1280-guided.png\n?? docs/verification/images/collections-virtual-end-320-200-rtl-dense.png\n?? docs/verification/images/collections-virtual-end-320-200-rtl-guided.png",
+    "sharedStatusAfter": "?? docs/verification/images/collections-listbox-320-200-rtl-dense.png\n?? docs/verification/images/collections-listbox-320-200-rtl-guided.png\n?? docs/verification/images/collections-listbox-long-label-320-200-rtl-dense.png\n?? docs/verification/images/collections-listbox-long-label-320-200-rtl-guided.png\n?? docs/verification/images/collections-sort-cancel-320-200-rtl-dense.png\n?? docs/verification/images/collections-sort-cancel-320-200-rtl-guided.png\n?? docs/verification/images/collections-timeline-error-320-200-rtl-dense.png\n?? docs/verification/images/collections-timeline-error-320-200-rtl-guided.png\n?? docs/verification/images/collections-transfer-320-200-rtl-dense.png\n?? docs/verification/images/collections-transfer-320-200-rtl-guided.png\n?? docs/verification/images/collections-view-1280-dense.png\n?? docs/verification/images/collections-view-1280-guided.png\n?? docs/verification/images/collections-virtual-end-320-200-rtl-dense.png\n?? docs/verification/images/collections-virtual-end-320-200-rtl-guided.png\n?? docs/verification/images/collections-virtual-long-label-320-200-rtl-dense.png\n?? docs/verification/images/collections-virtual-long-label-320-200-rtl-guided.png",
+    "snapshotMethod": "git archive exact committed HEAD with explicit source/config/template/Skill/build/doc/fixture allowlist; extracted into isolated /tmp snapshot; dependency node_modules is read-only symlink",
+    "sourceArchiveSha256": "98c7ca89acceb06021ebbcf51623c8eecc1cdefa46eb50e271895cad115234dd",
+    "sourceManifest": "evidence/head-85c5ffde/source-manifest.json",
+    "normalizedAggregateSha256": "8f8ab00a16070354e16c1133fc19fbfba653380303f1d8b564d2d0aeebd787fe",
+    "generatedManifest": "evidence/head-85c5ffde/generated-manifest.json",
+    "generatedNormalizedAggregateSha256": "31309618649e85a8c919de58e2b3f84b5ec4cec3942d6b5383fe3ce5d69eb4c9",
+    "snapshotSetup": "evidence/head-85c5ffde/snapshot-setup.json",
+    "comparedToPriorHead": "evidence/head-85c5ffde/source-comparison-to-001c99b3.json"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "npm": "evidence/head-85c5ffde/06-npm.log",
+    "versions": {
+      "@angular/core": "22.2.1",
+      "@angular/common": "22.2.1",
+      "@angular/forms": "22.2.1",
+      "@angular/platform-browser": "22.2.1",
+      "@angular/compiler": "22.2.1",
+      "@angular/compiler-cli": "22.2.1",
+      "@angular/cdk": "22.2.1",
+      "@babel/core": "8.0.1",
+      "esbuild": "0.28.2",
+      "typescript": "6.0.3",
+      "rxjs": "7.8.2",
+      "tsx": "4.23.15",
+      "yaml": "2.9.1",
+      "@lucide/angular": "1.52.0"
+    },
+    "lockfileSha256": "a461c80fd80fa681dd2f7d0a1e6f03d74271d943ebbf6192b8590b0c8df3c067",
+    "writesConfinedTo": "/private/tmp/ui-foundation-collection-bundle"
+  },
+  "consumers": {
+    "base": "Same bootstrapApplication, standalone OnPush ConsumerApp and generated ActionControl on a native button; explicit import from generated angular/action-control",
+    "collections": "Identical bootstrap/base button plus rendered Listbox (virtual, typed CVA), VirtualList (typed VirtualItem context and output bindings), SortableList (typed rows/itemsChange/canMove) and TransferList (typed CVA), explicit imports from the generated public component/model modules",
+    "publicImportPaths": [
+      ".ui/generated/angular/action-control",
+      ".ui/generated/angular/listbox",
+      ".ui/generated/angular/virtual-list",
+      ".ui/generated/angular/sortable-list",
+      ".ui/generated/angular/transfer-list",
+      ".ui/generated/angular/collection-model (types)",
+      ".ui/generated/angular/transfer-model (types)"
+    ],
+    "configurations": [
+      "snapshot-85c5ffde/consumers/direct-base/tsconfig.json",
+      "snapshot-85c5ffde/consumers/direct-collections/tsconfig.json"
+    ],
+    "commonCSSInput": "snapshot-85c5ffde/consumers/common.css",
+    "framework": "Client browser ESM; no Zone.js import, router, lazy chunks, app fixtures, server or runtime AI"
+  },
+  "compiler": {
+    "inherits": "snapshot-85c5ffde/tsconfig.json",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmitOnError": true,
+    "angularCompilerOptions": {
+      "strictTemplates": true,
+      "strictInjectionParameters": true,
+      "compilationMode": "full"
+    },
+    "perConsumerDifference": "Only output directory and selected main.ts input"
+  },
+  "bundler": {
+    "script": "harness/bundle-direct.mjs",
+    "version": "0.28.2",
+    "format": "esm",
+    "target": "es2022",
+    "bundle": true,
+    "minify": true,
+    "sourcemap": true,
+    "metafile": true,
+    "define": {
+      "ngDevMode": "false",
+      "ngJitMode": "false"
+    },
+    "treeShaking": "esbuild default enabled for bundle ESM; no generated angular/index import",
+    "angularLinker": {
+      "plugin": "@angular/compiler-cli/linker/babel",
+      "needsLinking": "Only matching .mjs inputs; identical gate for both consumers",
+      "babelrc": false,
+      "configFile": false,
+      "plugins": [
+        "linkerPlugin"
+      ],
+      "sourceMaps": "inline"
+    },
+    "matchToRepositoryScript": "Same esbuild target/minify/format/sourcemap and Babel linker settings as scripts/build.mjs; measurement changes entrypoints/output directories, enables metafiles and defines ngDevMode/ngJitMode false identically in both scenarios"
+  },
+  "sizeMethod": {
+    "raw": "Read and stat actual emitted .js/.css output files; cross-check with esbuild metafile.outputs.bytes",
+    "gzip": "Node node:zlib gzipSync(actual file Buffer, {level: 9}); sum independently gzipped payload files",
+    "primaryDelta": "collections minus base actual minified browser JavaScript payload, including generated collection adapters/model/helpers, Forms, CDK and transitive/shared Angular/RxJS contribution changes; this is not a pure CDK-engine size",
+    "css": "Identical generated token/global CSS payload in both builds; component inline styles remain part of the measured JavaScript",
+    "excluded": [
+      "Source maps, compiler output intermediates, metafiles, tarball size and source-input sizes",
+      "HTML (identical and separately recorded)",
+      "Network headers, Brotli and browser runtime memory/latency"
+    ],
+    "esbuildInputAttribution": "bytesInOutput > 0 proves compiled/generated/dependency sources contribute to executable output; attribution is explanatory and is not substituted for emitted bundle size or gzip delta"
+  },
+  "scenarios": {
+    "base": {
+      "payloadFiles": [
+        {
+          "path": "dist/direct-base/main.js",
+          "rawBytes": 324236,
+          "gzipBytes": 104413,
+          "sha256": "10aea898c4e8e5b7de028c2f12c9d0f817715220723711d19e34bda0939086f8"
+        },
+        {
+          "path": "dist/direct-base/styles.css",
+          "rawBytes": 23133,
+          "gzipBytes": 3707,
+          "sha256": "cbcd85094839218f40175f55f59d9aef599971db2b58946d5ed043794f6d7aa9"
+        }
+      ],
+      "javascript": {
+        "rawBytes": 324236,
+        "gzipBytes": 104413
+      },
+      "commonCSS": {
+        "rawBytes": 23133,
+        "gzipBytes": 3707
+      },
+      "javascriptAndCSS": {
+        "rawBytes": 347369,
+        "gzipBytes": 108120
+      },
+      "html": {
+        "path": "dist/direct-base/index.html",
+        "rawBytes": 296,
+        "gzipBytes": 216,
+        "sha256": "f619dadaa067459ac823f74351aa3111934806b59c4d88f66bd330a11b0bafd7"
+      },
+      "metafile": {
+        "path": "dist/direct-base/metafile.json",
+        "sha256": "f9bf161fb38b10d1c8a6945be818b60bbfc5831bafbdf6b524d7e4bcd37142b8"
+      },
+      "positiveInputs": [
+        {
+          "path": "build/compiled/direct-base/.ui/generated/angular/action-control.js",
+          "bytesInOutput": 1693
+        },
+        {
+          "path": "build/compiled/direct-base/.ui/generated/angular/icon.js",
+          "bytesInOutput": 1922
+        },
+        {
+          "path": "build/compiled/direct-base/consumers/direct-base/main.js",
+          "bytesInOutput": 525
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_common_module-chunk.mjs",
+          "bytesInOutput": 2888
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_location-chunk.mjs",
+          "bytesInOutput": 4541
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs",
+          "bytesInOutput": 1434
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs",
+          "bytesInOutput": 240
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_xhr-chunk.mjs",
+          "bytesInOutput": 437
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/common.mjs",
+          "bytesInOutput": 7808
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_attribute-chunk.mjs",
+          "bytesInOutput": 29
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs",
+          "bytesInOutput": 200643
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_effect-chunk.mjs",
+          "bytesInOutput": 4302
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_not_found-chunk.mjs",
+          "bytesInOutput": 152
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs",
+          "bytesInOutput": 30182
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_resource-chunk.mjs",
+          "bytesInOutput": 1084
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_untracked-chunk.mjs",
+          "bytesInOutput": 58
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "bytesInOutput": 26598
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs",
+          "bytesInOutput": 4033
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs",
+          "bytesInOutput": 9046
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+          "bytesInOutput": 3192
+        },
+        {
+          "path": "node_modules/@lucide/angular/fesm2022/lucide-angular.mjs",
+          "bytesInOutput": 10117
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/BehaviorSubject.js",
+          "bytesInOutput": 533
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/config.js",
+          "bytesInOutput": 142
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/NotificationFactories.js",
+          "bytesInOutput": 180
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Observable.js",
+          "bytesInOutput": 1275
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/map.js",
+          "bytesInOutput": 107
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js",
+          "bytesInOutput": 672
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js",
+          "bytesInOutput": 314
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subject.js",
+          "bytesInOutput": 2643
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subscriber.js",
+          "bytesInOutput": 1918
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subscription.js",
+          "bytesInOutput": 1758
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/symbol/observable.js",
+          "bytesInOutput": 91
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/arrRemove.js",
+          "bytesInOutput": 63
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js",
+          "bytesInOutput": 159
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/errorContext.js",
+          "bytesInOutput": 286
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/identity.js",
+          "bytesInOutput": 24
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isFunction.js",
+          "bytesInOutput": 43
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/lift.js",
+          "bytesInOutput": 213
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/noop.js",
+          "bytesInOutput": 15
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/ObjectUnsubscribedError.js",
+          "bytesInOutput": 122
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/pipe.js",
+          "bytesInOutput": 115
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js",
+          "bytesInOutput": 91
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js",
+          "bytesInOutput": 231
+        },
+        {
+          "path": "node_modules/tslib/tslib.es6.mjs",
+          "bytesInOutput": 1237
+        }
+      ],
+      "consumedGenerated": [
+        {
+          "path": "build/compiled/direct-base/.ui/generated/angular/action-control.js",
+          "bytesInOutput": 1693,
+          "generatedPath": ".ui/generated/angular/action-control.ts",
+          "generatedNormalizedSha256": "d76ccf4c55efec4b6ebe73bb2c8438e01fa3de14659cf4900bc3a07e6e54ea42",
+          "templatePath": "templates/angular/action-control.ts",
+          "templateNormalizedSha256": "d76ccf4c55efec4b6ebe73bb2c8438e01fa3de14659cf4900bc3a07e6e54ea42",
+          "compiledSha256": "f018afc173e4989dc341622aeaa9e3c74edc624edecc32e4c969bc1e566467ea"
+        },
+        {
+          "path": "build/compiled/direct-base/.ui/generated/angular/icon.js",
+          "bytesInOutput": 1922,
+          "generatedPath": ".ui/generated/angular/icon.ts",
+          "generatedNormalizedSha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "templatePath": "templates/angular/icon.ts",
+          "templateNormalizedSha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "compiledSha256": "792b4d2a10d4fea68d09493bcb8a38da0b5585c11516d100f47486e329c46e7d"
+        }
+      ],
+      "positiveCDKInputs": [],
+      "linkedInputs": [
+        {
+          "path": "node_modules/@angular/common/fesm2022/_common_module-chunk.mjs",
+          "sourceSha256": "49e1c43a9cc7da7ec2e697a2a64709b6ec2164c0989d5ad08e0b5a6bd1752307",
+          "linkedSha256": "b25b7b00ba3e1cf0292647d329206cc9e467195e07bf3095b8cb44691850066f"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_location-chunk.mjs",
+          "sourceSha256": "8f6ae00629882b9ab5a7433ab5f145b5e02363a307d2a01338ba025bf843c218",
+          "linkedSha256": "5017682090a7835326c5a3402d1da555c906c5a83d52ddcc9b8c61c8817403e4"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_module-chunk.mjs",
+          "sourceSha256": "4d1cfabb8210632abaa27a38abc394193f17f0c85b851474dc6aceb038cfd556",
+          "linkedSha256": "a4730a5781b6d0ec6cabf5b4a500025db318246b6f77dcf816f2d9f233c919bd"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs",
+          "sourceSha256": "f1e9101522a892dabad395a688e488ef2fa30f099bfc3c429243bc8310fc6991",
+          "linkedSha256": "132fb8ca894b2e41b447bf3f8a4e08a62d01e36ba3178bb254d32b289319061b"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs",
+          "sourceSha256": "b4ffe83da13a1c5f9c91b7f1266dd609016878eb64a6e0130977da7ca68389a9",
+          "linkedSha256": "9fd0f861443fd725c034e43c9dc6fb35ce9090dddd914c4648178dc0f703f074"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_xhr-chunk.mjs",
+          "sourceSha256": "710ae72b800785e0f2499d37df4bae7740187042b4073765e1ef10fb219fa9ce",
+          "linkedSha256": "7c340d1929db37222e5aa7cdb73959abfe97291a83b1decb96ed5194b9f11408"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/common.mjs",
+          "sourceSha256": "de945279634cd00153b25af3d8da87b2825a28993d03518971f3537f7e0efdda",
+          "linkedSha256": "816709a7f625161d815b2f9104e625c8482e95b550a97171c1e13d7bfdccba8d"
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "sourceSha256": "b4d6d07d6019381398f36bbab2906d00b46c6fee4580239ab0424c947bb256f2",
+          "linkedSha256": "10bc01a1741752da45e2163f7c1d596890cb9444eeea6d116bcd1a2f542d7b1f"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs",
+          "sourceSha256": "bfe31a604cc8666ff2ddb1d40c541165b487456fa46eb01e1424d80acee91144",
+          "linkedSha256": "eaab2fc6e1efd0a3def55dc46cf52faf6aaea995e277a3c527a6cd138a8f2e8b"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs",
+          "sourceSha256": "976d1cf10bc15a3db601097eb727b517b4e8fdeeb42317ac863ca03877e8c840",
+          "linkedSha256": "059aee4daebce9a3115e43a4bd1ef4eaee3f96add0c2a92291162e5cbea4d83e"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+          "sourceSha256": "8dc456410679dea0a7ca2c899c7d3e26e65e0a46ae1d451d8bb77fe2ee0ad5c8",
+          "linkedSha256": "0b63d9f5dff81855acff4373a139c9cb7df86de1917389aeeeb2b8c3b2d6d6ee"
+        },
+        {
+          "path": "node_modules/@lucide/angular/fesm2022/lucide-angular.mjs",
+          "sourceSha256": "b15b5f1790a65e70b1450468509a29a0820a09006e1cec5baa748460915e05e5",
+          "linkedSha256": "daadb0da025115087da116250bfb6ee6c93e203767c66eb25f88e613147def8f"
+        }
+      ],
+      "aot": {
+        "compiledMain": "build/compiled/direct-base/consumers/direct-base/main.js",
+        "sha256": "88ea970165ef0eef8cc418aa47b054b29c8f66fc3bf047b4be17d0ddcb16b47c",
+        "fullDefinitionPresent": true,
+        "partialComponentDeclarationPresent": false
+      }
+    },
+    "collections": {
+      "payloadFiles": [
+        {
+          "path": "dist/direct-collections/main.js",
+          "rawBytes": 581408,
+          "gzipBytes": 167208,
+          "sha256": "d6514dc04f58f2bf7b15da169cf44b7c2498f7fbea2cafbac9a79e13e2ee9b6c"
+        },
+        {
+          "path": "dist/direct-collections/styles.css",
+          "rawBytes": 23133,
+          "gzipBytes": 3707,
+          "sha256": "cbcd85094839218f40175f55f59d9aef599971db2b58946d5ed043794f6d7aa9"
+        }
+      ],
+      "javascript": {
+        "rawBytes": 581408,
+        "gzipBytes": 167208
+      },
+      "commonCSS": {
+        "rawBytes": 23133,
+        "gzipBytes": 3707
+      },
+      "javascriptAndCSS": {
+        "rawBytes": 604541,
+        "gzipBytes": 170915
+      },
+      "html": {
+        "path": "dist/direct-collections/index.html",
+        "rawBytes": 296,
+        "gzipBytes": 216,
+        "sha256": "f619dadaa067459ac823f74351aa3111934806b59c4d88f66bd330a11b0bafd7"
+      },
+      "metafile": {
+        "path": "dist/direct-collections/metafile.json",
+        "sha256": "76812f4e38935f8b122d7d60ad64837432fd8a4580b8c6186f7dee5250b339a6"
+      },
+      "positiveInputs": [
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/action-control.js",
+          "bytesInOutput": 1677
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-model.js",
+          "bytesInOutput": 3189
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-runtime.js",
+          "bytesInOutput": 999
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-views.js",
+          "bytesInOutput": 287
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/focus.js",
+          "bytesInOutput": 388
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/icon.js",
+          "bytesInOutput": 1921
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/listbox.js",
+          "bytesInOutput": 20053
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/overlay.js",
+          "bytesInOutput": 2509
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/sortable-list.js",
+          "bytesInOutput": 14345
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/transfer-list.js",
+          "bytesInOutput": 30540
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/transfer-model.js",
+          "bytesInOutput": 4425
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/value-control.js",
+          "bytesInOutput": 1397
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/virtual-list.js",
+          "bytesInOutput": 8643
+        },
+        {
+          "path": "build/compiled/direct-collections/consumers/direct-collections/main.js",
+          "bytesInOutput": 1982
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_array-chunk.mjs",
+          "bytesInOutput": 45
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_data-source-chunk.mjs",
+          "bytesInOutput": 89
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_directionality-chunk.mjs",
+          "bytesInOutput": 737
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_element-chunk.mjs",
+          "bytesInOutput": 185
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_fake-event-detection-chunk.mjs",
+          "bytesInOutput": 231
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs",
+          "bytesInOutput": 336
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_platform-chunk.mjs",
+          "bytesInOutput": 909
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_recycle-view-repeater-strategy-chunk.mjs",
+          "bytesInOutput": 1243
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_scrolling-chunk.mjs",
+          "bytesInOutput": 915
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_shadow-dom-chunk.mjs",
+          "bytesInOutput": 371
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_style-loader-chunk.mjs",
+          "bytesInOutput": 478
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/bidi.mjs",
+          "bytesInOutput": 659
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/drag-drop.mjs",
+          "bytesInOutput": 57451
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/scrolling.mjs",
+          "bytesInOutput": 21845
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_common_module-chunk.mjs",
+          "bytesInOutput": 4104
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_location-chunk.mjs",
+          "bytesInOutput": 4541
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs",
+          "bytesInOutput": 1435
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs",
+          "bytesInOutput": 240
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_xhr-chunk.mjs",
+          "bytesInOutput": 437
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/common.mjs",
+          "bytesInOutput": 7840
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_attribute-chunk.mjs",
+          "bytesInOutput": 29
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs",
+          "bytesInOutput": 201038
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_effect-chunk.mjs",
+          "bytesInOutput": 4305
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_not_found-chunk.mjs",
+          "bytesInOutput": 152
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs",
+          "bytesInOutput": 30262
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_resource-chunk.mjs",
+          "bytesInOutput": 1083
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/_untracked-chunk.mjs",
+          "bytesInOutput": 58
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "bytesInOutput": 29040
+        },
+        {
+          "path": "node_modules/@angular/forms/fesm2022/forms.mjs",
+          "bytesInOutput": 58164
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs",
+          "bytesInOutput": 4037
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs",
+          "bytesInOutput": 9051
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+          "bytesInOutput": 3201
+        },
+        {
+          "path": "node_modules/@lucide/angular/fesm2022/lucide-angular.mjs",
+          "bytesInOutput": 10075
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/BehaviorSubject.js",
+          "bytesInOutput": 532
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/config.js",
+          "bytesInOutput": 142
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/NotificationFactories.js",
+          "bytesInOutput": 180
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Observable.js",
+          "bytesInOutput": 1275
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/concat.js",
+          "bytesInOutput": 97
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/ConnectableObservable.js",
+          "bytesInOutput": 905
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/empty.js",
+          "bytesInOutput": 48
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/forkJoin.js",
+          "bytesInOutput": 422
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/from.js",
+          "bytesInOutput": 40
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/innerFrom.js",
+          "bytesInOutput": 1602
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/interval.js",
+          "bytesInOutput": 82
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/merge.js",
+          "bytesInOutput": 156
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/of.js",
+          "bytesInOutput": 99
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/observable/timer.js",
+          "bytesInOutput": 261
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/audit.js",
+          "bytesInOutput": 322
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/auditTime.js",
+          "bytesInOutput": 74
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/concatAll.js",
+          "bytesInOutput": 27
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/distinctUntilChanged.js",
+          "bytesInOutput": 189
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/filter.js",
+          "bytesInOutput": 117
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/map.js",
+          "bytesInOutput": 107
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/mergeAll.js",
+          "bytesInOutput": 51
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/mergeInternals.js",
+          "bytesInOutput": 482
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/mergeMap.js",
+          "bytesInOutput": 195
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/observeOn.js",
+          "bytesInOutput": 260
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js",
+          "bytesInOutput": 672
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/pairwise.js",
+          "bytesInOutput": 117
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/refCount.js",
+          "bytesInOutput": 284
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/share.js",
+          "bytesInOutput": 910
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/shareReplay.js",
+          "bytesInOutput": 295
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/startWith.js",
+          "bytesInOutput": 145
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/subscribeOn.js",
+          "bytesInOutput": 116
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/switchMap.js",
+          "bytesInOutput": 286
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/take.js",
+          "bytesInOutput": 147
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js",
+          "bytesInOutput": 125
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/operators/tap.js",
+          "bytesInOutput": 528
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/ReplaySubject.js",
+          "bytesInOutput": 1061
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduleArray.js",
+          "bytesInOutput": 153
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduleAsyncIterable.js",
+          "bytesInOutput": 235
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduled.js",
+          "bytesInOutput": 185
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduleIterable.js",
+          "bytesInOutput": 254
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduleObservable.js",
+          "bytesInOutput": 48
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/schedulePromise.js",
+          "bytesInOutput": 48
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduled/scheduleReadableStreamLike.js",
+          "bytesInOutput": 36
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Scheduler.js",
+          "bytesInOutput": 235
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/Action.js",
+          "bytesInOutput": 151
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/animationFrame.js",
+          "bytesInOutput": 18
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AnimationFrameAction.js",
+          "bytesInOutput": 655
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/animationFrameProvider.js",
+          "bytesInOutput": 628
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AnimationFrameScheduler.js",
+          "bytesInOutput": 405
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/asap.js",
+          "bytesInOutput": 18
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AsapAction.js",
+          "bytesInOutput": 630
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AsapScheduler.js",
+          "bytesInOutput": 392
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/async.js",
+          "bytesInOutput": 24
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js",
+          "bytesInOutput": 1356
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js",
+          "bytesInOutput": 377
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/dateTimestampProvider.js",
+          "bytesInOutput": 73
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/immediateProvider.js",
+          "bytesInOutput": 300
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/intervalProvider.js",
+          "bytesInOutput": 321
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js",
+          "bytesInOutput": 314
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subject.js",
+          "bytesInOutput": 2641
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subscriber.js",
+          "bytesInOutput": 1918
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/Subscription.js",
+          "bytesInOutput": 1758
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/symbol/iterator.js",
+          "bytesInOutput": 106
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/symbol/observable.js",
+          "bytesInOutput": 91
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/args.js",
+          "bytesInOutput": 187
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/argsArgArrayOrObject.js",
+          "bytesInOutput": 314
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/arrRemove.js",
+          "bytesInOutput": 63
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js",
+          "bytesInOutput": 159
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/createObject.js",
+          "bytesInOutput": 73
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/errorContext.js",
+          "bytesInOutput": 286
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/executeSchedule.js",
+          "bytesInOutput": 170
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/identity.js",
+          "bytesInOutput": 24
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/Immediate.js",
+          "bytesInOutput": 233
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isArrayLike.js",
+          "bytesInOutput": 80
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isAsyncIterable.js",
+          "bytesInOutput": 74
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isDate.js",
+          "bytesInOutput": 51
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isFunction.js",
+          "bytesInOutput": 43
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isInteropObservable.js",
+          "bytesInOutput": 32
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isIterable.js",
+          "bytesInOutput": 34
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isObservable.js",
+          "bytesInOutput": 73
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isPromise.js",
+          "bytesInOutput": 34
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isReadableStreamLike.js",
+          "bytesInOutput": 496
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/isScheduler.js",
+          "bytesInOutput": 40
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/lift.js",
+          "bytesInOutput": 213
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/mapOneOrManyArgs.js",
+          "bytesInOutput": 139
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/noop.js",
+          "bytesInOutput": 15
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/ObjectUnsubscribedError.js",
+          "bytesInOutput": 122
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/pipe.js",
+          "bytesInOutput": 115
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js",
+          "bytesInOutput": 91
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/throwUnobservableError.js",
+          "bytesInOutput": 237
+        },
+        {
+          "path": "node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js",
+          "bytesInOutput": 231
+        },
+        {
+          "path": "node_modules/tslib/tslib.es6.mjs",
+          "bytesInOutput": 4002
+        }
+      ],
+      "consumedGenerated": [
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/action-control.js",
+          "bytesInOutput": 1677,
+          "generatedPath": ".ui/generated/angular/action-control.ts",
+          "generatedNormalizedSha256": "d76ccf4c55efec4b6ebe73bb2c8438e01fa3de14659cf4900bc3a07e6e54ea42",
+          "templatePath": "templates/angular/action-control.ts",
+          "templateNormalizedSha256": "d76ccf4c55efec4b6ebe73bb2c8438e01fa3de14659cf4900bc3a07e6e54ea42",
+          "compiledSha256": "f018afc173e4989dc341622aeaa9e3c74edc624edecc32e4c969bc1e566467ea"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-model.js",
+          "bytesInOutput": 3189,
+          "generatedPath": ".ui/generated/angular/collection-model.ts",
+          "generatedNormalizedSha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+          "templatePath": "templates/angular/collection-model.ts",
+          "templateNormalizedSha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+          "compiledSha256": "221ecccbaa777b51b11e3a409fce79cb86d05bed33b0ff8227e744098d262507"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-runtime.js",
+          "bytesInOutput": 999,
+          "generatedPath": ".ui/generated/angular/collection-runtime.ts",
+          "generatedNormalizedSha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+          "templatePath": "templates/angular/collection-runtime.ts",
+          "templateNormalizedSha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+          "compiledSha256": "d2822059d2c833f6a8ece04d0e19652642af62130ecd51def6423aa569a0e902"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/collection-views.js",
+          "bytesInOutput": 287,
+          "generatedPath": ".ui/generated/angular/collection-views.ts",
+          "generatedNormalizedSha256": "be02d1715e8f20af0352bbe890d4857f27bb9c5978f58147de01a96974c588ba",
+          "templatePath": "templates/angular/collection-views.ts",
+          "templateNormalizedSha256": "be02d1715e8f20af0352bbe890d4857f27bb9c5978f58147de01a96974c588ba",
+          "compiledSha256": "e3f64389e8d58c8d96121d1f3a75abd42259784ca6a6e851474da3f5f4422b03"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/focus.js",
+          "bytesInOutput": 388,
+          "generatedPath": ".ui/generated/angular/focus.ts",
+          "generatedNormalizedSha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+          "templatePath": "templates/angular/focus.ts",
+          "templateNormalizedSha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+          "compiledSha256": "cac2e43e5840a09c7d33d32179b42ec7e7ff2fb1b5d819de3cce39be2629cd6e"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/icon.js",
+          "bytesInOutput": 1921,
+          "generatedPath": ".ui/generated/angular/icon.ts",
+          "generatedNormalizedSha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "templatePath": "templates/angular/icon.ts",
+          "templateNormalizedSha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "compiledSha256": "792b4d2a10d4fea68d09493bcb8a38da0b5585c11516d100f47486e329c46e7d"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/listbox.js",
+          "bytesInOutput": 20053,
+          "generatedPath": ".ui/generated/angular/listbox.ts",
+          "generatedNormalizedSha256": "75d3c6aa8e4253ad376f3f0e55cdd260b2f57a713993845b8132ff6434ede2b5",
+          "templatePath": "templates/angular/listbox.ts",
+          "templateNormalizedSha256": "75d3c6aa8e4253ad376f3f0e55cdd260b2f57a713993845b8132ff6434ede2b5",
+          "compiledSha256": "5f89cd1a67e0bc3127400254a7d4949592798b22516c0a765ad702734134addd"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/overlay.js",
+          "bytesInOutput": 2509,
+          "generatedPath": ".ui/generated/angular/overlay.ts",
+          "generatedNormalizedSha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+          "templatePath": "templates/angular/overlay.ts",
+          "templateNormalizedSha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+          "compiledSha256": "2f2b1a740134c6e8948262091c6da5791882d8755663678f79d38c89618f8c1a"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/sortable-list.js",
+          "bytesInOutput": 14345,
+          "generatedPath": ".ui/generated/angular/sortable-list.ts",
+          "generatedNormalizedSha256": "3845f286e042c4a2b4689359425a2184aea361cd87b579737a1d979f3e8b0fac",
+          "templatePath": "templates/angular/sortable-list.ts",
+          "templateNormalizedSha256": "3845f286e042c4a2b4689359425a2184aea361cd87b579737a1d979f3e8b0fac",
+          "compiledSha256": "aa6aba4e09a78c208d81b102da19dae66513b7d8ac90e5de81a2b51ef40c1052"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/transfer-list.js",
+          "bytesInOutput": 30540,
+          "generatedPath": ".ui/generated/angular/transfer-list.ts",
+          "generatedNormalizedSha256": "92291031e6b37f14cb6571b7fd02096465c2c0e26ea5cb493c71ffee6ca3042c",
+          "templatePath": "templates/angular/transfer-list.ts",
+          "templateNormalizedSha256": "92291031e6b37f14cb6571b7fd02096465c2c0e26ea5cb493c71ffee6ca3042c",
+          "compiledSha256": "1995a88f689f8e1a2e9cbae94ec690049b55488c4d75347958076a33085ea66f"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/transfer-model.js",
+          "bytesInOutput": 4425,
+          "generatedPath": ".ui/generated/angular/transfer-model.ts",
+          "generatedNormalizedSha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+          "templatePath": "templates/angular/transfer-model.ts",
+          "templateNormalizedSha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+          "compiledSha256": "72352d3910abe64b30dd04eb298fc2563b01df40a0c35e12474dfb7c65e3aa07"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/value-control.js",
+          "bytesInOutput": 1397,
+          "generatedPath": ".ui/generated/angular/value-control.ts",
+          "generatedNormalizedSha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+          "templatePath": "templates/angular/value-control.ts",
+          "templateNormalizedSha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+          "compiledSha256": "c800458a71106041d53f74f79b4a8e51226aefeb5e217689f81761eddb19b1ca"
+        },
+        {
+          "path": "build/compiled/direct-collections/.ui/generated/angular/virtual-list.js",
+          "bytesInOutput": 8643,
+          "generatedPath": ".ui/generated/angular/virtual-list.ts",
+          "generatedNormalizedSha256": "3ece7412e0698c73cde5390cebaa6356e2a33fe28e3375f59c65de1a8d2f3038",
+          "templatePath": "templates/angular/virtual-list.ts",
+          "templateNormalizedSha256": "3ece7412e0698c73cde5390cebaa6356e2a33fe28e3375f59c65de1a8d2f3038",
+          "compiledSha256": "0ff3bff203d8539e170b5887ed77fbbd05d1ab54ceb5db9115d3d065a7bbe14b"
+        }
+      ],
+      "positiveCDKInputs": [
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_array-chunk.mjs",
+          "bytesInOutput": 45
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_data-source-chunk.mjs",
+          "bytesInOutput": 89
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_directionality-chunk.mjs",
+          "bytesInOutput": 737
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_element-chunk.mjs",
+          "bytesInOutput": 185
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_fake-event-detection-chunk.mjs",
+          "bytesInOutput": 231
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs",
+          "bytesInOutput": 336
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_platform-chunk.mjs",
+          "bytesInOutput": 909
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_recycle-view-repeater-strategy-chunk.mjs",
+          "bytesInOutput": 1243
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_scrolling-chunk.mjs",
+          "bytesInOutput": 915
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_shadow-dom-chunk.mjs",
+          "bytesInOutput": 371
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_style-loader-chunk.mjs",
+          "bytesInOutput": 478
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/bidi.mjs",
+          "bytesInOutput": 659
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/drag-drop.mjs",
+          "bytesInOutput": 57451
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/scrolling.mjs",
+          "bytesInOutput": 21845
+        }
+      ],
+      "linkedInputs": [
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_directionality-chunk.mjs",
+          "sourceSha256": "582edf6388c3cd50fc831ae4cf35180e8c85ab66c604c254952e79904601e6a4",
+          "linkedSha256": "5abb279a94a798cfd344f116cbe43011f46da9e211f1f6b05aee69143ebae681"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs",
+          "sourceSha256": "1cda89bd7ac7953f2e56f2395231e0138850bbd3c24efdafe8b6c3799d64cb7f",
+          "linkedSha256": "8e8632ed034c521ae8ebf9179364f83c085926bff927f3ec18d95a59b5ac73fc"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_platform-chunk.mjs",
+          "sourceSha256": "9a9efd33237af708e39693dcb7bc77995d731585a6b1d8c57a26e64856af5372",
+          "linkedSha256": "f04e3bf31551f0383d985bbf049b6e5df620a8c58de6d63e5aa193cfc171a30b"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/_style-loader-chunk.mjs",
+          "sourceSha256": "2d8548598d9486946f6cf5e54d5a1f965f67d5e8036d8a694c7c9f9e772cd583",
+          "linkedSha256": "0e980ee9ef0ad49b1901bf199075190e2c9277df562375fa37724860773c8473"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/bidi.mjs",
+          "sourceSha256": "1f30d1b537960758d122ccaa2cf9407822ad3822d2ca2b0c1dcc14d2713ca5f9",
+          "linkedSha256": "b5535798ebd2921389b21e37697d056266f8e5b16ce707740e6ad10a1608f869"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/drag-drop.mjs",
+          "sourceSha256": "24d34f2a1c5cd4b686e062e1cf75ae492f40cef4d30efc4d50a95aeca9c5c6ea",
+          "linkedSha256": "65e5d4d98b2caccecdfb157b7c064bcdabee13e793586f7ba1b73e419bbee022"
+        },
+        {
+          "path": "node_modules/@angular/cdk/fesm2022/scrolling.mjs",
+          "sourceSha256": "b08bd13e3f76034695114a19e015b34c255336f49ce2960cfe03190db0478b37",
+          "linkedSha256": "fad08c16662d4d2af73bebaa0772df4c8e0a71204878290f04c206ab40e551ae"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_common_module-chunk.mjs",
+          "sourceSha256": "49e1c43a9cc7da7ec2e697a2a64709b6ec2164c0989d5ad08e0b5a6bd1752307",
+          "linkedSha256": "b25b7b00ba3e1cf0292647d329206cc9e467195e07bf3095b8cb44691850066f"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_location-chunk.mjs",
+          "sourceSha256": "8f6ae00629882b9ab5a7433ab5f145b5e02363a307d2a01338ba025bf843c218",
+          "linkedSha256": "5017682090a7835326c5a3402d1da555c906c5a83d52ddcc9b8c61c8817403e4"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_module-chunk.mjs",
+          "sourceSha256": "4d1cfabb8210632abaa27a38abc394193f17f0c85b851474dc6aceb038cfd556",
+          "linkedSha256": "a4730a5781b6d0ec6cabf5b4a500025db318246b6f77dcf816f2d9f233c919bd"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs",
+          "sourceSha256": "f1e9101522a892dabad395a688e488ef2fa30f099bfc3c429243bc8310fc6991",
+          "linkedSha256": "132fb8ca894b2e41b447bf3f8a4e08a62d01e36ba3178bb254d32b289319061b"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs",
+          "sourceSha256": "b4ffe83da13a1c5f9c91b7f1266dd609016878eb64a6e0130977da7ca68389a9",
+          "linkedSha256": "9fd0f861443fd725c034e43c9dc6fb35ce9090dddd914c4648178dc0f703f074"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/_xhr-chunk.mjs",
+          "sourceSha256": "710ae72b800785e0f2499d37df4bae7740187042b4073765e1ef10fb219fa9ce",
+          "linkedSha256": "7c340d1929db37222e5aa7cdb73959abfe97291a83b1decb96ed5194b9f11408"
+        },
+        {
+          "path": "node_modules/@angular/common/fesm2022/common.mjs",
+          "sourceSha256": "de945279634cd00153b25af3d8da87b2825a28993d03518971f3537f7e0efdda",
+          "linkedSha256": "816709a7f625161d815b2f9104e625c8482e95b550a97171c1e13d7bfdccba8d"
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "sourceSha256": "b4d6d07d6019381398f36bbab2906d00b46c6fee4580239ab0424c947bb256f2",
+          "linkedSha256": "10bc01a1741752da45e2163f7c1d596890cb9444eeea6d116bcd1a2f542d7b1f"
+        },
+        {
+          "path": "node_modules/@angular/forms/fesm2022/forms.mjs",
+          "sourceSha256": "ad5a6947d31b4d6143c7bce222e87dda8c74a194c4be6a32a9ed4112fc48ed28",
+          "linkedSha256": "eb0ebecf0f647cf4523ef8e3dee3f04d47cb639df554c68ab70bf06331cbc7d1"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs",
+          "sourceSha256": "bfe31a604cc8666ff2ddb1d40c541165b487456fa46eb01e1424d80acee91144",
+          "linkedSha256": "eaab2fc6e1efd0a3def55dc46cf52faf6aaea995e277a3c527a6cd138a8f2e8b"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs",
+          "sourceSha256": "976d1cf10bc15a3db601097eb727b517b4e8fdeeb42317ac863ca03877e8c840",
+          "linkedSha256": "059aee4daebce9a3115e43a4bd1ef4eaee3f96add0c2a92291162e5cbea4d83e"
+        },
+        {
+          "path": "node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+          "sourceSha256": "8dc456410679dea0a7ca2c899c7d3e26e65e0a46ae1d451d8bb77fe2ee0ad5c8",
+          "linkedSha256": "0b63d9f5dff81855acff4373a139c9cb7df86de1917389aeeeb2b8c3b2d6d6ee"
+        },
+        {
+          "path": "node_modules/@lucide/angular/fesm2022/lucide-angular.mjs",
+          "sourceSha256": "b15b5f1790a65e70b1450468509a29a0820a09006e1cec5baa748460915e05e5",
+          "linkedSha256": "daadb0da025115087da116250bfb6ee6c93e203767c66eb25f88e613147def8f"
+        }
+      ],
+      "aot": {
+        "compiledMain": "build/compiled/direct-collections/consumers/direct-collections/main.js",
+        "sha256": "ba58db93e2934af51cbaf629f63f3c12262942f447925f6329c21bcaf90d0ef0",
+        "fullDefinitionPresent": true,
+        "partialComponentDeclarationPresent": false
+      }
+    }
+  },
+  "measurementInputs": {
+    "normalization": "Same LF/path normalization as source manifest; paths relative to measurement workspace",
+    "normalizedAggregateSha256": "3f5b08d43c838cb9117799ffbea95f55c593931395a3452e4ec66c45f7829715",
+    "files": [
+      {
+        "path": "harness/bundle-direct.mjs",
+        "rawSha256": "054341ca453c2dd3047052c0cf74bd903211b49dfb748cf6667225a203c5f79c",
+        "normalizedSha256": "054341ca453c2dd3047052c0cf74bd903211b49dfb748cf6667225a203c5f79c"
+      },
+      {
+        "path": "harness/measure-85c5ffde.mjs",
+        "rawSha256": "24c50c38dd5577f6994a9ca43f6d18387d889a42472ac7e85b5fe939d6988f90",
+        "normalizedSha256": "24c50c38dd5577f6994a9ca43f6d18387d889a42472ac7e85b5fe939d6988f90"
+      },
+      {
+        "path": "snapshot-85c5ffde/consumers/common.css",
+        "rawSha256": "5b4e6bc4942410016c76e7e8fc1b5b84b8f3b277b7e47c402044f765d805957a",
+        "normalizedSha256": "5b4e6bc4942410016c76e7e8fc1b5b84b8f3b277b7e47c402044f765d805957a"
+      },
+      {
+        "path": "snapshot-85c5ffde/consumers/direct-base/main.ts",
+        "rawSha256": "488bb975148faa3e6661b45e899e46edda0d208190ba06354d9544f3659d7e2b",
+        "normalizedSha256": "488bb975148faa3e6661b45e899e46edda0d208190ba06354d9544f3659d7e2b"
+      },
+      {
+        "path": "snapshot-85c5ffde/consumers/direct-base/tsconfig.json",
+        "rawSha256": "6c40ac59463acd68cc7e93d28216a567127c63204c9bd809c8d196198fc6b4f9",
+        "normalizedSha256": "6c40ac59463acd68cc7e93d28216a567127c63204c9bd809c8d196198fc6b4f9"
+      },
+      {
+        "path": "snapshot-85c5ffde/consumers/direct-collections/main.ts",
+        "rawSha256": "1a7f892d05294b8372aac2cf3271dfd1648ee49486f5f7871b8ed789e833fb96",
+        "normalizedSha256": "1a7f892d05294b8372aac2cf3271dfd1648ee49486f5f7871b8ed789e833fb96"
+      },
+      {
+        "path": "snapshot-85c5ffde/consumers/direct-collections/tsconfig.json",
+        "rawSha256": "5e13a9e1d2108e6b7c5c21f41770df613918892661567733fabdc1f8d9b47d2a",
+        "normalizedSha256": "5e13a9e1d2108e6b7c5c21f41770df613918892661567733fabdc1f8d9b47d2a"
+      },
+      {
+        "path": "snapshot-85c5ffde/scripts/build.mjs",
+        "rawSha256": "cd6f6b209d35a4bcbd691e707ead7a6ca9716f8ddf3baacb0c372fc3cc7616cc",
+        "normalizedSha256": "cd6f6b209d35a4bcbd691e707ead7a6ca9716f8ddf3baacb0c372fc3cc7616cc"
+      },
+      {
+        "path": "snapshot-85c5ffde/tsconfig.json",
+        "rawSha256": "1ce7fd70ab64f484434ca02ea4c7db6b7501fcf806d1d6dd79611911fc557caf",
+        "normalizedSha256": "1ce7fd70ab64f484434ca02ea4c7db6b7501fcf806d1d6dd79611911fc557caf"
+      }
+    ]
+  },
+  "delta": {
+    "javascript": {
+      "rawBytes": 257172,
+      "gzipBytes": 62795
+    },
+    "commonCSS": {
+      "rawBytes": 0,
+      "gzipBytes": 0
+    },
+    "javascriptAndCSS": {
+      "rawBytes": 257172,
+      "gzipBytes": 62795
+    }
+  },
+  "license": {
+    "notice": "The MIT License; Copyright (c) 2026 Google LLC.",
+    "repositoryPath": "docs/dependencies/angular-cdk-22.2.1-LICENSE.txt",
+    "repositorySha256": "adb40d7d256e33c3c20a67869de175e7ca249afee92f587ccc48b5bec0ac24e4",
+    "installedPath": "node_modules/@angular/cdk/LICENSE",
+    "installedSha256": "adb40d7d256e33c3c20a67869de175e7ca249afee92f587ccc48b5bec0ac24e4",
+    "exactBytesMatch": true
+  },
+  "commands": [
+    {
+      "command": "git rev-parse HEAD",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:43:09.032Z",
+      "durationMs": 113,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/01-git.log"
+    },
+    {
+      "command": "git status --porcelain",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:43:09.153Z",
+      "durationMs": 93,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/02-git.log"
+    },
+    {
+      "command": "git show -s '--format=%H%n%cI%n%s' 85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:43:09.247Z",
+      "durationMs": 112,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/03-git.log"
+    },
+    {
+      "command": "git ls-tree -r --name-only 85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:43:09.366Z",
+      "durationMs": 113,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/04-git.log"
+    },
+    {
+      "command": "node --version",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:09.589Z",
+      "durationMs": 70,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/05-node.log"
+    },
+    {
+      "command": "npm --version",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:09.660Z",
+      "durationMs": 336,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/06-npm.log"
+    },
+    {
+      "command": "node --import tsx src/cli.ts sync --config examples/ui.config.example.yaml",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:09.997Z",
+      "durationMs": 1216,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/07-node.log"
+    },
+    {
+      "command": "node --import tsx src/cli.ts check --config examples/ui.config.example.yaml",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:11.214Z",
+      "durationMs": 1161,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/08-node.log"
+    },
+    {
+      "command": "./node_modules/.bin/ngc -p consumers/direct-base/tsconfig.json",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:12.410Z",
+      "durationMs": 5853,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/09-ngc.log"
+    },
+    {
+      "command": "node ../harness/bundle-direct.mjs direct-base",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:43:18.264Z",
+      "durationMs": 48966,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/10-node.log"
+    },
+    {
+      "command": "./node_modules/.bin/ngc -p consumers/direct-collections/tsconfig.json",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:44:07.296Z",
+      "durationMs": 5587,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/11-ngc.log"
+    },
+    {
+      "command": "node ../harness/bundle-direct.mjs direct-collections",
+      "cwd": "snapshot-85c5ffde",
+      "startedAtUTC": "2026-10-06T02:44:12.884Z",
+      "durationMs": 94933,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/12-node.log"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:45:47.991Z",
+      "durationMs": 57,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/13-git.log"
+    },
+    {
+      "command": "git status --porcelain",
+      "cwd": "../../../Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "startedAtUTC": "2026-10-06T02:45:48.049Z",
+      "durationMs": 85,
+      "exitCode": 0,
+      "signal": null,
+      "log": "evidence/head-85c5ffde/14-git.log"
+    }
+  ],
+  "scope": {
+    "generationAndConsistency": "Executed the unchanged repository src/cli.ts sync/check commands in the isolated exact-source snapshot using node --import tsx. npm run ui:sync was first attempted and failed because tsx CLI local IPC listen returned EPERM in the sandbox; direct tsx import performs the same generator/check actions without that IPC server",
+    "recoveredEnvironmentFailure": {
+      "command": "npm run ui:sync",
+      "exitCode": 1,
+      "reason": "tsx CLI local IPC pipe listen EPERM in sandbox",
+      "log": "evidence/07-npm.log",
+      "fallback": "node --import tsx src/cli.ts sync/check --config examples/ui.config.example.yaml"
+    },
+    "aotAndBundle": "Both ngc full AOT/strict-template builds and Angular-linked minified esbuild bundles completed; required generated collection modules have positive executable bytesInOutput",
+    "browserOperations": "Not executed by this bundle measurement harness; stage browser/AX/axe results remain separate",
+    "limits": [
+      "This is one minimal eager consumer comparison on the fixed Angular/CDK versions and flags, not a universal bundle budget",
+      "No pure CDK-only engine size is claimed",
+      "No runtime user understanding, screen-reader, touch-device or backend success is inferred from AOT/build success",
+      "Long-label width rendering and runtime correctness are verified separately by root; positive AOT/executable adapter retention is static bundle evidence"
+    ],
+    "freshRebuild": {
+      "sourceHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "snapshot": "snapshot-85c5ffde",
+      "prior001PayloadUsedAsCurrentResult": false,
+      "reason": "Listbox and VirtualList viewport-inline width adapters changed; both minimal consumers and actual payloads were independently regenerated after root generation-heavy interval ended"
+    }
+  },
+  "freshPayloadValidation": "evidence/head-85c5ffde/payload-comparison-to-001c99b3.json",
+  "widthAdapterConsumption": "evidence/head-85c5ffde/width-adapter-consumed.json",
+  "supplementalBarrelDiagnosis": {
+    "sourceHead": "a1886aaf2002b2b1828f6e6cba227bbf9d205936",
+    "evidence": "evidence/collection-consumer-bundle.json",
+    "interpretation": "Historical full-AOT public angular/index barrel import retained unused CVA definitions plus Forms/CDK in baseline; primary current measurement uses explicit public generated component-module imports. No fresh 85c5ffde barrel size is claimed."
+  }
+}

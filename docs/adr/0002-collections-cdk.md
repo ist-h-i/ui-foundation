@@ -1,6 +1,6 @@
 # 0002: 一覧の仮想化とドラッグはAngular CDKの公開APIで接続する
 
-状態: 採用候補。2026-10-06。段階の実操作・consumer検証後に採用を確定する。
+状態: 採用。2026-10-06。公開APIの生成consumer、両profileの実操作、独立レビューと全880試験の実終了0で確認した。
 
 ## 背景と比較
 
@@ -8,7 +8,7 @@
 
 ## 判断
 
-公開`CdkVirtualScrollViewport`/固定高さstrategy/`CdkVirtualForOf`と、`CdkDropList`/`CdkDrag`/`CdkDragHandle`/`Dir`を採用候補とする。private API、CDK内部DOMへのpatch、indexだけで外部データを確定する契約は持たない。行とviewportは専用の意味トークンを測定し、profile変更を同じDOMへ適用する。previewは元のparent内へ置く。固定高さは可変高さの自動測定へ読み替えず、内部の編集状態はappが安定キーに保存する。
+公開`CdkVirtualScrollViewport`/固定高さstrategy/`CdkVirtualForOf`と、`CdkDropList`/`CdkDrag`/`CdkDragHandle`/`Dir`を採用する。private API、CDK内部DOMへのpatch、indexだけで外部データを確定する契約は持たない。行とviewportは専用の意味トークンを測定し、profile変更を同じDOMへ適用する。previewは元のparent内へ置く。固定高さは可変高さの自動測定へ読み替えず、内部の編集状態はappが安定キーに保存する。
 
 pointer移動、明示移動button、取消可能なkeyboard draftは同じ`canMove`境界を使う。アプリがsnapshotと更新/永続化を所有する。公開drag終了イベントがdropより先に発火するため、開始snapshotをmicrotaskでdrop後に清掃する。開始後のsource差替え、範囲外drop、例外となる移動許可は確定を拒否する。Horizontalの折返しはCDKのmixed方式、方向は実祖先のRTLをDirへ接続する。
 
@@ -21,3 +21,5 @@ pointer移動、明示移動button、取消可能なkeyboard draftは同じ`canM
 bundleの最小consumer比較は段階の検証記録に残す。prototypeの総bundleやCDK入力sourceのバイトを「追加bundle量」と扱わない。問題が残る場合は完了判定を保留し、公開CDK APIのadapterを差し替える。
 
 参照: [CDK scrolling](https://material.angular.dev/cdk/scrolling/overview)、[CDK drag/drop](https://material.angular.dev/cdk/drag-drop/overview)、[APG Listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)、[ARIA aria-owns](https://www.w3.org/TR/wai-aria-1.2/#aria-owns)（2026-10-06に確認）。
+
+採用時の実測は[一覧12要求の検証](../verification/ui-library-collections-2026-10-06.md)に保持する。最小consumerのJS差分はraw257172B/gzip62795Bで、一覧adapter・Forms・CDK・共通コードを含む。公開module直接importとbarrelの保持挙動を区別し、自動tree shakingを保証しない。CDKの公開viewport.elementRef.nativeElement.clientWidthから所有する仮想行の幅を測定するadapterにより、320px/200%の長いラベルとprojected editorを収める。CDK内部DOM/CSSはpatchしない。
