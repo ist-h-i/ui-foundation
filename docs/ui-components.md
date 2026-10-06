@@ -417,7 +417,7 @@ VirtualListは`items/keyField/labelField/label/itemHeight/height/overscan/emptyL
 
 SortableList/ui-sortable-listとOrderList/ui-order-listは`items/keyField/labelField/controlId/label/orientation/disabled/busy/readonly/canMove/emptyMessage`、`itemsChange/moved`を持つ。候補更新はappがitemsChangeを受けて接続。`moved {item,fromIndex,toIndex,items,reason}`のreasonはbutton/pointer/keyboard。canMove例外は拒否。公開CDKのhandle/touch-delay、native位置変更button、ハンドルclick→矢印/Home/Endの仮配置→Enter確定/Escape取消を使う。pointer開始sourceが差替わった場合は旧dropを拒否。指を離す前の取消は更新を公開せず、pointer releaseの説明を残す。実Undo/サーバー更新の成功ではない。
 
-InfiniteScrollは`label/loading/finished/error/disabled/autoLoad/observerRoot/rootMargin/resetKey/contentVersion/loadingMessage/endMessage`、`loadRequested {id,reason}`、`completeLoad(id)/failLoad(id,message)/invalidatePending()`を持つ。reasonはbutton/intersection/retry。初期versionで自動要求は一度、アプリの実追加/カーソル進行でversionを更新するとvisible sentinelでも次を取得できる。空応答でversionを進めない。manual/retryは同一versionでも要求できる。明示invalidateはUIの待機を失効し、通信をabortしない。アプリはcallbackに元のhostをcaptureし、再作成した別hostへ古いidを渡さない。
+InfiniteScrollは`label/loading/finished/error/disabled/autoLoad/observerRoot/rootMargin/resetKey/contentVersion/loadingMessage/endMessage`、`loadRequested {id,reason}`、`completeLoad(id)/failLoad(id,message)/invalidatePending()`を持つ。reasonはbutton/intersection/retry。初期versionで自動要求は一度、アプリの実追加/カーソル進行でversionを更新するとvisible sentinelでも次を取得できる。空応答でversionを進めない。manual/retryは同一versionでも要求できる。明示invalidateはUIの待機を失効して自動監視を再登録し、通信をabortしない。アプリはcallbackに元のhostをcaptureし、再作成した別hostへ古いidを渡さない。
 
 ### TransferとTimelineの契約
 

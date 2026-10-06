@@ -18,6 +18,7 @@ test('collection rows and viewports have distinct positive semantics in both pro
   assert.equal(result.profiles.guided.semantic[role].value,guided);assert.equal(result.profiles.dense.semantic[role].value,dense);
   rejects(edited(config=>{delete config.semantic[role];}),new RegExp(role));
   rejects(edited(config=>{config.primitives[config.semantic[role]].value='0px';}),/greater than zero/);
+  for(const profile of ['guided','dense'])rejects(edited(config=>{config.primitives[config.profiles[profile].semantic[role]??config.semantic[role]].value='0px';}),/greater than zero/);
   rejects(edited(config=>{config.semantic[role]='ink';}),new RegExp(role));
  }
  assert.match(renderTailwind(result),/--spacing-size-collection-item: var\(--ui-size-collection-item\)/);
