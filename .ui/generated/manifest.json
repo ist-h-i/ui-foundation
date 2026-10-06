@@ -1,14 +1,14 @@
 {
-  "configuration_hash": "7a28d3c9819b00bef4b29c710ffa1b4edb5002cfd8ab67779cba2102f311c420",
+  "configuration_hash": "410b8858b31e68aaf41ad8806b0fcac03c7e1ccb07e11c8fbb62a91e5aa5215f",
   "files": {
     ".agents/skills/project-ui/project-context.md": {
-      "sha256": "55a5506dfa7dca3668a6ef54f707e15195accab385067ec94b45f59a92a0ea87"
+      "sha256": "64b6eb649e0a38872b93f753777e6dcc99a0744e0b01432b62b93b394126d6a7"
     },
     ".agents/skills/project-ui/references/token-design.md": {
       "sha256": "8c0a36ba1091b0b94b80759c6f410ae25dcab2fd7e232bdd65d2478ad3cb89fb"
     },
     ".agents/skills/project-ui/SKILL.md": {
-      "sha256": "d912335338f75270a048c1fffddddbb87710ae665cdf0c9d5ad2aec1ae83420b"
+      "sha256": "328308150f4116a9d41a5f683505c6b7964a73fd810218c7e5c72da476256513"
     },
     ".ui/generated/angular/action-control.ts": {
       "sha256": "d76ccf4c55efec4b6ebe73bb2c8438e01fa3de14659cf4900bc3a07e6e54ea42"
@@ -36,6 +36,15 @@
     },
     ".ui/generated/angular/choice-model.ts": {
       "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a"
+    },
+    ".ui/generated/angular/collection-model.ts": {
+      "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863"
+    },
+    ".ui/generated/angular/collection-runtime.ts": {
+      "sha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559"
+    },
+    ".ui/generated/angular/collection-views.ts": {
+      "sha256": "be02d1715e8f20af0352bbe890d4857f27bb9c5978f58147de01a96974c588ba"
     },
     ".ui/generated/angular/command-palette.ts": {
       "sha256": "1bcfd9527e9ac1c6c62aae4f870d3efac05fec8800742aadfd32712fe33073cc"
@@ -113,7 +122,10 @@
       "sha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd"
     },
     ".ui/generated/angular/index.ts": {
-      "sha256": "f0d1eef4f3a650f702afa14bd333234d4b6d93f127913eb0843f38db38e6504c"
+      "sha256": "fe16195940c8c60ed9a9cc2fb693d068544f68309a384dab17c3b019cc9ff160"
+    },
+    ".ui/generated/angular/infinite-scroll.ts": {
+      "sha256": "51355a5f3ebe3bbb7ea7664231be1103c9933dd4de2283d05b9de031ad8c648b"
     },
     ".ui/generated/angular/inline-edit.ts": {
       "sha256": "a98b39158a8b33e86a1462bf3baa64b118f096aecd63d4f4b28d10d25db64ccd"
@@ -123,6 +135,9 @@
     },
     ".ui/generated/angular/layout.ts": {
       "sha256": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+    },
+    ".ui/generated/angular/listbox.ts": {
+      "sha256": "75d3c6aa8e4253ad376f3f0e55cdd260b2f57a713993845b8132ff6434ede2b5"
     },
     ".ui/generated/angular/mega-menu.ts": {
       "sha256": "a53e1fea0c1319a744a2f8b7ef8613444b7d6d390a5fefa098a9dc40d00c482c"
@@ -155,7 +170,7 @@
       "sha256": "7b777ca14321de66ff10c6749b75e0f266975480577b571bf3d51cd756531dc0"
     },
     ".ui/generated/angular/overlay.ts": {
-      "sha256": "f1f8c4989e89770a75032d9a56597f185b9f63479878e41a7c7c29545a24400d"
+      "sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982"
     },
     ".ui/generated/angular/page-frame.ts": {
       "sha256": "642283934455a1a0fe7ece9709c9f4dd79c6838308aa017d5a37b561f0f28ca8"
@@ -174,6 +189,9 @@
     },
     ".ui/generated/angular/selection-input.ts": {
       "sha256": "893c45d513a69c181e51e14e21b50119eacc7a041ea999dd3015c89af26f8b24"
+    },
+    ".ui/generated/angular/sortable-list.ts": {
+      "sha256": "3845f286e042c4a2b4689359425a2184aea361cd87b579737a1d979f3e8b0fac"
     },
     ".ui/generated/angular/splitter.ts": {
       "sha256": "e2ce33c7a3f9d0113b6b41321d7580dd7fd7ef7117f1ae3f4a9e7e28f4a9e94e"
@@ -196,32 +214,47 @@
     ".ui/generated/angular/text-input.ts": {
       "sha256": "1afbb0b0d13f599c2f1aec9f82d78c7bba3100641337599e95c50f10539a4201"
     },
+    ".ui/generated/angular/timeline-model.ts": {
+      "sha256": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2"
+    },
+    ".ui/generated/angular/timeline.ts": {
+      "sha256": "b62d76623677356fbff9a8a6ad6a1bced2c823f3482626349e705e308676df76"
+    },
     ".ui/generated/angular/toolbar.ts": {
       "sha256": "a3b420e2a5010e8e6d0c38fa0b283471e50aa19cf475cb20b253bb2dd235cdea"
     },
     ".ui/generated/angular/tour.ts": {
       "sha256": "9fdd62c80954ed27a6cf1c23ee23baae3028199be968a8f9273c5f1f1f598fc6"
     },
+    ".ui/generated/angular/transfer-list.ts": {
+      "sha256": "92291031e6b37f14cb6571b7fd02096465c2c0e26ea5cb493c71ffee6ca3042c"
+    },
+    ".ui/generated/angular/transfer-model.ts": {
+      "sha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10"
+    },
     ".ui/generated/angular/value-control.ts": {
       "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214"
+    },
+    ".ui/generated/angular/virtual-list.ts": {
+      "sha256": "3ece7412e0698c73cde5390cebaa6356e2a33fe28e3375f59c65de1a8d2f3038"
     },
     ".ui/generated/angular/wizard.ts": {
       "sha256": "42b50fe1dc993c596b7086b012a4fac10129d9957b784297ad598891c9f128bf"
     },
     ".ui/generated/policy.json": {
-      "sha256": "85c5740b67c406567917c1ff64c4d4932bda63201a9c7af59996cb7df2d35684"
+      "sha256": "47be80a69b7c82b173d965cf97cd3a01ba8e03895259ad813780c738524f8a42"
     },
     ".ui/generated/profiles.ts": {
       "sha256": "16792c5a22ad0b58e4de24915de0a8ac9e82481160aa7e3628a21344742b4613"
     },
     ".ui/generated/resolved.json": {
-      "sha256": "7a28d3c9819b00bef4b29c710ffa1b4edb5002cfd8ab67779cba2102f311c420"
+      "sha256": "410b8858b31e68aaf41ad8806b0fcac03c7e1ccb07e11c8fbb62a91e5aa5215f"
     },
     ".ui/generated/tailwind.css": {
-      "sha256": "2c62f047d7bdfca2042de47ce22ed8bf31aec14abf071c6d29b9cd9700663164"
+      "sha256": "64b3d240c821e0be3b0d7389b4e05260fa7a1e8985de3bf086e2f56eb05ed9cb"
     },
     ".ui/generated/tokens.css": {
-      "sha256": "49be5c96dcc48d29f946d8b4adff6b6da2af6c3fec32f949599b38e27de156f0"
+      "sha256": "345b670108abab2bdd67a759895f83c455f9c78893229608867fc639ef45d17c"
     }
   },
   "tool_version": "0.0.0",

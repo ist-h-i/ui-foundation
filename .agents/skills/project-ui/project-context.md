@@ -214,6 +214,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "48px"
         },
+        "size.collection-item": {
+          "reference": "collection-item-dense",
+          "type": "length",
+          "value": "4rem"
+        },
+        "size.collection-viewport": {
+          "reference": "collection-viewport-dense",
+          "type": "length",
+          "value": "16rem"
+        },
         "size.content": {
           "reference": "content",
           "type": "length",
@@ -576,6 +586,16 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "avatar-guided",
           "type": "length",
           "value": "64px"
+        },
+        "size.collection-item": {
+          "reference": "collection-item-guided",
+          "type": "length",
+          "value": "5rem"
+        },
+        "size.collection-viewport": {
+          "reference": "collection-viewport-guided",
+          "type": "length",
+          "value": "20rem"
         },
         "size.content": {
           "reference": "content",

@@ -2185,8 +2185,11 @@
       "requestedControls": "単一・複数選択、検索、グループ、仮想スクロール",
       "sourceLine": 66,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/listbox.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
@@ -2214,9 +2217,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "単一・複数選択、検索、グループ、仮想スクロール"
+      ],
+      "remainingControls": []
     },
     {
       "id": "forms-19",
@@ -2305,8 +2321,11 @@
       "requestedControls": "左右移動、検索、複数選択、順序変更",
       "sourceLine": 69,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/transfer-list.ts",
+        "templates/angular/transfer-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
@@ -2334,9 +2353,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "左右移動、検索、複数選択、順序変更"
+      ],
+      "remainingControls": []
     },
     {
       "id": "forms-22",
@@ -5180,8 +5212,10 @@
       "requestedControls": "行構成、補助情報、アイコン、行操作、区切り",
       "sourceLine": 147,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/collection-views.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5209,9 +5243,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "行構成、補助情報、アイコン、行操作、区切り"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-02",
@@ -5220,8 +5267,11 @@
       "requestedControls": "単一・複数選択、全選択、選択不可項目",
       "sourceLine": 148,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/listbox.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5249,9 +5299,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "単一・複数選択、全選択、選択不可項目"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-03",
@@ -5315,8 +5378,10 @@
       "requestedControls": "列数、間隔、高さの異なる項目の配置",
       "sourceLine": 150,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/collection-views.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5344,9 +5409,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "列数、間隔、高さの異なる項目の配置"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-05",
@@ -5355,8 +5433,11 @@
       "requestedControls": "リスト／グリッド切替、検索、ソート、ページ送り",
       "sourceLine": 151,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/collection-views.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5384,9 +5465,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "リスト／グリッド切替、検索、ソート、ページ送り"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-06",
@@ -5395,8 +5489,11 @@
       "requestedControls": "表示領域、項目高さ、先読み、スクロール位置",
       "sourceLine": 152,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/virtual-list.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5424,9 +5521,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "verificationPending": [],
+      "implementedControls": [
+        "表示領域、項目高さ、先読み、スクロール位置"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-07",
@@ -5435,8 +5545,10 @@
       "requestedControls": "追加取得、取得状態、終端、再試行",
       "sourceLine": 153,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/infinite-scroll.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5464,9 +5576,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "追加取得、取得状態、終端、再試行"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-08",
@@ -5555,8 +5680,11 @@
       "requestedControls": "並べ替え、移動可能範囲、移動操作",
       "sourceLine": 156,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/sortable-list.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5584,9 +5712,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "並べ替え、移動可能範囲、移動操作"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-11",
@@ -5595,8 +5736,11 @@
       "requestedControls": "日時、種別、詳細展開、追加読込み",
       "sourceLine": 157,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/timeline.ts",
+        "templates/angular/timeline-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5624,9 +5768,22 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "日時、種別、詳細展開、追加読込み"
+      ],
+      "remainingControls": []
     },
     {
       "id": "data-12",
@@ -8788,8 +8945,12 @@
       "component": "ドラッグ＆ドロップ",
       "requestedControls": "ドラッグ＆ドロップ",
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/sortable-list.ts",
+        "templates/angular/transfer-list.ts",
+        "templates/angular/overlay.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -8806,9 +8967,22 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "ドラッグ＆ドロップ"
+      ],
+      "remainingControls": []
     },
     {
       "id": "foundation-05",
@@ -8862,8 +9036,12 @@
       "component": "仮想スクロール",
       "requestedControls": "仮想スクロール",
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/virtual-list.ts",
+        "templates/angular/listbox.ts",
+        "templates/angular/collection-model.ts"
+      ],
       "dependencies": [
         "tokens"
       ],
@@ -8880,9 +9058,22 @@
           "profile switching"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "tests/ui/collection-catalog.spec.ts",
+        "tests/ui/transfer-timeline.spec.ts",
+        "tests/model/collection-model.test.ts",
+        "tests/model/transfer-timeline.test.ts",
+        "tests/generation/consumer.test.ts",
+        "scripts/consumer-browser.mjs",
+        "docs/verification/ui-library-collections-2026-10-06.md"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "verificationPending": [],
+      "implementedControls": [
+        "仮想スクロール"
+      ],
+      "remainingControls": []
     },
     {
       "id": "foundation-07",
@@ -9021,8 +9212,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating-navigation-choices-and-workflows",
-    "verificationStatus": "verified-ten-stages-and-local-default-focus-fixes",
+    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating-navigation-choices-and-workflows-collections-and-movement",
+    "verificationStatus": "verified-eleven-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -9039,13 +9230,14 @@
       "structuredForms": "approve after Unicode letter grapheme fix; independent native operations, full 518 log/exit and 59 manifest hashes verified",
       "floating": "approve after pending key and root mutation P2 fixes; independent 48 scenarios/274 assertions, 18 axe states with incomplete limits, 62 manifest hashes/16 images and full 608 log/exit verified",
       "navigation": "source review approve after R1–R7 corrections; independent native keyboard/modal/visibility/lifecycle, manifest68/runtime14, axe limits and full 683 actual exit0",
-      "choices": "source/full approve after F1-F5 fixes; independent operations86, manifest74/runtime63, production consumer, axe limits, all791 actual exit0"
+      "choices": "source/full approve after F1-F5 fixes; independent operations86, manifest74/runtime63, production consumer, axe limits, all791 actual exit0",
+      "collections": "approve after public width adapter and idle IO generation fixes; exact runtime85c5ffd; final proof-only delta review required before merge"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "verified": 121,
-      "partial": 11,
-      "pending": 49
+      "verified": 133,
+      "pending": 37,
+      "partial": 11
     },
     "knownIssues": [
       {
@@ -9302,6 +9494,20 @@
         "total": 791
       },
       "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
+    },
+    "collectionsVerification": {
+      "pullRequest": 10,
+      "baseCommit": "04dc3f4bc71161a5fff0860d810e73272a729499",
+      "codeHead": "d81d6177166f419d5656440d217cb7d9849b7a22",
+      "runtimeHead": "85c5ffdea19135010a30f2cbcf327f77d4ca5669",
+      "testCounts": {
+        "config": 68,
+        "generation": 15,
+        "model": 93,
+        "ui": 704,
+        "total": 880
+      },
+      "evidence": "docs/verification/ui-library-collections-2026-10-06.md"
     }
   }
 }

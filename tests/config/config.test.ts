@@ -12,6 +12,18 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('collection rows and viewports have distinct positive semantics in both profiles',()=>{
+ const result=resolve();
+ for(const [role,guided,dense] of [['size.collection-item','5rem','4rem'],['size.collection-viewport','20rem','16rem']]){
+  assert.equal(result.profiles.guided.semantic[role].value,guided);assert.equal(result.profiles.dense.semantic[role].value,dense);
+  rejects(edited(config=>{delete config.semantic[role];}),new RegExp(role));
+  rejects(edited(config=>{config.primitives[config.semantic[role]].value='0px';}),/greater than zero/);
+  for(const profile of ['guided','dense'])rejects(edited(config=>{config.primitives[config.profiles[profile].semantic[role]??config.semantic[role]].value='0px';}),/greater than zero/);
+  rejects(edited(config=>{config.semantic[role]='ink';}),new RegExp(role));
+ }
+ assert.match(renderTailwind(result),/--spacing-size-collection-item: var\(--ui-size-collection-item\)/);
+ assert.match(renderTokens(result),/--ui-size-collection-viewport: var\(--ui-p-collection-viewport-guided\)/);
+});
 test('knob size follows its own positive semantic role and profile mapping',()=>{
  const result=resolve();assert.equal(result.profiles.guided.semantic['size.knob'].value,'160px');assert.equal(result.profiles.dense.semantic['size.knob'].value,'128px');
  assert.match(renderTailwind(result),/--spacing-size-knob: var\(--ui-size-knob\)/);assert.match(renderTokens(result),/--ui-size-knob: var\(--ui-p-knob-guided\)/);

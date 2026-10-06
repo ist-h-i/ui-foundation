@@ -34,6 +34,12 @@ export { DateRangePicker, type DateRange, type DatePreset } from './date-range-p
 export { type DateInputFormat } from './date-model';
 export { GridList, GridItem, type GridItemContext, type GridBreakpoint } from './grid-list';
 export { Icon, provideUiIcons } from './icon';
+export {List,Masonry,DataView,CollectionItem,type CollectionItemContext,type MasonryBreakpoint} from './collection-views';
+export {Listbox,ListChoiceTemplate,type ListChoiceContext} from './listbox';
+export {VirtualList,VirtualItem,type VirtualItemContext} from './virtual-list';
+export {SortableList} from './sortable-list';
+export {InfiniteScroll,type CollectionLoadRequest} from './infinite-scroll';
+export {createCollectionView,collectionPage,collectionProblem,moveCollection,changeListSelection,selectListScope,listSelectionProblem,type CollectionKey,type CollectionMove,type CollectionViewState,type ListChoice,type ListboxValue} from './collection-model';
 
 export { Card, CardHeader, CardBody, CardFooter, CardMedia, CardActions, CardTemplate, type CardArea, type CardContext } from './card';
 export { Menu, type MenuItem, type MenuSelection, type MenuRootNavigation } from './menu';
@@ -60,3 +66,8 @@ export { ReadMore, CodeBlock, InlineCode, Watermark, type WatermarkPosition } fr
 export { type DisplayTone, type MeterSegment } from './display-model';
 export { Drawer, BottomSheet } from './drawer';
 export { Popover, Tooltip, HoverCard, ConfirmPopover, PopupTemplate, PopupCloseRequest, type PopupTrigger, type PopupArea, type PopupContext, type PopupCloseReason, type PopupResult } from './floating-panel';
+
+export {TransferList,TransferItem,type TransferItemContext} from './transfer-list';
+export {transferConfigurationProblem,transferStructureProblem,transferSelectionProblem,transferBatch,reorderTransfer,type TransferValue,type TransferSide,type TransferReason,type TransferOptions,type TransferChange,type TransferReorder,type TransferResult} from './transfer-model';
+export {Timeline,TimelineItem,type TimelineItemContext} from './timeline';
+export {timelineType,timelineDateTime,timelineConfigurationProblem,timelineDefaultDateOptions,type TimelineDateTime,type TimelineType} from './timeline-model';

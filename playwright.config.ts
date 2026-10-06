@@ -18,6 +18,6 @@ export default defineConfig({
     command: 'npm run build && node scripts/serve.mjs',
     url: 'http://127.0.0.1:4183',
     reuseExistingServer: false,
-    timeout: 120_000,
+    timeout: 240_000,
   },
 });
