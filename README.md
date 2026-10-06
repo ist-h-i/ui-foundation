@@ -42,6 +42,7 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 | `npm run typecheck` | 設定/CLIのTypeScriptと生成Angular部品のstrictTemplates。 |
 | `npm run test:config` | 型、参照、必須役割、プロファイル、色ペアの検査。 |
 | `npm run test:generation` | 冪等性、dry-run、衝突、パス境界、CLIの失敗状態。 |
+| `npm run typecheck:ui:media` | Media3specと直接helperのstrict型検査。通常typecheckにも含める。全UI specのstrict検査ではない。 |
 | `npm run test:ui` | 実ブラウザーの操作・表示・自動アクセシビリティ。 |
 
 ビルドは`ui:check`を通し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。
