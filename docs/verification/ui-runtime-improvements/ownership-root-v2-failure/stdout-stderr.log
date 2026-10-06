@@ -1,0 +1,41 @@
+✔ output relocation keeps fixed Skill ownership, retires the old manifest, and is dry-run safe and repeatable (12445.122209ms)
+✔ v1 generation upgrades in place or relocates with an explicit previous output (2222.737875ms)
+✖ relocation rejects edited or unowned old/Skill/new files and even an identical target manifest (10637.040625ms)
+✔ registry edits, missing prior manifests, wrong explicit locations and unsafe migration paths cannot override ownership (8046.052084ms)
+✔ nested relocation refuses an existing target manifest even when its SHA is in the old scoped manifest (1111.650667ms)
+✔ a missing owned registry is regenerated from the current or explicitly named prior manifest (2686.382666ms)
+✔ a failure retiring the old manifest rolls back new output, registry and old generated content (902.119708ms)
+✔ CLI v1 migration requires an explicit path once and keeps --from-output sync-only (2622.555666ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41751.349542
+
+✖ failing tests:
+
+test at tests/generation/output-migration.test.ts:1:4543
+✖ relocation rejects edited or unowned old/Skill/new files and even an identical target manifest (10637.040625ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Generated file was edited|Unowned file/. Input:
+  
+  'SyncConflictError: Unowned target manifest would be overwritten: app/generated-ui/manifest.json'
+  
+      at async TestContext.<anonymous> (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/generation/output-migration.test.ts:119:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyncConflictError: Unowned target manifest would be overwritten: app/generated-ui/manifest.json
+        at syncProject (/Users/inouehiroshi/Documents/GitHub/ui-foundation/src/sync.ts:250:28)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/generation/output-migration.test.ts:119:7)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /Generated file was edited|Unowned file/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
