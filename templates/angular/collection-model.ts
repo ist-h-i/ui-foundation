@@ -18,7 +18,7 @@ export function collectionPage<T>(items: readonly T[], label: (item: T) => strin
 }
 export function moveCollection<T>(items:readonly T[],fromIndex:number,toIndex:number,canMove:((move:Omit<CollectionMove<T>,'reason'>)=>boolean)|null=null):readonly T[]{
  if(!Number.isSafeInteger(fromIndex)||!Number.isSafeInteger(toIndex)||fromIndex<0||toIndex<0||fromIndex>=items.length||toIndex>=items.length||fromIndex===toIndex)return items;
- const item=items[fromIndex];try{if(canMove?.({item,fromIndex,toIndex,items})===false)return items;}catch{return items;}
+ const item=items[fromIndex];try{if(canMove&&canMove({item,fromIndex,toIndex,items})!==true)return items;}catch{return items;}
  const next=[...items];next.splice(fromIndex,1);next.splice(toIndex,0,item);return next;
 }
 export interface ListChoice {value:string;label:string;disabled?:boolean;group?:string}
