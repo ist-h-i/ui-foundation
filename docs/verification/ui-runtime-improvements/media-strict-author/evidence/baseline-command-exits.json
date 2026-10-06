@@ -1,0 +1,67 @@
+[
+  {
+    "name": "canonical-before",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "repository/tsconfig.ui-media.json",
+      "--pretty",
+      "false"
+    ],
+    "actualExit": 2,
+    "at": "2026-10-06T12:04:03.017294+00:00",
+    "log": "evidence/canonical-before-strict.log"
+  },
+  {
+    "name": "legacy-before",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "evidence/tsconfig-legacy-before.json",
+      "--pretty",
+      "false"
+    ],
+    "actualExit": 2,
+    "at": "2026-10-06T12:04:04.905563+00:00",
+    "log": "evidence/legacy-before-strict.log"
+  },
+  {
+    "name": "legacy-guard",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "evidence/tsconfig-legacy-guard.json",
+      "--pretty",
+      "false"
+    ],
+    "actualExit": 2,
+    "at": "2026-10-06T12:04:06.871476+00:00",
+    "log": "evidence/legacy-guard-strict.log"
+  },
+  {
+    "name": "media-survey",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "evidence/tsconfig-media-survey.json",
+      "--pretty",
+      "false"
+    ],
+    "actualExit": 2,
+    "at": "2026-10-06T12:04:08.998391+00:00",
+    "log": "evidence/media-survey-strict.log"
+  },
+  {
+    "name": "lifetime-survey",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "evidence/tsconfig-lifetime-survey.json",
+      "--pretty",
+      "false"
+    ],
+    "actualExit": 2,
+    "at": "2026-10-06T12:04:10.663379+00:00",
+    "log": "evidence/lifetime-survey-strict.log"
+  }
+]

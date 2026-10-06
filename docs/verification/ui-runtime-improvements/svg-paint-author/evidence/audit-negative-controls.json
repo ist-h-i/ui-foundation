@@ -1,0 +1,71 @@
+{
+  "source": "/private/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap/evidence/permanent-full34/guided-1280-ltr-ar-EG-2-precision.svg",
+  "sourceSha256": "58fece1e4b943c5399303bfdafee762d57fe4bfcf84c4ddc7da9f6e52bd2745c",
+  "scope": "Real browser raster negative controls on independent diagnostic copies; no product mutation",
+  "controls": [
+    {
+      "name": "unmodified-native-plane",
+      "expected": "zero differences; contrast >= 4.5",
+      "observed": {
+        "labels": 39,
+        "ink": 5289,
+        "exactMismatches": 0,
+        "expandedAlphaMismatch": 0,
+        "clippedInk": 0,
+        "minimumContrast": 14.645016318974449
+      },
+      "passed": true
+    },
+    {
+      "name": "later-white-overpaint",
+      "expected": "exact mismatches > 0",
+      "observed": {
+        "labels": 39,
+        "ink": 5289,
+        "exactMismatches": 106,
+        "expandedAlphaMismatch": 0,
+        "clippedInk": 0,
+        "minimumContrast": 14.645016318974449
+      },
+      "passed": true
+    },
+    {
+      "name": "white-on-white",
+      "expected": "minimum contrast 1 < 4.5",
+      "observed": {
+        "labels": 39,
+        "ink": 5289,
+        "exactMismatches": 0,
+        "expandedAlphaMismatch": 0,
+        "clippedInk": 0,
+        "minimumContrast": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "right-edge-viewport-clipping",
+      "expected": "expanded-reference clipped ink > 0",
+      "viewportWidth": 899,
+      "observed": {
+        "labels": 39,
+        "ink": 5211,
+        "exactMismatches": 0,
+        "expandedAlphaMismatch": 0,
+        "clippedInk": 78,
+        "minimumContrast": 14.645016318974449
+      },
+      "passed": true
+    },
+    {
+      "name": "missing-one-of-three-required-ticks",
+      "expected": "count differs from independent series count 3",
+      "observed": {
+        "before": 3,
+        "after": 2
+      },
+      "passed": true
+    }
+  ],
+  "allExpected": true,
+  "ownBrowserClosed": true
+}

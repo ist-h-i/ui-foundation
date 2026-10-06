@@ -1,0 +1,1013 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: runtime-cross-browser.spec.ts >> Composer dense: pending/reset keeps input and CodeMirror native editing
+- Location: tests/cross-browser/runtime-cross-browser.spec.ts:43:2
+
+# Error details
+
+```
+Error: browser console warnings
+
+expect(received).toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 3
+
+- Array []
++ Array [
++   "[JavaScript Warning: \"This site appears to use a scroll-linked positioning effect. This may not work well with asynchronous panning; see https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html for further details and to join the discussion on related tools and features!\" {file: \"http://127.0.0.1:57488/catalog/foundation\" line: 0}]",
++ ]
+```
+
+# Page snapshot
+
+```yaml
+- main [ref=e3]:
+  - heading "共通基盤の実操作検証" [level=1] [ref=e4]
+  - generic [ref=e5]:
+    - text: 外部
+    - textbox "外部" [ref=e6]
+  - button "期間をreset" [ref=e7]
+  - generic [ref=e8]:
+    - group "期間" [ref=e10]:
+      - generic [ref=e12]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: 期間の開始日 任意
+          - generic [ref=e16]:
+            - textbox "期間の開始日 任意" [ref=e17]:
+              - /placeholder: dd/MM/yyyy
+              - text: 01/02/2026
+            - button "期間の開始日のカレンダーを開く" [ref=e18] [cursor=pointer]:
+              - generic [ref=e19]: カレンダー
+            - button "期間の開始日をクリア" [ref=e20] [cursor=pointer]:
+              - generic [ref=e21]: クリア
+          - paragraph [ref=e22]: "Sonntag, 1. Februar 2026 · 入力書式: dd/MM/yyyy"
+        - generic [ref=e24]:
+          - generic [ref=e25]: 期間の終了日 任意
+          - generic [ref=e26]:
+            - textbox "期間の終了日 任意" [ref=e27]:
+              - /placeholder: dd/MM/yyyy
+              - text: 07/02/2026
+            - button "期間の終了日のカレンダーを開く" [ref=e28] [cursor=pointer]:
+              - generic [ref=e29]: カレンダー
+            - button "期間の終了日をクリア" [ref=e30] [cursor=pointer]:
+              - generic [ref=e31]: クリア
+          - paragraph [ref=e32]: "Samstag, 7. Februar 2026 · 入力書式: dd/MM/yyyy"
+      - button "期間をクリア" [ref=e34] [cursor=pointer]
+    - status [ref=e36]: "{\"start\":\"2026-02-01\",\"end\":\"2026-02-07\"}"
+    - status [ref=e37]: VALID
+  - generic [ref=e40]:
+    - generic [ref=e41]: 金額 任意
+    - spinbutton "金額 任意" [ref=e43]: "1234.5"
+    - paragraph [ref=e44]: "表示: 1.234,5"
+  - generic [ref=e45]:
+    - text: Find scoped
+    - generic [ref=e47]:
+      - generic [ref=e48]: App label 任意
+      - spinbutton "App label 任意" [ref=e50]: "1234.5"
+      - paragraph [ref=e51]: "表示: 1.234,5"
+    - generic [ref=e53]:
+      - generic [ref=e54]: Explicit 任意
+      - spinbutton "Explicit 任意" [ref=e56]: "1234.5"
+      - paragraph [ref=e57]: "表示: 1,234.5"
+  - generic [ref=e58]: Find scoped
+  - generic [ref=e61]:
+    - generic [ref=e62]: Nested 任意
+    - textbox "Nested 任意" [ref=e64]:
+      - /placeholder: ""
+      - text: draft
+  - generic [ref=e69]:
+    - generic [ref=e70]:
+      - heading "送信の下書き" [level=2] [ref=e71]
+      - form "Draft message" [ref=e73]:
+        - generic [ref=e74]:
+          - text: Draft message
+          - textbox "Draft message" [ref=e75]: 保持するnative下書き
+        - generic [ref=e76]:
+          - text: 添付ファイル
+          - button "添付ファイル" [ref=e77]
+        - list "送信する添付"
+        - button "Send" [ref=e78] [cursor=pointer]
+      - status [ref=e79]: 保持するnative下書き
+      - status [ref=e80]: VALID
+      - status [ref=e81]: "1"
+    - generic [ref=e82]:
+      - form "Blur draft" [ref=e84]:
+        - generic [ref=e85]:
+          - text: Blur draft
+          - textbox "Blur draft" [ref=e86]: blur origin
+        - generic [ref=e87]:
+          - text: 添付ファイル
+          - button "添付ファイル" [ref=e88]
+        - list "送信する添付"
+        - button "Send" [ref=e89] [cursor=pointer]
+      - status [ref=e90]: blur origin
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - generic:
+          - region "会話":
+            - log "会話":
+              - list
+        - form "会話への入力" [ref=e94]:
+          - generic [ref=e95]:
+            - text: 会話への入力
+            - textbox "会話への入力" [ref=e96]: wrapper initial
+          - generic [ref=e97]:
+            - text: 添付ファイル
+            - button "添付ファイル" [ref=e98]
+          - list "送信する添付"
+          - button "Send" [ref=e99] [cursor=pointer]
+      - status [ref=e100]: wrapper initial
+    - generic [ref=e101]:
+      - heading "フォームのファイル選択" [level=2] [ref=e102]
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - text: 申請の添付
+          - button "申請の添付" [ref=e105]
+        - paragraph [ref=e106]: "形式: .txt。1件 4 Bまで。複数選択可。合計 2件まで"
+        - generic [ref=e107]:
+          - paragraph [ref=e108]: ここへファイルをドロップできます。
+          - button "ファイルを選択" [ref=e109] [cursor=pointer]
+        - status
+        - list "フォームのファイル選択"
+        - generic [ref=e111]:
+          - status [ref=e112]: 添付ファイル 0件
+          - list [ref=e113]:
+            - listitem [ref=e114]: ファイルはありません。
+      - status
+      - status [ref=e115]: "null"
+      - status [ref=e116]: INVALID
+      - status [ref=e117]: "0"
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - text: Blur files
+          - button "Blur files" [ref=e121]
+        - paragraph [ref=e122]: 形式の制限なし。容量の制限なし。複数選択可
+        - generic [ref=e123]:
+          - paragraph [ref=e124]: ここへファイルをドロップできます。
+          - button "ファイルを選択" [ref=e125] [cursor=pointer]
+        - status
+        - list "フォームのファイル選択"
+        - generic [ref=e127]:
+          - status [ref=e128]: 添付ファイル 0件
+          - list [ref=e129]:
+            - listitem [ref=e130]: ファイルはありません。
+      - status [ref=e131]: "null"
+    - generic [ref=e132]:
+      - heading "編集内容" [level=2] [ref=e133]
+      - region "コード" [ref=e136]:
+        - paragraph [ref=e137]: コード
+        - generic [ref=e140]:
+          - generic [ref=e142]: "1"
+          - textbox "コード" [active] [ref=e144]:
+            - generic [ref=e145]: const crossBrowser = 7;
+      - status [ref=e146]: const crossBrowser = 7;
+      - region "文書" [ref=e149]:
+        - paragraph [ref=e150]: 文書
+        - group "文書の書式" [ref=e151]:
+          - button "太字" [ref=e152] [cursor=pointer]
+          - button "斜体" [ref=e153] [cursor=pointer]
+          - button "コード" [ref=e154] [cursor=pointer]
+          - button "段落" [ref=e155] [cursor=pointer]
+          - button "見出し" [ref=e156] [cursor=pointer]
+          - button "リンクを設定" [ref=e157] [cursor=pointer]
+          - button "画像を挿入" [ref=e158] [cursor=pointer]
+          - button "元に戻す" [ref=e159] [cursor=pointer]
+          - button "やり直す" [ref=e160] [cursor=pointer]
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - text: リンク・画像URL
+            - textbox "リンク・画像URL" [ref=e163]
+          - generic [ref=e164]:
+            - text: 画像の代替説明
+            - textbox "画像の代替説明" [ref=e165]
+        - textbox "文書" [ref=e167]:
+          - paragraph [ref=e168]: 保つ文書
+      - status [ref=e169]: "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"保つ文書\"}]}]}"
+      - region "原稿" [ref=e172]:
+        - group "Markdownの表示" [ref=e173]:
+          - button "編集" [ref=e174] [cursor=pointer]
+          - button "プレビュー" [ref=e175] [cursor=pointer]
+          - button "分割表示" [pressed] [ref=e176] [cursor=pointer]
+        - generic [ref=e177]:
+          - region "原稿のMarkdown" [ref=e179]:
+            - paragraph [ref=e180]: 原稿のMarkdown
+            - generic [ref=e183]:
+              - generic [ref=e185]: "1"
+              - textbox "原稿のMarkdown" [ref=e187]:
+                - generic [ref=e188]: "# Draft"
+          - heading "Draft" [level=1] [ref=e191]
+      - status [ref=e192]: "# Draft"
+  - generic [ref=e193]:
+    - heading "既存入力のフォーム接続" [level=2] [ref=e194]
+    - generic [ref=e195]:
+      - generic [ref=e197]:
+        - generic [ref=e198]: TextInput 任意
+        - textbox "TextInput 任意" [ref=e200]:
+          - /placeholder: ""
+          - text: origin
+      - status [ref=e201]: "\"origin\""
+      - status [ref=e202]: VALID
+    - generic [ref=e203]:
+      - generic [ref=e205]:
+        - generic [ref=e206]: Textarea 任意
+        - textbox "Textarea 任意" [ref=e207]:
+          - /placeholder: ""
+          - text: origin
+      - status [ref=e208]: "\"origin\""
+      - status [ref=e209]: VALID
+    - generic [ref=e210]:
+      - generic [ref=e212]:
+        - generic [ref=e213]: PasswordInput 任意
+        - generic [ref=e214]:
+          - textbox "PasswordInput 任意" [ref=e215]: origin
+          - button "パスワードを表示" [ref=e216] [cursor=pointer]:
+            - generic [ref=e217]: 表示
+      - status [ref=e218]: "\"origin\""
+      - status [ref=e219]: VALID
+    - generic [ref=e220]:
+      - generic [ref=e222]:
+        - generic [ref=e223]: SearchInput 任意
+        - generic [ref=e224]:
+          - searchbox "SearchInput 任意" [ref=e225]: origin
+          - button "SearchInputをクリア" [ref=e226] [cursor=pointer]:
+            - generic [ref=e227]: クリア
+          - button "検索" [ref=e228] [cursor=pointer]
+        - status
+      - status [ref=e230]: "\"origin\""
+      - status [ref=e231]: VALID
+    - generic [ref=e232]:
+      - generic [ref=e234]:
+        - generic [ref=e235]: NumberInput 任意
+        - spinbutton "NumberInput 任意" [ref=e237]: "12"
+        - paragraph [ref=e238]: "表示: 12"
+      - status [ref=e239]: "12"
+      - status [ref=e240]: VALID
+    - generic [ref=e241]:
+      - generic [ref=e243]:
+        - generic [ref=e244] [cursor=pointer]:
+          - text: Checkbox
+          - generic [ref=e245]: 任意
+        - checkbox "Checkbox 任意" [ref=e246]
+      - status [ref=e247]: "false"
+      - status [ref=e248]: VALID
+    - generic [ref=e249]:
+      - generic [ref=e251]:
+        - generic [ref=e252] [cursor=pointer]:
+          - text: Switch
+          - generic [ref=e253]: 任意
+        - switch "Switch 任意" [ref=e254]
+      - status [ref=e255]: "false"
+      - status [ref=e256]: VALID
+    - generic [ref=e257]:
+      - generic [ref=e259]:
+        - generic [ref=e260]: Select 任意
+        - combobox "Select 任意" [ref=e261]:
+          - option "選択してください" [disabled]
+          - option "Isparta" [selected]
+          - option "İzmir"
+      - status [ref=e262]: "\"a\""
+      - status [ref=e263]: VALID
+    - generic [ref=e264]:
+      - group "MultiSelect" [ref=e266]:
+        - text: MultiSelectの候補を検索
+        - searchbox "MultiSelectの候補を検索" [ref=e268]
+        - button "表示中をすべて選択" [ref=e269] [cursor=pointer]
+        - button "選択を解除" [ref=e271] [cursor=pointer]
+        - button "Ispartaの選択を解除" [ref=e274] [cursor=pointer]:
+          - generic [ref=e275]: Isparta ×
+        - group "選択肢" [ref=e276]:
+          - generic [ref=e278]:
+            - generic [ref=e279]:
+              - checkbox "Isparta" [checked] [ref=e280]
+              - text: Isparta
+            - generic [ref=e281]:
+              - checkbox "İzmir" [ref=e282]
+              - text: İzmir
+        - status [ref=e283]: 1 件選択
+      - status [ref=e284]: "[\"a\"]"
+      - status [ref=e285]: VALID
+    - generic [ref=e286]:
+      - generic [ref=e288]:
+        - generic [ref=e289]: Combobox 任意
+        - combobox "Combobox 任意" [ref=e291]: origin
+        - button "Comboboxをクリア" [ref=e292] [cursor=pointer]:
+          - generic [ref=e293]: クリア
+        - paragraph [ref=e294]: 自由に入力できます。
+        - status
+      - status [ref=e295]: "\"origin\""
+      - status [ref=e296]: VALID
+    - generic [ref=e297]:
+      - generic [ref=e299]:
+        - generic [ref=e300]: MaskedInput 任意
+        - textbox "MaskedInput 任意" [ref=e301]:
+          - /placeholder: __
+          - text: "12"
+        - paragraph [ref=e302]: "入力書式: __"
+      - status [ref=e303]: "\"12\""
+      - status [ref=e304]: VALID
+    - generic [ref=e305]:
+      - generic [ref=e307]:
+        - generic [ref=e308]: OTPInput 任意
+        - textbox "OTPInput 任意" [ref=e309]: "123456"
+        - paragraph [ref=e310]: 6 / 6 桁 (数字)
+      - status [ref=e311]: "\"123456\""
+      - status [ref=e312]: VALID
+    - generic [ref=e313]:
+      - generic [ref=e315]:
+        - generic [ref=e316]: TagInput 任意
+        - list "TagInputの入力済み項目" [ref=e317]:
+          - listitem [ref=e318]:
+            - generic [ref=e319]: seed
+            - button "seedを削除 (1)" [ref=e320] [cursor=pointer]:
+              - generic [ref=e321]: 削除
+        - generic [ref=e322]:
+          - textbox "TagInput 任意" [ref=e323]
+          - button "追加" [disabled] [ref=e324]
+        - status
+        - paragraph [ref=e326]: 1 件
+      - status [ref=e327]: "[\"seed\"]"
+      - status [ref=e328]: VALID
+    - generic [ref=e329]:
+      - generic [ref=e331]:
+        - generic [ref=e332]: Slider 任意
+        - slider "Slider 任意" [ref=e333]: "10"
+        - status [ref=e334]: "10"
+      - status [ref=e335]: "10"
+      - status [ref=e336]: VALID
+    - generic [ref=e337]:
+      - group "RangeSlider" [ref=e339]:
+        - generic [ref=e341]: "開始値: 10"
+        - 'slider "開始値: 10" [ref=e342]': "10"
+        - generic [ref=e343]: "終了値: 70"
+        - 'slider "終了値: 70" [ref=e344]': "70"
+      - status [ref=e345]: "{\"start\":10,\"end\":70}"
+      - status [ref=e346]: VALID
+    - generic [ref=e347]:
+      - generic [ref=e349]:
+        - generic [ref=e350]: Knob 任意
+        - slider "Knob 任意" [ref=e356] [cursor=pointer]: "10"
+        - status [ref=e357]: "10"
+        - generic [ref=e358]:
+          - button "Knobを減らす" [ref=e359] [cursor=pointer]:
+            - generic [ref=e360]: −
+          - button "Knobを増やす" [ref=e361] [cursor=pointer]:
+            - generic [ref=e362]: ＋
+      - status [ref=e363]: "10"
+      - status [ref=e364]: VALID
+    - generic [ref=e365]:
+      - group "Rating" [ref=e367]:
+        - generic [ref=e369]:
+          - generic [ref=e370]:
+            - radio "1 / 5" [checked] [ref=e371]
+            - generic [aria-hidden] [ref=e372]: ★
+            - generic [ref=e373]: 1 / 5
+          - generic [ref=e374]:
+            - radio "2 / 5" [ref=e375]
+            - generic [aria-hidden] [ref=e376]: ★
+            - generic [ref=e377]: 2 / 5
+          - generic [ref=e378]:
+            - radio "3 / 5" [ref=e379]
+            - generic [aria-hidden] [ref=e380]: ★
+            - generic [ref=e381]: 3 / 5
+          - generic [ref=e382]:
+            - radio "4 / 5" [ref=e383]
+            - generic [aria-hidden] [ref=e384]: ★
+            - generic [ref=e385]: 4 / 5
+          - generic [ref=e386]:
+            - radio "5 / 5" [ref=e387]
+            - generic [aria-hidden] [ref=e388]: ★
+            - generic [ref=e389]: 5 / 5
+        - status [ref=e390]: 1 / 5
+        - button "評価を解除" [ref=e391] [cursor=pointer]
+      - status [ref=e393]: "1"
+      - status [ref=e394]: VALID
+    - generic [ref=e395]:
+      - group "ColorPicker" [ref=e397]:
+        - generic [ref=e399]: 色の値
+        - textbox "色の値" [ref=e400]: "#112233"
+        - generic [ref=e401]: 自由に色を選ぶ
+        - textbox "自由に色を選ぶ" [ref=e402]: "#112233"
+        - generic [ref=e403]: "不透明度: 100%"
+        - 'slider "不透明度: 100%" [ref=e404]': "100"
+        - status [ref=e405]: "#112233"
+      - status [ref=e406]: "\"#112233\""
+      - status [ref=e407]: VALID
+    - generic [ref=e408]:
+      - generic [ref=e410]:
+        - generic [ref=e411]: DatePicker 任意
+        - generic [ref=e412]:
+          - textbox "DatePicker 任意" [ref=e413]:
+            - /placeholder: dd/MM/yyyy
+            - text: 01/02/2026
+          - button "DatePickerのカレンダーを開く" [ref=e414] [cursor=pointer]:
+            - generic [ref=e415]: カレンダー
+          - button "DatePickerをクリア" [ref=e416] [cursor=pointer]:
+            - generic [ref=e417]: クリア
+        - paragraph [ref=e418]: "Sonntag, 1. Februar 2026 · 入力書式: dd/MM/yyyy"
+      - status [ref=e419]: "\"2026-02-01\""
+      - status [ref=e420]: VALID
+    - generic [ref=e421]:
+      - generic [ref=e423]:
+        - generic [ref=e424]: TimePicker 任意
+        - generic [ref=e425]:
+          - textbox "TimePicker 任意" [ref=e426]: 12:00
+          - button "TimePickerをクリア" [ref=e427] [cursor=pointer]:
+            - generic [ref=e428]: クリア
+        - paragraph [ref=e429]: 12:00
+      - status [ref=e430]: "\"12:00\""
+      - status [ref=e431]: VALID
+    - generic [ref=e432]:
+      - generic [ref=e434]:
+        - generic [ref=e435]: DateTimePicker 任意
+        - generic [ref=e436]:
+          - textbox "DateTimePicker 任意" [ref=e437]: 2026-02-01T12:00
+          - button "DateTimePickerをクリア" [ref=e438] [cursor=pointer]:
+            - generic [ref=e439]: クリア
+        - paragraph [ref=e440]: UTC の現地日時 · 2026-02-01T12:00
+      - status [ref=e441]: "\"2026-02-01T12:00\""
+      - status [ref=e442]: VALID
+    - generic [ref=e443]:
+      - generic [ref=e445]:
+        - generic [ref=e446]: MonthPicker 任意
+        - generic [ref=e447]:
+          - textbox "MonthPicker 任意" [ref=e448]: 2026-02
+          - button "MonthPickerをクリア" [ref=e449] [cursor=pointer]:
+            - generic [ref=e450]: クリア
+        - paragraph [ref=e451]: Februar 2026
+      - status [ref=e452]: "\"2026-02\""
+      - status [ref=e453]: VALID
+    - generic [ref=e454]:
+      - generic [ref=e456]:
+        - generic [ref=e457]: YearPicker 任意
+        - generic [ref=e458]:
+          - spinbutton "YearPicker 任意" [ref=e459]: "2026"
+          - button "YearPickerをクリア" [ref=e460] [cursor=pointer]:
+            - generic [ref=e461]: クリア
+        - paragraph [ref=e462]: 2026年
+      - status [ref=e463]: "\"2026\""
+      - status [ref=e464]: VALID
+    - generic [ref=e465]:
+      - region "Calendar" [ref=e467]:
+        - generic [ref=e468]:
+          - button "Calendarの前の月" [ref=e469] [cursor=pointer]:
+            - generic [ref=e470]: 前月
+          - heading "Februar 2026" [level=3] [ref=e471]
+          - button "Calendarの次の月" [ref=e472] [cursor=pointer]:
+            - generic [ref=e473]: 次月
+        - region "Calendarの日付一覧" [ref=e474]:
+          - grid "Februar 2026" [ref=e475]:
+            - rowgroup [ref=e476]:
+              - row [ref=e477]:
+                - columnheader "So" [ref=e478]
+                - columnheader "Mo" [ref=e479]
+                - columnheader "Di" [ref=e480]
+                - columnheader "Mi" [ref=e481]
+                - columnheader "Do" [ref=e482]
+                - columnheader "Fr" [ref=e483]
+                - columnheader "Sa" [ref=e484]
+            - rowgroup [ref=e485]:
+              - row [ref=e486]:
+                - gridcell [selected] [ref=e487]:
+                  - button "Sonntag, 1. Februar 2026" [ref=e488]: "1"
+                - gridcell [ref=e489]:
+                  - button "Montag, 2. Februar 2026" [ref=e490]: "2"
+                - gridcell [ref=e491]:
+                  - button "Dienstag, 3. Februar 2026" [ref=e492]: "3"
+                - gridcell [ref=e493]:
+                  - button "Mittwoch, 4. Februar 2026" [ref=e494]: "4"
+                - gridcell [ref=e495]:
+                  - button "Donnerstag, 5. Februar 2026" [ref=e496]: "5"
+                - gridcell [ref=e497]:
+                  - button "Freitag, 6. Februar 2026" [ref=e498]: "6"
+                - gridcell [ref=e499]:
+                  - button "Samstag, 7. Februar 2026" [ref=e500]: "7"
+              - row [ref=e501]:
+                - gridcell [ref=e502]:
+                  - button "Sonntag, 8. Februar 2026" [ref=e503]: "8"
+                - gridcell [ref=e504]:
+                  - button "Montag, 9. Februar 2026" [ref=e505]: "9"
+                - gridcell [ref=e506]:
+                  - button "Dienstag, 10. Februar 2026" [ref=e507]: "10"
+                - gridcell [ref=e508]:
+                  - button "Mittwoch, 11. Februar 2026" [ref=e509]: "11"
+                - gridcell [ref=e510]:
+                  - button "Donnerstag, 12. Februar 2026" [ref=e511]: "12"
+                - gridcell [ref=e512]:
+                  - button "Freitag, 13. Februar 2026" [ref=e513]: "13"
+                - gridcell [ref=e514]:
+                  - button "Samstag, 14. Februar 2026" [ref=e515]: "14"
+              - row [ref=e516]:
+                - gridcell [ref=e517]:
+                  - button "Sonntag, 15. Februar 2026" [ref=e518]: "15"
+                - gridcell [ref=e519]:
+                  - button "Montag, 16. Februar 2026" [ref=e520]: "16"
+                - gridcell [ref=e521]:
+                  - button "Dienstag, 17. Februar 2026" [ref=e522]: "17"
+                - gridcell [ref=e523]:
+                  - button "Mittwoch, 18. Februar 2026" [ref=e524]: "18"
+                - gridcell [ref=e525]:
+                  - button "Donnerstag, 19. Februar 2026" [ref=e526]: "19"
+                - gridcell [ref=e527]:
+                  - button "Freitag, 20. Februar 2026" [ref=e528]: "20"
+                - gridcell [ref=e529]:
+                  - button "Samstag, 21. Februar 2026" [ref=e530]: "21"
+              - row [ref=e531]:
+                - gridcell [ref=e532]:
+                  - button "Sonntag, 22. Februar 2026" [ref=e533]: "22"
+                - gridcell [ref=e534]:
+                  - button "Montag, 23. Februar 2026" [ref=e535]: "23"
+                - gridcell [ref=e536]:
+                  - button "Dienstag, 24. Februar 2026" [ref=e537]: "24"
+                - gridcell [ref=e538]:
+                  - button "Mittwoch, 25. Februar 2026" [ref=e539]: "25"
+                - gridcell [ref=e540]:
+                  - button "Donnerstag, 26. Februar 2026" [ref=e541]: "26"
+                - gridcell [ref=e542]:
+                  - button "Freitag, 27. Februar 2026" [ref=e543]: "27"
+                - gridcell [ref=e544]:
+                  - button "Samstag, 28. Februar 2026" [ref=e545]: "28"
+              - row [ref=e546]:
+                - gridcell [ref=e547]:
+                  - button "Sonntag, 1. März 2026" [ref=e548]: "1"
+                - gridcell [ref=e549]:
+                  - button "Montag, 2. März 2026" [ref=e550]: "2"
+                - gridcell [ref=e551]:
+                  - button "Dienstag, 3. März 2026" [ref=e552]: "3"
+                - gridcell [ref=e553]:
+                  - button "Mittwoch, 4. März 2026" [ref=e554]: "4"
+                - gridcell [ref=e555]:
+                  - button "Donnerstag, 5. März 2026" [ref=e556]: "5"
+                - gridcell [ref=e557]:
+                  - button "Freitag, 6. März 2026" [ref=e558]: "6"
+                - gridcell [ref=e559]:
+                  - button "Samstag, 7. März 2026" [ref=e560]: "7"
+              - row [ref=e561]:
+                - gridcell [ref=e562]:
+                  - button "Sonntag, 8. März 2026" [ref=e563]: "8"
+                - gridcell [ref=e564]:
+                  - button "Montag, 9. März 2026" [ref=e565]: "9"
+                - gridcell [ref=e566]:
+                  - button "Dienstag, 10. März 2026" [ref=e567]: "10"
+                - gridcell [ref=e568]:
+                  - button "Mittwoch, 11. März 2026" [ref=e569]: "11"
+                - gridcell [ref=e570]:
+                  - button "Donnerstag, 12. März 2026" [ref=e571]: "12"
+                - gridcell [ref=e572]:
+                  - button "Freitag, 13. März 2026" [ref=e573]: "13"
+                - gridcell [ref=e574]:
+                  - button "Samstag, 14. März 2026" [ref=e575]: "14"
+        - paragraph [ref=e576]: 矢印キーで日、Home/Endで週、PageUp/PageDownで月を移動します。Shiftを押すと年を移動します。
+      - status [ref=e577]: "\"2026-02-01\""
+      - status [ref=e578]: VALID
+    - generic [ref=e579]:
+      - group "RadioGroup 任意" [ref=e581]:
+        - generic [ref=e583]:
+          - generic [ref=e584]:
+            - radio "Alpha" [checked] [ref=e585]
+            - text: Alpha
+          - generic [ref=e586]:
+            - radio "Beta" [ref=e587]
+            - text: Beta
+      - status [ref=e588]: "\"a\""
+      - status [ref=e589]: VALID
+    - generic [ref=e590]:
+      - group "SegmentedControl" [ref=e592]:
+        - generic [ref=e594]:
+          - generic [ref=e595] [cursor=pointer]:
+            - radio "Alpha" [checked] [ref=e596]
+            - generic [ref=e597]: Alpha
+          - generic [ref=e598] [cursor=pointer]:
+            - radio "Beta" [ref=e599]
+            - generic [ref=e600]: Beta
+      - status [ref=e601]: "\"a\""
+      - status [ref=e602]: VALID
+    - generic [ref=e603]:
+      - region "InlineEdit" [ref=e605]:
+        - generic [ref=e606]:
+          - generic [ref=e607]: origin
+          - button "編集" [ref=e608] [cursor=pointer]
+      - status [ref=e610]: "\"origin\""
+      - status [ref=e611]: VALID
+    - generic [ref=e612]:
+      - region "FilterBuilder" [ref=e614]:
+        - group "FilterBuilder" [ref=e615]:
+          - text: 条件の結合
+          - combobox "条件の結合" [ref=e617]:
+            - option "すべてに一致 (AND)" [selected]
+            - option "いずれかに一致 (OR)"
+          - list
+          - paragraph [ref=e618]: 未設定のグループは絞り込み条件に使いません。
+          - generic [ref=e619]:
+            - button "条件を追加" [ref=e620] [cursor=pointer]
+            - button "条件グループを追加" [ref=e622] [cursor=pointer]
+        - generic [ref=e624]:
+          - button "条件を保存" [ref=e625] [cursor=pointer]
+          - button "条件を解除" [ref=e627] [cursor=pointer]
+      - status [ref=e629]: "{\"type\":\"group\",\"id\":\"root\",\"match\":\"and\",\"children\":[]}"
+      - status [ref=e630]: VALID
+    - generic [ref=e631]:
+      - generic "Listbox" [ref=e632]:
+        - listbox "Listbox" [ref=e634]:
+          - option "Isparta" [selected] [ref=e635] [cursor=pointer]
+          - option "İzmir" [ref=e637] [cursor=pointer]
+        - status [ref=e639]: 1件選択
+      - status [ref=e640]: "\"a\""
+      - status [ref=e641]: VALID
+    - generic [ref=e642]:
+      - generic "TransferList" [ref=e643]:
+        - group "TransferList" [ref=e644]:
+          - paragraph [ref=e646]: チェックした表示中の項目を一括移動できます。移動ハンドル、追加・削除、上下ボタンはキーボードでも操作できます。
+          - generic [ref=e647]:
+            - group "候補 · 1件表示" [ref=e648]:
+              - generic [ref=e650]:
+                - text: 候補を検索
+                - searchbox "候補を検索" [ref=e651]
+              - generic [ref=e652]:
+                - checkbox "表示中の有効な候補をすべて選択" [ref=e653]
+                - text: 表示中の有効な候補をすべて選択
+              - button "一括追加" [disabled] [ref=e654]
+              - list [ref=e656]:
+                - listitem [ref=e657]:
+                  - generic [ref=e658]:
+                    - checkbox "İzmir" [ref=e659]
+                    - generic [ref=e660]: İzmir
+                  - generic [ref=e661]:
+                    - button "İzmirの移動位置を選ぶ" [ref=e662] [cursor=pointer]:
+                      - generic [ref=e663]: 移動
+                    - button "İzmirを追加" [ref=e664] [cursor=pointer]:
+                      - generic [ref=e665]: 追加
+            - group "選択済み · 1件選択 · 1件表示" [ref=e666]:
+              - generic [ref=e668]:
+                - text: 選択済みを検索
+                - searchbox "選択済みを検索" [ref=e669]
+              - generic [ref=e670]:
+                - checkbox "表示中の有効な選択をすべて選択" [ref=e671]
+                - text: 表示中の有効な選択をすべて選択
+              - button "一括削除" [disabled] [ref=e672]
+              - list [ref=e674]:
+                - listitem [ref=e675]:
+                  - generic [ref=e676]:
+                    - checkbox "Isparta" [ref=e677]
+                    - generic [ref=e678]: Isparta
+                  - generic [ref=e679]:
+                    - button "Ispartaの移動位置を選ぶ" [ref=e680] [cursor=pointer]:
+                      - generic [ref=e681]: 移動
+                    - button "Ispartaを削除" [ref=e682] [cursor=pointer]:
+                      - generic [ref=e683]: 削除
+                    - button "Ispartaを上へ" [disabled] [ref=e684]:
+                      - generic [ref=e685]: 上へ
+                    - button "Ispartaを下へ" [disabled] [ref=e686]:
+                      - generic [ref=e687]: 下へ
+          - status
+      - status [ref=e688]: "[\"a\"]"
+      - status [ref=e689]: VALID
+    - generic [ref=e690]:
+      - generic [ref=e693]:
+        - generic [ref=e694]: TreeSelect 任意
+        - combobox "TreeSelect 任意" [ref=e695] [cursor=pointer]: Isparta
+        - generic [ref=e696]:
+          - button "TreeSelectを選ぶ" [ref=e697] [cursor=pointer]
+          - button "TreeSelectをクリア" [ref=e698] [cursor=pointer]
+        - list "TreeSelectの選択済み項目" [ref=e699]:
+          - listitem [ref=e700]: Isparta
+        - status [ref=e701]: 1 件選択
+      - status [ref=e702]: "[\"a\"]"
+      - status [ref=e703]: VALID
+    - generic [ref=e704]:
+      - generic [ref=e707]:
+        - generic [ref=e708]: Cascader 任意
+        - combobox "Cascader 任意" [ref=e709] [cursor=pointer]: Isparta
+        - generic [ref=e710]:
+          - button "Cascaderを選ぶ" [ref=e711] [cursor=pointer]
+          - button "Cascaderをクリア" [ref=e712] [cursor=pointer]
+        - status [ref=e713]: 末端の項目を選択してください。
+      - status [ref=e714]: "[\"a\"]"
+      - status [ref=e715]: VALID
+  - generic "プロファイル標本" [ref=e718]:
+    - heading "プロファイル標本" [level=2] [ref=e721]
+    - generic [ref=e723]:
+      - navigation "標本の移動" [ref=e724]:
+        - link "フォームへ" [ref=e725] [cursor=pointer]:
+          - /url: "#range-case"
+        - link "編集へ" [ref=e726] [cursor=pointer]:
+          - /url: "#vendor-editors"
+      - button "継続操作" [ref=e727] [cursor=pointer]
+      - generic "保持する入力" [ref=e729]:
+        - article "保持する入力" [ref=e730]:
+          - heading "保持する入力" [level=2] [ref=e733]
+          - generic [ref=e735]:
+            - text: 未確定のメモ
+            - textbox "未確定のメモ" [ref=e736]: 保持する入力
+          - status
+      - generic [ref=e739]:
+        - tablist "表示区分" [ref=e740]:
+          - tab "A" [selected] [ref=e741] [cursor=pointer]
+          - tab "B" [ref=e742] [cursor=pointer]
+        - tabpanel "A" [ref=e743]:
+          - paragraph [ref=e744]: 最初の内容
+      - status [ref=e747]:
+        - paragraph [ref=e748]: アプリの確認メッセージ
+      - img "件数 3" [ref=e750]:
+        - generic [aria-hidden] [ref=e751]: "3"
+      - generic [ref=e753]:
+        - text: 件数
+        - paragraph [ref=e754]: 1.234,5
+      - generic "申請の金額" [ref=e755]:
+        - status [ref=e756]
+        - region "申請の金額の表領域" [ref=e757]:
+          - table [ref=e758]:
+            - caption [ref=e759]: 申請の金額
+            - rowgroup [ref=e764]:
+              - row [ref=e765]:
+                - columnheader [ref=e766]:
+                  - button "申請で並べ替え" [ref=e767] [cursor=pointer]:
+                    - generic [ref=e768]: 申請
+                - columnheader [ref=e769]:
+                  - button "金額で並べ替え" [ref=e770] [cursor=pointer]:
+                    - generic [ref=e771]: 金額
+                - columnheader [ref=e772]:
+                  - button "確認で並べ替え" [ref=e773] [cursor=pointer]:
+                    - generic [ref=e774]: 確認
+            - rowgroup [ref=e775]:
+              - row [ref=e776]:
+                - cell "原文を保持" [ref=e777]
+                - cell "1.234,5" [ref=e778]
+                - cell "はい" [ref=e779]
+              - row [ref=e780]:
+                - cell "確認中" [ref=e781]
+                - cell "1.000" [ref=e782]
+                - cell "いいえ" [ref=e783]
+      - generic "活動の履歴" [ref=e784]:
+        - region "活動の履歴" [ref=e785]:
+          - list [ref=e786]:
+            - listitem [ref=e787]:
+              - generic [ref=e788]:
+                - generic [ref=e789]: 種別は未取得です。
+                - time [ref=e790]: 06.10.2026, 01:00
+                - generic [ref=e791]: UTC
+              - generic [ref=e792]: 原文の種別を保持
+              - group [ref=e793]:
+                - generic "原文の種別を保持の詳細" [ref=e794] [cursor=pointer]: 詳細を表示
+            - listitem [ref=e795]:
+              - generic [ref=e796]:
+                - generic [ref=e797]: 種別は未取得です。
+                - generic [ref=e798]: 日時は未取得です。
+                - generic [ref=e799]: UTC
+              - generic [ref=e800]: 未取得の種別
+              - group [ref=e801]:
+                - generic "未取得の種別の詳細" [ref=e802] [cursor=pointer]: 詳細を表示
+      - region "担当の予定" [ref=e804]:
+        - generic [ref=e805]:
+          - heading "担当の予定" [level=2] [ref=e806]
+          - generic [ref=e807]: 表示日
+          - textbox "表示日" [ref=e808]: 2026-10-06
+          - generic [ref=e809]: 予定の表示
+          - combobox "予定の表示" [ref=e810]:
+            - option "日" [selected]
+            - option "週"
+            - option "月"
+            - option "一覧"
+          - button "前の期間" [ref=e811]
+          - button "次の期間" [ref=e812]
+        - paragraph [ref=e813]: "表示タイムゾーン: UTC · 時間帯: 00:00–24:00 · 2026-10-06–2026-10-06 · 1 件"
+        - group "表示するリソース" [ref=e814]:
+          - button "全リソースを表示" [ref=e816]
+          - generic [ref=e817]: 未割当の予定も表示します。
+        - status [ref=e818]: 予定移動は各予定の「移動先を編集」から開始できます。
+        - region "担当の予定の予定表示" [ref=e819]:
+          - list [ref=e820]:
+            - listitem [ref=e821]:
+              - heading "Dienstag, 6. Oktober 2026" [level=3] [ref=e822]
+              - paragraph [ref=e823]: 1 件
+            - listitem [ref=e824]:
+              - heading "アプリの予定名" [level=3] [ref=e825]
+              - paragraph [ref=e826]:
+                - time [ref=e827]: 06.10.2026, 01:00
+                - text: ～
+                - time [ref=e828]: 06.10.2026, 02:00
+              - paragraph [ref=e829]: リソース未割当
+              - button "アプリの予定名の移動先を編集" [ref=e830]: 移動先を編集
+      - figure "申請件数のグラフ" [ref=e832]:
+        - region "申請件数のグラフ" [ref=e834]:
+          - img [aria-hidden] [ref=e835]:
+            - img [ref=e837]:
+              - generic [ref=e839]: 値項目03006009001.2001.500原値A原値B件数
+        - group "凡例" [ref=e866]:
+          - generic [ref=e868]:
+            - checkbox "件数の系列を表示" [checked] [ref=e869]
+            - text: 件数
+        - region "申請件数のグラフのデータ" [ref=e870]:
+          - table [ref=e871]:
+            - caption [ref=e872]: 申請件数のグラフの値と選択
+            - rowgroup [ref=e873]:
+              - row [ref=e874]:
+                - columnheader "系列" [ref=e875]
+                - columnheader "項目" [ref=e876]
+                - columnheader "値" [ref=e877]
+                - columnheader "座標" [ref=e878]
+                - columnheader "選択" [ref=e879]
+            - rowgroup [ref=e880]:
+              - row [ref=e881]:
+                - rowheader "件数" [ref=e882]
+                - cell "原値A" [ref=e883]
+                - cell "1.234,5" [ref=e884]
+                - cell "—, —" [ref=e885]
+                - cell [ref=e886]:
+                  - button "原値Aを選択" [ref=e887] [cursor=pointer]
+              - row [ref=e888]:
+                - rowheader "件数" [ref=e889]
+                - cell "原値B" [ref=e890]
+                - cell "1.500" [ref=e891]
+                - cell "—, —" [ref=e892]
+                - cell [ref=e893]:
+                  - button "原値Bを選択" [ref=e894] [cursor=pointer]
+      - figure "明示した書式" [ref=e896]:
+        - region "明示した書式" [ref=e898]:
+          - img [aria-hidden] [ref=e899]:
+            - img [ref=e901]:
+              - generic [ref=e903]: 値項目030060090012001500原値A原値B件数
+        - group "凡例" [ref=e930]:
+          - generic [ref=e932]:
+            - checkbox "件数の系列を表示" [checked] [ref=e933]
+            - text: 件数
+        - region "明示した書式のデータ" [ref=e934]:
+          - table [ref=e935]:
+            - caption [ref=e936]: 明示した書式の値と選択
+            - rowgroup [ref=e937]:
+              - row [ref=e938]:
+                - columnheader "系列" [ref=e939]
+                - columnheader "項目" [ref=e940]
+                - columnheader "値" [ref=e941]
+                - columnheader "座標" [ref=e942]
+                - columnheader "選択" [ref=e943]
+            - rowgroup [ref=e944]:
+              - row [ref=e945]:
+                - rowheader "件数" [ref=e946]
+                - cell "原値A" [ref=e947]
+                - cell "1234.5" [ref=e948]
+                - cell "—, —" [ref=e949]
+                - cell [ref=e950]:
+                  - button "原値Aを選択" [ref=e951] [cursor=pointer]
+              - row [ref=e952]:
+                - rowheader "件数" [ref=e953]
+                - cell "原値B" [ref=e954]
+                - cell "1500" [ref=e955]
+                - cell "—, —" [ref=e956]
+                - cell [ref=e957]:
+                  - button "原値Bを選択" [ref=e958] [cursor=pointer]
+      - figure "時間軸のグラフ" [ref=e960]:
+        - region "時間軸のグラフ" [ref=e962]:
+          - img [aria-hidden] [ref=e963]:
+            - img [ref=e965]:
+              - generic [ref=e967]: 値Application time0123406.10.2026, 01:0506.10.2026, 01:1006.10.2026, 01:1506.10.2026, 01:2006.10.2026, 01:2506.10.2026, 01:3006.10.2026, 01:3506.10.2026, 01:4006.10.2026, 01:4506.10.2026, 01:5006.10.2026, 01:55Clock
+        - group "凡例" [ref=e1013]:
+          - generic [ref=e1015]:
+            - checkbox "Clockの系列を表示" [checked] [ref=e1016]
+            - text: Clock
+        - region "時間軸のグラフのデータ" [ref=e1017]:
+          - table [ref=e1018]:
+            - caption [ref=e1019]: 時間軸のグラフの値と選択
+            - rowgroup [ref=e1020]:
+              - row [ref=e1021]:
+                - columnheader "系列" [ref=e1022]
+                - columnheader "項目" [ref=e1023]
+                - columnheader "値" [ref=e1024]
+                - columnheader "座標" [ref=e1025]
+                - columnheader "選択" [ref=e1026]
+            - rowgroup [ref=e1027]:
+              - row [ref=e1028]:
+                - rowheader "Clock" [ref=e1029]
+                - cell "App first" [ref=e1030]
+                - cell "3" [ref=e1031]
+                - cell "1791248400000, —" [ref=e1032]
+                - cell [ref=e1033]:
+                  - button "App firstを選択" [ref=e1034] [cursor=pointer]
+              - row [ref=e1035]:
+                - rowheader "Clock" [ref=e1036]
+                - cell "App second" [ref=e1037]
+                - cell "4" [ref=e1038]
+                - cell "1791252000000, —" [ref=e1039]
+                - cell [ref=e1040]:
+                  - button "App secondを選択" [ref=e1041] [cursor=pointer]
+      - region "実行の工程" [ref=e1043]:
+        - paragraph [ref=e1044]: 実行の工程
+        - generic [ref=e1045]:
+          - text: 時間軸
+          - combobox "時間軸" [ref=e1046]:
+            - option "日" [selected]
+            - option "週"
+            - option "月"
+        - img [ref=e1049]:
+          - generic [ref=e1051]: App taskDienstag, 6. Oktober 2026Mittwoch, 7. Oktober 2026Donnerstag, 8. Oktober 2026Freitag, 9. Oktober 2026
+        - region "実行の工程のタスク" [ref=e1055]:
+          - table [ref=e1056]:
+            - caption [ref=e1057]: 期間・依存関係・進捗
+            - rowgroup [ref=e1058]:
+              - row [ref=e1059]:
+                - columnheader "タスク" [ref=e1060]
+                - columnheader "開始" [ref=e1061]
+                - columnheader "終了" [ref=e1062]
+                - columnheader "依存" [ref=e1063]
+                - columnheader "進捗" [ref=e1064]
+            - rowgroup [ref=e1065]:
+              - row [ref=e1066]:
+                - rowheader "App task" [ref=e1067]
+                - cell [ref=e1068]:
+                  - textbox "App task 開始" [ref=e1069]: 2026-10-06
+                - cell [ref=e1070]:
+                  - textbox "App task 終了" [ref=e1071]: 2026-10-09
+                - cell "なし" [ref=e1072]
+                - cell [ref=e1073]:
+                  - progressbar "App task 進捗" [ref=e1074]
+                  - spinbutton "App task 進捗を編集" [ref=e1075]: "40"
+  - generic [ref=e1076]:
+    - generic [ref=e1077]:
+      - form "Draft message" [ref=e1079]:
+        - generic [ref=e1080]:
+          - text: Draft message
+          - textbox "Draft message" [ref=e1081]: raw draft
+        - generic [ref=e1082]:
+          - text: 添付ファイル
+          - button "添付ファイル" [ref=e1083]
+        - list "送信する添付"
+        - button "Send" [ref=e1084] [cursor=pointer]
+      - status [ref=e1085]: raw draft
+      - status [ref=e1086]: VALID
+    - generic [ref=e1087]:
+      - region "Direct code" [ref=e1089]:
+        - paragraph [ref=e1090]: Direct code
+        - generic [ref=e1093]:
+          - generic [ref=e1095]: "1"
+          - textbox "Direct code" [ref=e1097]:
+            - generic [ref=e1098]: raw = 1
+      - status [ref=e1099]: raw = 1
+    - generic [ref=e1100]:
+      - region "Direct rich" [ref=e1102]:
+        - paragraph [ref=e1103]: Direct rich
+        - group "Direct richの書式" [ref=e1104]:
+          - button "太字" [ref=e1105] [cursor=pointer]
+          - button "斜体" [ref=e1106] [cursor=pointer]
+          - button "コード" [ref=e1107] [cursor=pointer]
+          - button "段落" [ref=e1108] [cursor=pointer]
+          - button "見出し" [ref=e1109] [cursor=pointer]
+          - button "リンクを設定" [ref=e1110] [cursor=pointer]
+          - button "画像を挿入" [ref=e1111] [cursor=pointer]
+          - button "元に戻す" [ref=e1112] [cursor=pointer]
+          - button "やり直す" [ref=e1113] [cursor=pointer]
+        - generic [ref=e1114]:
+          - generic [ref=e1115]:
+            - text: リンク・画像URL
+            - textbox "リンク・画像URL" [ref=e1116]
+          - generic [ref=e1117]:
+            - text: 画像の代替説明
+            - textbox "画像の代替説明" [ref=e1118]
+        - textbox "Direct rich" [ref=e1120]:
+          - paragraph [ref=e1121]: Raw
+      - status [ref=e1122]: "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Raw\"}]}]}"
+    - generic [ref=e1123]:
+      - generic [ref=e1124]:
+        - generic [ref=e1125]:
+          - text: Direct file
+          - button "Direct file" [ref=e1126]
+        - paragraph [ref=e1127]: "形式: .txt。容量の制限なし。複数選択可"
+        - generic [ref=e1128]:
+          - paragraph [ref=e1129]: ここへファイルをドロップできます。
+          - button "ファイルを選択" [ref=e1130] [cursor=pointer]
+        - status
+        - list "フォームのファイル選択"
+        - generic [ref=e1132]:
+          - status [ref=e1133]: 添付ファイル 0件
+          - list [ref=e1134]:
+            - listitem [ref=e1135]: ファイルはありません。
+      - status [ref=e1136]: "null"
+      - status [ref=e1137]: VALID
+```
+
+# Test source
+
+```ts
+  1  | import {test as base,expect} from '@playwright/test';
+  2  | export {expect} from '@playwright/test';
+  3  | export const test=base.extend<{runtimeEvidence:void}>({
+  4  |  runtimeEvidence:[async({page,browser,browserName},use,info)=>{
+  5  |   const errors:string[]=[],warnings:string[]=[];
+  6  |   page.on('pageerror',error=>errors.push(error.message));
+  7  |   page.on('console',message=>{if(message.type()==='error')errors.push(message.text());if(message.type()==='warning')warnings.push(message.text());});
+  8  |   try{await use();}finally{
+  9  |    const telemetry={engine:browserName,version:browser.version(),test:info.title,runtimeErrors:errors,consoleWarnings:warnings,scope:'Headless native/DOM/ARIA automation; Safari device and screen-reader speech not measured'};
+  10 |    await info.attach('runtime-engine',{body:JSON.stringify(telemetry,null,2),contentType:'application/json'});
+> 11 |    expect(errors,'browser exceptions and console errors').toEqual([]);expect(warnings,'browser console warnings').toEqual([]);
+     |                                                                                                                   ^ Error: browser console warnings
+  12 |   }
+  13 |  },{auto:true}],
+  14 | });
+  15 | 
+```

@@ -1,0 +1,24 @@
+{
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "scope": "Menu native roving item focus for every open scrollable menu level; no container tab stop or Axe exclusion",
+  "path": "templates/angular/menu.ts",
+  "beforeSha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+  "afterSha256": "3a2303b478de18408cf97c84dbfeee6149a31d5aaa8028a9642417b8c0d83452",
+  "guards": [
+    {
+      "before": "tabindex=\"-1\" [attr.aria-disabled]=\"item.disabled?",
+      "after": "[attr.tabindex]=\"expanded()[depth]===item.id||focusedItem()===item.id?0:-1\" (focus)=\"rememberFocus(item.id)\" [attr.aria-disabled]=\"item.disabled?",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "role=\"menuitem\" tabindex=\"-1\" [attr.data-menu-back]",
+      "after": "role=\"menuitem\" [attr.tabindex]=\"focusedBack()===item.id?0:-1\" (focus)=\"rememberFocus(item.id,true)\" [attr.data-menu-back]",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "    protected readonly expanded = signal<readonly string[]>([]);",
+      "after": "    protected readonly expanded = signal<readonly string[]>([]);\n    protected readonly focusedItem = signal<string | null>(null);\n    protected readonly focusedBack = signal<string | null>(null);\n    protected rememberFocus(id: string, back = false): void {\n        this.focusedItem.set(back ? null : id);\n        this.focusedBack.set(back ? id : null);\n    }",
+      "expectedOccurrences": 1
+    }
+  ]
+}

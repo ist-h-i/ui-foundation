@@ -1,0 +1,314 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-media-tree-independent-review-20261006/repository/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      "playwright.independent-review.config.ts",
+      "media-regressions.spec.ts",
+      "media-lifetime.spec.ts",
+      "--grep",
+      "real play completion ownership|real VTT removal|native crop|PDF worker startup"
+    ],
+    "configFile": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/repository/playwright.independent-review.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../evidence/media-native-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "UI_FIXTURE_PORT=5473 node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5473",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "media-lifetime.spec.ts",
+      "file": "media-lifetime.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native crop closes stale decoded Bitmaps during rapid replacement and destruction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2016,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:41:32.677Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts/media-lifetime-native-crop-46c9a-replacement-and-destruction-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-8d84e59a98fe87168b29",
+          "file": "media-lifetime.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2668,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:41:35.482Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-bf1eea36f3442724c88c",
+          "file": "media-lifetime.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "PDF worker startup failure reports an error and terminates its native Worker",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2047,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:41:38.243Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts/media-lifetime-PDF-worker--fc09c-erminates-its-native-Worker-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-9d21bca22492d8bd6e92",
+          "file": "media-lifetime.spec.ts",
+          "line": 109,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "media-regressions.spec.ts",
+      "file": "media-regressions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9831,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:41:40.393Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-play-ownership",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIGFmdGVyIG5ld2VyIHByb21pc2UgZnVsZmlsbGVkIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjAzMTQ1NywKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4wNTEyMDYKICB9LAogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIHdoaWxlIG5ld2VyIHByb21pc2UgcmVtYWlucyBwZW5kaW5nIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjEwNzA3OSwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4xMjc3MgogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIHBsYXlpbmcgZXZlbnQgcmVlbnRyeSB3aXRob3V0IHdyYXBwZXIiLAogICAgInBhdXNlZCI6IGZhbHNlLAogICAgInByb2JlIjogewogICAgICAic2VxdWVuY2UiOiBbCiAgICAgICAgInBsYXlpbmciLAogICAgICAgICJzdG9wIiwKICAgICAgICAibmV3IHBsYXkiCiAgICAgIF0sCiAgICAgICJwbGF5aW5nIjogMgogICAgfSwKICAgICJjdXJyZW50VGltZUJlZm9yZSI6IDAuMDkyOTE1LAogICAgImN1cnJlbnRUaW1lQWZ0ZXIiOiAwLjEzODE5OQogIH0sCiAgewogICAgImNhc2UiOiAiY3VycmVudCBoaWRkZW4gY2xlYW51cCBiZWZvcmUgYW5kIGFmdGVyIHN0YWxlIGZ1bGZpbGxtZW50IiwKICAgICJwYXVzZWQiOiB0cnVlLAogICAgImhhc1NyYyI6IHRydWUKICB9LAogIHsKICAgICJjYXNlIjogImN1cnJlbnQgZGlzYWJsZWQgY2xlYW51cCBiZWZvcmUgYW5kIGFmdGVyIHN0YWxlIGZ1bGZpbGxtZW50IiwKICAgICJwYXVzZWQiOiB0cnVlLAogICAgImhhc1NyYyI6IHRydWUKICB9LAogIHsKICAgICJjYXNlIjogImN1cnJlbnQgc291cmNlIGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiB0cnVlCiAgfSwKICB7CiAgICAiY2FzZSI6ICJjdXJyZW50IGRlc3Ryb3kgY2xlYW51cCBiZWZvcmUgYW5kIGFmdGVyIHN0YWxlIGZ1bGZpbGxtZW50IiwKICAgICJwYXVzZWQiOiB0cnVlLAogICAgImhhc1NyYyI6IGZhbHNlCiAgfQpd"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts/media-regressions-real-pla-24daf-d-current-forbidden-cleanup-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-c3b40ba2f4e17de97fe4",
+          "file": "media-regressions.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "real VTT removal and source replacement reconcile selected caption, native mode and current cue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1810,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:41:50.377Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-caption-reconciliation",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogImNhcHRpb24gcmVtb3ZhbCIsCiAgICAidHJhY2tDb3VudCI6IDAsCiAgICAic2VsZWN0aW9uIjogIiIsCiAgICAiY3VlQ291bnQiOiAwCiAgfSwKICB7CiAgICAiY2FzZSI6ICJzYW1lIElEIG5ldyBzcmMgd2hpbGUgYWN0dWFsIFZUVCByZXF1ZXN0IHBlbmRpbmciLAogICAgInNlbGVjdGlvbiI6ICJzZWNvbmQiLAogICAgImN1ZUNvdW50IjogMAogIH0sCiAgewogICAgImNhc2UiOiAicmVhbCByZXBsYWNlbWVudCBsb2FkZWQgYW5kIHJlb3JkZXJlZCIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXSwKICAgICJjdWUiOiAi5LqM44Gk55uu44Gu56K66KqN5a2X5bmV44Gn44GZ44CCIgogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIG1vZGUgY2hhbmdlIGNhbm5vdCByZXBsYWNlIGV4cGxpY2l0IHNlbGVjdGlvbiBvd25lciIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXQogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIGxhYmVsbGVkIHNlbGVjdCBleHBsaWNpdGx5IGNoYW5nZXMgYW5kIGNsZWFycyBjYXB0aW9uIG93bmVyIiwKICAgICJzZWxlY3Rpb24iOiAiIiwKICAgICJtb2RlcyI6IFsKICAgICAgImRpc2FibGVkIiwKICAgICAgImRpc2FibGVkIgogICAgXSwKICAgICJjdWVDb3VudCI6IDAKICB9Cl0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/evidence/media-native-artifacts/media-regressions-real-VTT-d35c7-native-mode-and-current-cue-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-1fe4fb09331a272b83b5",
+          "file": "media-regressions.spec.ts",
+          "line": 85,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T12:41:32.046Z",
+    "duration": 20283.838,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

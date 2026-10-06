@@ -1,0 +1,1008 @@
+Listing tests:
+  [chromium] › actions-catalog.spec.ts:5:2 › 操作 guided › Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映
+  [chromium] › actions-catalog.spec.ts:6:2 › 操作 guided › disabled/busyは手動dispatchも抑止しLinkは外部表示と安全なrelを保持
+  [chromium] › actions-catalog.spec.ts:7:2 › 操作 guided › IconButtonとToggleは説明を保ち、Space/Enterで選択し処理中は抑止
+  [chromium] › actions-catalog.spec.ts:8:2 › 操作 guided › 選択中のIcon/Toggle/Segmentedは検査済みsurfaceに背景を持ち、祖先背景へ透過しない
+  [chromium] › actions-catalog.spec.ts:9:2 › 操作 guided › ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用
+  [chromium] › actions-catalog.spec.ts:10:2 › 操作 guided › SegmentedControlはnative radio、複数checkbox、CVA touched/required/disableを接続
+  [chromium] › actions-catalog.spec.ts:11:2 › 操作 guided › SegmentedControlの均等幅/縦配置は実寸を変え、profile切替でも選択保持
+  [chromium] › actions-catalog.spec.ts:12:2 › 操作 guided › SplitButton主操作と再帰補助メニュー、保持設定、busyが動作
+  [chromium] › actions-catalog.spec.ts:13:2 › 操作 guided › Toolbarは実幅で退避、再帰Menuで選択、端へfocusを移す
+  [chromium] › actions-catalog.spec.ts:14:2 › 操作 guided › ToolbarのMore/選択中popupが広幅へ戻ると可視操作へfocusを移す
+  [chromium] › actions-catalog.spec.ts:15:2 › 操作 guided › 別Toolbarへfocusしたまま他の幅/profile/項目が変わってもfocusを奪わない
+  [chromium] › actions-catalog.spec.ts:16:2 › 操作 guided › Toolbar全件差替えと選択肢削除は可視操作へ戻り、form入力を保持する
+  [chromium] › actions-catalog.spec.ts:17:2 › 操作 guided › ToolbarはRTL/縦方向のrovingと区切り、折返し、固定を制御
+  [chromium] › actions-catalog.spec.ts:18:2 › 操作 guided › CopyButtonは実Clipboard APIを書き、成功と2秒の結果表示を制御
+  [chromium] › actions-catalog.spec.ts:19:2 › 操作 guided › コピー拒否は下書きを保持して再試行し、保留中の連打とdestroy後の結果を抑止
+  [chromium] › actions-catalog.spec.ts:20:2 › 操作 guided › FloatingActionは固定位置と補助展開、選択、閉じ戻りを制御
+  [chromium] › actions-catalog.spec.ts:21:2 › 操作 guided › 320px/200%/RTL/reduced motionで操作は範囲内にありaxe違反なし
+  [chromium] › actions-catalog.spec.ts:5:2 › 操作 dense › Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映
+  [chromium] › actions-catalog.spec.ts:6:2 › 操作 dense › disabled/busyは手動dispatchも抑止しLinkは外部表示と安全なrelを保持
+  [chromium] › actions-catalog.spec.ts:7:2 › 操作 dense › IconButtonとToggleは説明を保ち、Space/Enterで選択し処理中は抑止
+  [chromium] › actions-catalog.spec.ts:8:2 › 操作 dense › 選択中のIcon/Toggle/Segmentedは検査済みsurfaceに背景を持ち、祖先背景へ透過しない
+  [chromium] › actions-catalog.spec.ts:9:2 › 操作 dense › ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用
+  [chromium] › actions-catalog.spec.ts:10:2 › 操作 dense › SegmentedControlはnative radio、複数checkbox、CVA touched/required/disableを接続
+  [chromium] › actions-catalog.spec.ts:11:2 › 操作 dense › SegmentedControlの均等幅/縦配置は実寸を変え、profile切替でも選択保持
+  [chromium] › actions-catalog.spec.ts:12:2 › 操作 dense › SplitButton主操作と再帰補助メニュー、保持設定、busyが動作
+  [chromium] › actions-catalog.spec.ts:13:2 › 操作 dense › Toolbarは実幅で退避、再帰Menuで選択、端へfocusを移す
+  [chromium] › actions-catalog.spec.ts:14:2 › 操作 dense › ToolbarのMore/選択中popupが広幅へ戻ると可視操作へfocusを移す
+  [chromium] › actions-catalog.spec.ts:15:2 › 操作 dense › 別Toolbarへfocusしたまま他の幅/profile/項目が変わってもfocusを奪わない
+  [chromium] › actions-catalog.spec.ts:16:2 › 操作 dense › Toolbar全件差替えと選択肢削除は可視操作へ戻り、form入力を保持する
+  [chromium] › actions-catalog.spec.ts:17:2 › 操作 dense › ToolbarはRTL/縦方向のrovingと区切り、折返し、固定を制御
+  [chromium] › actions-catalog.spec.ts:18:2 › 操作 dense › CopyButtonは実Clipboard APIを書き、成功と2秒の結果表示を制御
+  [chromium] › actions-catalog.spec.ts:19:2 › 操作 dense › コピー拒否は下書きを保持して再試行し、保留中の連打とdestroy後の結果を抑止
+  [chromium] › actions-catalog.spec.ts:20:2 › 操作 dense › FloatingActionは固定位置と補助展開、選択、閉じ戻りを制御
+  [chromium] › actions-catalog.spec.ts:21:2 › 操作 dense › 320px/200%/RTL/reduced motionで操作は範囲内にありaxe違反なし
+  [chromium] › barcode-responsive.spec.ts:4:41 › Barcode guided: retains module pixels and locally scrolls at 320px, 200% and RTL
+  [chromium] › barcode-responsive.spec.ts:4:41 › Barcode dense: retains module pixels and locally scrolls at 320px, 200% and RTL
+  [chromium] › basic-parts.spec.ts:22:5 › guided › Disclosureはnative summaryで開閉し、閉じても入力を保持する
+  [chromium] › basic-parts.spec.ts:38:5 › guided › TabsとDisclosureはhiddenで表示とタブ順から外れ、再表示しても入力を保持する
+  [chromium] › basic-parts.spec.ts:67:5 › guided › Dialogはmodalで開き、Escapeと明示的な閉じる操作で呼出元へfocusを戻す
+  [chromium] › basic-parts.spec.ts:105:5 › guided › Tabsはmanual activationと左右/Home/Endを提供し、panelの入力を保持する
+  [chromium] › basic-parts.spec.ts:145:5 › guided › NavigationとBreadcrumbはnative linkと現在地を持つ別々のnavになる
+  [chromium] › basic-parts.spec.ts:158:5 › guided › DataTableはcaptionと見出しを接続し、実際の行順・aria-sort・欠損を表示する
+  [chromium] › basic-parts.spec.ts:173:5 › guided › Paginationはcontrolled状態と表示データを更新し、先頭・末尾とtotal0を区別する
+  [chromium] › basic-parts.spec.ts:200:5 › guided › RadioGroupはgroup label、native arrow選択、説明・エラーを接続する
+  [chromium] › basic-parts.spec.ts:226:5 › guided › 追加部品は狭い画面で収まり、初期表示・展開・dialogのaxe自動検査違反がない
+  [chromium] › basic-parts.spec.ts:22:5 › dense › Disclosureはnative summaryで開閉し、閉じても入力を保持する
+  [chromium] › basic-parts.spec.ts:38:5 › dense › TabsとDisclosureはhiddenで表示とタブ順から外れ、再表示しても入力を保持する
+  [chromium] › basic-parts.spec.ts:67:5 › dense › Dialogはmodalで開き、Escapeと明示的な閉じる操作で呼出元へfocusを戻す
+  [chromium] › basic-parts.spec.ts:105:5 › dense › Tabsはmanual activationと左右/Home/Endを提供し、panelの入力を保持する
+  [chromium] › basic-parts.spec.ts:145:5 › dense › NavigationとBreadcrumbはnative linkと現在地を持つ別々のnavになる
+  [chromium] › basic-parts.spec.ts:158:5 › dense › DataTableはcaptionと見出しを接続し、実際の行順・aria-sort・欠損を表示する
+  [chromium] › basic-parts.spec.ts:173:5 › dense › Paginationはcontrolled状態と表示データを更新し、先頭・末尾とtotal0を区別する
+  [chromium] › basic-parts.spec.ts:200:5 › dense › RadioGroupはgroup label、native arrow選択、説明・エラーを接続する
+  [chromium] › basic-parts.spec.ts:226:5 › dense › 追加部品は狭い画面で収まり、初期表示・展開・dialogのaxe自動検査違反がない
+  [chromium] › card-slot-responsive.spec.ts:4:41 › Card guided: horizontal slots remain within the narrow viewport in both text directions
+  [chromium] › card-slot-responsive.spec.ts:4:41 › Card dense: horizontal slots remain within the narrow viewport in both text directions
+  [chromium] › choice-catalog.spec.ts:8:2 › choice catalog guided › slider operates with native arrows, Home/End, semantic labels and visible/native ticks
+  [chromium] › choice-catalog.spec.ts:11:2 › choice catalog guided › bad model and invalid numeric domain remain explicit and recover through real editing
+  [chromium] › choice-catalog.spec.ts:14:2 › choice catalog guided › min anchored decimal ranges keep exact user values and upper/lower bounds
+  [chromium] › choice-catalog.spec.ts:17:2 › choice catalog guided › native large-number arrows retain each representable integer step
+  [chromium] › choice-catalog.spec.ts:20:2 › choice catalog guided › both range endpoints maintain fixed tab order, ticks and the ordered crossing boundary
+  [chromium] › choice-catalog.spec.ts:23:2 › choice catalog guided › knob renders a profile-sized dial with keyboard and explicit adjustment alternatives
+  [chromium] › choice-catalog.spec.ts:26:2 › choice catalog guided › knob real pointer drag and cancellation release capture and preserve keyboard access
+  [chromium] › choice-catalog.spec.ts:29:2 › choice catalog guided › destroying a captured knob releases pointer capture without late mutations
+  [chromium] › choice-catalog.spec.ts:32:2 › choice catalog guided › CVA disable, readonly and busy preserve numeric models and recover with the same editor
+  [chromium] › choice-catalog.spec.ts:35:2 › choice catalog guided › rating native radios support half steps, arrow movement, clearing and required validation
+  [chromium] › choice-catalog.spec.ts:38:2 › choice catalog guided › rating invalid restored values and readonly remain visible without extra actions
+  [chromium] › choice-catalog.spec.ts:41:2 › choice catalog guided › color focus and fast fill keep incomplete text, then real palette/alpha recover it
+  [chromium] › choice-catalog.spec.ts:44:2 › choice catalog guided › color formats, external replacement and transparent values retain their precise meaning
+  [chromium] › choice-catalog.spec.ts:47:2 › choice catalog guided › palette-only and read-only color selection expose labels and suppress mutation
+  [chromium] › choice-catalog.spec.ts:50:2 › choice catalog guided › inline save has one request, retains failed native draft, rejects stale result and completes
+  [chromium] › choice-catalog.spec.ts:53:2 › choice catalog guided › inline validation, cancel and IME preserve the model; owned completion returns focus
+  [chromium] › choice-catalog.spec.ts:56:2 › choice catalog guided › inline multiline saves only with modifier Enter and external reset/destroy rejects old results
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog guided › plain value binding rejects a previous inline result after external replacement (complete)
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog guided › plain value binding rejects a previous inline result after external replacement (fail)
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog guided › plain value binding rejects a previous inline result after external replacement (explicit-invalidate)
+  [chromium] › choice-catalog.spec.ts:62:2 › choice catalog guided › wizard follows its actual branch/history and preserves the same native panel editor
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog guided › wizard invalidates a deferred transition after canProceed changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog guided › wizard invalidates a deferred transition after branch changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog guided › wizard invalidates a deferred transition after disabled changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog guided › wizard invalidates a deferred transition after removed changes
+  [chromium] › choice-catalog.spec.ts:68:2 › choice catalog guided › wizard owned focus, external step replacement, unavailable branch and immediate transitions
+  [chromium] › choice-catalog.spec.ts:71:2 › choice catalog guided › wizard completion/restart and destroyed pending result do not claim backend completion
+  [chromium] › choice-catalog.spec.ts:74:2 › choice catalog guided › nested wizards own only their projected steps and retain inner values when the parent moves
+  [chromium] › choice-catalog.spec.ts:77:2 › choice catalog guided › filter numeric rule changes real local results and failed saving keeps its draft
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog guided › filter field changes invalidate an outstanding save (kind)
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog guided › filter field changes invalidate an outstanding save (label)
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog guided › filter field changes invalidate an outstanding save (same-turn)
+  [chromium] › choice-catalog.spec.ts:83:2 › choice catalog guided › filter field replacement rejects the stale failure without discarding its condition
+  [chromium] › choice-catalog.spec.ts:86:2 › choice catalog guided › filter all field types distinguish zero/false/date/choice and invalid input
+  [chromium] › choice-catalog.spec.ts:89:2 › choice catalog guided › recursive AND/OR, empty groups, removal focus and nested editor identity operate on real results
+  [chromium] › choice-catalog.spec.ts:92:2 › choice catalog guided › restored recursive conditions expose the actual native field/operator/boolean selections
+  [chromium] › choice-catalog.spec.ts:95:2 › choice catalog guided › unknown fields associate the native selectors with errors and allow repair
+  [chromium] › choice-catalog.spec.ts:98:2 › choice catalog guided › filter save reset/destroy rejects stale results and required/readonly controls remain explicit
+  [chromium] › choice-catalog.spec.ts:101:2 › choice catalog guided › profile change, 320px, 200%, RTL and reduced motion keep native inputs and wrapped controls
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog guided › axe checks the actual initial controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog guided › axe checks the actual invalid controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog guided › axe checks the actual pending controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog guided › axe checks the actual narrow controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:8:2 › choice catalog dense › slider operates with native arrows, Home/End, semantic labels and visible/native ticks
+  [chromium] › choice-catalog.spec.ts:11:2 › choice catalog dense › bad model and invalid numeric domain remain explicit and recover through real editing
+  [chromium] › choice-catalog.spec.ts:14:2 › choice catalog dense › min anchored decimal ranges keep exact user values and upper/lower bounds
+  [chromium] › choice-catalog.spec.ts:17:2 › choice catalog dense › native large-number arrows retain each representable integer step
+  [chromium] › choice-catalog.spec.ts:20:2 › choice catalog dense › both range endpoints maintain fixed tab order, ticks and the ordered crossing boundary
+  [chromium] › choice-catalog.spec.ts:23:2 › choice catalog dense › knob renders a profile-sized dial with keyboard and explicit adjustment alternatives
+  [chromium] › choice-catalog.spec.ts:26:2 › choice catalog dense › knob real pointer drag and cancellation release capture and preserve keyboard access
+  [chromium] › choice-catalog.spec.ts:29:2 › choice catalog dense › destroying a captured knob releases pointer capture without late mutations
+  [chromium] › choice-catalog.spec.ts:32:2 › choice catalog dense › CVA disable, readonly and busy preserve numeric models and recover with the same editor
+  [chromium] › choice-catalog.spec.ts:35:2 › choice catalog dense › rating native radios support half steps, arrow movement, clearing and required validation
+  [chromium] › choice-catalog.spec.ts:38:2 › choice catalog dense › rating invalid restored values and readonly remain visible without extra actions
+  [chromium] › choice-catalog.spec.ts:41:2 › choice catalog dense › color focus and fast fill keep incomplete text, then real palette/alpha recover it
+  [chromium] › choice-catalog.spec.ts:44:2 › choice catalog dense › color formats, external replacement and transparent values retain their precise meaning
+  [chromium] › choice-catalog.spec.ts:47:2 › choice catalog dense › palette-only and read-only color selection expose labels and suppress mutation
+  [chromium] › choice-catalog.spec.ts:50:2 › choice catalog dense › inline save has one request, retains failed native draft, rejects stale result and completes
+  [chromium] › choice-catalog.spec.ts:53:2 › choice catalog dense › inline validation, cancel and IME preserve the model; owned completion returns focus
+  [chromium] › choice-catalog.spec.ts:56:2 › choice catalog dense › inline multiline saves only with modifier Enter and external reset/destroy rejects old results
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog dense › plain value binding rejects a previous inline result after external replacement (complete)
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog dense › plain value binding rejects a previous inline result after external replacement (fail)
+  [chromium] › choice-catalog.spec.ts:59:64 › choice catalog dense › plain value binding rejects a previous inline result after external replacement (explicit-invalidate)
+  [chromium] › choice-catalog.spec.ts:62:2 › choice catalog dense › wizard follows its actual branch/history and preserves the same native panel editor
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog dense › wizard invalidates a deferred transition after canProceed changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog dense › wizard invalidates a deferred transition after branch changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog dense › wizard invalidates a deferred transition after disabled changes
+  [chromium] › choice-catalog.spec.ts:65:70 › choice catalog dense › wizard invalidates a deferred transition after removed changes
+  [chromium] › choice-catalog.spec.ts:68:2 › choice catalog dense › wizard owned focus, external step replacement, unavailable branch and immediate transitions
+  [chromium] › choice-catalog.spec.ts:71:2 › choice catalog dense › wizard completion/restart and destroyed pending result do not claim backend completion
+  [chromium] › choice-catalog.spec.ts:74:2 › choice catalog dense › nested wizards own only their projected steps and retain inner values when the parent moves
+  [chromium] › choice-catalog.spec.ts:77:2 › choice catalog dense › filter numeric rule changes real local results and failed saving keeps its draft
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog dense › filter field changes invalidate an outstanding save (kind)
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog dense › filter field changes invalidate an outstanding save (label)
+  [chromium] › choice-catalog.spec.ts:80:51 › choice catalog dense › filter field changes invalidate an outstanding save (same-turn)
+  [chromium] › choice-catalog.spec.ts:83:2 › choice catalog dense › filter field replacement rejects the stale failure without discarding its condition
+  [chromium] › choice-catalog.spec.ts:86:2 › choice catalog dense › filter all field types distinguish zero/false/date/choice and invalid input
+  [chromium] › choice-catalog.spec.ts:89:2 › choice catalog dense › recursive AND/OR, empty groups, removal focus and nested editor identity operate on real results
+  [chromium] › choice-catalog.spec.ts:92:2 › choice catalog dense › restored recursive conditions expose the actual native field/operator/boolean selections
+  [chromium] › choice-catalog.spec.ts:95:2 › choice catalog dense › unknown fields associate the native selectors with errors and allow repair
+  [chromium] › choice-catalog.spec.ts:98:2 › choice catalog dense › filter save reset/destroy rejects stale results and required/readonly controls remain explicit
+  [chromium] › choice-catalog.spec.ts:101:2 › choice catalog dense › profile change, 320px, 200%, RTL and reduced motion keep native inputs and wrapped controls
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog dense › axe checks the actual initial controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog dense › axe checks the actual invalid controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog dense › axe checks the actual pending controls without claiming unresolved nodes
+  [chromium] › choice-catalog.spec.ts:104:62 › choice catalog dense › axe checks the actual narrow controls without claiming unresolved nodes
+  [chromium] › collection-catalog.spec.ts:16:2 › collection catalog guided › native lists retain auxiliary information, icons, real row actions and separators
+  [chromium] › collection-catalog.spec.ts:17:2 › collection catalog guided › data view filters, naturally sorts, paginates and keeps the same editor across layouts
+  [chromium] › collection-catalog.spec.ts:18:2 › collection catalog guided › out-of-range pages publish normalized app state and disabled features ignore stored conditions
+  [chromium] › collection-catalog.spec.ts:19:2 › collection catalog guided › masonry has real unequal row heights and configurable columns, gap and container breakpoints
+  [chromium] › collection-catalog.spec.ts:20:2 › collection catalog guided › virtual grouped listbox exposes one real AX option ownership and keeps active refs after repeated selection
+  [chromium] › collection-catalog.spec.ts:21:2 › collection catalog guided › search and scoped deselection preserve hidden selections and individual disabled options
+  [chromium] › collection-catalog.spec.ts:22:2 › collection catalog guided › restored selection and geometry errors preserve values until real reset or configuration repair
+  [chromium] › collection-catalog.spec.ts:23:2 › collection catalog guided › public listbox viewport bounds long labels while native selection and AX ownership survive RTL
+  [chromium] › collection-catalog.spec.ts:36:2 › collection catalog guided › virtual viewport reaches 1000th row with bounded DOM and restores app-owned editor values
+  [chromium] › collection-catalog.spec.ts:37:2 › collection catalog guided › public viewport width bounds long default labels and retains projected editor across resize and profiles
+  [chromium] › collection-catalog.spec.ts:61:2 › collection catalog guided › virtual row removal preserves owned focus at viewport and never steals external focus
+  [chromium] › collection-catalog.spec.ts:62:2 › collection catalog guided › virtual geometry recovery retains owned focus locally and keeps external focus
+  [chromium] › collection-catalog.spec.ts:63:2 › collection catalog guided › profile measurement preserves the front index and overscan changes actual bounded rows
+  [chromium] › collection-catalog.spec.ts:64:2 › collection catalog guided › settled 200% geometry keeps the logical front index and last row visible
+  [chromium] › collection-catalog.spec.ts:65:2 › collection catalog guided › native movement and cancelable keyboard drafts honor boundaries, snapshots and callback failure
+  [chromium] › collection-catalog.spec.ts:66:2 › collection catalog guided › real pointer drop commits after CDK ended and cancelled or stale drops never publish an update
+  [chromium] › collection-catalog.spec.ts:67:2 › collection catalog guided › source cancellation cleans drag geometry before restored rows and wrapped RTL movement
+  [chromium] › collection-catalog.spec.ts:68:2 › collection catalog guided › move operation yields handled child Escape and IME, then closes before its parent Dialog
+  [chromium] › collection-catalog.spec.ts:69:2 › collection catalog guided › manual loading gates burst, retains failure, retries and rejects reset/destroyed original-host replies
+  [chromium] › collection-catalog.spec.ts:70:2 › collection catalog guided › native intersection continues visible batches only after actual version progress and stops at end
+  [chromium] › collection-catalog.spec.ts:71:2 › collection catalog guided › idle invalidation re-arms the real offscreen intersection observer without changing query or content
+  [chromium] › collection-catalog.spec.ts:72:2 › collection catalog guided › switching a keyboard draft resolves the new handle by canonical key
+  [chromium] › collection-catalog.spec.ts:73:2 › collection catalog guided › search from a distant group brings its unchanged active option into the new viewport
+  [chromium] › collection-catalog.spec.ts:74:2 › collection catalog guided › own native controls fall back locally when removed or disabled, and external focus stays outside
+  [chromium] › collection-catalog.spec.ts:75:2 › collection catalog guided › nonvirtual groups and native Tab use the same single composite focus and selection contract
+  [chromium] › collection-catalog.spec.ts:76:2 › collection catalog guided › narrow 200% RTL profiles retain group row labels without overlapping and pass axe
+  [chromium] › collection-catalog.spec.ts:16:2 › collection catalog dense › native lists retain auxiliary information, icons, real row actions and separators
+  [chromium] › collection-catalog.spec.ts:17:2 › collection catalog dense › data view filters, naturally sorts, paginates and keeps the same editor across layouts
+  [chromium] › collection-catalog.spec.ts:18:2 › collection catalog dense › out-of-range pages publish normalized app state and disabled features ignore stored conditions
+  [chromium] › collection-catalog.spec.ts:19:2 › collection catalog dense › masonry has real unequal row heights and configurable columns, gap and container breakpoints
+  [chromium] › collection-catalog.spec.ts:20:2 › collection catalog dense › virtual grouped listbox exposes one real AX option ownership and keeps active refs after repeated selection
+  [chromium] › collection-catalog.spec.ts:21:2 › collection catalog dense › search and scoped deselection preserve hidden selections and individual disabled options
+  [chromium] › collection-catalog.spec.ts:22:2 › collection catalog dense › restored selection and geometry errors preserve values until real reset or configuration repair
+  [chromium] › collection-catalog.spec.ts:23:2 › collection catalog dense › public listbox viewport bounds long labels while native selection and AX ownership survive RTL
+  [chromium] › collection-catalog.spec.ts:36:2 › collection catalog dense › virtual viewport reaches 1000th row with bounded DOM and restores app-owned editor values
+  [chromium] › collection-catalog.spec.ts:37:2 › collection catalog dense › public viewport width bounds long default labels and retains projected editor across resize and profiles
+  [chromium] › collection-catalog.spec.ts:61:2 › collection catalog dense › virtual row removal preserves owned focus at viewport and never steals external focus
+  [chromium] › collection-catalog.spec.ts:62:2 › collection catalog dense › virtual geometry recovery retains owned focus locally and keeps external focus
+  [chromium] › collection-catalog.spec.ts:63:2 › collection catalog dense › profile measurement preserves the front index and overscan changes actual bounded rows
+  [chromium] › collection-catalog.spec.ts:64:2 › collection catalog dense › settled 200% geometry keeps the logical front index and last row visible
+  [chromium] › collection-catalog.spec.ts:65:2 › collection catalog dense › native movement and cancelable keyboard drafts honor boundaries, snapshots and callback failure
+  [chromium] › collection-catalog.spec.ts:66:2 › collection catalog dense › real pointer drop commits after CDK ended and cancelled or stale drops never publish an update
+  [chromium] › collection-catalog.spec.ts:67:2 › collection catalog dense › source cancellation cleans drag geometry before restored rows and wrapped RTL movement
+  [chromium] › collection-catalog.spec.ts:68:2 › collection catalog dense › move operation yields handled child Escape and IME, then closes before its parent Dialog
+  [chromium] › collection-catalog.spec.ts:69:2 › collection catalog dense › manual loading gates burst, retains failure, retries and rejects reset/destroyed original-host replies
+  [chromium] › collection-catalog.spec.ts:70:2 › collection catalog dense › native intersection continues visible batches only after actual version progress and stops at end
+  [chromium] › collection-catalog.spec.ts:71:2 › collection catalog dense › idle invalidation re-arms the real offscreen intersection observer without changing query or content
+  [chromium] › collection-catalog.spec.ts:72:2 › collection catalog dense › switching a keyboard draft resolves the new handle by canonical key
+  [chromium] › collection-catalog.spec.ts:73:2 › collection catalog dense › search from a distant group brings its unchanged active option into the new viewport
+  [chromium] › collection-catalog.spec.ts:74:2 › collection catalog dense › own native controls fall back locally when removed or disabled, and external focus stays outside
+  [chromium] › collection-catalog.spec.ts:75:2 › collection catalog dense › nonvirtual groups and native Tab use the same single composite focus and selection contract
+  [chromium] › collection-catalog.spec.ts:76:2 › collection catalog dense › narrow 200% RTL profiles retain group row labels without overlapping and pass axe
+  [chromium] › components.spec.ts:28:5 › guided › 保存処理中は再操作を抑止し、操作のラベルと結果を残す
+  [chromium] › components.spec.ts:43:5 › guided › buttonの既定typeと明示したsubmit/resetを保持する
+  [chromium] › components.spec.ts:53:5 › guided › 無効または処理中のリンクはclick、auxclick、キーボードで遷移や利用者処理を起こさない
+  [chromium] › components.spec.ts:81:5 › guided › ラベル、必須、補助説明、追加の説明、入力エラーを同じ入力に接続する
+  [chromium] › components.spec.ts:101:5 › guided › 標準のselectとcheckboxをキーボードで選択し、保存データへ反映する
+  [chromium] › components.spec.ts:116:5 › guided › 保存失敗でも入力を保持し、障害を残し、別領域は使える
+  [chromium] › components.spec.ts:132:5 › guided › 部分欠損と更新失敗の影響を示し、正常領域を維持し、局所再試行だけを行う
+  [chromium] › components.spec.ts:154:5 › guided › loading、empty、errorで本文を隠し、同じ入力を復帰後まで保つ
+  [chromium] › components.spec.ts:179:5 › guided › 削除とUndoは実際のローカル一覧データを更新し復元する
+  [chromium] › components.spec.ts:191:5 › guided › 不可逆操作は対象と影響を伝えてから実データを確定削除する
+  [chromium] › components.spec.ts:204:5 › guided › 応答が不明な保存は再実行を止め、保存先の確認で実際の結果を取得する
+  [chromium] › components.spec.ts:222:5 › guided › キーボードでフォームを進めて保存でき、focusが見える
+  [chromium] › components.spec.ts:242:5 › guided › 320pxの画面幅で横にはみ出さず、主要操作を44px以上で表示する
+  [chromium] › components.spec.ts:255:5 › guided › 動きを減らす設定で状態の意味を保ち、長いanimationやtransitionを動かさない
+  [chromium] › components.spec.ts:267:5 › guided › touch画面でcheckboxと保存を操作でき、無効リンクのtapを抑止する
+  [chromium] › components.spec.ts:292:5 › guided › 初期表示とエラー・部分欠損・結果不明の状態にaxeの自動検査違反がない
+  [chromium] › components.spec.ts:28:5 › dense › 保存処理中は再操作を抑止し、操作のラベルと結果を残す
+  [chromium] › components.spec.ts:43:5 › dense › buttonの既定typeと明示したsubmit/resetを保持する
+  [chromium] › components.spec.ts:53:5 › dense › 無効または処理中のリンクはclick、auxclick、キーボードで遷移や利用者処理を起こさない
+  [chromium] › components.spec.ts:81:5 › dense › ラベル、必須、補助説明、追加の説明、入力エラーを同じ入力に接続する
+  [chromium] › components.spec.ts:101:5 › dense › 標準のselectとcheckboxをキーボードで選択し、保存データへ反映する
+  [chromium] › components.spec.ts:116:5 › dense › 保存失敗でも入力を保持し、障害を残し、別領域は使える
+  [chromium] › components.spec.ts:132:5 › dense › 部分欠損と更新失敗の影響を示し、正常領域を維持し、局所再試行だけを行う
+  [chromium] › components.spec.ts:154:5 › dense › loading、empty、errorで本文を隠し、同じ入力を復帰後まで保つ
+  [chromium] › components.spec.ts:179:5 › dense › 削除とUndoは実際のローカル一覧データを更新し復元する
+  [chromium] › components.spec.ts:191:5 › dense › 不可逆操作は対象と影響を伝えてから実データを確定削除する
+  [chromium] › components.spec.ts:204:5 › dense › 応答が不明な保存は再実行を止め、保存先の確認で実際の結果を取得する
+  [chromium] › components.spec.ts:222:5 › dense › キーボードでフォームを進めて保存でき、focusが見える
+  [chromium] › components.spec.ts:242:5 › dense › 320pxの画面幅で横にはみ出さず、主要操作を44px以上で表示する
+  [chromium] › components.spec.ts:255:5 › dense › 動きを減らす設定で状態の意味を保ち、長いanimationやtransitionを動かさない
+  [chromium] › components.spec.ts:267:5 › dense › touch画面でcheckboxと保存を操作でき、無効リンクのtapを抑止する
+  [chromium] › components.spec.ts:292:5 › dense › 初期表示とエラー・部分欠損・結果不明の状態にaxeの自動検査違反がない
+  [chromium] › composer-reset-errors.spec.ts:4:2 › Composer explicit reset discards only previous request failure and keeps native draft: guided
+  [chromium] › composer-reset-errors.spec.ts:4:2 › Composer explicit reset discards only previous request failure and keeps native draft: dense
+  [chromium] › data-table-view.spec.ts:6:3 › data table guided › search is scoped, cleared and disabled without losing its saved value
+  [chromium] › data-table-view.spec.ts:15:3 › data table guided › typed sort cycles asc/desc/removed and supports a second sort key
+  [chromium] › data-table-view.spec.ts:25:3 › data table guided › number/date/select filters operate and disabling filtering restores source rows
+  [chromium] › data-table-view.spec.ts:33:3 › data table guided › comparison chosen before its value is retained and stale pages recover when filters return
+  [chromium] › data-table-view.spec.ts:43:3 › data table guided › rendered column geometry respects min and max in both automatic width modes
+  [chromium] › data-table-view.spec.ts:55:3 › data table guided › first/last/page size and pagination OFF control the actual rendered records
+  [chromium] › data-table-view.spec.ts:63:3 › data table guided › column hide/order/pin/resize can be saved, restored and reset using keyboard alternatives
+  [chromium] › data-table-view.spec.ts:74:3 › data table guided › selection is page scoped, skips ineligible rows, retains other pages and reports mixed state
+  [chromium] › data-table-view.spec.ts:82:3 › data table guided › custom cells, details and profile switching preserve edited inputs and actions
+  [chromium] › data-table-view.spec.ts:89:3 › data table guided › loading/updating block query changes, error retries, partial missing remains visible
+  [chromium] › data-table-view.spec.ts:96:3 › data table guided › server mode forwards query state and never locally filters/sorts/paginates its supplied page
+  [chromium] › data-table-view.spec.ts:102:3 › data table guided › 320px, 200% text and RTL keep overflow inside the table and fixed columns on the correct side
+  [chromium] › data-table-view.spec.ts:109:3 › data table guided › native table headers, normal and partial states have no automatic axe violations
+  [chromium] › data-table-view.spec.ts:6:3 › data table dense › search is scoped, cleared and disabled without losing its saved value
+  [chromium] › data-table-view.spec.ts:15:3 › data table dense › typed sort cycles asc/desc/removed and supports a second sort key
+  [chromium] › data-table-view.spec.ts:25:3 › data table dense › number/date/select filters operate and disabling filtering restores source rows
+  [chromium] › data-table-view.spec.ts:33:3 › data table dense › comparison chosen before its value is retained and stale pages recover when filters return
+  [chromium] › data-table-view.spec.ts:43:3 › data table dense › rendered column geometry respects min and max in both automatic width modes
+  [chromium] › data-table-view.spec.ts:55:3 › data table dense › first/last/page size and pagination OFF control the actual rendered records
+  [chromium] › data-table-view.spec.ts:63:3 › data table dense › column hide/order/pin/resize can be saved, restored and reset using keyboard alternatives
+  [chromium] › data-table-view.spec.ts:74:3 › data table dense › selection is page scoped, skips ineligible rows, retains other pages and reports mixed state
+  [chromium] › data-table-view.spec.ts:82:3 › data table dense › custom cells, details and profile switching preserve edited inputs and actions
+  [chromium] › data-table-view.spec.ts:89:3 › data table dense › loading/updating block query changes, error retries, partial missing remains visible
+  [chromium] › data-table-view.spec.ts:96:3 › data table dense › server mode forwards query state and never locally filters/sorts/paginates its supplied page
+  [chromium] › data-table-view.spec.ts:102:3 › data table dense › 320px, 200% text and RTL keep overflow inside the table and fixed columns on the correct side
+  [chromium] › data-table-view.spec.ts:109:3 › data table dense › native table headers, normal and partial states have no automatic axe violations
+  [chromium] › dates.spec.ts:10:3 › dates guided › civil date is unchanged in a DST timezone and native invalid/disabled dates can be repaired
+  [chromium] › dates.spec.ts:15:3 › dates guided › calendar opens on the selected date, keyboard crosses month, unavailable days never commit, Escape restores focus
+  [chromium] › dates.spec.ts:23:3 › dates guided › rapid calendar keys continue across render boundaries and commit the logical destination
+  [chromium] › dates.spec.ts:28:3 › dates guided › explicit edit formats retain invalid drafts, clear/reset repair them and parse without guessing
+  [chromium] › dates.spec.ts:35:3 › dates guided › range order/max duration/interior disabled days are validated; valid presets and multiple months work
+  [chromium] › dates.spec.ts:42:3 › dates guided › a malformed range draft invalidates the parent without discarding the last range; preset, clear and reset repair it
+  [chromium] › dates.spec.ts:51:3 › dates guided › datetime step uses the min date and time, agreeing with native validity
+  [chromium] › dates.spec.ts:57:3 › dates guided › time intervals/12-hour display, explicit local timezone, month/year bounds and disable retain values
+  [chromium] › dates.spec.ts:64:3 › dates guided › week starts/year months, day templates and RTL keyboard stay accessible at 320px/200%
+  [chromium] › dates.spec.ts:10:3 › dates dense › civil date is unchanged in a DST timezone and native invalid/disabled dates can be repaired
+  [chromium] › dates.spec.ts:15:3 › dates dense › calendar opens on the selected date, keyboard crosses month, unavailable days never commit, Escape restores focus
+  [chromium] › dates.spec.ts:23:3 › dates dense › rapid calendar keys continue across render boundaries and commit the logical destination
+  [chromium] › dates.spec.ts:28:3 › dates dense › explicit edit formats retain invalid drafts, clear/reset repair them and parse without guessing
+  [chromium] › dates.spec.ts:35:3 › dates dense › range order/max duration/interior disabled days are validated; valid presets and multiple months work
+  [chromium] › dates.spec.ts:42:3 › dates dense › a malformed range draft invalidates the parent without discarding the last range; preset, clear and reset repair it
+  [chromium] › dates.spec.ts:51:3 › dates dense › datetime step uses the min date and time, agreeing with native validity
+  [chromium] › dates.spec.ts:57:3 › dates dense › time intervals/12-hour display, explicit local timezone, month/year bounds and disable retain values
+  [chromium] › dates.spec.ts:64:3 › dates dense › week starts/year months, day templates and RTL keyboard stay accessible at 320px/200%
+  [chromium] › diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+  [chromium] › diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+  [chromium] › diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+  [chromium] › diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+  [chromium] › diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+  [chromium] › diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+  [chromium] › diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+  [chromium] › diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+  [chromium] › diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+  [chromium] › diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+  [chromium] › diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+  [chromium] › diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+  [chromium] › diagram-validation.spec.ts:6:3 › guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+  [chromium] › diagram-validation.spec.ts:6:3 › guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+  [chromium] › diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative x without changing the reachable canvas and supports correction
+  [chromium] › diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative y without changing the reachable canvas and supports correction
+  [chromium] › diagram-validation.spec.ts:6:3 › dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+  [chromium] › diagram-validation.spec.ts:6:3 › dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+  [chromium] › diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction
+  [chromium] › diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction
+  [chromium] › display-catalog.spec.ts:10:2 › 表示カタログ guided › native見出し/強調を維持し、semantic色/整列/折返しを制御する
+  [chromium] › display-catalog.spec.ts:17:2 › 表示カタログ guided › Badgeは全件数を説明し、上限/0件/dot/論理位置を切替える
+  [chromium] › display-catalog.spec.ts:22:2 › 表示カタログ guided › Badge中心はRTL/LTRの入れ子で祖先方向に引きずられず枠内に収まる
+  [chromium] › display-catalog.spec.ts:26:2 › 表示カタログ guided › Tagは別々の選択/削除操作、無効/処理中、削除先のfocusを保つ
+  [chromium] › display-catalog.spec.ts:33:2 › 表示カタログ guided › Avatarは画像失敗を代替し、変更後の画像/サイズ/形状を描画する
+  [chromium] › display-catalog.spec.ts:38:2 › 表示カタログ guided › AvatarGroupの超過一覧はkeyboardで開閉し、上限変更で消える操作のfocusを保つ
+  [chromium] › display-catalog.spec.ts:43:2 › 表示カタログ guided › Avatarの全サイズで拡大した代替文字が1行で枠内に収まる
+  [chromium] › display-catalog.spec.ts:47:2 › 表示カタログ guided › Descriptionsはnativeの項目/値、欠損/空/0/false、列とtyped templateを扱う
+  [chromium] › display-catalog.spec.ts:51:2 › 表示カタログ guided › Statisticの書式/単位/増減は0と未取得と比較不能を区別する
+  [chromium] › display-catalog.spec.ts:55:2 › 表示カタログ guided › Meterはnative範囲/区分/optimumと未知値を実表示する
+  [chromium] › display-catalog.spec.ts:59:2 › 表示カタログ guided › 小数区分の0.1+0.2は上限0.3へ収まり、合計/上限/値のlocaleが一致する
+  [chromium] › display-catalog.spec.ts:63:2 › 表示カタログ guided › RTLでも不均等な現在値/単位/上限と合計/上限の描画順を隔離する
+  [chromium] › display-catalog.spec.ts:69:2 › 表示カタログ guided › 補助説明/native kbd/全文展開は内容を保持し、動的消去のfocusを保つ
+  [chromium] › display-catalog.spec.ts:74:2 › 表示カタログ guided › CodeBlockは安全な原文/整形/行番号/局所scrollと実Clipboardを扱う
+  [chromium] › display-catalog.spec.ts:79:2 › 表示カタログ guided › 不正JSONとコピー拒否は原文を保持し、再試行でき結果表示は時間で消える
+  [chromium] › display-catalog.spec.ts:83:2 › 表示カタログ guided › 折返したsource lineは1つの行番号に対応し、空行も番号と行高を保つ
+  [chromium] › display-catalog.spec.ts:88:2 › 表示カタログ guided › コピー操作の外部非表示は内側のfocusだけをコード領域へ移す
+  [chromium] › display-catalog.spec.ts:92:2 › 表示カタログ guided › コピーの応答待ちでは操作内へfocusを保持し、完了後に自前buttonへ復帰する
+  [chromium] › display-catalog.spec.ts:96:2 › 表示カタログ guided › 応答待ちcopyを除去してもregionへfocusが戻り、破棄後の出力を抑止し外側focusを奪わない
+  [chromium] › display-catalog.spec.ts:101:2 › 表示カタログ guided › Watermarkはnative pattern/位置/濃度を描画し、下の入力とkeyboard操作を遮らない
+  [chromium] › display-catalog.spec.ts:107:2 › 表示カタログ guided › 320px/200%/RTL/reduced-motionでも全情報と操作を保持しaxe違反なし
+  [chromium] › display-catalog.spec.ts:10:2 › 表示カタログ dense › native見出し/強調を維持し、semantic色/整列/折返しを制御する
+  [chromium] › display-catalog.spec.ts:17:2 › 表示カタログ dense › Badgeは全件数を説明し、上限/0件/dot/論理位置を切替える
+  [chromium] › display-catalog.spec.ts:22:2 › 表示カタログ dense › Badge中心はRTL/LTRの入れ子で祖先方向に引きずられず枠内に収まる
+  [chromium] › display-catalog.spec.ts:26:2 › 表示カタログ dense › Tagは別々の選択/削除操作、無効/処理中、削除先のfocusを保つ
+  [chromium] › display-catalog.spec.ts:33:2 › 表示カタログ dense › Avatarは画像失敗を代替し、変更後の画像/サイズ/形状を描画する
+  [chromium] › display-catalog.spec.ts:38:2 › 表示カタログ dense › AvatarGroupの超過一覧はkeyboardで開閉し、上限変更で消える操作のfocusを保つ
+  [chromium] › display-catalog.spec.ts:43:2 › 表示カタログ dense › Avatarの全サイズで拡大した代替文字が1行で枠内に収まる
+  [chromium] › display-catalog.spec.ts:47:2 › 表示カタログ dense › Descriptionsはnativeの項目/値、欠損/空/0/false、列とtyped templateを扱う
+  [chromium] › display-catalog.spec.ts:51:2 › 表示カタログ dense › Statisticの書式/単位/増減は0と未取得と比較不能を区別する
+  [chromium] › display-catalog.spec.ts:55:2 › 表示カタログ dense › Meterはnative範囲/区分/optimumと未知値を実表示する
+  [chromium] › display-catalog.spec.ts:59:2 › 表示カタログ dense › 小数区分の0.1+0.2は上限0.3へ収まり、合計/上限/値のlocaleが一致する
+  [chromium] › display-catalog.spec.ts:63:2 › 表示カタログ dense › RTLでも不均等な現在値/単位/上限と合計/上限の描画順を隔離する
+  [chromium] › display-catalog.spec.ts:69:2 › 表示カタログ dense › 補助説明/native kbd/全文展開は内容を保持し、動的消去のfocusを保つ
+  [chromium] › display-catalog.spec.ts:74:2 › 表示カタログ dense › CodeBlockは安全な原文/整形/行番号/局所scrollと実Clipboardを扱う
+  [chromium] › display-catalog.spec.ts:79:2 › 表示カタログ dense › 不正JSONとコピー拒否は原文を保持し、再試行でき結果表示は時間で消える
+  [chromium] › display-catalog.spec.ts:83:2 › 表示カタログ dense › 折返したsource lineは1つの行番号に対応し、空行も番号と行高を保つ
+  [chromium] › display-catalog.spec.ts:88:2 › 表示カタログ dense › コピー操作の外部非表示は内側のfocusだけをコード領域へ移す
+  [chromium] › display-catalog.spec.ts:92:2 › 表示カタログ dense › コピーの応答待ちでは操作内へfocusを保持し、完了後に自前buttonへ復帰する
+  [chromium] › display-catalog.spec.ts:96:2 › 表示カタログ dense › 応答待ちcopyを除去してもregionへfocusが戻り、破棄後の出力を抑止し外側focusを奪わない
+  [chromium] › display-catalog.spec.ts:101:2 › 表示カタログ dense › Watermarkはnative pattern/位置/濃度を描画し、下の入力とkeyboard操作を遮らない
+  [chromium] › display-catalog.spec.ts:107:2 › 表示カタログ dense › 320px/200%/RTL/reduced-motionでも全情報と操作を保持しaxe違反なし
+  [chromium] › feedback-catalog.spec.ts:5:2 › 状態表示 guided › ActionFeedbackは結果不明・成功・失敗・処理中を区別し、下書きとfocusを保持
+  [chromium] › feedback-catalog.spec.ts:6:2 › 状態表示 guided › AsyncRegionは更新/欠損では内容を表示し、loading/empty/errorでも値を保持する
+  [chromium] › feedback-catalog.spec.ts:7:2 › 状態表示 guided › Alertは意味/本文/投影操作を持ちbusyで終了を抑止して閉じ戻る
+  [chromium] › feedback-catalog.spec.ts:8:2 › 状態表示 guided › Alertの外部更新で消える組込み操作のfocusだけを本文へ移す
+  [chromium] › feedback-catalog.spec.ts:21:2 › 状態表示 guided › 処理中Alertの操作を外部で除去しても投影した入れ子部品のfocusを奪わない
+  [chromium] › feedback-catalog.spec.ts:30:2 › 状態表示 guided › EmptyStateは0件/検索なしと図、ResultStateは詳細・結果不明・次の操作を表示
+  [chromium] › feedback-catalog.spec.ts:31:2 › 状態表示 guided › ProgressBarはnative value/max/不定と境界、取消要求の連打抑止を扱う
+  [chromium] › feedback-catalog.spec.ts:32:2 › 状態表示 guided › Spinnerは遅延前に表示せずactive取消でtimerを捨て、sizeと確定進捗を反映
+  [chromium] › feedback-catalog.spec.ts:33:2 › 状態表示 guided › Skeletonは形/行/寸法/動きを制御し支援技術から装飾を除く
+  [chromium] › feedback-catalog.spec.ts:34:2 › 状態表示 guided › LoadingOverlayは対象をinertにし、他の領域の操作と取消後の値/focusを保持
+  [chromium] › feedback-catalog.spec.ts:35:2 › 状態表示 guided › 小さい抑止領域でも説明の先頭と取消操作をscrollして到達できる
+  [chromium] › feedback-catalog.spec.ts:36:2 › 状態表示 guided › 外部から抑止した領域は取消で指定した起動操作へfocusを戻す
+  [chromium] › feedback-catalog.spec.ts:37:2 › 状態表示 guided › EmptyとResultのbusyではfocusを説明へ残し、操作を重複させない
+  [chromium] › feedback-catalog.spec.ts:38:2 › 状態表示 guided › 通知一覧は未読/既読/分類をfilterし、既読/削除後にfocusを可視操作へ戻す
+  [chromium] › feedback-catalog.spec.ts:39:2 › 状態表示 guided › 選択中の通知分類が0件になっても選択表示と内部条件を揃え、全件へ戻せる
+  [chromium] › feedback-catalog.spec.ts:40:2 › 状態表示 guided › 通知の追加取得は連打を抑止し、失敗時に一覧を保持して再試行する
+  [chromium] › feedback-catalog.spec.ts:41:2 › 状態表示 guided › Tourは対象/段階を実表示し、戻る/終了/再開/表示済み/入力保持を扱う
+  [chromium] › feedback-catalog.spec.ts:42:2 › 状態表示 guided › Tourをアプリ側open=falseで閉じるとpopup内のfocusは起動操作に戻り、対象側のfocusは奪わない
+  [chromium] › feedback-catalog.spec.ts:43:2 › 状態表示 guided › Tourは非modalの対象操作を許し、対象が失われたら終了理由を返す
+  [chromium] › feedback-catalog.spec.ts:44:2 › 状態表示 guided › TourはCSSで不可視になった対象とnative modalへのscope移行を検出する
+  [chromium] › feedback-catalog.spec.ts:45:2 › 状態表示 guided › 320px/200%/RTL/動き低減で状態は読め、操作抑止とTourもaxe違反なし
+  [chromium] › feedback-catalog.spec.ts:5:2 › 状態表示 dense › ActionFeedbackは結果不明・成功・失敗・処理中を区別し、下書きとfocusを保持
+  [chromium] › feedback-catalog.spec.ts:6:2 › 状態表示 dense › AsyncRegionは更新/欠損では内容を表示し、loading/empty/errorでも値を保持する
+  [chromium] › feedback-catalog.spec.ts:7:2 › 状態表示 dense › Alertは意味/本文/投影操作を持ちbusyで終了を抑止して閉じ戻る
+  [chromium] › feedback-catalog.spec.ts:8:2 › 状態表示 dense › Alertの外部更新で消える組込み操作のfocusだけを本文へ移す
+  [chromium] › feedback-catalog.spec.ts:21:2 › 状態表示 dense › 処理中Alertの操作を外部で除去しても投影した入れ子部品のfocusを奪わない
+  [chromium] › feedback-catalog.spec.ts:30:2 › 状態表示 dense › EmptyStateは0件/検索なしと図、ResultStateは詳細・結果不明・次の操作を表示
+  [chromium] › feedback-catalog.spec.ts:31:2 › 状態表示 dense › ProgressBarはnative value/max/不定と境界、取消要求の連打抑止を扱う
+  [chromium] › feedback-catalog.spec.ts:32:2 › 状態表示 dense › Spinnerは遅延前に表示せずactive取消でtimerを捨て、sizeと確定進捗を反映
+  [chromium] › feedback-catalog.spec.ts:33:2 › 状態表示 dense › Skeletonは形/行/寸法/動きを制御し支援技術から装飾を除く
+  [chromium] › feedback-catalog.spec.ts:34:2 › 状態表示 dense › LoadingOverlayは対象をinertにし、他の領域の操作と取消後の値/focusを保持
+  [chromium] › feedback-catalog.spec.ts:35:2 › 状態表示 dense › 小さい抑止領域でも説明の先頭と取消操作をscrollして到達できる
+  [chromium] › feedback-catalog.spec.ts:36:2 › 状態表示 dense › 外部から抑止した領域は取消で指定した起動操作へfocusを戻す
+  [chromium] › feedback-catalog.spec.ts:37:2 › 状態表示 dense › EmptyとResultのbusyではfocusを説明へ残し、操作を重複させない
+  [chromium] › feedback-catalog.spec.ts:38:2 › 状態表示 dense › 通知一覧は未読/既読/分類をfilterし、既読/削除後にfocusを可視操作へ戻す
+  [chromium] › feedback-catalog.spec.ts:39:2 › 状態表示 dense › 選択中の通知分類が0件になっても選択表示と内部条件を揃え、全件へ戻せる
+  [chromium] › feedback-catalog.spec.ts:40:2 › 状態表示 dense › 通知の追加取得は連打を抑止し、失敗時に一覧を保持して再試行する
+  [chromium] › feedback-catalog.spec.ts:41:2 › 状態表示 dense › Tourは対象/段階を実表示し、戻る/終了/再開/表示済み/入力保持を扱う
+  [chromium] › feedback-catalog.spec.ts:42:2 › 状態表示 dense › Tourをアプリ側open=falseで閉じるとpopup内のfocusは起動操作に戻り、対象側のfocusは奪わない
+  [chromium] › feedback-catalog.spec.ts:43:2 › 状態表示 dense › Tourは非modalの対象操作を許し、対象が失われたら終了理由を返す
+  [chromium] › feedback-catalog.spec.ts:44:2 › 状態表示 dense › TourはCSSで不可視になった対象とnative modalへのscope移行を検出する
+  [chromium] › feedback-catalog.spec.ts:45:2 › 状態表示 dense › 320px/200%/RTL/動き低減で状態は読め、操作抑止とTourもaxe違反なし
+  [chromium] › floating-catalog.spec.ts:8:2 › floating catalog guided › popover templates retain the same native editor through close and open
+  [chromium] › floating-catalog.spec.ts:12:2 › floating catalog guided › outside close leaves focus and interaction at the outside action
+  [chromium] › floating-catalog.spec.ts:15:2 › floating catalog guided › programmatic close restores owned focus but does not steal unrelated focus
+  [chromium] › floating-catalog.spec.ts:18:2 › floating catalog guided › veto holds close, value and focus until the app releases it
+  [chromium] › floating-catalog.spec.ts:21:2 › floating catalog guided › target change transfers only owned ARIA and closes to the new parent focus
+  [chromium] › floating-catalog.spec.ts:24:2 › floating catalog guided › hidden content, hidden target and disabled scope clean up the native top layer
+  [chromium] › floating-catalog.spec.ts:27:2 › floating catalog guided › external hidden or destroy restores owned focus and releases only its trigger attributes
+  [chromium] › floating-catalog.spec.ts:30:2 › floating catalog guided › outside and Escape close conditions are independently configurable
+  [chromium] › floating-catalog.spec.ts:33:2 › floating catalog guided › a live RTL change repositions the popup while the same editor keeps its draft
+  [chromium] › floating-catalog.spec.ts:36:2 › floating catalog guided › root RTL, profile and text-size changes reposition the popup without replacing its editor
+  [chromium] › floating-catalog.spec.ts:43:2 › floating catalog guided › changing to hover while editing keeps the active popup when the pointer leaves
+  [chromium] › floating-catalog.spec.ts:46:2 › floating catalog guided › manual trigger ignores anchor activation and uses explicit app state
+  [chromium] › floating-catalog.spec.ts:49:2 › floating catalog guided › focus trigger opens on keyboard focus without taking it and closes after exit
+  [chromium] › floating-catalog.spec.ts:52:2 › floating catalog guided › tooltip waits to show, owns only its description ID and leaves focus on the trigger
+  [chromium] › floating-catalog.spec.ts:56:2 › floating catalog guided › tooltip cancels a pending show on Escape and shows again only after focus leaves
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog guided › pending tooltip respects prevented Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog guided › pending tooltip respects composing Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog guided › pending tooltip respects 229 Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:66:2 › floating catalog guided › tooltip pointer can cross onto its content and hide after the configured delay
+  [chromium] › floating-catalog.spec.ts:69:2 › floating catalog guided › description retarget and destruction preserve references added by the app
+  [chromium] › floating-catalog.spec.ts:72:2 › floating catalog guided › destroyed tooltip cancels its outstanding timer and can be recreated
+  [chromium] › floating-catalog.spec.ts:75:2 › floating catalog guided › hover preview waits without stealing focus and keeps its interactive content available
+  [chromium] › floating-catalog.spec.ts:78:2 › floating catalog guided › Tab enters an automatically displayed preview and Enter also enters its visible actions
+  [chromium] › floating-catalog.spec.ts:81:2 › floating catalog guided › a new modal scope dismisses the background popup without taking modal focus
+  [chromium] › floating-catalog.spec.ts:84:2 › floating catalog guided › explicit preview activation gives keyboard and touch a direct alternative
+  [chromium] › floating-catalog.spec.ts:87:2 › floating catalog guided › confirmation is an intent, busy suppresses repeat and failure keeps draft for retry
+  [chromium] › floating-catalog.spec.ts:91:2 › floating catalog guided › confirmation cancel returns to the parent without sending a confirmation
+  [chromium] › floating-catalog.spec.ts:94:2 › floating catalog guided › drawer uses physical edges and dedicated profile dimensions without recreating inputs
+  [chromium] › floating-catalog.spec.ts:99:2 › floating catalog guided › a live profile change keeps the native drawer editor and changes its semantic width
+  [chromium] › floating-catalog.spec.ts:102:2 › floating catalog guided › drawer veto and busy hold closing while the draft remains available
+  [chromium] › floating-catalog.spec.ts:105:2 › floating catalog guided › repeated Escape honors the same unsaved and busy veto without a native forced close
+  [chromium] › floating-catalog.spec.ts:108:2 › floating catalog guided › an input can consume Escape before its containing native drawer closes
+  [chromium] › floating-catalog.spec.ts:111:2 › floating catalog guided › composition Escape cancels input composition without closing its containing drawer
+  [chromium] › floating-catalog.spec.ts:114:2 › floating catalog guided › nonmodal drawer permits background actions and external close keeps outside focus
+  [chromium] › floating-catalog.spec.ts:117:2 › floating catalog guided › hidden drawer relinquishes native modal inertness
+  [chromium] › floating-catalog.spec.ts:120:39 › floating catalog guided › root inert closes the drawer and restoring the scope keeps outside focus
+  [chromium] › floating-catalog.spec.ts:120:39 › floating catalog guided › root inert closes the sheet and restoring the scope keeps outside focus
+  [chromium] › floating-catalog.spec.ts:127:2 › floating catalog guided › bottom sheet keyboard buttons and native range retain its editor at every stage
+  [chromium] › floating-catalog.spec.ts:130:2 › floating catalog guided › bottom sheet applies the selected ratio to an explicit height
+  [chromium] › floating-catalog.spec.ts:133:2 › floating catalog guided › bottom sheet external stage and busy preserve focus and input without stealing outside focus
+  [chromium] › floating-catalog.spec.ts:136:2 › floating catalog guided › nested native popup closes synchronously before the containing modal handles Escape
+  [chromium] › floating-catalog.spec.ts:139:2 › floating catalog guided › 320px, 200% text, RTL and reduced motion keep all placements, native edges and accessible operations
+  [chromium] › floating-catalog.spec.ts:8:2 › floating catalog dense › popover templates retain the same native editor through close and open
+  [chromium] › floating-catalog.spec.ts:12:2 › floating catalog dense › outside close leaves focus and interaction at the outside action
+  [chromium] › floating-catalog.spec.ts:15:2 › floating catalog dense › programmatic close restores owned focus but does not steal unrelated focus
+  [chromium] › floating-catalog.spec.ts:18:2 › floating catalog dense › veto holds close, value and focus until the app releases it
+  [chromium] › floating-catalog.spec.ts:21:2 › floating catalog dense › target change transfers only owned ARIA and closes to the new parent focus
+  [chromium] › floating-catalog.spec.ts:24:2 › floating catalog dense › hidden content, hidden target and disabled scope clean up the native top layer
+  [chromium] › floating-catalog.spec.ts:27:2 › floating catalog dense › external hidden or destroy restores owned focus and releases only its trigger attributes
+  [chromium] › floating-catalog.spec.ts:30:2 › floating catalog dense › outside and Escape close conditions are independently configurable
+  [chromium] › floating-catalog.spec.ts:33:2 › floating catalog dense › a live RTL change repositions the popup while the same editor keeps its draft
+  [chromium] › floating-catalog.spec.ts:36:2 › floating catalog dense › root RTL, profile and text-size changes reposition the popup without replacing its editor
+  [chromium] › floating-catalog.spec.ts:43:2 › floating catalog dense › changing to hover while editing keeps the active popup when the pointer leaves
+  [chromium] › floating-catalog.spec.ts:46:2 › floating catalog dense › manual trigger ignores anchor activation and uses explicit app state
+  [chromium] › floating-catalog.spec.ts:49:2 › floating catalog dense › focus trigger opens on keyboard focus without taking it and closes after exit
+  [chromium] › floating-catalog.spec.ts:52:2 › floating catalog dense › tooltip waits to show, owns only its description ID and leaves focus on the trigger
+  [chromium] › floating-catalog.spec.ts:56:2 › floating catalog dense › tooltip cancels a pending show on Escape and shows again only after focus leaves
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog dense › pending tooltip respects prevented Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog dense › pending tooltip respects composing Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:59:52 › floating catalog dense › pending tooltip respects 229 Escape before it is displayed
+  [chromium] › floating-catalog.spec.ts:66:2 › floating catalog dense › tooltip pointer can cross onto its content and hide after the configured delay
+  [chromium] › floating-catalog.spec.ts:69:2 › floating catalog dense › description retarget and destruction preserve references added by the app
+  [chromium] › floating-catalog.spec.ts:72:2 › floating catalog dense › destroyed tooltip cancels its outstanding timer and can be recreated
+  [chromium] › floating-catalog.spec.ts:75:2 › floating catalog dense › hover preview waits without stealing focus and keeps its interactive content available
+  [chromium] › floating-catalog.spec.ts:78:2 › floating catalog dense › Tab enters an automatically displayed preview and Enter also enters its visible actions
+  [chromium] › floating-catalog.spec.ts:81:2 › floating catalog dense › a new modal scope dismisses the background popup without taking modal focus
+  [chromium] › floating-catalog.spec.ts:84:2 › floating catalog dense › explicit preview activation gives keyboard and touch a direct alternative
+  [chromium] › floating-catalog.spec.ts:87:2 › floating catalog dense › confirmation is an intent, busy suppresses repeat and failure keeps draft for retry
+  [chromium] › floating-catalog.spec.ts:91:2 › floating catalog dense › confirmation cancel returns to the parent without sending a confirmation
+  [chromium] › floating-catalog.spec.ts:94:2 › floating catalog dense › drawer uses physical edges and dedicated profile dimensions without recreating inputs
+  [chromium] › floating-catalog.spec.ts:99:2 › floating catalog dense › a live profile change keeps the native drawer editor and changes its semantic width
+  [chromium] › floating-catalog.spec.ts:102:2 › floating catalog dense › drawer veto and busy hold closing while the draft remains available
+  [chromium] › floating-catalog.spec.ts:105:2 › floating catalog dense › repeated Escape honors the same unsaved and busy veto without a native forced close
+  [chromium] › floating-catalog.spec.ts:108:2 › floating catalog dense › an input can consume Escape before its containing native drawer closes
+  [chromium] › floating-catalog.spec.ts:111:2 › floating catalog dense › composition Escape cancels input composition without closing its containing drawer
+  [chromium] › floating-catalog.spec.ts:114:2 › floating catalog dense › nonmodal drawer permits background actions and external close keeps outside focus
+  [chromium] › floating-catalog.spec.ts:117:2 › floating catalog dense › hidden drawer relinquishes native modal inertness
+  [chromium] › floating-catalog.spec.ts:120:39 › floating catalog dense › root inert closes the drawer and restoring the scope keeps outside focus
+  [chromium] › floating-catalog.spec.ts:120:39 › floating catalog dense › root inert closes the sheet and restoring the scope keeps outside focus
+  [chromium] › floating-catalog.spec.ts:127:2 › floating catalog dense › bottom sheet keyboard buttons and native range retain its editor at every stage
+  [chromium] › floating-catalog.spec.ts:130:2 › floating catalog dense › bottom sheet applies the selected ratio to an explicit height
+  [chromium] › floating-catalog.spec.ts:133:2 › floating catalog dense › bottom sheet external stage and busy preserve focus and input without stealing outside focus
+  [chromium] › floating-catalog.spec.ts:136:2 › floating catalog dense › nested native popup closes synchronously before the containing modal handles Escape
+  [chromium] › floating-catalog.spec.ts:139:2 › floating catalog dense › 320px, 200% text, RTL and reduced motion keep all placements, native edges and accessible operations
+  [chromium] › foundation-date-format-retention.spec.ts:5:2 › DateRange guided: requested format waits for invalid draft repair, clear, or reset
+  [chromium] › foundation-date-format-retention.spec.ts:50:2 › DateRange guided: native badInput survives a requested custom format
+  [chromium] › foundation-date-format-retention.spec.ts:5:2 › DateRange dense: requested format waits for invalid draft repair, clear, or reset
+  [chromium] › foundation-date-format-retention.spec.ts:50:2 › DateRange dense: native badInput survives a requested custom format
+  [chromium] › foundation.spec.ts:4:1 › DateRange retains the last complete range while either raw endpoint is invalid
+  [chromium] › foundation.spec.ts:9:1 › provider and scope reach existing Intl controls while explicit props and app attributes win
+  [chromium] › foundation.spec.ts:13:1 › DateRange same-value reset repairs raw input, blur controls confirmation, and locale/profile retain drafts
+  [chromium] › foundation.spec.ts:20:1 › number options inherit and individual props win without converting the native form value
+  [chromium] › foundation.spec.ts:25:1 › scope honors later application attributes and removes only its own attributes at destroy
+  [chromium] › foundation.spec.ts:31:1 › Composer CVA confirms only app ack, preserves unknown draft, and reset rejects stale ack
+  [chromium] › foundation.spec.ts:37:1 › Composer blur, readonly, disable, same-value reset, and destroy retain ownership of text
+  [chromium] › foundation.spec.ts:42:1 › Chat wrapper is a text form control and explicit reset does not lose a subsequent edit
+  [chromium] › foundation.spec.ts:45:1 › FileUpload CVA is a selected batch, mixed rejection is atomic, and upload intent is separate
+  [chromium] › foundation.spec.ts:51:1 › FileUpload invalid restored values remain on app control, reset repairs, disable/readonly prevent intake
+  [chromium] › foundation.spec.ts:56:1 › FileUpload updateOn blur confirms only when leaving the whole intake
+  [chromium] › foundation.spec.ts:59:1 › locale and profile changes preserve focused Composer/editor DOM, drafts, and explicit labels
+  [chromium] › foundation.spec.ts:64:1 › FileUpload remount keeps retained files, unique intake IDs, and attempts newer than retained retries
+  [chromium] › foundation.spec.ts:71:1 › FileUpload same accepted batch and delayed parent render retain every opaque identity
+  [chromium] › foundation.spec.ts:75:1 › existing native and structured controls publish actual edits and reset with disabled state retained
+  [chromium] › foundation.spec.ts:79:1 › choice controls and token editors use the same app FormControl with native keyboard changes
+  [chromium] › foundation.spec.ts:89:1 › collection, hierarchy, Calendar, InlineEdit and FilterBuilder form edits retain application acknowledgement boundaries
+  [chromium] › foundation.spec.ts:97:1 › Turkish search reaches native selection, Tree and model query paths through the provider
+  [chromium] › foundation.spec.ts:101:1 › Timeline and Scheduler inherit explicit zone/date options, preserve raw app kind, and diagnose unset zone
+  [chromium] › foundation.spec.ts:105:51 › guided: categories inherit complete semantic profile and preserve input/focus at narrow RTL 200%
+  [chromium] › foundation.spec.ts:105:51 › dense: categories inherit complete semantic profile and preserve input/focus at narrow RTL 200%
+  [chromium] › foundation.spec.ts:114:1 › public CDK direction follows locale, explicit parent Dir and dynamic native ancestors without leaking after destroy
+  [chromium] › foundation.spec.ts:123:1 › Chart and Gantt inherit Intl presentation while explicit props and ISO model values retain priority
+  [chromium] › foundation.spec.ts:130:1 › zoneless OnPush consumers observe direct FormControl values for vendor edits and asynchronous acknowledgement/reset
+  [chromium] › foundation.spec.ts:138:1 › library structural diagnostics use scoped messages while app failure text and invalid task values retain their meaning
+  [chromium] › foundation.spec.ts:143:1 › explicit file value and CVA do not reset rejection through incidental validator signal dependencies
+  [chromium] › grid-icon.spec.ts:6:3 › grid and icons guided › automatic columns use the real container; explicit columns and gap apply without losing inputs
+  [chromium] › grid-icon.spec.ts:14:3 › grid and icons guided › multiple/single/none selection, disabled eligibility, busy and empty states are native and actionable
+  [chromium] › grid-icon.spec.ts:22:3 › grid and icons guided › informative icons have names, decorative icons stay hidden, registered custom icons actually draw
+  [chromium] › grid-icon.spec.ts:29:3 › grid and icons guided › RTL enlarged text and a 320px viewport remain bounded and pass automatic accessibility checks
+  [chromium] › grid-icon.spec.ts:6:3 › grid and icons dense › automatic columns use the real container; explicit columns and gap apply without losing inputs
+  [chromium] › grid-icon.spec.ts:14:3 › grid and icons dense › multiple/single/none selection, disabled eligibility, busy and empty states are native and actionable
+  [chromium] › grid-icon.spec.ts:22:3 › grid and icons dense › informative icons have names, decorative icons stay hidden, registered custom icons actually draw
+  [chromium] › grid-icon.spec.ts:29:3 › grid and icons dense › RTL enlarged text and a 320px viewport remain bounded and pass automatic accessibility checks
+  [chromium] › inputs.spec.ts:9:3 › inputs guided › reactive form values, required errors and summary links lead to the native field
+  [chromium] › inputs.spec.ts:18:3 › inputs guided › CVA disable/enable and readonly retain the entered value, reset clears without user events
+  [chromium] › inputs.spec.ts:26:3 › inputs guided › number range/step update and invalid native drafts block the form until repaired
+  [chromium] › inputs.spec.ts:35:3 › inputs guided › text clear/count, textarea growth and password reveal preserve content across profiles
+  [chromium] › inputs.spec.ts:44:3 › inputs guided › grouped multiple choices enforce limits and keep selections outside the search
+  [chromium] › inputs.spec.ts:52:3 › inputs guided › unconfirmed combo edits invalidate the previous choice and same-value reset clears drafts
+  [chromium] › inputs.spec.ts:59:3 › inputs guided › disabled or removed values can be repaired locally and group actions honor updateOn blur
+  [chromium] › inputs.spec.ts:64:3 › inputs guided › IME confirmation Enter neither runs a search nor confirms an active combobox option
+  [chromium] › inputs.spec.ts:71:3 › inputs guided › native select groups, checkbox mixed and busy switch expose state and preserve values
+  [chromium] › inputs.spec.ts:79:3 › inputs guided › combobox keyboard skips disabled choices, Escape/Tab close and stale responses cannot be chosen
+  [chromium] › inputs.spec.ts:88:3 › inputs guided › debounced search emits latest query once; explicit Enter cancels pending duplicate and can repeat
+  [chromium] › inputs.spec.ts:94:3 › inputs guided › 320px, enlarged RTL form stays within the viewport; errors and combobox pass automatic axe
+  [chromium] › inputs.spec.ts:9:3 › inputs dense › reactive form values, required errors and summary links lead to the native field
+  [chromium] › inputs.spec.ts:18:3 › inputs dense › CVA disable/enable and readonly retain the entered value, reset clears without user events
+  [chromium] › inputs.spec.ts:26:3 › inputs dense › number range/step update and invalid native drafts block the form until repaired
+  [chromium] › inputs.spec.ts:35:3 › inputs dense › text clear/count, textarea growth and password reveal preserve content across profiles
+  [chromium] › inputs.spec.ts:44:3 › inputs dense › grouped multiple choices enforce limits and keep selections outside the search
+  [chromium] › inputs.spec.ts:52:3 › inputs dense › unconfirmed combo edits invalidate the previous choice and same-value reset clears drafts
+  [chromium] › inputs.spec.ts:59:3 › inputs dense › disabled or removed values can be repaired locally and group actions honor updateOn blur
+  [chromium] › inputs.spec.ts:64:3 › inputs dense › IME confirmation Enter neither runs a search nor confirms an active combobox option
+  [chromium] › inputs.spec.ts:71:3 › inputs dense › native select groups, checkbox mixed and busy switch expose state and preserve values
+  [chromium] › inputs.spec.ts:79:3 › inputs dense › combobox keyboard skips disabled choices, Escape/Tab close and stale responses cannot be chosen
+  [chromium] › inputs.spec.ts:88:3 › inputs dense › debounced search emits latest query once; explicit Enter cancels pending duplicate and can repeat
+  [chromium] › inputs.spec.ts:94:3 › inputs dense › 320px, enlarged RTL form stays within the viewport; errors and combobox pass automatic axe
+  [chromium] › layout-catalog.spec.ts:6:3 › 配置 guided › PageFrameの全領域を切替えて下書きを保持し、固定・狭幅でもはみ出さない
+  [chromium] › layout-catalog.spec.ts:12:3 › 配置 guided › 固定headerとsidebarは長い本文の実scroll・文字拡大でも操作を覆わない
+  [chromium] › layout-catalog.spec.ts:13:3 › 配置 guided › PageFrameは短いnested scrollを基準に通常フローへ戻り、リンクまで移動できる
+  [chromium] › layout-catalog.spec.ts:14:3 › 配置 guided › Containerは最大幅・背景・余白・配置、Stackは方向・gap・整列・折返しを適用
+  [chromium] › layout-catalog.spec.ts:19:3 › 配置 guided › Gridはコンテナ幅で列とセル結合を変え、行数と入力を保持
+  [chromium] › layout-catalog.spec.ts:22:3 › 配置 guided › Panelの開閉・枠・無効状態は投影した入力と操作の状態を保持
+  [chromium] › layout-catalog.spec.ts:25:3 › 配置 guided › Accordionは初期展開・単一/複数・キー移動・入れ子・アイコン・入力保持
+  [chromium] › layout-catalog.spec.ts:28:3 › 配置 guided › 外部制御で本文を隠す前にfocusを退避する
+  [chromium] › layout-catalog.spec.ts:29:3 › 配置 guided › Splitterはmin/max、Enter復元、上下/RTLのキー、ボタン、無効設定を制御
+  [chromium] › layout-catalog.spec.ts:32:3 › 配置 guided › Splitterは公開入力によるcollapseと折畳み中の比率更新を尊重
+  [chromium] › layout-catalog.spec.ts:33:3 › 配置 guided › Splitterの0/100境界は隠れた入力をTabから除外し、値とfocusを保持
+  [chromium] › layout-catalog.spec.ts:34:3 › 配置 guided › Splitterはdrag中の公開orientation変更でcaptureを解除する
+  [chromium] › layout-catalog.spec.ts:35:3 › 配置 guided › Splitterをpointerで操作して範囲に収め、狭幅でcollapse後に入力へ戻れる
+  [chromium] › layout-catalog.spec.ts:38:3 › 配置 guided › ScrollAreaは制御位置と実scrollを通知し、Stickyは対象領域内のoffsetで固定
+  [chromium] › layout-catalog.spec.ts:41:3 › 配置 guided › Divider・Spacer・AspectRatioは方向・線・間隔・ラベル・比率・object-fitを適用
+  [chromium] › layout-catalog.spec.ts:44:3 › 配置 guided › ResponsiveVisibilityはviewport変更前にfocusを退避し、200%/RTL/減らした動きで値とa11yを保持
+  [chromium] › layout-catalog.spec.ts:6:3 › 配置 dense › PageFrameの全領域を切替えて下書きを保持し、固定・狭幅でもはみ出さない
+  [chromium] › layout-catalog.spec.ts:12:3 › 配置 dense › 固定headerとsidebarは長い本文の実scroll・文字拡大でも操作を覆わない
+  [chromium] › layout-catalog.spec.ts:13:3 › 配置 dense › PageFrameは短いnested scrollを基準に通常フローへ戻り、リンクまで移動できる
+  [chromium] › layout-catalog.spec.ts:14:3 › 配置 dense › Containerは最大幅・背景・余白・配置、Stackは方向・gap・整列・折返しを適用
+  [chromium] › layout-catalog.spec.ts:19:3 › 配置 dense › Gridはコンテナ幅で列とセル結合を変え、行数と入力を保持
+  [chromium] › layout-catalog.spec.ts:22:3 › 配置 dense › Panelの開閉・枠・無効状態は投影した入力と操作の状態を保持
+  [chromium] › layout-catalog.spec.ts:25:3 › 配置 dense › Accordionは初期展開・単一/複数・キー移動・入れ子・アイコン・入力保持
+  [chromium] › layout-catalog.spec.ts:28:3 › 配置 dense › 外部制御で本文を隠す前にfocusを退避する
+  [chromium] › layout-catalog.spec.ts:29:3 › 配置 dense › Splitterはmin/max、Enter復元、上下/RTLのキー、ボタン、無効設定を制御
+  [chromium] › layout-catalog.spec.ts:32:3 › 配置 dense › Splitterは公開入力によるcollapseと折畳み中の比率更新を尊重
+  [chromium] › layout-catalog.spec.ts:33:3 › 配置 dense › Splitterの0/100境界は隠れた入力をTabから除外し、値とfocusを保持
+  [chromium] › layout-catalog.spec.ts:34:3 › 配置 dense › Splitterはdrag中の公開orientation変更でcaptureを解除する
+  [chromium] › layout-catalog.spec.ts:35:3 › 配置 dense › Splitterをpointerで操作して範囲に収め、狭幅でcollapse後に入力へ戻れる
+  [chromium] › layout-catalog.spec.ts:38:3 › 配置 dense › ScrollAreaは制御位置と実scrollを通知し、Stickyは対象領域内のoffsetで固定
+  [chromium] › layout-catalog.spec.ts:41:3 › 配置 dense › Divider・Spacer・AspectRatioは方向・線・間隔・ラベル・比率・object-fitを適用
+  [chromium] › layout-catalog.spec.ts:44:3 › 配置 dense › ResponsiveVisibilityはviewport変更前にfocusを退避し、200%/RTL/減らした動きで値とa11yを保持
+  [chromium] › layout-catalog.spec.ts:50:106 › touchの配置 guided › タップで展開と比率ボタンを操作し、入力を保持する
+  [chromium] › layout-catalog.spec.ts:50:106 › touchの配置 dense › タップで展開と比率ボタンを操作し、入力を保持する
+  [chromium] › layout-regressions.spec.ts:23:5 › guided › checkboxを持つFormFieldはhiddenでDOMと値を保持し、表示・Tab順・直接focusから外れる
+  [chromium] › layout-regressions.spec.ts:112:5 › guided › 320px幅の長い直接投影ラベルはbuttonとaの通常・処理中、100%・200%文字サイズで枠内に収まる
+  [chromium] › layout-regressions.spec.ts:23:5 › dense › checkboxを持つFormFieldはhiddenでDOMと値を保持し、表示・Tab順・直接focusから外れる
+  [chromium] › layout-regressions.spec.ts:112:5 › dense › 320px幅の長い直接投影ラベルはbuttonとaの通常・処理中、100%・200%文字サイズで枠内に収まる
+  [chromium] › local-date-defaults.spec.ts:7:2 › local defaults guided Asia/Tokyo › empty calendar and range use local today/month; explicit civil values and profile changes retain selection
+  [chromium] › local-date-defaults.spec.ts:7:2 › local defaults guided America/Los_Angeles › empty calendar and range use local today/month; explicit civil values and profile changes retain selection
+  [chromium] › local-date-defaults.spec.ts:7:2 › local defaults dense Asia/Tokyo › empty calendar and range use local today/month; explicit civil values and profile changes retain selection
+  [chromium] › local-date-defaults.spec.ts:7:2 › local defaults dense America/Los_Angeles › empty calendar and range use local today/month; explicit civil values and profile changes retain selection
+  [chromium] › media-lifetime.spec.ts:18:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction
+  [chromium] › media-lifetime.spec.ts:63:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs
+  [chromium] › media-lifetime.spec.ts:109:1 › PDF worker startup failure reports an error and terminates its native Worker
+  [chromium] › media-regressions.spec.ts:28:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup
+  [chromium] › media-regressions.spec.ts:85:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue
+  [chromium] › media-regressions.spec.ts:119:1 › PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL
+  [chromium] › media-regressions.spec.ts:149:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL
+  [chromium] › media-regressions.spec.ts:197:1 › desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling
+  [chromium] › media-regressions.spec.ts:225:1 › Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control
+  [chromium] › media.spec.ts:5:1 › actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus
+  [chromium] › media.spec.ts:6:1 › image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained
+  [chromium] › media.spec.ts:7:1 › carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal
+  [chromium] › media.spec.ts:8:1 › image compare native keyboard/boundary endpoints, direction and RTL
+  [chromium] › media.spec.ts:9:1 › crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates
+  [chromium] › media.spec.ts:10:1 › PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery
+  [chromium] › media.spec.ts:11:1 › actual QR/Barcode encoding independently decodes raster; data change/error recovery
+  [chromium] › media.spec.ts:12:1 › native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen
+  [chromium] › media.spec.ts:13:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe
+  [chromium] › navigation-catalog.spec.ts:7:2 › navigation catalog guided › native navigation supports orientation, current page, icons, wrapping and local scrolling
+  [chromium] › navigation-catalog.spec.ts:10:2 › navigation catalog guided › side navigation preserves nested links, native disclosure and current page
+  [chromium] › navigation-catalog.spec.ts:13:2 › navigation catalog guided › external collapse, parent close and destination replacement repair only owned focus
+  [chromium] › navigation-catalog.spec.ts:16:2 › navigation catalog guided › rail uses the dedicated profile width and preserves accessible names with an explicit expanded width
+  [chromium] › navigation-catalog.spec.ts:19:2 › navigation catalog guided › dock changes selection, label visibility and all fixed edges without losing native destinations
+  [chromium] › navigation-catalog.spec.ts:22:2 › navigation catalog guided › breadcrumb folding keeps every intermediate native link reachable and current page visible
+  [chromium] › navigation-catalog.spec.ts:25:2 › navigation catalog guided › tabs keep manual activation, native panel entry and skip disabled tabs in both orientations
+  [chromium] › navigation-catalog.spec.ts:28:2 › navigation catalog guided › actual tab reordering and closing retain the same native draft editor and support a held close
+  [chromium] › navigation-catalog.spec.ts:31:2 › navigation catalog guided › rapid tab arrows and RTL preserve logical movement while retaining unrelated focus
+  [chromium] › navigation-catalog.spec.ts:34:2 › navigation catalog guided › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite
+  [chromium] › navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex
+  [chromium] › navigation-catalog.spec.ts:62:2 › navigation catalog guided › three-level menubar restores parents and crosses popup boundaries to the next root
+  [chromium] › navigation-catalog.spec.ts:65:2 › navigation catalog guided › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus
+  [chromium] › navigation-catalog.spec.ts:68:2 › navigation catalog guided › mega menu has grouped native destinations, descriptions, nested links and close focus
+  [chromium] › navigation-catalog.spec.ts:71:2 › navigation catalog guided › palette opening and arrow movement keep search and the active command name visible at enlarged text
+  [chromium] › navigation-catalog.spec.ts:83:2 › navigation catalog guided › command palette performs search, exact shortcuts, history, busy prevention and error retry
+  [chromium] › navigation-catalog.spec.ts:86:2 › navigation catalog guided › palette keeps ordinary typing, yields handled/IME keys, retains drafts through replacement and ignores disabled commands
+  [chromium] › navigation-catalog.spec.ts:89:2 › navigation catalog guided › anchor navigation scrolls and focuses actual headings with offsets and releases only owned attributes
+  [chromium] › navigation-catalog.spec.ts:92:2 › navigation catalog guided › anchor navigation handles a local scroll root, target disappearance and real fixed/sticky positioning
+  [chromium] › navigation-catalog.spec.ts:95:2 › navigation catalog guided › 320px and 200% text preserve all navigation labels and constrain popups to the viewport
+  [chromium] › navigation-catalog.spec.ts:99:2 › navigation catalog guided › final tab removal uses the explicit fallback and leaves no empty tab composite
+  [chromium] › navigation-catalog.spec.ts:102:2 › navigation catalog guided › menubar preserves symbolic IDs, leaf radio groups and rapid root movement
+  [chromium] › navigation-catalog.spec.ts:105:2 › navigation catalog guided › sticky navigation remains at its offset during real window scrolling
+  [chromium] › navigation-catalog.spec.ts:108:2 › navigation catalog guided › anchor cleanup preserves app replacements to target attributes and unrelated focus
+  [chromium] › navigation-catalog.spec.ts:111:2 › navigation catalog guided › anchor release preserves inline priority and application changes to priority only
+  [chromium] › navigation-catalog.spec.ts:126:2 › navigation catalog guided › palette arrows use displayed group order and leave disabled choices unexecuted
+  [chromium] › navigation-catalog.spec.ts:129:2 › navigation catalog guided › native disclosure hiding a popup anchor closes it and repairs focus to an explicit fallback
+  [chromium] › navigation-catalog.spec.ts:132:2 › navigation catalog guided › palette opening shortcut remains inside its overlay scope and yields another native modal
+  [chromium] › navigation-catalog.spec.ts:135:2 › navigation catalog guided › nested native modal retains its focus and yields palette activation until the inner confirmation closes
+  [chromium] › navigation-catalog.spec.ts:139:2 › navigation catalog guided › anchor destination follows native disclosure visibility and recovers after reopening
+  [chromium] › navigation-catalog.spec.ts:142:2 › navigation catalog guided › the page reserves a sticky region at enlarged text so the focused heading stays visible and releases its reservation
+  [chromium] › navigation-catalog.spec.ts:169:2 › navigation catalog guided › anchor movement and current position honor CSS arithmetic padding of window and local scrollports
+  [chromium] › navigation-catalog.spec.ts:193:2 › navigation catalog guided › automated accessibility finds no violations in default, menu, mega menu and palette states
+  [chromium] › navigation-catalog.spec.ts:7:2 › navigation catalog dense › native navigation supports orientation, current page, icons, wrapping and local scrolling
+  [chromium] › navigation-catalog.spec.ts:10:2 › navigation catalog dense › side navigation preserves nested links, native disclosure and current page
+  [chromium] › navigation-catalog.spec.ts:13:2 › navigation catalog dense › external collapse, parent close and destination replacement repair only owned focus
+  [chromium] › navigation-catalog.spec.ts:16:2 › navigation catalog dense › rail uses the dedicated profile width and preserves accessible names with an explicit expanded width
+  [chromium] › navigation-catalog.spec.ts:19:2 › navigation catalog dense › dock changes selection, label visibility and all fixed edges without losing native destinations
+  [chromium] › navigation-catalog.spec.ts:22:2 › navigation catalog dense › breadcrumb folding keeps every intermediate native link reachable and current page visible
+  [chromium] › navigation-catalog.spec.ts:25:2 › navigation catalog dense › tabs keep manual activation, native panel entry and skip disabled tabs in both orientations
+  [chromium] › navigation-catalog.spec.ts:28:2 › navigation catalog dense › actual tab reordering and closing retain the same native draft editor and support a held close
+  [chromium] › navigation-catalog.spec.ts:31:2 › navigation catalog dense › rapid tab arrows and RTL preserve logical movement while retaining unrelated focus
+  [chromium] › navigation-catalog.spec.ts:34:2 › navigation catalog dense › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite
+  [chromium] › navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex
+  [chromium] › navigation-catalog.spec.ts:62:2 › navigation catalog dense › three-level menubar restores parents and crosses popup boundaries to the next root
+  [chromium] › navigation-catalog.spec.ts:65:2 › navigation catalog dense › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus
+  [chromium] › navigation-catalog.spec.ts:68:2 › navigation catalog dense › mega menu has grouped native destinations, descriptions, nested links and close focus
+  [chromium] › navigation-catalog.spec.ts:71:2 › navigation catalog dense › palette opening and arrow movement keep search and the active command name visible at enlarged text
+  [chromium] › navigation-catalog.spec.ts:83:2 › navigation catalog dense › command palette performs search, exact shortcuts, history, busy prevention and error retry
+  [chromium] › navigation-catalog.spec.ts:86:2 › navigation catalog dense › palette keeps ordinary typing, yields handled/IME keys, retains drafts through replacement and ignores disabled commands
+  [chromium] › navigation-catalog.spec.ts:89:2 › navigation catalog dense › anchor navigation scrolls and focuses actual headings with offsets and releases only owned attributes
+  [chromium] › navigation-catalog.spec.ts:92:2 › navigation catalog dense › anchor navigation handles a local scroll root, target disappearance and real fixed/sticky positioning
+  [chromium] › navigation-catalog.spec.ts:95:2 › navigation catalog dense › 320px and 200% text preserve all navigation labels and constrain popups to the viewport
+  [chromium] › navigation-catalog.spec.ts:99:2 › navigation catalog dense › final tab removal uses the explicit fallback and leaves no empty tab composite
+  [chromium] › navigation-catalog.spec.ts:102:2 › navigation catalog dense › menubar preserves symbolic IDs, leaf radio groups and rapid root movement
+  [chromium] › navigation-catalog.spec.ts:105:2 › navigation catalog dense › sticky navigation remains at its offset during real window scrolling
+  [chromium] › navigation-catalog.spec.ts:108:2 › navigation catalog dense › anchor cleanup preserves app replacements to target attributes and unrelated focus
+  [chromium] › navigation-catalog.spec.ts:111:2 › navigation catalog dense › anchor release preserves inline priority and application changes to priority only
+  [chromium] › navigation-catalog.spec.ts:126:2 › navigation catalog dense › palette arrows use displayed group order and leave disabled choices unexecuted
+  [chromium] › navigation-catalog.spec.ts:129:2 › navigation catalog dense › native disclosure hiding a popup anchor closes it and repairs focus to an explicit fallback
+  [chromium] › navigation-catalog.spec.ts:132:2 › navigation catalog dense › palette opening shortcut remains inside its overlay scope and yields another native modal
+  [chromium] › navigation-catalog.spec.ts:135:2 › navigation catalog dense › nested native modal retains its focus and yields palette activation until the inner confirmation closes
+  [chromium] › navigation-catalog.spec.ts:139:2 › navigation catalog dense › anchor destination follows native disclosure visibility and recovers after reopening
+  [chromium] › navigation-catalog.spec.ts:142:2 › navigation catalog dense › the page reserves a sticky region at enlarged text so the focused heading stays visible and releases its reservation
+  [chromium] › navigation-catalog.spec.ts:169:2 › navigation catalog dense › anchor movement and current position honor CSS arithmetic padding of window and local scrollports
+  [chromium] › navigation-catalog.spec.ts:193:2 › navigation catalog dense › automated accessibility finds no violations in default, menu, mega menu and palette states
+  [chromium] › navigation-regressions.spec.ts:78:5 › guided › 長いnavとパンくずの全文字は320px・100/200%でlistとlinkの枠内に収まりnative操作を維持する
+  [chromium] › navigation-regressions.spec.ts:118:5 › guided › 明るいaction背景でもnav・パンくず・選択tabの独立した文字色が実背景で4.5:1を保つ
+  [chromium] › navigation-regressions.spec.ts:78:5 › dense › 長いnavとパンくずの全文字は320px・100/200%でlistとlinkの枠内に収まりnative操作を維持する
+  [chromium] › navigation-regressions.spec.ts:118:5 › dense › 明るいaction背景でもnav・パンくず・選択tabの独立した文字色が実背景で4.5:1を保つ
+  [chromium] › overlay-catalog.spec.ts:8:3 › dense floating regions › Card templates, region switches, loading and fold preserve edits and recover focus
+  [chromium] › overlay-catalog.spec.ts:18:3 › dense floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert
+  [chromium] › overlay-catalog.spec.ts:24:3 › dense floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く
+  [chromium] › overlay-catalog.spec.ts:25:3 › dense floating regions › root inert removes the native menu popup through the shared registry
+  [chromium] › overlay-catalog.spec.ts:31:3 › dense floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close
+  [chromium] › overlay-catalog.spec.ts:36:3 › dense floating regions › hover and context triggers close and restore the context target
+  [chromium] › overlay-catalog.spec.ts:40:3 › dense floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers
+  [chromium] › overlay-catalog.spec.ts:43:3 › dense floating regions › Separate OverlayHost scopes consume one outside event for only the top popup
+  [chromium] › overlay-catalog.spec.ts:46:3 › dense floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup
+  [chromium] › overlay-catalog.spec.ts:50:3 › dense floating regions › Dialog modal input changes actual native state while open without emitting completion
+  [chromium] › overlay-catalog.spec.ts:53:3 › dense floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result
+  [chromium] › overlay-catalog.spec.ts:58:3 › dense floating regions › Dialog busy, Escape policy, unsaved veto and explicit programmatic close retain input
+  [chromium] › overlay-catalog.spec.ts:63:3 › dense floating regions › Dialog nonmodal/outside, keyboard move/resize and maximize/restore
+  [chromium] › overlay-catalog.spec.ts:69:3 › dense floating regions › Dialog pointer handles and modal backdrop honor outside policy and repeated opens
+  [chromium] › overlay-catalog.spec.ts:74:3 › dense floating regions › Snackbar five seconds and OFF ignores zero duration; action restores focus
+  [chromium] › overlay-catalog.spec.ts:78:3 › dense floating regions › Snackbar overlapping hover/focus pause resumes only remaining time
+  [chromium] › overlay-catalog.spec.ts:81:3 › dense floating regions › Notification FIFO starts timers on display, concurrency, dedup and replacement survive old action
+  [chromium] › overlay-catalog.spec.ts:86:3 › dense floating regions › Service clear restores focused notification origin and nested direction keeps centered actions in viewport
+  [chromium] › overlay-catalog.spec.ts:90:3 › dense floating regions › Long persistent standalone notice remains readable and closable at narrow/200%
+  [chromium] › overlay-catalog.spec.ts:93:3 › dense floating regions › Confirm/Alert explicit acknowledgement and FormDialog unsaved/failure/retry preserve values
+  [chromium] › overlay-catalog.spec.ts:99:3 › dense floating regions › DynamicDialog passes data/results and scopes interactive notifications inside native modal
+  [chromium] › overlay-catalog.spec.ts:102:3 › dense floating regions › Background notification dismissal does not steal focus from another service with the same local ID
+  [chromium] › overlay-catalog.spec.ts:105:3 › dense floating regions › narrow, 200%, RTL, reduced motion and accessibility of exposed regions
+  [chromium] › overlay-catalog.spec.ts:8:3 › guided floating regions › Card templates, region switches, loading and fold preserve edits and recover focus
+  [chromium] › overlay-catalog.spec.ts:18:3 › guided floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert
+  [chromium] › overlay-catalog.spec.ts:24:3 › guided floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く
+  [chromium] › overlay-catalog.spec.ts:25:3 › guided floating regions › root inert removes the native menu popup through the shared registry
+  [chromium] › overlay-catalog.spec.ts:31:3 › guided floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close
+  [chromium] › overlay-catalog.spec.ts:36:3 › guided floating regions › hover and context triggers close and restore the context target
+  [chromium] › overlay-catalog.spec.ts:40:3 › guided floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers
+  [chromium] › overlay-catalog.spec.ts:43:3 › guided floating regions › Separate OverlayHost scopes consume one outside event for only the top popup
+  [chromium] › overlay-catalog.spec.ts:46:3 › guided floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup
+  [chromium] › overlay-catalog.spec.ts:50:3 › guided floating regions › Dialog modal input changes actual native state while open without emitting completion
+  [chromium] › overlay-catalog.spec.ts:53:3 › guided floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result
+  [chromium] › overlay-catalog.spec.ts:58:3 › guided floating regions › Dialog busy, Escape policy, unsaved veto and explicit programmatic close retain input
+  [chromium] › overlay-catalog.spec.ts:63:3 › guided floating regions › Dialog nonmodal/outside, keyboard move/resize and maximize/restore
+  [chromium] › overlay-catalog.spec.ts:69:3 › guided floating regions › Dialog pointer handles and modal backdrop honor outside policy and repeated opens
+  [chromium] › overlay-catalog.spec.ts:74:3 › guided floating regions › Snackbar five seconds and OFF ignores zero duration; action restores focus
+  [chromium] › overlay-catalog.spec.ts:78:3 › guided floating regions › Snackbar overlapping hover/focus pause resumes only remaining time
+  [chromium] › overlay-catalog.spec.ts:81:3 › guided floating regions › Notification FIFO starts timers on display, concurrency, dedup and replacement survive old action
+  [chromium] › overlay-catalog.spec.ts:86:3 › guided floating regions › Service clear restores focused notification origin and nested direction keeps centered actions in viewport
+  [chromium] › overlay-catalog.spec.ts:90:3 › guided floating regions › Long persistent standalone notice remains readable and closable at narrow/200%
+  [chromium] › overlay-catalog.spec.ts:93:3 › guided floating regions › Confirm/Alert explicit acknowledgement and FormDialog unsaved/failure/retry preserve values
+  [chromium] › overlay-catalog.spec.ts:99:3 › guided floating regions › DynamicDialog passes data/results and scopes interactive notifications inside native modal
+  [chromium] › overlay-catalog.spec.ts:102:3 › guided floating regions › Background notification dismissal does not steal focus from another service with the same local ID
+  [chromium] › overlay-catalog.spec.ts:105:3 › guided floating regions › narrow, 200%, RTL, reduced motion and accessibility of exposed regions
+  [chromium] › profiles.spec.ts:70:1 › 初期profileと表示設定の選択肢を生成metadataから読み、未定義IDを拒否する
+  [chromium] › profiles.spec.ts:102:1 › guidedとdenseの切替を部品とTailwind utilityの実際の色・書体・文字・余白・角丸へ反映する
+  [chromium] › profiles.spec.ts:140:1 › 表示設定を変更しても同じDOMの入力・選択・部分欠損・非表示領域を保持する
+  [chromium] › profiles.spec.ts:175:1 › 処理中の表示設定変更でも一回の保存処理と完了結果を保持する
+  [chromium] › profiles.spec.ts:204:1 › 入れ子のprofileは外側の全役割から独立し、部品とutilityの見た目も一致する
+  [chromium] › profiles.spec.ts:230:3 › guidedの処理中リンク・操作・展開状態にaxe違反がなく、キーボードfocusを維持する
+  [chromium] › profiles.spec.ts:230:3 › denseの処理中リンク・操作・展開状態にaxe違反がなく、キーボードfocusを維持する
+  [chromium] › scheduler-catalog.spec.ts:11:1 › scheduler catalog guided › fresh-review: asynchronous move completion preserves projected memo focus/value/DOM and owned editor Escape
+  [chromium] › scheduler-catalog.spec.ts:21:1 › scheduler catalog guided › 4 views, actual calendar cells/continuations and typed CVA input identity
+  [chromium] › scheduler-catalog.spec.ts:25:1 › scheduler catalog guided › offset/DST display, timezone/date navigation and resource/time-band controls
+  [chromium] › scheduler-catalog.spec.ts:28:1 › scheduler catalog guided › exact gap/fold native time-band controls, agenda and preserved errors/drafts: host default Temporal
+  [chromium] › scheduler-catalog.spec.ts:35:1 › scheduler catalog guided › exact gap/fold native time-band controls, agenda and preserved errors/drafts: forced temporal-polyfill 1.0.5
+  [chromium] › scheduler-catalog.spec.ts:42:1 › scheduler catalog guided › non-hour band, wholly skipped day, midnight fold and civil week/month moves: host default Temporal
+  [chromium] › scheduler-catalog.spec.ts:48:1 › scheduler catalog guided › non-hour band, wholly skipped day, midnight fold and civil week/month moves: forced temporal-polyfill 1.0.5
+  [chromium] › scheduler-catalog.spec.ts:54:1 › scheduler catalog guided › native move keeps DST gap/fold drafts, failure/retry and old results
+  [chromium] › scheduler-catalog.spec.ts:57:1 › scheduler catalog guided › external source invalidates pending, retains draft and explicit reset/permissions
+  [chromium] › scheduler-catalog.spec.ts:60:1 › scheduler catalog guided › view/profile/empty input preservation, native Escape and busy focus recovery
+  [chromium] › scheduler-catalog.spec.ts:63:1 › scheduler catalog guided › projected app form reset/disable and own focus after event removal
+  [chromium] › scheduler-catalog.spec.ts:66:1 › scheduler catalog guided › destroyed owner rejects its old move response
+  [chromium] › scheduler-catalog.spec.ts:69:1 › scheduler catalog guided › 320px/200%/RTL/reduced motion actual move editor and axe
+  [chromium] › scheduler-catalog.spec.ts:11:1 › scheduler catalog dense › fresh-review: asynchronous move completion preserves projected memo focus/value/DOM and owned editor Escape
+  [chromium] › scheduler-catalog.spec.ts:21:1 › scheduler catalog dense › 4 views, actual calendar cells/continuations and typed CVA input identity
+  [chromium] › scheduler-catalog.spec.ts:25:1 › scheduler catalog dense › offset/DST display, timezone/date navigation and resource/time-band controls
+  [chromium] › scheduler-catalog.spec.ts:28:1 › scheduler catalog dense › exact gap/fold native time-band controls, agenda and preserved errors/drafts: host default Temporal
+  [chromium] › scheduler-catalog.spec.ts:35:1 › scheduler catalog dense › exact gap/fold native time-band controls, agenda and preserved errors/drafts: forced temporal-polyfill 1.0.5
+  [chromium] › scheduler-catalog.spec.ts:42:1 › scheduler catalog dense › non-hour band, wholly skipped day, midnight fold and civil week/month moves: host default Temporal
+  [chromium] › scheduler-catalog.spec.ts:48:1 › scheduler catalog dense › non-hour band, wholly skipped day, midnight fold and civil week/month moves: forced temporal-polyfill 1.0.5
+  [chromium] › scheduler-catalog.spec.ts:54:1 › scheduler catalog dense › native move keeps DST gap/fold drafts, failure/retry and old results
+  [chromium] › scheduler-catalog.spec.ts:57:1 › scheduler catalog dense › external source invalidates pending, retains draft and explicit reset/permissions
+  [chromium] › scheduler-catalog.spec.ts:60:1 › scheduler catalog dense › view/profile/empty input preservation, native Escape and busy focus recovery
+  [chromium] › scheduler-catalog.spec.ts:63:1 › scheduler catalog dense › projected app form reset/disable and own focus after event removal
+  [chromium] › scheduler-catalog.spec.ts:66:1 › scheduler catalog dense › destroyed owner rejects its old move response
+  [chromium] › scheduler-catalog.spec.ts:69:1 › scheduler catalog dense › 320px/200%/RTL/reduced motion actual move editor and axe
+  [chromium] › scheduler-focus-transfer.spec.ts:5:3 › queued scheduler close preserves synchronous application focus transfer: guided
+  [chromium] › scheduler-focus-transfer.spec.ts:5:3 › queued scheduler complete preserves synchronous application focus transfer: guided
+  [chromium] › scheduler-focus-transfer.spec.ts:5:3 › queued scheduler close preserves synchronous application focus transfer: dense
+  [chromium] › scheduler-focus-transfer.spec.ts:5:3 › queued scheduler complete preserves synchronous application focus transfer: dense
+  [chromium] › scheduler-id-boundaries.spec.ts:5:2 › Scheduler accepted UTF-16 and prefix/suffix IDs preserve labels, focus and raw move IDs: guided
+  [chromium] › scheduler-id-boundaries.spec.ts:5:2 › Scheduler accepted UTF-16 and prefix/suffix IDs preserve labels, focus and raw move IDs: dense
+  [chromium] › scheduler-message-retention.spec.ts:3:41 › Scheduler guided: changing date, resource or zone clears the preceding owned status
+  [chromium] › scheduler-message-retention.spec.ts:3:41 › Scheduler dense: changing date, resource or zone clears the preceding owned status
+  [chromium] › sheet-locale-errors.spec.ts:4:41 › guided: formula worker structural errors follow the live locale while app error and formula source stay unchanged
+  [chromium] › sheet-locale-errors.spec.ts:4:41 › dense: formula worker structural errors follow the live locale while app error and formula source stay unchanged
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Chart
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Map
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Gantt
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Kanban
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Spreadsheet
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - RichText
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Markdown
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Code
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Diff / JSON
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - FileExplorer
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Diagram
+  [chromium] › specialist-accessibility.spec.ts:8:3 › guided: specialist axe / 320px / 200% / RTL / reduced motion - Chat
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Chart
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Map
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Gantt
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Kanban
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Spreadsheet
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - RichText
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Markdown
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Code
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Diff / JSON
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - FileExplorer
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Diagram
+  [chromium] › specialist-accessibility.spec.ts:8:3 › dense: specialist axe / 320px / 200% / RTL / reduced motion - Chat
+  [chromium] › specialist-catalog.spec.ts:10:3 › guided: specialist functional › Chart: all 10 requested types, selection, explicit missing and comparison
+  [chromium] › specialist-catalog.spec.ts:15:3 › guided: specialist functional › Map: local GeoJSON worker rendering, markers, region selection and controlled zoom
+  [chromium] › specialist-catalog.spec.ts:19:3 › guided: specialist functional › Gantt: periods, dependency, missing progress, scale and editing
+  [chromium] › specialist-catalog.spec.ts:23:3 › guided: specialist functional › Kanban: keyboard reorder, cross-column move and actual WIP limit
+  [chromium] › specialist-catalog.spec.ts:27:3 › guided: specialist functional › Spreadsheet: worker formulas, keyboard edits, range selection, fixed cells and CSV roundtrip
+  [chromium] › specialist-catalog.spec.ts:31:3 › guided: specialist functional › RichText: real typing, bold formatting, safe link, image and readonly draft retention
+  [chromium] › specialist-catalog.spec.ts:37:3 › guided: specialist functional › Markdown: actual editing, sanitized preview, split and persistent hidden editor
+  [chromium] › specialist-catalog.spec.ts:41:3 › guided: specialist functional › Code: CVA initial value, language switch, completion, line numbers and profile preservation
+  [chromium] › specialist-catalog.spec.ts:45:3 › guided: specialist functional › Diff/JSON: actual merge chunks, search, raw-precision hierarchy and real clipboard copy
+  [chromium] › specialist-catalog.spec.ts:49:3 › guided: specialist functional › FileExplorer: keyboard hierarchy, selection, search, layouts and failed operation keeps draft
+  [chromium] › specialist-catalog.spec.ts:53:3 › guided: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+  [chromium] › specialist-catalog.spec.ts:57:3 › guided: specialist functional › Chat: real file attachment metadata, app-controlled sending/failure/retry/history and draft retention
+  [chromium] › specialist-catalog.spec.ts:10:3 › dense: specialist functional › Chart: all 10 requested types, selection, explicit missing and comparison
+  [chromium] › specialist-catalog.spec.ts:15:3 › dense: specialist functional › Map: local GeoJSON worker rendering, markers, region selection and controlled zoom
+  [chromium] › specialist-catalog.spec.ts:19:3 › dense: specialist functional › Gantt: periods, dependency, missing progress, scale and editing
+  [chromium] › specialist-catalog.spec.ts:23:3 › dense: specialist functional › Kanban: keyboard reorder, cross-column move and actual WIP limit
+  [chromium] › specialist-catalog.spec.ts:27:3 › dense: specialist functional › Spreadsheet: worker formulas, keyboard edits, range selection, fixed cells and CSV roundtrip
+  [chromium] › specialist-catalog.spec.ts:31:3 › dense: specialist functional › RichText: real typing, bold formatting, safe link, image and readonly draft retention
+  [chromium] › specialist-catalog.spec.ts:37:3 › dense: specialist functional › Markdown: actual editing, sanitized preview, split and persistent hidden editor
+  [chromium] › specialist-catalog.spec.ts:41:3 › dense: specialist functional › Code: CVA initial value, language switch, completion, line numbers and profile preservation
+  [chromium] › specialist-catalog.spec.ts:45:3 › dense: specialist functional › Diff/JSON: actual merge chunks, search, raw-precision hierarchy and real clipboard copy
+  [chromium] › specialist-catalog.spec.ts:49:3 › dense: specialist functional › FileExplorer: keyboard hierarchy, selection, search, layouts and failed operation keeps draft
+  [chromium] › specialist-catalog.spec.ts:53:3 › dense: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+  [chromium] › specialist-catalog.spec.ts:57:3 › dense: specialist functional › Chat: real file attachment metadata, app-controlled sending/failure/retry/history and draft retention
+  [chromium] › specialist-chart-explorer.spec.ts:7:2 › guided: chart legend stays clear of axis labels and each gauge value has an independent readable position
+  [chromium] › specialist-chart-explorer.spec.ts:51:2 › guided: rich text formatting and Markdown display controls expose their named groups
+  [chromium] › specialist-chart-explorer.spec.ts:60:2 › guided: heatmap paints real cells, rejects an incompatible explicit axis, and restores the same data
+  [chromium] › specialist-chart-explorer.spec.ts:82:2 › guided: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name
+  [chromium] › specialist-chart-explorer.spec.ts:101:2 › guided: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact
+  [chromium] › specialist-chart-explorer.spec.ts:7:2 › dense: chart legend stays clear of axis labels and each gauge value has an independent readable position
+  [chromium] › specialist-chart-explorer.spec.ts:51:2 › dense: rich text formatting and Markdown display controls expose their named groups
+  [chromium] › specialist-chart-explorer.spec.ts:60:2 › dense: heatmap paints real cells, rejects an incompatible explicit axis, and restores the same data
+  [chromium] › specialist-chart-explorer.spec.ts:82:2 › dense: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name
+  [chromium] › specialist-chart-explorer.spec.ts:101:2 › dense: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact
+  [chromium] › specialist-gauge-responsive.spec.ts:47:2 › guided: chart names, labels and every gauge selection survive 320px, 200% and RTL with native scroll access
+  [chromium] › specialist-gauge-responsive.spec.ts:47:2 › dense: chart names, labels and every gauge selection survive 320px, 200% and RTL with native scroll access
+  [chromium] › specialist-recovery.spec.ts:10:3 › guided: specialist recovery › Spreadsheet keeps unaccepted draft through busy and disabled; Escape restores source
+  [chromium] › specialist-recovery.spec.ts:14:3 › guided: specialist recovery › Code CVA draft, readonly, hidden, profile and undo preserve the editor instance
+  [chromium] › specialist-recovery.spec.ts:18:3 › guided: specialist recovery › Gantt rejects invalid progress without publishing invalid task and accepts repair
+  [chromium] › specialist-recovery.spec.ts:22:3 › guided: specialist recovery › Rich document URL boundary blocks invalid external document and permits explicit recovery
+  [chromium] › specialist-recovery.spec.ts:26:3 › guided: specialist recovery › Clipboard rejection reports failure; subsequent real clipboard write succeeds
+  [chromium] › specialist-recovery.spec.ts:30:3 › guided: specialist recovery › Chat unknown send result keeps draft and prevents retry until app explicitly resets
+  [chromium] › specialist-recovery.spec.ts:34:3 › guided: specialist recovery › Kanban move retains focus on moved card; disabled prevents data changes
+  [chromium] › specialist-recovery.spec.ts:38:3 › guided: specialist recovery › Destroy and remount dispose renderer nodes and restore controlled application values
+  [chromium] › specialist-recovery.spec.ts:10:3 › dense: specialist recovery › Spreadsheet keeps unaccepted draft through busy and disabled; Escape restores source
+  [chromium] › specialist-recovery.spec.ts:14:3 › dense: specialist recovery › Code CVA draft, readonly, hidden, profile and undo preserve the editor instance
+  [chromium] › specialist-recovery.spec.ts:18:3 › dense: specialist recovery › Gantt rejects invalid progress without publishing invalid task and accepts repair
+  [chromium] › specialist-recovery.spec.ts:22:3 › dense: specialist recovery › Rich document URL boundary blocks invalid external document and permits explicit recovery
+  [chromium] › specialist-recovery.spec.ts:26:3 › dense: specialist recovery › Clipboard rejection reports failure; subsequent real clipboard write succeeds
+  [chromium] › specialist-recovery.spec.ts:30:3 › dense: specialist recovery › Chat unknown send result keeps draft and prevents retry until app explicitly resets
+  [chromium] › specialist-recovery.spec.ts:34:3 › dense: specialist recovery › Kanban move retains focus on moved card; disabled prevents data changes
+  [chromium] › specialist-recovery.spec.ts:38:3 › dense: specialist recovery › Destroy and remount dispose renderer nodes and restore controlled application values
+  [chromium] › specialist-rich-boundary.spec.ts:7:2 › guided: native HTML paste rejects unsafe URLs before DOM and CVA publication, then safe editing recovers
+  [chromium] › specialist-rich-boundary.spec.ts:7:2 › dense: native HTML paste rejects unsafe URLs before DOM and CVA publication, then safe editing recovers
+  [chromium] › specialist-sheet-startup.spec.ts:15:2 › guided: real split formula worker cold-start fetch above 2.5s succeeds after readiness
+  [chromium] › specialist-sheet-startup.spec.ts:23:2 › guided: real worker without readiness fails within startup bound; retry keeps raw formula and unaccepted editor
+  [chromium] › specialist-sheet-startup.spec.ts:31:2 › guided: real worker stalls after readiness and calculation is bounded separately; explicit retry succeeds
+  [chromium] › specialist-sheet-startup.spec.ts:36:2 › guided: real worker script error remains a failure and terminates; retry preserves draft and source
+  [chromium] › specialist-sheet-startup.spec.ts:41:2 › guided: a held actual native parser reply is rejected after a newer sheet request
+  [chromium] › specialist-sheet-startup.spec.ts:15:2 › dense: real split formula worker cold-start fetch above 2.5s succeeds after readiness
+  [chromium] › specialist-sheet-startup.spec.ts:23:2 › dense: real worker without readiness fails within startup bound; retry keeps raw formula and unaccepted editor
+  [chromium] › specialist-sheet-startup.spec.ts:31:2 › dense: real worker stalls after readiness and calculation is bounded separately; explicit retry succeeds
+  [chromium] › specialist-sheet-startup.spec.ts:36:2 › dense: real worker script error remains a failure and terminates; retry preserves draft and source
+  [chromium] › specialist-sheet-startup.spec.ts:41:2 › dense: a held actual native parser reply is rejected after a newer sheet request
+  [chromium] › specialist-workers.spec.ts:6:2 › guided: explicit public MapLibre worker URL, shared ESM MIME and actual canvas consumer
+  [chromium] › specialist-workers.spec.ts:23:2 › guided: missing formula worker preserves original CSV/cells and recovers with real recalculation
+  [chromium] › specialist-workers.spec.ts:6:2 › dense: explicit public MapLibre worker URL, shared ESM MIME and actual canvas consumer
+  [chromium] › specialist-workers.spec.ts:23:2 › dense: missing formula worker preserves original CSV/cells and recovers with real recalculation
+  [chromium] › structured-forms.spec.ts:9:2 › structured forms guided › mask inserts its fixed separator while retaining leading zeros in the form value
+  [chromium] › structured-forms.spec.ts:12:2 › structured forms guided › formatted full input and invalid drafts are kept without silently replacing the accepted identifier
+  [chromium] › structured-forms.spec.ts:16:2 › structured forms guided › backspace crosses a mask separator once and leaves a repairable incomplete value
+  [chromium] › structured-forms.spec.ts:19:2 › structured forms guided › incomplete mask is retained by default and cleared only with the explicit blur option
+  [chromium] › structured-forms.spec.ts:23:2 › structured forms guided › letter masks preserve Unicode graphemes and IME drafts until composition ends
+  [chromium] › structured-forms.spec.ts:26:2 › structured forms guided › decomposed Hangul and Indic conjuncts occupy one letter slot without losing the original code points
+  [chromium] › structured-forms.spec.ts:29:2 › structured forms guided › OTP exposes native completion and exact type while retaining invalid and overlong codes
+  [chromium] › structured-forms.spec.ts:34:2 › structured forms guided › whole-code paste separators are removed only when explicitly configured; excess remains visible
+  [chromium] › structured-forms.spec.ts:39:2 › structured forms guided › tag add/remove operates on the collection and returns focus to its actual native editor
+  [chromium] › structured-forms.spec.ts:42:2 › structured forms guided › tag duplicate and count limits retain the rejected draft and values for repair
+  [chromium] › structured-forms.spec.ts:46:2 › structured forms guided › candidate-only tags retain unavailable and restored invalid tokens so users can delete them
+  [chromium] › structured-forms.spec.ts:50:2 › structured forms guided › IME Enter leaves a tag draft unconfirmed and ordinary Enter adds without submitting
+  [chromium] › structured-forms.spec.ts:53:2 › structured forms guided › CVA disable and native group disable preserve all data and can be enabled again
+  [chromium] › structured-forms.spec.ts:57:2 › structured forms guided › read-only fields keep invalid drafts and prevent add/delete while reset clears drafts through CVA
+  [chromium] › structured-forms.spec.ts:61:2 › structured forms guided › native radio arrows skip disabled choices, initialize from forms and keep values across direction changes
+  [chromium] › structured-forms.spec.ts:64:2 › structured forms guided › checkbox columns and direction retain selected values and the selection limit
+  [chromium] › structured-forms.spec.ts:67:2 › structured forms guided › labels switch placement without re-creating the input or losing its value
+  [chromium] › structured-forms.spec.ts:70:2 › structured forms guided › textarea responds to container width, profiles and hidden restoration without losing input
+  [chromium] › structured-forms.spec.ts:74:2 › structured forms guided › current search response matches both query and request ID when a query repeats
+  [chromium] › structured-forms.spec.ts:78:2 › structured forms guided › combobox uses a typed candidate template in the native top layer and Escape preserves editor focus
+  [chromium] › structured-forms.spec.ts:81:2 › structured forms guided › combobox outside close and modal scope keep focus with the intended operation
+  [chromium] › structured-forms.spec.ts:84:2 › structured forms guided › form actions use native submit/reset, keep busy inputs and emit cancel as intent
+  [chromium] › structured-forms.spec.ts:88:2 › structured forms guided › form busy keeps its own focus and restores the same action without taking outside focus
+  [chromium] › structured-forms.spec.ts:91:2 › structured forms guided › same-value search reset cancels its pending debounce instead of emitting an obsolete request
+  [chromium] › structured-forms.spec.ts:94:2 › structured forms guided › a mixed mask deletion preserves the invalid draft and can be repaired at the same caret
+  [chromium] › structured-forms.spec.ts:97:2 › structured forms guided › restored token replacement moves only its own affected focus to the editor
+  [chromium] › structured-forms.spec.ts:100:2 › structured forms guided › 320px, text zoom and RTL retain keyboard operations, local scrolling and accessible names
+  [chromium] › structured-forms.spec.ts:9:2 › structured forms dense › mask inserts its fixed separator while retaining leading zeros in the form value
+  [chromium] › structured-forms.spec.ts:12:2 › structured forms dense › formatted full input and invalid drafts are kept without silently replacing the accepted identifier
+  [chromium] › structured-forms.spec.ts:16:2 › structured forms dense › backspace crosses a mask separator once and leaves a repairable incomplete value
+  [chromium] › structured-forms.spec.ts:19:2 › structured forms dense › incomplete mask is retained by default and cleared only with the explicit blur option
+  [chromium] › structured-forms.spec.ts:23:2 › structured forms dense › letter masks preserve Unicode graphemes and IME drafts until composition ends
+  [chromium] › structured-forms.spec.ts:26:2 › structured forms dense › decomposed Hangul and Indic conjuncts occupy one letter slot without losing the original code points
+  [chromium] › structured-forms.spec.ts:29:2 › structured forms dense › OTP exposes native completion and exact type while retaining invalid and overlong codes
+  [chromium] › structured-forms.spec.ts:34:2 › structured forms dense › whole-code paste separators are removed only when explicitly configured; excess remains visible
+  [chromium] › structured-forms.spec.ts:39:2 › structured forms dense › tag add/remove operates on the collection and returns focus to its actual native editor
+  [chromium] › structured-forms.spec.ts:42:2 › structured forms dense › tag duplicate and count limits retain the rejected draft and values for repair
+  [chromium] › structured-forms.spec.ts:46:2 › structured forms dense › candidate-only tags retain unavailable and restored invalid tokens so users can delete them
+  [chromium] › structured-forms.spec.ts:50:2 › structured forms dense › IME Enter leaves a tag draft unconfirmed and ordinary Enter adds without submitting
+  [chromium] › structured-forms.spec.ts:53:2 › structured forms dense › CVA disable and native group disable preserve all data and can be enabled again
+  [chromium] › structured-forms.spec.ts:57:2 › structured forms dense › read-only fields keep invalid drafts and prevent add/delete while reset clears drafts through CVA
+  [chromium] › structured-forms.spec.ts:61:2 › structured forms dense › native radio arrows skip disabled choices, initialize from forms and keep values across direction changes
+  [chromium] › structured-forms.spec.ts:64:2 › structured forms dense › checkbox columns and direction retain selected values and the selection limit
+  [chromium] › structured-forms.spec.ts:67:2 › structured forms dense › labels switch placement without re-creating the input or losing its value
+  [chromium] › structured-forms.spec.ts:70:2 › structured forms dense › textarea responds to container width, profiles and hidden restoration without losing input
+  [chromium] › structured-forms.spec.ts:74:2 › structured forms dense › current search response matches both query and request ID when a query repeats
+  [chromium] › structured-forms.spec.ts:78:2 › structured forms dense › combobox uses a typed candidate template in the native top layer and Escape preserves editor focus
+  [chromium] › structured-forms.spec.ts:81:2 › structured forms dense › combobox outside close and modal scope keep focus with the intended operation
+  [chromium] › structured-forms.spec.ts:84:2 › structured forms dense › form actions use native submit/reset, keep busy inputs and emit cancel as intent
+  [chromium] › structured-forms.spec.ts:88:2 › structured forms dense › form busy keeps its own focus and restores the same action without taking outside focus
+  [chromium] › structured-forms.spec.ts:91:2 › structured forms dense › same-value search reset cancels its pending debounce instead of emitting an obsolete request
+  [chromium] › structured-forms.spec.ts:94:2 › structured forms dense › a mixed mask deletion preserves the invalid draft and can be repaired at the same caret
+  [chromium] › structured-forms.spec.ts:97:2 › structured forms dense › restored token replacement moves only its own affected focus to the editor
+  [chromium] › structured-forms.spec.ts:100:2 › structured forms dense › 320px, text zoom and RTL retain keyboard operations, local scrolling and accessible names
+  [chromium] › table-expansion-helpers.ts:25:2 › editor-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › grid-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › paste-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › filters-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › tree-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › resize-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › contracts-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › tree-retention-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › clipboard-delay-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › chooser-scope-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › filter-draft-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-recovery-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-regression-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › table-container-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › filter-types-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › unicode-identities-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-start-ltr-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-end-ltr-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-start-rtl-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-end-rtl-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-table-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-edit-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-cell-retention-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › native-row-retention-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › table-output-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › virtual-table-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › accessibility-guided
+  [chromium] › table-expansion-helpers.ts:25:2 › editor-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › grid-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › paste-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › filters-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › tree-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › resize-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › contracts-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › tree-retention-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › clipboard-delay-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › chooser-scope-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › filter-draft-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-recovery-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-regression-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › table-container-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › filter-types-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › unicode-identities-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-start-ltr-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-end-ltr-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-start-rtl-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-pinned-footer-end-rtl-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-table-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-edit-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-cell-retention-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › native-row-retention-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › table-output-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › virtual-table-dense
+  [chromium] › table-expansion-helpers.ts:25:2 › accessibility-dense
+  [chromium] › tailwind-tokens.spec.ts:12:1 › 同じ役割名の色・書体を追加しても文字サイズと太さのutilityを独立して生成する
+  [chromium] › transfer-timeline.spec.ts:14:2 › guided: nullable required reset, unavailable selected key recovery and hidden draft cancellation
+  [chromium] › transfer-timeline.spec.ts:19:2 › guided: CVA, visible checkbox scope, atomic maximum and readonly/disabled/focus
+  [chromium] › transfer-timeline.spec.ts:29:2 › guided: restored invalid values are retained, reset repairs, filtered reorder is canonical
+  [chromium] › transfer-timeline.spec.ts:37:2 › guided: keyboard draft, RTL, parent Escape ordering, IME/defaultPrevented
+  [chromium] › transfer-timeline.spec.ts:43:2 › guided: connected pointer transfer, cancel, stale/reset, hidden scope and target reorder
+  [chromium] › transfer-timeline.spec.ts:50:2 › guided: source-cancelled target drag restores real row geometry
+  [chromium] › transfer-timeline.spec.ts:51:2 › guided: Timeline time/date/types, native details, input preservation, same-host ack and lifecycle
+  [chromium] › transfer-timeline.spec.ts:58:2 › guided: Timeline automatic load versions, retry and invalid date/type preserve context
+  [chromium] › transfer-timeline.spec.ts:66:2 › guided: 320px/200%, RTL, axe and input/profile state preservation
+  [chromium] › transfer-timeline.spec.ts:14:2 › dense: nullable required reset, unavailable selected key recovery and hidden draft cancellation
+  [chromium] › transfer-timeline.spec.ts:19:2 › dense: CVA, visible checkbox scope, atomic maximum and readonly/disabled/focus
+  [chromium] › transfer-timeline.spec.ts:29:2 › dense: restored invalid values are retained, reset repairs, filtered reorder is canonical
+  [chromium] › transfer-timeline.spec.ts:37:2 › dense: keyboard draft, RTL, parent Escape ordering, IME/defaultPrevented
+  [chromium] › transfer-timeline.spec.ts:43:2 › dense: connected pointer transfer, cancel, stale/reset, hidden scope and target reorder
+  [chromium] › transfer-timeline.spec.ts:50:2 › dense: source-cancelled target drag restores real row geometry
+  [chromium] › transfer-timeline.spec.ts:51:2 › dense: Timeline time/date/types, native details, input preservation, same-host ack and lifecycle
+  [chromium] › transfer-timeline.spec.ts:58:2 › dense: Timeline automatic load versions, retry and invalid date/type preserve context
+  [chromium] › transfer-timeline.spec.ts:66:2 › dense: 320px/200%, RTL, axe and input/profile state preservation
+  [chromium] › tree-axe-contract.spec.ts:13:2 › tree automated incomplete contracts guided › DOM/ARIA/native AX references, keyboard, clipped text and nested Escape
+  [chromium] › tree-axe-contract.spec.ts:46:2 › tree automated incomplete contracts guided › glyphs have checked semantics and actual foreground/background paint
+  [chromium] › tree-axe-contract.spec.ts:63:2 › tree automated incomplete contracts guided › automatic reference and graphical contrast detectors reject broken contracts
+  [chromium] › tree-axe-contract.spec.ts:13:2 › tree automated incomplete contracts dense › DOM/ARIA/native AX references, keyboard, clipped text and nested Escape
+  [chromium] › tree-axe-contract.spec.ts:46:2 › tree automated incomplete contracts dense › glyphs have checked semantics and actual foreground/background paint
+  [chromium] › tree-axe-contract.spec.ts:63:2 › tree automated incomplete contracts dense › automatic reference and graphical contrast detectors reject broken contracts
+  [chromium] › tree-catalog.spec.ts:9:2 › tree catalog guided › fresh-escape: TreeSelect handled APG keys and unhandled Escape/Tab preserve native focus and query
+  [chromium] › tree-catalog.spec.ts:22:2 › tree catalog guided › fresh-escape: TreeSelect/Cascader child Escape returns combobox before parent native dialog Escape
+  [chromium] › tree-catalog.spec.ts:35:2 › tree catalog guided › fresh-review: projected native button/link/input keys leave app action and Tree APG intact
+  [chromium] › tree-catalog.spec.ts:38:2 › tree catalog guided › fresh-review: accepted UTF16 IDs retain raw selection and unique Tree/TreeSelect/Cascader/Org targets
+  [chromium] › tree-catalog.spec.ts:43:2 › tree catalog guided › fresh-review: all Cascader candidates removed recover own close/Escape and leave external focus intact
+  [chromium] › tree-catalog.spec.ts:46:2 › tree catalog guided › tree keyboard/selection/check/mixed and logical RTL
+  [chromium] › tree-catalog.spec.ts:50:2 › tree catalog guided › tree unlinked checks and disabled descendants
+  [chromium] › tree-catalog.spec.ts:53:2 › tree catalog guided › tree lazy failure/retry/nested loading/collapse stale
+  [chromium] › tree-catalog.spec.ts:56:2 › tree catalog guided › tree external collapse/source replacement retain owned focus
+  [chromium] › tree-catalog.spec.ts:59:2 › tree catalog guided › cascader path, intermediate constraints, keyboard and focus return
+  [chromium] › tree-catalog.spec.ts:63:2 › tree catalog guided › cascader lazy failure/retry and old replies after close
+  [chromium] › tree-catalog.spec.ts:66:2 › tree catalog guided › single tree select search/ancestor context/selection/reset errors
+  [chromium] › tree-catalog.spec.ts:69:2 › tree catalog guided › multi tree select linked mixed, blur commit and branch-chip removal
+  [chromium] › tree-catalog.spec.ts:73:2 › tree catalog guided › restored linked branch/invalid chip recovery/search removal focus
+  [chromium] › tree-catalog.spec.ts:78:2 › tree catalog guided › external collapse cancels pending and cascader source replacement preserves focus
+  [chromium] › tree-catalog.spec.ts:81:2 › tree catalog guided › CVA required/null reset/form disabled/readonly/busy focus
+  [chromium] › tree-catalog.spec.ts:84:2 › tree catalog guided › native name carries canonical path/IDs and keeps busy values/excludes disabled
+  [chromium] › tree-catalog.spec.ts:87:2 › tree catalog guided › organization 4 directions, typed content, retained editor and fold focus
+  [chromium] › tree-catalog.spec.ts:91:2 › tree catalog guided › native modal popup and consecutive Escape preserve parent modal
+  [chromium] › tree-catalog.spec.ts:94:2 › tree catalog guided › 320px/200%/RTL/reduced motion and axe closed/open popups
+  [chromium] › tree-catalog.spec.ts:9:2 › tree catalog dense › fresh-escape: TreeSelect handled APG keys and unhandled Escape/Tab preserve native focus and query
+  [chromium] › tree-catalog.spec.ts:22:2 › tree catalog dense › fresh-escape: TreeSelect/Cascader child Escape returns combobox before parent native dialog Escape
+  [chromium] › tree-catalog.spec.ts:35:2 › tree catalog dense › fresh-review: projected native button/link/input keys leave app action and Tree APG intact
+  [chromium] › tree-catalog.spec.ts:38:2 › tree catalog dense › fresh-review: accepted UTF16 IDs retain raw selection and unique Tree/TreeSelect/Cascader/Org targets
+  [chromium] › tree-catalog.spec.ts:43:2 › tree catalog dense › fresh-review: all Cascader candidates removed recover own close/Escape and leave external focus intact
+  [chromium] › tree-catalog.spec.ts:46:2 › tree catalog dense › tree keyboard/selection/check/mixed and logical RTL
+  [chromium] › tree-catalog.spec.ts:50:2 › tree catalog dense › tree unlinked checks and disabled descendants
+  [chromium] › tree-catalog.spec.ts:53:2 › tree catalog dense › tree lazy failure/retry/nested loading/collapse stale
+  [chromium] › tree-catalog.spec.ts:56:2 › tree catalog dense › tree external collapse/source replacement retain owned focus
+  [chromium] › tree-catalog.spec.ts:59:2 › tree catalog dense › cascader path, intermediate constraints, keyboard and focus return
+  [chromium] › tree-catalog.spec.ts:63:2 › tree catalog dense › cascader lazy failure/retry and old replies after close
+  [chromium] › tree-catalog.spec.ts:66:2 › tree catalog dense › single tree select search/ancestor context/selection/reset errors
+  [chromium] › tree-catalog.spec.ts:69:2 › tree catalog dense › multi tree select linked mixed, blur commit and branch-chip removal
+  [chromium] › tree-catalog.spec.ts:73:2 › tree catalog dense › restored linked branch/invalid chip recovery/search removal focus
+  [chromium] › tree-catalog.spec.ts:78:2 › tree catalog dense › external collapse cancels pending and cascader source replacement preserves focus
+  [chromium] › tree-catalog.spec.ts:81:2 › tree catalog dense › CVA required/null reset/form disabled/readonly/busy focus
+  [chromium] › tree-catalog.spec.ts:84:2 › tree catalog dense › native name carries canonical path/IDs and keeps busy values/excludes disabled
+  [chromium] › tree-catalog.spec.ts:87:2 › tree catalog dense › organization 4 directions, typed content, retained editor and fold focus
+  [chromium] › tree-catalog.spec.ts:91:2 › tree catalog dense › native modal popup and consecutive Escape preserve parent modal
+  [chromium] › tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups
+Total: 1006 tests in 48 files

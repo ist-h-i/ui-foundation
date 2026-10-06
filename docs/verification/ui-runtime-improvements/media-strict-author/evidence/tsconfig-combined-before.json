@@ -1,0 +1,11 @@
+{
+  "extends": "../repository/tsconfig.ui-media.json",
+  "include": [
+    "../before/tests/ui/media.spec.ts",
+    "../before/tests/ui/media-regressions.spec.ts",
+    "../before/tests/ui/media-lifetime.spec.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": ".."
+  }
+}

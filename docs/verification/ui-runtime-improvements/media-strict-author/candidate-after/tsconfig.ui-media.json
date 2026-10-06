@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "tests/ui/media.spec.ts",
+    "tests/ui/media-regressions.spec.ts",
+    "tests/ui/media-lifetime.spec.ts"
+  ]
+}

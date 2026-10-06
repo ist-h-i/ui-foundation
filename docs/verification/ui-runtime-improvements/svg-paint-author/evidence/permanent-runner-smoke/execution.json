@@ -1,0 +1,84 @@
+{
+  "root": "/private/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap",
+  "work": "/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/ui-svg-paint-TECOSo",
+  "output": "/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap/evidence/permanent-runner-smoke",
+  "steps": [
+    {
+      "name": "canonical-sync",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-check",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-idempotent",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-dry-run",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--dry-run",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "public-consumer-production-build",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "build-consumer.mjs"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "native-glyph-paint-contrast",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "harness/verify-paint.mjs"
+      ],
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "ownServerPid": 11131,
+  "ownServerClosed": true
+}

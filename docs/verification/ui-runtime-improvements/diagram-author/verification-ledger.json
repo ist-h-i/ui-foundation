@@ -1,0 +1,351 @@
+{
+  "actor": "/root/review_specialist_candidate (author; independent approval not asserted)",
+  "verdict": "author_candidate_complete_ready_for_independent_review",
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "sourceTreeSha256": "fb23199162fea3dd15b15ec97bb92aa36fa06f0fb1d6cd21d06cf6309d4b883a",
+  "modifiedTrackedSources": 4,
+  "newSources": 4,
+  "productSourcePaths": [
+    "templates/angular/diagram.ts",
+    "templates/angular/specialist-model.ts"
+  ],
+  "localeModuleChanged": false,
+  "configSchemaDependenciesStylesChanged": false,
+  "generation": "Canonical sync/check only; generated source not copied to integration deliverable",
+  "checks": {
+    "baselineModel": {
+      "tests": 6,
+      "passed": 3,
+      "failed": 3,
+      "actualExitCode": 1,
+      "evidence": "evidence/before-model-regression-execution.json"
+    },
+    "baselineNative": {
+      "tests": 8,
+      "passed": 0,
+      "failed": 8,
+      "actualExitCode": 1,
+      "evidence": "evidence/before-native-execution.json"
+    },
+    "candidateCanonical": [
+      {
+        "command": [
+          "./node_modules/.bin/tsx",
+          "src/cli.ts",
+          "sync",
+          "--config",
+          "examples/ui.config.example.yaml",
+          "--dry-run"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.37010908126831055,
+        "log": "after-dry-run.log"
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "ui:sync"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.5146071910858154,
+        "log": "after-sync.log"
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "ui:check"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.4500761032104492,
+        "log": "after-check.log"
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 15.38050389289856,
+        "log": "after-typecheck.log"
+      },
+      {
+        "command": [
+          "./node_modules/.bin/tsx",
+          "--test",
+          "tests/model/diagram-validation.test.ts",
+          "tests/model/specialist-model.test.ts"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.5554847717285156,
+        "log": "after-model.log"
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 33.96671986579895,
+        "log": "after-build.log"
+      }
+    ],
+    "candidateBuildAfterConsumerRootCorrection": {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 31.5579252243042,
+      "productChangesSincePreviousBuild": [],
+      "fixtureChange": "Bootstrap selector now fixture-app; original assertions retained."
+    },
+    "candidateUiSpecsStrict": {
+      "command": [
+        "./node_modules/.bin/tsc",
+        "--ignoreConfig",
+        "--noEmit",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "ES2022",
+        "--module",
+        "ESNext",
+        "--moduleResolution",
+        "bundler",
+        "--lib",
+        "ES2022,DOM",
+        "--types",
+        "node",
+        "--allowImportingTsExtensions",
+        "tests/ui/diagram-validation.spec.ts",
+        "tests/ui/diagram-controlled-validation.spec.ts"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.8480958938598633,
+      "scope": "2 new UI specs and transitively imported test helpers, not all UI specs"
+    },
+    "candidateNative": {
+      "command": [
+        "./node_modules/.bin/playwright",
+        "test",
+        "--config=diagram-validation.config.ts",
+        "tests/ui/diagram-validation.spec.ts",
+        "tests/ui/diagram-controlled-validation.spec.ts",
+        "tests/ui/specialist-catalog.spec.ts",
+        "--grep",
+        "Diagram",
+        "--workers=2",
+        "--retries=0",
+        "--reporter=line,json"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 32.804457902908325,
+      "base": "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "productSourceChanged": [],
+      "templateCount": 139,
+      "testOnlyCorrections": "Correct fixture root selector and await actual canvas/model/render acknowledgement with unchanged expected bounds/counts; all prior actual failures preserved.",
+      "stats": {
+        "startTime": "2026-10-06T12:52:33.100Z",
+        "duration": 32334.111,
+        "expected": 22,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "candidateModel": {
+      "tests": 19,
+      "passed": 19,
+      "failed": 0,
+      "actualExitCode": 0,
+      "sixNewAndThirteenExisting": true,
+      "evidence": "evidence/after-model.log"
+    },
+    "candidateIdempotency": {
+      "executions": [
+        {
+          "command": [
+            "npm",
+            "run",
+            "ui:sync"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.45412468910217285,
+          "log": "after-idempotent-sync.log"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "ui:check"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.4368710517883301,
+          "log": "after-final-check.log"
+        }
+      ],
+      "generatedFileCountBefore": 151,
+      "generatedFileCountAfter": 151,
+      "generatedChanged": [],
+      "sha256Before": "922c38c0e3a4ed552d3fa6fd6aa49089b66ad53800dfc10ab7904f0bc232aa79",
+      "sha256After": "922c38c0e3a4ed552d3fa6fd6aa49089b66ad53800dfc10ab7904f0bc232aa79"
+    }
+  },
+  "retainedFailedHarnesses": [
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch",
+      "actualExitCode": 1,
+      "passed": 10,
+      "failed": 12,
+      "classification": "NG05104 fixture root selector prevented all new consumer interactions; fixture selector corrected only"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read",
+      "actualExitCode": 1,
+      "passed": 20,
+      "failed": 2,
+      "classification": "Parent model update not awaited before scalar/counter comparison; exact trace final actual values retained"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read",
+      "actualExitCode": 1,
+      "passed": 20,
+      "failed": 2,
+      "classification": "Unacknowledged canvas boundary and immediate positive-key input read; dense Y actual8 after scalar0; dense X update unobserved at teardown; stronger actual canvas acknowledgement and retrying positive expectation applied"
+    }
+  ],
+  "retainedParserIssue": {
+    "path": "evidence/diagnostics/02-trace-child-reference",
+    "classification": "Absent literal child text is unknown, not evidence of an empty accessible name"
+  },
+  "scopeMatrix": [
+    {
+      "requirement": "Empty/whitespace node label rejected with original model/name/raw preserved",
+      "evidence": "tests/ui/diagram-validation.spec.ts label cases x2 profiles, model diagram-validation.test.ts"
+    },
+    {
+      "requirement": "Negative X/Y rejected, normal correction and bounded keyboard movement",
+      "evidence": "tests/ui/diagram-validation.spec.ts coordinate cases x2 profiles; controlled coordinate test; pure model negative/boundary cases"
+    },
+    {
+      "requirement": "Native tab path and focused DOM/caret preserved through rejection/profile/locale",
+      "evidence": "tests/ui/diagram-validation.spec.ts label focus assertion; tests/ui/diagram-controlled-validation.spec.ts first test x2profiles"
+    },
+    {
+      "requirement": "Library validation translates live; application labels/model opaque",
+      "evidence": "public consumer scoped dictionary action + controlled first test"
+    },
+    {
+      "requirement": "External changed values/removal retire stale validation; invalid external model preserves raw table and recovers",
+      "evidence": "controlled external-values and external-invalid-model tests x2profiles"
+    },
+    {
+      "requirement": "Readonly/busy/disabled and repeated invalid input preserve data; repeated boundary keys emit no model change",
+      "evidence": "controlled state and coordinate tests x2profiles"
+    },
+    {
+      "requirement": "Existing Dagre layout/connection/selection/zoom and pure neighbors retained",
+      "evidence": "tests/ui/specialist-catalog.spec.ts Diagram x2profiles plus 13 existing specialist model tests"
+    },
+    {
+      "requirement": "Narrow320/font200%/RTL/reducedMotion/ARIA/hit-test/axe/photo",
+      "evidence": "controlled final test x2profiles; exact photos/axe evidence"
+    }
+  ],
+  "accessibility": {
+    "automaticAxe": [
+      {
+        "profile": "guided",
+        "violations": 0,
+        "incomplete": 1,
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodeCount": 1,
+            "descriptions": [
+              "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            ]
+          }
+        ],
+        "passedRules": 23,
+        "scope": "main only, 320px+font200%+RTL+reduced-motion after invalid label"
+      },
+      {
+        "profile": "dense",
+        "violations": 0,
+        "incomplete": 1,
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodeCount": 1,
+            "descriptions": [
+              "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            ]
+          }
+        ],
+        "passedRules": 23,
+        "scope": "main only, 320px+font200%+RTL+reduced-motion after invalid label"
+      }
+    ],
+    "actualNativeAriaSnapshotAndFieldHitTest": true,
+    "realAssistiveTechnologyUnperformed": true,
+    "incompleteNotApproved": true,
+    "incompleteExactNode": "SVG text 確認, x258 guided/x254 dense, y80, bgOverlap; retain original JSON"
+  },
+  "photoQa": {
+    "imagesActuallyViewed": [
+      "evidence/evidence/guided-diagram-invalid-edit-narrow.png",
+      "evidence/evidence/dense-diagram-invalid-edit-narrow.png"
+    ],
+    "observed": "Validation reason wraps visibly; focused raw input outline and original approval node visible. Horizontal region/table content not all simultaneously visible at320+font200%; no claim of global clipping-free geometry.",
+    "imageToolResize": "Guided320x2352->279x2048; dense320x2135->307x2048 display. Original exact PNGs retained."
+  },
+  "resourceCleanup": {
+    "ownedServers": [
+      {
+        "pid": 11190,
+        "cwd": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository",
+        "command": "node scripts/serve.mjs",
+        "port": 52053,
+        "signal": "SIGTERM",
+        "ownershipVerified": true
+      }
+    ],
+    "remainingOwnPortListeners": [],
+    "playwrightRunCompleted": true,
+    "oldSession52115Preflight": "No listener at 52053 before replacement; native not started; localhost preflight ConnectionRefusedError preserved in tool record.",
+    "unrelatedServerOperations": false
+  },
+  "remainingGates": [
+    "Fresh independent critic of final same source8",
+    "Parent canonical sync/check/strict/AOT/build and full integrated suite",
+    "Parent PR/merge workflow"
+  ],
+  "scopeExclusions": [
+    "All181 controls re-verification",
+    "Full root npm suite",
+    "Real screen readers/touch/hardware/multiple browsers",
+    "Existing SVG color-contrast incomplete approval"
+  ],
+  "basis": [
+    {
+      "source": "repo-local ui-development SKILL and runtime contract",
+      "path": "skills/ui-development/SKILL.md"
+    },
+    {
+      "source": "ui-ux-router and shared UI guardrails",
+      "path": "/Users/inouehiroshi/.codex/skills/ui-ux-router/SKILL.md"
+    },
+    {
+      "source": "Official WAI validation tutorial (actually browsed)",
+      "url": "https://www.w3.org/WAI/tutorials/forms/validation/"
+    }
+  ]
+}

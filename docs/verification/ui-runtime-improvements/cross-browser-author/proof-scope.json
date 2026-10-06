@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "createdAtUtc": "2026-10-06T13:18:42.225296+00:00",
+  "immutableDirectory": "cross-browser-author-proof-b5e186f9-20261006",
+  "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "rootAdoptionCommitReportedByParent": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "rootAdoptionQualification": "Metadata only. Root source/engine36/generation tests are separately owned and were not run/copied by this pack author.",
+  "menuFinalSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+  "authorNativePhases": [
+    {
+      "name": "focused-before",
+      "status": "historical",
+      "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "actualExit": 1,
+      "stats": {
+        "startTime": "2026-10-06T12:18:30.190Z",
+        "duration": 265318.40400000004,
+        "expected": 30,
+        "skipped": 0,
+        "unexpected": 6,
+        "flaky": 0
+      },
+      "rawResult": "evidence/focused-before/results.json",
+      "rawExit": "evidence/focused-before.exit",
+      "receipt": "evidence/focused-before/run-receipt.json",
+      "summary": "evidence/focused-before-summary.json",
+      "bundleSha256": "6329b33ba9e85143b2275dd41b228c842c57a88108086e5bed0489f64c70384b",
+      "serverClosed": true,
+      "menuSource": {
+        "path": "sources/baseline-9f/templates/angular/menu.ts",
+        "sha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f"
+      },
+      "actualSpec": {
+        "path": "sources/from-trace/focused-before/tests/cross-browser/runtime-cross-browser.spec.ts",
+        "sha256": "c0712be678dcd705bd98fbcc5d33ae162ac7f19f6cd65c6f80174163711c1860"
+      },
+      "claims": "This author phase only; does not certify later root integrated source"
+    },
+    {
+      "name": "focused-after",
+      "status": "historical",
+      "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "actualExit": 1,
+      "stats": {
+        "startTime": "2026-10-06T12:29:21.027Z",
+        "duration": 246971.36500000002,
+        "expected": 35,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "rawResult": "evidence/focused-after/results.json",
+      "rawExit": "evidence/focused-after.exit",
+      "receipt": "evidence/focused-after/run-receipt.json",
+      "summary": "evidence/focused-after-summary.json",
+      "bundleSha256": "b6ba8e8b4191b0d45987a0e657746cf81b12d782f0a90bb4acd829eef4732ceb",
+      "serverClosed": true,
+      "menuSource": {
+        "path": "evidence/menu-roving-first.ts",
+        "sha256": "3a2303b478de18408cf97c84dbfeee6149a31d5aaa8028a9642417b8c0d83452"
+      },
+      "actualSpec": {
+        "path": "sources/from-trace/focused-after/tests/cross-browser/runtime-cross-browser.spec.ts",
+        "sha256": "c471b282eb45ebfb99464dc096c1c6ba93a12efb95523ad888fdf43c2d749429"
+      },
+      "claims": "This author phase only; does not certify later root integrated source"
+    },
+    {
+      "name": "focused-final",
+      "status": "historical",
+      "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "actualExit": 0,
+      "stats": {
+        "startTime": "2026-10-06T12:37:34.865Z",
+        "duration": 166351.30000000002,
+        "expected": 36,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "rawResult": "evidence/focused-final/results.json",
+      "rawExit": "evidence/focused-final.exit",
+      "receipt": "evidence/focused-final/run-receipt.json",
+      "summary": "evidence/focused-final-summary.json",
+      "bundleSha256": "36fa3c7a7cd585b5c5a9e15feef5f44e36e3e0fd896fe9b54f0f0494dbc4cd52",
+      "serverClosed": true,
+      "menuSource": {
+        "path": "evidence/candidate-99e404/templates/angular/menu.ts",
+        "sha256": "99e404d5188711074302963aa7c2948126ce7feb99f3d68a8c755b4e199797ed"
+      },
+      "actualSpec": {
+        "path": "evidence/candidate-99e404/tests/cross-browser/runtime-cross-browser.spec.ts",
+        "sha256": "11cc822bd2652a0eede56cc3a0eb237778911586668e9a80ca6d78c2e70ac2e7"
+      },
+      "claims": "This author phase only; does not certify later root integrated source"
+    },
+    {
+      "name": "focused-same-level-native",
+      "status": "latest-author-targeted",
+      "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "actualExit": 0,
+      "stats": {
+        "startTime": "2026-10-06T13:00:32.358Z",
+        "duration": 5978.23,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "rawResult": "evidence/focused-same-level-native/results.json",
+      "rawExit": "evidence/focused-same-level-native.exit",
+      "receipt": "evidence/focused-same-level-native/run-receipt.json",
+      "summary": "evidence/focused-same-level-native-summary.json",
+      "bundleSha256": "2c587729d8a0cf3c880e88d185f49f08b40831b9d7722f9295b20248743cae58",
+      "serverClosed": true,
+      "menuSource": {
+        "path": "candidate/templates/angular/menu.ts",
+        "sha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8"
+      },
+      "actualSpec": {
+        "path": "candidate/tests/cross-browser/runtime-cross-browser.spec.ts",
+        "sha256": "ebc1e70aefc60ddd777ab1598955132c4da3bdd51ac84ceaa90d7bdde6511ba7"
+      },
+      "claims": "This author phase only; does not certify later root integrated source"
+    }
+  ],
+  "allNativeArtifacts": "Unmodified results.json, exit files, receipts, logs, failure PNG/trace.zip/error contexts are included under evidence/",
+  "causeDiagnostics": {
+    "initialSignalObservation": "evidence/diagnostics-before.json",
+    "firstFullAttemptActualExit": 1,
+    "firstFullAttempt": "evidence/diagnostics-full-clock-before-navigation.json",
+    "correctedFullAttemptActualExit": 0,
+    "correctedFullAttempt": "evidence/diagnostics-full-clock-before-navigation-v2.json",
+    "cause": "Native Firefox pointer hover legitimately paused Snackbar after settings clicks; clock initialization/effect flush was recorded. Product Snackbar source was unchanged."
+  },
+  "warningScope": "Exact Firefox engine advisory is retained verbatim with UA/count and distinguished from runtime exceptions, console.error and unknown warnings.",
+  "axeScope": "Raw incomplete is retained; violation0 is not full accessibility conformance or screen-reader speech.",
+  "traceSourceExtraction": [
+    {
+      "phase": "focused-before",
+      "repositoryPath": "tests/cross-browser/runtime-test.ts",
+      "sha256": "54fd567cd071fac9687866cf0d7a3355269faffc7406130053adbf4fd6500490",
+      "bytes": 989,
+      "traces": [
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        }
+      ]
+    },
+    {
+      "phase": "focused-before",
+      "repositoryPath": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "sha256": "c0712be678dcd705bd98fbcc5d33ae162ac7f19f6cd65c6f80174163711c1860",
+      "bytes": 15475,
+      "traces": [
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        },
+        {
+          "stagePath": "evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        }
+      ]
+    },
+    {
+      "phase": "focused-after",
+      "repositoryPath": "tests/cross-browser/runtime-test.ts",
+      "sha256": "07128378ddf13aa13852c8c0845da30fa01a5ac8fac8ba21a41c19cb635799bf",
+      "bytes": 1684,
+      "traces": [
+        {
+          "stagePath": "evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip",
+          "zipMember": "src/b53a48d6341ab2a8b91faa37ad9e1dbd69457a58.ts"
+        }
+      ]
+    },
+    {
+      "phase": "focused-after",
+      "repositoryPath": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "sha256": "c471b282eb45ebfb99464dc096c1c6ba93a12efb95523ad888fdf43c2d749429",
+      "bytes": 17344,
+      "traces": [
+        {
+          "stagePath": "evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip",
+          "zipMember": "src/b194b547d516a0735bb07482a099407740524a86.ts"
+        }
+      ]
+    }
+  ],
+  "baselineRead": {
+    "readOnlyCommand": [
+      "git",
+      "archive",
+      "--format=tar",
+      "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "src",
+      "templates/angular",
+      "tests/fixture-app",
+      "package.json",
+      "package-lock.json",
+      "playwright.config.ts"
+    ],
+    "actualExit": 0,
+    "files": 189
+  },
+  "sourceEntrances": {
+    "finalCandidate": "candidate/minimal-integration.json",
+    "rawBaseline": "sources/baseline-9f/",
+    "initialCandidate": "evidence/candidate-initial/minimal-integration.json",
+    "intermediateMenu": "evidence/menu-roving-first-delta.json",
+    "historical99Candidate": "evidence/candidate-99e404/minimal-integration.json",
+    "latestGuard": "candidate/menu-minimal-delta.json",
+    "latestSameLevelGuard": "candidate/menu-same-level-focus-delta.json"
+  },
+  "environment": [
+    "evidence/baseline.json",
+    "evidence/browser-inventory.json",
+    "evidence/browser-availability.json",
+    "evidence/browser-install-firefox-webkit.txt",
+    "evidence/browser-install-firefox-webkit.exit"
+  ],
+  "cleanup": "evidence/own-cleanup-final.json",
+  "oldPacketHistory": [
+    "history/HANDOFF-99e404.ja.md",
+    "history/portable-candidate-99e404.tar.gz"
+  ],
+  "newCandidateOnlyPacket": [
+    "history/HANDOFF.ja.md",
+    "history/portable-candidate.tar.gz"
+  ],
+  "notIncluded": [
+    "browser executables/cache",
+    "node_modules",
+    "dist bundles",
+    "unrelated historic repository proof",
+    "root later proof",
+    "personal browser profile/authentication"
+  ],
+  "notMeasuredByThisAuthor": [
+    "root final source whole36",
+    "Safari real device",
+    "screen-reader speech",
+    "actual clipboard I/O",
+    "MapLibre draw",
+    "default980 native run"
+  ],
+  "writeScope": "Only task-owned /tmp; shared repo/root-private/Git/GH untouched",
+  "publicAdoption": "Root may copy this complete relative tree under docs/verification and link README; preserve files and use exact whitelist."
+}

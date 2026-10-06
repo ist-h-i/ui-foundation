@@ -1,0 +1,717 @@
+{
+  "stats": {
+    "startTime": "2026-10-06T12:56:53.345Z",
+    "duration": 134301.264,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "tests": [
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3160,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3202,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2628,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1815,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2787,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3280,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2183,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2656,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2094,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2078,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2059,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-controlled-validation.spec.ts / dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "file": "diagram-controlled-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2937,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-critic.spec.ts / guided: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "file": "diagram-critic.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2868,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-critic.spec.ts / guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "file": "diagram-critic.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3406,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-critic.spec.ts / dense: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "file": "diagram-critic.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2896,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-critic.spec.ts / dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "file": "diagram-critic.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3381,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2628,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2224,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / guided: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3102,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / guided: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2807,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2958,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2532,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / dense: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2970,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts / dense: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "file": "diagram-validation.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2549,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "specialist-catalog.spec.ts / guided: specialist functional / Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "file": "specialist-catalog.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2733,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "specialist-catalog.spec.ts / dense: specialist functional / Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "file": "specialist-catalog.spec.ts",
+      "expectedStatus": "passed",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2557,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "attachments": [
+    {
+      "test": "guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "diagram-axe-after-invalid-edit",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/5.json",
+      "sha256": "87953cb2cbb95038198ba54c7b5feb7db11747fd47249142cb9067c65116c15a",
+      "bytes": 121466,
+      "axeSummary": {
+        "violations": 0,
+        "incomplete": 1,
+        "passes": 23,
+        "incompleteRuleIds": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "test": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "diagram-invalid-edit-narrow",
+      "contentType": "image/png",
+      "path": "evidence/decoded-attachments/6.png",
+      "sha256": "5ac3c154577e69e83841cba8a80bb3f6affcbbec8e6d580fdc2152e84ea98f27",
+      "bytes": 150741
+    },
+    {
+      "test": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "diagram-axe-after-invalid-edit",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/13.json",
+      "sha256": "76f39bd64ef3b78b3d41d91fe13cc04ee44bfde1a38e91be8c573e6ea67c1b78",
+      "bytes": 121463,
+      "axeSummary": {
+        "violations": 0,
+        "incomplete": 1,
+        "passes": 23,
+        "incompleteRuleIds": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "test": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "diagram-invalid-edit-narrow",
+      "contentType": "image/png",
+      "path": "evidence/decoded-attachments/14.png",
+      "sha256": "b632fdcabbb6b477855636864bc5d775e6c09ada15326efe8af1d4207f970b1d",
+      "bytes": 145865
+    },
+    {
+      "test": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip"
+    },
+    {
+      "test": "guided: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "name": "independent-model-and-error-observations",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/16.json",
+      "sha256": "402bcab9f56cae0a10f85fb5501ee3044ecc9df504cd1eddd3f3b37a1b7dc801",
+      "bytes": 797
+    },
+    {
+      "test": "guided: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-critic-guided-inde-e271c--fields-and-controlled-data-chromium/trace.zip"
+    },
+    {
+      "test": "guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-axe",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/18.json",
+      "sha256": "bcc8562cd81e8e8ed25d538cb3a13ed2d5099785e98cd0005f6df8b2e0673945",
+      "bytes": 116417,
+      "axeSummary": {
+        "violations": 0,
+        "incomplete": 1,
+        "passes": 22,
+        "incompleteRuleIds": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "test": "guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-raw",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/19.json",
+      "sha256": "20e1e50ed7e473065201e3487a2f98bc5cdded9a8100dfc4836b02cabe57228e",
+      "bytes": 2442
+    },
+    {
+      "test": "guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-image",
+      "contentType": "image/png",
+      "path": "evidence/decoded-attachments/20.png",
+      "sha256": "187d0992e178e64f97f4b4378ae4189ab50d93a466c2ba4a74f8d577a3718ddc",
+      "bytes": 189219
+    },
+    {
+      "test": "guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-critic-guided-inde-50601-named-editors-in-narrow-RTL-chromium/trace.zip"
+    },
+    {
+      "test": "dense: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "name": "independent-model-and-error-observations",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/22.json",
+      "sha256": "8621a773ec6cfbb7b2adc038b29974aedd40294cc8c1bed7646059d21b153179",
+      "bytes": 796
+    },
+    {
+      "test": "dense: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-critic-dense-indep-fb05b--fields-and-controlled-data-chromium/trace.zip"
+    },
+    {
+      "test": "dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-axe",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/24.json",
+      "sha256": "4e350b136b882ec30a6fe8ef8a9086749a2d38f1392588be4fdab500f32b16f3",
+      "bytes": 116417,
+      "axeSummary": {
+        "violations": 0,
+        "incomplete": 1,
+        "passes": 22,
+        "incompleteRuleIds": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "test": "dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-raw",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/25.json",
+      "sha256": "83a615d1e68772cc949fe1f65549abaf85887092a29ea106590f84226f6f2a9b",
+      "bytes": 2441
+    },
+    {
+      "test": "dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "independent-narrow-image",
+      "contentType": "image/png",
+      "path": "evidence/decoded-attachments/26.png",
+      "sha256": "72676467ffddbcd6098de9ac20931f621ee274f2828c29cf1a2e86f4affad993",
+      "bytes": 181336
+    },
+    {
+      "test": "dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-critic-dense-indep-37896-named-editors-in-narrow-RTL-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "name": "corrected-label",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/28.json",
+      "sha256": "49c53745b4f88905c0a41f0d3c2517a1aebfc7162be7979f196796234e7cd1d3",
+      "bytes": 67
+    },
+    {
+      "test": "guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "name": "corrected-label",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/30.json",
+      "sha256": "172ff93531844054fb62ec7a31a5e6e745f014620bd1fac57c535fbd40be29f8",
+      "bytes": 70
+    },
+    {
+      "test": "guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "name": "preserved-canvas-before-correction",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/32.json",
+      "sha256": "048d4aafff1ae1443a2a5c6b67ced57bbd4c92615c537c95da0041ce13109ba2",
+      "bytes": 71
+    },
+    {
+      "test": "guided: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip"
+    },
+    {
+      "test": "guided: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "name": "preserved-canvas-before-correction",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/34.json",
+      "sha256": "70b7a8c60b9a35a8e4aae852abf5a13605a4e7b83d7e069c4a0ae14faefce92d",
+      "bytes": 71
+    },
+    {
+      "test": "guided: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "name": "corrected-label",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/36.json",
+      "sha256": "0e31dc6bae1fcb92ad5b57912d1c1e9defbb3ca4923b589903cb36dd858a6076",
+      "bytes": 66
+    },
+    {
+      "test": "dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "name": "corrected-label",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/38.json",
+      "sha256": "410d52ab0d0d8d69dff981f69911a698cdc3eeaade9b2363382ed287d338b09d",
+      "bytes": 69
+    },
+    {
+      "test": "dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "name": "preserved-canvas-before-correction",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/40.json",
+      "sha256": "bbab27511bd10b62653c28a89144744cb55ffefe74d89e153f6e6d01d6d362a4",
+      "bytes": 70
+    },
+    {
+      "test": "dense: Diagram rejects negative x without changing the reachable canvas and supports correction",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip"
+    },
+    {
+      "test": "dense: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "name": "preserved-canvas-before-correction",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/42.json",
+      "sha256": "28a85b146e52ce032d006981c944be0ef16da6f44b8f0b5221c5806e6a60d2ca",
+      "bytes": 70
+    },
+    {
+      "test": "dense: Diagram rejects negative y without changing the reachable canvas and supports correction",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip"
+    },
+    {
+      "test": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "name": "control-observation",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/44.json",
+      "sha256": "b35dd7bdc79c966e003eb0691efbbd50a4cc242fadcd62172dd01724785dac7a",
+      "bytes": 113
+    },
+    {
+      "test": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip"
+    },
+    {
+      "test": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "name": "control-observation",
+      "contentType": "application/json",
+      "path": "evidence/decoded-attachments/46.json",
+      "sha256": "69d56a1283b36c72772fcf0addc20785001a425a2bb6da02fbb1a073af8c3850",
+      "bytes": 112
+    },
+    {
+      "test": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+      "name": "trace",
+      "contentType": "application/zip",
+      "originalPath": "/private/tmp/ui-foundation-diagram-critic-20261006/evidence/native-artifacts/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Independent P2 same-level native focus must own roving0; ancestors retain expanded fallback",
+  "path": "templates/angular/menu.ts",
+  "beforeSha256": "99e404d5188711074302963aa7c2948126ce7feb99f3d68a8c755b4e199797ed",
+  "afterSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+  "guards": [
+    {
+      "before": "        const selected = this.expanded()[depth] ?? (commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : commands[0]?.id);",
+      "after": "        const selected = commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : this.expanded()[depth] ?? commands[0]?.id;",
+      "expectedOccurrences": 1
+    }
+  ],
+  "nativeAfter": "NOT RUN; root integrated freeze and fresh generated browser pending"
+}

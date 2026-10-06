@@ -1,0 +1,91 @@
+{
+  "status": "AUTHORED CANDIDATE; independently review before final approval",
+  "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "rootMutation": false,
+  "sourceAdoptionRoot": "proposals/v2",
+  "newFilesAdoptionRoot": "proposals/permanent",
+  "before": [
+    {
+      "path": "evidence/chart-options-before.ts",
+      "bytes": 13726,
+      "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b"
+    },
+    {
+      "path": "evidence/legacy-chart-model-column-count-before.ts",
+      "bytes": 6302,
+      "sha256": "4673799fea218f2d12f17622be2fbb9b1251212039a4719998c77f7bb5a3c74c"
+    }
+  ],
+  "files": [
+    {
+      "path": "templates/angular/chart-options.ts",
+      "bytes": 14212,
+      "sha256": "857eab2fba50efe028140d1907e048f0b29762c97feafbe064c9f6798a461d1b",
+      "action": "replace"
+    },
+    {
+      "path": "tests/model/specialist-chart-options.test.ts",
+      "bytes": 7771,
+      "sha256": "89e2335ae7b2ca4db995a79dd9ba3b5c6d4fbdb555b30dcd665868bc997d088f",
+      "action": "replace"
+    },
+    {
+      "path": "proposals/permanent/scripts/test-svg-paint.mjs",
+      "bytes": 6057,
+      "sha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/consumer.ts",
+      "bytes": 5624,
+      "sha256": "fa8f2f8fa390627b0aee459feecdd70e8c3704102b289ce3fcafeb0ef19a0856",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/tsconfig.consumer.json",
+      "bytes": 363,
+      "sha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/build-consumer.mjs",
+      "bytes": 3085,
+      "sha256": "82a66fa08e160a98d26ba3166a70c05472e02bd568b2e4618415d5ff9b825297",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/serve-consumer.mjs",
+      "bytes": 1027,
+      "sha256": "5ec36883faf4901b70767e85f64fa1328ff5e2bef1d90039408fc6c78ef285f2",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "bytes": 11423,
+      "sha256": "1c497fb383052b4a554dbe2c7c59195c2ece6a9a91cf9060705aab4cb3428f3e",
+      "action": "new"
+    },
+    {
+      "path": "proposals/permanent/tests/consumer-svg-paint/harness/svg-paint-audit.mjs",
+      "bytes": 8101,
+      "sha256": "b9fd931069309ae77882d59359c9648c1e236e88a10adb369100ab969efe256a",
+      "action": "new"
+    }
+  ],
+  "packageScriptsHunk": {
+    "add": {
+      "test:svg-paint": "node scripts/test-svg-paint.mjs"
+    },
+    "testChain": "Append && npm run test:svg-paint to current test command; preserve media/runtime scripts and all existing checks; do not replace package file",
+    "dependencyChange": false
+  },
+  "actual": {
+    "native34": 0,
+    "canonicalSixSteps": 0,
+    "publicConsumerAot": 0,
+    "library139Aot": 0,
+    "model9": 0,
+    "negativeControl5": 0
+  },
+  "pathsFrozen": true
+}

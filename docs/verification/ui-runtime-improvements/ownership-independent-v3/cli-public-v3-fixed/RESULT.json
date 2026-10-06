@@ -1,0 +1,77 @@
+{
+  "sourceDir": "/private/tmp/ui-foundation-output-ownership-independent-review/candidate-v3-source",
+  "sourceSyncSha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+  "realCliCommands": 44,
+  "publicStrictFullAot": 5,
+  "consumers": [
+    {
+      "label": "fresh-before",
+      "output": ".ui/generated",
+      "entryInclude": [
+        "consumer.ts"
+      ],
+      "strictTemplates": true,
+      "compilationMode": "full",
+      "actualExit": 0,
+      "componentDefinitionEmitted": true,
+      "consumerTsSha256": "0db7352f87992a71d9797c9f5dff67feae4a61e12d0776392a4bf5cb899304cd"
+    },
+    {
+      "label": "fresh-after",
+      "output": "relocated/ui",
+      "entryInclude": [
+        "consumer.ts"
+      ],
+      "strictTemplates": true,
+      "compilationMode": "full",
+      "actualExit": 0,
+      "componentDefinitionEmitted": true,
+      "consumerTsSha256": "0f25abc160f95e34752a8851356ff6b2017e5fc5ff05e62d7472b026a6ed589b"
+    },
+    {
+      "label": "real-v1-inplace-before",
+      "output": ".ui/generated",
+      "entryInclude": [
+        "consumer.ts"
+      ],
+      "strictTemplates": true,
+      "compilationMode": "full",
+      "actualExit": 0,
+      "componentDefinitionEmitted": true,
+      "consumerTsSha256": "0db7352f87992a71d9797c9f5dff67feae4a61e12d0776392a4bf5cb899304cd"
+    },
+    {
+      "label": "real-v1-inplace-after",
+      "output": "relocated/ui",
+      "entryInclude": [
+        "consumer.ts"
+      ],
+      "strictTemplates": true,
+      "compilationMode": "full",
+      "actualExit": 0,
+      "componentDefinitionEmitted": true,
+      "consumerTsSha256": "0f25abc160f95e34752a8851356ff6b2017e5fc5ff05e62d7472b026a6ed589b"
+    },
+    {
+      "label": "real-v1-immediate-move-after",
+      "output": "relocated/ui",
+      "entryInclude": [
+        "consumer.ts"
+      ],
+      "strictTemplates": true,
+      "compilationMode": "full",
+      "actualExit": 0,
+      "componentDefinitionEmitted": true,
+      "consumerTsSha256": "0f25abc160f95e34752a8851356ff6b2017e5fc5ff05e62d7472b026a6ed589b"
+    }
+  ],
+  "modeCount": 3,
+  "normalCli": true,
+  "trueLegacySource": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "dryRunsFileNoChange": true,
+  "parserErrorsNoChange": true,
+  "contextPrimitiveProfileMovedTogether": true,
+  "appFilePreserved": true,
+  "sharedChanges": false,
+  "newBrowserNativeRun": false
+}

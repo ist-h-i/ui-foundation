@@ -1,0 +1,13 @@
+--- /tmp/ui-foundation-output-ownership-independent-review/candidate-source/src/sync.ts	2026-10-06 21:13:44
++++ /tmp/ui-foundation-output-ownership-independent-review/candidate-v3-source/src/sync.ts	2026-10-06 21:24:18
+@@ -235,6 +235,10 @@
+     const content = await optionalText(containedPath(root, path));
+     oldContents.set(path, content);
+     if (content === undefined) continue;
++    if (path === manifestPath && owned.path !== manifestPath) {
++      issues.push(`Unowned target manifest would be overwritten: ${path}`);
++      continue;
++    }
+     if (previous && path === owned.path) continue;
+     const record = previous?.files[path];
+     if (!record) issues.push(`Unowned file would be overwritten or removed: ${path}`);

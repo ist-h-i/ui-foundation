@@ -1,0 +1,107 @@
+
+Running 22 tests using 2 workers
+
+(node:9514) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:9515) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+[2/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+[3/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+[4/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+[5/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+[6/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+[7/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+[8/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+[9/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+[10/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+[11/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+[12/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+[13/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+[14/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+[15/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative x without changing the reachable canvas and supports correction
+[16/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative y without changing the reachable canvas and supports correction
+[17/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+[18/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+[19/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction
+[20/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction
+  1) [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      27 |    await editor.fill('0');await editor.press('Tab');await expect(editor).toHaveValue('0');await expect(page.locator('#flow [role=alert]')).toHaveCount(0);await expect(editor).not.toHaveAttribute('aria-invalid','true');
+      28 |    await node.focus();await node.press(axis==='x'?'ArrowLeft':'ArrowUp');await expect(editor).toHaveValue('0');await expect(node).toBeFocused();
+    > 29 |    await node.press(axis==='x'?'ArrowRight':'ArrowDown');expect(Number(await editor.inputValue())).toBeGreaterThan(0);
+         |                                                                                                    ^
+      30 |    await info.attach('preserved-canvas-before-correction',{body:JSON.stringify({profile,axis,previous}),contentType:'application/json'});
+      31 |   });
+      32 |  }
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-validation.spec.ts:29:100
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:9676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[21/22] [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › guided: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+  2) [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      27 |    await editor.fill('0');await editor.press('Tab');await expect(editor).toHaveValue('0');await expect(page.locator('#flow [role=alert]')).toHaveCount(0);await expect(editor).not.toHaveAttribute('aria-invalid','true');
+      28 |    await node.focus();await node.press(axis==='x'?'ArrowLeft':'ArrowUp');await expect(editor).toHaveValue('0');await expect(node).toBeFocused();
+    > 29 |    await node.press(axis==='x'?'ArrowRight':'ArrowDown');expect(Number(await editor.inputValue())).toBeGreaterThan(0);
+         |                                                                                                    ^
+      30 |    await info.attach('preserved-canvas-before-correction',{body:JSON.stringify({profile,axis,previous}),contentType:'application/json'});
+      31 |   });
+      32 |  }
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-validation.spec.ts:29:100
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:9692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[22/22] [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › dense: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+  2 failed
+    [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction 
+    [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction 
+  20 passed (34.5s)

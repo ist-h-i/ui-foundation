@@ -1,0 +1,21 @@
+{
+  "atUtc": "2026-10-06T13:53:46.083020+00:00",
+  "formerOwnedPorts": [
+    63753,
+    63853
+  ],
+  "readCommand": [
+    "lsof",
+    "-nP",
+    "-iTCP:63753",
+    "-iTCP:63853",
+    "-sTCP:LISTEN"
+  ],
+  "actualExit": 1,
+  "stdout": "",
+  "stderr": "",
+  "listenersFound": 0,
+  "receiptServersClosed": true,
+  "processesTerminated": [],
+  "scope": "Only known owned loopback ports; no other owner process inspected or modified"
+}

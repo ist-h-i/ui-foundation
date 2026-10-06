@@ -1,0 +1,57 @@
+{
+  "scope": "Opt-in dedicated config/script/tests; normal npm test remains unchanged; no product/generated source change",
+  "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "copyActions": [
+    {
+      "source": "playwright.cross-browser.config.ts",
+      "target": "playwright.cross-browser.config.ts",
+      "sha256": "bd83506fd7f960e34a133d13205b5d11cc21663f5931d2d6aaf4c91abb323520"
+    },
+    {
+      "source": "tests/cross-browser/runtime-test.ts",
+      "target": "tests/cross-browser/runtime-test.ts",
+      "sha256": "54fd567cd071fac9687866cf0d7a3355269faffc7406130053adbf4fd6500490"
+    },
+    {
+      "source": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "target": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "sha256": "c0712be678dcd705bd98fbcc5d33ae162ac7f19f6cd65c6f80174163711c1860"
+    },
+    {
+      "source": "scripts/run-cross-browser.mjs",
+      "target": "scripts/run-cross-browser.mjs",
+      "sha256": "811b8a66d0c681bc6e719bb03c71f7e4d69fd0e430d0f18e08c5181ee08a9f95"
+    }
+  ],
+  "packageGuard": {
+    "target": "package.json",
+    "before": "\"test:ui\": \"playwright test\"",
+    "after": "\"test:ui\": \"playwright test\",\n    \"test:cross-browser\": \"node scripts/run-cross-browser.mjs\"",
+    "expectedOccurrences": 1
+  },
+  "newDependencies": [],
+  "formalDefaultCountBefore": 980,
+  "optInFocusedDistinctPerEngine": 12,
+  "profiles": [
+    "guided",
+    "dense"
+  ],
+  "components": [
+    "Card",
+    "Menu",
+    "Dialog",
+    "Snackbar",
+    "DateRangePicker",
+    "MessageComposer"
+  ],
+  "representativeRenderer": "CodeMirror native input in Composer scenario",
+  "noSkip": true,
+  "retries": 0,
+  "primary4": [
+    "Card",
+    "Menu",
+    "Dialog",
+    "Snackbar"
+  ],
+  "totalFocusedThreeEngines": 36
+}

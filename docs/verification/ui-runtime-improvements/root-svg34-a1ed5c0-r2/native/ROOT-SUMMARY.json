@@ -1,0 +1,131 @@
+{
+  "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "browser": "153.0.8010.12",
+  "scenarioCount": 34,
+  "distinctScenarios": 34,
+  "allPassed": true,
+  "labels": 1226,
+  "alphaGlyphPixels": 573046,
+  "solidGlyphPixels": 265288,
+  "exactMismatchPixels": 0,
+  "legacyStrictMismatchPixels": 0,
+  "clippedInkPixels": 0,
+  "expandedReferenceAlphaMismatch": 0,
+  "inkIntersections": 0,
+  "fontBoxIntersections": 52,
+  "minimumContrastRatio": 14.645016318974449,
+  "pointerSelections": 94,
+  "keyboardSelections": 34,
+  "draftAndSelectionPreservedCases": 34,
+  "runtimeErrors": 0,
+  "axeScans": 8,
+  "axeViolations": 0,
+  "axeIncompleteNodes": 212,
+  "incompleteByRule": {
+    "color-contrast": 212
+  },
+  "runner": {
+    "root": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+    "work": "/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/ui-svg-paint-uYcA2x",
+    "output": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2",
+    "steps": [
+      {
+        "name": "canonical-sync",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "--import",
+          "tsx",
+          "src/cli.ts",
+          "sync",
+          "--config",
+          "examples/ui.config.example.yaml"
+        ],
+        "code": 0,
+        "signal": null
+      },
+      {
+        "name": "canonical-check",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "--import",
+          "tsx",
+          "src/cli.ts",
+          "check",
+          "--config",
+          "examples/ui.config.example.yaml"
+        ],
+        "code": 0,
+        "signal": null
+      },
+      {
+        "name": "canonical-idempotent",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "--import",
+          "tsx",
+          "src/cli.ts",
+          "sync",
+          "--config",
+          "examples/ui.config.example.yaml"
+        ],
+        "code": 0,
+        "signal": null
+      },
+      {
+        "name": "canonical-dry-run",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "--import",
+          "tsx",
+          "src/cli.ts",
+          "sync",
+          "--dry-run",
+          "--config",
+          "examples/ui.config.example.yaml"
+        ],
+        "code": 0,
+        "signal": null
+      },
+      {
+        "name": "public-consumer-production-build",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "build-consumer.mjs"
+        ],
+        "code": 0,
+        "signal": null
+      },
+      {
+        "name": "native-glyph-paint-contrast",
+        "command": [
+          "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+          "harness/verify-paint.mjs"
+        ],
+        "code": 0,
+        "signal": null
+      }
+    ],
+    "successful": true,
+    "nativeContract": {
+      "requiredScenarios": 34,
+      "recordedScenarios": 34,
+      "allSuccessful": true,
+      "evidencePath": "/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/ui-svg-paint-uYcA2x/evidence/candidate-paint-native.json"
+    },
+    "sourceUnchanged": true,
+    "ignoredSelectionEnvironment": [
+      "PAINT_CONFIG",
+      "PAINT_ONE"
+    ],
+    "ownServerPid": 50164,
+    "ownServerClosed": true
+  },
+  "hostileParentEnvironment": [
+    "PAINT_CONFIG",
+    "PAINT_ONE",
+    "SVG_PAINT_EVIDENCE_DIR",
+    "SVG_CONSUMER_URL",
+    "SVG_PORT"
+  ],
+  "scope": "All34 required by repaired runner with actual fresh public consumer; raw incomplete preserved and real screen-reader/Safari not measured"
+}

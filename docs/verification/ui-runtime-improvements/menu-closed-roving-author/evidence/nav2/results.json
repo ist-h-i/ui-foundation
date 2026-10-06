@@ -1,0 +1,238 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/playwright/cli.js",
+      "test",
+      "-c",
+      "playwright.menu-navigation.config.ts",
+      "--grep",
+      "root Tab exits in both directions before a preceding key renders its roving tabindex"
+    ],
+    "configFile": "/private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/playwright.menu-navigation.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "navigation-catalog.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "navigation-catalog.spec.ts",
+      "file": "navigation-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "navigation catalog guided",
+          "file": "navigation-catalog.spec.ts",
+          "line": 5,
+          "column": 46,
+          "specs": [
+            {
+              "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 45097,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts",
+                            "column": 190,
+                            "line": 52
+                          },
+                          "message": "Error: locator.selectOption: Test timeout of 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Menu検証profile', { exact: true })\u001b[22m\n\n\n  50 |   expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();\n  51 |   // Native public open input keeps the collapsed popup/back DOM while removing every tab stop.\n> 52 |   await page.goto('/catalog/menu-closed-roving');await expect(page.getByRole('heading',{name:'Menu外部入力の終了検証',exact:true})).toBeVisible();await page.getByLabel('Menu検証profile',{exact:true}).selectOption(profile);await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');\n     |                                                                                                                                                                                              ^\n  53 |   const external=page.getByTestId('menu-external-open'),popup=page.locator('#external-open-menu'),state=page.getByTestId('menu-external-state');\n  54 |   const snapshot=()=>popup.evaluate(element=>({open:element.matches(':popover-open'),items:[...element.querySelectorAll<HTMLElement>('[data-menu-item],[data-menu-back]')].map(item=>({id:item.id||item.dataset.menuBack,tabIndex:item.tabIndex,back:!!item.dataset.menuBack})),focus:element.ownerDocument.activeElement?.id}));\n  55 |   await expect(popup).toBeHidden();await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.length>0&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);\n    at /private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts:52:190"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T13:44:58.669Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e41f63d5b0323bfdd455-38fb545979ed27c965aa",
+              "file": "navigation-catalog.spec.ts",
+              "line": 37,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "navigation catalog dense",
+          "file": "navigation-catalog.spec.ts",
+          "line": 5,
+          "column": 46,
+          "specs": [
+            {
+              "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 45100,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 45000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts",
+                            "column": 190,
+                            "line": 52
+                          },
+                          "message": "Error: locator.selectOption: Test timeout of 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Menu検証profile', { exact: true })\u001b[22m\n\n\n  50 |   expect(backward).toEqual({tabIndex:-1,handled:true,tabStops:['Unavailable']});await expect(page.getByTestId('menubar-remove')).toBeFocused();await page.keyboard.press('Tab');await expect(last).toBeFocused();\n  51 |   // Native public open input keeps the collapsed popup/back DOM while removing every tab stop.\n> 52 |   await page.goto('/catalog/menu-closed-roving');await expect(page.getByRole('heading',{name:'Menu外部入力の終了検証',exact:true})).toBeVisible();await page.getByLabel('Menu検証profile',{exact:true}).selectOption(profile);await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');\n     |                                                                                                                                                                                              ^\n  53 |   const external=page.getByTestId('menu-external-open'),popup=page.locator('#external-open-menu'),state=page.getByTestId('menu-external-state');\n  54 |   const snapshot=()=>popup.evaluate(element=>({open:element.matches(':popover-open'),items:[...element.querySelectorAll<HTMLElement>('[data-menu-item],[data-menu-back]')].map(item=>({id:item.id||item.dataset.menuBack,tabIndex:item.tabIndex,back:!!item.dataset.menuBack})),focus:element.ownerDocument.activeElement?.id}));\n  55 |   await expect(popup).toBeHidden();await expect.poll(async()=>{const data=await snapshot();return !data.open&&data.items.length>0&&data.items.every(item=>item.tabIndex===-1);}).toBe(true);\n    at /private/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/source-root37/tests/ui/navigation-catalog.spec.ts:52:190"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T13:45:45.158Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/tmp/ui-foundation-cross-browser-stage/menu-closed-roving-fix/evidence/nav2/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e41f63d5b0323bfdd455-aa88838a2d9655f5a52c",
+              "file": "navigation-catalog.spec.ts",
+              "line": 37,
+              "column": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T13:44:58.003Z",
+    "duration": 92959.314,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

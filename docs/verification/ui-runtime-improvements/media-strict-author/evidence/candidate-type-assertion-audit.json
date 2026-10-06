@@ -1,0 +1,4315 @@
+{
+  "compilerVersion": "6.0.3",
+  "config": "repository/tsconfig.ui-media.json",
+  "strict": true,
+  "noEmit": true,
+  "skipLibCheckInherited": true,
+  "angularTemplateChecking": "Separate ngc build; this tsc command checks TypeScript only",
+  "scope": "Media3 spec entries, direct catalog-test and media-test-dom, plus the helper type-only fixture and generated transitive dependencies listed explicitly",
+  "allUiSpecsChecked": false,
+  "programs": [
+    {
+      "name": "combined-before",
+      "entryFiles": [
+        "before/tests/ui/media.spec.ts",
+        "before/tests/ui/media-regressions.spec.ts",
+        "before/tests/ui/media-lifetime.spec.ts"
+      ],
+      "diagnostics": [
+        {
+          "path": "before/tests/ui/media-lifetime.spec.ts",
+          "line": 41,
+          "column": 84,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-lifetime.spec.ts",
+          "line": 44,
+          "column": 75,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media-regressions.spec.ts",
+          "line": 199,
+          "column": 182,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 8,
+          "column": 768,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 8,
+          "column": 786,
+          "code": 2339,
+          "message": "Property 'height' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'height' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 350,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 368,
+          "code": 2339,
+          "message": "Property 'height' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'height' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 582,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 1131,
+          "code": 2339,
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 245,
+          "code": 2339,
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 405,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 627,
+          "code": 2339,
+          "message": "Property 'volume' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'volume' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 782,
+          "code": 2339,
+          "message": "Property 'playbackRate' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'playbackRate' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 948,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1114,
+          "code": 2339,
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1322,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1585,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1739,
+          "code": 2339,
+          "message": "Property 'controls' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'controls' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 2820,
+          "code": 2339,
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "before/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 2980,
+          "code": 2339,
+          "message": "Property 'videoWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'videoWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "projectSources": [
+        "before/tests/ui/catalog-test.ts",
+        "before/tests/ui/media.spec.ts",
+        "before/tests/ui/media-regressions.spec.ts",
+        "before/tests/ui/media-lifetime.spec.ts"
+      ],
+      "projectSourceCount": 4
+    },
+    {
+      "name": "combined-after",
+      "entryFiles": [
+        "repository/tests/ui/media.spec.ts",
+        "repository/tests/ui/media-regressions.spec.ts",
+        "repository/tests/ui/media-lifetime.spec.ts"
+      ],
+      "diagnostics": [],
+      "projectSources": [
+        "repository/tests/ui/catalog-test.ts",
+        "repository/.ui/generated/angular/date-model.ts",
+        "repository/.ui/generated/angular/locale-model.ts",
+        "repository/.ui/generated/angular/locale.ts",
+        "repository/.ui/generated/angular/icon.ts",
+        "repository/.ui/generated/angular/action-control.ts",
+        "repository/.ui/generated/angular/media-model.ts",
+        "repository/.ui/generated/angular/file-draft-model.ts",
+        "repository/.ui/generated/angular/media-style.ts",
+        "repository/.ui/generated/angular/file-upload.ts",
+        "repository/.ui/generated/angular/focus.ts",
+        "repository/.ui/generated/angular/overlay.ts",
+        "repository/.ui/generated/angular/panel-handle.ts",
+        "repository/.ui/generated/angular/dialog.ts",
+        "repository/.ui/generated/angular/media-dom.ts",
+        "repository/.ui/generated/angular/image-media.ts",
+        "repository/.ui/generated/angular/crop-adapter.ts",
+        "repository/.ui/generated/angular/image-cropper.ts",
+        "repository/.ui/generated/angular/pdf-adapter.ts",
+        "repository/.ui/generated/angular/pdf-viewer.ts",
+        "repository/.ui/generated/angular/barcode.ts",
+        "repository/.ui/generated/angular/media-player.ts",
+        "repository/tests/fixture-app/media-catalog.ts",
+        "repository/tests/fixture-app/media-decoder.ts",
+        "repository/tests/ui/media-test-dom.ts",
+        "repository/tests/ui/media.spec.ts",
+        "repository/tests/ui/media-regressions.spec.ts",
+        "repository/tests/ui/media-lifetime.spec.ts"
+      ],
+      "projectSourceCount": 28
+    },
+    {
+      "name": "legacy-before",
+      "entryFiles": [
+        "evidence/legacy/media-regressions.original.spec.ts"
+      ],
+      "diagnostics": [
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 198,
+          "column": 182,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "projectSources": [
+        "evidence/legacy/catalog-test.ts",
+        "evidence/legacy/media-regressions.original.spec.ts"
+      ],
+      "projectSourceCount": 2
+    },
+    {
+      "name": "legacy-guard",
+      "entryFiles": [
+        "evidence/legacy/media-regressions.guarded.spec.ts"
+      ],
+      "diagnostics": [
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 199,
+          "column": 182,
+          "code": 2339,
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "projectSources": [
+        "evidence/legacy/catalog-test.ts",
+        "evidence/legacy/media-regressions.guarded.spec.ts"
+      ],
+      "projectSourceCount": 2
+    }
+  ],
+  "files": [
+    {
+      "name": "media.spec.ts",
+      "before": {
+        "parseDiagnostics": [],
+        "explicitAny": 11,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'value'",
+              "'40'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'3'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'alt'",
+              "'申請画像'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'loading'",
+              "'lazy'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'cover'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'400% · 90度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'inset(0px 0% 0px 0px)'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'0'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-direction'",
+              "'vertical'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'dir'",
+              "'rtl'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'99'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-direction'",
+              "'horizontal'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'ltr'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "99",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100×100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'image/png'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "{x1:0,y1:0,x2:100,y2:100}"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[255,0,0,255]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'回転 90度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'回転90'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'First PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'ページを表示しました'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "oldSize.width*2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'Second PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'First PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "oldSize.width"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'document.pdf'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'UI123456'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'UI123456'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'https://example.invalid/application/007'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'復旧123'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0.25"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1.5"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'showing'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "100"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'ui-video-player'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "320"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          }
+        ],
+        "titles": [
+          "'actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus'",
+          "'image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained'",
+          "'carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal'",
+          "'image compare native keyboard/boundary endpoints, direction and RTL'",
+          "'crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates'",
+          "'PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery'",
+          "'actual QR/Barcode encoding independently decodes raster; data change/error recovery'",
+          "'native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen'",
+          "'guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe'"
+        ]
+      },
+      "after": {
+        "parseDiagnostics": [],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'value'",
+              "'40'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'3'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'alt'",
+              "'申請画像'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'loading'",
+              "'lazy'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'cover'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'400% · 90度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'inset(0px 0% 0px 0px)'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'0'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-direction'",
+              "'vertical'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'dir'",
+              "'rtl'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'99'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-direction'",
+              "'horizontal'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'ltr'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "99",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100×100'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'image/png'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "{x1:0,y1:0,x2:100,y2:100}"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[255,0,0,255]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'回転 90度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'回転90'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'First PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'ページを表示しました'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "oldSize.width*2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'Second PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'First PDF page'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "oldSize.width"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'document.pdf'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'UI123456'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'UI123456'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'https://example.invalid/application/007'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'復旧123'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0.25"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1.5"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'showing'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "100"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "'ui-video-player'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "320"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          }
+        ],
+        "titles": [
+          "'actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus'",
+          "'image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained'",
+          "'carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal'",
+          "'image compare native keyboard/boundary endpoints, direction and RTL'",
+          "'crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates'",
+          "'PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery'",
+          "'actual QR/Barcode encoding independently decodes raster; data change/error recovery'",
+          "'native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen'",
+          "'guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe'"
+        ]
+      },
+      "assertionMatchersExpectedArgumentsAndLabelsUnchanged": true,
+      "testTitlesUnchanged": true
+    },
+    {
+      "name": "media-regressions.spec.ts",
+      "before": {
+        "parseDiagnostics": [],
+        "explicitAny": 38,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "pauses"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "time"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['playing','stop','new play']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "reentryTime"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'src'",
+              "'/assets/media/tone.wav?replaced'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'確認用の字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "''"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'差し替えた確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','showing']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','showing']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'確認用の字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','disabled']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'PDFを選択してください。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'PDFを読込み中です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'400% · '+rotation+'度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "start.canvasWidth",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "start.canvasHeight",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "end.clientWidth+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "end.clientHeight+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100% · '+rotation+'度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "geometry.start.canvasWidth",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "geometry.start.canvasHeight",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "geometry.clientHeight+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "geometry.clientWidth+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'自動送りを停止'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "stopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "stopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "focusedStop"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "focusedStop"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'自動送りを停止'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": [
+              "'mobile touch catalog runtime errors and warnings'"
+            ]
+          }
+        ],
+        "titles": [
+          "'real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup'",
+          "'real VTT removal and source replacement reconcile selected caption, native mode and current cue'",
+          "'PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL'",
+          "'open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL'",
+          "'desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling'",
+          "'Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control'"
+        ]
+      },
+      "after": {
+        "parseDiagnostics": [],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "pauses"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "time"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['playing','stop','new play']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "reentryTime"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'src'",
+              "'/assets/media/tone.wav?replaced'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "false"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'確認用の字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "''"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'差し替えた確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','showing']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','showing']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "not": false,
+            "args": [
+              "'second'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'確認用の字幕です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['disabled','disabled']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'PDFを選択してください。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'PDFを読込み中です。'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'400% · '+rotation+'度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "start.canvasWidth",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "start.canvasHeight",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "end.clientWidth+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "end.clientHeight+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100% · '+rotation+'度'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "not": false,
+            "args": [
+              "-1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "geometry.start.canvasWidth",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "geometry.start.canvasHeight",
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "geometry.clientHeight+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "not": false,
+            "args": [
+              "geometry.clientWidth+1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'自動送りを停止'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "stopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "stopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "focusedStop"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "focusedStop"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveText",
+            "not": false,
+            "args": [
+              "'自動送りを停止'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "not": false,
+            "args": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": true,
+            "args": [
+              "touchStopped"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": [
+              "'mobile touch catalog runtime errors and warnings'"
+            ]
+          }
+        ],
+        "titles": [
+          "'real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup'",
+          "'real VTT removal and source replacement reconcile selected caption, native mode and current cue'",
+          "'PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL'",
+          "'open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL'",
+          "'desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling'",
+          "'Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control'"
+        ]
+      },
+      "assertionMatchersExpectedArgumentsAndLabelsUnchanged": true,
+      "testTitlesUnchanged": true
+    },
+    {
+      "name": "media-lifetime.spec.ts",
+      "before": {
+        "parseDiagnostics": [],
+        "explicitAny": 38,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "200"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['old.png']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "200"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['old.png','current.png','destroy-pending.png']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "1/3",
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100×300'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          }
+        ],
+        "titles": [
+          "'native crop closes stale decoded Bitmaps during rapid replacement and destruction'",
+          "'native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs'",
+          "'PDF worker startup failure reports an error and terminates its native Worker'"
+        ]
+      },
+      "after": {
+        "parseDiagnostics": [],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "assertions": [
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "200"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['old.png']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "200"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "3"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "['old.png','current.png','destroy-pending.png']"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeNull",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toEqual",
+            "not": false,
+            "args": [
+              "[]"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "not": false,
+            "args": [
+              "1/3",
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toContainText",
+            "not": false,
+            "args": [
+              "'100×300'"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "1"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "not": false,
+            "args": [
+              "0"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "currentRequest"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "2"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "not": false,
+            "args": [],
+            "label": []
+          },
+          {
+            "matcher": "toBe",
+            "not": false,
+            "args": [
+              "true"
+            ],
+            "label": []
+          }
+        ],
+        "titles": [
+          "'native crop closes stale decoded Bitmaps during rapid replacement and destruction'",
+          "'native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs'",
+          "'PDF worker startup failure reports an error and terminates its native Worker'"
+        ]
+      },
+      "assertionMatchersExpectedArgumentsAndLabelsUnchanged": true,
+      "testTitlesUnchanged": true
+    }
+  ],
+  "helper": {
+    "parseDiagnostics": [],
+    "explicitAny": 0,
+    "suppressions": 0,
+    "assertions": [],
+    "titles": []
+  },
+  "exit": 0
+}

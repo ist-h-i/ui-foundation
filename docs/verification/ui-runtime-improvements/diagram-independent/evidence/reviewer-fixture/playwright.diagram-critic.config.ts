@@ -1,0 +1,2 @@
+import config from './playwright.config';
+export default {...config,fullyParallel:false,workers:1,retries:0,grep:/Diagram/,testMatch:['specialist-catalog.spec.ts','diagram-validation.spec.ts','diagram-controlled-validation.spec.ts','diagram-critic.spec.ts'],outputDir:'../evidence/native-artifacts',reporter:[['list'],['json',{outputFile:'../evidence/native-results.json'}]],use:{...config.use,trace:'on'},webServer:{...config.webServer,command:'npm run build && node scripts/serve.mjs',reuseExistingServer:false}};

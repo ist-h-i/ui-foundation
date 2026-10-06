@@ -1,0 +1,10 @@
+{
+  "actualExit": 1,
+  "passed": 20,
+  "failed": 2,
+  "productSourceChanged": [],
+  "classification": "Both failures read a scalar DOM value/counter immediately before Angular published the controlled model update. Trace later shows guided x48/request3 after the shift key and dense x1000000/request4 after the upper-limit field commit.",
+  "fix": "Await the actual parent-model projection before taking an invariant counter baseline, and use retrying assertion for the actual keyboard-updated input. Bound/invariant assertions and expected values remain intact.",
+  "testBeforeSha256": "b10876082dac4895ed767af66f4867c0c2303967a2212655dbf6af188ec04bbc",
+  "testAfterSha256": "8b2039f582e71fa62b61a4e3094001fc532d048de054f0a444281f1c4f29b7b2"
+}

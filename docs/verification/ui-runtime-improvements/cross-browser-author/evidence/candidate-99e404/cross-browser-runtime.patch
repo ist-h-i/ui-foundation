@@ -1,0 +1,298 @@
+--- a/templates/angular/menu.ts
++++ b/templates/angular/menu.ts
+@@ -20,11 +20,11 @@
+    @for(item of items;track item.id){
+     @if(item.type==='separator'){<li role="separator" aria-orientation="horizontal" class="ui-menu__separator"></li>}
+     @else if(item.type==='group'){<li role="none"><ul role="group" [attr.aria-label]="item.label"><li role="presentation" class="ui-menu__group">{{item.label}}</li><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:parent,depth:depth}" /></ul></li>}
+-    @else{<li role="none"><button type="button" [id]="itemId(item.id)" [attr.data-menu-item]="item.id" [attr.role]="role(item)" tabindex="-1" [attr.aria-disabled]="item.disabled?'true':null" [attr.aria-checked]="item.type==='checkbox'||item.type==='radio'?!!item.checked:null" [attr.aria-haspopup]="commands(item.children??[]).length?'menu':null" [attr.aria-expanded]="commands(item.children??[]).length?expanded()[depth]===item.id:null" [attr.aria-controls]="commands(item.children??[]).length?itemId(item.id)+'-children':null" (click)="select(item,depth)" (keydown)="key($event,item,parent,depth)" (pointerenter)="stopHoverClose()">
++    @else{<li role="none"><button type="button" [id]="itemId(item.id)" [attr.data-menu-item]="item.id" [attr.role]="role(item)" [attr.tabindex]="tabIndex(item.id,parent,depth)" (focus)="rememberFocus(item.id)" [attr.aria-disabled]="item.disabled?'true':null" [attr.aria-checked]="item.type==='checkbox'||item.type==='radio'?!!item.checked:null" [attr.aria-haspopup]="commands(item.children??[]).length?'menu':null" [attr.aria-expanded]="commands(item.children??[]).length?expanded()[depth]===item.id:null" [attr.aria-controls]="commands(item.children??[]).length?itemId(item.id)+'-children':null" (click)="select(item,depth)" (keydown)="key($event,item,parent,depth)" (pointerenter)="stopHoverClose()">
+      @if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}<span class="ui-menu__label">{{item.label}}</span>@if(commands(item.children??[]).length){<span aria-hidden="true">›</span>}
+     </button>
+     @if(expanded()[depth]===item.id&&commands(item.children??[]).length){<ul [id]="itemId(item.id)+'-children'" role="menu" [attr.aria-labelledby]="itemId(item.id)" [attr.data-menu-parent]="item.id" class="ui-menu__submenu"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:item,depth:depth+1}" />
+-     <li role="none"><button type="button" role="menuitem" tabindex="-1" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
++     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
+     </ul>}</li>}
+    }
+   </ng-template>`,
+@@ -52,6 +52,18 @@
+     private readonly currentItems = linkedSignal(() => this.items());
+     protected readonly nodes = computed(() => validateMenu(this.currentItems()));
+     protected readonly expanded = signal<readonly string[]>([]);
++    protected readonly focusedItem = signal<string | null>(null);
++    protected readonly focusedBack = signal<string | null>(null);
++    protected rememberFocus(id: string, back = false): void {
++        this.focusedItem.set(back ? null : id);
++        this.focusedBack.set(back ? id : null);
++    }
++    protected tabIndex(id: string, parent: MenuItem | null, depth: number): 0 | -1 {
++        if (this.focusedBack() === parent?.id) return -1;
++        const commands = menuCommands(parent?.children ?? this.nodes());
++        const selected = this.expanded()[depth] ?? (commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : commands[0]?.id);
++        return selected === id ? 0 : -1;
++    }
+     private readonly pendingFocus = signal<string | null>(null);
+     private readonly pendingBack = signal<string | null>(null);
+     protected readonly visible = visibleMenuItems;
+@@ -221,6 +233,10 @@
+     protected triggerKey(event: KeyboardEvent): void {
+         if (this.disabled()||event.defaultPrevented||event.isComposing||event.keyCode===229)
+             return;
++        if (event.key === 'Tab' && this.opened()) {
++            this.key(event, null, null, 0);
++            return;
++        }
+         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+             event.preventDefault();
+             this.openMenu(event.key==='ArrowUp'?'last':'first');
+@@ -411,6 +427,10 @@
+         this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null);
+     }
+     protected contextKey(event: KeyboardEvent): void {
++        if (event.key === 'Tab' && this.opened()) {
++            this.key(event, null, null, 0);
++            return;
++        }
+         if (this.disabled() || !(event.key === 'ContextMenu' || event.key === 'F10' && event.shiftKey))
+             return;
+         event.preventDefault();
+--- a/package.json
++++ b/package.json
+@@ -17,7 +17,8 @@
+     "test:model": "tsx --test tests/model/*.test.ts",
+     "test:config": "tsx --test tests/config/*.test.ts",
+     "test:generation": "tsx --test tests/generation/*.test.ts",
+-    "test:ui": "playwright test"
++    "test:ui": "playwright test",
++    "test:cross-browser": "node scripts/run-cross-browser.mjs"
+   },
+   "devDependencies": {
+     "@angular/cdk": "22.2.1",
+--- /dev/null
++++ b/playwright.cross-browser.config.ts
+@@ -0,0 +1,18 @@
++import {defineConfig,devices} from '@playwright/test';
++type Engine='chromium'|'firefox'|'webkit';
++const requested=(process.env.UI_CROSS_BROWSER_ENGINES??'chromium,firefox,webkit').split(',');
++const supported:readonly Engine[]=['chromium','firefox','webkit'];
++if(!requested.length||new Set(requested).size!==requested.length||requested.some(name=>!supported.includes(name as Engine)))throw new Error('UI_CROSS_BROWSER_ENGINES must name distinct chromium, firefox, or webkit engines.');
++const baseURL=process.env.UI_CROSS_BROWSER_URL;
++if(!baseURL)throw new Error('Run node scripts/run-cross-browser.mjs to build and own an ephemeral loopback server.');
++const origin=new URL(baseURL);
++if(origin.protocol!=='http:'||origin.hostname!=='127.0.0.1'||!origin.port||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Cross-browser fixture URL must be an owned loopback origin.');
++const output=process.env.UI_CROSS_BROWSER_EVIDENCE??'test-results/cross-browser';
++export default defineConfig({
++ testDir:'./tests/cross-browser',testMatch:'runtime-cross-browser.spec.ts',
++ fullyParallel:false,workers:1,forbidOnly:true,retries:0,timeout:45_000,
++ outputDir:output+'/artifacts',
++ reporter:[['list'],['json',{outputFile:output+'/results.json'}]],
++ use:{baseURL,trace:'retain-on-failure',screenshot:'only-on-failure'},
++ projects:requested.map(name=>({name,use:{...(name==='chromium'?devices['Desktop Chrome']:name==='firefox'?devices['Desktop Firefox']:devices['Desktop Safari']),browserName:name as Engine,...(name==='chromium'?{channel:'chromium',launchOptions:process.env.UI_CROSS_CHROMIUM_EXECUTABLE?{executablePath:process.env.UI_CROSS_CHROMIUM_EXECUTABLE}:{}}:{})}})),
++});
+--- /dev/null
++++ b/tests/cross-browser/runtime-test.ts
+@@ -0,0 +1,17 @@
++import {test as base,expect} from '@playwright/test';
++export {expect} from '@playwright/test';
++export const test=base.extend<{runtimeEvidence:void}>({
++ runtimeEvidence:[async({page,browser,browserName},use,info)=>{
++  const errors:string[]=[],warnings:string[]=[];
++  page.on('pageerror',error=>errors.push(error.message));
++  page.on('console',message=>{if(message.type()==='error')errors.push(message.text());if(message.type()==='warning')warnings.push(message.text());});
++  try{await use();}finally{
++   const advisory=/^\[JavaScript Warning: "This site appears to use a scroll-linked positioning effect\. This may not work well with asynchronous panning; see https:\/\/firefox-source-docs\.mozilla\.org\/performance\/scroll-linked_effects\.html for further details and to join the discussion on related tools and features!" \{file: "http:\/\/127\.0\.0\.1:\d+\/catalog\/foundation" line: 0\}\]$/;
++   const engineAdvisories=browserName==='firefox'?warnings.filter(warning=>advisory.test(warning)):[];
++   const unknownWarnings=warnings.filter(warning=>!engineAdvisories.includes(warning));
++   const telemetry={engine:browserName,version:browser.version(),userAgent:await page.evaluate(()=>navigator.userAgent),test:info.title,runtimeErrors:errors,consoleWarnings:warnings,engineAdvisories,unknownWarnings,scope:'Headless native/DOM/ARIA automation; Safari device and screen-reader speech not measured'};
++   await info.attach('runtime-engine',{body:JSON.stringify(telemetry,null,2),contentType:'application/json'});
++   expect(errors,'browser exceptions and console errors').toEqual([]);expect(unknownWarnings,'unclassified browser console warnings').toEqual([]);
++  }
++ },{auto:true}],
++});
+--- /dev/null
++++ b/tests/cross-browser/runtime-cross-browser.spec.ts
+@@ -0,0 +1,80 @@
++import {test,expect} from './runtime-test';
++import AxeBuilder from '@axe-core/playwright';
++import type {Page,TestInfo} from '@playwright/test';
++type Profile='guided'|'dense';
++const other=(profile:Profile):Profile=>profile==='guided'?'dense':'guided';
++async function narrow(page:Page){await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');}
++async function foundation(page:Page,profile:Profile){
++ await page.goto('/catalog/foundation');await expect(page.locator('#range-status')).toHaveText('VALID');await narrow(page);
++ await page.evaluate(profile=>{const app=(window as any).__stage;app.profile.set(profile);app.rootLocale.set({locale:'ja-JP',direction:'rtl',timeZone:'UTC',dateInputFormat:'dd/MM/yyyy'});},profile);
++ await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('main')).toHaveAttribute('dir','rtl');
++}
++async function catalog(page:Page,profile:Profile){await page.goto('/catalog');await page.locator('#catalog-profile').selectOption(profile);await narrow(page);await page.getByLabel('RTL',{exact:true}).check();await expect(page.locator('main')).toHaveAttribute('dir','rtl');}
++async function evidence(page:Page,info:TestInfo,selector:string){
++ const target=page.locator(selector),geometry=await target.evaluate(element=>{const r=element.getBoundingClientRect(),style=getComputedStyle(element);return {x:r.x,right:r.right,width:r.width,viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,direction:style.direction,profile:element.closest('[data-ui-profile]')?.getAttribute('data-ui-profile')};});
++ await info.attach('native-geometry',{body:JSON.stringify(geometry,null,2),contentType:'application/json'});
++ expect(geometry.documentWidth,'320px/200% document overflow').toBeLessThanOrEqual(321);
++ const accessibility=await new AxeBuilder({page}).include(selector).analyze();await info.attach('axe-target',{body:JSON.stringify(accessibility),contentType:'application/json'});expect(accessibility.violations).toEqual([]);
++ await info.attach('aria-target',{body:await target.ariaSnapshot(),contentType:'text/plain'});
++}
++for(const profile of ['guided','dense'] as const){
++ test(`Card ${profile}: collapse/body visibility, profile and input identity`,async({page},info)=>{
++  await catalog(page,profile);const input=page.getByRole('textbox',{name:'Card内メモ',exact:true}),card=page.locator('ui-card').filter({has:page.locator('#verification-card-content')});await input.fill('再開する未保存の下書き');await input.evaluate(element=>(window as any).__crossCardInput=element);
++  const inside=page.getByRole('button',{name:'本文から折り畳む',exact:true});await inside.focus();await inside.press('Enter');await expect(input).toBeHidden();const expand=page.getByRole('button',{name:'展開: 申請内容',exact:true});await expect(expand).toBeFocused();await expand.press('Enter');await expect(input).toHaveValue('再開する未保存の下書き');expect(await input.evaluate(element=>element===(window as any).__crossCardInput)).toBe(true);
++  await page.locator('#catalog-profile').selectOption(other(profile));await expect(page.locator('main')).toHaveAttribute('data-ui-profile',other(profile));await expect(input).toHaveValue('再開する未保存の下書き');expect(await input.evaluate(element=>element===(window as any).__crossCardInput)).toBe(true);
++  const hide=page.getByRole('button',{name:'本文を隠す',exact:true});await hide.focus();await hide.press('Enter');await expect(input).toBeHidden();await expect(page.getByRole('button',{name:'折り畳む: 申請内容',exact:true})).toBeFocused();await page.getByLabel('Card本文',{exact:true}).check();await expect(input).toHaveValue('再開する未保存の下書き');expect(await input.evaluate(element=>element===(window as any).__crossCardInput)).toBe(true);
++  await page.getByLabel('Card取得中',{exact:true}).check();await expect(card.locator('article')).toHaveAttribute('aria-busy','true');await expect(card.getByRole('status')).toHaveText('内容を読み込んでいます。');await expect(input).toHaveValue('再開する未保存の下書き');await evidence(page,info,'ui-card:has(#verification-card-content)');
++ });
++ test(`Menu ${profile}: recursive RTL keys, disabled intent, Tab exit and parent focus`,async({page},info)=>{
++  await catalog(page,profile);const trigger=page.getByRole('button',{name:'申請の操作',exact:true}),root=page.locator('#recursive-menu');await trigger.focus();await trigger.press('ArrowDown');const file=root.getByRole('menuitem',{name:'ファイル',exact:true});await expect(file).toBeFocused();await file.press('ArrowLeft');const next=root.getByRole('menuitem',{name:'新規',exact:true});await expect(next).toBeFocused();await next.press('ArrowLeft');await expect(root.getByRole('menuitem',{name:'申請を作成',exact:true})).toBeFocused();await evidence(page,info,'#recursive-menu');
++  const roving=await root.locator('[role=menu]').evaluateAll(menus=>menus.map(menu=>({id:menu.id||'root',tabStops:[...menu.querySelectorAll<HTMLButtonElement>('button[tabindex="0"]')].filter(button=>button.closest('[role=menu]')===menu).map(button=>button.id||button.dataset.menuBack)})));await info.attach('menu-level-roving',{body:JSON.stringify(roving,null,2),contentType:'application/json'});expect(roving).toHaveLength(3);expect(roving.every(level=>level.tabStops.length===1)).toBe(true);
++  await page.keyboard.press('Escape');await expect(next).toBeFocused();await page.keyboard.press('Escape');await expect(file).toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();await expect(root).toBeHidden();
++  await trigger.press('ArrowUp');await expect(root.getByRole('menuitem',{name:'実行不可',exact:true})).toBeFocused();await page.keyboard.press('Enter');await expect(page.getByTestId('menu-selected')).toHaveText('Menu選択: ');await expect(root).toBeVisible();await page.keyboard.press('Home');await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Menuの次の操作',exact:true})).toBeFocused();await expect(root).toBeHidden();
++  await trigger.focus();await trigger.press('ArrowDown');await expect(file).toBeFocused();await file.press('ArrowLeft');await expect(next).toBeFocused();await next.press('ArrowLeft');await expect(root.getByRole('menuitem',{name:'申請を作成',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Menuの次の操作',exact:true})).toBeFocused();await expect(root).toBeHidden();
++  await trigger.focus();await trigger.press('ArrowDown');await expect(file).toBeFocused();await file.press('ArrowLeft');await expect(next).toBeFocused();await page.keyboard.press('End');await expect(root.locator('[data-menu-back=file]')).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(page.getByLabel('Menu無効',{exact:true})).toBeFocused();await expect(root).toBeHidden();
++  await trigger.focus();await trigger.press('ArrowDown');await expect(file).toBeFocused();await trigger.focus();await trigger.press('Tab');await expect(page.getByRole('button',{name:'Menuの次の操作',exact:true})).toBeFocused();await expect(root).toBeHidden();
++  const hoverTrigger=page.getByRole('button',{name:'hoverメニュー',exact:true});await hoverTrigger.focus();await hoverTrigger.hover();const hoverRoot=page.locator('#hover-menu');await expect(hoverRoot).toBeVisible();await expect(hoverRoot.locator('button[tabindex="0"]')).toHaveCount(1);await expect(hoverTrigger).toBeFocused();await hoverTrigger.press('Tab');await expect(page.getByRole('button',{name:'対象の操作',exact:true})).toBeFocused();await expect(hoverRoot).toBeHidden();await page.mouse.move(0,0);
++  const context=page.locator('ui-context-menu .ui-menu__context');await context.focus();await context.press('Shift+F10');await expect(page.locator('#context-menu').getByRole('menuitem',{name:'ファイル',exact:true})).toBeFocused();await context.focus();await context.press('Tab');await expect(page.getByRole('button',{name:'別scopeの操作',exact:true})).toBeFocused();await expect(page.locator('#context-menu')).toBeHidden();
++ });
++ test(`DateRange ${profile}: invalid draft, locale/profile, keyboard calendar and focus`,async({page},info)=>{
++  await foundation(page,profile);const range=page.locator('#range-case'),start=range.locator('input').first(),picker=range.locator('ui-date-picker').first();
++  await start.fill('31/02/2026');await start.focus();await start.evaluate(element=>{(window as any).__crossDateEditor=element;(element as HTMLInputElement).setSelectionRange(2,5);});
++  await page.evaluate(profile=>{const app=(window as any).__stage;app.profile.set(profile);app.rootLocale.set({locale:'en-US',direction:'rtl',timeZone:'UTC',dateInputFormat:'yyyy-MM-dd'});},other(profile));
++  await expect(start).toHaveValue('31/02/2026');await expect(start).toHaveAttribute('placeholder','dd/MM/yyyy');await expect(start).toBeFocused();expect(await start.evaluate(element=>element===(window as any).__crossDateEditor)).toBe(true);expect(await start.evaluate(element=>[(element as HTMLInputElement).selectionStart,(element as HTMLInputElement).selectionEnd])).toEqual([2,5]);
++  await expect(page.locator('#range-status')).toHaveText('INVALID');await expect(page.locator('#range-value')).toHaveText('{"start":"2026-02-01","end":"2026-02-07"}');
++  await start.fill('02/02/2026');await expect(start).toHaveValue('2026-02-02');await expect(page.locator('#range-status')).toHaveText('VALID');
++  const trigger=picker.getByRole('button',{name:'期間の開始日のカレンダーを開く',exact:true});await trigger.focus();await trigger.press('Enter');const popup=page.locator('dialog:modal');await expect(popup).toBeVisible();const day=popup.locator('button[data-date="2026-02-03"]');await day.focus();await day.press('Enter');await expect(popup).toHaveCount(0);await expect(start).toHaveValue('2026-02-03');await expect(trigger).toBeFocused();
++  await evidence(page,info,'#range-case');
++ });
++ test(`Composer ${profile}: pending/reset keeps input and CodeMirror native editing`,async({page},info)=>{
++  await foundation(page,profile);const textarea=page.locator('#composer-case textarea');await textarea.fill('保持するnative下書き');await textarea.focus();await textarea.evaluate(element=>{(window as any).__crossComposer=element;(element as HTMLTextAreaElement).setSelectionRange(2,6);});
++  await page.evaluate(profile=>{const app=(window as any).__stage;app.profile.set(profile);app.rootLocale.set({locale:'de-DE',direction:'rtl',dateInputFormat:'dd/MM/yyyy',timeZone:'UTC',messages:{メッセージを入力:'Draft message',送信:'Send'}});},other(profile));
++  await expect(page.locator('#root-locale .ui-input-format')).toContainText('1.234,5');await expect(textarea).toHaveValue('保持するnative下書き');await expect(textarea).toBeFocused();expect(await textarea.evaluate(element=>element===(window as any).__crossComposer)).toBe(true);expect(await textarea.evaluate(element=>[(element as HTMLTextAreaElement).selectionStart,(element as HTMLTextAreaElement).selectionEnd])).toEqual([2,6]);
++  const submit=page.locator('#composer-case button[type=submit]');await expect(submit).toHaveText('Send');await submit.focus();await submit.press('Enter');await expect(page.locator('#composer-intents')).toHaveText('1');await expect(textarea).toBeDisabled();
++  expect(await page.evaluate(()=>{const app=(window as any).__stage.newForms();return app.composer().markSendUnknown(app.requests()[0].requestId);})).toBe(true);await expect(textarea).toHaveValue('保持するnative下書き');await expect(submit).toBeDisabled();
++  await page.evaluate(()=>(window as any).__stage.newForms().composerControl.reset('保持するnative下書き'));await expect(submit).toBeEnabled();expect(await page.evaluate(()=>{const app=(window as any).__stage.newForms();return app.composer().completeSend(app.requests()[0].requestId,true);})).toBe(false);
++  await evidence(page,info,'#composer-case');
++  const code=page.locator('[data-editor=code] .cm-content');await code.click();await page.keyboard.press('ControlOrMeta+A');await page.keyboard.type('const crossBrowser = 7;');await expect(page.locator('#code-value')).toHaveText('const crossBrowser = 7;');await code.evaluate(element=>(window as any).__crossCode=element);await page.evaluate(profile=>(window as any).__stage.profile.set(profile),profile);await expect(code).toBeFocused();expect(await code.evaluate(element=>element===(window as any).__crossCode)).toBe(true);await expect(page.locator('#code-value')).toHaveText('const crossBrowser = 7;');
++  await info.attach('codemirror-native',{body:JSON.stringify({value:await page.locator('#code-value').textContent(),sameEditor:true,focused:true}),contentType:'application/json'});
++ });
++ test(`Dialog ${profile}: busy/veto, nested RTL Menu, retained input and close return`,async({page},info)=>{
++  await catalog(page,profile);const opener=page.getByRole('button',{name:'編集Dialogを開く',exact:true});await opener.focus();await opener.press('Enter');const dialog=page.getByRole('dialog',{name:'申請の編集',exact:true}),input=dialog.getByRole('textbox',{name:'Dialogの入力',exact:true});await expect(input).toBeFocused();expect(await dialog.evaluate(element=>element.matches(':modal'))).toBe(true);await input.fill('閉じ戻っても保持');await input.evaluate(element=>(window as any).__crossDialogInput=element);
++  // Scoped profile is an application-controlled DOM scope; the native modal background stays inert.
++  await dialog.evaluate((element,profile)=>element.setAttribute('data-ui-profile',profile),other(profile));await expect(input).toHaveValue('閉じ戻っても保持');await expect(input).toBeFocused();expect(await input.evaluate(element=>element===(window as any).__crossDialogInput)).toBe(true);
++  await dialog.getByLabel('終了保留を解除',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(page.getByTestId('dialog-held')).toHaveText('終了保留: 1');await dialog.getByLabel('終了保留を解除',{exact:true}).uncheck();await dialog.getByLabel('処理中',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(dialog.getByRole('button',{name:'ダイアログを閉じる',exact:true})).toBeDisabled();await dialog.getByLabel('処理中',{exact:true}).uncheck();
++  const menu=dialog.getByRole('button',{name:'Dialog内Menu',exact:true});await menu.focus();await menu.press('ArrowDown');const file=page.locator('#dialog-menu').getByRole('menuitem',{name:'ファイル',exact:true});await expect(file).toBeFocused();await file.press('ArrowLeft');await expect(page.locator('#dialog-menu').getByRole('menuitem',{name:'新規',exact:true})).toBeFocused();await page.keyboard.press('Escape');await expect(file).toBeFocused();await page.keyboard.press('Escape');await expect(menu).toBeFocused();await expect(dialog).toBeVisible();
++  await evidence(page,info,'dialog[open]');await page.keyboard.press('Escape');await expect(dialog).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('dialog-result')).toHaveText('終了: escape / ');
++  await opener.press('Enter');await expect(input).toHaveValue('閉じ戻っても保持');expect(await input.evaluate(element=>element===(window as any).__crossDialogInput)).toBe(true);await dialog.getByRole('button',{name:'編集を確定',exact:true}).focus();await page.keyboard.press('Enter');await expect(dialog).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('dialog-result')).toHaveText('終了: confirm / saved');
++ });
++ test(`Snackbar ${profile}: exact timeout, OFF, overlapping pause and owned focus return`,async({page},info)=>{
++  await page.clock.install({time:new Date('2026-10-06T12:00:00Z')});await catalog(page,profile);await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));await page.mouse.move(0,0);const opener=page.getByRole('button',{name:'単独通知を表示',exact:true}),notice=page.locator('ui-snackbar').filter({hasText:'申請を保存しました'}).locator('.ui-snackbar');
++  await opener.focus();await opener.press('Enter');await page.clock.runFor(20);await expect(notice).toBeVisible();await page.clock.runFor(4950);await expect(notice).toBeVisible();await page.clock.runFor(100);await expect(notice).toBeHidden();await expect(page.getByTestId('notice-dismiss')).toContainText('timeout');
++  await page.getByLabel('通知を自動消去',{exact:true}).uncheck();await page.locator('#notice-seconds').fill('0');await opener.focus();await opener.press('Enter');await page.clock.runFor(20);await page.clock.runFor(60000);await expect(notice).toBeVisible();
++  // Axe owns asynchronous timers. Resume only while autoDismiss=OFF, then pause again before timed assertions.
++  await page.clock.resume();await evidence(page,info,'ui-snackbar');await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));
++  await notice.getByRole('button',{name:'内容を確認',exact:true}).focus();await page.keyboard.press('Enter');await page.clock.runFor(20);await expect(notice).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('notice-dismiss')).toHaveText('単独通知: action / 操作: 1');
++  await page.getByLabel('通知を自動消去',{exact:true}).check();await page.locator('#notice-seconds').fill('5');await page.mouse.move(0,0);await opener.focus();await opener.press('Enter');await page.clock.runFor(20);expect(await notice.evaluate(surface=>surface.matches(':hover')),'no accidental hover from the duration controls').toBe(false);await page.clock.runFor(2000);await notice.hover();await notice.getByRole('button',{name:'内容を確認',exact:true}).focus();await page.clock.runFor(10000);await page.mouse.move(0,0);await page.clock.runFor(10000);await expect(notice).toBeVisible();await opener.focus();await expect(opener).toBeFocused();expect(await notice.evaluate(surface=>surface.matches(':hover'))).toBe(false);
++  // Flush effects scheduled by the native focusout at the same fake timestamp; no elapsed-time allowance is added.
++  await page.clock.runFor(0);await info.attach('notification-resume',{body:JSON.stringify(await notice.evaluate(surface=>({virtualNow:performance.now(),hover:surface.matches(':hover'),focusInNotice:surface.contains(document.activeElement),visible:!(surface as HTMLElement).hidden}))),contentType:'application/json'});await page.clock.runFor(2900);await expect(notice).toBeVisible();await page.clock.runFor(100);await expect(notice).toBeHidden();
++ });
++}
+--- /dev/null
++++ b/scripts/run-cross-browser.mjs
+@@ -0,0 +1,38 @@
++import {spawn} from 'node:child_process';
++import {createServer} from 'node:http';
++import {readFile,mkdir,writeFile} from 'node:fs/promises';
++import {dirname,extname,resolve,sep} from 'node:path';
++import {createRequire} from 'node:module';
++import {createHash} from 'node:crypto';
++const cwd=process.cwd(),require=createRequire(import.meta.url),evidence=resolve(process.env.UI_CROSS_BROWSER_EVIDENCE??'test-results/cross-browser');
++const engines=process.env.UI_CROSS_BROWSER_ENGINES??'chromium,firefox,webkit';
++const names=engines.split(',');if(!names.length||new Set(names).size!==names.length||names.some(name=>!['chromium','firefox','webkit'].includes(name)))throw new Error('Select distinct supported engines with UI_CROSS_BROWSER_ENGINES.');
++const filters=process.argv.slice(2);if(filters.some(value=>value.startsWith('-c')||/^--(?:config|retries|repeat-each|pass-with-no-tests|ignore-snapshots)/.test(value)))throw new Error('Config, retries, repeated runs and no-test masking cannot be overridden.');
++await mkdir(evidence,{recursive:true});
++const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
++const receipt={startedAtUtc:new Date().toISOString(),engines:names,explicitPlaywrightFilters:filters,playwright:require('@playwright/test/package.json').version,scope:'Explicit focused cross-browser suite only; npm test/default UI discovery unchanged',build:'RUNNING',native:'NOT RUN',serverClosed:false};
++const save=()=>writeFile(resolve(evidence,'run-receipt.json'),JSON.stringify(receipt,null,2)+'\n');
++await save();
++const run=(command,args,env=process.env)=>new Promise((done,reject)=>{const child=spawn(command,args,{cwd,env,stdio:'inherit'});child.once('error',reject);child.once('exit',(code,signal)=>done({code,signal}));});
++const build=await run(process.platform==='win32'?'npm.cmd':'npm',['run','build']);receipt.build=build;await save();
++if(build.code!==0){process.exitCode=build.code??1;}else{
++ const root=resolve('dist/fixture-app'),mime={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.wasm':'application/wasm','.pdf':'application/pdf','.svg':'image/svg+xml','.json':'application/json','.vtt':'text/vtt','.wav':'audio/wav','.webm':'video/webm','.png':'image/png','.map':'application/json'};
++ receipt.bundleSha256=hash(await readFile(resolve(root,'main.js')));
++ const server=createServer(async(request,response)=>{try{
++  const pathname=decodeURIComponent(new URL(request.url,'http://127.0.0.1').pathname);
++  if(pathname==='/favicon.ico'){response.writeHead(204).end();return;}
++  const path=resolve(root,'.'+(pathname==='/'||pathname==='/catalog'||pathname.startsWith('/catalog/')?'/index.html':pathname));
++  if(!path.startsWith(root+sep)){response.writeHead(403).end();return;}
++  const body=await readFile(path);response.writeHead(200,{'Content-Type':mime[extname(path)]??'application/octet-stream','Cache-Control':'no-store'});response.end(body);
++ }catch{response.writeHead(404).end('Not found');}});
++ try{
++  await new Promise((done,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',done);});
++  const address=server.address();if(!address||typeof address==='string')throw Error('No owned loopback address');
++  receipt.origin='http://127.0.0.1:'+address.port;await save();
++  const playwrightPackage=require('playwright/package.json'),cli=resolve(dirname(require.resolve('playwright/package.json')),playwrightPackage.bin.playwright);
++  const native=await run(process.execPath,[cli,'test','-c','playwright.cross-browser.config.ts',...filters],{...process.env,UI_CROSS_BROWSER_URL:receipt.origin,UI_CROSS_BROWSER_ENGINES:engines,UI_CROSS_BROWSER_EVIDENCE:evidence});
++  receipt.native=native;process.exitCode=native.code??1;
++ }finally{
++  server.closeAllConnections();await new Promise(done=>server.close(done));receipt.serverClosed=true;receipt.completedAtUtc=new Date().toISOString();await save();
++ }
++}
+--- /dev/null
++++ b/docs/cross-browser-runtime-verification.ja.md
+@@ -0,0 +1,61 @@
++# クロスブラウザーの重点実操作検証
++
++`npm run test:cross-browser` は、Playwright 1.63.0 の Chromium・Firefox・WebKit で重点部品を操作する opt-in の検証入口である。既定の `npm test` / `test:ui` と `playwright.config.ts` は既存の Chromium 検証を継続する。追加 spec は `tests/cross-browser/`、追加設定は `playwright.cross-browser.config.ts` に置く。通常980件の3倍実行を既定のコマンドへ加えない。
++
++| 対象 | 同じケース内で確認する操作 |
++| --- | --- |
++| Card | 本文からの折り畳み、本文の非表示、見出しへのfocus復帰、同じinputと下書きの保持、profile切替、loadingの意味 |
++| Menu | RTLの3階層展開、各階層1項目のroving tabindex、親へのEscape復帰、disabled項目の非実行、deep/back/trigger/context/hoverのTab終了 |
++| Dialog | native modal、入力保持、scoped profile、終了保留、busy中の終了抑止、内側Menu、取消・確定と呼出元へのfocus復帰 |
++| Snackbar | 5秒、OFF・0秒、actionとfocus復帰、hover/focusの重複pause、残り時間だけのresume |
++| DateRangePicker | 無効な日付のdraft・caret・同じinputの保持、locale/profile/format変更、修正、native dialog内カレンダーのkeyboard選択 |
++| MessageComposer | draft/caret/同じtextarea、locale/profile、pending、結果不明、reset、古い送信完了の拒否。CodeMirrorの実contenteditable操作とCVA出力も確認 |
++
++guided / dense、RTL、320px、root font 200%、reduced motion の条件を組み合わせ、6ケース×2profile×3engineの36ケースを登録する。各ケースは新しいブラウザーcontextを使う。keyboard・focus・入力・公開fixture stateの結果をassertし、DOM geometry、ARIA snapshot、Axe結果、engine/version/UA、例外・console.error・warningを添付する。Axeのruleを除外しない。retryは0、`test.only`は拒否する。明示的な絞込みは実行receiptに残す。
++
++ブラウザーはタスクまたはCIが所有するcacheへ導入する。既存のプロジェクト依存関係が固定したPlaywright CLIを使う。
++
++```sh
++export PLAYWRIGHT_BROWSERS_PATH=/tmp/ui-foundation-playwright-cache-1.63.0
++npm exec -- playwright install chromium firefox webkit
++npm run ui:sync
++npm run ui:check
++npm run test:cross-browser
++```
++
++runnerは通常の `npm run build` を実行し、同期一致とAngularのstrict full AOTを確認してから、`127.0.0.1` のport 0で専用サーバーを作る。生成物はCLI生成を使う。サーバーを共有の固定ポートへ接続せず、実行終了時に所有サーバーを閉じる。結果は既定で `test-results/cross-browser/` に保存する。`run-receipt.json` はbuild/nativeのactual exit、選んだengine、明示filter、bundle SHA、実行時刻、サーバー終了を記録する。
++
++```sh
++UI_CROSS_BROWSER_ENGINES=firefox,webkit npm run test:cross-browser
++UI_CROSS_BROWSER_ENGINES=webkit npm run test:cross-browser -- --grep Menu
++```
++
++`UI_CROSS_BROWSER_EVIDENCE` は証拠の出力先を指定する。Chromiumの既存Playwright互換実行ファイルを使う場合は `UI_CROSS_CHROMIUM_EXECUTABLE` に絶対パスを渡し、実際に起動したversion/UAで結果を読む。設定の差替え、retry、反復、0件を成功にするCLI optionはrunnerが拒否する。専用設定の `UI_CROSS_BROWSER_URL` はrunnerが所有するloopback originを渡す。`--list`による登録確認とnative実行の合格は分けて記録する。
++
++追加specの型確認は次で再現できる。既存tools/applicationのtsconfigは、この専用specの型確認を含まない。
++
++```sh
++node node_modules/typescript/bin/tsc --ignoreConfig --noEmit --strict --skipLibCheck --types node --target ES2022 --module ESNext --moduleResolution bundler playwright.cross-browser.config.ts tests/cross-browser/runtime-test.ts tests/cross-browser/runtime-cross-browser.spec.ts
++```
++
++Snackbarの時計はページ初期化前に `page.clock.install` する。初期化が終わった時刻を基準にpauseし、OFF中のAxe計測だけ時計を再開する。hover/focusを解除したときのeffectは `runFor(0)` で同じ仮想時刻に処理し、残り時間の測定へ入る。設定checkboxの実clickで動いたマウスポインターを通知の外へ置き、native `:hover=false` を確認する。意図しないhoverが起きた場合、タイマーの故障として扱う前にnative focus/hoverと時計の状態を保存する。この手順は猶予の追加や製品timerの差替えを行わない。[Playwright Clock](https://playwright.dev/docs/clock)
++
++Firefoxの `scroll-linked positioning effect` warningは、ブラウザーがスクロール効果を検出した性能上の警告である。既存CodeMirror操作で観測した全文・fixture URL・UA・件数を保存し、その完全一致だけをengine advisoryに分類する。未知のwarning、ページ例外、console.errorは失敗にする。スクロール性能の改善は別の測定対象である。[Firefox Source Docs](https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html)
++
++Menuはnative focusが移った項目と戻り項目を記憶する。開いている各階層の親項目または現在項目をrovingの候補とし、hoverで開く場合は最初の項目を候補にする。スクロールcontainerへTab停止を追加しない。Tab / Shift+Tabは既存のcomposite終了経路を使い、submenu・trigger・context targetのどこからでも外へ出る。Escapeは親階層へ戻る。これはAPGのkeyboard終了と親への復帰を自動操作で確認するための契約である。[WAI-ARIA Menu Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/)
++
++2026-10-06の初期計測はbase `9f5430ca87e249af204cc335a8610d0d8040621f` のsnapshotを使った。初回は30/36・actual exit 1、中間候補は35/36・actual exit 1を保存した。最終Menu候補SHA `99e404d5188711074302963aa7c2948126ce7feb99f3d68a8c755b4e199797ed` と最終specを通常CLI生成した計測は次の結果だった。
++
++| Engine | 実version | 完了したケース | failure / skip / retry |
++| --- | --- | --- | --- |
++| Chromium | 153.0.8010.12 | 12/12 | 0 / 0 / 0 |
++| Firefox | 155.0 | 12/12 | 0 / 0 / 0 |
++| WebKit | 26.6 | 12/12 | 0 / 0 / 0 |
++
++最終actual exitは0、runtime errorは0、未知warningは0、Firefoxの既知engine advisoryは2件、flaky・timeout・interruptedは0だった。全36のAxe分析でviolationは0、incompleteは13ケース・22rule結果・54nodeだった。内訳はpopupの `aria-controls` 確認が18node、重なり背景または非テキスト装飾のcolor contrastが36nodeであり、raw incompleteを保持する。この数を全アクセシビリティ要件の完了数へ置換しない。正常生成/AOT/build、専用specのstrict型確認、通常980件と専用36件の登録も別の静的検証として記録した。
++
++WebKitの自動操作はPlaywrightが配布するWebKitの実測であり、Safari実機の結果へ拡張しない。FirefoxもPlaywright対応buildである。[Playwright Browsers](https://playwright.dev/docs/browsers) ARIA snapshotはブラウザーの意味構造をシリアライズした結果で、screen readerの音声出力は未測定である。スクリーンショットや人間目視をこの専用コマンドの終了条件にしない。
++
++同じ環境のlocalhostで全3engineにClipboard APIとWebGL2 contextが存在することを読み取りで確認した。Firefox/WebKitは `clipboard-read` / `clipboard-write` のPermissions API descriptorがTypeErrorとなり、Chromiumはread=`prompt` / write=`granted`だった。Clipboardの実I/Oはこの36件の対象外で、APIの存在からI/O成功を推定しない。WebGL2 contextの存在からMapLibreの描画成功も推定しない。CodeMirrorは実編集を確認した代表rendererである。
++
++この証拠は表記したsnapshotと追加Menu候補に限定する。後続のDiagram・Chart等を含む統合ソースは、正常生成した同じ候補のbundleで対象を再測定し、source SHAと実数を更新する。既存181要求の完了履歴と今回の追加検証範囲は個別に扱う。

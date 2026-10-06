@@ -1,0 +1,160 @@
+{
+  "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "sourceVerdict": "APPROVE_FROZEN_SOURCE_A1ED5C_WITH_SCOPED_VERIFICATION",
+  "overallPrVerdict": "PENDING_FINAL_DOC_PROOF_HEAD",
+  "wholePrApproval": false,
+  "productBlockers": [],
+  "ownCommands": {
+    "canonical-regeneration": {
+      "label": "canonical-regeneration",
+      "argv": [
+        "node",
+        "canonical-regeneration-check.mjs"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:03:46.659000+00:00",
+      "endedUtc": "2026-10-06T14:03:49.097822+00:00",
+      "actualExit": 0,
+      "log": "canonical-regeneration.log"
+    },
+    "canonical-sync": {
+      "label": "canonical-sync",
+      "argv": [
+        "npm",
+        "run",
+        "ui:sync"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:01:03.321897+00:00",
+      "endedUtc": "2026-10-06T14:01:04.390127+00:00",
+      "actualExit": 0,
+      "log": "canonical-sync.log"
+    },
+    "final-typecheck": {
+      "label": "final-typecheck",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:01:52.279786+00:00",
+      "endedUtc": "2026-10-06T14:02:27.279764+00:00",
+      "actualExit": 0,
+      "log": "final-typecheck.log"
+    },
+    "nav-assertion-audit": {
+      "label": "nav-assertion-audit",
+      "argv": [
+        "node",
+        "../audit-navigation-assertion-transition.mjs"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:03:15.128674+00:00",
+      "endedUtc": "2026-10-06T14:03:15.608073+00:00",
+      "actualExit": 0,
+      "log": "nav-assertion-audit.log"
+    },
+    "public-consumer-full-aot": {
+      "label": "public-consumer-full-aot",
+      "argv": [
+        "node",
+        "node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js",
+        "-p",
+        "tsconfig.public-consumer.json"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:01:53.544225+00:00",
+      "endedUtc": "2026-10-06T14:02:16.564805+00:00",
+      "actualExit": 0,
+      "log": "public-consumer-full-aot.log"
+    },
+    "root-evidence-audit": {
+      "label": "root-evidence-audit",
+      "argv": [
+        "python3",
+        "../audit-root-final-evidence.py"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:14:11.402322+00:00",
+      "endedUtc": "2026-10-06T14:14:11.728698+00:00",
+      "actualExit": 0,
+      "log": "root-evidence-audit.log"
+    },
+    "source-adoption-audit": {
+      "label": "source-adoption-audit",
+      "argv": [
+        "python3",
+        "../audit-a1ed5c-transition.py"
+      ],
+      "cwd": "/private/tmp/ui-foundation-pr13-independent-final-review/repository-a1ed5c",
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:03:32.774564+00:00",
+      "endedUtc": "2026-10-06T14:03:56.205443+00:00",
+      "actualExit": 0,
+      "log": "source-adoption-audit.log"
+    }
+  },
+  "publicConsumer": {
+    "entry": "public-menu-final-consumer.ts",
+    "publicBarrelOnly": true,
+    "strictTemplates": true,
+    "compilationMode": "full",
+    "definitionEmitted": true,
+    "nativeClaim": false
+  },
+  "canonicalGeneration": {
+    "owned151ByteStable": true,
+    "manifestMatchesFrozenGit": true,
+    "manifestVersion": 1,
+    "ownedRegistryExactlyMatches": true
+  },
+  "priorIndependentCriticalOwnershipAndRelocation": "37ecf immutable actual42 refusal attempts + real late-registry rollback + 44 realCLI/5AOT; src/sync/cli unchanged at a1",
+  "original181And2020ProofRetained": true,
+  "rootNativeAudited": {
+    "cross12Actual0": true,
+    "focused28Actual0": true,
+    "hostileSvg34Actual0": true,
+    "source458UnchangedAndExact": true,
+    "crossIncomplete52Retained": true,
+    "firstLaunchFailuresRetained": true
+  },
+  "imagesRead": [
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/guided-320-rtl-ar-EG-2-edge.png",
+      "copy": "/tmp/ui-foundation-pr13-independent-final-review/evidence-a1ed5c/photos/guided-320-rtl-ar-EG-2-edge.png",
+      "sha256": "8d1b2a06fcfda4d8b4b110b1c0e275da045fb7822666310f10f2df910923f105",
+      "bytes": 98878,
+      "scope": "Root actual SVG raster inspection, two selected examples; no whole34 perception/device/AT claim",
+      "viewed": true,
+      "reader": "AI via tools.view_image after one harmless pwd connection check",
+      "detail": "high",
+      "observation": "guided/320/RTL/200%/ar-EG edge: Arabic complete ticks and wrapped large value have visible margins; long title uses the expected ellipsis, full title is retained in the typed table by native assertion; no observed glyph clipping or label collision."
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/dense-320-rtl-ar-EG-2-fractional.png",
+      "copy": "/tmp/ui-foundation-pr13-independent-final-review/evidence-a1ed5c/photos/dense-320-rtl-ar-EG-2-fractional.png",
+      "sha256": "15244ecd47ace0625d3e5b5217e9364b7ee045436bddab7d335553d8c75921d2",
+      "bytes": 95892,
+      "scope": "Root actual SVG raster inspection, two selected examples; no whole34 perception/device/AT claim",
+      "viewed": true,
+      "reader": "AI via tools.view_image after one harmless pwd connection check",
+      "detail": "high",
+      "observation": "dense/320/RTL/200%/ar-EG fractional: three complete gauges and 0.13/0.56/0.99 values remain separated; no observed glyph clipping or label collision."
+    }
+  ],
+  "processScope": {
+    "ownBrowserStarted": false,
+    "ownServerStarted": false,
+    "sharedSourceGitWritten": false,
+    "allOwnCommandSessionsFinished": true
+  },
+  "remaining": "Only final doc/proof HEAD and complete scope attribution/pack hash audit remain; do not claim final PR approval from this source checkpoint.",
+  "createdAtUtc": "2026-10-06T14:17:05.462240+00:00"
+}

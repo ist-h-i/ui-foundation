@@ -1,0 +1,35 @@
+{
+  "time": "2026-10-06T12:33:18.598851+00:00",
+  "baseMain": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "productOwnSourceSnapshotDrift": [],
+  "rootCurrentSnapshotDriftReadOnly": [
+    "src/cli.ts",
+    "src/sync.ts",
+    "skills/ui-development/SKILL.md",
+    "tests/fixture-app/main.ts"
+  ],
+  "rootOtherAgentsMayEditSeparateScopes": true,
+  "templateTSCount": 139,
+  "generatedTemplateDrift": [],
+  "treeProductSourceSha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+  "newCandidateFiles": [
+    {
+      "path": "tests/ui/tree-axe-contract-helpers.ts",
+      "sha256": "8d0712fd0794ae4e6ddf5dc85bf3956741c790f31a8624baf03aea0e9b605bc9",
+      "bytes": 12768,
+      "exactTestedSource": "evidence/automatic-keyboard-final/source/tree-axe-contract-helpers.ts"
+    },
+    {
+      "path": "tests/ui/tree-axe-contract.spec.ts",
+      "sha256": "53106da03bfd559d09f5dadfdf46717e12ca3c82ae60926e37abb209a834dd22",
+      "bytes": 8839,
+      "exactTestedSource": "evidence/automatic-keyboard-final/source/tree-axe-contract.spec.ts"
+    }
+  ],
+  "sourceSnapshotHasNoProductEdits": true,
+  "rootCurrentSnapshotComparisonNote": "Comparison only. main.ts is an intentional Tree-only harness entry point; other differences may reflect concurrent parent CLI/ownership work. These differences are outside this Tree contract change and do not establish drift in the 139 Angular templates.",
+  "currentRootAngularTemplateDrift": [],
+  "currentRootConfigIdentical": true,
+  "currentRootStylesIdentical": true,
+  "rootHeadReadOnly": "21134c3ebe3a08b40da64197aac59f328ba5e200"
+}

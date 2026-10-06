@@ -17,6 +17,8 @@ description: Design and implement UI for this project using its persona profiles
 4. プレビューで目的適合性を比較し、採用する設定をYAMLの正本へ反映する。通常/hover/focus/無効/処理中/エラー/欠損の組合せを確認する。コントラストの数値合格だけで採用を決めない。
 5. sync --dry-runで差分を確認し、syncで生成する。生成物を手編集せず、機能コードを生成専用ディレクトリへ置かない。
 
+生成先outputを変更する際は、固定Skillのownership.jsonと旧manifestから所有権を検査して移行する。registryがない従来v1は旧outputで一度syncするか、変更後のsyncに`--from-output <旧生成先>`を渡す。dry-runで旧ownedファイル・旧manifestの退役と新生成先を確認し、アプリ所有のimportはアプリ側で更新する。手編集・未所有ファイル・壊れたregistryをこの指定で上書きしない。rootにactive ownerは一つで、同じrootのsyncを並行実行しない。
+
 ## 画面実装
 
 生成されたangular部品と、同じセマンティックに接続したTailwind utilityを使う。具体的な色/余白の値やプリミティブを部品・画面から直接参照しない。必要な新しい役割は設定と部品契約へ追加する。

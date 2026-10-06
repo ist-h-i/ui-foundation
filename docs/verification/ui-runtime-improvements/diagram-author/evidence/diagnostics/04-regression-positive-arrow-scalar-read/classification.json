@@ -1,0 +1,17 @@
+{
+  "classification": "author_harness_model_and_render_acknowledgment",
+  "originalActualExitCode": 1,
+  "originalPassed": 20,
+  "originalFailed": 2,
+  "observations": [
+    "Dense Y trace final actual node top 8px and number input 8 after immediate scalar read received 0.",
+    "Dense X trace end-frame positive update was not observed before teardown; retain original failure rather than infer a pass."
+  ],
+  "testOnlyCorrection": "Await actual canvas zero coordinate before keyboard boundary probe; await input >0 after positive arrow with unchanged expected bound and default timeout.",
+  "productUnchanged": [
+    "templates/angular/diagram.ts",
+    "templates/angular/specialist-model.ts"
+  ],
+  "testAfterSha256": "059b8922b053ba2b0a516223f8a606b5092cd17f7063daf7774ec97a2997c777",
+  "resultAfterCorrection": "Pending fresh native run"
+}

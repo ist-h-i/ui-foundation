@@ -1,0 +1,31 @@
+[
+  {
+    "name": "combined-before-strict",
+    "command": [
+      "repository/node_modules/.bin/tsc",
+      "-p",
+      "evidence/tsconfig-combined-before.json",
+      "--pretty",
+      "false"
+    ],
+    "cwd": ".",
+    "actualExit": 2,
+    "at": "2026-10-06T12:12:09.856640+00:00",
+    "log": "evidence/combined-before-strict.log"
+  },
+  {
+    "name": "media-after-strict",
+    "command": [
+      "npm",
+      "run",
+      "typecheck:ui:media",
+      "--",
+      "--pretty",
+      "false"
+    ],
+    "cwd": "repository",
+    "actualExit": 2,
+    "at": "2026-10-06T12:12:15.346103+00:00",
+    "log": "evidence/media-after-strict.log"
+  }
+]

@@ -10,14 +10,18 @@
   "scripts": {
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.example.yaml",
     "ui:check": "tsx src/cli.ts check --config examples/ui.config.example.yaml",
-    "typecheck": "tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media && npm run typecheck:ui:runtime",
     "build": "npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css",
     "start": "npm run build && node scripts/serve.mjs",
-    "test": "npm run ui:check && npm run typecheck && npm run test:config && npm run test:generation && npm run test:model && npm run test:ui",
+    "test": "npm run ui:check && npm run typecheck && npm run test:config && npm run test:generation && npm run test:model && npm run test:ui && npm run test:svg-paint",
     "test:model": "tsx --test tests/model/*.test.ts",
     "test:config": "tsx --test tests/config/*.test.ts",
     "test:generation": "tsx --test tests/generation/*.test.ts",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "typecheck:ui:media": "tsc -p tsconfig.ui-media.json",
+    "typecheck:ui:runtime": "tsc -p tsconfig.ui-runtime.json",
+    "test:cross-browser": "node scripts/run-cross-browser.mjs",
+    "test:svg-paint": "node scripts/test-svg-paint.mjs"
   },
   "devDependencies": {
     "@angular/cdk": "22.2.1",

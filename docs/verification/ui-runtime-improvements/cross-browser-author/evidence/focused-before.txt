@@ -1,0 +1,487 @@
+
+> ui-foundation@0.0.0 build
+> npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+≈ tailwindcss v4.3.0
+
+Done in 87ms
+
+Running 36 tests using 1 worker
+
+(node:2819) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (6.2s)
+  ✘   2 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (3.7s)
+(node:2941) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (6.7s)
+  ✓   4 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (7.7s)
+  ✓   5 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (7.2s)
+  ✓   6 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (6.3s)
+  ✓   7 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (5.1s)
+  ✓   8 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (3.6s)
+  ✓   9 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (3.2s)
+  ✓  10 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (3.4s)
+  ✓  11 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (3.3s)
+  ✓  12 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (3.3s)
+(node:3197) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (4.2s)
+  ✘  14 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (3.2s)
+(node:3237) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (4.9s)
+  ✘  16 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (6.6s)
+(node:3282) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (11.4s)
+  ✘  18 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (19.4s)
+(node:3519) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (6.4s)
+  ✓  20 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (5.3s)
+  ✓  21 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (4.7s)
+  ✘  22 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (7.3s)
+(node:3696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  23 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (11.3s)
+  ✓  24 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (7.5s)
+(node:3741) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  25 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (7.8s)
+  ✘  26 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (6.9s)
+(node:3908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (9.5s)
+  ✓  28 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (11.5s)
+  ✓  29 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (6.9s)
+  ✓  30 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (5.9s)
+  ✓  31 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (5.2s)
+  ✓  32 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (4.7s)
+  ✓  33 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:33:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (6.6s)
+  ✓  34 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (10.5s)
+  ✓  35 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:54:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (6.9s)
+  ✓  36 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (6.7s)
+
+
+  1) [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 52
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+    +     "help": "Scrollable region must have keyboard access",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+    +     "id": "scrollable-region-focusable",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-content",
+    +             "impact": "serious",
+    +             "message": "Element should have focusable content",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-element",
+    +             "impact": "serious",
+    +             "message": "Element should be focusable",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element should have focusable content
+    +   Element should be focusable",
+    +         "html": "<ul _ngcontent-ng-c3533522288=\"\" role=\"menu\" class=\"ui-menu__submenu\" id=\"recursive-menu-item-file-children\" aria-labelledby=\"recursive-menu-item-file\" data-menu-parent=\"file\" style=\"left: 12px; top: 36px;\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#recursive-menu-item-file-children",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.keyboard",
+    +       "wcag2a",
+    +       "wcag211",
+    +       "wcag213",
+    +       "TTv5",
+    +       "TT4.a",
+    +       "EN-301-549",
+    +       "EN-9.2.1.1",
+    +       "EN-9.2.1.3",
+    +       "RGAAv4",
+    +       "RGAA-7.3.2",
+    +     ],
+    +   },
+    + ]
+
+      15 |  await info.attach('native-geometry',{body:JSON.stringify(geometry,null,2),contentType:'application/json'});
+      16 |  expect(geometry.documentWidth,'320px/200% document overflow').toBeLessThanOrEqual(321);
+    > 17 |  const accessibility=await new AxeBuilder({page}).include(selector).analyze();await info.attach('axe-target',{body:JSON.stringify(accessibility),contentType:'application/json'});expect(accessibility.violations).toEqual([]);
+         |                                                                                                                                                                                                                    ^
+      18 |  await info.attach('aria-target',{body:await target.ariaSnapshot(),contentType:'text/plain'});
+      19 | }
+      20 | for(const profile of ['guided','dense'] as const){
+        at evidence (/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:17:212)
+        at /private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:29:519
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 52
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+    +     "help": "Scrollable region must have keyboard access",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+    +     "id": "scrollable-region-focusable",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-content",
+    +             "impact": "serious",
+    +             "message": "Element should have focusable content",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-element",
+    +             "impact": "serious",
+    +             "message": "Element should be focusable",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element should have focusable content
+    +   Element should be focusable",
+    +         "html": "<ul _ngcontent-ng-c3533522288=\"\" role=\"menu\" class=\"ui-menu__submenu\" id=\"recursive-menu-item-file-children\" aria-labelledby=\"recursive-menu-item-file\" data-menu-parent=\"file\" style=\"left: 12px; top: 36.5px;\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#recursive-menu-item-file-children",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.keyboard",
+    +       "wcag2a",
+    +       "wcag211",
+    +       "wcag213",
+    +       "TTv5",
+    +       "TT4.a",
+    +       "EN-301-549",
+    +       "EN-9.2.1.1",
+    +       "EN-9.2.1.3",
+    +       "RGAAv4",
+    +       "RGAA-7.3.2",
+    +     ],
+    +   },
+    + ]
+
+      15 |  await info.attach('native-geometry',{body:JSON.stringify(geometry,null,2),contentType:'application/json'});
+      16 |  expect(geometry.documentWidth,'320px/200% document overflow').toBeLessThanOrEqual(321);
+    > 17 |  const accessibility=await new AxeBuilder({page}).include(selector).analyze();await info.attach('axe-target',{body:JSON.stringify(accessibility),contentType:'application/json'});expect(accessibility.violations).toEqual([]);
+         |                                                                                                                                                                                                                    ^
+      18 |  await info.attach('aria-target',{body:await target.ariaSnapshot(),contentType:'text/plain'});
+      19 | }
+      20 | for(const profile of ['guided','dense'] as const){
+        at evidence (/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:17:212)
+        at /private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:29:519
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer guided: pending/reset keeps input and CodeMirror native editing 
+
+    Error: browser console warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "[JavaScript Warning: \"This site appears to use a scroll-linked positioning effect. This may not work well with asynchronous panning; see https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html for further details and to join the discussion on related tools and features!\" {file: \"http://127.0.0.1:57488/catalog/foundation\" line: 0}]",
+    + ]
+
+       at runtime-test.ts:11
+
+       9 |    const telemetry={engine:browserName,version:browser.version(),test:info.title,runtimeErrors:errors,consoleWarnings:warnings,scope:'Headless native/DOM/ARIA automation; Safari device and screen-reader speech not measured'};
+      10 |    await info.attach('runtime-engine',{body:JSON.stringify(telemetry,null,2),contentType:'application/json'});
+    > 11 |    expect(errors,'browser exceptions and console errors').toEqual([]);expect(warnings,'browser console warnings').toEqual([]);
+         |                                                                                                                   ^
+      12 |   }
+      13 |  },{auto:true}],
+      14 | });
+        at Object.base.extend.runtimeEvidence.auto (/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-test.ts:11:115)
+
+    attachment #3: aria-target (text/plain) ────────────────────────────────────────────────────────
+    - heading "送信の下書き" [level=2]
+    - form "Draft message":
+      - text: Draft message
+      - textbox "Draft message": 保持するnative下書き
+      - text: 添付ファイル
+      - button "添付ファイル"
+      - list "送信する添付"
+      - button "Send"
+    - status: 保持するnative下書き
+    - status: VALID
+    - status: "1"
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-7f512-d-CodeMirror-native-editing-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return 
+
+    Error: expect(locator).toBeHidden() failed
+
+    Locator:  locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar')
+    Expected: hidden
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeHidden" locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar') with timeout 5000ms
+      - waiting for locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar')
+        13 × locator resolved to <div class="ui-snackbar" data-severity="success" _ngcontent-ng-c1651151827="" data-position="bottom-center">…</div>
+           - unexpected value "visible"
+
+
+      68 |   await page.clock.resume();await evidence(page,info,'ui-snackbar');await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));
+      69 |   await notice.getByRole('button',{name:'内容を確認',exact:true}).focus();await page.keyboard.press('Enter');await page.clock.runFor(20);await expect(notice).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('notice-dismiss')).toHaveText('単独通知: action / 操作: 1');
+    > 70 |   await page.getByLabel('通知を自動消去',{exact:true}).check();await page.locator('#notice-seconds').fill('5');await opener.focus();await opener.press('Enter');await page.clock.runFor(20);await page.clock.runFor(2000);await notice.hover();await notice.getByRole('button',{name:'内容を確認',exact:true}).focus();await page.clock.runFor(10000);await page.mouse.move(0,0);await page.clock.runFor(10000);await expect(notice).toBeVisible();await opener.focus();await page.clock.runFor(2900);await expect(notice).toBeVisible();await page.clock.runFor(100);await expect(notice).toBeHidden();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      71 |  });
+      72 | }
+      73 |
+        at /private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:70:560
+
+    attachment #3: aria-target (text/plain) ────────────────────────────────────────────────────────
+    - status: 申請を保存しました
+    - button "内容を確認"
+    - 'button "通知を閉じる: 申請を保存しました"': 閉じる
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer dense: pending/reset keeps input and CodeMirror native editing 
+
+    Error: browser console warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "[JavaScript Warning: \"This site appears to use a scroll-linked positioning effect. This may not work well with asynchronous panning; see https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html for further details and to join the discussion on related tools and features!\" {file: \"http://127.0.0.1:57488/catalog/foundation\" line: 0}]",
+    + ]
+
+       at runtime-test.ts:11
+
+       9 |    const telemetry={engine:browserName,version:browser.version(),test:info.title,runtimeErrors:errors,consoleWarnings:warnings,scope:'Headless native/DOM/ARIA automation; Safari device and screen-reader speech not measured'};
+      10 |    await info.attach('runtime-engine',{body:JSON.stringify(telemetry,null,2),contentType:'application/json'});
+    > 11 |    expect(errors,'browser exceptions and console errors').toEqual([]);expect(warnings,'browser console warnings').toEqual([]);
+         |                                                                                                                   ^
+      12 |   }
+      13 |  },{auto:true}],
+      14 | });
+        at Object.base.extend.runtimeEvidence.auto (/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-test.ts:11:115)
+
+    attachment #3: aria-target (text/plain) ────────────────────────────────────────────────────────
+    - heading "送信の下書き" [level=2]
+    - form "Draft message":
+      - text: Draft message
+      - textbox "Draft message": 保持するnative下書き
+      - text: 添付ファイル
+      - button "添付ファイル"
+      - list "送信する添付"
+      - button "Send"
+    - status: 保持するnative下書き
+    - status: VALID
+    - status: "1"
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Comp-3d769-d-CodeMirror-native-editing-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 52
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+    +     "help": "Scrollable region must have keyboard access",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+    +     "id": "scrollable-region-focusable",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-content",
+    +             "impact": "serious",
+    +             "message": "Element should have focusable content",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "focusable-element",
+    +             "impact": "serious",
+    +             "message": "Element should be focusable",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element should have focusable content
+    +   Element should be focusable",
+    +         "html": "<ul _ngcontent-ng-c3533522288=\"\" role=\"menu\" class=\"ui-menu__submenu\" id=\"recursive-menu-item-file-children\" aria-labelledby=\"recursive-menu-item-file\" data-menu-parent=\"file\" style=\"left: 12px; top: 36px;\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#recursive-menu-item-file-children",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.keyboard",
+    +       "wcag2a",
+    +       "wcag211",
+    +       "wcag213",
+    +       "TTv5",
+    +       "TT4.a",
+    +       "EN-301-549",
+    +       "EN-9.2.1.1",
+    +       "EN-9.2.1.3",
+    +       "RGAAv4",
+    +       "RGAA-7.3.2",
+    +     ],
+    +   },
+    + ]
+
+      15 |  await info.attach('native-geometry',{body:JSON.stringify(geometry,null,2),contentType:'application/json'});
+      16 |  expect(geometry.documentWidth,'320px/200% document overflow').toBeLessThanOrEqual(321);
+    > 17 |  const accessibility=await new AxeBuilder({page}).include(selector).analyze();await info.attach('axe-target',{body:JSON.stringify(accessibility),contentType:'application/json'});expect(accessibility.violations).toEqual([]);
+         |                                                                                                                                                                                                                    ^
+      18 |  await info.attach('aria-target',{body:await target.ariaSnapshot(),contentType:'text/plain'});
+      19 | }
+      20 | for(const profile of ['guided','dense'] as const){
+        at evidence (/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:17:212)
+        at /private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:29:519
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-before/artifacts/runtime-cross-browser-Menu-bc4e5-t-Tab-exit-and-parent-focus-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+    [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+    [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer guided: pending/reset keeps input and CodeMirror native editing 
+    [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:63:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return 
+    [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:43:2 › Composer dense: pending/reset keeps input and CodeMirror native editing 
+    [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus 
+  30 passed (4.4m)

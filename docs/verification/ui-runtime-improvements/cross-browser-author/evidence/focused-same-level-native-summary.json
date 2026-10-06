@@ -1,0 +1,78 @@
+{
+  "sourceMenu": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+  "spec": "ebc1e70aefc60ddd777ab1598955132c4da3bdd51ac84ceaa90d7bdde6511ba7",
+  "runner": "3d35868a87b7dfafa8a1c84fa93d074cc1ea8c83b4842cd8287e0ad56f450573",
+  "exit": 0,
+  "stats": {
+    "startTime": "2026-10-06T13:00:32.358Z",
+    "duration": 5978.23,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "selectedCases": 1,
+  "status": "passed",
+  "retry": 0,
+  "runtime": {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "runtimeErrors": [],
+    "consoleWarnings": [],
+    "engineAdvisories": [],
+    "unknownWarnings": [],
+    "scope": "Headless native/DOM/ARIA automation; Safari device and screen-reader speech not measured"
+  },
+  "roving": [
+    {
+      "id": "root",
+      "tabStops": [
+        "recursive-menu-item-file"
+      ]
+    },
+    {
+      "id": "recursive-menu-item-file-children",
+      "tabStops": [
+        "recursive-menu-item-new"
+      ]
+    },
+    {
+      "id": "recursive-menu-item-new-children",
+      "tabStops": [
+        "recursive-menu-item-request"
+      ]
+    }
+  ],
+  "axe": {
+    "violations": 0,
+    "incompleteRules": 2,
+    "incompleteNodes": 7
+  },
+  "receipt": {
+    "startedAtUtc": "2026-10-06T12:59:58.808Z",
+    "engines": [
+      "chromium"
+    ],
+    "explicitPlaywrightFilters": [
+      "--grep",
+      "Menu guided:"
+    ],
+    "playwright": "1.63.0",
+    "scope": "Explicit focused cross-browser suite only; npm test/default UI discovery unchanged",
+    "build": {
+      "code": 0,
+      "signal": null
+    },
+    "native": {
+      "code": 0,
+      "signal": null
+    },
+    "serverClosed": true,
+    "bundleSha256": "2c587729d8a0cf3c880e88d185f49f08b40831b9d7722f9295b20248743cae58",
+    "origin": "http://127.0.0.1:61300",
+    "completedAtUtc": "2026-10-06T13:00:38.345Z"
+  },
+  "scope": "Fresh-generated targeted Chrome Menu-guided1 after independent P2; revised source whole36 not run, waits root integrated freeze"
+}

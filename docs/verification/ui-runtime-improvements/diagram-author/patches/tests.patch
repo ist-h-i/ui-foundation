@@ -1,0 +1,165 @@
+--- /dev/null
++++ b/tests/model/diagram-validation.test.ts
+@@ -0,0 +1,51 @@
++import assert from 'node:assert/strict';
++import {test} from 'node:test';
++import {changeDiagram,diagramProblem,type DiagramModel} from '../../.ui/generated/angular/specialist-model.ts';
++
++const graph=():DiagramModel=>({nodes:[{id:'a',label:'提出',x:16,y:16},{id:'b',label:'承認',x:300,y:100}],edges:[{id:'ab',from:'a',to:'b',label:'確認'}]});
++
++test('diagram rejects blank and whitespace-only labels at both model and change boundaries without mutating the graph',()=>{
++ for(const label of ['', ' ', '\t\n', '\u3000']){
++  const model=graph(),before=structuredClone(model);
++  assert.match(diagramProblem({...model,nodes:model.nodes.map(node=>node.id==='a'?{...node,label}:node)})??'',/label/i);
++  assert.throws(()=>changeDiagram(model,{type:'label',id:'a',label}),/label/i);
++  assert.throws(()=>changeDiagram(model,{type:'add',node:{id:'new',label,x:0,y:0}}),/label/i);
++  assert.deepEqual(model,before);
++ }
++});
++
++test('diagram accepts nonblank label text verbatim rather than trimming application data',()=>{
++ const model=graph(),label='  申請 α  ';
++ const changed=changeDiagram(model,{type:'label',id:'a',label});
++ assert.equal(changed.nodes[0]!.label,label);assert.equal(diagramProblem(changed),null);assert.equal(model.nodes[0]!.label,'提出');
++});
++
++test('diagram rejects negative coordinates on each axis at model, move and add boundaries and preserves the complete input',()=>{
++ for(const axis of ['x','y'] as const)for(const value of [-1,-.01,-1e6]){
++  const model=graph(),before=structuredClone(model),node={...model.nodes[0]!,[axis]:value};
++  assert.match(diagramProblem({...model,nodes:[node,model.nodes[1]!]})??'',/coordinate/i);
++  assert.throws(()=>changeDiagram(model,{type:'move',id:'a',x:node.x,y:node.y}),/coordinate/i);
++  assert.throws(()=>changeDiagram(model,{type:'add',node:{...node,id:'new'}}),/coordinate/i);
++  assert.deepEqual(model,before);
++ }
++});
++
++test('diagram accepts zero, fractional and inclusive upper-bound coordinates without normalizing the values',()=>{
++ for(const [x,y] of [[0,0],[.125,3.5],[1e6,1e6]] as const){
++  const model=graph(),changed=changeDiagram(model,{type:'move',id:'a',x,y});
++  assert.equal(diagramProblem(changed),null);assert.equal(changed.nodes[0]!.x,x);assert.equal(changed.nodes[0]!.y,y);assert.equal(model.nodes[0]!.x,16);
++ }
++});
++
++test('diagram keeps rejecting nonfinite and excessive coordinates',()=>{
++ for(const value of [NaN,Infinity,-Infinity,1e6+.01]){
++  const model=graph();assert.throws(()=>changeDiagram(model,{type:'move',id:'a',x:value,y:16}),/coordinate/i);
++  assert.throws(()=>changeDiagram(model,{type:'move',id:'a',x:16,y:value}),/coordinate/i);
++ }
++});
++
++test('diagram detects invalid existing application data before applying any edit',()=>{
++ const model=graph(),bad={...model,nodes:model.nodes.map(node=>node.id==='a'?{...node,x:-1}:node)};
++ assert.throws(()=>changeDiagram(bad,{type:'label',id:'a',label:'更新'}),/coordinate/i);
++ assert.equal(bad.nodes[0]!.x,-1);assert.equal(bad.nodes[0]!.label,'提出');
++});
+--- /dev/null
++++ b/tests/ui/diagram-validation.spec.ts
+@@ -0,0 +1,33 @@
++import {test,expect} from './catalog-test';
++import {openSpecialistCatalog,openSpecialistSurface,profiles} from './specialist-test-helpers';
++
++for(const profile of profiles){
++ for(const [description,raw] of [['empty',''],['whitespace','   ']] as const){
++  test(profile+': Diagram rejects '+description+' label and retains the named canvas node, raw input and native focus path',async({page},info)=>{
++   await openSpecialistCatalog(page,profile);await openSpecialistSurface(page,'Diagram');
++   const editor=page.locator('#flow tbody tr').first().locator('input').nth(0);await expect(editor).toHaveAttribute('aria-label','提出 ラベル');await editor.fill(raw);await editor.press('Tab');
++   await expect(editor).toHaveValue(raw);await expect(editor).toHaveAttribute('aria-invalid','true');
++   await expect(page.locator('#flow [role=alert]')).toContainText('ノードのラベルを入力してください。');
++   await expect(page.locator('#flow .ui-diagram-node').getByText('提出',{exact:true})).toHaveCount(1);
++   await expect(page.getByLabel('提出 横位置',{exact:true})).toBeFocused();
++   await editor.fill('  更新した提出  ');await editor.press('Tab');
++   await expect(page.locator('#flow .ui-diagram-node').first()).toHaveText('  更新した提出  ');await expect(page.locator('#flow [role=alert]')).toHaveCount(0);
++   await expect(editor).not.toHaveAttribute('aria-invalid','true');
++   await info.attach('corrected-label',{body:JSON.stringify({profile,raw,modelLabel:await page.locator('#flow .ui-diagram-node').first().textContent()}),contentType:'application/json'});
++  });
++ }
++ for(const axis of ['x','y'] as const){
++  test(profile+': Diagram rejects negative '+axis+' without changing the reachable canvas and supports correction',async({page},info)=>{
++   await openSpecialistCatalog(page,profile);await openSpecialistSurface(page,'Diagram');
++   const editor=page.getByLabel(axis==='x'?'提出 横位置':'提出 縦位置',{exact:true}),node=page.locator('#flow .ui-diagram-node').first();
++   const previous=await node.evaluate(element=>({left:(element as HTMLElement).style.left,top:(element as HTMLElement).style.top}));
++   await editor.fill('-50');await editor.press('Tab');await expect(editor).toHaveValue('-50');await expect(editor).toHaveAttribute('aria-invalid','true');
++   await expect(page.locator('#flow [role=alert]')).toContainText('位置は0〜1000000の範囲で入力してください。');
++   expect(await node.evaluate(element=>({left:(element as HTMLElement).style.left,top:(element as HTMLElement).style.top}))).toEqual(previous);
++   await editor.fill('0');await editor.press('Tab');await expect(editor).toHaveValue('0');await expect(page.locator('#flow [role=alert]')).toHaveCount(0);await expect(editor).not.toHaveAttribute('aria-invalid','true');await expect(node).toHaveCSS(axis==='x'?'left':'top','0px');
++   await node.focus();await node.press(axis==='x'?'ArrowLeft':'ArrowUp');await expect(editor).toHaveValue('0');await expect(node).toBeFocused();
++   await node.press(axis==='x'?'ArrowRight':'ArrowDown');await expect.poll(async()=>Number(await editor.inputValue())).toBeGreaterThan(0);
++   await info.attach('preserved-canvas-before-correction',{body:JSON.stringify({profile,axis,previous}),contentType:'application/json'});
++  });
++ }
++}
+--- /dev/null
++++ b/tests/ui/diagram-controlled-validation.spec.ts
+@@ -0,0 +1,72 @@
++import {test,expect} from './catalog-test';
++import type {Page} from '@playwright/test';
++import AxeBuilder from '@axe-core/playwright';
++import {profiles} from './specialist-test-helpers';
++
++async function open(page:Page,profile:string):Promise<void>{
++ await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
++ if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
++ await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
++}
++const model=(page:Page)=>page.locator('[data-diagram-model]').getAttribute('data-value');
++
++for(const profile of profiles){
++ test(profile+': Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation',async({page})=>{
++  await open(page,profile);const node=page.locator('.ui-diagram-node').first(),editor=page.locator('tbody tr').first().locator('input').nth(0);
++  await node.click();await expect(page.locator('[data-diagram-selected]')).toHaveText('a');const before=await model(page);
++  await editor.fill('   ');await editor.press('Tab');await expect(editor).toHaveAttribute('aria-invalid','true');await expect(page.locator('[data-diagram-requests]')).toHaveText('0');expect(await model(page)).toBe(before);
++  await editor.focus();await editor.evaluate((element:HTMLInputElement)=>element.setSelectionRange(1,1));const handle=await editor.elementHandle();
++  await page.getByRole('button',{name:/プロファイル:/}).evaluate((button:HTMLButtonElement)=>button.click());
++  await expect(editor).toHaveValue('   ');await expect(editor).toBeFocused();expect(await handle!.evaluate(element=>element===document.querySelector('tbody tr input'))).toBe(true);expect(await editor.evaluate((element:HTMLInputElement)=>element.selectionStart)).toBe(1);
++  await page.getByRole('button',{name:'検証文言を切替',exact:true}).evaluate((button:HTMLButtonElement)=>button.click());
++  await expect(page.getByRole('alert')).toContainText('Enter a node label.');await expect(editor).toBeFocused();await expect(editor).toHaveValue('   ');await expect(node).toHaveText('提出');await expect(node).toHaveAttribute('aria-pressed','true');expect(await model(page)).toBe(before);
++  const description=await editor.getAttribute('aria-describedby');expect(description).toBeTruthy();await expect(page.locator('[id="'+description+'"]')).toContainText('Enter a node label.');
++  await editor.fill('  完了  ');await editor.press('Tab');await expect(page.getByRole('alert')).toHaveCount(0);await expect(node).toHaveText('  完了  ');await expect(page.locator('[data-diagram-requests]')).toHaveText('1');
++ });
++
++ test(profile+': Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement',async({page})=>{
++  await open(page,profile);const row=page.locator('tbody tr').first(),x=row.locator('input').nth(1),node=page.locator('.ui-diagram-node').first();const before=await model(page);
++  for(const raw of ['', '-1','1000000.01']){await x.fill(raw);await x.press('Tab');await expect(x).toHaveValue(raw);await expect(x).toHaveAttribute('aria-invalid','true');expect(await model(page)).toBe(before);await expect(page.locator('[data-diagram-requests]')).toHaveText('0');}
++  await x.fill('0.125');await x.press('Tab');await expect(x).toHaveValue('0.125');await expect(page.getByRole('alert')).toHaveCount(0);expect(JSON.parse((await model(page))!).nodes[0].x).toBe(.125);
++  await x.fill('0');await x.press('Tab');await expect.poll(async()=>JSON.parse((await model(page))!).nodes[0].x).toBe(0);const count=await page.locator('[data-diagram-requests]').textContent();await node.focus();for(let index=0;index<8;index++)await node.press('ArrowLeft');await expect(x).toHaveValue('0');await expect(node).toBeFocused();await expect(page.locator('[data-diagram-requests]')).toHaveText(count!);
++  await node.press('Shift+ArrowRight');await expect.poll(async()=>Number(await x.inputValue())).toBeGreaterThan(0);await expect.poll(async()=>JSON.parse((await model(page))!).nodes[0].x).toBeGreaterThan(0);
++  await x.fill('1000000');await x.press('Tab');await expect.poll(async()=>JSON.parse((await model(page))!).nodes[0].x).toBe(1000000);const upperCount=await page.locator('[data-diagram-requests]').textContent();await node.focus();for(let index=0;index<4;index++)await node.press('ArrowRight');await expect(x).toHaveValue('1000000');await expect(page.locator('[data-diagram-requests]')).toHaveText(upperCount!);
++ });
++
++ test(profile+': Diagram external values retire stale validation and removed-node drafts do not return after app reset',async({page})=>{
++  await open(page,profile);const row=page.locator('tbody tr').first(),label=row.locator('input').nth(0),x=row.locator('input').nth(1);
++  await label.fill('');await label.press('Tab');await x.fill('-10');await x.press('Tab');await expect(label).toHaveAttribute('aria-invalid','true');await expect(x).toHaveAttribute('aria-invalid','true');
++  await page.getByRole('button',{name:'外部モデルを更新',exact:true}).click();await expect(label).toHaveValue('外部から更新');await expect(x).toHaveValue('64');await expect(page.getByRole('alert')).toHaveCount(0);await expect(page.locator('[data-diagram-requests]')).toHaveText('0');
++  await page.getByRole('button',{name:'元のモデルへ戻す',exact:true}).click();await expect(label).toHaveValue('提出');await expect(x).toHaveValue('16');await expect(label).not.toHaveAttribute('aria-invalid','true');await expect(x).not.toHaveAttribute('aria-invalid','true');
++  await label.fill(' ');await label.press('Tab');await page.getByRole('button',{name:'対象ノードを外部除去',exact:true}).click();await expect(page.getByRole('alert')).toHaveCount(0);await expect(page.locator('.ui-diagram-node')).toHaveCount(1);
++  await page.getByRole('button',{name:'元のモデルへ戻す',exact:true}).click();await expect(label).toHaveValue('提出');await expect(label).not.toHaveAttribute('aria-invalid','true');await expect(page.getByRole('alert')).toHaveCount(0);
++ });
++
++ test(profile+': Diagram rejects invalid external models before canvas rendering and recovers without publishing edits',async({page})=>{
++  await open(page,profile);
++  for(const [button,diagnostic] of [['外部の空ラベル','Node labels must not be empty'],['外部の負座標','Node coordinates are invalid']]){
++   await page.getByRole('button',{name:button!,exact:true}).click();await expect(page.getByRole('alert')).toContainText(diagnostic!);await expect(page.locator('.ui-diagram-node')).toHaveCount(0);await expect(page.locator('tbody tr')).toHaveCount(2);await expect(page.locator('tbody input').first()).toBeDisabled();await expect(page.locator('[data-diagram-requests]')).toHaveText('0');
++   await page.getByRole('button',{name:'元のモデルへ戻す',exact:true}).click();await expect(page.getByRole('alert')).toHaveCount(0);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);await expect(page.locator('tbody input').first()).toBeEnabled();
++  }
++ });
++
++ test(profile+': Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits',async({page})=>{
++  await open(page,profile);const x=page.locator('tbody tr').first().locator('input').nth(1);await x.fill('-50');await x.press('Tab');const before=await model(page),handle=await x.elementHandle();
++  for(const state of ['読取り専用','処理中','操作抑止']){
++   const control=page.getByLabel(state,{exact:true});await control.check();await expect(x).toBeDisabled();await expect(x).toHaveValue('-50');expect(await model(page)).toBe(before);await control.uncheck();await expect(x).toBeEnabled();await expect(x).toHaveValue('-50');expect(await handle!.evaluate(element=>element===document.querySelector('tbody tr input[type=number]'))).toBe(true);
++  }
++  for(const raw of ['-51','-52','-53','-54']){await x.fill(raw);await x.press('Tab');await expect(x).toHaveAttribute('aria-invalid','true');}
++  expect(await model(page)).toBe(before);await expect(page.locator('[data-diagram-requests]')).toHaveText('0');const message=await page.getByRole('alert').textContent();expect(message!.split('位置は0〜1000000の範囲で入力してください。').length).toBe(2);
++  await x.fill('24');await x.press('Tab');await expect(page.getByRole('alert')).toHaveCount(0);await expect(page.locator('[data-diagram-requests]')).toHaveText('1');
++ });
++
++ test(profile+': Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion',async({page},info)=>{
++  await page.setViewportSize({width:320,height:900});await page.emulateMedia({reducedMotion:'reduce'});await open(page,profile);
++  await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByRole('button',{name:'方向: LTR',exact:true}).click();await expect(page.locator('main')).toHaveAttribute('dir','rtl');
++  const label=page.locator('tbody tr').first().locator('input').nth(0);await label.fill('');await label.press('Tab');await expect(label).toHaveAttribute('aria-invalid','true');await label.focus();await expect(label).toBeFocused();
++  const snapshot=await page.locator('ui-flow-editor').ariaSnapshot();expect(snapshot).toContain('ノードのラベルを入力してください。');expect(snapshot).toContain('textbox "提出 ラベル"');
++  await label.scrollIntoViewIfNeeded();const box=await label.boundingBox();expect(box).not.toBeNull();expect(await label.evaluate(element=>{const r=element.getBoundingClientRect();return document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)===element;})).toBe(true);
++  const result=await new AxeBuilder({page}).include('main').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();await info.attach('diagram-axe-after-invalid-edit',{body:JSON.stringify(result),contentType:'application/json'});expect(result.violations).toEqual([]);
++  await info.attach('diagram-invalid-edit-narrow',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
++ });
++}

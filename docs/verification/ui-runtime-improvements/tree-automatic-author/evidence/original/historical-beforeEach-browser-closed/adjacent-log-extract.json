@@ -1,0 +1,97 @@
+[
+  {
+    "line": 1314,
+    "context": [
+      "  ✓  974 [chromium] › tests/ui/tree-catalog.spec.ts:73:2 › tree catalog dense › restored linked branch/invalid chip recovery/search removal focus (2.4s)",
+      "  ✓  975 [chromium] › tests/ui/tree-catalog.spec.ts:78:2 › tree catalog dense › external collapse cancels pending and cascader source replacement preserves focus (2.3s)",
+      "  ✓  976 [chromium] › tests/ui/tree-catalog.spec.ts:81:2 › tree catalog dense › CVA required/null reset/form disabled/readonly/busy focus (2.6s)",
+      "  ✓  977 [chromium] › tests/ui/tree-catalog.spec.ts:84:2 › tree catalog dense › native name carries canonical path/IDs and keeps busy values/excludes disabled (2.5s)",
+      "  ✓  978 [chromium] › tests/ui/tree-catalog.spec.ts:87:2 › tree catalog dense › organization 4 directions, typed content, retained editor and fold focus (3.1s)",
+      "  ✓  979 [chromium] › tests/ui/tree-catalog.spec.ts:91:2 › tree catalog dense › native modal popup and consecutive Escape preserve parent modal (2.7s)",
+      "  ✘  980 [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups (1.9s)",
+      "",
+      ""
+    ]
+  },
+  {
+    "line": 1315,
+    "context": [
+      "  ✓  975 [chromium] › tests/ui/tree-catalog.spec.ts:78:2 › tree catalog dense › external collapse cancels pending and cascader source replacement preserves focus (2.3s)",
+      "  ✓  976 [chromium] › tests/ui/tree-catalog.spec.ts:81:2 › tree catalog dense › CVA required/null reset/form disabled/readonly/busy focus (2.6s)",
+      "  ✓  977 [chromium] › tests/ui/tree-catalog.spec.ts:84:2 › tree catalog dense › native name carries canonical path/IDs and keeps busy values/excludes disabled (2.5s)",
+      "  ✓  978 [chromium] › tests/ui/tree-catalog.spec.ts:87:2 › tree catalog dense › organization 4 directions, typed content, retained editor and fold focus (3.1s)",
+      "  ✓  979 [chromium] › tests/ui/tree-catalog.spec.ts:91:2 › tree catalog dense › native modal popup and consecutive Escape preserve parent modal (2.7s)",
+      "  ✘  980 [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups (1.9s)",
+      "",
+      "",
+      "  1) [chromium] › tests/ui/collection-catalog.spec.ts:19:2 › collection catalog dense › masonry has real unequal row heights and configurable columns, gap and container breakpoints "
+    ]
+  },
+  {
+    "line": 1316,
+    "context": [
+      "  ✓  976 [chromium] › tests/ui/tree-catalog.spec.ts:81:2 › tree catalog dense › CVA required/null reset/form disabled/readonly/busy focus (2.6s)",
+      "  ✓  977 [chromium] › tests/ui/tree-catalog.spec.ts:84:2 › tree catalog dense › native name carries canonical path/IDs and keeps busy values/excludes disabled (2.5s)",
+      "  ✓  978 [chromium] › tests/ui/tree-catalog.spec.ts:87:2 › tree catalog dense › organization 4 directions, typed content, retained editor and fold focus (3.1s)",
+      "  ✓  979 [chromium] › tests/ui/tree-catalog.spec.ts:91:2 › tree catalog dense › native modal popup and consecutive Escape preserve parent modal (2.7s)",
+      "  ✘  980 [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups (1.9s)",
+      "",
+      "",
+      "  1) [chromium] › tests/ui/collection-catalog.spec.ts:19:2 › collection catalog dense › masonry has real unequal row heights and configurable columns, gap and container breakpoints ",
+      ""
+    ]
+  },
+  {
+    "line": 1386,
+    "context": [
+      "        npx playwright show-trace test-results/media-regressions-open-Lig-c9334-h-profiles-at-320px-200-RTL-chromium/trace.zip",
+      "",
+      "    ────────────────────────────────────────────────────────────────────────────────────────────────",
+      "",
+      "  3) [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups ",
+      "",
+      "    Error: page.goto: Target page, context or browser has been closed",
+      "    Call log:",
+      "      - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\""
+    ]
+  },
+  {
+    "line": 1388,
+    "context": [
+      "    ────────────────────────────────────────────────────────────────────────────────────────────────",
+      "",
+      "  3) [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups ",
+      "",
+      "    Error: page.goto: Target page, context or browser has been closed",
+      "    Call log:",
+      "      - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"",
+      "",
+      ""
+    ]
+  },
+  {
+    "line": 1402,
+    "context": [
+      "      10 |    const editor=page.locator('#single'),popup=page.locator('#single-popup'),search=page.locator('#single-search'),host=page.locator('ui-tree-select').first();",
+      "      11 |    await host.evaluate(element=>element.addEventListener('keydown',event=>{if(event instanceof KeyboardEvent&&event.target instanceof Element&&event.target.matches('[role=\"treeitem\"]')){element.setAttribute('data-last-unhandled-key',event.key);element.setAttribute('data-unhandled-default-prevented',String(event.defaultPrevented));}}));",
+      "        at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts:8:45",
+      "",
+      "    Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed",
+      "",
+      "    Error Context: test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/error-context.md",
+      "",
+      "    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────"
+    ]
+  },
+  {
+    "line": 1417,
+    "context": [
+      "",
+      "  3 failed",
+      "    [chromium] › tests/ui/collection-catalog.spec.ts:19:2 › collection catalog dense › masonry has real unequal row heights and configurable columns, gap and container breakpoints ",
+      "    [chromium] › tests/ui/media-regressions.spec.ts:145:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL ",
+      "    [chromium] › tests/ui/tree-catalog.spec.ts:94:2 › tree catalog dense › 320px/200%/RTL/reduced motion and axe closed/open popups ",
+      "  977 passed (25.3m)"
+    ]
+  }
+]

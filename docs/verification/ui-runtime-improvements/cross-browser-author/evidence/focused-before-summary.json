@@ -1,0 +1,84 @@
+{
+  "name": "focused-before",
+  "stats": {
+    "startTime": "2026-10-06T12:18:30.190Z",
+    "duration": 265318.40400000004,
+    "expected": 30,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  },
+  "counts": {
+    "chromium": {
+      "passed": 11,
+      "failed": 1,
+      "skipped": 0,
+      "timedOut": 0,
+      "interrupted": 0,
+      "retryAttempts": 0
+    },
+    "firefox": {
+      "passed": 8,
+      "failed": 4,
+      "skipped": 0,
+      "timedOut": 0,
+      "interrupted": 0,
+      "retryAttempts": 0
+    },
+    "webkit": {
+      "passed": 11,
+      "failed": 1,
+      "skipped": 0,
+      "timedOut": 0,
+      "interrupted": 0,
+      "retryAttempts": 0
+    }
+  },
+  "versions": {
+    "chromium": "153.0.8010.12",
+    "firefox": "155.0",
+    "webkit": "26.6"
+  },
+  "runtimeTelemetryCases": 36,
+  "runtimeErrorCount": 0,
+  "consoleWarningCount": 2,
+  "classifiedEngineAdvisoryCount": 0,
+  "unknownWarningCount": 2,
+  "axe": {
+    "analyzes": 36,
+    "violationCases": 3,
+    "violationRules": 3,
+    "incompleteCases": 13,
+    "incompleteRules": 22,
+    "incompleteNodes": 54,
+    "incompleteByRule": {
+      "aria-valid-attr-value": 18,
+      "color-contrast": 36
+    }
+  },
+  "receipt": {
+    "startedAtUtc": "2026-10-06T12:17:55.331Z",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "explicitPlaywrightFilters": [],
+    "playwright": "1.63.0",
+    "scope": "Explicit focused cross-browser suite only; npm test/default UI discovery unchanged",
+    "build": {
+      "code": 0,
+      "signal": null
+    },
+    "native": {
+      "code": 1,
+      "signal": null
+    },
+    "serverClosed": true,
+    "bundleSha256": "6329b33ba9e85143b2275dd41b228c842c57a88108086e5bed0489f64c70384b",
+    "origin": "http://127.0.0.1:57488",
+    "completedAtUtc": "2026-10-06T12:22:55.609Z"
+  },
+  "exit": 1,
+  "scope": "Headless Playwright engines; explicit native/DOM input and focus operations. ARIA snapshot is serialized browser semantics, not screen-reader speech. Axe incomplete is preserved, never changed to pass."
+}

@@ -1,0 +1,2072 @@
+[
+  {
+    "id": "01",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/cascader-open/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "02",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/cascader-open/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "03",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/cascader-open/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "04",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "05",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "2bea80b039ff6af7d5d5efa4863ce2fd5844a961cbea46667fb94290d9a48101",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "06",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "07",
+    "profile": "dense",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#cascade-popup > p:nth-child(1)"
+    ],
+    "reason": "elmPartiallyObscured",
+    "originalResult": "evidence/original/axe-derived/dense/cascader-open.json",
+    "originalResultSha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+    "nodeIndex": 3,
+    "classification": "native_scroll_clipping_reachable_by_keyboard_with_text_contrast_and_hit_proof",
+    "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/cascader-open.json",
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Native reopened popover scrolls to its focused candidate, clipping earlier route/status text; axe cannot determine that clipped background.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/clipping/before/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/clipping/after/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/clipping/nativePageUp"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/clipping/focusBefore"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/clipping/focusAfter"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+        "sha256": "92d05a063867368ef49ecff634587038cdfb61edca45f23acfd746092acc2849",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+        "sha256": "a3a757e8d494697d52236da46f6ea8bc453ea807bc5467e44777ae3cb7932f99",
+        "jsonPointer": ""
+      }
+    ],
+    "verified": [
+      "native PageUp sets the popup scrollTop to zero without moving focused candidate",
+      "all text Range fragments fit the actual popup/viewport clipping region",
+      "each visible fragment center hit-test belongs to the same paragraph",
+      "text foreground/background contrast >=4.5:1"
+    ],
+    "observedContrast": 14.645016318974449,
+    "scope": "The before phase explicitly retains clipped/not-owned fragments; only the after-PageUp phase asserts all fragments visible and owned."
+  },
+  {
+    "id": "08",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/closed/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "09",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/closed/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "10",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/closed/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "11",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "12",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "2bea80b039ff6af7d5d5efa4863ce2fd5844a961cbea46667fb94290d9a48101",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "13",
+    "profile": "dense",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/closed.json",
+    "originalResultSha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/closed.json",
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "14",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/tree-select-open/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "15",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/tree-select-open/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "16",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033",
+        "jsonPointer": "/tree-select-open/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "17",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "18",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "2bea80b039ff6af7d5d5efa4863ce2fd5844a961cbea46667fb94290d9a48101",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "19",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "20",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#multi-tree-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 3,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/popupGlyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-head.png",
+        "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "21",
+    "profile": "dense",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#multi-tree-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/dense/tree-select-open.json",
+    "originalResultSha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+    "nodeIndex": 4,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/dense/tree-select-open.json",
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/popupGlyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-lazy.png",
+        "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "22",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/cascader-open/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "23",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/cascader-open/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "24",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/cascader-open/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "25",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "26",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "27",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "28",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#cascade-popup > p:nth-child(1)"
+    ],
+    "reason": "elmPartiallyObscured",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 3,
+    "classification": "native_scroll_clipping_reachable_by_keyboard_with_text_contrast_and_hit_proof",
+    "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Native reopened popover scrolls to its focused candidate, clipping earlier route/status text; axe cannot determine that clipped background.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/before/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/after/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/nativePageUp"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/focusBefore"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/focusAfter"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+        "sha256": "3ffb1abdbba2a546b2a284bf8ed5b2bc18cb11aa6066121a3caa9790997d11e9",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+        "sha256": "8d652d679a16b75a5d16420fb36ba376d2e9b53bfe928f65b77ab40404ddd2c3",
+        "jsonPointer": ""
+      }
+    ],
+    "verified": [
+      "native PageUp sets the popup scrollTop to zero without moving focused candidate",
+      "all text Range fragments fit the actual popup/viewport clipping region",
+      "each visible fragment center hit-test belongs to the same paragraph",
+      "text foreground/background contrast >=4.5:1"
+    ],
+    "observedContrast": 14.645016318974449,
+    "scope": "The before phase explicitly retains clipped/not-owned fragments; only the after-PageUp phase asserts all fragments visible and owned."
+  },
+  {
+    "id": "29",
+    "profile": "guided",
+    "state": "cascader-open",
+    "rule": "color-contrast",
+    "target": [
+      "#cascade-popup > .ui-tree-popup-state"
+    ],
+    "reason": "elmPartiallyObscured",
+    "originalResult": "evidence/original/axe-derived/guided/cascader-open.json",
+    "originalResultSha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+    "nodeIndex": 4,
+    "classification": "native_scroll_clipping_reachable_by_keyboard_with_text_contrast_and_hit_proof",
+    "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it's partially obscured by another element",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/cascader-open.json",
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Native reopened popover scrolls to its focused candidate, clipping earlier route/status text; axe cannot determine that clipped background.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/before/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/after/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/nativePageUp"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/focusBefore"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/clipping/focusAfter"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+        "sha256": "3ffb1abdbba2a546b2a284bf8ed5b2bc18cb11aa6066121a3caa9790997d11e9",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+        "sha256": "8d652d679a16b75a5d16420fb36ba376d2e9b53bfe928f65b77ab40404ddd2c3",
+        "jsonPointer": ""
+      }
+    ],
+    "verified": [
+      "native PageUp sets the popup scrollTop to zero without moving focused candidate",
+      "all text Range fragments fit the actual popup/viewport clipping region",
+      "each visible fragment center hit-test belongs to the same paragraph",
+      "text foreground/background contrast >=4.5:1"
+    ],
+    "observedContrast": 6.385333036871963,
+    "scope": "The before phase explicitly retains clipped/not-owned fragments; only the after-PageUp phase asserts all fragments visible and owned."
+  },
+  {
+    "id": "30",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/closed/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "31",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/closed/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "32",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/closed/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "33",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "34",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "35",
+    "profile": "guided",
+    "state": "closed",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/closed.json",
+    "originalResultSha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/closed.json",
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "36",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#cascade"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 0,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/tree-select-open/0"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "37",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#single"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 1,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"single-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/tree-select-open/1"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "38",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "aria-valid-attr-value",
+    "target": [
+      "#multi"
+    ],
+    "reason": "controlsWithinPopup",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 2,
+    "classification": "popup_reference_review_branch_resolved_by_DOM_and_native_AX",
+    "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"multi-popup\"",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 deliberately requests review of aria-controls when aria-haspopup is present.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+        "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b",
+        "jsonPointer": "/tree-select-open/2"
+      }
+    ],
+    "verified": [
+      "one real referenced dialog",
+      "native label and combobox name",
+      "expanded state matches native popover",
+      "open popup is a named native AX dialog with matching controls backend node; closed popup ignored"
+    ]
+  },
+  {
+    "id": "39",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 0,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-head.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "40",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 1,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/1"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-lazy.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "41",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 2,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/glyphs/2"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-last.png",
+        "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  },
+  {
+    "id": "42",
+    "profile": "guided",
+    "state": "tree-select-open",
+    "rule": "color-contrast",
+    "target": [
+      "#multi-tree-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+    ],
+    "reason": "nonBmp",
+    "originalResult": "evidence/original/axe-derived/guided/tree-select-open.json",
+    "originalResultSha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+    "nodeIndex": 3,
+    "classification": "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics",
+    "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters",
+    "freshUnmodifiedAxeResult": {
+      "file": "evidence/before/axe-derived/guided/tree-select-open.json",
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd",
+      "jsonPointer": ""
+    },
+    "productSourceDefectFound": false,
+    "axeVerdictRetained": "incomplete",
+    "cause": "Installed axe 4.13.0 returns review for a unicode nontext-only glyph before calculating text contrast.",
+    "automaticEvidence": [
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/popupGlyphs/0"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-multi-head.png",
+        "sha256": "ff0a007347a9fba04cdadcceda6451d1552f6a16107b434b54a215aa60ec34d1",
+        "jsonPointer": ""
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/uncheckedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/checkedSemantics"
+      },
+      {
+        "file": "evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+        "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7",
+        "jsonPointer": "/mixedSemantics"
+      }
+    ],
+    "verified": [
+      "aria-hidden decorative indication; parent checked false/true/mixed in native AX",
+      "deterministic opaque CSS foreground/background with graphical contrast >=3:1",
+      "raw screenshot contains actual foreground and background pixels; actual platform font paints glyph",
+      "unchecked, checked and mixed have distinct painted geometry independent of color"
+    ],
+    "paintObservationScope": "Repeated department glyph nodes are measured in an exposed closed-popup state; popup glyph nodes are measured exposed in multi-open state. These are the same exact DOM nodes/classes on the unchanged source, not a claim to screenshot every repeated original overlay state.",
+    "observedContrast": 14.645016318974449
+  }
+]

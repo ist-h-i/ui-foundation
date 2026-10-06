@@ -1,0 +1,4045 @@
+{
+  "profile": "dense",
+  "viewport": {
+    "width": 320,
+    "height": 720
+  },
+  "fontSize": "200%",
+  "rtl": true,
+  "reducedMotion": true,
+  "closed": [
+    {
+      "dom": {
+        "id": "cascade",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "申請先の経路 必須",
+        "ids": [
+          "cascade-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"申請先の経路 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "10",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "申請先の経路 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "申請先の経路 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "階層を選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "階層を選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "末端の項目を選択してください。"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "cascade-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 112,
+                    "idref": "cascade-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 109,
+                    "text": "申請先の経路 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "108",
+          "childIds": [
+            "73",
+            "74"
+          ],
+          "backendDOMNodeId": 10
+        },
+        "popup": {
+          "nodeId": "114",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "108",
+          "childIds": [],
+          "backendDOMNodeId": 114
+        },
+        "controlTree": [
+          {
+            "nodeId": "10",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "申請先の経路 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "申請先の経路 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 109,
+                        "text": "申請先の経路 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "階層を選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "階層を選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "末端の項目を選択してください。"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "cascade-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 112,
+                      "idref": "cascade-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "108",
+            "childIds": [
+              "73",
+              "74"
+            ],
+            "backendDOMNodeId": 10
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "114",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "108",
+            "childIds": [],
+            "backendDOMNodeId": 114
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "single",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "代表部署 必須",
+        "ids": [
+          "single-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"代表部署 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "11",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "代表部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "代表部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "0 件選択"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "single-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 183,
+                    "idref": "single-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 175,
+                    "text": "代表部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "174",
+          "childIds": [
+            "177",
+            "178"
+          ],
+          "backendDOMNodeId": 11
+        },
+        "popup": {
+          "nodeId": "184",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "174",
+          "childIds": [
+            "185",
+            "186",
+            "191"
+          ],
+          "backendDOMNodeId": 184
+        },
+        "controlTree": [
+          {
+            "nodeId": "11",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "代表部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "代表部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 175,
+                        "text": "代表部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "0 件選択"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "single-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 183,
+                      "idref": "single-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "174",
+            "childIds": [
+              "177",
+              "178"
+            ],
+            "backendDOMNodeId": 11
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "184",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "174",
+            "childIds": [
+              "185",
+              "186",
+              "191"
+            ],
+            "backendDOMNodeId": 184
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "multi",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "対象部署 必須",
+        "ids": [
+          "multi-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"対象部署 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "13",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "対象部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "対象部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "0 件選択"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "multi-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 218,
+                    "idref": "multi-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 210,
+                    "text": "対象部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "209",
+          "childIds": [
+            "212",
+            "213"
+          ],
+          "backendDOMNodeId": 13
+        },
+        "popup": {
+          "nodeId": "219",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "209",
+          "childIds": [
+            "220",
+            "221",
+            "226"
+          ],
+          "backendDOMNodeId": 219
+        },
+        "controlTree": [
+          {
+            "nodeId": "13",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "対象部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "対象部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 210,
+                        "text": "対象部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "0 件選択"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "multi-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 218,
+                      "idref": "multi-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "209",
+            "childIds": [
+              "212",
+              "213"
+            ],
+            "backendDOMNodeId": 13
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "219",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "209",
+            "childIds": [
+              "220",
+              "221",
+              "226"
+            ],
+            "backendDOMNodeId": 219
+          }
+        ]
+      }
+    }
+  ],
+  "tree-select-open": [
+    {
+      "dom": {
+        "id": "cascade",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "申請先の経路 必須",
+        "ids": [
+          "cascade-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"申請先の経路 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "10",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "申請先の経路 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "申請先の経路 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "階層を選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "階層を選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "末端の項目を選択してください。"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "cascade-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 112,
+                    "idref": "cascade-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 109,
+                    "text": "申請先の経路 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "108",
+          "childIds": [
+            "73",
+            "74"
+          ],
+          "backendDOMNodeId": 10
+        },
+        "popup": {
+          "nodeId": "114",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "108",
+          "childIds": [],
+          "backendDOMNodeId": 114
+        },
+        "controlTree": [
+          {
+            "nodeId": "10",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "申請先の経路 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "申請先の経路 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 109,
+                        "text": "申請先の経路 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "階層を選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "階層を選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "末端の項目を選択してください。"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "cascade-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 112,
+                      "idref": "cascade-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "108",
+            "childIds": [
+              "73",
+              "74"
+            ],
+            "backendDOMNodeId": 10
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "114",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "108",
+            "childIds": [],
+            "backendDOMNodeId": 114
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "single",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "代表部署 必須",
+        "ids": [
+          "single-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"代表部署 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "11",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "代表部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "代表部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "0 件選択"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "single-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 183,
+                    "idref": "single-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 175,
+                    "text": "代表部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "174",
+          "childIds": [
+            "177",
+            "178"
+          ],
+          "backendDOMNodeId": 11
+        },
+        "popup": {
+          "nodeId": "184",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "174",
+          "childIds": [
+            "185",
+            "186",
+            "191"
+          ],
+          "backendDOMNodeId": 184
+        },
+        "controlTree": [
+          {
+            "nodeId": "11",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "代表部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "代表部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 175,
+                        "text": "代表部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "0 件選択"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "single-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 183,
+                      "idref": "single-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "174",
+            "childIds": [
+              "177",
+              "178"
+            ],
+            "backendDOMNodeId": 11
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "184",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "174",
+            "childIds": [
+              "185",
+              "186",
+              "191"
+            ],
+            "backendDOMNodeId": 184
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "multi",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "true",
+        "readOnly": true,
+        "label": "対象部署 必須",
+        "ids": [
+          "multi-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": true,
+        "focusWithinTarget": true,
+        "expected": true
+      },
+      "aria": "- combobox \"対象部署 必須\" [expanded]",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "13",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "対象部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "対象部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "0 件選択"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "multi-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 218,
+                    "idref": "multi-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "controls",
+              "value": {
+                "type": "idrefList",
+                "value": "multi-popup",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 219,
+                    "idref": "multi-popup"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 210,
+                    "text": "対象部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "209",
+          "childIds": [
+            "212",
+            "213"
+          ],
+          "backendDOMNodeId": 13
+        },
+        "popup": {
+          "nodeId": "219",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "dialog"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 35
+          },
+          "name": {
+            "type": "computedString",
+            "value": "対象部署を選択",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "type": "computedString",
+                  "value": "対象部署を選択"
+                },
+                "attribute": "aria-label",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "対象部署を選択"
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "properties": [
+            {
+              "name": "modal",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            }
+          ],
+          "parentId": "209",
+          "childIds": [
+            "220",
+            "14",
+            "225",
+            "243"
+          ],
+          "backendDOMNodeId": 219
+        },
+        "controlTree": [
+          {
+            "nodeId": "13",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "対象部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "対象部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 210,
+                        "text": "対象部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "0 件選択"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "multi-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 218,
+                      "idref": "multi-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "controls",
+                "value": {
+                  "type": "idrefList",
+                  "value": "multi-popup",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 219,
+                      "idref": "multi-popup"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "209",
+            "childIds": [
+              "212",
+              "213"
+            ],
+            "backendDOMNodeId": 13
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "219",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "dialog"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 35
+            },
+            "name": {
+              "type": "computedString",
+              "value": "対象部署を選択",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "type": "computedString",
+                    "value": "対象部署を選択"
+                  },
+                  "attribute": "aria-label",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "対象部署を選択"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "properties": [
+              {
+                "name": "modal",
+                "value": {
+                  "type": "boolean",
+                  "value": false
+                }
+              }
+            ],
+            "parentId": "209",
+            "childIds": [
+              "220",
+              "14",
+              "225",
+              "243"
+            ],
+            "backendDOMNodeId": 219
+          }
+        ]
+      }
+    }
+  ],
+  "cascader-open": [
+    {
+      "dom": {
+        "id": "cascade",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "true",
+        "readOnly": true,
+        "label": "申請先の経路 必須",
+        "ids": [
+          "cascade-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": true,
+        "focusWithinTarget": true,
+        "expected": true
+      },
+      "aria": "- combobox \"申請先の経路 必須\" [expanded]: 申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ / 企画部 / 企画第一課",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "10",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "申請先の経路 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "申請先の経路 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "階層を選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "階層を選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "末端の項目を選択してください。"
+          },
+          "value": {
+            "type": "string",
+            "value": "申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ / 企画部 / 企画第一課"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "cascade-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 112,
+                    "idref": "cascade-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "controls",
+              "value": {
+                "type": "idrefList",
+                "value": "cascade-popup",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 114,
+                    "idref": "cascade-popup"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 109,
+                    "text": "申請先の経路 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "108",
+          "childIds": [
+            "73",
+            "74"
+          ],
+          "backendDOMNodeId": 10
+        },
+        "popup": {
+          "nodeId": "114",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "dialog"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 35
+          },
+          "name": {
+            "type": "computedString",
+            "value": "申請先の経路の階層を選択",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "type": "computedString",
+                  "value": "申請先の経路の階層を選択"
+                },
+                "attribute": "aria-label",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "申請先の経路の階層を選択"
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "properties": [
+            {
+              "name": "modal",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            }
+          ],
+          "parentId": "108",
+          "childIds": [
+            "154",
+            "155",
+            "156",
+            "168"
+          ],
+          "backendDOMNodeId": 114
+        },
+        "controlTree": [
+          {
+            "nodeId": "10",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "申請先の経路 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "申請先の経路 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 109,
+                        "text": "申請先の経路 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "階層を選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "階層を選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "末端の項目を選択してください。"
+            },
+            "value": {
+              "type": "string",
+              "value": "申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ / 企画部 / 企画第一課"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "cascade-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 112,
+                      "idref": "cascade-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "controls",
+                "value": {
+                  "type": "idrefList",
+                  "value": "cascade-popup",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 114,
+                      "idref": "cascade-popup"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 109,
+                      "text": "申請先の経路 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "108",
+            "childIds": [
+              "73",
+              "74"
+            ],
+            "backendDOMNodeId": 10
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "114",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "dialog"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 35
+            },
+            "name": {
+              "type": "computedString",
+              "value": "申請先の経路の階層を選択",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "type": "computedString",
+                    "value": "申請先の経路の階層を選択"
+                  },
+                  "attribute": "aria-label",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "申請先の経路の階層を選択"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "properties": [
+              {
+                "name": "modal",
+                "value": {
+                  "type": "boolean",
+                  "value": false
+                }
+              }
+            ],
+            "parentId": "108",
+            "childIds": [
+              "154",
+              "155",
+              "156",
+              "168"
+            ],
+            "backendDOMNodeId": 114
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "single",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "代表部署 必須",
+        "ids": [
+          "single-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"代表部署 必須\"",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "11",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "代表部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "代表部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "0 件選択"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "single-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 183,
+                    "idref": "single-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 175,
+                    "text": "代表部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "174",
+          "childIds": [
+            "177",
+            "178"
+          ],
+          "backendDOMNodeId": 11
+        },
+        "popup": {
+          "nodeId": "184",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "174",
+          "childIds": [
+            "185",
+            "186",
+            "191"
+          ],
+          "backendDOMNodeId": 184
+        },
+        "controlTree": [
+          {
+            "nodeId": "11",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "代表部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "代表部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 175,
+                        "text": "代表部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "0 件選択"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "single-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 183,
+                      "idref": "single-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 175,
+                      "text": "代表部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "174",
+            "childIds": [
+              "177",
+              "178"
+            ],
+            "backendDOMNodeId": 11
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "184",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "174",
+            "childIds": [
+              "185",
+              "186",
+              "191"
+            ],
+            "backendDOMNodeId": 184
+          }
+        ]
+      }
+    },
+    {
+      "dom": {
+        "id": "multi",
+        "role": "combobox",
+        "haspopup": "dialog",
+        "expanded": "false",
+        "readOnly": true,
+        "label": "対象部署 必須",
+        "ids": [
+          "multi-popup"
+        ],
+        "targetCounts": [
+          1
+        ],
+        "targetRole": "dialog",
+        "targetOpen": false,
+        "focusWithinTarget": false,
+        "expected": false
+      },
+      "aria": "- combobox \"対象部署 必須\": 独立部署",
+      "ax": {
+        "available": true,
+        "control": {
+          "nodeId": "13",
+          "ignored": false,
+          "role": {
+            "type": "role",
+            "value": "combobox"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 171
+          },
+          "name": {
+            "type": "computedString",
+            "value": "対象部署 必須",
+            "sources": [
+              {
+                "type": "relatedElement",
+                "attribute": "aria-labelledby"
+              },
+              {
+                "type": "attribute",
+                "attribute": "aria-label"
+              },
+              {
+                "type": "relatedElement",
+                "value": {
+                  "type": "computedString",
+                  "value": "対象部署 必須"
+                },
+                "nativeSource": "labelfor",
+                "nativeSourceValue": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "value": {
+                  "type": "computedString",
+                  "value": "選択してください"
+                },
+                "attribute": "placeholder",
+                "attributeValue": {
+                  "type": "string",
+                  "value": "選択してください"
+                },
+                "superseded": true
+              },
+              {
+                "type": "placeholder",
+                "attribute": "aria-placeholder",
+                "superseded": true
+              },
+              {
+                "type": "attribute",
+                "attribute": "title",
+                "superseded": true
+              }
+            ]
+          },
+          "description": {
+            "type": "computedString",
+            "value": "1 件選択"
+          },
+          "value": {
+            "type": "string",
+            "value": "独立部署"
+          },
+          "properties": [
+            {
+              "name": "invalid",
+              "value": {
+                "type": "token",
+                "value": "false"
+              }
+            },
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "editable",
+              "value": {
+                "type": "token",
+                "value": "plaintext"
+              }
+            },
+            {
+              "name": "hasPopup",
+              "value": {
+                "type": "token",
+                "value": "dialog"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "multi-state",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 218,
+                    "idref": "multi-state"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "labelledby",
+              "value": {
+                "type": "nodeList",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 210,
+                    "text": "対象部署 必須"
+                  }
+                ]
+              }
+            }
+          ],
+          "parentId": "209",
+          "childIds": [
+            "212",
+            "213"
+          ],
+          "backendDOMNodeId": 13
+        },
+        "popup": {
+          "nodeId": "219",
+          "ignored": true,
+          "ignoredReasons": [
+            {
+              "name": "notRendered",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          ],
+          "role": {
+            "type": "role",
+            "value": "none"
+          },
+          "chromeRole": {
+            "type": "internalRole",
+            "value": 0
+          },
+          "parentId": "209",
+          "childIds": [
+            "220",
+            "221",
+            "226"
+          ],
+          "backendDOMNodeId": 219
+        },
+        "controlTree": [
+          {
+            "nodeId": "13",
+            "ignored": false,
+            "role": {
+              "type": "role",
+              "value": "combobox"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 171
+            },
+            "name": {
+              "type": "computedString",
+              "value": "対象部署 必須",
+              "sources": [
+                {
+                  "type": "relatedElement",
+                  "attribute": "aria-labelledby"
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "aria-label"
+                },
+                {
+                  "type": "relatedElement",
+                  "value": {
+                    "type": "computedString",
+                    "value": "対象部署 必須"
+                  },
+                  "nativeSource": "labelfor",
+                  "nativeSourceValue": {
+                    "type": "nodeList",
+                    "relatedNodes": [
+                      {
+                        "backendDOMNodeId": 210,
+                        "text": "対象部署 必須"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "value": {
+                    "type": "computedString",
+                    "value": "選択してください"
+                  },
+                  "attribute": "placeholder",
+                  "attributeValue": {
+                    "type": "string",
+                    "value": "選択してください"
+                  },
+                  "superseded": true
+                },
+                {
+                  "type": "placeholder",
+                  "attribute": "aria-placeholder",
+                  "superseded": true
+                },
+                {
+                  "type": "attribute",
+                  "attribute": "title",
+                  "superseded": true
+                }
+              ]
+            },
+            "description": {
+              "type": "computedString",
+              "value": "1 件選択"
+            },
+            "value": {
+              "type": "string",
+              "value": "独立部署"
+            },
+            "properties": [
+              {
+                "name": "invalid",
+                "value": {
+                  "type": "token",
+                  "value": "false"
+                }
+              },
+              {
+                "name": "focusable",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": true
+                }
+              },
+              {
+                "name": "editable",
+                "value": {
+                  "type": "token",
+                  "value": "plaintext"
+                }
+              },
+              {
+                "name": "hasPopup",
+                "value": {
+                  "type": "token",
+                  "value": "dialog"
+                }
+              },
+              {
+                "name": "required",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              {
+                "name": "expanded",
+                "value": {
+                  "type": "booleanOrUndefined",
+                  "value": false
+                }
+              },
+              {
+                "name": "describedby",
+                "value": {
+                  "type": "idrefList",
+                  "value": "multi-state",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 218,
+                      "idref": "multi-state"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "labelledby",
+                "value": {
+                  "type": "nodeList",
+                  "relatedNodes": [
+                    {
+                      "backendDOMNodeId": 210,
+                      "text": "対象部署 必須"
+                    }
+                  ]
+                }
+              }
+            ],
+            "parentId": "209",
+            "childIds": [
+              "212",
+              "213"
+            ],
+            "backendDOMNodeId": 13
+          }
+        ],
+        "popupTree": [
+          {
+            "nodeId": "219",
+            "ignored": true,
+            "ignoredReasons": [
+              {
+                "name": "notRendered",
+                "value": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            ],
+            "role": {
+              "type": "role",
+              "value": "none"
+            },
+            "chromeRole": {
+              "type": "internalRole",
+              "value": 0
+            },
+            "parentId": "209",
+            "childIds": [
+              "220",
+              "221",
+              "226"
+            ],
+            "backendDOMNodeId": 219
+          }
+        ]
+      }
+    }
+  ],
+  "clipping": {
+    "before": [
+      {
+        "selector": "#cascade-popup > p:nth-child(1)",
+        "elementId": "",
+        "text": "候補の経路: 申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ / 企画部 / 企画第一課",
+        "foreground": "rgb(28, 41, 61)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "32px",
+        "fontWeight": "400",
+        "rect": {
+          "left": 17,
+          "top": -250,
+          "right": 303,
+          "bottom": 5.9375
+        },
+        "clips": [
+          {
+            "tag": "DIV",
+            "id": "cascade-popup",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "scrollTop": 267,
+            "box": {
+              "left": 9,
+              "top": 9,
+              "right": 311,
+              "bottom": 711
+            }
+          }
+        ],
+        "visible": [
+          {
+            "left": 22.8125,
+            "top": -244,
+            "right": 303,
+            "bottom": -206,
+            "width": 280.1875,
+            "height": 38,
+            "visibleArea": 0,
+            "fullArea": 10647.125,
+            "hitOwned": false,
+            "hit": null
+          },
+          {
+            "left": 66.609375,
+            "top": -192.8125,
+            "right": 303,
+            "bottom": -154.8125,
+            "width": 236.390625,
+            "height": 38,
+            "visibleArea": 0,
+            "fullArea": 8982.84375,
+            "hitOwned": false,
+            "hit": null
+          },
+          {
+            "left": 26.421875,
+            "top": -141.625,
+            "right": 303,
+            "bottom": -103.625,
+            "width": 276.578125,
+            "height": 38,
+            "visibleArea": 0,
+            "fullArea": 10509.96875,
+            "hitOwned": false,
+            "hit": null
+          },
+          {
+            "left": 28.71875,
+            "top": -90.4375,
+            "right": 303,
+            "bottom": -52.4375,
+            "width": 274.28125,
+            "height": 38,
+            "visibleArea": 0,
+            "fullArea": 10422.6875,
+            "hitOwned": false,
+            "hit": null
+          },
+          {
+            "left": 43.328125,
+            "top": -39.25,
+            "right": 303,
+            "bottom": -1.25,
+            "width": 259.671875,
+            "height": 38,
+            "visibleArea": 0,
+            "fullArea": 9867.53125,
+            "hitOwned": false,
+            "hit": null
+          }
+        ]
+      },
+      {
+        "selector": "#cascade-popup > .ui-tree-popup-state",
+        "elementId": "",
+        "text": "上下で同じ階層を移動、左右で子・親の階層へ移動します。",
+        "foreground": "rgb(82, 96, 117)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "28px",
+        "fontWeight": "400",
+        "rect": {
+          "left": 17,
+          "top": 21.9375,
+          "right": 303,
+          "bottom": 156.328125
+        },
+        "clips": [
+          {
+            "tag": "DIV",
+            "id": "cascade-popup",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "scrollTop": 267,
+            "box": {
+              "left": 9,
+              "top": 9,
+              "right": 311,
+              "bottom": 711
+            }
+          }
+        ],
+        "visible": [
+          {
+            "left": 18.59375,
+            "top": 26.9375,
+            "right": 303,
+            "bottom": 59.9375,
+            "width": 284.40625,
+            "height": 33,
+            "visibleArea": 9385.40625,
+            "fullArea": 9385.40625,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 18.59375,
+            "top": 71.734375,
+            "right": 303,
+            "bottom": 104.734375,
+            "width": 284.40625,
+            "height": 33,
+            "visibleArea": 9385.40625,
+            "fullArea": 9385.40625,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 173.71875,
+            "top": 116.53125,
+            "right": 199.578125,
+            "bottom": 149.53125,
+            "width": 25.859375,
+            "height": 33,
+            "visibleArea": 853.359375,
+            "fullArea": 853.359375,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 199.578125,
+            "top": 116.53125,
+            "right": 303,
+            "bottom": 149.53125,
+            "width": 103.421875,
+            "height": 33,
+            "visibleArea": 3412.921875,
+            "fullArea": 3412.921875,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "selector": "#cascade-popup > p:nth-child(1)",
+        "elementId": "",
+        "text": "候補の経路: 申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ / 企画部 / 企画第一課",
+        "foreground": "rgb(28, 41, 61)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "32px",
+        "fontWeight": "400",
+        "rect": {
+          "left": 17,
+          "top": 17,
+          "right": 303,
+          "bottom": 272.9375
+        },
+        "clips": [
+          {
+            "tag": "DIV",
+            "id": "cascade-popup",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "scrollTop": 0,
+            "box": {
+              "left": 9,
+              "top": 9,
+              "right": 311,
+              "bottom": 711
+            }
+          }
+        ],
+        "visible": [
+          {
+            "left": 22.8125,
+            "top": 23,
+            "right": 303,
+            "bottom": 61,
+            "width": 280.1875,
+            "height": 38,
+            "visibleArea": 10647.125,
+            "fullArea": 10647.125,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 66.609375,
+            "top": 74.1875,
+            "right": 303,
+            "bottom": 112.1875,
+            "width": 236.390625,
+            "height": 38,
+            "visibleArea": 8982.84375,
+            "fullArea": 8982.84375,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 26.421875,
+            "top": 125.375,
+            "right": 303,
+            "bottom": 163.375,
+            "width": 276.578125,
+            "height": 38,
+            "visibleArea": 10509.96875,
+            "fullArea": 10509.96875,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 28.71875,
+            "top": 176.5625,
+            "right": 303,
+            "bottom": 214.5625,
+            "width": 274.28125,
+            "height": 38,
+            "visibleArea": 10422.6875,
+            "fullArea": 10422.6875,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 43.328125,
+            "top": 227.75,
+            "right": 303,
+            "bottom": 265.75,
+            "width": 259.671875,
+            "height": 38,
+            "visibleArea": 9867.53125,
+            "fullArea": 9867.53125,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          }
+        ]
+      },
+      {
+        "selector": "#cascade-popup > .ui-tree-popup-state",
+        "elementId": "",
+        "text": "上下で同じ階層を移動、左右で子・親の階層へ移動します。",
+        "foreground": "rgb(82, 96, 117)",
+        "background": "rgb(255, 255, 255)",
+        "fontSize": "28px",
+        "fontWeight": "400",
+        "rect": {
+          "left": 17,
+          "top": 288.9375,
+          "right": 303,
+          "bottom": 423.328125
+        },
+        "clips": [
+          {
+            "tag": "DIV",
+            "id": "cascade-popup",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "scrollTop": 0,
+            "box": {
+              "left": 9,
+              "top": 9,
+              "right": 311,
+              "bottom": 711
+            }
+          }
+        ],
+        "visible": [
+          {
+            "left": 18.59375,
+            "top": 293.9375,
+            "right": 303,
+            "bottom": 326.9375,
+            "width": 284.40625,
+            "height": 33,
+            "visibleArea": 9385.40625,
+            "fullArea": 9385.40625,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 18.59375,
+            "top": 338.734375,
+            "right": 303,
+            "bottom": 371.734375,
+            "width": 284.40625,
+            "height": 33,
+            "visibleArea": 9385.40625,
+            "fullArea": 9385.40625,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 173.71875,
+            "top": 383.53125,
+            "right": 199.578125,
+            "bottom": 416.53125,
+            "width": 25.859375,
+            "height": 33,
+            "visibleArea": 853.359375,
+            "fullArea": 853.359375,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          },
+          {
+            "left": 199.578125,
+            "top": 383.53125,
+            "right": 303,
+            "bottom": 416.53125,
+            "width": 103.421875,
+            "height": 33,
+            "visibleArea": 3412.921875,
+            "fullArea": 3412.921875,
+            "hitOwned": true,
+            "hit": {
+              "tag": "P",
+              "id": ""
+            }
+          }
+        ]
+      }
+    ],
+    "textContrasts": [
+      14.645016318974449,
+      6.385333036871963
+    ],
+    "nativePageUp": true,
+    "focusBefore": {
+      "tag": "BUTTON",
+      "id": "",
+      "node": "head"
+    },
+    "focusAfter": {
+      "tag": "BUTTON",
+      "id": "",
+      "node": "head"
+    }
+  },
+  "parentEscape": {
+    "childFirst": true,
+    "parentSecond": true,
+    "ownedFocusReturned": true
+  }
+}

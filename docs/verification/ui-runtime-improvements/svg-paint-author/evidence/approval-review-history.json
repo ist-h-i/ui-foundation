@@ -1,0 +1,17 @@
+{
+  "action": "node harness/verify-audit-controls.mjs in own SVG stage with require_escalated",
+  "target": "Own Chromium diagnostic copies only",
+  "first": {
+    "executed": false,
+    "reason": "Automatic approval review failed: Selected model is at capacity. Please try a different model. The action was not executed because automatic approval review could not be completed. This is a review failure, not a determination that the action is unsafe. Do not bypass the approval check; resolve the error or ask the user for guidance."
+  },
+  "retry": {
+    "authorization": "Parent relayed prior user instruction: retry exactly same call once without adding argument evidence",
+    "arguments": "identical command/workdir/yield/output/sandbox/justification",
+    "executed": true,
+    "actual": 0,
+    "raw": "evidence/audit-negative-controls.log"
+  },
+  "bypass": false,
+  "remainingBlocker": false
+}

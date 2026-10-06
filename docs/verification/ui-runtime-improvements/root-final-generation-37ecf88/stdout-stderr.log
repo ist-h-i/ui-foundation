@@ -1,0 +1,35 @@
+
+> ui-foundation@0.0.0 test:generation
+> tsx --test tests/generation/*.test.ts
+
+✔ a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail (105418.303792ms)
+✔ output relocation keeps fixed Skill ownership, retires the old manifest, and is dry-run safe and repeatable (17069.941709ms)
+✔ v1 generation upgrades in place or relocates with an explicit previous output (1953.3915ms)
+✔ relocation rejects edited or unowned old/Skill/new files and even an identical target manifest (2837.224709ms)
+✔ registry edits, missing prior manifests, wrong explicit locations and unsafe migration paths cannot override ownership (3791.394083ms)
+✔ nested relocation refuses an existing target manifest even when its SHA is in the old scoped manifest (467.19175ms)
+✔ a missing owned registry is regenerated from the current or explicitly named prior manifest (696.62375ms)
+✔ a failure retiring the old manifest rolls back new output, registry and old generated content (874.230125ms)
+✔ CLI v1 migration requires an explicit path once and keeps --from-output sync-only (3137.205916ms)
+✔ dry-run writes nothing; repeated generation is stable and check observes the generated output (1292.451291ms)
+✔ a changed primitive reaches CSS, resolved policy and AI context; stale output fails check (2302.232125ms)
+✔ context-only edits change AI guidance without changing tokens or Tailwind mappings (1145.275875ms)
+✔ default profile and labels are generated as usable application metadata (915.166875ms)
+✔ manual edits are detected and preserved, including Skill edits (3144.438083ms)
+✔ existing unowned output and Skill files are not adopted or overwritten (578.101125ms)
+✔ unexpected files inside managed directories fail check and sync without deletion (1048.73825ms)
+✔ missing output fails check and can be regenerated without touching application files (715.795084ms)
+✔ invalid manifest ownership is rejected before any output changes (311.934667ms)
+✔ output directory, descendant and configuration symlinks are rejected (450.746584ms)
+✔ project-relative path boundaries and Skill/output overlap are rejected (48.119625ms)
+✔ init preserves existing config and creates a runnable fresh configuration (501.563667ms)
+✔ CLI check has a real failing exit status, and dry-run is read-only (2933.491875ms)
+✔ an ordinary I/O failure restores files already written and leaves the previous manifest (799.81575ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105790.455209

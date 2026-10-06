@@ -1,0 +1,10 @@
+{
+  "sourceSha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+  "blocks": {
+    "environmentCode": "const childEnvironment={...process.env};\nfor(const name of ['PAINT_CONFIG','PAINT_ONE','SVG_PAINT_EVIDENCE_DIR','SVG_CONSUMER_URL','SVG_PORT'])delete childEnvironment[name];",
+    "childEnvCode": "{...childEnvironment,...env}",
+    "serverEnvCode": "{...childEnvironment,SVG_PORT:'0'}",
+    "nativeEnvCode": "{SVG_CONSUMER_URL:`http://127.0.0.1:${ready.port}/`,SVG_PAINT_EVIDENCE_DIR:pathToFileURL(join(work,'evidence')+'/').href}",
+    "assertionCode": "assert.ok(Array.isArray(native.rows),'Native result must record the executed scenarios');\nassert.equal(native.rows.length,34,'Permanent verification requires all 34 scenarios; zero or filtered cases cannot pass');\nassert.equal(new Set(native.rows.map(row=>JSON.stringify([row.profile,row.width,row.direction,row.locale,row.precision,row.data]))).size,34,'All 34 scenario results must be distinct');\nassert.equal(native.allExpected,true,'Native aggregate must report success');\nassert.ok(native.rows.every(row=>row.passed===true&&Array.isArray(row.errors)&&row.errors.length===0),'Every scenario must pass without runtime errors');\nassert.equal(steps.length,6,'All canonical generation/build/native steps must execute');\nassert.ok(steps.every(step=>step.code===0),'Every required step must exit successfully');"
+  }
+}

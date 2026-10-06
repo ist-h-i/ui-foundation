@@ -1,0 +1,24 @@
+import {Component,ChangeDetectionStrategy,EnvironmentInjector,inject,input,signal,viewChild} from '@angular/core';
+import {FormControl,ReactiveFormsModule,Validators} from '@angular/forms';
+import {ActionControl,ConfirmDialog,AlertDialog,FormDialog,TextInput,DynamicDialogHost,DynamicDialogService,UI_DYNAMIC_DIALOG_DATA,UI_DYNAMIC_DIALOG_REF,NotificationHost,NotificationService,type DialogResult} from '../../.ui/generated/angular/index';
+
+@Component({selector:'dynamic-demo-content',standalone:true,imports:[ActionControl,NotificationHost],providers:[NotificationService],changeDetection:ChangeDetectionStrategy.OnPush,
+ template:`<p>{{data}}</p><label>{{description()}}<input class="ui-field-control" value="動的な下書き"></label><button uiAction (click)="notices.notify({message:'Dialog内の通知',autoDismiss:false,actionLabel:'確認を記録'})">Dialog内通知を表示</button><button uiAction (click)="background()">背景通知を追加</button><button uiAction (click)="dismissBackground()">背景通知を終了</button><ui-notification-host (action)="noticeAction.set(true)" /><p data-testid="modal-notice-action">通知操作: {{noticeAction()}}</p><button uiAction (click)="update()">動的内容から入力を更新</button><button uiAction (click)="ref.finish('confirm','動的な結果')">動的Dialogを完了</button>`})
+export class DynamicDemoContent{
+ readonly description=input('動的内容の入力');readonly data=inject(UI_DYNAMIC_DIALOG_DATA);readonly ref=inject(UI_DYNAMIC_DIALOG_REF);readonly notices=inject(NotificationService);readonly noticeAction=signal(false);private readonly dialogs=inject(DynamicDialogService);update():void{this.dialogs.updateInputs({description:'更新された動的入力'});}
+ private readonly rootNotices=inject(EnvironmentInjector).get(NotificationService);private backgroundId:string|null=null;
+ background():void{this.backgroundId=this.rootNotices.notify({message:'背景からの通知',autoDismiss:false});}
+ dismissBackground():void{if(this.backgroundId)this.rootNotices.dismiss(this.backgroundId);}
+}
+@Component({selector:'dialog-variants-catalog',standalone:true,imports:[ActionControl,ConfirmDialog,AlertDialog,FormDialog,TextInput,ReactiveFormsModule,DynamicDialogHost],changeDetection:ChangeDetectionStrategy.OnPush,
+ template:`<section aria-label="Dialog各種の検証"><h2>確認・入力・動的Dialog</h2><button uiAction (click)="confirmOpen.set(true)">確認Dialogを開く</button><ui-confirm-dialog label="提出の確認" message="入力した内容を提出しますか。" [open]="confirmOpen()" (openChange)="confirmOpen.set($event)" (completed)="result.set($event)" />
+ <button uiAction (click)="alertOpen.set(true)">重要通知を開く</button><ui-alert-dialog label="確認が必要な通知" message="更新に失敗しました。入力内容を確認してください。" [open]="alertOpen()" (openChange)="alertOpen.set($event)" (completed)="result.set($event)" />
+ <label><input type="checkbox" [checked]="failSave()" (change)="failSave.set(checked($event))">保存を失敗させる</label><button uiAction (click)="formOpen.set(true)">FormDialogを開く</button><ui-form-dialog label="申請名を編集" [open]="formOpen()" (openChange)="formOpen.set($event)" [busy]="saving()" [dirty]="field.dirty" [valid]="field.valid" [error]="saveError()" (saveRequested)="save()" (completed)="result.set($event)"><ui-text-input controlId="form-dialog-title" label="Dialog内の申請名" [formControl]="field" [required]="true" [error]="field.invalid?'申請名を入力してください。':null" /></ui-form-dialog>
+ <button uiAction (click)="updateDynamic()">動的入力名を更新</button><button uiAction (click)="dynamic()">DynamicDialogを開く</button><ui-dynamic-dialog-host /><p data-testid="variant-result">Dialog結果: {{result()?.reason}} / {{result()?.value}}</p><p data-testid="dynamic-result">動的結果: {{dynamicResult()}}</p></section>`,styles:':host{display:block;min-inline-size:0;}section{margin-block:var(--ui-space-section);}'})
+export class DialogVariantsCatalog{
+ readonly confirmOpen=signal(false);readonly alertOpen=signal(false);readonly formOpen=signal(false);readonly result=signal<DialogResult|null>(null);readonly dynamicResult=signal('');readonly failSave=signal(true);readonly saving=signal(false);readonly saveError=signal('');readonly field=new FormControl('元の申請名',{nonNullable:true,validators:[Validators.required]});private readonly form=viewChild(FormDialog);private readonly dynamicService=inject(DynamicDialogService);
+ checked(event:Event):boolean{return (event.target as HTMLInputElement).checked;}
+ save():void{if(this.saving()||this.field.invalid)return;this.saving.set(true);this.saveError.set('');setTimeout(()=>{if(this.failSave()){this.saveError.set('保存に失敗しました。入力内容を保持しています。');this.saving.set(false);}else{this.form()?.complete(this.field.value);this.saving.set(false);this.field.markAsPristine();}},100);}
+ updateDynamic():void{this.dynamicService.updateInputs({description:'更新された動的入力'});}
+ dynamic():void{const ref=this.dynamicService.open<string>({component:DynamicDemoContent,label:'内容の差替え',data:'呼出元から渡した内容',inputs:{description:'動的内容の入力'}});void ref.result.then(result=>this.dynamicResult.set(result.reason+':'+result.value));}
+}

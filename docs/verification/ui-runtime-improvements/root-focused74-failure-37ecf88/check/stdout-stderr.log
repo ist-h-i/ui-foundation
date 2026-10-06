@@ -1,0 +1,191 @@
+
+> ui-foundation@0.0.0 test:ui
+> playwright test tests/ui/tree-axe-contract.spec.ts tests/ui/diagram-validation.spec.ts tests/ui/diagram-controlled-validation.spec.ts tests/ui/media.spec.ts tests/ui/media-regressions.spec.ts tests/ui/media-lifetime.spec.ts tests/ui/specialist-catalog.spec.ts:53 tests/ui/overlay-catalog.spec.ts:18 tests/ui/overlay-catalog.spec.ts:24 tests/ui/overlay-catalog.spec.ts:25 tests/ui/overlay-catalog.spec.ts:31 tests/ui/overlay-catalog.spec.ts:36 tests/ui/overlay-catalog.spec.ts:40 tests/ui/overlay-catalog.spec.ts:43 tests/ui/overlay-catalog.spec.ts:46 tests/ui/overlay-catalog.spec.ts:53 tests/ui/navigation-catalog.spec.ts:34 tests/ui/navigation-catalog.spec.ts:37 tests/ui/navigation-catalog.spec.ts:51 tests/ui/navigation-catalog.spec.ts:54 tests/ui/navigation-catalog.spec.ts:91 --forbid-only --reporter=list,json --output=/tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts
+
+[WebServer] (node:95591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:95592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:95593) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:95861) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+[WebServer] (node:95922) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ≈ tailwindcss v4.3.0
+[WebServer] 
+[WebServer] Done in 99ms
+[WebServer] (node:95923) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 74 tests using 2 workers
+
+(node:95928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:95929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation (2.9s)
+  ✓   1 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement (3.2s)
+  ✓   3 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset (2.8s)
+  ✓   4 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits (2.6s)
+  ✓   5 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits (4.0s)
+  ✓   6 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion (4.3s)
+  ✓   7 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation (2.8s)
+  ✓   8 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement (3.0s)
+  ✓   9 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset (2.2s)
+  ✓  10 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits (2.1s)
+  ✓  11 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits (2.6s)
+  ✓  12 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion (3.4s)
+  ✓  13 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path (3.6s)
+  ✓  14 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path (3.6s)
+  ✓  15 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative x without changing the reachable canvas and supports correction (4.0s)
+  ✓  16 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative y without changing the reachable canvas and supports correction (3.9s)
+  ✓  17 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path (3.9s)
+  ✓  18 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path (3.7s)
+  ✓  19 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction (4.1s)
+  ✓  20 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction (3.7s)
+  ✓  21 [chromium] › tests/ui/media-lifetime.spec.ts:18:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction (3.4s)
+  ✓  22 [chromium] › tests/ui/media-lifetime.spec.ts:63:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs (4.0s)
+  ✓  23 [chromium] › tests/ui/media-lifetime.spec.ts:109:1 › PDF worker startup failure reports an error and terminates its native Worker (3.8s)
+  ✓  25 [chromium] › tests/ui/media-regressions.spec.ts:85:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue (3.3s)
+  ✓  24 [chromium] › tests/ui/media-regressions.spec.ts:28:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup (15.1s)
+  ✓  26 [chromium] › tests/ui/media-regressions.spec.ts:119:1 › PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL (11.3s)
+  ✓  28 [chromium] › tests/ui/media-regressions.spec.ts:197:1 › desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling (3.5s)
+  ✓  29 [chromium] › tests/ui/media-regressions.spec.ts:225:1 › Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control (5.1s)
+  ✓  27 [chromium] › tests/ui/media-regressions.spec.ts:149:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL (12.3s)
+  ✓  30 [chromium] › tests/ui/media.spec.ts:5:1 › actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus (3.0s)
+  ✓  31 [chromium] › tests/ui/media.spec.ts:6:1 › image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained (3.0s)
+  ✓  32 [chromium] › tests/ui/media.spec.ts:7:1 › carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal (3.0s)
+  ✓  33 [chromium] › tests/ui/media.spec.ts:8:1 › image compare native keyboard/boundary endpoints, direction and RTL (2.6s)
+  ✓  34 [chromium] › tests/ui/media.spec.ts:9:1 › crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates (3.0s)
+  ✓  36 [chromium] › tests/ui/media.spec.ts:11:1 › actual QR/Barcode encoding independently decodes raster; data change/error recovery (2.5s)
+  ✓  35 [chromium] › tests/ui/media.spec.ts:10:1 › PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery (4.1s)
+  ✓  37 [chromium] › tests/ui/media.spec.ts:12:1 › native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen (4.3s)
+  ✓  38 [chromium] › tests/ui/media.spec.ts:13:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe (6.6s)
+  ✓  39 [chromium] › tests/ui/navigation-catalog.spec.ts:34:2 › navigation catalog guided › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite (2.6s)
+  ✘  40 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex (3.0s)
+  ✓  41 [chromium] › tests/ui/navigation-catalog.spec.ts:51:2 › navigation catalog guided › three-level menubar restores parents and crosses popup boundaries to the next root (3.3s)
+(node:97923) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  42 [chromium] › tests/ui/navigation-catalog.spec.ts:91:2 › navigation catalog guided › menubar preserves symbolic IDs, leaf radio groups and rapid root movement (4.3s)
+  ✓  43 [chromium] › tests/ui/navigation-catalog.spec.ts:54:2 › navigation catalog guided › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus (4.1s)
+  ✓  44 [chromium] › tests/ui/navigation-catalog.spec.ts:34:2 › navigation catalog dense › menubar root roving, disabled entries, checks and Tab enter/exit work as a composite (3.2s)
+  ✓  46 [chromium] › tests/ui/navigation-catalog.spec.ts:51:2 › navigation catalog dense › three-level menubar restores parents and crosses popup boundaries to the next root (6.8s)
+  ✘  45 [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex (6.9s)
+(node:678) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  47 [chromium] › tests/ui/navigation-catalog.spec.ts:54:2 › navigation catalog dense › menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus (4.5s)
+  ✓  48 [chromium] › tests/ui/navigation-catalog.spec.ts:91:2 › navigation catalog dense › menubar preserves symbolic IDs, leaf radio groups and rapid root movement (4.9s)
+  ✓  49 [chromium] › tests/ui/overlay-catalog.spec.ts:18:3 › dense floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert (4.9s)
+  ✓  51 [chromium] › tests/ui/overlay-catalog.spec.ts:25:3 › dense floating regions › root inert removes the native menu popup through the shared registry (4.2s)
+  ✓  50 [chromium] › tests/ui/overlay-catalog.spec.ts:24:3 › dense floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く (5.3s)
+  ✓  52 [chromium] › tests/ui/overlay-catalog.spec.ts:31:3 › dense floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close (5.4s)
+  ✓  53 [chromium] › tests/ui/overlay-catalog.spec.ts:36:3 › dense floating regions › hover and context triggers close and restore the context target (5.0s)
+  ✓  54 [chromium] › tests/ui/overlay-catalog.spec.ts:40:3 › dense floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers (4.6s)
+  ✓  55 [chromium] › tests/ui/overlay-catalog.spec.ts:43:3 › dense floating regions › Separate OverlayHost scopes consume one outside event for only the top popup (5.1s)
+  ✓  56 [chromium] › tests/ui/overlay-catalog.spec.ts:46:3 › dense floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup (5.4s)
+  ✓  57 [chromium] › tests/ui/overlay-catalog.spec.ts:53:3 › dense floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result (6.2s)
+  ✓  58 [chromium] › tests/ui/overlay-catalog.spec.ts:18:3 › guided floating regions › Menu enters and leaves three levels, returns to each parent and keeps disabled items inert (4.6s)
+  ✓  59 [chromium] › tests/ui/overlay-catalog.spec.ts:24:3 › guided floating regions › Menu起動直後の連続ArrowとEnterは論理階層に届く (4.5s)
+  ✓  60 [chromium] › tests/ui/overlay-catalog.spec.ts:25:3 › guided floating regions › root inert removes the native menu popup through the shared registry (3.6s)
+  ✓  61 [chromium] › tests/ui/overlay-catalog.spec.ts:31:3 › guided floating regions › Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close (5.0s)
+  ✓  62 [chromium] › tests/ui/overlay-catalog.spec.ts:36:3 › guided floating regions › hover and context triggers close and restore the context target (4.3s)
+  ✓  63 [chromium] › tests/ui/overlay-catalog.spec.ts:40:3 › guided floating regions › Menu typeahead uses checkbox/radio labels without their decorative markers (4.0s)
+  ✓  64 [chromium] › tests/ui/overlay-catalog.spec.ts:43:3 › guided floating regions › Separate OverlayHost scopes consume one outside event for only the top popup (4.1s)
+  ✓  65 [chromium] › tests/ui/overlay-catalog.spec.ts:46:3 › guided floating regions › Visible Menu item removal repairs focus and parent Dialog close removes its popup (5.0s)
+  ✓  66 [chromium] › tests/ui/overlay-catalog.spec.ts:53:3 › guided floating regions › Dialog slots, native modal focus, nested menu Escape and typed close result (4.5s)
+  ✓  67 [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › guided: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom (4.2s)
+  ✓  68 [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › dense: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom (4.3s)
+  ✓  69 [chromium] › tests/ui/tree-axe-contract.spec.ts:13:2 › tree automated incomplete contracts guided › DOM/ARIA/native AX references, keyboard, clipped text and nested Escape (7.2s)
+  ✓  70 [chromium] › tests/ui/tree-axe-contract.spec.ts:46:2 › tree automated incomplete contracts guided › glyphs have checked semantics and actual foreground/background paint (6.7s)
+  ✓  71 [chromium] › tests/ui/tree-axe-contract.spec.ts:63:2 › tree automated incomplete contracts guided › automatic reference and graphical contrast detectors reject broken contracts (3.9s)
+  ✓  72 [chromium] › tests/ui/tree-axe-contract.spec.ts:13:2 › tree automated incomplete contracts dense › DOM/ARIA/native AX references, keyboard, clipped text and nested Escape (5.7s)
+  ✓  74 [chromium] › tests/ui/tree-axe-contract.spec.ts:63:2 › tree automated incomplete contracts dense › automatic reference and graphical contrast detectors reject broken contracts (3.5s)
+  ✓  73 [chromium] › tests/ui/tree-axe-contract.spec.ts:46:2 › tree automated incomplete contracts dense › glyphs have checked semantics and actual foreground/background paint (5.9s)
+
+
+  1) [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 2
+
+      Object {
+        "handled": true,
+        "tabIndex": -1,
+        "tabStops": Array [
+          "File",
+    +     "New",
+    +     "Cut",
+        ],
+      }
+
+      42 |    const active=element.ownerDocument.activeElement as HTMLElement,tabIndex=active.tabIndex,event=new KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true});active.dispatchEvent(event);return{tabIndex,handled:event.defaultPrevented,tabStops:[...element.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(node=>node.tabIndex===0).map(node=>node.textContent!.trim())};
+      43 |   });
+    > 44 |   expect(forward).toEqual({tabIndex:-1,handled:true,tabStops:['File']});await expect(page.getByTestId('after-menubar')).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(file).toBeFocused();
+         |                   ^
+      45 |   const backward=await bar.evaluate(element=>{
+      46 |    element.ownerDocument.activeElement!.dispatchEvent(new KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
+      47 |    const active=element.ownerDocument.activeElement as HTMLElement,tabIndex=active.tabIndex,event=new KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true});active.dispatchEvent(event);return{tabIndex,handled:event.defaultPrevented,tabStops:[...element.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(node=>node.tabIndex===0).map(node=>node.textContent!.trim())};
+        at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/navigation-catalog.spec.ts:44:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-a2623-renders-its-roving-tabindex-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 2
+
+      Object {
+        "handled": true,
+        "tabIndex": -1,
+        "tabStops": Array [
+          "File",
+    +     "New",
+    +     "Cut",
+        ],
+      }
+
+      42 |    const active=element.ownerDocument.activeElement as HTMLElement,tabIndex=active.tabIndex,event=new KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true});active.dispatchEvent(event);return{tabIndex,handled:event.defaultPrevented,tabStops:[...element.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(node=>node.tabIndex===0).map(node=>node.textContent!.trim())};
+      43 |   });
+    > 44 |   expect(forward).toEqual({tabIndex:-1,handled:true,tabStops:['File']});await expect(page.getByTestId('after-menubar')).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(file).toBeFocused();
+         |                   ^
+      45 |   const backward=await bar.evaluate(element=>{
+      46 |    element.ownerDocument.activeElement!.dispatchEvent(new KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));
+      47 |    const active=element.ownerDocument.activeElement as HTMLElement,tabIndex=active.tabIndex,event=new KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true});active.dispatchEvent(event);return{tabIndex,handled:event.defaultPrevented,tabStops:[...element.querySelectorAll<HTMLElement>('[role^=menuitem]')].filter(node=>node.tabIndex===0).map(node=>node.textContent!.trim())};
+        at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/navigation-catalog.spec.ts:44:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-runtime-improvements/native-focused-ui-37ecf88/artifacts/navigation-catalog-navigat-c4b4a-renders-its-roving-tabindex-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog guided › root Tab exits in both directions before a preceding key renders its roving tabindex 
+    [chromium] › tests/ui/navigation-catalog.spec.ts:37:2 › navigation catalog dense › root Tab exits in both directions before a preceding key renders its roving tabindex 
+  72 passed (3.5m)

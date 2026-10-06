@@ -1,0 +1,348 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/repository/node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/ui/tree-axe-contract.spec.ts"
+    ],
+    "configFile": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/repository/playwright.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../evidence/automatic-keyboard-final/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5338",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "tree-axe-contract.spec.ts",
+      "file": "tree-axe-contract.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "tree automated incomplete contracts guided",
+          "file": "tree-axe-contract.spec.ts",
+          "line": 7,
+          "column": 46,
+          "specs": [
+            {
+              "title": "DOM/ARIA/native AX references, keyboard, clipped text and nested Escape",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2227,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:48.429Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-fa5112485ca55872e9c7",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 13,
+              "column": 2
+            },
+            {
+              "title": "glyphs have checked semantics and actual foreground/background paint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1774,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:51.221Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-fe4d5d1680cffcda6c80",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 46,
+              "column": 2
+            },
+            {
+              "title": "automatic reference and graphical contrast detectors reject broken contracts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 772,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:53.038Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-d1881-ors-reject-broken-contracts-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-de77606ab8070c6ca183",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 63,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "tree automated incomplete contracts dense",
+          "file": "tree-axe-contract.spec.ts",
+          "line": 7,
+          "column": 46,
+          "specs": [
+            {
+              "title": "DOM/ARIA/native AX references, keyboard, clipped text and nested Escape",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1801,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:53.843Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-4b0b2368825f58425f0a",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 13,
+              "column": 2
+            },
+            {
+              "title": "glyphs have checked semantics and actual foreground/background paint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1735,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:55.710Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-721c24eae28095e0b994",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 46,
+              "column": 2
+            },
+            {
+              "title": "automatic reference and graphical contrast detectors reject broken contracts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 746,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:26:57.486Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/private/tmp/ui-foundation-tree-escape-final-review/runtime-axe-gap-20261006-120724/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-e9f92-ors-reject-broken-contracts-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1068c1b5104a244f4e1c-9156dcbb0537fd66f8ed",
+              "file": "tree-axe-contract.spec.ts",
+              "line": 63,
+              "column": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T12:26:47.569Z",
+    "duration": 10793.485,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

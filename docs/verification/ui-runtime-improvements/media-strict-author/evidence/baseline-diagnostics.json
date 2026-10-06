@@ -1,0 +1,843 @@
+{
+  "method": "Public TypeScript createProgram with proposal tsconfig effective options; actual CLI exit/log recorded separately",
+  "compilerVersion": "6.0.3",
+  "cases": [
+    {
+      "name": "canonical",
+      "entry": "repository/tests/ui/media-regressions.spec.ts",
+      "diagnostics": [
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-regressions.spec.ts",
+          "line": 199,
+          "column": 182,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "counts": {
+        "readyState": 1,
+        "currentTime": 1,
+        "paused": 6,
+        "textTracks": 8,
+        "unknown track": 6,
+        "naturalWidth": 2
+      },
+      "projectSources": [
+        "repository/tests/ui/catalog-test.ts",
+        "repository/tests/ui/media-regressions.spec.ts"
+      ],
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheckInherited": true,
+      "configErrors": []
+    },
+    {
+      "name": "legacy-before",
+      "entry": "evidence/legacy/media-regressions.original.spec.ts",
+      "diagnostics": [
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.original.spec.ts",
+          "line": 198,
+          "column": 182,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "counts": {
+        "readyState": 1,
+        "currentTime": 1,
+        "paused": 6,
+        "textTracks": 8,
+        "unknown track": 6,
+        "naturalWidth": 2
+      },
+      "projectSources": [
+        "evidence/legacy/catalog-test.ts",
+        "evidence/legacy/media-regressions.original.spec.ts"
+      ],
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheckInherited": true,
+      "configErrors": []
+    },
+    {
+      "name": "legacy-guard",
+      "entry": "evidence/legacy/media-regressions.guarded.spec.ts",
+      "diagnostics": [
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 8,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 23,
+          "column": 111,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 33,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 36,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 41,
+          "column": 54,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 46,
+          "column": 179,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 59,
+          "column": 89,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 61,
+          "column": 151,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 87,
+          "column": 69,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 89,
+          "column": 106,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 101,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 101,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 103,
+          "column": 170,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 103,
+          "column": 188,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 105,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 105,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 107,
+          "column": 191,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 107,
+          "column": 209,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 110,
+          "column": 80,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 110,
+          "column": 98,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 111,
+          "column": 199,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 111,
+          "column": 217,
+          "code": 18046,
+          "category": "Error",
+          "message": "'track' is of type 'unknown'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 158,
+          "column": 78,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "evidence/legacy/media-regressions.guarded.spec.ts",
+          "line": 199,
+          "column": 182,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "counts": {
+        "readyState": 1,
+        "currentTime": 1,
+        "paused": 6,
+        "textTracks": 8,
+        "unknown track": 6,
+        "naturalWidth": 2
+      },
+      "projectSources": [
+        "evidence/legacy/catalog-test.ts",
+        "evidence/legacy/media-regressions.guarded.spec.ts"
+      ],
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheckInherited": true,
+      "configErrors": []
+    },
+    {
+      "name": "media-survey",
+      "entry": "repository/tests/ui/media.spec.ts",
+      "diagnostics": [
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 8,
+          "column": 768,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 8,
+          "column": 786,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'height' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'height' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 350,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 368,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'height' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'height' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 582,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 9,
+          "column": 1131,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'width' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 245,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 405,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 627,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'volume' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'volume' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 782,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'playbackRate' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'playbackRate' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 948,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1114,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1322,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1585,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 1739,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'controls' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'controls' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 2820,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'."
+        },
+        {
+          "path": "repository/tests/ui/media.spec.ts",
+          "line": 11,
+          "column": 2980,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'videoWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'videoWidth' does not exist on type 'SVGElement'."
+        }
+      ],
+      "counts": {
+        "width": 4,
+        "height": 2,
+        "readyState": 2,
+        "paused": 3,
+        "volume": 1,
+        "playbackRate": 1,
+        "textTracks": 1,
+        "currentTime": 1,
+        "controls": 1,
+        "videoWidth": 1
+      },
+      "projectSources": [
+        "repository/tests/ui/catalog-test.ts",
+        "repository/tests/ui/media.spec.ts"
+      ],
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheckInherited": true,
+      "configErrors": []
+    },
+    {
+      "name": "lifetime-survey",
+      "entry": "repository/tests/ui/media-lifetime.spec.ts",
+      "diagnostics": [
+        {
+          "path": "repository/tests/ui/media-lifetime.spec.ts",
+          "line": 41,
+          "column": 84,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'HTMLElement | SVGElement'.\n  Property 'width' does not exist on type 'HTMLElement'."
+        },
+        {
+          "path": "repository/tests/ui/media-lifetime.spec.ts",
+          "line": 44,
+          "column": 75,
+          "code": 2339,
+          "category": "Error",
+          "message": "Property 'width' does not exist on type 'HTMLElement | SVGElement'.\n  Property 'width' does not exist on type 'HTMLElement'."
+        }
+      ],
+      "counts": {
+        "width": 2
+      },
+      "projectSources": [
+        "repository/tests/ui/catalog-test.ts",
+        "repository/tests/ui/media-lifetime.spec.ts"
+      ],
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheckInherited": true,
+      "configErrors": []
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "recordedUtc": "2026-10-06T12:33:49.951417+00:00",
+  "decision": "APPROVE_SCOPE_CORE_P2_OWNERSHIP_V3",
+  "candidateManifestSha256": "82a5ba51fac98e8fab13e042a6026917fe7d3d7693c0a13799170aae792be1e9",
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "sourceSyncSha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+  "sourceCliSha256": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed",
+  "source6AgainstAuthorFixedAndOwnExact": true,
+  "scope": "Core generator fixed Skill ownership, v1 bootstrap and relocation, CLI, strict public consumer, safety/rollback; other runtime gap candidates and final integrated PR approval separately pending",
+  "resolvedFindings": [
+    {
+      "severity": "P2",
+      "sourceBeforeSha256": "cdb58ff346ebcb27e2f9af2612ee54c0704c281106c2c3202519fbb4b9b9b0d3",
+      "path": "src/sync.ts",
+      "symptom": "A preexisting nested target manifest with matching SHA in old scoped records was overwritten on migration. Observation driver exit0 recorded productInvariantPass false.",
+      "afterSha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+      "resolution": "Target manifest now rejected regardless of old scoped record; dryrun/normal independently preserve entire snapshot."
+    }
+  ],
+  "actualChecks": {
+    "authorExistingSyncTests": 14,
+    "authorMigrationTests": 8,
+    "combinedAuthorTests": 22,
+    "authorTestsExit": 0,
+    "authorSkippedCancelledFail": 0,
+    "independentNegativeScenarios": 21,
+    "independentRefusalAttempts": 42,
+    "independentLateRegistryWriteRollback": 1,
+    "independentBoundaryDriverExit": 0,
+    "lateOldManifestRetirementRollbackActualAuthorTest": true,
+    "toolsStrictExit": 0,
+    "realCliCommandsExpectedExitMatch": 44,
+    "publicBarrelOnlyStrictFullAot": 5,
+    "publicAotExit": 0,
+    "trueBase9fLegacyProducedByCli": true,
+    "consumerModes": 3,
+    "moveWithContextPrimitiveProfileDefaultsChanged": true,
+    "dryrunAndErrorsFileSnapshotNoChange": true,
+    "idempotencyAndCheckPassed": true,
+    "appOwnedFilesPreserved": true
+  },
+  "candidate6Files": [
+    {
+      "path": "src/sync.ts",
+      "bytes": 16624,
+      "sha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e"
+    },
+    {
+      "path": "src/cli.ts",
+      "bytes": 2355,
+      "sha256": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed"
+    },
+    {
+      "path": "tests/generation/output-migration.test.ts",
+      "bytes": 12271,
+      "sha256": "1a7c97409f31aa3d0a275d77ea1e81a73d7b54f701f146e3548395abe124c57b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8390,
+      "sha256": "3bee528d1d5c1453620a8d0f59945e303f0ff6665250165089a7ec7d13bb79aa"
+    },
+    {
+      "path": "docs/design.md",
+      "bytes": 11402,
+      "sha256": "1e850edd9955720edaa6e95b00d73db3eee02345c3339159dc8843d648ded058"
+    },
+    {
+      "path": "skills/ui-development/SKILL.md",
+      "bytes": 24375,
+      "sha256": "270d215cabeaa01a748e22383c1edb952652413a53a5bac3ede75f110db48422"
+    }
+  ],
+  "remainingBlockingFindings": [],
+  "harnessFailuresRetained": [
+    {
+      "log": "cli-public-v3.log",
+      "actualExit": 1,
+      "cause": "Own public consumer omitted required Card.cardId; Angular correctly rejected NG8008. Corrected own template only; fresh5 public AOT passed."
+    }
+  ],
+  "notClaimed": [
+    "Other runtime/diagram/cross-browser candidates integrated approval",
+    "Browser native UI run or all 181 states revalidation in this core ownership pass",
+    "Concurrent root writes or process-kill transaction atomicity",
+    "Authenticity/security signing of user-editable manifest; existing scoped SHA ownership trust maintained"
+  ],
+  "sharedSourceGeneratedGitHostMutations": false,
+  "browserServersStarted": 0,
+  "outstandingOwnExecProcesses": 0
+}

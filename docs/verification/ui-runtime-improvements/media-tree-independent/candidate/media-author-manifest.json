@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-06T12:26:41.131390+00:00",
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "candidateFileCount": 6,
+  "files": [
+    {
+      "path": "tests/ui/media.spec.ts",
+      "beforeSHA256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+      "beforeBytes": 18100,
+      "afterSHA256": "6edc5706aadf264847c2d1c0c9ebadd071b5d3bbd55a6a91dd124f1187736b59",
+      "afterBytes": 18937,
+      "integrationOwner": "media strict candidate",
+      "sourceUnrelatedToGeneratedProducts": true
+    },
+    {
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSHA256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+      "beforeBytes": 25381,
+      "afterSHA256": "45496e4e8cb1b6716aeffcf2d5942e0ab57d641d7d61d652cf4b80280a77c1ab",
+      "afterBytes": 25782,
+      "integrationOwner": "media strict candidate",
+      "sourceUnrelatedToGeneratedProducts": true
+    },
+    {
+      "path": "tests/ui/media-lifetime.spec.ts",
+      "beforeSHA256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+      "beforeBytes": 8676,
+      "afterSHA256": "3fabeac8fecb89d72e6bf50343d945c67d6e4000e462957a94bd64228f5da735",
+      "afterBytes": 9557,
+      "integrationOwner": "media strict candidate",
+      "sourceUnrelatedToGeneratedProducts": true
+    },
+    {
+      "path": "tests/ui/media-test-dom.ts",
+      "beforeSHA256": null,
+      "beforeBytes": null,
+      "afterSHA256": "f23345baaee88ba7a79dc041d0fd0f1070fac6d3642131f7591d7edf8e007f82",
+      "afterBytes": 1940,
+      "integrationOwner": "media strict candidate",
+      "sourceUnrelatedToGeneratedProducts": true
+    },
+    {
+      "path": "tsconfig.ui-media.json",
+      "beforeSHA256": null,
+      "beforeBytes": null,
+      "afterSHA256": "52a7534bfbd99c57e57fd56df7d4b33de5521cfea87760e4a8eb343995620e82",
+      "afterBytes": 247,
+      "integrationOwner": "media strict candidate",
+      "sourceUnrelatedToGeneratedProducts": true
+    },
+    {
+      "path": "package.json",
+      "beforeSHA256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+      "beforeBytes": 2646,
+      "afterSHA256": "34d9e08710553f709327edb3edfe74ecf2b899ad8393abbf1f897a9ef31b6e8d",
+      "afterBytes": 2735,
+      "integrationOwner": "root",
+      "sourceUnrelatedToGeneratedProducts": true
+    }
+  ],
+  "productTemplateChanges": 0,
+  "sourceTemplateCount": 139,
+  "sourceScope": "Media3 spec, shared browser evaluator/type helper, scoped tsconfig and npm script integration proposal",
+  "strictScopeAllUi": false,
+  "packageFinalIntegrationOwner": "root",
+  "privateHarnessConfigNotForAdoption": "repository/playwright.media-verification.config.ts",
+  "sharedWorkspaceWrites": 0,
+  "sharedGitWrites": 0,
+  "fixedInputVector": "evidence/immutable-all-input-vector.json",
+  "matcherExpectedArgumentsAndLabelsPreserved": 228,
+  "titlesPreserved": 18,
+  "explicitAnyBefore": 87,
+  "explicitAnyAfter": 0,
+  "typescriptSuppressionsAfter": 0,
+  "actualMediaStrictExit": 0,
+  "actualNativePassed": 18,
+  "actualNativeExit": 0,
+  "actualNpmTypecheckExit": 0
+}

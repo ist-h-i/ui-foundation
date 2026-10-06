@@ -1,0 +1,17 @@
+媒体3 spec の型検査候補を、固定 main `9f5430ca87e249af204cc335a8610d0d8040621f` から作成しました。元の43診断を解消し、継続する strict 検査と npm の接続案を用意しました。製品139テンプレート・fixture・asset は変更していません。候補作者からの検証報告であり、独立採否と正本統合・mergeは別担当へ渡します。人による目視を完了条件にしていません。
+
+正本 `media-regressions.spec.ts` と旧 before/Lightbox guard コピーは、それぞれ実 strict コマンドで24診断・exit2を再現しました。分類は readyState1、currentTime1、paused6、textTracks8、unknown track6、naturalWidth2です。`media.spec.ts` の17診断、`media-lifetime.spec.ts` の2診断も記録し、元の媒体3 spec の combined43・exit2を確認しました。[元診断](evidence/baseline-diagnostics.json)・[元実exit](evidence/baseline-command-exits.json)・[combined元log](evidence/combined-before-strict.log)を保持しています。
+
+`media-test-dom.ts` の evaluator は、browser内で HTMLAudioElement／HTMLVideoElement／HTMLImageElement／HTMLCanvasElement の実タグを確認してから値を読みます。test fixture の型は実 `MediaCatalog`、`ApplicationRef`、独立decoderの型を type-only importし、試験専用probeにも明示型を付けました。欠けたupload・crop結果・pending callback・接続playerは明示的に失敗させます。媒体3 spec の explicit any は87から0、ignore／expect-error／nocheckは0です。`createImageBitmap` の遅延probeは、公開の1/2引数と座標付き5/6引数を型付けし、実nativeデコード・bitmap.closeへの委譲を維持しています。DOMや媒体stateを成功値へ置換していません。
+
+`tsconfig.ui-media.json` は既存 `tsconfig.json` の strict を継承し、noEmitとNodeの型を指定します。entryは媒体3 specです。直接helperは `catalog-test.ts` と `media-test-dom.ts`、さらに type-only importで実fixture／decoder／生成部品が推移的に読み込まれます。検査した非library project sourceは28ファイルで、[完全な一覧とeffective options](evidence/candidate-type-assertion-audit.json)に残しました。tscはTypeScriptを検査し、Angular templateの検査は別のngcで実行しています。全UI specのstrict成功とは報告しません。
+
+npm案は `typecheck:ui:media = tsc -p tsconfig.ui-media.json` を追加し、既存 `typecheck` の末尾へ接続する2箇所です。`package.json` の最終統合はrootが行います。[5file source/config patch](media-strict-source.patch)、[package専用patch](package-script-proposal.patch)、[6file manifest](candidate-manifest.json)、SHAを事前検査する[適用script](apply-media-candidate.py)を用意しました。適用scriptは既定でpackageを除きます。
+
+候補の `npm run typecheck:ui:media` は実exit0。固定9f入力の `npm run typecheck` もtools＋ngc strict AOT＋媒体gateで実exit0です。正規 `ui:sync`／`ui:check` は実exit0で、生成物の手編集はありません。TypeScript ASTで元の228アサーションのmatcher・期待引数・説明labelと全18試験名を比較し、すべて一致しました。旧before／guard各24診断を残しながら、候補 combined診断は0です。これは局所的なassertion保持検査であり、全sourceのAST逸脱検査を実装したという意味ではありません。
+
+媒体3 spec の Chromium native は**18/18、actual exit0、retry0／skip0／flaky0、1worker、143.9s**でした。[raw JSON](evidence/native-media-results.json)、[実log](evidence/native-media3.log)、[実exit](evidence/final-command-exits.json)、[観測attachmentの展開](evidence/native-media-summary.json)を保持しています。正本9f fixtureを正規生成・AOT・buildしたown consumerを専用5343で使い、終了後にlistenerが無いことを確認しました。実File／拒否・再試行・drop、画像復旧・Lightboxのscroll／geometry／focus、Gallery pointer／keyboard／touch／reduced-motion、crop bitmap寿命／Blob pixel、実PDF worker／ページ／回復、音声の実play所有権・VTT再整合、実video・fullscreen、実QR／Code128 decode、profile／320px／200%の既存対象を保持しています。既存axe assertionは対象のviolationsを検査しており、complete incomplete結果の全収集を保証するhelperではありません。
+
+最初の追加toolsコピーにrootの新規 `output-migration.test.ts` が混ざり、古い9f SyncOptionsと組み合わさった全体typecheckは4診断・actual exit2でした。その時点混在を検出して停止し、元logを保持しました。その後はreadonly `git archive 9f` の全256入力へ照合し、既存4file差分と新規2fileだけの候補で検証しました。元の比較configがbeforeコピーをrootDir外として拒否した3診断、bitmap overloadの型修正途中2回の失敗も保存しています。これらを合格へ読み替えていません。rootの新しいgeneration 23件の検証には数えません。
+
+[固定入力vector](evidence/immutable-all-input-vector.json)と[検証後vector](evidence/post-validation-input-vector.json)に、base／candidate bytes、製品139不変、検証中source変更0、共有workspace／Git書込み0を記録しました。rootや他actorのserverには触れていません。個人ASK資料、OS権限変更、本番upload、npm公開は行っていません。既存の181完了は製品sourceを維持したまま、今回の試験型検査を追加する候補です。新branch全体の採否・全回帰・mergeは親担当に残ります。

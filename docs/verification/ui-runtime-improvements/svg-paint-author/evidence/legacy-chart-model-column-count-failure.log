@@ -1,0 +1,39 @@
+✔ chart numeric view format reaches axes and gauge without converting application points or labels (42.030334ms)
+✔ chart time formatter requires explicit zone and uses app date options rather than host timezone (12.885833ms)
+✔ each chart axis keeps its own numeric or time presentation (1.016541ms)
+✔ heatmap category coordinates preserve negative values, sparse numeric positions and explicit missing data (51.007625ms)
+✔ heatmap rejects explicit value and time axes while other chart kinds retain their valid numeric axes (0.65575ms)
+✔ multiple gauge points have independent positions and preserve original application selection keys (1.921834ms)
+✖ gauge layout reserves separate dial, title and full value rows as text grows and columns collapse (5.215958ms)
+✔ responsive gauges keep zero, long names, full large formatted values, missing rows and application keys (1.736792ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471.116542
+
+✖ failing tests:
+
+test at tests/model/specialist-chart-options.test.ts:1:3184
+✖ gauge layout reserves separate dial, title and full value rows as text grows and columns collapse (5.215958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (/private/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap/tests/model/specialist-chart-options.test.ts:43:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

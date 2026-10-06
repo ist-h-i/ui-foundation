@@ -1,0 +1,128 @@
+{
+  "scope": "Independent AST-extracted data validation and child environment boundary; no simulated native/build result or real browser claim",
+  "actualExit": 0,
+  "runnerSha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+  "assertionControls": [
+    {
+      "name": "real recorded full34 basis",
+      "expected": "accept-real-recorded34",
+      "observed": "accepted",
+      "failure": null
+    },
+    {
+      "name": "zero rows despite aggregate success",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Permanent verification requires all 34 scenarios; zero or filtered cases cannot pass\n\n0 !== 34\n"
+      }
+    },
+    {
+      "name": "filtered33 despite aggregate success",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Permanent verification requires all 34 scenarios; zero or filtered cases cannot pass\n\n33 !== 34\n"
+      }
+    },
+    {
+      "name": "duplicated34 scenario",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "All 34 scenario results must be distinct\n\n33 !== 34\n"
+      }
+    },
+    {
+      "name": "aggregate false",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Native aggregate must report success\n\nfalse !== true\n"
+      }
+    },
+    {
+      "name": "individual failed",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Every scenario must pass without runtime errors"
+      }
+    },
+    {
+      "name": "runtime error despite passed flag",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Every scenario must pass without runtime errors"
+      }
+    },
+    {
+      "name": "missing runtime errors array",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Every scenario must pass without runtime errors"
+      }
+    },
+    {
+      "name": "rows not array",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Native result must record the executed scenarios"
+      }
+    },
+    {
+      "name": "missing canonical step",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "All canonical generation/build/native steps must execute\n\n5 !== 6\n"
+      }
+    },
+    {
+      "name": "failed canonical step",
+      "expected": "reject-corrupted-results",
+      "observed": "rejected",
+      "failure": {
+        "name": "AssertionError",
+        "message": "Every required step must exit successfully"
+      }
+    }
+  ],
+  "environment": {
+    "hostileKeys": [
+      "PAINT_CONFIG",
+      "PAINT_ONE",
+      "SVG_PAINT_EVIDENCE_DIR",
+      "SVG_CONSUMER_URL",
+      "SVG_PORT",
+      "UI_SVG_EVIDENCE",
+      "PRESERVED_RUNTIME_SENTINEL"
+    ],
+    "childKeys": [
+      "UI_SVG_EVIDENCE",
+      "PRESERVED_RUNTIME_SENTINEL",
+      "SVG_CONSUMER_URL",
+      "SVG_PAINT_EVIDENCE_DIR"
+    ],
+    "serverPort": "0",
+    "nativeUrl": "http://127.0.0.1:5483/",
+    "nativeEvidence": "file:///private/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/unstarted-contract-work/evidence/",
+    "hostChanged": false
+  },
+  "browserLaunched": false,
+  "serverStarted": false,
+  "sourceModified": false,
+  "historicalPaintNegativeControlsRepeated": false
+}

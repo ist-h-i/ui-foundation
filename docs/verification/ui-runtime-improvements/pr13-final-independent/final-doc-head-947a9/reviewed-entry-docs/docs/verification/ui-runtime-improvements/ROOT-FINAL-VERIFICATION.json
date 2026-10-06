@@ -1,0 +1,123 @@
+{
+  "finalProductSourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "priorSourceCheckpoint": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "finalFrozenInputs": 458,
+  "finalInputDrift": false,
+  "finalRequiredActualExit": 0,
+  "finalExecuted": {
+    "normalTypecheck": 0,
+    "affectedCrossBrowserCases": 12,
+    "relatedNavigationAndOverlayCases": 28,
+    "requiredHostileSvgPaintCases": 34
+  },
+  "failedSetupRetained": {
+    "crossBrowser": {
+      "passed": 8,
+      "chromiumLaunchFailed": 4,
+      "actualExit": 1,
+      "reason": "Root incorrect executable environment name"
+    },
+    "svg": {
+      "executedNativeCases": 0,
+      "actualExit": 1,
+      "reason": "Root wrong browser cache path; launch failed"
+    }
+  },
+  "axeLimits": {
+    "finalCross12IncompleteNodes": 52,
+    "finalCross12IncompleteRules": 21,
+    "finalSvg34IncompleteNodes": 212,
+    "fullAxePassClaim": false,
+    "screenReaderSpeechMeasured": false,
+    "safariDeviceMeasured": false
+  },
+  "old181Requirements": {
+    "complete": true,
+    "matrixModified": false,
+    "original1248ResultRerunClaim": false
+  },
+  "inputStatements": "Each root RESULT has matching before/after SHA vectors; final source-only changes from37 are recorded in ROOT-SOURCE-ADOPTION-SUPPLEMENT.json. Earlier/source-scoped author runs stay distinct. Ordinary source/UI/AOT plus generated public consumer checked; no crash atomicity or concurrent-root-writer guarantee.",
+  "packs": [
+    {
+      "directory": "root-final-static-37ecf88",
+      "manifest": "EVIDENCE-MANIFEST.json",
+      "manifestSha256": "2524a09257c8da552c8c4f6e4eca1828fc01411c825abf5b3f72188b60e8ac7f",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-final-generation-37ecf88",
+      "manifest": "EVIDENCE-MANIFEST.json",
+      "manifestSha256": "df283653a36c989acb2abf82f9c4c33e4e8c8905db758c0c7c53295fdcc22438",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-cross36-37ecf88",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "0a43dfae21eb801acf4258c950eb19e851b9d327fa41f59c1af494b753b06cd0",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-svg34-37ecf88",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "b20fdedd4bba308018d20177d2810d80c4d92a7a995265836b3e43afe0c88052",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-focused74-failure-37ecf88",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "8d3a6f601a87f79f5e254f3a9d866a4669245b098129f636ae560da297c8fe68",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-typecheck-a1ed5c0",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "c201dc47ad458374e8a6b2580c9dc3acf746fad3e58be7f3f55a62ccd59a8534",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-cross12-a1ed5c0-r2",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "7c28ff2f224253dd84d8d270293702750b9cd2d59d36d6759416380f770af834",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-svg34-a1ed5c0-r2",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "b828327c33cfd5e2968521c156dcfde6ae7bb1e50889b3e41ce5e7418432c7c8",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-focused28-a1ed5c0",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "35f859a1ee56f31b10677c46d3ff70776efccc944e91e315da6bee97ce8635de",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-cross12-environment-failure-a1ed5c0",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "0fff58b0c3af68035b3c384f5d1deb0235c587f847e2d8f9e40479e97d8d5e1f",
+      "copiedAndRehashed": true
+    },
+    {
+      "directory": "root-svg34-environment-failure-a1ed5c0",
+      "manifest": "PACK-MANIFEST.json",
+      "manifestSha256": "4fe7e6ecb8e9ae6114fbfb90481220957028e60d6738d9364d97dcc0ace3fe08",
+      "copiedAndRehashed": true
+    }
+  ],
+  "wholePrIndependentApprovalPending": true,
+  "mergePending": true,
+  "priorSourceCheckpointCoverage": {
+    "config": 70,
+    "model": 190,
+    "generation": 23,
+    "allFocusedCrossBrowserCases": 36,
+    "affectedFocusedUi": {
+      "passed": 72,
+      "failed": 2,
+      "failureReason": "Closed Menu descendant tabindex0; product subsequently repaired and original asserts kept"
+    }
+  },
+  "recordedUtc": "2026-10-06T14:09:56.389720+00:00",
+  "reviewStateScope": "Approval and merge fields are capture-time pending states; later independent review adoption and GitHub Issue12 supply final disposition."
+}

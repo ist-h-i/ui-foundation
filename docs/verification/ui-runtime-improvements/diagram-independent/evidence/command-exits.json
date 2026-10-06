@@ -1,0 +1,46 @@
+{
+  "uiSync": {
+    "command": "npm run ui:sync",
+    "actualExit": 0
+  },
+  "uiCheck": {
+    "command": "npm run ui:check",
+    "actualExit": 0
+  },
+  "strict": {
+    "command": "npm run typecheck",
+    "actualExit": 0,
+    "scope": "base9f tools/model TypeScript and 139 generated Angular sources plus fixture-app public consumer strict AOT"
+  },
+  "pure19": {
+    "command": "tsx --test tests/model/specialist-model.test.ts tests/model/diagram-validation.test.ts",
+    "actualExit": 0,
+    "tests": 19,
+    "pass": 19,
+    "fail": 0,
+    "skip": 0
+  },
+  "uiSpecsStrict": {
+    "command": "tsc -p tsconfig.diagram-review-tests.json",
+    "actualExit": 0,
+    "scope": [
+      "diagram-validation.spec.ts",
+      "diagram-controlled-validation.spec.ts",
+      "diagram-critic.spec.ts",
+      "direct imports"
+    ]
+  },
+  "native": {
+    "command": "UI_FIXTURE_PORT=5484 playwright test --config playwright.diagram-critic.config.ts",
+    "actualExit": 0,
+    "plannedCases": 26,
+    "workers": 1,
+    "retries": 0,
+    "actualCases": 26,
+    "pass": 26,
+    "fail": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationMs": 134301.264
+  }
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "stage": "test-types",
+    "args": [
+      "node_modules/.bin/tsc",
+      "--ignoreConfig",
+      "--noEmit",
+      "--skipLibCheck",
+      "--strict",
+      "--types",
+      "node",
+      "--target",
+      "ES2022",
+      "--module",
+      "ESNext",
+      "--moduleResolution",
+      "bundler",
+      "tests/ui/tree-axe-contract-helpers.ts",
+      "tests/ui/tree-axe-contract.spec.ts"
+    ],
+    "start": "2026-10-06T12:19:57.087022+00:00",
+    "end": "2026-10-06T12:19:59.250050+00:00",
+    "exit": 0,
+    "workers": 1,
+    "retries": 0,
+    "port": 5338
+  },
+  {
+    "stage": "native",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/ui/tree-axe-contract.spec.ts"
+    ],
+    "start": "2026-10-06T12:19:59.250446+00:00",
+    "end": "2026-10-06T12:20:22.963872+00:00",
+    "exit": 0,
+    "workers": 1,
+    "retries": 0,
+    "port": 5338
+  }
+]

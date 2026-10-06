@@ -1,0 +1,780 @@
+[
+  {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "console": [],
+    "samples": [
+      {
+        "label": "initial20",
+        "now": 1020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "before-hover",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "hover-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "overlapping-pauses",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "pointer-exit-native",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-only-pause",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-exit-native",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "zero-flush",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "2900",
+        "now": 25920,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "3000",
+        "now": 26020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      },
+      {
+        "label": "3032",
+        "now": 26052,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      }
+    ],
+    "events": [
+      {
+        "type": "pointerenter",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": true
+      },
+      {
+        "type": "focusin",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": true
+      },
+      {
+        "type": "pointerleave",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": false
+      },
+      {
+        "type": "focusout",
+        "now": 23020,
+        "active": "<body>\n    <fixture-app ng-version=\"22.2.1\" _nghost-ng-c2940890338=\"\"><main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": false
+      }
+    ],
+    "capabilities": {
+      "secureContext": true,
+      "clipboardApi": "object",
+      "writeText": "function",
+      "readText": "function",
+      "webgl2": true,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "permissions": {
+        "clipboard-read": "prompt",
+        "clipboard-write": "granted"
+      }
+    },
+    "closed": true
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "console": [],
+    "samples": [
+      {
+        "label": "initial20",
+        "now": 1020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "before-hover",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "hover-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "overlapping-pauses",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "pointer-exit-native",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-only-pause",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-exit-native",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "zero-flush",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "2900",
+        "now": 25920,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "3000",
+        "now": 26020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      },
+      {
+        "label": "3032",
+        "now": 26052,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      }
+    ],
+    "events": [
+      {
+        "type": "pointerenter",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": false
+      },
+      {
+        "type": "focusin",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": true
+      },
+      {
+        "type": "pointerleave",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": true
+      },
+      {
+        "type": "focusout",
+        "now": 23020,
+        "active": "<body>\n    <fixture-app ng-version=\"22.2.1\" _nghost-ng-c2940890338=\"\"><main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": false
+      }
+    ],
+    "capabilities": {
+      "secureContext": true,
+      "clipboardApi": "object",
+      "writeText": "function",
+      "readText": "function",
+      "webgl2": true,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:155.0) Gecko/20100101 Firefox/155.0",
+      "permissions": {
+        "clipboard-read": {
+          "unsupported": true,
+          "name": "TypeError",
+          "message": "'clipboard-read' (value of 'name' member of PermissionDescriptor) is not a valid value for enumeration PermissionName."
+        },
+        "clipboard-write": {
+          "unsupported": true,
+          "name": "TypeError",
+          "message": "'clipboard-write' (value of 'name' member of PermissionDescriptor) is not a valid value for enumeration PermissionName."
+        }
+      }
+    },
+    "closed": true
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "console": [],
+    "samples": [
+      {
+        "label": "initial20",
+        "now": 1020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "before-hover",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "hover-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": false,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-native",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 5000,
+            "started": 1000,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "overlapping-pauses",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": true,
+        "visible": true,
+        "component": {
+          "hovered": true,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "pointer-exit-native",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "hover",
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-only-pause",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": true,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "focus-exit-native",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": null,
+            "pauses": [
+              "focus"
+            ],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "zero-flush",
+        "now": 23020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "2900",
+        "now": 25920,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": true,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": {
+            "remaining": 2980,
+            "started": 23020,
+            "pauses": [],
+            "cancelled": false
+          }
+        }
+      },
+      {
+        "label": "3000",
+        "now": 26020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      },
+      {
+        "label": "3032",
+        "now": 26052,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "hover": false,
+        "visible": false,
+        "component": {
+          "hovered": false,
+          "focused": false,
+          "deadline": null
+        }
+      }
+    ],
+    "events": [
+      {
+        "type": "pointerenter",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": true
+      },
+      {
+        "type": "focusin",
+        "now": 3020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": true
+      },
+      {
+        "type": "pointerleave",
+        "now": 13020,
+        "active": "<button _ngcontent-ng-c1651151827=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--container--></span><span class=\"ui-action-label\" style=\"",
+        "related": "<main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/feedback\">状態表示の確認</a",
+        "hover": false
+      },
+      {
+        "type": "focusout",
+        "now": 23020,
+        "active": "<body>\n    <fixture-app ng-version=\"22.2.1\" _nghost-ng-c2940890338=\"\"><main _ngcontent-ng-c2940890338=\"\" class=\"catalog\" data-ui-profile=\"guided\" dir=\"rtl\"><h1 _ngcontent-ng-c2940890338=\"\">共通部品の操作確認</h1><a _ngcontent-ng-c2940890338=\"\" href=\"/catalog/",
+        "related": "<button _ngcontent-ng-c2096055050=\"\" uiaction=\"\" class=\"ui-action\" type=\"button\" data-variant=\"secondary\" data-width=\"auto\"><span aria-hidden=\"true\" class=\"ui-action-icon\" style=\"order: 0;\"><!--contai",
+        "hover": false
+      }
+    ],
+    "capabilities": {
+      "secureContext": true,
+      "clipboardApi": "object",
+      "writeText": "function",
+      "readText": "function",
+      "webgl2": true,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "permissions": {
+        "clipboard-read": {
+          "unsupported": true,
+          "name": "TypeError",
+          "message": "Type error"
+        },
+        "clipboard-write": {
+          "unsupported": true,
+          "name": "TypeError",
+          "message": "Type error"
+        }
+      }
+    },
+    "closed": true
+  }
+]
