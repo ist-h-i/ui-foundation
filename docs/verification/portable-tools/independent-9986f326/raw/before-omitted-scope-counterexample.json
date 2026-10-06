@@ -1,0 +1,59 @@
+{
+  "candidateAuditSha256": "ce9f017b6f090b68777fd2e91719153e604f65d808958e4f5d32abc1e783673c",
+  "scope": "Independent actual AST/compiler negative, no UI execution",
+  "literalWhitespaceFixed": true,
+  "valid": {
+    "name": "v2-literal-valid",
+    "actualExit": 0,
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--repo",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+      "--baseline",
+      "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v2-literal-valid"
+    ],
+    "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "changedLiteral": {
+    "name": "v2-literal-changed",
+    "actualExit": 1,
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--repo",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+      "--baseline",
+      "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v2-literal-changed"
+    ],
+    "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "omittedMediaCompilerSelection": {
+    "name": "v2-media-omitted-from-compiler",
+    "actualExit": 0,
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--repo",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+      "--baseline",
+      "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v2-media-omitted-from-compiler"
+    ],
+    "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "expectedOmissionNonzero": true,
+  "observedCounterexample": true,
+  "mediaInvalidLine": "const invalid:number='text';",
+  "configInclude": [
+    "tests/ui/media-test-dom.ts"
+  ]
+}

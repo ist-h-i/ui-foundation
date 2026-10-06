@@ -1,0 +1,85 @@
+{
+  "finalAuditSha256": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85",
+  "literalWhitespaceCounterexampleRepaired": true,
+  "omittedCompilerScopeCounterexampleRepaired": true,
+  "actualStrictDiagnosticRefused": true,
+  "cases": [
+    {
+      "name": "v3-literal-valid",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v3-literal-valid"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:33:24.047216+00:00",
+      "endedUtc": "2026-10-06T15:33:25.515780+00:00",
+      "actualExit": 0,
+      "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "v3-literal-changed",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v3-literal-changed"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:33:25.516585+00:00",
+      "endedUtc": "2026-10-06T15:33:26.907525+00:00",
+      "actualExit": 1,
+      "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "v3-media-omitted-from-compiler",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v3-media-omitted-from-compiler"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:33:26.908450+00:00",
+      "endedUtc": "2026-10-06T15:33:28.318568+00:00",
+      "actualExit": 1,
+      "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "v3-real-compiler-failure",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v3-real-compiler-failure"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:33:28.326661+00:00",
+      "endedUtc": "2026-10-06T15:33:29.700400+00:00",
+      "actualExit": 1,
+      "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":2}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Independent static/strict CLI probes only, no UI operations"
+}

@@ -1,0 +1,51 @@
+{
+  "createdUtc": "2026-10-06T15:58:59.877387+00:00",
+  "scope": "Only noCheck false-positive repair in the same fixed Media audit",
+  "previousWholeReviewedHead": "9986f3265784e7a39ad0079460ced3d278882d7f",
+  "previousWholeManifestSha256": "c5fa1ae836f30c3ec66eab23bfd0c09cd25f5d5786fe53d7ac203e50d5924ad5",
+  "oldRoot78ManifestSha256": "a2aca6f559a3ec2f71c0c9e3c6d40961d5e151250ccfafa1c0d5cb1fd86e1419",
+  "changedFiles": [
+    {
+      "path": "scripts/verification/audit-media.mjs",
+      "bytes": 9514,
+      "sha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1"
+    },
+    {
+      "path": "tests/verification-tools/portable.test.mjs",
+      "bytes": 12556,
+      "sha256": "7bec122179bfe2df83e434363dd21c796b58bb91e794bbfbffc78025ca8714c6"
+    },
+    {
+      "path": "docs/verification-tools.ja.md",
+      "bytes": 4957,
+      "sha256": "a635364711da2d6278b1274c9b7689e7cbf979d33cc1f067619fecf233c910bb"
+    }
+  ],
+  "beforeInvalidConfigActualExit": 0,
+  "afterFinalRegressions": {
+    "actualExit": 0,
+    "total": 48,
+    "pass": 48,
+    "fail": 0,
+    "skip": 0,
+    "retry": 0,
+    "result": "checks/portable-tool-regressions-v4/RESULT.json"
+  },
+  "afterCurrentMedia": {
+    "actualExit": 0,
+    "compilerExit": 0,
+    "titles": 18,
+    "matchers": 228,
+    "any": 0,
+    "result": "checks/portable-tool-media-final-v5/RESULT.json"
+  },
+  "unchangedScopes": [
+    "Python three transport sources",
+    "root78 snapshot",
+    "old998 whole independent pack",
+    "all original products/generated151/181 requirements/history"
+  ],
+  "newUiExecuted": false,
+  "newPackFormatsAdded": false,
+  "independentSupplementPendingAtCapture": true
+}

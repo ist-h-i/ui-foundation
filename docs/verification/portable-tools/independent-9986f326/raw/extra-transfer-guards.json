@@ -1,0 +1,122 @@
+{
+  "scope": "Existing2 historical packs only; independent transport CLI cases",
+  "capturedUtc": "2026-10-06T15:30:24.843905+00:00",
+  "allExpectedResultsObserved": true,
+  "cases": [
+    {
+      "name": "media-tree-independent-python-O-positive",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-handoff.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-default-export/payload",
+        "--manifest-sha256",
+        "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998",
+        "--transport-metadata-sha256",
+        "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-python-O-reexport"
+      ],
+      "actualExit": 0,
+      "stdout": "{\"operation\": \"verified-historical-evidence-transport\", \"listedArtifacts\": 139, \"payloadFiles\": 141}\n",
+      "stderr": ""
+    },
+    {
+      "name": "media-tree-independent-python-O-invalid-sha",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-handoff.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-default-export/payload",
+        "--manifest-sha256",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--transport-metadata-sha256",
+        "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-python-O-invalid-new-output"
+      ],
+      "actualExit": 1,
+      "stdout": "",
+      "stderr": "Evidence transport refused: Manifest SHA256 mismatch\n"
+    },
+    {
+      "name": "media-tree-independent-python-O-existing-output",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-handoff.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-default-export/payload",
+        "--manifest-sha256",
+        "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998",
+        "--transport-metadata-sha256",
+        "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-existing-output-independent"
+      ],
+      "actualExit": 1,
+      "stdout": "",
+      "stderr": "Evidence transport refused: Output already exists; refusing overwrite\n"
+    },
+    {
+      "name": "cross-browser-author-python-O-positive",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-public-proof.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-default-export/payload",
+        "--manifest-sha256",
+        "e929d1d31b57b55717dcf511388fd82991273b6e661f6afbd737ccfcd184ca78",
+        "--transport-metadata-sha256",
+        "b87271548398f71268790e0710a001622402437ed1ee75bd11b3ebf1391cbe06",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-python-O-reexport"
+      ],
+      "actualExit": 0,
+      "stdout": "{\"operation\": \"verified-historical-evidence-transport\", \"listedArtifacts\": 359, \"payloadFiles\": 361}\n",
+      "stderr": ""
+    },
+    {
+      "name": "cross-browser-author-python-O-invalid-sha",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-public-proof.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-default-export/payload",
+        "--manifest-sha256",
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "--transport-metadata-sha256",
+        "b87271548398f71268790e0710a001622402437ed1ee75bd11b3ebf1391cbe06",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-python-O-invalid-new-output"
+      ],
+      "actualExit": 1,
+      "stdout": "",
+      "stderr": "Evidence transport refused: Manifest SHA256 mismatch\n"
+    },
+    {
+      "name": "cross-browser-author-python-O-existing-output",
+      "argv": [
+        "python3",
+        "-O",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-public-proof.py",
+        "--source-pack",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-default-export/payload",
+        "--manifest-sha256",
+        "e929d1d31b57b55717dcf511388fd82991273b6e661f6afbd737ccfcd184ca78",
+        "--transport-metadata-sha256",
+        "b87271548398f71268790e0710a001622402437ed1ee75bd11b3ebf1391cbe06",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-existing-output-independent"
+      ],
+      "actualExit": 1,
+      "stdout": "",
+      "stderr": "Evidence transport refused: Output already exists; refusing overwrite\n"
+    }
+  ],
+  "currentUiVerificationPerformed": false
+}

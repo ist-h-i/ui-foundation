@@ -1,0 +1,83 @@
+{
+  "verdict": "APPROVE_NOCHECK_SOURCE_AND_DOC_DELTA_8AF7ECCC",
+  "reviewedAgainstHistoricalHead": "9986f3265784e7a39ad0079460ced3d278882d7f",
+  "finalAuditSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+  "reviewedFiles": [
+    {
+      "path": "scripts/verification/audit-media.mjs",
+      "bytes": 9514,
+      "sha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1"
+    },
+    {
+      "path": "tests/verification-tools/portable.test.mjs",
+      "bytes": 12556,
+      "sha256": "7bec122179bfe2df83e434363dd21c796b58bb91e794bbfbffc78025ca8714c6"
+    },
+    {
+      "path": "docs/verification-tools.ja.md",
+      "bytes": 4957,
+      "sha256": "a635364711da2d6278b1274c9b7689e7cbf979d33cc1f067619fecf233c910bb"
+    }
+  ],
+  "actualReadOnlySupplementAuditExit": 0,
+  "remainingBlockers": [],
+  "scope": "Only noCheck option false-success repair; no other exploratory checks or UI tests",
+  "delta": {
+    "auditLinesReplaced": 3,
+    "regressionAdded": 1,
+    "guideLinesReplaced": 3,
+    "otherCodeProductsGeneratedChanged": false
+  },
+  "ownActualNoCheckProbes": {
+    "beforeInvalidProcessCompiler": [
+      0,
+      0
+    ],
+    "afterInvalidProcessCompiler": [
+      1,
+      2
+    ],
+    "afterHealthyNoCheckProcessCompiler": [
+      1,
+      0
+    ],
+    "afterNoCheckFalseHealthyProcessCompiler": [
+      0,
+      0
+    ]
+  },
+  "rootFinalChecks": [
+    {
+      "name": "portable-tool-regressions-v4",
+      "actualExit": 0,
+      "inputs": 463,
+      "beforeAfterAndLiveExact": true,
+      "resultSha256": "72cd8ca3c50ea3464fa2eed919fcb8896e5f94b5dcc8c1f9195a86ab099cf995",
+      "manifestSha256": "293ac8d4c721ce980c66b459fe8c00471de74c0c75f96b1515492174ca92591c"
+    },
+    {
+      "name": "portable-tool-media-final-v5",
+      "actualExit": 0,
+      "inputs": 463,
+      "beforeAfterAndLiveExact": true,
+      "resultSha256": "88d8210bdfae279648e776b8072e7020eb6ce7630b4c35579967bd816e36e6e0",
+      "manifestSha256": "fba22bdf1446ea869f5ec2fac0626710c4a5f650a66e414013bfe5b300d56763"
+    }
+  ],
+  "rootFinalMedia": {
+    "matchers": 228,
+    "titles": 18,
+    "any": 0,
+    "compilerActualExit": 0
+  },
+  "historicalPacksUnchanged": {
+    "root78ManifestSha256": "a2aca6f559a3ec2f71c0c9e3c6d40961d5e151250ccfafa1c0d5cb1fd86e1419",
+    "independent15ManifestSha256": "c5fa1ae836f30c3ec66eab23bfd0c09cd25f5d5786fe53d7ac203e50d5924ad5",
+    "oldApprovalHead998RemainsHistorical": true
+  },
+  "futureFinalHead": "Needs exact bridge after root commits this guard, review adoption, final root evidence and guide pointer. Prior998 evidence remains immutable.",
+  "sharedWrites": 0,
+  "nativeUiOrFullSuiteReexecutedByReviewer": false,
+  "createdUtc": "2026-10-06T16:02:36.039618+00:00",
+  "ownMetadataHarnessHistory": "First exact-text guide assumption actual1; actual guide wording read and inverse3-line audit corrected to actual0. Bothraw retained; no product/doc repair required."
+}

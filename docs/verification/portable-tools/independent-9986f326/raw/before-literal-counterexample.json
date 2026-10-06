@@ -1,0 +1,41 @@
+{
+  "scope": "Independent AST negative; no native execution",
+  "baseline": "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+  "candidateAuditSha256": "35320de06660d1e9b1485d108c246b9066e4cf2d538c2014f4bfac96dc869e62",
+  "before": "export {}; declare const test:(title:string,body:()=>void)=>void; declare const expect:(value:unknown)=>{toBe:(value:unknown)=>void}; test('literal whitespace',()=>{expect('a  b').toBe('a  b')});\n",
+  "after": "export {}; declare const test:(title:string,body:()=>void)=>void; declare const expect:(value:unknown)=>{toBe:(value:unknown)=>void}; test('literal whitespace',()=>{expect('a  b').toBe('a b')});\n",
+  "valid": {
+    "name": "literal-whitespace-valid",
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--repo",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+      "--baseline",
+      "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/literal-whitespace-valid"
+    ],
+    "actualExit": 0,
+    "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "changed": {
+    "name": "literal-whitespace-changed",
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--repo",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+      "--baseline",
+      "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/literal-whitespace-changed"
+    ],
+    "actualExit": 0,
+    "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "expectedChangedNonzero": true,
+  "observedCounterexample": true
+}

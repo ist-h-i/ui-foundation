@@ -1,0 +1,75 @@
+{
+  "v3-current-media-real-audit": {
+    "name": "v3-current-media-real-audit",
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+      "--baseline",
+      "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/v3-current-media-real-audit"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+    "startedUtc": "2026-10-06T15:33:24.041687+00:00",
+    "endedUtc": "2026-10-06T15:33:29.240441+00:00",
+    "actualExit": 0,
+    "stdout": "{\"pass\":true,\"matcherCount\":228,\"titleCount\":18,\"afterAny\":0,\"compilerActualExit\":0}\n",
+    "stderr": ""
+  },
+  "v3-root-authored-regressions": {
+    "name": "v3-root-authored-regressions",
+    "argv": [
+      "node",
+      "--test",
+      "tests/verification-tools/portable.test.mjs"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語",
+    "startedUtc": "2026-10-06T15:33:24.044502+00:00",
+    "endedUtc": "2026-10-06T15:33:51.039686+00:00",
+    "actualExit": 0,
+    "stdout": "▶ portable evidence tools verify exact historical payloads and reject invalid transfers\n  ✔ media-tree-independent: another cwd exports every exact byte (1783.501292ms)\n  ✔ media-tree-independent: exported pack can be verified again (1416.980166ms)\n  ✔ media-tree-independent: wrong manifest digest fails (159.866125ms)\n  ✔ media-tree-independent: wrong adoption digest fails (185.531125ms)\n  ✔ media-tree-independent: missing adoption digest fails (177.684125ms)\n  ✔ media-tree-independent: existing output is preserved (168.842208ms)\n  ✔ media-tree-independent: output inside source is rejected (162.602084ms)\n  ✔ media-tree-independent: changed-byte is rejected (214.784625ms)\n  ✔ media-tree-independent: missing-file is rejected (213.918375ms)\n  ✔ media-tree-independent: symlink is rejected (225.278166ms)\n  ✔ media-tree-independent: hardlink is rejected (198.580958ms)\n  ✔ media-tree-independent: unlisted-file is rejected (166.584167ms)\n  ✔ media-tree-independent: duplicate-path is rejected (157.012625ms)\n  ✔ media-tree-independent: parent-path is rejected (150.356667ms)\n  ✔ media-tree-independent: backslash-path is rejected (135.435208ms)\n  ✔ cross-browser-author: another cwd exports every exact byte (2523.805292ms)\n  ✔ cross-browser-author: exported pack can be verified again (2039.82525ms)\n  ✔ cross-browser-author: wrong manifest digest fails (150.595709ms)\n  ✔ cross-browser-author: wrong adoption digest fails (165.174708ms)\n  ✔ cross-browser-author: missing adoption digest fails (156.239542ms)\n  ✔ cross-browser-author: existing output is preserved (143.102292ms)\n  ✔ cross-browser-author: output inside source is rejected (143.301958ms)\n  ✔ cross-browser-author: changed-byte is rejected (187.600125ms)\n  ✔ cross-browser-author: missing-file is rejected (176.084125ms)\n  ✔ cross-browser-author: symlink is rejected (144.201625ms)\n  ✔ cross-browser-author: hardlink is rejected (143.59075ms)\n  ✔ cross-browser-author: unlisted-file is rejected (141.692459ms)\n  ✔ cross-browser-author: duplicate-path is rejected (144.92125ms)\n  ✔ cross-browser-author: parent-path is rejected (130.939834ms)\n  ✔ cross-browser-author: backslash-path is rejected (120.312584ms)\n✔ portable evidence tools verify exact historical payloads and reject invalid transfers (13067.002334ms)\n▶ Media audit uses selected Git baseline and real strict compiler failures\n  ✔ unchanged assertions pass from an unrelated cwd (1089.713459ms)\n  ✔ default repo follows the script checkout rather than process cwd (1083.233833ms)\n  ✔ missing baseline fails (127.464125ms)\n  ✔ existing audit output is preserved (83.3915ms)\n  ✔ title mismatch fails (1028.157708ms)\n  ✔ title whitespace mismatch fails (1027.382917ms)\n  ✔ expectation mismatch fails (1093.524209ms)\n  ✔ expectation literal whitespace mismatch fails (1147.13025ms)\n  ✔ matcher label whitespace mismatch fails (1205.526125ms)\n  ✔ explicit any fails (1023.459583ms)\n  ✔ suppression fails (1017.976875ms)\n  ✔ compiler diagnostic fails (874.749708ms)\n  ✔ parser error fails (723.259ms)\n  ✔ omitting Media specs from compiler scope fails even when helper compilation succeeds (952.716042ms)\n  ✔ disabled strict config fails (979.754333ms)\n✔ Media audit uses selected Git baseline and real strict compiler failures (13690.8725ms)\nℹ tests 47\nℹ suites 0\nℹ pass 47\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 26896.470334\n",
+    "stderr": ""
+  },
+  "media-tree-independent-default-export": {
+    "argv": [
+      "python3",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-handoff.py",
+      "--manifest-sha256",
+      "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998",
+      "--transport-metadata-sha256",
+      "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/media-tree-independent-default-export"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+    "startedUtc": "2026-10-06T15:25:40.457942+00:00",
+    "endedUtc": "2026-10-06T15:25:41.568455+00:00",
+    "actualExit": 0,
+    "scope": "Independent actual CLI execution in relocated private checkout; no historical native results renewed"
+  },
+  "cross-browser-author-default-export": {
+    "argv": [
+      "python3",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/build-public-proof.py",
+      "--manifest-sha256",
+      "e929d1d31b57b55717dcf511388fd82991273b6e661f6afbd737ccfcd184ca78",
+      "--transport-metadata-sha256",
+      "b87271548398f71268790e0710a001622402437ed1ee75bd11b3ebf1391cbe06",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-independent-review-20261006/evidence/cross-browser-author-default-export"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+    "startedUtc": "2026-10-06T15:25:40.459588+00:00",
+    "endedUtc": "2026-10-06T15:25:42.424981+00:00",
+    "actualExit": 0,
+    "scope": "Independent actual CLI execution in relocated private checkout; no historical native results renewed"
+  },
+  "independence": {
+    "independentGitObjectStoreWithoutAlternates": true,
+    "relocatedCheckoutWithSpaceAndJapanese": true,
+    "historicalUiResultsReexecuted": false,
+    "sharedWrites": 0
+  },
+  "rootCurrentMediaReportByteExact": true,
+  "rootCurrentMediaReportSha256": "2a6dc119ff1b22cc2489fac6418b2ea2d7950defb40a3e9e886b44d4c62e17cf"
+}

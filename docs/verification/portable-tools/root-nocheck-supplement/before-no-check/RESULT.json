@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "node",
+    "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/audit-media.mjs",
+    "--baseline",
+    "9f5430ca87e249af204cc335a8610d0d8040621f",
+    "--output",
+    "/tmp/ui-foundation-portable-tools-root/no-check-counterexample/audit"
+  ],
+  "actualExit": 0,
+  "sourceSha256": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85",
+  "configuration": "strict=true,noEmit=true,noCheck=true; three selected specs still included",
+  "introducedTypeError": "const verificationMustRejectTypeError: number = 'text';"
+}

@@ -38,4 +38,4 @@ npm run verify:evidence:cross-browser -- \
 
 通常の `npm run typecheck` と `ui:check` も実終了0。初回 `ui:check` はsandboxの一時IPC制限で起動前に実終了1となり、同じ入力を許可された環境で照合して成功した。元の失敗は保持する。独立レビューで見つかった文字列内空白の偽一致とコンパイラからの3spec除外、最終確認で実証したnoCheckによる型検査の無効化は専用回帰で検査する。原181要件・製品・151管理生成ファイル・旧証拠は変えていない。
 
-実行証拠と独立判定は、この追加対応のPR/Issue #14へ対応付ける。
+実行証拠と独立判定は [採用記録](verification/portable-tools/ROOT-REVIEW-ADOPTION.json) から参照する。[PR #15](https://github.com/ist-h-i/ui-foundation/pull/15)・[Issue #14](https://github.com/ist-h-i/ui-foundation/issues/14) にマージとmain確認を記録する。旧47件の全変更承認と、noCheck修正後48件に対応する差分承認を区別して保存した。

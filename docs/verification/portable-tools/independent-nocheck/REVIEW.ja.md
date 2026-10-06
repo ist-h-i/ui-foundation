@@ -1,0 +1,9 @@
+noCheckの最小差分を独立承認します。`APPROVE_NOCHECK_SOURCE_AND_DOC_DELTA_8AF7ECCC`、最終読み取りaudit0、残るblockerはありません。対象はaudit SHA `8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1`、回帰1件追加、guide3行だけです。
+
+同じ独立Git fixture・3spec保持・strict/noEmit有効で、旧dc88はnoCheck=trueと型誤りをprocess0/compiler0として受理しました。新8af7はprocess1/compiler2です。型誤り無しでもnoCheck=trueはprocess1/compiler0でconfigを拒否し、noCheck=false正常入力はprocess0/compiler0で通過します。4 CLI probeは自分のprivate cloneだけで実行し、full UIや追加穴探索は行っていません。
+
+新auditはnoCheck option拒否・実CLI --noCheck false・report fieldの3行置換だけです。回帰の追加blockを除くと旧47のソースとbyte一致します。guideの変更は禁則説明、48 count、今回反例の由来の3行です。root48/48 actual0、realMedia228/18/any0/compiler0、双方463入力の前後と現物一致を確認しました。他Python3・製品・生成は変更ありません。
+
+旧root78と独立c5fa15payloadは元bytesのままです。旧998承認は履歴として保持し、今回のnoCheck保証はこの後続判定へ更新します。初回の補完auditはguide文言の仮定違いでactual1となりました。実文言を読み、3行のexact inverseを補正した後のactual0を採用しています。両rawを同梱し、前者を文書/製品欠陥や成功へ置換しません。
+
+共有Git/source/host書込み0、browser/server0、新UI/全件実行0です。既存c5faの変更範囲をこの最小差分が補完します。rootの新HEADへの採用後は、最後のbyte bridgeでcode/doc/hashと判定pointerを確認できます。CI/Ready/mergeはこの補足では主張しません。

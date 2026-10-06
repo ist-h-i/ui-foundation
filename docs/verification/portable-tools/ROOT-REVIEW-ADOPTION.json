@@ -1,0 +1,42 @@
+{
+  "createdUtc": "2026-10-06T16:05:12.784050+00:00",
+  "scope": "Three portable entrypoints and two existing historical packs only; no UI suite rerun or new formats/framework",
+  "baselineMain": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+  "currentApprovedSourceCommit": "2a031352a4714ef84b72fffb163d3fe532bbc7b4",
+  "auditSourceSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+  "previousWholeReview": {
+    "reviewedHead": "9986f3265784e7a39ad0079460ced3d278882d7f",
+    "manifest": "independent-9986f326/PACK-MANIFEST.json",
+    "sha256": "c5fa1ae836f30c3ec66eab23bfd0c09cd25f5d5786fe53d7ac203e50d5924ad5",
+    "verdict": "APPROVE_PORTABLE_VERIFICATION_TOOLS_PR15_9986F326"
+  },
+  "latestNoCheckDelta": {
+    "manifest": "independent-nocheck/PACK-MANIFEST.json",
+    "sha256": "751fa6f70f0c60d3e3eefc710040fb18905f527f730438a7b41d845ac84bd019",
+    "verdict": "APPROVE_NOCHECK_SOURCE_AND_DOC_DELTA_8AF7ECCC"
+  },
+  "rootHistorical47": {
+    "manifest": "root/PACK-MANIFEST.json",
+    "sha256": "a2aca6f559a3ec2f71c0c9e3c6d40961d5e151250ccfafa1c0d5cb1fd86e1419"
+  },
+  "rootCurrent48": {
+    "manifest": "root-nocheck-supplement/PACK-MANIFEST.json",
+    "sha256": "b9f363452d47334076add9e6cf429339b003f0012a9555403518558e572df62d"
+  },
+  "currentActual": {
+    "regressionTotal": 48,
+    "regressionPassed": 48,
+    "regressionExit": 0,
+    "mediaMatchers": 228,
+    "mediaTitles": 18,
+    "mediaAny": 0,
+    "mediaCompilerExit": 0,
+    "mediaProcessExit": 0,
+    "rootInputCount": 463,
+    "inputsUnchanged": true
+  },
+  "remainingBlockingFindings": [],
+  "historicalResultsRenewed": false,
+  "original181AndProductAndGeneratedFilesChanged": false,
+  "mergeDisposition": "Follow PR15 and Issue14; transport/adoption is not a new product verification"
+}
