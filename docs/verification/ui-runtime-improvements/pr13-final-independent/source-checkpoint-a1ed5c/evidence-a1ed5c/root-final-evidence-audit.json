@@ -1,0 +1,933 @@
+{
+  "scope": "Read-only root recorded actual results and exact458 input audit, not own browser execution and not final doc/PR approval",
+  "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "ownActualExit": 0,
+  "wholePrApproval": false,
+  "inputFiles": 458,
+  "allInputBeforeAfterEqual": true,
+  "inputHashesMatchIndependentCanonicalClone": true,
+  "checks": {
+    "final-typecheck-a1ed5c0": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T13:58:59.185626+00:00",
+      "finishedUtc": "2026-10-06T13:59:20.088580+00:00",
+      "actualExit": 0,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    "final-cross12-a1ed5c0-r2": {
+      "command": [
+        "env",
+        "UI_CROSS_BROWSER_EVIDENCE=/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0-r2",
+        "PLAYWRIGHT_BROWSERS_PATH=/tmp/ui-foundation-cross-browser-stage/browser-cache",
+        "UI_CROSS_CHROMIUM_EXECUTABLE=/Users/inouehiroshi/Library/Caches/ms-playwright/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+        "npm",
+        "run",
+        "test:cross-browser",
+        "--",
+        "--grep",
+        "Menu |Dialog "
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:00:23.165916+00:00",
+      "finishedUtc": "2026-10-06T14:02:32.482205+00:00",
+      "actualExit": 0,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    "final-focused28-a1ed5c0": {
+      "command": [
+        "env",
+        "UI_FIXTURE_PORT=5494",
+        "PLAYWRIGHT_JSON_OUTPUT_NAME=/tmp/ui-foundation-runtime-improvements/native-focused28-a1ed5c0/results.json",
+        "npm",
+        "run",
+        "test:ui",
+        "--",
+        "tests/ui/navigation-catalog.spec.ts:34",
+        "tests/ui/navigation-catalog.spec.ts:37",
+        "tests/ui/navigation-catalog.spec.ts:62",
+        "tests/ui/navigation-catalog.spec.ts:65",
+        "tests/ui/navigation-catalog.spec.ts:102",
+        "tests/ui/overlay-catalog.spec.ts:18",
+        "tests/ui/overlay-catalog.spec.ts:24",
+        "tests/ui/overlay-catalog.spec.ts:25",
+        "tests/ui/overlay-catalog.spec.ts:31",
+        "tests/ui/overlay-catalog.spec.ts:36",
+        "tests/ui/overlay-catalog.spec.ts:40",
+        "tests/ui/overlay-catalog.spec.ts:43",
+        "tests/ui/overlay-catalog.spec.ts:46",
+        "tests/ui/overlay-catalog.spec.ts:53",
+        "--forbid-only",
+        "--reporter=list,json",
+        "--output=/tmp/ui-foundation-runtime-improvements/native-focused28-a1ed5c0/artifacts"
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:03:14.777392+00:00",
+      "finishedUtc": "2026-10-06T14:05:13.581830+00:00",
+      "actualExit": 0,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    "final-svg34-a1ed5c0-r2": {
+      "command": [
+        "env",
+        "UI_SVG_EVIDENCE=/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2",
+        "PAINT_CONFIG=independent-critic-invalid-config",
+        "PAINT_ONE=independent-critic-invalid-case",
+        "SVG_PAINT_EVIDENCE_DIR=/tmp/ui-foundation-runtime-improvements/unused-native-paint",
+        "SVG_CONSUMER_URL=http://127.0.0.1:1",
+        "SVG_PORT=1",
+        "npm",
+        "run",
+        "test:svg-paint"
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T14:00:36.468302+00:00",
+      "finishedUtc": "2026-10-06T14:05:13.581870+00:00",
+      "actualExit": 0,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    "final-cross12-a1ed5c0": {
+      "command": [
+        "env",
+        "UI_CROSS_BROWSER_EVIDENCE=/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0",
+        "PLAYWRIGHT_BROWSERS_PATH=/tmp/ui-foundation-cross-browser-stage/browser-cache",
+        "UI_CROSS_BROWSER_CHROMIUM_EXECUTABLE=/Users/inouehiroshi/Library/Caches/ms-playwright/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+        "npm",
+        "run",
+        "test:cross-browser",
+        "--",
+        "--grep",
+        "Menu |Dialog "
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T13:57:54.410508+00:00",
+      "finishedUtc": "2026-10-06T13:59:25.986821+00:00",
+      "actualExit": 1,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    "final-svg34-a1ed5c0": {
+      "command": [
+        "env",
+        "UI_SVG_EVIDENCE=/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0",
+        "PAINT_CONFIG=independent-critic-invalid-config",
+        "PAINT_ONE=independent-critic-invalid-case",
+        "SVG_PAINT_EVIDENCE_DIR=/tmp/ui-foundation-runtime-improvements/unused-native-paint",
+        "SVG_CONSUMER_URL=http://127.0.0.1:1",
+        "SVG_PORT=1",
+        "PLAYWRIGHT_BROWSERS_PATH=/tmp/ui-foundation-cross-browser-stage/browser-cache",
+        "PLAYWRIGHT_CHROMIUM_EXECUTABLE=/Users/inouehiroshi/Library/Caches/ms-playwright/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+        "npm",
+        "run",
+        "test:svg-paint"
+      ],
+      "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+      "startedUtc": "2026-10-06T13:58:13.375137+00:00",
+      "finishedUtc": "2026-10-06T13:58:56.509712+00:00",
+      "actualExit": 1,
+      "inputFiles": 458,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    }
+  },
+  "nativeCases": {
+    "native-cross12-a1ed5c0-r2": [
+      {
+        "id": "787c201db07e7851f13f-a13add26d00b5775edcf",
+        "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-f2579f734a13f6241ca8",
+        "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-41bfa08fe3da0a142d85",
+        "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-e0ee8119dfa9089b6818",
+        "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-1737e6071acfac921675",
+        "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "firefox",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-48aede5d9ea237b8b020",
+        "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "firefox",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-8f74813fc2ce4cdb7cc3",
+        "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "firefox",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-2b977d45d2ee02b708dd",
+        "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "firefox",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-7861ce436faefa32b839",
+        "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "webkit",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-793d90a24f3b0ed46c95",
+        "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "webkit",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-b928aa772cdab1f547e2",
+        "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 28,
+        "project": "webkit",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "787c201db07e7851f13f-60bfd121bc3236f4efbc",
+        "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+        "file": "runtime-cross-browser.spec.ts",
+        "line": 62,
+        "project": "webkit",
+        "status": "passed",
+        "retry": 0
+      }
+    ],
+    "native-focused28-a1ed5c0": [
+      {
+        "id": "e41f63d5b0323bfdd455-d570890c2b754c030acf",
+        "title": "menubar root roving, disabled entries, checks and Tab enter/exit work as a composite",
+        "file": "navigation-catalog.spec.ts",
+        "line": 34,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-38fb545979ed27c965aa",
+        "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+        "file": "navigation-catalog.spec.ts",
+        "line": 37,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-9eb985b49ecf0c6b9810",
+        "title": "three-level menubar restores parents and crosses popup boundaries to the next root",
+        "file": "navigation-catalog.spec.ts",
+        "line": 62,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-a501701f589dfe394d2d",
+        "title": "menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus",
+        "file": "navigation-catalog.spec.ts",
+        "line": 65,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-582cb8c431196e1de97f",
+        "title": "menubar preserves symbolic IDs, leaf radio groups and rapid root movement",
+        "file": "navigation-catalog.spec.ts",
+        "line": 102,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-95ca00955ba2673cdb4d",
+        "title": "menubar root roving, disabled entries, checks and Tab enter/exit work as a composite",
+        "file": "navigation-catalog.spec.ts",
+        "line": 34,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-aa88838a2d9655f5a52c",
+        "title": "root Tab exits in both directions before a preceding key renders its roving tabindex",
+        "file": "navigation-catalog.spec.ts",
+        "line": 37,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-ace24b2276d093636570",
+        "title": "three-level menubar restores parents and crosses popup boundaries to the next root",
+        "file": "navigation-catalog.spec.ts",
+        "line": 62,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-a1e1ce1b21c17b77c0bf",
+        "title": "menubar rapid nested keys, RTL, typeahead and dynamic root removal retain owned focus",
+        "file": "navigation-catalog.spec.ts",
+        "line": 65,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "e41f63d5b0323bfdd455-11a5dd26321f87e2086e",
+        "title": "menubar preserves symbolic IDs, leaf radio groups and rapid root movement",
+        "file": "navigation-catalog.spec.ts",
+        "line": 102,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-e6ad42ea131f2aefb177",
+        "title": "Menu enters and leaves three levels, returns to each parent and keeps disabled items inert",
+        "file": "overlay-catalog.spec.ts",
+        "line": 18,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-f3924fbeacdf3edafd50",
+        "title": "Menu起動直後の連続ArrowとEnterは論理階層に届く",
+        "file": "overlay-catalog.spec.ts",
+        "line": 24,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-a19e78211b56c0bc201f",
+        "title": "root inert removes the native menu popup through the shared registry",
+        "file": "overlay-catalog.spec.ts",
+        "line": 25,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-35532b920fe3f374cd97",
+        "title": "Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close",
+        "file": "overlay-catalog.spec.ts",
+        "line": 31,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-ffd9266e2077110752cf",
+        "title": "hover and context triggers close and restore the context target",
+        "file": "overlay-catalog.spec.ts",
+        "line": 36,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-25439ae6f31e6c5cab0e",
+        "title": "Menu typeahead uses checkbox/radio labels without their decorative markers",
+        "file": "overlay-catalog.spec.ts",
+        "line": 40,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-52eedd009b967ed0c115",
+        "title": "Separate OverlayHost scopes consume one outside event for only the top popup",
+        "file": "overlay-catalog.spec.ts",
+        "line": 43,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-225b0f7624ecd9d91a1b",
+        "title": "Visible Menu item removal repairs focus and parent Dialog close removes its popup",
+        "file": "overlay-catalog.spec.ts",
+        "line": 46,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-ef7b50e2148fe861ed35",
+        "title": "Dialog slots, native modal focus, nested menu Escape and typed close result",
+        "file": "overlay-catalog.spec.ts",
+        "line": 53,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-78749671dfee199b125e",
+        "title": "Menu enters and leaves three levels, returns to each parent and keeps disabled items inert",
+        "file": "overlay-catalog.spec.ts",
+        "line": 18,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-c1b5559abd404628f612",
+        "title": "Menu起動直後の連続ArrowとEnterは論理階層に届く",
+        "file": "overlay-catalog.spec.ts",
+        "line": 24,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-efc316486fccc1830ccf",
+        "title": "root inert removes the native menu popup through the shared registry",
+        "file": "overlay-catalog.spec.ts",
+        "line": 25,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-a0d1c90ca0c7b37038e2",
+        "title": "Menu checks/radios, touch back buttons, closeOnSelect, RTL and outside close",
+        "file": "overlay-catalog.spec.ts",
+        "line": 31,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-a618c3b0709fe2b21044",
+        "title": "hover and context triggers close and restore the context target",
+        "file": "overlay-catalog.spec.ts",
+        "line": 36,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-e7ab4a2d4b2f720d60b5",
+        "title": "Menu typeahead uses checkbox/radio labels without their decorative markers",
+        "file": "overlay-catalog.spec.ts",
+        "line": 40,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-5e2927df6567c4121f00",
+        "title": "Separate OverlayHost scopes consume one outside event for only the top popup",
+        "file": "overlay-catalog.spec.ts",
+        "line": 43,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-7da808c2ccc1689b559d",
+        "title": "Visible Menu item removal repairs focus and parent Dialog close removes its popup",
+        "file": "overlay-catalog.spec.ts",
+        "line": 46,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      },
+      {
+        "id": "aabbd900124e1f4d653d-22ae4fc063e1b5597d39",
+        "title": "Dialog slots, native modal focus, nested menu Escape and typed close result",
+        "file": "overlay-catalog.spec.ts",
+        "line": 53,
+        "project": "chromium",
+        "status": "passed",
+        "retry": 0
+      }
+    ]
+  },
+  "cross": {
+    "cases": 12,
+    "engineCounts": {
+      "chromium": 4,
+      "firefox": 4,
+      "webkit": 4
+    },
+    "versions": {
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "violations": 0,
+    "incompleteNodesByRule": {
+      "aria-valid-attr-value": 18,
+      "color-contrast": 34
+    },
+    "runtimeErrors": 0,
+    "warnings": 0,
+    "serverClosed": true,
+    "scope": "Menu/Dialog subset only; previous37 full36 distinct"
+  },
+  "closedMenuRows": [
+    {
+      "caseId": "e41f63d5b0323bfdd455-38fb545979ed27c965aa",
+      "data": {
+        "opened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": 0,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "closed": {
+          "open": false,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "reopened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": "external-open-menu-item-parent"
+        }
+      }
+    },
+    {
+      "caseId": "e41f63d5b0323bfdd455-aa88838a2d9655f5a52c",
+      "data": {
+        "opened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": 0,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "closed": {
+          "open": false,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": ""
+        },
+        "reopened": {
+          "open": true,
+          "items": [
+            {
+              "id": "external-open-menu-item-parent",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-child",
+              "tabIndex": 0,
+              "back": false
+            },
+            {
+              "id": "external-open-menu-item-nested",
+              "tabIndex": -1,
+              "back": false
+            },
+            {
+              "id": "parent",
+              "tabIndex": -1,
+              "back": true
+            },
+            {
+              "id": "external-open-menu-item-other",
+              "tabIndex": -1,
+              "back": false
+            }
+          ],
+          "focus": "external-open-menu-item-parent"
+        }
+      }
+    }
+  ],
+  "svg": {
+    "cases": 34,
+    "uniqueAndExactExpectedCases": true,
+    "labels": 1226,
+    "exactRgbaMismatches": 0,
+    "runtimeErrors": 0,
+    "minimumContrast": 14.645016318974449,
+    "retainedDraftAndSelection": true,
+    "all6StepsActual0": true,
+    "sourceUnchanged": true,
+    "serverClosed": true,
+    "sourceFiles": 156,
+    "sourceHashesMatchIndependentCanonicalClone": true
+  },
+  "historicalFailedEnvironment": {
+    "crossActualExit": 1,
+    "crossPassed8Failed4": true,
+    "crossFailures": [
+      {
+        "id": "787c201db07e7851f13f-a13add26d00b5775edcf",
+        "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "errors": [
+          "Error: browserType.launch: Executable doesn't exist at /tmp/ui-foundation-cross-browser-stage/browser-cache/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+        ]
+      },
+      {
+        "id": "787c201db07e7851f13f-f2579f734a13f6241ca8",
+        "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+        "errors": [
+          "Error: browserType.launch: Executable doesn't exist at /tmp/ui-foundation-cross-browser-stage/browser-cache/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+        ]
+      },
+      {
+        "id": "787c201db07e7851f13f-41bfa08fe3da0a142d85",
+        "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+        "errors": [
+          "Error: browserType.launch: Executable doesn't exist at /tmp/ui-foundation-cross-browser-stage/browser-cache/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+        ]
+      },
+      {
+        "id": "787c201db07e7851f13f-e0ee8119dfa9089b6818",
+        "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+        "errors": [
+          "Error: browserType.launch: Executable doesn't exist at /tmp/ui-foundation-cross-browser-stage/browser-cache/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+        ]
+      }
+    ],
+    "svgActualExit": 1,
+    "svgNativeRows": 0,
+    "svgSuccessful": false,
+    "failureIsLaunchBeforeNative": true,
+    "classifiedAsProductPass": false
+  },
+  "inputs": [
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-typecheck-a1ed5c0/RESULT.json",
+      "bytes": 406,
+      "sha256": "956bdfffd239ded62ce175a4f96da3f708cca72f7ba31b681450eae662d4ddbc"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-typecheck-a1ed5c0/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-typecheck-a1ed5c0/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0-r2/RESULT.json",
+      "bytes": 842,
+      "sha256": "77900cc382245a6058d0f3afe42b9f8f99f91af44c3c715f2e5d8d74ae285e90"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0-r2/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0-r2/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-focused28-a1ed5c0/RESULT.json",
+      "bytes": 1324,
+      "sha256": "6735cf3deb57855f2a5816c95cc2bdc46b9b4516d6c1f282216a1828cb59b36e"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-focused28-a1ed5c0/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-focused28-a1ed5c0/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0-r2/RESULT.json",
+      "bytes": 763,
+      "sha256": "7fccc3123ab5309e40b9bbc233a57ee62589d912edd5237b562e910f40046b0b"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0-r2/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0-r2/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0/RESULT.json",
+      "bytes": 847,
+      "sha256": "73169d8a34789e626444c34c0e106765b04c932f2e8762dd6eb7e063aaef83ba"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-cross12-a1ed5c0/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0/RESULT.json",
+      "bytes": 1034,
+      "sha256": "fcc4abe9b04dd0b99d65b2518f919ec4b3c4c732a14adfb714ec5543ef7b1e50"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0/inputs-before.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/checks/final-svg34-a1ed5c0/inputs-after.json",
+      "bytes": 73054,
+      "sha256": "91aa62db788901863b1ddf135964cad6d5a2d7c65f5a76e9d884fe5aea27c03a"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0-r2/results.json",
+      "bytes": 2208386,
+      "sha256": "d10d3e1c681c41b50cf92b6f7692756b54277862d59a38c80911ad6145779b23"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-focused28-a1ed5c0/results.json",
+      "bytes": 272708,
+      "sha256": "5796ee1279ed2041be6be0d2bce182fb4e53add31ab698a13e5ffcea29aba378"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0-r2/results.json",
+      "bytes": 2208386,
+      "sha256": "d10d3e1c681c41b50cf92b6f7692756b54277862d59a38c80911ad6145779b23"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0-r2/run-receipt.json",
+      "bytes": 609,
+      "sha256": "d401b63fa6035b49684e616df556f8addc1cf19dcf7b60d577f471c9406dcdae"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-focused28-a1ed5c0/results.json",
+      "bytes": 272708,
+      "sha256": "5796ee1279ed2041be6be0d2bce182fb4e53add31ab698a13e5ffcea29aba378"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/candidate-paint-native.json",
+      "bytes": 2481928,
+      "sha256": "e44cf58a350d1b140cb76af619115758da40da7927344b3df0438b22172b2ab4"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/execution.json",
+      "bytes": 2379,
+      "sha256": "818f05267da52a0a29fdcc38a470805d9946ff7c75faa99cd0a27aa1190d46f4"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/source-input.json",
+      "bytes": 30776,
+      "sha256": "9c30a5fde69c40be5556f0ff4f96daad163eb6a9205abf3c27888ba9037075e7"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0-r2/build-results.json",
+      "bytes": 952,
+      "sha256": "d3d9d46eb039db9ff743d5742b417d0a5c3d5150e744b3bd121fa76748d5af68"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-cross12-a1ed5c0/results.json",
+      "bytes": 1493113,
+      "sha256": "a4dbf36c76e66dc38e00e8d54b373bd81f8026c62e418768dbd52e25401cb0d2"
+    },
+    {
+      "origin": "/tmp/ui-foundation-runtime-improvements/native-svg34-a1ed5c0/execution.json",
+      "bytes": 2163,
+      "sha256": "1ee9c60822fd1a88593b06b27bc959642b62da41ee5db6bb41d09e05c0b3c4b5"
+    }
+  ],
+  "createdAtUtc": "2026-10-06T14:14:11.716293+00:00"
+}

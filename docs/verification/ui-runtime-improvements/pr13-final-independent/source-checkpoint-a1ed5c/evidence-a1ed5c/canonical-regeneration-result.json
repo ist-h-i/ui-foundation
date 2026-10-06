@@ -1,0 +1,67 @@
+{
+  "sourceCommit": "a1ed5c012c5b35a50e8df1038e04ade71cf044c4",
+  "commands": [
+    {
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "actualExit": 0,
+      "stdout": "Configuration and generated files match. Application behavior and user understanding are not checked by this command.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--dry-run",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "actualExit": 0,
+      "stdout": "Generated UI foundation is current.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "actualExit": 0,
+      "stdout": "Generated UI foundation is current.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "actualExit": 0,
+      "stdout": "Configuration and generated files match. Application behavior and user understanding are not checked by this command.\n",
+      "stderr": ""
+    }
+  ],
+  "ownedFiles": 151,
+  "manifestVersion": 1,
+  "registry": ".agents/skills/project-ui/ownership.json",
+  "ownershipExactlyMatches": true,
+  "allManagedBytesStable": true
+}
