@@ -1,0 +1,161 @@
+[
+  {
+    "name": "current-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "startedAt": "2026-10-06T08:14:13.593247+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:14.206330+00:00"
+  },
+  {
+    "name": "current-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "startedAt": "2026-10-06T08:14:14.207131+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:14.660497+00:00"
+  },
+  {
+    "name": "current-final-all139-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.all-generated.json"
+    ],
+    "startedAt": "2026-10-06T08:14:14.661098+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:21.260456+00:00"
+  },
+  {
+    "name": "current-final-tools-tsc",
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "tsconfig.tools.json"
+    ],
+    "startedAt": "2026-10-06T08:14:21.261222+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:22.937506+00:00"
+  },
+  {
+    "name": "current-final-positive-barrel",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "startedAt": "2026-10-06T08:14:22.938329+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:29.535833+00:00"
+  },
+  {
+    "name": "current-final-positive-direct",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-direct.json"
+    ],
+    "startedAt": "2026-10-06T08:14:29.536625+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:30.932302+00:00"
+  },
+  {
+    "name": "current-final-positive-code",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-code.json"
+    ],
+    "startedAt": "2026-10-06T08:14:30.933055+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:14:32.373697+00:00"
+  },
+  {
+    "name": "current-final-negative",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.negative.json"
+    ],
+    "startedAt": "2026-10-06T08:14:32.374467+00:00",
+    "expectedExit": 1,
+    "actualExit": 1,
+    "endedAt": "2026-10-06T08:14:39.737677+00:00",
+    "diagnostics": [
+      "TS2322",
+      "TS2322",
+      "TS2339",
+      "TS2322",
+      "TS2322"
+    ],
+    "matchesPreciseFive": true
+  },
+  {
+    "name": "current-final-canonical-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "startedAt": "2026-10-06T08:14:39.738900+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:15:23.922662+00:00"
+  },
+  {
+    "name": "current-final-public-direct-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "startedAt": "2026-10-06T08:15:23.923817+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:15:26.730073+00:00"
+  },
+  {
+    "name": "current-final-public-direct-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "startedAt": "2026-10-06T08:15:26.731015+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:15:28.490789+00:00"
+  },
+  {
+    "name": "current-final-models",
+    "command": [
+      "./node_modules/.bin/tsx",
+      "--test",
+      "tests/model/specialist-chart-options.test.ts",
+      "tests/model/specialist-model.test.ts",
+      "tests/model/specialist-worker.test.ts",
+      "tests/model/foundation-chart-presentation.test.ts",
+      "tests/model/foundation-file-draft.test.ts",
+      "tests/model/foundation-locale-operations.test.ts",
+      "tests/model/foundation-locale-runtime.test.ts",
+      "tests/model/foundation-locale.test.ts",
+      "tests/model/foundation-message-state.test.ts"
+    ],
+    "startedAt": "2026-10-06T08:15:28.492182+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:15:30.151492+00:00"
+  }
+]

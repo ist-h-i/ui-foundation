@@ -1,0 +1,10 @@
+{
+  "port": 5337,
+  "command": "lsof -nP -iTCP:5337 -sTCP:LISTEN",
+  "actualExit": 1,
+  "stdout": "",
+  "listenerPresent": false,
+  "afterNativeActualExit": 0,
+  "ownership": "own Playwright webServer node scripts/serve.mjs, confined to this repository",
+  "otherProcessTerminationAttempted": false
+}

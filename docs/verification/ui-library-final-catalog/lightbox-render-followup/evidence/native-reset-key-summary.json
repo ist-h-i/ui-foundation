@@ -1,0 +1,122 @@
+{
+  "actualCommandExit": 0,
+  "conditionCount": 8,
+  "originalSequenceSamples": 16,
+  "guardedSequenceSamples": 16,
+  "originalRaceReproduced": 0,
+  "conditions": [
+    {
+      "name": "guided-cpu1-original",
+      "profile": "guided",
+      "cpuRate": 1,
+      "guarded": false,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        44.89999985694885,
+        95.70000004768372,
+        33.5,
+        41.0
+      ]
+    },
+    {
+      "name": "guided-cpu1-guarded",
+      "profile": "guided",
+      "cpuRate": 1,
+      "guarded": true,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        34.200000047683716,
+        39.0,
+        32.59999990463257,
+        35.200000047683716
+      ]
+    },
+    {
+      "name": "dense-cpu1-original",
+      "profile": "dense",
+      "cpuRate": 1,
+      "guarded": false,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        21.399999856948853,
+        18.700000047683716,
+        21.09999990463257,
+        23.200000047683716
+      ]
+    },
+    {
+      "name": "dense-cpu1-guarded",
+      "profile": "dense",
+      "cpuRate": 1,
+      "guarded": true,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        43.19999980926514,
+        137.5,
+        42.299999952316284,
+        88.0
+      ]
+    },
+    {
+      "name": "guided-cpu6-original",
+      "profile": "guided",
+      "cpuRate": 6,
+      "guarded": false,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        91.70000004768372,
+        153.69999980926514,
+        65.29999995231628,
+        63.90000009536743
+      ]
+    },
+    {
+      "name": "guided-cpu6-guarded",
+      "profile": "guided",
+      "cpuRate": 6,
+      "guarded": true,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        246.30000019073486,
+        328.7999999523163,
+        192.20000004768372,
+        159.90000009536743
+      ]
+    },
+    {
+      "name": "dense-cpu6-original",
+      "profile": "dense",
+      "cpuRate": 6,
+      "guarded": false,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        105.89999985694885,
+        91.89999985694885,
+        75.0,
+        84.90000009536743
+      ]
+    },
+    {
+      "name": "dense-cpu6-guarded",
+      "profile": "dense",
+      "cpuRate": 6,
+      "guarded": true,
+      "samples": 4,
+      "blueOnFirstNativeKey": 4,
+      "clickBubbleToKeyCaptureMs": [
+        154.70000004768372,
+        150.89999985694885,
+        202.5,
+        124.70000004768372
+      ]
+    }
+  ],
+  "measurementLimit": "Own traced public fixture, click-bubble→key-capture min18.7ms; root failed trace platform click-end→key-start7.484ms. Different timing quantities and fixtures; no equivalent-race reproduction claimed."
+}

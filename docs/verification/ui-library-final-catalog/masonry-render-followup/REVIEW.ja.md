@@ -1,0 +1,13 @@
+Masonry の変更は試験だけの描画完了待機として承認します。製品ソースの修正は不要です。
+
+正式 `53a785824b86a34ada3ee8619f710fad57117634` の dense 失敗では、クリック完了から約10ms以内の直接検査が旧4列を読みました。同じ失敗トレースに保存された画像を実読すると、後続描画では2列に変わっています。独立した公開生成consumerでも、nativeクリック後の要求2に対し直後の検査が4列を読むケースを再現しました。その11.4ms後には、追加操作なしで同じDOMのstyleが2列になります。guidedでも3列から2列への同じ競合を観測しました。これにより、描画前の観測が原因だと判断します。
+
+提案は `tests/ui/collection-catalog.spec.ts:19` の1箇所を `await expect.poll(...).toBe('2')` へ変更するものです。期待する列数は2のままです。逆置換により正式ファイルの全バイトが復元され、不均等な行高、間隔変更、320pxの1列表示、横overflowなしを含め、その他すべての操作とassertionが維持されることを確認しました。固定sleep、retry追加、条件の緩和、製品変更はありません。
+
+候補SHAは `c98c92afb4649cfa6b4aaaecf1e5be29e78c6c13b3c26846b2f4141dcbe5fe1c`、変更前SHAは `07ff04a5080f81d48fc6fb6c2a04b7aa5569410089dea20bb472b8ad79cdf922` です。
+
+独立consumerはstrict/full AOT・fresh bundle・提案specのstrict型検査をすべて実exit0で完了しました。native Chromeはguided/dense各8回、計16/16、実exit0、runtime/console error0です。各回の実測scrollWidthはclientWidth以下で、正式試験の厳密なoverflow=falseも満たします。自分で起動したport0 serverとChromeだけを閉じ、終了時にserverは停止、browserは切断済みです。共有repoと親のbrowser/serverには変更を加えていません。
+
+初回のAOT完了前bundle起動と、独立harnessのprofile locator誤りは失敗原本として分離しています。正式locatorへ修正した結果を採否に使い、製品欠陥や合格証拠へ置き換えていません。
+
+これはMasonryの1箇所の試験変更への承認です。親の全npm、全181要求、最終matrix/docs、マージ完了を承認するものではありません。旧root失敗結果と以前の証拠packは保持します。

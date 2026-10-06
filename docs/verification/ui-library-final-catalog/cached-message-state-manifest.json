@@ -1,0 +1,229 @@
+{
+  "time": "2026-10-06T07:57:21.254Z",
+  "scope": "Only library-owned literal translations assigned to string states. Raw application set(value) and captured numeric/application strings retain their values; operations and effect dependencies are unchanged.",
+  "files": [
+    {
+      "path": "templates/angular/barcode.ts",
+      "beforeSha256": "8db688326145c537e7be443ccb151d4c317ebba7acf8e8e5e91b00060adad1a7",
+      "afterSha256": "abc9b51ce3589ce79af30e2c1d63a842fa4302d9b0667c12b36765ea740797b3",
+      "states": [
+        "error",
+        "error"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/chart.ts",
+      "beforeSha256": "b854069e14ad1e139fb0155559f8de0a0f18c8ba7473183e67d6fa93ba29b66c",
+      "afterSha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+      "states": [
+        "renderError"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/code-editor.ts",
+      "beforeSha256": "8dc77bb31e73ec944aea0e8aa4bf03b531f500d1f09076cf36dedf8cd51133dc",
+      "afterSha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+      "states": [
+        "renderError"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/data-grid.ts",
+      "beforeSha256": "a5a95a07995151e9f727b08a901536b87985bf04c797e2b5a6f77f4d69489884",
+      "afterSha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+      "states": [
+        "status"
+      ],
+      "calls": 16
+    },
+    {
+      "path": "templates/angular/diagram.ts",
+      "beforeSha256": "d367b14ff4c221b9725da58900e7a04ee202e61dd998fac5645f111309fa4e19",
+      "afterSha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "states": [
+        "actionError"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/diff-json.ts",
+      "beforeSha256": "77e9729fc05220a29785ecc18736dda7eca8d71291ac2fabdc012127feb379ba",
+      "afterSha256": "fbf868832e2f4893f2d2205a88b023b661000536311f3fe2c5ec913fa2918503",
+      "states": [
+        "copyStatus",
+        "renderError",
+        "copyStatus"
+      ],
+      "calls": 7
+    },
+    {
+      "path": "templates/angular/file-upload.ts",
+      "beforeSha256": "bf08f8a8f82ec4de9ec388da4f4d3e9fc6242081f6b8d7b1f0a4133308d24b46",
+      "afterSha256": "d45279463d93941ce5d58327576ab23da77f361d4d0ed78ad7c62dc38d3357cd",
+      "states": [
+        "selectionStatus"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/filter-builder.ts",
+      "beforeSha256": "2d691c1af63d8077db07088f4d1103111cdc8734b51c87588bc782027255c698",
+      "afterSha256": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+      "states": [
+        "resultMessage"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/gantt.ts",
+      "beforeSha256": "89a1dd61065ef8f731c9ff5c01fe200a2947d4cc93cb8c2c36cfa26bd70a90c8",
+      "afterSha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+      "states": [
+        "renderError",
+        "editError"
+      ],
+      "calls": 3
+    },
+    {
+      "path": "templates/angular/image-cropper.ts",
+      "beforeSha256": "8d8695ac58c0804b9153c776915e626245ae99da26f15822eae19ce6b78befd2",
+      "afterSha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+      "states": [
+        "status",
+        "cropError"
+      ],
+      "calls": 8
+    },
+    {
+      "path": "templates/angular/infinite-scroll.ts",
+      "beforeSha256": "fd8767e221d5b780a2e262baac8519e872b72124559c7dda2b4f66d831a91834",
+      "afterSha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+      "states": [
+        "observerError"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/kanban.ts",
+      "beforeSha256": "db953822b24b65f59d38325eb167a139a2ffbfa62706089c7bb31da2db7694c7",
+      "afterSha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+      "states": [
+        "moveError"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/listbox.ts",
+      "beforeSha256": "ddc465c170e58ec3b59f5f6a047e8913b6bf505d02ce913824667d30268e8f43",
+      "afterSha256": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+      "states": [
+        "feedback"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/map.ts",
+      "beforeSha256": "f95c2679686cf60f07eea03fe68a2d127ac33a280a83be37c3e83f9c5798e953",
+      "afterSha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+      "states": [
+        "renderError"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/media-player.ts",
+      "beforeSha256": "9fadf36c7bdd5eaffd9859b0d6371b95346177dfc8fb8b3c741a4d5b40c76123",
+      "afterSha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+      "states": [
+        "status",
+        "error"
+      ],
+      "calls": 5
+    },
+    {
+      "path": "templates/angular/pdf-viewer.ts",
+      "beforeSha256": "56884304e73adb2dfb4ea845625dfe4810673c7863313a98953dd7b0abedd7fb",
+      "afterSha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+      "states": [
+        "status",
+        "error"
+      ],
+      "calls": 9
+    },
+    {
+      "path": "templates/angular/rich-text-editor.ts",
+      "beforeSha256": "3b87742606b78895650001e31e728e1eb2cc37fcf75e17fdb704ab55f2198b5b",
+      "afterSha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+      "states": [
+        "renderError"
+      ],
+      "calls": 6
+    },
+    {
+      "path": "templates/angular/scheduler-controller.ts",
+      "beforeSha256": "4f8c5855858ccc66967c51002ff4cc09cc068591cbdd00fcd59eef6a30948b2c",
+      "afterSha256": "a382ea384d862bb4b7925c75bc8e83c616fb133c1f079fb8cca235981bb5ddae",
+      "states": [
+        "message"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/sortable-list.ts",
+      "beforeSha256": "f3b93de973862122a37b2c9a73a7fe951e74519e5e871637abfdb77b3b177bb8",
+      "afterSha256": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+      "states": [
+        "status"
+      ],
+      "calls": 12
+    },
+    {
+      "path": "templates/angular/spreadsheet.ts",
+      "beforeSha256": "ac8f7698df950ed1feec54fd1a7b9e9ad8d127bf6b73971295b55292587e44cf",
+      "afterSha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+      "states": [
+        "transferError"
+      ],
+      "calls": 2
+    },
+    {
+      "path": "templates/angular/table-editors.ts",
+      "beforeSha256": "63c7b1a56282d9d1dbb12abebd226f4ad97e206e5154c59a882da957d31e5f03",
+      "afterSha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+      "states": [
+        "resultError"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/transfer-list.ts",
+      "beforeSha256": "a74e0a5869c113ec8a931ef0ad591f39a2c65cff00de796815288b3bd0eab693",
+      "afterSha256": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+      "states": [
+        "feedback"
+      ],
+      "calls": 15
+    },
+    {
+      "path": "templates/angular/tree.ts",
+      "beforeSha256": "d83ad99da42101bcfbbed9f4e00fb7a75645b18e063e029686c653c42da3e82c",
+      "afterSha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+      "states": [
+        "problem"
+      ],
+      "calls": 1
+    },
+    {
+      "path": "templates/angular/wizard.ts",
+      "beforeSha256": "9a94a7348ab3e9f660a24b05ce356b242fe0234784d668e0ac333d554e6c8ea3",
+      "afterSha256": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef",
+      "states": [
+        "problem"
+      ],
+      "calls": 2
+    }
+  ]
+}

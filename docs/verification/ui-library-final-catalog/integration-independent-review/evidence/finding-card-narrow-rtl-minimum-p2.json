@@ -1,0 +1,149 @@
+{
+  "severity": "P2",
+  "status": "OPEN_ROOT_CSS_FIX_PENDING",
+  "sourceCommitBefore": "60cd513e86099dffc756c10402a5262f466a34d0",
+  "sourceSha256": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+  "location": {
+    "path": "templates/angular/card.ts",
+    "line": 61
+  },
+  "reproduction": "Public Card orientation horizontal, all five projected templates, caller native input already max-inline-size100%/box-sizing border-box,320px viewport/200% root font/RTL both profiles. Narrow 1fr track uses auto intrinsic minimum and grows beyond card content.",
+  "observations": [
+    {
+      "profile": "guided",
+      "input": {
+        "tag": "INPUT",
+        "id": "card-editor",
+        "class": "",
+        "attr": [
+          "_ngcontent-ng-c1486490751"
+        ],
+        "left": -111,
+        "right": 255,
+        "width": 366,
+        "display": "inline-block",
+        "grid": "none",
+        "min": "0px",
+        "max": "100%",
+        "padding": "1px 2px",
+        "box": "border-box",
+        "font": "36px"
+      },
+      "content": {
+        "tag": "DIV",
+        "id": "review-card-content",
+        "class": "ui-card__content",
+        "attr": [
+          "_ngcontent-ng-c2527183487"
+        ],
+        "left": 41,
+        "right": 279,
+        "width": 238,
+        "display": "grid",
+        "grid": "414px",
+        "min": "0px",
+        "max": "none",
+        "padding": "0px",
+        "box": "content-box",
+        "font": "36px"
+      },
+      "body": {
+        "tag": "DIV",
+        "id": "",
+        "class": "ui-card__body",
+        "attr": [
+          "_ngcontent-ng-c2527183487"
+        ],
+        "left": -135,
+        "right": 279,
+        "width": 414,
+        "display": "block",
+        "grid": "none",
+        "min": "auto",
+        "max": "none",
+        "padding": "24px",
+        "box": "content-box",
+        "font": "36px"
+      },
+      "document": {
+        "client": 320,
+        "scroll": 320
+      }
+    },
+    {
+      "profile": "dense",
+      "input": {
+        "tag": "INPUT",
+        "id": "card-editor",
+        "class": "",
+        "attr": [
+          "_ngcontent-ng-c1486490751"
+        ],
+        "left": -45,
+        "right": 279,
+        "width": 324,
+        "display": "inline-block",
+        "grid": "none",
+        "min": "0px",
+        "max": "100%",
+        "padding": "1px 2px",
+        "box": "border-box",
+        "font": "32px"
+      },
+      "content": {
+        "tag": "DIV",
+        "id": "review-card-content",
+        "class": "ui-card__content",
+        "attr": [
+          "_ngcontent-ng-c2527183487"
+        ],
+        "left": 25,
+        "right": 295,
+        "width": 270,
+        "display": "grid",
+        "grid": "356px",
+        "min": "0px",
+        "max": "none",
+        "padding": "0px",
+        "box": "content-box",
+        "font": "32px"
+      },
+      "body": {
+        "tag": "DIV",
+        "id": "",
+        "class": "ui-card__body",
+        "attr": [
+          "_ngcontent-ng-c2527183487"
+        ],
+        "left": -61,
+        "right": 295,
+        "width": 356,
+        "display": "block",
+        "grid": "none",
+        "min": "auto",
+        "max": "none",
+        "padding": "16px",
+        "box": "content-box",
+        "font": "32px"
+      },
+      "document": {
+        "client": 320,
+        "scroll": 320
+      }
+    }
+  ],
+  "actualProbeExitCode": 0,
+  "exitMeaning": "Geometry capture succeeded; observed negative coordinates are product counterexamples, not product PASS.",
+  "whyNotCallerCSS": "Caller max-inline-size100% cannot constrain percent before an auto min-content grid track; card breakpoint changed minmax(0,1fr) to auto-min 1fr.",
+  "fixCondition": "Use minmax(0,1fr) for narrow horizontal Card; fresh same caller native input should remain within viewport/card content and retain draft/focus.",
+  "evidence": [
+    "evidence/card-slot-geometry.json",
+    "evidence/card-slot-geometry-corrected.log",
+    "evidence/card-slot-geometry-guided.png",
+    "evidence/card-slot-geometry-dense.png"
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  }
+}

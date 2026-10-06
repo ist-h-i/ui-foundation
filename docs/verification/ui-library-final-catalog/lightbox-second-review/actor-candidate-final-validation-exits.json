@@ -1,0 +1,28 @@
+[
+  {
+    "name": "guard-syntax-type-comparison",
+    "command": [
+      "node",
+      "guard-syntax-type-comparison.mjs"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T10:26:08.943666+00:00",
+    "log": "evidence/candidate-guard-syntax-type-comparison.log"
+  },
+  {
+    "name": "guarded-formal",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "-c",
+      "playwright.lightbox.config.ts",
+      "--grep",
+      "open Lightbox named",
+      "--repeat-each=4"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T10:26:51.470263+00:00",
+    "log": "evidence/candidate-guarded-formal.log"
+  }
+]

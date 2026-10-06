@@ -1,0 +1,45 @@
+[
+  {
+    "name": "source-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "start": "2026-10-06T08:25:13.966440+00:00",
+    "end": "2026-10-06T08:25:14.613514+00:00",
+    "exit": 0
+  },
+  {
+    "name": "source-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "start": "2026-10-06T08:25:14.614189+00:00",
+    "end": "2026-10-06T08:25:15.089486+00:00",
+    "exit": 0
+  },
+  {
+    "name": "source-final-strict",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "start": "2026-10-06T08:25:15.090121+00:00",
+    "end": "2026-10-06T08:25:38.328011+00:00",
+    "exit": 0
+  },
+  {
+    "name": "source-final-api",
+    "command": [
+      "node",
+      "scripts/catalog-api.mjs"
+    ],
+    "start": "2026-10-06T08:25:38.329276+00:00",
+    "end": "2026-10-06T08:25:39.247201+00:00",
+    "exit": 0
+  }
+]

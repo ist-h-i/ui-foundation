@@ -1,0 +1,33 @@
+{
+  "timeUtc": "2026-10-06T09:21:03.914583+00:00",
+  "scope": "Only own Node script chromium.launch browser/context and own localhost port0 servers. Shared 4183/root runner/PIDs/browser tools were not operated.",
+  "activeOwnBrowserOrServerSessions": [],
+  "forbiddenGlobalProcessOperationsUsed": [],
+  "scripts": [
+    {
+      "path": "probe-consumer.mjs",
+      "sha256": "2ecd1541a3cc0591d8948be4269fb52e9f0d3fdee26edc45f59ebf6a06080d4f",
+      "ownership": "own launch object and own server; no shared connection"
+    },
+    {
+      "path": "probe-card-geometry.mjs",
+      "sha256": "94b0771a320f83fc1765165957a05dcec88c8a676da5035e614e172d81403f01",
+      "ownership": "own launch object and own server; no shared connection"
+    },
+    {
+      "path": "probe-locale-boundary.mjs",
+      "sha256": "a73fe992e720a49fef1638a9dfeca0980a1529d9527a276ccbed85a552ebe08b",
+      "ownership": "own launch object and own server; no shared connection"
+    },
+    {
+      "path": "probe-locale-lifetime.mjs",
+      "sha256": "612de9c130e083531163be6fbf7bb1a0be52c903129776ed6eebd06be656126f",
+      "ownership": "own launch object and own server; no shared connection"
+    },
+    {
+      "path": "probe-locale-scheduler.mjs",
+      "sha256": "efaf45b0db038e06be8593f1eee34e0054f4ef47770cc9be91abae0600b380d8",
+      "ownership": "own launch object and own server; no shared connection"
+    }
+  ]
+}

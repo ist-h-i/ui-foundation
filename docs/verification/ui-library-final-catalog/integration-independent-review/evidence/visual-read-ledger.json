@@ -1,0 +1,37 @@
+{
+  "timeUtc": "2026-10-06T09:13:34.715887+00:00",
+  "images": [
+    {
+      "path": "/private/tmp/ui-foundation-final-integration-independent-review/frozen-before-card-narrow-repair/evidence/consumer-narrow-dense.png",
+      "sha256": "9cfad01897189098dbb1d08ddd6cbfdcc392009b9ba91e601a2ea1e0d1d2a361",
+      "readWith": "view_image original",
+      "observed": "Historical 320px/200%/RTL photograph shows Card body/native input extending beyond the left edge. Subsequent native measurement confirmed a library grid min-content bug even with caller max-inline-size:100%; the earlier caller-CSS hypothesis was disproved. Document scrollWidth alone misses negative RTL overflow."
+    },
+    {
+      "path": "/tmp/ui-foundation-final-integration-independent-review/evidence/locale-lifetime-guided.png",
+      "sha256": "bfc951c73b7b2d180bee263342a159fad86a9b1e368770665cb53e5f893289de",
+      "readWith": "view_image original",
+      "observed": "Readable native text/actions and real state; partial explicit dictionary deliberately leaves unspecified fallback/app raw text."
+    },
+    {
+      "path": "/tmp/ui-foundation-final-integration-independent-review/evidence/locale-boundary-dense.png",
+      "sha256": "0509b65db55972ae7f755ff1d3a1d20c45775132db2d9416bdf6d4a7a60b9605",
+      "readWith": "view_image original",
+      "observed": "Readable native text/actions and real state; partial explicit dictionary deliberately leaves unspecified fallback/app raw text."
+    },
+    {
+      "path": "/private/tmp/ui-foundation-final-integration-independent-review/evidence/card-slot-before-source-dense.png",
+      "sha256": "9cfad01897189098dbb1d08ddd6cbfdcc392009b9ba91e601a2ea1e0d1d2a361",
+      "readWith": "view_image original",
+      "observed": "Before source465c: Card body/input extend beyond viewport left while caller already max100; native left−45 in dense."
+    },
+    {
+      "path": "/private/tmp/ui-foundation-final-integration-independent-review/evidence/card-slot-after-source-dense.png",
+      "sha256": "155c1d9091330c19b798fbbb5d0b6ee2134e30907f2b03a6c0d3f1306c33587f",
+      "readWith": "view_image original",
+      "observed": "After source916a: Card native input is entirely within Card and viewport at 320px/200%/RTL, raw draft and caret visibly retained; native left41 in dense. Text overflowing its input value remains native input internal scrolling, not page clipping."
+    }
+  ],
+  "semanticLimits": "Sample app text/partial dictionary not a complete localized production screen; no real AT/Safari/SSR/FontForge legal audit claim",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f"
+}

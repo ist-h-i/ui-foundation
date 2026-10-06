@@ -12,6 +12,31 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('visualization viewport remains independent from table and media roles across profiles',()=>{
+ const result=resolve();
+ for(const profile of ['guided','dense'])assert.equal(result.profiles[profile].semantic['size.visualization-viewport'].value,'480px');
+ assert.match(renderTokens(result),/--ui-size-visualization-viewport: var\(--ui-p-table-viewport\)/);
+ assert.match(renderTailwind(result),/--spacing-size-visualization-viewport: var\(--ui-size-visualization-viewport\)/);
+ rejects(edited(config=>{delete config.semantic['size.visualization-viewport'];}),/size.visualization-viewport/);
+ rejects(edited(config=>{config.semantic['size.visualization-viewport']='ink';}),/size.visualization-viewport/);
+ const alternate=resolve(edited(config=>{config.primitives['visualization-tall']={type:'length',value:'36rem'};config.profiles.dense.semantic['size.visualization-viewport']='visualization-tall';}));
+ assert.equal(alternate.profiles.dense.semantic['size.visualization-viewport'].value,'36rem');
+ assert.equal(alternate.profiles.guided.semantic['size.visualization-viewport'].value,'480px');
+ assert.equal(alternate.profiles.dense.semantic['size.media-viewport'].value,'480px');
+ assert.equal(alternate.profiles.dense.semantic['size.table-viewport'].value,'480px');
+ for(const profile of ['guided','dense'])rejects(edited(config=>{config.primitives['visualization-zero']={type:'length',value:'0px'};config.profiles[profile].semantic['size.visualization-viewport']='visualization-zero';}),/greater than zero/);
+});
+test('media viewport has a required positive semantic length that can be mapped independently in each profile',()=>{
+ const result=resolve();for(const profile of ['guided','dense'])assert.equal(result.profiles[profile].semantic['size.media-viewport'].value,'480px');
+ assert.match(renderTokens(result),/--ui-size-media-viewport: var\(--ui-p-table-viewport\)/);
+ assert.match(renderTailwind(result),/--spacing-size-media-viewport: var\(--ui-size-media-viewport\)/);
+ rejects(edited(config=>{delete config.semantic['size.media-viewport'];}),/size.media-viewport/);
+ rejects(edited(config=>{config.semantic['size.media-viewport']='ink';}),/size.media-viewport/);
+ rejects(edited(config=>{config.primitives['table-viewport'].value='0px';}),/greater than zero/);
+ const alternate=resolve(edited(config=>{config.primitives['media-compact']={type:'length',value:'20rem'};config.profiles.dense.semantic['size.media-viewport']='media-compact';}));
+ assert.equal(alternate.profiles.dense.semantic['size.media-viewport'].value,'20rem');assert.equal(alternate.profiles.guided.semantic['size.media-viewport'].value,'480px');
+ for(const profile of ['guided','dense'])rejects(edited(config=>{config.primitives['media-zero']={type:'length',value:'0px'};config.profiles[profile].semantic['size.media-viewport']='media-zero';}),/greater than zero/);
+});
 test('collection rows and viewports have distinct positive semantics in both profiles',()=>{
  const result=resolve();
  for(const [role,guided,dense] of [['size.collection-item','5rem','4rem'],['size.collection-viewport','20rem','16rem']]){

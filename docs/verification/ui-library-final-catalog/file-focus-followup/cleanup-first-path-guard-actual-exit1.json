@@ -1,0 +1,7 @@
+{
+  "exitCode": 1,
+  "action": "Own server cleanup guard, before signaling",
+  "cause": "macOS lsof reports /private/tmp while the expected path used /tmp; strict string comparison rejected before any signal",
+  "mutationBeforeRejection": false,
+  "correction": "Compare canonical resolved cwd paths, retaining exact PID and command guards."
+}

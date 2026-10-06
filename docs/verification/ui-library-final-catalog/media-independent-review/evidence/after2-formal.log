@@ -1,0 +1,54 @@
+
+Running 18 tests using 2 workers
+
+(node:40077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/ui/media-lifetime.spec.ts:17:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction (4.6s)
+  ✓   1 tests/ui/media-lifetime.spec.ts:55:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs (5.4s)
+  ✓   3 tests/ui/media-lifetime.spec.ts:101:1 › PDF worker startup failure reports an error and terminates its native Worker (3.7s)
+  ✓   5 tests/ui/media-regressions.spec.ts:81:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue (3.9s)
+  ✓   4 tests/ui/media-regressions.spec.ts:25:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup (16.1s)
+  ✓   6 tests/ui/media-regressions.spec.ts:115:1 › PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL (10.0s)
+  ✓   8 tests/ui/media-regressions.spec.ts:192:1 › desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling (3.0s)
+  ✓   9 tests/ui/media-regressions.spec.ts:220:1 › Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control (4.8s)
+  ✓   7 tests/ui/media-regressions.spec.ts:145:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL (11.3s)
+  ✓  10 tests/ui/media.spec.ts:4:1 › actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus (3.1s)
+  ✓  11 tests/ui/media.spec.ts:5:1 › image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained (2.9s)
+  ✓  12 tests/ui/media.spec.ts:6:1 › carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal (2.9s)
+  ✓  13 tests/ui/media.spec.ts:7:1 › image compare native keyboard/boundary endpoints, direction and RTL (2.9s)
+  ✓  14 tests/ui/media.spec.ts:8:1 › crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates (2.7s)
+  ✓  16 tests/ui/media.spec.ts:10:1 › actual QR/Barcode encoding independently decodes raster; data change/error recovery (3.5s)
+  ✓  15 tests/ui/media.spec.ts:9:1 › PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery (5.5s)
+  ✓  17 tests/ui/media.spec.ts:11:1 › native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen (5.1s)
+  ✘  18 tests/ui/media.spec.ts:12:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe (4.2s)
+
+
+  1) tests/ui/media.spec.ts:12:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe 
+
+    Error: page.evaluate: Target page, context or browser has been closed
+
+      10 | test('actual QR/Barcode encoding independently decodes raster; data change/error recovery',async({page})=>{await open(page);const codes=page.getByTestId('codes');await expect(codes.locator('ui-qr-code canvas')).toBeVisible();await expect.poll(()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})).toBe('UI123456');await expect.poll(()=>codes.locator('ui-barcode canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node,'code128')}catch{return null}})).toBe('UI123456');await codes.getByLabel('コード内容').fill('https://example.invalid/application/007');await expect.poll(()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})).toBe('https://example.invalid/application/007');await codes.getByLabel('コード内容').fill('');await expect(codes.getByText(/QRコードを作成できません/)).toBeVisible();await codes.getByLabel('コード内容').fill('復旧123');await expect.poll(()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})).toBe('復旧123');});
+      11 | test('native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen',async({page})=>{await open(page);const audio=page.getByTestId('audio');await expect.poll(()=>audio.locator('audio').evaluate(node=>node.readyState)).toBeGreaterThan(0);await audio.getByRole('button',{name:'再生',exact:true}).click();await expect.poll(()=>audio.locator('audio').evaluate(node=>node.paused)).toBe(false);await audio.getByLabel('音量',{exact:true}).focus();await page.keyboard.press('Home');for(let i=0;i<25;i++)await page.keyboard.press('ArrowRight');expect(await audio.locator('audio').evaluate(node=>node.volume)).toBe(0.25);await audio.getByRole('combobox',{name:'再生速度',exact:true}).selectOption('1.5');expect(await audio.locator('audio').evaluate(node=>node.playbackRate)).toBe(1.5);await audio.getByRole('combobox',{name:'字幕',exact:true}).selectOption('ja');await expect.poll(()=>audio.locator('audio').evaluate(node=>node.textTracks[0]?.mode)).toBe('showing');await audio.getByRole('button',{name:'停止',exact:true}).click();await expect.poll(()=>audio.locator('audio').evaluate(node=>node.currentTime)).toBe(0);await audio.getByRole('button',{name:'再生',exact:true}).click();await page.getByRole('button',{name:'媒体を表示・非表示'}).click();await expect.poll(()=>audio.locator('audio').evaluate(node=>node.paused)).toBe(true);await page.getByRole('button',{name:'媒体を表示・非表示'}).click();await audio.getByRole('button',{name:'再生',exact:true}).click();await page.getByRole('button',{name:'無効 false'}).click();await expect.poll(()=>audio.locator('audio').evaluate(node=>node.paused)).toBe(true);await expect(audio.getByRole('button',{name:'再生',exact:true})).toBeDisabled();expect(await audio.locator('audio').evaluate(node=>node.controls)).toBe(false);await page.getByRole('button',{name:'無効 true'}).click();const encoded=await page.evaluate(async()=>{const canvas=document.createElement('canvas');canvas.width=100;canvas.height=80;const context=canvas.getContext('2d')!,stream=canvas.captureStream(10),recorder=new MediaRecorder(stream,{mimeType:'video/webm'}),chunks:Blob[]=[];recorder.ondataavailable=event=>chunks.push(event.data);const result=new Promise<string>(resolve=>{recorder.onstop=async()=>{stream.getTracks().forEach(track=>track.stop());const blob=new Blob(chunks,{type:'video/webm'}),reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]!);reader.readAsDataURL(blob);};});recorder.start();context.fillStyle='blue';context.fillRect(0,0,100,80);await new Promise(resolve=>setTimeout(resolve,350));recorder.stop();return result;});const video=page.getByTestId('video');await video.getByLabel('動画ファイル').setInputFiles({name:'generated.webm',mimeType:'video/webm',buffer:Buffer.from(encoded,'base64')});await expect.poll(()=>video.locator('video').evaluate(node=>node.readyState)).toBeGreaterThan(0);await video.getByRole('button',{name:'再生',exact:true}).click();await expect.poll(()=>video.locator('video').evaluate(node=>node.videoWidth)).toBe(100);await video.getByRole('combobox',{name:'字幕',exact:true}).selectOption('ja');await video.getByRole('button',{name:'全画面',exact:true}).click();await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.localName)).toBe('ui-video-player');await page.evaluate(()=>document.exitFullscreen());});
+    > 12 | test('guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe',async({page})=>{await open(page);for(const profile of ['guided','dense']){if(profile==='dense')await page.getByRole('button',{name:'プロファイル guided'}).click();await page.setViewportSize({width:320,height:900});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByRole('button',{name:/RTL /}).click();await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);const results=await new AxeBuilder({page}).include('main').analyze();expect(results.violations.map(item=>({id:item.id,nodes:item.nodes.map(node=>node.target)}))).toEqual([]);await page.screenshot({path:'evidence/media-'+profile+'-320-200-rtl.png',fullPage:true});}});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      13 |
+        at AxeBuilder.analyze (/private/tmp/ui-foundation-final-integration/repository/node_modules/@axe-core/playwright/dist/index.mjs:202:42)
+        at /private/tmp/ui-foundation-media-gauge-independent-review/repository/tests/ui/media.spec.ts:12:528
+
+    Error: browserContext.close: Target page, context or browser has been closed
+
+    Error Context: ../evidence/after2-formal-results/media-guided-dense-320px-2-cd5b3-tic-styles-keyboard-and-axe/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../evidence/after2-formal-results/media-guided-dense-320px-2-cd5b3-tic-styles-keyboard-and-axe/trace.zip
+    Usage:
+
+        npx playwright show-trace ../evidence/after2-formal-results/media-guided-dense-320px-2-cd5b3-tic-styles-keyboard-and-axe/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/ui/media.spec.ts:12:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe 
+  17 passed (51.7s)

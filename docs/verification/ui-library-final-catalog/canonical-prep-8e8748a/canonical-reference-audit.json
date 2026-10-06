@@ -1,0 +1,486 @@
+{
+  "commit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+  "rows": 48,
+  "controls": 207,
+  "implementationReferences": 115,
+  "formalReferences": 94,
+  "totalReferences": 209,
+  "uniqueFiles": 88,
+  "referenceMismatches": [],
+  "gitLiveExact": true,
+  "changes": [
+    {
+      "rowId": "media-04",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-06",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-07",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-10",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    }
+  ],
+  "oldMapSha256": "fa44f543f2abb441d71d49044c9f7599373a3d063de59ade0edfb14d8b24cc3a",
+  "newMapSha256": "661022561b31de5872710a7714b5930a7d2ec738f4ca41c05b1b15c380f35720",
+  "oldMapPreservedByteExact": true,
+  "allOriginalControlsAndImplementationHashesPreserved": true,
+  "files": [
+    {
+      "path": "templates/angular/agenda.ts",
+      "gitAndLiveSha256": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+      "bytes": 795
+    },
+    {
+      "path": "templates/angular/barcode.ts",
+      "gitAndLiveSha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+      "bytes": 5888
+    },
+    {
+      "path": "templates/angular/cascader.ts",
+      "gitAndLiveSha256": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+      "bytes": 13399
+    },
+    {
+      "path": "templates/angular/chart-options.ts",
+      "gitAndLiveSha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+      "bytes": 13726
+    },
+    {
+      "path": "templates/angular/chart.ts",
+      "gitAndLiveSha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+      "bytes": 12238
+    },
+    {
+      "path": "templates/angular/chat.ts",
+      "gitAndLiveSha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+      "bytes": 14117
+    },
+    {
+      "path": "templates/angular/code-editor.ts",
+      "gitAndLiveSha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+      "bytes": 6183
+    },
+    {
+      "path": "templates/angular/data-grid.ts",
+      "gitAndLiveSha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+      "bytes": 34155
+    },
+    {
+      "path": "templates/angular/data-table-view.ts",
+      "gitAndLiveSha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+      "bytes": 63414
+    },
+    {
+      "path": "templates/angular/data-table.ts",
+      "gitAndLiveSha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+      "bytes": 5300
+    },
+    {
+      "path": "templates/angular/date-input.ts",
+      "gitAndLiveSha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+      "bytes": 14811
+    },
+    {
+      "path": "templates/angular/date-range-picker.ts",
+      "gitAndLiveSha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+      "bytes": 9312
+    },
+    {
+      "path": "templates/angular/diagram-layout.ts",
+      "gitAndLiveSha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+      "bytes": 945
+    },
+    {
+      "path": "templates/angular/diagram.ts",
+      "gitAndLiveSha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "bytes": 10379
+    },
+    {
+      "path": "templates/angular/dialog.ts",
+      "gitAndLiveSha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+      "bytes": 16897
+    },
+    {
+      "path": "templates/angular/diff-json.ts",
+      "gitAndLiveSha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+      "bytes": 10947
+    },
+    {
+      "path": "templates/angular/editor-control.ts",
+      "gitAndLiveSha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+      "bytes": 1827
+    },
+    {
+      "path": "templates/angular/editor-model.ts",
+      "gitAndLiveSha256": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+      "bytes": 1901
+    },
+    {
+      "path": "templates/angular/file-explorer.ts",
+      "gitAndLiveSha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+      "bytes": 10502
+    },
+    {
+      "path": "templates/angular/file-upload.ts",
+      "gitAndLiveSha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+      "bytes": 15161
+    },
+    {
+      "path": "templates/angular/gantt.ts",
+      "gitAndLiveSha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+      "bytes": 9722
+    },
+    {
+      "path": "templates/angular/image-cropper.ts",
+      "gitAndLiveSha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+      "bytes": 13547
+    },
+    {
+      "path": "templates/angular/image-media.ts",
+      "gitAndLiveSha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+      "bytes": 17359
+    },
+    {
+      "path": "templates/angular/infinite-scroll.ts",
+      "gitAndLiveSha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+      "bytes": 6653
+    },
+    {
+      "path": "templates/angular/json-model.ts",
+      "gitAndLiveSha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+      "bytes": 2257
+    },
+    {
+      "path": "templates/angular/kanban.ts",
+      "gitAndLiveSha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+      "bytes": 5928
+    },
+    {
+      "path": "templates/angular/locale-model.ts",
+      "gitAndLiveSha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+      "bytes": 4644
+    },
+    {
+      "path": "templates/angular/locale.ts",
+      "gitAndLiveSha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+      "bytes": 7353
+    },
+    {
+      "path": "templates/angular/map.ts",
+      "gitAndLiveSha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+      "bytes": 9756
+    },
+    {
+      "path": "templates/angular/markdown-editor.ts",
+      "gitAndLiveSha256": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+      "bytes": 2865
+    },
+    {
+      "path": "templates/angular/media-model.ts",
+      "gitAndLiveSha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+      "bytes": 5013
+    },
+    {
+      "path": "templates/angular/media-player.ts",
+      "gitAndLiveSha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+      "bytes": 14444
+    },
+    {
+      "path": "templates/angular/media-style.ts",
+      "gitAndLiveSha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+      "bytes": 1682
+    },
+    {
+      "path": "templates/angular/organization-chart.ts",
+      "gitAndLiveSha256": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+      "bytes": 13038
+    },
+    {
+      "path": "templates/angular/pdf-adapter.ts",
+      "gitAndLiveSha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+      "bytes": 5676
+    },
+    {
+      "path": "templates/angular/pdf-viewer.ts",
+      "gitAndLiveSha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+      "bytes": 9108
+    },
+    {
+      "path": "templates/angular/rich-text-editor.ts",
+      "gitAndLiveSha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+      "bytes": 9213
+    },
+    {
+      "path": "templates/angular/scheduler-controller.ts",
+      "gitAndLiveSha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+      "bytes": 16967
+    },
+    {
+      "path": "templates/angular/scheduler-model.ts",
+      "gitAndLiveSha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+      "bytes": 12968
+    },
+    {
+      "path": "templates/angular/scheduler-view.ts",
+      "gitAndLiveSha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+      "bytes": 12214
+    },
+    {
+      "path": "templates/angular/scheduler.ts",
+      "gitAndLiveSha256": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+      "bytes": 726
+    },
+    {
+      "path": "templates/angular/sheet-formula.ts",
+      "gitAndLiveSha256": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+      "bytes": 2742
+    },
+    {
+      "path": "templates/angular/sheet-runner.ts",
+      "gitAndLiveSha256": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+      "bytes": 4654
+    },
+    {
+      "path": "templates/angular/specialist-browser.ts",
+      "gitAndLiveSha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+      "bytes": 2722
+    },
+    {
+      "path": "templates/angular/specialist-model.ts",
+      "gitAndLiveSha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+      "bytes": 18034
+    },
+    {
+      "path": "templates/angular/specialist-style.ts",
+      "gitAndLiveSha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+      "bytes": 3008
+    },
+    {
+      "path": "templates/angular/spreadsheet.ts",
+      "gitAndLiveSha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+      "bytes": 15350
+    },
+    {
+      "path": "templates/angular/styles.css",
+      "gitAndLiveSha256": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff",
+      "bytes": 12699
+    },
+    {
+      "path": "templates/angular/table-advanced-model.ts",
+      "gitAndLiveSha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+      "bytes": 24519
+    },
+    {
+      "path": "templates/angular/table-column-resize.ts",
+      "gitAndLiveSha256": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+      "bytes": 4605
+    },
+    {
+      "path": "templates/angular/table-controls.ts",
+      "gitAndLiveSha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+      "bytes": 30724
+    },
+    {
+      "path": "templates/angular/table-editors.ts",
+      "gitAndLiveSha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+      "bytes": 16228
+    },
+    {
+      "path": "templates/angular/table-model.ts",
+      "gitAndLiveSha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+      "bytes": 10094
+    },
+    {
+      "path": "templates/angular/table-output.ts",
+      "gitAndLiveSha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+      "bytes": 4170
+    },
+    {
+      "path": "templates/angular/table-runtime.ts",
+      "gitAndLiveSha256": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+      "bytes": 2134
+    },
+    {
+      "path": "templates/angular/tree-grid.ts",
+      "gitAndLiveSha256": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+      "bytes": 12806
+    },
+    {
+      "path": "templates/angular/tree-item.ts",
+      "gitAndLiveSha256": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+      "bytes": 1162
+    },
+    {
+      "path": "templates/angular/tree-model.ts",
+      "gitAndLiveSha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+      "bytes": 12453
+    },
+    {
+      "path": "templates/angular/tree-node-template.ts",
+      "gitAndLiveSha256": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+      "bytes": 821
+    },
+    {
+      "path": "templates/angular/tree-popup-control.ts",
+      "gitAndLiveSha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+      "bytes": 7728
+    },
+    {
+      "path": "templates/angular/tree-select.ts",
+      "gitAndLiveSha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+      "bytes": 9722
+    },
+    {
+      "path": "templates/angular/tree.ts",
+      "gitAndLiveSha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+      "bytes": 19428
+    },
+    {
+      "path": "templates/angular/value-control.ts",
+      "gitAndLiveSha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+      "bytes": 2920
+    },
+    {
+      "path": "templates/angular/virtual-data-table.ts",
+      "gitAndLiveSha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+      "bytes": 18269
+    },
+    {
+      "path": "tests/ui/composer-reset-errors.spec.ts",
+      "gitAndLiveSha256": "f23f8ddc6cf636abc0d06a226c23ac3505c1411a8fb398864b6fb042ecdff490",
+      "bytes": 2544
+    },
+    {
+      "path": "tests/ui/data-table-view.spec.ts",
+      "gitAndLiveSha256": "a01e00df2afcfb41b9e42f81f841ceab94e0c923dcfb55ac6d4454990aca3d0d",
+      "bytes": 13547
+    },
+    {
+      "path": "tests/ui/foundation-date-format-retention.spec.ts",
+      "gitAndLiveSha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3",
+      "bytes": 6143
+    },
+    {
+      "path": "tests/ui/foundation.spec.ts",
+      "gitAndLiveSha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+      "bytes": 40775
+    },
+    {
+      "path": "tests/ui/media-lifetime.spec.ts",
+      "gitAndLiveSha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+      "bytes": 8676
+    },
+    {
+      "path": "tests/ui/media-regressions.spec.ts",
+      "gitAndLiveSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+      "bytes": 25381
+    },
+    {
+      "path": "tests/ui/media.spec.ts",
+      "gitAndLiveSha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+      "bytes": 18100
+    },
+    {
+      "path": "tests/ui/scheduler-catalog.spec.ts",
+      "gitAndLiveSha256": "d86cd1dce7b2da0cf6c69943554b3fa711db167e9dc5d177466b6c50a50ebb15",
+      "bytes": 34043
+    },
+    {
+      "path": "tests/ui/scheduler-focus-transfer.spec.ts",
+      "gitAndLiveSha256": "972d78a7cf240df82e29cedcc8b03935fed091d60d1449ffa227abad9ed11e27",
+      "bytes": 2242
+    },
+    {
+      "path": "tests/ui/scheduler-id-boundaries.spec.ts",
+      "gitAndLiveSha256": "8de732a791b88f8657b03eb05b01205c29de3d0af87207d147d2cec35f4faee9",
+      "bytes": 2419
+    },
+    {
+      "path": "tests/ui/sheet-locale-errors.spec.ts",
+      "gitAndLiveSha256": "f59e322cd7631414dccc864b27ae01abfbaeb163b931717bf3fc6af1a30411f2",
+      "bytes": 2590
+    },
+    {
+      "path": "tests/ui/specialist-accessibility.spec.ts",
+      "gitAndLiveSha256": "aa2a938fea633502510cd24560c4ace0a6dda0751148db6b3747540eb4a264a4",
+      "bytes": 1633
+    },
+    {
+      "path": "tests/ui/specialist-catalog.spec.ts",
+      "gitAndLiveSha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+      "bytes": 17496
+    },
+    {
+      "path": "tests/ui/specialist-chart-explorer.spec.ts",
+      "gitAndLiveSha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243",
+      "bytes": 10001
+    },
+    {
+      "path": "tests/ui/specialist-gauge-responsive.spec.ts",
+      "gitAndLiveSha256": "74ad92c840864b9ad2eb6a99bda3368c7866ff74fd2266800a1379f4014086b2",
+      "bytes": 9323
+    },
+    {
+      "path": "tests/ui/specialist-recovery.spec.ts",
+      "gitAndLiveSha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+      "bytes": 10668
+    },
+    {
+      "path": "tests/ui/specialist-rich-boundary.spec.ts",
+      "gitAndLiveSha256": "023208a4eef533eaa79612c6862e248600605f3f9efcb4d01faaec8f9fa08b5a",
+      "bytes": 2820
+    },
+    {
+      "path": "tests/ui/specialist-sheet-startup.spec.ts",
+      "gitAndLiveSha256": "53f7e1cdb6e2d96f9baf88430e3931b98ea3569ef98d54d46c62a0f428150fe4",
+      "bytes": 7964
+    },
+    {
+      "path": "tests/ui/specialist-workers.spec.ts",
+      "gitAndLiveSha256": "c369d2d79ded486cca71423ca3c48c27eac7823d1bd7f3f96e1071f8966c128d",
+      "bytes": 4445
+    },
+    {
+      "path": "tests/ui/table-expansion-checks.ts",
+      "gitAndLiveSha256": "f28af7019129bb571ae9076177ebebaa979542fce3d44fd145fbfd11af6728d9",
+      "bytes": 23325
+    },
+    {
+      "path": "tests/ui/table-expansion-contracts.ts",
+      "gitAndLiveSha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+      "bytes": 20058
+    },
+    {
+      "path": "tests/ui/table-expansion-unicode.ts",
+      "gitAndLiveSha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+      "bytes": 17949
+    },
+    {
+      "path": "tests/ui/table-expansion.spec.ts",
+      "gitAndLiveSha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+      "bytes": 11432
+    },
+    {
+      "path": "tests/ui/tree-catalog.spec.ts",
+      "gitAndLiveSha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+      "bytes": 32715
+    }
+  ],
+  "rootFullNpmPassed": false,
+  "all181Completed": false,
+  "finalMatrixDocApproval": false
+}

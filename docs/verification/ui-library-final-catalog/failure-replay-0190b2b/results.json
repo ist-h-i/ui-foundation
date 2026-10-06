@@ -1,0 +1,629 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/.bin/playwright",
+      "test",
+      "tests/ui/scheduler-catalog.spec.ts",
+      "tests/ui/choice-catalog.spec.ts",
+      "tests/ui/specialist-chart-explorer.spec.ts",
+      "--grep",
+      "exact gap/fold native time-band controls|plain value binding rejects|FileExplorer retires owned focus",
+      "--reporter=json",
+      "--output",
+      "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results"
+    ],
+    "configFile": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/playwright.config.ts",
+    "rootDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run build && node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5187",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "choice-catalog.spec.ts",
+      "file": "choice-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "choice catalog guided",
+          "file": "choice-catalog.spec.ts",
+          "line": 6,
+          "column": 46,
+          "specs": [
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (complete)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3402,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:38:52.738Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-fea1a68b613ea3286d7a",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            },
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3428,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:38:52.738Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-d408440e455d7983b0e5",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            },
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (explicit-invalidate)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3147,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:38:57.127Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-2741c69a016c2795ac6f",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            }
+          ]
+        },
+        {
+          "title": "choice catalog dense",
+          "file": "choice-catalog.spec.ts",
+          "line": 6,
+          "column": 46,
+          "specs": [
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (complete)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3322,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:38:57.153Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-0192d9960350729b8ea8",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            },
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2835,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:00.305Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-cb249561f9670c823dd9",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            },
+            {
+              "title": "plain value binding rejects a previous inline result after external replacement (explicit-invalidate)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2868,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:00.507Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32202ab47cc81f66d0e1-3b586585ec623911419f",
+              "file": "choice-catalog.spec.ts",
+              "line": 59,
+              "column": 64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "scheduler-catalog.spec.ts",
+      "file": "scheduler-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "scheduler catalog guided",
+          "file": "scheduler-catalog.spec.ts",
+          "line": 10,
+          "column": 46,
+          "specs": [
+            {
+              "title": "exact gap/fold native time-band controls, agenda and preserved errors/drafts: host default Temporal",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2751,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:03.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fd9bb30965a8217dc736-6e7bb6977fb6a2909d4e",
+              "file": "scheduler-catalog.spec.ts",
+              "line": 28,
+              "column": 1
+            },
+            {
+              "title": "exact gap/fold native time-band controls, agenda and preserved errors/drafts: forced temporal-polyfill 1.0.5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2806,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:03.468Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fd9bb30965a8217dc736-2420e6b02853419b5816",
+              "file": "scheduler-catalog.spec.ts",
+              "line": 35,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "title": "scheduler catalog dense",
+          "file": "scheduler-catalog.spec.ts",
+          "line": 10,
+          "column": 46,
+          "specs": [
+            {
+              "title": "exact gap/fold native time-band controls, agenda and preserved errors/drafts: host default Temporal",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2628,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:05.980Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fd9bb30965a8217dc736-2b679f26a956d6e524ea",
+              "file": "scheduler-catalog.spec.ts",
+              "line": 28,
+              "column": 1
+            },
+            {
+              "title": "exact gap/fold native time-band controls, agenda and preserved errors/drafts: forced temporal-polyfill 1.0.5",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3218,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T09:39:06.304Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fd9bb30965a8217dc736-7db0e802d5e97ebd3e28",
+              "file": "scheduler-catalog.spec.ts",
+              "line": 35,
+              "column": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "specialist-chart-explorer.spec.ts",
+      "file": "specialist-chart-explorer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "guided: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8113,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts:111:55",
+                    "location": {
+                      "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                      "column": 55,
+                      "line": 111
+                    },
+                    "snippet": "  109 |   await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await csv.focus();\n  110 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n> 111 |   await expect(csv).toHaveCount(0);await expect(host).toBeFocused();await expect(root).toHaveAttribute('tabindex','0');\n      |                                                       ^\n  112 |   await page.getByLabel('証憑を取り除く',{exact:true}).uncheck();\n  113 |   const outside=page.getByRole('navigation',{name:'専門部品'}).getByRole('button',{name:'Code',exact:true});await outside.focus();\n  114 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                        "column": 55,
+                        "line": 111
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n\n  109 |   await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await csv.focus();\n  110 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n> 111 |   await expect(csv).toHaveCount(0);await expect(host).toBeFocused();await expect(root).toHaveAttribute('tabindex','0');\n      |                                                       ^\n  112 |   await page.getByLabel('証憑を取り除く',{exact:true}).uncheck();\n  113 |   const outside=page.getByRole('navigation',{name:'専門部品'}).getByRole('button',{name:'Code',exact:true});await outside.focus();\n  114 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts:111:55"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:39:08.638Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                    "column": 55,
+                    "line": 111
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-a21ac9c6242838acbb57",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 7507,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts:111:55",
+                    "location": {
+                      "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                      "column": 55,
+                      "line": 111
+                    },
+                    "snippet": "  109 |   await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await csv.focus();\n  110 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n> 111 |   await expect(csv).toHaveCount(0);await expect(host).toBeFocused();await expect(root).toHaveAttribute('tabindex','0');\n      |                                                       ^\n  112 |   await page.getByLabel('証憑を取り除く',{exact:true}).uncheck();\n  113 |   const outside=page.getByRole('navigation',{name:'専門部品'}).getByRole('button',{name:'Code',exact:true});await outside.focus();\n  114 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                        "column": 55,
+                        "line": 111
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#files ui-file-explorer')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#files ui-file-explorer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#files ui-file-explorer')\u001b[22m\n\u001b[2m    14 × locator resolved to <ui-file-explorer label=\"添付管理\" tabindex=\"-1\" role=\"region\" aria-label=\"添付管理の操作領域\" _nghost-ng-c1049613845=\"\" data-ui-collection-scope=\"\">…</ui-file-explorer>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n\n  109 |   await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await csv.focus();\n  110 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n> 111 |   await expect(csv).toHaveCount(0);await expect(host).toBeFocused();await expect(root).toHaveAttribute('tabindex','0');\n      |                                                       ^\n  112 |   await page.getByLabel('証憑を取り除く',{exact:true}).uncheck();\n  113 |   const outside=page.getByRole('navigation',{name:'専門部品'}).getByRole('button',{name:'Code',exact:true});await outside.focus();\n  114 |   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts:111:55"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:39:09.557Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/specialist-chart-explorer.spec.ts",
+                    "column": 55,
+                    "line": 111
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-069b5ff65160b4fff979",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T09:38:18.035Z",
+    "duration": 59190.198,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

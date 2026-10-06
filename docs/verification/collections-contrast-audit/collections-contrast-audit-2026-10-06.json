@@ -1,0 +1,594 @@
+{
+  "sourceHead": "8d01adc6497addd97428507a0d3239dbe093a6a9",
+  "reviewedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+  "scope": "PR10 original24color-contrast incomplete occurrences only; no other-stage accessibility judgment.",
+  "decision": "Original24are automatic undetermined due to unpainted virtual buffer clipping; no actual contrast defect observed in the inspected normal/selected/focus/invalid states.",
+  "needsTemplateFix": false,
+  "originalOutcomeRetained": "incomplete; no old axe result edited, no rule excluded or disabled.",
+  "originalOccurrences": 24,
+  "freshExactSelectorsReproduced": 24,
+  "originalClassificationCounts": {
+    "automatic-undetermined-unpainted-virtual-buffer": 24
+  },
+  "newVersusExisting": {
+    "virtualListboxRenderer": "new in PR10 at62fbe8597444228df04c6dc4e0da85d72380fbc2",
+    "widthAdapter": "85c5ffd; source unchanged atmerged8d01adc",
+    "colors": "all color-token lines unchanged since PR9base04dc; no observed newly introduced contrast-color regression",
+    "otherStages": "not reassessed"
+  },
+  "environment": {
+    "browser": "153.0.8010.12",
+    "axe": "4.13.0",
+    "node": "v24.19.0",
+    "angularCDK": "22.2.1",
+    "viewport": "320x900,deviceScaleFactor1,200%rootfont,RTL,reducedmotion",
+    "ownedPort": 5335
+  },
+  "observedContrastPairs": [
+    {
+      "kind": "group",
+      "foreground": "#526075",
+      "background": "#ffffff",
+      "ratio": 6.385333036871963
+    },
+    {
+      "kind": "group selected",
+      "foreground": "#526075",
+      "background": "#f5f7fa",
+      "ratio": 5.949679006512653
+    },
+    {
+      "kind": "label",
+      "foreground": "#1c293d",
+      "background": "#ffffff",
+      "ratio": 14.645016318974449
+    },
+    {
+      "kind": "label selected",
+      "foreground": "#1c293d",
+      "background": "#f5f7fa",
+      "ratio": 13.645826402458427
+    }
+  ],
+  "manualMethod": {
+    "threshold": 4.5,
+    "reason": "Delivered100%text sizes14/16/18px regular; simulated user200%does not lower the conservative minimum.",
+    "formula": "sRGBlinearization at0.04045;L=.2126R+.7152G+.0722B;ratio=(Lmax+.05)/(Lmin+.05).",
+    "alpha": "Computedforegroundalpha1; backgroundtransparentlayers composited with opaque viewport/selectedrow; every ancestor opacity1/no backgroundimage/filter/mix-blend and no textshadow. ActualPNG foreground cores and opaque background samples match computed colors.",
+    "antiAliasing": "Contrast uses intended CSS/color pairs, not a minimum over antialiased edge pixels. PNGglyph counts corroborate actual rendering.",
+    "ariaHidden": "Visible repeatedgroup text is evaluated; aria-hidden=true is not treated as a contrast exemption.",
+    "occlusion": "Intersect node/text rects with page and all overflowancestor client rectangles; record logical-center and painted-region hit tests.",
+    "originalAxeContrastZero": "Raw incomplete data contrastRatio0 is undetermined metadata, not a measured0:1ratio.",
+    "pixelCountRegion": "nodeRect intersected with page and overflowancestor clipping bounds; original buffer region is empty, so original0counts alone are not independent raster evidence. Clip geometry, hit-test and actual drawings support absence; nonempty fullyvisible PNGregions independently corroborate text/backgroundcolors."
+  },
+  "followupOutcome": {
+    "fullyVisibleTargetMeasurements": 36,
+    "targetAxePasses": 36,
+    "minimumContrast": 5.949679006512653,
+    "allOriginalSelectorsFollowed": true,
+    "rawCurrentAxeStates": 12,
+    "rawCurrentViolations": 0,
+    "rawCurrentIncompleteColorOccurrences": 90,
+    "rawCurrentIncompleteBreakdown": {
+      "originalFourStates": 24,
+      "sixFullyVisibleStatesOtherBufferNodes0990through0993": 48,
+      "twoNativeWheelStatesBuffer0990through0993Plus0994group": 18
+    },
+    "remainingAutomaticUncertainty": "Globalaxeincomplete is retained; this manual judgment covers the original24 target nodes and observed followups, not every node in an arbitrary consumer."
+  },
+  "nativeSemantics": {
+    "actions": [
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "End"
+      },
+      {
+        "profile": "guided",
+        "type": "native-locator-click",
+        "id": "listbox-invalid"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "guided",
+        "type": "native-locator-click",
+        "id": "listbox-reset"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "guided",
+        "type": "native-page-wheel",
+        "deltaY": 80
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "End"
+      },
+      {
+        "profile": "dense",
+        "type": "native-locator-click",
+        "id": "listbox-invalid"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "dense",
+        "type": "native-locator-click",
+        "id": "listbox-reset"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowDown"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "Space"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-keyboard",
+        "key": "ArrowUp"
+      },
+      {
+        "profile": "dense",
+        "type": "native-page-wheel",
+        "deltaY": 64
+      }
+    ],
+    "invalidModelPreserved": [
+      "gone",
+      "gone"
+    ],
+    "selectedFollowupModels": [
+      [
+        "option0994",
+        "option0995"
+      ],
+      [
+        "option0995",
+        "option0996"
+      ]
+    ],
+    "activeAfterScroll": "候補0994",
+    "nativeAX": "All recorded target nodes have roleoption, complete label候補0994/0995/0996, exact group parent後半の候補; one primarylistbox; AXselected equalsCVAmodel.",
+    "physicalATCertification": false
+  },
+  "commands": {
+    "snapshotManifest": "snapshot-manifest.json",
+    "build": {
+      "sourceHead": "8d01adc6497addd97428507a0d3239dbe093a6a9",
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "sync",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+          "startedAtUTC": "2026-10-06T05:16:23.250375+00:00",
+          "finishedAtUTC": "2026-10-06T05:16:23.576521+00:00",
+          "actualExitCode": 0,
+          "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-1.log",
+          "logSha256": "7dabd9462c009065c38e5ba258fffb8fc6f9a68cbb912119cf59610bceed0e18"
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "check",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+          "startedAtUTC": "2026-10-06T05:16:23.576836+00:00",
+          "finishedAtUTC": "2026-10-06T05:16:23.778381+00:00",
+          "actualExitCode": 0,
+          "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-2.log",
+          "logSha256": "6aad9229e67343aa86dc4d17b2d1bd81797246acae9c4ad15614ab930700df70"
+        },
+        {
+          "command": [
+            "./node_modules/.bin/ngc",
+            "-p",
+            "tsconfig.json"
+          ],
+          "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+          "startedAtUTC": "2026-10-06T05:16:23.778780+00:00",
+          "finishedAtUTC": "2026-10-06T05:16:30.303439+00:00",
+          "actualExitCode": 0,
+          "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-3.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "command": [
+            "node",
+            "scripts/build.mjs"
+          ],
+          "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+          "startedAtUTC": "2026-10-06T05:16:30.303717+00:00",
+          "finishedAtUTC": "2026-10-06T05:16:55.689855+00:00",
+          "actualExitCode": 0,
+          "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-4.log",
+          "logSha256": "62b1f469e01a0d8dd90afc7130b6b3577ec92fd6e5fd11b8379e488b4d4f2a5e"
+        },
+        {
+          "command": [
+            "./node_modules/.bin/tailwindcss",
+            "-i",
+            "tests/fixture-app/styles.css",
+            "-o",
+            "dist/fixture-app/styles.css"
+          ],
+          "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+          "startedAtUTC": "2026-10-06T05:16:55.690338+00:00",
+          "finishedAtUTC": "2026-10-06T05:16:55.964702+00:00",
+          "actualExitCode": 0,
+          "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-5.log",
+          "logSha256": "d7bfb1a3beb40aa7f73d48ac81a00a7a825515240e7afd5dce58198f45226d81"
+        }
+      ],
+      "actualExitCode": 0,
+      "completedCommands": 5,
+      "expectedCommands": 5
+    },
+    "browser": {
+      "command": [
+        "node",
+        "/tmp/ui-foundation-collections-contrast-audit/contrast-browser.mjs"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit",
+      "startedAtUTC": "2026-10-06T05:22:38.865463+00:00",
+      "finishedAtUTC": "2026-10-06T05:23:11.179413+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/browser.log",
+      "logSha256": "c8698ee5342893178f1ed60446566e49033372aa0a4b86a8566cc34838b36b2d"
+    },
+    "postprocessingChecks": "verification-checks.json",
+    "actualExitCodes": {
+      "archive": 0,
+      "generatorSync": 0,
+      "generatorCheck": 0,
+      "strictAOT": 0,
+      "linkerBundle": 0,
+      "tokenCSS": 0,
+      "nativeBrowser": 0,
+      "postprocessingVerification": 0
+    },
+    "postprocessingActualRun": {
+      "command": [
+        "python3",
+        "/tmp/ui-foundation-collections-contrast-audit/verify-evidence.py"
+      ],
+      "startedAtUTC": "2026-10-06T05:38:58.244834+00:00",
+      "finishedAtUTC": "2026-10-06T05:38:58.517101+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/verification.log",
+      "logSha256": "3139dea38229dddce0abd05482eafcfbc8f133359dcb9c8001f7c7ff0071b4ac"
+    }
+  },
+  "machineChecks": 21,
+  "drawings": [
+    {
+      "profile": "guided",
+      "state": "narrow-listbox",
+      "path": "images/collections-contrast-guided-narrow-listbox.png",
+      "sha256": "a6df9a05eb8dc748215f7760f7eb5335a28498f575fbedfb1980eb6ec85e3ad5",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "検索/操作の下に0997以降が見える。0994/0995/0996の文字はそこへ重なって描画されていない。"
+    },
+    {
+      "profile": "guided",
+      "state": "invalid-preserved-cva",
+      "path": "images/collections-contrast-guided-invalid-preserved-cva.png",
+      "sha256": "4dff2bedd70b1a40b2e5486664743eb9fe1be42fe2c3d0cf544bd4f4dba6b8eb",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "native復元ボタンへpageがスクロールし、元bufferの文字は描画されない。未知/重複値はrawmodelに残る。"
+    },
+    {
+      "profile": "guided",
+      "state": "fully-visible-invalid",
+      "path": "images/collections-contrast-guided-fully-visible-invalid.png",
+      "sha256": "25fdfd75b6c159639335c448f3cd1b6cd798c299d65494988d8e5aab8f8d34d5",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0994/0995/0996のgroup/labelは全て読め、focusとエラーの説明が見える。"
+    },
+    {
+      "profile": "guided",
+      "state": "fully-visible-selected-0994-0995",
+      "path": "images/collections-contrast-guided-fully-visible-selected-0994-0995.png",
+      "sha256": "aa8513e4a3682ca3c9e1942bd9539b1311f41cdfc62c5d83637ff6e927261137",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0994/0995の選択背景と0996の通常背景、0994のactive枠・compositefocusが見分けられる。"
+    },
+    {
+      "profile": "guided",
+      "state": "fully-visible-selected-0995-0996",
+      "path": "images/collections-contrast-guided-fully-visible-selected-0995-0996.png",
+      "sha256": "c7eebef3dff29319a113bfeb016df55b30a5122909ff733b1adeca5eb7ed63b5",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0995/0996の選択背景が可視で、非選択の0994にactive枠が残る。"
+    },
+    {
+      "profile": "guided",
+      "state": "native-wheel-partial-clip",
+      "path": "images/collections-contrast-guided-native-wheel-partial-clip.png",
+      "sha256": "52ba0718883fac379b434c69628a5fff89ce80f7a618e398ebf1f97c75ed0282",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "半行wheel後は0994groupがclip外、labelのlinebox上端だけが部分clip。文字glyphはこの値では全て残っており、バッファの全clipと区別できる。"
+    },
+    {
+      "profile": "dense",
+      "state": "narrow-listbox",
+      "path": "images/collections-contrast-dense-narrow-listbox.png",
+      "sha256": "2cbc642c937b2251a7ea3d741794a2284f7604124237ca551373c244ebc24fb8",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "検索/操作の下に0997以降が見える。0994/0995/0996の文字はそこへ重なって描画されていない。"
+    },
+    {
+      "profile": "dense",
+      "state": "invalid-preserved-cva",
+      "path": "images/collections-contrast-dense-invalid-preserved-cva.png",
+      "sha256": "8cc509dfe6c86bac3c89adb7eb045011c96d9ee6dcbfe1860e81fe181db97ec7",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "native復元ボタンへpageがスクロールし、元bufferの文字は描画されない。未知/重複値はrawmodelに残る。"
+    },
+    {
+      "profile": "dense",
+      "state": "fully-visible-invalid",
+      "path": "images/collections-contrast-dense-fully-visible-invalid.png",
+      "sha256": "a8ab40e4d9a2b30819433eff554b574d655a41719c4642c5e065064269b782e6",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0994/0995/0996のgroup/labelは全て読め、focusとエラーの説明が見える。"
+    },
+    {
+      "profile": "dense",
+      "state": "fully-visible-selected-0994-0995",
+      "path": "images/collections-contrast-dense-fully-visible-selected-0994-0995.png",
+      "sha256": "815d52635c534c7f469e087b0081d0ba44ba536ccb3283f6d9c8d176636bd6ef",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0994/0995の選択背景と0996の通常背景、0994のactive枠・compositefocusが見分けられる。"
+    },
+    {
+      "profile": "dense",
+      "state": "fully-visible-selected-0995-0996",
+      "path": "images/collections-contrast-dense-fully-visible-selected-0995-0996.png",
+      "sha256": "34d0e029874ac4e2b9174564a2b39c4ab21cf2bf80f336ebc15afe7a392d816a",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "0995/0996の選択背景が可視で、非選択の0994にactive枠が残る。"
+    },
+    {
+      "profile": "dense",
+      "state": "native-wheel-partial-clip",
+      "path": "images/collections-contrast-dense-native-wheel-partial-clip.png",
+      "sha256": "b879a742bd300e0b0257866dc99de13fbf5d0def77cbfbeeb74be25d8fb738f8",
+      "tool": "tools.view_image",
+      "detail": "original",
+      "actualOpened": true,
+      "observedAtUTC": "2026-10-06T05:36:53.315226+00:00",
+      "notes": "半行wheel後は0994groupがclip外、labelのlinebox上端だけが部分clip。文字glyphはこの値では全て残っており、バッファの全clipと区別できる。"
+    }
+  ],
+  "sourceHistory": "source-and-token-history.json",
+  "original24Mapping": "original-24-occurrences.json",
+  "rawBrowserReport": "contrast-browser-results.json",
+  "standards": [
+    {
+      "title": "W3C Understanding SC1.4.3 Contrast Minimum",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "observedUTC": "2026-10-06T05:36:53.315226+00:00"
+    },
+    {
+      "title": "WCAG2.2 relative luminance",
+      "url": "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance",
+      "observedUTC": "2026-10-06T05:36:53.315226+00:00"
+    },
+    {
+      "title": "WCAG2.2 contrast ratio",
+      "url": "https://www.w3.org/TR/WCAG22/#dfn-contrast-ratio",
+      "observedUTC": "2026-10-06T05:36:53.315226+00:00"
+    }
+  ],
+  "knownLimits": [
+    "Chromium153 only;Safari/Firefox/SSR/shadowDOM/separate-document not measured.",
+    "Physicalassistive technology/OS-touch/screenreader interaction and human business comprehension not measured.",
+    "Arbitraryapp CSSoverrides/customprofiles/forcedcolors/backgroundimages/opacity are outside this observed snapshot.",
+    "Originalaxe incomplete records stayincomplete; zero violations does not establish globalWCAGconformance."
+  ],
+  "harnessHistory": "verification-harness-history.json",
+  "ownBrowserServerClosed": true,
+  "rootRepoGitGithubWritesByReviewer": false,
+  "writesConfinedTo": "/tmp/ui-foundation-collections-contrast-audit"
+}

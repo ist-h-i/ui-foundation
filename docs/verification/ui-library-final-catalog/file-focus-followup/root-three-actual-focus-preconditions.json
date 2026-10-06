@@ -1,0 +1,113 @@
+[
+  {
+    "trace": "root-original-failure/trace.zip",
+    "traceSha256": "a0243935a40d65ebb131d5a7da87de3c542d546e58b6028d1c6916a1ee2b2c84",
+    "focusCall": {
+      "type": "before",
+      "callId": "call@3090",
+      "startTime": 1327047.315,
+      "class": "Frame",
+      "method": "focus",
+      "params": {
+        "selector": "[data-explorer-id=csv]",
+        "strict": true
+      },
+      "stepId": "pw:api@44"
+    },
+    "focusLogs": [
+      {
+        "type": "log",
+        "callId": "call@3090",
+        "time": 1327049.408,
+        "message": "waiting for locator('[data-explorer-id=csv]')"
+      },
+      {
+        "type": "log",
+        "callId": "call@3090",
+        "time": 1327050.67,
+        "message": "  locator resolved to <button disabled type=\"button\" tabindex=\"-1\" aria-level=\"2\" role=\"treeitem\" aria-selected=\"false\" data-explorer-id=\"csv\" class=\"ui-explorer-row\" data-collection-control=\"\" _ngcontent-ng-c1049613845=\"\"> 証憑.csv / 123 bytes</button>"
+      }
+    ],
+    "focusAfter": {
+      "type": "after",
+      "callId": "call@3090",
+      "endTime": 1327051.374
+    },
+    "disabledAtLocatorResolution": true,
+    "observationLimit": "Trace locator log records native disabled status; trace has no product-owned focus callback instrumentation or full activeElement telemetry."
+  },
+  {
+    "trace": "root-replay-failures/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium/trace.zip",
+    "traceSha256": "388691d02fa598f42edc6d5789a8df821fda1dc87620f4ed2a718a2ad8b41d7d",
+    "focusCall": {
+      "type": "before",
+      "callId": "call@437",
+      "startTime": 54360.584,
+      "class": "Frame",
+      "method": "focus",
+      "params": {
+        "selector": "[data-explorer-id=csv]",
+        "strict": true
+      },
+      "stepId": "pw:api@44"
+    },
+    "focusLogs": [
+      {
+        "type": "log",
+        "callId": "call@437",
+        "time": 54362.194,
+        "message": "waiting for locator('[data-explorer-id=csv]')"
+      },
+      {
+        "type": "log",
+        "callId": "call@437",
+        "time": 54363.654,
+        "message": "  locator resolved to <button disabled type=\"button\" tabindex=\"-1\" aria-level=\"2\" role=\"treeitem\" aria-selected=\"false\" data-explorer-id=\"csv\" class=\"ui-explorer-row\" data-collection-control=\"\" _ngcontent-ng-c1049613845=\"\"> 証憑.csv / 123 bytes</button>"
+      }
+    ],
+    "focusAfter": {
+      "type": "after",
+      "callId": "call@437",
+      "endTime": 54364.333
+    },
+    "disabledAtLocatorResolution": true,
+    "observationLimit": "Trace locator log records native disabled status; trace has no product-owned focus callback instrumentation or full activeElement telemetry."
+  },
+  {
+    "trace": "root-replay-failures/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium/trace.zip",
+    "traceSha256": "eae6ddd8636645b4796c98f03ea0864ee768951e5215bfab6830e2f468273476",
+    "focusCall": {
+      "type": "before",
+      "callId": "call@435",
+      "startTime": 54041.06,
+      "class": "Frame",
+      "method": "focus",
+      "params": {
+        "selector": "[data-explorer-id=csv]",
+        "strict": true
+      },
+      "stepId": "pw:api@43"
+    },
+    "focusLogs": [
+      {
+        "type": "log",
+        "callId": "call@435",
+        "time": 54043.578,
+        "message": "waiting for locator('[data-explorer-id=csv]')"
+      },
+      {
+        "type": "log",
+        "callId": "call@435",
+        "time": 54045.098,
+        "message": "  locator resolved to <button disabled type=\"button\" tabindex=\"-1\" aria-level=\"2\" role=\"treeitem\" aria-selected=\"false\" data-explorer-id=\"csv\" class=\"ui-explorer-row\" data-collection-control=\"\" _ngcontent-ng-c1049613845=\"\"> 証憑.csv / 123 bytes</button>"
+      }
+    ],
+    "focusAfter": {
+      "type": "after",
+      "callId": "call@435",
+      "endTime": 54045.785
+    },
+    "disabledAtLocatorResolution": true,
+    "observationLimit": "Trace locator log records native disabled status; trace has no product-owned focus callback instrumentation or full activeElement telemetry."
+  }
+]

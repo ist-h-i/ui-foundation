@@ -1,0 +1,141 @@
+[
+  {
+    "name": "commit-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:35:53.429395+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:35:54.207569+00:00"
+  },
+  {
+    "name": "commit-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:35:54.208859+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:35:55.045065+00:00"
+  },
+  {
+    "name": "commit-final-all139-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.all-generated.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:35:55.046741+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:36:08.501487+00:00"
+  },
+  {
+    "name": "commit-final-tools-tsc",
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "tsconfig.tools.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:36:08.504124+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:36:11.663257+00:00"
+  },
+  {
+    "name": "commit-final-positive-barrel",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:36:11.664891+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:36:21.522616+00:00"
+  },
+  {
+    "name": "commit-final-positive-direct",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-direct.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:36:21.525073+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:36:23.552007+00:00"
+  },
+  {
+    "name": "commit-final-positive-code",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-code.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:36:23.553289+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:36:25.538730+00:00"
+  },
+  {
+    "name": "commit-final-negative",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.negative.json"
+    ],
+    "expectedExit": 1,
+    "startedAt": "2026-10-06T08:36:25.540378+00:00",
+    "actualExit": 1,
+    "endedAt": "2026-10-06T08:36:38.874525+00:00",
+    "diagnostics": [
+      "TS2322",
+      "TS2322",
+      "TS2339",
+      "TS2322",
+      "TS2322"
+    ],
+    "preciseFiveOnly": true
+  },
+  {
+    "name": "commit-final-canonical-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:36:38.878399+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:37:41.084472+00:00"
+  },
+  {
+    "name": "commit-final-public-direct-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:37:41.087602+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:37:46.037494+00:00"
+  },
+  {
+    "name": "commit-final-public-direct-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "expectedExit": 0,
+    "startedAt": "2026-10-06T08:37:46.039095+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:37:48.278060+00:00"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "verdict": "APPROVE_SELECTED_SCOPE",
+  "blockingSourceFindings": 0,
+  "resolvedSourceFindings": [
+    "scheduler_same_turn_focus_restore",
+    "scheduler_accepted_surrogate_id",
+    "scheduler_prefix_and_fold_dom_id_collision"
+  ],
+  "sourceCount": 18,
+  "sourceFrameIncludesRootPublicIndex": 19,
+  "schedulerControllerSha256": "4f8c5855858ccc66967c51002ff4cc09cc068591cbdd00fcd59eef6a30948b2c",
+  "treeSha256": "d83ad99da42101bcfbbed9f4e00fb7a75645b18e063e029686c653c42da3e82c",
+  "publicIndexSha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+  "strictAotSupportingTemplateCount": 94,
+  "full139AotExecuted": false,
+  "nativeCaseCount": 42,
+  "nativePassCount": 42,
+  "axeScans": 24,
+  "axeViolations": 0,
+  "axeIncompleteNodes": {
+    "aria-valid-attr-value": 16,
+    "color-contrast": 50
+  },
+  "modelCases16": 16,
+  "localeModelAndServerDiCases": 5,
+  "expectedPublicAotNegativeFailures": 4,
+  "scopedPositiveAotExit": 0,
+  "ownServerStopsConfirmed": true,
+  "sharedRepositoryOrGitModifiedByThisAgent": false,
+  "remainingScopeLimits": [
+    "all181 and full139 AOT approval",
+    "all-source AST departure audit",
+    "real AT and Firefox/Safari",
+    "full component SSR and hydration",
+    "application transport/backend/save/instant resolution and real undo"
+  ]
+}

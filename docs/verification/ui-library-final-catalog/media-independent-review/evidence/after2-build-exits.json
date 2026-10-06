@@ -1,0 +1,54 @@
+[
+  {
+    "name": "sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:02:46.608793+00:00"
+  },
+  {
+    "name": "check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:02:47.523705+00:00"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:03:13.336102+00:00"
+  },
+  {
+    "name": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:04:09.963736+00:00"
+  },
+  {
+    "name": "model",
+    "command": [
+      "npx",
+      "tsx",
+      "--test",
+      "tests/model/foundation-file-draft.test.ts",
+      "tests/model/foundation-message-state.test.ts"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:04:11.147907+00:00"
+  }
+]

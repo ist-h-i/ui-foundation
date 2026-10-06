@@ -1,0 +1,398 @@
+{
+  "inputSha256": "b2fef0491fa1f67e4afd9d8e35013438ac95b361a51b0e6eb8d98f419d9f069d",
+  "sources": {
+    "image-media.ts": "4580fb3c2a2dbf4e346d98e728bbf67a798eaf9fde7aaac1dba1e2ab5851b836",
+    "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+    "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+    "image-cropper.ts": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+    "barcode.ts": "abc9b51ce3589ce79af30e2c1d63a842fa4302d9b0667c12b36765ea740797b3"
+  },
+  "results": [
+    {
+      "profile": "guided",
+      "checks": [
+        {
+          "component": "compare",
+          "prefix": "D1 ",
+          "expected": "D1 Compare load failed",
+          "actual": "D1 Compare load failed",
+          "pass": true
+        },
+        {
+          "component": "audio",
+          "prefix": "D1 ",
+          "expected": "D1 Media load failed",
+          "actual": "D1 Media load failed",
+          "pass": true
+        },
+        {
+          "component": "pdf",
+          "prefix": "D1 ",
+          "expected": "D1 PDF load failed",
+          "actual": "D1 PDF load failed",
+          "pass": true
+        },
+        {
+          "component": "crop",
+          "prefix": "D1 ",
+          "expected": "D1 Crop load failed",
+          "actual": "D1 Crop load failed",
+          "pass": true
+        },
+        {
+          "component": "barcode",
+          "prefix": "D1 ",
+          "expected": "D1 Barcode generation failed",
+          "actual": "D1 Barcode generation failed",
+          "pass": true
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D1 ",
+          "actual": "D1 After 50%",
+          "pass": true
+        },
+        {
+          "component": "compare",
+          "prefix": "D2 ",
+          "expected": "D2 Compare load failed",
+          "actual": "D2 Compare load failed",
+          "pass": true
+        },
+        {
+          "component": "audio",
+          "prefix": "D2 ",
+          "expected": "D2 Media load failed",
+          "actual": "D2 Media load failed",
+          "pass": true
+        },
+        {
+          "component": "pdf",
+          "prefix": "D2 ",
+          "expected": "D2 PDF load failed",
+          "actual": "D2 PDF load failed",
+          "pass": true
+        },
+        {
+          "component": "crop",
+          "prefix": "D2 ",
+          "expected": "D2 Crop load failed",
+          "actual": "D2 Crop load failed",
+          "pass": true
+        },
+        {
+          "component": "barcode",
+          "prefix": "D2 ",
+          "expected": "D2 Barcode generation failed",
+          "actual": "D2 Barcode generation failed",
+          "pass": true
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D2 ",
+          "actual": "D2 After 50%",
+          "pass": true
+        },
+        {
+          "component": "pdf empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose PDF",
+          "actual": "D3 Choose PDF · 0 / 0",
+          "pass": true
+        },
+        {
+          "component": "crop empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose image",
+          "actual": "D3 Choose image · 回転 0度",
+          "pass": true
+        },
+        {
+          "component": "media paused status",
+          "prefix": "D3 ",
+          "expected": "D3 Media paused",
+          "actual": "D3 Media paused",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "compareRecovery": {
+        "nativeImageDecoded": true,
+        "currentSource": "/assets/media/red.svg",
+        "errorText": []
+      },
+      "before": {
+        "compare": "比較前の画像を取得できません。",
+        "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+        "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+        "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+        "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+      },
+      "observations": [
+        {
+          "prefix": "D1 ",
+          "text": {
+            "compare": "D1 Compare load failed",
+            "audio": "D1 Media load failed",
+            "pdf": "D1 PDF load failed",
+            "crop": "D1 Crop load failed",
+            "barcode": "D1 Barcode generation failed"
+          },
+          "aria": "D1 After 50%",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2,
+          "focusedRangeRetained": true
+        },
+        {
+          "prefix": "D2 ",
+          "text": {
+            "compare": "D2 Compare load failed",
+            "audio": "D2 Media load failed",
+            "pdf": "D2 PDF load failed",
+            "crop": "D2 Crop load failed",
+            "barcode": "D2 Barcode generation failed"
+          },
+          "aria": "D2 After 50%",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2,
+          "focusedRangeRetained": true
+        }
+      ],
+      "sameDom": true,
+      "noReload": true,
+      "fileCvaRetained": true,
+      "appLabelsRetained": true,
+      "resources": [
+        "http://127.0.0.1:5343/media",
+        "http://127.0.0.1:5343/tokens.css",
+        "http://127.0.0.1:5343/styles.css",
+        "http://127.0.0.1:5343/specialist.css",
+        "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+        "http://127.0.0.1:5343/main.js",
+        "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+        "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+        "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+        "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+        "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+        "http://127.0.0.1:5343/assets/media/red.svg",
+        "http://127.0.0.1:5343/assets/media/blue.svg",
+        "http://127.0.0.1:5343/assets/media/tone.wav",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/sample.pdf",
+        "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+        "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/invalid.pdf",
+        "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+      ],
+      "workers": [
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+      ],
+      "pass": true
+    },
+    {
+      "profile": "dense",
+      "checks": [
+        {
+          "component": "compare",
+          "prefix": "D1 ",
+          "expected": "D1 Compare load failed",
+          "actual": "D1 Compare load failed",
+          "pass": true
+        },
+        {
+          "component": "audio",
+          "prefix": "D1 ",
+          "expected": "D1 Media load failed",
+          "actual": "D1 Media load failed",
+          "pass": true
+        },
+        {
+          "component": "pdf",
+          "prefix": "D1 ",
+          "expected": "D1 PDF load failed",
+          "actual": "D1 PDF load failed",
+          "pass": true
+        },
+        {
+          "component": "crop",
+          "prefix": "D1 ",
+          "expected": "D1 Crop load failed",
+          "actual": "D1 Crop load failed",
+          "pass": true
+        },
+        {
+          "component": "barcode",
+          "prefix": "D1 ",
+          "expected": "D1 Barcode generation failed",
+          "actual": "D1 Barcode generation failed",
+          "pass": true
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D1 ",
+          "actual": "D1 After 50%",
+          "pass": true
+        },
+        {
+          "component": "compare",
+          "prefix": "D2 ",
+          "expected": "D2 Compare load failed",
+          "actual": "D2 Compare load failed",
+          "pass": true
+        },
+        {
+          "component": "audio",
+          "prefix": "D2 ",
+          "expected": "D2 Media load failed",
+          "actual": "D2 Media load failed",
+          "pass": true
+        },
+        {
+          "component": "pdf",
+          "prefix": "D2 ",
+          "expected": "D2 PDF load failed",
+          "actual": "D2 PDF load failed",
+          "pass": true
+        },
+        {
+          "component": "crop",
+          "prefix": "D2 ",
+          "expected": "D2 Crop load failed",
+          "actual": "D2 Crop load failed",
+          "pass": true
+        },
+        {
+          "component": "barcode",
+          "prefix": "D2 ",
+          "expected": "D2 Barcode generation failed",
+          "actual": "D2 Barcode generation failed",
+          "pass": true
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D2 ",
+          "actual": "D2 After 50%",
+          "pass": true
+        },
+        {
+          "component": "pdf empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose PDF",
+          "actual": "D3 Choose PDF · 0 / 0",
+          "pass": true
+        },
+        {
+          "component": "crop empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose image",
+          "actual": "D3 Choose image · 回転 0度",
+          "pass": true
+        },
+        {
+          "component": "media paused status",
+          "prefix": "D3 ",
+          "expected": "D3 Media paused",
+          "actual": "D3 Media paused",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "compareRecovery": {
+        "nativeImageDecoded": true,
+        "currentSource": "/assets/media/red.svg",
+        "errorText": []
+      },
+      "before": {
+        "compare": "比較前の画像を取得できません。",
+        "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+        "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+        "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+        "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+      },
+      "observations": [
+        {
+          "prefix": "D1 ",
+          "text": {
+            "compare": "D1 Compare load failed",
+            "audio": "D1 Media load failed",
+            "pdf": "D1 PDF load failed",
+            "crop": "D1 Crop load failed",
+            "barcode": "D1 Barcode generation failed"
+          },
+          "aria": "D1 After 50%",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2,
+          "focusedRangeRetained": true
+        },
+        {
+          "prefix": "D2 ",
+          "text": {
+            "compare": "D2 Compare load failed",
+            "audio": "D2 Media load failed",
+            "pdf": "D2 PDF load failed",
+            "crop": "D2 Crop load failed",
+            "barcode": "D2 Barcode generation failed"
+          },
+          "aria": "D2 After 50%",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2,
+          "focusedRangeRetained": true
+        }
+      ],
+      "sameDom": true,
+      "noReload": true,
+      "fileCvaRetained": true,
+      "appLabelsRetained": true,
+      "resources": [
+        "http://127.0.0.1:5343/media",
+        "http://127.0.0.1:5343/tokens.css",
+        "http://127.0.0.1:5343/styles.css",
+        "http://127.0.0.1:5343/specialist.css",
+        "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+        "http://127.0.0.1:5343/main.js",
+        "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+        "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+        "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+        "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+        "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+        "http://127.0.0.1:5343/assets/media/red.svg",
+        "http://127.0.0.1:5343/assets/media/blue.svg",
+        "http://127.0.0.1:5343/assets/media/tone.wav",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/sample.pdf",
+        "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+        "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/invalid.pdf",
+        "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+      ],
+      "workers": [
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+      ],
+      "pass": true
+    }
+  ]
+}

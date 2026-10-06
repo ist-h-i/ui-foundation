@@ -1,0 +1,754 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-media-gauge-independent-review/repository/node_modules/.bin/playwright",
+      "test",
+      "-c",
+      "playwright.media-independent.config.ts",
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "tests/ui/media-lifetime.spec.ts"
+    ],
+    "configFile": "/private/tmp/ui-foundation-media-gauge-independent-review/repository/playwright.media-independent.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-media-gauge-independent-review/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/ui-foundation-media-gauge-independent-review/evidence/final-formal-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/private/tmp/ui-foundation-media-gauge-independent-review/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../evidence/final-formal-media-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "media-lifetime.spec.ts",
+      "file": "media-lifetime.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native crop closes stale decoded Bitmaps during rapid replacement and destruction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2056,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:41:57.538Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-77a69fd2efa811b16de2",
+          "file": "media-lifetime.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2650,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:41:59.968Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-41d44c001e4a6db064bb",
+          "file": "media-lifetime.spec.ts",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "PDF worker startup failure reports an error and terminates its native Worker",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2105,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:02.634Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-81ea6d7ef4190a3d9bb1",
+          "file": "media-lifetime.spec.ts",
+          "line": 101,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "media-regressions.spec.ts",
+      "file": "media-regressions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12311,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:04.817Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-play-ownership",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIGFmdGVyIG5ld2VyIHByb21pc2UgZnVsZmlsbGVkIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjAzMjkzOSwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4wNTQ4MjcKICB9LAogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIHdoaWxlIG5ld2VyIHByb21pc2UgcmVtYWlucyBwZW5kaW5nIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjA5MDIxOSwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4xMTU5OTgKICB9LAogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBwbGF5aW5nIGV2ZW50IHJlZW50cnkgd2l0aG91dCB3cmFwcGVyIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJwcm9iZSI6IHsKICAgICAgInNlcXVlbmNlIjogWwogICAgICAgICJwbGF5aW5nIiwKICAgICAgICAic3RvcCIsCiAgICAgICAgIm5ldyBwbGF5IgogICAgICBdLAogICAgICAicGxheWluZyI6IDIKICAgIH0sCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjE2MjY3NiwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4yMDk5NjYKICB9LAogIHsKICAgICJjYXNlIjogImN1cnJlbnQgaGlkZGVuIGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiB0cnVlCiAgfSwKICB7CiAgICAiY2FzZSI6ICJjdXJyZW50IGRpc2FibGVkIGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiB0cnVlCiAgfSwKICB7CiAgICAiY2FzZSI6ICJjdXJyZW50IHNvdXJjZSBjbGVhbnVwIGJlZm9yZSBhbmQgYWZ0ZXIgc3RhbGUgZnVsZmlsbG1lbnQiLAogICAgInBhdXNlZCI6IHRydWUsCiAgICAiaGFzU3JjIjogdHJ1ZQogIH0sCiAgewogICAgImNhc2UiOiAiY3VycmVudCBkZXN0cm95IGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiBmYWxzZQogIH0KXQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-3a9f552b27a281f48ad2",
+          "file": "media-regressions.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "real VTT removal and source replacement reconcile selected caption, native mode and current cue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3528,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:17.154Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-caption-reconciliation",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogImNhcHRpb24gcmVtb3ZhbCIsCiAgICAidHJhY2tDb3VudCI6IDAsCiAgICAic2VsZWN0aW9uIjogIiIsCiAgICAiY3VlQ291bnQiOiAwCiAgfSwKICB7CiAgICAiY2FzZSI6ICJzYW1lIElEIG5ldyBzcmMgd2hpbGUgYWN0dWFsIFZUVCByZXF1ZXN0IHBlbmRpbmciLAogICAgInNlbGVjdGlvbiI6ICJzZWNvbmQiLAogICAgImN1ZUNvdW50IjogMAogIH0sCiAgewogICAgImNhc2UiOiAicmVhbCByZXBsYWNlbWVudCBsb2FkZWQgYW5kIHJlb3JkZXJlZCIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXSwKICAgICJjdWUiOiAi5LqM44Gk55uu44Gu56K66KqN5a2X5bmV44Gn44GZ44CCIgogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIG1vZGUgY2hhbmdlIGNhbm5vdCByZXBsYWNlIGV4cGxpY2l0IHNlbGVjdGlvbiBvd25lciIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXQogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIGxhYmVsbGVkIHNlbGVjdCBleHBsaWNpdGx5IGNoYW5nZXMgYW5kIGNsZWFycyBjYXB0aW9uIG93bmVyIiwKICAgICJzZWxlY3Rpb24iOiAiIiwKICAgICJtb2RlcyI6IFsKICAgICAgImRpc2FibGVkIiwKICAgICAgImRpc2FibGVkIgogICAgXSwKICAgICJjdWVDb3VudCI6IDAKICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-1c4eb5980776fdbe5c75",
+          "file": "media-regressions.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10184,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:20.705Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "pdf-named-region-axe",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAic3RhdGUiOiAiZW1wdHkiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJsb2FkaW5nIGFjdHVhbCBoZWxkIHJlcXVlc3QiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJsb2FkZWQgYWN0dWFsIFBERi5qcyBjYW52YXMiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJpbnZhbGlkIFBERiBlcnJvciIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAic3RhdGUiOiAiZW1wdHkiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInN0YXRlIjogImxvYWRpbmcgYWN0dWFsIGhlbGQgcmVxdWVzdCIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAic3RhdGUiOiAibG9hZGVkIGFjdHVhbCBQREYuanMgY2FudmFzIiwKICAgICJ2aW9sYXRpb25zIjogW10KICB9LAogIHsKICAgICJwcm9maWxlIjogImRlbnNlIiwKICAgICJzdGF0ZSI6ICJpbnZhbGlkIFBERiBlcnJvciIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-ea39fd6fdc6afcc493b8",
+          "file": "media-regressions.spec.ts",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13298,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:30.920Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "lightbox-rotation-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDI0LAogICAgICAidG9wIjogMjQsCiAgICAgICJpbWFnZVdpZHRoIjogNjk2LAogICAgICAiaW1hZ2VIZWlnaHQiOiA1MjIsCiAgICAgICJjYW52YXNXaWR0aCI6IDY5NiwKICAgICAgImNhbnZhc0hlaWdodCI6IDUyMiwKICAgICAgImNsaWVudFdpZHRoIjogMjIyLAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA3NDQsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA1NzAKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAxOTgsCiAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA1MjIsCiAgICAgICJzY3JvbGxUb3AiOiA5MAogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10KICB9LAogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiA5MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAyNCwKICAgICAgInRvcCI6IDI0LAogICAgICAiaW1hZ2VXaWR0aCI6IDUyMiwKICAgICAgImltYWdlSGVpZ2h0IjogNjk2LAogICAgICAiY2FudmFzV2lkdGgiOiA1MjIsCiAgICAgICJjYW52YXNIZWlnaHQiOiA2OTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNTcwLAogICAgICAic2Nyb2xsSGVpZ2h0IjogNzQ0CiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMTk4LAogICAgICAiYm90dG9tIjogNDU2LAogICAgICAiY2xpZW50V2lkdGgiOiAyMjIsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogMzQ4LAogICAgICAic2Nyb2xsVG9wIjogMjY0CiAgICB9LAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDE4MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAyNCwKICAgICAgInRvcCI6IDI0LAogICAgICAiaW1hZ2VXaWR0aCI6IDY5NiwKICAgICAgImltYWdlSGVpZ2h0IjogNTIyLAogICAgICAiY2FudmFzV2lkdGgiOiA2OTYsCiAgICAgICJjYW52YXNIZWlnaHQiOiA1MjIsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNzQ0LAogICAgICAic2Nyb2xsSGVpZ2h0IjogNTcwCiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMTk4LAogICAgICAiYm90dG9tIjogNDU2LAogICAgICAiY2xpZW50V2lkdGgiOiAyMjIsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogNTIyLAogICAgICAic2Nyb2xsVG9wIjogOTAKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJndWlkZWQiLAogICAgInJvdGF0aW9uIjogMjcwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDI0LAogICAgICAidG9wIjogMjQsCiAgICAgICJpbWFnZVdpZHRoIjogNTIyLAogICAgICAiaW1hZ2VIZWlnaHQiOiA2OTYsCiAgICAgICJjYW52YXNXaWR0aCI6IDUyMiwKICAgICAgImNhbnZhc0hlaWdodCI6IDY5NiwKICAgICAgImNsaWVudFdpZHRoIjogMjIyLAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA1NzAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA3NDQKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAxOTgsCiAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiAzNDgsCiAgICAgICJzY3JvbGxUb3AiOiAyNjQKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDE2LAogICAgICAidG9wIjogMTYsCiAgICAgICJpbWFnZVdpZHRoIjogODg4LAogICAgICAiaW1hZ2VIZWlnaHQiOiA2NjYsCiAgICAgICJjYW52YXNXaWR0aCI6IDg4OCwKICAgICAgImNhbnZhc0hlaWdodCI6IDY2NiwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA2OTgKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAyMzgsCiAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA2NjYsCiAgICAgICJzY3JvbGxUb3AiOiAyMTgKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiA5MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAxNiwKICAgICAgInRvcCI6IDE2LAogICAgICAiaW1hZ2VXaWR0aCI6IDY2NiwKICAgICAgImltYWdlSGVpZ2h0IjogODg4LAogICAgICAiY2FudmFzV2lkdGgiOiA2NjYsCiAgICAgICJjYW52YXNIZWlnaHQiOiA4ODgsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNjk4LAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTIwCiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMjM4LAogICAgICAiYm90dG9tIjogNDY0LAogICAgICAiY2xpZW50V2lkdGgiOiAyNTQsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogNDQ0LAogICAgICAic2Nyb2xsVG9wIjogNDQwCiAgICB9LAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInJvdGF0aW9uIjogMTgwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDE2LAogICAgICAidG9wIjogMTYsCiAgICAgICJpbWFnZVdpZHRoIjogODg4LAogICAgICAiaW1hZ2VIZWlnaHQiOiA2NjYsCiAgICAgICJjYW52YXNXaWR0aCI6IDg4OCwKICAgICAgImNhbnZhc0hlaWdodCI6IDY2NiwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA2OTgKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAyMzgsCiAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA2NjYsCiAgICAgICJzY3JvbGxUb3AiOiAyMTgKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAyNzAsCiAgICAiem9vbSI6IDQsCiAgICAic3RhcnQiOiB7CiAgICAgICJsZWZ0IjogMTYsCiAgICAgICJ0b3AiOiAxNiwKICAgICAgImltYWdlV2lkdGgiOiA2NjYsCiAgICAgICJpbWFnZUhlaWdodCI6IDg4OCwKICAgICAgImNhbnZhc1dpZHRoIjogNjY2LAogICAgICAiY2FudmFzSGVpZ2h0IjogODg4LAogICAgICAiY2xpZW50V2lkdGgiOiAyNTQsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDY5OCwKICAgICAgInNjcm9sbEhlaWdodCI6IDkyMAogICAgfSwKICAgICJlbmQiOiB7CiAgICAgICJyaWdodCI6IDIzOCwKICAgICAgImJvdHRvbSI6IDQ2NCwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsTGVmdCI6IDQ0NCwKICAgICAgInNjcm9sbFRvcCI6IDQ0MAogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-1d585800859dec156918",
+          "file": "media-regressions.spec.ts",
+          "line": 145,
+          "column": 1
+        },
+        {
+          "title": "desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4111,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:44.245Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "lightbox-desktop-rotation-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMjQsCiAgICAgICAgIndpZHRoIjogODYyLAogICAgICAgICJoZWlnaHQiOiA2NDYuNSwKICAgICAgICAiY2FudmFzV2lkdGgiOiA4NjIsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDY0Ni41CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ1NS41LAogICAgICAgICJyaWdodCI6IDg4NgogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDY5NQogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDkwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMTMxLjc1LAogICAgICAgICJ3aWR0aCI6IDY0Ni41LAogICAgICAgICJoZWlnaHQiOiA4NjIsCiAgICAgICAgImNhbnZhc1dpZHRoIjogNjQ2LjUsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDg2MgogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICAgInJpZ2h0IjogNzc4LjI1CiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkxMCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTEwLAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTEwCiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJndWlkZWQiLAogICAgInJvdGF0aW9uIjogMTgwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMjQsCiAgICAgICAgIndpZHRoIjogODYyLAogICAgICAgICJoZWlnaHQiOiA2NDYuNSwKICAgICAgICAiY2FudmFzV2lkdGgiOiA4NjIsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDY0Ni41CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ1NS41LAogICAgICAgICJyaWdodCI6IDg4NgogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDY5NQogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDI3MCwKICAgICJ6b29tIjogMSwKICAgICJnZW9tZXRyeSI6IHsKICAgICAgInN0YXJ0IjogewogICAgICAgICJ0b3AiOiAyNCwKICAgICAgICAibGVmdCI6IDEzMS43NSwKICAgICAgICAid2lkdGgiOiA2NDYuNSwKICAgICAgICAiaGVpZ2h0IjogODYyLAogICAgICAgICJjYW52YXNXaWR0aCI6IDY0Ni41LAogICAgICAgICJjYW52YXNIZWlnaHQiOiA4NjIKICAgICAgfSwKICAgICAgImVuZCI6IHsKICAgICAgICAiYm90dG9tIjogNDU2LAogICAgICAgICJyaWdodCI6IDc3OC4yNQogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDkxMAogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInJvdGF0aW9uIjogMCwKICAgICJ6b29tIjogMSwKICAgICJnZW9tZXRyeSI6IHsKICAgICAgInN0YXJ0IjogewogICAgICAgICJ0b3AiOiAxNiwKICAgICAgICAibGVmdCI6IDE2LAogICAgICAgICJ3aWR0aCI6IDg5NCwKICAgICAgICAiaGVpZ2h0IjogNjcwLjUsCiAgICAgICAgImNhbnZhc1dpZHRoIjogODk0LAogICAgICAgICJjYW52YXNIZWlnaHQiOiA2NzAuNQogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NjMuNSwKICAgICAgICAicmlnaHQiOiA5MTAKICAgICAgfSwKICAgICAgImNsaWVudFdpZHRoIjogOTI2LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjYsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA3MDMKICAgIH0KICB9LAogIHsKICAgICJwcm9maWxlIjogImRlbnNlIiwKICAgICJyb3RhdGlvbiI6IDkwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDE2LAogICAgICAgICJsZWZ0IjogMTI3Ljc1LAogICAgICAgICJ3aWR0aCI6IDY3MC41LAogICAgICAgICJoZWlnaHQiOiA4OTQsCiAgICAgICAgImNhbnZhc1dpZHRoIjogNjcwLjUsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDg5NAogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICAgInJpZ2h0IjogNzk4LjI1CiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkyNiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTI2LAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTI2CiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAxODAsCiAgICAiem9vbSI6IDEsCiAgICAiZ2VvbWV0cnkiOiB7CiAgICAgICJzdGFydCI6IHsKICAgICAgICAidG9wIjogMTYsCiAgICAgICAgImxlZnQiOiAxNiwKICAgICAgICAid2lkdGgiOiA4OTQsCiAgICAgICAgImhlaWdodCI6IDY3MC41LAogICAgICAgICJjYW52YXNXaWR0aCI6IDg5NCwKICAgICAgICAiY2FudmFzSGVpZ2h0IjogNjcwLjUKICAgICAgfSwKICAgICAgImVuZCI6IHsKICAgICAgICAiYm90dG9tIjogNDYzLjUsCiAgICAgICAgInJpZ2h0IjogOTEwCiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkyNiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTI2LAogICAgICAic2Nyb2xsSGVpZ2h0IjogNzAzCiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAyNzAsCiAgICAiem9vbSI6IDEsCiAgICAiZ2VvbWV0cnkiOiB7CiAgICAgICJzdGFydCI6IHsKICAgICAgICAidG9wIjogMTYsCiAgICAgICAgImxlZnQiOiAxMjcuNzUsCiAgICAgICAgIndpZHRoIjogNjcwLjUsCiAgICAgICAgImhlaWdodCI6IDg5NCwKICAgICAgICAiY2FudmFzV2lkdGgiOiA2NzAuNSwKICAgICAgICAiY2FudmFzSGVpZ2h0IjogODk0CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ2NCwKICAgICAgICAicmlnaHQiOiA3OTguMjUKICAgICAgfSwKICAgICAgImNsaWVudFdpZHRoIjogOTI2LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjYsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA5MjYKICAgIH0KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-af4d99cc7c0b48f3e066",
+          "file": "media-regressions.spec.ts",
+          "line": 192,
+          "column": 1
+        },
+        {
+          "title": "Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6826,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:48.395Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "gallery-stop-intent",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBtb3VzZSBTdG9wL2ZvY3VzIG9yZGVyIiwKICAgICJwcmVzc2VkIjogImZhbHNlIiwKICAgICJpbmRleEJlZm9yZSI6ICIxIiwKICAgICJpbmRleEFmdGVyIjogIjEiLAogICAgInRpbWVyQWR2YW5jZU1zIjogMTEwMAogIH0sCiAgewogICAgImNhc2UiOiAiZm9jdXMgU3RvcCByZXRhaW5lZCBhZnRlciByZWR1Y2Uvbm8tcHJlZmVyZW5jZSIsCiAgICAicHJlc3NlZCI6ICJmYWxzZSIsCiAgICAiaW5kZXhCZWZvcmUiOiAiMiIsCiAgICAiaW5kZXhBZnRlciI6ICIyIiwKICAgICJ0aW1lckFkdmFuY2VNcyI6IDExMDAKICB9LAogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBFbnRlciBleHBsaWNpdCBTdGFydCB1bmRlciByZWR1Y2VkIG1vdGlvbiIsCiAgICAicHJlc3NlZCI6ICJ0cnVlIiwKICAgICJpbmRleEJlZm9yZSI6ICIyIiwKICAgICJpbmRleEFmdGVyIjogIjMiLAogICAgInRpbWVyQWR2YW5jZU1zIjogNDAwCiAgfSwKICB7CiAgICAiY2FzZSI6ICJhY3R1YWwgbW9iaWxlIHRvdWNoIFN0b3AgdGhlbiBTdGFydCBhZHZhbmNlcyBhbmQgTmV4dCBhbHRlcm5hdGl2ZSIsCiAgICAicHJlc3NlZEFmdGVyTmV4dEZvY3VzIjogImZhbHNlIiwKICAgICJpbmRleEJlZm9yZSI6ICIxIiwKICAgICJpbmRleEFmdGVyU3RhcnQiOiAiMiIsCiAgICAiaW5kZXhBZnRlciI6ICIzIiwKICAgICJ0b3VjaENvbnRleHQiOiB0cnVlLAogICAgIm1vYmlsZUNvbnRleHQiOiB0cnVlCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-324b311d17898dc6b6d9",
+          "file": "media-regressions.spec.ts",
+          "line": 220,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "media.spec.ts",
+      "file": "media.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3696,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:55.262Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-affcf4d92011b07da15f",
+          "file": "media.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:42:58.989Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-d0c54403c043d30231eb",
+          "file": "media.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3633,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:02.631Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-f1106f84b868c0b28051",
+          "file": "media.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "image compare native keyboard/boundary endpoints, direction and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3254,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:06.290Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-d390c6984b1db55b149f",
+          "file": "media.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3508,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:09.575Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-b9694d830d652c6191a1",
+          "file": "media.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5238,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:13.108Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-ea532aa86a5101012abf",
+          "file": "media.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "actual QR/Barcode encoding independently decodes raster; data change/error recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3062,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:18.380Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-12f89b3d623658b875c5",
+          "file": "media.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4066,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:21.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-4da99db3224aac921205",
+          "file": "media.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:43:25.562Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-f6c11036a86e711caf31",
+          "file": "media.spec.ts",
+          "line": 12,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T08:41:57.027Z",
+    "duration": 95237.81499999999,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

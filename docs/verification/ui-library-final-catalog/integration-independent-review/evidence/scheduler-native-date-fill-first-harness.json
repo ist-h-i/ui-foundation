@@ -1,0 +1,96 @@
+{
+  "kind": "Independent public Scheduler owned/raw locale lifetime + Diff native selection + Json raw diagnostics",
+  "sourceSha256": {
+    "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "scheduler-controller.ts": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+    "scheduler-view.ts": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be",
+    "diff-json.ts": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+  },
+  "checks": [
+    {
+      "name": "Scheduler held library diagnostic follows dictionary guided",
+      "actual": "Invalid move zone v2",
+      "expected": "Invalid move zone v2",
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary retains native draft/focus/caret guided",
+      "actual": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "expected": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary invokes no I/O/request/authorization guided",
+      "actual": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "expected": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler editing clears previously held owned diagnostic guided",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    }
+  ],
+  "runtime": [],
+  "console": [],
+  "profiles": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "browser": "154.0.8037.98",
+  "setupFailure": "locator.fill: Error: Malformed value\nCall log:\n\u001b[2m  - waiting for locator('[id=\"native-scheduler-start-raw%2Devent\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input step=\"1\" required=\"\" type=\"datetime-local\" _ngcontent-ng-c3383197259=\"\" id=\"native-scheduler-start-raw%2Devent\" aria-describedby=\"native-scheduler-start-preview-raw%2Devent\"/>\u001b[22m\n\u001b[2m    - fill(\"2026-10-06T10:30:00\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n    at /private/tmp/ui-foundation-final-integration-independent-review/probe-locale-scheduler.mjs:27:85"
+}

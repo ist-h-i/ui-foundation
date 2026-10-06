@@ -1,0 +1,29 @@
+PASS initial provider reaches default compare label guided actual="Compare boundary" expected="Compare boundary"
+PASS initial native failed image uses explicit owned dictionary guided actual="Before image unavailable" expected="Before image unavailable"
+PASS native slider aria-valuetext uses explicit owned dictionary guided actual="After image 50% visible" expected="After image 50% visible"
+PASS native carousel role description uses explicit owned dictionary guided actual="carousel" expected="carousel"
+PASS native slide role description uses explicit owned dictionary guided actual="slide" expected="slide"
+PASS live scope preserves focused native slider and identity guided actual=true expected=true
+PASS physical Compare slider stays ltr inside rtl locale guided actual={"parent":"rtl","range":"ltr"} expected={"parent":"rtl","range":"ltr"}
+PASS native Compare ArrowRight advances physical position guided actual="1" expected="1"
+PASS Compare image clip and boundary match physical native value guided actual={"percent":99,"rightClip":"1%","value":"99"} expected={"percent":99,"rightClip":"1%","value":"99"}
+PASS live PDF idle status follows new dictionary guided actual="Choose PDF v2 · 0 / 0" expected="Choose PDF v2 · 0 / 0"
+PASS live native media stopped status follows new dictionary guided "Stopped v2"
+PASS live owned image failure follows new dictionary guided actual="Before unavailable v2" expected="Before unavailable v2"
+PASS new native after-image failure follows active dictionary guided actual="After unavailable v2" expected="After unavailable v2"
+PASS application alt and label remain raw guided actual={"before":"App before","after":"App after","audio":"App audio"} expected={"before":"App before","after":"App after","audio":"App audio"}
+PASS initial provider reaches default compare label dense actual="Compare boundary" expected="Compare boundary"
+PASS initial native failed image uses explicit owned dictionary dense actual="Before image unavailable" expected="Before image unavailable"
+PASS native slider aria-valuetext uses explicit owned dictionary dense actual="After image 50% visible" expected="After image 50% visible"
+PASS native carousel role description uses explicit owned dictionary dense actual="carousel" expected="carousel"
+PASS native slide role description uses explicit owned dictionary dense actual="slide" expected="slide"
+PASS live scope preserves focused native slider and identity dense actual=true expected=true
+PASS physical Compare slider stays ltr inside rtl locale dense actual={"parent":"rtl","range":"ltr"} expected={"parent":"rtl","range":"ltr"}
+PASS native Compare ArrowRight advances physical position dense actual="1" expected="1"
+PASS Compare image clip and boundary match physical native value dense actual={"percent":99,"rightClip":"1%","value":"99"} expected={"percent":99,"rightClip":"1%","value":"99"}
+PASS live PDF idle status follows new dictionary dense actual="Choose PDF v2 · 0 / 0" expected="Choose PDF v2 · 0 / 0"
+PASS live native media stopped status follows new dictionary dense "Paused or stopped v2"
+PASS live owned image failure follows new dictionary dense actual="Before unavailable v2" expected="Before unavailable v2"
+PASS new native after-image failure follows active dictionary dense actual="After unavailable v2" expected="After unavailable v2"
+PASS application alt and label remain raw dense actual={"before":"App before","after":"App after","audio":"App audio"} expected={"before":"App before","after":"App after","audio":"App audio"}
+{"checks":30,"failed":0,"runtime":0,"console":0,"cleanup":{"browserClosed":true,"serverListening":false}}

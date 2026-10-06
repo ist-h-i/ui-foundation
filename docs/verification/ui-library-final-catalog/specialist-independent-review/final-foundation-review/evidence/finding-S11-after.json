@@ -1,0 +1,37 @@
+{
+  "finding": "S11",
+  "status": "closed for exact reviewed source",
+  "observedAt": "2026-10-06T07:26:14.246609+00:00",
+  "spreadsheetRawAndGeneratedSha": "ac8f7698df950ed1feec54fd1a7b9e9ad8d127bf6b73971295b55292587e44cf",
+  "knownKeys": 5,
+  "beforeNativeActualExit": 1,
+  "originalProbeAfterActualExit": 0,
+  "deltaProfiles": 2,
+  "deltaNativeActualExit": 0,
+  "canonicalAndAOT": [
+    "S11-sync0",
+    "S11-check0",
+    "S11-all-generated-aot0",
+    "S11-consumer-aot0",
+    "S11-consumer-build0"
+  ],
+  "verified": [
+    "real HTTP404 library error translated",
+    "already failing same instance re-reads changed dictionary",
+    "raw error and original model unchanged; retry stays enabled",
+    "dictionary change creates zero worker requests",
+    "unknown real custom-worker error remains original despite exact dictionary mapping",
+    "normal module worker formula5 recovery in both profiles"
+  ],
+  "runnerRawSha": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+  "workerRawSha": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+  "beforeEvidence": "S11-before-sheet-localized-error-native.json",
+  "afterEvidence": "sheet-localized-error-native.json",
+  "extendedEvidence": "sheet-localized-error-delta-native.json",
+  "executionLedger": "S11-independent-verification.json",
+  "otherOpenFindings": [
+    "S09 responsive Gauge layout awaiting final freeze",
+    "S10 full Cartesian labels/legend/ticks awaiting final freeze"
+  ],
+  "approvalScope": "S11 only; no final Chart or entire repository approval"
+}

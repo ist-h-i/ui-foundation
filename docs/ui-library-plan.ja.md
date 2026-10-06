@@ -10,7 +10,7 @@ UI intent: screen_type=component verification workspace、user_decision=部品�
 
 ## 段階と観測
 
-1. 全要求を保存し、生成所有権と既存設計を確認する。現mainはPR #1のmerge済みHEAD 618ce052。専用branchを使い、既存作業へ上書きしない。
+1. 全要求を保存し、生成所有権と既存設計を確認する。初期baselineはPR #1のmerge済みHEAD 618ce052。最終拡張の統合開始時点はPR #10 merge済みHEAD 8d01adc。専用branchを使い、他作業をSHAガードで保護する。
 2. 最新の明示優先に従い、DataTable/Pagination→入力/セレクター→Calendar/日付入力→GridList→Iconの順で実装する。既存のnative table adapterを保ち、列定義を持つDataTableViewを追加する。表はsort/filter/search/pagination/width/sticky/column layout/selection/action/detail/style/client-server/stateを先行して検証する。
 3. 優先カテゴリの後、Overlay/focusと操作基盤→Card全slots、再帰Menu、Dialogの終了理由/保留、Snackbar/通知ホストの順で重点契約を実装する。ネイティブdialog/popoverは同じDOMスコープ内に置いてプロファイルとRTLを保持する。
 4. フォーム/一覧/検索を中心にButton拡張、IconButton/ButtonGroup、Popover/Tooltip、ConfirmDialog/Drawer、Alert/Toast/Spinner/Skeleton/ProgressBar/EmptyState、Badge/Tag/Descriptionsを拡充する。Navigation/Breadcrumb/Tabs/Disclosure/PageFrameも再利用して拡張する。FileUpload/UploadList、Stepper、Tree/TreeSelect、virtual list/table、cell edit、aggregate/group、CSV exportと他の全要求も後続段階で実装し、元の要求から削除しない。リサイズ/並べ替えはpointerとキーボード/ボタンの代替を持つ。仮想化はfocus保持、非同期候補は古い応答の破棄を観測する。
@@ -29,7 +29,7 @@ UI intent: screen_type=component verification workspace、user_decision=部品�
 
 PR #1のoutput変更時にSkill所有情報が失われる指摘は現行src/sync.tsにもある。今回の出力先を変える必要はないため、既存生成物の手削除で回避しない。出力移動の実装時には旧manifestを明示的に検証する移行経路を別差分で追加する。
 
-全要求完了までマトリクスとIssueをopenで管理し、段階完了を全体完了としない。各段階をDraft PRへ提出し、独立レビューと最終HEADの全体検査・生成consumer・ブラウザー実証を経て、2026-10-05のユーザー指示に従いReady化・mainへのマージまで進める。全181要求は未完了のまま正確に追跡し、残件を次PRへ分けて継続する。npm公開、有償契約、OSセキュリティ設定変更は含まない。
+全要求完了までマトリクスとIssueをopenで管理し、段階完了を全体完了としない。各段階をDraft PRへ提出し、独立レビューと最終HEADの全体検査・生成consumer・ブラウザー実証を経て、2026-10-05のユーザー指示に従いReady化・mainへのマージまで進める。133 verifiedに続く最終48要求はTree/Scheduler/表/media/専門部品とruntime基盤へ分けて統合する。各行の制御項目をsource、正式suite、生成consumer、独立レビューへ対応付け、最終検証が完了した行だけverifiedへ更新する。npm公開、有償契約、OSセキュリティ設定変更は含まない。
 
 ## 参照（2026-10-05に公式ページを確認）
 

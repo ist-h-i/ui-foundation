@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, output, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
 import { focusBeforeHiding } from './layout';
@@ -17,7 +19,7 @@ export type AsyncRegionState = {
     <div class="ui-async-region__notice" [hidden]="state().kind === 'ready'">
       <p tabindex="-1" class="ui-async-region__message">{{ message() }}</p>
       @if (retryAvailable()) {
-        <button uiAction [busy]="retryBusy()" [disabled]="isLoading()" (click)="requestRetry()">{{ retryLabel() }}</button>
+        <button uiAction [busy]="retryBusy()" [disabled]="isLoading()" (click)="requestRetry()">{{ uiEffective_retryLabel() }}</button>
       }
     </div>
     <div class="ui-async-region__content" [hidden]="!showContent()" [attr.aria-busy]="isLoading()">
@@ -26,10 +28,12 @@ export type AsyncRegionState = {
   `,
 })
 export class AsyncRegion {
+ protected readonly uiText_AsyncRegion=injectUiText();
     readonly state = input.required<AsyncRegionState>();
     readonly retryAvailable = input(false);
     readonly retryBusy = input(false);
-    readonly retryLabel = input('再試行');
+    readonly retryLabel = input<string>();
+ protected readonly uiEffective_retryLabel=uiLocaleComputed(()=>this.retryLabel()??this.uiText_AsyncRegion('再試行'));
     readonly retry = output<void>();
     readonly focusFallback = input<HTMLElement | null>(null);
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;

@@ -1,0 +1,2513 @@
+{
+  "parentSourceCommit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+  "parentCandidateFreeze": "30717c847e505993c1ccb9fcaecddf65765b2fe856b9ca5a44b982f417753066",
+  "adoptedSourceDelta": "evidence/card-narrow-css-only-source-delta.json",
+  "kind": "Independent per-control audit of 48 original rows, not name-only completion or a fabricated native PASS",
+  "rows": 48,
+  "controlCount": 207,
+  "missingReferences": [],
+  "openFindings": [],
+  "resolvedCardFinding": "evidence/card-slot-after-source-geometry.json (9/9 actual0; adopted exact source916a)",
+  "requirements": [
+    {
+      "id": "forms-19",
+      "component": "Cascader",
+      "originalRequestedControls": "階層選択、途中階層の選択可否、遅延読込み",
+      "sourceLine": 67,
+      "controlMapping": [
+        {
+          "requested": "階層選択",
+          "publicRuntimeContract": "nodes + canonical path value/CVA"
+        },
+        {
+          "requested": "途中階層の選択可否",
+          "publicRuntimeContract": "allowIntermediate + intermediate Validator"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loadRequested/resolveLoad/failLoad/invalidateLoads with retained raw draft"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/cascader.ts",
+          "sha256": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4"
+        },
+        {
+          "path": "templates/angular/tree-popup-control.ts",
+          "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf"
+        },
+        {
+          "path": "templates/angular/tree-model.ts",
+          "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/tree-catalog.spec.ts",
+          "sha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "forms-20",
+      "component": "TreeSelect",
+      "originalRequestedControls": "ツリー選択、複数選択、親子の選択連動、検索",
+      "sourceLine": 68,
+      "controlMapping": [
+        {
+          "requested": "ツリー選択",
+          "publicRuntimeContract": "nodes/value + popup Tree selection"
+        },
+        {
+          "requested": "複数選択",
+          "publicRuntimeContract": "multiple + cardinality Validator"
+        },
+        {
+          "requested": "親子の選択連動",
+          "publicRuntimeContract": "linkSelection + linked checks/branch chip removal"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "searchable + search draft/query and ancestor retention"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/tree-select.ts",
+          "sha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118"
+        },
+        {
+          "path": "templates/angular/tree-popup-control.ts",
+          "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf"
+        },
+        {
+          "path": "templates/angular/tree.ts",
+          "sha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/tree-catalog.spec.ts",
+          "sha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "dates-07",
+      "component": "Scheduler / Agenda",
+      "originalRequestedControls": "日・週・月・一覧表示、予定、リソース、時間帯、予定移動",
+      "sourceLine": 90,
+      "controlMapping": [
+        {
+          "requested": "日・週・月・一覧表示",
+          "publicRuntimeContract": "view day/week/month/list + Scheduler/Agenda actual grids"
+        },
+        {
+          "requested": "予定",
+          "publicRuntimeContract": "events + SchedulerEvent/Entry + typed projected templates"
+        },
+        {
+          "requested": "リソース",
+          "publicRuntimeContract": "resources/resourceFilter/showUnassigned + native selection"
+        },
+        {
+          "requested": "時間帯",
+          "publicRuntimeContract": "dayStart/dayEnd/timeZone + exact civil/DST bands"
+        },
+        {
+          "requested": "予定移動",
+          "publicRuntimeContract": "movable/canMove + native move draft + moveRequested/current-ID complete/fail"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/scheduler.ts",
+          "sha256": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987"
+        },
+        {
+          "path": "templates/angular/agenda.ts",
+          "sha256": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5"
+        },
+        {
+          "path": "templates/angular/scheduler-view.ts",
+          "sha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba"
+        },
+        {
+          "path": "templates/angular/scheduler-controller.ts",
+          "sha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931"
+        },
+        {
+          "path": "templates/angular/scheduler-model.ts",
+          "sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/scheduler-catalog.spec.ts",
+          "sha256": "d86cd1dce7b2da0cf6c69943554b3fa711db167e9dc5d177466b6c50a50ebb15",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/scheduler-focus-transfer.spec.ts",
+          "sha256": "972d78a7cf240df82e29cedcc8b03935fed091d60d1449ffa227abad9ed11e27",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/scheduler-id-boundaries.spec.ts",
+          "sha256": "8de732a791b88f8657b03eb05b01205c29de3d0af87207d147d2cec35f4faee9",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-08",
+      "component": "Tree / TreeItem",
+      "originalRequestedControls": "階層、展開、選択、チェック、遅延読込み",
+      "sourceLine": 154,
+      "controlMapping": [
+        {
+          "requested": "階層",
+          "publicRuntimeContract": "nodes/children + TreeEntry/TreeItem native tree hierarchy"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/expandedIdsChange"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/selectedIds/selectedIdsChange"
+        },
+        {
+          "requested": "チェック",
+          "publicRuntimeContract": "checkable/linkChecks/checkedIds and mixed states"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loadRequested/resolveLoad/failLoad + stale/collapse/source invalidation"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/tree.ts",
+          "sha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5"
+        },
+        {
+          "path": "templates/angular/tree-item.ts",
+          "sha256": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c"
+        },
+        {
+          "path": "templates/angular/tree-model.ts",
+          "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/tree-catalog.spec.ts",
+          "sha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-09",
+      "component": "TreeTable / TreeGrid",
+      "originalRequestedControls": "階層付き表、列、展開、選択、編集",
+      "sourceLine": 155,
+      "controlMapping": [
+        {
+          "requested": "階層付き表",
+          "publicRuntimeContract": "TreeGrid nodes + treeRows native grid hierarchy"
+        },
+        {
+          "requested": "列",
+          "publicRuntimeContract": "columns TableEditableColumn<T>"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/displayExpandedIds + native tree-toggle"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/selectedIds + canonical raw IDs"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "editable + delegated DataGrid CellEditor/current-ID acknowledgement"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/tree-grid.ts",
+          "sha256": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6"
+        },
+        {
+          "path": "templates/angular/data-grid.ts",
+          "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9"
+        },
+        {
+          "path": "templates/angular/tree-model.ts",
+          "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-12",
+      "component": "OrganizationChart",
+      "originalRequestedControls": "親子関係、方向、展開、ノード内容",
+      "sourceLine": 158,
+      "controlMapping": [
+        {
+          "requested": "親子関係",
+          "publicRuntimeContract": "nodes/children + native nested list/tree content"
+        },
+        {
+          "requested": "方向",
+          "publicRuntimeContract": "direction top-down/bottom-up/left-right/right-left"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/expandedIdsChange"
+        },
+        {
+          "requested": "ノード内容",
+          "publicRuntimeContract": "typed TreeNodeTemplate<T> with app-owned DOM"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/organization-chart.ts",
+          "sha256": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f"
+        },
+        {
+          "path": "templates/angular/tree-node-template.ts",
+          "sha256": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/tree-catalog.spec.ts",
+          "sha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-13",
+      "component": "TableContainer",
+      "originalRequestedControls": "表題、領域名、スクロール、表示サイズ",
+      "sourceLine": 159,
+      "controlMapping": [
+        {
+          "requested": "表題",
+          "publicRuntimeContract": "caption native caption/region heading"
+        },
+        {
+          "requested": "領域名",
+          "publicRuntimeContract": "required label named scroll region"
+        },
+        {
+          "requested": "スクロール",
+          "publicRuntimeContract": "scrollDirection/scrollTop/scrollLeft + scrollChange"
+        },
+        {
+          "requested": "表示サイズ",
+          "publicRuntimeContract": "displaySize/height/maxHeight + semantic viewport"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table.ts",
+          "sha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-14",
+      "component": "DataTable",
+      "originalRequestedControls": "列定義、検索、ソート、フィルター、選択、表示形式",
+      "sourceLine": 160,
+      "controlMapping": [
+        {
+          "requested": "列定義",
+          "publicRuntimeContract": "columns TableEditableColumn<T>/typed templates"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "globalSearch/searchColumns/state.search"
+        },
+        {
+          "requested": "ソート",
+          "publicRuntimeContract": "sortable/sortMode/state.sort/nextTableSort"
+        },
+        {
+          "requested": "フィルター",
+          "publicRuntimeContract": "columnFilters/typed filters + ColumnFilter UI"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/rowSelectable/selectAllScope/selectedKeys"
+        },
+        {
+          "requested": "表示形式",
+          "publicRuntimeContract": "striped/borders/hoverRows/rowSpacing/wrapCells/ellipsis"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-model.ts",
+          "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/data-table-view.spec.ts",
+          "sha256": "a01e00df2afcfb41b9e42f81f841ceab94e0c923dcfb55ac6d4454990aca3d0d",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-15",
+      "component": "DataGrid",
+      "originalRequestedControls": "セル移動、セル選択、編集、コピー・貼付け",
+      "sourceLine": 161,
+      "controlMapping": [
+        {
+          "requested": "セル移動",
+          "publicRuntimeContract": "native roving cell Arrow/Home/End + handled/IME guards"
+        },
+        {
+          "requested": "セル選択",
+          "publicRuntimeContract": "selectionMode/GridRange/selectionChange"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "editable/CellEditor/saveRequested/current-ID completeEdit/failEdit"
+        },
+        {
+          "requested": "コピー・貼付け",
+          "publicRuntimeContract": "actual clipboardWriter/clipboardReader/native paste + atomic typed matrix parse + stale read guard"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-grid.ts",
+          "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9"
+        },
+        {
+          "path": "templates/angular/table-editors.ts",
+          "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-unicode.ts",
+          "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-17",
+      "component": "TableToolbar",
+      "originalRequestedControls": "全体検索、列設定、一括操作、出力",
+      "sourceLine": 163,
+      "controlMapping": [
+        {
+          "requested": "全体検索",
+          "publicRuntimeContract": "TableToolbar.searchable/state.search/stateChange"
+        },
+        {
+          "requested": "列設定",
+          "publicRuntimeContract": "chooseColumns/ColumnChooser"
+        },
+        {
+          "requested": "一括操作",
+          "publicRuntimeContract": "selectedKeys/bulkActions/bulkRequested intent"
+        },
+        {
+          "requested": "出力",
+          "publicRuntimeContract": "outputs/outputRequested -> real clipboard/CSV/print adapter"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/table-controls.ts",
+          "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        },
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-18",
+      "component": "ColumnFilter / ColumnChooser",
+      "originalRequestedControls": "列条件、表示・非表示、順序、固定、リセット",
+      "sourceLine": 164,
+      "controlMapping": [
+        {
+          "requested": "列条件",
+          "publicRuntimeContract": "ColumnFilter.column/filter/filterChange typed constraints"
+        },
+        {
+          "requested": "表示・非表示",
+          "publicRuntimeContract": "ColumnChooser state.hiddenColumns + keep-last-column"
+        },
+        {
+          "requested": "順序",
+          "publicRuntimeContract": "state.columnOrder + native before/after"
+        },
+        {
+          "requested": "固定",
+          "publicRuntimeContract": "state.pinnedColumns start/end/none + own property lookup"
+        },
+        {
+          "requested": "リセット",
+          "publicRuntimeContract": "column reset updates only column state, keeps search/filter"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/table-controls.ts",
+          "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        },
+        {
+          "path": "templates/angular/table-model.ts",
+          "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-unicode.ts",
+          "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-19",
+      "component": "CellEditor / RowEditor",
+      "originalRequestedControls": "編集、検証、確定、取消、処理中",
+      "sourceLine": 165,
+      "controlMapping": [
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "CellEditor/RowEditor native retained draft"
+        },
+        {
+          "requested": "検証",
+          "publicRuntimeContract": "required/minimum/maximum/parseDraft/validateValue + safe errors record"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "saveRequested + complete(current requestId,row)"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "Escape/native Cancel without app/backend success claims"
+        },
+        {
+          "requested": "処理中",
+          "publicRuntimeContract": "pending/busy native disabled + stale acknowledgement rejection"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/table-editors.ts",
+          "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+        },
+        {
+          "path": "templates/angular/table-runtime.ts",
+          "sha256": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-unicode.ts",
+          "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "data-20",
+      "component": "FilterChips / SearchPanel",
+      "originalRequestedControls": "適用条件、個別解除、全解除、保存条件",
+      "sourceLine": 166,
+      "controlMapping": [
+        {
+          "requested": "適用条件",
+          "publicRuntimeContract": "FilterChips effective state.search/filters display"
+        },
+        {
+          "requested": "個別解除",
+          "publicRuntimeContract": "single filter/search removal stateChange"
+        },
+        {
+          "requested": "全解除",
+          "publicRuntimeContract": "clear-all stateChange"
+        },
+        {
+          "requested": "保存条件",
+          "publicRuntimeContract": "SearchPanel savedSearches/saveRequested + deep snapshot restore"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/table-controls.ts",
+          "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-02",
+      "component": "列フィルター",
+      "originalRequestedControls": "ON/OFF、文字・数値・日付・選択肢、複数条件",
+      "sourceLine": 173,
+      "controlMapping": [
+        {
+          "requested": "ON/OFF",
+          "publicRuntimeContract": "columnFilters switch preserves state while disables evaluation"
+        },
+        {
+          "requested": "文字・数値・日付・選択肢",
+          "publicRuntimeContract": "text/number/date/boolean/options operators + native typed value and raw badInput draft"
+        },
+        {
+          "requested": "複数条件",
+          "publicRuntimeContract": "constraints[] + match and/or native add/remove/operator/value UI"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/table-controls.ts",
+          "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        },
+        {
+          "path": "templates/angular/table-model.ts",
+          "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        },
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-05",
+      "component": "列幅",
+      "originalRequestedControls": "自動調節ON/OFF、固定幅、最小・最大幅、手動リサイズ",
+      "sourceLine": 176,
+      "controlMapping": [
+        {
+          "requested": "自動調節ON/OFF",
+          "publicRuntimeContract": "autoWidth/autoFit content/available + measured DOM widths"
+        },
+        {
+          "requested": "固定幅",
+          "publicRuntimeContract": "column.width/state.columnWidths"
+        },
+        {
+          "requested": "最小・最大幅",
+          "publicRuntimeContract": "minWidth/maxWidth + semantic profile minimum + ResizeObserver"
+        },
+        {
+          "requested": "手動リサイズ",
+          "publicRuntimeContract": "TableColumnResize actual pointer/cancel/RTL + native range Home/End/key and Chooser width"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-model.ts",
+          "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        },
+        {
+          "path": "templates/angular/table-column-resize.ts",
+          "sha256": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5"
+        },
+        {
+          "path": "templates/angular/table-controls.ts",
+          "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-unicode.ts",
+          "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-07",
+      "component": "ヘッダー",
+      "originalRequestedControls": "固定ON/OFF、多段見出し、列グループ",
+      "sourceLine": 178,
+      "controlMapping": [
+        {
+          "requested": "固定ON/OFF",
+          "publicRuntimeContract": "stickyHeader true/false"
+        },
+        {
+          "requested": "多段見出し",
+          "publicRuntimeContract": "recursive tableHeaderRows colSpan/rowSpan"
+        },
+        {
+          "requested": "列グループ",
+          "publicRuntimeContract": "columnGroups/TableHeaderGroup + native th scope + td.headers association"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-unicode.ts",
+          "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-08",
+      "component": "固定表示",
+      "originalRequestedControls": "左右の固定列、固定行、集計フッター",
+      "sourceLine": 179,
+      "controlMapping": [
+        {
+          "requested": "左右の固定列",
+          "publicRuntimeContract": "state logical start/end pin header/body/footer with shared offsets in LTR/RTL"
+        },
+        {
+          "requested": "固定行",
+          "publicRuntimeContract": "fixedStartKeys/fixedEndKeys + real row measurement and reachable body row"
+        },
+        {
+          "requested": "集計フッター",
+          "publicRuntimeContract": "aggregates/aggregateScope + stickyFooter + native aggregate footer"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-model.ts",
+          "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-checks.ts",
+          "sha256": "f28af7019129bb571ae9076177ebebaa979542fce3d44fd145fbfd11af6728d9",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-11",
+      "component": "行の詳細",
+      "originalRequestedControls": "展開、操作ボタン、グループ化、集計",
+      "sourceLine": 182,
+      "controlMapping": [
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedKeys + typed detail slot with editor DOM retained"
+        },
+        {
+          "requested": "操作ボタン",
+          "publicRuntimeContract": "rowActions/rowAction + disabled predicate"
+        },
+        {
+          "requested": "グループ化",
+          "publicRuntimeContract": "groupBy/collapsedGroupIds + recursive native groups"
+        },
+        {
+          "requested": "集計",
+          "publicRuntimeContract": "aggregates sum/average/min/max/count and explicit missing/known totals"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-12",
+      "component": "編集",
+      "originalRequestedControls": "なし／セル／行、検証、確定、取消",
+      "sourceLine": 183,
+      "controlMapping": [
+        {
+          "requested": "なし／セル／行",
+          "publicRuntimeContract": "editMode none/cell/row"
+        },
+        {
+          "requested": "検証",
+          "publicRuntimeContract": "typed draft parser/validator + native errors"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "saveRequested + completeEdit(current ID) + rowsChange"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "Cancel/Escape retains app inputs and focus without fake backend undo"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-editors.ts",
+          "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-contracts.ts",
+          "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-14",
+      "component": "データ処理",
+      "originalRequestedControls": "アプリ内処理／サーバー処理、追加取得、仮想スクロール",
+      "sourceLine": 185,
+      "controlMapping": [
+        {
+          "requested": "アプリ内処理／サーバー処理",
+          "publicRuntimeContract": "mode client/server with server rows not client-requeried"
+        },
+        {
+          "requested": "追加取得",
+          "publicRuntimeContract": "moreAvailable/moreFinished/loadingMore/moreError + loadMoreRequested/completeLoad/failLoad"
+        },
+        {
+          "requested": "仮想スクロール",
+          "publicRuntimeContract": "public CDK CdkVirtualScrollViewport/fixed-size/overscan + range/position/scroll API; incompatible composites explicit diagnostic and actual nativeViewRequested recovery"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/virtual-data-table.ts",
+          "sha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8"
+        },
+        {
+          "path": "templates/angular/infinite-scroll.ts",
+          "sha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/table-expansion-checks.ts",
+          "sha256": "f28af7019129bb571ae9076177ebebaa979542fce3d44fd145fbfd11af6728d9",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "table-features-16",
+      "component": "出力",
+      "originalRequestedControls": "コピー、CSV出力、印刷、出力対象の指定",
+      "sourceLine": 187,
+      "controlMapping": [
+        {
+          "requested": "コピー",
+          "publicRuntimeContract": "actual clipboard Promise completion and rejection"
+        },
+        {
+          "requested": "CSV出力",
+          "publicRuntimeContract": "CSV Blob/download with escaped raw fields and formula safeguards"
+        },
+        {
+          "requested": "印刷",
+          "publicRuntimeContract": "named print document/window with actual print intent adapter"
+        },
+        {
+          "requested": "出力対象の指定",
+          "publicRuntimeContract": "TableOutputScope page/filtered/selected/supplied + matrix/columnIds/rowCount"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/data-table-view.ts",
+          "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        {
+          "path": "templates/angular/table-output.ts",
+          "sha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea"
+        },
+        {
+          "path": "templates/angular/table-advanced-model.ts",
+          "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/table-expansion.spec.ts",
+          "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-01",
+      "component": "FileUpload",
+      "originalRequestedControls": "形式、容量、件数、進捗、取消、再試行",
+      "sourceLine": 209,
+      "controlMapping": [
+        {
+          "requested": "形式",
+          "publicRuntimeContract": "accept actual File type/name conditions"
+        },
+        {
+          "requested": "容量",
+          "publicRuntimeContract": "maxBytes actual File.size"
+        },
+        {
+          "requested": "件数",
+          "publicRuntimeContract": "multiple/maxFiles/existingCount + atomic complete accepted batch CVA"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "items UploadList progress known/null"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "cancelRequested current id/requestId (app owns network cancellation)"
+        },
+        {
+          "requested": "再試行",
+          "publicRuntimeContract": "UploadList retryRequested -> same File/id new uploadRequested requestId"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/file-upload.ts",
+          "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+        },
+        {
+          "path": "templates/angular/media-model.ts",
+          "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-02",
+      "component": "Dropzone",
+      "originalRequestedControls": "ドロップ受付、複数ファイル、受付条件",
+      "sourceLine": 210,
+      "controlMapping": [
+        {
+          "requested": "ドロップ受付",
+          "publicRuntimeContract": "ui-dropzone actual dragover/drop and native file picker alternative"
+        },
+        {
+          "requested": "複数ファイル",
+          "publicRuntimeContract": "multiple + native File[] batch"
+        },
+        {
+          "requested": "受付条件",
+          "publicRuntimeContract": "shared uploadConditions/selectFiles type/size/count validation"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/file-upload.ts",
+          "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+        },
+        {
+          "path": "templates/angular/media-model.ts",
+          "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-03",
+      "component": "UploadList / AttachmentList",
+      "originalRequestedControls": "ファイル情報、進捗、個別失敗、削除、再試行",
+      "sourceLine": 211,
+      "controlMapping": [
+        {
+          "requested": "ファイル情報",
+          "publicRuntimeContract": "UploadList items name/type/size/status retained File"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "native progress actual/null indeterminate"
+        },
+        {
+          "requested": "個別失敗",
+          "publicRuntimeContract": "item.error/status failed with app raw body"
+        },
+        {
+          "requested": "削除",
+          "publicRuntimeContract": "removeRequested id/requestId + own focus recovery"
+        },
+        {
+          "requested": "再試行",
+          "publicRuntimeContract": "retryRequested id/requestId + exact app retained File"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/file-upload.ts",
+          "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-04",
+      "component": "FilePreview / PDFViewer",
+      "originalRequestedControls": "表示対象、ページ、拡大、ダウンロード",
+      "sourceLine": 212,
+      "controlMapping": [
+        {
+          "requested": "表示対象",
+          "publicRuntimeContract": "source URL/Blob/Uint8Array with actual PDF.js session"
+        },
+        {
+          "requested": "ページ",
+          "publicRuntimeContract": "page/pageChange + text/canvas actual render"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom/zoomChange actual canvas dimensions"
+        },
+        {
+          "requested": "ダウンロード",
+          "publicRuntimeContract": "downloadable/filename/getData Blob download"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/pdf-viewer.ts",
+          "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea"
+        },
+        {
+          "path": "templates/angular/pdf-adapter.ts",
+          "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-lifetime.spec.ts",
+          "sha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-regressions.spec.ts",
+          "sha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-05",
+      "component": "Image",
+      "originalRequestedControls": "代替説明、縦横比、収め方、取得失敗、遅延読込み",
+      "sourceLine": 213,
+      "controlMapping": [
+        {
+          "requested": "代替説明",
+          "publicRuntimeContract": "required alt actual img/failed image explanation"
+        },
+        {
+          "requested": "縦横比",
+          "publicRuntimeContract": "ratio actual figure aspect-ratio"
+        },
+        {
+          "requested": "収め方",
+          "publicRuntimeContract": "fit actual img object-fit"
+        },
+        {
+          "requested": "取得失敗",
+          "publicRuntimeContract": "native error/loadFailed + retry"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loading lazy/eager actual native loading attribute"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/image-media.ts",
+          "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-06",
+      "component": "ImageViewer / Lightbox",
+      "originalRequestedControls": "拡大、回転、前後移動、閉じる",
+      "sourceLine": 214,
+      "controlMapping": [
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom 25-400% actual image transform and scroll bounds"
+        },
+        {
+          "requested": "回転",
+          "publicRuntimeContract": "rotation 90deg geometry canvas bounds"
+        },
+        {
+          "requested": "前後移動",
+          "publicRuntimeContract": "index/indexChange native next/previous keyboard/buttons"
+        },
+        {
+          "requested": "閉じる",
+          "publicRuntimeContract": "open/openChange native Dialog close + focus return"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/image-media.ts",
+          "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+        },
+        {
+          "path": "templates/angular/dialog.ts",
+          "sha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-regressions.spec.ts",
+          "sha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-07",
+      "component": "Gallery / Carousel",
+      "originalRequestedControls": "項目、移動、ページ表示、自動送り、間隔、停止",
+      "sourceLine": 215,
+      "controlMapping": [
+        {
+          "requested": "項目",
+          "publicRuntimeContract": "images/index + actual selected img"
+        },
+        {
+          "requested": "移動",
+          "publicRuntimeContract": "native previous/next + indexChange"
+        },
+        {
+          "requested": "ページ表示",
+          "publicRuntimeContract": "page buttons/aria-current and index/total"
+        },
+        {
+          "requested": "自動送り",
+          "publicRuntimeContract": "autoplay + internal running real interval timer"
+        },
+        {
+          "requested": "間隔",
+          "publicRuntimeContract": "intervalMs validated timer and reschedule"
+        },
+        {
+          "requested": "停止",
+          "publicRuntimeContract": "Stop/Start + focus/hover/hidden/reduced motion/destroy ownership"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/image-media.ts",
+          "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-regressions.spec.ts",
+          "sha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-08",
+      "component": "ImageCompare",
+      "originalRequestedControls": "比較方向、境界位置、操作",
+      "sourceLine": 216,
+      "controlMapping": [
+        {
+          "requested": "比較方向",
+          "publicRuntimeContract": "direction horizontal/vertical actual clip boundary"
+        },
+        {
+          "requested": "境界位置",
+          "publicRuntimeContract": "position linked value and clip-path"
+        },
+        {
+          "requested": "操作",
+          "publicRuntimeContract": "native range min/max/keyboard/positionChange in RTL"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/image-media.ts",
+          "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+        },
+        {
+          "path": "templates/angular/media-model.ts",
+          "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-09",
+      "component": "ImageCropper",
+      "originalRequestedControls": "切抜き範囲、比率、回転、確定",
+      "sourceLine": 217,
+      "controlMapping": [
+        {
+          "requested": "切抜き範囲",
+          "publicRuntimeContract": "range native X/Y/width/height and actual decoded Bitmap crop"
+        },
+        {
+          "requested": "比率",
+          "publicRuntimeContract": "ratio native selector + constrained geometry"
+        },
+        {
+          "requested": "回転",
+          "publicRuntimeContract": "rotation 90deg source/display bounds"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "confirmed real PNG Blob/pixel bounds/current request and stale discard"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/image-cropper.ts",
+          "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f"
+        },
+        {
+          "path": "templates/angular/media-model.ts",
+          "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-lifetime.spec.ts",
+          "sha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-10",
+      "component": "AudioPlayer / VideoPlayer",
+      "originalRequestedControls": "再生、停止、音量、速度、字幕、全画面",
+      "sourceLine": 218,
+      "controlMapping": [
+        {
+          "requested": "再生",
+          "publicRuntimeContract": "play/toggle native HTMLMediaElement.play Promise and state"
+        },
+        {
+          "requested": "停止",
+          "publicRuntimeContract": "stop pause + currentTime0 and native pause"
+        },
+        {
+          "requested": "音量",
+          "publicRuntimeContract": "setPlaybackVolume + native volume/range"
+        },
+        {
+          "requested": "速度",
+          "publicRuntimeContract": "setPlaybackRate + native rate/select"
+        },
+        {
+          "requested": "字幕",
+          "publicRuntimeContract": "captions TextTrack mode/current cue + source/removal reorder"
+        },
+        {
+          "requested": "全画面",
+          "publicRuntimeContract": "fullscreen actual player region requestFullscreen/exitFullscreen"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/media-player.ts",
+          "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media-regressions.spec.ts",
+          "sha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "media-11",
+      "component": "QRCode / Barcode",
+      "originalRequestedControls": "内容、形式、サイズ、説明",
+      "sourceLine": 219,
+      "controlMapping": [
+        {
+          "requested": "内容",
+          "publicRuntimeContract": "value actual qrcode/JsBarcode encoding"
+        },
+        {
+          "requested": "形式",
+          "publicRuntimeContract": "QRCode svg/canvas format and Barcode symbology union"
+        },
+        {
+          "requested": "サイズ",
+          "publicRuntimeContract": "size/height/moduleWidth actual quiet-zone/required width geometry"
+        },
+        {
+          "requested": "説明",
+          "publicRuntimeContract": "required description + full value text preserving app content"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/barcode.ts",
+          "sha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-01",
+      "component": "Chart",
+      "originalRequestedControls": "折線、棒、面、円・ドーナツ、散布図、ヒートマップ、レーダー、ゲージ、ツリーマップなどの種別、軸、凡例、選択",
+      "sourceLine": 225,
+      "controlMapping": [
+        {
+          "requested": "折線",
+          "publicRuntimeContract": "kind line ECharts line renderer"
+        },
+        {
+          "requested": "棒",
+          "publicRuntimeContract": "kind bar renderer"
+        },
+        {
+          "requested": "面",
+          "publicRuntimeContract": "kind area line areaStyle"
+        },
+        {
+          "requested": "円・ドーナツ",
+          "publicRuntimeContract": "kind pie/doughnut real PieChart with inner radius"
+        },
+        {
+          "requested": "散布図",
+          "publicRuntimeContract": "kind scatter x/y renderer"
+        },
+        {
+          "requested": "ヒートマップ",
+          "publicRuntimeContract": "kind heatmap real HeatmapChart and coordinate validation"
+        },
+        {
+          "requested": "レーダー",
+          "publicRuntimeContract": "kind radar RadarChart"
+        },
+        {
+          "requested": "ゲージ",
+          "publicRuntimeContract": "kind gauge independent series/needle/label/value per accepted point"
+        },
+        {
+          "requested": "ツリーマップなどの種別",
+          "publicRuntimeContract": "kind treemap children hierarchy renderer"
+        },
+        {
+          "requested": "軸",
+          "publicRuntimeContract": "xAxis/yAxis type/name/options and raw values/timeZone"
+        },
+        {
+          "requested": "凡例",
+          "publicRuntimeContract": "legend/hiddenSeries/hiddenSeriesChange + native toolbar"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected/selectionChange native data point buttons + ECharts event"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/chart.ts",
+          "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179"
+        },
+        {
+          "path": "templates/angular/chart-options.ts",
+          "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-chart-explorer.spec.ts",
+          "sha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-gauge-responsive.spec.ts",
+          "sha256": "74ad92c840864b9ad2eb6a99bda3368c7866ff74fd2266800a1379f4014086b2",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-02",
+      "component": "Sparkline",
+      "originalRequestedControls": "小型の推移表示、比較、欠損",
+      "sourceLine": 226,
+      "controlMapping": [
+        {
+          "requested": "小型の推移表示",
+          "publicRuntimeContract": "compact real Chart renderer + numberText"
+        },
+        {
+          "requested": "比較",
+          "publicRuntimeContract": "first/last/delta native summary"
+        },
+        {
+          "requested": "欠損",
+          "publicRuntimeContract": "null values retained and explicit missing count/text"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/chart.ts",
+          "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-03",
+      "component": "Map",
+      "originalRequestedControls": "地図表示、マーカー、領域、選択、拡大",
+      "sourceLine": 227,
+      "controlMapping": [
+        {
+          "requested": "地図表示",
+          "publicRuntimeContract": "real MapLibre canvas + baseStyle public API"
+        },
+        {
+          "requested": "マーカー",
+          "publicRuntimeContract": "markers real Marker/native labelled button coordinates"
+        },
+        {
+          "requested": "領域",
+          "publicRuntimeContract": "regions GeoJSONSource Polygon fill/outline"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected + native marker/region/list selectionChange"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "camera zoom/public native controls and engine moveend"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/map.ts",
+          "sha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-workers.spec.ts",
+          "sha256": "c369d2d79ded486cca71423ca3c48c27eac7823d1bd7f3f96e1071f8966c128d",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-04",
+      "component": "Gantt",
+      "originalRequestedControls": "タスク、期間、依存関係、進捗、時間軸",
+      "sourceLine": 228,
+      "controlMapping": [
+        {
+          "requested": "タスク",
+          "publicRuntimeContract": "tasks actual ECharts CustomChart bars/native list"
+        },
+        {
+          "requested": "期間",
+          "publicRuntimeContract": "start/end civil validated period/native fields"
+        },
+        {
+          "requested": "依存関係",
+          "publicRuntimeContract": "dependencies verified IDs/cycle and actual lines"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "progress0-100/null explicit missing + native editor"
+        },
+        {
+          "requested": "時間軸",
+          "publicRuntimeContract": "scale day/week/month + civil axis/options"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/gantt.ts",
+          "sha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-05",
+      "component": "Kanban / TaskBoard",
+      "originalRequestedControls": "列、カード、移動、順序、件数制限",
+      "sourceLine": 229,
+      "controlMapping": [
+        {
+          "requested": "列",
+          "publicRuntimeContract": "columns actual CDK DropList zones"
+        },
+        {
+          "requested": "カード",
+          "publicRuntimeContract": "cards actual CDK Drag/native named cards"
+        },
+        {
+          "requested": "移動",
+          "publicRuntimeContract": "moveRequested validated from/to/index with native alternatives"
+        },
+        {
+          "requested": "順序",
+          "publicRuntimeContract": "native previous/next reorder + controlled immutable intent"
+        },
+        {
+          "requested": "件数制限",
+          "publicRuntimeContract": "column.limit actual WIP validation preserving full columns"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/kanban.ts",
+          "sha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-06",
+      "component": "Spreadsheet",
+      "originalRequestedControls": "セル、数式、編集、選択、固定、入出力",
+      "sourceLine": 230,
+      "controlMapping": [
+        {
+          "requested": "セル",
+          "publicRuntimeContract": "sheet rectangular typed raw cells + native grid"
+        },
+        {
+          "requested": "数式",
+          "publicRuntimeContract": "actual fast-formula-parser Worker preserving original formula/raw values"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "native retained cell draft/cellEditRequested"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "native cell/GridRange selectionChange/keyboard"
+        },
+        {
+          "requested": "固定",
+          "publicRuntimeContract": "frozenRows/frozenColumns measured native sticky headers/cells"
+        },
+        {
+          "requested": "入出力",
+          "publicRuntimeContract": "CSV/JSON raw import/export intents and validation"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/spreadsheet.ts",
+          "sha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab"
+        },
+        {
+          "path": "templates/angular/sheet-runner.ts",
+          "sha256": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb"
+        },
+        {
+          "path": "templates/angular/sheet-formula.ts",
+          "sha256": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-sheet-startup.spec.ts",
+          "sha256": "53f7e1cdb6e2d96f9baf88430e3931b98ea3569ef98d54d46c62a0f428150fe4",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-07",
+      "component": "RichTextEditor",
+      "originalRequestedControls": "書式、ツールバー、画像、リンク、読取り専用",
+      "sourceLine": 231,
+      "controlMapping": [
+        {
+          "requested": "書式",
+          "publicRuntimeContract": "actual ProseMirror schema/transactions/marks/history"
+        },
+        {
+          "requested": "ツールバー",
+          "publicRuntimeContract": "toolbar RichToolbarAction named native controls"
+        },
+        {
+          "requested": "画像",
+          "publicRuntimeContract": "schema image src/alt with safe URL validation"
+        },
+        {
+          "requested": "リンク",
+          "publicRuntimeContract": "schema link safe URL and actual command"
+        },
+        {
+          "requested": "読取り専用",
+          "publicRuntimeContract": "readonly/disabled/busy vendor edit guard + CVA draft retention"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/rich-text-editor.ts",
+          "sha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c"
+        },
+        {
+          "path": "templates/angular/editor-control.ts",
+          "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+        },
+        {
+          "path": "templates/angular/editor-model.ts",
+          "sha256": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-rich-boundary.spec.ts",
+          "sha256": "023208a4eef533eaa79612c6862e248600605f3f9efcb4d01faaec8f9fa08b5a",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-08",
+      "component": "MarkdownEditor",
+      "originalRequestedControls": "編集、プレビュー、分割表示",
+      "sourceLine": 232,
+      "controlMapping": [
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "actual CodeMirror edit/CVA/retained EditorView"
+        },
+        {
+          "requested": "プレビュー",
+          "publicRuntimeContract": "marked parse then Angular sanitizer preview"
+        },
+        {
+          "requested": "分割表示",
+          "publicRuntimeContract": "mode edit/preview/split + modeChange and retained hidden DOM"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/markdown-editor.ts",
+          "sha256": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78"
+        },
+        {
+          "path": "templates/angular/editor-control.ts",
+          "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-09",
+      "component": "CodeEditor",
+      "originalRequestedControls": "言語、補完、行番号、読取り専用",
+      "sourceLine": 233,
+      "controlMapping": [
+        {
+          "requested": "言語",
+          "publicRuntimeContract": "CodeLanguage actual CodeMirror Compartment/language packages"
+        },
+        {
+          "requested": "補完",
+          "publicRuntimeContract": "CodeCompletion actual autocomplete native suggestions"
+        },
+        {
+          "requested": "行番号",
+          "publicRuntimeContract": "lineNumbers actual CodeMirror gutter"
+        },
+        {
+          "requested": "読取り専用",
+          "publicRuntimeContract": "readonly/disabled/busy actual view guard and retained CVA/editor DOM"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/code-editor.ts",
+          "sha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2"
+        },
+        {
+          "path": "templates/angular/editor-control.ts",
+          "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-10",
+      "component": "DiffViewer / JsonViewer",
+      "originalRequestedControls": "比較、差分、階層展開、検索、コピー",
+      "sourceLine": 234,
+      "controlMapping": [
+        {
+          "requested": "比較",
+          "publicRuntimeContract": "DiffViewer before/after actual MergeView"
+        },
+        {
+          "requested": "差分",
+          "publicRuntimeContract": "actual chunks/diff move operations"
+        },
+        {
+          "requested": "階層展開",
+          "publicRuntimeContract": "JsonViewer original-offset parse tree and native node toggles"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "CodeMirror search and Json query preserving huge number/duplicate key raw text"
+        },
+        {
+          "requested": "コピー",
+          "publicRuntimeContract": "writer Promise clipboard success/rejection/stale state"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/diff-json.ts",
+          "sha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+        },
+        {
+          "path": "templates/angular/json-model.ts",
+          "sha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-11",
+      "component": "FileExplorer",
+      "originalRequestedControls": "階層、表示方式、選択、検索、ファイル操作",
+      "sourceLine": 235,
+      "controlMapping": [
+        {
+          "requested": "階層",
+          "publicRuntimeContract": "nodes recursive native tree/expansion"
+        },
+        {
+          "requested": "表示方式",
+          "publicRuntimeContract": "view tree/list/grid + viewChange"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected/multiple + canonical disabled/readonly guards"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "native query/filter with canonical focus"
+        },
+        {
+          "requested": "ファイル操作",
+          "publicRuntimeContract": "operationRequested open/rename/delete/create-folder/download intents, app owns actual I/O/Undo"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/file-explorer.ts",
+          "sha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-chart-explorer.spec.ts",
+          "sha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-12",
+      "component": "Diagram / FlowEditor",
+      "originalRequestedControls": "ノード、接続、配置、拡大、編集",
+      "sourceLine": 236,
+      "controlMapping": [
+        {
+          "requested": "ノード",
+          "publicRuntimeContract": "DiagramModel nodes actual SVG/native content"
+        },
+        {
+          "requested": "接続",
+          "publicRuntimeContract": "edges actual SVG paths and native endpoint editors"
+        },
+        {
+          "requested": "配置",
+          "publicRuntimeContract": "public Dagre layout real coordinates + layoutRequested"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom/zoomChange actual SVG scaling/native controls"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "node label/position/add/connect changeRequested + readonly guards"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/diagram.ts",
+          "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac"
+        },
+        {
+          "path": "templates/angular/diagram-layout.ts",
+          "sha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "specialist-13",
+      "component": "Chat / MessageList / MessageComposer",
+      "originalRequestedControls": "メッセージ、添付、送信状態、再送、追加読込み",
+      "sourceLine": 237,
+      "controlMapping": [
+        {
+          "requested": "メッセージ",
+          "publicRuntimeContract": "MessageList messages actual native semantic list"
+        },
+        {
+          "requested": "添付",
+          "publicRuntimeContract": "MessageComposer actual File picker metadata + selected/remove/activate attachment intents"
+        },
+        {
+          "requested": "送信状態",
+          "publicRuntimeContract": "sendRequested + current-ID completeSend/failSend/markSendUnknown preserving pending/unknown/raw text"
+        },
+        {
+          "requested": "再送",
+          "publicRuntimeContract": "retryRequested actual app-controlled retry eligibility"
+        },
+        {
+          "requested": "追加読込み",
+          "publicRuntimeContract": "hasMore/cursor/loadState/loadMoreRequested/current-ID completeLoad/failLoad"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/chat.ts",
+          "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1"
+        },
+        {
+          "path": "templates/angular/specialist-model.ts",
+          "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/specialist-catalog.spec.ts",
+          "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-recovery.spec.ts",
+          "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "foundation-07",
+      "component": "フォーム接続",
+      "originalRequestedControls": "フォーム接続",
+      "sourceLine": null,
+      "controlMapping": [
+        {
+          "requested": "フォーム接続",
+          "publicRuntimeContract": "Public native/vendor/tree/composer/upload CVA/Validator nullable reset/disabled/touched/blur + explicit ack boundaries; containers and app-owned storage intent are not fake CVA"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/value-control.ts",
+          "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214"
+        },
+        {
+          "path": "templates/angular/date-range-picker.ts",
+          "sha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89"
+        },
+        {
+          "path": "templates/angular/editor-control.ts",
+          "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+        },
+        {
+          "path": "templates/angular/tree-popup-control.ts",
+          "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf"
+        },
+        {
+          "path": "templates/angular/file-upload.ts",
+          "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+        },
+        {
+          "path": "templates/angular/chat.ts",
+          "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/composer-reset-errors.spec.ts",
+          "sha256": "f23f8ddc6cf636abc0d06a226c23ac3505c1411a8fb398864b6fb042ecdff490",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/foundation-date-format-retention.spec.ts",
+          "sha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "foundation-08",
+      "component": "言語・日付書式・RTL",
+      "originalRequestedControls": "言語・日付書式・RTL",
+      "sourceLine": null,
+      "controlMapping": [
+        {
+          "requested": "言語・日付書式・RTL",
+          "publicRuntimeContract": "provideUiLocale/UiLocaleScope/messages/Intl/civil formats/timeZone/native lang/dir + public CDK Directionality; library-owned state live dictionary with opaque app text and captured parameters"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/locale.ts",
+          "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843"
+        },
+        {
+          "path": "templates/angular/locale-model.ts",
+          "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29"
+        },
+        {
+          "path": "templates/angular/date-input.ts",
+          "sha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829"
+        },
+        {
+          "path": "templates/angular/date-range-picker.ts",
+          "sha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/foundation-date-format-retention.spec.ts",
+          "sha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/sheet-locale-errors.spec.ts",
+          "sha256": "f59e322cd7631414dccc864b27ae01abfbaeb163b931717bf3fc6af1a30411f2",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    },
+    {
+      "id": "foundation-09",
+      "component": "プロファイル適用",
+      "originalRequestedControls": "プロファイル適用",
+      "sourceLine": null,
+      "controlMapping": [
+        {
+          "requested": "プロファイル適用",
+          "publicRuntimeContract": "YAML semantic profiles/default_profile/data-ui-profile + scoped CSS role measurements/theme observers preserving DOM/focus/native draft/timers"
+        }
+      ],
+      "implementationSources": [
+        {
+          "path": "templates/angular/styles.css",
+          "sha256": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff"
+        },
+        {
+          "path": "templates/angular/specialist-style.ts",
+          "sha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20"
+        },
+        {
+          "path": "templates/angular/media-style.ts",
+          "sha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84"
+        },
+        {
+          "path": "templates/angular/specialist-browser.ts",
+          "sha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e"
+        },
+        {
+          "path": "templates/angular/locale.ts",
+          "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843"
+        }
+      ],
+      "formalTestReferences": [
+        {
+          "path": "tests/ui/foundation.spec.ts",
+          "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/media.spec.ts",
+          "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        },
+        {
+          "path": "tests/ui/specialist-accessibility.spec.ts",
+          "sha256": "aa2a938fea633502510cd24560c4ace0a6dda0751148db6b3747540eb4a264a4",
+          "kind": "formal test source reviewed; actual final run belongs to root evidence"
+        }
+      ],
+      "controlOmissionsObserved": [],
+      "verdict": "public implementation mapped; formal final suite results are owned by root evidence, not invented by this mapping"
+    }
+  ],
+  "inheritedProductSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "formalTestDelta": "proof-prep-8e8748a/source-inheritance.json",
+  "formalReferencesUpdatedOnly": [
+    {
+      "rowId": "dates-07",
+      "path": "tests/ui/scheduler-catalog.spec.ts",
+      "beforeSha256": "50fb03405384d17af0360aba44feecf7a617395a5d175dcb8206b3825632f53d",
+      "afterSha256": "d86cd1dce7b2da0cf6c69943554b3fa711db167e9dc5d177466b6c50a50ebb15"
+    },
+    {
+      "rowId": "specialist-01",
+      "path": "tests/ui/specialist-chart-explorer.spec.ts",
+      "beforeSha256": "63268d4d85ea31cf330c152dce276ea6caa8bdb72a0035bcdb9862d7dce59327",
+      "afterSha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243"
+    },
+    {
+      "rowId": "specialist-11",
+      "path": "tests/ui/specialist-chart-explorer.spec.ts",
+      "beforeSha256": "63268d4d85ea31cf330c152dce276ea6caa8bdb72a0035bcdb9862d7dce59327",
+      "afterSha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243"
+    }
+  ],
+  "rootFreshFocusedReplay12Passed": true,
+  "rootFreshFullNpmPassed": false,
+  "finalMatrixApproval": false,
+  "canonicalReferenceAudit": "proof-prep-8e8748a/canonical-reference-audit.json",
+  "proofPathCorrections": [
+    {
+      "rowId": "foundation-07",
+      "beforePath": "tests/ui/date-format-draft.spec.ts",
+      "beforeSha256": "476d8104c7dc77f6bf97af643b7147b9d4941a853495591d93b6c6e3252eec5a",
+      "afterPath": "tests/ui/foundation-date-format-retention.spec.ts",
+      "afterSha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3"
+    },
+    {
+      "rowId": "foundation-08",
+      "beforePath": "tests/ui/date-format-draft.spec.ts",
+      "beforeSha256": "476d8104c7dc77f6bf97af643b7147b9d4941a853495591d93b6c6e3252eec5a",
+      "afterPath": "tests/ui/foundation-date-format-retention.spec.ts",
+      "afterSha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3"
+    }
+  ],
+  "newFormalReferencesUpdatedOnly": [
+    {
+      "rowId": "media-04",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-06",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-07",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "rowId": "media-10",
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    }
+  ],
+  "rootFreshFocusedReplay5Passed": true,
+  "rootFreshFocusedReplay5Evidence": "docs/verification/ui-library-final-catalog/failure-replay-8e8748a/execution.json"
+}

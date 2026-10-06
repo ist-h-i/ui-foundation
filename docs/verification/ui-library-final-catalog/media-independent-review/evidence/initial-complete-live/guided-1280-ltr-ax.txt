@@ -1,0 +1,163 @@
+- main:
+  - heading "添付・画像・メディアの操作" [level=1]
+  - button "プロファイル guided"
+  - button "RTL false"
+  - button "無効 false"
+  - button "媒体を表示・非表示"
+  - button "媒体を生成・破棄"
+  - heading "ファイル受付" [level=2]
+  - text: 申請の添付ファイル
+  - button "申請の添付ファイル"
+  - paragraph: "形式: .txt,image/png。1件 1,000 Bまで。複数選択可。合計 3件まで"
+  - paragraph: ここへファイルをドロップできます。
+  - button "ファイルを選択"
+  - status
+  - status: 添付ファイル 0件
+  - list:
+    - listitem: ファイルはありません。
+  - button "進捗40%"
+  - button "結果不明"
+  - button "個別失敗"
+  - button "アプリで完了"
+  - paragraph: "0"
+  - heading "画像" [level=2]
+  - figure:
+    - img "申請画像"
+  - button "画像取得失敗・復旧"
+  - button "画像ビューアーを開く"
+  - heading "ギャラリー" [level=2]
+  - region "添付写真":
+    - button "自動送りを開始"
+    - button "前へ"
+    - button "次へ"
+    - group "1 / 3":
+      - figure "申請1の添付":
+        - img "赤い写真"
+        - text: 申請1の添付
+    - paragraph: 1 / 3
+    - 'button "画像1を表示: 赤い写真"': "1"
+    - 'button "画像2を表示: 青い写真"': "2"
+    - 'button "画像3を表示: 緑の写真"': "3"
+  - button "外部自動送り切替"
+  - heading "画像比較" [level=2]
+  - figure "Original before / Original after":
+    - img "Original before"
+    - img "Original after"
+    - text: Original before / Original after
+  - text: Comparison boundary
+  - slider "Comparison boundary": "67"
+  - status: 比較後の画像を取得できません。
+  - button "比較方向を変更"
+  - heading "画像切抜き" [level=2]
+  - text: 切抜くファイル
+  - button "切抜くファイル"
+  - paragraph: 提出写真
+  - paragraph: 画像の座標で範囲を指定するか、画像上で始点から終点へドラッグします。
+  - text: 比率
+  - combobox "比率" [disabled]:
+    - option "自由" [selected]
+    - option "1:1"
+    - option "4:3"
+    - option "16:9"
+  - text: X
+  - spinbutton "X" [disabled]: "0"
+  - text: "Y"
+  - spinbutton "Y" [disabled]: "0"
+  - text: 幅
+  - spinbutton "幅" [disabled]: "0"
+  - text: 高さ
+  - spinbutton "高さ" [disabled]: "0"
+  - button "右へ90度回転" [disabled]
+  - button "範囲をリセット" [disabled]
+  - button "切抜きを確定" [disabled]
+  - status: · 回転 0度
+  - status: 画像を読み込めません。形式とデータを確認して選び直してください。
+  - heading "PDF" [level=2]
+  - paragraph: 申請資料
+  - button "Previous page" [disabled]
+  - text: Page
+  - spinbutton "Page" [disabled]: "1"
+  - button "Next page" [disabled]
+  - text: Zoom
+  - combobox "Zoom":
+    - option "50%"
+    - option "100%" [selected]
+    - option "150%"
+    - option "200%"
+    - option "300%"
+  - button "PDFをダウンロード" [disabled]
+  - status: · 0 / 0
+  - paragraph: PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。
+  - button "Retry PDF"
+  - region "申請資料のページ表示"
+  - button "PDF表示対象を変更"
+  - heading "音声" [level=2]
+  - paragraph: 音声添付
+  - button "Play"
+  - button "Stop"
+  - text: Volume
+  - slider "Volume": "100"
+  - text: Playback rate
+  - combobox "Playback rate":
+    - option "0.5倍"
+    - option "1倍" [selected]
+    - option "1.5倍"
+    - option "2倍"
+  - text: Captions
+  - combobox "Captions":
+    - option "No captions" [selected]
+    - option "日本語字幕"
+  - status
+  - paragraph: メディアを取得できません。表示対象と形式を確認して再試行してください。
+  - button "Retry media"
+  - group: 文字起こし
+  - heading "動画" [level=2]
+  - text: 動画ファイル
+  - button "動画ファイル"
+  - paragraph: 動画添付
+  - button "Play"
+  - button "Stop"
+  - text: Volume
+  - slider "Volume": "100"
+  - text: Playback rate
+  - combobox "Playback rate":
+    - option "0.5倍"
+    - option "1倍" [selected]
+    - option "1.5倍"
+    - option "2倍"
+  - text: Captions
+  - combobox "Captions":
+    - option "No captions" [selected]
+    - option "日本語字幕"
+  - button "全画面"
+  - status
+  - paragraph: メディアを取得できません。表示対象と形式を確認して再試行してください。
+  - button "Retry media"
+  - heading "機械可読コード" [level=2]
+  - text: コード内容
+  - textbox "コード内容"
+  - figure "申請参照用QRコード":
+    - text: 申請参照用QRコード
+    - paragraph
+  - status: この内容とサイズではQRコードを作成できません。内容またはサイズを確認してください。
+  - figure "申請番号のバーコード":
+    - text: 申請番号のバーコード
+    - paragraph
+  - status: この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。
+  - heading "Independent public consumer" [level=2]
+  - text: Independent accepted draft
+  - button "Independent accepted draft"
+  - paragraph: "形式: .txt。1件 16 Bまで。複数選択可。合計 2件まで"
+  - paragraph: ここへファイルをドロップできます。
+  - button "ファイルを選択"
+  - status
+  - list "フォームのファイル選択"
+  - status: 添付ファイル 0件
+  - list:
+    - listitem: ファイルはありません。
+  - status: Independent attachment list 0件
+  - list:
+    - listitem: ファイルはありません。
+  - button "Dictionary EN"
+  - button "Dictionary JA"
+  - paragraph

@@ -1,0 +1,31 @@
+{
+  "capturedAt": "2026-10-06T07:56:54.053983+00:00",
+  "native32ActualExit": 1,
+  "native32Passed": 12,
+  "native32Failed": 20,
+  "productRawChanged": false,
+  "separateSuccesses": {
+    "S11OriginalActualExit": 0,
+    "S11Profiles": 2,
+    "RichNativeBoundaryCases": 8,
+    "CMObservationCases": 4
+  },
+  "issues": [
+    {
+      "case": "gauge",
+      "kind": "own async inspector old nonempty output; SVG already new precise values"
+    },
+    {
+      "case": "Sheet export",
+      "kind": "own synchronous JSON parse before reactive output update"
+    },
+    {
+      "case": "Cartesian narrowRTL",
+      "kind": "nativePlotNavigation accidentally applies ltr requirement to RTL table region too"
+    },
+    {
+      "case": "Cartesian narrowLTR",
+      "kind": "font bounding box intersection at origin 0/0; actual photo has separate glyph ink; native glyph raster measurement pending"
+    }
+  ]
+}

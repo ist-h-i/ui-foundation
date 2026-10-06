@@ -1,0 +1,726 @@
+[
+  {
+    "name": "date-range-atomic-draft",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "retainedAtomicRange": true,
+      "explicitReset": true,
+      "nativeDisabled": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "composer-unknown-reset-ack",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "unknownDraft": true,
+      "staleAckRejected": true,
+      "currentAckClearsCva": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "composer-reset-error-lifetime",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "resetErrorCleared": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "composer-explicit-reset-contracts-guided",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "profile": "guided",
+      "observations": [
+        {
+          "kind": "same",
+          "value": "失敗したdraft",
+          "oldAckRejected": true
+        },
+        {
+          "kind": "new",
+          "value": "新しいdraft",
+          "oldAckRejected": true
+        },
+        {
+          "kind": "null",
+          "value": null,
+          "oldAckRejected": true
+        }
+      ],
+      "newFailurePreserved": true,
+      "newSuccessClears": true,
+      "parentChatNullableReset": true,
+      "controlledValueWrite": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "composer-explicit-reset-contracts-dense",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "profile": "dense",
+      "observations": [
+        {
+          "kind": "same",
+          "value": "失敗したdraft",
+          "oldAckRejected": true
+        },
+        {
+          "kind": "new",
+          "value": "新しいdraft",
+          "oldAckRejected": true
+        },
+        {
+          "kind": "null",
+          "value": null,
+          "oldAckRejected": true
+        }
+      ],
+      "newFailurePreserved": true,
+      "newSuccessClears": true,
+      "parentChatNullableReset": true,
+      "controlledValueWrite": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "locale-scope-direction-and-cleanup",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "publicCdkDirection": true,
+      "externalAttributesWin": true,
+      "ownedLangRemoved": true,
+      "changeCompleted": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "popup-focus-and-draft",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "nativeModalEscapeFocus": true,
+      "retainedDraft": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "tree-cva-keyboard-selection",
+    "route": "trees",
+    "pass": false,
+    "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-tree-select [data-tree-id=two]')\u001b[22m\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-tree-select [data-tree-id=two]')\u001b[22m\n\n    at /private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:19:375\n    at async run (/private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:8:710)\n    at async file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:19:1",
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/trees",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "grid-draft-failure-retry-and-clipboard",
+    "route": "tables",
+    "pass": true,
+    "observation": {
+      "invalidRawDraft": true,
+      "errorRetainedDraft": true,
+      "retryAck": true,
+      "actualClipboard": "5",
+      "virtualDomRows": 8
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/tables",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "file-cva-atomic-readonly-reset-remount",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "atomicCvaRejection": true,
+      "unknownDraftPreserved": true,
+      "explicitReset": true,
+      "requests": [
+        {
+          "id": "intake-1",
+          "requestId": 1,
+          "name": "first.txt"
+        },
+        {
+          "id": "intake-2",
+          "requestId": 2,
+          "name": "accepted.txt"
+        },
+        {
+          "id": "intake-3",
+          "requestId": 3,
+          "name": "second.txt"
+        }
+      ]
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "media-stale-play-false",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "actualPlaying": true,
+      "oldCompletionPauses": 0,
+      "newerPendingAlsoTested": false
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "media-stale-play-true",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "actualPlaying": true,
+      "oldCompletionPauses": 0,
+      "newerPendingAlsoTested": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "media-native-reentry-and-source-epoch",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "actualNativePlayingReentry": true,
+      "sourceEpochOldCompletionIgnored": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf",
+      "http://127.0.0.1:5343/assets/media/tone.wav?new-source"
+    ]
+  },
+  {
+    "name": "caption-stable-id-source-removal",
+    "route": "media",
+    "pass": false,
+    "error": "TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-audio-player').getByLabel('字幕', { exact: true })\u001b[22m\n",
+    "stack": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-audio-player').getByLabel('字幕', { exact: true })\u001b[22m\n\n    at /private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:24:180\n    at async run (/private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:8:710)\n    at async file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:24:1",
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "pdf-native-worker-empty-error-retry-unload",
+    "route": "media",
+    "pass": false,
+    "error": "Error: Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md",
+    "stack": "Error: Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md\n    at AxeBuilder.analyze (file:///private/tmp/ui-foundation-final-integration/repository/node_modules/@axe-core/playwright/dist/index.mjs:218:13)\n    at async file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:25:344\n    at async run (file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:8:710)\n    at async file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:25:1",
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "gallery-stop-pointer-focus-keyboard",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "nativePointerStopSurvivesFocus": true,
+      "stoppedIndex": "1",
+      "keyboardStartAdvances": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "lightbox-positive-rotation-bounds-guided",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "profile": "guided",
+      "values": [
+        {
+          "rotation": 0,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "width": 862,
+            "height": 646.5,
+            "canvasWidth": 862,
+            "canvasHeight": 646.5
+          },
+          "end": {
+            "right": 886,
+            "bottom": 455.5
+          },
+          "clientWidth": 910,
+          "clientHeight": 480,
+          "scrollWidth": 910,
+          "scrollHeight": 695
+        },
+        {
+          "rotation": 90,
+          "start": {
+            "left": 131.75,
+            "top": 24,
+            "width": 646.5,
+            "height": 862,
+            "canvasWidth": 646.5,
+            "canvasHeight": 862
+          },
+          "end": {
+            "right": 778.25,
+            "bottom": 456
+          },
+          "clientWidth": 910,
+          "clientHeight": 480,
+          "scrollWidth": 910,
+          "scrollHeight": 910
+        },
+        {
+          "rotation": 180,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "width": 862,
+            "height": 646.5,
+            "canvasWidth": 862,
+            "canvasHeight": 646.5
+          },
+          "end": {
+            "right": 886,
+            "bottom": 455.5
+          },
+          "clientWidth": 910,
+          "clientHeight": 480,
+          "scrollWidth": 910,
+          "scrollHeight": 695
+        },
+        {
+          "rotation": 270,
+          "start": {
+            "left": 131.75,
+            "top": 24,
+            "width": 646.5,
+            "height": 862,
+            "canvasWidth": 646.5,
+            "canvasHeight": 862
+          },
+          "end": {
+            "right": 778.25,
+            "bottom": 456
+          },
+          "clientWidth": 910,
+          "clientHeight": 480,
+          "scrollWidth": 910,
+          "scrollHeight": 910
+        }
+      ],
+      "escapeFocus": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "lightbox-positive-rotation-bounds-dense",
+    "route": "media",
+    "pass": true,
+    "observation": {
+      "profile": "dense",
+      "values": [
+        {
+          "rotation": 0,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "width": 894,
+            "height": 670.5,
+            "canvasWidth": 894,
+            "canvasHeight": 670.5
+          },
+          "end": {
+            "right": 910,
+            "bottom": 463.5
+          },
+          "clientWidth": 926,
+          "clientHeight": 480,
+          "scrollWidth": 926,
+          "scrollHeight": 703
+        },
+        {
+          "rotation": 90,
+          "start": {
+            "left": 127.75,
+            "top": 16,
+            "width": 670.5,
+            "height": 894,
+            "canvasWidth": 670.5,
+            "canvasHeight": 894
+          },
+          "end": {
+            "right": 798.25,
+            "bottom": 464
+          },
+          "clientWidth": 926,
+          "clientHeight": 480,
+          "scrollWidth": 926,
+          "scrollHeight": 926
+        },
+        {
+          "rotation": 180,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "width": 894,
+            "height": 670.5,
+            "canvasWidth": 894,
+            "canvasHeight": 670.5
+          },
+          "end": {
+            "right": 910,
+            "bottom": 463.5
+          },
+          "clientWidth": 926,
+          "clientHeight": 480,
+          "scrollWidth": 926,
+          "scrollHeight": 703
+        },
+        {
+          "rotation": 270,
+          "start": {
+            "left": 127.75,
+            "top": 16,
+            "width": 670.5,
+            "height": 894,
+            "canvasWidth": 670.5,
+            "canvasHeight": 894
+          },
+          "end": {
+            "right": 798.25,
+            "bottom": 464
+          },
+          "clientWidth": 926,
+          "clientHeight": 480,
+          "scrollWidth": 926,
+          "scrollHeight": 926
+        }
+      ],
+      "escapeFocus": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/media",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+      "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+      "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+      "http://127.0.0.1:5343/assets/media/red.svg",
+      "http://127.0.0.1:5343/assets/media/blue.svg",
+      "http://127.0.0.1:5343/assets/media/tone.wav",
+      "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+      "http://127.0.0.1:5343/assets/media/sample.pdf"
+    ]
+  },
+  {
+    "name": "specialist-actual-lazy-worker-ready",
+    "route": "specialist",
+    "pass": false,
+    "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('ui-spreadsheet [role=status]')\nExpected: \"計算済み\"\nError: strict mode violation: locator('ui-spreadsheet [role=status]') resolved to 2 elements:\n    1) <p role=\"status\" _ngcontent-ng-c4055293989=\"\">計算済み</p> aka getByText('計算済み')\n    2) <p role=\"status\" aria-live=\"polite\" _ngcontent-ng-c4055293989=\"\">…</p> aka getByText('選択 A1 / 値')\n\nCall log:\n  - Expect \"toHaveText\" locator('ui-spreadsheet [role=status]') with timeout 5000ms\n  - waiting for locator('ui-spreadsheet [role=status]')\n",
+    "stack": "Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('ui-spreadsheet [role=status]')\nExpected: \"計算済み\"\nError: strict mode violation: locator('ui-spreadsheet [role=status]') resolved to 2 elements:\n    1) <p role=\"status\" _ngcontent-ng-c4055293989=\"\">計算済み</p> aka getByText('計算済み')\n    2) <p role=\"status\" aria-live=\"polite\" _ngcontent-ng-c4055293989=\"\">…</p> aka getByText('選択 A1 / 値')\n\nCall log:\n  - Expect \"toHaveText\" locator('ui-spreadsheet [role=status]') with timeout 5000ms\n  - waiting for locator('ui-spreadsheet [role=status]')\n\n    at captureRawStack (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright-core/lib/coreBundle.js:8588:17)\n    at callMatcherAsStep (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toHaveText (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright/lib/matchers/expect.js:13302:23)\n    at /private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:28:358\n    at async run (/private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:8:710)\n    at async file:///private/tmp/ui-foundation-final-catalog-consumer-review/verify-browser.mjs:28:1",
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/specialist",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/assets/sheet-formula.worker.js",
+      "http://127.0.0.1:5343/chunks/core-5XKB3I2N.js",
+      "http://127.0.0.1:5343/chunks/charts-ZE3HVHOU.js",
+      "http://127.0.0.1:5343/chunks/components-Z6LHBHE2.js",
+      "http://127.0.0.1:5343/chunks/renderers-Q6NLP5NL.js",
+      "http://127.0.0.1:5343/chunks/dist-CWTP6HCX.js",
+      "http://127.0.0.1:5343/chunks/dist-MJRRAZ5X.js",
+      "http://127.0.0.1:5343/chunks/dist-3YQD46MG.js",
+      "http://127.0.0.1:5343/chunks/dist-WHOR5NEB.js",
+      "http://127.0.0.1:5343/chunks/dist-Z3MMQJLR.js",
+      "http://127.0.0.1:5343/chunks/dist-COQBMF4M.js",
+      "http://127.0.0.1:5343/chunks/dist-BSZM4O2D.js",
+      "http://127.0.0.1:5343/chunks/maplibre-gl-R75FZL3H.js",
+      "http://127.0.0.1:5343/chunks/dist-QSMFCC4L.js",
+      "http://127.0.0.1:5343/chunks/dist-EZQGQ3GH.js",
+      "http://127.0.0.1:5343/chunks/dist-462YKSTR.js",
+      "http://127.0.0.1:5343/chunks/dist-Z4HBSPKE.js",
+      "http://127.0.0.1:5343/chunks/dist-IIVMWUEI.js",
+      "http://127.0.0.1:5343/chunks/dist-EOYO62YX.js",
+      "http://127.0.0.1:5343/chunks/dist-WYDFUK7X.js",
+      "http://127.0.0.1:5343/chunks/chunk-DX4HAMXU.js",
+      "http://127.0.0.1:5343/chunks/chunk-S2ZHOHGX.js",
+      "http://127.0.0.1:5343/chunks/chunk-3LEPDS23.js",
+      "http://127.0.0.1:5343/chunks/chunk-USGDUEXK.js",
+      "http://127.0.0.1:5343/chunks/chunk-WAROG2UZ.js",
+      "http://127.0.0.1:5343/chunks/chunk-THM6ROJH.js",
+      "http://127.0.0.1:5343/chunks/chunk-CWWZIVZD.js",
+      "http://127.0.0.1:5343/chunks/chunk-WK6MKOXZ.js",
+      "http://127.0.0.1:5343/chunks/chunk-UOL6SXSW.js",
+      "http://127.0.0.1:5343/chunks/chunk-3OSLTJJN.js",
+      "http://127.0.0.1:5343/chunks/chunk-Z6FMGY3J.js",
+      "http://127.0.0.1:5343/chunks/chunk-YFCRPWPX.js",
+      "http://127.0.0.1:5343/chunks/chunk-IAZI5R4Y.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl-worker.mjs",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl-shared.mjs"
+    ]
+  }
+]

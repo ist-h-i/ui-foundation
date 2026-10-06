@@ -1,0 +1,569 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository/node_modules/.bin/playwright",
+      "test",
+      "--config=focus-followup.config.ts",
+      "tests/ui/specialist-chart-explorer.spec.ts",
+      "--grep",
+      "FileExplorer",
+      "--repeat-each=3",
+      "--workers=2",
+      "--retries=0",
+      "--reporter=line,json"
+    ],
+    "configFile": "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository/focus-followup.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results",
+        "repeatEach": 3,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "specialist-chart-explorer.spec.ts",
+      "file": "specialist-chart-explorer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "guided: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3554,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:11.868Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--2cc2f-ble-without-losing-its-name-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-20b1f96828ba87b4a989",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "guided: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3474,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:11.862Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-a21ac9c6242838acbb57",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3837,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:16.064Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--44e78-ble-without-losing-its-name-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-c01f5013d23014877139",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3868,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:16.152Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-069b5ff65160b4fff979",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "guided: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:20.653Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--2cc2f-ble-without-losing-its-name-chromium-repeat1/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-4c1687dcac22499f04e0",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "guided: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3511,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:20.723Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium-repeat1/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-d81b425ef04fa5749cb2",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:25.107Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--44e78-ble-without-losing-its-name-chromium-repeat1/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-e4026126f1c332c46277",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3195,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:25.248Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium-repeat1/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-89ab3a4f56b5b3b48b45",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "guided: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:29.016Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--2cc2f-ble-without-losing-its-name-chromium-repeat2/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-e7c34e72652e7d1385d0",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "guided: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3364,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:29.118Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--6afbd-leaves-outside-focus-intact-chromium-repeat2/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-a91e3799d7afdb8e2f30",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer skips a disabled first item and guards a selected item after controlled disable without losing its name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3300,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:33.251Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--44e78-ble-without-losing-its-name-chromium-repeat2/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-d819e7adea6fd05d441e",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 82,
+          "column": 2
+        },
+        {
+          "title": "dense: FileExplorer retires owned focus on controlled disable or removal and leaves outside focus intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T09:44:33.301Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/file-focus-followup/own-guarded-results/specialist-chart-explorer--5af1d-leaves-outside-focus-intact-chromium-repeat2/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d32d3fef38be385efdde-08368591a16548daf1ab",
+          "file": "specialist-chart-explorer.spec.ts",
+          "line": 101,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T09:44:11.376Z",
+    "duration": 25363.504,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

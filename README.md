@@ -60,7 +60,9 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 `init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。
 
-利用アプリは生成されたangular/indexからstandalone部品をimportします。生成AngularコードにはAngular/RxJSと`@angular/cdk@22.2.1`が必要です。CDKの公開APIで固定高さの仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)に契約を記録しています。Tailwind v4を利用アプリ側で導入し、CSS入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
+利用アプリは生成されたangular/indexからstandalone部品をimportします。Angular/RxJS/CDKに加え、日程・媒体・専門部品の正規runtime依存と型が必要です。[生成consumerの導入手順](docs/ui-library-consumer-guide.ja.md)にexact版、公開API、CSS、workerとassetの配信を記録しています。CDKの公開APIで仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)を保ちます。Tailwind v4の入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。vendorのglobal CSSも含む[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
+
+PDF/MapLibre/Spreadsheetのworkerは別assetとして配信し、利用アプリのURLを部品へ渡します。[ビルド実例](scripts/build.mjs)は共有ESM chunks、PDFのcmaps/fonts/wasm/iccs、MapLibre CSS、原NOTICE、PDF font source kitも配布します。第三者依存の出典と条件は[監査記録](docs/dependency-license-audit.ja.md)を参照してください。
 
 `default_profile`が初期値です。実行時の切替が必要なら、利用アプリが設定に存在するIDを選び、スコープに`data-ui-profile="ID"`を付けます。初期化時に一つだけを選ぶ利用もできます。CLIは利用者の属性から勝手に選択しません。
 
@@ -78,6 +80,9 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 - [設定・生成・責任境界](docs/design.md)
 - [実装・検証計画](docs/implementation-plan.md)
 - [部品APIと検証範囲](docs/ui-components.md)
+- [全要求の原文と181行の対応](docs/ui-library-matrix.json)
+- [生成consumerの導入](docs/ui-library-consumer-guide.ja.md)
+- [共通フォーム・locale・RTL・profile契約](docs/ui-library-runtime-foundation-spec.ja.md)
 - [開発方針](docs/development.md)
 
 生成物もGitで追跡します。手編集や未所有ファイルとの衝突、symlink、プロジェクト外出力は拒否します。通常の書込み失敗では完了済みの書込みを復元しますが、プロセス強制終了を含む複数ディレクトリの原子的な更新は保証しません。生成後にoutputを移す場合は、従来の生成物をGitで確認してから整理してください。

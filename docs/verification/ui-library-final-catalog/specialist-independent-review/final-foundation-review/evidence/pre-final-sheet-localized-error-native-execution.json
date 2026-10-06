@@ -1,0 +1,33 @@
+[
+  {
+    "name": "sheet-error-native-consumer-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "actualExit": 0,
+    "startedAt": "2026-10-06T07:17:19.040563+00:00",
+    "endedAt": "2026-10-06T07:17:21.640342+00:00"
+  },
+  {
+    "name": "sheet-error-native-consumer-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "actualExit": 0,
+    "startedAt": "2026-10-06T07:17:21.640440+00:00",
+    "endedAt": "2026-10-06T07:17:22.880956+00:00"
+  },
+  {
+    "name": "sheet-localized-error-native",
+    "command": [
+      "node",
+      "sheet-localized-error-native.mjs"
+    ],
+    "actualExit": 1,
+    "startedAt": "2026-10-06T07:17:22.881059+00:00",
+    "endedAt": "2026-10-06T07:17:25.371975+00:00"
+  }
+]

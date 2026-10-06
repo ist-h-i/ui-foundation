@@ -1,0 +1,912 @@
+{
+  "schemaVersion": 1,
+  "count": 13,
+  "rows": [
+    {
+      "id": "specialist-01",
+      "component": "Chart",
+      "requestedControls": "折線、棒、面、円・ドーナツ、散布図、ヒートマップ、レーダー、ゲージ、ツリーマップなどの種別、軸、凡例、選択",
+      "sourceLine": 225,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "種別",
+          "implemented": "kind: line/bar/area/pie/doughnut/scatter/heatmap/radar/gauge/treemap; actual SVG paths measured for every kind"
+        },
+        {
+          "requested": "軸",
+          "implemented": "xAxis/yAxis type/label/min/max; actual numeric x coordinate rendering and axis range validation"
+        },
+        {
+          "requested": "凡例",
+          "implemented": "legend/hiddenSeries/hiddenSeriesChange; native checkbox hides the selected series"
+        },
+        {
+          "requested": "選択",
+          "implemented": "selected/selectionChange with stable seriesId/pointId; native value table includes treemap descendants"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Chart: all 10 requested types, selection, explicit missing and comparison",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Chart",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [],
+      "applicationOwner": "null is missing; non-Cartesian missing values are omitted from geometry and retained in the table; incomplete radar is not replaced by zeros",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 0,
+        "group": "Chart: all 10 requested types, selection, explicit missing and comparison"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-02",
+      "component": "Sparkline",
+      "requestedControls": "小型の推移表示、比較、欠損",
+      "sourceLine": 226,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "小型の推移表示",
+          "implemented": "compact ECharts line renderer"
+        },
+        {
+          "requested": "比較",
+          "implemented": "sparklineSummary first/last/delta for each series"
+        },
+        {
+          "requested": "欠損",
+          "implemented": "explicit missing count; missing endpoint produces null delta"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Chart: all 10 requested types, selection, explicit missing and comparison",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Chart",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [],
+      "applicationOwner": "app supplies ordered observations and their missingness; UI never imputes a missing value",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 0,
+        "group": "Chart: all 10 requested types, selection, explicit missing and comparison"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-03",
+      "component": "Map",
+      "requestedControls": "地図表示、マーカー、領域、選択、拡大",
+      "sourceLine": 227,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "地図表示",
+          "implemented": "actual MapLibre Map canvas with app-owned baseStyle and local GeoJSON"
+        },
+        {
+          "requested": "マーカー",
+          "implemented": "actual Marker with semantic native button"
+        },
+        {
+          "requested": "領域",
+          "implemented": "GeoJSON source plus fill/outline layers"
+        },
+        {
+          "requested": "選択",
+          "implemented": "selected/selectionChange for marker and region; canvas and native list"
+        },
+        {
+          "requested": "拡大",
+          "implemented": "camera/cameraChange and bounded 0..22 zoom controls"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Map: local GeoJSON worker rendering, markers, region selection and controlled zoom",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Map",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Destroy and remount dispose renderer nodes and restore controlled application values",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "base style, tile/font provider, attribution, permission and camera/selection application state",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 1,
+        "group": "Map: local GeoJSON worker rendering, markers, region selection and controlled zoom"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index",
+      "publicAssetConsumerCandidate": {
+        "file": "tests/ui/specialist-workers.spec.ts",
+        "title": "explicit public MapLibre worker URL, shared ESM MIME and actual canvas consumer",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      }
+    },
+    {
+      "id": "specialist-04",
+      "component": "Gantt",
+      "requestedControls": "タスク、期間、依存関係、進捗、時間軸",
+      "sourceLine": 228,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "タスク",
+          "implemented": "tasks with stable ID and native table"
+        },
+        {
+          "requested": "期間",
+          "implemented": "UTC civil start/end, actual custom bars and native date edit"
+        },
+        {
+          "requested": "依存関係",
+          "implemented": "validated dependency IDs/cycles and actual arrow polylines"
+        },
+        {
+          "requested": "進捗",
+          "implemented": "nullable progress; rendered actual progress and validated edit 0..100"
+        },
+        {
+          "requested": "時間軸",
+          "implemented": "scale/scaleChange day/week/month and actual time axis"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Gantt: periods, dependency, missing progress, scale and editing",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Gantt",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Gantt rejects invalid progress without publishing invalid task and accepts repair",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "taskChange is an intent; application updates tasks after its own acceptance; null progress remains unknown",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 2,
+        "group": "Gantt: periods, dependency, missing progress, scale and editing"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-05",
+      "component": "Kanban / TaskBoard",
+      "requestedControls": "列、カード、移動、順序、件数制限",
+      "sourceLine": 229,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "列",
+          "implemented": "columns readmodel and labelled drop lists"
+        },
+        {
+          "requested": "カード",
+          "implemented": "cards readmodel with stable IDs"
+        },
+        {
+          "requested": "移動",
+          "implemented": "CDK drop and native target-column controls emit moveRequested"
+        },
+        {
+          "requested": "順序",
+          "implemented": "native previous/next plus indexed immutable move"
+        },
+        {
+          "requested": "件数制限",
+          "implemented": "limit checked before ingress; reorder inside full column remains allowed"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Kanban: keyboard reorder, cross-column move and actual WIP limit",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Kanban",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Kanban move retains focus on moved card; disabled prevents data changes",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "move acceptance/persistence and actual Undo; immutable moveBoardCard can be reused by app",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 3,
+        "group": "Kanban: keyboard reorder, cross-column move and actual WIP limit"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-06",
+      "component": "Spreadsheet",
+      "requestedControls": "セル、数式、編集、選択、固定、入出力",
+      "sourceLine": 230,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "セル",
+          "implemented": "rectangular bounded SheetModel and native ARIA grid"
+        },
+        {
+          "requested": "数式",
+          "implemented": "real worker parser: SUM/IF/arithmetic/references/recalculation/errors/cycles"
+        },
+        {
+          "requested": "編集",
+          "implemented": "F2/Enter editor, Enter commit intent, Escape discard, blur preserves unaccepted draft"
+        },
+        {
+          "requested": "選択",
+          "implemented": "roving cell plus Shift+Arrow range, RTL movement, selectionChange"
+        },
+        {
+          "requested": "固定",
+          "implemented": "frozenRows/frozenColumns and semantic sticky offsets observed"
+        },
+        {
+          "requested": "入出力",
+          "implemented": "importRequested/exportRequested and raw CSV roundtrip preserving formulas/leading zeros/quotations"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Spreadsheet: worker formulas, keyboard edits, range selection, fixed cells and CSV roundtrip",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Spreadsheet",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Spreadsheet keeps unaccepted draft through busy and disabled; Escape restores source",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        },
+        {
+          "file": "tests/ui/specialist-workers.spec.ts",
+          "title": "missing formula worker preserves original CSV/cells and recovers with real recalculation",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "cell/import/export acceptance and actual file I/O; single-sheet CSV rather than XLSX/full Excel compatibility",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 4,
+        "group": "Spreadsheet: worker formulas, keyboard edits, range selection, fixed cells and CSV roundtrip"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-07",
+      "component": "RichTextEditor",
+      "requestedControls": "書式、ツールバー、画像、リンク、読取り専用",
+      "sourceLine": 231,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "書式",
+          "implemented": "actual ProseMirror transactions for bold/italic/code/paragraph/heading"
+        },
+        {
+          "requested": "ツールバー",
+          "implemented": "configurable commands plus undo/redo history"
+        },
+        {
+          "requested": "画像",
+          "implemented": "safe image URL and required alternative text inserted into real schema"
+        },
+        {
+          "requested": "リンク",
+          "implemented": "safe link mark on real selection"
+        },
+        {
+          "requested": "読取り専用",
+          "implemented": "CVA/readOnly/disabled/busy preserve live view and draft"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "RichText: real typing, bold formatting, safe link, image and readonly draft retention",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "RichText",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Rich document URL boundary blocks invalid external document and permits explicit recovery",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "document storage and accepted reset; unsafe external document is retained as original and old view is blocked until explicit valid recovery",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 5,
+        "group": "RichText: real typing, bold formatting, safe link, image and readonly draft retention"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index",
+      "integrationPatch": "patches/specialist-prosemirror-css.patch + patches/specialist-catalog-forms.patch"
+    },
+    {
+      "id": "specialist-08",
+      "component": "MarkdownEditor",
+      "requestedControls": "編集、プレビュー、分割表示",
+      "sourceLine": 232,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "編集",
+          "implemented": "actual CodeMirror Markdown/CVA value"
+        },
+        {
+          "requested": "プレビュー",
+          "implemented": "actual marked HTML passed through Angular DomSanitizer"
+        },
+        {
+          "requested": "分割表示",
+          "implemented": "controlled edit/preview/split modes; hidden editor remains mounted"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Markdown: actual editing, sanitized preview, split and persistent hidden editor",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Markdown",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [],
+      "applicationOwner": "document acceptance/storage; sanitizer is the HTML boundary and no trust bypass is used",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 6,
+        "group": "Markdown: actual editing, sanitized preview, split and persistent hidden editor"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-09",
+      "component": "CodeEditor",
+      "requestedControls": "言語、補完、行番号、読取り専用",
+      "sourceLine": 233,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "言語",
+          "implemented": "language: javascript/typescript/json/markdown/text using real language extensions"
+        },
+        {
+          "requested": "補完",
+          "implemented": "actual autocompletion extension and app-supplied completions"
+        },
+        {
+          "requested": "行番号",
+          "implemented": "lineNumbers compartment reconfiguration"
+        },
+        {
+          "requested": "読取り専用",
+          "implemented": "EditorState.readOnly/EditorView.editable plus CVA disabled state"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Code: CVA initial value, language switch, completion, line numbers and profile preservation",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Code",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Code CVA draft, readonly, hidden, profile and undo preserve the editor instance",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        },
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Destroy and remount dispose renderer nodes and restore controlled application values",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "code persistence/accepted reset; local editor history is preserved across profile/hidden/readOnly switches",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 7,
+        "group": "Code: CVA initial value, language switch, completion, line numbers and profile preservation"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index",
+      "integrationPatch": "patches/specialist-catalog-forms.patch"
+    },
+    {
+      "id": "specialist-10",
+      "component": "DiffViewer / JsonViewer",
+      "requestedControls": "比較、差分、階層展開、検索、コピー",
+      "sourceLine": 234,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "比較",
+          "implemented": "real readonly CodeMirror MergeView before/after"
+        },
+        {
+          "requested": "差分",
+          "implemented": "actual chunks/count/nextDifference"
+        },
+        {
+          "requested": "階層展開",
+          "implemented": "JSON AST with native expand/collapse by stable offset ID"
+        },
+        {
+          "requested": "検索",
+          "implemented": "actual diff search and JSON query through collapsed descendants"
+        },
+        {
+          "requested": "コピー",
+          "implemented": "writer promise acknowledged only on actual Clipboard success; raw full source and JSON token copy"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Diff/JSON: actual merge chunks, search, raw-precision hierarchy and real clipboard copy",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Diff / JSON",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Clipboard rejection reports failure; subsequent real clipboard write succeeds",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "optional Clipboard writer injection and storage; JSON source tokens preserve huge integers and duplicate properties",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 8,
+        "group": "Diff/JSON: actual merge chunks, search, raw-precision hierarchy and real clipboard copy"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-11",
+      "component": "FileExplorer",
+      "requestedControls": "階層、表示方式、選択、検索、ファイル操作",
+      "sourceLine": 235,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "階層",
+          "implemented": "stable tree, expansion and Arrow/Home/End/Enter focus behavior"
+        },
+        {
+          "requested": "表示方式",
+          "implemented": "controlled tree/list/grid view"
+        },
+        {
+          "requested": "選択",
+          "implemented": "selected/selectionChange single/multiple plus native selection control"
+        },
+        {
+          "requested": "検索",
+          "implemented": "query traverses closed folders"
+        },
+        {
+          "requested": "ファイル操作",
+          "implemented": "create/rename/delete typed operationRequested; rejection leaves name draft intact"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "FileExplorer: keyboard hierarchy, selection, search, layouts and failed operation keeps draft",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "FileExplorer",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [],
+      "applicationOwner": "filesystem I/O, authorization, operation success/failure and actual Undo",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 9,
+        "group": "FileExplorer: keyboard hierarchy, selection, search, layouts and failed operation keeps draft"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-12",
+      "component": "Diagram / FlowEditor",
+      "requestedControls": "ノード、接続、配置、拡大、編集",
+      "sourceLine": 236,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "ノード",
+          "implemented": "real SVG surface plus native positioned node controls"
+        },
+        {
+          "requested": "接続",
+          "implemented": "validated graph edges and connect/remove edge intents"
+        },
+        {
+          "requested": "配置",
+          "implemented": "actual Dagre LR/TB layout; app-controlled layoutRequested"
+        },
+        {
+          "requested": "拡大",
+          "implemented": "bounded zoom/zoomChange .25..4"
+        },
+        {
+          "requested": "編集",
+          "implemented": "native arrow movement, coordinate/label edit, add/remove node and associated edges"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Diagram",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [],
+      "applicationOwner": "graph acceptance/persistence and actual Undo; typed immutable changeDiagram/layoutDiagram do not mutate input",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 10,
+        "group": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    },
+    {
+      "id": "specialist-13",
+      "component": "Chat / MessageList / MessageComposer",
+      "requestedControls": "メッセージ、添付、送信状態、再送、追加読込み",
+      "sourceLine": 237,
+      "status": "formal-tests-prepared-official-run-pending",
+      "controls": [
+        {
+          "requested": "メッセージ",
+          "implemented": "ordered native list in live log with state labels"
+        },
+        {
+          "requested": "添付",
+          "implemented": "File[] selection intent and controlled attachment metadata/list/removal/open intent"
+        },
+        {
+          "requested": "送信状態",
+          "implemented": "requestId + sendRequested; app completeSend/failSend/markSendUnknown acknowledgement"
+        },
+        {
+          "requested": "再送",
+          "implemented": "retryRequested only for failed+retryable; unknown blocks duplicate composer send"
+        },
+        {
+          "requested": "追加読込み",
+          "implemented": "cursor/requestId/loadMoreRequested with app completeLoad/failLoad and stale/reset discard"
+        }
+      ],
+      "functionalCandidate": {
+        "file": "tests/ui/specialist-catalog.spec.ts",
+        "title": "Chat: real file attachment metadata, app-controlled sending/failure/retry/history and draft retention",
+        "profiles": [
+          "guided",
+          "dense"
+        ]
+      },
+      "accessibilityCandidate": {
+        "file": "tests/ui/specialist-accessibility.spec.ts",
+        "surface": "Chat",
+        "profiles": [
+          "guided",
+          "dense"
+        ],
+        "independentFreshCase": true,
+        "environment": [
+          "320px",
+          "200% text",
+          "RTL",
+          "reduced motion"
+        ]
+      },
+      "runtimeGuard": "tests/ui/catalog-test.ts auto errors/warnings fixture",
+      "recoveryCandidates": [
+        {
+          "file": "tests/ui/specialist-recovery.spec.ts",
+          "title": "Chat unknown send result keeps draft and prevents retry until app explicitly resets",
+          "profiles": [
+            "guided",
+            "dense"
+          ]
+        }
+      ],
+      "applicationOwner": "real send/upload/download/storage and safety of retries; draft clears only on matching confirmed acknowledgement",
+      "historicalAuthorEvidenceOnly": {
+        "artifact": "evidence/browser-results.json",
+        "groupIndex": 11,
+        "group": "Chat: real file attachment metadata, app-controlled sending/failure/retry/history and draft retention"
+      },
+      "publicConsumer": "tests/fixture-app/specialist-catalog.ts -> ../../.ui/generated/angular/index"
+    }
+  ],
+  "counts": {
+    "functionalCases": 24,
+    "recoveryCasesExcludingWorker": 16,
+    "workerRecoveryCases": 2,
+    "axeCases": 24,
+    "publicMapWorkerCases": 2,
+    "totalBrowserCases": 68,
+    "modelCases": 13,
+    "controlledWorkerBoundaryCases": 3
+  },
+  "notClaimed": "formal repository integrated pass or all181 coverage",
+  "scope": "exact original 13 rows; operations and axe use public generated index fixture; author snapshot evidence is distinct from pending official root execution",
+  "authorCandidateEvidence": {
+    "ledger": "candidate-evidence.json",
+    "snapshotFullSuite": {
+      "pass": 68,
+      "fail": 0,
+      "specSha256": "evidence/snapshot-68-tested-spec-sha256.json"
+    },
+    "finalFormsDelta": {
+      "pass": 4,
+      "fail": 0,
+      "profiles": [
+        "guided",
+        "dense"
+      ]
+    },
+    "modelsAndControlledWorkerBoundary": {
+      "pass": 16,
+      "fail": 0
+    },
+    "strictTypecheckExitCode": 0,
+    "strictAotExitCode": 0,
+    "officialRootStatus": "pending"
+  }
+}

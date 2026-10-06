@@ -1,0 +1,56 @@
+{
+  "severity": "P2",
+  "status": "ROOT_DISPLAY_REPAIR_PENDING_FRESH_NATIVE",
+  "sourceCommitBefore": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+  "sourceBeforeSha256": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be",
+  "sourceAfterSha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+  "locations": [
+    {
+      "path": "templates/angular/scheduler-view.ts",
+      "line": 8,
+      "display": "layout().problem"
+    },
+    {
+      "path": "templates/angular/scheduler-view.ts",
+      "line": 13,
+      "display": "entry.problem"
+    }
+  ],
+  "reproduction": "Public typed event.start invalid ISO or provider timeZone=null, explicit dictionary for exact library-owned model diagnostic. UI alert stayed Japanese in both profiles.",
+  "actualExitCode": 1,
+  "checks": 28,
+  "failed": 4,
+  "failures": [
+    {
+      "name": "Scheduler invalid event structural diagnostic follows explicit dictionary guided",
+      "actual": "予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。",
+      "expected": "Invalid event instant",
+      "passed": false
+    },
+    {
+      "name": "Scheduler invalid configuration diagnostic follows explicit dictionary guided",
+      "actual": "表示言語とタイムゾーンを明示してください。",
+      "expected": "Display locale and zone required",
+      "passed": false
+    },
+    {
+      "name": "Scheduler invalid event structural diagnostic follows explicit dictionary dense",
+      "actual": "予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。",
+      "expected": "Invalid event instant",
+      "passed": false
+    },
+    {
+      "name": "Scheduler invalid configuration diagnostic follows explicit dictionary dense",
+      "actual": "表示言語とタイムゾーンを明示してください。",
+      "expected": "Display locale and zone required",
+      "passed": false
+    }
+  ],
+  "positive": "24 observations PASS; 3 native draft-clearing writers, dictionary-only IO/request/authorization0, raw app failMove/key/DTO, Diff focus/selection/DOM, Json raw code/offset",
+  "repairScope": "Two UI text pipes only; pure model, control gates, DTO and app failure raw unchanged",
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "overallApprove": false
+}

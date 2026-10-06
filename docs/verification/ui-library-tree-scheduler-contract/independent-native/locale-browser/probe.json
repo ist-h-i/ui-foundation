@@ -1,0 +1,556 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 59019,
+  "results": [
+    {
+      "name": "tree-live-provider-locale-keyboard-explicit-override-profile-domain",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-live-locale-search-cva-wire-profile-explicit-child-override",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-live-locale-profile-native-draft-pending-explicit-zone-domain",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-live-provider-locale-keyboard-explicit-override-profile-domain",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-live-locale-search-cva-wire-profile-explicit-child-override",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-live-locale-profile-native-draft-pending-explicit-zone-domain",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "tree-locale-keyboard-domain-state",
+      "profile": "guided",
+      "state": {
+        "nodesSame": true,
+        "nodeSame": true,
+        "selected": [
+          "a"
+        ],
+        "checked": [
+          "a"
+        ],
+        "focus": "b",
+        "direction": "rtl",
+        "fontSize": "32px"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "tree-locale-narrow-200-rtl",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#tree-item-b > div > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "select-locale-search-cva-domain",
+      "profile": "guided",
+      "state": {
+        "nodesSame": true,
+        "searchSame": true,
+        "draft": "ı",
+        "cva": [
+          "raw/one"
+        ],
+        "wire": [
+          "raw/one"
+        ],
+        "direction": "rtl",
+        "lang": "tr-TR"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "select-locale-narrow-200-rtl",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"Pick departments\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "21.0pt (28px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-help\" id=\"selection-tree-help\">上下で移動、左右で展開・親へ戻る。Spaceで選択項目を変更。</p>",
+              "target": [
+                "#selection-tree-help"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "scheduler-locale-narrow-200-rtl",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "scheduler-locale-domain-draft-pending-zone",
+      "profile": "guided",
+      "before": {
+        "display": "2026/10/06 9:00 ～ 2026/10/06 10:00",
+        "draft": "2026-10-06T09:30"
+      },
+      "localized": {
+        "display": "06 Ekim 2026 09:00 ～ 06 Ekim 2026 10:00",
+        "eventsSame": true,
+        "startSame": true,
+        "memoSame": true,
+        "zone": "Asia/Tokyo",
+        "locale": "tr-TR",
+        "direction": "rtl",
+        "lang": "tr-TR"
+      },
+      "pending": {
+        "request": {
+          "requestId": 1,
+          "event": {
+            "id": "one",
+            "title": "Morning booking",
+            "start": "2026-10-06T00:00:00Z",
+            "end": "2026-10-06T01:00:00Z",
+            "resourceIds": [
+              "r1"
+            ],
+            "data": {
+              "owner": "Alice"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T00:00:00Z",
+            "end": "2026-10-06T01:00:00Z",
+            "resourceIds": [
+              "r1"
+            ]
+          },
+          "target": {
+            "localStart": "2026-10-06T09:30",
+            "localEnd": "2026-10-06T10:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": [
+              "r1"
+            ]
+          }
+        },
+        "count": 1,
+        "cancellations": [],
+        "pendingId": "one",
+        "eventsSame": true,
+        "date": "2026-10-06"
+      },
+      "inherited": {
+        "zone": "America/Los_Angeles",
+        "pendingId": null,
+        "cancellations": [
+          {
+            "requestId": 1,
+            "eventId": "one",
+            "reason": "source-change"
+          }
+        ],
+        "draft": "2026-10-06T09:30",
+        "eventsSame": true
+      }
+    },
+    {
+      "name": "tree-locale-keyboard-domain-state",
+      "profile": "dense",
+      "state": {
+        "nodesSame": true,
+        "nodeSame": true,
+        "selected": [
+          "a"
+        ],
+        "checked": [
+          "a"
+        ],
+        "focus": "b",
+        "direction": "rtl",
+        "fontSize": "36px"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "tree-locale-narrow-200-rtl",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#tree-item-b > div > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "select-locale-search-cva-domain",
+      "profile": "dense",
+      "state": {
+        "nodesSame": true,
+        "searchSame": true,
+        "draft": "ı",
+        "cva": [
+          "raw/one"
+        ],
+        "wire": [
+          "raw/one"
+        ],
+        "direction": "rtl",
+        "lang": "tr-TR"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "select-locale-narrow-200-rtl",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"Pick departments\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-help\" id=\"selection-tree-help\">上下で移動、左右で展開・親へ戻る。Spaceで選択項目を変更。</p>",
+              "target": [
+                "#selection-tree-help"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "scheduler-locale-narrow-200-rtl",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "scheduler-locale-domain-draft-pending-zone",
+      "profile": "dense",
+      "before": {
+        "display": "2026/10/06 9:00 ～ 2026/10/06 10:00",
+        "draft": "2026-10-06T09:30"
+      },
+      "localized": {
+        "display": "06 Ekim 2026 09:00 ～ 06 Ekim 2026 10:00",
+        "eventsSame": true,
+        "startSame": true,
+        "memoSame": true,
+        "zone": "Asia/Tokyo",
+        "locale": "tr-TR",
+        "direction": "rtl",
+        "lang": "tr-TR"
+      },
+      "pending": {
+        "request": {
+          "requestId": 1,
+          "event": {
+            "id": "one",
+            "title": "Morning booking",
+            "start": "2026-10-06T00:00:00Z",
+            "end": "2026-10-06T01:00:00Z",
+            "resourceIds": [
+              "r1"
+            ],
+            "data": {
+              "owner": "Alice"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T00:00:00Z",
+            "end": "2026-10-06T01:00:00Z",
+            "resourceIds": [
+              "r1"
+            ]
+          },
+          "target": {
+            "localStart": "2026-10-06T09:30",
+            "localEnd": "2026-10-06T10:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": [
+              "r1"
+            ]
+          }
+        },
+        "count": 1,
+        "cancellations": [],
+        "pendingId": "one",
+        "eventsSame": true,
+        "date": "2026-10-06"
+      },
+      "inherited": {
+        "zone": "America/Los_Angeles",
+        "pendingId": null,
+        "cancellations": [
+          {
+            "requestId": 1,
+            "eventId": "one",
+            "reason": "source-change"
+          }
+        ],
+        "draft": "2026-10-06T09:30",
+        "eventsSame": true
+      }
+    }
+  ],
+  "runtime": [],
+  "failed": 0
+}

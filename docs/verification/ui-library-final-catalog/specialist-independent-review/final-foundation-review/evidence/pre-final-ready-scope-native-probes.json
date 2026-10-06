@@ -1,0 +1,123 @@
+{
+  "rows": [
+    {
+      "name": "native-AX-editor-group-and-completion-lifecycle",
+      "profile": "guided",
+      "width": 1280,
+      "font": "100%",
+      "direction": "ltr",
+      "startedAt": "2026-10-06T06:58:45.033Z",
+      "result": {
+        "groups": [
+          {
+            "section": "rich",
+            "name": "Independent document formatting",
+            "ax": "- group \"Independent document formatting\":\n  - button \"Bold\" [disabled]\n  - button \"斜体\" [disabled]\n  - button \"コード\" [disabled]\n  - button \"段落\" [disabled]\n  - button \"見出し\" [disabled]\n  - button \"リンクを設定\" [disabled]\n  - button \"画像を挿入\" [disabled]\n  - button \"元に戻す\" [disabled]\n  - button \"やり直す\" [disabled]"
+          },
+          {
+            "section": "markdown",
+            "name": "Markdown modes",
+            "ax": "- group \"Markdown modes\":\n  - button \"Edit\"\n  - button \"プレビュー\"\n  - button \"分割表示\" [pressed]"
+          }
+        ],
+        "observations": [
+          {
+            "name": "open",
+            "controls": [
+              "cm-ac-1287u"
+            ],
+            "active": "cm-ac-1287u-0",
+            "activePresent": true,
+            "targets": [
+              {
+                "id": "cm-ac-1287u",
+                "present": true,
+                "role": "listbox"
+              }
+            ]
+          },
+          {
+            "name": "Escape",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          },
+          {
+            "name": "language-closed",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          },
+          {
+            "name": "readonly-closed",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          },
+          {
+            "name": "CVA-disabled-closed",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          },
+          {
+            "name": "open-before-destroy",
+            "controls": [
+              "cm-ac-1287u"
+            ],
+            "active": "cm-ac-1287u-0",
+            "activePresent": true,
+            "targets": [
+              {
+                "id": "cm-ac-1287u",
+                "present": true,
+                "role": "listbox"
+              }
+            ]
+          },
+          {
+            "name": "remount-closed",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          },
+          {
+            "name": "remount-open",
+            "controls": [
+              "cm-ac-lcd"
+            ],
+            "active": "cm-ac-lcd-0",
+            "activePresent": true,
+            "targets": [
+              {
+                "id": "cm-ac-lcd",
+                "present": true,
+                "role": "listbox"
+              }
+            ]
+          },
+          {
+            "name": "native-option-accept",
+            "controls": [],
+            "active": null,
+            "activePresent": true,
+            "targets": []
+          }
+        ],
+        "axe": {
+          "violations": [],
+          "incomplete": []
+        }
+      },
+      "passed": true,
+      "errors": [],
+      "endedAt": "2026-10-06T06:58:47.811Z"
+    }
+  ],
+  "allExpected": true
+}

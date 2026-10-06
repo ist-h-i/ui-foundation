@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { restoreFocus } from './focus';
@@ -11,9 +13,10 @@ export interface TourStep {
 }
 export type TourCloseReason = 'completed' | 'dismissed' | 'escape' | 'target-unavailable' | 'scope-exit';
 @Component({ selector: 'ui-tour,ui-coachmark', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<div #popup popover="manual" class="ui-tour-popup" role="dialog" aria-modal="false" tabindex="-1" [attr.aria-labelledby]="controlId()+'-title'" [attr.aria-describedby]="controlId()+'-description'">@if(current();as step){<h2 [id]="controlId()+'-title'">{{step.title}}</h2><p [id]="controlId()+'-description'">{{step.message}}</p><p role="status" aria-atomic="true"><bdi dir="ltr">{{currentIndex()+1}} / {{steps().length}}</bdi></p><div class="ui-tour-actions"><button uiAction [disabled]="currentIndex()===0" (click)="previous()">{{previousLabel()}}</button><button uiAction (click)="next()">{{currentIndex()===steps().length-1?finishLabel():nextLabel()}}</button><button uiAction (click)="close('dismissed')">{{closeLabel()}}</button></div>}</div>@if(opened()&&highlight();as box){<div class="ui-tour-highlight" aria-hidden="true" [style.left.px]="box.left" [style.top.px]="box.top" [style.width.px]="box.width" [style.height.px]="box.height"></div>}`,
+    template: `<div #popup popover="manual" class="ui-tour-popup" role="dialog" aria-modal="false" tabindex="-1" [attr.aria-labelledby]="controlId()+'-title'" [attr.aria-describedby]="controlId()+'-description'">@if(current();as step){<h2 [id]="controlId()+'-title'">{{step.title}}</h2><p [id]="controlId()+'-description'">{{step.message}}</p><p role="status" aria-atomic="true"><bdi dir="ltr">{{currentIndex()+1}} / {{steps().length}}</bdi></p><div class="ui-tour-actions"><button uiAction [disabled]="currentIndex()===0" (click)="previous()">{{uiEffective_previousLabel()}}</button><button uiAction (click)="next()">{{currentIndex()===steps().length-1?uiEffective_finishLabel():uiEffective_nextLabel()}}</button><button uiAction (click)="close('dismissed')">{{uiEffective_closeLabel()}}</button></div>}</div>@if(opened()&&highlight();as box){<div class="ui-tour-highlight" aria-hidden="true" [style.left.px]="box.left" [style.top.px]="box.top" [style.width.px]="box.width" [style.height.px]="box.height"></div>}`,
     styles: `:host{display:contents;}:host([hidden]){display:none;}.ui-tour-popup{box-sizing:border-box;position:fixed;inset:auto;margin:0;padding:var(--ui-space-field);inline-size:var(--ui-size-dialog-min);max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap));max-block-size:calc(100dvh - 2 * var(--ui-space-field));overflow:auto;overscroll-behavior:contain;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);overflow-wrap:anywhere;}h2{font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);margin:0;}p{margin-block:var(--ui-space-control-gap);}.ui-tour-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}.ui-tour-highlight{box-sizing:border-box;position:fixed;pointer-events:none;z-index:1;border:var(--ui-border-focus) solid var(--ui-color-focus);border-radius:var(--ui-radius-control);}` })
 export class Tour {
+ protected readonly uiText_Tour=injectUiText();
     readonly controlId = input.required<string>();
     readonly steps = input<readonly TourStep[]>([]);
     readonly open = input(false, { transform: booleanAttribute });
@@ -23,10 +26,14 @@ export class Tour {
     readonly seen = input<readonly string[]>([]);
     readonly seenChange = output<readonly string[]>();
     readonly closed = output<TourCloseReason>();
-    readonly previousLabel = input('戻る');
-    readonly nextLabel = input('次へ');
-    readonly finishLabel = input('案内を完了');
-    readonly closeLabel = input('案内を閉じる');
+    readonly previousLabel = input<string>();
+ protected readonly uiEffective_previousLabel=uiLocaleComputed(()=>this.previousLabel()??this.uiText_Tour('戻る'));
+    readonly nextLabel = input<string>();
+ protected readonly uiEffective_nextLabel=uiLocaleComputed(()=>this.nextLabel()??this.uiText_Tour('次へ'));
+    readonly finishLabel = input<string>();
+ protected readonly uiEffective_finishLabel=uiLocaleComputed(()=>this.finishLabel()??this.uiText_Tour('案内を完了'));
+    readonly closeLabel = input<string>();
+ protected readonly uiEffective_closeLabel=uiLocaleComputed(()=>this.closeLabel()??this.uiText_Tour('案内を閉じる'));
     protected readonly opened = linkedSignal(() => this.open());
     protected readonly currentIndex = linkedSignal(() => this.index());
     private readonly seenIds = linkedSignal(() => this.seen());

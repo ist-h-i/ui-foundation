@@ -57,10 +57,10 @@ export function commandShortcut(value: string | null): CommandShortcut | null {
     const allowed = new Set(['Control', 'Alt', 'Shift', 'Meta']);
     if (!key || !parts.length || parts.some(part => !allowed.has(part)) || new Set(parts).size !== parts.length || !parts.some(part => part === 'Control' || part === 'Alt' || part === 'Meta') || !(/^[\p{L}\p{N}]$/u.test(key) || /^(?:F(?:[1-9]|1[0-2])|Enter|Space|Arrow(?:Up|Down|Left|Right))$/.test(key)))
         throw new Error('Command shortcut needs distinct modifiers, Control/Alt/Meta, and a letter, digit or supported named key.');
-    return { key: key === 'Space' ? ' ' : key.toLocaleLowerCase(), control: parts.includes('Control'), alt: parts.includes('Alt'), shift: parts.includes('Shift'), meta: parts.includes('Meta') };
+    return { key: key === 'Space' ? ' ' : key.toLowerCase(), control: parts.includes('Control'), alt: parts.includes('Alt'), shift: parts.includes('Shift'), meta: parts.includes('Meta') };
 }
 export function matchesCommandShortcut(event: CommandKeyEvent, shortcut: CommandShortcut | null): boolean {
-    return !!shortcut && !event.defaultPrevented && !event.isComposing && event.keyCode !== 229 && event.key.toLocaleLowerCase() === shortcut.key && event.ctrlKey === shortcut.control && event.altKey === shortcut.alt && event.shiftKey === shortcut.shift && event.metaKey === shortcut.meta;
+    return !!shortcut && !event.defaultPrevented && !event.isComposing && event.keyCode !== 229 && event.key.toLowerCase() === shortcut.key && event.ctrlKey === shortcut.control && event.altKey === shortcut.alt && event.shiftKey === shortcut.shift && event.metaKey === shortcut.meta;
 }
 export function validNavigationId(id: string): boolean { return !!id.trim() && !/\s/.test(id); }
 export function navigationHref(href: string | undefined): string | null {
@@ -133,9 +133,9 @@ export function paletteCommands(items: readonly PaletteCommand[]): readonly Pale
     }
     return items;
 }
-export function searchCommands(items: readonly PaletteCommand[], query: string, recentIds: readonly string[]): readonly PaletteCommand[] {
-    const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean), visible = paletteCommands(items).filter(item => item.visible !== false);
-    const matches = visible.filter(item => terms.every(term => [item.label, item.description ?? '', item.group ?? '', ...(item.keywords ?? [])].join(' ').toLocaleLowerCase().includes(term)));
+export function searchCommands(items: readonly PaletteCommand[], query: string, recentIds: readonly string[], locale = 'ja-JP'): readonly PaletteCommand[] {
+    const terms = query.trim().toLocaleLowerCase(locale).split(/\s+/).filter(Boolean), visible = paletteCommands(items).filter(item => item.visible !== false);
+    const matches = visible.filter(item => terms.every(term => [item.label, item.description ?? '', item.group ?? '', ...(item.keywords ?? [])].join(' ').toLocaleLowerCase(locale).includes(term)));
     if (terms.length)
         return matches;
     const ranks = new Map(recentIds.map((id, index) => [id, index]));

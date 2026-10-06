@@ -1,0 +1,7 @@
+{
+  "observedAt": "2026-10-06T07:14:35.134510+00:00",
+  "actualExit": 1,
+  "classification": "own range scroller viewport ignores actual sticky CodeMirror gutters; not yet product finding",
+  "observedColorRatio": 14.645016318974449,
+  "fix": "derive visible content boundary from public rendered .cm-gutters bbox before native local scroll/hit"
+}

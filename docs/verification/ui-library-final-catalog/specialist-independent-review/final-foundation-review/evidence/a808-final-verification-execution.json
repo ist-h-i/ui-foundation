@@ -1,0 +1,50 @@
+[
+  {
+    "name": "a808-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "startedAt": "2026-10-06T09:16:22.091467+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T09:16:25.408451+00:00"
+  },
+  {
+    "name": "a808-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "startedAt": "2026-10-06T09:16:25.410622+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T09:16:26.786904+00:00"
+  },
+  {
+    "name": "a808-final-all139-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.all-generated.json"
+    ],
+    "startedAt": "2026-10-06T09:16:26.789451+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T09:16:45.554446+00:00"
+  },
+  {
+    "name": "a808-final-public-barrel-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "startedAt": "2026-10-06T09:16:45.557765+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T09:17:03.035224+00:00"
+  }
+]

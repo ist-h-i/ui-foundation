@@ -1,0 +1,23 @@
+[
+  {
+    "name": "final-edge-consumer-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "startedAt": "2026-10-06T07:47:14.135520+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:47:30.200440+00:00"
+  },
+  {
+    "name": "final-edge-consumer-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "startedAt": "2026-10-06T07:47:30.205783+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:47:33.386726+00:00"
+  }
+]

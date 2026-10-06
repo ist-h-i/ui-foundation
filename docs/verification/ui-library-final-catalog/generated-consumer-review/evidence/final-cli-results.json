@@ -1,0 +1,75 @@
+{
+  "inputDigest": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "generatedManifestSha": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+  "commands": [
+    {
+      "name": "sync",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "exit": 0,
+      "manifestBefore": "71d2bc0d747c71df0bdf1c08623ba7cad644ebe44b081fd10a4e4c3ba02cd595",
+      "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "outputBefore": "55654460738e7d9ef1921d2700e2af3ca0a5aba5803d740bd6e2e7162810d17c",
+      "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+    },
+    {
+      "name": "check",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "exit": 0,
+      "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+      "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+    },
+    {
+      "name": "sync-idempotent",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "exit": 0,
+      "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+      "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+    },
+    {
+      "name": "dry-run",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--dry-run",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "exit": 0,
+      "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+      "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+    }
+  ]
+}

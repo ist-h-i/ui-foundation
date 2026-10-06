@@ -1,0 +1,11 @@
+import {build} from 'esbuild';
+import {transformAsync} from '@babel/core';
+import linkerPlugin from '@angular/compiler-cli/linker/babel';
+import {needsLinking} from '@angular/compiler-cli/linker';
+import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+await mkdir('dist-locale-boundary',{recursive:true});
+await build({entryPoints:['build-locale-boundary/locale-boundary-consumer.js'],outdir:'dist-locale-boundary',bundle:true,splitting:true,format:'esm',target:'es2022',minify:true,sourcemap:true,define:{ngDevMode:'false'},plugins:[{name:'angular-linker',setup(builder){builder.onLoad({filter:/\.mjs$/},async({path})=>{const source=await readFile(path,'utf8');if(!needsLinking(path,source))return;const result=await transformAsync(source,{filename:path,babelrc:false,configFile:false,plugins:[linkerPlugin],sourceMaps:'inline'});if(!result?.code)throw new Error('Angular linker did not produce code');return {contents:result.code,loader:'js'};});}}]});
+await copyFile('repository/.ui/generated/tokens.css','dist-locale-boundary/tokens.css');
+await copyFile('repository/.ui/generated/angular/styles.css','dist-locale-boundary/styles.css');
+await writeFile('dist-locale-boundary/index.html','<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Independent UI review</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css"></head><body><locale-boundary-review></locale-boundary-review><script type="module" src="locale-boundary-consumer.js"></script></body></html>');
+console.log('Fresh independent public-barrel consumer bundle built.');

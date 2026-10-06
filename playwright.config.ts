@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const port = Number(process.env.UI_FIXTURE_PORT ?? 4183);
+const baseURL = `http://127.0.0.1:${port}`;
+
 export default defineConfig({
   testDir: './tests/ui',
   fullyParallel: true,
@@ -9,14 +12,14 @@ export default defineConfig({
   reporter: 'list',
   use: {
     channel: 'chromium',
-    baseURL: 'http://127.0.0.1:4183',
+    baseURL,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: 'npm run build && node scripts/serve.mjs',
-    url: 'http://127.0.0.1:4183',
+    url: baseURL,
     reuseExistingServer: false,
     timeout: 240_000,
   },

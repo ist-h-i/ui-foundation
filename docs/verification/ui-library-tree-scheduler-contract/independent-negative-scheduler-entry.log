@@ -1,0 +1,6 @@
+[96mnegative-scheduler-entry.ts[0m:[93m61[0m:[93m116[0m - [91merror[0m[90m TS2339: [0mProperty 'nonexistent' does not exist on type 'SchedulerEntry<Booking>'.
+
+[7m61[0m  <ng-template [uiSchedulerEvent]="events()" let-event="event" let-entry="entry"><p>{{event.data?.owner}} / {{entry.nonexistent}}</p><label [for]="'booking-note-'+event.id">{{event.title}} memo</label><input [id]="'booking-note-'+event.id" [formControl]="memo(event.id)"></ng-template>
+[7m  [0m [91m                                                                                                                   ~~~~~~~~~~~[0m
+
+

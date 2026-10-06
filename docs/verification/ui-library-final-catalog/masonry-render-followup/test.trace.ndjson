@@ -1,0 +1,70 @@
+{"version":9,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.63.0","options":{},"platform":"darwin","wallTime":1791280623259,"monotonicTime":251508.244,"sdkLanguage":"javascript","testTimeout":30000,"annotations":[]}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":251508.906,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"hook@2","stepId":"hook@2","parentId":"hook@1","startTime":251508.968,"class":"Test","method":"hook","title":"beforeEach hook","params":{},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":15,"column":7}]}
+{"type":"before","callId":"fixture@26","stepId":"fixture@26","parentId":"hook@2","startTime":251515.621,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@27","stepId":"pw:api@27","parentId":"fixture@26","startTime":251516.087,"class":"Test","method":"pw:api","title":"Create context","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@27","endTime":251533.015,"annotations":[]}
+{"type":"after","callId":"fixture@26","endTime":251534.556,"annotations":[]}
+{"type":"before","callId":"fixture@28","stepId":"fixture@28","parentId":"hook@2","startTime":251534.861,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@29","stepId":"pw:api@29","parentId":"fixture@28","startTime":251535.428,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@29","endTime":251786.056,"annotations":[]}
+{"type":"after","callId":"fixture@28","endTime":251786.105,"annotations":[]}
+{"type":"before","callId":"fixture@30","stepId":"fixture@30","parentId":"hook@2","startTime":251786.18,"class":"Test","method":"fixture","title":"Fixture \"runtimeErrors\"","params":{},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts","line":4,"column":24}]}
+{"type":"after","callId":"fixture@30","endTime":251787.074,"annotations":[]}
+{"type":"before","callId":"pw:api@31","stepId":"pw:api@31","parentId":"hook@2","startTime":251787.984,"class":"Test","method":"pw:api","title":"Navigate","subtitle":"/catalog/collections","params":{"url":"/catalog/collections"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":15,"column":45}]}
+{"type":"after","callId":"pw:api@31","endTime":253251.937,"annotations":[]}
+{"type":"before","callId":"expect@32","stepId":"expect@32","parentId":"hook@2","startTime":253252.609,"class":"Test","method":"expect","title":"Expect \"toBeVisible\"","subtitle":"getByRole('heading', { name: '一覧・選択・スクロール・移動' })","params":{"locator":"getByRole('heading', { name: '一覧・選択・スクロール・移動' })"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":15,"column":138}]}
+{"type":"after","callId":"expect@32","endTime":253300.438,"annotations":[]}
+{"type":"before","callId":"pw:api@33","stepId":"pw:api@33","parentId":"hook@2","startTime":253301.534,"class":"Test","method":"pw:api","title":"Select option","subtitle":"getByRole('combobox', { name: '表示設定', exact: true })","params":{"locator":"getByRole('combobox', { name: '表示設定', exact: true })","options":"[Object]"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":15,"column":210}]}
+{"type":"after","callId":"pw:api@33","endTime":253343.967,"annotations":[]}
+{"type":"before","callId":"expect@34","stepId":"expect@34","parentId":"hook@2","startTime":253344.477,"class":"Test","method":"expect","title":"Expect \"toHaveAttribute\"","subtitle":"locator('main')","params":{"locator":"locator('main')","expected":"data-ui-profile"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":15,"column":267}]}
+{"type":"after","callId":"expect@34","endTime":253363.838,"annotations":[]}
+{"type":"after","callId":"hook@2","endTime":253363.863,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":253363.932,"annotations":[]}
+{"type":"before","callId":"pw:api@35","stepId":"pw:api@35","startTime":253364.464,"class":"Test","method":"pw:api","title":"Evaluate","subtitle":"locator('ui-masonry').locator('li')","params":{"locator":"locator('ui-masonry').locator('li')"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":201}]}
+{"type":"after","callId":"pw:api@35","endTime":253385.704,"annotations":[]}
+{"type":"before","callId":"expect@36","stepId":"expect@36","startTime":253386.033,"class":"Test","method":"expect","title":"Expect \"toBeGreaterThan\"","params":{"expected":"1"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":300}]}
+{"type":"after","callId":"expect@36","endTime":253386.059,"annotations":[]}
+{"type":"before","callId":"pw:api@37","stepId":"pw:api@37","startTime":253386.422,"class":"Test","method":"pw:api","title":"Click","subtitle":"locator('#masonry-columns')","params":{"locator":"locator('#masonry-columns')"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":358}]}
+{"type":"after","callId":"pw:api@37","endTime":253415.139,"annotations":[]}
+{"type":"before","callId":"pw:api@38","stepId":"pw:api@38","startTime":253415.595,"class":"Test","method":"pw:api","title":"Evaluate","subtitle":"locator('ui-masonry').locator('ul')","params":{"locator":"locator('ui-masonry').locator('ul')","state":"attached"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":401}]}
+{"type":"after","callId":"pw:api@38","endTime":253423.088,"annotations":[]}
+{"type":"before","callId":"expect@39","stepId":"expect@39","startTime":253423.397,"class":"Test","method":"expect","title":"Expect \"toBe\"","params":{"expected":"2"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":447}]}
+{"type":"after","callId":"expect@39","endTime":253425.698,"annotations":[],"error":{"name":"","message":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"4\"\u001b[39m","stack":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"4\"\u001b[39m\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts:19:447"}}
+{"type":"error","message":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"4\"\u001b[39m","stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/collection-catalog.spec.ts","line":19,"column":447}]}
+{"type":"before","callId":"hook@40","stepId":"hook@40","startTime":253426.135,"class":"Test","method":"hook","title":"After Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@41","stepId":"fixture@41","parentId":"hook@40","startTime":253553.939,"class":"Test","method":"fixture","title":"Fixture \"runtimeErrors\"","params":{},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts","line":4,"column":24}]}
+{"type":"before","callId":"expect@42","stepId":"expect@42","parentId":"fixture@41","startTime":253554.311,"class":"Test","method":"expect","title":"catalog browser runtime errors and warnings","params":{"expected":"[]"},"stack":[{"file":"/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts","line":5,"column":331,"function":"Object.base.extend.runtimeErrors.auto"}]}
+{"type":"after","callId":"expect@42","endTime":253554.349,"annotations":[]}
+{"type":"after","callId":"fixture@41","endTime":253554.359,"annotations":[]}
+{"type":"before","callId":"fixture@43","stepId":"fixture@43","parentId":"hook@40","startTime":253554.492,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@43","endTime":253554.562,"annotations":[]}
+{"type":"before","callId":"fixture@44","stepId":"fixture@44","parentId":"hook@40","startTime":253554.669,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@45","stepId":"pw:api@45","parentId":"fixture@44","startTime":253618.174,"class":"Test","method":"pw:api","title":"Close context","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@45","endTime":253624.005,"annotations":[]}
+{"type":"after","callId":"fixture@44","endTime":253624.028,"annotations":[]}
+{"type":"before","callId":"attach@948ef79bf87ff7f16f56484bacd59636","stepId":"attach@948ef79bf87ff7f16f56484bacd59636","startTime":253628.468,"class":"Test","method":"test.attach","title":"Attach \"error-context\"","params":{},"stack":[]}
+{"type":"after","callId":"attach@948ef79bf87ff7f16f56484bacd59636","endTime":253628.482,"attachments":[{"name":"error-context","contentType":"text/markdown","file":"attachments/0d1b227fcccba4ff1852176b9af3f94c23b6686c"}]}
+{"type":"before","callId":"fixture@54","stepId":"fixture@54","parentId":"hook@40","startTime":253629.704,"class":"Test","method":"fixture","title":"Fixture \"baseURL\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@54","endTime":253629.719,"annotations":[]}
+{"type":"before","callId":"fixture@55","stepId":"fixture@55","parentId":"hook@40","startTime":253629.726,"class":"Test","method":"fixture","title":"Fixture \"userAgent\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@55","endTime":253629.733,"annotations":[]}
+{"type":"before","callId":"fixture@57","stepId":"fixture@57","parentId":"hook@40","startTime":253629.934,"class":"Test","method":"fixture","title":"Fixture \"viewport\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@57","endTime":253629.941,"annotations":[]}
+{"type":"before","callId":"fixture@65","stepId":"fixture@65","parentId":"hook@40","startTime":253633.101,"class":"Test","method":"fixture","title":"Fixture \"isMobile\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@65","endTime":253633.117,"annotations":[]}
+{"type":"before","callId":"fixture@69","stepId":"fixture@69","parentId":"hook@40","startTime":253634.276,"class":"Test","method":"fixture","title":"Fixture \"hasTouch\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@69","endTime":253634.288,"annotations":[]}
+{"type":"before","callId":"fixture@72","stepId":"fixture@72","parentId":"hook@40","startTime":253634.839,"class":"Test","method":"fixture","title":"Fixture \"deviceScaleFactor\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@72","endTime":253634.853,"annotations":[]}
+{"type":"after","callId":"hook@40","endTime":253636.297,"attachments":[{"name":"screenshot","contentType":"image/png","file":"attachments/0196e77b523c643adaf3c4e441ca25328e23571f"}],"annotations":[]}
+{"type":"before","callId":"hook@79","stepId":"hook@79","startTime":253636.546,"class":"Test","method":"hook","title":"Worker Cleanup","params":{},"stack":[]}
+{"type":"before","callId":"fixture@84","stepId":"fixture@84","parentId":"hook@79","startTime":253637.753,"class":"Test","method":"fixture","title":"Fixture \"browser\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@84","endTime":253741.185,"annotations":[]}
+{"type":"before","callId":"fixture@88","stepId":"fixture@88","parentId":"hook@79","startTime":253741.907,"class":"Test","method":"fixture","title":"Fixture \"defaultBrowserType\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@88","endTime":253741.915,"annotations":[]}
+{"type":"before","callId":"fixture@89","stepId":"fixture@89","parentId":"hook@79","startTime":253741.918,"class":"Test","method":"fixture","title":"Fixture \"screenshot\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@89","endTime":253741.922,"annotations":[]}
+{"type":"before","callId":"fixture@91","stepId":"fixture@91","parentId":"hook@79","startTime":253742.081,"class":"Test","method":"fixture","title":"Fixture \"channel\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@91","endTime":253742.088,"annotations":[]}
+{"type":"after","callId":"hook@79","endTime":253742.441,"annotations":[]}

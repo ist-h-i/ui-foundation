@@ -1,0 +1,9 @@
+import {readFile,writeFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
+const main='/Users/inouehiroshi/Documents/GitHub/ui-foundation';const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const input=JSON.parse(await readFile('evidence/input-final.json','utf8'));const assets=JSON.parse(await readFile('evidence/input-assets-final.json','utf8'));
+const files={};for(const [path,sha]of Object.entries({...input.files,...assets.files})){assert.equal(hash(await readFile(main+'/'+path)),sha,path+' main source equality');files[path]=sha;}
+const mainCode=[];const walk=async relative=>{for(const entry of await readdir(main+'/'+relative,{withFileTypes:true})){if(entry.isDirectory())await walk(relative+'/'+entry.name);else if(entry.isFile())mainCode.push(relative+'/'+entry.name);}};for(const folder of ['src','templates','skills','examples'])await walk(folder);mainCode.push('package.json','package-lock.json');assert.deepEqual(mainCode.sort(),Object.keys(input.files).sort(),'main generation input file set');
+const buildSha=hash(await readFile(main+'/scripts/build.mjs'));assert.equal(buildSha,'2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0');assert.equal(hash(await readFile(input.source+'/scripts/build.mjs')),buildSha);
+const result={mainSource:main,privateSource:input.source,inputSha256:input.sha256,assetSha256:assets.sha256,comparedFiles:Object.keys(files).length,mainRawTemplateTsCount:mainCode.filter(path=>/^templates\/angular\/.*\.ts$/.test(path)).length,rootBuildScriptSha256:buildSha,allEqual:true,limits:'Readonly raw generation input/assets equality; root tests/docs/Git and root generated artifacts are outside this check.'};
+await writeFile('evidence/main-source-exact.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

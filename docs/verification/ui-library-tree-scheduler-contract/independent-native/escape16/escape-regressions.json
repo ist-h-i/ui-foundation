@@ -1,0 +1,3260 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 59050,
+  "results": [
+    {
+      "name": "tree-select-exact-ascii-escape-tab-query-cva",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-child-escape-parent-dialog-order",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-child-escape-parent-dialog-draft-order",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-typeahead-apg-unmatched-and-native-tab",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-exact-ascii-escape-tab-query-cva",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-child-escape-parent-dialog-order",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-child-escape-parent-dialog-draft-order",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-typeahead-apg-unmatched-and-native-tab",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-exact-ascii-escape-tab-query-cva",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-child-escape-parent-dialog-order",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-child-escape-parent-dialog-draft-order",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-typeahead-apg-unmatched-and-native-tab",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-exact-ascii-escape-tab-query-cva",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-select-child-escape-parent-dialog-order",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-child-escape-parent-dialog-draft-order",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-typeahead-apg-unmatched-and-native-tab",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "original-ascii-treeitem-escape",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "selection-tree-item-p",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": null
+      },
+      "after": {
+        "focus": "selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": null
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "select-query-selected-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "selection",
+          "targetId": "selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "select-query-selected-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Betaを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Betaを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "native-ax",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "nodes": [
+        {
+          "role": "tree",
+          "name": "Departmentsの候補",
+          "properties": [
+            {
+              "name": "multiselectable",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "orientation",
+              "value": {
+                "type": "token",
+                "value": "vertical"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "selection-tree-help",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 61,
+                    "idref": "selection-tree-help"
+                  }
+                ]
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Parent",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 1
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 2
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta One",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "focused",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 3
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "true"
+              }
+            }
+          ],
+          "ignored": false
+        }
+      ]
+    },
+    {
+      "name": "query-cva-retained-after-treeitem-escape",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "before": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One",
+        "focus": "selection-tree-item-b1"
+      },
+      "after": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One"
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-tree-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "modal-selection",
+          "targetId": "modal-selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-tree-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-selection-popu...\" id=\"modal-selection\" ...>",
+              "target": [
+                "#modal-selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-u > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-z > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree-select-child-parent-escape",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "modal-selection-tree-item-a",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-cascader-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "modal-cascade",
+          "targetId": "modal-cascade-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-cascader-popup",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-cascade-popup\" id=\"modal-cascade\" ...>",
+              "target": [
+                "#modal-cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cascader-child-parent-escape",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-cascade",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "name": "native-key-bubbles-and-apg-consumption",
+      "profile": "guided",
+      "layout": "1280px-ltr",
+      "bubbles": [
+        {
+          "key": "?",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Escape",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Shift",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Tab",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        }
+      ],
+      "selection": [
+        "a"
+      ]
+    },
+    {
+      "name": "original-ascii-treeitem-escape",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "selection-tree-item-p",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": null
+      },
+      "after": {
+        "focus": "selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": null
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "select-query-selected-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "selection",
+          "targetId": "selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "select-query-selected-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Betaを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Betaを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "native-ax",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "nodes": [
+        {
+          "role": "tree",
+          "name": "Departmentsの候補",
+          "properties": [
+            {
+              "name": "multiselectable",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "orientation",
+              "value": {
+                "type": "token",
+                "value": "vertical"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "selection-tree-help",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 63,
+                    "idref": "selection-tree-help"
+                  }
+                ]
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Parent",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 1
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 2
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta One",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "focused",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 3
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "true"
+              }
+            }
+          ],
+          "ignored": false
+        }
+      ]
+    },
+    {
+      "name": "query-cva-retained-after-treeitem-escape",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One",
+        "focus": "selection-tree-item-b1"
+      },
+      "after": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One"
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-tree-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "modal-selection",
+          "targetId": "modal-selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-tree-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-selection-popu...\" id=\"modal-selection\" ...>",
+              "target": [
+                "#modal-selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "27.0pt (36px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c2212069304=\"\" type=\"button\">Modal departmentsをクリア</button>",
+              "target": [
+                ".ui-tree-popup-actions > button[type=\"button\"]:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-u > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree-select-child-parent-escape",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "modal-selection-tree-item-a",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-cascader-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "modal-cascade",
+          "targetId": "modal-cascade-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-cascader-popup",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-cascade-popup\" id=\"modal-cascade\" ...>",
+              "target": [
+                "#modal-cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c2464216035=\"\" tabindex=\"-1\" role=\"status\" class=\"ui-tree-popup-state\" id=\"modal-cascade-state\">末端の項目を選択してください。</p>",
+              "target": [
+                "#modal-cascade-state"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cascader-child-parent-escape",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-cascade",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "name": "native-key-bubbles-and-apg-consumption",
+      "profile": "guided",
+      "layout": "320px-200%-rtl",
+      "bubbles": [
+        {
+          "key": "?",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Escape",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Shift",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Tab",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        }
+      ],
+      "selection": [
+        "a"
+      ]
+    },
+    {
+      "name": "original-ascii-treeitem-escape",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "selection-tree-item-p",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": null
+      },
+      "after": {
+        "focus": "selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": null
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "select-query-selected-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "selection",
+          "targetId": "selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "select-query-selected-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Betaを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Betaを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "native-ax",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "nodes": [
+        {
+          "role": "tree",
+          "name": "Departmentsの候補",
+          "properties": [
+            {
+              "name": "multiselectable",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "orientation",
+              "value": {
+                "type": "token",
+                "value": "vertical"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "selection-tree-help",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 63,
+                    "idref": "selection-tree-help"
+                  }
+                ]
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Parent",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 1
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 2
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta One",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "focused",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 3
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "true"
+              }
+            }
+          ],
+          "ignored": false
+        }
+      ]
+    },
+    {
+      "name": "query-cva-retained-after-treeitem-escape",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "before": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One",
+        "focus": "selection-tree-item-b1"
+      },
+      "after": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One"
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-tree-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "modal-selection",
+          "targetId": "modal-selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-tree-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-selection-popu...\" id=\"modal-selection\" ...>",
+              "target": [
+                "#modal-selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-u > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-z > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree-select-child-parent-escape",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "modal-selection-tree-item-a",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-cascader-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "references": [
+        {
+          "control": "modal-cascade",
+          "targetId": "modal-cascade-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-cascader-popup",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-cascade-popup\" id=\"modal-cascade\" ...>",
+              "target": [
+                "#modal-cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cascader-child-parent-escape",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "before": {
+        "focus": "",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-cascade",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "name": "native-key-bubbles-and-apg-consumption",
+      "profile": "dense",
+      "layout": "1280px-ltr",
+      "bubbles": [
+        {
+          "key": "?",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Escape",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Shift",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Tab",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        }
+      ],
+      "selection": [
+        "a"
+      ]
+    },
+    {
+      "name": "original-ascii-treeitem-escape",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "selection-tree-item-p",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": null
+      },
+      "after": {
+        "focus": "selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": null
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "select-query-selected-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "selection",
+          "targetId": "selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "select-query-selected-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"true\" aria-controls=\"selection-popup\" ...>",
+              "target": [
+                "#selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "21.0pt (28px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-help\" id=\"selection-tree-help\">上下で移動、左右で展開・親へ戻る。Spaceで選択項目を変更。</p>",
+              "target": [
+                "#selection-tree-help"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "21.0pt (28px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-help\">未取得の子項目は検索に含まれません。</p>",
+              "target": [
+                ".ui-tree-help:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Betaを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Betaを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "native-ax",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "nodes": [
+        {
+          "role": "tree",
+          "name": "Departmentsの候補",
+          "properties": [
+            {
+              "name": "multiselectable",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "orientation",
+              "value": {
+                "type": "token",
+                "value": "vertical"
+              }
+            },
+            {
+              "name": "required",
+              "value": {
+                "type": "boolean",
+                "value": false
+              }
+            },
+            {
+              "name": "describedby",
+              "value": {
+                "type": "idrefList",
+                "value": "selection-tree-help",
+                "relatedNodes": [
+                  {
+                    "backendDOMNodeId": 60,
+                    "idref": "selection-tree-help"
+                  }
+                ]
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Parent",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 1
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 2
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "false"
+              }
+            },
+            {
+              "name": "expanded",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            }
+          ],
+          "ignored": false
+        },
+        {
+          "role": "group",
+          "name": "",
+          "properties": [],
+          "ignored": false
+        },
+        {
+          "role": "treeitem",
+          "name": "Beta One",
+          "properties": [
+            {
+              "name": "focusable",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "focused",
+              "value": {
+                "type": "booleanOrUndefined",
+                "value": true
+              }
+            },
+            {
+              "name": "level",
+              "value": {
+                "type": "integer",
+                "value": 3
+              }
+            },
+            {
+              "name": "checked",
+              "value": {
+                "type": "tristate",
+                "value": "true"
+              }
+            }
+          ],
+          "ignored": false
+        }
+      ]
+    },
+    {
+      "name": "query-cva-retained-after-treeitem-escape",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One",
+        "focus": "selection-tree-item-b1"
+      },
+      "after": {
+        "value": [
+          "b1"
+        ],
+        "wire": [
+          "b1"
+        ],
+        "query": "Beta One"
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-tree-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "modal-selection",
+          "targetId": "modal-selection-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-tree-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-selection-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c22120...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-selection-popu...\" id=\"modal-selection\" ...>",
+              "target": [
+                "#modal-selection"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-selection-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c2212069304=\"\" type=\"button\">Modal departmentsを選ぶ</button>",
+              "target": [
+                "ui-form-field > .ui-tree-popup-actions > button[type=\"button\"]:nth-child(1)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c2212069304=\"\" type=\"button\">Modal departmentsをクリア</button>",
+              "target": [
+                ".ui-tree-popup-actions > button[type=\"button\"]:nth-child(2)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<label _ngcontent-ng-c2212069304=\"\" for=\"modal-selection-search\">Modal departmentsの階層を検索</label>",
+              "target": [
+                "label[for=\"modal-selection-search\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "21.0pt (28px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-help\" id=\"modal-selection-tree-help\">上下で移動、左右で展開・親へ戻る。Spaceで選択項目を変更。</p>",
+              "target": [
+                "#modal-selection-tree-help"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c3196930586=\"\" type=\"button\" tabindex=\"-1\" aria-label=\"Parentを折り畳む\">−</button>",
+              "target": [
+                "button[aria-label=\"Parentを折り畳む\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-p > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-b > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-u > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" class=\"ui-tree-label\"><!--container--> Unknown branch <!--container--><!--container--><!--container--></span>",
+              "target": [
+                "#modal-selection-tree-item-u > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-label"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "messageKey": "nonBmp"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element content contains only non-text characters"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span _ngcontent-ng-c3196930586=\"\" aria-hidden=\"true\" class=\"ui-tree-check\">☐</span>",
+              "target": [
+                "#modal-selection-tree-item-z > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree-select-child-parent-escape",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "modal-selection-tree-item-a",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-selection",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "kind": "controls-reference-dom",
+      "name": "modal-cascader-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "references": [
+        {
+          "control": "modal-cascade",
+          "targetId": "modal-cascade-popup",
+          "referenceCount": 1,
+          "targetRole": "dialog",
+          "expanded": "true",
+          "targetHidden": false,
+          "popoverOpen": true
+        }
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "modal-cascader-popup",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"modal-cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-expanded=\"true\" aria-controls=\"modal-cascade-popup\" id=\"modal-cascade\" ...>",
+              "target": [
+                "#modal-cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"modal-cascade-popup\""
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "24.0pt (32px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button _ngcontent-ng-c2464216035=\"\" type=\"button\">Modal routeを選ぶ</button>",
+              "target": [
+                "ui-form-field > .ui-tree-popup-actions > button[type=\"button\"]:nth-child(1)"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "21.0pt (28px)",
+                    "fontWeight": "normal",
+                    "messageKey": "elmPartiallyObscuring",
+                    "expectedContrastRatio": "3:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it partially overlaps other elements"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p _ngcontent-ng-c2464216035=\"\" class=\"ui-tree-popup-state\">上下で同じ階層を移動、左右で子・親の階層へ移動します。</p>",
+              "target": [
+                "#modal-cascade-popup > .ui-tree-popup-state"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cascader-child-parent-escape",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "before": {
+        "focus": "",
+        "popupOpen": true,
+        "expanded": "true",
+        "modalOpen": true
+      },
+      "after": {
+        "focus": "modal-cascade",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": true
+      },
+      "parentAfter": {
+        "focus": "external",
+        "popupOpen": false,
+        "expanded": "false",
+        "modalOpen": false
+      }
+    },
+    {
+      "name": "native-key-bubbles-and-apg-consumption",
+      "profile": "dense",
+      "layout": "320px-200%-rtl",
+      "bubbles": [
+        {
+          "key": "?",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Escape",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Shift",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        },
+        {
+          "key": "Tab",
+          "defaultPrevented": false,
+          "target": "tree-item-a"
+        }
+      ],
+      "selection": [
+        "a"
+      ]
+    }
+  ]
+}

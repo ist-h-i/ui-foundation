@@ -1,0 +1,13 @@
+{
+  "atUtc": "2026-10-06T07:47:07.140035+00:00",
+  "actualExit": 1,
+  "command": [
+    "node",
+    "--check",
+    "final-rich-fixed-probes.mjs"
+  ],
+  "actualCwd": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+  "failure": "MODULE_NOT_FOUND for shared CWD/final-rich-fixed-probes.mjs",
+  "classification": "own syntax check used wrong cwd after own Python file write; not a product failure; shared source untouched",
+  "resolution": "run syntax check in own final-repository"
+}

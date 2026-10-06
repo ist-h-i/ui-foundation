@@ -1,0 +1,358 @@
+{
+  "method": "Public TypeScript parser and strict semantic diagnostics comparison; existing UI spec semantic errors retained, not represented as a clean whole-spec typecheck",
+  "parsed": [
+    {
+      "path": "media-regressions.original.spec.ts",
+      "parseDiagnostics": []
+    },
+    {
+      "path": "media-regressions.guarded.spec.ts",
+      "parseDiagnostics": []
+    }
+  ],
+  "beforeSemanticDiagnostics": [
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'.",
+      "start": 1032,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'.",
+      "start": 1799,
+      "length": 11
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 2471,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 2678,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 3106,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 3745,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 4944,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 5230,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 7756,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 7993,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 9483,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 9501,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 9794,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 9812,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10131,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10149,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10506,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10524,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10825,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10843,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 11089,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 11107,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'.",
+      "start": 14829,
+      "length": 12
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'.",
+      "start": 18240,
+      "length": 12
+    }
+  ],
+  "afterSemanticDiagnosticsNormalizedToBeforePositions": [
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'readyState' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'readyState' does not exist on type 'SVGElement'.",
+      "start": 1032,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'currentTime' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'currentTime' does not exist on type 'SVGElement'.",
+      "start": 1799,
+      "length": 11
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 2471,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 2678,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 3106,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 3745,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 4944,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'paused' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'paused' does not exist on type 'SVGElement'.",
+      "start": 5230,
+      "length": 6
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 7756,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 7993,
+      "length": 10
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 9483,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 9501,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 9794,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 9812,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10131,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10149,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10506,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10524,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 10825,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 10843,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'textTracks' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'textTracks' does not exist on type 'SVGElement'.",
+      "start": 11089,
+      "length": 10
+    },
+    {
+      "code": 18046,
+      "category": 1,
+      "message": "'track' is of type 'unknown'.",
+      "start": 11107,
+      "length": 5
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'.",
+      "start": 14829,
+      "length": 12
+    },
+    {
+      "code": 2339,
+      "category": 1,
+      "message": "Property 'naturalWidth' does not exist on type 'SVGElement | HTMLElement'.\n  Property 'naturalWidth' does not exist on type 'SVGElement'.",
+      "start": 18240,
+      "length": 12
+    }
+  ],
+  "semanticDelta": 0,
+  "addedGuardSpanDiagnostics": 0,
+  "isolatedRealLocatorGuardStrictDiagnostics": 0,
+  "baselineFullSpecStrictTscExit": 2,
+  "exit": 0
+}

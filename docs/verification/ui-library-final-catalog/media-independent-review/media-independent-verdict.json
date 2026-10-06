@@ -1,0 +1,378 @@
+{
+  "time": "2026-10-06T09:13:01.466717+00:00",
+  "verdict": "approve",
+  "scope": [
+    "media-01",
+    "media-02",
+    "media-03",
+    "media-04",
+    "media-05",
+    "media-06",
+    "media-07",
+    "media-08",
+    "media-09",
+    "media-10",
+    "media-11"
+  ],
+  "excludedScopes": [
+    "Chart5 author changes",
+    "all181 overall merge approval",
+    "real upload backend",
+    "other browsers"
+  ],
+  "source": {
+    "commit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "freezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a",
+    "reviewer": "/root/prepare_responsive_gauge",
+    "scope": "media-01 through media-11 only; Chart5 excluded because this reviewer authored its geometry change",
+    "productSourceEditsByReviewer": [],
+    "canonicalTemplateTSCount": 139,
+    "mediaSourceGuard": [
+      {
+        "path": "templates/angular/file-upload.ts",
+        "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+        "bytes": 15161,
+        "evidence": "evidence/final-media-source/templates/angular/file-upload.ts"
+      },
+      {
+        "path": "templates/angular/image-media.ts",
+        "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "bytes": 17359,
+        "evidence": "evidence/final-media-source/templates/angular/image-media.ts"
+      },
+      {
+        "path": "templates/angular/image-cropper.ts",
+        "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+        "bytes": 13547,
+        "evidence": "evidence/final-media-source/templates/angular/image-cropper.ts"
+      },
+      {
+        "path": "templates/angular/crop-adapter.ts",
+        "sha256": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+        "bytes": 1839,
+        "evidence": "evidence/final-media-source/templates/angular/crop-adapter.ts"
+      },
+      {
+        "path": "templates/angular/pdf-viewer.ts",
+        "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "bytes": 9108,
+        "evidence": "evidence/final-media-source/templates/angular/pdf-viewer.ts"
+      },
+      {
+        "path": "templates/angular/pdf-adapter.ts",
+        "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+        "bytes": 5676,
+        "evidence": "evidence/final-media-source/templates/angular/pdf-adapter.ts"
+      },
+      {
+        "path": "templates/angular/media-player.ts",
+        "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+        "bytes": 14444,
+        "evidence": "evidence/final-media-source/templates/angular/media-player.ts"
+      },
+      {
+        "path": "templates/angular/media-model.ts",
+        "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+        "bytes": 5013,
+        "evidence": "evidence/final-media-source/templates/angular/media-model.ts"
+      },
+      {
+        "path": "templates/angular/media-style.ts",
+        "sha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+        "bytes": 1682,
+        "evidence": "evidence/final-media-source/templates/angular/media-style.ts"
+      },
+      {
+        "path": "templates/angular/media-dom.ts",
+        "sha256": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+        "bytes": 1395,
+        "evidence": "evidence/final-media-source/templates/angular/media-dom.ts"
+      },
+      {
+        "path": "templates/angular/barcode.ts",
+        "sha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+        "bytes": 5888,
+        "evidence": "evidence/final-media-source/templates/angular/barcode.ts"
+      },
+      {
+        "path": "templates/angular/locale.ts",
+        "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "bytes": 7353,
+        "evidence": "evidence/final-media-source/templates/angular/locale.ts"
+      },
+      {
+        "path": "templates/angular/index.ts",
+        "sha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+        "bytes": 12026,
+        "evidence": "evidence/final-media-source/templates/angular/index.ts"
+      }
+    ],
+    "reviewedNativeCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "inheritanceEvidence": "media-a808-inheritance.json"
+  },
+  "authorGraph": {
+    "reviewer": "/root/prepare_responsive_gauge",
+    "reviewerEarlierAuthorScope": [
+      "Chart5/Gauge and Cartesian geometry",
+      "Chart formal/model validation"
+    ],
+    "reviewerMediaProductEdits": [],
+    "candidateProductIntegrationAndFixOwner": "/root",
+    "reviewerOnlyCurrentEdits": [
+      "independent public consumer fixture",
+      "validation decoder adaptation",
+      "independent native probes and config",
+      "review evidence"
+    ],
+    "reviewGeneratedFiles": "Only canonical ui:sync; no manual generated edits"
+  },
+  "formal": {
+    "passed": 18,
+    "unexpected": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "retries": 0,
+    "workers": 1,
+    "commandExit": 0,
+    "actualRunCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "acceptedForTargetByExactMediaInputIdentity": true
+  },
+  "pureModel": {
+    "passed": 5,
+    "failed": 0,
+    "exit": 0
+  },
+  "nativeConditions": {
+    "publicControls": 4,
+    "liveLocale": 4,
+    "compareGeometryAndGalleryAxe": 4,
+    "realTouchBarcode": 2,
+    "profiles": [
+      "guided",
+      "dense"
+    ],
+    "normal": "1280px LTR",
+    "narrow": "320px 200% text RTL"
+  },
+  "decoderCounts": {
+    "qrRawIndependentDecoded": 48,
+    "qrNativeScreenshotIndependentDecoded": 4,
+    "barcodeRawIndependentDecoded": 32,
+    "barcodeFormatRasters": 40,
+    "wideWholeNativeCode128ScreenshotDecoded": 2,
+    "narrowClippedViewportFullCodeDecodeClaimed": false
+  },
+  "finalScopedAxe": {
+    "live": [
+      {
+        "name": "guided-1280-ltr",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "guided-320-200-rtl",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "dense-1280-ltr",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "dense-320-200-rtl",
+        "violations": [],
+        "incomplete": []
+      }
+    ],
+    "gallery": [
+      {
+        "name": "guided-1280-ltr",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "guided-320-200-rtl",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "dense-1280-ltr",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "name": "dense-320-200-rtl",
+        "violations": [],
+        "incomplete": []
+      }
+    ],
+    "barcodeTouch": [
+      {
+        "profile": "guided",
+        "violations": [],
+        "incomplete": []
+      },
+      {
+        "profile": "dense",
+        "violations": [],
+        "incomplete": []
+      }
+    ],
+    "globalAllAxePassClaimed": false
+  },
+  "coverageBounds": [
+    "MSI and pharmacode independent decoders unavailable; actual black/white raster and controls tested, their decoding not claimed",
+    "FontForge rebuild and PGP signatures not executed",
+    "Operating-system drag not performed; DataTransfer drop is simulated and native picker/keyboard/touch alternatives tested",
+    "Native Chromium and requested profiles/viewport matrix only; no hardware reader, other browser, real upload service, or human screen-reader success claimed"
+  ],
+  "retainedEarlierFindings": [
+    "Initial cached locale 9 failures x4 conditions",
+    "Original formal crop 17/18 failure before actual DOM detach; boundary probe separates test race from product lifetime",
+    "Gallery generic div aria-prohibited-attr incomplete before role=group",
+    "Initial Compare RTL physical mismatch before native range dir=ltr",
+    "Initial rendered Code128 narrow CSS-downscale failures2 before intrinsic-width local scroll",
+    "QR default-detector boundary for H256/H512; public PURE_BARCODE fallback independently decodes actual raster",
+    "Compare immediate native input value versus next Angular render bbox boundary; final waits on actual geometry and records pre-render states",
+    "AxeBuilder requires explicit browser Context in final compare helper; original harness error retained"
+  ],
+  "staticExits": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "ui:sync"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T08:49:26.542189+00:00",
+      "log": "evidence/final139-ui-sync.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "ui:check"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T08:49:27.984310+00:00",
+      "log": "evidence/final139-ui-check.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T08:49:56.257266+00:00",
+      "log": "evidence/final139-typecheck.log"
+    }
+  ],
+  "emittedAOTBuild": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:56:14.324475+00:00",
+    "log": "evidence/final139-build.log",
+    "purpose": "Final 139-source emitted Angular AOT bundle after out-of-Media Scheduler source adoption. Media13 sources are unchanged from the completed final native suite."
+  },
+  "ownServerShutdown": {
+    "at": "2026-10-06T08:58:10.155997+00:00",
+    "scope": "Only own review server on 127.0.0.1:5342; root and other actor servers untouched",
+    "serverSession": 91725,
+    "lsofExit": 1,
+    "stdout": "",
+    "stderr": "",
+    "noOwnListener": true
+  },
+  "scopeFixtureDifferences": [
+    {
+      "path": "tests/fixture-app/media-catalog.ts",
+      "kind": "intentional public-barrel consumer and app-owned response gate adaptation"
+    },
+    {
+      "path": "tests/fixture-app/media-decoder.ts",
+      "kind": "intentional public independent decoder adaptation"
+    },
+    {
+      "path": "tests/fixture-app/specialist-catalog.ts",
+      "kind": "earlier snapshot of out-of-Media fixture; excluded from native scope"
+    },
+    {
+      "path": "tests/ui/barcode-responsive.spec.ts",
+      "kind": "parent new formal test absent from earlier snapshot; independent equivalent key/wheel/touch/decode probe run"
+    },
+    {
+      "path": "tests/ui/scheduler-message-retention.spec.ts",
+      "kind": "parent new out-of-Media formal test absent from earlier snapshot; excluded from scope"
+    },
+    {
+      "path": "tests/ui/card-slot-responsive.spec.ts",
+      "kind": "parent new out-of-Media formal test absent from earlier snapshot; excluded from scope"
+    },
+    {
+      "path": "tests/ui/dates.spec.ts",
+      "kind": "parent out-of-Media formal test updated; earlier snapshot retained, excluded from scope"
+    }
+  ],
+  "nativeEvidenceRunCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+  "nativeEvidenceAcceptedForTargetCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "nativeEvidenceInheritance": "media-a808-inheritance.json",
+  "targetStaticAndBuildExits": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "ui:sync"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T09:07:14.450456+00:00",
+      "log": "evidence/final-a808-ui-sync.log",
+      "inputCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "sourceFreezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "ui:check"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T09:07:15.272184+00:00",
+      "log": "evidence/final-a808-ui-check.log",
+      "inputCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "sourceFreezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T09:07:47.703244+00:00",
+      "log": "evidence/final-a808-typecheck.log",
+      "inputCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "sourceFreezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "at": "2026-10-06T09:09:17.007691+00:00",
+      "log": "evidence/final-a808-build.log",
+      "inputCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "sourceFreezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a"
+    }
+  ],
+  "snapshotAdoptionsAuthoredByParent": [
+    "templates/angular/card.ts"
+  ]
+}

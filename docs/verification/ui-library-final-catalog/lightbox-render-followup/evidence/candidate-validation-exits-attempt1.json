@@ -1,0 +1,26 @@
+[
+  {
+    "name": "strict-syntax-type",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit",
+      "--strict",
+      "--target",
+      "ES2022",
+      "--module",
+      "NodeNext",
+      "--moduleResolution",
+      "NodeNext",
+      "--esModuleInterop",
+      "--skipLibCheck",
+      "--types",
+      "node",
+      "media-regressions.original.spec.ts",
+      "media-regressions.guarded.spec.ts"
+    ],
+    "exit": 2,
+    "at": "2026-10-06T10:21:59.877358+00:00",
+    "log": "evidence/candidate-strict-syntax-type.log"
+  }
+]

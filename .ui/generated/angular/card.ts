@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, Directive, effect, afterRenderEffect, ElementRef, inject, input, linkedSignal, output, TemplateRef, viewChild, viewChildren, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -39,26 +41,27 @@ export class CardMedia extends CardRegion {
 @Component({ selector: 'ui-card-actions', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content />', styles: regionStyles + ':host{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}:host([data-align="center"]){justify-content:center;}:host([data-align="end"]){justify-content:end;}' })
 export class CardActions extends CardRegion {
 }
-@Component({ selector: 'ui-card', standalone: true, imports: [NgTemplateOutlet, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-card', standalone: true, imports: [NgTemplateOutlet, ActionControl,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[attr.data-appearance]': 'appearance()', '[attr.data-orientation]': 'orientation()', '[attr.data-padding]': 'padding()' },
     template: `<article #article tabindex="-1" [attr.aria-label]="label()||title()||null" [attr.aria-busy]="loading()">
   <header data-card-area="header" [hidden]="!showHeader()"><div class="ui-card__heading">
    @if(template('header');as header){<ng-container [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{$implicit:context()}" />}
    @else{<ng-content select="ui-card-header,[uiCardHeader]" />@if(title()){<h2>{{title()}}</h2>}@if(subtitle()){<p class="ui-card__subtitle">{{subtitle()}}</p>}}
-   @if(collapsible()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?'展開':'折り畳む'}}: {{title()||label()}}</button>}
+   @if(collapsible()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?('展開' | uiMessage):('折り畳む' | uiMessage)}}: {{title()||label()}}</button>}
   </div></header>
-  @if(collapsible()&&!showHeader()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?'展開':'折り畳む'}}: {{title()||label()}}</button>}
+  @if(collapsible()&&!showHeader()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?('展開' | uiMessage):('折り畳む' | uiMessage)}}: {{title()||label()}}</button>}
   <div #content [id]="cardId()+'-content'" [hidden]="collapsible()&&folded()" class="ui-card__content">
    <div class="ui-card__media" data-card-area="media" [hidden]="!showMedia()">@if(template('media');as media){<ng-container [ngTemplateOutlet]="media.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="ui-card-media,[uiCardMedia]" />}</div>
    <div class="ui-card__body" data-card-area="body" [hidden]="!showBody()">@if(template('body');as body){<ng-container [ngTemplateOutlet]="body.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content />}</div>
    <footer data-card-area="footer" [hidden]="!showFooter()">@if(template('footer');as footer){<ng-container [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="ui-card-footer,[uiCardFooter]" />}</footer>
    <div class="ui-card__actions" data-card-area="actions" [hidden]="!showActions()">@if(template('actions');as actions){<ng-container [ngTemplateOutlet]="actions.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="ui-card-actions,[uiCardActions]" />}</div>
   </div>
-  <p class="ui-card__loading" role="status" aria-atomic="true">{{loading()?loadingLabel():''}}</p>
+  <p class="ui-card__loading" role="status" aria-atomic="true">{{loading()?uiEffective_loadingLabel():''}}</p>
  </article>`,
-    styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);overflow-wrap:anywhere;}:host([hidden]){display:none;}:host([data-appearance="plain"]){border-color:transparent;}:host([data-appearance="raised"]){box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);}article{min-inline-size:0;}header,.ui-card__body,footer,.ui-card__actions{padding:var(--ui-space-section);}:host([data-padding="compact"]) header,:host([data-padding="compact"]) .ui-card__body,:host([data-padding="compact"]) footer,:host([data-padding="compact"]) .ui-card__actions{padding:var(--ui-space-control-y);}:host([data-padding="none"]) header,:host([data-padding="none"]) .ui-card__body,:host([data-padding="none"]) footer,:host([data-padding="none"]) .ui-card__actions{padding:0;}[hidden]{display:none!important;}h2{font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);margin:0;}p{margin-block:var(--ui-space-control-gap) 0;}.ui-card__heading{display:grid;gap:var(--ui-space-control-gap);}.ui-card__subtitle,.ui-card__loading{color:var(--ui-color-muted);font-size:var(--ui-text-small);}.ui-card__loading:not(:empty){padding:var(--ui-space-control-y) var(--ui-space-control-x);}.ui-card__content{min-inline-size:0;}:host([data-orientation="horizontal"]) .ui-card__content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}:host([data-orientation="horizontal"]) footer,:host([data-orientation="horizontal"]) .ui-card__actions{grid-column:1/-1;}@media(max-width:40rem){:host([data-orientation="horizontal"]) .ui-card__content{grid-template-columns:1fr;}}article:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
+    styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);overflow-wrap:anywhere;}:host([hidden]){display:none;}:host([data-appearance="plain"]){border-color:transparent;}:host([data-appearance="raised"]){box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);}article{min-inline-size:0;}header,.ui-card__body,footer,.ui-card__actions{padding:var(--ui-space-section);}:host([data-padding="compact"]) header,:host([data-padding="compact"]) .ui-card__body,:host([data-padding="compact"]) footer,:host([data-padding="compact"]) .ui-card__actions{padding:var(--ui-space-control-y);}:host([data-padding="none"]) header,:host([data-padding="none"]) .ui-card__body,:host([data-padding="none"]) footer,:host([data-padding="none"]) .ui-card__actions{padding:0;}[hidden]{display:none!important;}h2{font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);margin:0;}p{margin-block:var(--ui-space-control-gap) 0;}.ui-card__heading{display:grid;gap:var(--ui-space-control-gap);}.ui-card__subtitle,.ui-card__loading{color:var(--ui-color-muted);font-size:var(--ui-text-small);}.ui-card__loading:not(:empty){padding:var(--ui-space-control-y) var(--ui-space-control-x);}.ui-card__content{min-inline-size:0;}:host([data-orientation="horizontal"]) .ui-card__content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}:host([data-orientation="horizontal"]) footer,:host([data-orientation="horizontal"]) .ui-card__actions{grid-column:1/-1;}@media(max-width:40rem){:host([data-orientation="horizontal"]) .ui-card__content{grid-template-columns:minmax(0,1fr);}}article:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
 })
 export class Card {
+ protected readonly uiText_Card=injectUiText();
     readonly cardId = input.required<string>();
     readonly title = input('');
     readonly subtitle = input('');
@@ -75,7 +78,8 @@ export class Card {
     readonly collapsed = input(false, { transform: booleanAttribute });
     readonly collapsedChange = output<boolean>();
     readonly loading = input(false, { transform: booleanAttribute });
-    readonly loadingLabel = input('内容を読み込んでいます。');
+    readonly loadingLabel = input<string>();
+ protected readonly uiEffective_loadingLabel=uiLocaleComputed(()=>this.loadingLabel()??this.uiText_Card('内容を読み込んでいます。'));
     protected readonly folded = linkedSignal(() => this.collapsed());
     private readonly templates = contentChildren(CardTemplate);
     private readonly content = viewChild<unknown, ElementRef<HTMLElement>>('content', { read: ElementRef });

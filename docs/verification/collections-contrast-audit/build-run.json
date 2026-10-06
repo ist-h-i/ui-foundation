@@ -1,0 +1,82 @@
+{
+  "sourceHead": "8d01adc6497addd97428507a0d3239dbe093a6a9",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+      "startedAtUTC": "2026-10-06T05:16:23.250375+00:00",
+      "finishedAtUTC": "2026-10-06T05:16:23.576521+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-1.log",
+      "logSha256": "7dabd9462c009065c38e5ba258fffb8fc6f9a68cbb912119cf59610bceed0e18"
+    },
+    {
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+      "startedAtUTC": "2026-10-06T05:16:23.576836+00:00",
+      "finishedAtUTC": "2026-10-06T05:16:23.778381+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-2.log",
+      "logSha256": "6aad9229e67343aa86dc4d17b2d1bd81797246acae9c4ad15614ab930700df70"
+    },
+    {
+      "command": [
+        "./node_modules/.bin/ngc",
+        "-p",
+        "tsconfig.json"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+      "startedAtUTC": "2026-10-06T05:16:23.778780+00:00",
+      "finishedAtUTC": "2026-10-06T05:16:30.303439+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-3.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/build.mjs"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+      "startedAtUTC": "2026-10-06T05:16:30.303717+00:00",
+      "finishedAtUTC": "2026-10-06T05:16:55.689855+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-4.log",
+      "logSha256": "62b1f469e01a0d8dd90afc7130b6b3577ec92fd6e5fd11b8379e488b4d4f2a5e"
+    },
+    {
+      "command": [
+        "./node_modules/.bin/tailwindcss",
+        "-i",
+        "tests/fixture-app/styles.css",
+        "-o",
+        "dist/fixture-app/styles.css"
+      ],
+      "cwd": "/tmp/ui-foundation-collections-contrast-audit/snapshot-main-8d01adc",
+      "startedAtUTC": "2026-10-06T05:16:55.690338+00:00",
+      "finishedAtUTC": "2026-10-06T05:16:55.964702+00:00",
+      "actualExitCode": 0,
+      "log": "/tmp/ui-foundation-collections-contrast-audit/logs/build-5.log",
+      "logSha256": "d7bfb1a3beb40aa7f73d48ac81a00a7a825515240e7afd5dce58198f45226d81"
+    }
+  ],
+  "actualExitCode": 0,
+  "completedCommands": 5,
+  "expectedCommands": 5
+}

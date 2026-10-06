@@ -1,0 +1,44 @@
+[
+  {
+    "name": "skill-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "start": "2026-10-06T07:43:14.101678+00:00",
+    "end": "2026-10-06T07:43:14.967042+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-skill-sync.log"
+  },
+  {
+    "name": "skill-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "start": "2026-10-06T07:43:14.968195+00:00",
+    "end": "2026-10-06T07:43:15.648828+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-skill-check.log"
+  },
+  {
+    "name": "new-native",
+    "command": [
+      "npm",
+      "exec",
+      "playwright",
+      "--",
+      "test",
+      "tests/ui/date-format-draft.spec.ts",
+      "tests/ui/sheet-locale-errors.spec.ts",
+      "tests/ui/specialist-gauge-responsive.spec.ts",
+      "--reporter=list,json"
+    ],
+    "start": "2026-10-06T07:43:15.649735+00:00",
+    "end": "2026-10-06T07:45:29.219333+00:00",
+    "exit": 1,
+    "log": "/tmp/ui-foundation-final-integration/root-final-new-native.log"
+  }
+]

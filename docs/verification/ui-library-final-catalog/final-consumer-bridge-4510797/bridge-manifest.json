@@ -1,0 +1,100 @@
+{
+  "decision": "APPROVE_BRIDGE_WITHIN_RECORDED_CONSUMER_SCOPE",
+  "reviewedHead": "4510797802ae53db7f008006de9bece330b5dd03",
+  "parent": "cbbc4c4b9159cb78f40916e44dd376736b0a073c",
+  "fullSuiteExecutionHead": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+  "approvedProductHead": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "newConsumerOrNativeExecution": false,
+  "source": {
+    "generationInputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+    "assetInputSha256": "78fa8b8151769a869225fc9bfcdfeb1b6d3f8401f256e1e638b7c5cae2c809e8",
+    "filesCompared": 178,
+    "rawAngularTs": 139,
+    "trackedFullSuiteInputs": 457,
+    "trackedFullSuiteInputManifestSha256": "ef8c772d31b78215ca4b15b3a68a5f7fcc95077ff76e1106a64be335a63705bd",
+    "productGitDeltaFromApprovedHead": [],
+    "generationManifestSha256": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+    "generatedManagedFilesCompared": 150,
+    "exactInstalledDependencies": 46,
+    "rootBuildScriptSha256": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0"
+  },
+  "guide": {
+    "sha256": "3f54fad40b11bcdb42b2bd412858c69efc5204afd2fb6facec9d68aecf2168be",
+    "unchanged": true,
+    "authoredByReviewer": true,
+    "independentReviewOfGuide": false
+  },
+  "originalConsumerEvidence": {
+    "copiedFilesVerified": 239,
+    "primaryFilesMatchOriginal": true,
+    "archiveSha256": "33444eac7df45cd49044c25ba1a5f5dcc5ef14f4f7427b0085771d455fc9aba6",
+    "archiveBytes": 32672657,
+    "originalApprovalAndOldNativeProvenanceRetained": true
+  },
+  "rootFullSuite": {
+    "readingEvidenceOnly": true,
+    "actualExit": 0,
+    "start": "2026-10-06T10:32:02.934073+00:00",
+    "end": "2026-10-06T10:57:36.735162+00:00",
+    "counts": {
+      "config": 70,
+      "generation": 15,
+      "model": 183,
+      "ui": 980,
+      "total": 1248
+    },
+    "skipCancelRetry": 0,
+    "sourceChanged": [],
+    "captureFilesVerified": 87,
+    "captureManifestSha256": "c1cc7157a77694f07de16bfd66c69834dacb969221a9d44ed72c4d6a5e71d522"
+  },
+  "matrix": {
+    "sha256": "dd4755b18e59b5e5570c989bd5809665fe3e2ff79210c0d754c6f004a9c56e34",
+    "originalReferenceHead": "8d01adc",
+    "originalRows": 181,
+    "originalCounts": {
+      "verified": 133,
+      "pending": 37,
+      "partial": 11
+    },
+    "protectedFields": [
+      "id",
+      "category",
+      "component",
+      "requestedControls",
+      "sourceLine",
+      "baseline"
+    ],
+    "protectedFieldChanges": [],
+    "additionalRows": 48,
+    "mappedControls": 207,
+    "canonicalMapSha256": "661022561b31de5872710a7714b5930a7d2ec738f4ca41c05b1b15c380f35720",
+    "implementationReferences": 115,
+    "formalReferences": 94,
+    "uniqueReferencedFiles": 88,
+    "allReferencesLiveAndCommitExact": true,
+    "currentLocalStatuses": {
+      "verified": 181,
+      "partial": 0,
+      "pending": 0
+    },
+    "fullCatalogComplete": false,
+    "finalMatrixDocReviewPending": true,
+    "finalAll181ApprovalByThisReviewer": false
+  },
+  "verificationDoc": {
+    "path": "docs/verification/ui-library-final-catalog-2026-10-06.md",
+    "sha256": "12a242f159e2bfd022f07b0dc2a60ff3c9c3111987251e52f8a71f603e8ff0b7",
+    "scopeNarrativeReadByReviewer": true,
+    "consumerScopesNotExaggerated": true,
+    "historyActual1And130Retained": true,
+    "axeIncompleteRetained": true,
+    "additionalStrictScope": "Media regression spec original/guard copies, before24/after24, actual2; guard-only0 and product AOT0 distinguished.",
+    "ssrScope": "Actual UI_LOCALE server DI/global trap with host/Renderer adapters; complete SSR/hydration unobserved.",
+    "guideAuthorshipScopePreserved": true,
+    "final181ApprovalAndMergeStillSeparate": true
+  },
+  "remainingWithinBridge": [],
+  "remainingOverall": "Global critic owns final 181 matrix/docs decision. Completion flag update and authorized PR merge are separately owned by root.",
+  "ownership": "Readonly main/Git/host; writes only under independently owned /tmp review bridges. No server/browser/application test rerun."
+}

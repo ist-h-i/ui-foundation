@@ -4,7 +4,7 @@
 
 利用者の目的・経験・利用環境に応じて、同じUI部品の色、余白、文字、寸法、形状を大きく変更できる開発基盤を作る。AIは設定案と画面構成を提案し、確定したYAMLから通常のプログラムが生成・検査する。実行時のLLM APIは持たない。
 
-PR #1の未マージの初版を置き換える。旧preset/density設定、旧CSS変数、旧生成経路の互換層は作らない。
+二段階トークンとプロファイルを初版の構造とする。旧preset/density設定、旧CSS変数、旧生成経路の互換層は作らない。
 
 ## 設定の正本
 
@@ -33,12 +33,14 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
 | radius | control, surface | length |
-| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min, drawer-inline, drawer-block, navigation-rail, mega-menu, navigation-column, knob | length |
+| size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min, drawer-inline, drawer-block, navigation-rail, mega-menu, navigation-column, knob, collection-item, collection-viewport, media-viewport, visualization-viewport | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
 | opacity | watermark | number（0〜1） |
 
 未対応版、未知の構造項目、重複キー、参照切れ、型違い、必須役割不足、未知のdefault_profile、危険な値を位置・理由付きで拒否する。各プロファイルで定義済みの文字/背景ペアのコントラストを検査する。この数値検査をUXやアクセシビリティ全体の合格とは扱わない。
+
+`size.collection-item`と`size.collection-viewport`は固定高さの仮想一覧、`size.media-viewport`は媒体、`size.visualization-viewport`は図の領域に使う正の長さ。表の`size.table-viewport`と用途を分け、profileごとに独立したプリミティブへ対応できる。サンプルで同じ480pxへ対応する媒体・図・表も、部品からは各用途のセマンティックを読む。カタログの数値・地図座標・画像pixel・QRの符号化画素はデータであり、UIの色や寸法の正本とは分ける。
 
 `color.action`／`color.action-hover`は主操作の背景、`color.on-action`はその文字色。ナビゲーションとパンくずのリンク文字は`color.link`、選択中タブの文字と下線は`color.tab-selected`を使う。同じ具体色を採用する場合は同じプリミティブを参照する。リンクは透明背景の通常時にsurface／background上、hover／現在地ではbackground上で使い、両背景との4.5:1を検査する。選択タブは明示したsurface背景との4.5:1を検査する。明るい主操作の背景を使っても、リンクや選択中タブの文字色へ流用しない。利用アプリが独自の背景を追加する場合は、その組合せも利用側で確認する。
 

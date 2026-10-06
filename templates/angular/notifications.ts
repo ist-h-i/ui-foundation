@@ -1,3 +1,4 @@
+import {UiMessagePipe} from './locale';
 import { DOCUMENT } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, effect, ElementRef, inject, Injectable, input, linkedSignal, output, signal, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -12,11 +13,11 @@ export interface NotificationOptions extends NotificationRequest {
 }
 const positions: readonly NotificationPosition[] = ['top-start', 'top-center', 'top-end', 'bottom-start', 'bottom-center', 'bottom-end'];
 const positionStyles = `[data-position^="top"]{inset-block-start:var(--ui-space-section);}[data-position^="bottom"]{inset-block-end:var(--ui-space-section);}[data-position$="start"]{inset-inline-start:var(--ui-space-section);}[data-position$="end"]{inset-inline-end:var(--ui-space-section);}[data-position$="center"]{left:50%;right:auto;transform:translateX(-50%);}`;
-@Component({ selector: 'ui-snackbar,ui-toast', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-snackbar,ui-toast', standalone: true, imports: [ActionControl,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<div [hidden]="!visible()" class="ui-snackbar" [attr.data-position]="position()" [attr.data-severity]="severity()" (pointerenter)="hover(true)" (pointerleave)="hover(false)" (focusin)="focus(true)" (focusout)="left($event)">
   <p dir="auto" [attr.role]="severity()==='error'?'alert':'status'" aria-atomic="true">{{message()}}</p><div class="ui-snackbar__actions">
    @if(actionLabel()){<button uiAction (click)="action.emit();dismiss('action')">{{actionLabel()}}</button>}
-   @if(showCloseButton()){<button uiAction [attr.aria-label]="'通知を閉じる: '+message()" (click)="dismiss('close')">閉じる</button>}
+   @if(showCloseButton()){<button uiAction [attr.aria-label]="('通知を閉じる: ' | uiMessage)+message()" (click)="dismiss('close')">{{'閉じる' | uiMessage}}</button>}
   </div></div>`,
     styles: `:host{display:block;max-inline-size:100%;min-inline-size:0;}:host([hidden]){display:none;}.ui-snackbar{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--ui-space-control-gap);padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);color:var(--ui-color-text);background:var(--ui-color-surface);box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);font:inherit;overflow-wrap:anywhere;max-inline-size:calc(100vw - 2 * var(--ui-space-section));}.ui-snackbar[hidden]{display:none;}.ui-snackbar:not([data-position="inline"]){position:fixed;z-index:1;max-block-size:calc(100dvh - 2 * var(--ui-space-section));overflow:auto;overscroll-behavior:contain;inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section)));}.ui-snackbar[data-severity="success"]{color:var(--ui-color-success);background:var(--ui-color-success-surface);}.ui-snackbar[data-severity="warning"]{color:var(--ui-color-warning);background:var(--ui-color-warning-surface);}.ui-snackbar[data-severity="error"]{color:var(--ui-color-danger);background:var(--ui-color-error-surface);}p{flex:1 1 var(--ui-size-overlay-min);min-inline-size:0;margin:0;}.ui-snackbar__actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}` + positionStyles,
 })

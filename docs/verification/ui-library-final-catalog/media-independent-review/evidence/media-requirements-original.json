@@ -1,0 +1,431 @@
+[
+  {
+    "id": "media-01",
+    "category": "media",
+    "component": "FileUpload",
+    "requestedControls": "形式、容量、件数、進捗、取消、再試行",
+    "sourceLine": 209,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-02",
+    "category": "media",
+    "component": "Dropzone",
+    "requestedControls": "ドロップ受付、複数ファイル、受付条件",
+    "sourceLine": 210,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-03",
+    "category": "media",
+    "component": "UploadList / AttachmentList",
+    "requestedControls": "ファイル情報、進捗、個別失敗、削除、再試行",
+    "sourceLine": 211,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-04",
+    "category": "media",
+    "component": "FilePreview / PDFViewer",
+    "requestedControls": "表示対象、ページ、拡大、ダウンロード",
+    "sourceLine": 212,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-05",
+    "category": "media",
+    "component": "Image",
+    "requestedControls": "代替説明、縦横比、収め方、取得失敗、遅延読込み",
+    "sourceLine": 213,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-06",
+    "category": "media",
+    "component": "ImageViewer / Lightbox",
+    "requestedControls": "拡大、回転、前後移動、閉じる",
+    "sourceLine": 214,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-07",
+    "category": "media",
+    "component": "Gallery / Carousel",
+    "requestedControls": "項目、移動、ページ表示、自動送り、間隔、停止",
+    "sourceLine": 215,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-08",
+    "category": "media",
+    "component": "ImageCompare",
+    "requestedControls": "比較方向、境界位置、操作",
+    "sourceLine": 216,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-09",
+    "category": "media",
+    "component": "ImageCropper",
+    "requestedControls": "切抜き範囲、比率、回転、確定",
+    "sourceLine": 217,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-10",
+    "category": "media",
+    "component": "AudioPlayer / VideoPlayer",
+    "requestedControls": "再生、停止、音量、速度、字幕、全画面",
+    "sourceLine": 218,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  },
+  {
+    "id": "media-11",
+    "category": "media",
+    "component": "QRCode / Barcode",
+    "requestedControls": "内容、形式、サイズ、説明",
+    "sourceLine": 219,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up"
+  }
+]

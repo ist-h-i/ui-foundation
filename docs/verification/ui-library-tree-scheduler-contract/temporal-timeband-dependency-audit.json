@@ -1,0 +1,261 @@
+{
+  "productSourceStaticImport": {
+    "from": "templates/angular/scheduler-model.ts",
+    "specifier": "temporal-polyfill",
+    "namedExport": "Temporal",
+    "globalOrShimImports": false,
+    "publicAPIs": [
+      "Instant.fromEpochMilliseconds",
+      "Instant.toZonedDateTimeISO",
+      "ZonedDateTime.epochMilliseconds",
+      "ZonedDateTime.offsetNanoseconds",
+      "ZonedDateTime.getTimeZoneTransition(next)"
+    ]
+  },
+  "packages": [
+    {
+      "name": "temporal-polyfill",
+      "version": "1.0.5",
+      "license": "MIT",
+      "dependencies": {
+        "temporal-spec": "1.0.1",
+        "temporal-utils": "1.0.3"
+      },
+      "packageJsonSha256": "449e849fdcca42e98b1f9dc8510b88d118221eaccfdedd9caba46ef0ffd9a102",
+      "licenseSha256": "c29814b29591d08896b63870ffdd652785f5b2e3f902860645f00871b596068d",
+      "installedPath": "/tmp/ui-foundation-scheduler-stage/.private-dependencies/node_modules/temporal-polyfill",
+      "licenseEvidence": "evidence/licenses/temporal-polyfill/LICENSE"
+    },
+    {
+      "name": "temporal-spec",
+      "version": "1.0.1",
+      "license": "Apache-2.0",
+      "dependencies": {},
+      "packageJsonSha256": "e6d5422fc441031370ab15bf1f3db63ad339d015236c9b7d4bf8e8ade998743d",
+      "licenseSha256": "fea66f1be8df22727cd9750a85865270949107151b6414986c23ebe1929f66b3",
+      "installedPath": "/tmp/ui-foundation-scheduler-stage/.private-dependencies/node_modules/temporal-spec",
+      "licenseEvidence": "evidence/licenses/temporal-spec/LICENSE"
+    },
+    {
+      "name": "temporal-utils",
+      "version": "1.0.3",
+      "license": "MIT",
+      "dependencies": {},
+      "packageJsonSha256": "113ec076894ff4229e429f6074587ef7e35420deeb3d39bd14a8ad37d8fdd0c1",
+      "licenseSha256": "c29814b29591d08896b63870ffdd652785f5b2e3f902860645f00871b596068d",
+      "installedPath": "/tmp/ui-foundation-scheduler-stage/.private-dependencies/node_modules/temporal-utils",
+      "licenseEvidence": "evidence/licenses/temporal-utils/LICENSE"
+    }
+  ],
+  "installedTypeDefinitions": {
+    "path": ".private-dependencies/node_modules/temporal-spec/index.d.ts",
+    "sha256": "24ac1c5441a9cc603b87c0fd726e2299db5fa5331b852ee50762b81a6bf90d4e",
+    "getTimeZoneTransition": "getTimeZoneTransition(direction: next | previous): ZonedDateTime | null"
+  },
+  "bundleTemporalRuntimeClosure": [
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/root.js",
+      "bytes": 72,
+      "sha256": "ee3dbb740baebebd5a40fa3ae58d5ff93b5c1a8a0616ea502875dea2e9be587e",
+      "imports": []
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-utils/dist/errorMessages.js",
+      "bytes": 822,
+      "sha256": "352c679ea88652c54398d64ef98fd08646aefc1e54e8f8de8033313b5d1660f6",
+      "imports": []
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-utils/dist/utils.js",
+      "bytes": 2608,
+      "sha256": "0a393013d982086b1773aa914b196d45afbfeb241d28723376769581b669d88d",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/errorMessages.js",
+          "kind": "import-statement",
+          "original": "./errorMessages.js"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+      "bytes": 280,
+      "sha256": "e3a91105ab9aa8818121063c09931fb5169e006f17bf7d98afdc3a8a65e995aa",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/utils.js",
+          "kind": "import-statement",
+          "original": "./utils.js"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-utils/dist/protected-error-messages.js",
+      "bytes": 95,
+      "sha256": "905500ec198250b5faee41e187c0bd6abf5b5c24f8107c17cf3ac46fff9f293b",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/errorMessages.js",
+          "kind": "import-statement",
+          "original": "./errorMessages.js"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/options.js",
+      "bytes": 12385,
+      "sha256": "073f6a2db9da0e33ce44b36a78495c84ca052cc1c985e4e3208e6469866c64f2",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/internal.js",
+          "kind": "import-statement",
+          "original": "./internal.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected-error-messages.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected-error-messages"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/internal.js",
+      "bytes": 149867,
+      "sha256": "bcdd0db0a93bb983743503817261e5a87394266e866bbbd3409d9b03d9efda40",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/options.js",
+          "kind": "import-statement",
+          "original": "./options.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected-error-messages.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected-error-messages"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/apiHelpers.js",
+      "bytes": 18314,
+      "sha256": "bd0decc73a17c5d9938a7cbd43fef599cb4d7e4731104ca764e3bfd7aa725dad",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/internal.js",
+          "kind": "import-statement",
+          "original": "./internal.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/options.js",
+          "kind": "import-statement",
+          "original": "./options.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected-error-messages.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected-error-messages"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/classApi.js",
+      "bytes": 4724,
+      "sha256": "5c4f4d742536c06457b531e5b6ee43e44def8975963b0de3418e70b6e0634d5c",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/internal.js",
+          "kind": "import-statement",
+          "original": "./internal.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/apiHelpers.js",
+          "kind": "import-statement",
+          "original": "./apiHelpers.js"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/classApi-basic.js",
+      "bytes": 42143,
+      "sha256": "29550306362615454b2e63fa2d93063f89010e8abfb4ac9613868700d3a7a3bf",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/internal.js",
+          "kind": "import-statement",
+          "original": "./internal.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/classApi.js",
+          "kind": "import-statement",
+          "original": "./classApi.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/apiHelpers.js",
+          "kind": "import-statement",
+          "original": "./apiHelpers.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected-error-messages.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected-error-messages"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-utils/dist/protected.js",
+          "kind": "import-statement",
+          "original": "temporal-utils/protected"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/options.js",
+          "kind": "import-statement",
+          "original": "./options.js"
+        }
+      ]
+    },
+    {
+      "path": ".private-dependencies/node_modules/temporal-polyfill/index.js",
+      "bytes": 444,
+      "sha256": "74f3a631f718f0c810ea485d06c0a4773d935e42ac18d2f61565aa1433757b26",
+      "imports": [
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/root.js",
+          "kind": "import-statement",
+          "original": "./chunks/root.js"
+        },
+        {
+          "path": ".private-dependencies/node_modules/temporal-polyfill/chunks/classApi-basic.js",
+          "kind": "import-statement",
+          "original": "./chunks/classApi-basic.js"
+        }
+      ]
+    }
+  ],
+  "sourceLocalDependencies": [
+    "templates/angular/date-model.ts",
+    "templates/angular/timeline-model.ts"
+  ],
+  "externalRuntimeImports": [],
+  "productionDependencyRequired": {
+    "temporal-polyfill": "1.0.5"
+  },
+  "sharedPackages": "read-only symlinks; only temporal packages installed under this stage"
+}

@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-06T11:17:47.679Z",
+  "command": "node bridges/verify-final-head-bridge.mjs",
+  "cwd": "/tmp/ui-foundation-final-catalog-consumer-review",
+  "actualExit": 0,
+  "toolSession": 41139,
+  "reviewedHead": "4510797802ae53db7f008006de9bece330b5dd03",
+  "decision": "APPROVE_BRIDGE_WITHIN_RECORDED_CONSUMER_SCOPE",
+  "files": {
+    "bridges/4510797/bridge-manifest.json": {
+      "sha256": "e522071ad0c6a06598c638fb16f1b6ad2c29d0d627c33db2c38d9e082bd3de60",
+      "bytes": 4031
+    },
+    "bridges/4510797/bridge-review.ja.md": {
+      "sha256": "8fad01704c1e482d49e2c2eb304e3413be63240191b1c1c1115c5d4daae3c5e3",
+      "bytes": 1446
+    },
+    "bridges/verify-final-head-bridge.mjs": {
+      "sha256": "24264d9958f46a93fa5b4a8f3da8099bda529229c8acbe177dbc93bada28e458",
+      "bytes": 14915
+    }
+  },
+  "priorHarnessExit": {
+    "actualExit": 1,
+    "proof": "first-harness-exit.json",
+    "classification": "Optional sourceLine null vs omitted comparison only; exact original protected fields passed."
+  },
+  "newConsumerOrBrowserExecution": false,
+  "hostOrSharedGitMutation": false
+}

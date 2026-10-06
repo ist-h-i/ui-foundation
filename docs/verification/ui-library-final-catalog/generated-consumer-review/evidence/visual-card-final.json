@@ -1,0 +1,49 @@
+{
+  "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "classification": "Selected actual view_image inspections; native geometry/DOM/CVA/focus evidence is recorded separately. No exhaustive visual or user-understanding approval.",
+  "images": [
+    {
+      "path": "evidence/card-narrow-guided-ltr.png",
+      "sha256": "fa89e82eba3f1726e4d78fd6b3f0d88a28bce13b8ae987af62172b6e05c1e712",
+      "bytes": 52924,
+      "actualViewImage": true,
+      "note": "Actual guided LTR Card at320px/200%: native input focus and selection visible; all five slot bounds and document320/320 measured."
+    },
+    {
+      "path": "evidence/card-narrow-guided-rtl.png",
+      "sha256": "ab6039da7225e74b3ab52d94a22cd0d58f66d7e1f05fb9985d384422105ffbd3",
+      "bytes": 55630,
+      "actualViewImage": true,
+      "note": "Actual guided RTL Card keeps native focused input and selected substring, title/media/body/footer/action within measured narrow bounds."
+    },
+    {
+      "path": "evidence/card-narrow-dense-ltr.png",
+      "sha256": "ce40b8967c3590f118e08ef42c9e64be3902f386304db5e5d14990164835711b",
+      "bytes": 46212,
+      "actualViewImage": true,
+      "note": "Actual dense LTR input and selected substring visible with consistent slot widths at200%; same DOM/CVA preserved."
+    },
+    {
+      "path": "evidence/card-narrow-dense-rtl.png",
+      "sha256": "b2b99e92df7d93c2ec68a1f2c34c56ad3b98345f8f049ba77f4ec81e09a54fa6",
+      "bytes": 46806,
+      "actualViewImage": true,
+      "note": "Actual dense RTL narrow input shows native logical selection and physical text scrolling; Card bounds remain within320px. Header toggle requires the separately recorded visual follow-up rather than inferring from this partial render."
+    },
+    {
+      "path": "evidence/specialist-harness-heading.png",
+      "sha256": "697cd9ede3bd292a1abf250354635519a7dbee29cb33e886a31aaa59af740082",
+      "bytes": 4580,
+      "actualViewImage": true,
+      "note": "Actual public Markdown preview renders the sample as h2; document h1 count1 was independently asserted. This is a consumer harness correction only."
+    },
+    {
+      "path": "evidence/card-narrow-dense-rtl-visible-toggle.png",
+      "sha256": "18bf9443351db685254be4ff8b3fa75c4391b3bd7a16328c1cf79740e62c1929",
+      "bytes": 44528,
+      "actualViewImage": true,
+      "note": "Actual dense RTL visual follow-up shows the header collapse toggle and all five Card areas. Native DOM independently measured the toggle display:flex/visible and bounds41..279 inside320px; no source change."
+    }
+  ]
+}

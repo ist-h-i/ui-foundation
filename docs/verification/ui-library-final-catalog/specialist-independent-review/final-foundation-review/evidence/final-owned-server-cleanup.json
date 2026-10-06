@@ -1,0 +1,20 @@
+{
+  "time": "2026-10-06T08:47:13.438246+00:00",
+  "ownedPID": 35765,
+  "ownedPort": 52050,
+  "verifiedBefore": {
+    "ps": "35765 35750 node scripts/serve.mjs\n",
+    "cwd": "COMMAND   PID         USER   FD   TYPE DEVICE SIZE/OFF      NODE NAME\nnode    35765 inouehiroshi  cwd    DIR   1,17     1152 404777826 /private/tmp/ui-foundation-specialist-independent-review/final-foundation-review/final-repository\n",
+    "listener": "COMMAND   PID         USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    35765 inouehiroshi   14u  IPv4 0x3633f7996c19011b      0t0  TCP 127.0.0.1:52050 (LISTEN)\n"
+  },
+  "method": "SIGTERM exact owned PID after command/cwd/listener verification",
+  "rootPort5187Touched": false,
+  "after": {
+    "psActualExit": 1,
+    "ps": "",
+    "listenerActualExit": 1,
+    "listener": ""
+  },
+  "stoppedConfirmed": true,
+  "browserCleanup": "all native scripts await browser.close() in finally; last photo script completed before SIGTERM"
+}

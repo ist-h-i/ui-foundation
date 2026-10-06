@@ -1,0 +1,14 @@
+.specialist-fixture{margin:0;background:var(--ui-color-background);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body)}
+.specialist-fixture main{padding:var(--ui-space-page);max-inline-size:100%;box-sizing:border-box;min-block-size:100vh;font-family:var(--ui-font-body);font-size:var(--ui-text-body)}
+.specialist-fixture h1{font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading)}
+.specialist-fixture h2{font-size:var(--ui-text-heading)}
+.specialist-fixture button,.specialist-fixture input,.specialist-fixture select,.specialist-fixture textarea{font:inherit;color:inherit;max-inline-size:100%;box-sizing:border-box}
+.specialist-fixture button,.specialist-fixture input,.specialist-fixture select{min-block-size:var(--ui-size-control)}
+.specialist-fixture button{padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);cursor:pointer}
+.specialist-fixture input,.specialist-fixture select,.specialist-fixture textarea{border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);padding:var(--ui-space-control-y) var(--ui-space-control-x)}
+.specialist-fixture textarea{inline-size:100%;min-block-size:calc(var(--ui-size-control)*2)}
+.specialist-fixture nav,.specialist-fixture .fixture-controls{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);margin-block:var(--ui-space-control-gap);align-items:center}
+.specialist-fixture section[hidden]{display:none}
+.specialist-fixture label{display:block;overflow-wrap:anywhere}
+.specialist-fixture output{display:block;overflow-wrap:anywhere}
+.specialist-fixture :focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset)}

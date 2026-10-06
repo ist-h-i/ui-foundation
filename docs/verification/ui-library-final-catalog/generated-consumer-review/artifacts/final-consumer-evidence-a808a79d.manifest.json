@@ -1,0 +1,91 @@
+{
+  "decision": "APPROVE",
+  "scope": "Independent generated public-barrel consumer, selected Foundation / Media boundaries and affected Card geometry only",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "rootFreezeManifestSha256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a",
+  "archive": {
+    "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/artifacts/final-consumer-evidence-a808a79d.tar.gz",
+    "bytes": 32672657,
+    "sha256": "33444eac7df45cd49044c25ba1a5f5dcc5ef14f4f7427b0085771d455fc9aba6",
+    "entries": 1485,
+    "actualTarExit": 0,
+    "actualListExit": 0
+  },
+  "deliverables": {
+    "review-final.md": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/review-final.md",
+      "bytes": 9691,
+      "sha256": "42df0fb2b66d4349fb35d469cd8850eb99f2224a70b57b3dadbb8f15dc61144a"
+    },
+    "evidence/final-review.json": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/evidence/final-review.json",
+      "bytes": 192398,
+      "sha256": "d6b88ecdf325446a6575b2aa7f31c13a5b816fb3b6a0044f1e96ceafb1afa810"
+    },
+    "evidence/evidence-inheritance.json": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/evidence/evidence-inheritance.json",
+      "bytes": 28732,
+      "sha256": "a66e1b28ac01a14c8d678c55eca6f1a2d1be4f3be1f5b08a0807e18ba01dca07"
+    },
+    "evidence/final-run-exits.json": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/evidence/final-run-exits.json",
+      "bytes": 3737,
+      "sha256": "7598bf46a7435c184eae81a1cbe29ebfeaa8d48ea388a83c7800658be1667069"
+    },
+    "evidence/pack-file-inventory.json": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/evidence/pack-file-inventory.json",
+      "bytes": 271108,
+      "sha256": "57d4f6970530b67d5f501ed57a2547de5d319ab0dde7904b89269d455614aa63"
+    },
+    "deliverable-docs/docs/ui-library-consumer-guide.ja.md": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/deliverable-docs/docs/ui-library-consumer-guide.ja.md",
+      "bytes": 19186,
+      "sha256": "3f54fad40b11bcdb42b2bd412858c69efc5204afd2fb6facec9d68aecf2168be"
+    },
+    "consumer.ts": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/consumer.ts",
+      "bytes": 20077,
+      "sha256": "046ff6fe50c79b6b53544660f190224180e3fa3232ba5505ce5b1210b7cec47e"
+    },
+    "tsconfig.consumer.json": {
+      "path": "/private/tmp/ui-foundation-final-catalog-consumer-review/tsconfig.consumer.json",
+      "bytes": 363,
+      "sha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf"
+    }
+  },
+  "sourceSets": {
+    "rawAngular": 139,
+    "compileUnion": 139,
+    "managedGenerated": 150,
+    "unchangedInheritedAngular": 138
+  },
+  "fresh": {
+    "aot": 0,
+    "expectedNegativeExits": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "cardProfiles": 2,
+    "cardGeometryStates": 4,
+    "smokeRoutes": 7,
+    "httpAssets": 231
+  },
+  "inherited": {
+    "executionSourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "browserCases": 23,
+    "mediaProfiles": 2,
+    "mediaChecksPerProfile": 18,
+    "schedulerProfiles": 2,
+    "schedulerChecksPerProfile": 9,
+    "notRerunOnFinalSource": true
+  },
+  "guideSelfAuthored": true,
+  "remainingBlockingFindings": []
+}

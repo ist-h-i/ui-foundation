@@ -1,0 +1,22 @@
+{
+  "severity": "P2",
+  "status": "REQUEST_CHANGES",
+  "source": "templates/angular/scheduler-controller.ts",
+  "verifiedSha256": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+  "currentMainSha256": "49f69febceb0dd3898c4fe0b00c43a22626ff796d8d212bac67f7a2c9bceda02",
+  "rootMainChangeSinceVerified": "resetDraft messageText undefined only; all three affected editing writers are identical",
+  "reproduction": [
+    "Open move editor for meeting",
+    "Clear zone; request move; observe library error status",
+    "Change dictionary D1 then D2; existing alert and cached status follow",
+    "Edit zone back to Asia/Tokyo; alert disappears, status remains D2 Specify target timezone"
+  ],
+  "expected": "Editing clears the cached status as the existing message empty-string assignment intends.",
+  "actual": {
+    "guided": "D2 Specify target timezone",
+    "dense": "D2 Specify target timezone"
+  },
+  "evidence": "evidence/scheduler-cached-status-before-fix.json",
+  "minimalPatch": "deliverable-tests/scheduler-cached-status-clear.patch",
+  "nativeRequestOwnershipPassed": true
+}

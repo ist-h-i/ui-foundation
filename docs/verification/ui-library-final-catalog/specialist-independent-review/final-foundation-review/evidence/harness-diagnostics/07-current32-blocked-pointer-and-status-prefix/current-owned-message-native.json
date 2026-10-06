@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "profile": "guided",
+      "name": "cached-rich-rejected-transaction-live-dictionary",
+      "startedAt": "2026-10-06T08:19:59.618Z",
+      "result": {
+        "errorChangesWithoutAnotherPaste": true,
+        "DOMAndCVAPreserveUnsafeInputBoundary": true,
+        "safeEditAndUndoRecover": true,
+        "before": {
+          "html": "<p>Safe document</p>",
+          "form": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Safe document\"}]}]}"
+        }
+      },
+      "passed": true,
+      "errors": [],
+      "endedAt": "2026-10-06T08:20:01.180Z"
+    },
+    {
+      "profile": "guided",
+      "name": "diff-json-live-diagnostic-vendor-ARIA-copy-and-app-opaque",
+      "startedAt": "2026-10-06T08:20:01.619Z",
+      "passed": false,
+      "failure": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('#diff [role=status]')\nExpected: \"コピーしました\"\nReceived: \"1 箇所の差分 / コピーしました\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveText\" locator('#diff [role=status]') with timeout 5000ms\n  - waiting for locator('#diff [role=status]')\n    - locator resolved to <output role=\"status\" _ngcontent-ng-c455316683=\"\">1 箇所の差分 / コピー中</output>\n    - unexpected value \"1 箇所の差分 / コピー中\"\n    13 × locator resolved to <output role=\"status\" _ngcontent-ng-c455316683=\"\">1 箇所の差分 / コピーしました</output>\n       - unexpected value \"1 箇所の差分 / コピーしました\"\n",
+      "errors": [],
+      "endedAt": "2026-10-06T08:20:07.417Z"
+    },
+    {
+      "profile": "dense",
+      "name": "cached-rich-rejected-transaction-live-dictionary",
+      "startedAt": "2026-10-06T08:20:07.826Z",
+      "result": {
+        "errorChangesWithoutAnotherPaste": true,
+        "DOMAndCVAPreserveUnsafeInputBoundary": true,
+        "safeEditAndUndoRecover": true,
+        "before": {
+          "html": "<p>Safe document</p>",
+          "form": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Safe document\"}]}]}"
+        }
+      },
+      "passed": true,
+      "errors": [],
+      "endedAt": "2026-10-06T08:20:08.879Z"
+    },
+    {
+      "profile": "dense",
+      "name": "diff-json-live-diagnostic-vendor-ARIA-copy-and-app-opaque",
+      "startedAt": "2026-10-06T08:20:09.354Z",
+      "passed": false,
+      "failure": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('#diff [role=status]')\nExpected: \"コピーしました\"\nReceived: \"1 箇所の差分 / コピーしました\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveText\" locator('#diff [role=status]') with timeout 5000ms\n  - waiting for locator('#diff [role=status]')\n    14 × locator resolved to <output role=\"status\" _ngcontent-ng-c455316683=\"\">1 箇所の差分 / コピーしました</output>\n       - unexpected value \"1 箇所の差分 / コピーしました\"\n",
+      "errors": [],
+      "endedAt": "2026-10-06T08:20:15.115Z"
+    }
+  ],
+  "allExpected": false
+}

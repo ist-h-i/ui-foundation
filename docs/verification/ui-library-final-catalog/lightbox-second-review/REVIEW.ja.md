@@ -1,0 +1,13 @@
+Lightbox の1行の試験追加を承認します。横スクロールの解消を待ち、矢印キーによる画像切替の前提を確認する変更です。
+
+正式 before `784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e` は Git53・共有実物・作者のoriginalと一致します。候補 after `3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7` から追加97byteの1行を除くと、正式ファイルの全バイトが復元されます。青い写真への移動、2profiles×4rotationsの全geometry/axe、スクロール端、Escape終了、外側triggerへのfocus復帰を含め、元の操作とassertionはすべて保持しています。
+
+原失敗zipを、インストール済みPlaywrightの記録参照形式に従って独立に復号しました。keydown時は400%・270度・scrollLeft348・赤い写真であり、期待検査の開始時に100%・0度・赤い写真へ描画が変わっています。計9snapshotの値を作者の復号結果と照合し全一致、失敗時の原画像も実読しました。`image-media.ts:29` の実装は、focusが画像領域にあり横overflowするとき、矢印キーをnativepanに渡します。したがってリセットクリック完了だけでは画像切替の前提が成立していません。追加のpollは、この前提を実DOMで確認してから同じArrowLeft操作を実行するものです。固定sleep、retry、assertion削除、製品修正はありません。
+
+作者のnative32は、元順序16（競合再現なし）とguard16成功を区別して確認しました。正式候補のrepeat4は実exit0・4/4・skip/flaky/unexpected0でした。これらは作者の実行であり、第二レビュー側の再実行とは記述しません。
+
+独立のwhole-spec strict tscは実exit2でした。変更前・後とも既存の媒体HTMLElement/SVGElement型に関する診断24件で、挿入位置を補正した診断差分は0です。whole-spec strict合格とは主張しません。作者の公開TypeScript parser・追加guard型検査も読んで、追加spanの新診断0を確認しました。
+
+作者stageの製品139ソースはGit53と現在の共有実物へSHA照合し、差分0でした。共有ファイルは編集せず、新たなbrowser/serverは起動していません。混合input143recordsを初回に製品139件と数えた監査側の失敗は別artifactで保持し、config/lock/specと重複を分けた139件で再確認しました。
+
+この承認はLightboxの試験追加だけです。全npm・全181要求・最終matrix/docs・マージ完了への承認はfalseのままです。

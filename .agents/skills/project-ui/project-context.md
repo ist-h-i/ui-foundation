@@ -284,6 +284,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "128px"
         },
+        "size.media-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
+        },
         "size.mega-menu": {
           "reference": "mega-menu-dense",
           "type": "length",
@@ -315,6 +320,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "value": "128px"
         },
         "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
+        },
+        "size.visualization-viewport": {
           "reference": "table-viewport",
           "type": "length",
           "value": "480px"
@@ -657,6 +667,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "length",
           "value": "160px"
         },
+        "size.media-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
+        },
         "size.mega-menu": {
           "reference": "mega-menu-guided",
           "type": "length",
@@ -688,6 +703,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "value": "128px"
         },
         "size.table-viewport": {
+          "reference": "table-viewport",
+          "type": "length",
+          "value": "480px"
+        },
+        "size.visualization-viewport": {
           "reference": "table-viewport",
           "type": "length",
           "value": "480px"

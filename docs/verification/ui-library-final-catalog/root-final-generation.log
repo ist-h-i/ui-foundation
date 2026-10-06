@@ -1,0 +1,27 @@
+
+> ui-foundation@0.0.0 test:generation
+> tsx --test tests/generation/*.test.ts
+
+✔ a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail (111255.578625ms)
+✔ dry-run writes nothing; repeated generation is stable and check observes the generated output (418.16075ms)
+✔ a changed primitive reaches CSS, resolved policy and AI context; stale output fails check (356.78075ms)
+✔ context-only edits change AI guidance without changing tokens or Tailwind mappings (315.552625ms)
+✔ default profile and labels are generated as usable application metadata (476.0275ms)
+✔ manual edits are detected and preserved, including Skill edits (1031.214208ms)
+✔ existing unowned output and Skill files are not adopted or overwritten (152.959167ms)
+✔ unexpected files inside managed directories fail check and sync without deletion (419.967417ms)
+✔ missing output fails check and can be regenerated without touching application files (453.28225ms)
+✔ invalid manifest ownership is rejected before any output changes (239.259625ms)
+✔ output directory, descendant and configuration symlinks are rejected (319.725166ms)
+✔ project-relative path boundaries and Skill/output overlap are rejected (30.056208ms)
+✔ init preserves existing config and creates a runnable fresh configuration (275.652459ms)
+✔ CLI check has a real failing exit status, and dry-run is read-only (2437.624417ms)
+✔ an ordinary I/O failure restores files already written and leaves the previous manifest (637.416042ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111414.320709

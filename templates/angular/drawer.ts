@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, linkedSignal, output, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -17,7 +19,7 @@ const edgeStyles = `
  :host([data-maximized="true"]) { top:0;bottom:0;left:0;right:0;width:100vw;height:100dvh; }
  .ui-dialog__title { flex-basis:calc(var(--ui-text-heading) * 4); }
 `;
-@Component({standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle],changeDetection:ChangeDetectionStrategy.OnPush,template:DIALOG_TEMPLATE,styles:DIALOG_STYLES})
+@Component({standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,template:DIALOG_TEMPLATE,styles:DIALOG_STYLES})
 abstract class EdgePanel extends Dialog {
     readonly width = input<number | null>(null);
     readonly height = input<number | null>(null);
@@ -54,7 +56,7 @@ abstract class EdgePanel extends Dialog {
     }
 }
 /** Native Dialog slots, veto, results and modal behavior, with physical edge geometry. */
-@Component({selector:'dialog[uiDrawer]',standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'dialog[uiDrawer]',standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
     template:DIALOG_TEMPLATE,styles:DIALOG_STYLES+edgeStyles,host:{'[attr.data-edge]':'edge()'}})
 export class Drawer extends EdgePanel {
     readonly edge = input<'left'|'right'|'top'|'bottom'>('right');
@@ -63,8 +65,8 @@ export class Drawer extends EdgePanel {
         afterRenderEffect(()=>{const edge=this.edge();untracked(()=>{if(previous!==null&&previous!==edge)this.resetGeometry();previous=edge;});});
     }
 }
-const sheetControls = `<fieldset class="ui-sheet-stages"><legend>{{stageLabel()}}</legend><div class="ui-sheet-controls"><button uiAction data-sheet-reduce [disabled]="busy()||currentStage()===0" (click)="setStage(currentStage()-1)">{{reduceLabel()}}</button><label><span>{{stageLabel()}}</span><input type="range" min="0" [max]="stages().length-1" step="1" [value]="currentStage()" [disabled]="busy()" [attr.aria-valuetext]="stageText()" (input)="stageInput($event)"></label><button uiAction data-sheet-expand [disabled]="busy()||currentStage()===stages().length-1" (click)="setStage(currentStage()+1)">{{expandLabel()}}</button></div><p role="status" aria-atomic="true">{{stageText()}}</p></fieldset>`;
-@Component({selector:'dialog[uiBottomSheet]',standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle],changeDetection:ChangeDetectionStrategy.OnPush,
+const sheetControls = `<fieldset class="ui-sheet-stages"><legend>{{uiEffective_stageLabel()}}</legend><div class="ui-sheet-controls"><button uiAction data-sheet-reduce [disabled]="busy()||currentStage()===0" (click)="setStage(currentStage()-1)">{{uiEffective_reduceLabel()}}</button><label><span>{{uiEffective_stageLabel()}}</span><input type="range" min="0" [max]="stages().length-1" step="1" [value]="currentStage()" [disabled]="busy()" [attr.aria-valuetext]="stageText()" (input)="stageInput($event)"></label><button uiAction data-sheet-expand [disabled]="busy()||currentStage()===stages().length-1" (click)="setStage(currentStage()+1)">{{uiEffective_expandLabel()}}</button></div><p role="status" aria-atomic="true">{{stageText()}}</p></fieldset>`;
+@Component({selector:'dialog[uiBottomSheet]',standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
     template:sheetControls+DIALOG_TEMPLATE,styles:DIALOG_STYLES+edgeStyles+`
     :host([data-edge="bottom"]) { height:min(var(--ui-sheet-height),100dvh); }
     :host([data-maximized="true"]) { height:100dvh; }
@@ -75,12 +77,16 @@ const sheetControls = `<fieldset class="ui-sheet-stages"><legend>{{stageLabel()}
     .ui-sheet-stages p { margin:var(--ui-space-control-gap) 0 0;color:var(--ui-color-muted); }
     `,host:{'data-edge':'bottom'}})
 export class BottomSheet extends EdgePanel {
+ protected readonly uiText_BottomSheet=injectUiText();
     readonly stages = input<readonly number[]>([.4,.7,1]);
     readonly stage = input(1);
     readonly stageChange = output<number>();
-    readonly stageLabel = input('表示領域の高さ');
-    readonly reduceLabel = input('低くする');
-    readonly expandLabel = input('高くする');
+    readonly stageLabel = input<string>();
+ protected readonly uiEffective_stageLabel=uiLocaleComputed(()=>this.stageLabel()??this.uiText_BottomSheet('表示領域の高さ'));
+    readonly reduceLabel = input<string>();
+ protected readonly uiEffective_reduceLabel=uiLocaleComputed(()=>this.reduceLabel()??this.uiText_BottomSheet('低くする'));
+    readonly expandLabel = input<string>();
+ protected readonly uiEffective_expandLabel=uiLocaleComputed(()=>this.expandLabel()??this.uiText_BottomSheet('高くする'));
     protected readonly currentStage = linkedSignal(()=>this.stage());
     private readonly ratio = computed(()=>sheetStages(this.stages(),this.currentStage()));
     protected readonly stageText = computed(()=>`${this.currentStage()+1} / ${this.stages().length} (${Math.round(this.ratio()*100)}%)`);

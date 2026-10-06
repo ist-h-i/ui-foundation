@@ -1,0 +1,272 @@
+{
+  "commit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "requirements": [
+    {
+      "id": "media-01",
+      "component": "FileUpload",
+      "requestedControls": "形式、容量、件数、進捗、取消、再試行",
+      "requestSourceLine": 209,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/file-upload.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:4",
+        "foundation-file-draft.test.ts"
+      ],
+      "actualMeasurements": [
+        "Native picker actual File; format/bytes/count; indeterminate and known progress; cancel/retry identity; mixed rejection retains previous exact array and File; picker clears; app rejects stale requestId response."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "evidence/final-formal-case-statuses.json",
+        "evidence/after2-model.log"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-02",
+      "component": "Dropzone",
+      "requestedControls": "ドロップ受付、複数ファイル、受付条件",
+      "requestSourceLine": 210,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/file-upload.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:4"
+      ],
+      "actualMeasurements": [
+        "Public ui-dropzone with reactive FormControl instantiated; actual native picker is the keyboard/touch alternative. Drag intake is tested with DataTransfer dispatch and is classified as simulated drop, not an operating-system drag."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "repository/tests/fixture-app/media-catalog.ts",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-03",
+      "component": "UploadList / AttachmentList",
+      "requestedControls": "ファイル情報、進捗、個別失敗、削除、再試行",
+      "requestSourceLine": 211,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/file-upload.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:4"
+      ],
+      "actualMeasurements": [
+        "Standalone public ui-attachment-list; file name/size/state and null/40% progress; per-file failure; native keyboard cancel/remove/retry; id retained, requestId changes, File retained, removal focus restored."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-04",
+      "component": "FilePreview / PDFViewer",
+      "requestedControls": "表示対象、ページ、拡大、ダウンロード",
+      "requestSourceLine": 212,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/pdf-viewer.ts",
+        "templates/angular/pdf-adapter.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:9",
+        "media-regressions.spec.ts:115",
+        "media-lifetime.spec.ts:101"
+      ],
+      "actualMeasurements": [
+        "PDF.js real module Worker paints non-white actual canvas pixels; URL/Blob/Uint8Array; two pages, zoom, rapid updates, native text details, exact PDF download bytes; error/retry and Worker cleanup; named keyboard scrolling surface; sourcekit assets verified by bytes/SHA and HTTP."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "evidence/pdf-sourcekit-independent.json",
+        "evidence/final-live/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-05",
+      "component": "Image",
+      "requestedControls": "代替説明、縦横比、収め方、取得失敗、遅延読込み",
+      "requestSourceLine": 213,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/image-media.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:5"
+      ],
+      "actualMeasurements": [
+        "Native image alt/ratio/object-fit/lazy attribute; actual broken URL triggers failure, source replacement recovers. Application alt is preserved through locale switch even when it equals a dictionary key."
+      ],
+      "evidence": [
+        "evidence/final-live/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-06",
+      "component": "ImageViewer / Lightbox",
+      "requestedControls": "拡大、回転、前後移動、閉じる",
+      "requestSourceLine": 214,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/image-media.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:5",
+        "media-regressions.spec.ts:145",
+        "media-regressions.spec.ts:192"
+      ],
+      "actualMeasurements": [
+        "Actual modal focus entry/return, previous/next, native zoom range to 400%, 90-degree rotation, Escape close; native scrolling reaches all four rotated edges in both profiles, desktop and narrow 200% RTL."
+      ],
+      "evidence": [
+        "evidence/final-formal-case-statuses.json",
+        "evidence/final-formal-media-results.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-07",
+      "component": "Gallery / Carousel",
+      "requestedControls": "項目、移動、ページ表示、自動送り、間隔、停止",
+      "requestSourceLine": 215,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/image-media.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:6",
+        "media-regressions.spec.ts:220"
+      ],
+      "actualMeasurements": [
+        "Items/pages/buttons and actual native pointer/keyboard/touch controls; 350ms interval tested using browser clock; focus pause/manual Stop preserved; hidden/disabled/reduced-motion/destroy lifecycle; live carousel/slide role descriptions; picker named role=group passes fresh scoped axe."
+      ],
+      "evidence": [
+        "evidence/compare-plane-final2/observations.json",
+        "evidence/final-live/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-08",
+      "component": "ImageCompare",
+      "requestedControls": "比較方向、境界位置、操作",
+      "requestSourceLine": 216,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/image-media.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:7"
+      ],
+      "actualMeasurements": [
+        "Both directions, native Home/End/ArrowLeft/ArrowRight and real pointer .2/.8; actual line/clip follows physical image coordinates, range LTR inside RTL UI; focus/value/DOM preserved on dictionary switch; actual native image error and aria-valuetext translate live without another request."
+      ],
+      "evidence": [
+        "evidence/compare-plane-final2/observations.json",
+        "evidence/final-live/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-09",
+      "component": "ImageCropper",
+      "requestedControls": "切抜き範囲、比率、回転、確定",
+      "requestSourceLine": 217,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/crop-adapter.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:8",
+        "media-lifetime.spec.ts:17",
+        "media-lifetime.spec.ts:55"
+      ],
+      "actualMeasurements": [
+        "Native pointer drag and numeric keyboard alternatives; 160x80 source crop produces actual 80x40 PNG with red/yellow pixels and source bounds; ratio 1 and 90-degree rotation; native Bitmap closes and pending Blob result invalidates after actual detach/source/hidden transitions; application Blob URLs revoked."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "evidence/crop-boundary-observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-10",
+      "component": "AudioPlayer / VideoPlayer",
+      "requestedControls": "再生、停止、音量、速度、字幕、全画面",
+      "requestSourceLine": 218,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve",
+      "source": [
+        "templates/angular/media-player.ts",
+        "templates/angular/media-model.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:11",
+        "media-regressions.spec.ts:25",
+        "media-regressions.spec.ts:81"
+      ],
+      "actualMeasurements": [
+        "Actual WAV playback, Stop pause/time0, native volume .25/playbackRate1.5, real VTT showing and cue/source replacement, owner-aware pending play Promise, hidden/disabled cleanup; generated real WebM video plays with videoWidth100, native fullscreen element is ui-video-player; held status/error translates with no new fetch."
+      ],
+      "evidence": [
+        "evidence/final-live/observations.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    },
+    {
+      "id": "media-11",
+      "component": "QRCode / Barcode",
+      "requestedControls": "内容、形式、サイズ、説明",
+      "requestSourceLine": 219,
+      "canonicalMatrixStatus": "pending",
+      "independentVerdict": "approve_with_explicit_coverage_bounds",
+      "source": [
+        "templates/angular/barcode.ts"
+      ],
+      "formalCases": [
+        "media.spec.ts:10"
+      ],
+      "actualMeasurements": [
+        "Actual engine QR raster independently decoded for 128/256/512 x L/M/Q/H x 4 conditions (48); four rendered native QR screenshots decoded. Eight Barcode formats independently decoded x4 (32); all ten formats actual black/white raster plus format/size/height/moduleWidth/value/description controls. Code128 whole 400px raster and wide native screenshot decode; narrow physical 400px retained inside named local region with key/wheel/touch reach both edges and no page overflow. MSI/pharmacode independent decoding unexecuted; clipped viewport is partial information and is not represented as a full-code decode."
+      ],
+      "evidence": [
+        "evidence/independent-controls-final4/observations.json",
+        "evidence/barcode-touch/observations.json",
+        "evidence/qr-decoder-12-boundary.json",
+        "evidence/final-formal-case-statuses.json"
+      ],
+      "specSnapshot": "evidence/final-requirements-snapshot/docs/ui-library-media-expansion-spec.ja.md"
+    }
+  ],
+  "canonicalMatrixEditedByReviewer": false,
+  "evidenceInheritedFromCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+  "inheritanceEvidence": "media-a808-inheritance.json"
+}

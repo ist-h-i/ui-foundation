@@ -1,0 +1,185 @@
+{
+  "inputSha256": "98fce926df90d8a65afee4d745c3c12100fc3489c11332d0b55c349de5aa9405",
+  "sources": {
+    "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "scheduler.ts": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+    "scheduler-controller.ts": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+    "scheduler-view.ts": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be"
+  },
+  "results": [
+    {
+      "profile": "guided",
+      "checks": [
+        {
+          "name": "existing library diagnostic and cached status follow D1 ",
+          "pass": true
+        },
+        {
+          "name": "existing library diagnostic and cached status follow D2 ",
+          "pass": true
+        },
+        {
+          "name": "editing clears cached error status",
+          "expected": "",
+          "actual": "D2 Specify target timezone",
+          "pass": false
+        },
+        {
+          "name": "app failure matching dictionary key remains raw",
+          "pass": true
+        },
+        {
+          "name": "retry gets new request; stale result refused; source event unchanged",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "requests": [
+        {
+          "requestId": 1,
+          "event": {
+            "id": "meeting",
+            "title": "確認会",
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "data": {
+              "amount": 7,
+              "description": "レビュー"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "resourceIds": []
+          },
+          "target": {
+            "localStart": "2026-10-06T10:00:00",
+            "localEnd": "2026-10-06T11:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": []
+          }
+        },
+        {
+          "requestId": 2,
+          "event": {
+            "id": "meeting",
+            "title": "確認会",
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "data": {
+              "amount": 7,
+              "description": "レビュー"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "resourceIds": []
+          },
+          "target": {
+            "localStart": "2026-10-06T10:00:00",
+            "localEnd": "2026-10-06T11:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": []
+          }
+        }
+      ],
+      "sameDom": true,
+      "focusRetainedAcrossLocale": true,
+      "appEventsUnchanged": true,
+      "pass": false
+    },
+    {
+      "profile": "dense",
+      "checks": [
+        {
+          "name": "existing library diagnostic and cached status follow D1 ",
+          "pass": true
+        },
+        {
+          "name": "existing library diagnostic and cached status follow D2 ",
+          "pass": true
+        },
+        {
+          "name": "editing clears cached error status",
+          "expected": "",
+          "actual": "D2 Specify target timezone",
+          "pass": false
+        },
+        {
+          "name": "app failure matching dictionary key remains raw",
+          "pass": true
+        },
+        {
+          "name": "retry gets new request; stale result refused; source event unchanged",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "requests": [
+        {
+          "requestId": 1,
+          "event": {
+            "id": "meeting",
+            "title": "確認会",
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "data": {
+              "amount": 7,
+              "description": "レビュー"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "resourceIds": []
+          },
+          "target": {
+            "localStart": "2026-10-06T10:00:00",
+            "localEnd": "2026-10-06T11:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": []
+          }
+        },
+        {
+          "requestId": 2,
+          "event": {
+            "id": "meeting",
+            "title": "確認会",
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "data": {
+              "amount": 7,
+              "description": "レビュー"
+            }
+          },
+          "previous": {
+            "start": "2026-10-06T01:00:00Z",
+            "end": "2026-10-06T02:00:00Z",
+            "resourceIds": []
+          },
+          "target": {
+            "localStart": "2026-10-06T10:00:00",
+            "localEnd": "2026-10-06T11:00:00",
+            "timeZone": "Asia/Tokyo",
+            "startDisambiguation": "reject",
+            "endDisambiguation": "reject",
+            "resourceIds": []
+          }
+        }
+      ],
+      "sameDom": true,
+      "focusRetainedAcrossLocale": true,
+      "appEventsUnchanged": true,
+      "pass": false
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-06T09:15:01.944072+00:00",
+  "firstReadOnlyAdoptionGuardActualExit": 1,
+  "firstGuardExpectedWrongTestName": "tests/ui/card-responsive.spec.ts",
+  "actualImmutableInputChanges": [
+    {
+      "path": "templates/angular/card.ts",
+      "before": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+      "after": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8"
+    },
+    {
+      "path": "tests/ui/card-slot-responsive.spec.ts",
+      "before": null,
+      "after": "abe6651b7f13583f99dee39fa191702fbaac4926b655427a6a6f6aa2c98cdd3d"
+    },
+    {
+      "path": "tests/ui/dates.spec.ts",
+      "before": "ce08e47f9d149eeb301897fb7bcefca51b0ece246cf2a5e482aa202fb1beac48",
+      "after": "babf5e8012f163170abab6b8d7be210c3e48185e595f198520a5e3d478d937e7"
+    }
+  ],
+  "productOnly": "templates/angular/card.ts",
+  "firstGuardWroteNoInputs": true,
+  "classification": "reviewer assumed new test name and missed changed dates.spec; exact immutable source verified; corrected guard before canonical own adoption"
+}

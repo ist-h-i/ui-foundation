@@ -1,0 +1,17 @@
+file:///private/tmp/ui-foundation-final-integration-independent-review/audit-owned-writer-preservation.mjs:12
+function beforeIR(node,sf){node=strip(node);if(ts.isConditionalExpression(node))return {condition:code(node.condition,sf),yes:beforeIR(node.whenTrue,sf),no:beforeIR(node.whenFalse,sf)};if(ts.isBinaryExpression(node)&&node.operatorToken.kind===ts.SyntaxKind.PlusToken&&hasOwned(node))return [...beforeIR(node.left,sf),...beforeIR(node.right,sf)];return [leaf(node,sf)];}
+                                                                                                                                                                                                                                                                                                                                ^
+
+TypeError: beforeIR is not a function or its return value is not iterable
+    at beforeIR (file:///private/tmp/ui-foundation-final-integration-independent-review/audit-owned-writer-preservation.mjs:12:321)
+    at beforeIR (file:///private/tmp/ui-foundation-final-integration-independent-review/audit-owned-writer-preservation.mjs:12:295)
+    at visit (file:///private/tmp/ui-foundation-final-integration-independent-review/audit-owned-writer-preservation.mjs:15:836)
+    at visitNode2 (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:32551:18)
+    at forEachChildInExpressionStatement (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:32781:12)
+    at Object.forEachChild (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:33072:35)
+    at visit (file:///private/tmp/ui-foundation-final-integration-independent-review/audit-owned-writer-preservation.mjs:15:873)
+    at visitNodes (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:32559:22)
+    at forEachChildInBlock (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:33029:10)
+    at Object.forEachChild (/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/typescript/lib/typescript.js:33072:35)
+
+Node.js v24.19.0

@@ -1,0 +1,144 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 58960,
+  "results": [
+    {
+      "name": "scheduler-native-close-click-app-external-focus",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-request-click-synchronous-complete-app-memo-focus",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-owned-close-and-escape-focus-return",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-synchronous-ack-owned-focus-return",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-close-click-app-external-focus",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-request-click-synchronous-complete-app-memo-focus",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-owned-close-and-escape-focus-return",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-native-synchronous-ack-owned-focus-return",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "native-close-focus",
+      "profile": "guided",
+      "before": {
+        "focus": "external",
+        "editing": [],
+        "owned": false,
+        "pendingFocus": "one"
+      },
+      "after": {
+        "focus": "external",
+        "tag": "BUTTON",
+        "html": "<button _ngcontent-ng-c2649447734=\"\" id=\"external\">Outside control</button>",
+        "owned": false
+      }
+    },
+    {
+      "name": "native-complete-projected-focus",
+      "profile": "guided",
+      "before": {
+        "id": 1,
+        "result": true,
+        "focus": "booking-note-one",
+        "owned": true,
+        "pendingFocus": "one"
+      },
+      "after": {
+        "focus": "booking-note-one",
+        "tag": "INPUT",
+        "html": "<input _ngcontent-ng-c2649447734=\"\" id=\"booking-note-one\" class=\"ng-untouched ng-pristine ng-valid\">",
+        "owned": true
+      }
+    },
+    {
+      "name": "owned-close-escape-return",
+      "profile": "guided",
+      "focusedOpener": true
+    },
+    {
+      "name": "owned-synchronous-ack-return",
+      "profile": "guided",
+      "focusedOpener": true
+    },
+    {
+      "name": "native-close-focus",
+      "profile": "dense",
+      "before": {
+        "focus": "external",
+        "editing": [],
+        "owned": false,
+        "pendingFocus": "one"
+      },
+      "after": {
+        "focus": "external",
+        "tag": "BUTTON",
+        "html": "<button _ngcontent-ng-c2649447734=\"\" id=\"external\">Outside control</button>",
+        "owned": false
+      }
+    },
+    {
+      "name": "native-complete-projected-focus",
+      "profile": "dense",
+      "before": {
+        "id": 1,
+        "result": true,
+        "focus": "booking-note-one",
+        "owned": true,
+        "pendingFocus": "one"
+      },
+      "after": {
+        "focus": "booking-note-one",
+        "tag": "INPUT",
+        "html": "<input _ngcontent-ng-c2649447734=\"\" id=\"booking-note-one\" class=\"ng-untouched ng-pristine ng-valid\">",
+        "owned": true
+      }
+    },
+    {
+      "name": "owned-close-escape-return",
+      "profile": "dense",
+      "focusedOpener": true
+    },
+    {
+      "name": "owned-synchronous-ack-return",
+      "profile": "dense",
+      "focusedOpener": true
+    }
+  ],
+  "runtime": [],
+  "failed": 0
+}

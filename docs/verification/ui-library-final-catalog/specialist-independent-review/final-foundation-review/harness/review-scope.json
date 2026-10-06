@@ -1,0 +1,48 @@
+{
+  "productSource": "pending final root adoption; no mutable private source copied yet",
+  "rawSourceReadOnly": "/tmp/ui-foundation-final-integration/repository",
+  "writeScope": "/tmp/ui-foundation-specialist-independent-review/final-foundation-review",
+  "matrix": {
+    "profiles": [
+      "guided",
+      "dense"
+    ],
+    "viewportCssPx": [
+      1280,
+      320
+    ],
+    "rootFontPercent": {
+      "1280": 100,
+      "320": 200
+    },
+    "uiDirections": [
+      "ltr",
+      "rtl"
+    ],
+    "cartesianKinds": [
+      "line",
+      "bar",
+      "area",
+      "scatter",
+      "heatmap"
+    ]
+  },
+  "expectedChecks": [
+    "all139 generated strict AOT",
+    "public consumer only explicit files",
+    "five precise negative contexts",
+    "all visible native axis names/ticks/legend bbox and actual hit-test",
+    "raw Gauge numeric data/Intl formatting/original IDs/real needle mouse/keyboard",
+    "named Rich+Markdown AX groups",
+    "native Code completion Escape/readonly/disabled/language/destroy-remount cleanup",
+    "LTR graphic scope while table/controls preserve parent RTL"
+  ],
+  "chartEngineLengthContract": "number means CSS pixels; string ending % means base * percent/100; other finite numeric strings mean pixels",
+  "historic": {
+    "beforeNativeActualExit": 1,
+    "beforeNativeCases": 16,
+    "beforeNativeSuccess": 14,
+    "beforeAxisObservations": 16,
+    "beforeAxisObservationExit": 0
+  }
+}

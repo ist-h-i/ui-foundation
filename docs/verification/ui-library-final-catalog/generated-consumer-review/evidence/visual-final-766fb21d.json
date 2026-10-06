@@ -1,0 +1,39 @@
+{
+  "inputSha256": "766fb21de8fbe85c2ef0def3f3cdbeeadb4a06231d8fb3bd9e8eadceb21fde2c",
+  "method": "Actual images opened with view_image; no image manipulation.",
+  "images": [
+    {
+      "path": "evidence/map-native-ready.png",
+      "sha256": "2c30247bba3e24fe425d0a1515047f7b4586bf71b4585ed3c0fcd9dd0c6fd54d"
+    },
+    {
+      "path": "evidence/sheet-native-calculated.png",
+      "sha256": "7a02287b68ed72dd7aa18943be6922ab6f64f00178b8083973a7eb995c63bb56"
+    },
+    {
+      "path": "evidence/pdf-native-page-2.png",
+      "sha256": "c668de4ba4bc3432599fe91451a19c19e82c9269db6f4022b12c642a310e3955"
+    },
+    {
+      "path": "evidence/specialist-worker-ready.png",
+      "sha256": "943c1aa51d9e848461598f4fc9d24f9ba07acb1d63b4a41a5e16351b81890556"
+    },
+    {
+      "path": "evidence/lightbox-dense-90.png",
+      "sha256": "b19bb2101621a5fa649540401e73d2a6489a2a106e5d608b6c6db19e221df269"
+    },
+    {
+      "path": "evidence/foundation-dense-320-200-rtl.png",
+      "sha256": "0ac397744d17fb1ac5556d6a2d315e5b8ad1607aff8e6504dc2d88222c96d1e2"
+    }
+  ],
+  "observations": [
+    "MapLibre rendered local background and native Tokyo marker; no external geographical data.",
+    "Spreadsheet native inputs show 2,3,5 with calculated status.",
+    "PDF page2 native canvas and expanded real text agree, status2/2.",
+    "Specialist chart contains the known/missing value distinction and actual axes.",
+    "Rotated image remains within positive scroll canvas.",
+    "Narrow dense RTL expanded text retains visible input; lower content requires ordinary page scroll."
+  ],
+  "limits": "Selected actual images and geometry only; no full catalogue visual, AT or user comprehension approval."
+}

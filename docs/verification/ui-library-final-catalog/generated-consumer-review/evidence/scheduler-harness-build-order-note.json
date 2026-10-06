@@ -1,0 +1,5 @@
+{
+  "cause": "Scheduler probe started before the consumer rebuild completed. Old deployed consumer lacked the moves public app property. These two errors are harness ordering failures and no source finding is claimed.",
+  "deployedConsumerSourceSha256": "2d10c810e0e7c7c841959987e6ed81bea2950c500414652f69f2588aa8267c88",
+  "correctiveAction": "Wait for build completion and verify consumer source hash before repeating native proof."
+}

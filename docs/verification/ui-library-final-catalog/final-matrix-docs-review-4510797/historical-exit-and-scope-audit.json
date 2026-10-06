@@ -1,0 +1,81 @@
+{
+  "currentRunExit": 0,
+  "histories": [
+    {
+      "directory": "third-full-npm-a808a79d-failed",
+      "executionSha256": "949fb4268add3420527276db51b61e8419b7d53a16d0f8a348dc7e12c5b4ef49",
+      "actualExit": 1,
+      "counts": null,
+      "captureSha256": "dd6cd75feb88014de21e93f5d2d2e8ce0027c0cf0983781f6dd31f7b9d4890af",
+      "verifiedRecords": 102
+    },
+    {
+      "directory": "failure-replay-0190b2b",
+      "executionSha256": "4b0f59f7ebb6b8cf4e8064c8bcd52a2fdfd6d089d98760d4faa5bcbed01ae77d",
+      "actualExit": 1,
+      "counts": null,
+      "captureSha256": "e59b9828576e6ed1389c7a9b6fb010a6f4195a566ce381fdef30e28ee6b68fb0",
+      "verifiedRecords": 12
+    },
+    {
+      "directory": "final-failure-replay-53a7858",
+      "executionSha256": "8d90fcf936bbcbd95bbda17560a658c1964661d97c68ec582b1fe4eef3babcdb",
+      "actualExit": 0,
+      "counts": null,
+      "captureSha256": "25e7905c72e99a93370dc3e313c0722d975aed296feb95746471831e2957fe69",
+      "verifiedRecords": 7
+    },
+    {
+      "directory": "fourth-full-npm-53a7858-failed",
+      "executionSha256": "3b69f5b4348fc99fba9dfc45d37b000406d6fad716c9e9e07b196f6fcf6f29a7",
+      "actualExit": 1,
+      "counts": {
+        "registeredUi": 980,
+        "workers": 2,
+        "completedUi": 980,
+        "passedUi": 977,
+        "failedUi": 3,
+        "configTests": 70,
+        "generationTests": 15,
+        "modelTests": 183,
+        "nodeFailures": [
+          0,
+          0,
+          0
+        ],
+        "nodeSkipped": [
+          0,
+          0,
+          0
+        ],
+        "nodeCancelled": [
+          0,
+          0,
+          0
+        ]
+      },
+      "captureSha256": "8eeb1fbadbfcbe3799103a418ebcb0dfdc09dec0a7722ae3889f3bceb8d032d0",
+      "verifiedRecords": 94
+    },
+    {
+      "directory": "failure-replay-8e8748a",
+      "executionSha256": "3fb35cbcdb0a9410f151a4fc9688520a150a1786c30ca18fd174ce6c539e0aa0",
+      "actualExit": 0,
+      "counts": null,
+      "captureSha256": "1a462c35835b2963c1235e7cfc3dd4ad49eeedbca94ef20c3587b5ff75b9d3d5",
+      "verifiedRecords": 9
+    }
+  ],
+  "oldFailedAndPassedRunsKeptDistinct": true,
+  "mediaExtraTscScope": "before/guarded two copies of media regression spec, exit2/24 diagnostics each; new guard strict0; product AOT separately0",
+  "knownBoundsKept": [
+    "SVG196 and Tree contrast incomplete not rewritten as axe complete",
+    "specialist paint actual1/unknown RGB attribution",
+    "MSI/pharmacode undecoded",
+    "Lightbox original16 race not reproduced; guarded16 and own consumer4 distinct from root selected5",
+    "pre-navigation browser closure origin unresolved; retained actual1 trace",
+    "SSR screen reader OS IME touch Firefox Safari actual backend and user comprehension not certified",
+    "existing output relocation Skill ownership P2 does not affect configured output sync"
+  ],
+  "additionalUiFullExecutionByReviewer": false
+}

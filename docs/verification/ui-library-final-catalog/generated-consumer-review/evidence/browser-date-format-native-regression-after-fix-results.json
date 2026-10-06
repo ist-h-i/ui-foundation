@@ -1,0 +1,106 @@
+[
+  {
+    "name": "date-range-format-change-draft-guided",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "profile": "guided",
+      "observations": [
+        {
+          "requestedFormat": "yyyy-MM-dd",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "native",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "MM/dd/yyyy",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "yyyy-MM-dd",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        }
+      ],
+      "validRepairUsesRetainedFormat": true,
+      "childClearAdoptsNative": true,
+      "rangeClearAtomic": true,
+      "calendarSelectionAdoptsConfiguredFormat": true,
+      "explicitCvaResetAdoptsConfiguredFormat": true,
+      "actualNativeBadInputRetainedAcrossFormatChange": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  },
+  {
+    "name": "date-range-format-change-draft-dense",
+    "route": "foundation",
+    "pass": true,
+    "observation": {
+      "profile": "dense",
+      "observations": [
+        {
+          "requestedFormat": "yyyy-MM-dd",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "native",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "MM/dd/yyyy",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        },
+        {
+          "requestedFormat": "yyyy-MM-dd",
+          "raw": "31/02/2026",
+          "type": "text",
+          "retainedInvalid": true
+        }
+      ],
+      "validRepairUsesRetainedFormat": true,
+      "childClearAdoptsNative": true,
+      "rangeClearAtomic": true,
+      "calendarSelectionAdoptsConfiguredFormat": true,
+      "explicitCvaResetAdoptsConfiguredFormat": true,
+      "actualNativeBadInputRetainedAcrossFormatChange": true
+    },
+    "errors": [],
+    "warnings": [],
+    "resources": [
+      "http://127.0.0.1:5343/foundation",
+      "http://127.0.0.1:5343/tokens.css",
+      "http://127.0.0.1:5343/styles.css",
+      "http://127.0.0.1:5343/specialist.css",
+      "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+      "http://127.0.0.1:5343/main.js",
+      "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+      "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js"
+    ]
+  }
+]

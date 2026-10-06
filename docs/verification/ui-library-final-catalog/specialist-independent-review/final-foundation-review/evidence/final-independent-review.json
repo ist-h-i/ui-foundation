@@ -1,0 +1,831 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-06T09:19:12.507835+00:00",
+  "reviewer": "/root/review_specialist_candidate",
+  "decision": "approve_scoped_specialist_fixes_and_final_dependency_delta",
+  "approvedScope": "known specialist findings S01..S11 and final typed/public source boundary; current32 native functional/geometry/AX relations and separate current Rich/S11/owned-message delta. No whole139 interaction or complete accessibility approval.",
+  "reviewedCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "parentFreezeSHA256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a",
+  "immutableFreezeInputs": 274,
+  "generatedTemplateTSCount": 139,
+  "sourceContinuity": {
+    "currentCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "native32SpecialistAndLocaleSourceUnchanged": true,
+    "native32BeforeAfterSourcesPreserved": true,
+    "outsideSpecialistChanges": [
+      {
+        "path": "templates/angular/barcode.ts",
+        "nativeSHA256": "abc9b51ce3589ce79af30e2c1d63a842fa4302d9b0667c12b36765ea740797b3",
+        "commitSHA256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+      },
+      {
+        "path": "templates/angular/card.ts",
+        "nativeSHA256": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+        "commitSHA256": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8"
+      },
+      {
+        "path": "templates/angular/image-media.ts",
+        "nativeSHA256": "4580fb3c2a2dbf4e346d98e728bbf67a798eaf9fde7aaac1dba1e2ab5851b836",
+        "commitSHA256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+      },
+      {
+        "path": "templates/angular/scheduler-controller.ts",
+        "nativeSHA256": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+        "commitSHA256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931"
+      },
+      {
+        "path": "templates/angular/scheduler-view.ts",
+        "nativeSHA256": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be",
+        "commitSHA256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba"
+      }
+    ],
+    "currentAlignment": "a808-final-source-alignment.json",
+    "currentAfterVerification": "a808-final-source-after-verification.json"
+  },
+  "sourceSHA256": {
+    "templates/angular/action-control.ts": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+    "templates/angular/action-feedback.ts": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+    "templates/angular/actions.ts": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+    "templates/angular/agenda.ts": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+    "templates/angular/anchor-navigation.ts": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+    "templates/angular/async-region.ts": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+    "templates/angular/barcode.ts": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+    "templates/angular/calendar.ts": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+    "templates/angular/card.ts": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+    "templates/angular/cascader.ts": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+    "templates/angular/chart-options.ts": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+    "templates/angular/chart.ts": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+    "templates/angular/chat.ts": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+    "templates/angular/choice-controls.ts": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+    "templates/angular/choice-model.ts": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+    "templates/angular/code-editor.ts": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+    "templates/angular/collection-model.ts": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+    "templates/angular/collection-runtime.ts": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+    "templates/angular/collection-views.ts": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+    "templates/angular/command-palette.ts": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+    "templates/angular/crop-adapter.ts": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+    "templates/angular/data-grid.ts": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+    "templates/angular/data-table-view.ts": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+    "templates/angular/data-table.ts": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+    "templates/angular/date-input.ts": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+    "templates/angular/date-model.ts": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f",
+    "templates/angular/date-range-picker.ts": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+    "templates/angular/diagram-layout.ts": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+    "templates/angular/diagram.ts": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+    "templates/angular/dialog-variants.ts": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+    "templates/angular/dialog.ts": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+    "templates/angular/diff-json.ts": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+    "templates/angular/disclosure.ts": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43",
+    "templates/angular/display-content.ts": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+    "templates/angular/display-model.ts": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+    "templates/angular/display-style.ts": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e",
+    "templates/angular/display.ts": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+    "templates/angular/drawer.ts": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+    "templates/angular/editor-control.ts": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+    "templates/angular/editor-model.ts": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+    "templates/angular/feedback-model.ts": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3",
+    "templates/angular/feedback.ts": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e",
+    "templates/angular/file-draft-model.ts": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f",
+    "templates/angular/file-explorer.ts": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+    "templates/angular/file-upload.ts": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+    "templates/angular/filter-builder.ts": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+    "templates/angular/filter-model.ts": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c",
+    "templates/angular/floating-model.ts": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962",
+    "templates/angular/floating-panel.ts": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+    "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+    "templates/angular/form-field.ts": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+    "templates/angular/form-layout.ts": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+    "templates/angular/formula-parser.d.ts": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
+    "templates/angular/gantt.ts": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+    "templates/angular/grid-list.ts": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+    "templates/angular/icon.ts": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+    "templates/angular/image-cropper.ts": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+    "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+    "templates/angular/index.ts": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+    "templates/angular/infinite-scroll.ts": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+    "templates/angular/inline-edit.ts": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+    "templates/angular/json-model.ts": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+    "templates/angular/kanban.ts": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+    "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+    "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+    "templates/angular/listbox.ts": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+    "templates/angular/locale-model.ts": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+    "templates/angular/locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "templates/angular/map.ts": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+    "templates/angular/markdown-editor.ts": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+    "templates/angular/media-dom.ts": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+    "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+    "templates/angular/media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+    "templates/angular/media-style.ts": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+    "templates/angular/mega-menu.ts": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+    "templates/angular/menu-model.ts": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+    "templates/angular/menu.ts": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+    "templates/angular/menubar.ts": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb",
+    "templates/angular/navigation-model.ts": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+    "templates/angular/navigation-tree.ts": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+    "templates/angular/navigation.ts": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b",
+    "templates/angular/notification-center.ts": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+    "templates/angular/notification-model.ts": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e",
+    "templates/angular/notifications.ts": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+    "templates/angular/organization-chart.ts": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+    "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+    "templates/angular/page-frame.ts": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+    "templates/angular/pagination.ts": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+    "templates/angular/panel-handle.ts": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+    "templates/angular/panels.ts": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5",
+    "templates/angular/pdf-adapter.ts": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+    "templates/angular/pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+    "templates/angular/radio-group.ts": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35",
+    "templates/angular/rich-text-editor.ts": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+    "templates/angular/scheduler-controller.ts": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+    "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+    "templates/angular/scheduler-move-sequence.ts": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6",
+    "templates/angular/scheduler-template.ts": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216",
+    "templates/angular/scheduler-view.ts": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+    "templates/angular/scheduler.ts": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+    "templates/angular/selection-input.ts": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+    "templates/angular/sheet-formula.ts": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+    "templates/angular/sheet-formula.worker.ts": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+    "templates/angular/sheet-runner.ts": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+    "templates/angular/sortable-list.ts": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+    "templates/angular/specialist-browser.ts": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+    "templates/angular/specialist-model.ts": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+    "templates/angular/specialist-style.ts": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+    "templates/angular/splitter.ts": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+    "templates/angular/spreadsheet.ts": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+    "templates/angular/structured-input-model.ts": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
+    "templates/angular/structured-input.ts": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3",
+    "templates/angular/table-advanced-model.ts": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+    "templates/angular/table-column-resize.ts": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+    "templates/angular/table-controls.ts": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+    "templates/angular/table-editors.ts": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+    "templates/angular/table-model.ts": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+    "templates/angular/table-output.ts": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+    "templates/angular/table-runtime.ts": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+    "templates/angular/tabs.ts": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc",
+    "templates/angular/text-input.ts": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+    "templates/angular/timeline-model.ts": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2",
+    "templates/angular/timeline.ts": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2",
+    "templates/angular/toolbar.ts": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4",
+    "templates/angular/tour.ts": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+    "templates/angular/transfer-list.ts": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+    "templates/angular/transfer-model.ts": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+    "templates/angular/tree-grid.ts": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+    "templates/angular/tree-item.ts": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+    "templates/angular/tree-load-sequence.ts": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd",
+    "templates/angular/tree-model.ts": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+    "templates/angular/tree-node-template.ts": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+    "templates/angular/tree-popup-control.ts": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+    "templates/angular/tree-select.ts": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+    "templates/angular/tree.ts": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+    "templates/angular/value-control.ts": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+    "templates/angular/virtual-data-table.ts": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+    "templates/angular/virtual-list.ts": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+    "templates/angular/wizard.ts": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef"
+  },
+  "verification": [
+    {
+      "name": "a808-final-sync",
+      "command": [
+        "npm",
+        "run",
+        "ui:sync"
+      ],
+      "startedAt": "2026-10-06T09:16:22.091467+00:00",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "endedAt": "2026-10-06T09:16:25.408451+00:00"
+    },
+    {
+      "name": "a808-final-check",
+      "command": [
+        "npm",
+        "run",
+        "ui:check"
+      ],
+      "startedAt": "2026-10-06T09:16:25.410622+00:00",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "endedAt": "2026-10-06T09:16:26.786904+00:00"
+    },
+    {
+      "name": "a808-final-all139-aot",
+      "command": [
+        "./node_modules/.bin/ngc",
+        "-p",
+        "tsconfig.all-generated.json"
+      ],
+      "startedAt": "2026-10-06T09:16:26.789451+00:00",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "endedAt": "2026-10-06T09:16:45.554446+00:00"
+    },
+    {
+      "name": "a808-final-public-barrel-aot",
+      "command": [
+        "./node_modules/.bin/ngc",
+        "-p",
+        "consumer/tsconfig.positive-barrel.json"
+      ],
+      "startedAt": "2026-10-06T09:16:45.557765+00:00",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "endedAt": "2026-10-06T09:17:03.035224+00:00"
+    }
+  ],
+  "native": {
+    "matrix": {
+      "profiles": [
+        "guided",
+        "dense"
+      ],
+      "cssWidths": [
+        1280,
+        320
+      ],
+      "rootFontPercent": [
+        100,
+        200
+      ],
+      "directions": [
+        "ltr",
+        "rtl"
+      ],
+      "reducedMotion": "reduce"
+    },
+    "cases": 32,
+    "pass": 32,
+    "actualExit": 0,
+    "runtimeErrors": 0,
+    "cartesianGeometries": 40,
+    "gaugeGeometries": 32,
+    "glyphClipOver1Px": 0,
+    "glyphCollisionOver1Px": 0,
+    "retainedOriginalFontBoxWarnings": 44,
+    "workerInitialCalculationMs": {
+      "minimum": 105.78387499999371,
+      "maximum": 326.51391700000386
+    },
+    "actualNativeWorkerGET200JSAndESMChunks": true,
+    "rawSourceBeforeAfterPreserved": true,
+    "ledger": "current-final-complete-native-execution.json"
+  },
+  "separateCurrentChecks": {
+    "models": {
+      "pass": 40,
+      "actualExit": 0,
+      "ledger": "current-final-verification-execution.json"
+    },
+    "richNativeClipboardDropRecovery": {
+      "pass": 8,
+      "actualExit": 0,
+      "ledger": "current-final-native-execution.json"
+    },
+    "ownedMessageDictionaryNative": {
+      "pass": 4,
+      "actualExit": 0,
+      "ledger": "current-final-correction-execution.json"
+    },
+    "sheetKnownLibraryAndAppWorkerErrorNative": {
+      "profiles": 2,
+      "actualExit": 0,
+      "ledger": "current-final-native-execution.json"
+    },
+    "codeMirrorIncompleteNativeObservations": {
+      "cases": 4,
+      "actualExit": 0,
+      "ledger": "current-final-complete-native-execution.json"
+    },
+    "finalPhotoObservations": {
+      "configurations": 4,
+      "nativeFrames": 32,
+      "actualExit": 0,
+      "ledger": "commit-final-photo-execution.json"
+    },
+    "photosActuallyRead": {
+      "images": 18,
+      "ledger": "final-photos-actually-read.json"
+    }
+  },
+  "findings": [
+    {
+      "id": "S01",
+      "priority": "P1",
+      "title": "Worker startup consumes calculation deadline",
+      "baselineFile": "sheet-runner.ts",
+      "baselineSha": "f84634eb341370b75847bb05bf597eedce65f3848673fb35c106144f230c5927",
+      "beforeEvidence": [
+        "worker-timing.json",
+        "root-failed-trace-summary.json"
+      ],
+      "disposition": "closed with original native worker recovery/deadline proof plus final identical runner/worker and current real split worker",
+      "currentProof": "../../evidence/sheet-native-ui-results.json"
+    },
+    {
+      "id": "S02",
+      "priority": "P1",
+      "title": "Native rich HTML paste publishes unsafe URLs before validation",
+      "baselineFile": "rich-text-editor.ts",
+      "baselineSha": "3f756af37a407963edaed3de94d286fe3ddb8112ab7f0babc74f4040ce131543",
+      "beforeEvidence": [
+        "independent-probes.json",
+        "iteration-01/independent-probes.json"
+      ],
+      "disposition": "closed with fresh current eight native paste/drop/recovery probes and live error dictionary verification",
+      "currentProof": "current-final-rich-native8.log"
+    },
+    {
+      "id": "S03",
+      "priority": "P1",
+      "title": "Default accepted heatmap renders zero-area cells",
+      "baselineFile": "chart-options.ts",
+      "baselineSha": "f3b3f6420df6170f35ebe01bb5ba231e2304b11dd88155896f23eaab1558d533",
+      "beforeEvidence": [
+        "independent-probes.json",
+        "heatmap-value-y.png",
+        "heatmap-category-y.png"
+      ],
+      "disposition": "closed with current five-kind geometry, accepted category defaults, invalid-axis safe data table and recovery",
+      "currentProof": "current-final-complete-native32.json"
+    },
+    {
+      "id": "S04",
+      "priority": "P1",
+      "title": "Ordinary strict public consumer cannot reach formula ambient declaration",
+      "baselineFile": "sheet-formula.ts",
+      "baselineSha": "93d04c948c6e07e17424e6f2966867a4ee7f7eb1c2ecd031db9040699d1d35c2",
+      "beforeEvidence": [
+        "minimal-public-consumers-baseline.json",
+        "strict-negative.json"
+      ],
+      "disposition": "closed with current strict barrel/direct and exact five negative context diagnostics; no ambient resolution failure",
+      "currentProof": "latest-commit-final-negative.plain.log"
+    },
+    {
+      "id": "S05",
+      "priority": "P2",
+      "title": "Disabled restored FileExplorer selection can emit operations",
+      "baselineFile": "file-explorer.ts",
+      "baselineSha": "7255941263330d120ae1a9a75d305dacf6206210c8ca868feb469e725593a514",
+      "beforeEvidence": [
+        "independent-probes.json"
+      ],
+      "disposition": "closed by original independent native operation/current-disabled proof; final guard methods byte-identical and current models pass; final native File replay not claimed",
+      "currentProof": "file-explorer-final-guard-source-audit.json"
+    },
+    {
+      "id": "S06",
+      "priority": "P2",
+      "title": "Disabled first tree node removes usable native Tab entry",
+      "baselineFile": "file-explorer.ts",
+      "baselineSha": "7255941263330d120ae1a9a75d305dacf6206210c8ca868feb469e725593a514",
+      "beforeEvidence": [
+        "direct-runtime-probes.json",
+        "file-disabled-first-tab-baseline.png"
+      ],
+      "disposition": "closed by original independent native Tab/focus-return proof; final focus/current permission guards byte-identical; final native File replay not claimed",
+      "currentProof": "file-explorer-final-guard-source-audit.json"
+    },
+    {
+      "id": "S07",
+      "priority": "P2",
+      "title": "Editor action group accessible names are prohibited on unroled generic divs",
+      "sources": [
+        {
+          "path": "templates/angular/rich-text-editor.ts",
+          "line": 12,
+          "sha": "2dec07828ac3d8c4f64c8ce5569326ee85b5b71783de8385014591d38218458a"
+        },
+        {
+          "path": "templates/angular/markdown-editor.ts",
+          "line": 15,
+          "sha": "24ae8f50e808e34263fb66414dba5a95923b358609faf82e2d2d38c91c71f48f"
+        }
+      ],
+      "evidence": [
+        "aria-markup-probes.json",
+        "formal-axe-summary.json"
+      ],
+      "disposition": "closed with native named Rich/Markdown AX groups in all eight configurations",
+      "currentProof": "current-final-complete-native32.json"
+    },
+    {
+      "id": "S08",
+      "priority": "P2",
+      "title": "Cartesian scroll legend overlaps x axis labels",
+      "sources": [
+        {
+          "path": "templates/angular/chart-options.ts",
+          "line": 25,
+          "sha": "aa06acb336b1a60f22859eccac34a7dcca76f25b8e2e7939f0786212577ea294"
+        }
+      ],
+      "evidence": [
+        "visual-before-probes.json",
+        "chart-file-fixed-probes.json",
+        "chart-kind-drawings/line.png",
+        "chart-kind-drawings/bar.png",
+        "chart-kind-drawings/area.png",
+        "chart-kind-drawings/scatter.png",
+        "chart-kind-drawings/heatmap.png"
+      ],
+      "disposition": "closed with all five Cartesian legend/axis labels distinct actual glyphs in all eight configurations",
+      "currentProof": "current-final-complete-native32.json"
+    },
+    {
+      "id": "S09",
+      "priority": "P2",
+      "title": "Accepted multi-point gauge titles and values completely overlap",
+      "sources": [
+        {
+          "path": "templates/angular/chart-options.ts",
+          "line": 21,
+          "sha": "aa06acb336b1a60f22859eccac34a7dcca76f25b8e2e7939f0786212577ea294"
+        }
+      ],
+      "evidence": [
+        "visual-before-probes.json",
+        "chart-file-fixed-probes.json",
+        "chart-kind-drawings/gauge.png"
+      ],
+      "disposition": "closed including former narrow 320/font200 LTR/RTL gauge collisions; all11 complete Intl ticks/raw numeric values/3 needles/native selection/table keyboard retained",
+      "currentProof": "current-final-complete-native32.json"
+    },
+    {
+      "id": "S10",
+      "priority": "P2",
+      "title": "Responsive axis names/ticks/legend overlap or clip",
+      "beforeEvidence": "../../postfix-review/evidence/axis-layout-diagnostic.json",
+      "beforeSourceSHA256": "9356bd0ae813d921f9faae0637985496e2b86ec6999c8e37e80258eac7d16702",
+      "disposition": "closed with current40 Cartesian native geometry observations and native keyboard/wheel reachability; only graphic/plot direction forced LTR; table/figure inherit RTL",
+      "currentProof": [
+        "current-final-complete-native32.json",
+        "final-photo-observation.json",
+        "final-photos-actually-read.json"
+      ]
+    },
+    {
+      "id": "S11",
+      "priority": "P2",
+      "title": "Spreadsheet cached library failure was not translated live",
+      "beforeEvidence": "finding-S11.json",
+      "beforeNativeActualExit": 1,
+      "originalFixEvidence": "finding-S11-after.json",
+      "disposition": "closed on final Spreadsheet source; actual HTTP404 known library message/dictionary change, app-owned worker error unchanged despite key registration, original source/draft unchanged and normal calculation recovered",
+      "currentProof": [
+        "current-final-S11-original-native.log",
+        "current-final-S11-dictionary-appworker-native2.log",
+        "current-final-native-execution.json"
+      ]
+    }
+  ],
+  "newUnresolvedProductFindings": [],
+  "accessibility": {
+    "axeScopes": 16,
+    "violations": 0,
+    "incompleteReports": 12,
+    "incompleteRuleOccurrences": 12,
+    "incompleteNodes": 206,
+    "rules": [
+      "color-contrast"
+    ],
+    "gaugeSVG": {
+      "scopes": 8,
+      "nodes": 196,
+      "nativeGeometryAndReachVerified": true,
+      "backgroundImageUndeterminedNodes": 160,
+      "overlappedUndeterminedNodes": 36,
+      "automaticIncompleteKept": true,
+      "all196ManualContrastClaimed": false
+    },
+    "narrowCodeMirror": {
+      "scopes": 4,
+      "nodes": 10,
+      "nativeObservationCases": 4,
+      "sampleGlyphs": 30,
+      "foreground": "rgb(28, 41, 61)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 14.645016318974449,
+      "nativeLocalScrollAndHitVerified": true,
+      "automaticIncompleteKept": true
+    },
+    "notAFullAccessibilityConformanceDecision": true,
+    "separateHistoricalCountsNotAggregated": [
+      "original specialist18",
+      "postfix2",
+      "PR10 Collections24",
+      "author svg1 per condition"
+    ]
+  },
+  "preservedPhaseResults": [
+    {
+      "phase": "root formal initial",
+      "cases": "65/68",
+      "actualExit": 1,
+      "ownership": "root evidence reference, not reviewer count",
+      "classification": "real worker startup consumed calculation deadline; original failed probes remain"
+    },
+    {
+      "phase": "original independent raw",
+      "cases": "78/78",
+      "actualExit": 0,
+      "ownership": "reviewer older raw snapshot",
+      "classification": "historical13 controls; cannot infer current full13 rerun"
+    },
+    {
+      "phase": "postfix original narrow",
+      "cases": "14/16",
+      "actualExit": 1,
+      "classification": "real Gauge responsive findings S09/S10 before final responsive fix"
+    },
+    {
+      "phase": "postfix axes",
+      "cases": "16 observations",
+      "actualExit": 0,
+      "classification": "observations only, not asserted visual success"
+    },
+    {
+      "phase": "S11 original",
+      "actualExit": 1,
+      "classification": "real cached library message language defect before minimal fix"
+    },
+    {
+      "phase": "final32 initial harness",
+      "cases": "12pass20fail",
+      "actualExit": 1,
+      "classification": "own stale asynchronous inspector/export, overly broad RTL scroller selector, fontbox/glyph conflation"
+    },
+    {
+      "phase": "pointer scroll diagnostic",
+      "actualExit": 1,
+      "classification": "browser/context disconnected after six native needle hits; cause not established; not assigned to product; actual trace/log kept"
+    },
+    {
+      "phase": "current32 prior correction",
+      "cases": "28pass4fail",
+      "actualExit": 1,
+      "classification": "own stale negative pointer coordinates hit own control after scroll; repaired current pointer area and controls invariants"
+    },
+    {
+      "phase": "owned message prior correction",
+      "cases": "2pass2fail",
+      "actualExit": 1,
+      "classification": "valid Diff difference-count prefix made own exact pure-copy status expectation wrong; repaired Contains plus native selection/raw-clipboard invariants"
+    },
+    {
+      "phase": "strict negative",
+      "actualExit": 1,
+      "classification": "intentional expected four TS2322 and one TS2339; not a product/harness failure"
+    },
+    {
+      "phase": "additional actual full SVG compositing",
+      "actualExit": 1,
+      "classification": "strict RGB assertion failed, no visible label/value loss demonstrated; product attribution unjudged"
+    },
+    {
+      "phase": "native-plane reference error",
+      "actualExit": 1,
+      "classification": "own computed variable deleted while used in metadata; before metrics, corrected separately; raw error/log kept"
+    },
+    {
+      "phase": "a808 immutable adoption first guard",
+      "actualExit": 1,
+      "classification": "own assumed new test filename and did not anticipate updated dates.spec; no source copied before corrected exact immutable guard"
+    }
+  ],
+  "requirementsMap": "specialist-final-review-control-evidence.json",
+  "enginePublicAPI": "engine-public-contract-audit.json",
+  "licenses": "current-final-installed-specialist-license-evidence.json",
+  "limitations": [
+    "Chrome/Chromium only; Safari, VoiceOver, screen reader full manual audit and SSR not tested by this reviewer.",
+    "Final fresh native32 verifies Chart Cartesian/Gauge, editor AX/completion, Spreadsheet direct real-worker controls; current Rich8/S11/dictionary4 are separate. Full13 native78 belongs to earlier raw candidate and was not repeated after Foundation.",
+    "All139 AOT/public-barrel verification checks types/templates, not all139 interactive controls.",
+    "Auto axe incomplete12 reports/206nodes remains; manual CM glyph/color evidence30 is separate. Complete manual SVG196 contrast audit is not claimed.",
+    "Actual native SVG font bounding boxes retain44 pair overlaps; isolated same-computed-font raster ink is distinct/clipped0. Original bounds, native alpha geometry and actually viewed photos are retained; no claim all font boxes are disjoint.",
+    "No backend persistence/authz/network/provider-account safety, real business Undo or successful send is guaranteed. Applications own operation outcomes, attachment transport/permissions, map provider terms and attribution.",
+    "Installed specialist13 package/license originals are verified by SHA; full126 notice/transitive/legal clearance is parent scope, not a fresh closure audit here.",
+    "Root final full npm/category ledger is independent; its successes, interrupted prior run and remaining tests are not reviewer totals.",
+    "Extra narrow Arabic actual SVG paint comparison failed exact RGB assertion (71/8893 guided;55/6766 dense). Visible label/value loss was not demonstrated, and source cause/complete pixel occlusion remains unjudged. Original/corrected/opaque probes remain actual1; approval excludes that paint invariant."
+  ],
+  "cleanup": {
+    "time": "2026-10-06T08:47:13.438246+00:00",
+    "ownedPID": 35765,
+    "ownedPort": 52050,
+    "verifiedBefore": {
+      "ps": "35765 35750 node scripts/serve.mjs\n",
+      "cwd": "COMMAND   PID         USER   FD   TYPE DEVICE SIZE/OFF      NODE NAME\nnode    35765 inouehiroshi  cwd    DIR   1,17     1152 404777826 /private/tmp/ui-foundation-specialist-independent-review/final-foundation-review/final-repository\n",
+      "listener": "COMMAND   PID         USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    35765 inouehiroshi   14u  IPv4 0x3633f7996c19011b      0t0  TCP 127.0.0.1:52050 (LISTEN)\n"
+    },
+    "method": "SIGTERM exact owned PID after command/cwd/listener verification",
+    "rootPort5187Touched": false,
+    "after": {
+      "psActualExit": 1,
+      "ps": "",
+      "listenerActualExit": 1,
+      "listener": ""
+    },
+    "stoppedConfirmed": true,
+    "browserCleanup": "all native scripts await browser.close() in finally; last photo script completed before SIGTERM",
+    "additionalPaintChildServers": {
+      "allFinallyExited": true,
+      "last": {
+        "time": "2026-10-06T09:07:49.824Z",
+        "ownServer": {
+          "code": 0,
+          "signal": null,
+          "pid": 71695
+        },
+        "root5187Touched": false,
+        "browserCloseAwaited": true
+      },
+      "lastListenerObservationActualExit": 1,
+      "lastListenerStdout": "",
+      "ownPort": 52050
+    }
+  },
+  "sourceMutationPolicy": "shared repository/Git, root private source/generated, author staged inputs were read-only; only own /tmp inputs/CLI outputs/harness/evidence modified; no Git/GitHub/OSsecurity/account/npm publication operation",
+  "notAggregated": [
+    "root full npm",
+    "raw78",
+    "prior14worker",
+    "author68",
+    "author18",
+    "root65/68",
+    "PR10 Collections24"
+  ],
+  "priorSameSpecialistBuildAndPositiveNegativeEvidence": {
+    "commit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "specialistAndLocaleBytesUnchangedAtA808": true,
+    "commands": [
+      {
+        "name": "latest-commit-final-sync",
+        "command": [
+          "npm",
+          "run",
+          "ui:sync"
+        ],
+        "startedAt": "2026-10-06T08:43:48.661817+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:43:49.634890+00:00"
+      },
+      {
+        "name": "latest-commit-final-check",
+        "command": [
+          "npm",
+          "run",
+          "ui:check"
+        ],
+        "startedAt": "2026-10-06T08:43:49.636283+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:43:50.471286+00:00"
+      },
+      {
+        "name": "latest-commit-final-all139-aot",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "tsconfig.all-generated.json"
+        ],
+        "startedAt": "2026-10-06T08:43:50.472203+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:44:03.860101+00:00"
+      },
+      {
+        "name": "latest-commit-final-positive-barrel",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "consumer/tsconfig.positive-barrel.json"
+        ],
+        "startedAt": "2026-10-06T08:44:03.861903+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:44:17.817379+00:00"
+      },
+      {
+        "name": "latest-commit-final-positive-direct",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "consumer/tsconfig.positive-direct.json"
+        ],
+        "startedAt": "2026-10-06T08:44:17.818719+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:44:20.609339+00:00"
+      },
+      {
+        "name": "latest-commit-final-positive-code",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "consumer/tsconfig.positive-code.json"
+        ],
+        "startedAt": "2026-10-06T08:44:20.611679+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:44:23.284651+00:00"
+      },
+      {
+        "name": "latest-commit-final-negative",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "consumer/tsconfig.negative.json"
+        ],
+        "startedAt": "2026-10-06T08:44:23.285890+00:00",
+        "expectedExit": 1,
+        "actualExit": 1,
+        "endedAt": "2026-10-06T08:44:35.758150+00:00",
+        "diagnostics": [
+          "TS2322",
+          "TS2322",
+          "TS2339",
+          "TS2322",
+          "TS2322"
+        ],
+        "preciseFiveOnly": true
+      },
+      {
+        "name": "latest-commit-final-canonical-build",
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "startedAt": "2026-10-06T08:44:35.760603+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:45:26.523964+00:00"
+      },
+      {
+        "name": "latest-commit-final-public-direct-aot",
+        "command": [
+          "./node_modules/.bin/ngc",
+          "-p",
+          "consumer/tsconfig.direct-runtime.json"
+        ],
+        "startedAt": "2026-10-06T08:45:26.526167+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:45:30.649447+00:00"
+      },
+      {
+        "name": "latest-commit-final-public-direct-build",
+        "command": [
+          "node",
+          "build-direct-runtime.mjs"
+        ],
+        "startedAt": "2026-10-06T08:45:30.650493+00:00",
+        "expectedExit": 0,
+        "actualExit": 0,
+        "endedAt": "2026-10-06T08:45:32.386118+00:00"
+      }
+    ],
+    "laterOnlyProductDelta": "Card container breakpoint min-width CSS property; raw Card patch saved; no full main build repeated after this outside-specialist CSS-only delta"
+  },
+  "additionalPaintObservation": {
+    "judgment": "unjudged; no demonstrable visible label/value loss observed; strict RGB composite assertion not met and not counted as a pass; product cause not established",
+    "actualExit": 1,
+    "conditions": [
+      {
+        "profile": "guided",
+        "width": 320,
+        "font": "200%",
+        "direction": "rtl",
+        "locale": "ar-EG",
+        "solidPixels": 8893,
+        "RGBMismatchPixels": 71
+      },
+      {
+        "profile": "dense",
+        "width": 320,
+        "font": "200%",
+        "direction": "rtl",
+        "locale": "ar-EG",
+        "solidPixels": 6766,
+        "RGBMismatchPixels": 55
+      }
+    ],
+    "originalCompositeActualExit": 1,
+    "originalNativePlaneActualExit": 1,
+    "nativePlaneCorrectedActualExit": 1,
+    "referenceVariableMistake": "harness-diagnostics/08-composite-native-plane-reference-error",
+    "proof": [
+      "actual-svg-composite-execution.json",
+      "actual-svg-native-plane-corrected-execution.json",
+      "actual-svg-opaque-plane-execution.json"
+    ],
+    "fullSVGImagesActuallyRead": 2,
+    "completePixelOcclusionOrExactPaintMatchClaimed": false
+  },
+  "wholeProductApproval": false,
+  "undeterminedObservationsKept": [
+    "SVG196/CM10 automatic contrast incomplete",
+    "44 original font BBox pairs",
+    "failed strict actual SVG composite RGB invariants; no visible loss/source attribution established"
+  ]
+}

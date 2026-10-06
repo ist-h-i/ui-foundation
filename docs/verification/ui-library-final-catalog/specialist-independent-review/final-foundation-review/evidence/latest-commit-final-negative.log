@@ -1,0 +1,33 @@
+[96mnegative.ts[0m:[93m3[0m:[93m124[0m - [91merror[0m[90m TS2322: [0mType '"unsupported"' is not assignable to type 'ChartKind'.
+
+[7m3[0m @Component({selector:'review-negative',standalone:true,imports:[Chart,Spreadsheet,MapView,CodeEditor],template:`<ui-chart [kind]="wrongKind"/><ui-spreadsheet [sheet]="wrongSheet" (cellEditRequested)="accept($event.nonexistent)"/><ui-map [camera]="wrongCamera"/><ui-code-editor [language]="wrongLanguage"/>`})
+[7m [0m [91m                                                                                                                           ~~~~[0m
+
+[96mnegative.ts[0m:[93m3[0m:[93m160[0m - [91merror[0m[90m TS2322: [0mType '{ rows: {}[][]; }' is not assignable to type 'SheetModel'.
+  Types of property 'rows' are incompatible.
+    Type '{}[][]' is not assignable to type 'readonly (readonly SheetCell[])[]'.
+      Type '{}[]' is not assignable to type 'readonly SheetCell[]'.
+        Type '{}' is not assignable to type 'SheetCell'.
+
+[7m3[0m @Component({selector:'review-negative',standalone:true,imports:[Chart,Spreadsheet,MapView,CodeEditor],template:`<ui-chart [kind]="wrongKind"/><ui-spreadsheet [sheet]="wrongSheet" (cellEditRequested)="accept($event.nonexistent)"/><ui-map [camera]="wrongCamera"/><ui-code-editor [language]="wrongLanguage"/>`})
+[7m [0m [91m                                                                                                                                                               ~~~~~[0m
+
+[96mnegative.ts[0m:[93m3[0m:[93m215[0m - [91merror[0m[90m TS2339: [0mProperty 'nonexistent' does not exist on type 'SheetEdit'.
+
+[7m3[0m @Component({selector:'review-negative',standalone:true,imports:[Chart,Spreadsheet,MapView,CodeEditor],template:`<ui-chart [kind]="wrongKind"/><ui-spreadsheet [sheet]="wrongSheet" (cellEditRequested)="accept($event.nonexistent)"/><ui-map [camera]="wrongCamera"/><ui-code-editor [language]="wrongLanguage"/>`})
+[7m [0m [91m                                                                                                                                                                                                                      ~~~~~~~~~~~[0m
+
+[96mnegative.ts[0m:[93m3[0m:[93m239[0m - [91merror[0m[90m TS2322: [0mType '{ center: readonly ["139", "35"]; zoom: number; }' is not assignable to type 'MapCamera'.
+  Type at position 0 in source is not compatible with type at position 0 in target.
+    The types of 'center' are incompatible between these types.
+      Type 'string' is not assignable to type 'number'.
+
+[7m3[0m @Component({selector:'review-negative',standalone:true,imports:[Chart,Spreadsheet,MapView,CodeEditor],template:`<ui-chart [kind]="wrongKind"/><ui-spreadsheet [sheet]="wrongSheet" (cellEditRequested)="accept($event.nonexistent)"/><ui-map [camera]="wrongCamera"/><ui-code-editor [language]="wrongLanguage"/>`})
+[7m [0m [91m                                                                                                                                                                                                                                              ~~~~~~[0m
+
+[96mnegative.ts[0m:[93m3[0m:[93m279[0m - [91merror[0m[90m TS2322: [0mType '22' is not assignable to type 'CodeLanguage'.
+
+[7m3[0m @Component({selector:'review-negative',standalone:true,imports:[Chart,Spreadsheet,MapView,CodeEditor],template:`<ui-chart [kind]="wrongKind"/><ui-spreadsheet [sheet]="wrongSheet" (cellEditRequested)="accept($event.nonexistent)"/><ui-map [camera]="wrongCamera"/><ui-code-editor [language]="wrongLanguage"/>`})
+[7m [0m [91m                                                                                                                                                                                                                                                                                      ~~~~~~~~[0m
+
+

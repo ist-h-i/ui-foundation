@@ -1,0 +1,41 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "tests/ui/collection-catalog.spec.ts",
+    "tests/ui/media-regressions.spec.ts",
+    "tests/ui/tree-catalog.spec.ts",
+    "--grep",
+    "masonry has real unequal row heights|open Lightbox named zoomed image|320px/200%/RTL/reduced motion and axe closed/open popups",
+    "--reporter=json",
+    "--output",
+    "/tmp/ui-foundation-final-integration/failure-replay-8e8748a/test-results"
+  ],
+  "cwd": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+  "start": "2026-10-06T10:30:20.203499+00:00",
+  "sourceCommit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+  "sourceManifestSha256": "ef8c772d31b78215ca4b15b3a68a5f7fcc95077ff76e1106a64be335a63705bd",
+  "trackedInputs": 457,
+  "priorRun": "full-npm-53a7858",
+  "reason": "Repeat the unchanged product suite after independently reviewed exact Masonry render and Lightbox scroll preconditions; retain every previous failure, including the unresolved pre-navigation browser closure.",
+  "productCodeCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "deltaFromProductCodeCommit": [
+    "tests/ui/collection-catalog.spec.ts",
+    "tests/ui/media-regressions.spec.ts",
+    "tests/ui/scheduler-catalog.spec.ts",
+    "tests/ui/specialist-chart-explorer.spec.ts"
+  ],
+  "productSourceChanges": [],
+  "node": "v24.19.0",
+  "port": 5187,
+  "workers": 2,
+  "retries": 0,
+  "status": "completed",
+  "mode": "focused",
+  "log": "results.json",
+  "npmPid": 14074,
+  "end": "2026-10-06T10:31:12.657456+00:00",
+  "exitCode": 0,
+  "sourceChanged": [],
+  "headAfter": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0"
+}

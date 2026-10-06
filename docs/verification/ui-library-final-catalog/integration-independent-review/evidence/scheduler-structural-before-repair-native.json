@@ -1,0 +1,504 @@
+{
+  "kind": "Independent public Scheduler owned/raw locale lifetime + Diff native selection + Json raw diagnostics",
+  "sourceSha256": {
+    "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "scheduler-controller.ts": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+    "scheduler-view.ts": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be",
+    "diff-json.ts": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+  },
+  "checks": [
+    {
+      "name": "Scheduler held library diagnostic follows dictionary guided",
+      "actual": "Invalid move zone v2",
+      "expected": "Invalid move zone v2",
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary retains native draft/focus/caret guided",
+      "actual": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "expected": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary invokes no I/O/request/authorization guided",
+      "actual": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "expected": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler editing clears previously held owned diagnostic guided",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler native date writer clears old owned message guided",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler native resource writer clears old owned message guided",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler emits raw app key/DTO and explicit move target guided",
+      "actual": {
+        "key": "raw-event",
+        "payload": {
+          "raw": "Application payload"
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "eventUnchanged": "2026-10-06T10:00:00+00:00"
+      },
+      "expected": {
+        "key": "raw-event",
+        "payload": {
+          "raw": "Application payload"
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "eventUnchanged": "2026-10-06T10:00:00+00:00"
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler accepts matching app failMove acknowledgement guided",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Scheduler raw app failure matching dictionary key stays opaque guided",
+      "actual": "移動結果を確認しています。",
+      "expected": "移動結果を確認しています。",
+      "passed": true
+    },
+    {
+      "name": "Diff vendor labels follow current dictionary guided",
+      "actual": [
+        "App diff Before v4",
+        "App diff After v4"
+      ],
+      "expected": [
+        "App diff Before v4",
+        "App diff After v4"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Diff native focus/selection/doc/DOM retained guided",
+      "actual": {
+        "same": true,
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "expected": {
+        "same": true,
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "passed": true
+    },
+    {
+      "name": "Json UI localizes code/offset without changing raw model guided",
+      "actual": {
+        "display": "Parse v4 ValueExpected; offset 8",
+        "model": {
+          "rows": [],
+          "error": "ValueExpected at 8"
+        },
+        "source": "{\"raw\": }"
+      },
+      "expected": {
+        "display": "Parse v4 ValueExpected; offset 8",
+        "model": {
+          "rows": [],
+          "error": "ValueExpected at 8"
+        },
+        "source": "{\"raw\": }"
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler invalid event structural diagnostic follows explicit dictionary guided",
+      "actual": "予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。",
+      "expected": "Invalid event instant",
+      "passed": false
+    },
+    {
+      "name": "Scheduler invalid configuration diagnostic follows explicit dictionary guided",
+      "actual": "表示言語とタイムゾーンを明示してください。",
+      "expected": "Display locale and zone required",
+      "passed": false
+    },
+    {
+      "name": "Scheduler held library diagnostic follows dictionary dense",
+      "actual": "Invalid move zone v2",
+      "expected": "Invalid move zone v2",
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary retains native draft/focus/caret dense",
+      "actual": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "expected": {
+        "same": true,
+        "focused": true,
+        "value": "Invalid/Zone",
+        "start": 3,
+        "end": 8
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler dictionary invokes no I/O/request/authorization dense",
+      "actual": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "expected": {
+        "hits": [],
+        "snapshot": {
+          "events": [
+            {
+              "id": "raw-event",
+              "title": "App original event",
+              "start": "2026-10-06T10:00:00+00:00",
+              "end": "2026-10-06T11:00:00+00:00",
+              "resourceIds": [
+                "raw-room"
+              ],
+              "data": {
+                "raw": "Application payload"
+              }
+            }
+          ],
+          "requests": 0,
+          "allow": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler editing clears previously held owned diagnostic dense",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler native date writer clears old owned message dense",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler native resource writer clears old owned message dense",
+      "actual": "",
+      "expected": "",
+      "passed": true
+    },
+    {
+      "name": "Scheduler emits raw app key/DTO and explicit move target dense",
+      "actual": {
+        "key": "raw-event",
+        "payload": {
+          "raw": "Application payload"
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "eventUnchanged": "2026-10-06T10:00:00+00:00"
+      },
+      "expected": {
+        "key": "raw-event",
+        "payload": {
+          "raw": "Application payload"
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "eventUnchanged": "2026-10-06T10:00:00+00:00"
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler accepts matching app failMove acknowledgement dense",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Scheduler raw app failure matching dictionary key stays opaque dense",
+      "actual": "移動結果を確認しています。",
+      "expected": "移動結果を確認しています。",
+      "passed": true
+    },
+    {
+      "name": "Diff vendor labels follow current dictionary dense",
+      "actual": [
+        "App diff Before v4",
+        "App diff After v4"
+      ],
+      "expected": [
+        "App diff Before v4",
+        "App diff After v4"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Diff native focus/selection/doc/DOM retained dense",
+      "actual": {
+        "same": true,
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "expected": {
+        "same": true,
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "passed": true
+    },
+    {
+      "name": "Json UI localizes code/offset without changing raw model dense",
+      "actual": {
+        "display": "Parse v4 ValueExpected; offset 8",
+        "model": {
+          "rows": [],
+          "error": "ValueExpected at 8"
+        },
+        "source": "{\"raw\": }"
+      },
+      "expected": {
+        "display": "Parse v4 ValueExpected; offset 8",
+        "model": {
+          "rows": [],
+          "error": "ValueExpected at 8"
+        },
+        "source": "{\"raw\": }"
+      },
+      "passed": true
+    },
+    {
+      "name": "Scheduler invalid event structural diagnostic follows explicit dictionary dense",
+      "actual": "予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。",
+      "expected": "Invalid event instant",
+      "passed": false
+    },
+    {
+      "name": "Scheduler invalid configuration diagnostic follows explicit dictionary dense",
+      "actual": "表示言語とタイムゾーンを明示してください。",
+      "expected": "Display locale and zone required",
+      "passed": false
+    }
+  ],
+  "runtime": [],
+  "console": [],
+  "profiles": [
+    {
+      "profile": "guided",
+      "requested": {
+        "requestId": 1,
+        "event": {
+          "id": "raw-event",
+          "title": "App original event",
+          "start": "2026-10-06T10:00:00+00:00",
+          "end": "2026-10-06T11:00:00+00:00",
+          "resourceIds": [
+            "raw-room"
+          ],
+          "data": {
+            "raw": "Application payload"
+          }
+        },
+        "previous": {
+          "start": "2026-10-06T10:00:00+00:00",
+          "end": "2026-10-06T11:00:00+00:00",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        }
+      },
+      "selectionBefore": {
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "rawJsonModel": {
+        "rows": [],
+        "error": "ValueExpected at 8"
+      }
+    },
+    {
+      "profile": "dense",
+      "requested": {
+        "requestId": 1,
+        "event": {
+          "id": "raw-event",
+          "title": "App original event",
+          "start": "2026-10-06T10:00:00+00:00",
+          "end": "2026-10-06T11:00:00+00:00",
+          "resourceIds": [
+            "raw-room"
+          ],
+          "data": {
+            "raw": "Application payload"
+          }
+        },
+        "previous": {
+          "start": "2026-10-06T10:00:00+00:00",
+          "end": "2026-10-06T11:00:00+00:00",
+          "resourceIds": [
+            "raw-room"
+          ]
+        },
+        "target": {
+          "localStart": "2026-10-06T10:00",
+          "localEnd": "2026-10-06T11:00:00",
+          "timeZone": "UTC",
+          "startDisambiguation": "reject",
+          "endDisambiguation": "reject",
+          "resourceIds": [
+            "raw-room"
+          ]
+        }
+      },
+      "selectionBefore": {
+        "text": "alpha",
+        "focused": true,
+        "doc": "alphachangedsame"
+      },
+      "rawJsonModel": {
+        "rows": [],
+        "error": "ValueExpected at 8"
+      }
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "browser": "154.0.8037.98"
+}

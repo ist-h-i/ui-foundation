@@ -1,0 +1,95 @@
+{
+  "sourceCopyStillMatchesShared": true,
+  "sourceChanged": [],
+  "ownFrozenFilesUnchanged": true,
+  "sharedTestSpecUnchanged": true,
+  "sourceTreeSha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+  "formalSpecSha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+  "cases": [
+    {
+      "describe": "tree catalog guided",
+      "title": "320px/200%/RTL/reduced motion and axe closed/open popups",
+      "line": 94,
+      "expectedStatus": "passed",
+      "status": "expected",
+      "actual": [
+        {
+          "status": "passed",
+          "duration": 4215,
+          "retry": 0,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "trace",
+              "contentType": "application/zip",
+              "path": "/private/tmp/ui-foundation-tree-escape-final-review/followup-tree-narrow-20261006-102325/evidence/test-results/tree-catalog-tree-catalog--c1168--and-axe-closed-open-popups-chromium/trace.zip"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "describe": "tree catalog dense",
+      "title": "320px/200%/RTL/reduced motion and axe closed/open popups",
+      "line": 94,
+      "expectedStatus": "passed",
+      "status": "expected",
+      "actual": [
+        {
+          "status": "passed",
+          "duration": 3770,
+          "retry": 0,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "trace",
+              "contentType": "application/zip",
+              "path": "/private/tmp/ui-foundation-tree-escape-final-review/followup-tree-narrow-20261006-102325/evidence/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nativeExit": 0,
+  "sourceCodeEdited": false,
+  "sharedSourceTestsGitEditedByThisAgent": false,
+  "fullSuiteOriginalFailureRetained": true,
+  "originalCloseCause": "unconfirmed",
+  "all181Approved": false,
+  "verdict": "SCOPED_FOLLOWUP_PASS_ORIGINAL_CLOSE_CAUSE_UNCONFIRMED",
+  "originalFailureArtifactsStillMatchShared": [
+    {
+      "path": "docs/verification/ui-library-final-catalog/fourth-full-npm-53a7858-failed/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip",
+      "sha256": "e3be7075f1f1575eb294d88481cb8d74dd00ea8ac53346be196533b17a138fed",
+      "originalUnchanged": true
+    },
+    {
+      "path": "docs/verification/ui-library-final-catalog/fourth-full-npm-53a7858-failed/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/error-context.md",
+      "sha256": "b5573f3d56f23519a1b96a5c3eaa9a3c47a76e7f64cb3a00393579023088009e",
+      "originalUnchanged": true
+    }
+  ],
+  "axeActualScans": 6,
+  "axeViolations": 0,
+  "axeIncompleteRuleNodeCounts": {
+    "aria-valid-attr-value": 18,
+    "color-contrast": 24
+  },
+  "imagesManuallyRead": 2,
+  "newSourceFindings": 0,
+  "ownPort": 5337,
+  "ownServerListenerAfterCompletion": false,
+  "otherProcessesKilled": false,
+  "harnessDifferences": [
+    "Tree-only minimal bootstrap, exact TreeCatalog/spec/catalog runtime fixture",
+    "own serial worker1 port5337 trace:on; retries0",
+    "all139 source/config generated via regular CLI; shared dependencies read-only"
+  ],
+  "nativeBrowserCaseScope": [
+    "guided formal narrow RTL 200% reduced motion + popup keyboard/axe",
+    "dense formal same case"
+  ],
+  "originalFullRunStillFailed": true,
+  "fullSuiteRerunPerformedByThisAgent": false
+}

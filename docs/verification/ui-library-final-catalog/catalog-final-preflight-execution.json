@@ -1,0 +1,46 @@
+[
+  {
+    "name": "catalog-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "start": "2026-10-06T08:09:35.471702+00:00",
+    "end": "2026-10-06T08:09:36.020183+00:00",
+    "exit": 0
+  },
+  {
+    "name": "catalog-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "start": "2026-10-06T08:09:36.021010+00:00",
+    "end": "2026-10-06T08:09:36.469990+00:00",
+    "exit": 0
+  },
+  {
+    "name": "catalog-final-strict",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "start": "2026-10-06T08:09:36.470585+00:00",
+    "end": "2026-10-06T08:09:46.701909+00:00",
+    "exit": 0
+  },
+  {
+    "name": "catalog-final-model",
+    "command": [
+      "npm",
+      "run",
+      "test:model"
+    ],
+    "start": "2026-10-06T08:09:46.702611+00:00",
+    "end": "2026-10-06T08:09:48.426217+00:00",
+    "exit": 0
+  }
+]
