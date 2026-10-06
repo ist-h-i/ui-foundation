@@ -1,0 +1,49 @@
+[WebServer] (node:12185) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12186) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12211) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+[WebServer] (node:12504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ≈ tailwindcss v4.3.0
+[WebServer] 
+[WebServer] Done in 249ms
+[WebServer] (node:12505) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 26 tests using 1 worker
+
+(node:12527) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation (3.2s)
+  ✓   2 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement (3.2s)
+  ✓   3 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset (2.6s)
+  ✓   4 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits (1.8s)
+  ✓   5 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits (2.8s)
+  ✓   6 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion (3.3s)
+  ✓   7 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation (2.2s)
+  ✓   8 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement (2.7s)
+  ✓   9 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset (2.1s)
+  ✓  10 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits (2.1s)
+  ✓  11 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits (2.1s)
+  ✓  12 [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion (2.9s)
+  ✓  13 [chromium] › tests/ui/diagram-critic.spec.ts:17:2 › guided: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data (2.9s)
+  ✓  14 [chromium] › tests/ui/diagram-critic.spec.ts:44:2 › guided: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL (3.4s)
+  ✓  15 [chromium] › tests/ui/diagram-critic.spec.ts:17:2 › dense: independent public Diagram consumer keeps isolated errors, live locale, external fields and controlled data (2.9s)
+  ✓  16 [chromium] › tests/ui/diagram-critic.spec.ts:44:2 › dense: independent public Diagram consumer preserves bounded physical keyboard movement and named editors in narrow RTL (3.4s)
+  ✓  17 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path (2.6s)
+  ✓  18 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path (2.2s)
+  ✓  19 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative x without changing the reachable canvas and supports correction (3.1s)
+  ✓  20 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative y without changing the reachable canvas and supports correction (2.8s)
+  ✓  21 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path (3.0s)
+  ✓  22 [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path (2.5s)
+  ✓  23 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction (3.0s)
+  ✓  24 [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction (2.5s)
+  ✓  25 [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › guided: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom (2.7s)
+  ✓  26 [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › dense: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom (2.6s)
+
+  26 passed (2.2m)

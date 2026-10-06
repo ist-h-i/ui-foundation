@@ -1,0 +1,66 @@
+[
+  {
+    "command": [
+      "./node_modules/.bin/tsx",
+      "src/cli.ts",
+      "sync",
+      "--config",
+      "examples/ui.config.example.yaml",
+      "--dry-run"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.37010908126831055,
+    "log": "after-dry-run.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.5146071910858154,
+    "log": "after-sync.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.4500761032104492,
+    "log": "after-check.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 15.38050389289856,
+    "log": "after-typecheck.log"
+  },
+  {
+    "command": [
+      "./node_modules/.bin/tsx",
+      "--test",
+      "tests/model/diagram-validation.test.ts",
+      "tests/model/specialist-model.test.ts"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.5554847717285156,
+    "log": "after-model.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 33.96671986579895,
+    "log": "after-build.log"
+  }
+]

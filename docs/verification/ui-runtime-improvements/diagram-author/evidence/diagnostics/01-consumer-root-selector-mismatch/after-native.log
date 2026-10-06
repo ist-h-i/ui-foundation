@@ -1,0 +1,1055 @@
+
+Running 22 tests using 2 workers
+
+(node:6315) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:6314) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+[2/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+  1) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6361) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+(node:6362) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[4/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+  3) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  4) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6425) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:6426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[5/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+[6/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+  5) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6489) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+  6) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[7/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation
+(node:6491) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[8/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement
+  7) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  8) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6526) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[9/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset
+(node:6527) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[10/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits
+  9) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6574) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[11/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits
+  10) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[12/22] [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion
+  11) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[13/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+  12) [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'フロー編集の検証', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })
+
+
+       5 |
+       6 | async function open(page:Page,profile:string):Promise<void>{
+    >  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();
+         |                                                                                                                      ^
+       8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();
+       9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);
+      10 | }
+        at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)
+        at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104
+
+    Error: catalog browser runtime errors and warnings
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "error: ERROR De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    +   "error: De: NG05104: The selector \"diagram-validation-catalog\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104
+    +     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)
+    +     at rVe (http://127.0.0.1:52053/main.js:27:26775)
+    +     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)
+    +     at D_.create (http://127.0.0.1:52053/main.js:56:27249)
+    +     at http://127.0.0.1:52053/main.js:56:83690
+    +     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)
+    +     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)
+    +     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)
+    +     at http://127.0.0.1:52053/main.js:76:27011",
+    + ]
+
+       at catalog-test.ts:5
+
+      3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */
+      4 | export const test=base.extend<{runtimeErrors:string[]}>({
+    > 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],
+        |                                                                                                                                                                                                                                                                                                                                           ^
+      6 | });
+      7 |
+        at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:6689) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[14/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+[15/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative x without changing the reachable canvas and supports correction
+[16/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › guided: Diagram rejects negative y without changing the reachable canvas and supports correction
+[17/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path
+[18/22] [chromium] › tests/ui/diagram-validation.spec.ts:6:3 › dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path
+[19/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative x without changing the reachable canvas and supports correction
+[20/22] [chromium] › tests/ui/diagram-validation.spec.ts:20:3 › dense: Diagram rejects negative y without changing the reachable canvas and supports correction
+[21/22] [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › guided: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+[22/22] [chromium] › tests/ui/specialist-catalog.spec.ts:53:3 › dense: specialist functional › Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom
+  12 failed
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:14:2 › dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:27:2 › dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:36:2 › dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:45:2 › dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:53:2 › dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits 
+    [chromium] › tests/ui/diagram-controlled-validation.spec.ts:63:2 › dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion 
+  10 passed (1.7m)

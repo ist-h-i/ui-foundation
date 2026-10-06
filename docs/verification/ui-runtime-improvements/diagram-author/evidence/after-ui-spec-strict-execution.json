@@ -1,0 +1,25 @@
+{
+  "command": [
+    "./node_modules/.bin/tsc",
+    "--ignoreConfig",
+    "--noEmit",
+    "--strict",
+    "--skipLibCheck",
+    "--target",
+    "ES2022",
+    "--module",
+    "ESNext",
+    "--moduleResolution",
+    "bundler",
+    "--lib",
+    "ES2022,DOM",
+    "--types",
+    "node",
+    "--allowImportingTsExtensions",
+    "tests/ui/diagram-validation.spec.ts",
+    "tests/ui/diagram-controlled-validation.spec.ts"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 0.8480958938598633,
+  "scope": "2 new UI specs and transitively imported test helpers, not all UI specs"
+}

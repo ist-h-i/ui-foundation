@@ -1,0 +1,217 @@
+{
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "diagram": {
+    "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+    "ownerScope": "Diagram P2 empty labels and negative coordinates; own candidate only",
+    "localeTsChanged": false,
+    "files": [
+      {
+        "path": "templates/angular/diagram.ts",
+        "beforeSha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+        "afterSha256": "914840dc04ef11bec4071d02a511917fc5e859a7dbb044063d8cb66a823c2817",
+        "kind": "modified"
+      },
+      {
+        "path": "templates/angular/specialist-model.ts",
+        "beforeSha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+        "afterSha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd",
+        "kind": "modified"
+      },
+      {
+        "path": "skills/ui-development/references/ui-library-runtime.md",
+        "beforeSha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5",
+        "afterSha256": "b776c2f53c9e78c721251aaa231d1680dc4346bde24b1cfaed8000c671070175",
+        "kind": "modified"
+      },
+      {
+        "path": "tests/fixture-app/main.ts",
+        "beforeSha256": "f2c9935e788d53f89e13e6dd7cf3d4bade0b660e93a3a83be9c22f88de1458af",
+        "afterSha256": "5cfc812c86c7707001a148117cd5b36df3945d7e689504e06f6921a39be15587",
+        "kind": "modified"
+      },
+      {
+        "path": "tests/fixture-app/diagram-validation-catalog.ts",
+        "beforeSha256": null,
+        "afterSha256": "34a0f92dbd3d547b88512f71fb53a8152b0db47a1cf225965668228fc367b7ae",
+        "kind": "added"
+      },
+      {
+        "path": "tests/model/diagram-validation.test.ts",
+        "beforeSha256": null,
+        "afterSha256": "2537efb4feb422effdf399da46f9b59fad7afe23527483ed185085b2d8df87ac",
+        "kind": "added"
+      },
+      {
+        "path": "tests/ui/diagram-validation.spec.ts",
+        "beforeSha256": null,
+        "afterSha256": "059b8922b053ba2b0a516223f8a606b5092cd17f7063daf7774ec97a2997c777",
+        "kind": "added"
+      },
+      {
+        "path": "tests/ui/diagram-controlled-validation.spec.ts",
+        "beforeSha256": null,
+        "afterSha256": "8b2039f582e71fa62b61a4e3094001fc532d048de054f0a444281f1c4f29b7b2",
+        "kind": "added"
+      }
+    ],
+    "status": "author_candidate_complete_ready_for_independent_review",
+    "fileCount": 8,
+    "sourceTreeSha256": "fb23199162fea3dd15b15ec97bb92aa36fa06f0fb1d6cd21d06cf6309d4b883a",
+    "verification": {
+      "pureRelated": {
+        "total": 19,
+        "passed": 19,
+        "actualExitCode": 0
+      },
+      "native": {
+        "total": 22,
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0,
+        "retries": 0,
+        "workers": 2,
+        "actualExitCode": 0
+      },
+      "productSourceChangedDuringNative": [],
+      "all139StrictAotActualExitCode": 0,
+      "publicDirectConsumerBuildActualExitCode": 0,
+      "newUiSpecsStrictActualExitCode": 0,
+      "generatedIdempotencyChanged": []
+    }
+  },
+  "additionalRootStrictScope": {
+    "config": "tsconfig.ui-runtime.json",
+    "entries": [
+      "tests/ui/tree-axe-contract.spec.ts",
+      "tests/ui/diagram-validation.spec.ts",
+      "tests/ui/diagram-controlled-validation.spec.ts"
+    ],
+    "allUiStrictClaim": false
+  },
+  "svg": {
+    "manifestSha256": "b728bb4dc7c4a811448f20d572154b39460a53ae3445571ac1feb1f24d163378",
+    "files": [
+      {
+        "path": "templates/angular/chart-options.ts",
+        "beforeSha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+        "afterSha256": "857eab2fba50efe028140d1907e048f0b29762c97feafbe064c9f6798a461d1b"
+      },
+      {
+        "path": "tests/model/specialist-chart-options.test.ts",
+        "beforeSha256": "4673799fea218f2d12f17622be2fbb9b1251212039a4719998c77f7bb5a3c74c",
+        "afterSha256": "89e2335ae7b2ca4db995a79dd9ba3b5c6d4fbdb555b30dcd665868bc997d088f"
+      },
+      {
+        "path": "scripts/test-svg-paint.mjs",
+        "beforeSha256": null,
+        "afterSha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919"
+      },
+      {
+        "path": "tests/consumer-svg-paint/consumer.ts",
+        "beforeSha256": null,
+        "afterSha256": "fa8f2f8fa390627b0aee459feecdd70e8c3704102b289ce3fcafeb0ef19a0856"
+      },
+      {
+        "path": "tests/consumer-svg-paint/tsconfig.consumer.json",
+        "beforeSha256": null,
+        "afterSha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf"
+      },
+      {
+        "path": "tests/consumer-svg-paint/build-consumer.mjs",
+        "beforeSha256": null,
+        "afterSha256": "82a66fa08e160a98d26ba3166a70c05472e02bd568b2e4618415d5ff9b825297"
+      },
+      {
+        "path": "tests/consumer-svg-paint/serve-consumer.mjs",
+        "beforeSha256": null,
+        "afterSha256": "5ec36883faf4901b70767e85f64fa1328ff5e2bef1d90039408fc6c78ef285f2"
+      },
+      {
+        "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+        "beforeSha256": null,
+        "afterSha256": "1c497fb383052b4a554dbe2c7c59195c2ece6a9a91cf9060705aab4cb3428f3e"
+      },
+      {
+        "path": "tests/consumer-svg-paint/harness/svg-paint-audit.mjs",
+        "beforeSha256": null,
+        "afterSha256": "b9fd931069309ae77882d59359c9648c1e236e88a10adb369100ab969efe256a"
+      }
+    ]
+  },
+  "crossBrowserMenu": {
+    "manifestSha256": "063b664a9c4bc6bfde5d3045469689a106ae26ce0d3f80132adb020c1a092e58",
+    "files": [
+      {
+        "path": "playwright.cross-browser.config.ts",
+        "beforeSha256": null,
+        "afterSha256": "bd83506fd7f960e34a133d13205b5d11cc21663f5931d2d6aaf4c91abb323520"
+      },
+      {
+        "path": "tests/cross-browser/runtime-test.ts",
+        "beforeSha256": null,
+        "afterSha256": "07128378ddf13aa13852c8c0845da30fa01a5ac8fac8ba21a41c19cb635799bf"
+      },
+      {
+        "path": "tests/cross-browser/runtime-cross-browser.spec.ts",
+        "beforeSha256": null,
+        "afterSha256": "ebc1e70aefc60ddd777ab1598955132c4da3bdd51ac84ceaa90d7bdde6511ba7"
+      },
+      {
+        "path": "scripts/run-cross-browser.mjs",
+        "beforeSha256": null,
+        "afterSha256": "3d35868a87b7dfafa8a1c84fa93d074cc1ea8c83b4842cd8287e0ad56f450573"
+      },
+      {
+        "path": "docs/cross-browser-runtime-verification.ja.md",
+        "beforeSha256": null,
+        "afterSha256": "14c515502d224c52312e2464f10e3dbeb70f44e95325f06578a4959e155dce5f"
+      },
+      {
+        "path": "templates/angular/menu.ts",
+        "beforeSha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+        "afterSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8"
+      }
+    ]
+  },
+  "rootPackageIntegration": {
+    "sha256": "52ddccf0d4efd3b8ccc6a43f65cd025807ba5e66db6fec10b06da1930e15a5a5",
+    "dependencyChanged": false,
+    "scriptsAdded": [
+      "typecheck:ui:media",
+      "typecheck:ui:runtime",
+      "test:cross-browser",
+      "test:svg-paint"
+    ],
+    "crossBrowserOptIn": true
+  },
+  "rootAdditionalInputs": [
+    {
+      "path": "package.json",
+      "bytes": 2977,
+      "sha256": "52ddccf0d4efd3b8ccc6a43f65cd025807ba5e66db6fec10b06da1930e15a5a5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9064,
+      "sha256": "3b4a23727335f76a2e1bfc4f2079ff9c4343559494bc8554b78330b2f7922f75"
+    },
+    {
+      "path": "tsconfig.ui-runtime.json",
+      "bytes": 263,
+      "sha256": "208e60ee6a606a9b6f4781117a22105a78c2f231bdc43cda98854acfa8c2d666"
+    }
+  ],
+  "canonicalGeneration": {
+    "command": "npm run ui:sync",
+    "actualExit": 0,
+    "changedFiles": [
+      ".agents/skills/project-ui/references/ui-library-runtime.md",
+      ".ui/generated/angular/chart-options.ts",
+      ".ui/generated/angular/diagram.ts",
+      ".ui/generated/angular/menu.ts",
+      ".ui/generated/angular/specialist-model.ts",
+      ".ui/generated/manifest.json"
+    ],
+    "generatedManuallyEdited": false
+  }
+}

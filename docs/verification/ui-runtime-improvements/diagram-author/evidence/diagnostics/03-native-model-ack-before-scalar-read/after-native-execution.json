@@ -1,0 +1,21 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "--config=diagram-validation.config.ts",
+    "tests/ui/diagram-validation.spec.ts",
+    "tests/ui/diagram-controlled-validation.spec.ts",
+    "tests/ui/specialist-catalog.spec.ts",
+    "--grep",
+    "Diagram",
+    "--workers=2",
+    "--retries=0",
+    "--reporter=line,json"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 48.27188301086426,
+  "base": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "productSourceChanged": [],
+  "templateCount": 139,
+  "fixtureOnlyCorrection": "Root selector fixture-app; NG05104 run preserved under diagnostics."
+}

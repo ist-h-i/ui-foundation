@@ -1,0 +1,1156 @@
+{
+  "schemaVersion": 1,
+  "actor": "Diagram P2 author candidate",
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "sourceTreeSha256": "fb23199162fea3dd15b15ec97bb92aa36fa06f0fb1d6cd21d06cf6309d4b883a",
+  "generatedSourceIncluded": false,
+  "fileCount": 229,
+  "totalBytes": 58957399,
+  "files": [
+    {
+      "path": "HANDOFF.ja.md",
+      "bytes": 4870,
+      "sha256": "86d72e1404a2e156d91b4d9a25bfa295ad573a0a515f87d8db1644d58ec9f435"
+    },
+    {
+      "path": "PUBLIC-CONTRACT.ja.md",
+      "bytes": 2581,
+      "sha256": "31bb16332df69f2fba760a111b1edb8afc99b2d64206b578e7196a5db4368a33"
+    },
+    {
+      "path": "before-source/skills/ui-development/references/ui-library-runtime.md",
+      "bytes": 6356,
+      "sha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5"
+    },
+    {
+      "path": "before-source/templates/angular/diagram.ts",
+      "bytes": 10379,
+      "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac"
+    },
+    {
+      "path": "before-source/templates/angular/specialist-model.ts",
+      "bytes": 18034,
+      "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+    },
+    {
+      "path": "before-source/tests/fixture-app/main.ts",
+      "bytes": 3248,
+      "sha256": "f2c9935e788d53f89e13e6dd7cf3d4bade0b660e93a3a83be9c22f88de1458af"
+    },
+    {
+      "path": "evidence/after-build.log",
+      "bytes": 680,
+      "sha256": "26b99b5a4599bb37d5b8d6d080da8ce82c91f60dcb6b0a33c74a4555cf69030e"
+    },
+    {
+      "path": "evidence/after-canonical-executions.json",
+      "bytes": 1200,
+      "sha256": "440aca1c91319a5039f5ab31eaca620d6bae1b50abdfacd4b91ae26fb90b2568"
+    },
+    {
+      "path": "evidence/after-check.log",
+      "bytes": 215,
+      "sha256": "b6f2b4510e68411cd49be55071606d8b0871c659464855b14c35d04ebc598de3"
+    },
+    {
+      "path": "evidence/after-dry-run.log",
+      "bytes": 221,
+      "sha256": "8c5e7b5f5f54f495d71115140bb7d11425fd40bf9bbe04db4b9b979b8c2a79b8"
+    },
+    {
+      "path": "evidence/after-final-check.log",
+      "bytes": 215,
+      "sha256": "b6f2b4510e68411cd49be55071606d8b0871c659464855b14c35d04ebc598de3"
+    },
+    {
+      "path": "evidence/after-idempotency-execution.json",
+      "bytes": 679,
+      "sha256": "328c5740e03a191ced7cc9fba044dabebad3676f127d9e56dc3b61855385ca51"
+    },
+    {
+      "path": "evidence/after-idempotent-sync.log",
+      "bytes": 131,
+      "sha256": "e79c3626783c88ee8a96b34bb55a0d47d200670172b4230e4d6f61450b6db17c"
+    },
+    {
+      "path": "evidence/after-model.log",
+      "bytes": 2143,
+      "sha256": "68843cd8944c2b405f52f42bf14dca0650de3eda27596b1a3e6607528f6e2a68"
+    },
+    {
+      "path": "evidence/after-native-execution.json",
+      "bytes": 704,
+      "sha256": "a811cecddbd0e44cb8402c2c9b7a4265428bc92692695ef6425c09144311a9f8"
+    },
+    {
+      "path": "evidence/after-native-results/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 632896,
+      "sha256": "68e2433b90d575aaddc084ae588cde17ed978900ac67134964e1e8217b3c9de2"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 258942,
+      "sha256": "bedd46dc1cebccf409a021637d991f7721144975dc5e22364b10aea04d86b548"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 408704,
+      "sha256": "8a58b02e4cbc49273cc706554f1227130a8420bc30194984308c21480a792ecb"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 198924,
+      "sha256": "7b481d42e05a9558c8866dd637e627ea4a5432817bd5de2ba7bbc9305a19c1f4"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 385688,
+      "sha256": "282551f25a540081830ade3dd83b6f25b8492149e9e628f50ea33a2cd9acb946"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 376213,
+      "sha256": "1b286904e57b158a3fef44d2d30073f27931e560f5149e2ba231ad9c9b3208a1"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 588512,
+      "sha256": "8b6a0260d85755d0c4b60bef249f341af4aee39cb8d9ce328247edbc98b6a433"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 462368,
+      "sha256": "e88feb942526fa97ef0373e2839b018c3769a09e6832d46a464d6faa92355d29"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 963971,
+      "sha256": "b4c4e397db2ec453237614e71a8579eaa619b9de65071d5b6aedf5ec4ebe599f"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 927421,
+      "sha256": "5646698822fc22e3b47408be07f45a28c30636ed9b605171a3541762fe817fdd"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 637671,
+      "sha256": "764448871ab705815b066c3af208cbf92690530baa610c20fdd586695ab2668e"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 622989,
+      "sha256": "0eeb28c247b2f7f6cb933cb1d805dc8960141a45b0b0e79f87fba573536814dd"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 753232,
+      "sha256": "6624d4c39d516fddd14fb2f9af98a45b79dae4902d563c623c7af00dfa054f9c"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 917504,
+      "sha256": "69655cfdb4f48a432f63dec35563396673046314dcbc00579a9e9675096f6161"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 734130,
+      "sha256": "5787d426e8c80770ecf4ee91b4a11e07428f24780186e21707cfcea036c88859"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 683817,
+      "sha256": "2405b527132645bdc966db8b7517dcec851667095ebe1bc6f75e9a20c67540a3"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 515830,
+      "sha256": "541a40e20a27e399d0baaa10eea154b672a1208b2863edb37507623db7feeeac"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 476966,
+      "sha256": "b5b9684716ba6282c0100f2a1d8808b4460d200a63d3f4a55d1e1c7b2ca5a363"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 568535,
+      "sha256": "8afaa57b4ea7da2af3b2c5aab5cc9e2fe8c3a5cd88d43f0cdb9d9868f5d34c04"
+    },
+    {
+      "path": "evidence/after-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 530474,
+      "sha256": "939fa51d35dd7daa378b93716b72134040876d66a03ea17d38944e9a9d65228a"
+    },
+    {
+      "path": "evidence/after-native-results/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 456262,
+      "sha256": "0e94babf5ff9032b67f595b22b1263c5a2e07e15cfb20ffade29087d2daa95d4"
+    },
+    {
+      "path": "evidence/after-native-results/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 414346,
+      "sha256": "b333d8279e874044471726dfa76f499a945d2e756de38ab08683249748c69acc"
+    },
+    {
+      "path": "evidence/after-native-results.json",
+      "bytes": 759287,
+      "sha256": "8cd3e628eabb91ae9fc75e29cc76663167daf8d3db6aa6b8d547068d2b0457a0"
+    },
+    {
+      "path": "evidence/after-native.log",
+      "bytes": 4425,
+      "sha256": "3e2acbcedada0e426b05ab36e372e09dd58a8a68b23310f3a6215ccf34e8c2c4"
+    },
+    {
+      "path": "evidence/after-product-freeze.json",
+      "bytes": 14839,
+      "sha256": "ccd2651e18d5f44a97aa8364c9229927fa1cf5e708b7f9acfa48b06182a31fb1"
+    },
+    {
+      "path": "evidence/after-sync.log",
+      "bytes": 327,
+      "sha256": "45e84076daafa43b22ee7e048b8e1e271c4c773b1ef46b64df466b0e458792c3"
+    },
+    {
+      "path": "evidence/after-typecheck.log",
+      "bytes": 96,
+      "sha256": "c941a0fef4fa38131dbc69f4469e26d0a11c4f1e85d2d1f2358f415f66730000"
+    },
+    {
+      "path": "evidence/after-ui-spec-strict-execution.json",
+      "bytes": 564,
+      "sha256": "7c9de46051071217637eedee6e852a2a6254026b988582434472e8b8bcaa3438"
+    },
+    {
+      "path": "evidence/after-ui-spec-strict.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/before-build.log",
+      "bytes": 680,
+      "sha256": "ea82a40579a10150b56e82ef1ba49797069c2d759d4537b62680283dd7e2be54"
+    },
+    {
+      "path": "evidence/before-canonical-executions.json",
+      "bytes": 498,
+      "sha256": "4ef2d6cec4fdc396d0957df08c32cbaa2767ade3d3c0f85a79bc19f0c7d60208"
+    },
+    {
+      "path": "evidence/before-check.log",
+      "bytes": 215,
+      "sha256": "b6f2b4510e68411cd49be55071606d8b0871c659464855b14c35d04ebc598de3"
+    },
+    {
+      "path": "evidence/before-model-regression-execution.json",
+      "bytes": 226,
+      "sha256": "80d6a437b7bc3abc21603ebe39f33c03a8f402c3f638b4b51e864502ab9dce6a"
+    },
+    {
+      "path": "evidence/before-model-regression.log",
+      "bytes": 3585,
+      "sha256": "92c086dc119b11f5bf2d317686855db1f893e05dde1039da23422e61ec3f80fb"
+    },
+    {
+      "path": "evidence/before-native-canvas-observations.json",
+      "bytes": 14304,
+      "sha256": "d6db6da98f2318a39582ef7a4f185bce472c84648ec98686468e22a11d01cf90"
+    },
+    {
+      "path": "evidence/before-native-execution.json",
+      "bytes": 339,
+      "sha256": "1893573ed87f7f438b3df7150d9e44754dd1e1da29dcb0ea6177e2b1558fbaf1"
+    },
+    {
+      "path": "evidence/before-native-results/.last-run.json",
+      "bytes": 439,
+      "sha256": "9bf9cc731631a6b953d4758fca54f69c9a944893815f4b635a584808131529c7"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 4582,
+      "sha256": "1e567b6627f11896de556409e2ebec82eb3dd2f303dd5a403f94da77a107017e"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 72521,
+      "sha256": "05d9b64fffb6263da435ae88cd06f210e5564e089f54eebb48e1b10be7e72de5"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 1023586,
+      "sha256": "4b4383b281218da815c8183e34512741d8b9b502381e79b3ba7f974fc8972c5b"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 4582,
+      "sha256": "1a2254a3d501e68f9d740774829b7cbf1f6fd79badf6c9a7fca2365403a6dcf6"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 71316,
+      "sha256": "236450768529f4d22041bc1a3c35e63105041a9dd4cd5e5782c7bc66d31e758d"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 950969,
+      "sha256": "a14b83ab539dafa99c1371d360a8ad5cde2f1d7b0ac8b2283949d01a567d1ac8"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/error-context.md",
+      "bytes": 4538,
+      "sha256": "4834e2733ab862589bf4c40f6471abd3836ef429703a436ef84cff9e6ab13721"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/test-failed-1.png",
+      "bytes": 70783,
+      "sha256": "e0fee4b8361f023117fead19019b5c3e3b6f2975503e5c2d653687f42638f7ea"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 955018,
+      "sha256": "85b90fb70a5b8aee65c14fc079c5695c3d2ff1a6784a213f1c1fa8a3559ab536"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/error-context.md",
+      "bytes": 4530,
+      "sha256": "1ef93902aab302acc1c2756357ad2956689f7509655011a6a3bdfc3e79317ef0"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/test-failed-1.png",
+      "bytes": 70783,
+      "sha256": "e0fee4b8361f023117fead19019b5c3e3b6f2975503e5c2d653687f42638f7ea"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 1080691,
+      "sha256": "6307b62b7d9bd2514f0231a51b30c0f44e2243341a37b285803b37a17638ffca"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 4583,
+      "sha256": "fb18e306e962fe392651b38a4a48599ef88510a5db860bf3ab2e6d278f25b700"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 66610,
+      "sha256": "243ad3e912ed2c67e013dcf78c6d319e393fd12274dae87e7b2859056012178c"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 613703,
+      "sha256": "e22489af16f92c6a6e12bc4c3583ec2163a12fdc3bc206b9c867debecf0e95e6"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/error-context.md",
+      "bytes": 4539,
+      "sha256": "f9cdb0d3e37c379e9a95d548d40870c89e51e02b657a9b65537c198d9467ce53"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/test-failed-1.png",
+      "bytes": 65882,
+      "sha256": "c2be440a3698d342f586cf8a4020f8362b5956d97dcd449d4c9985659cf20543"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 640050,
+      "sha256": "e217e805df00355602a51ee6b051b30164e4848619a0eb6c831ec0bbb4186eb2"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 4583,
+      "sha256": "733c15280581f82b2604a06e5f96c11acb1bd547d97f80493f3b6325cb0aa1b9"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 68007,
+      "sha256": "047a6dc2cbf6eb04d94d89cc42751ec6cf4c509ac792236510f7f33a6617072a"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 617371,
+      "sha256": "7121d852f75c348083fd531457915ecfa76d7f81432e850c72b738523212a5c6"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/error-context.md",
+      "bytes": 4531,
+      "sha256": "81e27ef649b0a875757b24e0a7ba669269b8ec77eaf31a5f7ce4e31708678275"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/test-failed-1.png",
+      "bytes": 65882,
+      "sha256": "c2be440a3698d342f586cf8a4020f8362b5956d97dcd449d4c9985659cf20543"
+    },
+    {
+      "path": "evidence/before-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 665263,
+      "sha256": "38fa694f903adda899552aa1fd79af83aaf55cff9c0dde0197698fd96108a85e"
+    },
+    {
+      "path": "evidence/before-native-results.json",
+      "bytes": 64010,
+      "sha256": "6611b8b191d94a480432ad256e9ff23120105176976b1eadcf61b3f7b49ff428"
+    },
+    {
+      "path": "evidence/before-native.log",
+      "bytes": 33417,
+      "sha256": "1e7552e7d7724d8bf1505a11b753b6cf9bb759d438abb7ecada3f202f55ca10c"
+    },
+    {
+      "path": "evidence/before-source-freeze.json",
+      "bytes": 859,
+      "sha256": "21704048d625e681d7a3dac31eb89565d204a33e7a5f95db5444fbccc33d2e61"
+    },
+    {
+      "path": "evidence/before-sync.log",
+      "bytes": 131,
+      "sha256": "e79c3626783c88ee8a96b34bb55a0d47d200670172b4230e4d6f61450b6db17c"
+    },
+    {
+      "path": "evidence/consumer-entry-fixed-build-execution.json",
+      "bytes": 242,
+      "sha256": "012579f823cf86e22a89c94a851555b54e432a5cc691e42294d62e44b4a852b7"
+    },
+    {
+      "path": "evidence/consumer-entry-fixed-build.log",
+      "bytes": 679,
+      "sha256": "7ef6473bdbc48830aacdbba72ddb0c58b7e5fac545f18351c34a32722e2e0cbd"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-execution.json",
+      "bytes": 516,
+      "sha256": "8c8b77d9664dc83b5a8aa94d23e21c28e21658c84a82386aa5d282623593ad79"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/.last-run.json",
+      "bytes": 635,
+      "sha256": "b34e5cdcddf2d6d807d09aa0f233d362c5da3c88be728d1aa350e3cfd8c27d9b"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/error-context.md",
+      "bytes": 3625,
+      "sha256": "5d46add29615412af8f5641bd6ab3fcc565a702601f07b35541829329809e4ca"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 53618,
+      "sha256": "555e26956d92db90754c5a582f1dcbcd3d14b00162fa31316b18a00324efa64b"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/error-context.md",
+      "bytes": 3611,
+      "sha256": "d38e5d6500e6c03b2b9a88378584eaf110f6e8c2b7643b8fa6d517f46ba3a7d0"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 53543,
+      "sha256": "1bcff55f62067cea5269a15dc98f573f6302a48f9ff8fb7c16e4092e269a1578"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/error-context.md",
+      "bytes": 3617,
+      "sha256": "0fb952d60c12f78c1df6770fe7df691a1d5e5d22a2f09018ef5a30bdfdbf10ff"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 53581,
+      "sha256": "4c60b617e40a1656305145b054d8ad3ae77351c71d9027aead6e08300a829830"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/error-context.md",
+      "bytes": 3612,
+      "sha256": "4e4e813f3fad1758f257f28538bffe11645668d88b0989248eedfc3518ab2ac7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 53598,
+      "sha256": "327bc51f21fd8a7b7a32851200016804cbea1d75f9e746bf2f47e10c99de9199"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/error-context.md",
+      "bytes": 3618,
+      "sha256": "e719112e15c365178f89b601d3293099d555bfb7dfeb387f83bb201c4c08929e"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 53568,
+      "sha256": "a39ac82c1a4d438720ea3f249b914cb0dd449a602aeeddf2b3f4afbe3a537d92"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/error-context.md",
+      "bytes": 3612,
+      "sha256": "dca21a20cbc7a52ed5b50f7c97891cab2f3b948ffe604d340e8ea3d03002d013"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 53573,
+      "sha256": "018d6f264ce09b9cbc8ef0934a58b007615b2d6befbb0bada7f6738b2295774c"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/error-context.md",
+      "bytes": 3620,
+      "sha256": "6deb4d52387652a6529f6e75d10e790cf7d838d03760cf442479ef1125cacd2c"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 53591,
+      "sha256": "2a348dc33dc1fae8bfacf79def089a0bfa3c921d3f996407d8fcb3bbeb6aee4e"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/error-context.md",
+      "bytes": 3611,
+      "sha256": "93c6b140f93660e954e2e665addb2fa5232eaa8f1b14ba64d35a2bb38c0ca1c9"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 53548,
+      "sha256": "bc298ac2d8548133da0fc50591bfa6399cbe1b727b1548703a7a377e2ca459ac"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/error-context.md",
+      "bytes": 3613,
+      "sha256": "4bd7b8307bac0a8fc3a2636b96481062a024a385b23652b6c4100ac5569a34cb"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/test-failed-1.png",
+      "bytes": 13662,
+      "sha256": "8cebc2bd63b5a46ebfc0a904efcaf7069643e1353169f776b2181c65151d5a62"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 50374,
+      "sha256": "5e10807fd354ab3a63f1902851b5f2cf5f41402bae043946984bc688e863e561"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/error-context.md",
+      "bytes": 3614,
+      "sha256": "dcadcce593f70b793339787a1232343ff32a3495609333f4ad808ab05e515a81"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/test-failed-1.png",
+      "bytes": 13662,
+      "sha256": "8cebc2bd63b5a46ebfc0a904efcaf7069643e1353169f776b2181c65151d5a62"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 50374,
+      "sha256": "82e1bc3bdc79db89141b37b082656181da5de7bc22be191e984bde2a18426d46"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/error-context.md",
+      "bytes": 3624,
+      "sha256": "ce1cdadf26c638edab5168734f14fd9750bff2d4ebe5409b5da2af707b3c9be3"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 53565,
+      "sha256": "4391974c0fae1e878f59cb5fc70582ff2c73fa8b753d2441b53857f554c099fd"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/error-context.md",
+      "bytes": 3619,
+      "sha256": "b0b97c3eeee4ca69f010d24eb8fb52be7dc386a5b607ddfcc2d825f6043369e9"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/test-failed-1.png",
+      "bytes": 15593,
+      "sha256": "fe58410a20700dff731bfeda2caa1ab0a1eacaf0b1fc022d041b21d1081d25f7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 53604,
+      "sha256": "34aeb8687b64bca0d6ad167a19aa5674589d1b98b64e416e1917ad4edf83ad8d"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 995542,
+      "sha256": "859f3b6b4a0879c2921b6f1952d3c28a77ba0696c09a27f777e4ea5393204a91"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 800072,
+      "sha256": "d18cf849c21e8b581171798c129215c131ac64b106cef7a91c6395068a5695ff"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 1078634,
+      "sha256": "fd62ab8a21abf6bb709ba93b7cde113885b6565c6d8537606a76867997ef9f3e"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 826358,
+      "sha256": "d008da0890ee12ed0b6472f26ccffcf4a00344c2c97b6d486cbf481156099862"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 899678,
+      "sha256": "21a79121b975f4c59cf6dbad8316561befad3973e39b5abaa903c2574080804b"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 474797,
+      "sha256": "713d7c8448f22aa03ea73af3374fcdbea7d16fd54cc455960929ebfc398738e7"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 622514,
+      "sha256": "0ccd2cf2ff40678e4244de22eb24b04a0e05eee54703a95bf711dcfc3dd9a7d1"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 482162,
+      "sha256": "cc735831223055e364a3d411fbd0018f0965ad775aa5f61f6e90d28ca69847cb"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 428468,
+      "sha256": "59a40e288d43a63814a23f354b07789af776653b16a45ac6d1f08f8a7e6f5e04"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 440485,
+      "sha256": "148b195c83d40bec6a61654688e745744c63dffc0bb332616fe59f8627813ffb"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native-results.json",
+      "bytes": 147817,
+      "sha256": "4094dfa9b7cca1250a490d4335e16a4d03de850be6f1ba46b9ce451f29b06fb1"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/after-native.log",
+      "bytes": 83493,
+      "sha256": "28d849a04603166917fbf48d81641841d100b6f959deaef4c4c5c1bbee3b5d4c"
+    },
+    {
+      "path": "evidence/diagnostics/01-consumer-root-selector-mismatch/classification.json",
+      "bytes": 457,
+      "sha256": "1b2fd44f3928fda439179e1368744ea4d987fe83abe422411e3b04806688a1b8"
+    },
+    {
+      "path": "evidence/diagnostics/02-trace-child-reference/before-native-canvas-observations.json",
+      "bytes": 10450,
+      "sha256": "a710daa2a2c2ee06e19bd22bac481d5db993894a2ca7d203b11060a34d808567"
+    },
+    {
+      "path": "evidence/diagnostics/02-trace-child-reference/classification.json",
+      "bytes": 395,
+      "sha256": "37f87bd6fc7374e62fbd09323cd3dcc652cdaf3f357a033ae9d1f208f7af5800"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-execution.json",
+      "bytes": 614,
+      "sha256": "3072c15d06fab7da8d8fd9b2a6374bef4fc40143eb4f48fcacd93afb09f421b8"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/.last-run.json",
+      "bytes": 145,
+      "sha256": "e9339ee873cf5613b135fbb8b9dd1506dbfb93c0f8b4245180fbe821480c7c6d"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 716797,
+      "sha256": "053a39e40ef140a2394677dcd25e0787edd3cde22dafe7ed58e0961c39d86410"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 258815,
+      "sha256": "3f0a89adb0f003691cf60479400d4bece7ce60b04c91e2173d0c5e7113f6eb9f"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 435142,
+      "sha256": "c6acde7ca6914c4f55d319de0b4359bcaa0ac6e262fb6e48d3a0f3c50e98f63a"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 199464,
+      "sha256": "112f0f81cbd88b94b463491e694e9e1f4c0ebafd71ffd8b3907d9dd971972c51"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 441632,
+      "sha256": "719c447227ff2929a87ed6188173d094b3dfa4cb932b929e1d47f4e870bbd673"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 377263,
+      "sha256": "1e07f76f883798f6db20538d22b48113eb05bbbed23e6c59a94bd7ea7b58c22b"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/error-context.md",
+      "bytes": 14426,
+      "sha256": "4bf59456e5ea4685ef5460efd8c560a021da402d445f04d1bd93a45aa0cda8db"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/test-failed-1.png",
+      "bytes": 74979,
+      "sha256": "be325fba97642f827e108c417f7828dec637a6e2d06e83707d2083770ac049a2"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 602857,
+      "sha256": "abac121af323afa62c48b0866572284ed3a3e6c18ac93c11544158d31a727018"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 490095,
+      "sha256": "00707391f761628ed5012cf678558c50bd6edad5a80f22e39b121e2b5deb617e"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 1022039,
+      "sha256": "ed67476ac5eaa776edaf927b431a7c77623c3e340ebfcb4c94bd40be887757de"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 957607,
+      "sha256": "d2c1f67a6f081e03124d3f373ef9e7c73ba058db6b5c5a5d94e27e2dd435e5b4"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 637266,
+      "sha256": "bd6b1283973eb39301fdce0f4c061489d48799c470b6863e3dc8d889ec0e8a05"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/error-context.md",
+      "bytes": 11617,
+      "sha256": "6db272a72123f3547bce4c1c55cd6572876525f65981009a550a5191d515ac12"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/test-failed-1.png",
+      "bytes": 72875,
+      "sha256": "d06aca75cd00e044482b63d4207eaf2efe7266babab22256c439208a0b29f133"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 778624,
+      "sha256": "963cc4940560b53bb6e16afee26d7f83cd8dce56f19449da073a55a74d004189"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 971334,
+      "sha256": "a1b1ada5faaaca19d1e4d3b84f3b1b0f473a9b64e6bdbb4c21d1a9ffa0511353"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 944319,
+      "sha256": "444bdc13212a64a4f7e2997d215c022ec8514647e18dee0e660676618e0cadce"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 818944,
+      "sha256": "96cad254ac466296dc6b75c891f83e28f47ce093eb76a5dbcaf888365dc34e27"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 1095286,
+      "sha256": "77d393b20c688842ac38bac5031a4a0e2aadf19b38043471942667905731ac53"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 760831,
+      "sha256": "b567b23d538771e77fc5817ab204ae3c90293387625aa503452483f4a3db483e"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 588696,
+      "sha256": "1bab8cb73f85fcb7af97c12c536b70ecb92f6bf60118ee5ea9fedab0a8d118be"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 871362,
+      "sha256": "49635a50a82468d3ccd69975bfd5a8ac3935646e8b5ad71e075508c552d19984"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 697485,
+      "sha256": "235edc916ace6ba36765f1cba823f270f1ff7f3b0383f30d80e6e962d766b65c"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 457203,
+      "sha256": "66246050f826bc752ae2a9afbc0ce17e6ce4c45072caca6b9073e8867a374139"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 441566,
+      "sha256": "3f6deb7d82b0f795c3fb6c04cdf0962b045714f5cc86a8519e9930eee8c6ea98"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native-results.json",
+      "bytes": 770920,
+      "sha256": "643abe40552b235599604a170d9e9b68770308e596ca2f8781cd111cb9eac9e5"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/after-native.log",
+      "bytes": 12461,
+      "sha256": "8da7d55d1f4fbe2b2fb458a974df4dba1b74eaa6e7ab686be550f122d11e1658"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/classification.json",
+      "bytes": 745,
+      "sha256": "fac51d507984a6b1eaed6c42b33436eba5d2d72238b31d6123e2af9da2aa07a4"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium-model-observations.json",
+      "bytes": 7124,
+      "sha256": "2ca68e446f7599c4015f8be801498cce754e8382b70ec1ea504ca4d36d70789e"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium-model-observations.json",
+      "bytes": 7727,
+      "sha256": "4c65585809923984c7cb625faefdcdea6836b835f42bf16292b3c823e17095da"
+    },
+    {
+      "path": "evidence/diagnostics/03-native-model-ack-before-scalar-read/diagram-controlled-validation.spec.ts",
+      "bytes": 9867,
+      "sha256": "b10876082dac4895ed767af66f4867c0c2303967a2212655dbf6af188ec04bbc"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-execution.json",
+      "bytes": 668,
+      "sha256": "399dfef87f56fb0b27889e7cbeba38055284a6c4eec63747851a955b09f4ee8c"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/.last-run.json",
+      "bytes": 145,
+      "sha256": "2782ae25d6474822ba6c0599d7a185dda23c522fa7d782e8696b8455d40f54a1"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 520896,
+      "sha256": "2654d7520bbda69d25f08318519d6540fd7ddc6dd2bccfd4e8f1e0f6e09a0a2f"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 258896,
+      "sha256": "530f41125f2e8e4e0c1aa6b9adcf4235862d0a36c00dbd274b56a402fc0b62ab"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 408564,
+      "sha256": "78c42481c8e83c8bce2226630208d6e829e945388484b06f041084bf9f81413e"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip",
+      "bytes": 199377,
+      "sha256": "5f3e52bd9a0c66170659cd1979e680448a6cc132c20c61fae40a9bdb449c78d0"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip",
+      "bytes": 441551,
+      "sha256": "191b0da32d2306924ed55951fc257d61b64df3dedd0a974a2984543c53b4d9d3"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 404255,
+      "sha256": "2f94b25ac8636977024d89bed96ea35d184511abe6eedbf7ec688a966dd1783c"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 615950,
+      "sha256": "f1a24ca64007446aea4471baef4ce26dc99709ddd1afafe6a44b6224ae02dd99"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip",
+      "bytes": 407138,
+      "sha256": "e1ce56f918c6b9fbe801da76ff573f2dd9e032b601a8e71954aeff4c4f40a6f1"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 940071,
+      "sha256": "8a04e7351d1cd4fb6d766b59ace0699b92a17f6a336c06353076c37fe5c4d2b2"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip",
+      "bytes": 927907,
+      "sha256": "64908692fa9365299436e6ab3e1b1e52dc86bd594bb02c439801660b118406b9"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip",
+      "bytes": 609592,
+      "sha256": "50fabb0ffcd66d40c4574f9a1dda5627da35feca0a6ab178cb8450456cf24b99"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip",
+      "bytes": 653631,
+      "sha256": "1cb30eeb7125fc94e44f6b2d175fbf8759e108a1552bfd63f45712678f3a02ee"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 8084,
+      "sha256": "c3956b1af6d368ef157025fd70e658ab535d2d5a2e50ac2909c68127e004ae2c"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 72213,
+      "sha256": "ef2c9e878835581f8490cedddd8d53df83cebd832ad6579f629ba0079e70570e"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 723322,
+      "sha256": "21c1b5bfe6bf9c4fbb093c29d45820357f3d51ed1f08b0d5dc56ae4b227f2ac8"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/error-context.md",
+      "bytes": 8084,
+      "sha256": "4ed4ddab6c13913d3a0c820abfcdd881cebc63475ee9ab2489d8d2bcf6002487"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/test-failed-1.png",
+      "bytes": 72195,
+      "sha256": "fbaa815760c3baf15a0076309f6042da45025a58cd85dc004703c7ff1b8e3862"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 944976,
+      "sha256": "bbbd432d9ec4326b171139ca60496aaa0caa4901dd4bb777632d60b28e934b3e"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 544181,
+      "sha256": "63453ef546f9f9f8c7daeb3dad9d1f0dc596360dead95387ef9c5bd6d79db452"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 821173,
+      "sha256": "c50dd96c89cd3717ce4420a3de46a4f098b0166dd80be6048f0f7a518d438370"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 703880,
+      "sha256": "f399342b0268d530f25fc8ba736706e7fdc06b8102db7ee9cc320ca9d864b06a"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 614470,
+      "sha256": "13e5c26df965e773c3030bdd55494de6e7fae7b87f92866c4eb983aefcb4eefd"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip",
+      "bytes": 594516,
+      "sha256": "726ba6ef689ebf0ca015662816b78903ae41671553ca59f2992727be0539705f"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip",
+      "bytes": 504242,
+      "sha256": "d1baaf314e420d5f5e45d973f524659de55811927cf393e2baadebb6ef4f67ca"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 456404,
+      "sha256": "41c1c3a94ac2f455892dff689a3dcf77ff727daad1ebf96b2790b08572df0c13"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip",
+      "bytes": 442368,
+      "sha256": "af47fa38d52af5c70c7bd9126e93c2a89d8236bcf2e2a95c0063598387653a55"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native-results.json",
+      "bytes": 767468,
+      "sha256": "d2170579520ca2ad32cf7214f6d67c781cd3044857bca5d6434863c4b69300cf"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/after-native.log",
+      "bytes": 11202,
+      "sha256": "6ab53477b57ca19ee47f174bb58b2d6aaf34ea5b2053b9c7db8b2a1a4a7108bf"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/classification.json",
+      "bytes": 847,
+      "sha256": "d0dbbe87a02764b7b2330c4d5efd84e6cb1b186410aa08f566f92fa83b3ab4fe"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/diagram-validation.spec.before-wait.ts",
+      "bytes": 3210,
+      "sha256": "d0fe659e038ceaa682dcaf7e560ae8f04585ebae16872170a28f7394b35fb1cd"
+    },
+    {
+      "path": "evidence/diagnostics/04-regression-positive-arrow-scalar-read/trace-frame-observations.json",
+      "bytes": 254722,
+      "sha256": "8163c0676753cf2db03f1c4d592bf6ab58b7535e0a7146ca400ced9b8800dc1a"
+    },
+    {
+      "path": "evidence/evidence/dense-diagram-axe-after-invalid-edit.json",
+      "bytes": 121464,
+      "sha256": "d33e814dec9bab775a013c785903fe4c4f22eec0de4c61e5dd21996a64f62bea"
+    },
+    {
+      "path": "evidence/evidence/dense-diagram-invalid-edit-narrow.png",
+      "bytes": 145865,
+      "sha256": "b632fdcabbb6b477855636864bc5d775e6c09ada15326efe8af1d4207f970b1d"
+    },
+    {
+      "path": "evidence/evidence/guided-diagram-axe-after-invalid-edit.json",
+      "bytes": 121467,
+      "sha256": "de9e05dede502963069ce3e770e6bda6467cbb0d43b16e785adad1b19a59eb2d"
+    },
+    {
+      "path": "evidence/evidence/guided-diagram-invalid-edit-narrow.png",
+      "bytes": 150741,
+      "sha256": "5ac3c154577e69e83841cba8a80bb3f6affcbbec8e6d580fdc2152e84ea98f27"
+    },
+    {
+      "path": "evidence/evidence/native-axe-and-photos.json",
+      "bytes": 2240,
+      "sha256": "c56b062b836536e3ef4b0dd070135a6ea2ce6f2b4b0a9631305b990233bf07be"
+    },
+    {
+      "path": "evidence/final-source-identity.json",
+      "bytes": 432,
+      "sha256": "25d116506223ea7379168bf9acc5808d9a5f67453474add4b2a980eaace81ae6"
+    },
+    {
+      "path": "evidence/harness/diagram-validation.config.ts",
+      "bytes": 183,
+      "sha256": "114f0fcf15fdc2cedfe95316eb5c6344a7859d9c68b5cf55b45f039562d9f886"
+    },
+    {
+      "path": "evidence/photo-observations.json",
+      "bytes": 509,
+      "sha256": "9b7e1258f2444c0965d4472aa6426139892a84736708fc0c91eaa3c9392caf35"
+    },
+    {
+      "path": "evidence/resource-cleanup.json",
+      "bytes": 558,
+      "sha256": "cc1654adf965f510d1de067f64e69b8a6cc92a2cf6c3472dab1ae7372006eff2"
+    },
+    {
+      "path": "evidence/source-inventory-audit.json",
+      "bytes": 1596,
+      "sha256": "f5b8c94d79b2f79b724b25558ce5fb416a1599e7c14b68d5035f82eb187e6e46"
+    },
+    {
+      "path": "patches/all-source.patch",
+      "bytes": 46584,
+      "sha256": "2672e3f3343bebcb9a6ba7012882249ee1b10788a7e5413a04d484c05d10024c"
+    },
+    {
+      "path": "patches/fixture.patch",
+      "bytes": 8655,
+      "sha256": "32f720a455d3c7868b43357814bb258d7476225279c0b2ee51d04c32d1385f52"
+    },
+    {
+      "path": "patches/product.patch",
+      "bytes": 19475,
+      "sha256": "5de18808b6f3961a4f8665e04e72fd89cc490fb2c1a12498e8ebcdd321136acb"
+    },
+    {
+      "path": "patches/skill.patch",
+      "bytes": 1642,
+      "sha256": "3c28c573924aa501d3484f8bd5a3e3daebd2df7ab781f4878d7b6699276b72f0"
+    },
+    {
+      "path": "patches/tests.patch",
+      "bytes": 16812,
+      "sha256": "5c06bb0918f090128579ef76ceb4545f025cef8d79d245ccbfbb5ad0d4a43e3b"
+    },
+    {
+      "path": "source/skills/ui-development/references/ui-library-runtime.md",
+      "bytes": 6957,
+      "sha256": "b776c2f53c9e78c721251aaa231d1680dc4346bde24b1cfaed8000c671070175"
+    },
+    {
+      "path": "source/templates/angular/diagram.ts",
+      "bytes": 13259,
+      "sha256": "914840dc04ef11bec4071d02a511917fc5e859a7dbb044063d8cb66a823c2817"
+    },
+    {
+      "path": "source/templates/angular/specialist-model.ts",
+      "bytes": 18137,
+      "sha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+    },
+    {
+      "path": "source/tests/fixture-app/diagram-validation-catalog.ts",
+      "bytes": 4290,
+      "sha256": "34a0f92dbd3d547b88512f71fb53a8152b0db47a1cf225965668228fc367b7ae"
+    },
+    {
+      "path": "source/tests/fixture-app/main.ts",
+      "bytes": 3400,
+      "sha256": "5cfc812c86c7707001a148117cd5b36df3945d7e689504e06f6921a39be15587"
+    },
+    {
+      "path": "source/tests/model/diagram-validation.test.ts",
+      "bytes": 2989,
+      "sha256": "2537efb4feb422effdf399da46f9b59fad7afe23527483ed185085b2d8df87ac"
+    },
+    {
+      "path": "source/tests/ui/diagram-controlled-validation.spec.ts",
+      "bytes": 10144,
+      "sha256": "8b2039f582e71fa62b61a4e3094001fc532d048de054f0a444281f1c4f29b7b2"
+    },
+    {
+      "path": "source/tests/ui/diagram-validation.spec.ts",
+      "bytes": 3290,
+      "sha256": "059b8922b053ba2b0a516223f8a606b5092cd17f7063daf7774ec97a2997c777"
+    },
+    {
+      "path": "source-delta.json",
+      "bytes": 2802,
+      "sha256": "53865e5429fb1b876c869ca84d2fdec810e5c66f0272d3ff8f28ea72085479b5"
+    },
+    {
+      "path": "verification-ledger.json",
+      "bytes": 11985,
+      "sha256": "4aeaa2ace0fd780cc4d123d5664f1b50543ebf6e6fcc0486e5ec7c11ff2416ee"
+    },
+    {
+      "path": "verify-pack.py",
+      "bytes": 777,
+      "sha256": "76433803aa342f91ed5bac262fc416e5d4f541bd8044da397d09454a424ad27c"
+    }
+  ]
+}

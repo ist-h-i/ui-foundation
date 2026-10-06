@@ -1,0 +1,27 @@
+✔ diagram rejects blank and whitespace-only labels at both model and change boundaries without mutating the graph (2.2555ms)
+✔ diagram accepts nonblank label text verbatim rather than trimming application data (0.17075ms)
+✔ diagram rejects negative coordinates on each axis at model, move and add boundaries and preserves the complete input (0.720625ms)
+✔ diagram accepts zero, fractional and inclusive upper-bound coordinates without normalizing the values (0.138792ms)
+✔ diagram keeps rejecting nonfinite and excessive coordinates (0.289375ms)
+✔ diagram detects invalid existing application data before applying any edit (0.184459ms)
+✔ all requested chart kinds validate real values and explicit missing points (1.701917ms)
+✔ map validates camera, markers and closed polygon regions (0.286458ms)
+✔ Gantt keeps civil dates, dependency cycles and missing progress distinct (0.58275ms)
+✔ board move reorders within a full column, rejects ingress above its limit, and keeps input immutable (0.4805ms)
+✔ CSV roundtrips formulas, leading zeroes, multiline quotations and empty cells (0.392542ms)
+✔ spreadsheet evaluates references and real formulas, recalculates edited input, reports cycles and failures (22.854333ms)
+✔ explorer search traverses closed folders while normal expansion honors ancestry and rejects repeated IDs (0.409833ms)
+✔ diagram editing moves/adds/connects and removes associated edges without mutating input (0.351291ms)
+✔ chat accepts attachment-only draft and URL boundary rejects executable or authenticated resource URLs (0.168834ms)
+✔ rich document trust boundary rejects executable image/link URLs and requires image alternatives (0.373792ms)
+✔ JSON viewer preserves duplicate property rows and original large numeric tokens (1.365792ms)
+✔ Dagre produces actual node placement for typed graph edges without mutating the controlled graph (7.081833ms)
+✔ chart preserves tree descendants in the keyboard read model and rejects ambiguous IDs and axis ranges (0.46225ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 402.56175

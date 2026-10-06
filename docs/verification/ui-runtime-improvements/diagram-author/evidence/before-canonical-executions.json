@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 1.2495150566101074,
+    "log": "before-sync.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.8620641231536865,
+    "log": "before-check.log"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 59.66775894165039,
+    "log": "before-build.log"
+  }
+]

@@ -6,11 +6,13 @@ export interface ChartPresentation {readonly locale:string;readonly timeZone:str
 export interface ChartGeometry {readonly width:number;readonly lineHeight:number;readonly measureText?:(label:string)=>number;readonly textHeight?:number;}
 export interface GaugeLayout {readonly columns:number;readonly rows:number;readonly radius:number;readonly labelWidth:number;readonly lineHeight:number;readonly detailHeight:number;readonly titleOffset:number;readonly detailOffset:number;readonly height:number;center(index:number):[number,number];}
 /** Pixel coordinates keep the dial and both text rows separate when text grows or columns collapse. */
-function gaugeScaleGeometry(labels:readonly string[],theme:SpecialistTheme,geometry?:ChartGeometry):{radius:number;padding:number} {
+function gaugeScaleGeometry(labels:readonly string[],theme:SpecialistTheme,geometry?:ChartGeometry):{radius:number;padding:number;labelDistance:number;labelHalfExtent:number} {
  const measure=geometry?.measureText??((label:string)=>[...label].length*theme.fontSize),height=geometry?.textHeight??theme.fontSize*1.25;
  // Radial labels have centered bounds. Ten intervals span 270 degrees; adjacent labels need their diagonal plus a semantic gap.
  const diagonal=Math.max(...labels.map(label=>Math.hypot(measure(label),height)));
- return {radius:theme.gap*3+(diagonal+theme.gap)/(2*Math.sin(3*Math.PI/40)),padding:theme.gap+Math.max(0,diagonal/2-theme.gap*3)};
+ const labelDistance=theme.gap*2+diagonal/2;
+ // The last minor tick is painted after its label. Reserve half of the rotated label bounds plus a semantic gap inside every stroke.
+ return {radius:theme.gap*2+labelDistance+(diagonal+theme.gap)/(2*Math.sin(3*Math.PI/40)),padding:theme.gap+Math.max(0,diagonal/2-theme.gap*3),labelDistance,labelHalfExtent:diagonal/2};
 }
 export function gaugeScaleLabels(min=0,max=100,format:(value:number)=>string=String):readonly string[]{return Array.from({length:11},(_,index)=>format(min+(max-min)*index/10));}
 export function gaugeLayout(count:number,theme:SpecialistTheme,geometry?:ChartGeometry,valueCharacters=0,scaleLabels:readonly string[]=gaugeScaleLabels()):GaugeLayout {
@@ -46,7 +48,8 @@ export function chartOptions(kind:ChartKind,series:readonly ChartSeries[],x:Char
   const graphicLegend=!['pie','doughnut','gauge','treemap'].includes(kind);
   const gauges=series.filter(item=>!hiddenSeries.includes(item.id)).flatMap(item=>item.points.filter(point=>point.value!==null).map(point=>({seriesId:item.id,pointId:point.id})));
   const gaugeValues=series.filter(item=>!hiddenSeries.includes(item.id)).flatMap(item=>item.points.filter(point=>point.value!==null).map(point=>numberLabel(point.value)));
-  const gauge=gaugeLayout(gauges.length,theme,geometry,Math.max(0,...gaugeValues.map(value=>[...value].length)),gaugeScaleLabels(y.min??0,y.max??100,numberLabel));
+  const scaleLabels=gaugeScaleLabels(y.min??0,y.max??100,numberLabel),scale=gaugeScaleGeometry(scaleLabels,theme,geometry);
+  const gauge=gaugeLayout(gauges.length,theme,geometry,Math.max(0,...gaugeValues.map(value=>[...value].length)),scaleLabels);
   const coordinates=(axis:'x'|'y')=>[...new Set(series.flatMap(item=>item.points.map(point=>point[axis]!)))].sort((a,b)=>a-b).map(String);
   const heatX=kind==='heatmap'?coordinates('x'):[],heatY=kind==='heatmap'?coordinates('y'):[];
   const lineHeight=geometry?.lineHeight&&geometry.lineHeight>0?geometry.lineHeight:theme.fontSize*2;
@@ -63,7 +66,7 @@ export function chartOptions(kind:ChartKind,series:readonly ChartSeries[],x:Char
     if(kind==='radar')return {...base,type:'radar',data:labels.every(label=>s.points.some(p=>p.label===label&&p.value!==null))?[{name:s.id,value:labels.map(label=>s.points.find(p=>p.label===label)!.value)}]:[],lineStyle:{type:index%2?'dashed':'solid'}};
     if(kind==='gauge')return hiddenSeries.includes(s.id)?[]:s.points.filter(p=>p.value!==null).map(p=>{
       const position=gauges.findIndex(item=>item.seriesId===s.id&&item.pointId===p.id);
-      return {...base,id:'ui-gauge-'+JSON.stringify([s.id,p.id]),type:'gauge',min:y.min??0,max:y.max??100,center:gauge.center(position),radius:gauge.radius,splitNumber:10,pointer:{showAbove:false},title:{color:theme.text,fontSize:theme.fontSize,lineHeight:gauge.lineHeight,width:gauge.labelWidth,overflow:'truncate',offsetCenter:[0,gauge.titleOffset]},detail:{color:theme.text,fontSize:theme.fontSize,lineHeight:gauge.lineHeight,width:gauge.labelWidth,height:gauge.detailHeight,overflow:'breakAll',padding:0,formatter:numberLabel,offsetCenter:[0,gauge.detailOffset]},axisLine:{lineStyle:{color:[[1,theme.border]],width:theme.gap}},axisTick:{splitNumber:2,length:theme.gap/2,distance:theme.gap,lineStyle:{color:theme.border}},splitLine:{length:theme.gap,distance:theme.gap,lineStyle:{color:theme.border}},axisLabel:{color:theme.text,fontSize:theme.fontSize,distance:theme.gap,rotate:'radial',formatter:numberLabel,backgroundColor:theme.surface},data:[point(s.id,p)]};
+      return {...base,id:'ui-gauge-'+JSON.stringify([s.id,p.id]),type:'gauge',min:y.min??0,max:y.max??100,center:gauge.center(position),radius:gauge.radius,splitNumber:10,pointer:{showAbove:false,length:Math.min(gauge.radius*.6,Math.max(0,gauge.radius-theme.gap*3-scale.labelDistance-scale.labelHalfExtent))},title:{color:theme.text,fontSize:theme.fontSize,lineHeight:gauge.lineHeight,width:gauge.labelWidth,overflow:'truncate',offsetCenter:[0,gauge.titleOffset]},detail:{color:theme.text,fontSize:theme.fontSize,lineHeight:gauge.lineHeight,width:gauge.labelWidth,height:gauge.detailHeight,overflow:'breakAll',padding:0,formatter:numberLabel,offsetCenter:[0,gauge.detailOffset]},axisLine:{lineStyle:{color:[[1,theme.border]],width:theme.gap}},axisTick:{splitNumber:2,length:theme.gap/2,distance:theme.gap,lineStyle:{color:theme.border}},splitLine:{length:theme.gap,distance:theme.gap,lineStyle:{color:theme.border}},axisLabel:{color:theme.text,fontSize:theme.fontSize,distance:scale.labelDistance,rotate:'radial',formatter:numberLabel,backgroundColor:theme.surface},data:[point(s.id,p)]};
     });
     return {...base,type:'treemap',left:`${index*100/Math.max(series.length,1)}%`,width:`${100/Math.max(series.length,1)}%`,roam:false,breadcrumb:{show:false},leafDepth:undefined,label:{color:theme.onAction},data:s.points.filter(p=>p.value!==null).map(p=>point(s.id,p))};
   }).filter((_item,index)=>graphicLegend||!hiddenSeries.includes(series[index].id)).flatMap(item=>Array.isArray(item)?item:[item]);

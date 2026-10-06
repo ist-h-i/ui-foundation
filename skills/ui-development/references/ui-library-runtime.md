@@ -26,6 +26,8 @@ PDF、画像decode/crop、media再生、Spreadsheet計算はsource/request epoch
 
 Chartは実ECharts renderer、Mapは実MapLibre、editorはCodeMirror/ProseMirror、Spreadsheetは実formula worker、FlowEditorはDagreの配置を使う。全文の値表・native選択・keyboard移動など、canvas/pointerだけに依存しない操作経路を残す。数値の0/欠損/不正や計算エラーを捏造した値へ変えない。小数目盛り・軸名・凡例・長いラベルを狭幅/文字拡大で確認する。
 
+FlowEditor のノード名は空・空白だけを拒否し、その他のアプリ文字列をそのまま保持する。座標は有限の0〜1000000、keyboard移動は同じ境界で止まる。不正な欄は理由とaria-invalidを示し、親の図とその欄のraw入力を保持して修正を待つ。profile/辞書変更では入力DOMを作り直さない。同じ欄の値がアプリから変更された場合は新しい値へ同期し、古い検証状態を除く。外部の不正モデルは表と診断を保持し、canvasへ描画せず、アプリによる修復を待つ。
+
 Code/Rich/MarkdownのCVAは編集内容。RichのJSON schema/URLを表示前に検証し、MarkdownのHTMLはAngular sanitizerへ渡す。`bypassSecurityTrust`で入力を無条件に許可しない。Chat/MessageComposerのCVAは入力中textで、送信intentのcurrent IDをアプリがcomplete/fail/unknownへ応答する。resetは旧ackを失効させ、明示リセット前の失敗と未確定draftを保持する。
 
 ## 配信と確認

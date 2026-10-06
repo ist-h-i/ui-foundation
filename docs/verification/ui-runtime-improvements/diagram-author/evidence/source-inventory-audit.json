@@ -1,0 +1,35 @@
+{
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "trackedSourceChanges": [
+    {
+      "path": "skills/ui-development/references/ui-library-runtime.md",
+      "beforeSha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5",
+      "afterSha256": "b776c2f53c9e78c721251aaa231d1680dc4346bde24b1cfaed8000c671070175"
+    },
+    {
+      "path": "templates/angular/diagram.ts",
+      "beforeSha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "afterSha256": "914840dc04ef11bec4071d02a511917fc5e859a7dbb044063d8cb66a823c2817"
+    },
+    {
+      "path": "templates/angular/specialist-model.ts",
+      "beforeSha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+      "afterSha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+    },
+    {
+      "path": "tests/fixture-app/main.ts",
+      "beforeSha256": "f2c9935e788d53f89e13e6dd7cf3d4bade0b660e93a3a83be9c22f88de1458af",
+      "afterSha256": "5cfc812c86c7707001a148117cd5b36df3945d7e689504e06f6921a39be15587"
+    }
+  ],
+  "missingTrackedSourcePaths": [],
+  "unexpectedTrackedChanges": [],
+  "newCandidateSourcePaths": [
+    "tests/fixture-app/diagram-validation-catalog.ts",
+    "tests/model/diagram-validation.test.ts",
+    "tests/ui/diagram-validation.spec.ts",
+    "tests/ui/diagram-controlled-validation.spec.ts"
+  ],
+  "excludedGenerated": "Canonical generated .ui/generated and .agents/skills/project-ui; separately check/idempotency verified",
+  "newLocalHarness": "diagram-validation.config.ts only; not an integration deliverable"
+}

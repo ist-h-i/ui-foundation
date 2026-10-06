@@ -1,0 +1,60 @@
+{
+  "attachments": [
+    {
+      "test": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "path": "evidence/guided-diagram-axe-after-invalid-edit.json",
+      "sha256": "de9e05dede502963069ce3e770e6bda6467cbb0d43b16e785adad1b19a59eb2d"
+    },
+    {
+      "test": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "path": "evidence/guided-diagram-invalid-edit-narrow.png",
+      "sha256": "5ac3c154577e69e83841cba8a80bb3f6affcbbec8e6d580fdc2152e84ea98f27"
+    },
+    {
+      "test": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "path": "evidence/dense-diagram-axe-after-invalid-edit.json",
+      "sha256": "d33e814dec9bab775a013c785903fe4c4f22eec0de4c61e5dd21996a64f62bea"
+    },
+    {
+      "test": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+      "path": "evidence/dense-diagram-invalid-edit-narrow.png",
+      "sha256": "b632fdcabbb6b477855636864bc5d775e6c09ada15326efe8af1d4207f970b1d"
+    }
+  ],
+  "axe": [
+    {
+      "profile": "guided",
+      "violations": 0,
+      "incomplete": 1,
+      "incompleteRules": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodeCount": 1,
+          "descriptions": [
+            "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          ]
+        }
+      ],
+      "passedRules": 23,
+      "scope": "main only, 320px+font200%+RTL+reduced-motion after invalid label"
+    },
+    {
+      "profile": "dense",
+      "violations": 0,
+      "incomplete": 1,
+      "incompleteRules": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodeCount": 1,
+          "descriptions": [
+            "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          ]
+        }
+      ],
+      "passedRules": 23,
+      "scope": "main only, 320px+font200%+RTL+reduced-motion after invalid label"
+    }
+  ]
+}

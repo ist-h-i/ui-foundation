@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": [
+    "tests/ui/tree-axe-contract.spec.ts",
+    "tests/ui/diagram-validation.spec.ts",
+    "tests/ui/diagram-controlled-validation.spec.ts"
+  ]
+}

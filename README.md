@@ -39,11 +39,14 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 | `npm run ui:sync -- --dry-run` | 生成予定の差分を表示。書き込みなし。 |
 | `npm run ui:sync` | 設定検証、全プロファイルの解決、生成・同期。 |
 | `npm run ui:check` | 設定検証と生成物の一致。欠損・変更・未管理ファイルで失敗。 |
-| `npm run typecheck` | 設定/CLIのTypeScriptと生成Angular部品のstrictTemplates。 |
+| `npm run typecheck` | 設定/CLIのTypeScript、生成Angular部品のstrictTemplates、下記Media/Tree/Diagram回帰の型検査。 |
 | `npm run test:config` | 型、参照、必須役割、プロファイル、色ペアの検査。 |
 | `npm run test:generation` | 冪等性、dry-run、衝突、パス境界、CLIの失敗状態。 |
 | `npm run typecheck:ui:media` | Media3specと直接helperのstrict型検査。通常typecheckにも含める。全UI specのstrict検査ではない。 |
+| `npm run typecheck:ui:runtime` | Tree/Diagramの追加3specと直接helper・consumerのstrict型検査。通常typecheckにも含める。 |
 | `npm run test:ui` | 実ブラウザーの操作・表示・自動アクセシビリティ。 |
+| `npm run test:svg-paint` | 新規公開consumerの生成・AOTと34ケースのSVG実描画検査。通常testにも含める。 |
+| `npm run test:cross-browser` | 2プロファイル×重点6操作×Chromium/Firefox/WebKitの36件。追加実行の詳細は[検証ガイド](docs/cross-browser-runtime-verification.ja.md)。 |
 
 ビルドは`ui:check`を通し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。
 

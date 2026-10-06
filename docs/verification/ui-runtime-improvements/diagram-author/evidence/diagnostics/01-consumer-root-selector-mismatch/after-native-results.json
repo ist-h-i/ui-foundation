@@ -1,0 +1,1557 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/node_modules/.bin/playwright",
+      "test",
+      "--config=diagram-validation.config.ts",
+      "tests/ui/diagram-validation.spec.ts",
+      "tests/ui/diagram-controlled-validation.spec.ts",
+      "tests/ui/specialist-catalog.spec.ts",
+      "--grep",
+      "Diagram",
+      "--workers=2",
+      "--retries=0",
+      "--reporter=line,json"
+    ],
+    "configFile": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/diagram-validation.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "diagram-controlled-validation.spec.ts",
+      "file": "diagram-controlled-validation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "guided: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7910,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:35.748Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-63263-locale-profile-presentation-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-ed693e14d5334600b43e",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 14,
+          "column": 2
+        },
+        {
+          "title": "guided: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 7647,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:35.742Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-75cc1--repeated-keyboard-movement-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-5bf60eb0101cb6918cb5",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 27,
+          "column": 2
+        },
+        {
+          "title": "guided: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 9260,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:45.721Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-738ff--not-return-after-app-reset-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-8aeac119ec72e4d1f395",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 36,
+          "column": 2
+        },
+        {
+          "title": "guided: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9041,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:45.935Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-4c03e-rs-without-publishing-edits-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-b3cbc78c651c14067fbe",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 45,
+          "column": 2
+        },
+        {
+          "title": "guided: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8498,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:57.332Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-0e9d5-ts-repeated-invalid-commits-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-57c12e0baf5b10166ce8",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 53,
+          "column": 2
+        },
+        {
+          "title": "guided: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9195,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:31:57.450Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-a9140-cent-RTL-and-reduced-motion-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-3af93df4691d0b02a662",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 63,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram rejection retains app model, selection, raw input, focused DOM and live locale/profile presentation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8773,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:15:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:08.172Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-3208a-locale-profile-presentation-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-6e0b7afa5586b36255f0",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 14,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram rejects empty/excessive coordinates, preserves fractional edits and bounds repeated keyboard movement",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8390,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:28:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:09.031Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-f01f3--repeated-keyboard-movement-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-7dac320d2526332a6e78",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 27,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram external values retire stale validation and removed-node drafts do not return after app reset",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8080,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:37:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:19.393Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8671c--not-return-after-app-reset-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-55a79a2eab30c92d3a15",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 36,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram rejects invalid external models before canvas rendering and recovers without publishing edits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8858,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:46:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:20.018Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-1ae41-rs-without-publishing-edits-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-d6df016eb3a055f14206",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 45,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram retains rejected raw edits through readonly, busy and disabled states and rejects repeated invalid commits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8081,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:54:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:29.266Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-d2fc4-ts-repeated-invalid-commits-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-f82febf01e2cc9ae0f60",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 53,
+          "column": 2
+        },
+        {
+          "title": "dense: Diagram invalid-edit feedback remains named and reachable at 320px, 200 percent, RTL and reduced motion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9063,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104",
+                    "location": {
+                      "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                      "column": 118,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                        "column": 118,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'フロー編集の検証', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'フロー編集の検証', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'フロー編集の検証', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function open(page:Page,profile:string):Promise<void>{\n>  7 |  await page.goto('/catalog/diagram-validation');await expect(page.getByRole('heading',{name:'フロー編集の検証',exact:true})).toBeVisible();\n     |                                                                                                                      ^\n   8 |  if(profile==='dense')await page.getByRole('button',{name:'プロファイル: guided',exact:true}).click();\n   9 |  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);\n  10 | }\n    at open (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:7:118)\n    at /private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts:64:104"
+                    },
+                    {
+                      "location": {
+                        "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts",
+                        "column": 331,
+                        "line": 5
+                      },
+                      "message": "Error: catalog browser runtime errors and warnings\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 22\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"error: ERROR De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+   \"error: De: NG05104: The selector \\\"diagram-validation-catalog\\\" did not match any elements. Find more at https://v22.angular.dev/errors/NG05104\u001b[39m\n\u001b[31m+     at hX.selectRootElement (http://127.0.0.1:52053/main.js:2632:8530)\u001b[39m\n\u001b[31m+     at rVe (http://127.0.0.1:52053/main.js:27:26775)\u001b[39m\n\u001b[31m+     at D_.createComponentRef (http://127.0.0.1:52053/main.js:56:27424)\u001b[39m\n\u001b[31m+     at D_.create (http://127.0.0.1:52053/main.js:56:27249)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:56:83690\u001b[39m\n\u001b[31m+     at Hv.run (http://127.0.0.1:52053/main.js:8:28060)\u001b[39m\n\u001b[31m+     at t.bootstrapImpl (http://127.0.0.1:52053/main.js:56:83185)\u001b[39m\n\u001b[31m+     at t.bootstrap (http://127.0.0.1:52053/main.js:56:83107)\u001b[39m\n\u001b[31m+     at http://127.0.0.1:52053/main.js:76:27011\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   at catalog-test.ts:5\n\n  3 | /** Catch Angular ErrorHandler failures, browser exceptions and configuration warnings. */\n  4 | export const test=base.extend<{runtimeErrors:string[]}>({\n> 5 |  runtimeErrors:[async({page},use)=>{const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'||message.type()==='warning')errors.push(message.type()+': '+message.text());});await use(errors);expect(errors,'catalog browser runtime errors and warnings').toEqual([]);},{auto:true}],\n    |                                                                                                                                                                                                                                                                                                                                           ^\n  6 | });\n  7 |\n    at Object.base.extend.runtimeErrors.auto (/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/catalog-test.ts:5:331)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:31.525Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-controlled-validat-8ceb3-cent-RTL-and-reduced-motion-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/repository/tests/ui/diagram-controlled-validation.spec.ts",
+                    "column": 118,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "03fed122ce2cf88ab31b-818943a8787c8824ee92",
+          "file": "diagram-controlled-validation.spec.ts",
+          "line": 63,
+          "column": 2
+        }
+      ]
+    },
+    {
+      "title": "diagram-validation.spec.ts",
+      "file": "diagram-validation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "guided: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6596,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:39.582Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "corrected-label",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwicmF3IjoiIiwibW9kZWxMYWJlbCI6IiAg5pu05paw44GX44Gf5o+Q5Ye6ICAifQ=="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-guided--7b760-input-and-native-focus-path-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-9af2e104c6629b59f211",
+          "file": "diagram-validation.spec.ts",
+          "line": 6,
+          "column": 3
+        },
+        {
+          "title": "guided: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6989,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:43.451Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "corrected-label",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwicmF3IjoiICAgIiwibW9kZWxMYWJlbCI6IiAg5pu05paw44GX44Gf5o+Q5Ye6ICAifQ=="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-guided--3d02f-input-and-native-focus-path-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-083a02ab237574d170dd",
+          "file": "diagram-validation.spec.ts",
+          "line": 6,
+          "column": 3
+        },
+        {
+          "title": "guided: Diagram rejects negative x without changing the reachable canvas and supports correction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6410,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:47.587Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preserved-canvas-before-correction",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwiYXhpcyI6IngiLCJwcmV2aW91cyI6eyJsZWZ0IjoiMTZweCIsInRvcCI6IjE2cHgifX0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-guided--79847-vas-and-supports-correction-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-cacc9e558b187441b5b0",
+          "file": "diagram-validation.spec.ts",
+          "line": 20,
+          "column": 3
+        },
+        {
+          "title": "guided: Diagram rejects negative y without changing the reachable canvas and supports correction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5923,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:52.852Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preserved-canvas-before-correction",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwiYXhpcyI6InkiLCJwcmV2aW91cyI6eyJsZWZ0IjoiMTZweCIsInRvcCI6IjE2cHgifX0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-guided--03d03-vas-and-supports-correction-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-c8b5e2556507708f7f96",
+          "file": "diagram-validation.spec.ts",
+          "line": 20,
+          "column": 3
+        },
+        {
+          "title": "dense: Diagram rejects empty label and retains the named canvas node, raw input and native focus path",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:54.254Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "corrected-label",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJyYXciOiIiLCJtb2RlbExhYmVsIjoiICDmm7TmlrDjgZfjgZ/mj5Dlh7ogICJ9"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-e36fb-input-and-native-focus-path-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-b3ae8b42b47c03bdf3e2",
+          "file": "diagram-validation.spec.ts",
+          "line": 6,
+          "column": 3
+        },
+        {
+          "title": "dense: Diagram rejects whitespace label and retains the named canvas node, raw input and native focus path",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5828,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:32:59.136Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "corrected-label",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJyYXciOiIgICAiLCJtb2RlbExhYmVsIjoiICDmm7TmlrDjgZfjgZ/mj5Dlh7ogICJ9"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-d166b-input-and-native-focus-path-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-a24de8aea6ccbfe0b3a2",
+          "file": "diagram-validation.spec.ts",
+          "line": 6,
+          "column": 3
+        },
+        {
+          "title": "dense: Diagram rejects negative x without changing the reachable canvas and supports correction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5192,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:33:00.110Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preserved-canvas-before-correction",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJheGlzIjoieCIsInByZXZpb3VzIjp7ImxlZnQiOiIxNnB4IiwidG9wIjoiMTZweCJ9fQ=="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-5b957-vas-and-supports-correction-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-575d81940e9b9e4f19d3",
+          "file": "diagram-validation.spec.ts",
+          "line": 20,
+          "column": 3
+        },
+        {
+          "title": "dense: Diagram rejects negative y without changing the reachable canvas and supports correction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6761,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:33:05.372Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preserved-canvas-before-correction",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJheGlzIjoieSIsInByZXZpb3VzIjp7ImxlZnQiOiIxNnB4IiwidG9wIjoiMTZweCJ9fQ=="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/diagram-validation-dense-D-c1187-vas-and-supports-correction-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d6d539d021bd9bd607e-883c3ec5ed68beb63803",
+          "file": "diagram-validation.spec.ts",
+          "line": 20,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "specialist-catalog.spec.ts",
+      "file": "specialist-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "guided: specialist functional",
+          "file": "specialist-catalog.spec.ts",
+          "line": 8,
+          "column": 7,
+          "specs": [
+            {
+              "title": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6469,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:33:05.613Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "control-observation",
+                          "contentType": "application/json",
+                          "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwiY2F0ZWdvcnkiOiJEaWFncmFtIiwicm91dGUiOiIvY2F0YWxvZy9zcGVjaWFsaXN0Iiwic291cmNlIjoicHVibGljIGdlbmVyYXRlZCBBbmd1bGFyIGluZGV4In0="
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/specialist-catalog-guided--338ca--graph-connections-and-zoom-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "89bb4e0d39c40d1517e6-e49b878a02b8fce239bb",
+              "file": "specialist-catalog.spec.ts",
+              "line": 53,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "dense: specialist functional",
+          "file": "specialist-catalog.spec.ts",
+          "line": 8,
+          "column": 7,
+          "specs": [
+            {
+              "title": "Diagram: actual Dagre layout, keyboard positioning, editable graph, connections and zoom",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3940,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T12:33:12.281Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "control-observation",
+                          "contentType": "application/json",
+                          "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJjYXRlZ29yeSI6IkRpYWdyYW0iLCJyb3V0ZSI6Ii9jYXRhbG9nL3NwZWNpYWxpc3QiLCJzb3VyY2UiOiJwdWJsaWMgZ2VuZXJhdGVkIEFuZ3VsYXIgaW5kZXgifQ=="
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/tmp/ui-foundation-specialist-independent-review/diagram-p2-candidate/after-native-results/specialist-catalog-dense-s-a5b9f--graph-connections-and-zoom-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "89bb4e0d39c40d1517e6-d7a8829216a1a7bdd319",
+              "file": "specialist-catalog.spec.ts",
+              "line": 53,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T12:31:34.512Z",
+    "duration": 102050.47600000001,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 12,
+    "flaky": 0
+  }
+}

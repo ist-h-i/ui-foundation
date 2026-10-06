@@ -20,11 +20,11 @@ export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backward
    @for(item of items;track item.id){
     @if(item.type==='separator'){<li role="separator" aria-orientation="horizontal" class="ui-menu__separator"></li>}
     @else if(item.type==='group'){<li role="none"><ul role="group" [attr.aria-label]="item.label"><li role="presentation" class="ui-menu__group">{{item.label}}</li><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:parent,depth:depth}" /></ul></li>}
-    @else{<li role="none"><button type="button" [id]="itemId(item.id)" [attr.data-menu-item]="item.id" [attr.role]="role(item)" tabindex="-1" [attr.aria-disabled]="item.disabled?'true':null" [attr.aria-checked]="item.type==='checkbox'||item.type==='radio'?!!item.checked:null" [attr.aria-haspopup]="commands(item.children??[]).length?'menu':null" [attr.aria-expanded]="commands(item.children??[]).length?expanded()[depth]===item.id:null" [attr.aria-controls]="commands(item.children??[]).length?itemId(item.id)+'-children':null" (click)="select(item,depth)" (keydown)="key($event,item,parent,depth)" (pointerenter)="stopHoverClose()">
+    @else{<li role="none"><button type="button" [id]="itemId(item.id)" [attr.data-menu-item]="item.id" [attr.role]="role(item)" [attr.tabindex]="tabIndex(item.id,parent,depth)" (focus)="rememberFocus(item.id)" [attr.aria-disabled]="item.disabled?'true':null" [attr.aria-checked]="item.type==='checkbox'||item.type==='radio'?!!item.checked:null" [attr.aria-haspopup]="commands(item.children??[]).length?'menu':null" [attr.aria-expanded]="commands(item.children??[]).length?expanded()[depth]===item.id:null" [attr.aria-controls]="commands(item.children??[]).length?itemId(item.id)+'-children':null" (click)="select(item,depth)" (keydown)="key($event,item,parent,depth)" (pointerenter)="stopHoverClose()">
      @if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}<span class="ui-menu__label">{{item.label}}</span>@if(commands(item.children??[]).length){<span aria-hidden="true">›</span>}
     </button>
     @if(expanded()[depth]===item.id&&commands(item.children??[]).length){<ul [id]="itemId(item.id)+'-children'" role="menu" [attr.aria-labelledby]="itemId(item.id)" [attr.data-menu-parent]="item.id" class="ui-menu__submenu"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:item,depth:depth+1}" />
-     <li role="none"><button type="button" role="menuitem" tabindex="-1" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
+     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
     </ul>}</li>}
    }
   </ng-template>`,
@@ -52,6 +52,18 @@ export class Menu {
     private readonly currentItems = linkedSignal(() => this.items());
     protected readonly nodes = computed(() => validateMenu(this.currentItems()));
     protected readonly expanded = signal<readonly string[]>([]);
+    protected readonly focusedItem = signal<string | null>(null);
+    protected readonly focusedBack = signal<string | null>(null);
+    protected rememberFocus(id: string, back = false): void {
+        this.focusedItem.set(back ? null : id);
+        this.focusedBack.set(back ? id : null);
+    }
+    protected tabIndex(id: string, parent: MenuItem | null, depth: number): 0 | -1 {
+        if (this.focusedBack() === parent?.id) return -1;
+        const commands = menuCommands(parent?.children ?? this.nodes());
+        const selected = commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : this.expanded()[depth] ?? commands[0]?.id;
+        return selected === id ? 0 : -1;
+    }
     private readonly pendingFocus = signal<string | null>(null);
     private readonly pendingBack = signal<string | null>(null);
     protected readonly visible = visibleMenuItems;
@@ -221,6 +233,10 @@ export class Menu {
     protected triggerKey(event: KeyboardEvent): void {
         if (this.disabled()||event.defaultPrevented||event.isComposing||event.keyCode===229)
             return;
+        if (event.key === 'Tab' && this.opened()) {
+            this.key(event, null, null, 0);
+            return;
+        }
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
             event.preventDefault();
             this.openMenu(event.key==='ArrowUp'?'last':'first');
@@ -411,6 +427,10 @@ export class Menu {
         this.pendingFocus.set(menuCommands(this.nodes())[0]?.id ?? null);
     }
     protected contextKey(event: KeyboardEvent): void {
+        if (event.key === 'Tab' && this.opened()) {
+            this.key(event, null, null, 0);
+            return;
+        }
         if (this.disabled() || !(event.key === 'ContextMenu' || event.key === 'F10' && event.shiftKey))
             return;
         event.preventDefault();
