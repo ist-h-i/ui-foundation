@@ -1,0 +1,468 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 58945,
+  "results": [
+    {
+      "name": "scheduler-legal-prefix-ids-native-label-and-description",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-legal-prefix-ids-native-label-and-description",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "native-prefix-id-label-control",
+      "profile": "guided",
+      "before": {
+        "rawEventIds": [
+          "x",
+          "preview-x",
+          "fold",
+          "fold-fold"
+        ],
+        "configurationProblem": null,
+        "duplicates": [],
+        "expectedTarget": "schedule-start-preview%2Dx",
+        "labelFor": "schedule-start-preview%2Dx",
+        "labelControlTag": "INPUT",
+        "labelControlId": "schedule-start-preview%2Dx",
+        "startTargets": [
+          {
+            "tag": "P",
+            "event": "x"
+          }
+        ],
+        "descriptionTarget": "P"
+      },
+      "after": {
+        "focusId": "schedule-start-preview%2Dx",
+        "focusTag": "INPUT"
+      }
+    },
+    {
+      "name": "prefix-and-fold-native-references",
+      "profile": "guided",
+      "references": [
+        {
+          "id": "x",
+          "labels": [
+            {
+              "for": "booking-note-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-x",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-x",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-x",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-x",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "preview-x",
+          "labels": [
+            {
+              "for": "booking-note-preview-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-preview%2Dx",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-preview%2Dx",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-preview%2Dx",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-preview%2Dx",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "fold",
+          "labels": [
+            {
+              "for": "booking-note-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-fold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-fold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-fold",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-fold",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "fold-fold",
+          "labels": [
+            {
+              "for": "booking-note-fold-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-fold%2Dfold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-fold%2Dfold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-fold%2Dfold",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-fold%2Dfold",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "native-prefix-id-label-control",
+      "profile": "dense",
+      "before": {
+        "rawEventIds": [
+          "x",
+          "preview-x",
+          "fold",
+          "fold-fold"
+        ],
+        "configurationProblem": null,
+        "duplicates": [],
+        "expectedTarget": "schedule-start-preview%2Dx",
+        "labelFor": "schedule-start-preview%2Dx",
+        "labelControlTag": "INPUT",
+        "labelControlId": "schedule-start-preview%2Dx",
+        "startTargets": [
+          {
+            "tag": "P",
+            "event": "x"
+          }
+        ],
+        "descriptionTarget": "P"
+      },
+      "after": {
+        "focusId": "schedule-start-preview%2Dx",
+        "focusTag": "INPUT"
+      }
+    },
+    {
+      "name": "prefix-and-fold-native-references",
+      "profile": "dense",
+      "references": [
+        {
+          "id": "x",
+          "labels": [
+            {
+              "for": "booking-note-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-x",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-x",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-x",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-x",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "preview-x",
+          "labels": [
+            {
+              "for": "booking-note-preview-x",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-preview%2Dx",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-preview%2Dx",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-preview%2Dx",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-preview%2Dx",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-preview%2Dx",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "fold",
+          "labels": [
+            {
+              "for": "booking-note-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-fold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-fold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-fold",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-fold",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        },
+        {
+          "id": "fold-fold",
+          "labels": [
+            {
+              "for": "booking-note-fold-fold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-zone-fold%2Dfold",
+              "controlTag": "INPUT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-start-fold-fold%2Dfold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            },
+            {
+              "for": "schedule-end-fold-fold%2Dfold",
+              "controlTag": "SELECT",
+              "controlBelongs": true
+            }
+          ],
+          "descriptions": [
+            {
+              "id": "schedule-start-fold%2Dfold",
+              "targetTag": "P",
+              "targetBelongs": true
+            },
+            {
+              "id": "schedule-end-fold%2Dfold",
+              "targetTag": "P",
+              "targetBelongs": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime": [],
+  "failed": 0
+}

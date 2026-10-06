@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText,UiMessagePipe} from './locale';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -16,32 +18,32 @@ import { ActionControl } from './action-control';
 @Component({
   selector: 'ui-pagination',
   standalone: true,
-  imports: [ActionControl],
+  imports: [ActionControl,UiMessagePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <nav [attr.aria-label]="label()">
+    <nav [attr.aria-label]="uiEffective_label()">
       @if (showFirstLast()) {
-        <button uiAction aria-label="最初のページ" [disabled]="blocked() || page() <= 1" (click)="goTo(1)">最初</button>
+        <button uiAction [attr.aria-label]="'最初のページ' | uiMessage" [disabled]="blocked() || page() <= 1" (click)="goTo(1)">{{'最初' | uiMessage}}</button>
       }
-      <button uiAction aria-label="前のページ"
+      <button uiAction [attr.aria-label]="'前のページ' | uiMessage"
         [disabled]="blocked() || page() <= 1"
-        (click)="goTo(page() - 1)">前へ</button>
+        (click)="goTo(page() - 1)">{{'前へ' | uiMessage}}</button>
       <p aria-live="polite" aria-atomic="true">
-        @if (!valid()) { ページ情報を表示できません }
-        @else if (pages() === 0) { ページはありません }
-        @else { {{ page() }} / {{ pages() }} ページ }
-        @if (valid() && totalItems() !== null) { · {{ totalItems() }} 件 }
+        @if (!valid()) {  {{'ページ情報を表示できません' | uiMessage}} }
+        @else if (pages() === 0) {  {{'ページはありません' | uiMessage}} }
+        @else { {{ page() }} / {{ pages() }} {{'ページ' | uiMessage}} }
+        @if (valid() && totalItems() !== null) { · {{ totalItems() }} {{'件' | uiMessage}} }
       </p>
-      <button uiAction aria-label="次のページ"
+      <button uiAction [attr.aria-label]="'次のページ' | uiMessage"
         [disabled]="blocked() || page() >= pages()!"
-        (click)="goTo(page() + 1)">次へ</button>
+        (click)="goTo(page() + 1)">{{'次へ' | uiMessage}}</button>
       @if (showFirstLast()) {
-        <button uiAction aria-label="最後のページ" [disabled]="blocked() || page() >= pages()!" (click)="goTo(pages()!)">最後</button>
+        <button uiAction [attr.aria-label]="'最後のページ' | uiMessage" [disabled]="blocked() || page() >= pages()!" (click)="goTo(pages()!)">{{'最後' | uiMessage}}</button>
       }
       @if (pageSizeOptions().length) {
-        <div><span>表示件数</span>
-          <select aria-label="表示件数" class="ui-field-control" [value]="pageSize()" [disabled]="disabled() || busy() || !valid()" (change)="changeSize($event)">
-            @for (size of pageSizeOptions(); track size) { <option [value]="size" [selected]="size === pageSize()">{{ size }} 件</option> }
+        <div><span>{{'表示件数' | uiMessage}}</span>
+          <select [attr.aria-label]="'表示件数' | uiMessage" class="ui-field-control" [value]="pageSize()" [disabled]="disabled() || busy() || !valid()" (change)="changeSize($event)">
+            @for (size of pageSizeOptions(); track size) { <option [value]="size" [selected]="size === pageSize()">{{ size }} {{'件' | uiMessage}}</option> }
           </select>
         </div>
       }
@@ -66,6 +68,7 @@ import { ActionControl } from './action-control';
   `,
 })
 export class Pagination {
+ protected readonly uiText_Pagination=injectUiText();
   readonly page = input.required<number>();
   readonly totalPages = input<number | null>(null);
   readonly totalItems = input<number | null>(null);
@@ -73,7 +76,8 @@ export class Pagination {
   readonly pageSizeOptions = input<readonly number[]>([]);
   readonly showFirstLast = input(true, { transform: booleanAttribute });
   readonly busy = input(false, { transform: booleanAttribute });
-  readonly label = input('ページ選択');
+  readonly label = input<string>();
+ protected readonly uiEffective_label=uiLocaleComputed(()=>this.label()??this.uiText_Pagination('ページ選択'));
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly pageChange = output<number>();
   readonly pageSizeChange = output<number>();

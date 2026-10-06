@@ -1,0 +1,86 @@
+[
+  {
+    "name": "sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "start": "2026-10-06T07:38:29.609796+00:00",
+    "end": "2026-10-06T07:38:30.321168+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-sync.log"
+  },
+  {
+    "name": "check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "start": "2026-10-06T07:38:30.322097+00:00",
+    "end": "2026-10-06T07:38:30.775480+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-check.log"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "start": "2026-10-06T07:38:30.776329+00:00",
+    "end": "2026-10-06T07:38:41.712250+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-strict.log"
+  },
+  {
+    "name": "model",
+    "command": [
+      "npm",
+      "run",
+      "test:model"
+    ],
+    "start": "2026-10-06T07:38:41.712918+00:00",
+    "end": "2026-10-06T07:38:43.399548+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-model.log"
+  },
+  {
+    "name": "config",
+    "command": [
+      "npm",
+      "run",
+      "test:config"
+    ],
+    "start": "2026-10-06T07:38:43.400240+00:00",
+    "end": "2026-10-06T07:38:45.335156+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-config.log"
+  },
+  {
+    "name": "generation",
+    "command": [
+      "npm",
+      "run",
+      "test:generation"
+    ],
+    "start": "2026-10-06T07:38:45.336261+00:00",
+    "end": "2026-10-06T07:40:37.059481+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-generation.log"
+  },
+  {
+    "name": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "start": "2026-10-06T07:40:37.062030+00:00",
+    "end": "2026-10-06T07:41:22.928809+00:00",
+    "exit": 0,
+    "log": "/tmp/ui-foundation-final-integration/root-final-build.log"
+  }
+]

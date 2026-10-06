@@ -30,8 +30,14 @@ fixtureは生成した部品をコンパイルし、Tailwind CLIでCSSを作る�
 
 静止画は描画の証拠、操作試験は対象シナリオの証拠。どちらも利用者の理解や実業務の有効性を証明しない。
 
+全181要求は`docs/ui-library-matrix.json`の原文制御項目を保ち、各カテゴリの実装・正式fixture・型付きprojection・純モデル・実操作の対応を記録する。後続のTree/Scheduler/編集表/media/specialist/Foundationは、旧部品への回帰と同じ生成物で検証する。実workerのimport/ready/計算/終了、PDFのページ、地図canvas、符号化画像の解読、vendor editorのnative入力を観測し、代替表だけでrenderer完成と扱わない。
+
+生成後の独立consumerは公開barrelだけを入口とするstrict AOTを実行し、別の計算worker entryもコンパイルする。nullable CVAと不正型のnegative compile、HTTPで配信したassetのbytes/MIME、old/new requestやfocus転送、320px/文字200%/RTL/両profileを対象にする。ライセンス原文・font source kitの保持を配布assetとして確認する。
+
 ## 実行とレビュー
 
 `npm run ui:sync`→`npm run ui:check`→`npm run typecheck`→`npm run test:config`→`npm run test:generation`→`npm run test:model`→`npm run test:ui`。`npm test`は同期済みであることを確認して全検査を実行する。`npm run build`も未同期を拒否する。
 
 実装後は正確なbase/headと実diffをfresh context reviewerへ渡す。結果はソース/試験を主担当が確認する。コミット・Draft PR更新後もマージやReady化は別の判断。全ソースASTによる逸脱検査、Skillの自動選択の評価、Firefox/Safari、実スクリーンリーダー、実サービスの復元、実利用での有効性はこの初版で確認済みとは扱わない。
+
+今回のユーザー指示は独立レビューとマージまでを含む。実装・全ローカル検証・正確な候補SHAのレビューを終えてから、同じheadをReady化・マージする。途中の段階完了やCIだけで全要求完了に変更しない。npm公開は含めない。

@@ -1,0 +1,6 @@
+[96mnegative-tree-node.ts[0m:[93m35[0m:[93m117[0m - [91merror[0m[90m TS2339: [0mProperty 'nonexistent' does not exist on type 'Department'.
+
+[7m35[0m   @if(projected()) {<ng-template [uiTreeNodeTemplate]="nodes()" let-node="node"><strong>{{node.label}} {{node.data?.nonexistent}}</strong><input [attr.id]="'tree-note-'+node.id" [attr.aria-label]="node.label+' memo'" value="draft"></ng-template>}
+[7m  [0m [91m                                                                                                                    ~~~~~~~~~~~[0m
+
+

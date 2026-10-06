@@ -1,0 +1,318 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 59118,
+  "sourceManifest": "source-manifest.json",
+  "generatedConsumer": true,
+  "results": [
+    {
+      "name": "tree-exact-before-button-path",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-completion-app-memo-and-external-focus",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "utf16-tree-identity-focus-and-collisions",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-all-removed-empty-and-external-scope",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "tree-exact-before-button-path",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-completion-app-memo-and-external-focus",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "utf16-tree-identity-focus-and-collisions",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "cascader-all-removed-empty-and-external-scope",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "tree-exact-before-button-path",
+      "profile": "guided",
+      "enter": {
+        "clicks": 1,
+        "selection": [],
+        "focus": "projected-app-action"
+      },
+      "space": {
+        "clicks": 2,
+        "selection": [],
+        "focus": "projected-app-action"
+      }
+    },
+    {
+      "name": "scheduler-completion-app-memo-and-external-focus",
+      "profile": "guided",
+      "id": 1,
+      "result": true,
+      "before": {
+        "focus": "booking-note-one",
+        "value": "App memo during independent pending operation"
+      },
+      "after": {
+        "focus": "booking-note-one",
+        "value": "App memo during independent pending operation"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "scheduler-completion-memo",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "utf16-tree-identity-focus-and-collisions",
+      "profile": "guided",
+      "ids": [
+        "\ud800",
+        "\udc00",
+        "�",
+        "%ud800",
+        "😀",
+        "a/b",
+        "a%2Fb",
+        "%"
+      ],
+      "domIds": [
+        "tree-item-%ud800",
+        "tree-item-%udc00",
+        "tree-item-%EF%BF%BD",
+        "tree-item-%25ud800",
+        "tree-item-%F0%9F%98%80",
+        "tree-item-a%2Fb",
+        "tree-item-a%252Fb",
+        "tree-item-%25"
+      ],
+      "selected": [
+        "%"
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "utf16-tree",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "cascader-all-removed-empty-and-external-scope",
+      "profile": "guided",
+      "removed": {
+        "focus": "<button _ngcontent-ng-c2464216035=\"\" type=\"button\" data-cascader-close=\"\">閉じる</button>",
+        "popupOpen": true
+      },
+      "closed": {
+        "focus": "cascade",
+        "popupOpen": false
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "cascader-empty-closed",
+      "profile": "guided",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"false\" aria-controls=\"cascade-popup\" ...>",
+              "target": [
+                "#cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree-exact-before-button-path",
+      "profile": "dense",
+      "enter": {
+        "clicks": 1,
+        "selection": [],
+        "focus": "projected-app-action"
+      },
+      "space": {
+        "clicks": 2,
+        "selection": [],
+        "focus": "projected-app-action"
+      }
+    },
+    {
+      "name": "scheduler-completion-app-memo-and-external-focus",
+      "profile": "dense",
+      "id": 1,
+      "result": true,
+      "before": {
+        "focus": "booking-note-one",
+        "value": "App memo during independent pending operation"
+      },
+      "after": {
+        "focus": "booking-note-one",
+        "value": "App memo during independent pending operation"
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "scheduler-completion-memo",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "utf16-tree-identity-focus-and-collisions",
+      "profile": "dense",
+      "ids": [
+        "\ud800",
+        "\udc00",
+        "�",
+        "%ud800",
+        "😀",
+        "a/b",
+        "a%2Fb",
+        "%"
+      ],
+      "domIds": [
+        "tree-item-%ud800",
+        "tree-item-%udc00",
+        "tree-item-%EF%BF%BD",
+        "tree-item-%25ud800",
+        "tree-item-%F0%9F%98%80",
+        "tree-item-a%2Fb",
+        "tree-item-a%252Fb",
+        "tree-item-%25"
+      ],
+      "selected": [
+        "%"
+      ]
+    },
+    {
+      "kind": "axe",
+      "name": "utf16-tree",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "cascader-all-removed-empty-and-external-scope",
+      "profile": "dense",
+      "removed": {
+        "focus": "<button _ngcontent-ng-c2464216035=\"\" type=\"button\" data-cascader-close=\"\">閉じる</button>",
+        "popupOpen": true
+      },
+      "closed": {
+        "focus": "cascade",
+        "popupOpen": false
+      }
+    },
+    {
+      "kind": "axe",
+      "name": "cascader-empty-closed",
+      "profile": "dense",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "description": "Ensure all ARIA attributes have valid values",
+          "help": "ARIA attributes must conform to valid values",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+          "nodes": [
+            {
+              "any": [],
+              "all": [
+                {
+                  "id": "aria-valid-attr-value",
+                  "data": {
+                    "messageKey": "controlsWithinPopup",
+                    "needsReview": "aria-controls=\"cascade-popup\""
+                  },
+                  "relatedNodes": [],
+                  "impact": "critical",
+                  "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\""
+                }
+              ],
+              "none": [],
+              "impact": "critical",
+              "html": "<input _ngcontent-ng-c24642...=\"\" uifieldcontrol=\"\" type=\"text\" role=\"combobox\" aria-haspopup=\"dialog\" aria-autocomplete=\"none\" autocomplete=\"off\" class=\"ui-field-control ui-...\" placeholder=\"階層を選択してください\" readonly=\"\" aria-required=\"true\" aria-expanded=\"false\" aria-controls=\"cascade-popup\" ...>",
+              "target": [
+                "#cascade"
+              ],
+              "failureSummary": "Fix all of the following:\n  Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"cascade-popup\""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime": [],
+  "failed": 0
+}

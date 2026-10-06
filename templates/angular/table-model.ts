@@ -1,3 +1,4 @@
+import {uiMessage,type UiMessages} from './locale-model';
 /** Pure client-side table operations. Server mode does not call this pipeline. */
 export type TableKey = string | number;
 export type TableColumnType = 'text' | 'number' | 'date' | 'boolean';
@@ -35,12 +36,14 @@ export function createTableState(pageSize = 10): TableState {
 }
 
 export function tableValue<T extends object>(row: T, column: TableColumn<T>): unknown { return row[column.field]; }
-export function tableText<T extends object>(row: T, column: TableColumn<T>, locale = 'ja-JP', missing = '未取得'): string {
+/** Column IDs are arbitrary strings; inherited properties are never configured entries. */
+export function tableOwnValue<V>(record: Readonly<Record<string, V>>, id: string): V | undefined { return Object.hasOwn(record, id) ? record[id] : undefined; }
+export function tableText<T extends object>(row: T, column: TableColumn<T>, locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, messages:UiMessages={}): string {
   const value = tableValue(row, column);
   if (typed(value, column.type) === null) return missing;
   if (column.format) return column.format(value, row);
-  if (typeof value === 'number') return Number.isFinite(value) ? new Intl.NumberFormat(locale).format(value) : missing;
-  if (typeof value === 'boolean') return value ? 'はい' : 'いいえ';
+  if (typeof value === 'number') return Number.isFinite(value) ? new Intl.NumberFormat(locale,numberOptions).format(value) : missing;
+  if (typeof value === 'boolean') return uiMessage(value ? 'はい' : 'いいえ',messages);
   return String(value);
 }
 function typed(value: unknown, type: TableColumnType = 'text'): string | number | boolean | null {
@@ -123,13 +126,13 @@ export function nextTableSort(sort: readonly TableSort[], column: string, multip
 /** Widths are border-box pixels measured by the DOM adapter, never theme constants. */
 export function fitTableColumns<T extends object>(columns: readonly TableColumn<T>[], available: number,
   minimum: number, explicit: Readonly<Record<string, number>>, natural: Readonly<Record<string, number>>, mode: 'content' | 'available', auto: boolean): Record<string, number> {
-  const widths: Record<string, number> = {};
+  const widths: Record<string, number> = Object.create(null);
   const flexible: TableColumn<T>[] = [];
   for (const column of columns) {
     const min = column.minWidth ?? minimum;
     const max = column.maxWidth ?? Infinity;
-    const fixed = explicit[column.id] ?? column.width;
-    widths[column.id] = Math.min(max, Math.max(min, fixed ?? (auto && mode === 'content' ? natural[column.id] ?? min : min)));
+    const fixed = tableOwnValue(explicit, column.id) ?? column.width;
+    widths[column.id] = Math.min(max, Math.max(min, fixed ?? (auto && mode === 'content' ? tableOwnValue(natural, column.id) ?? min : min)));
     if (fixed === undefined && auto && mode === 'available') flexible.push(column);
   }
   let remaining = available - Object.values(widths).reduce((a,b) => a+b, 0);

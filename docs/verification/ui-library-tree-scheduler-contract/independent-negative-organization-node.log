@@ -1,0 +1,6 @@
+[96mnegative-organization-node.ts[0m:[93m54[0m:[93m114[0m - [91merror[0m[90m TS2339: [0mProperty 'nonexistent' does not exist on type 'Department'.
+
+[7m54[0m  <ng-template [uiTreeNodeTemplate]="nodes()" let-node="node" let-path="path"><strong>{{node.label}} {{node.data?.nonexistent}}</strong><small>{{path.join(' / ')}}</small><input [attr.id]="'org-note-'+node.id" [attr.aria-label]="node.label+' memo'" value="draft"></ng-template>
+[7m  [0m [91m                                                                                                                 ~~~~~~~~~~~[0m
+
+

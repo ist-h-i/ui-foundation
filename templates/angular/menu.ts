@@ -1,3 +1,5 @@
+import {computed as localeComputed} from '@angular/core';
+import {injectUiLocale,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -7,10 +9,10 @@ import { OverlayRegistry, observeOverlay, positionOverlay, type OverlayPlacement
 import { menuCommands, menuPath, selectMenuCheck, validateMenu, visibleMenuItems, type MenuItem, type MenuSelection } from './menu-model';
 export * from './menu-model';
 export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backwards?:boolean}
-@Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="!menubar()&&(disabled()||!commands(nodes()).length)" [attr.aria-disabled]="disabled()||!commands(nodes()).length?'true':null" [attr.role]="menubar()?'menuitem':null" [attr.tabindex]="triggerTabIndex()" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
   <ng-content select="[uiMenuTrigger]" />{{label()}}</button>
-  @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="label()+'の対象'" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
+  @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="label()+('の対象' | uiMessage)" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
   <div #popup popover="manual" class="ui-menu__popup" [id]="menuId()" (pointerleave)="hoverLeave($event)" (pointerenter)="stopHoverClose()">
    <ul role="menu" [attr.aria-labelledby]="menuId()+'-trigger'"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(nodes()),parent:null,depth:0}" /></ul>
   </div>
@@ -22,13 +24,15 @@ export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backward
      @if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}<span class="ui-menu__label">{{item.label}}</span>@if(commands(item.children??[]).length){<span aria-hidden="true">›</span>}
     </button>
     @if(expanded()[depth]===item.id&&commands(item.children??[]).length){<ul [id]="itemId(item.id)+'-children'" role="menu" [attr.aria-labelledby]="itemId(item.id)" [attr.data-menu-parent]="item.id" class="ui-menu__submenu"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:item,depth:depth+1}" />
-     <li role="none"><button type="button" role="menuitem" tabindex="-1" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">親メニューに戻る</button></li>
+     <li role="none"><button type="button" role="menuitem" tabindex="-1" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
     </ul>}</li>}
    }
   </ng-template>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}.ui-menu__popup,.ui-menu__submenu{box-sizing:border-box;position:fixed;inset:auto;margin:0;inline-size:max-content;min-inline-size:min(var(--ui-size-overlay-min),calc(100vw - 2 * var(--ui-space-control-gap)));max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap));padding:var(--ui-space-control-y);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);color:var(--ui-color-text);font:inherit;box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);overflow:visible;overflow-wrap:anywhere;}.ui-menu__popup>ul,.ui-menu__submenu{max-block-size:calc(100dvh - 2 * var(--ui-space-section));overflow-y:auto;overscroll-behavior:contain;}.ui-menu__popup>ul{max-block-size:calc(100dvh - 2 * var(--ui-space-section) - 2 * var(--ui-space-control-y));}ul{list-style:none;padding:0;margin:0;min-inline-size:0;}li{padding:0;margin:0;}button[data-menu-item],button[data-menu-back]{box-sizing:border-box;display:flex;align-items:center;gap:var(--ui-space-control-gap);inline-size:100%;min-block-size:var(--ui-size-control);padding:var(--ui-space-control-y) var(--ui-space-control-x);border:0;border-radius:var(--ui-radius-control);background:var(--ui-color-surface);color:var(--ui-color-text);font:inherit;text-align:start;cursor:pointer;white-space:normal;overflow-wrap:anywhere;}.ui-menu__label{flex:1;min-inline-size:0;}button[data-menu-item]:focus-visible,button[data-menu-back]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}button[data-menu-item]:hover,button[data-menu-back]:hover{background:var(--ui-color-background);}button[aria-disabled="true"]{color:var(--ui-color-muted);cursor:not-allowed;}.ui-menu__group{font-size:var(--ui-text-small);font-weight:var(--ui-weight-control);padding:var(--ui-space-control-y);color:var(--ui-color-muted);}.ui-menu__separator{border-block-start:var(--ui-border-control) solid var(--ui-color-border);margin-block:var(--ui-space-control-gap);}.ui-menu__context{padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);margin-block:var(--ui-space-control-gap);}.ui-menu__context:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
 })
 export class Menu {
+ protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=localeComputed(()=>this.locale()??this.uiLocaleDefaults().locale);
+
     readonly menuId = input.required<string>();
     readonly label = input.required<string>();
     readonly items = input<readonly MenuItem[]>([]);
@@ -347,8 +351,8 @@ export class Menu {
             const now = performance.now();
             this.prefix = now - this.prefixAt > 600 ? event.key : this.prefix + event.key;
             this.prefixAt = now;
-            const repeated = new Set(this.prefix).size === 1, prefix = (repeated ? event.key : this.prefix).toLocaleLowerCase();
-            const ordered = [...commands.slice(index + 1), ...commands.slice(0, index + 1)], match = ordered.find(command => command.label?.trim().toLocaleLowerCase().startsWith(prefix));
+            const repeated = new Set(this.prefix).size === 1, prefix = (repeated ? event.key : this.prefix).toLocaleLowerCase(this.effectiveLocale());
+            const ordered = [...commands.slice(index + 1), ...commands.slice(0, index + 1)], match = ordered.find(command => command.label?.trim().toLocaleLowerCase(this.effectiveLocale()).startsWith(prefix));
             if (match)
                 target = commands.findIndex(command => command.id === match.id);
         }

@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { focusBeforeHiding } from './layout';
@@ -5,11 +7,14 @@ const panelStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;co
 /** Fieldset supplies native disabled semantics; inert also blocks custom projected actions. */
 @Component({selector:'ui-panel,ui-fieldset',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,
  template:`<fieldset [disabled]="disabled()" [attr.data-bordered]="bordered()"><legend>{{title()}}</legend><header #heading tabindex="-1">
- @if(collapsible()){<button #toggle uiAction [disabled]="disabled()" [attr.aria-expanded]="!folded()" [attr.aria-controls]="panelId()+'-body'" (click)="setFolded(!folded())">{{folded()?expandLabel():collapseLabel()}}: {{title()}}</button>}
+ @if(collapsible()){<button #toggle uiAction [disabled]="disabled()" [attr.aria-expanded]="!folded()" [attr.aria-controls]="panelId()+'-body'" (click)="setFolded(!folded())">{{folded()?uiEffective_expandLabel():uiEffective_collapseLabel()}}: {{title()}}</button>}
  <div #actions class="ui-panel-actions" [inert]="disabled()"><ng-content select="[uiPanelActions]" /></div></header>
  <div #body class="ui-panel-body" [id]="panelId()+'-body'" [hidden]="collapsible()&&folded()" [inert]="disabled()" [attr.aria-disabled]="disabled()"><ng-content /></div></fieldset>`,styles:panelStyles})
 export class Panel {
- readonly panelId=input.required<string>();readonly title=input.required<string>();readonly bordered=input(true,{transform:booleanAttribute});readonly collapsible=input(false,{transform:booleanAttribute});readonly collapsed=input(false,{transform:booleanAttribute});readonly disabled=input(false,{transform:booleanAttribute});readonly collapsedChange=output<boolean>();readonly expandLabel=input('展開');readonly collapseLabel=input('折り畳む');protected readonly folded=linkedSignal(()=>this.collapsed());
+ protected readonly uiText_Panel=injectUiText();
+ readonly panelId=input.required<string>();readonly title=input.required<string>();readonly bordered=input(true,{transform:booleanAttribute});readonly collapsible=input(false,{transform:booleanAttribute});readonly collapsed=input(false,{transform:booleanAttribute});readonly disabled=input(false,{transform:booleanAttribute});readonly collapsedChange=output<boolean>();readonly expandLabel=input<string>();
+ protected readonly uiEffective_expandLabel=uiLocaleComputed(()=>this.expandLabel()??this.uiText_Panel('展開'));readonly collapseLabel=input<string>();
+ protected readonly uiEffective_collapseLabel=uiLocaleComputed(()=>this.collapseLabel()??this.uiText_Panel('折り畳む'));protected readonly folded=linkedSignal(()=>this.collapsed());
  private readonly actions=viewChild<ElementRef<HTMLElement>>('actions');private readonly body=viewChild<ElementRef<HTMLElement>>('body');private readonly heading=viewChild<ElementRef<HTMLElement>>('heading');private readonly toggle=viewChild<unknown,ElementRef<HTMLElement>>('toggle',{read:ElementRef});
  constructor(){effect(()=>{if(!this.panelId().trim()||/\s/.test(this.panelId())||!this.title().trim())throw new Error('ui-panel requires a nonempty title and whitespace-free panelId.');if(this.disabled()&&this.toggle())untracked(()=>focusBeforeHiding(this.toggle()!.nativeElement,this.heading()?.nativeElement??null));if(this.disabled()&&this.actions())untracked(()=>focusBeforeHiding(this.actions()!.nativeElement,this.heading()?.nativeElement??null));const hide=this.collapsible()&&this.folded()||this.disabled(),body=this.body();if(hide&&body)untracked(()=>focusBeforeHiding(body.nativeElement,this.disabled()?this.heading()?.nativeElement??null:this.toggle()?.nativeElement??null));});}
  protected setFolded(value:boolean):void{if(this.disabled())return;this.folded.set(value);this.collapsedChange.emit(value);}

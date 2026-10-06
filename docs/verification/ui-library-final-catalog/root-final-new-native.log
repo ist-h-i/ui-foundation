@@ -1,0 +1,103 @@
+[WebServer] (node:33636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+[WebServer] (node:34080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ≈ tailwindcss v4.3.0
+[WebServer] 
+[WebServer] Done in 219ms
+[WebServer] (node:34082) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 2 workers
+
+(node:34088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34089) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/ui/date-format-draft.spec.ts:3:41 › guided: changing date input format preserves invalid draft until repair, reset or clear (9.7s)
+  ✓  2 [chromium] › tests/ui/date-format-draft.spec.ts:3:41 › dense: changing date input format preserves invalid draft until repair, reset or clear (9.9s)
+  ✘  3 [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › guided: formula worker structural errors follow the live locale while app error and formula source stay unchanged (30.1s)
+  ✘  4 [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › dense: formula worker structural errors follow the live locale while app error and formula source stay unchanged (30.2s)
+(node:34375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [chromium] › tests/ui/specialist-gauge-responsive.spec.ts:47:2 › guided: chart names, labels and every gauge selection survive 320px, 200% and RTL with native scroll access (17.4s)
+  ✓  6 [chromium] › tests/ui/specialist-gauge-responsive.spec.ts:47:2 › dense: chart names, labels and every gauge selection survive 320px, 200% and RTL with native scroll access (20.4s)
+
+
+  1) [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › guided: formula worker structural errors follow the live locale while app error and formula source stay unchanged 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('プロファイル', { exact: true })
+
+
+       5 |  await context.route('**/invalid-library-worker.mjs',route=>route.fulfill({status:200,contentType:'text/javascript',body:"postMessage({type:'sheet-ready',version:999});"}));
+       6 |  await context.route('**/app-domain-worker.mjs',route=>route.fulfill({status:200,contentType:'text/javascript',body:"onmessage=event=>postMessage({requestId:event.data.requestId,results:null,error:'The application refused this calculation.'});postMessage({type:'sheet-ready',version:1});"}));
+    >  7 |  await page.goto('/catalog/sheet-locale');await page.getByLabel('プロファイル',{exact:true}).selectOption(profile);
+         |                                                                                        ^
+       8 |  const sheet=page.locator('ui-spreadsheet'),status=sheet.getByRole('status').first(),source=page.locator('#sheet-source');
+       9 |  await expect(sheet.locator('[data-sheet-cell="0,2"]')).toHaveValue('5');const original=await source.textContent();
+      10 |  await page.getByLabel('計算worker',{exact:true}).selectOption('/assets/invalid-library-worker.mjs');
+        at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/sheet-locale-errors.spec.ts:7:88
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sheet-locale-errors-guided-05a95-rmula-source-stay-unchanged-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/sheet-locale-errors-guided-05a95-rmula-source-stay-unchanged-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sheet-locale-errors-guided-05a95-rmula-source-stay-unchanged-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sheet-locale-errors-guided-05a95-rmula-source-stay-unchanged-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › dense: formula worker structural errors follow the live locale while app error and formula source stay unchanged 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('プロファイル', { exact: true })
+
+
+       5 |  await context.route('**/invalid-library-worker.mjs',route=>route.fulfill({status:200,contentType:'text/javascript',body:"postMessage({type:'sheet-ready',version:999});"}));
+       6 |  await context.route('**/app-domain-worker.mjs',route=>route.fulfill({status:200,contentType:'text/javascript',body:"onmessage=event=>postMessage({requestId:event.data.requestId,results:null,error:'The application refused this calculation.'});postMessage({type:'sheet-ready',version:1});"}));
+    >  7 |  await page.goto('/catalog/sheet-locale');await page.getByLabel('プロファイル',{exact:true}).selectOption(profile);
+         |                                                                                        ^
+       8 |  const sheet=page.locator('ui-spreadsheet'),status=sheet.getByRole('status').first(),source=page.locator('#sheet-source');
+       9 |  await expect(sheet.locator('[data-sheet-cell="0,2"]')).toHaveValue('5');const original=await source.textContent();
+      10 |  await page.getByLabel('計算worker',{exact:true}).selectOption('/assets/invalid-library-worker.mjs');
+        at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/sheet-locale-errors.spec.ts:7:88
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sheet-locale-errors-dense--1d78e-rmula-source-stay-unchanged-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/sheet-locale-errors-dense--1d78e-rmula-source-stay-unchanged-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sheet-locale-errors-dense--1d78e-rmula-source-stay-unchanged-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sheet-locale-errors-dense--1d78e-rmula-source-stay-unchanged-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › guided: formula worker structural errors follow the live locale while app error and formula source stay unchanged 
+    [chromium] › tests/ui/sheet-locale-errors.spec.ts:4:41 › dense: formula worker structural errors follow the live locale while app error and formula source stay unchanged 
+  4 passed (2.2m)

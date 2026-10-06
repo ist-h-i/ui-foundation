@@ -1,0 +1,11 @@
+{
+  "events": [
+    {
+      "operation": "Initial postprocessing verification used socket.create_connection to confirm owned port5335 closure",
+      "actualExitCode": 1,
+      "error": "PermissionError: [Errno 1] Operation not permitted",
+      "interpretation": "Sandbox blocked the optional local socket probe; native browser run already completed with actualexit0 and finally closed its server. This is an environment/harness error, not a contrast finding.",
+      "recovery": "Read-only lsof listener query replaces the socket probe; no original browser result or axe rule was changed."
+    }
+  ]
+}

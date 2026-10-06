@@ -1,3 +1,7 @@
+import {uiMessageState} from './locale';
+import {injectUiText as injectUiRuntimeText} from './locale';
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { AfterContentChecked, OnDestroy, afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, ElementRef, forwardRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { canFocus } from './focus';
@@ -25,9 +29,12 @@ export class WizardStep implements OnDestroy {
 }
 /** Projected panels remain mounted. Branching and transition approval are explicit. */
 @Component({ selector: 'ui-wizard,ui-stepper', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<section [attr.aria-label]="label()" [attr.aria-busy]="busy()||!!pending()"><ol [attr.aria-label]="stepsLabel()" [attr.data-direction]="direction()">@for(step of steps();track step.stepId();let index=$index){<li><button uiAction type="button" [attr.aria-current]="activeStepId()===step.stepId()?'step':null" [attr.aria-controls]="step.panelId()" [disabled]="unavailable()||step.disabled()||!reachable(step.stepId())" (click)="jump(step.stepId())">{{index+1}}. {{step.label()}}</button></li>}</ol><ng-content />@if(!activeStep()){<p role="status">{{emptyLabel()}}</p>}@if(problem()){<p class="ui-wizard-error" role="alert">{{problem()}}</p>}<div class="ui-wizard-actions"><button uiAction type="button" [disabled]="unavailable()||!backTarget()" (click)="back()">{{backLabel()}}</button><button uiAction type="button" [disabled]="unavailable()||!activeStep()?.canProceed()||finished()||!nextAvailable()" (click)="advance()">{{nextTarget()===null?completeLabel():nextLabel()}}</button></div>@if(pending()){<p role="status">{{pendingLabel()}}</p>}@if(finished()){<p role="status">{{completedLabel()}}</p>}</section>`,
+  template: `<section [attr.aria-label]="label()" [attr.aria-busy]="busy()||!!pending()"><ol [attr.aria-label]="uiEffective_stepsLabel()" [attr.data-direction]="direction()">@for(step of steps();track step.stepId();let index=$index){<li><button uiAction type="button" [attr.aria-current]="activeStepId()===step.stepId()?'step':null" [attr.aria-controls]="step.panelId()" [disabled]="unavailable()||step.disabled()||!reachable(step.stepId())" (click)="jump(step.stepId())">{{index+1}}. {{step.label()}}</button></li>}</ol><ng-content />@if(!activeStep()){<p role="status">{{uiEffective_emptyLabel()}}</p>}@if(problem()){<p class="ui-wizard-error" role="alert">{{problem()}}</p>}<div class="ui-wizard-actions"><button uiAction type="button" [disabled]="unavailable()||!backTarget()" (click)="back()">{{uiEffective_backLabel()}}</button><button uiAction type="button" [disabled]="unavailable()||!activeStep()?.canProceed()||finished()||!nextAvailable()" (click)="advance()">{{nextTarget()===null?uiEffective_completeLabel():uiEffective_nextLabel()}}</button></div>@if(pending()){<p role="status">{{uiEffective_pendingLabel()}}</p>}@if(finished()){<p role="status">{{uiEffective_completedLabel()}}</p>}</section>`,
   styles: `:host{display:block;min-inline-size:0;color:var(--ui-color-text);font:inherit;}:host([hidden]){display:none;}section{min-inline-size:0;}ol{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin-block:var(--ui-space-field);}ol[data-direction='vertical']{flex-direction:column;}li{min-inline-size:0;max-inline-size:100%;}button[aria-current='step']{border-color:var(--ui-color-focus);color:var(--ui-color-tab-selected);font-weight:var(--ui-weight-heading);}.ui-wizard-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);margin-block:var(--ui-space-field);}.ui-wizard-error{color:var(--ui-color-danger);overflow-wrap:anywhere;}` })
 export class Wizard implements AfterContentChecked {
+ private readonly uiRuntimeText_Wizard=injectUiRuntimeText();
+
+ protected readonly uiText_Wizard=injectUiText();
   readonly controlId = input.required<string>();
   readonly label = input.required<string>();
   readonly current = input('');
@@ -37,13 +44,20 @@ export class Wizard implements AfterContentChecked {
   readonly busy = input(false, { transform: booleanAttribute });
   readonly deferTransitions = input(false, { transform: booleanAttribute });
   readonly nonlinear = input(false, { transform: booleanAttribute });
-  readonly stepsLabel = input('入力の段階');
-  readonly backLabel = input('戻る');
-  readonly nextLabel = input('次へ');
-  readonly completeLabel = input('完了');
-  readonly emptyLabel = input('利用できる段階がありません。');
-  readonly pendingLabel = input('移動できるか確認しています。');
-  readonly completedLabel = input('段階を完了しました。');
+  readonly stepsLabel = input<string>();
+ protected readonly uiEffective_stepsLabel=uiLocaleComputed(()=>this.stepsLabel()??this.uiText_Wizard('入力の段階'));
+  readonly backLabel = input<string>();
+ protected readonly uiEffective_backLabel=uiLocaleComputed(()=>this.backLabel()??this.uiText_Wizard('戻る'));
+  readonly nextLabel = input<string>();
+ protected readonly uiEffective_nextLabel=uiLocaleComputed(()=>this.nextLabel()??this.uiText_Wizard('次へ'));
+  readonly completeLabel = input<string>();
+ protected readonly uiEffective_completeLabel=uiLocaleComputed(()=>this.completeLabel()??this.uiText_Wizard('完了'));
+  readonly emptyLabel = input<string>();
+ protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_Wizard('利用できる段階がありません。'));
+  readonly pendingLabel = input<string>();
+ protected readonly uiEffective_pendingLabel=uiLocaleComputed(()=>this.pendingLabel()??this.uiText_Wizard('移動できるか確認しています。'));
+  readonly completedLabel = input<string>();
+ protected readonly uiEffective_completedLabel=uiLocaleComputed(()=>this.completedLabel()??this.uiText_Wizard('段階を完了しました。'));
   readonly transitionRequested = output<WizardTransition>();
   readonly completionAccepted = output<string>();
   private readonly projected = contentChildren(WizardStep, { descendants: true });
@@ -61,7 +75,7 @@ export class Wizard implements AfterContentChecked {
   protected readonly backTarget = computed(() => [...this.history()].reverse().find(id => id !== this.activeStepId() && this.steps().some(step => step.stepId() === id && !step.disabled())) ?? null);
   protected readonly pending = signal<WizardTransition | null>(null);
   protected readonly finished = signal(false);
-  protected readonly problem = signal('');
+  protected readonly problem = uiMessageState('');
   protected readonly unavailable = computed(() => this.disabled() || this.busy() || !!this.pending());
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroy = inject(DestroyRef);
@@ -77,7 +91,7 @@ export class Wizard implements AfterContentChecked {
     afterRenderEffect(() => {
       const id = this.activeStepId(), request = this.pending(); this.steps(); this.nextTarget(); this.backTarget(); this.activeStep()?.canProceed(); this.nextAvailable();
       untracked(() => {
-        if (request && !this.validTransition(request)) { this.pending.set(null); this.problem.set('段階の条件が変わったため、もう一度確認してください。'); }
+        if (request && !this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard('段階の条件が変わったため、もう一度確認してください。')]); }
         const active = this.element.ownerDocument.activeElement;
         const hiddenOwned = this.element.contains(active) && !(active as HTMLElement).getClientRects().length;
         if ((this.pendingFocus && (active === this.element.ownerDocument.body || this.element.contains(active))) || hiddenOwned) this.activeStep()?.focusStart();
@@ -88,7 +102,7 @@ export class Wizard implements AfterContentChecked {
     });
   }
   ngAfterContentChecked(): void {
-    if (!this.controlId().trim() || /\s/.test(this.controlId()) || ![this.label(), this.stepsLabel(), this.backLabel(), this.nextLabel(), this.completeLabel(), this.emptyLabel(), this.pendingLabel(), this.completedLabel()].every(value => value.trim())) throw new Error('Wizard requires nonempty labels and a controlId without whitespace.');
+    if (!this.controlId().trim() || /\s/.test(this.controlId()) || ![this.label(), this.uiEffective_stepsLabel(), this.uiEffective_backLabel(), this.uiEffective_nextLabel(), this.uiEffective_completeLabel(), this.uiEffective_emptyLabel(), this.uiEffective_pendingLabel(), this.uiEffective_completedLabel()].every(value => value.trim())) throw new Error('Wizard requires nonempty labels and a controlId without whitespace.');
     const seen = new Set<string>();
     for (const step of this.steps()) { if (!step.stepId().trim() || !step.label().trim() || seen.has(step.stepId())) throw new Error('Wizard step IDs must be unique and labels nonempty.'); seen.add(step.stepId()); }
   }
@@ -118,7 +132,7 @@ export class Wizard implements AfterContentChecked {
   approve(requestId: number): boolean {
     const request = this.pending();
     if (this.destroy.destroyed || !request || request.requestId !== requestId) return false;
-    if (!this.validTransition(request)) { this.pending.set(null); this.problem.set('段階の条件が変わったため、もう一度確認してください。'); return false; }
+    if (!this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard('段階の条件が変わったため、もう一度確認してください。')]); return false; }
     this.pending.set(null); this.problem.set('');
     if (request.to === null) { this.finished.set(true); this.completionAccepted.emit(request.from); return true; }
     const history = [...this.history()];

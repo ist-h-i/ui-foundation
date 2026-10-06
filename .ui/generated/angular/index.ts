@@ -71,3 +71,70 @@ export {TransferList,TransferItem,type TransferItemContext} from './transfer-lis
 export {transferConfigurationProblem,transferStructureProblem,transferSelectionProblem,transferBatch,reorderTransfer,type TransferValue,type TransferSide,type TransferReason,type TransferOptions,type TransferChange,type TransferReorder,type TransferResult} from './transfer-model';
 export {Timeline,TimelineItem,type TimelineItemContext} from './timeline';
 export {timelineType,timelineDateTime,timelineConfigurationProblem,timelineDefaultDateOptions,type TimelineDateTime,type TimelineType} from './timeline-model';
+
+export { Tree, type TreeSelectionMode } from './tree';
+export { TreeItem } from './tree-item';
+export { TreeSelect } from './tree-select';
+export { Cascader } from './cascader';
+export { OrganizationChart, type OrganizationDirection } from './organization-chart';
+export { TreeNodeTemplate, type TreeNodeContext } from './tree-node-template';
+export {
+  type TreeNode, type TreeEntry, type TreeCheckState,
+  type TreeLoadRequest, type TreeLoadCancellation,
+  treeNodes, treeBranch, treeUnloaded, treeEntries, treeEntry, treePath,
+  treeFilter, treeVisible, treeComplete, treeCheckState, treeToggleCheck,
+  treeSelectionProblem, cascaderPathProblem,
+} from './tree-model';
+
+export { Scheduler } from './scheduler';
+export { Agenda } from './agenda';
+export { SchedulerEventTemplate, type SchedulerEventContext } from './scheduler-template';
+export {
+  type SchedulerView, type SchedulerResource, type SchedulerEvent,
+  type SchedulerDisambiguation, type SchedulerMoveDraft,
+  type SchedulerMoveRequest, type SchedulerMoveCancellation,
+  type SchedulerConfiguration, type SchedulerLocal,
+  type SchedulerEntry, type SchedulerDay,
+  schedulerInstant, schedulerLocal, schedulerDays, schedulerNavigate,
+  schedulerConfigurationProblem, schedulerEventProblem,
+  schedulerMoveProblem, schedulerLayout,
+} from './scheduler-model';
+
+export { FileUpload, FileUpload as Dropzone, UploadList, UploadList as AttachmentList } from './file-upload';
+export { Image, ImageViewer, ImageViewer as Lightbox, Gallery, Gallery as Carousel, ImageCompare } from './image-media';
+export { ImageCropper, type ImageCropResult } from './image-cropper';
+export { PDFViewer, PDFViewer as FilePreview } from './pdf-viewer';
+export { type PdfSource, type PdfAssetOptions } from './pdf-adapter';
+export { MediaPlayer, MediaPlayer as AudioPlayer, MediaPlayer as VideoPlayer, type MediaCaption, type MediaPlaybackState } from './media-player';
+export { QRCode, Barcode, type BarcodeFormat } from './barcode';
+export { selectFiles, matchesFile, uploadConditions, uploadProgress, uploadStatusLabel, formatFileBytes, cropBoundsError, comparePosition, mediaIndex, type UploadConditions, type UploadSelection, type UploadEntry, type UploadRequest, type UploadIntent, type UploadRejection, type UploadRejectReason, type UploadStatus, type MediaImage, type CropBounds } from './media-model';
+export {Chart,Sparkline} from './chart';
+export {MapView} from './map';
+export {Gantt,type GanttTaskChange} from './gantt';
+export {Kanban} from './kanban';
+export {Spreadsheet,type SheetTransfer} from './spreadsheet';
+export {CodeEditor} from './code-editor';
+export {RichTextEditor} from './rich-text-editor';
+export {MarkdownEditor,MarkdownPreview,type MarkdownMode} from './markdown-editor';
+export {DiffViewer,JsonViewer} from './diff-json';
+export {FileExplorer} from './file-explorer';
+export {FlowEditor} from './diagram';
+export {Chat,MessageList,MessageComposer,type ChatLoadState} from './chat';
+export * from './specialist-model';
+export {type SheetResult} from './sheet-formula';
+export {layoutDiagram} from './diagram-layout';
+export {jsonRows,visibleJsonRows,type JsonRow,type JsonModel} from './json-model';
+export {checkedRichDocument,defaultRichDocument,type CodeLanguage,type CodeCompletion,type RichToolbarAction} from './editor-model';
+// Append these exports to the repository's existing template index; do not replace that index.
+export {DataGrid,type GridTreeRow,type GridPasteRequest} from './data-grid';
+export {TreeGrid} from './tree-grid';
+export {VirtualDataTable} from './virtual-data-table';
+export {CellEditor,RowEditor} from './table-editors';
+export {TableColumnResize} from './table-column-resize';
+export {ColumnFilter,ColumnChooser,FilterChips,SearchPanel,TableToolbar,tableOperators,type SavedTableSearch,type TableBulkAction,type TableOutputIntent} from './table-controls';
+export {copyTableMatrix,downloadTableCsv,createTablePrintDocument} from './table-output';
+export {tableDraft,parseTableDraft,tableEditProblem,validateTableRowDraft,tableEditStillCurrent,tableHeaderProblem,tableHeaderRows,tableCellHeaders,aggregateTable,groupTable,flattenTableGroups,gridCellMove,gridRangeContains,gridRangeCells,tableOutputRows,tableOutputMatrix,serializeTableMatrix,parseTableMatrix,prepareTablePaste,cloneTableState,type TableEditableColumn,type TableEditChange,type TableEditRequest,type TableDraftResult,type TableHeaderGroup,type TableHeaderCell,type TableAggregateKind,type TableAggregate,type TableAggregateValue,type TableRowGroup,type TableGroupEntry,type GridCell as TableGridCell,type GridRange,type TableOutputScope,type TablePasteResult} from './table-advanced-model';
+
+export {UI_LOCALE,UiLocaleScope,UiMessagePipe,provideUiLocale,injectUiLocale,injectUiText} from './locale';
+export {defaultUiLocale,resolveUiLocale,uiMessage} from './locale-model';
+export type {UiDirection,UiMessages,UiLocaleOptions,UiLocaleResolved} from './locale-model';

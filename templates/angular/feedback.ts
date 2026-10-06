@@ -1,3 +1,6 @@
+import {injectUiText as injectUiRuntimeText} from './locale';
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { afterNextRender, type AfterRenderRef, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, linkedSignal, output, signal, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
 import { Icon } from './icon';
@@ -11,8 +14,9 @@ function holdBlockedFeedbackAction(element: HTMLElement, blocked: boolean): void
 const common = `:host{box-sizing:border-box;display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);overflow-wrap:anywhere;}:host([hidden]),[hidden]{display:none!important;}h2{margin:0;font-size:var(--ui-text-heading);font-weight:var(--ui-weight-heading);line-height:var(--ui-leading-heading);}p{margin-block:var(--ui-space-control-gap);}button{max-inline-size:100%;}.ui-feedback-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}.ui-feedback-frame{padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-background);}`;
 const severity = `:host([data-severity="success"]){--ui-feedback-ink:var(--ui-color-success);--ui-feedback-surface:var(--ui-color-success-surface);}:host([data-severity="warning"]){--ui-feedback-ink:var(--ui-color-warning);--ui-feedback-surface:var(--ui-color-warning-surface);}:host([data-severity="error"]){--ui-feedback-ink:var(--ui-color-danger);--ui-feedback-surface:var(--ui-color-error-surface);}.ui-feedback-frame{color:var(--ui-feedback-ink,var(--ui-color-text));background:var(--ui-feedback-surface,var(--ui-color-background));}`;
 @Component({ selector: 'ui-alert,ui-banner,ui-inline-message', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush, host: { '[hidden]': '!opened()', '[attr.data-severity]': 'severity()' },
-    template: `<div class="ui-feedback-frame"><div [attr.role]="announcement()==='off'?null:announcement()==='assertive'?'alert':'status'" aria-atomic="true">@if(title()){<h2>{{title()}}</h2>}<p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div><ng-content /><div class="ui-feedback-actions"><ng-content select="[uiAlertActions]" />@if(actionLabel()){<button uiAction data-feedback-action="action" [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}@if(closable()){<button uiAction data-feedback-action="close" [disabled]="busy()||disabled()" (click)="close()">{{closeLabel()}}</button>}</div></div>`, styles: common + severity })
+    template: `<div class="ui-feedback-frame"><div [attr.role]="announcement()==='off'?null:announcement()==='assertive'?'alert':'status'" aria-atomic="true">@if(title()){<h2>{{title()}}</h2>}<p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div><ng-content /><div class="ui-feedback-actions"><ng-content select="[uiAlertActions]" />@if(actionLabel()){<button uiAction data-feedback-action="action" [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}@if(closable()){<button uiAction data-feedback-action="close" [disabled]="busy()||disabled()" (click)="close()">{{uiEffective_closeLabel()}}</button>}</div></div>`, styles: common + severity })
 export class Alert {
+ protected readonly uiText_Alert=injectUiText();
     readonly open = input(true, { transform: booleanAttribute });
     readonly openChange = output<boolean>();
     readonly title = input('');
@@ -20,7 +24,8 @@ export class Alert {
     readonly severity = input<FeedbackSeverity>('info');
     readonly announcement = input<'polite' | 'assertive' | 'off'>('polite');
     readonly closable = input(false, { transform: booleanAttribute });
-    readonly closeLabel = input('通知を閉じる');
+    readonly closeLabel = input<string>();
+ protected readonly uiEffective_closeLabel=uiLocaleComputed(()=>this.closeLabel()??this.uiText_Alert('通知を閉じる'));
     readonly actionLabel = input('');
     readonly busy = input(false, { transform: booleanAttribute });
     readonly disabled = input(false, { transform: booleanAttribute });
@@ -74,13 +79,15 @@ export class EmptyState {
     }
 }
 @Component({ selector: 'ui-result-state', standalone: true, imports: [ActionControl, Icon], changeDetection: ChangeDetectionStrategy.OnPush, host: { '[attr.data-severity]': 'status()==="unknown"?"warning":status()' },
-    template: `<div class="ui-feedback-frame"><div role="status" aria-atomic="true"><h2><ui-icon [name]="icon()" /> {{title()}}</h2><p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div>@if(details()){<details [open]="detailsOpen()" (toggle)="detailsChange($event)"><summary>{{detailsLabel()}}</summary><p>{{details()}}</p></details>}<ng-content /><div class="ui-feedback-actions"><ng-content select="[uiResultActions]" />@if(actionLabel()){<button uiAction data-feedback-action [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}</div></div>`, styles: common + severity + `summary{min-block-size:var(--ui-size-control);cursor:pointer;}h2{display:flex;align-items:baseline;gap:var(--ui-space-control-gap);}` })
+    template: `<div class="ui-feedback-frame"><div role="status" aria-atomic="true"><h2><ui-icon [name]="icon()" /> {{title()}}</h2><p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div>@if(details()){<details [open]="detailsOpen()" (toggle)="detailsChange($event)"><summary>{{uiEffective_detailsLabel()}}</summary><p>{{details()}}</p></details>}<ng-content /><div class="ui-feedback-actions"><ng-content select="[uiResultActions]" />@if(actionLabel()){<button uiAction data-feedback-action [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}</div></div>`, styles: common + severity + `summary{min-block-size:var(--ui-size-control);cursor:pointer;}h2{display:flex;align-items:baseline;gap:var(--ui-space-control-gap);}` })
 export class ResultState {
+ protected readonly uiText_ResultState=injectUiText();
     readonly status = input<FeedbackSeverity | 'unknown'>('success');
     readonly title = input.required<string>();
     readonly message = input.required<string>();
     readonly details = input('');
-    readonly detailsLabel = input('結果の詳細');
+    readonly detailsLabel = input<string>();
+ protected readonly uiEffective_detailsLabel=uiLocaleComputed(()=>this.detailsLabel()??this.uiText_ResultState('結果の詳細'));
     readonly detailsOpen = input(false, { transform: booleanAttribute });
     readonly detailsOpenChange = output<boolean>();
     readonly actionLabel = input('');
@@ -99,6 +106,8 @@ export class ResultState {
 @Component({ selector: 'ui-progress-bar', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<label [for]="controlId()">{{label()}}</label><progress tabindex="-1" [id]="controlId()" [attr.value]="progress().value" [max]="progress().total" [attr.aria-valuetext]="description()">{{description()}}</progress><p>{{description()}}</p>@if(cancelLabel()){<button uiAction [busy]="cancelBusy()" [disabled]="disabled()" (click)="requestCancel()">{{cancelLabel()}}</button>}`, styles: common + `label{display:block;font-weight:var(--ui-weight-control);}progress{display:block;inline-size:100%;block-size:var(--ui-size-icon);accent-color:var(--ui-color-action);}` })
 export class ProgressBar {
+ private readonly uiRuntimeText_ProgressBar=injectUiRuntimeText();
+
     readonly controlId = input.required<string>();
     readonly label = input.required<string>();
     readonly value = input<number | null>(null);
@@ -109,7 +118,7 @@ export class ProgressBar {
     readonly disabled = input(false, { transform: booleanAttribute });
     readonly cancelRequested = output<void>();
     protected readonly progress = computed(() => progressValue(this.value(), this.total()));
-    protected readonly description = computed(() => this.valueText() || (this.progress().value === null ? '進捗を確認しています。' : this.progress().value + ' / ' + this.progress().total + ' (' + Math.round(this.progress().percent!) + '%)'));
+    protected readonly description = computed(() => this.valueText() || (this.progress().value === null ? this.uiRuntimeText_ProgressBar('進捗を確認しています。') : this.progress().value + ' / ' + this.progress().total + ' (' + Math.round(this.progress().percent!) + '%)'));
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     constructor() { effect(() => { const blocked = this.cancelBusy() || this.disabled() || !this.cancelLabel(); untracked(() => { const active = this.element.ownerDocument.activeElement; if (blocked && active && this.element.querySelector('button')?.contains(active))
         this.element.querySelector<HTMLElement>('progress')?.focus(); }); }); }

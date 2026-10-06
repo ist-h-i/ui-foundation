@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText} from './locale';
 import { afterNextRender, type AfterRenderRef, afterRenderEffect, Injector, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { Menu, type MenuItem, type MenuSelection } from './menu';
@@ -14,17 +16,19 @@ export interface ToolbarItem {
     host: { '[attr.data-fixed]': 'fixed()' },
     template: `<div #bar class="ui-toolbar-inner" role="toolbar" [attr.aria-label]="label()" [attr.aria-orientation]="direction()" [attr.data-direction]="direction()" [attr.data-overflow]="overflow()" (keydown)="key($event)">
  @for(item of shown();track item.id){@if(item.type==='separator'){<span class="ui-toolbar-separator" role="separator" [attr.aria-orientation]="direction()==='horizontal'?'vertical':'horizontal'"></span>}@else{<button uiAction [attr.data-toolbar-action]="item.id" [attr.tabindex]="tabId()===item.id?0:-1" [icon]="item.icon??null" [disabled]="disabled()||!!item.disabled" (focus)="activeId.set(item.id)" (click)="choose(item)">{{item.label}}</button>}}
- <ui-menu #more [hidden]="!overflowed().length" [menuId]="controlId()+'-more'" [label]="overflowLabel()" [items]="menuItems()" [disabled]="disabled()" [triggerTabIndex]="tabId()==='__more'?0:-1" [open]="menuOpen()" (openChange)="menuOpen.set($event)" (focusin)="activeId.set('__more')" (selected)="chooseMenu($event)" />
+ <ui-menu #more [hidden]="!overflowed().length" [menuId]="controlId()+'-more'" [label]="uiEffective_overflowLabel()" [items]="menuItems()" [disabled]="disabled()" [triggerTabIndex]="tabId()==='__more'?0:-1" [open]="menuOpen()" (openChange)="menuOpen.set($event)" (focusin)="activeId.set('__more')" (selected)="chooseMenu($event)" />
  </div>
- <div #measure class="ui-toolbar-measure" aria-hidden="true" inert>@for(item of available();track item.id){@if(item.type==='separator'){<span class="ui-toolbar-separator" [attr.data-measure-item]="item.id"></span>}@else{<button uiAction tabindex="-1" [attr.data-measure-item]="item.id" [icon]="item.icon??null">{{item.label}}</button>}}<button uiAction data-measure-more tabindex="-1">{{overflowLabel()}}</button></div>`,
+ <div #measure class="ui-toolbar-measure" aria-hidden="true" inert>@for(item of available();track item.id){@if(item.type==='separator'){<span class="ui-toolbar-separator" [attr.data-measure-item]="item.id"></span>}@else{<button uiAction tabindex="-1" [attr.data-measure-item]="item.id" [icon]="item.icon??null">{{item.label}}</button>}}<button uiAction data-measure-more tabindex="-1">{{uiEffective_overflowLabel()}}</button></div>`,
     styles: `:host{display:block;box-sizing:border-box;min-inline-size:0;max-inline-size:100%;padding:var(--ui-space-control-gap);background:var(--ui-color-surface);color:var(--ui-color-text);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);}:host([hidden]),[hidden]{display:none!important;}:host([data-fixed="top"]){position:sticky;inset-block-start:0;z-index:1;}:host([data-fixed="bottom"]){position:sticky;inset-block-end:0;z-index:1;}.ui-toolbar-inner{display:flex;align-items:center;gap:var(--ui-space-control-gap);min-inline-size:0;}.ui-toolbar-inner[data-overflow="wrap"]{flex-wrap:wrap;}.ui-toolbar-inner[data-direction="vertical"]{flex-direction:column;align-items:stretch;}.ui-toolbar-inner>button{flex:0 1 auto;}.ui-toolbar-inner>ui-menu{min-inline-size:0;flex:0 1 auto;}.ui-toolbar-separator{align-self:stretch;min-inline-size:var(--ui-border-control);background:var(--ui-color-border);}.ui-toolbar-inner[data-direction="vertical"]>.ui-toolbar-separator{min-block-size:var(--ui-border-control);}.ui-toolbar-measure{position:fixed;inset-block-start:0;inset-inline-start:0;display:flex;align-items:center;gap:var(--ui-space-control-gap);inline-size:max-content;visibility:hidden;pointer-events:none;}.ui-toolbar-measure>*{flex:0 0 auto;max-inline-size:none;}` })
 export class Toolbar {
+ protected readonly uiText_Toolbar=injectUiText();
     readonly controlId = input.required<string>();
     readonly label = input.required<string>();
     readonly items = input<readonly ToolbarItem[]>([]);
     readonly direction = input<'horizontal' | 'vertical'>('horizontal');
     readonly overflow = input<'menu' | 'wrap'>('menu');
-    readonly overflowLabel = input('その他の操作');
+    readonly overflowLabel = input<string>();
+ protected readonly uiEffective_overflowLabel=uiLocaleComputed(()=>this.overflowLabel()??this.uiText_Toolbar('その他の操作'));
     readonly fixed = input<'none' | 'top' | 'bottom'>('none');
     readonly disabled = input(false, { transform: booleanAttribute });
     readonly selected = output<ToolbarItem>();
@@ -65,7 +69,7 @@ export class Toolbar {
             this.available();
             this.overflow();
             this.direction();
-            this.overflowLabel();
+            this.uiEffective_overflowLabel();
             const bar = this.bar()?.nativeElement, measure = this.measure()?.nativeElement;
             if (!bar || !measure)
                 return;

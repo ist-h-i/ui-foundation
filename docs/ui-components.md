@@ -448,3 +448,17 @@ Timeline / ActivityLog
 - ackは同じ未完了id・同じresetKey・同じInfiniteScroll hostにのみ適用。終端/失敗/再試行、古いquery、loader再作成、破棄後を区別する。`invalidatePending()` はアプリの同一turn条件変更前の明示失効。
 
 共通: 意味tokenのみ、guided/denseを外部profileで切替、RTL/狭幅/文字拡大。色/余白のprimitive直参照、全ソースAST逸脱検査、backend成功/スクリーンリーダー/Firefox/Safari/実利用評価の合格主張はしません。
+
+## 全カテゴリの拡張API
+
+既存部品を含む要求の正本は[181行のマトリクス](ui-library-matrix.json)。以下は公開barrelの型、各制御項目、失敗/復旧、native操作、生成consumerの供給条件を記す。元の仮部品名と公開名の対応も各契約に含む。
+
+- [Tree / TreeSelect / Cascader / OrganizationChart](ui-library-tree-expansion-spec.ja.md)
+- [Scheduler / Agenda](ui-library-scheduler-expansion-spec.ja.md)
+- [DataTableの全機能、DataGrid/TreeGrid、列設定・編集・検索・出力](ui-library-table-expansion-spec.ja.md)
+- [File / PDF / Image / media / QR・Barcode](ui-library-media-expansion-spec.ja.md)
+- [Chart / Map / Gantt / Kanban / Spreadsheet / editor / explorer / flow / chat](ui-library-specialist-expansion-spec.ja.md)
+- [全入力のフォーム接続・locale/日付書式・RTL/CDK・profile](ui-library-runtime-foundation-spec.ja.md)
+- [生成後の独立consumer・runtime依存・worker/asset/NOTICE](ui-library-consumer-guide.ja.md)
+
+exactソースから取得した[prop/event/method/型とexport一覧](ui-library-api.json)は`node scripts/catalog-api.mjs`で更新する。これはAPI目録で、全ソースのAST逸脱やアクセシビリティを検査するものではない。compiler inferenceと継承入力はstrict consumerで確認する。

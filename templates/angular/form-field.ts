@@ -1,3 +1,4 @@
+import {UiMessagePipe} from './locale';
 import {
   AfterContentChecked,
   booleanAttribute,
@@ -29,14 +30,14 @@ export class FieldControl {
   protected readonly field = inject<FormField>(forwardRef(() => FormField));
 }
 
-@Component({
+@Component({imports:[UiMessagePipe],
   selector: 'ui-form-field',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <label class="ui-form-field-label" [attr.for]="controlId()">
       {{ label() }}
-      <span class="ui-form-field-requirement">{{ required() ? '必須' : '任意' }}</span>
+      <span class="ui-form-field-requirement">{{ required() ? ('必須' | uiMessage) : ('任意' | uiMessage) }}</span>
     </label>
     <ng-content />
     @if (hasHint()) {

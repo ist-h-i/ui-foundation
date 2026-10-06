@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText,UiMessagePipe} from './locale';
 import { booleanAttribute, afterRenderEffect, ChangeDetectionStrategy, Component, Directive, DestroyRef, ElementRef, computed, inject, input, linkedSignal, output, untracked, ViewEncapsulation, } from '@angular/core';
 import { foldBreadcrumb, navigationHref, type BreadcrumbItem } from './navigation-model';
 import { NgTemplateOutlet } from '@angular/common';
@@ -111,20 +113,22 @@ export class Navigation {
 @Component({
     selector: 'nav[uiBreadcrumb]',
     standalone: true,
-    imports: [NgTemplateOutlet, NavigationItem],
+    imports: [NgTemplateOutlet, NavigationItem,UiMessagePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    host: { class: 'ui-breadcrumb', '[attr.aria-label]': 'label()', '[attr.data-structured]': 'items() !== null' },
+    host: { class: 'ui-breadcrumb', '[attr.aria-label]': 'uiEffective_label()', '[attr.data-structured]': 'items() !== null' },
     template: `@if(items()===null){<ng-content />}@else{<ol>
     @for(item of parts().start;track item.id;let index=$index){<li>@if(index){<span class="ui-breadcrumb__separator" aria-hidden="true">{{separator()}}</span>}<ng-container [ngTemplateOutlet]="destination" [ngTemplateOutletContext]="{item:item}" /></li>}
-    @if(parts().middle.length){<li><span class="ui-breadcrumb__separator" aria-hidden="true">{{separator()}}</span><details [open]="opened()"><summary (click)="toggle($event)">省略した階層（{{parts().middle.length}}件）</summary><ol>@for(item of parts().middle;track item.id){<li><ng-container [ngTemplateOutlet]="destination" [ngTemplateOutletContext]="{item:item}" /></li>}</ol></details></li>}
+    @if(parts().middle.length){<li><span class="ui-breadcrumb__separator" aria-hidden="true">{{separator()}}</span><details [open]="opened()"><summary (click)="toggle($event)">{{'省略した階層（' | uiMessage}}{{parts().middle.length}}{{'件）' | uiMessage}}</summary><ol>@for(item of parts().middle;track item.id){<li><ng-container [ngTemplateOutlet]="destination" [ngTemplateOutletContext]="{item:item}" /></li>}</ol></details></li>}
     @for(item of parts().end;track item.id){<li><span class="ui-breadcrumb__separator" aria-hidden="true">{{separator()}}</span><ng-container [ngTemplateOutlet]="destination" [ngTemplateOutletContext]="{item:item}" /></li>}
    </ol>}
    <ng-template #destination let-item="item">@if(item.href){<a uiNavigationItem [attr.href]="href(item.href)" [attr.data-breadcrumb-id]="item.id" [currentPage]="isCurrent(item)">{{item.label}}</a>}@else{<span [attr.aria-current]="isCurrent(item)?'page':null">{{item.label}}</span>}</ng-template>`,
     styles: navigationStyles,
 })
 export class Breadcrumb {
-    readonly label = input('パンくず');
+ protected readonly uiText_Breadcrumb=injectUiText();
+    readonly label = input<string>();
+ protected readonly uiEffective_label=uiLocaleComputed(()=>this.label()??this.uiText_Breadcrumb('パンくず'));
     readonly items = input<readonly BreadcrumbItem[] | null>(null);
     readonly maxItems = input(5);
     readonly separator = input('/');

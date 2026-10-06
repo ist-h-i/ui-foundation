@@ -1,3 +1,4 @@
+import {injectUiLocale,UiMessagePipe} from './locale';
 import {booleanAttribute,ChangeDetectionStrategy,Component,computed,effect,forwardRef,input,linkedSignal,signal} from '@angular/core';
 import {FormControl,ReactiveFormsModule,NG_VALIDATORS,NG_VALUE_ACCESSOR,type AbstractControl,type ValidationErrors,type Validator} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
@@ -8,15 +9,15 @@ import {Calendar,CalendarDay} from './calendar';
 import {civilDate,localCivilISO,dateRangeError,shiftCivilMonth,type DateInputFormat} from './date-model';
 export interface DateRange{start:string|null;end:string|null}
 export interface DatePreset{label:string;range:DateRange}
-@Component({selector:'ui-date-range-picker',standalone:true,imports:[ReactiveFormsModule,ActionControl,DatePicker,Calendar,CalendarDay],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'ui-date-range-picker',standalone:true,imports:[ReactiveFormsModule,ActionControl,DatePicker,Calendar,CalendarDay,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>DateRangePicker),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>DateRangePicker),multi:true}],
- template:`<fieldset [id]="controlId()" tabindex="-1" [disabled]="blocked()" (focusout)="leftGroup($event)" [attr.aria-describedby]="descriptionIds()" [attr.aria-invalid]="error()?'true':null"><legend>{{label()}}{{required()?' (必須)':''}}</legend>
-  <div class="ui-range-inputs"><ui-date-picker [controlId]="controlId()+'-start'" [label]="label()+'の開始日'" [formControl]="start" [inputFormat]="inputFormat()" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [readonly]="readonly()" [locale]="locale()" />
-   <ui-date-picker [controlId]="controlId()+'-end'" [label]="label()+'の終了日'" [formControl]="end" [inputFormat]="inputFormat()" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [readonly]="readonly()" [locale]="locale()" /></div>
+ template:`<fieldset [id]="controlId()" tabindex="-1" [disabled]="blocked()" (focusout)="leftGroup($event)" [attr.aria-describedby]="descriptionIds()" [attr.aria-invalid]="error()?'true':null"><legend>{{label()}}{{required()?(' (必須)' | uiMessage):''}}</legend>
+  <div class="ui-range-inputs"><ui-date-picker [controlId]="controlId()+'-start'" [label]="label()+('の開始日' | uiMessage)" [formControl]="start" [inputFormat]="effectiveInputFormat()" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [readonly]="readonly()" [locale]="effectiveLocale()" />
+   <ui-date-picker [controlId]="controlId()+'-end'" [label]="label()+('の終了日' | uiMessage)" [formControl]="end" [inputFormat]="effectiveInputFormat()" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [readonly]="readonly()" [locale]="effectiveLocale()" /></div>
   <div class="ui-range-presets">@for(preset of presets();track preset.label){<button uiAction [disabled]="blocked()||readonly()||presetError(preset)!==null" (click)="replaceRange(preset.range);touch()">{{preset.label}}</button>}
-   @if(clearable()){<button uiAction [disabled]="blocked()||readonly()" (click)="replaceRange(emptyValue);touch()">期間をクリア</button>}</div>
-  @if(months()>1){<div class="ui-range-choice"><button uiAction [attr.aria-pressed]="selecting()==='start'" [disabled]="blocked()||readonly()" (click)="selecting.set('start')">開始日を選ぶ</button><button uiAction [attr.aria-pressed]="selecting()==='end'" [disabled]="blocked()||readonly()" (click)="selecting.set('end')">終了日を選ぶ</button></div>
-   <div class="ui-range-calendars">@for(month of calendarMonths();track $index){<ui-calendar [controlId]="controlId()+'-month-'+$index" [label]="label()+'の'+($index+1)+'か月目'" [displayMonth]="month" (monthChange)="moveMonth($event,$index)" [value]="selecting()==='start'?current().start:current().end" [selectedDates]="ends()" (valueChange)="chooseDate(selecting(),$event);selecting.set('end')" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [disabled]="blocked()" [readonly]="readonly()" [weekStartsOn]="weekStartsOn()" [locale]="locale()">
+   @if(clearable()){<button uiAction [disabled]="blocked()||readonly()" (click)="replaceRange(emptyValue);touch()">{{'期間をクリア' | uiMessage}}</button>}</div>
+  @if(months()>1){<div class="ui-range-choice"><button uiAction [attr.aria-pressed]="selecting()==='start'" [disabled]="blocked()||readonly()" (click)="selecting.set('start')">{{'開始日を選ぶ' | uiMessage}}</button><button uiAction [attr.aria-pressed]="selecting()==='end'" [disabled]="blocked()||readonly()" (click)="selecting.set('end')">{{'終了日を選ぶ' | uiMessage}}</button></div>
+   <div class="ui-range-calendars">@for(month of calendarMonths();track $index){<ui-calendar [controlId]="controlId()+'-month-'+$index" [label]="label()+('の' | uiMessage)+($index+1)+('か月目' | uiMessage)" [displayMonth]="month" (monthChange)="moveMonth($event,$index)" [value]="selecting()==='start'?current().start:current().end" [selectedDates]="ends()" (valueChange)="chooseDate(selecting(),$event);selecting.set('end')" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [disabled]="blocked()" [readonly]="readonly()" [weekStartsOn]="weekStartsOn()" [locale]="effectiveLocale()">
     <ng-template uiCalendarDay let-date let-day="day"><span [class.ui-range-day]="inRange(date)">{{day}}</span></ng-template>
    </ui-calendar>}</div>}
   @if(hint()){<p [id]="controlId()+'-hint'">{{hint()}}</p>}@if(error()){<p class="ui-range-error" [id]="controlId()+'-error'" role="alert">{{error()}}</p>}
@@ -25,7 +26,7 @@ export interface DatePreset{label:string;range:DateRange}
 })
 export class DateRangePicker extends ValueControl<DateRange> implements Validator{
  protected readonly emptyValue:DateRange={start:null,end:null};readonly min=input<string|null>(null);readonly max=input<string|null>(null);readonly maxDays=input<number|null>(null);readonly disabledDates=input<readonly string[]>([]);readonly dateDisabled=input<((date:string)=>boolean)|null>(null);
- readonly months=input(2);readonly weekStartsOn=input(0);readonly locale=input('ja-JP');readonly inputFormat=input<DateInputFormat>('native');readonly initialMonth=input(localCivilISO(new Date()).slice(0,7));readonly presets=input<readonly DatePreset[]>([]);readonly clearable=input(true,{transform:booleanAttribute});
+ readonly months=input(2);readonly weekStartsOn=input(0);protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=computed(()=>this.locale()??this.uiLocaleDefaults().locale);readonly inputFormat=input<DateInputFormat>();protected readonly effectiveInputFormat=computed(()=>this.inputFormat()??this.uiLocaleDefaults().dateInputFormat);readonly initialMonth=input(localCivilISO(new Date()).slice(0,7));readonly presets=input<readonly DatePreset[]>([]);readonly clearable=input(true,{transform:booleanAttribute});
  protected readonly start=new FormControl<string|null>(null);protected readonly end=new FormControl<string|null>(null);
  protected readonly selecting=signal<'start'|'end'>('start');private readonly baseMonth=linkedSignal(()=>this.current().start?.slice(0,7)??this.initialMonth());
  protected readonly calendarMonths=computed(()=>Array.from({length:Number.isSafeInteger(this.months())?Math.max(1,Math.min(12,this.months())):1},(_,index)=>shiftCivilMonth(this.baseMonth()+'-01',index).slice(0,7)));
@@ -37,7 +38,7 @@ export class DateRangePicker extends ValueControl<DateRange> implements Validato
  protected coerce(value:unknown):DateRange{if(!value||typeof value!=='object')return this.emptyValue;const range=value as Partial<DateRange>;return {start:typeof range.start==='string'&&civilDate(range.start)?range.start:null,end:typeof range.end==='string'&&civilDate(range.end)?range.end:null};}
  registerOnValidatorChange(callback:()=>void):void{this.validatorChanged=callback;}
  override writeValue(value:unknown):void{super.writeValue(value);const range=this.coerce(value);this.start.setValue(range.start,{emitEvent:false});this.end.setValue(range.end,{emitEvent:false});}
- protected part(part:'start'|'end',date:string|null):void{this.commit({...this.current(),[part]:date});}
+ protected part(_part:'start'|'end',_date:string|null):void{if(this.start.invalid||this.end.invalid)return;this.commit({start:this.start.value,end:this.end.value});}
  protected chooseDate(part:'start'|'end',date:string|null):void{if(this.blocked()||this.readonly())return;this[part].setValue(date);}
  protected replaceRange(range:DateRange):void{if(this.blocked()||this.readonly())return;this.start.setValue(range.start,{emitEvent:false});this.end.setValue(range.end,{emitEvent:false});this.commit(range);this.validatorChanged();}
  protected leftGroup(event:FocusEvent):void{if(!(event.currentTarget as HTMLElement).contains(event.relatedTarget as Node|null))this.touch();}

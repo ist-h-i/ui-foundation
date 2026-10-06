@@ -25,6 +25,8 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'size.drawer-inline': 'length', 'size.drawer-block': 'length', 'size.navigation-rail': 'length',
   'size.mega-menu': 'length', 'size.navigation-column': 'length', 'size.knob': 'length',
   'size.collection-item': 'length', 'size.collection-viewport': 'length',
+  'size.media-viewport': 'length',
+  'size.visualization-viewport': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
   'motion.duration': 'duration', 'motion.easing': 'easing', 'opacity.watermark': 'number',
 };

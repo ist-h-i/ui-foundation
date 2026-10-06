@@ -1,3 +1,5 @@
+import {computed as uiLocaleComputed} from '@angular/core';
+import {injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, ElementRef, inject, input, output, signal, TemplateRef, untracked, } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -40,14 +42,14 @@ export const DIALOG_TEMPLATE = `
         @else { <ng-content select="[uiDialogHeader]" /><h2>{{ title() || label() }}</h2> }
       </div>
       <div class="ui-dialog__handles">
-        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" aria-label="ダイアログを移動" title="矢印キーで移動、Shiftで大きく移動">移動</button> }
-        @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? '元の大きさに戻す' : '最大化' }}</button> }
-        @if (closable()) { <button uiAction [disabled]="busy()" (click)="finish('close-button')" aria-label="ダイアログを閉じる">閉じる</button> }
+        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
+        @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
+        @if (closable()) { <button uiAction [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
       </div>
     </header>
     @if (!showHeader()) { <div class="ui-dialog__handles">
-      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" aria-label="ダイアログを移動" title="矢印キーで移動、Shiftで大きく移動">移動</button> }
-      @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? '元の大きさに戻す' : '最大化' }}</button> }
+      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
+      @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
     </div> }
     <div class="ui-dialog__body">
       @if (template('body'); as body) { <ng-container [ngTemplateOutlet]="body.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
@@ -57,8 +59,8 @@ export const DIALOG_TEMPLATE = `
       @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
       @else { <ng-content select="[uiDialogFooter]" /> }
     </footer>
-    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" aria-label="ダイアログのサイズを変更" title="矢印キーで幅と高さを変更、Shiftで大きく変更">サイズ変更</button></div> }
-    <p role="status" aria-atomic="true" class="ui-dialog__status">{{ busy() ? busyLabel() : '' }}</p>
+    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログのサイズを変更' | uiMessage" [attr.title]="'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage">{{'サイズ変更' | uiMessage}}</button></div> }
+    <p role="status" aria-atomic="true" class="ui-dialog__status">{{ busy() ? uiEffective_busyLabel() : '' }}</p>
   `;
 export const DIALOG_STYLES = `
     :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }
@@ -82,7 +84,7 @@ export const DIALOG_STYLES = `
 /** Native HTML owns modal inertness and Tab confinement. DOM ancestry keeps profiles/RTL. */
 @Component({
     selector: 'dialog[uiDialog]', standalone: true,
-    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle],
+    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle,UiMessagePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: DIALOG_TEMPLATE,
     host: {
@@ -95,6 +97,7 @@ export const DIALOG_STYLES = `
     styles: DIALOG_STYLES,
 })
 export class Dialog {
+ protected readonly uiText_Dialog=injectUiText();
     readonly label = input.required<string>();
     readonly title = input('');
     readonly open = input(false, { transform: booleanAttribute });
@@ -111,7 +114,8 @@ export class Dialog {
     readonly resizable = input(false, { transform: booleanAttribute });
     readonly maximizable = input(false, { transform: booleanAttribute });
     readonly busy = input(false, { transform: booleanAttribute });
-    readonly busyLabel = input('処理しています。');
+    readonly busyLabel = input<string>();
+ protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_Dialog('処理しています。'));
     readonly closeRequested = output<DialogCloseRequest>();
     readonly completed = output<DialogResult>();
     readonly cancelled = output<void>();

@@ -1,0 +1,50 @@
+{
+  "browser": "153.0.8010.12",
+  "port": 59005,
+  "results": [
+    {
+      "name": "scheduler-accepted-raw-utf16-event-id-native-render",
+      "profile": "guided",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "scheduler-accepted-raw-utf16-event-id-native-render",
+      "profile": "dense",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "name": "scheduler-raw-utf16-model-native",
+      "profile": "guided",
+      "model": {
+        "id": "\ud800",
+        "configurationProblem": null,
+        "entryProblem": null,
+        "entryVisible": true
+      },
+      "dom": {
+        "html": "<section _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler\" aria-label=\"Bookings\"><header _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-toolbar\"><h2 _ngcontent-ng-c3383197259=\"\">Bookings</h2><label _ngcontent-ng-c3383197259=\"\" for=\"schedule-date\">表示日</label><input _ngcontent-ng-c3383197259=\"\" type=\"date\" id=\"schedule-date\"><label _ngcontent-ng-c3383197259=\"\" for=\"schedule-view\">予定の表示</label><select _ngcontent-ng-c3383197259=\"\" id=\"schedule-view\"><option _ngcontent-ng-c3383197259=\"\" value=\"day\">日</option><option _ngcontent-ng-c3383197259=\"\" value=\"week\">週</option><option _ngcontent-ng-c3383197259=\"\" value=\"month\">月</option><option _ngcontent-ng-c3383197259=\"\" value=\"list\">一覧</option></select><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\">前の期間</button><button _ngcontent-ng-c3383197259=\"\" type=\"button\">次の期間</button></header><p _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-caption\">表示タイムゾーン: <bdi _ngcontent-ng-c3383197259=\"\">Asia/Tokyo</bdi> · 時間帯: <bdi _ngcontent-ng-c3383197259=\"\">00:00–24:00</bdi> · 2026-10-06–2026-10-08 · 1 件</p><fieldset _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-resources\"><legend _ngcontent-ng-c3383197259=\"\">表示するリソース</legend><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Room One</label><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Room Two</label><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Closed Room</label><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\">全リソースを表示</button><span _ngcontent-ng-c3383197259=\"\">未割当の予定も表示します。</span></fieldset><p _ngcontent-ng-c3383197259=\"\" data-scheduler-status=\"\" tabindex=\"-1\" role=\"status\" class=\"ui-scheduler-status\">予定移動は各予定の「移動先を編集」から開始できます。</p><!--container--><div _ngcontent-ng-c3383197259=\"\" role=\"region\" tabindex=\"0\" class=\"ui-scheduler-viewport\" aria-label=\"Bookingsの予定表示\"><ol _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-plane\" data-scheduler-view=\"list\" style=\"grid-template-columns: repeat(1, minmax(var(--ui-size-grid-item), 1fr));\"><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-06\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 1 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月6日火曜日</h3><p _ngcontent-ng-c3383197259=\"\">1 件</p><!--container--></li><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-07\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 4 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月7日水曜日</h3><p _ngcontent-ng-c3383197259=\"\">0 件</p><!--container--></li><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-08\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 7 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月8日木曜日</h3><p _ngcontent-ng-c3383197259=\"\">0 件</p><!--container--></li><!--container--><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-event\" data-scheduler-event=\"\ud800\" style=\"grid-area: 2 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">Morning booking</h3><p _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-time\"><time _ngcontent-ng-c3383197259=\"\" datetime=\"2026-10-06T00:00:00Z\"><bdi _ngcontent-ng-c3383197259=\"\">2026/10/06 9:00</bdi></time> ～ <time _ngcontent-ng-c3383197259=\"\" datetime=\"2026-10-06T01:00:00Z\"><bdi _ngcontent-ng-c3383197259=\"\">2026/10/06 10:00</bdi></time></p><p _ngcontent-ng-c3383197259=\"\">Room One</p><!--container--><!--container--><!--container--><p _ngcontent-ng-c2649447734=\"\">Alice / Room One</p><label _ngcontent-ng-c2649447734=\"\" for=\"booking-note-\ud800\">Morning booking memo</label><input _ngcontent-ng-c2649447734=\"\" id=\"booking-note-\ud800\" class=\"ng-untouched ng-pristine ng-valid\"><!--ng-container--><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\" data-move-editor=\"\" aria-label=\"Morning bookingの移動先を編集\" aria-expanded=\"false\" aria-controls=\"schedule-move-%ud800\">移動先を編集</button><section _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-move\" id=\"schedule-move-%ud800\" hidden=\"\" aria-label=\"Morning bookingの移動入力\"><!--container--></section></li><!--container--></ol></div><!--container--></section>",
+        "focus": ""
+      }
+    },
+    {
+      "name": "scheduler-raw-utf16-model-native",
+      "profile": "dense",
+      "model": {
+        "id": "\ud800",
+        "configurationProblem": null,
+        "entryProblem": null,
+        "entryVisible": true
+      },
+      "dom": {
+        "html": "<section _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler\" aria-label=\"Bookings\"><header _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-toolbar\"><h2 _ngcontent-ng-c3383197259=\"\">Bookings</h2><label _ngcontent-ng-c3383197259=\"\" for=\"schedule-date\">表示日</label><input _ngcontent-ng-c3383197259=\"\" type=\"date\" id=\"schedule-date\"><label _ngcontent-ng-c3383197259=\"\" for=\"schedule-view\">予定の表示</label><select _ngcontent-ng-c3383197259=\"\" id=\"schedule-view\"><option _ngcontent-ng-c3383197259=\"\" value=\"day\">日</option><option _ngcontent-ng-c3383197259=\"\" value=\"week\">週</option><option _ngcontent-ng-c3383197259=\"\" value=\"month\">月</option><option _ngcontent-ng-c3383197259=\"\" value=\"list\">一覧</option></select><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\">前の期間</button><button _ngcontent-ng-c3383197259=\"\" type=\"button\">次の期間</button></header><p _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-caption\">表示タイムゾーン: <bdi _ngcontent-ng-c3383197259=\"\">Asia/Tokyo</bdi> · 時間帯: <bdi _ngcontent-ng-c3383197259=\"\">00:00–24:00</bdi> · 2026-10-06–2026-10-08 · 1 件</p><fieldset _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-resources\"><legend _ngcontent-ng-c3383197259=\"\">表示するリソース</legend><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Room One</label><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Room Two</label><label _ngcontent-ng-c3383197259=\"\"><input _ngcontent-ng-c3383197259=\"\" type=\"checkbox\">Closed Room</label><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\">全リソースを表示</button><span _ngcontent-ng-c3383197259=\"\">未割当の予定も表示します。</span></fieldset><p _ngcontent-ng-c3383197259=\"\" data-scheduler-status=\"\" tabindex=\"-1\" role=\"status\" class=\"ui-scheduler-status\">予定移動は各予定の「移動先を編集」から開始できます。</p><!--container--><div _ngcontent-ng-c3383197259=\"\" role=\"region\" tabindex=\"0\" class=\"ui-scheduler-viewport\" aria-label=\"Bookingsの予定表示\"><ol _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-plane\" data-scheduler-view=\"list\" style=\"grid-template-columns: repeat(1, minmax(var(--ui-size-grid-item), 1fr));\"><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-06\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 1 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月6日火曜日</h3><p _ngcontent-ng-c3383197259=\"\">1 件</p><!--container--></li><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-07\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 4 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月7日水曜日</h3><p _ngcontent-ng-c3383197259=\"\">0 件</p><!--container--></li><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-day\" data-scheduler-day=\"2026-10-08\" data-outside-month=\"false\" hidden=\"\" style=\"grid-area: 7 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">2026年10月8日木曜日</h3><p _ngcontent-ng-c3383197259=\"\">0 件</p><!--container--></li><!--container--><li _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-event\" data-scheduler-event=\"\ud800\" style=\"grid-area: 2 / 1;\"><h3 _ngcontent-ng-c3383197259=\"\">Morning booking</h3><p _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-time\"><time _ngcontent-ng-c3383197259=\"\" datetime=\"2026-10-06T00:00:00Z\"><bdi _ngcontent-ng-c3383197259=\"\">2026/10/06 9:00</bdi></time> ～ <time _ngcontent-ng-c3383197259=\"\" datetime=\"2026-10-06T01:00:00Z\"><bdi _ngcontent-ng-c3383197259=\"\">2026/10/06 10:00</bdi></time></p><p _ngcontent-ng-c3383197259=\"\">Room One</p><!--container--><!--container--><!--container--><p _ngcontent-ng-c2649447734=\"\">Alice / Room One</p><label _ngcontent-ng-c2649447734=\"\" for=\"booking-note-\ud800\">Morning booking memo</label><input _ngcontent-ng-c2649447734=\"\" id=\"booking-note-\ud800\" class=\"ng-untouched ng-pristine ng-valid\"><!--ng-container--><!--container--><button _ngcontent-ng-c3383197259=\"\" type=\"button\" data-move-editor=\"\" aria-label=\"Morning bookingの移動先を編集\" aria-expanded=\"false\" aria-controls=\"schedule-move-%ud800\">移動先を編集</button><section _ngcontent-ng-c3383197259=\"\" class=\"ui-scheduler-move\" id=\"schedule-move-%ud800\" hidden=\"\" aria-label=\"Morning bookingの移動入力\"><!--container--></section></li><!--container--></ol></div><!--container--></section>",
+        "focus": ""
+      }
+    }
+  ],
+  "runtime": [],
+  "failed": 0
+}

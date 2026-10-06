@@ -1,3 +1,5 @@
+import {computed as localeComputed} from '@angular/core';
+import {injectUiLocale} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChildren } from '@angular/core';
 import { ActionControl } from './action-control';
 import { Icon } from './icon';
@@ -8,12 +10,14 @@ import { menuCommands, selectMenuCheck, validateMenu, type MenuItem, type MenuSe
 @Component({ selector: 'ui-menubar', standalone: true, imports: [ActionControl, Icon, Menu], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<div role="menubar" aria-orientation="horizontal" [attr.aria-label]="label()" [attr.tabindex]="roots().length?null:0">
  @for(item of roots();track item.id){
-  @if(children(item).length){<ui-menu [menuId]="controlId()+'-'+encode(item.id)" [label]="item.label!" [items]="item.children??[]" [disabled]="disabled()||!!item.disabled" [menubar]="true" [triggerTabIndex]="focusId()===item.id?0:-1" [closeOnSelect]="closeOnSelect()" (itemsChange)="changeChildren(item.id,$event)" (selected)="childSelected(item,$event)" (openChange)="menuChanged(item.id,$event)" (rootNavigation)="boundary(item.id,$event)" (focusin)="focused.set(item.id)" (keydown)="rootKey($event,item)">@if(item.icon){<ui-icon uiMenuTrigger [name]="item.icon" />}</ui-menu>}
+  @if(children(item).length){<ui-menu [locale]="effectiveLocale()" [menuId]="controlId()+'-'+encode(item.id)" [label]="item.label!" [items]="item.children??[]" [disabled]="disabled()||!!item.disabled" [menubar]="true" [triggerTabIndex]="focusId()===item.id?0:-1" [closeOnSelect]="closeOnSelect()" (itemsChange)="changeChildren(item.id,$event)" (selected)="childSelected(item,$event)" (openChange)="menuChanged(item.id,$event)" (rootNavigation)="boundary(item.id,$event)" (focusin)="focused.set(item.id)" (keydown)="rootKey($event,item)">@if(item.icon){<ui-icon uiMenuTrigger [name]="item.icon" />}</ui-menu>}
   @else{<button uiAction type="button" [id]="controlId()+'-'+encode(item.id)+'-trigger'" [attr.role]="role(item)" [attr.aria-checked]="item.type==='checkbox'||item.type==='radio'?!!item.checked:null" [attr.aria-disabled]="disabled()||item.disabled?'true':null" [attr.tabindex]="focusId()===item.id?0:-1" (focus)="focused.set(item.id)" (keydown)="rootKey($event,item)" (click)="invoke(item)">@if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}{{item.label}}</button>}
  }
  </div>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}[role='menubar']{display:flex;align-items:center;gap:var(--ui-space-control-gap);max-inline-size:100%;overflow:auto;overscroll-behavior:contain;padding:var(--ui-space-control-gap);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-control);}ui-menu,[role='menubar']>button{flex:0 0 auto;}[aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}[role='menubar']:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}` })
 export class Menubar {
+ protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=localeComputed(()=>this.locale()??this.uiLocaleDefaults().locale);
+
     readonly controlId = input.required<string>();
     readonly label = input.required<string>();
     readonly items = input<readonly MenuItem[]>([]);
@@ -128,7 +132,7 @@ export class Menubar {
             const now = performance.now();
             this.prefix = now - this.prefixAt > 600 ? event.key : this.prefix + event.key;
             this.prefixAt = now;
-            const prefix = (new Set(this.prefix).size === 1 ? event.key : this.prefix).toLocaleLowerCase(), index = nodes.findIndex(node => node.id === logical.id), ordered = [...nodes.slice(index + 1), ...nodes.slice(0, index + 1)], match = ordered.find(node => node.label?.trim().toLocaleLowerCase().startsWith(prefix));
+            const prefix = (new Set(this.prefix).size === 1 ? event.key : this.prefix).toLocaleLowerCase(this.effectiveLocale()), index = nodes.findIndex(node => node.id === logical.id), ordered = [...nodes.slice(index + 1), ...nodes.slice(0, index + 1)], match = ordered.find(node => node.label?.trim().toLocaleLowerCase(this.effectiveLocale()).startsWith(prefix));
             if (match) {
                 event.preventDefault();
                 this.closeOthers(null);
