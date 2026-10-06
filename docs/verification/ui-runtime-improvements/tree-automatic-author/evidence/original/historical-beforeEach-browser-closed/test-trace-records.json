@@ -1,0 +1,608 @@
+[
+  {
+    "version": 9,
+    "type": "context-options",
+    "origin": "testRunner",
+    "browserName": "",
+    "playwrightVersion": "1.63.0",
+    "options": {},
+    "platform": "darwin",
+    "wallTime": 1791281884217,
+    "monotonicTime": 1512465.062,
+    "sdkLanguage": "javascript",
+    "testTimeout": 30000,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "hook@1",
+    "stepId": "hook@1",
+    "startTime": 1512465.829,
+    "class": "Test",
+    "method": "hook",
+    "title": "Before Hooks",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "before",
+    "callId": "hook@2",
+    "stepId": "hook@2",
+    "parentId": "hook@1",
+    "startTime": 1512465.878,
+    "class": "Test",
+    "method": "hook",
+    "title": "beforeEach hook",
+    "params": {},
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts",
+        "line": 8,
+        "column": 7
+      }
+    ]
+  },
+  {
+    "type": "before",
+    "callId": "fixture@26",
+    "stepId": "fixture@26",
+    "parentId": "hook@2",
+    "startTime": 1512473.716,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"context\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "before",
+    "callId": "pw:api@27",
+    "stepId": "pw:api@27",
+    "parentId": "fixture@26",
+    "startTime": 1512474.497,
+    "class": "Test",
+    "method": "pw:api",
+    "title": "Create context",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "pw:api@27",
+    "endTime": 1512505.736,
+    "annotations": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@26",
+    "endTime": 1512508.259,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@28",
+    "stepId": "fixture@28",
+    "parentId": "hook@2",
+    "startTime": 1512508.607,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"page\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "before",
+    "callId": "pw:api@29",
+    "stepId": "pw:api@29",
+    "parentId": "fixture@28",
+    "startTime": 1512509.57,
+    "class": "Test",
+    "method": "pw:api",
+    "title": "Create page",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "pw:api@29",
+    "endTime": 1512822.958,
+    "annotations": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@28",
+    "endTime": 1512823.017,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@30",
+    "stepId": "fixture@30",
+    "parentId": "hook@2",
+    "startTime": 1512823.082,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"runtimeErrors\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts",
+        "line": 4,
+        "column": 24
+      }
+    ]
+  },
+  {
+    "type": "after",
+    "callId": "fixture@30",
+    "endTime": 1512824.177,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "pw:api@31",
+    "stepId": "pw:api@31",
+    "parentId": "hook@2",
+    "startTime": 1512825.536,
+    "class": "Test",
+    "method": "pw:api",
+    "title": "Navigate",
+    "subtitle": "/catalog/trees",
+    "params": {
+      "url": "/catalog/trees"
+    },
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts",
+        "line": 8,
+        "column": 45
+      }
+    ]
+  },
+  {
+    "type": "after",
+    "callId": "pw:api@31",
+    "endTime": 1514367.648,
+    "annotations": [],
+    "error": {
+      "name": "",
+      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n",
+      "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts:8:45"
+    }
+  },
+  {
+    "type": "error",
+    "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n",
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts",
+        "line": 8,
+        "column": 45
+      }
+    ]
+  },
+  {
+    "type": "after",
+    "callId": "hook@2",
+    "endTime": 1514368.293,
+    "annotations": [],
+    "error": {
+      "name": "",
+      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n",
+      "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts:8:45"
+    }
+  },
+  {
+    "type": "after",
+    "callId": "hook@1",
+    "endTime": 1514368.409,
+    "annotations": [],
+    "error": {
+      "name": "",
+      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n",
+      "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5187/catalog/trees\", waiting until \"load\"\u001b[22m\n\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/tree-catalog.spec.ts:8:45"
+    }
+  },
+  {
+    "type": "before",
+    "callId": "hook@32",
+    "stepId": "hook@32",
+    "startTime": 1514368.746,
+    "class": "Test",
+    "method": "hook",
+    "title": "After Hooks",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@33",
+    "stepId": "fixture@33",
+    "parentId": "hook@32",
+    "startTime": 1514369.02,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"runtimeErrors\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts",
+        "line": 4,
+        "column": 24
+      }
+    ]
+  },
+  {
+    "type": "before",
+    "callId": "expect@34",
+    "stepId": "expect@34",
+    "parentId": "fixture@33",
+    "startTime": 1514369.858,
+    "class": "Test",
+    "method": "expect",
+    "title": "catalog browser runtime errors and warnings",
+    "params": {
+      "expected": "[]"
+    },
+    "stack": [
+      {
+        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/catalog-test.ts",
+        "line": 5,
+        "column": 331,
+        "function": "Object.base.extend.runtimeErrors.auto"
+      }
+    ]
+  },
+  {
+    "type": "after",
+    "callId": "expect@34",
+    "endTime": 1514369.935,
+    "annotations": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@33",
+    "endTime": 1514369.96,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@35",
+    "stepId": "fixture@35",
+    "parentId": "hook@32",
+    "startTime": 1514370.276,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"page\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@35",
+    "endTime": 1514370.323,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@36",
+    "stepId": "fixture@36",
+    "parentId": "hook@32",
+    "startTime": 1514370.555,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"context\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "error",
+    "message": "Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed",
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@36",
+    "endTime": 1514373.894,
+    "annotations": [],
+    "error": {
+      "name": "",
+      "message": "Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed",
+      "stack": "Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed"
+    }
+  },
+  {
+    "type": "before",
+    "callId": "attach@28b61b6b07f23765cff7da0c4b14f700",
+    "stepId": "attach@28b61b6b07f23765cff7da0c4b14f700",
+    "startTime": 1514477.676,
+    "class": "Test",
+    "method": "test.attach",
+    "title": "Attach \"error-context\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "attach@28b61b6b07f23765cff7da0c4b14f700",
+    "endTime": 1514477.786,
+    "attachments": [
+      {
+        "name": "error-context",
+        "contentType": "text/markdown",
+        "file": "attachments/ce2914e3fada53cfe1e25bbc16914b7150d40882"
+      }
+    ]
+  },
+  {
+    "type": "before",
+    "callId": "fixture@45",
+    "stepId": "fixture@45",
+    "parentId": "hook@32",
+    "startTime": 1514478.577,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"baseURL\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@45",
+    "endTime": 1514478.585,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@46",
+    "stepId": "fixture@46",
+    "parentId": "hook@32",
+    "startTime": 1514478.589,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"userAgent\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@46",
+    "endTime": 1514478.593,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@48",
+    "stepId": "fixture@48",
+    "parentId": "hook@32",
+    "startTime": 1514478.724,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"viewport\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@48",
+    "endTime": 1514478.737,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@56",
+    "stepId": "fixture@56",
+    "parentId": "hook@32",
+    "startTime": 1514479.458,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"isMobile\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@56",
+    "endTime": 1514479.462,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@60",
+    "stepId": "fixture@60",
+    "parentId": "hook@32",
+    "startTime": 1514479.75,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"hasTouch\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@60",
+    "endTime": 1514479.754,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@63",
+    "stepId": "fixture@63",
+    "parentId": "hook@32",
+    "startTime": 1514479.949,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"deviceScaleFactor\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@63",
+    "endTime": 1514479.953,
+    "annotations": []
+  },
+  {
+    "type": "after",
+    "callId": "hook@32",
+    "endTime": 1514480.646,
+    "annotations": [],
+    "error": {
+      "name": "",
+      "message": "Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed",
+      "stack": "Error: apiRequestContext._wrapApiCall: Target page, context or browser has been closed"
+    }
+  },
+  {
+    "type": "before",
+    "callId": "hook@70",
+    "stepId": "hook@70",
+    "startTime": 1514480.795,
+    "class": "Test",
+    "method": "hook",
+    "title": "Worker Cleanup",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@75",
+    "stepId": "fixture@75",
+    "parentId": "hook@70",
+    "startTime": 1514481.404,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"browser\"",
+    "params": {},
+    "stack": []
+  },
+  {
+    "type": "after",
+    "callId": "fixture@75",
+    "endTime": 1514481.898,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@79",
+    "stepId": "fixture@79",
+    "parentId": "hook@70",
+    "startTime": 1514482.191,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"defaultBrowserType\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@79",
+    "endTime": 1514482.194,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@80",
+    "stepId": "fixture@80",
+    "parentId": "hook@70",
+    "startTime": 1514482.197,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"screenshot\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@80",
+    "endTime": 1514482.2,
+    "annotations": []
+  },
+  {
+    "type": "before",
+    "callId": "fixture@82",
+    "stepId": "fixture@82",
+    "parentId": "hook@70",
+    "startTime": 1514482.3,
+    "class": "Test",
+    "method": "fixture",
+    "title": "Fixture \"channel\"",
+    "params": {},
+    "stack": [
+      {
+        "file": "project#chromium",
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "group": "configuration"
+  },
+  {
+    "type": "after",
+    "callId": "fixture@82",
+    "endTime": 1514482.304,
+    "annotations": []
+  },
+  {
+    "type": "after",
+    "callId": "hook@70",
+    "endTime": 1514482.595,
+    "annotations": []
+  }
+]

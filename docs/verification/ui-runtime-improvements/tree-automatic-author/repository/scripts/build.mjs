@@ -1,0 +1,15 @@
+import {build} from 'esbuild';
+import {transformAsync} from '@babel/core';
+import linkerPlugin from '@angular/compiler-cli/linker/babel';
+import {needsLinking} from '@angular/compiler-cli/linker';
+import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+await mkdir('dist/fixture-app',{recursive:true});
+await mkdir('linker-cache',{recursive:true});
+const linkerEvidence=[];
+const evidenceDirectory=process.env.REVIEW_EVIDENCE??'../evidence';
+const result=await build({entryPoints:['compiled/tests/fixture-app/main.js'],outfile:'dist/fixture-app/main.js',bundle:true,format:'esm',target:'es2022',minify:true,sourcemap:true,metafile:true,plugins:[{name:'angular-linker',setup(builder){builder.onLoad({filter:/\.mjs$/},async({path})=>{const source=await readFile(path,'utf8');if(!needsLinking(path,source))return;const hash=createHash('sha256').update(path+'\nAngular22.2.1/Babel8.0.1\n'+source).digest('hex'),cache='linker-cache/'+hash+'.js';let contents,cached=true;try{contents=await readFile(cache,'utf8');}catch(error){if(error.code!=='ENOENT')throw error;cached=false;const result=await transformAsync(source,{filename:path,babelrc:false,configFile:false,plugins:[linkerPlugin],sourceMaps:'inline'});if(!result?.code)throw new Error('Linker returned no code');contents=result.code;await writeFile(cache,contents);}linkerEvidence.push({path,sourceSha256:createHash('sha256').update(source).digest('hex'),linkedSha256:createHash('sha256').update(contents).digest('hex'),cached});return{contents,loader:'js'};});}}]});
+await writeFile(evidenceDirectory+'/linker-evidence.json',JSON.stringify(linkerEvidence,null,2));
+await writeFile(evidenceDirectory+'/bundle-metafile.json',JSON.stringify(result.metafile,null,2));
+await copyFile('tests/fixture-app/index.html','dist/fixture-app/index.html');
+console.log('Built fresh public-index generated full AOT consumer.');

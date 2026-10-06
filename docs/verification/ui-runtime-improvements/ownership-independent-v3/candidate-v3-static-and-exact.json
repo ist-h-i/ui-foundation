@@ -1,0 +1,49 @@
+{
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "candidateManifestSha256": "82a5ba51fac98e8fab13e042a6026917fe7d3d7693c0a13799170aae792be1e9",
+  "source6ExactAgainstAuthorFrozenSource": true,
+  "legacySource155Retained": true,
+  "existingBaseFilesChangedOnlyDeclared": true,
+  "newProductFilesOutsideManifest": [],
+  "sourceSyncSha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+  "sourceCliSha256": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed",
+  "files": [
+    {
+      "path": "src/sync.ts",
+      "bytes": 16624,
+      "sha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e"
+    },
+    {
+      "path": "src/cli.ts",
+      "bytes": 2355,
+      "sha256": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed"
+    },
+    {
+      "path": "tests/generation/output-migration.test.ts",
+      "bytes": 12271,
+      "sha256": "1a7c97409f31aa3d0a275d77ea1e81a73d7b54f701f146e3548395abe124c57b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8390,
+      "sha256": "3bee528d1d5c1453620a8d0f59945e303f0ff6665250165089a7ec7d13bb79aa"
+    },
+    {
+      "path": "docs/design.md",
+      "bytes": 11402,
+      "sha256": "1e850edd9955720edaa6e95b00d73db3eee02345c3339159dc8843d648ded058"
+    },
+    {
+      "path": "skills/ui-development/SKILL.md",
+      "bytes": 24375,
+      "sha256": "270d215cabeaa01a748e22383c1edb952652413a53a5bac3ede75f110db48422"
+    }
+  ],
+  "differenceScopes": {
+    "sync": "Fixed SHA-owned machine registry, declared previous output, all-present ownership preflight, target manifest refusal, metadata order and ordinary I/O rollback",
+    "cli": "Sync-only --from-output parsing and ordinary report; no force/adopt/project scanning",
+    "skillAndDocs": "Machine ownership/legacy migration/app imports/single active root owner/concurrency and kill limitations",
+    "tests": "V1/relocation/negative/real EACCES/realCLI; not product stubs"
+  },
+  "sharedSourceOrGitEdits": false
+}

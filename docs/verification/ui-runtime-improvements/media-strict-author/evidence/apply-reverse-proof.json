@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-06T12:34:43.018049+00:00",
+  "apply": {
+    "command": [
+      "python3",
+      "/tmp/ui-foundation-media-strict-candidate-20261006/apply-media-candidate.py",
+      "--root",
+      "/tmp/ui-foundation-media-strict-candidate-20261006/apply-proof",
+      "--include-package"
+    ],
+    "actualExit": 0,
+    "stdout": "{\"dryRun\": false, \"fileCount\": 6, \"packageIncluded\": true, \"guarded\": true, \"root\": \"/private/tmp/ui-foundation-media-strict-candidate-20261006/apply-proof\", \"exit\": 0}\n",
+    "stderr": ""
+  },
+  "reversePatch": {
+    "command": [
+      "git",
+      "apply",
+      "--no-index",
+      "--reverse",
+      "/tmp/ui-foundation-media-strict-candidate-20261006/media-strict-candidate.patch"
+    ],
+    "actualExit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "afterAll6SHAMatch": true,
+  "inverseBeforeByteExactAll6": true,
+  "writesOnlyOwnedProofDirectory": true,
+  "exit": 0
+}

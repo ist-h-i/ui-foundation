@@ -1,0 +1,730 @@
+{
+  "stats": {
+    "startTime": "2026-10-06T12:21:24.552Z",
+    "duration": 143859.274,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "actualExit": 0,
+  "workers": 1,
+  "retries": 0,
+  "cases": [
+    {
+      "title": "native crop closes stale decoded Bitmaps during rapid replacement and destruction",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 4159,
+      "retry": 0
+    },
+    {
+      "title": "native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3683,
+      "retry": 0
+    },
+    {
+      "title": "PDF worker startup failure reports an error and terminates its native Worker",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2870,
+      "retry": 0
+    },
+    {
+      "title": "real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 9506,
+      "retry": 0
+    },
+    {
+      "title": "real VTT removal and source replacement reconcile selected caption, native mode and current cue",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1666,
+      "retry": 0
+    },
+    {
+      "title": "PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 5510,
+      "retry": 0
+    },
+    {
+      "title": "open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 8419,
+      "retry": 0
+    },
+    {
+      "title": "desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2169,
+      "retry": 0
+    },
+    {
+      "title": "Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3221,
+      "retry": 0
+    },
+    {
+      "title": "actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2167,
+      "retry": 0
+    },
+    {
+      "title": "image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2041,
+      "retry": 0
+    },
+    {
+      "title": "carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2045,
+      "retry": 0
+    },
+    {
+      "title": "image compare native keyboard/boundary endpoints, direction and RTL",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1800,
+      "retry": 0
+    },
+    {
+      "title": "crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1860,
+      "retry": 0
+    },
+    {
+      "title": "PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 2478,
+      "retry": 0
+    },
+    {
+      "title": "actual QR/Barcode encoding independently decodes raster; data change/error recovery",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1718,
+      "retry": 0
+    },
+    {
+      "title": "native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3001,
+      "retry": 0
+    },
+    {
+      "title": "guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3607,
+      "retry": 0
+    }
+  ],
+  "attachments": [
+    {
+      "test": "real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup",
+      "name": "media-play-ownership",
+      "data": [
+        {
+          "case": "old completion after newer promise fulfilled",
+          "paused": false,
+          "oldCompletionPauseCount": 0,
+          "currentTimeBefore": 0.014531,
+          "currentTimeAfter": 0.042162
+        },
+        {
+          "case": "old completion while newer promise remains pending",
+          "paused": false,
+          "oldCompletionPauseCount": 0,
+          "currentTimeBefore": 0.018115,
+          "currentTimeAfter": 0.043324
+        },
+        {
+          "case": "native playing event reentry without wrapper",
+          "paused": false,
+          "probe": {
+            "sequence": [
+              "playing",
+              "stop",
+              "new play"
+            ],
+            "playing": 2
+          },
+          "currentTimeBefore": 0.062814,
+          "currentTimeAfter": 0.111297
+        },
+        {
+          "case": "current hidden cleanup before and after stale fulfillment",
+          "paused": true,
+          "hasSrc": true
+        },
+        {
+          "case": "current disabled cleanup before and after stale fulfillment",
+          "paused": true,
+          "hasSrc": true
+        },
+        {
+          "case": "current source cleanup before and after stale fulfillment",
+          "paused": true,
+          "hasSrc": true
+        },
+        {
+          "case": "current destroy cleanup before and after stale fulfillment",
+          "paused": true,
+          "hasSrc": false
+        }
+      ]
+    },
+    {
+      "test": "real VTT removal and source replacement reconcile selected caption, native mode and current cue",
+      "name": "media-caption-reconciliation",
+      "data": [
+        {
+          "case": "caption removal",
+          "trackCount": 0,
+          "selection": "",
+          "cueCount": 0
+        },
+        {
+          "case": "same ID new src while actual VTT request pending",
+          "selection": "second",
+          "cueCount": 0
+        },
+        {
+          "case": "real replacement loaded and reordered",
+          "selection": "second",
+          "modes": [
+            "disabled",
+            "showing"
+          ],
+          "cue": "二つ目の確認字幕です。"
+        },
+        {
+          "case": "native mode change cannot replace explicit selection owner",
+          "selection": "second",
+          "modes": [
+            "disabled",
+            "showing"
+          ]
+        },
+        {
+          "case": "native labelled select explicitly changes and clears caption owner",
+          "selection": "",
+          "modes": [
+            "disabled",
+            "disabled"
+          ],
+          "cueCount": 0
+        }
+      ]
+    },
+    {
+      "test": "PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL",
+      "name": "pdf-named-region-axe",
+      "data": [
+        {
+          "profile": "guided",
+          "state": "empty",
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "state": "loading actual held request",
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "state": "loaded actual PDF.js canvas",
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "state": "invalid PDF error",
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "state": "empty",
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "state": "loading actual held request",
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "state": "loaded actual PDF.js canvas",
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "state": "invalid PDF error",
+          "violations": []
+        }
+      ]
+    },
+    {
+      "test": "open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL",
+      "name": "lightbox-rotation-geometry",
+      "data": [
+        {
+          "profile": "guided",
+          "rotation": 0,
+          "zoom": 4,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "imageWidth": 696,
+            "imageHeight": 522,
+            "canvasWidth": 696,
+            "canvasHeight": 522,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollWidth": 744,
+            "scrollHeight": 570
+          },
+          "end": {
+            "right": 198,
+            "bottom": 456,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollLeft": 522,
+            "scrollTop": 90
+          },
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "rotation": 90,
+          "zoom": 4,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "imageWidth": 522,
+            "imageHeight": 696,
+            "canvasWidth": 522,
+            "canvasHeight": 696,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollWidth": 570,
+            "scrollHeight": 744
+          },
+          "end": {
+            "right": 198,
+            "bottom": 456,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollLeft": 348,
+            "scrollTop": 264
+          },
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "rotation": 180,
+          "zoom": 4,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "imageWidth": 696,
+            "imageHeight": 522,
+            "canvasWidth": 696,
+            "canvasHeight": 522,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollWidth": 744,
+            "scrollHeight": 570
+          },
+          "end": {
+            "right": 198,
+            "bottom": 456,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollLeft": 522,
+            "scrollTop": 90
+          },
+          "violations": []
+        },
+        {
+          "profile": "guided",
+          "rotation": 270,
+          "zoom": 4,
+          "start": {
+            "left": 24,
+            "top": 24,
+            "imageWidth": 522,
+            "imageHeight": 696,
+            "canvasWidth": 522,
+            "canvasHeight": 696,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollWidth": 570,
+            "scrollHeight": 744
+          },
+          "end": {
+            "right": 198,
+            "bottom": 456,
+            "clientWidth": 222,
+            "clientHeight": 480,
+            "scrollLeft": 348,
+            "scrollTop": 264
+          },
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "rotation": 0,
+          "zoom": 4,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "imageWidth": 888,
+            "imageHeight": 666,
+            "canvasWidth": 888,
+            "canvasHeight": 666,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollWidth": 920,
+            "scrollHeight": 698
+          },
+          "end": {
+            "right": 238,
+            "bottom": 464,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollLeft": 666,
+            "scrollTop": 218
+          },
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "rotation": 90,
+          "zoom": 4,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "imageWidth": 666,
+            "imageHeight": 888,
+            "canvasWidth": 666,
+            "canvasHeight": 888,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollWidth": 698,
+            "scrollHeight": 920
+          },
+          "end": {
+            "right": 238,
+            "bottom": 464,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollLeft": 444,
+            "scrollTop": 440
+          },
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "rotation": 180,
+          "zoom": 4,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "imageWidth": 888,
+            "imageHeight": 666,
+            "canvasWidth": 888,
+            "canvasHeight": 666,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollWidth": 920,
+            "scrollHeight": 698
+          },
+          "end": {
+            "right": 238,
+            "bottom": 464,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollLeft": 666,
+            "scrollTop": 218
+          },
+          "violations": []
+        },
+        {
+          "profile": "dense",
+          "rotation": 270,
+          "zoom": 4,
+          "start": {
+            "left": 16,
+            "top": 16,
+            "imageWidth": 666,
+            "imageHeight": 888,
+            "canvasWidth": 666,
+            "canvasHeight": 888,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollWidth": 698,
+            "scrollHeight": 920
+          },
+          "end": {
+            "right": 238,
+            "bottom": 464,
+            "clientWidth": 254,
+            "clientHeight": 480,
+            "scrollLeft": 444,
+            "scrollTop": 440
+          },
+          "violations": []
+        }
+      ]
+    },
+    {
+      "test": "desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling",
+      "name": "lightbox-desktop-rotation-geometry",
+      "data": [
+        {
+          "profile": "guided",
+          "rotation": 0,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 24,
+              "left": 24,
+              "width": 862,
+              "height": 646.5,
+              "canvasWidth": 862,
+              "canvasHeight": 646.5
+            },
+            "end": {
+              "bottom": 455.5,
+              "right": 886
+            },
+            "clientWidth": 910,
+            "clientHeight": 480,
+            "scrollWidth": 910,
+            "scrollHeight": 695
+          }
+        },
+        {
+          "profile": "guided",
+          "rotation": 90,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 24,
+              "left": 131.75,
+              "width": 646.5,
+              "height": 862,
+              "canvasWidth": 646.5,
+              "canvasHeight": 862
+            },
+            "end": {
+              "bottom": 456,
+              "right": 778.25
+            },
+            "clientWidth": 910,
+            "clientHeight": 480,
+            "scrollWidth": 910,
+            "scrollHeight": 910
+          }
+        },
+        {
+          "profile": "guided",
+          "rotation": 180,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 24,
+              "left": 24,
+              "width": 862,
+              "height": 646.5,
+              "canvasWidth": 862,
+              "canvasHeight": 646.5
+            },
+            "end": {
+              "bottom": 455.5,
+              "right": 886
+            },
+            "clientWidth": 910,
+            "clientHeight": 480,
+            "scrollWidth": 910,
+            "scrollHeight": 695
+          }
+        },
+        {
+          "profile": "guided",
+          "rotation": 270,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 24,
+              "left": 131.75,
+              "width": 646.5,
+              "height": 862,
+              "canvasWidth": 646.5,
+              "canvasHeight": 862
+            },
+            "end": {
+              "bottom": 456,
+              "right": 778.25
+            },
+            "clientWidth": 910,
+            "clientHeight": 480,
+            "scrollWidth": 910,
+            "scrollHeight": 910
+          }
+        },
+        {
+          "profile": "dense",
+          "rotation": 0,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 16,
+              "left": 16,
+              "width": 894,
+              "height": 670.5,
+              "canvasWidth": 894,
+              "canvasHeight": 670.5
+            },
+            "end": {
+              "bottom": 463.5,
+              "right": 910
+            },
+            "clientWidth": 926,
+            "clientHeight": 480,
+            "scrollWidth": 926,
+            "scrollHeight": 703
+          }
+        },
+        {
+          "profile": "dense",
+          "rotation": 90,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 16,
+              "left": 127.75,
+              "width": 670.5,
+              "height": 894,
+              "canvasWidth": 670.5,
+              "canvasHeight": 894
+            },
+            "end": {
+              "bottom": 464,
+              "right": 798.25
+            },
+            "clientWidth": 926,
+            "clientHeight": 480,
+            "scrollWidth": 926,
+            "scrollHeight": 926
+          }
+        },
+        {
+          "profile": "dense",
+          "rotation": 180,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 16,
+              "left": 16,
+              "width": 894,
+              "height": 670.5,
+              "canvasWidth": 894,
+              "canvasHeight": 670.5
+            },
+            "end": {
+              "bottom": 463.5,
+              "right": 910
+            },
+            "clientWidth": 926,
+            "clientHeight": 480,
+            "scrollWidth": 926,
+            "scrollHeight": 703
+          }
+        },
+        {
+          "profile": "dense",
+          "rotation": 270,
+          "zoom": 1,
+          "geometry": {
+            "start": {
+              "top": 16,
+              "left": 127.75,
+              "width": 670.5,
+              "height": 894,
+              "canvasWidth": 670.5,
+              "canvasHeight": 894
+            },
+            "end": {
+              "bottom": 464,
+              "right": 798.25
+            },
+            "clientWidth": 926,
+            "clientHeight": 480,
+            "scrollWidth": 926,
+            "scrollHeight": 926
+          }
+        }
+      ]
+    },
+    {
+      "test": "Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control",
+      "name": "gallery-stop-intent",
+      "data": [
+        {
+          "case": "native mouse Stop/focus order",
+          "pressed": "false",
+          "indexBefore": "1",
+          "indexAfter": "1",
+          "timerAdvanceMs": 1100
+        },
+        {
+          "case": "focus Stop retained after reduce/no-preference",
+          "pressed": "false",
+          "indexBefore": "2",
+          "indexAfter": "2",
+          "timerAdvanceMs": 1100
+        },
+        {
+          "case": "native Enter explicit Start under reduced motion",
+          "pressed": "true",
+          "indexBefore": "2",
+          "indexAfter": "3",
+          "timerAdvanceMs": 400
+        },
+        {
+          "case": "actual mobile touch Stop then Start advances and Next alternative",
+          "pressedAfterNextFocus": "false",
+          "indexBefore": "1",
+          "indexAfterStart": "2",
+          "indexAfter": "3",
+          "touchContext": true,
+          "mobileContext": true
+        }
+      ]
+    }
+  ],
+  "formalAxeScope": "Existing violations assertions; formal helper does not preserve every complete axe incomplete result",
+  "nativeFixture": "Canonical base9f Media fixture generated/build through regular CLI/AOT; no independent fixture section added",
+  "sourceTemplateCount": 139,
+  "sourceInputsImmutable9fPlusMediaOnly": true
+}

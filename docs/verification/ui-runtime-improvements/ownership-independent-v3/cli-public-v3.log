@@ -1,0 +1,26 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fresh-before public-only strict/full AOT: [96mconsumer.ts[0m:[93m4[0m:[93m129[0m - [91merror[0m[90m NG8008: [0mRequired input 'cardId' from component Card must be specified.
+
+[7m4[0m @Component({selector:'ownership-consumer',standalone:true,imports:[Card,TextInput,ActionControl,ReactiveFormsModule],template:`<ui-card [title]="title"><ui-text-input controlId="ownership-field" label="保持する入力" [formControl]="value"/><button uiAction type="button">保存</button></ui-card>`})
+[7m [0m [91m                                                                                                                                ~~~~~~~[0m
+
+
+
+
+1 !== 0
+
+    at execute (/private/tmp/ui-foundation-output-ownership-independent-review/cli-public-consumer.mjs:11:254)
+    at consumer (/private/tmp/ui-foundation-output-ownership-independent-review/cli-public-consumer.mjs:18:2)
+    at async <anonymous> (/private/tmp/ui-foundation-output-ownership-independent-review/cli-public-consumer.mjs:37:18) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

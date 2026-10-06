@@ -1,0 +1,14 @@
+[WebServer] (node:8930) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:8931) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/ui/media-lifetime.spec.ts:18:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction (2.0s)
+  ✓  2 [chromium] › tests/ui/media-lifetime.spec.ts:63:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs (2.7s)
+  ✓  3 [chromium] › tests/ui/media-lifetime.spec.ts:109:1 › PDF worker startup failure reports an error and terminates its native Worker (2.0s)
+  ✓  4 [chromium] › tests/ui/media-regressions.spec.ts:28:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup (9.8s)
+  ✓  5 [chromium] › tests/ui/media-regressions.spec.ts:85:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue (1.8s)
+
+  5 passed (20.3s)

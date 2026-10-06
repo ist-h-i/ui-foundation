@@ -1,0 +1,3 @@
+このpackはMedia strict/Tree自動補完の限定承認証拠です。全製品の配布bundleではありません。正本repoのbaseCommit9f5430cをread-only archiveしcandidate/の8ファイルを適用します（package.jsonはMediaのscript proposal）。同base lockから正規依存をinstallし、ui:sync→typecheck→buildを実行します。実argv/cwdと開始/終了/exitはevidence/*.command.jsonにあります。Playwright configsと独立auditはreview-tools/へ保存しています。専用port5473が使用中ならown configのportだけ変えます。
+
+upstream-tree/は原classificationの186参照を相対treeごと保存した必要subsetです。全542 payloadは同manifestSHAの作者原packへ残り、evidence/tree-author-pack-integrity.jsonに全照合を記録します。このsubsetを全542 raw配布と誤認しないでください。原axe42 incompleteとselected supplementは別に扱います。

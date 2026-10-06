@@ -1,0 +1,8 @@
+
+> ui-foundation@0.0.0 typecheck
+> tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media
+
+tests/generation/output-migration.test.ts(99,31): error TS2353: Object literal may only specify known properties, and 'fromOutput' does not exist in type 'SyncOptions'.
+tests/generation/output-migration.test.ts(101,31): error TS2353: Object literal may only specify known properties, and 'fromOutput' does not exist in type 'SyncOptions'.
+tests/generation/output-migration.test.ts(144,48): error TS2353: Object literal may only specify known properties, and 'fromOutput' does not exist in type 'SyncOptions'.
+tests/generation/output-migration.test.ts(155,31): error TS2353: Object literal may only specify known properties, and 'fromOutput' does not exist in type 'SyncOptions'.

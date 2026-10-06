@@ -1,0 +1,13 @@
+/* Renderer-created nodes are outside Angular emulated attributes. Keep these public hooks semantic. */
+ui-rich-text-editor .ui-rich-editor{min-block-size:calc(var(--ui-size-control)*3);padding:var(--ui-space-control-y);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);overflow-wrap:anywhere;white-space:pre-wrap;outline-color:var(--ui-color-focus)}
+ui-rich-text-editor .ui-rich-editor:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset)}
+ui-rich-text-editor .ui-rich-editor img,ui-markdown-preview .ui-markdown-content img{max-inline-size:100%;height:auto}
+ui-rich-text-editor .ui-rich-editor a,ui-markdown-preview .ui-markdown-content a{color:var(--ui-color-link)}
+ui-markdown-preview .ui-markdown-content table{max-inline-size:100%;border-collapse:collapse;background:var(--ui-color-surface)}
+ui-markdown-preview .ui-markdown-content th,ui-markdown-preview .ui-markdown-content td{padding:var(--ui-space-table-y) var(--ui-space-table-x);border:var(--ui-border-control) solid var(--ui-color-border);overflow-wrap:anywhere}
+ui-markdown-preview .ui-markdown-content pre{max-inline-size:100%;overflow:auto;font-family:var(--ui-font-code)}
+ui-diff-viewer .cm-mergeView{max-inline-size:100%}
+ui-diff-viewer .cm-mergeView .cm-editor{min-inline-size:0}
+ui-map .maplibregl-canvas:focus-visible,ui-map .ui-map-marker:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus))}
+ui-map .maplibregl-attrib-button{min-block-size:var(--ui-size-control);min-inline-size:var(--ui-size-control)}
+@media(prefers-reduced-motion:reduce){ui-map *,ui-rich-text-editor *,ui-code-editor *,ui-diff-viewer *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

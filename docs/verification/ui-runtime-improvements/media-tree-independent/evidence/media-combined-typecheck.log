@@ -1,0 +1,8 @@
+
+> ui-foundation@0.0.0 typecheck
+> tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media
+
+
+> ui-foundation@0.0.0 typecheck:ui:media
+> tsc -p tsconfig.ui-media.json
+

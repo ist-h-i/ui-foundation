@@ -1,0 +1,19 @@
+{
+  "label": "media-native",
+  "argv": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "playwright.independent-review.config.ts",
+    "media-regressions.spec.ts",
+    "media-lifetime.spec.ts",
+    "--grep",
+    "real play completion ownership|real VTT removal|native crop|PDF worker startup"
+  ],
+  "cwd": "/private/tmp/ui-foundation-media-tree-independent-review-20261006/repository",
+  "startedUtc": "2026-10-06T12:41:31.556027+00:00",
+  "endedUtc": "2026-10-06T12:41:52.342285+00:00",
+  "actualExit": 0,
+  "log": "media-native.log"
+}

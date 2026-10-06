@@ -1,0 +1,17 @@
+Media strict候補6ファイルとTree自動補完候補2ファイルを、それぞれ限定範囲でAPPROVEします。残るblockerはありません。core ownershipと最終統合PR全体の採否は別です。
+
+Git base9f5430cから独立315入力を作成し候補を適用しました。Media6・Tree2は作者freeze SHAと最終SHAが一致し、製品139 TSと生成139 TSはbaseと同一です。設定、lock、依存や製品APIに候補からの変更はありません。共有source/Git/hostへの書込みは0です。
+
+Mediaの独立AST監査は18テスト名、228 matcherの期待値・否定・labelが全一致です。63のassertion入力式の変更を読み、同じnative属性と値を観測することを確認しました。helperの実HTML型ガードはPlaywrightでbrowser内へ直列化する自己完結関数で、window hook型は本物のMediaCatalog/ApplicationRef/decoderから取得します。fake page、any、型検査抑制は使っていません。
+
+媒体scoped tsc、通常npm typecheckのtools→139 Angular strict/full-template→Media連鎖、正式fresh npm buildは各actual exit0です。scoped tscは3 specと実transitive TS型を検査します。全UI specの型検査や全ソースAST逸脱検査の合格とは扱いません。
+
+自分専用port5473、Chromium、worker1/retry0で媒体5件を実操作し5/5 actual0、skip/retry/flaky0です。native play開始後の旧fulfillment、Stop→new play、playing再入、hide/disable/source/destroy後のstale応答、実VTT取得待ち・差替えと字幕owner、実ImageBitmap解読とclose、実toBlobの遅延とobjectURL廃棄、実PDF Workerの起動失敗・再試行・終了を確認しました。作者18/18と独立5/5は区別しています。
+
+Tree追加2ファイルはstrict tsc actual0、正式全catalog fixture/生成物で両profile各3、計6/6 native actual0です。320px・200%・RTL・reduced motionで実DOM label・開閉、Chromium CDPのAX backend node参照、treeitem checked false/true/mixedと装飾glyph ignored、選択/CVA、親子Escapeとfocus復帰を確認しました。PageUp前後の候補focusは同じhead buttonです。全文fragmentがclip内へ収まり所有paragraphへhit-testします。text contrastは経路14.645:1、状態6.385:1。PNGにforeground/background core pixelsと実platform fontがあり、非色依存の3状態geometryが異なります。計測glyph contrastは14.645:1です。存在しない参照と低コントラストの負例も実拒否します。
+
+原axe42行はARIA18・非テキスト21・scroll clip3です。原rule/target/reason/nodeIndexと判定保持を全42行照合し、補完186参照のSHA/JSON pointer、作者pack542 payload/tar544のSHAを検証しました。axe incompleteはpassへ変更せず、同一DOMで補完した事実だけを承認します。重なりの全状態を一枚ずつ描画検査したという主張はありません。今回のPNG2枚をAIが読みましたが、人の目視・VoiceOver発話・別ブラウザー・全状態のアクセシビリティ評価とは区別します。
+
+初回normal npm syncはsandboxのtsx IPC EPERMでactual1でした。rawを保持し承認済み同コマンドをowncloneで実行してactual0です。最終pack作成前のtransport切断もprocess起動前の問題として保存し、3path不在を確認後に再開しました。既知own runner/server4 PIDとport5473の終了を読み取り確認しました。共有browser/MCPを終了するglobal cleanupは使っていません。追加UI全件980と全181再承認はこの範囲に含めません。
+
+VERDICT.json、evidenceのraw exit/command/log/Playwright結果・trace・PNG、独立auditとPACK-MANIFEST.jsonが根拠です。REPRODUCTION.mdに再現範囲を記載しました。

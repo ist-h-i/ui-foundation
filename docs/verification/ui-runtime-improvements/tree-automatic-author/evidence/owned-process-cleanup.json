@@ -1,0 +1,14 @@
+{
+  "time": "2026-10-06T12:33:18.730803+00:00",
+  "command": [
+    "lsof",
+    "-nP",
+    "-iTCP:5338",
+    "-sTCP:LISTEN"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "",
+  "listeningProcessFound": false,
+  "otherProcessesKilled": false
+}

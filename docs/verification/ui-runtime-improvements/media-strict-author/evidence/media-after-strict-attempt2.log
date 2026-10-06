@@ -1,0 +1,6 @@
+
+> ui-foundation@0.0.0 typecheck:ui:media
+> tsc -p tsconfig.ui-media.json --pretty false
+
+tests/ui/media-lifetime.spec.ts(27,95): error TS2345: Argument of type 'number | ImageBitmapOptions | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.

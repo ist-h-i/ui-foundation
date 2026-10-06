@@ -1,0 +1,160 @@
+--- /tmp/ui-foundation-output-ownership-independent-review/legacy-source/src/sync.ts	2026-10-06 21:03:36
++++ /tmp/ui-foundation-output-ownership-independent-review/candidate-v3-source/src/sync.ts	2026-10-06 21:24:18
+@@ -7,6 +7,7 @@
+ 
+ const toolRoot = fileURLToPath(new URL('../', import.meta.url));
+ const skillDirectory = '.agents/skills/project-ui';
++const ownershipPath = `${skillDirectory}/ownership.json`;
+ const digest = (content: string) => createHash('sha256').update(content).digest('hex');
+ 
+ export class SyncConflictError extends Error {
+@@ -17,7 +18,7 @@
+ }
+ 
+ export interface ProjectOptions { root: string; configPath?: string }
+-export interface SyncOptions extends ProjectOptions { dryRun?: boolean }
++export interface SyncOptions extends ProjectOptions { dryRun?: boolean; fromOutput?: string }
+ export interface Change { path: string; kind: 'create' | 'update' | 'delete' }
+ interface Manifest {
+   version: 1;
+@@ -25,7 +26,12 @@
+   configuration_hash: string;
+   files: Record<string, { sha256: string }>;
+ }
++interface Ownership { schema_version: 1; output: string; manifest_path: string }
+ 
++function ownership(output: string): Ownership {
++  return { schema_version: 1, output, manifest_path: `${output}/manifest.json` };
++}
++
+ function canonical(value: unknown): unknown {
+   if (Array.isArray(value)) return value.map(canonical);
+   if (value !== null && typeof value === 'object') {
+@@ -102,6 +108,7 @@
+       profiles: config.profiles, styling: 'semantic-tokens', checks: ['configuration', 'defined-color-pairs', 'generated-consistency'],
+       not_checked: ['application-source-deviations', 'business-correctness', 'user-understanding'] })],
+     [`${skillDirectory}/project-context.md`, projectContext(config)],
++    [ownershipPath, stableJSON(ownership(config.output))],
+   ]);
+   for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) files.set(`${config.output}/angular/${path}`, content);
+   const skill = await sourceFiles(resolve(toolRoot, 'skills/ui-development'));
+@@ -118,7 +125,12 @@
+   const configPath = containedPath(root, options.configPath ?? 'ui.config.yaml');
+   await rejectSymlinks(root, configPath);
+   const config = resolveConfig(parseConfig(await readFile(configPath, 'utf8')));
+-  const output = containedPath(root, config.output);
++  await validateOutput(root, config.output);
++  return { root, config, files: await generatedFiles(config), manifestPath: `${config.output}/manifest.json` };
++}
++
++async function validateOutput(root: string, name: string): Promise<void> {
++  const output = containedPath(root, name);
+   const skill = containedPath(root, skillDirectory);
+   const outputScope = output.toLowerCase();
+   const skillScope = skill.toLowerCase();
+@@ -127,7 +139,6 @@
+   }
+   await rejectSymlinks(root, output);
+   await rejectSymlinks(root, skill);
+-  return { root, config, files: await generatedFiles(config), manifestPath: `${config.output}/manifest.json` };
+ }
+ 
+ async function managedFiles(root: string, directory: string): Promise<string[]> {
+@@ -149,6 +160,7 @@
+ }
+ 
+ async function readManifest(root: string, path: string, output: string): Promise<Manifest | undefined> {
++  await rejectSymlinks(root, containedPath(root, path));
+   const text = await optionalText(containedPath(root, path));
+   if (text === undefined) return undefined;
+   let manifest: Manifest;
+@@ -169,6 +181,35 @@
+   return manifest;
+ }
+ 
++async function previousOwnership(root: string, output: string, fromOutput?: string): Promise<{ output: string; path: string; manifest?: Manifest }> {
++  await rejectSymlinks(root, containedPath(root, ownershipPath));
++  const registryText = await optionalText(containedPath(root, ownershipPath));
++  let registry: Ownership | undefined;
++  if (registryText !== undefined) {
++    try { registry = JSON.parse(registryText) as Ownership; }
++    catch { throw new SyncConflictError([`Invalid ownership registry: ${ownershipPath}`]); }
++    if (!registry || registry.schema_version !== 1 || typeof registry.output !== 'string'
++        || registry.manifest_path !== `${registry.output}/manifest.json`) {
++      throw new SyncConflictError([`Invalid ownership registry: ${ownershipPath}`]);
++    }
++    await validateOutput(root, registry.output);
++  }
++  if (fromOutput !== undefined) {
++    await validateOutput(root, fromOutput);
++    if (registry && registry.output !== fromOutput) {
++      throw new SyncConflictError([`--from-output must match the owned output: ${registry.output}`]);
++    }
++  }
++  const previousOutput = registry?.output ?? fromOutput ?? output;
++  const path = `${previousOutput}/manifest.json`;
++  const manifest = await readManifest(root, path, previousOutput);
++  if ((registry || fromOutput !== undefined) && !manifest) throw new SyncConflictError([`Previous manifest is missing: ${path}`]);
++  if (registryText !== undefined && manifest?.files[ownershipPath]?.sha256 !== digest(registryText)) {
++    throw new SyncConflictError([`Ownership registry does not match its manifest: ${ownershipPath}`]);
++  }
++  return { output: previousOutput, path, manifest };
++}
++
+ async function atomicWrite(path: string, content: string): Promise<void> {
+   await mkdir(dirname(path), { recursive: true });
+   const temporary = `${path}.${randomUUID()}.tmp`;
+@@ -180,31 +221,47 @@
+ 
+ export async function syncProject(options: SyncOptions): Promise<{ changes: Change[]; written: boolean }> {
+   const { root, config, files, manifestPath } = await loadProject(options);
+-  const previous = await readManifest(root, manifestPath, config.output);
+-  const present = [...await managedFiles(root, config.output), ...await managedFiles(root, skillDirectory)];
++  const owned = await previousOwnership(root, config.output, options.fromOutput);
++  if (owned.output !== config.output && owned.output.toLowerCase() === config.output.toLowerCase()) {
++    throw new SyncConflictError(['Case-only output relocation is unsupported; use a distinct intermediate output.']);
++  }
++  const previous = owned.manifest;
++  const present = [...await managedFiles(root, config.output), ...await managedFiles(root, skillDirectory),
++    ...(owned.output === config.output ? [] : await managedFiles(root, owned.output))];
+   const issues: string[] = [];
+   const oldContents = new Map<string, string | undefined>();
+-  for (const path of new Set([...present, ...files.keys(), ...Object.keys(previous?.files ?? {})])) {
++  for (const path of new Set([...present, ...files.keys(), ...Object.keys(previous?.files ?? {}), ...(previous ? [owned.path] : [])])) {
+     await rejectSymlinks(root, containedPath(root, path));
+     const content = await optionalText(containedPath(root, path));
+     oldContents.set(path, content);
+     if (content === undefined) continue;
+-    if (path === manifestPath) continue;
++    if (path === manifestPath && owned.path !== manifestPath) {
++      issues.push(`Unowned target manifest would be overwritten: ${path}`);
++      continue;
++    }
++    if (previous && path === owned.path) continue;
+     const record = previous?.files[path];
+     if (!record) issues.push(`Unowned file would be overwritten or removed: ${path}`);
+     else if (digest(content) !== record.sha256) issues.push(`Generated file was edited: ${path}`);
+   }
++  if (!previous && present.some(path => path.startsWith(skillDirectory + '/'))) {
++    issues.push('For a v1 output move without ownership.json, use sync --from-output <previous-output>.');
++  }
+   if (issues.length) throw new SyncConflictError(issues);
+   const changes: Change[] = [];
+   for (const [path, content] of files) if (oldContents.get(path) !== content) {
+     changes.push({ path, kind: oldContents.get(path) === undefined ? 'create' : 'update' });
+   }
+   for (const path of Object.keys(previous?.files ?? {})) if (!files.has(path) && oldContents.get(path) !== undefined) changes.push({ path, kind: 'delete' });
++  if (previous && owned.path !== manifestPath) changes.push({ path: owned.path, kind: 'delete' });
+   changes.sort((a, b) => a.path.localeCompare(b.path, 'en'));
+   if (options.dryRun || changes.length === 0) return { changes, written: false };
+-  // Write the manifest last. Restore completed writes if an ordinary I/O failure occurs.
+-  const ordered = changes.filter(change => change.path !== manifestPath);
++  // Commit ownership metadata after file changes; retire only the validated old manifest.
++  // Restore every attempted file, including both manifests and the registry, on ordinary I/O failure.
++  const ordered = changes.filter(change => change.path !== manifestPath && change.path !== ownershipPath && change.path !== owned.path);
+   ordered.push(...changes.filter(change => change.path === manifestPath));
++  ordered.push(...changes.filter(change => change.path === ownershipPath));
++  if (owned.path !== manifestPath) ordered.push(...changes.filter(change => change.path === owned.path));
+   const attempted: Change[] = [];
+   try {
+     for (const change of ordered) {

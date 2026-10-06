@@ -1,0 +1,47 @@
+{
+  "originalNodeInstances": 42,
+  "categories": {
+    "controlsWithinPopup": 18,
+    "nonBmp": 21,
+    "elmPartiallyObscured": 3
+  },
+  "classifications": {
+    "popup_reference_review_branch_resolved_by_DOM_and_native_AX": 18,
+    "nontext_glyph_heuristic_resolved_by_graphical_paint_and_checked_semantics": 21,
+    "native_scroll_clipping_reachable_by_keyboard_with_text_contrast_and_hit_proof": 3
+  },
+  "sourceDefectsFound": 0,
+  "productTemplatesChanged": 0,
+  "axeResultsRewritten": false,
+  "rulesDisabled": [],
+  "unclassifiedNodes": 0,
+  "freshUnmodifiedAxeScans": 6,
+  "freshUnmodifiedAxeViolations": 0,
+  "freshUnmodifiedAxeIncompleteNodeInstances": 42,
+  "formalBefore": {
+    "passed": 2,
+    "failed": 0,
+    "retries": 0
+  },
+  "complementaryFinal": {
+    "passed": 6,
+    "failed": 0,
+    "retries": 0,
+    "strictTestTypecheckExit": 0
+  },
+  "retainedHarnessAttempt1": {
+    "passed": 4,
+    "failed": 2,
+    "cause": "Test expected a different mixed glyph literal; source uses the valid distinct painted glyph. Fixed detector measures geometry."
+  },
+  "retainedWheelPhase": {
+    "passed": 6,
+    "failed": 0,
+    "textReachMethod": "native wheel only; superseded by separate fresh PageUp phase, not rewritten"
+  },
+  "realATSpeechTested": false,
+  "humanVisualReviewRequired": false,
+  "candidateAuthorReviewOnly": true,
+  "independentCriticPending": true,
+  "existing181Completion": "Parent-owned completed baseline remains unchanged; this is a Tree followup scope, not another global verdict."
+}

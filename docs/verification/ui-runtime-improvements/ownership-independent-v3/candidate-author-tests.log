@@ -1,0 +1,29 @@
+✔ output relocation keeps fixed Skill ownership, retires the old manifest, and is dry-run safe and repeatable (17103.194833ms)
+✔ v1 generation upgrades in place or relocates with an explicit previous output (3076.673875ms)
+✔ relocation rejects edited or unowned old/Skill/new files and even an identical target manifest (4135.181583ms)
+✔ registry edits, missing prior manifests, wrong explicit locations and unsafe migration paths cannot override ownership (5447.514667ms)
+✔ a missing owned registry is regenerated from the current or explicitly named prior manifest (1090.656ms)
+✔ a failure retiring the old manifest rolls back new output, registry and old generated content (1044.396042ms)
+✔ CLI v1 migration requires an explicit path once and keeps --from-output sync-only (3176.975834ms)
+✔ dry-run writes nothing; repeated generation is stable and check observes the generated output (1071.556167ms)
+✔ a changed primitive reaches CSS, resolved policy and AI context; stale output fails check (1093.516167ms)
+✔ context-only edits change AI guidance without changing tokens or Tailwind mappings (586.322ms)
+✔ default profile and labels are generated as usable application metadata (615.382209ms)
+✔ manual edits are detected and preserved, including Skill edits (2196.510542ms)
+✔ existing unowned output and Skill files are not adopted or overwritten (253.518ms)
+✔ unexpected files inside managed directories fail check and sync without deletion (794.039458ms)
+✔ missing output fails check and can be regenerated without touching application files (1060.847417ms)
+✔ invalid manifest ownership is rejected before any output changes (780.0905ms)
+✔ output directory, descendant and configuration symlinks are rejected (734.374875ms)
+✔ project-relative path boundaries and Skill/output overlap are rejected (45.418584ms)
+✔ init preserves existing config and creates a runnable fresh configuration (968.628584ms)
+✔ CLI check has a real failing exit status, and dry-run is read-only (4550.059583ms)
+✔ an ordinary I/O failure restores files already written and leaves the previous manifest (999.7815ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35665.257583

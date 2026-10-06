@@ -1,0 +1,375 @@
+{
+  "sourceSyncSha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+  "sourceDir": "/private/tmp/ui-foundation-output-ownership-independent-review/candidate-v3-source",
+  "scenarioCount": 22,
+  "negativeAttempts": 42,
+  "realLateRegistryRollback": true,
+  "failures": [],
+  "records": [
+    {
+      "scenario": "legacy-unowned-identical-registry",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Ownership registry does not match its manifest: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Ownership registry does not match its manifest: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-schema",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid ownership registry: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid ownership registry: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-manifest-mismatch",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid ownership registry: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid ownership registry: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-unsafe-parent",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: ../outside",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: ../outside",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-git",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: .git/generated",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: .git/generated",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-skill-overlap",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "output must not overlap the generated Skill directory.",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "output must not overlap the generated Skill directory.",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-hash",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Ownership registry does not match its manifest: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Ownership registry does not match its manifest: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "registry-symlink",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "manifest-symlink",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .ui/generated/manifest.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .ui/generated/manifest.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "old-ancestor-symlink",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .ui",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: .ui",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "new-ancestor-symlink",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: consumer",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Symlink is not a managed path: consumer",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "manifest-version",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest structure: .ui/generated/manifest.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest structure: .ui/generated/manifest.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "manifest-outside-record",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: application.txt",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: application.txt",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "manifest-self-record",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: .ui/generated/manifest.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: .ui/generated/manifest.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "manifest-hash-format",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Invalid manifest ownership: .agents/skills/project-ui/ownership.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "from-node-modules",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: node_modules/owned",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: node_modules/owned",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "from-absolute",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: /private/tmp/ui-foundation-output-ownership-independent-review/independent-v3-boundaries/from-absolute/.ui/generated",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unsafe project-relative path: /private/tmp/ui-foundation-output-ownership-independent-review/independent-v3-boundaries/from-absolute/.ui/generated",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "from-duplicate-owner",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "--from-output must match the owned output: .ui/generated",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "--from-output must match the owned output: .ui/generated",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "nested-owned-target-manifest",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unowned target manifest would be overwritten: .ui/generated/nested/manifest.json",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unowned target manifest would be overwritten: .ui/generated/nested/manifest.json",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "nested-target-extra-file",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Unowned file would be overwritten or removed: .ui/generated/nested/application.txt",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Unowned file would be overwritten or removed: .ui/generated/nested/application.txt",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "case-only",
+      "attempts": [
+        {
+          "dryRun": true,
+          "errorName": "SyncConflictError",
+          "message": "Case-only output relocation is unsupported; use a distinct intermediate output.",
+          "noChanges": true
+        },
+        {
+          "dryRun": false,
+          "errorName": "SyncConflictError",
+          "message": "Case-only output relocation is unsupported; use a distinct intermediate output.",
+          "noChanges": true
+        }
+      ]
+    },
+    {
+      "scenario": "late-registry-io",
+      "realPermissionFailure": true,
+      "errorCode": "EACCES",
+      "fullRollbackByteExact": true,
+      "retryCheckAndIdempotencyPassed": true
+    }
+  ],
+  "sharedChanges": false
+}

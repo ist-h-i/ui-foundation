@@ -1,0 +1,30 @@
+✔ output relocation keeps fixed Skill ownership, retires the old manifest, and is dry-run safe and repeatable (6429.836625ms)
+✔ v1 generation upgrades in place or relocates with an explicit previous output (1205.94825ms)
+✔ relocation rejects edited or unowned old/Skill/new files and even an identical target manifest (1736.707417ms)
+✔ registry edits, missing prior manifests, wrong explicit locations and unsafe migration paths cannot override ownership (2292.00725ms)
+✔ nested relocation refuses an existing target manifest even when its SHA is in the old scoped manifest (366.102208ms)
+✔ a missing owned registry is regenerated from the current or explicitly named prior manifest (594.4455ms)
+✔ a failure retiring the old manifest rolls back new output, registry and old generated content (460.420542ms)
+✔ CLI v1 migration requires an explicit path once and keeps --from-output sync-only (1649.314333ms)
+✔ dry-run writes nothing; repeated generation is stable and check observes the generated output (576.244375ms)
+✔ a changed primitive reaches CSS, resolved policy and AI context; stale output fails check (500.084166ms)
+✔ context-only edits change AI guidance without changing tokens or Tailwind mappings (270.519125ms)
+✔ default profile and labels are generated as usable application metadata (283.343ms)
+✔ manual edits are detected and preserved, including Skill edits (909.364625ms)
+✔ existing unowned output and Skill files are not adopted or overwritten (145.043292ms)
+✔ unexpected files inside managed directories fail check and sync without deletion (343.011334ms)
+✔ missing output fails check and can be regenerated without touching application files (350.942917ms)
+✔ invalid manifest ownership is rejected before any output changes (158.077792ms)
+✔ output directory, descendant and configuration symlinks are rejected (217.84825ms)
+✔ project-relative path boundaries and Skill/output overlap are rejected (20.273834ms)
+✔ init preserves existing config and creates a runnable fresh configuration (197.342375ms)
+✔ CLI check has a real failing exit status, and dry-run is read-only (1698.732708ms)
+✔ an ordinary I/O failure restores files already written and leaves the previous manifest (474.299792ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15212.907083

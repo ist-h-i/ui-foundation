@@ -1,0 +1,30 @@
+[
+  {
+    "name": "npm-typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "repository",
+    "actualExit": 0,
+    "at": "2026-10-06T12:21:22.434393+00:00",
+    "log": "evidence/npm-typecheck.log",
+    "port": null
+  },
+  {
+    "name": "native-media3",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "-c",
+      "playwright.media-verification.config.ts"
+    ],
+    "cwd": "repository",
+    "actualExit": 0,
+    "at": "2026-10-06T12:23:48.427971+00:00",
+    "log": "evidence/native-media3.log",
+    "port": 5343
+  }
+]

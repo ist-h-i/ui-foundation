@@ -1,0 +1,758 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-media-strict-candidate-20261006/repository/node_modules/.bin/playwright",
+      "test",
+      "-c",
+      "playwright.media-verification.config.ts"
+    ],
+    "configFile": "/private/tmp/ui-foundation-media-strict-candidate-20261006/repository/playwright.media-verification.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-media-strict-candidate-20261006/repository/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/ui-foundation-media-strict-candidate-20261006/evidence/native-media-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-media-strict-candidate-20261006/repository/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "media.spec.ts",
+          "media-regressions.spec.ts",
+          "media-lifetime.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../evidence/native-media-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run build && node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5343",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "media-lifetime.spec.ts",
+      "file": "media-lifetime.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native crop closes stale decoded Bitmaps during rapid replacement and destruction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4159,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:22:44.967Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-8d84e59a98fe87168b29",
+          "file": "media-lifetime.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:22:50.151Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-bf1eea36f3442724c88c",
+          "file": "media-lifetime.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "PDF worker startup failure reports an error and terminates its native Worker",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2870,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:22:53.865Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "739b4e2db3eae74fb107-9d21bca22492d8bd6e92",
+          "file": "media-lifetime.spec.ts",
+          "line": 109,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "media-regressions.spec.ts",
+      "file": "media-regressions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:22:56.822Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-play-ownership",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIGFmdGVyIG5ld2VyIHByb21pc2UgZnVsZmlsbGVkIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjAxNDUzMSwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4wNDIxNjIKICB9LAogIHsKICAgICJjYXNlIjogIm9sZCBjb21wbGV0aW9uIHdoaWxlIG5ld2VyIHByb21pc2UgcmVtYWlucyBwZW5kaW5nIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJvbGRDb21wbGV0aW9uUGF1c2VDb3VudCI6IDAsCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjAxODExNSwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4wNDMzMjQKICB9LAogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBwbGF5aW5nIGV2ZW50IHJlZW50cnkgd2l0aG91dCB3cmFwcGVyIiwKICAgICJwYXVzZWQiOiBmYWxzZSwKICAgICJwcm9iZSI6IHsKICAgICAgInNlcXVlbmNlIjogWwogICAgICAgICJwbGF5aW5nIiwKICAgICAgICAic3RvcCIsCiAgICAgICAgIm5ldyBwbGF5IgogICAgICBdLAogICAgICAicGxheWluZyI6IDIKICAgIH0sCiAgICAiY3VycmVudFRpbWVCZWZvcmUiOiAwLjA2MjgxNCwKICAgICJjdXJyZW50VGltZUFmdGVyIjogMC4xMTEyOTcKICB9LAogIHsKICAgICJjYXNlIjogImN1cnJlbnQgaGlkZGVuIGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiB0cnVlCiAgfSwKICB7CiAgICAiY2FzZSI6ICJjdXJyZW50IGRpc2FibGVkIGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiB0cnVlCiAgfSwKICB7CiAgICAiY2FzZSI6ICJjdXJyZW50IHNvdXJjZSBjbGVhbnVwIGJlZm9yZSBhbmQgYWZ0ZXIgc3RhbGUgZnVsZmlsbG1lbnQiLAogICAgInBhdXNlZCI6IHRydWUsCiAgICAiaGFzU3JjIjogdHJ1ZQogIH0sCiAgewogICAgImNhc2UiOiAiY3VycmVudCBkZXN0cm95IGNsZWFudXAgYmVmb3JlIGFuZCBhZnRlciBzdGFsZSBmdWxmaWxsbWVudCIsCiAgICAicGF1c2VkIjogdHJ1ZSwKICAgICJoYXNTcmMiOiBmYWxzZQogIH0KXQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-c3b40ba2f4e17de97fe4",
+          "file": "media-regressions.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "real VTT removal and source replacement reconcile selected caption, native mode and current cue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1666,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:06.339Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "media-caption-reconciliation",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogImNhcHRpb24gcmVtb3ZhbCIsCiAgICAidHJhY2tDb3VudCI6IDAsCiAgICAic2VsZWN0aW9uIjogIiIsCiAgICAiY3VlQ291bnQiOiAwCiAgfSwKICB7CiAgICAiY2FzZSI6ICJzYW1lIElEIG5ldyBzcmMgd2hpbGUgYWN0dWFsIFZUVCByZXF1ZXN0IHBlbmRpbmciLAogICAgInNlbGVjdGlvbiI6ICJzZWNvbmQiLAogICAgImN1ZUNvdW50IjogMAogIH0sCiAgewogICAgImNhc2UiOiAicmVhbCByZXBsYWNlbWVudCBsb2FkZWQgYW5kIHJlb3JkZXJlZCIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXSwKICAgICJjdWUiOiAi5LqM44Gk55uu44Gu56K66KqN5a2X5bmV44Gn44GZ44CCIgogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIG1vZGUgY2hhbmdlIGNhbm5vdCByZXBsYWNlIGV4cGxpY2l0IHNlbGVjdGlvbiBvd25lciIsCiAgICAic2VsZWN0aW9uIjogInNlY29uZCIsCiAgICAibW9kZXMiOiBbCiAgICAgICJkaXNhYmxlZCIsCiAgICAgICJzaG93aW5nIgogICAgXQogIH0sCiAgewogICAgImNhc2UiOiAibmF0aXZlIGxhYmVsbGVkIHNlbGVjdCBleHBsaWNpdGx5IGNoYW5nZXMgYW5kIGNsZWFycyBjYXB0aW9uIG93bmVyIiwKICAgICJzZWxlY3Rpb24iOiAiIiwKICAgICJtb2RlcyI6IFsKICAgICAgImRpc2FibGVkIiwKICAgICAgImRpc2FibGVkIgogICAgXSwKICAgICJjdWVDb3VudCI6IDAKICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-1fe4fb09331a272b83b5",
+          "file": "media-regressions.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5510,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:08.016Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "pdf-named-region-axe",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAic3RhdGUiOiAiZW1wdHkiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJsb2FkaW5nIGFjdHVhbCBoZWxkIHJlcXVlc3QiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJsb2FkZWQgYWN0dWFsIFBERi5qcyBjYW52YXMiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJzdGF0ZSI6ICJpbnZhbGlkIFBERiBlcnJvciIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAic3RhdGUiOiAiZW1wdHkiLAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInN0YXRlIjogImxvYWRpbmcgYWN0dWFsIGhlbGQgcmVxdWVzdCIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAic3RhdGUiOiAibG9hZGVkIGFjdHVhbCBQREYuanMgY2FudmFzIiwKICAgICJ2aW9sYXRpb25zIjogW10KICB9LAogIHsKICAgICJwcm9maWxlIjogImRlbnNlIiwKICAgICJzdGF0ZSI6ICJpbnZhbGlkIFBERiBlcnJvciIsCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-c62db71c43e7234e3675",
+          "file": "media-regressions.spec.ts",
+          "line": 119,
+          "column": 1
+        },
+        {
+          "title": "open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8419,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:13.539Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "lightbox-rotation-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDI0LAogICAgICAidG9wIjogMjQsCiAgICAgICJpbWFnZVdpZHRoIjogNjk2LAogICAgICAiaW1hZ2VIZWlnaHQiOiA1MjIsCiAgICAgICJjYW52YXNXaWR0aCI6IDY5NiwKICAgICAgImNhbnZhc0hlaWdodCI6IDUyMiwKICAgICAgImNsaWVudFdpZHRoIjogMjIyLAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA3NDQsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA1NzAKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAxOTgsCiAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA1MjIsCiAgICAgICJzY3JvbGxUb3AiOiA5MAogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10KICB9LAogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiA5MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAyNCwKICAgICAgInRvcCI6IDI0LAogICAgICAiaW1hZ2VXaWR0aCI6IDUyMiwKICAgICAgImltYWdlSGVpZ2h0IjogNjk2LAogICAgICAiY2FudmFzV2lkdGgiOiA1MjIsCiAgICAgICJjYW52YXNIZWlnaHQiOiA2OTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNTcwLAogICAgICAic2Nyb2xsSGVpZ2h0IjogNzQ0CiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMTk4LAogICAgICAiYm90dG9tIjogNDU2LAogICAgICAiY2xpZW50V2lkdGgiOiAyMjIsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogMzQ4LAogICAgICAic2Nyb2xsVG9wIjogMjY0CiAgICB9LAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDE4MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAyNCwKICAgICAgInRvcCI6IDI0LAogICAgICAiaW1hZ2VXaWR0aCI6IDY5NiwKICAgICAgImltYWdlSGVpZ2h0IjogNTIyLAogICAgICAiY2FudmFzV2lkdGgiOiA2OTYsCiAgICAgICJjYW52YXNIZWlnaHQiOiA1MjIsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNzQ0LAogICAgICAic2Nyb2xsSGVpZ2h0IjogNTcwCiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMTk4LAogICAgICAiYm90dG9tIjogNDU2LAogICAgICAiY2xpZW50V2lkdGgiOiAyMjIsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogNTIyLAogICAgICAic2Nyb2xsVG9wIjogOTAKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJndWlkZWQiLAogICAgInJvdGF0aW9uIjogMjcwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDI0LAogICAgICAidG9wIjogMjQsCiAgICAgICJpbWFnZVdpZHRoIjogNTIyLAogICAgICAiaW1hZ2VIZWlnaHQiOiA2OTYsCiAgICAgICJjYW52YXNXaWR0aCI6IDUyMiwKICAgICAgImNhbnZhc0hlaWdodCI6IDY5NiwKICAgICAgImNsaWVudFdpZHRoIjogMjIyLAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA1NzAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA3NDQKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAxOTgsCiAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICJjbGllbnRXaWR0aCI6IDIyMiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiAzNDgsCiAgICAgICJzY3JvbGxUb3AiOiAyNjQKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDE2LAogICAgICAidG9wIjogMTYsCiAgICAgICJpbWFnZVdpZHRoIjogODg4LAogICAgICAiaW1hZ2VIZWlnaHQiOiA2NjYsCiAgICAgICJjYW52YXNXaWR0aCI6IDg4OCwKICAgICAgImNhbnZhc0hlaWdodCI6IDY2NiwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA2OTgKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAyMzgsCiAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA2NjYsCiAgICAgICJzY3JvbGxUb3AiOiAyMTgKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiA5MCwKICAgICJ6b29tIjogNCwKICAgICJzdGFydCI6IHsKICAgICAgImxlZnQiOiAxNiwKICAgICAgInRvcCI6IDE2LAogICAgICAiaW1hZ2VXaWR0aCI6IDY2NiwKICAgICAgImltYWdlSGVpZ2h0IjogODg4LAogICAgICAiY2FudmFzV2lkdGgiOiA2NjYsCiAgICAgICJjYW52YXNIZWlnaHQiOiA4ODgsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogNjk4LAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTIwCiAgICB9LAogICAgImVuZCI6IHsKICAgICAgInJpZ2h0IjogMjM4LAogICAgICAiYm90dG9tIjogNDY0LAogICAgICAiY2xpZW50V2lkdGgiOiAyNTQsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxMZWZ0IjogNDQ0LAogICAgICAic2Nyb2xsVG9wIjogNDQwCiAgICB9LAogICAgInZpb2xhdGlvbnMiOiBbXQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInJvdGF0aW9uIjogMTgwLAogICAgInpvb20iOiA0LAogICAgInN0YXJ0IjogewogICAgICAibGVmdCI6IDE2LAogICAgICAidG9wIjogMTYsCiAgICAgICJpbWFnZVdpZHRoIjogODg4LAogICAgICAiaW1hZ2VIZWlnaHQiOiA2NjYsCiAgICAgICJjYW52YXNXaWR0aCI6IDg4OCwKICAgICAgImNhbnZhc0hlaWdodCI6IDY2NiwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjAsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA2OTgKICAgIH0sCiAgICAiZW5kIjogewogICAgICAicmlnaHQiOiAyMzgsCiAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICJjbGllbnRXaWR0aCI6IDI1NCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbExlZnQiOiA2NjYsCiAgICAgICJzY3JvbGxUb3AiOiAyMTgKICAgIH0sCiAgICAidmlvbGF0aW9ucyI6IFtdCiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAyNzAsCiAgICAiem9vbSI6IDQsCiAgICAic3RhcnQiOiB7CiAgICAgICJsZWZ0IjogMTYsCiAgICAgICJ0b3AiOiAxNiwKICAgICAgImltYWdlV2lkdGgiOiA2NjYsCiAgICAgICJpbWFnZUhlaWdodCI6IDg4OCwKICAgICAgImNhbnZhc1dpZHRoIjogNjY2LAogICAgICAiY2FudmFzSGVpZ2h0IjogODg4LAogICAgICAiY2xpZW50V2lkdGgiOiAyNTQsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDY5OCwKICAgICAgInNjcm9sbEhlaWdodCI6IDkyMAogICAgfSwKICAgICJlbmQiOiB7CiAgICAgICJyaWdodCI6IDIzOCwKICAgICAgImJvdHRvbSI6IDQ2NCwKICAgICAgImNsaWVudFdpZHRoIjogMjU0LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsTGVmdCI6IDQ0NCwKICAgICAgInNjcm9sbFRvcCI6IDQ0MAogICAgfSwKICAgICJ2aW9sYXRpb25zIjogW10KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-179f1b3ea7f4043c9c3f",
+          "file": "media-regressions.spec.ts",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2169,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:21.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "lightbox-desktop-rotation-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwcm9maWxlIjogImd1aWRlZCIsCiAgICAicm90YXRpb24iOiAwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMjQsCiAgICAgICAgIndpZHRoIjogODYyLAogICAgICAgICJoZWlnaHQiOiA2NDYuNSwKICAgICAgICAiY2FudmFzV2lkdGgiOiA4NjIsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDY0Ni41CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ1NS41LAogICAgICAgICJyaWdodCI6IDg4NgogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDY5NQogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDkwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMTMxLjc1LAogICAgICAgICJ3aWR0aCI6IDY0Ni41LAogICAgICAgICJoZWlnaHQiOiA4NjIsCiAgICAgICAgImNhbnZhc1dpZHRoIjogNjQ2LjUsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDg2MgogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NTYsCiAgICAgICAgInJpZ2h0IjogNzc4LjI1CiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkxMCwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTEwLAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTEwCiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJndWlkZWQiLAogICAgInJvdGF0aW9uIjogMTgwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDI0LAogICAgICAgICJsZWZ0IjogMjQsCiAgICAgICAgIndpZHRoIjogODYyLAogICAgICAgICJoZWlnaHQiOiA2NDYuNSwKICAgICAgICAiY2FudmFzV2lkdGgiOiA4NjIsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDY0Ni41CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ1NS41LAogICAgICAgICJyaWdodCI6IDg4NgogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDY5NQogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZ3VpZGVkIiwKICAgICJyb3RhdGlvbiI6IDI3MCwKICAgICJ6b29tIjogMSwKICAgICJnZW9tZXRyeSI6IHsKICAgICAgInN0YXJ0IjogewogICAgICAgICJ0b3AiOiAyNCwKICAgICAgICAibGVmdCI6IDEzMS43NSwKICAgICAgICAid2lkdGgiOiA2NDYuNSwKICAgICAgICAiaGVpZ2h0IjogODYyLAogICAgICAgICJjYW52YXNXaWR0aCI6IDY0Ni41LAogICAgICAgICJjYW52YXNIZWlnaHQiOiA4NjIKICAgICAgfSwKICAgICAgImVuZCI6IHsKICAgICAgICAiYm90dG9tIjogNDU2LAogICAgICAgICJyaWdodCI6IDc3OC4yNQogICAgICB9LAogICAgICAiY2xpZW50V2lkdGgiOiA5MTAsCiAgICAgICJjbGllbnRIZWlnaHQiOiA0ODAsCiAgICAgICJzY3JvbGxXaWR0aCI6IDkxMCwKICAgICAgInNjcm9sbEhlaWdodCI6IDkxMAogICAgfQogIH0sCiAgewogICAgInByb2ZpbGUiOiAiZGVuc2UiLAogICAgInJvdGF0aW9uIjogMCwKICAgICJ6b29tIjogMSwKICAgICJnZW9tZXRyeSI6IHsKICAgICAgInN0YXJ0IjogewogICAgICAgICJ0b3AiOiAxNiwKICAgICAgICAibGVmdCI6IDE2LAogICAgICAgICJ3aWR0aCI6IDg5NCwKICAgICAgICAiaGVpZ2h0IjogNjcwLjUsCiAgICAgICAgImNhbnZhc1dpZHRoIjogODk0LAogICAgICAgICJjYW52YXNIZWlnaHQiOiA2NzAuNQogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NjMuNSwKICAgICAgICAicmlnaHQiOiA5MTAKICAgICAgfSwKICAgICAgImNsaWVudFdpZHRoIjogOTI2LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjYsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA3MDMKICAgIH0KICB9LAogIHsKICAgICJwcm9maWxlIjogImRlbnNlIiwKICAgICJyb3RhdGlvbiI6IDkwLAogICAgInpvb20iOiAxLAogICAgImdlb21ldHJ5IjogewogICAgICAic3RhcnQiOiB7CiAgICAgICAgInRvcCI6IDE2LAogICAgICAgICJsZWZ0IjogMTI3Ljc1LAogICAgICAgICJ3aWR0aCI6IDY3MC41LAogICAgICAgICJoZWlnaHQiOiA4OTQsCiAgICAgICAgImNhbnZhc1dpZHRoIjogNjcwLjUsCiAgICAgICAgImNhbnZhc0hlaWdodCI6IDg5NAogICAgICB9LAogICAgICAiZW5kIjogewogICAgICAgICJib3R0b20iOiA0NjQsCiAgICAgICAgInJpZ2h0IjogNzk4LjI1CiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkyNiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTI2LAogICAgICAic2Nyb2xsSGVpZ2h0IjogOTI2CiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAxODAsCiAgICAiem9vbSI6IDEsCiAgICAiZ2VvbWV0cnkiOiB7CiAgICAgICJzdGFydCI6IHsKICAgICAgICAidG9wIjogMTYsCiAgICAgICAgImxlZnQiOiAxNiwKICAgICAgICAid2lkdGgiOiA4OTQsCiAgICAgICAgImhlaWdodCI6IDY3MC41LAogICAgICAgICJjYW52YXNXaWR0aCI6IDg5NCwKICAgICAgICAiY2FudmFzSGVpZ2h0IjogNjcwLjUKICAgICAgfSwKICAgICAgImVuZCI6IHsKICAgICAgICAiYm90dG9tIjogNDYzLjUsCiAgICAgICAgInJpZ2h0IjogOTEwCiAgICAgIH0sCiAgICAgICJjbGllbnRXaWR0aCI6IDkyNiwKICAgICAgImNsaWVudEhlaWdodCI6IDQ4MCwKICAgICAgInNjcm9sbFdpZHRoIjogOTI2LAogICAgICAic2Nyb2xsSGVpZ2h0IjogNzAzCiAgICB9CiAgfSwKICB7CiAgICAicHJvZmlsZSI6ICJkZW5zZSIsCiAgICAicm90YXRpb24iOiAyNzAsCiAgICAiem9vbSI6IDEsCiAgICAiZ2VvbWV0cnkiOiB7CiAgICAgICJzdGFydCI6IHsKICAgICAgICAidG9wIjogMTYsCiAgICAgICAgImxlZnQiOiAxMjcuNzUsCiAgICAgICAgIndpZHRoIjogNjcwLjUsCiAgICAgICAgImhlaWdodCI6IDg5NCwKICAgICAgICAiY2FudmFzV2lkdGgiOiA2NzAuNSwKICAgICAgICAiY2FudmFzSGVpZ2h0IjogODk0CiAgICAgIH0sCiAgICAgICJlbmQiOiB7CiAgICAgICAgImJvdHRvbSI6IDQ2NCwKICAgICAgICAicmlnaHQiOiA3OTguMjUKICAgICAgfSwKICAgICAgImNsaWVudFdpZHRoIjogOTI2LAogICAgICAiY2xpZW50SGVpZ2h0IjogNDgwLAogICAgICAic2Nyb2xsV2lkdGgiOiA5MjYsCiAgICAgICJzY3JvbGxIZWlnaHQiOiA5MjYKICAgIH0KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-5b53790fa349a51fe0cc",
+          "file": "media-regressions.spec.ts",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3221,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:24.148Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "gallery-stop-intent",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBtb3VzZSBTdG9wL2ZvY3VzIG9yZGVyIiwKICAgICJwcmVzc2VkIjogImZhbHNlIiwKICAgICJpbmRleEJlZm9yZSI6ICIxIiwKICAgICJpbmRleEFmdGVyIjogIjEiLAogICAgInRpbWVyQWR2YW5jZU1zIjogMTEwMAogIH0sCiAgewogICAgImNhc2UiOiAiZm9jdXMgU3RvcCByZXRhaW5lZCBhZnRlciByZWR1Y2Uvbm8tcHJlZmVyZW5jZSIsCiAgICAicHJlc3NlZCI6ICJmYWxzZSIsCiAgICAiaW5kZXhCZWZvcmUiOiAiMiIsCiAgICAiaW5kZXhBZnRlciI6ICIyIiwKICAgICJ0aW1lckFkdmFuY2VNcyI6IDExMDAKICB9LAogIHsKICAgICJjYXNlIjogIm5hdGl2ZSBFbnRlciBleHBsaWNpdCBTdGFydCB1bmRlciByZWR1Y2VkIG1vdGlvbiIsCiAgICAicHJlc3NlZCI6ICJ0cnVlIiwKICAgICJpbmRleEJlZm9yZSI6ICIyIiwKICAgICJpbmRleEFmdGVyIjogIjMiLAogICAgInRpbWVyQWR2YW5jZU1zIjogNDAwCiAgfSwKICB7CiAgICAiY2FzZSI6ICJhY3R1YWwgbW9iaWxlIHRvdWNoIFN0b3AgdGhlbiBTdGFydCBhZHZhbmNlcyBhbmQgTmV4dCBhbHRlcm5hdGl2ZSIsCiAgICAicHJlc3NlZEFmdGVyTmV4dEZvY3VzIjogImZhbHNlIiwKICAgICJpbmRleEJlZm9yZSI6ICIxIiwKICAgICJpbmRleEFmdGVyU3RhcnQiOiAiMiIsCiAgICAiaW5kZXhBZnRlciI6ICIzIiwKICAgICJ0b3VjaENvbnRleHQiOiB0cnVlLAogICAgIm1vYmlsZUNvbnRleHQiOiB0cnVlCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f99bb08b0ef11ab60cad-a00c8a04ff7193f2ae08",
+          "file": "media-regressions.spec.ts",
+          "line": 225,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "media.spec.ts",
+      "file": "media.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:27.399Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-a6d8c5938760391c65c0",
+          "file": "media.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2041,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:29.573Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-69a7e72125e4a3778e3b",
+          "file": "media.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2045,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:31.628Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-61e5b1bbd7f869bfa24f",
+          "file": "media.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "image compare native keyboard/boundary endpoints, direction and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1800,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:33.686Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-ed39a822016d047c2605",
+          "file": "media.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1860,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:35.495Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-84894d0abae0f6178f18",
+          "file": "media.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2478,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:37.367Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-a415c1f94a0161b579a8",
+          "file": "media.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "actual QR/Barcode encoding independently decodes raster; data change/error recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1718,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:39.857Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-00459a2a6d7046222ac6",
+          "file": "media.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3001,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:41.585Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-73a1c78adde00441d851",
+          "file": "media.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T12:23:44.603Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-951d1a7e8614d0412fb2",
+          "file": "media.spec.ts",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T12:21:24.552Z",
+    "duration": 143859.274,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
