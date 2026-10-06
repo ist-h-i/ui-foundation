@@ -68,6 +68,10 @@ Tailwind v4のテーマ定義はトップレベルの`@theme inline`。YAMLを�
 
 `init`は既存ファイルを上書きせず雛形を作る。`sync --dry-run`は書き込みなしで差分を示す。`sync`は同じ入力・ツール版で同じ内容を生成する。前回manifestとの照合で手編集、未所有ファイルとの衝突、symlink/プロジェクト外の出力を拒否する。`check`は設定と生成物の一致およびmanifest所有範囲を実際に検査する。全ソースのASTによる逸脱検査を実装したとは主張しない。
 
+固定Skillのownership.jsonはschema_version・output・manifest_pathを持ち、output内のv1 manifestがそのSHAを所有する。manifest自身のSHAはregistryへ入れない。output変更時はこの機械情報から旧manifestを読み、旧・新生成先とSkillの全ファイルを検査してから移行する。旧ownedファイルだけを列挙削除し、新manifest、registry更新、旧manifest退役の順で所有metadataを確定する。通常のI/O失敗は両manifestとregistryを含む全試行ファイルを復元する。root内の同時書込みや強制終了に対するtransaction原子性は保証しない。
+
+registryなしの従来v1は同outputのsyncで更新する。初回更新とoutput変更が同時ならsync専用の`--from-output <旧生成先>`が必要で、dry-runと併用できる。registryの破損・SHA不一致は明示旧pathでも無視しない。自然言語contextの解析やプロジェクト全体のmanifest探索、同内容の未所有ファイルの採用は行わない。rootにつき固定Skillのactive ownerは一つ。大文字・小文字のみの移動は拒否し、親子ディレクトリ間の移動でも全presentの所有検査を保つ。
+
 生成ディレクトリとSkillはCLIが所有する。機能コード、業務試験、custom拡張は同期対象にしない。生成物をGitで追跡する。既存の安全な処理中・エラー・復旧・focus・入力保持の部品挙動は新トークンへ接続し、互換APIを追加しない。
 
 ## 画面構成とAI

@@ -58,7 +58,7 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 /path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts check
 ```
 
-`init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。
+`init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。rootごとに一つの生成UIとSkillを所有し、複数YAMLから並行して別の所有者を作りません。
 
 利用アプリは生成されたangular/indexからstandalone部品をimportします。Angular/RxJS/CDKに加え、日程・媒体・専門部品の正規runtime依存と型が必要です。[生成consumerの導入手順](docs/ui-library-consumer-guide.ja.md)にexact版、公開API、CSS、workerとassetの配信を記録しています。CDKの公開APIで仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)を保ちます。Tailwind v4の入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。vendorのglobal CSSも含む[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
 
@@ -85,6 +85,10 @@ PDF/MapLibre/Spreadsheetのworkerは別assetとして配信し、利用アプリ
 - [共通フォーム・locale・RTL・profile契約](docs/ui-library-runtime-foundation-spec.ja.md)
 - [開発方針](docs/development.md)
 
-生成物もGitで追跡します。手編集や未所有ファイルとの衝突、symlink、プロジェクト外出力は拒否します。通常の書込み失敗では完了済みの書込みを復元しますが、プロセス強制終了を含む複数ディレクトリの原子的な更新は保証しません。生成後にoutputを移す場合は、従来の生成物をGitで確認してから整理してください。
+生成物もGitで追跡します。手編集や未所有ファイルとの衝突、symlink、プロジェクト外出力は拒否します。通常の書込み失敗では完了済みの書込みを復元しますが、プロセス強制終了や同じrootでの同時実行を含む複数ディレクトリの原子的な更新は保証しません。
+
+生成後のoutput変更は、ownership.jsonが指す旧manifestで旧生成物と固定SkillのSHAを検査して移行します。`sync --dry-run`で旧ファイルと旧manifestの削除、新ファイルと新manifestの作成、Skillと所有情報の更新を確認できます。手編集や未所有ファイルが旧・新生成先のどちらにあっても拒否し、同内容でも所有権を引き継ぎません。空の旧ディレクトリは残り、アプリが所有するimport先などの変更はアプリ側で行います。
+
+ownership.jsonがまだない従来のv1生成物は、同じoutputで一度syncすれば通常移行を利用できます。ツール更新と同時にoutputを変更する場合は、`sync --from-output .ui/generated --dry-run`で旧生成先を明示し、確認した計画を`sync --from-output .ui/generated`で適用します。既存の所有情報が壊れている場合にこのオプションで上書きすることはできません。大文字・小文字だけの移動は異なる中間生成先を経由してください。
 
 パッケージは`private: true`、ライセンスは未決定です。npmへの公開や権利許諾を指定していません。
