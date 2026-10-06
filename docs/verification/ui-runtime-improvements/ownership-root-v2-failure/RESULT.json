@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "--import",
+    "tsx",
+    "--test",
+    "tests/generation/output-migration.test.ts"
+  ],
+  "actualExit": 1,
+  "counts": {
+    "tests": 8,
+    "pass": 7,
+    "fail": 1,
+    "skip": 0,
+    "cancel": 0
+  },
+  "cause": "Specific rejection succeeded but the old message assertion accepted Unowned file only. v3 adds Unowned target manifest to that assertion; product core bytes unchanged from v2.",
+  "isFinalPass": false
+}

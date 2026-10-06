@@ -116,7 +116,7 @@ test('relocation rejects edited or unowned old/Skill/new files and even an ident
     await writeFile(resolve(root, 'ui.config.yaml'), stringify(config));
     const before = await snapshot(root);
     for (const dryRun of [true, false]) {
-      await assert.rejects(syncProject({ root, dryRun }), /Generated file was edited|Unowned file/);
+      await assert.rejects(syncProject({ root, dryRun }), /Generated file was edited|Unowned (file|target manifest)/);
       assert.deepEqual(await snapshot(root), before);
     }
   }
@@ -144,6 +144,26 @@ test('registry edits, missing prior manifests, wrong explicit locations and unsa
       await assert.rejects(syncProject({ root, fromOutput, dryRun }), /ownership|manifest|owned output|Unsafe|overlap|Symlink|Case-only/i);
       assert.deepEqual(await snapshot(root), before);
     }
+  }
+});
+
+test('nested relocation refuses an existing target manifest even when its SHA is in the old scoped manifest', async t => {
+  const { root, config } = await project(t);
+  const destination = `${oldOutput}/nested`;
+  const manifestPath = resolve(root, `${oldOutput}/manifest.json`);
+  const targetPath = `${destination}/manifest.json`;
+  const existing = await readFile(manifestPath, 'utf8');
+  await mkdir(resolve(root, destination), { recursive: true });
+  await writeFile(resolve(root, targetPath), existing);
+  const manifest = JSON.parse(existing);
+  manifest.files[targetPath] = { sha256: createHash('sha256').update(existing).digest('hex') };
+  await writeFile(manifestPath, stableJSON(manifest));
+  config.output = destination;
+  await writeFile(resolve(root, 'ui.config.yaml'), stringify(config));
+  const before = await snapshot(root);
+  for (const dryRun of [true, false]) {
+    await assert.rejects(syncProject({ root, dryRun }), /Unowned target manifest/);
+    assert.deepEqual(await snapshot(root), before);
   }
 });
 

@@ -235,6 +235,10 @@ export async function syncProject(options: SyncOptions): Promise<{ changes: Chan
     const content = await optionalText(containedPath(root, path));
     oldContents.set(path, content);
     if (content === undefined) continue;
+    if (path === manifestPath && owned.path !== manifestPath) {
+      issues.push(`Unowned target manifest would be overwritten: ${path}`);
+      continue;
+    }
     if (previous && path === owned.path) continue;
     const record = previous?.files[path];
     if (!record) issues.push(`Unowned file would be overwritten or removed: ${path}`);
