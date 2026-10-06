@@ -1,0 +1,25 @@
+
+Running 18 tests using 1 worker
+
+(node:64626) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/ui/media-lifetime.spec.ts:17:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction (2.1s)
+  ✓   2 tests/ui/media-lifetime.spec.ts:55:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs (2.6s)
+  ✓   3 tests/ui/media-lifetime.spec.ts:101:1 › PDF worker startup failure reports an error and terminates its native Worker (2.1s)
+  ✓   4 tests/ui/media-regressions.spec.ts:25:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup (12.3s)
+  ✓   5 tests/ui/media-regressions.spec.ts:81:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue (3.5s)
+  ✓   6 tests/ui/media-regressions.spec.ts:115:1 › PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL (10.2s)
+  ✓   7 tests/ui/media-regressions.spec.ts:145:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL (13.3s)
+  ✓   8 tests/ui/media-regressions.spec.ts:192:1 › desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling (4.1s)
+  ✓   9 tests/ui/media-regressions.spec.ts:220:1 › Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control (6.8s)
+  ✓  10 tests/ui/media.spec.ts:4:1 › actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus (3.7s)
+  ✓  11 tests/ui/media.spec.ts:5:1 › image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained (3.6s)
+  ✓  12 tests/ui/media.spec.ts:6:1 › carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal (3.6s)
+  ✓  13 tests/ui/media.spec.ts:7:1 › image compare native keyboard/boundary endpoints, direction and RTL (3.3s)
+  ✓  14 tests/ui/media.spec.ts:8:1 › crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates (3.5s)
+  ✓  15 tests/ui/media.spec.ts:9:1 › PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery (5.2s)
+  ✓  16 tests/ui/media.spec.ts:10:1 › actual QR/Barcode encoding independently decodes raster; data change/error recovery (3.1s)
+  ✓  17 tests/ui/media.spec.ts:11:1 › native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen (4.1s)
+  ✓  18 tests/ui/media.spec.ts:12:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe (6.3s)
+
+  18 passed (1.6m)

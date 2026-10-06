@@ -1,0 +1,289 @@
+{
+  "name": "guided-320-200-rtl",
+  "rejection": {
+    "sameArray": true,
+    "fileIdentity": true,
+    "committedBytes": 8,
+    "pickerCleared": true,
+    "attempts": [
+      {
+        "id": "independent-picker-1",
+        "requestId": 1,
+        "name": "committed.txt",
+        "bytes": 8
+      },
+      {
+        "id": "independent-picker-2",
+        "requestId": 2,
+        "name": "accepted-new.txt",
+        "bytes": 8
+      }
+    ],
+    "rejected": [
+      {
+        "name": "oversize.txt",
+        "reason": "size"
+      }
+    ]
+  },
+  "retry": {
+    "old": {
+      "id": "independent-picker-1",
+      "requestId": 1
+    },
+    "current": {
+      "id": "independent-picker-1",
+      "requestId": 3,
+      "name": "committed.txt",
+      "status": "uploading"
+    },
+    "sameFile": true,
+    "oldAccepted": false,
+    "after": "uploading"
+  },
+  "cropPixels": {
+    "width": 80,
+    "height": 40,
+    "sourceBounds": {
+      "x1": 40,
+      "y1": 20,
+      "x2": 120,
+      "y2": 60
+    },
+    "rotation": 0,
+    "type": "image/png",
+    "left": [
+      255,
+      0,
+      0,
+      255
+    ],
+    "right": [
+      255,
+      255,
+      0,
+      255
+    ]
+  },
+  "pdfGeometry": {
+    "before": {
+      "scrollHeight": 0,
+      "clientHeight": 0,
+      "scrollWidth": 256,
+      "clientWidth": 256,
+      "top": 0,
+      "left": 0,
+      "focused": true
+    },
+    "after": {
+      "top": 0,
+      "left": 0
+    }
+  },
+  "renderedDecodes": {
+    "qrRendered": {
+      "decoded": "Independent UI123456",
+      "width": 256,
+      "height": 257
+    },
+    "barcodeRendered": {
+      "error": "i",
+      "width": 256,
+      "height": 65
+    }
+  },
+  "qr": [
+    {
+      "size": 128,
+      "correction": "L",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 256,
+      "correction": "L",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 512,
+      "correction": "L",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 128,
+      "correction": "M",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 256,
+      "correction": "M",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 512,
+      "correction": "M",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 128,
+      "correction": "Q",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 256,
+      "correction": "Q",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 512,
+      "correction": "Q",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 128,
+      "correction": "H",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 256,
+      "correction": "H",
+      "decoded": "Independent UI123456"
+    },
+    {
+      "size": 512,
+      "correction": "H",
+      "decoded": "Independent UI123456"
+    }
+  ],
+  "barcodes": [
+    {
+      "format": "CODE128",
+      "value": "UI123456",
+      "decoded": "UI123456",
+      "reader": "code128",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 8960,
+        "white": 51040,
+        "other": 0
+      }
+    },
+    {
+      "format": "CODE39",
+      "value": "MEDIA42",
+      "decoded": "MEDIA42",
+      "reader": "CODE39",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 12960,
+        "white": 47040,
+        "other": 0
+      }
+    },
+    {
+      "format": "EAN13",
+      "value": "5901234123457",
+      "decoded": "5901234123457",
+      "reader": "EAN13",
+      "raster": {
+        "width": 600,
+        "height": 112,
+        "black": 7984,
+        "white": 59216,
+        "other": 0
+      }
+    },
+    {
+      "format": "EAN8",
+      "value": "96385074",
+      "decoded": "96385074",
+      "reader": "EAN8",
+      "raster": {
+        "width": 600,
+        "height": 112,
+        "black": 6224,
+        "white": 60976,
+        "other": 0
+      }
+    },
+    {
+      "format": "UPC",
+      "value": "012345678905",
+      "decoded": "012345678905",
+      "reader": "UPC",
+      "raster": {
+        "width": 600,
+        "height": 112,
+        "black": 7352,
+        "white": 59848,
+        "other": 0
+      }
+    },
+    {
+      "format": "ITF",
+      "value": "12345678",
+      "decoded": "12345678",
+      "reader": "ITF",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 6720,
+        "white": 53280,
+        "other": 0
+      }
+    },
+    {
+      "format": "ITF14",
+      "value": "10012345678902",
+      "decoded": "10012345678902",
+      "reader": "ITF14",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 11040,
+        "white": 48960,
+        "other": 0
+      }
+    },
+    {
+      "format": "MSI",
+      "value": "123456",
+      "decoded": null,
+      "reader": "Independent decoder unavailable",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 5920,
+        "white": 54080,
+        "other": 0
+      }
+    },
+    {
+      "format": "pharmacode",
+      "value": "12345",
+      "decoded": null,
+      "reader": "Independent decoder unavailable",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 3680,
+        "white": 56320,
+        "other": 0
+      }
+    },
+    {
+      "format": "codabar",
+      "value": "A1234B",
+      "decoded": "A1234B",
+      "reader": "codabar",
+      "raster": {
+        "width": 600,
+        "height": 100,
+        "black": 4800,
+        "white": 55200,
+        "other": 0
+      }
+    }
+  ]
+}

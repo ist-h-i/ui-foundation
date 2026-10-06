@@ -1,0 +1,16 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "--config=focus-followup.config.ts",
+    "tests/ui/file-focus-independent-followup.spec.ts",
+    "--workers=2",
+    "--retries=0",
+    "--reporter=line,json"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 8.747028112411499,
+  "source": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "productChanged": false,
+  "probeBoundary": "Actual native change before Angular renders; deliberate stress boundary, not an exact re-run of the uninstrumented failing test."
+}

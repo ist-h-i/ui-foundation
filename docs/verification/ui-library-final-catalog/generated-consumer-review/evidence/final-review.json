@@ -1,0 +1,4007 @@
+{
+  "decision": "APPROVE",
+  "scope": "Independent generated public-barrel consumer, selected Foundation / Media boundaries and affected Card geometry only",
+  "sourceCommit": {
+    "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "readCommand": "git --no-optional-locks -C /Users/inouehiroshi/Documents/GitHub/ui-foundation rev-parse HEAD",
+    "exit": 0,
+    "main": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+    "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+    "rootFreezeManifestSha256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a"
+  },
+  "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "assetSha256": "78fa8b8151769a869225fc9bfcdfeb1b6d3f8401f256e1e638b7c5cae2c809e8",
+  "rawTemplateTsCount": 139,
+  "generatedManagedFileCount": 150,
+  "positiveAotExit": 0,
+  "negativeAotExits": [
+    {
+      "name": "tree-context",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:13:501 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n13 @Component({selector:'consumer-app',standalone:true,imports:[Ui.Tree,Ui.TreeSelect,Ui.Cascader,Ui.OrganizationChart,Ui.TreeNodeTemplate,ReactiveFormsModule,JsonPipe],styles:layout,template:`<main><h1>部署を選択する</h1><ui-tree treeId=\"tree\" label=\"部署一覧\" [nodes]=\"nodes\" [expandedIds]=\"expanded()\" (expandedIdsChange)=\"expanded.set($event)\" [selectedIds]=\"selected()\" (selectedIdsChange)=\"selected.set($event)\"><ng-template [uiTreeNodeTemplate]=\"nodes\" let-node let-level=\"level\"><span>{{node.data?.amount?.toUpperCase()}} {{node.label}} {{level}}</span></ng-template></ui-tree><output id=\"selection\">{{selected()|json}}</output><ui-tree-select controlId=\"department\" label=\"代表部署\" [nodes]=\"nodes\" [formControl]=\"single\"/><output id=\"single\">{{single.value|json}}</output><ui-cascader controlId=\"path\" label=\"部署経路\" [nodes]=\"nodes\" [formControl]=\"path\"/><output id=\"path\">{{path.value|json}}</output><ui-organization-chart chartId=\"org\" label=\"部署構成\" [nodes]=\"nodes\" [expandedIds]=\"['root']\"><ng-template [uiTreeNodeTemplate]=\"nodes\" let-node>{{node.data?.description?.toUpperCase()}}</ng-template></ui-org"
+    },
+    {
+      "name": "scheduler-context",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:16:501 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n16 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.Scheduler,Ui.Agenda,Ui.SchedulerEventTemplate],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>予定の確認</h1><ui-scheduler #scheduler (moveRequested)=\"recordMove($event)\" schedulerId=\"schedule\" label=\"確認予定\" [date]=\"date()\" timeZone=\"Asia/Tokyo\" [events]=\"events()\" [resources]=\"resources\" view=\"day\"><ng-template [uiSchedulerEvent]=\"events()\" let-event let-entry=\"entry\" let-pending=\"pending\">{{event.data?.amount?.toUpperCase()}} {{event.title}} {{entry.startText}} {{pending}}</ng-template></ui-scheduler><ui-agenda schedulerId=\"agenda\" label=\"確認一覧\" [date]=\"date()\" timeZone=\"Asia/Tokyo\" [events]=\"events()\" [resources]=\"resources\"><ng-template [uiSchedulerEvent]=\"events()\" let-event>{{event.data?.description?.toUpperCase()}}</ng-template></ui-agenda></main>`})\n                                                                                                                                                                                                                                                     "
+    },
+    {
+      "name": "table-context",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:21:902 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n21 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.DataGrid,Ui.TreeGrid,Ui.VirtualDataTable,Ui.DataTableView,Ui.TableTemplate,Ui.ColumnFilter,Ui.ColumnChooser,Ui.FilterChips,Ui.SearchPanel,Ui.TableToolbar,Ui.CellEditor,Ui.RowEditor],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>一覧を編集する</h1><ui-data-grid #grid caption=\"申請編集\" gridId=\"edit\" [rows]=\"rows\" [columns]=\"columns\" keyField=\"id\" (saveRequested)=\"last.set($event)\"/><button id=\"reject-save\" (click)=\"reject()\">保存失敗を返す</button><button id=\"accept-save\" (click)=\"accept()\">保存完了を返す</button><ui-tree-grid caption=\"階層の申請\" gridId=\"branch\" [nodes]=\"nodes\" [columns]=\"columns\" keyField=\"id\" [expandedIds]=\"['root']\"/><ui-data-table caption=\"申請表示\" tableId=\"normal\" [rows]=\"rows\" [columns]=\"columns\" keyField=\"id\"><ng-template uiTableCell=\"amount\" [uiTableTemplateOf]=\"rows\" let-row let-value=\"value\">{{row.amount.toUpperCase()}} {{value}}</ng-template></ui-data-table><ui-virtual-data-table caption=\"仮想申請\" tableId=\"virtual\" [rows]=\"manyRows\" [columns]=\"columns\" keyField=\"id\" [height]=\"200\"/><ui-column-filte"
+    },
+    {
+      "name": "chart-prop",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:26:375 - error TS2322: Type '\"unknown-chart\"' is not assignable to type 'ChartKind'.\n\n26 @Component({selector:'consumer-app',standalone:true,imports:[Ui.Chart,Ui.Sparkline,Ui.MapView,Ui.Gantt,Ui.Kanban,Ui.Spreadsheet,Ui.CodeEditor,Ui.RichTextEditor,Ui.MarkdownEditor,Ui.MarkdownPreview,Ui.JsonViewer,Ui.DiffViewer,Ui.FileExplorer,Ui.FlowEditor,Ui.Chat,Ui.MessageList,Ui.MessageComposer,ReactiveFormsModule],styles:layout,template:`<main><h1>専門編集の確認</h1><ui-chart kind=\"unknown-chart\" label=\"申請件数\" [series]=\"series\"/><ui-sparkline label=\"推移\" [series]=\"series\"/><ui-map label=\"提出先\" [markers]=\"markers\" workerUrl=\"/assets/maplibre/maplibre-gl-worker.mjs\"/><ui-gantt label=\"確認工程\" [tasks]=\"tasks\"/><ui-kanban label=\"処理段階\" [columns]=\"boardColumns\" [cards]=\"cards\"/><ui-spreadsheet label=\"計算表\" [sheet]=\"sheet\" workerUrl=\"/assets/sheet-formula.worker.js\"/><ui-code-editor label=\"補助コード\" language=\"typescript\" [formControl]=\"code\"/><ui-rich-text-editor label=\"提出説明\" [formControl]=\"rich\"/><ui-markdown-editor label=\"案内編集\" [formControl]=\"markdown\"/><ui-markdown-preview [source]=\"markdown.value??''\"/><ui-json-viewer label=\"構造を確認\" source='{\"a\":1,\"a\":2,\"missing\":null}'/><ui-diff-viewer label"
+    },
+    {
+      "name": "file-prop",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:24:372 - error TS2322: Type 'number' is not assignable to type 'readonly File[]'.\n\n24 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.FileUpload,Ui.Dropzone,Ui.UploadList,Ui.Image,Ui.Lightbox,Ui.Gallery,Ui.ImageCompare,Ui.ImageCropper,Ui.PDFViewer,Ui.MediaPlayer,Ui.QRCode,Ui.Barcode,ReactiveFormsModule],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>添付と媒体</h1><section id=\"upload\">@if(mounted()){<ui-file-upload [value]=\"3\" #uploader controlId=\"intake\" label=\"提出添付\" accept=\".txt\" [maxBytes]=\"4\" [maxFiles]=\"4\" [items]=\"uploads()\" [formControl]=\"files\" [readonly]=\"readonly()\" (uploadRequested)=\"upload($event)\"/>}<output id=\"file-value\">{{fileNames()}}</output><output id=\"file-status\">{{files.status}}</output><button id=\"upload-remount\" (click)=\"mounted.set(!mounted())\">受付を生成・破棄</button><button id=\"upload-reset\" (click)=\"files.reset(files.value)\">ファイルを戻す</button></section><ui-dropzone controlId=\"drop\" label=\"補助添付\"/><ui-upload-list [items]=\"uploads()\"/><ui-image [src]=\"images[0].src\" alt=\"申請写真\"/><button id=\"lightbox-open\" (click)=\"opened.set(true)\">写真を拡大</button><ui-lightbox [images]=\"images\" [open]=\"opened()\" (openChange)=\"op"
+    },
+    {
+      "name": "nullable-form-types",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:36:52 - error TS2345: Argument of type 'null' is not assignable to parameter of type 'File[] | FormControlState<File[]>'.\n\n36 const invalidFileControl = new FormControl<File[]>(null);\n                                                      ~~~~\nconsumer-negative.ts:37:58 - error TS2345: Argument of type 'null' is not assignable to parameter of type 'DateRange | FormControlState<DateRange>'.\n\n37 const invalidDateControl = new FormControl<Ui.DateRange>(null);\n                                                            ~~~~\n\n"
+    },
+    {
+      "name": "ambient-typed-api",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:38:31 - error TS2322: Type 'string' is not assignable to type 'number'.\n\n38 badParser.parse(\"SUM(A1:B1)\",{row:\"bad\",col:1});\n                                 ~~~\n\n  .ui/generated/angular/formula-parser.d.ts:2:28\n    2   interface CellReference {row:number;col:number;sheet?:string;}\n                                 ~~~\n    The expected type comes from property 'row' which is declared here on type 'CellReference'\n\n"
+    },
+    {
+      "name": "ambient-absent",
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "ambient-absent.ts:1:27 - error TS7016: Could not find a declaration file for module 'fast-formula-parser'. '/private/tmp/ui-foundation-final-integration/repository/node_modules/fast-formula-parser/index.js' implicitly has an 'any' type.\n  Try `npm i --save-dev @types/fast-formula-parser` if it exists or add a new declaration (.d.ts) file containing `declare module 'fast-formula-parser';`\n\n1 import FormulaParser from \"fast-formula-parser\";\n                            ~~~~~~~~~~~~~~~~~~~~~\n\n"
+    }
+  ],
+  "compileSourceClosure": {
+    "consumer": 138,
+    "separateWorker": 1,
+    "union": 139
+  },
+  "freshVerification": {
+    "cli": {
+      "inputDigest": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "generatedManifestSha": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "commands": [
+        {
+          "name": "sync",
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "sync",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "exit": 0,
+          "manifestBefore": "71d2bc0d747c71df0bdf1c08623ba7cad644ebe44b081fd10a4e4c3ba02cd595",
+          "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "outputBefore": "55654460738e7d9ef1921d2700e2af3ca0a5aba5803d740bd6e2e7162810d17c",
+          "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+        },
+        {
+          "name": "check",
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "check",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "exit": 0,
+          "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+          "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+        },
+        {
+          "name": "sync-idempotent",
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "sync",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "exit": 0,
+          "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+          "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+        },
+        {
+          "name": "dry-run",
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "src/cli.ts",
+            "sync",
+            "--dry-run",
+            "--config",
+            "examples/ui.config.example.yaml"
+          ],
+          "exit": 0,
+          "manifestBefore": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "manifestAfter": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+          "outputBefore": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7",
+          "outputAfter": "a56f2bd9cc06033f13a67e7f306dd92a509afff04d71da72ba99703bb4a699b7"
+        }
+      ]
+    },
+    "build": {
+      "workerCompileExit": 0,
+      "consumerSourceSha256": "046ff6fe50c79b6b53544660f190224180e3fa3232ba5505ce5b1210b7cec47e",
+      "generatedManifestSha256": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "production": true,
+      "ngDevMode": false,
+      "cleanOutputDirectory": true,
+      "bundleOutputs": 78,
+      "distributionFiles": 311,
+      "distributionBytes": 43774359
+    },
+    "card": {
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "sourceSha256": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+      "consumerSourceSha256": "046ff6fe50c79b6b53544660f190224180e3fa3232ba5505ce5b1210b7cec47e",
+      "generatedManifestSha256": "b6cae7cb2834c85291ae235842d3cffce6b90580a35016f41871702e000f2821",
+      "results": [
+        {
+          "profile": "guided",
+          "errors": [],
+          "warnings": [],
+          "observations": [
+            {
+              "direction": "ltr",
+              "bounds": {
+                "card": {
+                  "left": 40,
+                  "right": 280,
+                  "width": 240
+                },
+                "content": {
+                  "left": 41,
+                  "right": 279,
+                  "width": 238
+                },
+                "input": {
+                  "left": 65,
+                  "right": 255,
+                  "width": 190
+                },
+                "areas": [
+                  {
+                    "area": "header",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "media",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "body",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "footer",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "actions",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  }
+                ],
+                "documentWidth": 320,
+                "documentScrollWidth": 320,
+                "gridColumns": "238px"
+              },
+              "selectionBeforeLocale": {
+                "start": 0,
+                "end": 2
+              },
+              "selectionAfterLocale": {
+                "start": 0,
+                "end": 2
+              },
+              "sameDom": true,
+              "nativePointerReachable": true,
+              "draftAndCvaRetained": true,
+              "keyboardSelection": true,
+              "violations": [],
+              "incomplete": []
+            },
+            {
+              "direction": "rtl",
+              "bounds": {
+                "card": {
+                  "left": 40,
+                  "right": 280,
+                  "width": 240
+                },
+                "content": {
+                  "left": 41,
+                  "right": 279,
+                  "width": 238
+                },
+                "input": {
+                  "left": 65,
+                  "right": 255,
+                  "width": 190
+                },
+                "areas": [
+                  {
+                    "area": "header",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "media",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "body",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "footer",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  },
+                  {
+                    "area": "actions",
+                    "left": 41,
+                    "right": 279,
+                    "width": 238
+                  }
+                ],
+                "documentWidth": 320,
+                "documentScrollWidth": 320,
+                "gridColumns": "238px"
+              },
+              "selectionBeforeLocale": {
+                "start": 2,
+                "end": 3
+              },
+              "selectionAfterLocale": {
+                "start": 2,
+                "end": 3
+              },
+              "sameDom": true,
+              "nativePointerReachable": true,
+              "draftAndCvaRetained": true,
+              "keyboardSelection": true,
+              "violations": [],
+              "incomplete": []
+            }
+          ],
+          "pass": true,
+          "initialSelection": {
+            "start": 0,
+            "end": 2
+          },
+          "collapseFocusAndDraftRetained": true
+        },
+        {
+          "profile": "dense",
+          "errors": [],
+          "warnings": [],
+          "observations": [
+            {
+              "direction": "ltr",
+              "bounds": {
+                "card": {
+                  "left": 24,
+                  "right": 296,
+                  "width": 272
+                },
+                "content": {
+                  "left": 25,
+                  "right": 295,
+                  "width": 270
+                },
+                "input": {
+                  "left": 41,
+                  "right": 279,
+                  "width": 238
+                },
+                "areas": [
+                  {
+                    "area": "header",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "media",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "body",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "footer",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "actions",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  }
+                ],
+                "documentWidth": 320,
+                "documentScrollWidth": 320,
+                "gridColumns": "270px"
+              },
+              "selectionBeforeLocale": {
+                "start": 0,
+                "end": 2
+              },
+              "selectionAfterLocale": {
+                "start": 0,
+                "end": 2
+              },
+              "sameDom": true,
+              "nativePointerReachable": true,
+              "draftAndCvaRetained": true,
+              "keyboardSelection": true,
+              "violations": [],
+              "incomplete": []
+            },
+            {
+              "direction": "rtl",
+              "bounds": {
+                "card": {
+                  "left": 24,
+                  "right": 296,
+                  "width": 272
+                },
+                "content": {
+                  "left": 25,
+                  "right": 295,
+                  "width": 270
+                },
+                "input": {
+                  "left": 41,
+                  "right": 279,
+                  "width": 238
+                },
+                "areas": [
+                  {
+                    "area": "header",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "media",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "body",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "footer",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  },
+                  {
+                    "area": "actions",
+                    "left": 25,
+                    "right": 295,
+                    "width": 270
+                  }
+                ],
+                "documentWidth": 320,
+                "documentScrollWidth": 320,
+                "gridColumns": "270px"
+              },
+              "selectionBeforeLocale": {
+                "start": 3,
+                "end": 4
+              },
+              "selectionAfterLocale": {
+                "start": 3,
+                "end": 4
+              },
+              "sameDom": true,
+              "nativePointerReachable": true,
+              "draftAndCvaRetained": true,
+              "keyboardSelection": true,
+              "violations": [],
+              "incomplete": []
+            }
+          ],
+          "pass": true,
+          "initialSelection": {
+            "start": 0,
+            "end": 2
+          },
+          "collapseFocusAndDraftRetained": true
+        }
+      ]
+    },
+    "smokeRoutes": [
+      {
+        "route": "trees",
+        "errors": []
+      },
+      {
+        "route": "schedule",
+        "errors": []
+      },
+      {
+        "route": "tables",
+        "errors": []
+      },
+      {
+        "route": "media",
+        "errors": []
+      },
+      {
+        "route": "specialist",
+        "errors": []
+      },
+      {
+        "route": "foundation",
+        "errors": []
+      },
+      {
+        "route": "card",
+        "errors": []
+      }
+    ],
+    "distribution": {
+      "httpAssetCount": 231,
+      "pdfCompanions": 202,
+      "pdfCompanionLicenseFiles": 11,
+      "pdfSourceFiles": 11,
+      "fontMappings": 4,
+      "thirdPartyNotice": {
+        "path": "dist/assets/third-party/THIRD-PARTY-NOTICES.txt",
+        "url": "http://127.0.0.1:5343/assets/third-party/THIRD-PARTY-NOTICES.txt",
+        "bytes": 240435,
+        "sha256": "316e5ef21284939e101a828cb7f7b41d5ca08ee61ca886959f1cb1d7dad60a45",
+        "contentType": "application/octet-stream",
+        "source": "assets/third-party/THIRD-PARTY-NOTICES.txt",
+        "sourceMatches": true
+      },
+      "fullMediaNotices": 4,
+      "lazyVendorEntries": 22
+    },
+    "visual": {
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "classification": "Selected actual view_image inspections; native geometry/DOM/CVA/focus evidence is recorded separately. No exhaustive visual or user-understanding approval.",
+      "images": [
+        {
+          "path": "evidence/card-narrow-guided-ltr.png",
+          "sha256": "fa89e82eba3f1726e4d78fd6b3f0d88a28bce13b8ae987af62172b6e05c1e712",
+          "bytes": 52924,
+          "actualViewImage": true,
+          "note": "Actual guided LTR Card at320px/200%: native input focus and selection visible; all five slot bounds and document320/320 measured."
+        },
+        {
+          "path": "evidence/card-narrow-guided-rtl.png",
+          "sha256": "ab6039da7225e74b3ab52d94a22cd0d58f66d7e1f05fb9985d384422105ffbd3",
+          "bytes": 55630,
+          "actualViewImage": true,
+          "note": "Actual guided RTL Card keeps native focused input and selected substring, title/media/body/footer/action within measured narrow bounds."
+        },
+        {
+          "path": "evidence/card-narrow-dense-ltr.png",
+          "sha256": "ce40b8967c3590f118e08ef42c9e64be3902f386304db5e5d14990164835711b",
+          "bytes": 46212,
+          "actualViewImage": true,
+          "note": "Actual dense LTR input and selected substring visible with consistent slot widths at200%; same DOM/CVA preserved."
+        },
+        {
+          "path": "evidence/card-narrow-dense-rtl.png",
+          "sha256": "b2b99e92df7d93c2ec68a1f2c34c56ad3b98345f8f049ba77f4ec81e09a54fa6",
+          "bytes": 46806,
+          "actualViewImage": true,
+          "note": "Actual dense RTL narrow input shows native logical selection and physical text scrolling; Card bounds remain within320px. Header toggle requires the separately recorded visual follow-up rather than inferring from this partial render."
+        },
+        {
+          "path": "evidence/specialist-harness-heading.png",
+          "sha256": "697cd9ede3bd292a1abf250354635519a7dbee29cb33e886a31aaa59af740082",
+          "bytes": 4580,
+          "actualViewImage": true,
+          "note": "Actual public Markdown preview renders the sample as h2; document h1 count1 was independently asserted. This is a consumer harness correction only."
+        },
+        {
+          "path": "evidence/card-narrow-dense-rtl-visible-toggle.png",
+          "sha256": "18bf9443351db685254be4ff8b3fa75c4391b3bd7a16328c1cf79740e62c1929",
+          "bytes": 44528,
+          "actualViewImage": true,
+          "note": "Actual dense RTL visual follow-up shows the header collapse toggle and all five Card areas. Native DOM independently measured the toggle display:flex/visible and bounds41..279 inside320px; no source change."
+        }
+      ]
+    }
+  },
+  "inheritedVerification": {
+    "executionSourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "executionInputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+    "notRerunOnFinalSource": true,
+    "sourceEqualityLedger": "evidence/evidence-inheritance.json",
+    "browserSource": {
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "consumerSourceSha256": "f0b4122193dcfeba2eb56c5822f13a46a40e5921d217bc875fdb1bfeed4a88f2",
+      "generatedManifestSha256": "71d2bc0d747c71df0bdf1c08623ba7cad644ebe44b081fd10a4e4c3ba02cd595",
+      "caseCount": 23,
+      "caseFilter": null
+    },
+    "browserCases": [
+      {
+        "name": "date-range-atomic-draft",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "date-range-format-change-draft-guided",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "date-range-format-change-draft-dense",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "composer-unknown-reset-ack",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "composer-reset-error-lifetime",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "composer-explicit-reset-contracts-guided",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "composer-explicit-reset-contracts-dense",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "locale-scope-direction-and-cleanup",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "foundation-narrow-profile-rtl-draft-guided",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "foundation-narrow-profile-rtl-draft-dense",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "popup-focus-and-draft",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "tree-cva-keyboard-selection",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "grid-draft-failure-retry-and-clipboard",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "file-cva-atomic-readonly-reset-remount",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "media-stale-play-false",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "media-stale-play-true",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "media-native-reentry-and-source-epoch",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "caption-stable-id-source-removal",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "pdf-native-worker-empty-error-retry-unload",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "gallery-stop-pointer-focus-keyboard",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "lightbox-positive-rotation-bounds-guided",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "lightbox-positive-rotation-bounds-dense",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "name": "specialist-actual-lazy-worker-ready",
+        "pass": true,
+        "errors": [],
+        "warnings": []
+      }
+    ],
+    "mediaLocale": {
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "sources": {
+        "image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+        "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "image-cropper.ts": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+        "barcode.ts": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+      },
+      "results": [
+        {
+          "profile": "guided",
+          "checks": [
+            {
+              "component": "barcode real narrow intrinsic canvas and named keyboard scroll region",
+              "prefix": "native ",
+              "actual": {
+                "viewportWidth": 240,
+                "scrollWidth": 320,
+                "canvasWidth": 320,
+                "paintWidth": 320,
+                "canvasMaxInlineSize": "none",
+                "regionDirection": "ltr",
+                "documentWidth": 320,
+                "documentScrollWidth": 320
+              },
+              "pass": true
+            },
+            {
+              "component": "compare",
+              "prefix": "D1 ",
+              "expected": "D1 Compare load failed",
+              "actual": "D1 Compare load failed",
+              "pass": true
+            },
+            {
+              "component": "audio",
+              "prefix": "D1 ",
+              "expected": "D1 Media load failed",
+              "actual": "D1 Media load failed",
+              "pass": true
+            },
+            {
+              "component": "pdf",
+              "prefix": "D1 ",
+              "expected": "D1 PDF load failed",
+              "actual": "D1 PDF load failed",
+              "pass": true
+            },
+            {
+              "component": "crop",
+              "prefix": "D1 ",
+              "expected": "D1 Crop load failed",
+              "actual": "D1 Crop load failed",
+              "pass": true
+            },
+            {
+              "component": "barcode",
+              "prefix": "D1 ",
+              "expected": "D1 Barcode generation failed",
+              "actual": "D1 Barcode generation failed",
+              "pass": true
+            },
+            {
+              "component": "compare aria-valuetext",
+              "prefix": "D1 ",
+              "actual": "D1 After 50%",
+              "pass": true
+            },
+            {
+              "component": "compare",
+              "prefix": "D2 ",
+              "expected": "D2 Compare load failed",
+              "actual": "D2 Compare load failed",
+              "pass": true
+            },
+            {
+              "component": "audio",
+              "prefix": "D2 ",
+              "expected": "D2 Media load failed",
+              "actual": "D2 Media load failed",
+              "pass": true
+            },
+            {
+              "component": "pdf",
+              "prefix": "D2 ",
+              "expected": "D2 PDF load failed",
+              "actual": "D2 PDF load failed",
+              "pass": true
+            },
+            {
+              "component": "crop",
+              "prefix": "D2 ",
+              "expected": "D2 Crop load failed",
+              "actual": "D2 Crop load failed",
+              "pass": true
+            },
+            {
+              "component": "barcode",
+              "prefix": "D2 ",
+              "expected": "D2 Barcode generation failed",
+              "actual": "D2 Barcode generation failed",
+              "pass": true
+            },
+            {
+              "component": "compare aria-valuetext",
+              "prefix": "D2 ",
+              "actual": "D2 After 50%",
+              "pass": true
+            },
+            {
+              "component": "compare native physical ArrowRight",
+              "prefix": "D2 ",
+              "actual": "range51 / line left51% / crop49%",
+              "pass": true
+            },
+            {
+              "component": "compare native physical ArrowLeft and localized ARIA",
+              "prefix": "D2 ",
+              "actual": "range50 / D2 After 50%",
+              "pass": true
+            },
+            {
+              "component": "pdf empty status",
+              "prefix": "D3 ",
+              "expected": "D3 Choose PDF",
+              "actual": "D3 Choose PDF · 0 / 0",
+              "pass": true
+            },
+            {
+              "component": "crop empty status",
+              "prefix": "D3 ",
+              "expected": "D3 Choose image",
+              "actual": "D3 Choose image · 回転 0度",
+              "pass": true
+            },
+            {
+              "component": "media paused status",
+              "prefix": "D3 ",
+              "expected": "D3 Media paused",
+              "actual": "D3 Media paused",
+              "pass": true
+            }
+          ],
+          "errors": [],
+          "warnings": [
+            {
+              "type": "error",
+              "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+            },
+            {
+              "type": "error",
+              "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+            }
+          ],
+          "compareRecovery": {
+            "nativeImageDecoded": true,
+            "currentSource": "/assets/media/red.svg",
+            "errorText": []
+          },
+          "before": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "observations": [
+            {
+              "prefix": "D1 ",
+              "text": {
+                "compare": "D1 Compare load failed",
+                "audio": "D1 Media load failed",
+                "pdf": "D1 PDF load failed",
+                "crop": "D1 Crop load failed",
+                "barcode": "D1 Barcode generation failed"
+              },
+              "aria": "D1 After 50%",
+              "resourcesAfterLocale": 20,
+              "workersAfterLocale": 2,
+              "focusedRangeRetained": true
+            },
+            {
+              "prefix": "D2 ",
+              "text": {
+                "compare": "D2 Compare load failed",
+                "audio": "D2 Media load failed",
+                "pdf": "D2 PDF load failed",
+                "crop": "D2 Crop load failed",
+                "barcode": "D2 Barcode generation failed"
+              },
+              "aria": "D2 After 50%",
+              "resourcesAfterLocale": 20,
+              "workersAfterLocale": 2,
+              "focusedRangeRetained": true
+            }
+          ],
+          "sameDom": true,
+          "noReload": true,
+          "fileCvaRetained": true,
+          "appLabelsRetained": true,
+          "resources": [
+            "http://127.0.0.1:5343/media",
+            "http://127.0.0.1:5343/tokens.css",
+            "http://127.0.0.1:5343/styles.css",
+            "http://127.0.0.1:5343/specialist.css",
+            "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+            "http://127.0.0.1:5343/main.js",
+            "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+            "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+            "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+            "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+            "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+            "http://127.0.0.1:5343/assets/media/red.svg",
+            "http://127.0.0.1:5343/assets/media/blue.svg",
+            "http://127.0.0.1:5343/assets/media/tone.wav",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/media/sample.pdf",
+            "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+            "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/media/invalid.pdf",
+            "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+          ],
+          "workers": [
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+          ],
+          "pass": true
+        },
+        {
+          "profile": "dense",
+          "checks": [
+            {
+              "component": "barcode real narrow intrinsic canvas and named keyboard scroll region",
+              "prefix": "native ",
+              "actual": {
+                "viewportWidth": 272,
+                "scrollWidth": 320,
+                "canvasWidth": 320,
+                "paintWidth": 320,
+                "canvasMaxInlineSize": "none",
+                "regionDirection": "ltr",
+                "documentWidth": 320,
+                "documentScrollWidth": 320
+              },
+              "pass": true
+            },
+            {
+              "component": "compare",
+              "prefix": "D1 ",
+              "expected": "D1 Compare load failed",
+              "actual": "D1 Compare load failed",
+              "pass": true
+            },
+            {
+              "component": "audio",
+              "prefix": "D1 ",
+              "expected": "D1 Media load failed",
+              "actual": "D1 Media load failed",
+              "pass": true
+            },
+            {
+              "component": "pdf",
+              "prefix": "D1 ",
+              "expected": "D1 PDF load failed",
+              "actual": "D1 PDF load failed",
+              "pass": true
+            },
+            {
+              "component": "crop",
+              "prefix": "D1 ",
+              "expected": "D1 Crop load failed",
+              "actual": "D1 Crop load failed",
+              "pass": true
+            },
+            {
+              "component": "barcode",
+              "prefix": "D1 ",
+              "expected": "D1 Barcode generation failed",
+              "actual": "D1 Barcode generation failed",
+              "pass": true
+            },
+            {
+              "component": "compare aria-valuetext",
+              "prefix": "D1 ",
+              "actual": "D1 After 50%",
+              "pass": true
+            },
+            {
+              "component": "compare",
+              "prefix": "D2 ",
+              "expected": "D2 Compare load failed",
+              "actual": "D2 Compare load failed",
+              "pass": true
+            },
+            {
+              "component": "audio",
+              "prefix": "D2 ",
+              "expected": "D2 Media load failed",
+              "actual": "D2 Media load failed",
+              "pass": true
+            },
+            {
+              "component": "pdf",
+              "prefix": "D2 ",
+              "expected": "D2 PDF load failed",
+              "actual": "D2 PDF load failed",
+              "pass": true
+            },
+            {
+              "component": "crop",
+              "prefix": "D2 ",
+              "expected": "D2 Crop load failed",
+              "actual": "D2 Crop load failed",
+              "pass": true
+            },
+            {
+              "component": "barcode",
+              "prefix": "D2 ",
+              "expected": "D2 Barcode generation failed",
+              "actual": "D2 Barcode generation failed",
+              "pass": true
+            },
+            {
+              "component": "compare aria-valuetext",
+              "prefix": "D2 ",
+              "actual": "D2 After 50%",
+              "pass": true
+            },
+            {
+              "component": "compare native physical ArrowRight",
+              "prefix": "D2 ",
+              "actual": "range51 / line left51% / crop49%",
+              "pass": true
+            },
+            {
+              "component": "compare native physical ArrowLeft and localized ARIA",
+              "prefix": "D2 ",
+              "actual": "range50 / D2 After 50%",
+              "pass": true
+            },
+            {
+              "component": "pdf empty status",
+              "prefix": "D3 ",
+              "expected": "D3 Choose PDF",
+              "actual": "D3 Choose PDF · 0 / 0",
+              "pass": true
+            },
+            {
+              "component": "crop empty status",
+              "prefix": "D3 ",
+              "expected": "D3 Choose image",
+              "actual": "D3 Choose image · 回転 0度",
+              "pass": true
+            },
+            {
+              "component": "media paused status",
+              "prefix": "D3 ",
+              "expected": "D3 Media paused",
+              "actual": "D3 Media paused",
+              "pass": true
+            }
+          ],
+          "errors": [],
+          "warnings": [
+            {
+              "type": "error",
+              "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+            },
+            {
+              "type": "error",
+              "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+            }
+          ],
+          "compareRecovery": {
+            "nativeImageDecoded": true,
+            "currentSource": "/assets/media/red.svg",
+            "errorText": []
+          },
+          "before": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "observations": [
+            {
+              "prefix": "D1 ",
+              "text": {
+                "compare": "D1 Compare load failed",
+                "audio": "D1 Media load failed",
+                "pdf": "D1 PDF load failed",
+                "crop": "D1 Crop load failed",
+                "barcode": "D1 Barcode generation failed"
+              },
+              "aria": "D1 After 50%",
+              "resourcesAfterLocale": 20,
+              "workersAfterLocale": 2,
+              "focusedRangeRetained": true
+            },
+            {
+              "prefix": "D2 ",
+              "text": {
+                "compare": "D2 Compare load failed",
+                "audio": "D2 Media load failed",
+                "pdf": "D2 PDF load failed",
+                "crop": "D2 Crop load failed",
+                "barcode": "D2 Barcode generation failed"
+              },
+              "aria": "D2 After 50%",
+              "resourcesAfterLocale": 20,
+              "workersAfterLocale": 2,
+              "focusedRangeRetained": true
+            }
+          ],
+          "sameDom": true,
+          "noReload": true,
+          "fileCvaRetained": true,
+          "appLabelsRetained": true,
+          "resources": [
+            "http://127.0.0.1:5343/media",
+            "http://127.0.0.1:5343/tokens.css",
+            "http://127.0.0.1:5343/styles.css",
+            "http://127.0.0.1:5343/specialist.css",
+            "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+            "http://127.0.0.1:5343/main.js",
+            "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+            "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+            "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+            "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+            "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+            "http://127.0.0.1:5343/assets/media/red.svg",
+            "http://127.0.0.1:5343/assets/media/blue.svg",
+            "http://127.0.0.1:5343/assets/media/tone.wav",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/media/sample.pdf",
+            "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+            "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/media/invalid.pdf",
+            "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+          ],
+          "workers": [
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+            "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+          ],
+          "pass": true
+        }
+      ]
+    },
+    "schedulerLocale": {
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "sources": {
+        "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "scheduler.ts": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+        "scheduler-controller.ts": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+        "scheduler-view.ts": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba"
+      },
+      "results": [
+        {
+          "profile": "guided",
+          "checks": [
+            {
+              "name": "existing library diagnostic and cached status follow D1 ",
+              "pass": true
+            },
+            {
+              "name": "existing library diagnostic and cached status follow D2 ",
+              "pass": true
+            },
+            {
+              "name": "editing clears cached error status",
+              "expected": "",
+              "actual": "",
+              "pass": true
+            },
+            {
+              "name": "native datetime edit clears cached status while retaining other invalid draft",
+              "pass": true
+            },
+            {
+              "name": "native resource checkbox clears cached status while retaining other invalid draft",
+              "pass": true
+            },
+            {
+              "name": "app failure matching dictionary key remains raw",
+              "pass": true
+            },
+            {
+              "name": "retry gets new request; stale result refused; source event unchanged",
+              "pass": true
+            },
+            {
+              "name": "pure-model structural event diagnostic follows live dictionary without modifying app event",
+              "pass": true
+            },
+            {
+              "name": "pure-model structural layout diagnostic follows live dictionary without modifying app date/events/requests",
+              "pass": true
+            }
+          ],
+          "errors": [],
+          "warnings": [
+            {
+              "type": "warning",
+              "text": "The specified value \"invalid-date\" does not conform to the required format, \"yyyy-MM-dd\"."
+            },
+            {
+              "type": "warning",
+              "text": "The specified value \"invalid-date\" does not conform to the required format, \"yyyy-MM-dd\"."
+            }
+          ],
+          "requests": [
+            {
+              "requestId": 1,
+              "event": {
+                "id": "meeting",
+                "title": "確認会",
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "data": {
+                  "amount": 7,
+                  "description": "レビュー"
+                }
+              },
+              "previous": {
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "resourceIds": []
+              },
+              "target": {
+                "localStart": "2026-10-06T10:00",
+                "localEnd": "2026-10-06T11:00:00",
+                "timeZone": "Asia/Tokyo",
+                "startDisambiguation": "reject",
+                "endDisambiguation": "reject",
+                "resourceIds": []
+              }
+            },
+            {
+              "requestId": 2,
+              "event": {
+                "id": "meeting",
+                "title": "確認会",
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "data": {
+                  "amount": 7,
+                  "description": "レビュー"
+                }
+              },
+              "previous": {
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "resourceIds": []
+              },
+              "target": {
+                "localStart": "2026-10-06T10:00",
+                "localEnd": "2026-10-06T11:00:00",
+                "timeZone": "Asia/Tokyo",
+                "startDisambiguation": "reject",
+                "endDisambiguation": "reject",
+                "resourceIds": []
+              }
+            }
+          ],
+          "sameDom": true,
+          "focusRetainedAcrossLocale": true,
+          "appEventsUnchanged": true,
+          "pass": true,
+          "structuralAppValuesRetained": true
+        },
+        {
+          "profile": "dense",
+          "checks": [
+            {
+              "name": "existing library diagnostic and cached status follow D1 ",
+              "pass": true
+            },
+            {
+              "name": "existing library diagnostic and cached status follow D2 ",
+              "pass": true
+            },
+            {
+              "name": "editing clears cached error status",
+              "expected": "",
+              "actual": "",
+              "pass": true
+            },
+            {
+              "name": "native datetime edit clears cached status while retaining other invalid draft",
+              "pass": true
+            },
+            {
+              "name": "native resource checkbox clears cached status while retaining other invalid draft",
+              "pass": true
+            },
+            {
+              "name": "app failure matching dictionary key remains raw",
+              "pass": true
+            },
+            {
+              "name": "retry gets new request; stale result refused; source event unchanged",
+              "pass": true
+            },
+            {
+              "name": "pure-model structural event diagnostic follows live dictionary without modifying app event",
+              "pass": true
+            },
+            {
+              "name": "pure-model structural layout diagnostic follows live dictionary without modifying app date/events/requests",
+              "pass": true
+            }
+          ],
+          "errors": [],
+          "warnings": [
+            {
+              "type": "warning",
+              "text": "The specified value \"invalid-date\" does not conform to the required format, \"yyyy-MM-dd\"."
+            },
+            {
+              "type": "warning",
+              "text": "The specified value \"invalid-date\" does not conform to the required format, \"yyyy-MM-dd\"."
+            }
+          ],
+          "requests": [
+            {
+              "requestId": 1,
+              "event": {
+                "id": "meeting",
+                "title": "確認会",
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "data": {
+                  "amount": 7,
+                  "description": "レビュー"
+                }
+              },
+              "previous": {
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "resourceIds": []
+              },
+              "target": {
+                "localStart": "2026-10-06T10:00",
+                "localEnd": "2026-10-06T11:00:00",
+                "timeZone": "Asia/Tokyo",
+                "startDisambiguation": "reject",
+                "endDisambiguation": "reject",
+                "resourceIds": []
+              }
+            },
+            {
+              "requestId": 2,
+              "event": {
+                "id": "meeting",
+                "title": "確認会",
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "data": {
+                  "amount": 7,
+                  "description": "レビュー"
+                }
+              },
+              "previous": {
+                "start": "2026-10-06T01:00:00Z",
+                "end": "2026-10-06T02:00:00Z",
+                "resourceIds": []
+              },
+              "target": {
+                "localStart": "2026-10-06T10:00",
+                "localEnd": "2026-10-06T11:00:00",
+                "timeZone": "Asia/Tokyo",
+                "startDisambiguation": "reject",
+                "endDisambiguation": "reject",
+                "resourceIds": []
+              }
+            }
+          ],
+          "sameDom": true,
+          "focusRetainedAcrossLocale": true,
+          "appEventsUnchanged": true,
+          "pass": true,
+          "structuralAppValuesRetained": true
+        }
+      ],
+      "sourceReview": [
+        {
+          "method": "changedDate",
+          "messageTextCleared": true,
+          "classification": "source review; native timezone/datetime/resource writers also exercised independently"
+        },
+        {
+          "method": "changeDraft",
+          "messageTextCleared": true,
+          "classification": "source review; native timezone/datetime/resource writers also exercised independently"
+        },
+        {
+          "method": "moveResource",
+          "messageTextCleared": true,
+          "classification": "source review; native timezone/datetime/resource writers also exercised independently"
+        }
+      ]
+    },
+    "scopeServerTrap": {
+      "actualClass": "UiLocaleScope",
+      "platformId": "server",
+      "angularMode": "production",
+      "documentDefaultView": null,
+      "browserGlobalsRead": [],
+      "ownedAttributesRemovedAtDestroy": true,
+      "limits": "Actual directive construction/effects/destruction in Angular server DI after Angular platform setup. Host and Renderer2 are test adapters; no SSR HTML rendering or hydration claim."
+    },
+    "visual": {
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "sourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+      "classification": "Selected actual screenshot inspection by independent reviewer; no exhaustive visual, assistive-technology or human-user approval claim.",
+      "images": [
+        {
+          "path": "evidence/file-live-rejection.png",
+          "sha256": "8a5e8cadf4c455767cdd3197da830d32711381e2de3e639462e6e6c9ba5bfb21",
+          "bytes": 70387,
+          "actualViewImage": true,
+          "note": "Actual mixed intake keeps first.txt in CVA and INVALID while latest dictionary rejection reason is visible; native picker has focused border and app label is preserved. Queued upload entries are separate app-owned state, with no upload success claim."
+        },
+        {
+          "path": "evidence/scheduler-locale-after-repair-guided.png",
+          "sha256": "4b4e58a6e045c789cc3128a7bea7d334ce89105115ad7a5cd8b45fa76eab894d",
+          "bytes": 98842,
+          "actualViewImage": true,
+          "note": "Actual repaired timezone Asia/Tokyo is focused in retained editor; stale role=status error is absent; surrounding native RTL labels remain."
+        },
+        {
+          "path": "evidence/media-locale-compare-physical-dense.png",
+          "sha256": "55feb6e8a9d8d212531a01278cdf658ad29253286cf4de101bceb9d95f2ce490",
+          "bytes": 18944,
+          "actualViewImage": true,
+          "note": "Actual missing before-image is disclosed by native alt plus localized error. Real after-image is clipped at physical left 50%; native thumb and line align while surrounding label remains RTL."
+        },
+        {
+          "path": "evidence/foundation-dense-320-200-rtl.png",
+          "sha256": "0ac397744d17fb1ac5556d6a2d315e5b8ad1607aff8e6504dc2d88222c96d1e2",
+          "bytes": 55850,
+          "actualViewImage": true,
+          "note": "Selected narrow/200%/RTL view wraps heading and labels; actual invalid date raw and selected substring remain visible; test also measured no document horizontal overflow."
+        },
+        {
+          "path": "evidence/pdf-native-page-1.png",
+          "sha256": "0e44268052cb0e53a62e1698c055ccf861a7105b2c7956664de4fb345eff56f2",
+          "bytes": 30225,
+          "actualViewImage": true,
+          "note": "Real PDF worker page 1 canvas and extracted First PDF page text are visible with 1/2 status."
+        },
+        {
+          "path": "evidence/pdf-native-page-2.png",
+          "sha256": "0f4f65ed629272c9f83ae9cbb6ad451ca6e24d05c0eceb89771f16c9b2f12bbc",
+          "bytes": 31796,
+          "actualViewImage": true,
+          "note": "Real PDF worker page 2 canvas and extracted Second PDF page text differ from page 1 with 2/2 status."
+        },
+        {
+          "path": "evidence/map-native-ready.png",
+          "sha256": "2c30247bba3e24fe425d0a1515047f7b4586bf71b4585ed3c0fcd9dd0c6fd54d",
+          "bytes": 15975,
+          "actualViewImage": true,
+          "note": "Actual MapLibre canvas and Tokyo native marker are ready; empty map style intentionally uses no external geographic data. Marker label and longitude/latitude remain visible."
+        },
+        {
+          "path": "evidence/sheet-native-calculated.png",
+          "sha256": "7a02287b68ed72dd7aa18943be6922ab6f64f00178b8083973a7eb995c63bb56",
+          "bytes": 48417,
+          "actualViewImage": true,
+          "note": "Actual native formula worker rendered 2,3,5 and calculation-complete status; no mocked computation."
+        },
+        {
+          "path": "evidence/barcode-native-narrow-guided.png",
+          "sha256": "f00c724cbc5c0e76978dd2f0484a4a0bf2d17b1c56e8d862a53c8ee9d38bcd7f",
+          "bytes": 4450,
+          "actualViewImage": true,
+          "note": "Actual native canvas keeps 320px paint width inside a named focusable 240px scroll region; native ArrowRight scrolls it with no document overflow (320/320)."
+        },
+        {
+          "path": "evidence/barcode-native-narrow-dense.png",
+          "sha256": "b20148b31b2a346da0e7b6db8eafb4437055453d49b561915373b8dba8b7fb6f",
+          "bytes": 4013,
+          "actualViewImage": true,
+          "note": "Dense actual barcode keeps the same intrinsic width and native focus/scroll boundary. Optical scanner decoding is not exercised."
+        },
+        {
+          "path": "evidence/scheduler-structural-event-guided.png",
+          "sha256": "b4b65ac1ca09f57ad3e0d844a8874746136610d2e9e5f77e613c795ec84dcacf",
+          "bytes": 203604,
+          "actualViewImage": true,
+          "note": "Existing structural invalid-ISO diagnostic shows the D5 dictionary; app event title/raw invalid-ISO/payload remain visible and editor draft is retained."
+        },
+        {
+          "path": "evidence/scheduler-structural-layout-dense.png",
+          "sha256": "177048f9cd07166a6a78e9d5df55447d6bc818de3e0733df3a7cc2390017beaf",
+          "bytes": 38425,
+          "actualViewImage": true,
+          "note": "Existing invalid display-date diagnostic follows D6 dictionary; app invalid-date value, source events and request count remain unchanged."
+        }
+      ]
+    }
+  },
+  "inheritance": {
+    "decision": "INHERIT_UNCHANGED_SCOPE",
+    "fromSourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "toSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "fromInputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+    "toInputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+    "changedFiles": [
+      {
+        "path": "templates/angular/card.ts",
+        "before": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+        "after": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+        "exactDelta": "grid-template-columns:1fr → grid-template-columns:minmax(0,1fr), one CSS replacement"
+      }
+    ],
+    "unchangedGenerationInputFiles": [
+      {
+        "path": "examples/ui.config.example.yaml",
+        "sha256": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e"
+      },
+      {
+        "path": "package.json",
+        "sha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75"
+      },
+      {
+        "path": "skills/ui-development/README.md",
+        "sha256": "a0d193c528b03c854d819ed4881d49bec09770674dbbf4251ac8e64ad7cba215"
+      },
+      {
+        "path": "skills/ui-development/SKILL.md",
+        "sha256": "6d50a51baa2868d03c202c2f1417beca6cc1b168da384138a4c90977d3d8e142"
+      },
+      {
+        "path": "skills/ui-development/references/token-design.md",
+        "sha256": "8c0a36ba1091b0b94b80759c6f410ae25dcab2fd7e232bdd65d2478ad3cb89fb"
+      },
+      {
+        "path": "skills/ui-development/references/ui-library-runtime.md",
+        "sha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5"
+      },
+      {
+        "path": "src/README.md",
+        "sha256": "874608c63b254e00be71f7027fa27214c9664a7c54729515782eea2e6e7b1daf"
+      },
+      {
+        "path": "src/cli.ts",
+        "sha256": "fddc768cb390c4d7aff6ca5f84487c29d0d5a3149af79693c01e08220153efcc"
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "956d2ce69d1df5f1ece0b615527b94824b16926e7998b62adbf1afd149f9116c"
+      },
+      {
+        "path": "src/roles.ts",
+        "sha256": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14"
+      },
+      {
+        "path": "src/sync.ts",
+        "sha256": "c538950d2f972dcb96ab99c6a3d949e66f59f49df0bf4ac7f10520f0251411ab"
+      },
+      {
+        "path": "src/tokens.ts",
+        "sha256": "7f4a16389711f948d34ff8433f421ead20aa19efb9cd10b9b11aef075a0ef6d7"
+      },
+      {
+        "path": "templates/angular/README.md",
+        "sha256": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a"
+      },
+      {
+        "path": "templates/angular/action-control.ts",
+        "sha256": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86"
+      },
+      {
+        "path": "templates/angular/action-feedback.ts",
+        "sha256": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717"
+      },
+      {
+        "path": "templates/angular/actions.ts",
+        "sha256": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f"
+      },
+      {
+        "path": "templates/angular/agenda.ts",
+        "sha256": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5"
+      },
+      {
+        "path": "templates/angular/anchor-navigation.ts",
+        "sha256": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8"
+      },
+      {
+        "path": "templates/angular/async-region.ts",
+        "sha256": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f"
+      },
+      {
+        "path": "templates/angular/barcode.ts",
+        "sha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+      },
+      {
+        "path": "templates/angular/calendar.ts",
+        "sha256": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e"
+      },
+      {
+        "path": "templates/angular/cascader.ts",
+        "sha256": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4"
+      },
+      {
+        "path": "templates/angular/chart-options.ts",
+        "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b"
+      },
+      {
+        "path": "templates/angular/chart.ts",
+        "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179"
+      },
+      {
+        "path": "templates/angular/chat.ts",
+        "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1"
+      },
+      {
+        "path": "templates/angular/choice-controls.ts",
+        "sha256": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a"
+      },
+      {
+        "path": "templates/angular/choice-model.ts",
+        "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a"
+      },
+      {
+        "path": "templates/angular/code-editor.ts",
+        "sha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2"
+      },
+      {
+        "path": "templates/angular/collection-model.ts",
+        "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863"
+      },
+      {
+        "path": "templates/angular/collection-runtime.ts",
+        "sha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559"
+      },
+      {
+        "path": "templates/angular/collection-views.ts",
+        "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812"
+      },
+      {
+        "path": "templates/angular/command-palette.ts",
+        "sha256": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889"
+      },
+      {
+        "path": "templates/angular/crop-adapter.ts",
+        "sha256": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da"
+      },
+      {
+        "path": "templates/angular/data-grid.ts",
+        "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9"
+      },
+      {
+        "path": "templates/angular/data-table-view.ts",
+        "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+      },
+      {
+        "path": "templates/angular/data-table.ts",
+        "sha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255"
+      },
+      {
+        "path": "templates/angular/date-input.ts",
+        "sha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829"
+      },
+      {
+        "path": "templates/angular/date-model.ts",
+        "sha256": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f"
+      },
+      {
+        "path": "templates/angular/date-range-picker.ts",
+        "sha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89"
+      },
+      {
+        "path": "templates/angular/diagram-layout.ts",
+        "sha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e"
+      },
+      {
+        "path": "templates/angular/diagram.ts",
+        "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac"
+      },
+      {
+        "path": "templates/angular/dialog-variants.ts",
+        "sha256": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2"
+      },
+      {
+        "path": "templates/angular/dialog.ts",
+        "sha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2"
+      },
+      {
+        "path": "templates/angular/diff-json.ts",
+        "sha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+      },
+      {
+        "path": "templates/angular/disclosure.ts",
+        "sha256": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43"
+      },
+      {
+        "path": "templates/angular/display-content.ts",
+        "sha256": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f"
+      },
+      {
+        "path": "templates/angular/display-model.ts",
+        "sha256": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a"
+      },
+      {
+        "path": "templates/angular/display-style.ts",
+        "sha256": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e"
+      },
+      {
+        "path": "templates/angular/display.ts",
+        "sha256": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444"
+      },
+      {
+        "path": "templates/angular/drawer.ts",
+        "sha256": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35"
+      },
+      {
+        "path": "templates/angular/editor-control.ts",
+        "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+      },
+      {
+        "path": "templates/angular/editor-model.ts",
+        "sha256": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22"
+      },
+      {
+        "path": "templates/angular/feedback-model.ts",
+        "sha256": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3"
+      },
+      {
+        "path": "templates/angular/feedback.ts",
+        "sha256": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e"
+      },
+      {
+        "path": "templates/angular/file-draft-model.ts",
+        "sha256": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f"
+      },
+      {
+        "path": "templates/angular/file-explorer.ts",
+        "sha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71"
+      },
+      {
+        "path": "templates/angular/file-upload.ts",
+        "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+      },
+      {
+        "path": "templates/angular/filter-builder.ts",
+        "sha256": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9"
+      },
+      {
+        "path": "templates/angular/filter-model.ts",
+        "sha256": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c"
+      },
+      {
+        "path": "templates/angular/floating-model.ts",
+        "sha256": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962"
+      },
+      {
+        "path": "templates/angular/floating-panel.ts",
+        "sha256": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86"
+      },
+      {
+        "path": "templates/angular/focus.ts",
+        "sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      {
+        "path": "templates/angular/form-field.ts",
+        "sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157"
+      },
+      {
+        "path": "templates/angular/form-layout.ts",
+        "sha256": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1"
+      },
+      {
+        "path": "templates/angular/formula-parser.d.ts",
+        "sha256": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7"
+      },
+      {
+        "path": "templates/angular/gantt.ts",
+        "sha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941"
+      },
+      {
+        "path": "templates/angular/grid-list.ts",
+        "sha256": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593"
+      },
+      {
+        "path": "templates/angular/icon.ts",
+        "sha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd"
+      },
+      {
+        "path": "templates/angular/image-cropper.ts",
+        "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f"
+      },
+      {
+        "path": "templates/angular/image-media.ts",
+        "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+      },
+      {
+        "path": "templates/angular/index.ts",
+        "sha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218"
+      },
+      {
+        "path": "templates/angular/infinite-scroll.ts",
+        "sha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b"
+      },
+      {
+        "path": "templates/angular/inline-edit.ts",
+        "sha256": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796"
+      },
+      {
+        "path": "templates/angular/json-model.ts",
+        "sha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799"
+      },
+      {
+        "path": "templates/angular/kanban.ts",
+        "sha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705"
+      },
+      {
+        "path": "templates/angular/layout-model.ts",
+        "sha256": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25"
+      },
+      {
+        "path": "templates/angular/layout.ts",
+        "sha256": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      },
+      {
+        "path": "templates/angular/listbox.ts",
+        "sha256": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1"
+      },
+      {
+        "path": "templates/angular/locale-model.ts",
+        "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29"
+      },
+      {
+        "path": "templates/angular/locale.ts",
+        "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843"
+      },
+      {
+        "path": "templates/angular/map.ts",
+        "sha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf"
+      },
+      {
+        "path": "templates/angular/markdown-editor.ts",
+        "sha256": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78"
+      },
+      {
+        "path": "templates/angular/media-dom.ts",
+        "sha256": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733"
+      },
+      {
+        "path": "templates/angular/media-model.ts",
+        "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      },
+      {
+        "path": "templates/angular/media-player.ts",
+        "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6"
+      },
+      {
+        "path": "templates/angular/media-style.ts",
+        "sha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84"
+      },
+      {
+        "path": "templates/angular/mega-menu.ts",
+        "sha256": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9"
+      },
+      {
+        "path": "templates/angular/menu-model.ts",
+        "sha256": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e"
+      },
+      {
+        "path": "templates/angular/menu.ts",
+        "sha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f"
+      },
+      {
+        "path": "templates/angular/menubar.ts",
+        "sha256": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb"
+      },
+      {
+        "path": "templates/angular/navigation-model.ts",
+        "sha256": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da"
+      },
+      {
+        "path": "templates/angular/navigation-tree.ts",
+        "sha256": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571"
+      },
+      {
+        "path": "templates/angular/navigation.ts",
+        "sha256": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b"
+      },
+      {
+        "path": "templates/angular/notification-center.ts",
+        "sha256": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96"
+      },
+      {
+        "path": "templates/angular/notification-model.ts",
+        "sha256": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e"
+      },
+      {
+        "path": "templates/angular/notifications.ts",
+        "sha256": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75"
+      },
+      {
+        "path": "templates/angular/organization-chart.ts",
+        "sha256": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f"
+      },
+      {
+        "path": "templates/angular/overlay.ts",
+        "sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982"
+      },
+      {
+        "path": "templates/angular/page-frame.ts",
+        "sha256": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614"
+      },
+      {
+        "path": "templates/angular/pagination.ts",
+        "sha256": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5"
+      },
+      {
+        "path": "templates/angular/panel-handle.ts",
+        "sha256": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a"
+      },
+      {
+        "path": "templates/angular/panels.ts",
+        "sha256": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5"
+      },
+      {
+        "path": "templates/angular/pdf-adapter.ts",
+        "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a"
+      },
+      {
+        "path": "templates/angular/pdf-viewer.ts",
+        "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea"
+      },
+      {
+        "path": "templates/angular/radio-group.ts",
+        "sha256": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35"
+      },
+      {
+        "path": "templates/angular/rich-text-editor.ts",
+        "sha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c"
+      },
+      {
+        "path": "templates/angular/scheduler-controller.ts",
+        "sha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931"
+      },
+      {
+        "path": "templates/angular/scheduler-model.ts",
+        "sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13"
+      },
+      {
+        "path": "templates/angular/scheduler-move-sequence.ts",
+        "sha256": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6"
+      },
+      {
+        "path": "templates/angular/scheduler-template.ts",
+        "sha256": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216"
+      },
+      {
+        "path": "templates/angular/scheduler-view.ts",
+        "sha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba"
+      },
+      {
+        "path": "templates/angular/scheduler.ts",
+        "sha256": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987"
+      },
+      {
+        "path": "templates/angular/selection-input.ts",
+        "sha256": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a"
+      },
+      {
+        "path": "templates/angular/sheet-formula.ts",
+        "sha256": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e"
+      },
+      {
+        "path": "templates/angular/sheet-formula.worker.ts",
+        "sha256": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256"
+      },
+      {
+        "path": "templates/angular/sheet-runner.ts",
+        "sha256": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb"
+      },
+      {
+        "path": "templates/angular/sortable-list.ts",
+        "sha256": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988"
+      },
+      {
+        "path": "templates/angular/specialist-browser.ts",
+        "sha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e"
+      },
+      {
+        "path": "templates/angular/specialist-model.ts",
+        "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+      },
+      {
+        "path": "templates/angular/specialist-style.ts",
+        "sha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20"
+      },
+      {
+        "path": "templates/angular/specialist.css",
+        "sha256": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704"
+      },
+      {
+        "path": "templates/angular/splitter.ts",
+        "sha256": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224"
+      },
+      {
+        "path": "templates/angular/spreadsheet.ts",
+        "sha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab"
+      },
+      {
+        "path": "templates/angular/structured-input-model.ts",
+        "sha256": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089"
+      },
+      {
+        "path": "templates/angular/structured-input.ts",
+        "sha256": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3"
+      },
+      {
+        "path": "templates/angular/styles.css",
+        "sha256": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff"
+      },
+      {
+        "path": "templates/angular/table-advanced-model.ts",
+        "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+      },
+      {
+        "path": "templates/angular/table-column-resize.ts",
+        "sha256": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5"
+      },
+      {
+        "path": "templates/angular/table-controls.ts",
+        "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+      },
+      {
+        "path": "templates/angular/table-editors.ts",
+        "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+      },
+      {
+        "path": "templates/angular/table-model.ts",
+        "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+      },
+      {
+        "path": "templates/angular/table-output.ts",
+        "sha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea"
+      },
+      {
+        "path": "templates/angular/table-runtime.ts",
+        "sha256": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d"
+      },
+      {
+        "path": "templates/angular/tabs.ts",
+        "sha256": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc"
+      },
+      {
+        "path": "templates/angular/text-input.ts",
+        "sha256": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35"
+      },
+      {
+        "path": "templates/angular/timeline-model.ts",
+        "sha256": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2"
+      },
+      {
+        "path": "templates/angular/timeline.ts",
+        "sha256": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2"
+      },
+      {
+        "path": "templates/angular/toolbar.ts",
+        "sha256": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4"
+      },
+      {
+        "path": "templates/angular/tour.ts",
+        "sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70"
+      },
+      {
+        "path": "templates/angular/transfer-list.ts",
+        "sha256": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6"
+      },
+      {
+        "path": "templates/angular/transfer-model.ts",
+        "sha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10"
+      },
+      {
+        "path": "templates/angular/tree-grid.ts",
+        "sha256": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6"
+      },
+      {
+        "path": "templates/angular/tree-item.ts",
+        "sha256": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c"
+      },
+      {
+        "path": "templates/angular/tree-load-sequence.ts",
+        "sha256": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd"
+      },
+      {
+        "path": "templates/angular/tree-model.ts",
+        "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4"
+      },
+      {
+        "path": "templates/angular/tree-node-template.ts",
+        "sha256": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440"
+      },
+      {
+        "path": "templates/angular/tree-popup-control.ts",
+        "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf"
+      },
+      {
+        "path": "templates/angular/tree-select.ts",
+        "sha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118"
+      },
+      {
+        "path": "templates/angular/tree.ts",
+        "sha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5"
+      },
+      {
+        "path": "templates/angular/value-control.ts",
+        "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214"
+      },
+      {
+        "path": "templates/angular/virtual-data-table.ts",
+        "sha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8"
+      },
+      {
+        "path": "templates/angular/virtual-list.ts",
+        "sha256": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7"
+      },
+      {
+        "path": "templates/angular/wizard.ts",
+        "sha256": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef"
+      }
+    ],
+    "unchangedAngularTsFiles": 138,
+    "unchangedAssets": [
+      {
+        "path": "assets/media/blue.svg",
+        "sha256": "2d7d4c18cab1192003e2e87cd7f1d1829f242de7f917fe5332db57eb14689df9"
+      },
+      {
+        "path": "assets/media/broken.png",
+        "sha256": "839c6735af5f42c492811536350bb7fb91a0b963c2c605d71b545363102700ff"
+      },
+      {
+        "path": "assets/media/green.svg",
+        "sha256": "964b9b9bdcf34aa81b3444561c417343b126b944a1e5634af2bc30ee14ea42b9"
+      },
+      {
+        "path": "assets/media/invalid.pdf",
+        "sha256": "07773cd77d0d3b8a892a146221bdcbedb7e3bdecc09e5e71e4718f37379f6e26"
+      },
+      {
+        "path": "assets/media/red.svg",
+        "sha256": "8085ebb4f513e1ba364e7be5eb6e6b419705b0a1cbeeff12616eb09cd40faf42"
+      },
+      {
+        "path": "assets/media/replacement-two.vtt",
+        "sha256": "aa684443f3e77ac4f2872d730cb3d6b11195f1e27f8127224c47c0b554645d65"
+      },
+      {
+        "path": "assets/media/replacement.vtt",
+        "sha256": "d4124b427524765a8e1361500f7df8a2c3796154905e40bde06632a9244610cc"
+      },
+      {
+        "path": "assets/media/sample.pdf",
+        "sha256": "f0125b57fe995d26f1e97261e56b7464bbcc72f7ef3b8eb9dd2aa715c702bd7a"
+      },
+      {
+        "path": "assets/media/sample.vtt",
+        "sha256": "21e3cb59b045f606baca24b3340cf199a91f0838e13619428911abbef4bf195f"
+      },
+      {
+        "path": "assets/media/third-party-notices.txt",
+        "sha256": "3ecae84d64c54df3ddd3f9dcf75d86614d7dc2196dd3806d0e78abbab34a5a48"
+      },
+      {
+        "path": "assets/media/tone.wav",
+        "sha256": "ef08857054e4becbde9a50e868b396dc785021952bc54fa1c0c202755720089f"
+      },
+      {
+        "path": "assets/pdf-source/AUTHORS",
+        "sha256": "0f056151c210fa1acc8dd8cf1ae3febbba19339322dcd9154c01a5991c001d28"
+      },
+      {
+        "path": "assets/pdf-source/COPYING",
+        "sha256": "ab15fd526bd8dd18a9e77ebc139656bf4d33e97fc7238cd11bf60e2b9b8666c6"
+      },
+      {
+        "path": "assets/pdf-source/DEBIAN-COPYRIGHT",
+        "sha256": "bcb5f95766d5dc969748869eef4559dd991fd31f7e0d30c29e140276cc3c24ee"
+      },
+      {
+        "path": "assets/pdf-source/FONT-MAPPING.json",
+        "sha256": "6d2f0782c369ec14f00ae7ef9536ea2f5aad08c9628fc163d757b33373d4837b"
+      },
+      {
+        "path": "assets/pdf-source/LICENSE_LIBERATION",
+        "sha256": "d2c4d5b3e115a519cb58eb691aa64538397e2611f9ebe801392cf9667997e7dc"
+      },
+      {
+        "path": "assets/pdf-source/License.txt",
+        "sha256": "c40dd6adebad817defd68c7edad151d9c13d2ac3b4e1790ce2b727b024438b6d"
+      },
+      {
+        "path": "assets/pdf-source/README.md",
+        "sha256": "2c3c1e8ed7222f913bd506b922c0643a8ddd72c170076a18c703b36f95410f7c"
+      },
+      {
+        "path": "assets/pdf-source/fonts-liberation_1.07.4-11.debian.tar.xz",
+        "sha256": "45ea32aab7eed82061493edbf5ef621d6fd7f074cb79ae45206014913ca5f313"
+      },
+      {
+        "path": "assets/pdf-source/fonts-liberation_1.07.4-11.dsc",
+        "sha256": "c9cb6abc8b8ab1887d78f5fc1aef1fc06a220efbfa3424ca7e8bc379242654ba"
+      },
+      {
+        "path": "assets/pdf-source/fonts-liberation_1.07.4-11_all.buildinfo",
+        "sha256": "9f218eeaea238712768a907aa40ee8671bd34730d07e2f150c2d9d4fc8f8db33"
+      },
+      {
+        "path": "assets/pdf-source/fonts-liberation_1.07.4.orig.tar.gz",
+        "sha256": "ad98b7498dc2992f7f0868f79b65ce4a720a3acdb63ab3f1f1cb6881117a5406"
+      },
+      {
+        "path": "assets/third-party/THIRD-PARTY-NOTICES.txt",
+        "sha256": "316e5ef21284939e101a828cb7f7b41d5ca08ee61ca886959f1cb1d7dad60a45"
+      }
+    ],
+    "cardImportReferences": [
+      "templates/angular/index.ts"
+    ],
+    "oldObservedConsumerSha256": "f0b4122193dcfeba2eb56c5822f13a46a40e5921d217bc875fdb1bfeed4a88f2",
+    "currentConsumerSha256": "046ff6fe50c79b6b53544660f190224180e3fa3232ba5505ce5b1210b7cec47e",
+    "sixRouteSourceByteEquivalence": true,
+    "documentedConsumerChanges": [
+      "Markdown sample document heading h1 → h2, independently rendered by latest smoke check",
+      "Separate public Card route added; old six route source and typed models otherwise byte-identical"
+    ],
+    "unchangedNativeScripts": {
+      "verify-browser.mjs": "080fe9fe3126c6bfdf612f1ab23d75ab715ff91bf877bf63565df0674dfb06a9",
+      "verify-media-locale.mjs": "d857b5af951c45a3aaafa0f638ab85d547d5154e616730860e7752aabf45788d",
+      "verify-scheduler-locale.mjs": "5e985d73c09ff43de7db4c784be68e2046650a4ec72b91f0c3fa36ba8aebe766"
+    },
+    "evidence": {
+      "browser": {
+        "path": "snapshots/frozen-338dcf85-60cd513e/evidence/browser-final-results.json",
+        "caseCount": 23,
+        "rerunOnNewSource": false
+      },
+      "media": {
+        "path": "snapshots/frozen-338dcf85-60cd513e/evidence/media-locale-results.json",
+        "profiles": 2,
+        "checksPerProfile": 18,
+        "rerunOnNewSource": false
+      },
+      "scheduler": {
+        "path": "snapshots/frozen-338dcf85-60cd513e/evidence/scheduler-locale-results.json",
+        "profiles": 2,
+        "checksPerProfile": 9,
+        "rerunOnNewSource": false
+      },
+      "scopeServerTrap": {
+        "path": "snapshots/frozen-338dcf85-60cd513e/evidence/scope-server-trap.json",
+        "rerunOnNewSource": false
+      }
+    },
+    "rationale": "All raw Angular modules exercised by those old six routes, their dependencies/configuration/lock/assets and probe scripts are byte-identical. Card is referenced only by the public barrel and instantiated only on the new separate Card route. Old source provenance and native results remain unchanged; the new route receives fresh production AOT/build/native verification.",
+    "limits": "No retagging of old native execution as a fresh run on a808. No all-181 native or full SSR claim."
+  },
+  "axe": [
+    {
+      "name": "foundation-narrow-profile-rtl-draft-guided",
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "state": null,
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "foundation-narrow-profile-rtl-draft-dense",
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "state": null,
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "pdf-native-worker-empty-error-retry-unload",
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "state": "rendered",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "pdf-native-worker-empty-error-retry-unload",
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "state": "empty",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "pdf-native-worker-empty-error-retry-unload",
+      "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "state": "invalid",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "Card guided",
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "state": "ltr",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "Card guided",
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "state": "rtl",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "Card dense",
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "state": "ltr",
+      "violations": 0,
+      "incomplete": []
+    },
+    {
+      "name": "Card dense",
+      "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+      "state": "rtl",
+      "violations": 0,
+      "incomplete": []
+    }
+  ],
+  "mainExact": {
+    "mainSource": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+    "privateSource": "/tmp/ui-foundation-final-integration/repository",
+    "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+    "assetSha256": "78fa8b8151769a869225fc9bfcdfeb1b6d3f8401f256e1e638b7c5cae2c809e8",
+    "comparedFiles": 178,
+    "mainRawTemplateTsCount": 139,
+    "rootBuildScriptSha256": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0",
+    "allEqual": true,
+    "limits": "Readonly raw generation input/assets equality; root tests/docs/Git and root generated artifacts are outside this check."
+  },
+  "rootFreeze": {
+    "manifest": "/tmp/ui-foundation-final-integration/root-message-final-source-freeze.json",
+    "manifestSha256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a",
+    "time": "2026-10-06T09:03:18.242984+00:00",
+    "scope": "Final candidate: one Card breakpoint CSS property repaired; two formal Card regressions and the obsolete last Date-format assertion now verify retained invalid draft and explicit reset. Other product source is unchanged from60cd.",
+    "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+    "comparedFiles": 147,
+    "allEqual": true,
+    "mismatches": [],
+    "files": [
+      {
+        "path": "examples/ui.config.example.yaml",
+        "sha256": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040",
+          "/tmp/ui-foundation-final-integration/repository": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e",
+          "/tmp/ui-foundation-final-integration/repository": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "package.json",
+        "sha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+          "/tmp/ui-foundation-final-integration/repository": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "scripts/build.mjs",
+        "sha256": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0",
+          "/tmp/ui-foundation-final-integration/repository": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "src/roles.ts",
+        "sha256": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14",
+          "/tmp/ui-foundation-final-integration/repository": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/README.md",
+        "sha256": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a",
+          "/tmp/ui-foundation-final-integration/repository": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/action-control.ts",
+        "sha256": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+          "/tmp/ui-foundation-final-integration/repository": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/action-feedback.ts",
+        "sha256": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+          "/tmp/ui-foundation-final-integration/repository": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/actions.ts",
+        "sha256": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+          "/tmp/ui-foundation-final-integration/repository": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/agenda.ts",
+        "sha256": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+          "/tmp/ui-foundation-final-integration/repository": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/anchor-navigation.ts",
+        "sha256": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+          "/tmp/ui-foundation-final-integration/repository": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/async-region.ts",
+        "sha256": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+          "/tmp/ui-foundation-final-integration/repository": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/barcode.ts",
+        "sha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+          "/tmp/ui-foundation-final-integration/repository": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/calendar.ts",
+        "sha256": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+          "/tmp/ui-foundation-final-integration/repository": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/card.ts",
+        "sha256": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+          "/tmp/ui-foundation-final-integration/repository": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/cascader.ts",
+        "sha256": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+          "/tmp/ui-foundation-final-integration/repository": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/chart-options.ts",
+        "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+          "/tmp/ui-foundation-final-integration/repository": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/chart.ts",
+        "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+          "/tmp/ui-foundation-final-integration/repository": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/chat.ts",
+        "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+          "/tmp/ui-foundation-final-integration/repository": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/choice-controls.ts",
+        "sha256": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+          "/tmp/ui-foundation-final-integration/repository": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/choice-model.ts",
+        "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+          "/tmp/ui-foundation-final-integration/repository": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/code-editor.ts",
+        "sha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+          "/tmp/ui-foundation-final-integration/repository": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/collection-model.ts",
+        "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+          "/tmp/ui-foundation-final-integration/repository": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/collection-runtime.ts",
+        "sha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+          "/tmp/ui-foundation-final-integration/repository": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/collection-views.ts",
+        "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+          "/tmp/ui-foundation-final-integration/repository": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/command-palette.ts",
+        "sha256": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+          "/tmp/ui-foundation-final-integration/repository": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/crop-adapter.ts",
+        "sha256": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+          "/tmp/ui-foundation-final-integration/repository": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/data-grid.ts",
+        "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+          "/tmp/ui-foundation-final-integration/repository": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/data-table-view.ts",
+        "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+          "/tmp/ui-foundation-final-integration/repository": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/data-table.ts",
+        "sha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+          "/tmp/ui-foundation-final-integration/repository": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/date-input.ts",
+        "sha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+          "/tmp/ui-foundation-final-integration/repository": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/date-model.ts",
+        "sha256": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f",
+          "/tmp/ui-foundation-final-integration/repository": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/date-range-picker.ts",
+        "sha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+          "/tmp/ui-foundation-final-integration/repository": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/diagram-layout.ts",
+        "sha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+          "/tmp/ui-foundation-final-integration/repository": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/diagram.ts",
+        "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+          "/tmp/ui-foundation-final-integration/repository": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/dialog-variants.ts",
+        "sha256": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+          "/tmp/ui-foundation-final-integration/repository": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/dialog.ts",
+        "sha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+          "/tmp/ui-foundation-final-integration/repository": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/diff-json.ts",
+        "sha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+          "/tmp/ui-foundation-final-integration/repository": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/disclosure.ts",
+        "sha256": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43",
+          "/tmp/ui-foundation-final-integration/repository": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/display-content.ts",
+        "sha256": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+          "/tmp/ui-foundation-final-integration/repository": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/display-model.ts",
+        "sha256": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+          "/tmp/ui-foundation-final-integration/repository": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/display-style.ts",
+        "sha256": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e",
+          "/tmp/ui-foundation-final-integration/repository": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/display.ts",
+        "sha256": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+          "/tmp/ui-foundation-final-integration/repository": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/drawer.ts",
+        "sha256": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+          "/tmp/ui-foundation-final-integration/repository": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/editor-control.ts",
+        "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+          "/tmp/ui-foundation-final-integration/repository": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/editor-model.ts",
+        "sha256": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+          "/tmp/ui-foundation-final-integration/repository": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/feedback-model.ts",
+        "sha256": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3",
+          "/tmp/ui-foundation-final-integration/repository": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/feedback.ts",
+        "sha256": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e",
+          "/tmp/ui-foundation-final-integration/repository": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/file-draft-model.ts",
+        "sha256": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f",
+          "/tmp/ui-foundation-final-integration/repository": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/file-explorer.ts",
+        "sha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+          "/tmp/ui-foundation-final-integration/repository": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/file-upload.ts",
+        "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+          "/tmp/ui-foundation-final-integration/repository": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/filter-builder.ts",
+        "sha256": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+          "/tmp/ui-foundation-final-integration/repository": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/filter-model.ts",
+        "sha256": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c",
+          "/tmp/ui-foundation-final-integration/repository": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/floating-model.ts",
+        "sha256": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962",
+          "/tmp/ui-foundation-final-integration/repository": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/floating-panel.ts",
+        "sha256": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+          "/tmp/ui-foundation-final-integration/repository": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/focus.ts",
+        "sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+          "/tmp/ui-foundation-final-integration/repository": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/form-field.ts",
+        "sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+          "/tmp/ui-foundation-final-integration/repository": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/form-layout.ts",
+        "sha256": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+          "/tmp/ui-foundation-final-integration/repository": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/formula-parser.d.ts",
+        "sha256": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
+          "/tmp/ui-foundation-final-integration/repository": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/gantt.ts",
+        "sha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+          "/tmp/ui-foundation-final-integration/repository": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/grid-list.ts",
+        "sha256": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+          "/tmp/ui-foundation-final-integration/repository": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/icon.ts",
+        "sha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "/tmp/ui-foundation-final-integration/repository": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/image-cropper.ts",
+        "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+          "/tmp/ui-foundation-final-integration/repository": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/image-media.ts",
+        "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+          "/tmp/ui-foundation-final-integration/repository": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/index.ts",
+        "sha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+          "/tmp/ui-foundation-final-integration/repository": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/infinite-scroll.ts",
+        "sha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+          "/tmp/ui-foundation-final-integration/repository": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/inline-edit.ts",
+        "sha256": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+          "/tmp/ui-foundation-final-integration/repository": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/json-model.ts",
+        "sha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+          "/tmp/ui-foundation-final-integration/repository": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/kanban.ts",
+        "sha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+          "/tmp/ui-foundation-final-integration/repository": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/layout-model.ts",
+        "sha256": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+          "/tmp/ui-foundation-final-integration/repository": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/layout.ts",
+        "sha256": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+          "/tmp/ui-foundation-final-integration/repository": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/listbox.ts",
+        "sha256": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+          "/tmp/ui-foundation-final-integration/repository": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/locale-model.ts",
+        "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+          "/tmp/ui-foundation-final-integration/repository": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/locale.ts",
+        "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+          "/tmp/ui-foundation-final-integration/repository": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/map.ts",
+        "sha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+          "/tmp/ui-foundation-final-integration/repository": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/markdown-editor.ts",
+        "sha256": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+          "/tmp/ui-foundation-final-integration/repository": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/media-dom.ts",
+        "sha256": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+          "/tmp/ui-foundation-final-integration/repository": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/media-model.ts",
+        "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+          "/tmp/ui-foundation-final-integration/repository": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/media-player.ts",
+        "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+          "/tmp/ui-foundation-final-integration/repository": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/media-style.ts",
+        "sha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+          "/tmp/ui-foundation-final-integration/repository": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/mega-menu.ts",
+        "sha256": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+          "/tmp/ui-foundation-final-integration/repository": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/menu-model.ts",
+        "sha256": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+          "/tmp/ui-foundation-final-integration/repository": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/menu.ts",
+        "sha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+          "/tmp/ui-foundation-final-integration/repository": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/menubar.ts",
+        "sha256": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb",
+          "/tmp/ui-foundation-final-integration/repository": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/navigation-model.ts",
+        "sha256": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+          "/tmp/ui-foundation-final-integration/repository": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/navigation-tree.ts",
+        "sha256": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+          "/tmp/ui-foundation-final-integration/repository": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/navigation.ts",
+        "sha256": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b",
+          "/tmp/ui-foundation-final-integration/repository": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/notification-center.ts",
+        "sha256": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+          "/tmp/ui-foundation-final-integration/repository": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/notification-model.ts",
+        "sha256": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e",
+          "/tmp/ui-foundation-final-integration/repository": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/notifications.ts",
+        "sha256": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+          "/tmp/ui-foundation-final-integration/repository": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/organization-chart.ts",
+        "sha256": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+          "/tmp/ui-foundation-final-integration/repository": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/overlay.ts",
+        "sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+          "/tmp/ui-foundation-final-integration/repository": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/page-frame.ts",
+        "sha256": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+          "/tmp/ui-foundation-final-integration/repository": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/pagination.ts",
+        "sha256": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+          "/tmp/ui-foundation-final-integration/repository": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/panel-handle.ts",
+        "sha256": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+          "/tmp/ui-foundation-final-integration/repository": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/panels.ts",
+        "sha256": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5",
+          "/tmp/ui-foundation-final-integration/repository": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/pdf-adapter.ts",
+        "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+          "/tmp/ui-foundation-final-integration/repository": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/pdf-viewer.ts",
+        "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+          "/tmp/ui-foundation-final-integration/repository": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/radio-group.ts",
+        "sha256": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35",
+          "/tmp/ui-foundation-final-integration/repository": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/rich-text-editor.ts",
+        "sha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+          "/tmp/ui-foundation-final-integration/repository": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler-controller.ts",
+        "sha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+          "/tmp/ui-foundation-final-integration/repository": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler-model.ts",
+        "sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+          "/tmp/ui-foundation-final-integration/repository": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler-move-sequence.ts",
+        "sha256": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6",
+          "/tmp/ui-foundation-final-integration/repository": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler-template.ts",
+        "sha256": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216",
+          "/tmp/ui-foundation-final-integration/repository": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler-view.ts",
+        "sha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+          "/tmp/ui-foundation-final-integration/repository": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/scheduler.ts",
+        "sha256": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+          "/tmp/ui-foundation-final-integration/repository": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/selection-input.ts",
+        "sha256": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+          "/tmp/ui-foundation-final-integration/repository": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/sheet-formula.ts",
+        "sha256": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+          "/tmp/ui-foundation-final-integration/repository": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/sheet-formula.worker.ts",
+        "sha256": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+          "/tmp/ui-foundation-final-integration/repository": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/sheet-runner.ts",
+        "sha256": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+          "/tmp/ui-foundation-final-integration/repository": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/sortable-list.ts",
+        "sha256": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+          "/tmp/ui-foundation-final-integration/repository": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/specialist-browser.ts",
+        "sha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+          "/tmp/ui-foundation-final-integration/repository": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/specialist-model.ts",
+        "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+          "/tmp/ui-foundation-final-integration/repository": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/specialist-style.ts",
+        "sha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+          "/tmp/ui-foundation-final-integration/repository": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/specialist.css",
+        "sha256": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704",
+          "/tmp/ui-foundation-final-integration/repository": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/splitter.ts",
+        "sha256": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+          "/tmp/ui-foundation-final-integration/repository": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/spreadsheet.ts",
+        "sha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+          "/tmp/ui-foundation-final-integration/repository": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/structured-input-model.ts",
+        "sha256": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
+          "/tmp/ui-foundation-final-integration/repository": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/structured-input.ts",
+        "sha256": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3",
+          "/tmp/ui-foundation-final-integration/repository": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/styles.css",
+        "sha256": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff",
+          "/tmp/ui-foundation-final-integration/repository": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-advanced-model.ts",
+        "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+          "/tmp/ui-foundation-final-integration/repository": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-column-resize.ts",
+        "sha256": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+          "/tmp/ui-foundation-final-integration/repository": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-controls.ts",
+        "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+          "/tmp/ui-foundation-final-integration/repository": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-editors.ts",
+        "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+          "/tmp/ui-foundation-final-integration/repository": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-model.ts",
+        "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+          "/tmp/ui-foundation-final-integration/repository": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-output.ts",
+        "sha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+          "/tmp/ui-foundation-final-integration/repository": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/table-runtime.ts",
+        "sha256": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+          "/tmp/ui-foundation-final-integration/repository": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tabs.ts",
+        "sha256": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc",
+          "/tmp/ui-foundation-final-integration/repository": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/text-input.ts",
+        "sha256": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+          "/tmp/ui-foundation-final-integration/repository": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/timeline-model.ts",
+        "sha256": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2",
+          "/tmp/ui-foundation-final-integration/repository": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/timeline.ts",
+        "sha256": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2",
+          "/tmp/ui-foundation-final-integration/repository": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/toolbar.ts",
+        "sha256": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4",
+          "/tmp/ui-foundation-final-integration/repository": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tour.ts",
+        "sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+          "/tmp/ui-foundation-final-integration/repository": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/transfer-list.ts",
+        "sha256": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+          "/tmp/ui-foundation-final-integration/repository": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/transfer-model.ts",
+        "sha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+          "/tmp/ui-foundation-final-integration/repository": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-grid.ts",
+        "sha256": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+          "/tmp/ui-foundation-final-integration/repository": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-item.ts",
+        "sha256": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+          "/tmp/ui-foundation-final-integration/repository": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-load-sequence.ts",
+        "sha256": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd",
+          "/tmp/ui-foundation-final-integration/repository": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-model.ts",
+        "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+          "/tmp/ui-foundation-final-integration/repository": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-node-template.ts",
+        "sha256": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+          "/tmp/ui-foundation-final-integration/repository": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-popup-control.ts",
+        "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+          "/tmp/ui-foundation-final-integration/repository": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree-select.ts",
+        "sha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+          "/tmp/ui-foundation-final-integration/repository": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/tree.ts",
+        "sha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+          "/tmp/ui-foundation-final-integration/repository": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/value-control.ts",
+        "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+          "/tmp/ui-foundation-final-integration/repository": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/virtual-data-table.ts",
+        "sha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+          "/tmp/ui-foundation-final-integration/repository": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/virtual-list.ts",
+        "sha256": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+          "/tmp/ui-foundation-final-integration/repository": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7"
+        },
+        "allEqual": true
+      },
+      {
+        "path": "templates/angular/wizard.ts",
+        "sha256": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef",
+        "actual": {
+          "/Users/inouehiroshi/Documents/GitHub/ui-foundation": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef",
+          "/tmp/ui-foundation-final-integration/repository": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef",
+          "/private/tmp/ui-foundation-final-catalog-consumer-review": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef"
+        },
+        "allEqual": true
+      }
+    ]
+  },
+  "proofScripts": {
+    "consumer.ts": {
+      "sha256": "046ff6fe50c79b6b53544660f190224180e3fa3232ba5505ce5b1210b7cec47e",
+      "bytes": 20077
+    },
+    "tsconfig.consumer.json": {
+      "sha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf",
+      "bytes": 363
+    },
+    "finalize-input.mjs": {
+      "sha256": "10b50ff26c1b37198aeea17e2ec76f3935c27de0898b1c0d516411c5bdd0dab5",
+      "bytes": 5173
+    },
+    "verify-types.mjs": {
+      "sha256": "4ba4268f9f818a42d8bbe49b8a85eea6350e9c3bf0058e4bae167e15bcdd265a",
+      "bytes": 3421
+    },
+    "build-consumer.mjs": {
+      "sha256": "5c5a34fbbea7594f97acec2aacb841868fcd8c630cce91fafdb89bde4d5cfc7c",
+      "bytes": 4453
+    },
+    "verify-source-closure.mjs": {
+      "sha256": "b4703f9bf2cc27c19bedcef9af91b7603361cafd71b40fa7227a190a0da251ef",
+      "bytes": 2169
+    },
+    "verify-main-source-exact.mjs": {
+      "sha256": "82e9279cc2af6d4f3aa9b6809646e6805abbfb3f35a6d8c115c271b96e1b58c3",
+      "bytes": 1869
+    },
+    "verify-root-freeze.mjs": {
+      "sha256": "8d963f23e237f0a4afc1a04b73f6ca5961c2cac052f54b159430df0f0c88813a",
+      "bytes": 1570
+    },
+    "verify-evidence-inheritance.mjs": {
+      "sha256": "e5c81a81c2e3f5c9091e8d9ca8625307ab71ec5563ba7366b4a8631676b88fe3",
+      "bytes": 5504
+    },
+    "serve-consumer.mjs": {
+      "sha256": "7d2f4efec30d5438e96859ad0812e672c3d88c51dae4517813e1cda262f34d4e",
+      "bytes": 1162
+    },
+    "verify-card.mjs": {
+      "sha256": "954cf25a6e3dbe5e9cb208e6f1bf440355cff15acdd583414e7bdd2f87278f67",
+      "bytes": 5722
+    },
+    "verify-harness-heading.mjs": {
+      "sha256": "a612593466d5677a91dc2b515c12c4f75d32906d106176b717c326d9772d473f",
+      "bytes": 1430
+    },
+    "verify-browser.mjs": {
+      "sha256": "080fe9fe3126c6bfdf612f1ab23d75ab715ff91bf877bf63565df0674dfb06a9",
+      "bytes": 38484
+    },
+    "verify-media-locale.mjs": {
+      "sha256": "d857b5af951c45a3aaafa0f638ab85d547d5154e616730860e7752aabf45788d",
+      "bytes": 12930
+    },
+    "verify-scheduler-locale.mjs": {
+      "sha256": "5e985d73c09ff43de7db4c784be68e2046650a4ec72b91f0c3fa36ba8aebe766",
+      "bytes": 10331
+    },
+    "inspect-browser.mjs": {
+      "sha256": "d20fa2c33dee2f2e34ca03b8a8bc489b504acb9231b392eb4a6fe96a531a1785",
+      "bytes": 1289
+    },
+    "verify-distribution.mjs": {
+      "sha256": "395fdbcefd1ed0162097f2fda99943ca243be9ae76f500be79de966be52884a4",
+      "bytes": 4829
+    },
+    "scope-server-trap.ts": {
+      "sha256": "91b054e02e3dddab04b8b468191595bd7b10fdd5486411328d296277c9789182",
+      "bytes": 2926
+    },
+    "probe-native-date-bad-input.mjs": {
+      "sha256": "b80cf0ffd9a9cea8f5e0f98db165e88fbaddccc4a10af7019e6ca7f9dfb95265",
+      "bytes": 2743
+    },
+    "deliverable-tests/foundation-date-format-retention.spec.ts": {
+      "sha256": "dfae0f7e81b5bce11e450c3ada65d1f726f7dae70933068998685f0576bf0903",
+      "bytes": 6015
+    },
+    "final-report.mjs": {
+      "sha256": "718b343582eef1b786539fa4815e6c8c167f042b7ed66f23753ad940fae69865",
+      "bytes": 21637
+    }
+  },
+  "guide": {
+    "path": "deliverable-docs/docs/ui-library-consumer-guide.ja.md",
+    "sha256": "3f54fad40b11bcdb42b2bd412858c69efc5204afd2fb6facec9d68aecf2168be",
+    "authoredByReviewer": true,
+    "independentReviewOfGuide": false
+  },
+  "fixedFindings": [
+    {
+      "severity": "P2",
+      "file": "templates/angular/chat.ts",
+      "after": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+      "problem": "Explicit composer CVA reset retained a previous send-request error.",
+      "nativeProof": "Same/new/null CVA and controlled resets; parent Chat delegation; old ACK refusal; fresh error/retry/success in two profiles."
+    },
+    {
+      "severity": "P2",
+      "file": "templates/angular/date-input.ts",
+      "after": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+      "problem": "A dateInputFormat change discarded an invalid draft and its validation without reset.",
+      "nativeProof": "Two profiles; raw invalid draft and real native badInput retain DOM/focus/selection and confirmed range; repair/clear/calendar/reset adopt new format."
+    },
+    {
+      "severity": "P2",
+      "files": [
+        "image-media.ts",
+        "media-player.ts",
+        "pdf-viewer.ts",
+        "image-cropper.ts",
+        "barcode.ts"
+      ],
+      "problem": "Stored Media UI diagnostics/status/parameterized ARIA did not follow live locale dictionaries.",
+      "nativeProof": "Five real existing errors plus three existing statuses and physical ImageCompare range, 18 checks per profile; no reload/new worker; DOM/focus/FileCVA/app labels preserved."
+    },
+    {
+      "severity": "P2",
+      "file": "templates/angular/scheduler-controller.ts",
+      "after": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+      "problem": "Three spread writers retained a stale messageText reader after draft edits.",
+      "nativeProof": "All three native zone/datetime/resource writers clear cached status in two profiles. Existing structural diagnostics live-update; exact-key app failure stays raw; retry new request ID and stale ACK refusal."
+    }
+  ],
+  "finalDisplayDeltas": {
+    "barcode": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+    "schedulerView": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+    "nativeProof": "Two profiles; real intrinsic barcode canvas in a named local keyboard scroll region, no document overflow; invalid-ISO event/invalid-date layout UI diagnostics update while pure model/app raw values/requests stay unchanged.",
+    "affectedCard": {
+      "before": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+      "after": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+      "exactDelta": "grid-template-columns:1fr → grid-template-columns:minmax(0,1fr), one CSS replacement",
+      "freshProfiles": 2,
+      "freshGeometryStates": 4
+    }
+  },
+  "remainingBlockingFindings": [],
+  "history": {
+    "oldApproval": "snapshots/frozen-cb241770",
+    "postApprovalDrift": "evidence/post-approval-source-drift.json",
+    "previousApproval": "snapshots/frozen-338dcf85-60cd513e",
+    "originalFailedEvidenceRetained": true
+  },
+  "limits": [
+    "Native checks cover selected boundaries, not all 181 components and states.",
+    "Backend persistence, actual upload completion, Undo and user/assistive-technology understanding are unobserved. Application ACK/failure callbacks are deliberately supplied; upload entries remain queued.",
+    "Chromium only; Firefox/Safari, OS IME/touch and screen-reader operation are unobserved.",
+    "The inherited actual UiLocaleScope server DI/global trap uses host and Renderer2 adapters; no full SSR rendering or hydration claim.",
+    "axe incomplete entries retain their rule/node evidence and are not counted as passes.",
+    "CSP enforcement, optical barcode/QR scanning, font source recompilation and PGP signatures are unobserved.",
+    "Root full-npm/PR/merge verification is separately owned; no inference of a full-suite pass from this consumer approval.",
+    "No shared Git/generated edits, npm publication or messages to third parties performed by this reviewer."
+  ]
+}

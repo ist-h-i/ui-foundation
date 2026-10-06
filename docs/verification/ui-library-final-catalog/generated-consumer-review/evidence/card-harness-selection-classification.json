@@ -1,0 +1,8 @@
+{
+  "classification": "harness_baseline_failure_corrected_and_native_rerun_passed",
+  "firstActualExit": 1,
+  "correctedActualExit": 0,
+  "reason": "After the probe itself performed native End/Shift/Pointer/Home, the next comparison incorrectly reused the initial selection instead of the actual per-transition selection. Capturing that native baseline before each direction transition passed all four geometry states; no scripted selection injection and no product code change.",
+  "proof": "card-final-before-trace-label-correction.json",
+  "traceFollowup": "Record selectionAfterLocale immediately after the assertion rather than after the later pointer/End/Shift keys, then rerun unchanged behavioral checks."
+}

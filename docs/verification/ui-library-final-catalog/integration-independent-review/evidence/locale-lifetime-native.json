@@ -1,0 +1,451 @@
+{
+  "kind": "Independent real PDF Worker / media / file acceptance / opaque app-failure locale boundary",
+  "sourceSha256": {
+    "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "file-upload.ts": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+    "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+    "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+    "table-editors.ts": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+  },
+  "checks": [
+    {
+      "name": "opaque raw app failure acknowledgement guided",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "native file rejection follows current dictionary guided",
+      "actual": "raw-image.png: Type rejected v2",
+      "expected": "raw-image.png: Type rejected v2",
+      "passed": true
+    },
+    {
+      "name": "captured file counters remain original operation result guided",
+      "actual": "2 accepted v2; 1 rejected v2",
+      "expected": "2 accepted v2; 1 rejected v2",
+      "passed": true
+    },
+    {
+      "name": "native worker/media/file/request/pixel lifetimes stay stable guided",
+      "actual": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "expected": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "passed": true
+    },
+    {
+      "name": "dictionary-only creates zero HTTP requests guided",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "dictionary-only creates zero actual workers guided",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "real PDF worker and original document actually loaded guided",
+      "actual": {
+        "workers": 1,
+        "pdfLoaded": 1,
+        "pagesText": true
+      },
+      "expected": {
+        "workers": 1,
+        "pdfLoaded": 1,
+        "pagesText": true
+      },
+      "passed": true
+    },
+    {
+      "name": "app error matching owned dictionary key stays opaque guided",
+      "actual": "コピーしています。",
+      "expected": "コピーしています。",
+      "passed": true
+    },
+    {
+      "name": "native edit draft/caret/focus/DOM retained guided",
+      "actual": {
+        "same": true,
+        "focused": true,
+        "value": "Unaccepted app draft",
+        "start": 2,
+        "end": 7
+      },
+      "expected": {
+        "same": true,
+        "focused": true,
+        "value": "Unaccepted app draft",
+        "start": 2,
+        "end": 7
+      },
+      "passed": true
+    },
+    {
+      "name": "opaque raw app failure acknowledgement dense",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "native file rejection follows current dictionary dense",
+      "actual": "raw-image.png: Type rejected v2",
+      "expected": "raw-image.png: Type rejected v2",
+      "passed": true
+    },
+    {
+      "name": "captured file counters remain original operation result dense",
+      "actual": "2 accepted v2; 1 rejected v2",
+      "expected": "2 accepted v2; 1 rejected v2",
+      "passed": true
+    },
+    {
+      "name": "native worker/media/file/request/pixel lifetimes stay stable dense",
+      "actual": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "expected": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "passed": true
+    },
+    {
+      "name": "dictionary-only creates zero HTTP requests dense",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "dictionary-only creates zero actual workers dense",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "real PDF worker and original document actually loaded dense",
+      "actual": {
+        "workers": 1,
+        "pdfLoaded": 1,
+        "pagesText": true
+      },
+      "expected": {
+        "workers": 1,
+        "pdfLoaded": 1,
+        "pagesText": true
+      },
+      "passed": true
+    },
+    {
+      "name": "app error matching owned dictionary key stays opaque dense",
+      "actual": "コピーしています。",
+      "expected": "コピーしています。",
+      "passed": true
+    },
+    {
+      "name": "native edit draft/caret/focus/DOM retained dense",
+      "actual": {
+        "same": true,
+        "focused": true,
+        "value": "Unaccepted app draft",
+        "start": 2,
+        "end": 7
+      },
+      "expected": {
+        "same": true,
+        "focused": true,
+        "value": "Unaccepted app draft",
+        "start": 2,
+        "end": 7
+      },
+      "passed": true
+    }
+  ],
+  "runtime": [],
+  "console": [],
+  "profiles": [
+    {
+      "profile": "guided",
+      "before": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "after": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "workers": [
+        "http://127.0.0.1:49498/assets/pdf/pdf.worker.mjs"
+      ],
+      "httpSinceDictionary": []
+    },
+    {
+      "profile": "dense",
+      "before": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "after": {
+        "loaded": 1,
+        "uploadRequests": 2,
+        "saveRequests": 1,
+        "pdfWidth": 300,
+        "pdfHeight": 240,
+        "pdfPixelSha256": "e028cb9406e138d2ae92987080fa51ed24e870bda6b2e71b1fc4c55c04dbbf8a",
+        "nativeLoads": 0,
+        "rawRow": {
+          "id": "raw-business-id",
+          "value": "App source"
+        },
+        "rawRequestKeys": [
+          "raw-business-id"
+        ],
+        "requestFiles": [
+          {
+            "id": "native-upload-1",
+            "requestId": 1,
+            "name": "raw-one.txt",
+            "type": "text/plain",
+            "size": 3
+          },
+          {
+            "id": "native-upload-2",
+            "requestId": 2,
+            "name": "raw-two.txt",
+            "type": "text/plain",
+            "size": 3
+          }
+        ],
+        "mediaSame": true,
+        "pdfSame": true
+      },
+      "workers": [
+        "http://127.0.0.1:49498/assets/pdf/pdf.worker.mjs"
+      ],
+      "httpSinceDictionary": []
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "browser": "154.0.8037.98"
+}

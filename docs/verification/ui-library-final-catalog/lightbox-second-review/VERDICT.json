@@ -1,0 +1,148 @@
+{
+  "kind": "Independent second review of exact sole test-only precondition addition",
+  "beforeCommit": "53a785824b86a34ada3ee8619f710fad57117634",
+  "beforeSha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+  "afterSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+  "reverseAdditionRestoresAllOriginalBytes": true,
+  "productChanges": 0,
+  "rootTraceSha256": "915e9713886e9d84b0d62acf05896d75f38a93073d0ef21472399303c796c5d5",
+  "decodeMethod": "Installed Playwright recorded postorder reference semantics; own independent decoder; no app/component state mutation",
+  "decodeMatchesAuthorEveryState": true,
+  "rawStates": [
+    {
+      "callId": "call@12147",
+      "phase": "before",
+      "timestamp": 790966.252,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12147",
+      "phase": "action",
+      "timestamp": 790988.458,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12147",
+      "phase": "after",
+      "timestamp": 790992.496,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12149",
+      "phase": "before",
+      "timestamp": 790994.314,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12149",
+      "phase": "after",
+      "timestamp": 790998.279,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12151",
+      "phase": "action",
+      "timestamp": 791000.025,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12151",
+      "phase": "after",
+      "timestamp": 791003.277,
+      "status": "1 / 3 · 400% · 270度",
+      "scrollLeft": "348",
+      "canvasStyle": "inline-size: 522px; block-size: 696px;",
+      "imageStyle": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12153",
+      "phase": "before",
+      "timestamp": 791007.492,
+      "status": "1 / 3 · 100% · 0度",
+      "scrollLeft": null,
+      "canvasStyle": "inline-size: 174px; block-size: 130.5px;",
+      "imageStyle": "max-inline-size: none; inline-size: 174px; block-size: 130.5px; transform: none;",
+      "imageAlt": "赤い写真"
+    },
+    {
+      "callId": "call@12153",
+      "phase": "after",
+      "timestamp": 796011.391,
+      "status": "1 / 3 · 100% · 0度",
+      "scrollLeft": null,
+      "canvasStyle": "inline-size: 174px; block-size: 130.5px;",
+      "imageStyle": "max-inline-size: none; inline-size: 174px; block-size: 130.5px; transform: none;",
+      "imageAlt": "赤い写真"
+    }
+  ],
+  "nativeActorEvidenceScope": {
+    "observedConditions": 8,
+    "observedSamples": 32,
+    "original16RaceReproductions": 0,
+    "guarded16BlueAfterFirstNativeKey": 16,
+    "CPU": [
+      1,
+      6
+    ],
+    "profiles": [
+      "guided",
+      "dense"
+    ],
+    "ownNativeRerunClaim": false
+  },
+  "all181Approval": false,
+  "fullNpmApproval": false,
+  "verdict": "APPROVE_TEST_ONLY_NATIVE_NAVIGATION_PRECONDITION",
+  "scope": "One no-horizontal-overflow expect.poll addition after reset and before ArrowLeft; no product changes",
+  "independentWholeSpecStrict": {
+    "actualExit": 2,
+    "baselineDiagnostics": 24,
+    "candidateDiagnostics": 24,
+    "delta": 0,
+    "passClaim": false
+  },
+  "actorFormalGuard": {
+    "actualExit": 0,
+    "expected": 4,
+    "unexpected": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "source139Git53AndLiveExact": true
+  },
+  "allExistingAssertionsPreserved": [
+    "blue image navigation",
+    "all 4 rotations at both profiles = 8 geometry/axe observations",
+    "image dimensions and all reachable edges",
+    "native horizontal/vertical keyboard pan",
+    "Escape closes dialog",
+    "external #viewer-trigger focus restoration"
+  ],
+  "rootFailurePictureActuallyRead": true,
+  "ownNewNativeRuns": 0,
+  "ownProcessCleanup": "No new browser/server was started for this second review."
+}

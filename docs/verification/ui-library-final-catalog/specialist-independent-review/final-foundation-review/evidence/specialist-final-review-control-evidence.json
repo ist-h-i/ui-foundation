@@ -1,0 +1,137 @@
+{
+  "time": "2026-10-06T08:49:44.858478+00:00",
+  "scope": "all13 original required controls mapped; historical source and current delta proof explicitly distinguished",
+  "rows": [
+    {
+      "id": "specialist-01",
+      "component": "Chart",
+      "requestedControls": "折線、棒、面、円・ドーナツ、散布図、ヒートマップ、レーダー、ゲージ、ツリーマップなどの種別、軸、凡例、選択",
+      "sourceLine": 225,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "null is missing; non-Cartesian missing values are omitted from geometry and retained in the table; incomplete radar is not replaced by zeros",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-02",
+      "component": "Sparkline",
+      "requestedControls": "小型の推移表示、比較、欠損",
+      "sourceLine": 226,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "app supplies ordered observations and their missingness; UI never imputes a missing value",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-03",
+      "component": "Map",
+      "requestedControls": "地図表示、マーカー、領域、選択、拡大",
+      "sourceLine": 227,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "base style, tile/font provider, attribution, permission and camera/selection application state",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-04",
+      "component": "Gantt",
+      "requestedControls": "タスク、期間、依存関係、進捗、時間軸",
+      "sourceLine": 228,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "taskChange is an intent; application updates tasks after its own acceptance; null progress remains unknown",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-05",
+      "component": "Kanban / TaskBoard",
+      "requestedControls": "列、カード、移動、順序、件数制限",
+      "sourceLine": 229,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "move acceptance/persistence and actual Undo; immutable moveBoardCard can be reused by app",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-06",
+      "component": "Spreadsheet",
+      "requestedControls": "セル、数式、編集、選択、固定、入出力",
+      "sourceLine": 230,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "cell/import/export acceptance and actual file I/O; single-sheet CSV rather than XLSX/full Excel compatibility",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-07",
+      "component": "RichTextEditor",
+      "requestedControls": "書式、ツールバー、画像、リンク、読取り専用",
+      "sourceLine": 231,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "document storage and accepted reset; unsafe external document is retained as original and old view is blocked until explicit valid recovery",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-08",
+      "component": "MarkdownEditor",
+      "requestedControls": "編集、プレビュー、分割表示",
+      "sourceLine": 232,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "document acceptance/storage; sanitizer is the HTML boundary and no trust bypass is used",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-09",
+      "component": "CodeEditor",
+      "requestedControls": "言語、補完、行番号、読取り専用",
+      "sourceLine": 233,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "code persistence/accepted reset; local editor history is preserved across profile/hidden/readOnly switches",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-10",
+      "component": "DiffViewer / JsonViewer",
+      "requestedControls": "比較、差分、階層展開、検索、コピー",
+      "sourceLine": 234,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current native32/owned4/Rich8/S11 plus fresh strict public consumer",
+      "contractOwner": "optional Clipboard writer injection and storage; JSON source tokens preserve huge integers and duplicate properties",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-11",
+      "component": "FileExplorer",
+      "requestedControls": "階層、表示方式、選択、検索、ファイル操作",
+      "sourceLine": 235,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "filesystem I/O, authorization, operation success/failure and actual Undo",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-12",
+      "component": "Diagram / FlowEditor",
+      "requestedControls": "ノード、接続、配置、拡大、編集",
+      "sourceLine": 236,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "graph acceptance/persistence and actual Undo; typed immutable changeDiagram/layoutDiagram do not mutate input",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    },
+    {
+      "id": "specialist-13",
+      "component": "Chat / MessageList / MessageComposer",
+      "requestedControls": "メッセージ、添付、送信状態、再送、追加読込み",
+      "sourceLine": 237,
+      "rawBaselineNative": "original independent raw78, prior source/phase; not new candidate count",
+      "currentProof": "current generated strict/public consumer/models and source delta review; final native full13 repetition not performed",
+      "contractOwner": "real send/upload/download/storage and safety of retries; draft clears only on matching confirmed acknowledgement",
+      "authorStatusIsHistorical": "formal-tests-prepared-official-run-pending"
+    }
+  ],
+  "notClaimed": "no new full13 native repetition or catalogue completion solely from these mappings"
+}

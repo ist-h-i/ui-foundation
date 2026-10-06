@@ -1,0 +1,104 @@
+{
+  "timeUtc": "2026-10-06T09:41:57.170537+00:00",
+  "stage": "Final documentation/proof preparation, not final completion approval",
+  "currentSourceCommit": "0190b2b445739ee24d0edd219ade4fc544ffa48c",
+  "source139InheritedExact": "evidence/0190-source-inheritance-prep.json",
+  "originalSha256": "7a0a9ab7ac8d084e6c0a396316ed9d8138012c090be773ac291df280284e105b",
+  "matrixSha256": "ae36affa053ee0d4261bcfe03a2d141cb1eb237277d55d7a195c64b11eaaa952",
+  "originalRows": 181,
+  "originalTableRows": 172,
+  "originalControlsPreserved": true,
+  "matrixStatus": {
+    "verified": 133,
+    "pending": 37,
+    "partial": 11
+  },
+  "sourceReferencesMissing": [],
+  "currentEvidenceReferencesMissing": [],
+  "localLinkFileReferencesChecked": 86,
+  "localLinkMissing": [],
+  "linkAuditScope": "Markdown inline relative local file targets only; excludes external URL/anchor correctness and absolute runtime paths",
+  "apiSources": 139,
+  "apiMismatch": [],
+  "adoptedPackManifestSha256": "c9f813daa9fd5a4eb4845b8ad56918a6bd605eb53af5ec7d09fd0119a5e7d62d",
+  "adoptedPackFilesExact": 114,
+  "packMismatch": [],
+  "consumerGuideFullReadSha256": "3f54fad40b11bcdb42b2bd412858c69efc5204afd2fb6facec9d68aecf2168be",
+  "docSnapshots": [
+    {
+      "path": "docs/project-brief.ja.md",
+      "sha256": "9258dbf8cf279ac86c482afb911efae974d48ef797905654fc7171f50c028273"
+    },
+    {
+      "path": "docs/design.md",
+      "sha256": "0ad8bdc45447336c85071cff3b59f0bd62be28bb441fd32913563d822972ee2f"
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "504fcd775e07e8b2db273572fe5cbeee4ac0cc327a6403bc9acaa12cd1985244"
+    },
+    {
+      "path": "docs/development.md",
+      "sha256": "3f75071585a43d1802b246fc0774d236675947650291e9102aab7e2713b9e7d2"
+    },
+    {
+      "path": "docs/ui-library-plan.ja.md",
+      "sha256": "2289802c9cba3a5ecd9fc7cbdbd23b2fc074509c9fdde481240569eb7d82a664"
+    },
+    {
+      "path": "docs/ui-library-consumer-guide.ja.md",
+      "sha256": "3f54fad40b11bcdb42b2bd412858c69efc5204afd2fb6facec9d68aecf2168be"
+    },
+    {
+      "path": "docs/ui-library-runtime-foundation-spec.ja.md",
+      "sha256": "d2ba53402691f5d887df364d7fce4cab2a36fc826e7bf134dfc446bd27ef1c77"
+    },
+    {
+      "path": "docs/ui-library-table-expansion-spec.ja.md",
+      "sha256": "c0c904f8bf74e55408bee7ca0f184954a5e4aa8f73391b4ab0cec6882f3af20d"
+    },
+    {
+      "path": "docs/ui-library-tree-expansion-spec.ja.md",
+      "sha256": "e23657aa509c8035e7c3f13e08d964c88db3c7bc3cd4b3c7227431f5d655db36"
+    },
+    {
+      "path": "docs/ui-library-scheduler-expansion-spec.ja.md",
+      "sha256": "7d75ccf6895a96a7e2f6c428d9e1f080dd94b13cf7c68ad91a18ae251f984d91"
+    },
+    {
+      "path": "docs/ui-library-media-expansion-spec.ja.md",
+      "sha256": "e9f85d3105c7eb850c5d788fb8ed6a4a03df105e06fcb8e01c05bdf41e698051"
+    },
+    {
+      "path": "docs/ui-library-specialist-expansion-spec.ja.md",
+      "sha256": "0441c03ea90bb2a63cf4e50f5da1b4c70ea5e025e1ef314910ce885c26811129"
+    },
+    {
+      "path": "docs/ui-library-specialist-assessment.ja.md",
+      "sha256": "f69c4627f8cb3f58459c511f8f28af6dfa059501689c8bc523fe1a720e916d0b"
+    },
+    {
+      "path": "docs/dependency-license-audit.ja.md",
+      "sha256": "a99f47ccf70f41ba8e7b30ae3959518b696c2b7e57ec556f8e0da6b5b189dc7a"
+    },
+    {
+      "path": "docs/verification/ui-library-final-catalog-2026-10-06.md",
+      "sha256": "fe0d6fd593ee6bc2faa104ee33c5afbdfde0fbf3a1a77901bb015c6699f5c5b8"
+    }
+  ],
+  "failedFullRun": {
+    "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "actualExit": 1,
+    "inputs": 457,
+    "sourceChanged": [],
+    "path": "docs/verification/ui-library-final-catalog/third-full-npm-a808a79d-failed/execution.json"
+  },
+  "freshFullNpmSuccessObserved": false,
+  "all181Complete": false,
+  "finalMatrixAndDocsApproved": false,
+  "pending": [
+    "Observe successful fresh full immutable run on final source/test inputs",
+    "Receive finalized181 matrix and documentation commit, scope-specific specialist/consumer evidence",
+    "Rebase mapping only for adopted formal or product deltas and reverify affected source/native scope"
+  ]
+}

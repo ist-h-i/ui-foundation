@@ -1,0 +1,63 @@
+{
+  "rows": [
+    {
+      "name": "public-direct-native-worker-sheet-IO",
+      "profile": "guided",
+      "width": 1280,
+      "font": "100%",
+      "direction": "ltr",
+      "startedAt": "2026-10-06T07:01:30.143Z",
+      "result": {
+        "initialFormula": 5,
+        "updatedFormula": 7,
+        "dependentFormula": 14,
+        "initialDurationMs": 230.8979159999999,
+        "requests": [
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/assets/sheet-formula.worker.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3415.386375
+          },
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/chunks/chunk-Z2F5GZRG.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3431.917458
+          },
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/chunks/chunk-KVMUXFPB.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3432.486708
+          },
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/assets/sheet-formula.worker.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3723.108958
+          },
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/chunks/chunk-Z2F5GZRG.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3739.118458
+          },
+          {
+            "url": "http://127.0.0.1:52050/direct-consumer/chunks/chunk-KVMUXFPB.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "at": 3739.677375
+          }
+        ],
+        "source": "{\"rows\":[[\"4\",3,\"=SUM(A1:B1)\"],[\"001\",5,\"=C1*2\"]]}",
+        "draftEscapePreservesSource": true,
+        "RTLArrowUsesCurrentDirection": true
+      },
+      "passed": true,
+      "errors": [],
+      "endedAt": "2026-10-06T07:01:31.413Z"
+    }
+  ],
+  "allExpected": true
+}

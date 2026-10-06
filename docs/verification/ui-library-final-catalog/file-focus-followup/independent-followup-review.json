@@ -1,0 +1,203 @@
+{
+  "judgment": "approve_scoped_test_precondition_guard",
+  "reviewedAtUtc": "2026-10-06T09:48:49.431155+00:00",
+  "reviewedProductSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "scope": "FileExplorer controlled disabling/removal of truly focused own CSV and outside focus preservation; only formal test precondition guard is approved.",
+  "newProductFinding": null,
+  "rootOriginalFailures": {
+    "fullSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "fullNpmActualExit": 1,
+    "fullUiPass": 973,
+    "fullUiFail": 7,
+    "fullSourceChanged": [],
+    "selectedReplayCommit": "0190b2b445739ee24d0edd219ade4fc544ffa48c",
+    "selectedReplayActualExit": 1,
+    "selectedReplayPass": 10,
+    "selectedReplayFail": 2,
+    "source": "Parent-provided full execution and replay status; this follow-up read/copies the actual FileExplorer failure traces. Counts are not own runs."
+  },
+  "originalTracesInspectedBeforeRerun": "root-three-actual-focus-preconditions.json",
+  "diagnosis": {
+    "classification": "harness_precondition_render_race",
+    "actualTraceObservation": "All three original failed CSV focus calls resolved a natively disabled button immediately after uncheck.",
+    "independentMechanismObservation": "In both profiles the real native checkbox change before Angular renders leaves CSV.disabled true; native CSV.focus() is a no-op and checkbox retains focus. With enabled/focused preconditions, actual CSV focusin precedes controlled removal and a host focusin follows.",
+    "inference": "The original test did not establish CSV-owned focus before expecting removal to retire it to the host. Preserving the external checkbox focus is consistent with the product contract.",
+    "limit": "Own unmodified exact two-case rerun passed; no claim that the uninstrumented root failure was independently reproduced in that run. Native stress probe deliberately selects the pre-render change boundary and is labeled separately."
+  },
+  "approvedDelta": {
+    "path": "tests/ui/specialist-chart-explorer.spec.ts",
+    "beforeSha256": "63268d4d85ea31cf330c152dce276ea6caa8bdb72a0035bcdb9862d7dce59327",
+    "afterSha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243",
+    "onlyChange": "Await the real enabled CSV and confirm focus ownership after csv.focus(), before controlled removal; retain all original host, tabindex and outside-focus assertions.",
+    "productChanges": []
+  },
+  "executions": [
+    {
+      "kind": "canonical_generation_and_strict_Angular_fixture_build",
+      "details": [
+        {
+          "command": [
+            "npm",
+            "run",
+            "ui:sync"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.5764830112457275,
+          "log": "canonical-sync.log"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "ui:check"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.45329928398132324,
+          "log": "canonical-check.log"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 33.55483603477478,
+          "log": "canonical-build.log"
+        }
+      ]
+    },
+    {
+      "kind": "exact_original_unmodified_baseline",
+      "details": {
+        "command": [
+          "./node_modules/.bin/playwright",
+          "test",
+          "--config=focus-followup.config.ts",
+          "tests/ui/specialist-chart-explorer.spec.ts",
+          "--grep",
+          "FileExplorer retires",
+          "--workers=2",
+          "--retries=0",
+          "--reporter=line,json"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 5.525961875915527,
+        "source": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+        "productChanged": false
+      },
+      "pass": 2,
+      "fail": 0
+    },
+    {
+      "kind": "minimal_guard_and_nearby_controls_both_profiles_repeat3",
+      "details": {
+        "command": [
+          "./node_modules/.bin/playwright",
+          "test",
+          "--config=focus-followup.config.ts",
+          "tests/ui/specialist-chart-explorer.spec.ts",
+          "--grep",
+          "FileExplorer",
+          "--repeat-each=3",
+          "--workers=2",
+          "--retries=0",
+          "--reporter=line,json"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 25.89525604248047,
+        "source": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+        "productChanged": false
+      },
+      "pass": 12,
+      "fail": 0
+    },
+    {
+      "kind": "independent_native_events_and_disabled_focus_boundary_both_profiles",
+      "details": {
+        "command": [
+          "./node_modules/.bin/playwright",
+          "test",
+          "--config=focus-followup.config.ts",
+          "tests/ui/file-focus-independent-followup.spec.ts",
+          "--workers=2",
+          "--retries=0",
+          "--reporter=line,json"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 8.747028112411499,
+        "source": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+        "productChanged": false,
+        "probeBoundary": "Actual native change before Angular renders; deliberate stress boundary, not an exact re-run of the uninstrumented failing test."
+      },
+      "pass": 4,
+      "fail": 0
+    }
+  ],
+  "productUnchanged": {
+    "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "templateCount": 139,
+    "sourceChanged": [],
+    "collectionRuntimeSha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+    "fileExplorerSha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71"
+  },
+  "sharedProductMatch": {
+    "ownSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+    "sharedReadOnlyHead": "0190b2b445739ee24d0edd219ade4fc544ffa48c",
+    "templateCount": 139,
+    "templateSourceChanged": []
+  },
+  "oldSpecialistPackUnchanged": {
+    "directory": "/tmp/ui-foundation-specialist-independent-review/final-foundation-review/evidence",
+    "verifiedAt": "2026-10-06T09:46:53.850760+00:00",
+    "files": {
+      "FINAL-REVIEW.ja.md": {
+        "expectedSha256": "de987f69e74be6bd82ead672dddd47a17a5389a651e4e65502cb0b07b7fd01be",
+        "actualSha256": "de987f69e74be6bd82ead672dddd47a17a5389a651e4e65502cb0b07b7fd01be"
+      },
+      "final-independent-review.json": {
+        "expectedSha256": "6f379f61ff9b6aa3cb81eb793ada2b9d4e905871bf8c751226f1a6357da616bb",
+        "actualSha256": "6f379f61ff9b6aa3cb81eb793ada2b9d4e905871bf8c751226f1a6357da616bb"
+      },
+      "FINAL-DELIVERY-SHA256.json": {
+        "expectedSha256": "05ec2bb5d86264fd4a15c4d81dae7608d7e7abdce2ef2a8546af104ba6f95b71",
+        "actualSha256": "05ec2bb5d86264fd4a15c4d81dae7608d7e7abdce2ef2a8546af104ba6f95b71"
+      }
+    }
+  },
+  "environmentOrHarnessDiagnostics": [
+    {
+      "file": "sandbox-canonical-executions-actual-exit1.json",
+      "actualExit": 1,
+      "cause": "tsx sandbox IPC listen EPERM; same own inputs completed canonical checks with approved local execution."
+    },
+    {
+      "actualExit": 1,
+      "cause": "First trace frame parser expected nonexistent snapshotName; corrected to actual callId+phase. No native test result inferred from failed parser."
+    },
+    {
+      "file": "cleanup-first-path-guard-actual-exit1.json",
+      "actualExit": 1,
+      "cause": "Strict string /tmp versus actual macOS /private/tmp mismatch rejected before signaling; canonical path guard correction completed own cleanup."
+    }
+  ],
+  "cleanup": {
+    "ownedPort": 52052,
+    "ownedPid": 88061,
+    "commandBeforeStop": "node scripts/serve.mjs",
+    "cwdBeforeStop": "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository",
+    "canonicalCwdExpected": "/private/tmp/ui-foundation-specialist-independent-review/file-focus-followup/repository",
+    "termination": "SIGTERM after matching exact own canonical cwd and command",
+    "listenerAfterStopExit": 1,
+    "listenerAfterStopOutput": "",
+    "otherPortsOrBrowsersTouched": false,
+    "browserLifecycle": "Own Playwright runners completed with actualexit0; their fixture teardown closes their own browser contexts. No shared browser process was killed."
+  },
+  "officialReference": {
+    "url": "https://playwright.dev/docs/actionability",
+    "supports": "locator.focus has no Enabled auto-wait; expect.toBeEnabled/toBeFocused are retrying assertions.",
+    "accessedDateUtc": "2026-10-06"
+  },
+  "remainingBlockersForThisScope": [],
+  "globalCompletion": "Parent must replay the formal changed test and complete its global npm verification; original full973/7 actual1 and selected10/2 actual1 remain preserved. This scoped verdict does not turn either run into a pass or authorize unrelated changes."
+}

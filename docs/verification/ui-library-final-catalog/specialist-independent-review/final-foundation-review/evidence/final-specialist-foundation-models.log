@@ -1,0 +1,46 @@
+✔ chart numeric view format reaches axes and gauge without converting application points or labels (56.43525ms)
+✔ chart time formatter requires explicit zone and uses app date options rather than host timezone (10.798709ms)
+✔ each chart axis keeps its own numeric or time presentation (0.854333ms)
+✔ file draft validates original restored shape and per-file policy without coercing the app value (3.789125ms)
+✔ mixed intake retains the previous complete form batch while exposing individual upload intents separately (3.930667ms)
+✔ successful intake replaces the form batch atomically and keeps the files unmodified (1.452875ms)
+✔ Turkish case folding applies to human queries while shortcut keys remain locale independent (23.565417ms)
+✔ table numeric and boolean presentation uses common choices while explicit column format retains priority (38.964292ms)
+✔ provider and message service run in a server DI context without reading browser globals (29.505833ms)
+✔ Japanese/native defaults preserve unset timezone and inherited direction (92.000084ms)
+✔ explicit runtime choices are immutable and scoped overrides retain the parent (4.725709ms)
+✔ invalid locale/date/timezone choices are rejected without browser or date guessing (2.473958ms)
+✔ message fallback and parameters retain absent meaning and cannot use prototype keys (2.092458ms)
+✔ heatmap category coordinates preserve negative values, sparse numeric positions and explicit missing data (89.198209ms)
+✔ heatmap rejects explicit value and time axes while other chart kinds retain their valid numeric axes (0.589167ms)
+✔ multiple gauge points have independent positions and preserve original application selection keys (1.781583ms)
+✔ gauge layout reserves separate dial, title and full value rows as text grows and columns collapse (0.57275ms)
+✔ responsive gauges keep zero, long names, full large formatted values, missing rows and application keys (1.606167ms)
+✔ all requested chart kinds validate real values and explicit missing points (5.081834ms)
+✔ map validates camera, markers and closed polygon regions (1.752792ms)
+✔ Gantt keeps civil dates, dependency cycles and missing progress distinct (1.293791ms)
+✔ board move reorders within a full column, rejects ingress above its limit, and keeps input immutable (1.057042ms)
+✔ CSV roundtrips formulas, leading zeroes, multiline quotations and empty cells (1.018875ms)
+✔ spreadsheet evaluates references and real formulas, recalculates edited input, reports cycles and failures (50.279208ms)
+✔ explorer search traverses closed folders while normal expansion honors ancestry and rejects repeated IDs (0.706167ms)
+✔ diagram editing moves/adds/connects and removes associated edges without mutating input (0.684375ms)
+✔ chat accepts attachment-only draft and URL boundary rejects executable or authenticated resource URLs (0.352375ms)
+✔ rich document trust boundary rejects executable image/link URLs and requires image alternatives (0.735917ms)
+✔ JSON viewer preserves duplicate property rows and original large numeric tokens (3.204792ms)
+✔ Dagre produces actual node placement for typed graph edges without mutating the controlled graph (14.08975ms)
+✔ chart preserves tree descendants in the keyboard read model and rejects ambiguous IDs and axis ranges (0.818167ms)
+✔ ready gates computation; cancellation discards old ready/results and accepts actual current parser output (35.515542ms)
+✔ startup can exceed the computation budget before readiness without timing out the actual calculation (20.269167ms)
+✔ calculation deadline begins after ready; duplicate ready cannot extend it; late results are discarded (31.242334ms)
+✔ startup deadline is bounded without readiness and retains source; late ready cannot post work (16.9335ms)
+✔ invalid protocol/result, cloning, runtime and construction failures publish once and terminate (27.110834ms)
+✔ deadline options are finite bounded positive integers and invalid options allocate no worker (1.149292ms)
+✔ invalidate permits fresh retry; destruction during either phase cancels timers and all late publication (27.06975ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1127.836292

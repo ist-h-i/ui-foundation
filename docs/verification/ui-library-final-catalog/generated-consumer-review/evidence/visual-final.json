@@ -1,0 +1,91 @@
+{
+  "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+  "sourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+  "classification": "Selected actual screenshot inspection by independent reviewer; no exhaustive visual, assistive-technology or human-user approval claim.",
+  "images": [
+    {
+      "path": "evidence/file-live-rejection.png",
+      "sha256": "8a5e8cadf4c455767cdd3197da830d32711381e2de3e639462e6e6c9ba5bfb21",
+      "bytes": 70387,
+      "actualViewImage": true,
+      "note": "Actual mixed intake keeps first.txt in CVA and INVALID while latest dictionary rejection reason is visible; native picker has focused border and app label is preserved. Queued upload entries are separate app-owned state, with no upload success claim."
+    },
+    {
+      "path": "evidence/scheduler-locale-after-repair-guided.png",
+      "sha256": "4b4e58a6e045c789cc3128a7bea7d334ce89105115ad7a5cd8b45fa76eab894d",
+      "bytes": 98842,
+      "actualViewImage": true,
+      "note": "Actual repaired timezone Asia/Tokyo is focused in retained editor; stale role=status error is absent; surrounding native RTL labels remain."
+    },
+    {
+      "path": "evidence/media-locale-compare-physical-dense.png",
+      "sha256": "55feb6e8a9d8d212531a01278cdf658ad29253286cf4de101bceb9d95f2ce490",
+      "bytes": 18944,
+      "actualViewImage": true,
+      "note": "Actual missing before-image is disclosed by native alt plus localized error. Real after-image is clipped at physical left 50%; native thumb and line align while surrounding label remains RTL."
+    },
+    {
+      "path": "evidence/foundation-dense-320-200-rtl.png",
+      "sha256": "0ac397744d17fb1ac5556d6a2d315e5b8ad1607aff8e6504dc2d88222c96d1e2",
+      "bytes": 55850,
+      "actualViewImage": true,
+      "note": "Selected narrow/200%/RTL view wraps heading and labels; actual invalid date raw and selected substring remain visible; test also measured no document horizontal overflow."
+    },
+    {
+      "path": "evidence/pdf-native-page-1.png",
+      "sha256": "0e44268052cb0e53a62e1698c055ccf861a7105b2c7956664de4fb345eff56f2",
+      "bytes": 30225,
+      "actualViewImage": true,
+      "note": "Real PDF worker page 1 canvas and extracted First PDF page text are visible with 1/2 status."
+    },
+    {
+      "path": "evidence/pdf-native-page-2.png",
+      "sha256": "0f4f65ed629272c9f83ae9cbb6ad451ca6e24d05c0eceb89771f16c9b2f12bbc",
+      "bytes": 31796,
+      "actualViewImage": true,
+      "note": "Real PDF worker page 2 canvas and extracted Second PDF page text differ from page 1 with 2/2 status."
+    },
+    {
+      "path": "evidence/map-native-ready.png",
+      "sha256": "2c30247bba3e24fe425d0a1515047f7b4586bf71b4585ed3c0fcd9dd0c6fd54d",
+      "bytes": 15975,
+      "actualViewImage": true,
+      "note": "Actual MapLibre canvas and Tokyo native marker are ready; empty map style intentionally uses no external geographic data. Marker label and longitude/latitude remain visible."
+    },
+    {
+      "path": "evidence/sheet-native-calculated.png",
+      "sha256": "7a02287b68ed72dd7aa18943be6922ab6f64f00178b8083973a7eb995c63bb56",
+      "bytes": 48417,
+      "actualViewImage": true,
+      "note": "Actual native formula worker rendered 2,3,5 and calculation-complete status; no mocked computation."
+    },
+    {
+      "path": "evidence/barcode-native-narrow-guided.png",
+      "sha256": "f00c724cbc5c0e76978dd2f0484a4a0bf2d17b1c56e8d862a53c8ee9d38bcd7f",
+      "bytes": 4450,
+      "actualViewImage": true,
+      "note": "Actual native canvas keeps 320px paint width inside a named focusable 240px scroll region; native ArrowRight scrolls it with no document overflow (320/320)."
+    },
+    {
+      "path": "evidence/barcode-native-narrow-dense.png",
+      "sha256": "b20148b31b2a346da0e7b6db8eafb4437055453d49b561915373b8dba8b7fb6f",
+      "bytes": 4013,
+      "actualViewImage": true,
+      "note": "Dense actual barcode keeps the same intrinsic width and native focus/scroll boundary. Optical scanner decoding is not exercised."
+    },
+    {
+      "path": "evidence/scheduler-structural-event-guided.png",
+      "sha256": "b4b65ac1ca09f57ad3e0d844a8874746136610d2e9e5f77e613c795ec84dcacf",
+      "bytes": 203604,
+      "actualViewImage": true,
+      "note": "Existing structural invalid-ISO diagnostic shows the D5 dictionary; app event title/raw invalid-ISO/payload remain visible and editor draft is retained."
+    },
+    {
+      "path": "evidence/scheduler-structural-layout-dense.png",
+      "sha256": "177048f9cd07166a6a78e9d5df55447d6bc818de3e0733df3a7cc2390017beaf",
+      "bytes": 38425,
+      "actualViewImage": true,
+      "note": "Existing invalid display-date diagnostic follows D6 dictionary; app invalid-date value, source events and request count remain unchanged."
+    }
+  ]
+}

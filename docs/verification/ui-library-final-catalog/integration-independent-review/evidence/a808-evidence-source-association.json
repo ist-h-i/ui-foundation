@@ -1,0 +1,129 @@
+{
+  "recordedUtc": "2026-10-06T09:11:54.611923+00:00",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "sourceManifestSha256": "82388e8eea2aae64a422cf86a168c08d5a9b798bd290b8d70776309e80b49b9a",
+  "nativeReports": [
+    {
+      "path": "evidence/locale-lifetime-native.json",
+      "sha256": "67a69f6f01d902e587cf3323df209d8a432bd7d347aebdb52510b2d3a1d638e1",
+      "checksPassed": 18,
+      "sourceHashesExactForObservedRuntime": {
+        "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "file-upload.ts": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+        "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+        "table-editors.ts": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112"
+      },
+      "sourceAssociation": "Original recorded source hashes unchanged at a808; Card/core fresh same 139 source before support-only test updates",
+      "actualExit": 0,
+      "cleanup": {
+        "browserClosed": true,
+        "serverListening": false
+      }
+    },
+    {
+      "path": "evidence/locale-boundary-repair-native.json",
+      "sha256": "8f255d85eac891e932932248732932a62507e5af53dc8ad4a7a7ad1d5e5a694e",
+      "checksPassed": 30,
+      "sourceHashesExactForObservedRuntime": {
+        "image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6"
+      },
+      "sourceAssociation": "Original recorded source hashes unchanged at a808; Card/core fresh same 139 source before support-only test updates",
+      "actualExit": 0,
+      "cleanup": {
+        "browserClosed": true,
+        "serverListening": false
+      }
+    },
+    {
+      "path": "evidence/locale-scheduler-native.json",
+      "sha256": "f477fd6241ec3327c48e64f3562ef9d0736c631d6c6c1e31a4ea3351c6c05e75",
+      "checksPassed": 36,
+      "sourceHashesExactForObservedRuntime": {
+        "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "scheduler-controller.ts": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+        "scheduler-view.ts": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+        "diff-json.ts": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66"
+      },
+      "sourceAssociation": "Original recorded source hashes unchanged at a808; Card/core fresh same 139 source before support-only test updates",
+      "actualExit": 0,
+      "cleanup": {
+        "browserClosed": true,
+        "serverListening": false
+      }
+    },
+    {
+      "path": "evidence/card-slot-after-source-geometry.json",
+      "sha256": "2b1bb7301727aa2c8aff2b8bdb189c901443032e62043f3547e2e62d535d1ef4",
+      "checksPassed": 9,
+      "sourceHashesExactForObservedRuntime": {
+        "card.ts": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8"
+      },
+      "sourceAssociation": "Original recorded source hashes unchanged at a808; Card/core fresh same 139 source before support-only test updates",
+      "actualExit": 0,
+      "cleanup": {
+        "browserClosed": true,
+        "serverListening": false
+      }
+    },
+    {
+      "path": "evidence/consumer-final-native.json",
+      "sha256": "2a6e9f7ed0496c182d90da35f7adef69669ff8d7e7f0c4ca6df681fe4ebaf8db",
+      "checksPassed": 16,
+      "sourceHashesExactForObservedRuntime": {
+        "card.ts": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+        "menu.ts": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+        "dialog.ts": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+        "notifications.ts": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+        "text-input.ts": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+        "date-range-picker.ts": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+        "inline-edit.ts": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+        "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+        "overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "sourceAssociation": "Original recorded source hashes unchanged at a808; Card/core fresh same 139 source before support-only test updates",
+      "actualExit": 0,
+      "cleanup": {
+        "browserClosed": true,
+        "serverListening": false
+      }
+    }
+  ],
+  "generationOwnership": {
+    "sourceGeneratorSha256": "c538950d2f972dcb96ab99c6a3d949e66f59f49df0bf4ac7f10520f0251411ab",
+    "unchangedAtA808": true,
+    "earlierExpected8ExitsPassed": true,
+    "earlierChecksPassed": [
+      {
+        "name": "dry-run wrote no managed files",
+        "passed": true
+      },
+      {
+        "name": "all managed bytes identical after repeated sync",
+        "passed": true,
+        "files": 151
+      },
+      {
+        "name": "refused sync preserved manual bytes and every other managed file",
+        "passed": true
+      },
+      {
+        "name": "refused sync preserved unmanaged and managed bytes",
+        "passed": true
+      },
+      {
+        "name": "original managed bytes restored",
+        "passed": true
+      }
+    ],
+    "laterCanonicalSyncCheckActualExits": [
+      0,
+      0
+    ],
+    "notFullNpmClaim": true
+  },
+  "docsAuditPendingFinalRootSuite": true
+}

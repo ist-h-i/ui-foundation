@@ -1,0 +1,6 @@
+{
+  "extends":"../tsconfig.json",
+  "compilerOptions":{"rootDir":"..","outDir":"../build/direct-runtime","noEmit":false},
+  "files":["direct-runtime.ts","../.ui/generated/angular/sheet-formula.worker.ts"],
+  "include":[]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "stage": "sync",
+    "args": [
+      "node_modules/.bin/tsx",
+      "src/cli.ts",
+      "sync",
+      "--config",
+      "examples/ui.config.example.yaml"
+    ],
+    "exit": 0,
+    "seconds": 0.453
+  },
+  {
+    "stage": "check",
+    "args": [
+      "node_modules/.bin/tsx",
+      "src/cli.ts",
+      "check",
+      "--config",
+      "examples/ui.config.example.yaml"
+    ],
+    "exit": 0,
+    "seconds": 0.301
+  },
+  {
+    "stage": "aot",
+    "args": [
+      "node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.json"
+    ],
+    "exit": 0,
+    "seconds": 8.823
+  },
+  {
+    "stage": "build",
+    "args": [
+      "node",
+      "scripts/build.mjs"
+    ],
+    "exit": 0,
+    "seconds": 1.0
+  },
+  {
+    "stage": "css",
+    "args": [
+      "node_modules/.bin/tailwindcss",
+      "-i",
+      "tests/fixture-app/styles.css",
+      "-o",
+      "dist/fixture-app/styles.css"
+    ],
+    "exit": 0,
+    "seconds": 0.296
+  }
+]

@@ -1,0 +1,5 @@
+import {createServer} from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {resolve,extname,sep} from 'node:path';
+const root=resolve('dist'),port=5343;const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.wasm':'application/wasm','.svg':'image/svg+xml','.png':'image/png','.pdf':'application/pdf','.wav':'audio/wav','.vtt':'text/vtt'};
+const server=createServer(async(req,res)=>{try{const pathname=decodeURIComponent(new URL(req.url??'/',`http://127.0.0.1:${port}`).pathname);const relative=pathname==='/'||['/trees','/schedule','/tables','/media','/specialist','/foundation','/card'].includes(pathname)?'/index.html':pathname;const path=resolve(root,'.'+relative);if(!path.startsWith(root+sep)){res.writeHead(403).end();return;}const bytes=await readFile(path);res.writeHead(200,{'Content-Type':mime[extname(path)]??'application/octet-stream','Cache-Control':'no-store'}).end(bytes);}catch{res.writeHead(404).end();}});server.listen(port,'127.0.0.1',()=>console.log('Consumer: http://127.0.0.1:'+port));for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>server.close());

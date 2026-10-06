@@ -1,0 +1,310 @@
+[
+  "UI-IMAGE-VIEWER",
+  {
+    "_ngcontent-ng-c4251429050": "",
+    "_nghost-ng-c4089949554": ""
+  },
+  [
+    "DIALOG",
+    {
+      "__playwright_dialog_open_": "modal",
+      "__playwright_scroll_top_": "307",
+      "_ngcontent-ng-c4089949554": "",
+      "uidialog": "",
+      "size": "large",
+      "_nghost-ng-c994431624": "",
+      "aria-label": "画像ビューアー",
+      "aria-busy": "false",
+      "data-size": "large",
+      "data-position": "center",
+      "data-maximized": "false",
+      "aria-modal": "true"
+    },
+    [
+      "HEADER",
+      {
+        "_ngcontent-ng-c994431624": "",
+        "class": "ui-dialog__header",
+        "hidden": ""
+      },
+      [
+        "DIV",
+        {
+          "_ngcontent-ng-c994431624": "",
+          "class": "ui-dialog__title"
+        },
+        [
+          "H2",
+          {
+            "_ngcontent-ng-c994431624": ""
+          },
+          "画像ビューアー"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "_ngcontent-ng-c994431624": "",
+          "class": "ui-dialog__handles"
+        },
+        [
+          "BUTTON",
+          {
+            "_ngcontent-ng-c994431624": "",
+            "uiaction": "",
+            "class": "ui-action",
+            "aria-label": "ダイアログを閉じる",
+            "type": "button",
+            "data-variant": "secondary",
+            "data-width": "auto"
+          },
+          [
+            "SPAN",
+            {
+              "aria-hidden": "true",
+              "class": "ui-action-icon",
+              "style": "order: 0;"
+            }
+          ],
+          [
+            "SPAN",
+            {
+              "class": "ui-action-label",
+              "style": "order: 1;"
+            },
+            "閉じる"
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "_ngcontent-ng-c994431624": "",
+        "class": "ui-dialog__handles"
+      }
+    ],
+    [
+      "DIV",
+      {
+        "_ngcontent-ng-c994431624": "",
+        "class": "ui-dialog__body"
+      },
+      [
+        "DIV",
+        {
+          "_ngcontent-ng-c4089949554": "",
+          "class": "ui-media-actions"
+        },
+        [
+          "BUTTON",
+          {
+            "_ngcontent-ng-c4089949554": "",
+            "uiaction": "",
+            "class": "ui-action ui-action--disabled",
+            "disabled": "",
+            "type": "button",
+            "data-variant": "secondary",
+            "data-width": "auto"
+          },
+          [
+            "SPAN",
+            {
+              "aria-hidden": "true",
+              "class": "ui-action-icon",
+              "style": "order: 0;"
+            }
+          ],
+          [
+            "SPAN",
+            {
+              "class": "ui-action-label",
+              "style": "order: 1;"
+            },
+            "前の画像"
+          ]
+        ],
+        [
+          "BUTTON",
+          {
+            "_ngcontent-ng-c4089949554": "",
+            "uiaction": "",
+            "class": "ui-action",
+            "type": "button",
+            "data-variant": "secondary",
+            "data-width": "auto"
+          },
+          [
+            "SPAN",
+            {
+              "aria-hidden": "true",
+              "class": "ui-action-icon",
+              "style": "order: 0;"
+            }
+          ],
+          [
+            "SPAN",
+            {
+              "class": "ui-action-label",
+              "style": "order: 1;"
+            },
+            "次の画像"
+          ]
+        ],
+        [
+          "LABEL",
+          {
+            "_ngcontent-ng-c4089949554": ""
+          },
+          "拡大率",
+          [
+            "INPUT",
+            {
+              "__playwright_value_": "400",
+              "_ngcontent-ng-c4089949554": "",
+              "type": "range",
+              "min": "25",
+              "max": "400",
+              "step": "25"
+            }
+          ]
+        ],
+        [
+          "BUTTON",
+          {
+            "_ngcontent-ng-c4089949554": "",
+            "uiaction": "",
+            "class": "ui-action",
+            "type": "button",
+            "data-variant": "secondary",
+            "data-width": "auto"
+          },
+          [
+            "SPAN",
+            {
+              "aria-hidden": "true",
+              "class": "ui-action-icon",
+              "style": "order: 0;"
+            }
+          ],
+          [
+            "SPAN",
+            {
+              "class": "ui-action-label",
+              "style": "order: 1;"
+            },
+            "右へ90度回転"
+          ]
+        ],
+        [
+          "BUTTON",
+          {
+            "_ngcontent-ng-c4089949554": "",
+            "uiaction": "",
+            "class": "ui-action",
+            "type": "button",
+            "data-variant": "secondary",
+            "data-width": "auto"
+          },
+          [
+            "SPAN",
+            {
+              "aria-hidden": "true",
+              "class": "ui-action-icon",
+              "style": "order: 0;"
+            }
+          ],
+          [
+            "SPAN",
+            {
+              "class": "ui-action-label",
+              "style": "order: 1;"
+            },
+            "表示をリセット"
+          ]
+        ]
+      ],
+      [
+        "P",
+        {
+          "_ngcontent-ng-c4089949554": "",
+          "role": "status",
+          "aria-atomic": "true"
+        },
+        "1 / 3 · 400% · 270度"
+      ],
+      [
+        "DIV",
+        {
+          "__playwright_scroll_top_": "264",
+          "__playwright_scroll_left_": "348",
+          "__playwright_target__": "",
+          "_ngcontent-ng-c4089949554": "",
+          "role": "region",
+          "tabindex": "0",
+          "class": "ui-image-viewport",
+          "aria-label": "画像表示領域"
+        },
+        [
+          "DIV",
+          {
+            "_ngcontent-ng-c4089949554": "",
+            "class": "ui-image-canvas",
+            "style": "inline-size: 522px; block-size: 696px;"
+          },
+          [
+            "UI-IMAGE",
+            {
+              "_ngcontent-ng-c4089949554": "",
+              "loading": "eager",
+              "style": "max-inline-size: none; inline-size: 696px; block-size: 522px; transform: translate(0px, 696px) rotate(270deg);",
+              "_nghost-ng-c1715803506": ""
+            },
+            [
+              "FIGURE",
+              {
+                "_ngcontent-ng-c1715803506": "",
+                "tabindex": "-1"
+              },
+              [
+                "IMG",
+                {
+                  "__playwright_current_src__": "http://127.0.0.1:5187/assets/media/red.svg",
+                  "_ngcontent-ng-c1715803506": "",
+                  "src": "/assets/media/red.svg",
+                  "alt": "赤い写真",
+                  "loading": "eager",
+                  "style": "object-fit: contain;"
+                }
+              ]
+            ]
+          ]
+        ]
+      ],
+      [
+        "P",
+        {
+          "_ngcontent-ng-c4089949554": ""
+        },
+        "申請1の添付"
+      ]
+    ],
+    [
+      "FOOTER",
+      {
+        "_ngcontent-ng-c994431624": "",
+        "class": "ui-dialog__footer"
+      }
+    ],
+    [
+      "P",
+      {
+        "_ngcontent-ng-c994431624": "",
+        "role": "status",
+        "aria-atomic": "true",
+        "class": "ui-dialog__status"
+      },
+      ""
+    ]
+  ]
+]

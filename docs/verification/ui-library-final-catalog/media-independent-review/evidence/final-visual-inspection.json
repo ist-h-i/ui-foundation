@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-06T08:59:42.808331+00:00",
+  "reviewer": "/root/prepare_responsive_gauge",
+  "method": "Actual PNGs viewed using view_image; AI visual review, not human review",
+  "images": [
+    {
+      "path": "evidence/compare-plane-final2/guided-320-200-rtl.png",
+      "observation": "Full labels remain visible and wrap; range thumb at physical left matches line at near-left boundary."
+    },
+    {
+      "path": "evidence/compare-plane-final2/dense-320-200-rtl.png",
+      "observation": "Dense large text remains visible; range and physical line align."
+    },
+    {
+      "path": "evidence/barcode-touch/guided-visible-part.png",
+      "observation": "Intrinsic bars visible as partial scrolled viewport; image is not asserted to contain the whole code."
+    },
+    {
+      "path": "evidence/independent-controls-final4/guided-1280-ltr-crop.png",
+      "observation": "Rotated real red/yellow source and 80x80 red crop appear with full numeric controls."
+    },
+    {
+      "path": "evidence/independent-controls-final4/guided-320-200-rtl-pdf.png",
+      "observation": "Large native page/zoom/download/status controls remain visible; page viewport clips to local scroll area as tested separately."
+    }
+  ]
+}

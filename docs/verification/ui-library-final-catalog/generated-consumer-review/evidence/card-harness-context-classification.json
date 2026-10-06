@@ -1,0 +1,6 @@
+{
+  "classification": "harness_failure",
+  "actualExit": 1,
+  "reason": "The new Card probe created a page via browser.newPage; @axe-core/playwright requires an explicit browser.newContext. Geometry/focus/selection checks completed before analysis, but the full case is not counted as passed.",
+  "correction": "Create a real BrowserContext for each profile and close it normally. No library source change."
+}

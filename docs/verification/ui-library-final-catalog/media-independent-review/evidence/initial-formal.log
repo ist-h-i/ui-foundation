@@ -1,0 +1,62 @@
+
+Running 18 tests using 2 workers
+
+(node:37404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37403) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/ui/media-lifetime.spec.ts:17:1 › native crop closes stale decoded Bitmaps during rapid replacement and destruction (3.1s)
+  ✘   2 tests/ui/media-lifetime.spec.ts:55:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs (4.1s)
+(node:37438) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 tests/ui/media-lifetime.spec.ts:100:1 › PDF worker startup failure reports an error and terminates its native Worker (2.4s)
+  ✓   5 tests/ui/media-regressions.spec.ts:81:1 › real VTT removal and source replacement reconcile selected caption, native mode and current cue (2.9s)
+  ✓   6 tests/ui/media-regressions.spec.ts:115:1 › PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL (7.9s)
+  ✓   4 tests/ui/media-regressions.spec.ts:25:1 › real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup (12.7s)
+  ✓   8 tests/ui/media-regressions.spec.ts:192:1 › desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling (3.8s)
+  ✓   9 tests/ui/media-regressions.spec.ts:220:1 › Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control (5.1s)
+  ✓   7 tests/ui/media-regressions.spec.ts:145:1 › open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL (12.0s)
+  ✓  10 tests/ui/media.spec.ts:4:1 › actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus (2.5s)
+  ✓  11 tests/ui/media.spec.ts:5:1 › image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained (2.7s)
+  ✓  12 tests/ui/media.spec.ts:6:1 › carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal (2.7s)
+  ✓  13 tests/ui/media.spec.ts:7:1 › image compare native keyboard/boundary endpoints, direction and RTL (2.3s)
+  ✓  14 tests/ui/media.spec.ts:8:1 › crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates (2.4s)
+  ✓  15 tests/ui/media.spec.ts:9:1 › PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery (3.4s)
+  ✓  16 tests/ui/media.spec.ts:10:1 › actual QR/Barcode encoding independently decodes raster; data change/error recovery (2.3s)
+  ✓  17 tests/ui/media.spec.ts:11:1 › native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen (4.2s)
+  ✓  18 tests/ui/media.spec.ts:12:1 › guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe (5.5s)
+
+
+  1) tests/ui/media-lifetime.spec.ts:55:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 5
+
+      92 |  await page.getByRole('button',{name:'媒体を生成・破棄'}).click();
+      93 |  await page.evaluate(()=>(window as any).cropEncodingProbe.pending.shift()());
+    > 94 |  expect(await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)).toBe(currentRequest);
+         |                                                                                         ^
+      95 |  expect(await page.evaluate(()=>(window as any).cropEncodingProbe.created.length)).toBe(2);
+      96 |  await page.evaluate(()=>(window as any).__mediaApplication.destroy());
+      97 |  expect(await page.evaluate(()=>{const p=(window as any).cropEncodingProbe;return p.created.every((url:string)=>p.revoked.includes(url));})).toBe(true);
+        at /private/tmp/ui-foundation-media-gauge-independent-review/repository/tests/ui/media-lifetime.spec.ts:94:89
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../evidence/formal-results/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../evidence/formal-results/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../evidence/formal-results/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs/trace.zip
+    Usage:
+
+        npx playwright show-trace ../evidence/formal-results/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/ui/media-lifetime.spec.ts:55:1 › native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs 
+  17 passed (44.2s)

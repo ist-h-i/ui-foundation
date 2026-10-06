@@ -1,0 +1,80 @@
+{
+  "scope": "Independent Foundation / Media boundary review",
+  "finalApproval": "APPROVE_WITHIN_RECORDED_CONSUMER_AND_BOUNDARY_SCOPE",
+  "findings": [
+    {
+      "severity": "P2",
+      "file": "templates/angular/chat.ts",
+      "issue": "Explicit composer reset retained an error from a previous send request.",
+      "state": "fixed_by_root_and_native_regression_passed",
+      "fixedSha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+      "proof": "composer-reset-stale-error.json; browser-guide-boundaries-results.json",
+      "finalNativeProofInput": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "afterProof": "snapshots/frozen-338dcf85-60cd513e/evidence/browser-final-results.json"
+    },
+    {
+      "severity": "P2",
+      "file": "templates/angular/date-input.ts",
+      "sourceSha256": "ed998d1b5fdc891802c4ceec04314d945426368a099879fdffc952d213283ccc",
+      "issue": "Changing the DI dateInputFormat silently discards an invalid DateRange start draft and clears its Validator, without reset/clear.",
+      "state": "fixed_by_root_and_native_regression_passed",
+      "proof": "date-format-draft-loss.json; date-format-draft-loss.png; probe-date-format-boundary.mjs",
+      "contract": "docs/ui-components.md describes retaining invalid drafts and clear/reset for recovery.",
+      "fixedSha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+      "afterProof": "snapshots/frozen-338dcf85-60cd513e/evidence/browser-final-results.json",
+      "finalNativeProofInput": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b"
+    },
+    {
+      "severity": "P2",
+      "files": [
+        "templates/angular/image-media.ts",
+        "templates/angular/media-player.ts",
+        "templates/angular/pdf-viewer.ts",
+        "templates/angular/image-cropper.ts",
+        "templates/angular/barcode.ts"
+      ],
+      "issue": "Existing library-owned Media diagnostics/status and ImageCompare aria-valuetext do not reflect public locale/message dictionary changes.",
+      "state": "fixed_by_root_and_native_regression_passed",
+      "proof": "media-locale-before-fix-status-results.json",
+      "nativeProfiles": [
+        "guided",
+        "dense"
+      ],
+      "observedFailuresPerProfile": 15,
+      "reacquisitionOnDictionaryChange": false,
+      "appLabelsAndFileCvaRetained": true,
+      "finalNativeProofInput": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+      "fixedSources": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+        "templates/angular/pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+        "templates/angular/image-cropper.ts": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+        "templates/angular/barcode.ts": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9"
+      },
+      "afterProof": "snapshots/frozen-338dcf85-60cd513e/evidence/media-locale-results.json",
+      "finalObservationsPerProfile": 18
+    },
+    {
+      "severity": "P2",
+      "file": "templates/angular/scheduler-controller.ts",
+      "issue": "Retained messageText callback left a cached error after the native draft was repaired.",
+      "beforeSha256": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+      "fixedSha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+      "state": "fixed_by_root_and_native_regression_passed",
+      "proof": "scheduler-cached-status-before-fix.json; scheduler-cached-status-before-fix-guided.png; scheduler-cached-status-before-fix-dense.png",
+      "afterProof": "snapshots/frozen-338dcf85-60cd513e/evidence/scheduler-locale-results.json",
+      "nativeProfiles": [
+        "guided",
+        "dense"
+      ],
+      "sourceReview": "All three spread writers clear messageText; zone, datetime and resource checkbox writers were each exercised natively in both profiles.",
+      "finalNativeProofInput": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b"
+    }
+  ],
+  "finalApprovalBeforeFinal": "WITHHELD_PENDING_MEDIA_LIVE_LOCALE_FIX_AND_FREEZE",
+  "finalInputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "remainingBlockingFindings": [],
+  "nativeExecutionSourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+  "inheritedEvidenceLedger": "evidence/evidence-inheritance.json"
+}

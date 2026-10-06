@@ -1,0 +1,24 @@
+{
+  "kind": "Independent actual native follow-up; no product changes",
+  "rootCommit": "53a785824b86a34ada3ee8619f710fad57117634",
+  "port": 49538,
+  "browser": "154.0.8037.98",
+  "results": [
+    {
+      "profile": "guided",
+      "repetition": 0,
+      "passed": false
+    },
+    {
+      "name": "native-failure",
+      "passed": false,
+      "error": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('表示設定', { exact: true })\u001b[22m\n\n    at /private/tmp/ui-foundation-final-integration-independent-review/masonry-followup/probe.mjs:19:47"
+    }
+  ],
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  }
+}

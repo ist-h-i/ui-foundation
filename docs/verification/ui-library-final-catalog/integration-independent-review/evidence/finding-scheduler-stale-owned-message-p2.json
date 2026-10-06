@@ -1,0 +1,61 @@
+{
+  "severity": "P2",
+  "status": "OPEN / ROOT_REPAIR_PENDING",
+  "title": "Scheduler draft messageText reader remains after editing and presents a stale validation error",
+  "timeUtc": "2026-10-06T08:24:24.697403+00:00",
+  "sourceSha256": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+  "sourceFreezeSha256": "a4fd2d85b47c0dee9211f9b91f1fcd2c3b529f52328f63bbb3f623e56c2aaa4d",
+  "locations": [
+    {
+      "file": "templates/angular/scheduler-controller.ts",
+      "line": 51,
+      "source": " protected changedDate(id:string,field:'localStart'|'localEnd',event:Event):void{if(this.blocked()||this.readonly()||this.pendingId())return;const editor=event.target as HTMLInputElement;this.drafts.update(drafts=>{const draft=drafts[id];if(!draft)return drafts;const flag=field==='localStart'?'badStart':'badEnd';return {...drafts,[id]:{...draft,...(!editor.validity.badInput?{[field]:editor.value}:{}),[flag]:editor.validity.badInput,message:''}};});}"
+    },
+    {
+      "file": "templates/angular/scheduler-controller.ts",
+      "line": 52,
+      "source": " protected changeDraft(id:string,field:'timeZone'|'startDisambiguation'|'endDisambiguation',event:Event):void{if(this.blocked()||this.readonly()||this.pendingId())return;const value=this.text(event);this.drafts.update(drafts=>{const draft=drafts[id];return draft?{...drafts,[id]:{...draft,[field]:value,message:''}}:drafts;});}"
+    },
+    {
+      "file": "templates/angular/scheduler-controller.ts",
+      "line": 53,
+      "source": " protected moveResource(id:string,resourceId:string,event:Event):void{if(this.blocked()||this.readonly()||this.pendingId())return;const checked=(event.target as HTMLInputElement).checked;this.drafts.update(drafts=>{const draft=drafts[id];return draft?{...drafts,[id]:{...draft,resourceIds:checked?[...new Set([...draft.resourceIds,resourceId])]:draft.resourceIds.filter(value=>value!==resourceId),message:''}}:drafts;});}"
+    },
+    {
+      "file": "templates/angular/scheduler-controller.ts",
+      "line": 62,
+      "source": " protected draftMessage(draft:EditingDraft):string{return draft.messageText?draft.messageText():draft.message;}"
+    }
+  ],
+  "actualExitCode": 1,
+  "reproduction": [
+    "Public Scheduler typed app DTO, UTC day, native edit move",
+    "Native zone Invalid/Zone then Request move produces library validation error",
+    "Update provider dictionary; existing validation status follows v2",
+    "Native zone UTC clears current alert but stale role=status remains Invalid move zone v2; next Request move succeeds"
+  ],
+  "failures": [
+    {
+      "name": "Scheduler editing clears previously held owned diagnostic guided",
+      "actual": "Invalid move zone v2",
+      "expected": "",
+      "passed": false
+    },
+    {
+      "name": "Scheduler editing clears previously held owned diagnostic dense",
+      "actual": "Invalid move zone v2",
+      "expected": "",
+      "passed": false
+    }
+  ],
+  "positiveBoundaries": "18/20 observations pass: raw failMove dictionary-key opaque; actual request/DTO original; no I/O/authorization on dictionary update; Diff focus/selection/DOM; Json raw diagnostic/code/offset",
+  "fixCondition": "Clear messageText with message in changedDate/changeDraft/moveResource; preserve raw failMove and pending contracts",
+  "evidence": [
+    "evidence/locale-scheduler-native.json",
+    "evidence/final-scheduler-native.log"
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  }
+}

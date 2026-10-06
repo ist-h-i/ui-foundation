@@ -1,0 +1,223 @@
+{
+  "updatedAt": "2026-10-06T04:25:18.057009+00:00",
+  "reviewer": "review_specialist_candidate",
+  "reviewedScope": "specialist-01..13 raw engine candidate only; foundation locale/ChatCVA final delta remains outside this snapshot",
+  "sharedBaselineHead": "d81d6177166f419d5656440d217cb7d9849b7a22",
+  "workspace": "/tmp/ui-foundation-specialist-independent-review/repository",
+  "decision": "request_changes",
+  "findings": [
+    {
+      "id": "S01",
+      "priority": "P1",
+      "title": "Worker startup consumes calculation deadline",
+      "baselineFile": "sheet-runner.ts",
+      "baselineSha": "f84634eb341370b75847bb05bf597eedce65f3848673fb35c106144f230c5927",
+      "beforeEvidence": [
+        "worker-timing.json",
+        "root-failed-trace-summary.json"
+      ],
+      "fixFiles": [
+        "sheet-runner.ts",
+        "sheet-formula.worker.ts",
+        "spreadsheet.ts"
+      ],
+      "afterEvidence": [
+        "sheet-native-verification.json",
+        "sheet-native-ui-results.json",
+        "sheet-native-timing-summary.json"
+      ],
+      "disposition": "closed in frozen raw candidate; independent real worker original delay reproduced successfully; bounded startup/computation and retry verified"
+    },
+    {
+      "id": "S02",
+      "priority": "P1",
+      "title": "Native rich HTML paste publishes unsafe URLs before validation",
+      "baselineFile": "rich-text-editor.ts",
+      "baselineSha": "3f756af37a407963edaed3de94d286fe3ddb8112ab7f0babc74f4040ce131543",
+      "beforeEvidence": [
+        "independent-probes.json",
+        "iteration-01/independent-probes.json"
+      ],
+      "fixSha": "2dec07828ac3d8c4f64c8ce5569326ee85b5b71783de8385014591d38218458a",
+      "afterEvidence": [
+        "rich-fixed-probes.json",
+        "rich-fixed-probes-execution.json"
+      ],
+      "disposition": "closed in frozen raw candidate; native clipboard5, trusted pointer drag, controlled DOM drop, safe input/undo/redo/CVA recovery verified"
+    },
+    {
+      "id": "S03",
+      "priority": "P1",
+      "title": "Default accepted heatmap renders zero-area cells",
+      "baselineFile": "chart-options.ts",
+      "baselineSha": "f3b3f6420df6170f35ebe01bb5ba231e2304b11dd88155896f23eaab1558d533",
+      "beforeEvidence": [
+        "independent-probes.json",
+        "heatmap-value-y.png",
+        "heatmap-category-y.png"
+      ],
+      "fixFiles": [
+        "chart.ts",
+        "chart-options.ts",
+        "specialist-model.ts"
+      ],
+      "afterEvidence": [
+        "chart-file-fixed-probes.json"
+      ],
+      "disposition": "closed in frozen raw candidate; original independent native probe plus recovery passed actual0; source metadata in chart-file-fix-source-delta.json"
+    },
+    {
+      "id": "S04",
+      "priority": "P1",
+      "title": "Ordinary strict public consumer cannot reach formula ambient declaration",
+      "baselineFile": "sheet-formula.ts",
+      "baselineSha": "93d04c948c6e07e17424e6f2966867a4ee7f7eb1c2ecd031db9040699d1d35c2",
+      "beforeEvidence": [
+        "minimal-public-consumers-baseline.json",
+        "strict-negative.json"
+      ],
+      "fixSha": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+      "afterEvidence": [
+        "first-fix-verification.json",
+        "strict-negative-fixed.json",
+        "direct-runtime-probes.json"
+      ],
+      "disposition": "closed in frozen raw candidate; public barrel/direct strict AOT and 5 specific negative diagnostics plus real direct consumer verified"
+    },
+    {
+      "id": "S05",
+      "priority": "P2",
+      "title": "Disabled restored FileExplorer selection can emit operations",
+      "baselineFile": "file-explorer.ts",
+      "baselineSha": "7255941263330d120ae1a9a75d305dacf6206210c8ca868feb469e725593a514",
+      "beforeEvidence": [
+        "independent-probes.json"
+      ],
+      "fixSha": "6ac229ea623e3d532187a6715f8afa6b68cb27b0177362bc5a5a6cf28de9008c",
+      "afterEvidence": [
+        "chart-file-fixed-probes.json"
+      ],
+      "disposition": "closed in frozen raw candidate; original independent native probe plus recovery passed actual0; source metadata in chart-file-fix-source-delta.json"
+    },
+    {
+      "id": "S06",
+      "priority": "P2",
+      "title": "Disabled first tree node removes usable native Tab entry",
+      "baselineFile": "file-explorer.ts",
+      "baselineSha": "7255941263330d120ae1a9a75d305dacf6206210c8ca868feb469e725593a514",
+      "beforeEvidence": [
+        "direct-runtime-probes.json",
+        "file-disabled-first-tab-baseline.png"
+      ],
+      "fixSha": "6ac229ea623e3d532187a6715f8afa6b68cb27b0177362bc5a5a6cf28de9008c",
+      "afterEvidence": [
+        "chart-file-fixed-probes.json"
+      ],
+      "disposition": "closed in frozen raw candidate; original independent native probe plus recovery passed actual0; source metadata in chart-file-fix-source-delta.json"
+    },
+    {
+      "id": "S07",
+      "priority": "P2",
+      "title": "Editor action group accessible names are prohibited on unroled generic divs",
+      "sources": [
+        {
+          "path": "templates/angular/rich-text-editor.ts",
+          "line": 12,
+          "sha": "2dec07828ac3d8c4f64c8ce5569326ee85b5b71783de8385014591d38218458a"
+        },
+        {
+          "path": "templates/angular/markdown-editor.ts",
+          "line": 15,
+          "sha": "24ae8f50e808e34263fb66414dba5a95923b358609faf82e2d2d38c91c71f48f"
+        }
+      ],
+      "evidence": [
+        "aria-markup-probes.json",
+        "formal-axe-summary.json"
+      ],
+      "actual": "Chromium ariaSnapshot contains individual buttons only; intended action group names are absent. axe incomplete aria-prohibited-attr in both profiles.",
+      "disposition": "open; parent owns role=group fix; no post-fix evidence yet"
+    },
+    {
+      "id": "S08",
+      "priority": "P2",
+      "title": "Cartesian scroll legend overlaps x axis labels",
+      "sources": [
+        {
+          "path": "templates/angular/chart-options.ts",
+          "line": 25,
+          "sha": "aa06acb336b1a60f22859eccac34a7dcca76f25b8e2e7939f0786212577ea294"
+        }
+      ],
+      "evidence": [
+        "visual-before-probes.json",
+        "chart-file-fixed-probes.json",
+        "chart-kind-drawings/line.png",
+        "chart-kind-drawings/bar.png",
+        "chart-kind-drawings/area.png",
+        "chart-kind-drawings/scatter.png",
+        "chart-kind-drawings/heatmap.png"
+      ],
+      "actual": "Native Heat cells / Cell1 bounding boxes overlap 27.09375 x 7.22998px; public getOption legend.bottom=15, grid reserves top, not bottom.",
+      "disposition": "open; parent owns explicit top placement fix; no post-fix evidence yet"
+    },
+    {
+      "id": "S09",
+      "priority": "P2",
+      "title": "Accepted multi-point gauge titles and values completely overlap",
+      "sources": [
+        {
+          "path": "templates/angular/chart-options.ts",
+          "line": 21,
+          "sha": "aa06acb336b1a60f22859eccac34a7dcca76f25b8e2e7939f0786212577ea294"
+        }
+      ],
+      "evidence": [
+        "visual-before-probes.json",
+        "chart-file-fixed-probes.json",
+        "chart-kind-drawings/gauge.png"
+      ],
+      "actual": "Native accepted points 2/5/9 all titles share y977.171875, height18; all values share y1011.671875, height21. All 3 rendered data exist but text is unreadable.",
+      "disposition": "open; parent owns pointwise gauge layout/selection mapping fix; no post-fix evidence yet"
+    }
+  ],
+  "evidenceSeparation": {
+    "ownActualCommands": "logs/exit/json in this folder",
+    "rootOriginalFormal": "65/68, actual1 retained in root private and not reinterpreted as own pass",
+    "authorStandalone": "68 standalone first engine run and later18 split-native are author evidence; no summation",
+    "rootFullPR10": "880 or final broader suite is separate ledger; not this reviewer count"
+  },
+  "remaining": [
+    "Root minimum S07/S08/S09 fix and exact frozen SHA independent re-review",
+    "Final Foundation locale/ChatCVA/AST delta remains unreviewed here",
+    "20 of the 24 formal narrow screenshots were saved but not visually viewed in this turn; final after-fix visual QA remains"
+  ],
+  "limitations": [
+    "Chrome only; no Safari/SSR claim",
+    "app owns backend persistence/authz/upload/Undo/provider-attribution decisions",
+    "controlled worker tests are orchestration evidence; actual browser evidence recorded separately",
+    "no new paid service/account/license agreement, publish, security setting or Git operations"
+  ],
+  "verification": {
+    "canonicalRawBuild": "raw-final-build-verification.json: sync/check/full AOT/split/CSS/direct AOT/split/models each actual0",
+    "formal": "raw-final-formal-execution.json: actual0; own78 expected/0skipped/0unexpected/0flaky; raw template source immutable",
+    "independentNative": "8 Rich probes actual0; 4 Chart/File groups actual0; additional native Markdown unsafe markup and safe repair succeeded observationally",
+    "axe": "24 scans, violations0, document overflow0; incomplete18 retained. No all-accessibility-pass claim",
+    "worker": "separate own14 native actual0 before Chart/File four-file delta; phase results paired with actual old2001ms startup failure",
+    "publicStrict": "first-fix positive barrel/directSheet/directCode actual0; negative actual1 with all5 expected typed errors and no TS7016; final raw direct runtime actual0",
+    "licenses": "74 license texts exact installed match, 21 direct versions exact; author transitive tslib2.3.0 vs root installed2.8.1 needs final inventory regeneration; same MIT text"
+  },
+  "codeMirrorObservation": {
+    "artifact": "aria-markup-probes.json",
+    "actual": "Native open popup listbox ID exists and AX shows Completions expanded. Escape closes popup and removes editor aria-controls.",
+    "harnessLimitation": "The probe row passesExpected=false assumed aria-expanded belongs to editor; observed editor expanded=null and expanded state belongs to listbox. Observation command actual0 is not an all-probe success claim.",
+    "notPerformed": "Exact 320/200/RTL/profile-language static incomplete scenario lifecycle was not replayed; no additional confirmed product finding."
+  },
+  "photoQA": {
+    "allTenChartKindDrawings": "actually viewed; identified S08/S09",
+    "formal24": "saved; guided Chart/Map/Gantt/Kanban4 viewed; remaining20 not viewed",
+    "nativeRich": "before/after actual images viewed",
+    "claims": "No full visual signoff."
+  },
+  "sourceManifest": "raw-final-formal-source-after.json"
+}

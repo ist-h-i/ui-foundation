@@ -1,0 +1,394 @@
+{
+  "inputSha256": "766fb21de8fbe85c2ef0def3f3cdbeeadb4a06231d8fb3bd9e8eadceb21fde2c",
+  "sources": {
+    "image-media.ts": "4fefd899bb340fd83e5e660bd660d0abeedb8961103fa26442953966a7a2bd4e",
+    "media-player.ts": "9fadf36c7bdd5eaffd9859b0d6371b95346177dfc8fb8b3c741a4d5b40c76123",
+    "pdf-viewer.ts": "56884304e73adb2dfb4ea845625dfe4810673c7863313a98953dd7b0abedd7fb",
+    "image-cropper.ts": "8d8695ac58c0804b9153c776915e626245ae99da26f15822eae19ce6b78befd2",
+    "barcode.ts": "8db688326145c537e7be443ccb151d4c317ebba7acf8e8e5e91b00060adad1a7"
+  },
+  "results": [
+    {
+      "profile": "guided",
+      "checks": [
+        {
+          "component": "compare",
+          "prefix": "D1 ",
+          "expected": "D1 Compare load failed",
+          "actual": "比較前の画像を取得できません。",
+          "pass": false
+        },
+        {
+          "component": "audio",
+          "prefix": "D1 ",
+          "expected": "D1 Media load failed",
+          "actual": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "pdf",
+          "prefix": "D1 ",
+          "expected": "D1 PDF load failed",
+          "actual": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "crop",
+          "prefix": "D1 ",
+          "expected": "D1 Crop load failed",
+          "actual": "画像を読み込めません。形式とデータを確認して選び直してください。",
+          "pass": false
+        },
+        {
+          "component": "barcode",
+          "prefix": "D1 ",
+          "expected": "D1 Barcode generation failed",
+          "actual": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+          "pass": false
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D1 ",
+          "actual": "比較後の画像を50%表示",
+          "pass": false
+        },
+        {
+          "component": "compare",
+          "prefix": "D2 ",
+          "expected": "D2 Compare load failed",
+          "actual": "比較前の画像を取得できません。",
+          "pass": false
+        },
+        {
+          "component": "audio",
+          "prefix": "D2 ",
+          "expected": "D2 Media load failed",
+          "actual": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "pdf",
+          "prefix": "D2 ",
+          "expected": "D2 PDF load failed",
+          "actual": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "crop",
+          "prefix": "D2 ",
+          "expected": "D2 Crop load failed",
+          "actual": "画像を読み込めません。形式とデータを確認して選び直してください。",
+          "pass": false
+        },
+        {
+          "component": "barcode",
+          "prefix": "D2 ",
+          "expected": "D2 Barcode generation failed",
+          "actual": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+          "pass": false
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D2 ",
+          "actual": "比較後の画像を50%表示",
+          "pass": false
+        },
+        {
+          "component": "pdf empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose PDF",
+          "actual": "D2 Choose PDF · 0 / 0",
+          "pass": false
+        },
+        {
+          "component": "crop empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose image",
+          "actual": "D2 Choose image · 回転 0度",
+          "pass": false
+        },
+        {
+          "component": "media paused status",
+          "prefix": "D3 ",
+          "expected": "D3 Media paused",
+          "actual": "D2 Media paused",
+          "pass": false
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "compareRecovery": {
+        "nativeImageDecoded": true,
+        "currentSource": "/assets/media/red.svg",
+        "errorText": []
+      },
+      "before": {
+        "compare": "比較前の画像を取得できません。",
+        "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+        "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+        "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+        "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+      },
+      "observations": [
+        {
+          "prefix": "D1 ",
+          "text": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "aria": "比較後の画像を50%表示",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2
+        },
+        {
+          "prefix": "D2 ",
+          "text": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "aria": "比較後の画像を50%表示",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2
+        }
+      ],
+      "sameDom": true,
+      "noReload": true,
+      "fileCvaRetained": true,
+      "appLabelsRetained": true,
+      "resources": [
+        "http://127.0.0.1:5343/media",
+        "http://127.0.0.1:5343/tokens.css",
+        "http://127.0.0.1:5343/styles.css",
+        "http://127.0.0.1:5343/specialist.css",
+        "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+        "http://127.0.0.1:5343/main.js",
+        "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+        "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+        "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+        "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+        "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+        "http://127.0.0.1:5343/assets/media/red.svg",
+        "http://127.0.0.1:5343/assets/media/blue.svg",
+        "http://127.0.0.1:5343/assets/media/tone.wav",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/sample.pdf",
+        "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+        "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/invalid.pdf",
+        "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+      ],
+      "workers": [
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+      ],
+      "pass": false
+    },
+    {
+      "profile": "dense",
+      "checks": [
+        {
+          "component": "compare",
+          "prefix": "D1 ",
+          "expected": "D1 Compare load failed",
+          "actual": "比較前の画像を取得できません。",
+          "pass": false
+        },
+        {
+          "component": "audio",
+          "prefix": "D1 ",
+          "expected": "D1 Media load failed",
+          "actual": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "pdf",
+          "prefix": "D1 ",
+          "expected": "D1 PDF load failed",
+          "actual": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "crop",
+          "prefix": "D1 ",
+          "expected": "D1 Crop load failed",
+          "actual": "画像を読み込めません。形式とデータを確認して選び直してください。",
+          "pass": false
+        },
+        {
+          "component": "barcode",
+          "prefix": "D1 ",
+          "expected": "D1 Barcode generation failed",
+          "actual": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+          "pass": false
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D1 ",
+          "actual": "比較後の画像を50%表示",
+          "pass": false
+        },
+        {
+          "component": "compare",
+          "prefix": "D2 ",
+          "expected": "D2 Compare load failed",
+          "actual": "比較前の画像を取得できません。",
+          "pass": false
+        },
+        {
+          "component": "audio",
+          "prefix": "D2 ",
+          "expected": "D2 Media load failed",
+          "actual": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "pdf",
+          "prefix": "D2 ",
+          "expected": "D2 PDF load failed",
+          "actual": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+          "pass": false
+        },
+        {
+          "component": "crop",
+          "prefix": "D2 ",
+          "expected": "D2 Crop load failed",
+          "actual": "画像を読み込めません。形式とデータを確認して選び直してください。",
+          "pass": false
+        },
+        {
+          "component": "barcode",
+          "prefix": "D2 ",
+          "expected": "D2 Barcode generation failed",
+          "actual": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+          "pass": false
+        },
+        {
+          "component": "compare aria-valuetext",
+          "prefix": "D2 ",
+          "actual": "比較後の画像を50%表示",
+          "pass": false
+        },
+        {
+          "component": "pdf empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose PDF",
+          "actual": "D2 Choose PDF · 0 / 0",
+          "pass": false
+        },
+        {
+          "component": "crop empty status",
+          "prefix": "D3 ",
+          "expected": "D3 Choose image",
+          "actual": "D2 Choose image · 回転 0度",
+          "pass": false
+        },
+        {
+          "component": "media paused status",
+          "prefix": "D3 ",
+          "expected": "D3 Media paused",
+          "actual": "D2 Media paused",
+          "pass": false
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "compareRecovery": {
+        "nativeImageDecoded": true,
+        "currentSource": "/assets/media/red.svg",
+        "errorText": []
+      },
+      "before": {
+        "compare": "比較前の画像を取得できません。",
+        "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+        "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+        "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+        "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+      },
+      "observations": [
+        {
+          "prefix": "D1 ",
+          "text": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "aria": "比較後の画像を50%表示",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2
+        },
+        {
+          "prefix": "D2 ",
+          "text": {
+            "compare": "比較前の画像を取得できません。",
+            "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+            "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+            "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+            "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+          },
+          "aria": "比較後の画像を50%表示",
+          "resourcesAfterLocale": 20,
+          "workersAfterLocale": 2
+        }
+      ],
+      "sameDom": true,
+      "noReload": true,
+      "fileCvaRetained": true,
+      "appLabelsRetained": true,
+      "resources": [
+        "http://127.0.0.1:5343/media",
+        "http://127.0.0.1:5343/tokens.css",
+        "http://127.0.0.1:5343/styles.css",
+        "http://127.0.0.1:5343/specialist.css",
+        "http://127.0.0.1:5343/assets/maplibre/maplibre-gl.css",
+        "http://127.0.0.1:5343/main.js",
+        "http://127.0.0.1:5343/chunks/chunk-J5PB7FP3.js",
+        "http://127.0.0.1:5343/chunks/chunk-KVMUXFPB.js",
+        "http://127.0.0.1:5343/chunks/pdf-CWQ6WHUY.js",
+        "http://127.0.0.1:5343/chunks/browser-T5WP2MF3.js",
+        "http://127.0.0.1:5343/chunks/JsBarcode-NPMOBZDA.js",
+        "http://127.0.0.1:5343/assets/media/red.svg",
+        "http://127.0.0.1:5343/assets/media/blue.svg",
+        "http://127.0.0.1:5343/assets/media/tone.wav",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/sample.pdf",
+        "http://127.0.0.1:5343/assets/media/invalid-image.dat",
+        "http://127.0.0.1:5343/assets/media/invalid-audio.dat",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/media/invalid.pdf",
+        "http://127.0.0.1:5343/assets/media/tone.wav?locale-recovery"
+      ],
+      "workers": [
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs",
+        "http://127.0.0.1:5343/assets/pdf/pdf.worker.mjs"
+      ],
+      "pass": false
+    }
+  ]
+}

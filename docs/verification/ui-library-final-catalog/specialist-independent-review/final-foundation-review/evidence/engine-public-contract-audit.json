@@ -1,0 +1,60 @@
+{
+  "engineVersion": "6.1.0",
+  "declarations": [
+    {
+      "path": "node_modules/echarts/types/src/chart/gauge/GaugeSeries.d.ts",
+      "sha256": "2b064d11d603091ff8dd35abcf6a644dc80b3c16dd284621ddf093d76a831538"
+    },
+    {
+      "path": "node_modules/echarts/lib/chart/gauge/GaugeView.js",
+      "sha256": "67515c8d702935c96da0c5b4fbc95f3e0f863b860613846b35adec05397328db"
+    },
+    {
+      "path": "node_modules/echarts/types/src/coord/cartesian/GridModel.d.ts",
+      "sha256": "cea5665767cce6ee22692f5900354b12fefb6f6498c2bd322a4c49a43ba3313e"
+    },
+    {
+      "path": "node_modules/echarts/types/src/coord/axisCommonTypes.d.ts",
+      "sha256": "0ba2f05f9d3e9f0a587c6c52d08a683fc7e4680da5cbb700280d8a1af028a320"
+    }
+  ],
+  "contracts": [
+    "Gauge center numbers are pixels; percent strings use width/height",
+    "Gauge radius percent base min(width,height)/2; numbers pixels",
+    "Gauge axisLabel.rotate radial/tangential/number is public typed API",
+    "Gauge formatter receives actual numeric value, raw value stored in series data",
+    "Cartesian Grid outerBoundsContain all and nameLocation middle are public typed options"
+  ],
+  "harnessUnitCheck": {
+    "actualExit": 0,
+    "cases": [
+      [
+        125,
+        320,
+        125
+      ],
+      [
+        "50%",
+        320,
+        160
+      ],
+      [
+        "125",
+        320,
+        125
+      ],
+      [
+        "0%",
+        320,
+        0
+      ]
+    ],
+    "invalidValuesRejected": [
+      "NaN",
+      "Infinity",
+      "empty string",
+      "object",
+      "nonnumeric string"
+    ]
+  }
+}

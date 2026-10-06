@@ -1,0 +1,159 @@
+{
+  "kind": "Independent actual ownership/dry-run/idempotency checks in disposable test consumer only",
+  "sourceFreeze": "feeda514b79f7c48d16340871c7fa27fffd766817c0f1d1947d1558258ea2e99",
+  "sourceGeneratorSha": "c538950d2f972dcb96ab99c6a3d949e66f59f49df0bf4ac7f10520f0251411ab",
+  "commands": [
+    {
+      "name": "fresh dry-run",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "sync",
+        "--config",
+        "ui.config.yaml",
+        "--dry-run"
+      ],
+      "actualExit": 0,
+      "expectedExit": 0,
+      "stdout": "create: .agents/skills/project-ui/project-context.md\ncreate: .agents/skills/project-ui/references/token-design.md\ncreate: .agents/skills/project-ui/references/ui-library-runtime.md\ncreate: .agents/skills/project-ui/SKILL.md\ncreate: .ui/generated/angular/action-control.ts\ncreate: .ui/generated/angular/action-feedback.ts\ncreate: .ui/generated/angular/actions.ts\ncreate: .ui/generated/angular/agenda.ts\ncreate: .ui/generated/angular/anchor-navigation.ts\ncreate: .ui/generated/angular/async-region.ts\ncreate: .ui/generated/angular/barcode.ts\ncreate: .ui/generated/angular/calendar.ts\ncreate: .ui/generated/angular/card.ts\ncreate: .ui/generated/angular/cascader.ts\ncreate: .ui/generated/angular/chart-options.ts\ncreate: .ui/generated/angular/chart.ts\ncreate: .ui/generated/angular/chat.ts\ncreate: .ui/generated/angular/choice-controls.ts\ncreate: .ui/generated/angular/choice-model.ts\ncreate: .ui/generated/angular/code-editor.ts\ncreate: .ui/generated/angular/collection-model.ts\ncreate: .ui/generated/angular/collection-runtime.ts\ncreate: .ui/generated/angular/collection-views.ts\ncreate: .ui/generated/angular/command-palette.ts\ncreate: .ui/generated/angular/crop-adapter.ts\ncreate: .ui/generated/angular/data-grid.ts\ncreate: .ui/generated/angular/data-table-view.ts\ncreate: .ui/generated/angular/data-table.ts\ncreate: .ui/generated/angular/date-input.ts\ncreate: .ui/generated/angular/date-model.ts\ncreate: .ui/generated/angular/date-range-picker.ts\ncreate: .ui/generated/angular/diagram-layout.ts\ncreate: .ui/generated/angular/diagram.ts\ncreate: .ui/generated/angular/dialog-variants.ts\ncreate: .ui/generated/angular/dialog.ts\ncreate: .ui/generated/angular/diff-json.ts\ncreate: .ui/generated/angular/disclosure.ts\ncreate: .ui/generated/angular/display-content.ts\ncreate: .ui/generated/angular/display-model.ts\ncreate: .ui/generated/angular/display-style.ts\ncreate: .ui/generated/angular/display.ts\ncreate: .ui/generated/angular/drawer.ts\ncreate: .ui/generated/angular/editor-control.ts\ncreate: .ui/generated/angular/editor-model.ts\ncreate: .ui/generated/angular/feedback-model.ts\ncreate: .ui/generated/angular/feedback.ts\ncreate: .ui/generated/angular/file-draft-model.ts\ncreate: .ui/generated/angular/file-explorer.ts\ncreate: .ui/generated/angular/file-upload.ts\ncreate: .ui/generated/angular/filter-builder.ts\ncreate: .ui/generated/angular/filter-model.ts\ncreate: .ui/generated/angular/floating-model.ts\ncreate: .ui/generated/angular/floating-panel.ts\ncreate: .ui/generated/angular/focus.ts\ncreate: .ui/generated/angular/form-field.ts\ncreate: .ui/generated/angular/form-layout.ts\ncreate: .ui/generated/angular/formula-parser.d.ts\ncreate: .ui/generated/angular/gantt.ts\ncreate: .ui/generated/angular/grid-list.ts\ncreate: .ui/generated/angular/icon.ts\ncreate: .ui/generated/angular/image-cropper.ts\ncreate: .ui/generated/angular/image-media.ts\ncreate: .ui/generated/angular/index.ts\ncreate: .ui/generated/angular/infinite-scroll.ts\ncreate: .ui/generated/angular/inline-edit.ts\ncreate: .ui/generated/angular/json-model.ts\ncreate: .ui/generated/angular/kanban.ts\ncreate: .ui/generated/angular/layout-model.ts\ncreate: .ui/generated/angular/layout.ts\ncreate: .ui/generated/angular/listbox.ts\ncreate: .ui/generated/angular/locale-model.ts\ncreate: .ui/generated/angular/locale.ts\ncreate: .ui/generated/angular/map.ts\ncreate: .ui/generated/angular/markdown-editor.ts\ncreate: .ui/generated/angular/media-dom.ts\ncreate: .ui/generated/angular/media-model.ts\ncreate: .ui/generated/angular/media-player.ts\ncreate: .ui/generated/angular/media-style.ts\ncreate: .ui/generated/angular/mega-menu.ts\ncreate: .ui/generated/angular/menu-model.ts\ncreate: .ui/generated/angular/menu.ts\ncreate: .ui/generated/angular/menubar.ts\ncreate: .ui/generated/angular/navigation-model.ts\ncreate: .ui/generated/angular/navigation-tree.ts\ncreate: .ui/generated/angular/navigation.ts\ncreate: .ui/generated/angular/notification-center.ts\ncreate: .ui/generated/angular/notification-model.ts\ncreate: .ui/generated/angular/notifications.ts\ncreate: .ui/generated/angular/organization-chart.ts\ncreate: .ui/generated/angular/overlay.ts\ncreate: .ui/generated/angular/page-frame.ts\ncreate: .ui/generated/angular/pagination.ts\ncreate: .ui/generated/angular/panel-handle.ts\ncreate: .ui/generated/angular/panels.ts\ncreate: .ui/generated/angular/pdf-adapter.ts\ncreate: .ui/generated/angular/pdf-viewer.ts\ncreate: .ui/generated/angular/radio-group.ts\ncreate: .ui/generated/angular/rich-text-editor.ts\ncreate: .ui/generated/angular/scheduler-controller.ts\ncreate: .ui/generated/angular/scheduler-model.ts\ncreate: .ui/generated/angular/scheduler-move-sequence.ts\ncreate: .ui/generated/angular/scheduler-template.ts\ncreate: .ui/generated/angular/scheduler-view.ts\ncreate: .ui/generated/angular/scheduler.ts\ncreate: .ui/generated/angular/selection-input.ts\ncreate: .ui/generated/angular/sheet-formula.ts\ncreate: .ui/generated/angular/sheet-formula.worker.ts\ncreate: .ui/generated/angular/sheet-runner.ts\ncreate: .ui/generated/angular/sortable-list.ts\ncreate: .ui/generated/angular/specialist-browser.ts\ncreate: .ui/generated/angular/specialist-model.ts\ncreate: .ui/generated/angular/specialist-style.ts\ncreate: .ui/generated/angular/specialist.css\ncreate: .ui/generated/angular/splitter.ts\ncreate: .ui/generated/angular/spreadsheet.ts\ncreate: .ui/generated/angular/structured-input-model.ts\ncreate: .ui/generated/angular/structured-input.ts\ncreate: .ui/generated/angular/styles.css\ncreate: .ui/generated/angular/table-advanced-model.ts\ncreate: .ui/generated/angular/table-column-resize.ts\ncreate: .ui/generated/angular/table-controls.ts\ncreate: .ui/generated/angular/table-editors.ts\ncreate: .ui/generated/angular/table-model.ts\ncreate: .ui/generated/angular/table-output.ts\ncreate: .ui/generated/angular/table-runtime.ts\ncreate: .ui/generated/angular/tabs.ts\ncreate: .ui/generated/angular/text-input.ts\ncreate: .ui/generated/angular/timeline-model.ts\ncreate: .ui/generated/angular/timeline.ts\ncreate: .ui/generated/angular/toolbar.ts\ncreate: .ui/generated/angular/tour.ts\ncreate: .ui/generated/angular/transfer-list.ts\ncreate: .ui/generated/angular/transfer-model.ts\ncreate: .ui/generated/angular/tree-grid.ts\ncreate: .ui/generated/angular/tree-item.ts\ncreate: .ui/generated/angular/tree-load-sequence.ts\ncreate: .ui/generated/angular/tree-model.ts\ncreate: .ui/generated/angular/tree-node-template.ts\ncreate: .ui/generated/angular/tree-popup-control.ts\ncreate: .ui/generated/angular/tree-select.ts\ncreate: .ui/generated/angular/tree.ts\ncreate: .ui/generated/angular/value-control.ts\ncreate: .ui/generated/angular/virtual-data-table.ts\ncreate: .ui/generated/angular/virtual-list.ts\ncreate: .ui/generated/angular/wizard.ts\ncreate: .ui/generated/manifest.json\ncreate: .ui/generated/policy.json\ncreate: .ui/generated/profiles.ts\ncreate: .ui/generated/resolved.json\ncreate: .ui/generated/tailwind.css\ncreate: .ui/generated/tokens.css\nDry run: no files written.\n",
+      "stderr": ""
+    },
+    {
+      "name": "fresh real sync",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "sync",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 0,
+      "expectedExit": 0,
+      "stdout": "create: .agents/skills/project-ui/project-context.md\ncreate: .agents/skills/project-ui/references/token-design.md\ncreate: .agents/skills/project-ui/references/ui-library-runtime.md\ncreate: .agents/skills/project-ui/SKILL.md\ncreate: .ui/generated/angular/action-control.ts\ncreate: .ui/generated/angular/action-feedback.ts\ncreate: .ui/generated/angular/actions.ts\ncreate: .ui/generated/angular/agenda.ts\ncreate: .ui/generated/angular/anchor-navigation.ts\ncreate: .ui/generated/angular/async-region.ts\ncreate: .ui/generated/angular/barcode.ts\ncreate: .ui/generated/angular/calendar.ts\ncreate: .ui/generated/angular/card.ts\ncreate: .ui/generated/angular/cascader.ts\ncreate: .ui/generated/angular/chart-options.ts\ncreate: .ui/generated/angular/chart.ts\ncreate: .ui/generated/angular/chat.ts\ncreate: .ui/generated/angular/choice-controls.ts\ncreate: .ui/generated/angular/choice-model.ts\ncreate: .ui/generated/angular/code-editor.ts\ncreate: .ui/generated/angular/collection-model.ts\ncreate: .ui/generated/angular/collection-runtime.ts\ncreate: .ui/generated/angular/collection-views.ts\ncreate: .ui/generated/angular/command-palette.ts\ncreate: .ui/generated/angular/crop-adapter.ts\ncreate: .ui/generated/angular/data-grid.ts\ncreate: .ui/generated/angular/data-table-view.ts\ncreate: .ui/generated/angular/data-table.ts\ncreate: .ui/generated/angular/date-input.ts\ncreate: .ui/generated/angular/date-model.ts\ncreate: .ui/generated/angular/date-range-picker.ts\ncreate: .ui/generated/angular/diagram-layout.ts\ncreate: .ui/generated/angular/diagram.ts\ncreate: .ui/generated/angular/dialog-variants.ts\ncreate: .ui/generated/angular/dialog.ts\ncreate: .ui/generated/angular/diff-json.ts\ncreate: .ui/generated/angular/disclosure.ts\ncreate: .ui/generated/angular/display-content.ts\ncreate: .ui/generated/angular/display-model.ts\ncreate: .ui/generated/angular/display-style.ts\ncreate: .ui/generated/angular/display.ts\ncreate: .ui/generated/angular/drawer.ts\ncreate: .ui/generated/angular/editor-control.ts\ncreate: .ui/generated/angular/editor-model.ts\ncreate: .ui/generated/angular/feedback-model.ts\ncreate: .ui/generated/angular/feedback.ts\ncreate: .ui/generated/angular/file-draft-model.ts\ncreate: .ui/generated/angular/file-explorer.ts\ncreate: .ui/generated/angular/file-upload.ts\ncreate: .ui/generated/angular/filter-builder.ts\ncreate: .ui/generated/angular/filter-model.ts\ncreate: .ui/generated/angular/floating-model.ts\ncreate: .ui/generated/angular/floating-panel.ts\ncreate: .ui/generated/angular/focus.ts\ncreate: .ui/generated/angular/form-field.ts\ncreate: .ui/generated/angular/form-layout.ts\ncreate: .ui/generated/angular/formula-parser.d.ts\ncreate: .ui/generated/angular/gantt.ts\ncreate: .ui/generated/angular/grid-list.ts\ncreate: .ui/generated/angular/icon.ts\ncreate: .ui/generated/angular/image-cropper.ts\ncreate: .ui/generated/angular/image-media.ts\ncreate: .ui/generated/angular/index.ts\ncreate: .ui/generated/angular/infinite-scroll.ts\ncreate: .ui/generated/angular/inline-edit.ts\ncreate: .ui/generated/angular/json-model.ts\ncreate: .ui/generated/angular/kanban.ts\ncreate: .ui/generated/angular/layout-model.ts\ncreate: .ui/generated/angular/layout.ts\ncreate: .ui/generated/angular/listbox.ts\ncreate: .ui/generated/angular/locale-model.ts\ncreate: .ui/generated/angular/locale.ts\ncreate: .ui/generated/angular/map.ts\ncreate: .ui/generated/angular/markdown-editor.ts\ncreate: .ui/generated/angular/media-dom.ts\ncreate: .ui/generated/angular/media-model.ts\ncreate: .ui/generated/angular/media-player.ts\ncreate: .ui/generated/angular/media-style.ts\ncreate: .ui/generated/angular/mega-menu.ts\ncreate: .ui/generated/angular/menu-model.ts\ncreate: .ui/generated/angular/menu.ts\ncreate: .ui/generated/angular/menubar.ts\ncreate: .ui/generated/angular/navigation-model.ts\ncreate: .ui/generated/angular/navigation-tree.ts\ncreate: .ui/generated/angular/navigation.ts\ncreate: .ui/generated/angular/notification-center.ts\ncreate: .ui/generated/angular/notification-model.ts\ncreate: .ui/generated/angular/notifications.ts\ncreate: .ui/generated/angular/organization-chart.ts\ncreate: .ui/generated/angular/overlay.ts\ncreate: .ui/generated/angular/page-frame.ts\ncreate: .ui/generated/angular/pagination.ts\ncreate: .ui/generated/angular/panel-handle.ts\ncreate: .ui/generated/angular/panels.ts\ncreate: .ui/generated/angular/pdf-adapter.ts\ncreate: .ui/generated/angular/pdf-viewer.ts\ncreate: .ui/generated/angular/radio-group.ts\ncreate: .ui/generated/angular/rich-text-editor.ts\ncreate: .ui/generated/angular/scheduler-controller.ts\ncreate: .ui/generated/angular/scheduler-model.ts\ncreate: .ui/generated/angular/scheduler-move-sequence.ts\ncreate: .ui/generated/angular/scheduler-template.ts\ncreate: .ui/generated/angular/scheduler-view.ts\ncreate: .ui/generated/angular/scheduler.ts\ncreate: .ui/generated/angular/selection-input.ts\ncreate: .ui/generated/angular/sheet-formula.ts\ncreate: .ui/generated/angular/sheet-formula.worker.ts\ncreate: .ui/generated/angular/sheet-runner.ts\ncreate: .ui/generated/angular/sortable-list.ts\ncreate: .ui/generated/angular/specialist-browser.ts\ncreate: .ui/generated/angular/specialist-model.ts\ncreate: .ui/generated/angular/specialist-style.ts\ncreate: .ui/generated/angular/specialist.css\ncreate: .ui/generated/angular/splitter.ts\ncreate: .ui/generated/angular/spreadsheet.ts\ncreate: .ui/generated/angular/structured-input-model.ts\ncreate: .ui/generated/angular/structured-input.ts\ncreate: .ui/generated/angular/styles.css\ncreate: .ui/generated/angular/table-advanced-model.ts\ncreate: .ui/generated/angular/table-column-resize.ts\ncreate: .ui/generated/angular/table-controls.ts\ncreate: .ui/generated/angular/table-editors.ts\ncreate: .ui/generated/angular/table-model.ts\ncreate: .ui/generated/angular/table-output.ts\ncreate: .ui/generated/angular/table-runtime.ts\ncreate: .ui/generated/angular/tabs.ts\ncreate: .ui/generated/angular/text-input.ts\ncreate: .ui/generated/angular/timeline-model.ts\ncreate: .ui/generated/angular/timeline.ts\ncreate: .ui/generated/angular/toolbar.ts\ncreate: .ui/generated/angular/tour.ts\ncreate: .ui/generated/angular/transfer-list.ts\ncreate: .ui/generated/angular/transfer-model.ts\ncreate: .ui/generated/angular/tree-grid.ts\ncreate: .ui/generated/angular/tree-item.ts\ncreate: .ui/generated/angular/tree-load-sequence.ts\ncreate: .ui/generated/angular/tree-model.ts\ncreate: .ui/generated/angular/tree-node-template.ts\ncreate: .ui/generated/angular/tree-popup-control.ts\ncreate: .ui/generated/angular/tree-select.ts\ncreate: .ui/generated/angular/tree.ts\ncreate: .ui/generated/angular/value-control.ts\ncreate: .ui/generated/angular/virtual-data-table.ts\ncreate: .ui/generated/angular/virtual-list.ts\ncreate: .ui/generated/angular/wizard.ts\ncreate: .ui/generated/manifest.json\ncreate: .ui/generated/policy.json\ncreate: .ui/generated/profiles.ts\ncreate: .ui/generated/resolved.json\ncreate: .ui/generated/tailwind.css\ncreate: .ui/generated/tokens.css\nGenerated UI foundation synchronized.\n",
+      "stderr": ""
+    },
+    {
+      "name": "second idempotent sync",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "sync",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 0,
+      "expectedExit": 0,
+      "stdout": "Generated UI foundation is current.\n",
+      "stderr": ""
+    },
+    {
+      "name": "matching check",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "check",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 0,
+      "expectedExit": 0,
+      "stdout": "Configuration and generated files match. Application behavior and user understanding are not checked by this command.\n",
+      "stderr": ""
+    },
+    {
+      "name": "manual mutation check",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "check",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 1,
+      "expectedExit": 1,
+      "stdout": "",
+      "stderr": "Changed: .ui/generated/angular/menu.ts\n"
+    },
+    {
+      "name": "manual mutation sync refused",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "sync",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 1,
+      "expectedExit": 1,
+      "stdout": "",
+      "stderr": "Generated file was edited: .ui/generated/angular/menu.ts\n"
+    },
+    {
+      "name": "unmanaged file sync refused",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "sync",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 1,
+      "expectedExit": 1,
+      "stdout": "",
+      "stderr": "Unowned file would be overwritten or removed: .ui/generated/unmanaged-fixture.txt\n"
+    },
+    {
+      "name": "restored check",
+      "argv": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "/private/tmp/ui-foundation-final-integration-independent-review/repository/src/cli.ts",
+        "check",
+        "--config",
+        "ui.config.yaml"
+      ],
+      "actualExit": 0,
+      "expectedExit": 0,
+      "stdout": "Configuration and generated files match. Application behavior and user understanding are not checked by this command.\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    {
+      "name": "dry-run wrote no managed files",
+      "passed": true
+    },
+    {
+      "name": "all managed bytes identical after repeated sync",
+      "passed": true,
+      "files": 151
+    },
+    {
+      "name": "refused sync preserved manual bytes and every other managed file",
+      "passed": true
+    },
+    {
+      "name": "refused sync preserved unmanaged and managed bytes",
+      "passed": true
+    },
+    {
+      "name": "original managed bytes restored",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+import {defineConfig,devices} from '@playwright/test';
+export default defineConfig({testDir:'./tests/ui',fullyParallel:true,workers:1,retries:0,reporter:[['list'],['json',{outputFile:'../evidence/final-formal-media-results.json'}]],outputDir:'../evidence/final-formal-results',use:{...devices['Desktop Chrome'],channel:'chromium',baseURL:'http://127.0.0.1:5342',trace:'retain-on-failure',screenshot:'only-on-failure'},webServer:undefined});

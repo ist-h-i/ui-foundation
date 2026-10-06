@@ -1,0 +1,15 @@
+{
+  "reviewType": "AI visual inspection using view_image during diagnostic turn; not human visual approval",
+  "images": [
+    {
+      "path": "evidence/original-root-failure/test-failed-1.png",
+      "sha256": "1e0d5b7bae01f016294f6df93161051407d40efdfb2c89c6450ffb156f5cba04",
+      "observation": "Failed root snapshot shows red first image, 100% and 0 degrees after timeout; focused image region remains."
+    },
+    {
+      "path": "evidence/native-reset-key/guided-cpu1-guarded.png",
+      "sha256": "462b56d74a315cd2957976a2fb58becf22a3381818924343402a7eda5fd1a25c",
+      "observation": "Own guided guarded native snapshot shows blue second image at 100%,0 degrees with focus outline on image viewport."
+    }
+  ]
+}

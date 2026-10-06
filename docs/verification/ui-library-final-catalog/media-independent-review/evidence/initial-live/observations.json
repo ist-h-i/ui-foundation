@@ -1,0 +1,117 @@
+[
+  {
+    "name": "guided-1280-ltr",
+    "profile": "guided",
+    "narrow": false,
+    "before": {
+      "compare": "比較後の画像を62%表示",
+      "compareError": "比較後の画像を取得できません。",
+      "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+      "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+      "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+      "qr": "この内容とサイズではQRコードを作成できません。内容またはサイズを確認してください。",
+      "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+      "resources": {
+        "workers": 2,
+        "bitmaps": 1
+      },
+      "value": "67",
+      "focused": true,
+      "scrollWidth": 1280
+    },
+    "after": {
+      "compare": "比較後の画像を67%表示",
+      "compareError": "比較後の画像を取得できません。",
+      "pdf": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。",
+      "audio": "メディアを取得できません。表示対象と形式を確認して再試行してください。",
+      "crop": "画像を読み込めません。形式とデータを確認して選び直してください。",
+      "qr": "この内容とサイズではQRコードを作成できません。内容またはサイズを確認してください。",
+      "barcode": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。",
+      "resources": {
+        "workers": 2,
+        "bitmaps": 1
+      },
+      "value": "67",
+      "focused": true,
+      "scrollWidth": 1280
+    },
+    "expected": {
+      "compare": "After image 67% shown",
+      "compareError": "After image unavailable.",
+      "pdf": "PDF unavailable. Check source, worker and assets; retry.",
+      "audio": "Media unavailable. Check source and format; retry.",
+      "crop": "Image unavailable. Check format and reselect.",
+      "qr": "QR unavailable. Check content and size.",
+      "barcode": "Barcode unavailable. Check format, digits and size."
+    },
+    "liveStatuses": {
+      "pdfBefore": "ページを表示しました。 · 1 / 2",
+      "pdfAfter": "ページを表示しました。 · 1 / 2",
+      "audioBefore": "一時停止または停止中",
+      "audioAfter": "Paused or stopped."
+    },
+    "failures": [
+      {
+        "key": "compare",
+        "expected": "After image 67% shown",
+        "actual": "比較後の画像を67%表示"
+      },
+      {
+        "key": "compareError",
+        "expected": "After image unavailable.",
+        "actual": "比較後の画像を取得できません。"
+      },
+      {
+        "key": "pdf",
+        "expected": "PDF unavailable. Check source, worker and assets; retry.",
+        "actual": "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。"
+      },
+      {
+        "key": "audio",
+        "expected": "Media unavailable. Check source and format; retry.",
+        "actual": "メディアを取得できません。表示対象と形式を確認して再試行してください。"
+      },
+      {
+        "key": "crop",
+        "expected": "Image unavailable. Check format and reselect.",
+        "actual": "画像を読み込めません。形式とデータを確認して選び直してください。"
+      },
+      {
+        "key": "qr",
+        "expected": "QR unavailable. Check content and size.",
+        "actual": "この内容とサイズではQRコードを作成できません。内容またはサイズを確認してください。"
+      },
+      {
+        "key": "barcode",
+        "expected": "Barcode unavailable. Check format, digits and size.",
+        "actual": "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。"
+      },
+      {
+        "key": "loadedPdfStatus",
+        "expected": "Page displayed.",
+        "actual": "ページを表示しました。 · 1 / 2"
+      },
+      {
+        "key": "stoppedAudioStatus",
+        "expected": "Stopped.",
+        "actual": "Paused or stopped."
+      }
+    ],
+    "afterSwitchRequests": [],
+    "domRetained": true,
+    "pageErrors": [],
+    "axe": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": [
+            [
+              "div[aria-label=\"表示する画像\"]"
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

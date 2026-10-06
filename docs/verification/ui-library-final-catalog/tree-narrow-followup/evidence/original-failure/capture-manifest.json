@@ -1,0 +1,604 @@
+{
+  "recordedAt": "2026-10-06T10:18:18.660717+00:00",
+  "sourceCommit": "53a785824b86a34ada3ee8619f710fad57117634",
+  "productCodeCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "actualExit": 1,
+  "sourceChanged": [],
+  "sourceManifestSha256": "6639c242c24f2c6aec38d47548bd0ef6e7dc61fc7351234355de229645bcc812",
+  "counts": {
+    "registeredUi": 980,
+    "workers": 2,
+    "completedUi": 980,
+    "passedUi": 977,
+    "failedUi": 3,
+    "configTests": 70,
+    "generationTests": 15,
+    "modelTests": 183,
+    "nodeFailures": [
+      0,
+      0,
+      0
+    ],
+    "nodeSkipped": [
+      0,
+      0,
+      0
+    ],
+    "nodeCancelled": [
+      0,
+      0,
+      0
+    ]
+  },
+  "retriesConfigured": 0,
+  "fullRunPassed": false,
+  "all181CompletedClaim": false,
+  "captureFiles": 94,
+  "captureBytes": 34442702,
+  "files": [
+    {
+      "path": "execution.json",
+      "bytes": 1069,
+      "sha256": "3b69f5b4348fc99fba9dfc45d37b000406d6fad716c9e9e07b196f6fcf6f29a7",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "npm-test.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "npm-test.log",
+      "bytes": 216475,
+      "sha256": "e9db31e45ebfe6ffef3d8b9dbcfe52c686fad3313233e86c1a52b4266570f078",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 72779,
+      "sha256": "6639c242c24f2c6aec38d47548bd0ef6e7dc61fc7351234355de229645bcc812",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 72779,
+      "sha256": "6639c242c24f2c6aec38d47548bd0ef6e7dc61fc7351234355de229645bcc812",
+      "provenance": "Immutable execution directory"
+    },
+    {
+      "path": "test-results/.last-run.json",
+      "bytes": 194,
+      "sha256": "b04d33492fb8142baabd514dd2a32c69e6b34872c7b0603ffc00666482a3364e",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/collection-catalog-collect-af442-p-and-container-breakpoints-chromium/error-context.md",
+      "bytes": 47187,
+      "sha256": "d81e81479fb3fd8d61fe4991f75bb215b9dbd2f5ab57ccac261400018c56f027",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/collection-catalog-collect-af442-p-and-container-breakpoints-chromium/test-failed-1.png",
+      "bytes": 84032,
+      "sha256": "b1ce0f23da47aa67e527a413c1fb2b7000f6cbb26fc12916289c5af398a8f8a1",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/collection-catalog-collect-af442-p-and-container-breakpoints-chromium/trace.zip",
+      "bytes": 323926,
+      "sha256": "09f2942f98ddad6b3c9493aaee1d7204ac0b43a6ec0aadbfb0624d95ea9256c3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/foundation/foundation-dense-320-200-rtl.png",
+      "bytes": 2485611,
+      "sha256": "ef49263d5bcc17d939ad879788d6e982a4f97b48cef8648ae5f2477dceab703d",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/foundation/foundation-dense-category-viewport.png",
+      "bytes": 25262,
+      "sha256": "f89a8145384c8a28849b50c87b83f3b29578df8d075c01548cb701ead09b6a9d",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/foundation/foundation-guided-320-200-rtl.png",
+      "bytes": 1973939,
+      "sha256": "f137dda8347e496a8eaa55e56574bbb82f72824ed66693dcc5df9fe36d738924",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/foundation/foundation-guided-category-viewport.png",
+      "bytes": 34829,
+      "sha256": "02cf58acce1110aed6e4bbb3d10b934577bc5fa13f07c1066746da17b38b4f20",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/media-regressions-desktop--1c26a-files-with-native-scrolling-chromium/lightbox-desktop-dense-90.png",
+      "bytes": 22435,
+      "sha256": "4c36982e70d552c8b6120ed83000501729c3e74b16d30c529037b3adae1035d4",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/media-regressions-desktop--1c26a-files-with-native-scrolling-chromium/lightbox-desktop-guided-90.png",
+      "bytes": 22975,
+      "sha256": "241f7a20ef8325171ae74e177b95db69404d2a612fcd9aa5a7bf63afdc902124",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/media-regressions-open-Lig-c9334-h-profiles-at-320px-200-RTL-chromium/error-context.md",
+      "bytes": 25095,
+      "sha256": "9f11feb8c81343c44d614a55762089ca61b084d430dbee65af486010563c3a98",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/media-regressions-open-Lig-c9334-h-profiles-at-320px-200-RTL-chromium/test-failed-1.png",
+      "bytes": 37063,
+      "sha256": "1e0d5b7bae01f016294f6df93161051407d40efdfb2c89c6450ffb156f5cba04",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/media-regressions-open-Lig-c9334-h-profiles-at-320px-200-RTL-chromium/trace.zip",
+      "bytes": 3517637,
+      "sha256": "915e9713886e9d84b0d62acf05896d75f38a93073d0ef21472399303c796c5d5",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-09670--actual-move-editor-and-axe-chromium/scheduler-guided-320-200-rtl-viewport.png",
+      "bytes": 47175,
+      "sha256": "07102805bd1edba169facbf9ae619fe1758ff7b030306437eeee4cc22b4f1d99",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-09670--actual-move-editor-and-axe-chromium/scheduler-guided-320-200-rtl.png",
+      "bytes": 1511618,
+      "sha256": "7bde9b716f54ca0fb3e6090fc41c9ba6758851e272386e074f376e07cd3c729a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-09670--actual-move-editor-and-axe-chromium/scheduler-guided-month.png",
+      "bytes": 243148,
+      "sha256": "fd6cce4ffc20e4100c614ac9d23b938309fb7c778428372a4bae9b51746652a3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-dacb0--actual-move-editor-and-axe-chromium/scheduler-dense-320-200-rtl-viewport.png",
+      "bytes": 60293,
+      "sha256": "5da12b9e65c0ee168353053596868f43ff32ab789b9b11c75531f7e27da7a68b",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-dacb0--actual-move-editor-and-axe-chromium/scheduler-dense-320-200-rtl.png",
+      "bytes": 1226233,
+      "sha256": "2edb236d74febacef2944b6a30515ec9b01832e0b14ce34d8107cd24fa03d5ed",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/scheduler-catalog-schedule-dacb0--actual-move-editor-and-axe-chromium/scheduler-dense-month.png",
+      "bytes": 213903,
+      "sha256": "47aff15fdb3a8b4fea733c1764aedcdec0f27c883c37b54845517428b2836445",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/attachments/axe-dense-json-db5518915a63df4ddef4291014bf9c07b4a6dcc0.json",
+      "bytes": 2758615,
+      "sha256": "27828346a022eb01c41fe4275b093a47188516edcbc41e16e8812a62142914a0",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/attachments/data-grid-dense-png-f3eac8ad1a5559ef56693ce02f49aa333c144b43.png",
+      "bytes": 60853,
+      "sha256": "61924ed9d110cac83993d3442dd15f455e722b6d808adf8d0cbf3bcb38ae257b",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/attachments/narrow-dense-json-9ae0e560f225800cf0b5b536ffc1d773c5a70b82.json",
+      "bytes": 4755,
+      "sha256": "64b9678ccc6bc9d6fa50bc6d5587ff8e77bd5e24d0758e15d741f588e777e776",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/axe-dense.json",
+      "bytes": 2758615,
+      "sha256": "27828346a022eb01c41fe4275b093a47188516edcbc41e16e8812a62142914a0",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/data-grid-dense.png",
+      "bytes": 60853,
+      "sha256": "61924ed9d110cac83993d3442dd15f455e722b6d808adf8d0cbf3bcb38ae257b",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-dense-chromium/narrow-dense.json",
+      "bytes": 4755,
+      "sha256": "64b9678ccc6bc9d6fa50bc6d5587ff8e77bd5e24d0758e15d741f588e777e776",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/attachments/axe-guided-json-63173f12e9b6181f658f00365d11093bed3430d4.json",
+      "bytes": 2758745,
+      "sha256": "0a355fb99e134d84a42a74b3f86aeed9acdb9e16c34418ce28433c3ab413186a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/attachments/data-grid-guided-png-262fcf6b24e6d9199925fb5719b7481632a6713b.png",
+      "bytes": 72356,
+      "sha256": "c842b879f3e0405c517481ed01819f0a75b40559f6b2ec8a0182571b83c2d131",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/attachments/narrow-guided-json-d257871df952022f98d19ee6704da019460fe2b4.json",
+      "bytes": 4564,
+      "sha256": "6c2a0f29bebc00965859ceed1a23bd3c62f7b45043d40139a143da3cf21e09f9",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/axe-guided.json",
+      "bytes": 2758745,
+      "sha256": "0a355fb99e134d84a42a74b3f86aeed9acdb9e16c34418ce28433c3ab413186a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/data-grid-guided.png",
+      "bytes": 72356,
+      "sha256": "c842b879f3e0405c517481ed01819f0a75b40559f6b2ec8a0182571b83c2d131",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-accessibility-guided-chromium/narrow-guided.json",
+      "bytes": 4564,
+      "sha256": "6c2a0f29bebc00965859ceed1a23bd3c62f7b45043d40139a143da3cf21e09f9",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-ltr-dense-chromium/attachments/pinned-footer-end-ltr-dense-json-c23e2d80df75df3e1659eebb5af7cd7bd7518021.json",
+      "bytes": 664,
+      "sha256": "c004feb9e594cd6f6c360dbe992157631597f08231e9ac1e5a2e66a1b4a11dd5",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-ltr-dense-chromium/pinned-footer-end-ltr-dense.json",
+      "bytes": 664,
+      "sha256": "c004feb9e594cd6f6c360dbe992157631597f08231e9ac1e5a2e66a1b4a11dd5",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-ltr-guided-chromium/attachments/pinned-footer-end-ltr-guided-json-4371972f2e0addfd5c1b81e368132572132d2ac4.json",
+      "bytes": 685,
+      "sha256": "52826d26b1847b259ffeb14a503cb9fecaf6a7a1c2fa4448351d19a2d8125856",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-ltr-guided-chromium/pinned-footer-end-ltr-guided.json",
+      "bytes": 685,
+      "sha256": "52826d26b1847b259ffeb14a503cb9fecaf6a7a1c2fa4448351d19a2d8125856",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-rtl-dense-chromium/attachments/pinned-footer-end-rtl-dense-json-db7ac825ec429c58b26eccd736187fe4a1968893.json",
+      "bytes": 661,
+      "sha256": "602baf8a12bb67c151bddc661bd7f842200dfdf935fef1e296ea6f7b3e652b4c",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-rtl-dense-chromium/pinned-footer-end-rtl-dense.json",
+      "bytes": 661,
+      "sha256": "602baf8a12bb67c151bddc661bd7f842200dfdf935fef1e296ea6f7b3e652b4c",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-rtl-guided-chromium/attachments/pinned-footer-end-rtl-guided-json-01bfcf5b7ae5dbe3c243ab4477fb133d9f5fd275.json",
+      "bytes": 682,
+      "sha256": "5c145405b5d58622f4996cf99676f9ebb6d903892b3255756b4ff2c4a525c360",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-end-rtl-guided-chromium/pinned-footer-end-rtl-guided.json",
+      "bytes": 682,
+      "sha256": "5c145405b5d58622f4996cf99676f9ebb6d903892b3255756b4ff2c4a525c360",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-ltr-dense-chromium/attachments/pinned-footer-start-ltr-dense-json-eaa0f548a1f78b872afed3432a93477e1a9c2693.json",
+      "bytes": 664,
+      "sha256": "ecbf5f6a03ef5559e65bdf0d8753ae97d79a936856951284219cebf80eaf9281",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-ltr-dense-chromium/pinned-footer-start-ltr-dense.json",
+      "bytes": 664,
+      "sha256": "ecbf5f6a03ef5559e65bdf0d8753ae97d79a936856951284219cebf80eaf9281",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-ltr-guided-chromium/attachments/pinned-footer-start-ltr-guided-json-b54611840c5284d8eaeadf412c1cac2186b267ab.json",
+      "bytes": 685,
+      "sha256": "6a3d649c5e3458fd9258ee12c38d47bea5393fd4c1d04ed1eb5ddbbcf70299de",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-ltr-guided-chromium/pinned-footer-start-ltr-guided.json",
+      "bytes": 685,
+      "sha256": "6a3d649c5e3458fd9258ee12c38d47bea5393fd4c1d04ed1eb5ddbbcf70299de",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-rtl-dense-chromium/attachments/pinned-footer-start-rtl-dense-json-6de69d1b06b69b29bde57ec8318321895b499ac5.json",
+      "bytes": 669,
+      "sha256": "34323ffea9af2a4f0a27206bf35d8d8191cbfda535bb39ce37fdcddc048053cb",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-rtl-dense-chromium/pinned-footer-start-rtl-dense.json",
+      "bytes": 669,
+      "sha256": "34323ffea9af2a4f0a27206bf35d8d8191cbfda535bb39ce37fdcddc048053cb",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-rtl-guided-chromium/attachments/pinned-footer-start-rtl-guided-json-e83efea3de2503e5d3833fb18f92d4f692ad5c7b.json",
+      "bytes": 690,
+      "sha256": "0d45ff81fbd05466bee5e6c95b44c260d16392ba740eacfd3a4e964bec4b57fb",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-pinned-footer-start-rtl-guided-chromium/pinned-footer-start-rtl-guided.json",
+      "bytes": 690,
+      "sha256": "0d45ff81fbd05466bee5e6c95b44c260d16392ba740eacfd3a4e964bec4b57fb",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-table-dense-chromium/attachments/sticky-dense-json-77605012791bafb3c8d023f55d0254bd566259cf.json",
+      "bytes": 544,
+      "sha256": "d3073ebfc502d608eba8c41e4da1f56a13b0430a8cdd4e602464761a0b7f0f45",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-table-dense-chromium/sticky-dense.json",
+      "bytes": 544,
+      "sha256": "d3073ebfc502d608eba8c41e4da1f56a13b0430a8cdd4e602464761a0b7f0f45",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-table-guided-chromium/attachments/sticky-guided-json-a42704a2ab4e698709e991cf927feba4b7d82533.json",
+      "bytes": 568,
+      "sha256": "7b76d6abf9a1bb80a5f9affbaac09f7bef281e70b3c05587fda0e978be14e484",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-native-table-guided-chromium/sticky-guided.json",
+      "bytes": 568,
+      "sha256": "7b76d6abf9a1bb80a5f9affbaac09f7bef281e70b3c05587fda0e978be14e484",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-dense-chromium/attachments/export-dense-csv-a32cb07782a7b3aa009081a8d42cecc753f90667.csv",
+      "bytes": 135,
+      "sha256": "ed991637e9f40f8ecf35543fe5d88c5f8ac72882e719bb06b670494e6b853ed2",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-dense-chromium/attachments/print-dense-json-c94377e4498e520a0f9479b051b8ed60a0ac58da.json",
+      "bytes": 158,
+      "sha256": "d21c97a1535e6d4f9bf5094061d55ada0f80082e93f8df76f2a92466aa2f16f5",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-dense-chromium/export-dense.csv",
+      "bytes": 135,
+      "sha256": "ed991637e9f40f8ecf35543fe5d88c5f8ac72882e719bb06b670494e6b853ed2",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-dense-chromium/print-dense.json",
+      "bytes": 158,
+      "sha256": "d21c97a1535e6d4f9bf5094061d55ada0f80082e93f8df76f2a92466aa2f16f5",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-guided-chromium/attachments/export-guided-csv-ae66b5f5af4f5fbfd786b1782ed0c49f1f1fe151.csv",
+      "bytes": 135,
+      "sha256": "ed991637e9f40f8ecf35543fe5d88c5f8ac72882e719bb06b670494e6b853ed2",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-guided-chromium/attachments/print-guided-json-39a451178d4bd36f125228c8ebde79adb5a43593.json",
+      "bytes": 160,
+      "sha256": "7e082c8cf26d2cfe3146f842a94ec598a75ad5451a72acd97111462417054fff",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-guided-chromium/export-guided.csv",
+      "bytes": 135,
+      "sha256": "ed991637e9f40f8ecf35543fe5d88c5f8ac72882e719bb06b670494e6b853ed2",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-table-output-guided-chromium/print-guided.json",
+      "bytes": 160,
+      "sha256": "7e082c8cf26d2cfe3146f842a94ec598a75ad5451a72acd97111462417054fff",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-dense-chromium/attachments/unicode-axe-dense-json-5c74dc006baab6c6e8e97cf1d5eafdbcb0d4bb17.json",
+      "bytes": 1958208,
+      "sha256": "983427a2596da44cc12606036d16d284e4aa90e668dc1a70146bc99972dc3c5a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-dense-chromium/attachments/unicode-identities-dense-json-99ec93433a60ad1d8c37fd886706bbafa8d4d0a9.json",
+      "bytes": 10711,
+      "sha256": "a9c626d8cc56fd7f513d34d4730ce6bbf71e7da62665b5f4061f1156cdbc10c3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-dense-chromium/unicode-axe-dense.json",
+      "bytes": 1958208,
+      "sha256": "983427a2596da44cc12606036d16d284e4aa90e668dc1a70146bc99972dc3c5a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-dense-chromium/unicode-identities-dense.json",
+      "bytes": 10711,
+      "sha256": "a9c626d8cc56fd7f513d34d4730ce6bbf71e7da62665b5f4061f1156cdbc10c3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-guided-chromium/attachments/unicode-axe-guided-json-f0a0e6c1ae149e44dd45cc8eef1c6b3f6e0a52f6.json",
+      "bytes": 1958208,
+      "sha256": "79118c5b592812aeb9e153adca057e5a30cda55e64c5683a10c1a8efc0650ddd",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-guided-chromium/attachments/unicode-identities-guided-json-d570eef69036ec2fc246818ee0a27aa582a06e39.json",
+      "bytes": 10711,
+      "sha256": "a9c626d8cc56fd7f513d34d4730ce6bbf71e7da62665b5f4061f1156cdbc10c3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-guided-chromium/unicode-axe-guided.json",
+      "bytes": 1958208,
+      "sha256": "79118c5b592812aeb9e153adca057e5a30cda55e64c5683a10c1a8efc0650ddd",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-unicode-identities-guided-chromium/unicode-identities-guided.json",
+      "bytes": 10711,
+      "sha256": "a9c626d8cc56fd7f513d34d4730ce6bbf71e7da62665b5f4061f1156cdbc10c3",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/attachments/virtual-dense-json-144dc10b0c1be458ae433df1ac94fbfa4a5b77c6.json",
+      "bytes": 224,
+      "sha256": "f4fc296e7584a3481dcfa3b7be6ce6b0e4df0b6efe1c705c4f24a39abc0c7e07",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/attachments/virtual-dense-png-9effc964266595a5d48484871cbe7768f14271a5.png",
+      "bytes": 67952,
+      "sha256": "8e2681e2ca63c9d042b9c72e3aa38890931e84f57835ea4f10ad811a7ef3e666",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/attachments/virtual-text-dense-json-7f0c543747c1f9f0de5d06ea55b64f0f7c16d84f.json",
+      "bytes": 117,
+      "sha256": "bdf1a28178b99a282b97e528b0789f8a98d4ae65589fe4eeb850adca62a6a700",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/virtual-dense.json",
+      "bytes": 224,
+      "sha256": "f4fc296e7584a3481dcfa3b7be6ce6b0e4df0b6efe1c705c4f24a39abc0c7e07",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/virtual-dense.png",
+      "bytes": 67952,
+      "sha256": "8e2681e2ca63c9d042b9c72e3aa38890931e84f57835ea4f10ad811a7ef3e666",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-dense-chromium/virtual-text-dense.json",
+      "bytes": 117,
+      "sha256": "bdf1a28178b99a282b97e528b0789f8a98d4ae65589fe4eeb850adca62a6a700",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/attachments/virtual-guided-json-0a749d4712fb913a27fcd6af8f2be1311e7652eb.json",
+      "bytes": 224,
+      "sha256": "88a69adf963e7996beb643bc40fd91960d9f192fe32ace198961833803307316",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/attachments/virtual-guided-png-d190cb7e21b3114c6d951663b495972269f2bb8c.png",
+      "bytes": 68736,
+      "sha256": "b208dfd24fb8fc0c8997cdc0d9b42d83acc28280faedf685fe2a43d585946298",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/attachments/virtual-text-guided-json-9815b45537b1db62b71fce67c7f097a2c0130a6b.json",
+      "bytes": 117,
+      "sha256": "e422b3a873a9af9d9059081b22808f1ca0232548c93a4d7581379df928a7cd34",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/virtual-guided.json",
+      "bytes": 224,
+      "sha256": "88a69adf963e7996beb643bc40fd91960d9f192fe32ace198961833803307316",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/virtual-guided.png",
+      "bytes": 68736,
+      "sha256": "b208dfd24fb8fc0c8997cdc0d9b42d83acc28280faedf685fe2a43d585946298",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/table-expansion-virtual-table-guided-chromium/virtual-text-guided.json",
+      "bytes": 117,
+      "sha256": "e422b3a873a9af9d9059081b22808f1ca0232548c93a4d7581379df928a7cd34",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/transfer-timeline-dense-32-5fe3a--profile-state-preservation-chromium/dense-320-200-rtl.png",
+      "bytes": 436903,
+      "sha256": "d494aa25cc02eaa28b61a6f9f6a4f270a159c4a93ea9d5962b58ca05a30af693",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/transfer-timeline-guided-3-28cdc--profile-state-preservation-chromium/guided-320-200-rtl.png",
+      "bytes": 521284,
+      "sha256": "da75489a2be51971467154497d0198890bbba0e130944d731746e261427385c8",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/tree-catalog-tree-catalog--80794-ained-editor-and-fold-focus-chromium/organization-guided.png",
+      "bytes": 55209,
+      "sha256": "34c2b01eba41e963c8f2f485a25a2ca6eaa7a7fb54ebdc43aa8208757df5a01a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/tree-catalog-tree-catalog--a39a2-ained-editor-and-fold-focus-chromium/organization-dense.png",
+      "bytes": 58562,
+      "sha256": "f29dcf8b30b8838b65f0869e6c49ae21b3c20dd865927e363d4e63394f76218a",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/error-context.md",
+      "bytes": 617,
+      "sha256": "b5573f3d56f23519a1b96a5c3eaa9a3c47a76e7f64cb3a00393579023088009e",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip",
+      "bytes": 8756,
+      "sha256": "e3be7075f1f1575eb294d88481cb8d74dd00ea8ac53346be196533b17a138fed",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "test-results/tree-catalog-tree-catalog--c1168--and-axe-closed-open-popups-chromium/evidence-images-tree-guided-320-200-rtl.png",
+      "bytes": 611219,
+      "sha256": "2cebd64b6011208d510c50c3841e1437a373d98bdaaffe4d38a75e87d43fe4de",
+      "provenance": "Canonical completed Playwright run"
+    },
+    {
+      "path": "native-extra/evidence/media-dense-320-200-rtl.png",
+      "bytes": 462592,
+      "sha256": "609735485351e8db4b67153bd54207cee5ddb68626b1e0cbdd2961d7cf848de4",
+      "provenance": "Canonical tests/ui/media.spec.ts:12 screenshot; task-created root evidence path"
+    },
+    {
+      "path": "native-extra/evidence/media-guided-320-200-rtl.png",
+      "bytes": 537509,
+      "sha256": "c1eb4bcdb03575bdc821ba70ad4ac226c473485932862d36b5083ee3f0d6ebfb",
+      "provenance": "Canonical tests/ui/media.spec.ts:12 screenshot; task-created root evidence path"
+    }
+  ]
+}

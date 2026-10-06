@@ -1,0 +1,10 @@
+--- a/tests/ui/media-regressions.spec.ts
++++ b/tests/ui/media-regressions.spec.ts
+@@ -181,6 +181,7 @@
+    observations.push({profile,rotation,zoom:4,start,end,violations:analysis.violations});
+   }
+   await dialog.getByRole('button',{name:'表示をリセット',exact:true}).click();
++  await expect.poll(()=>viewport.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await dialog.locator('.ui-image-viewport').focus();await page.keyboard.press('ArrowLeft');
+   await expect(dialog.getByRole('img',{name:'青い写真'})).toBeVisible();
+   await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);

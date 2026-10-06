@@ -1,0 +1,55 @@
+[
+  {
+    "name": "controls-final4",
+    "command": [
+      "node",
+      "independent-control-probes.mjs",
+      "final4"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:41:31.922047+00:00"
+  },
+  {
+    "name": "compare-plane",
+    "command": [
+      "node",
+      "independent-compare-plane.mjs"
+    ],
+    "exit": 1,
+    "at": "2026-10-06T08:41:34.522251+00:00"
+  },
+  {
+    "name": "barcode-touch",
+    "command": [
+      "node",
+      "independent-barcode-touch.mjs"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:41:40.981642+00:00"
+  },
+  {
+    "name": "live-final",
+    "command": [
+      "node",
+      "independent-live-probes.mjs",
+      "final"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:41:56.059803+00:00"
+  },
+  {
+    "name": "formal-final",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "-c",
+      "playwright.media-independent.config.ts",
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "tests/ui/media-lifetime.spec.ts"
+    ],
+    "exit": 0,
+    "at": "2026-10-06T08:43:32.323309+00:00"
+  }
+]

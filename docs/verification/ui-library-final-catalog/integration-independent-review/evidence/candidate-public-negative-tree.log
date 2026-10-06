@@ -1,0 +1,6 @@
+[96mconsumer-negative-tree.ts[0m:[93m4[0m:[93m202[0m - [91merror[0m[90m TS2339: [0mProperty 'toUpperCase' does not exist on type 'number'.
+
+[7m4[0m @Component({standalone:true,imports:[Tree,TreeNodeTemplate],template:`<ui-tree treeId="negative" label="Negative" [nodes]="nodes"><ng-template [uiTreeNodeTemplate]="nodes" let-node>{{node.data?.amount.toUpperCase()}}</ng-template></ui-tree>`})
+[7m [0m [91m                                                                                                                                                                                                         ~~~~~~~~~~~[0m
+
+

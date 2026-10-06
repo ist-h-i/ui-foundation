@@ -1,0 +1,29 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toBe(expected) // Object.is equality
+
+Expected: "Independent UI123456"
+Received: {"error": "i"}
+
+Call Log:
+- Timeout 5000ms exceeded while waiting on the predicate
+    at captureRawStack (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright-core/lib/coreBundle.js:8588:17)
+    at callMatcherAsStep (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toBe (/private/tmp/ui-foundation-final-integration/repository/node_modules/playwright/lib/matchers/expect.js:13302:23)
+    at /private/tmp/ui-foundation-media-gauge-independent-review/repository/independent-control-probes.mjs:82:160 {
+  matcherResult: {
+    pass: false,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: "Independent UI123456"\n' +
+      'Received: {"error": "i"}\n' +
+      '\n' +
+      'Call Log:\n' +
+      '- Timeout 5000ms exceeded while waiting on the predicate',
+    name: 'toBe'
+  }
+}
+
+Node.js v24.19.0

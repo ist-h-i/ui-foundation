@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-10-06 11:01:23 UTC",
+  "sourceCommit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+  "scope": "Documentation/evidence-only additions; all457 executable inputs still match the immutable successful full-run snapshot.",
+  "checks": [
+    {
+      "command": "git diff --check",
+      "actualExit": 0
+    },
+    {
+      "command": "npm run ui:check",
+      "sandbox": "workspace-write",
+      "actualExit": 1,
+      "reason": "tsx local IPC listener rejected by filesystem/execution sandbox: listen EPERM. Configuration check did not execute.",
+      "testResultClaim": false
+    },
+    {
+      "command": "npm run ui:check",
+      "sandbox": "require_escalated, approved normal tool review",
+      "actualExit": 0,
+      "stdout": "\n> ui-foundation@0.0.0 ui:check\n> tsx src/cli.ts check --config examples/ui.config.example.yaml\n\nConfiguration and generated files match. Application behavior and user understanding are not checked by this command.\n",
+      "testResultClaim": false
+    }
+  ],
+  "fullRunRecord": "docs/verification/ui-library-final-catalog/final-full-npm-8e8748a/capture-manifest.json"
+}

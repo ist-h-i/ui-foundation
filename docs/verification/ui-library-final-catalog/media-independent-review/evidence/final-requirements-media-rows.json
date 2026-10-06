@@ -1,0 +1,810 @@
+[
+  {
+    "id": "media-01",
+    "category": "media",
+    "component": "FileUpload",
+    "requestedControls": "形式、容量、件数、進捗、取消、再試行",
+    "sourceLine": 209,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/file-upload.ts",
+      "templates/angular/media-model.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "形式",
+        "publicRuntimeContract": "accept actual File type/name conditions"
+      },
+      {
+        "requested": "容量",
+        "publicRuntimeContract": "maxBytes actual File.size"
+      },
+      {
+        "requested": "件数",
+        "publicRuntimeContract": "multiple/maxFiles/existingCount + atomic complete accepted batch CVA"
+      },
+      {
+        "requested": "進捗",
+        "publicRuntimeContract": "items UploadList progress known/null"
+      },
+      {
+        "requested": "取消",
+        "publicRuntimeContract": "cancelRequested current id/requestId (app owns network cancellation)"
+      },
+      {
+        "requested": "再試行",
+        "publicRuntimeContract": "UploadList retryRequested -> same File/id new uploadRequested requestId"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/foundation.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-02",
+    "category": "media",
+    "component": "Dropzone",
+    "requestedControls": "ドロップ受付、複数ファイル、受付条件",
+    "sourceLine": 210,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/file-upload.ts",
+      "templates/angular/media-model.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "ドロップ受付",
+        "publicRuntimeContract": "ui-dropzone actual dragover/drop and native file picker alternative"
+      },
+      {
+        "requested": "複数ファイル",
+        "publicRuntimeContract": "multiple + native File[] batch"
+      },
+      {
+        "requested": "受付条件",
+        "publicRuntimeContract": "shared uploadConditions/selectFiles type/size/count validation"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/foundation.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-03",
+    "category": "media",
+    "component": "UploadList / AttachmentList",
+    "requestedControls": "ファイル情報、進捗、個別失敗、削除、再試行",
+    "sourceLine": 211,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/file-upload.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "ファイル情報",
+        "publicRuntimeContract": "UploadList items name/type/size/status retained File"
+      },
+      {
+        "requested": "進捗",
+        "publicRuntimeContract": "native progress actual/null indeterminate"
+      },
+      {
+        "requested": "個別失敗",
+        "publicRuntimeContract": "item.error/status failed with app raw body"
+      },
+      {
+        "requested": "削除",
+        "publicRuntimeContract": "removeRequested id/requestId + own focus recovery"
+      },
+      {
+        "requested": "再試行",
+        "publicRuntimeContract": "retryRequested id/requestId + exact app retained File"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-04",
+    "category": "media",
+    "component": "FilePreview / PDFViewer",
+    "requestedControls": "表示対象、ページ、拡大、ダウンロード",
+    "sourceLine": 212,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/pdf-viewer.ts",
+      "templates/angular/pdf-adapter.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "表示対象",
+        "publicRuntimeContract": "source URL/Blob/Uint8Array with actual PDF.js session"
+      },
+      {
+        "requested": "ページ",
+        "publicRuntimeContract": "page/pageChange + text/canvas actual render"
+      },
+      {
+        "requested": "拡大",
+        "publicRuntimeContract": "zoom/zoomChange actual canvas dimensions"
+      },
+      {
+        "requested": "ダウンロード",
+        "publicRuntimeContract": "downloadable/filename/getData Blob download"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-lifetime.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-05",
+    "category": "media",
+    "component": "Image",
+    "requestedControls": "代替説明、縦横比、収め方、取得失敗、遅延読込み",
+    "sourceLine": 213,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/image-media.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "代替説明",
+        "publicRuntimeContract": "required alt actual img/failed image explanation"
+      },
+      {
+        "requested": "縦横比",
+        "publicRuntimeContract": "ratio actual figure aspect-ratio"
+      },
+      {
+        "requested": "収め方",
+        "publicRuntimeContract": "fit actual img object-fit"
+      },
+      {
+        "requested": "取得失敗",
+        "publicRuntimeContract": "native error/loadFailed + retry"
+      },
+      {
+        "requested": "遅延読込み",
+        "publicRuntimeContract": "loading lazy/eager actual native loading attribute"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-06",
+    "category": "media",
+    "component": "ImageViewer / Lightbox",
+    "requestedControls": "拡大、回転、前後移動、閉じる",
+    "sourceLine": 214,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/image-media.ts",
+      "templates/angular/dialog.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "拡大",
+        "publicRuntimeContract": "zoom 25-400% actual image transform and scroll bounds"
+      },
+      {
+        "requested": "回転",
+        "publicRuntimeContract": "rotation 90deg geometry canvas bounds"
+      },
+      {
+        "requested": "前後移動",
+        "publicRuntimeContract": "index/indexChange native next/previous keyboard/buttons"
+      },
+      {
+        "requested": "閉じる",
+        "publicRuntimeContract": "open/openChange native Dialog close + focus return"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-07",
+    "category": "media",
+    "component": "Gallery / Carousel",
+    "requestedControls": "項目、移動、ページ表示、自動送り、間隔、停止",
+    "sourceLine": 215,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/image-media.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "項目",
+        "publicRuntimeContract": "images/index + actual selected img"
+      },
+      {
+        "requested": "移動",
+        "publicRuntimeContract": "native previous/next + indexChange"
+      },
+      {
+        "requested": "ページ表示",
+        "publicRuntimeContract": "page buttons/aria-current and index/total"
+      },
+      {
+        "requested": "自動送り",
+        "publicRuntimeContract": "autoplay + internal running real interval timer"
+      },
+      {
+        "requested": "間隔",
+        "publicRuntimeContract": "intervalMs validated timer and reschedule"
+      },
+      {
+        "requested": "停止",
+        "publicRuntimeContract": "Stop/Start + focus/hover/hidden/reduced motion/destroy ownership"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-08",
+    "category": "media",
+    "component": "ImageCompare",
+    "requestedControls": "比較方向、境界位置、操作",
+    "sourceLine": 216,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/image-media.ts",
+      "templates/angular/media-model.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "比較方向",
+        "publicRuntimeContract": "direction horizontal/vertical actual clip boundary"
+      },
+      {
+        "requested": "境界位置",
+        "publicRuntimeContract": "position linked value and clip-path"
+      },
+      {
+        "requested": "操作",
+        "publicRuntimeContract": "native range min/max/keyboard/positionChange in RTL"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-09",
+    "category": "media",
+    "component": "ImageCropper",
+    "requestedControls": "切抜き範囲、比率、回転、確定",
+    "sourceLine": 217,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/image-cropper.ts",
+      "templates/angular/media-model.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "切抜き範囲",
+        "publicRuntimeContract": "range native X/Y/width/height and actual decoded Bitmap crop"
+      },
+      {
+        "requested": "比率",
+        "publicRuntimeContract": "ratio native selector + constrained geometry"
+      },
+      {
+        "requested": "回転",
+        "publicRuntimeContract": "rotation 90deg source/display bounds"
+      },
+      {
+        "requested": "確定",
+        "publicRuntimeContract": "confirmed real PNG Blob/pixel bounds/current request and stale discard"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-lifetime.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-10",
+    "category": "media",
+    "component": "AudioPlayer / VideoPlayer",
+    "requestedControls": "再生、停止、音量、速度、字幕、全画面",
+    "sourceLine": 218,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/media-player.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "再生",
+        "publicRuntimeContract": "play/toggle native HTMLMediaElement.play Promise and state"
+      },
+      {
+        "requested": "停止",
+        "publicRuntimeContract": "stop pause + currentTime0 and native pause"
+      },
+      {
+        "requested": "音量",
+        "publicRuntimeContract": "setPlaybackVolume + native volume/range"
+      },
+      {
+        "requested": "速度",
+        "publicRuntimeContract": "setPlaybackRate + native rate/select"
+      },
+      {
+        "requested": "字幕",
+        "publicRuntimeContract": "captions TextTrack mode/current cue + source/removal reorder"
+      },
+      {
+        "requested": "全画面",
+        "publicRuntimeContract": "fullscreen actual player region requestFullscreen/exitFullscreen"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "tests/ui/media-regressions.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  },
+  {
+    "id": "media-11",
+    "category": "media",
+    "component": "QRCode / Barcode",
+    "requestedControls": "内容、形式、サイズ、説明",
+    "sourceLine": 219,
+    "baseline": "new",
+    "status": "pending",
+    "implementation": [
+      "templates/angular/barcode.ts"
+    ],
+    "dependencies": [
+      "tokens",
+      "overlay",
+      "resize",
+      "drag"
+    ],
+    "verification": {
+      "static": [
+        "ui:check",
+        "typecheck",
+        "build"
+      ],
+      "interaction": [
+        "guided/dense",
+        "keyboard/focus",
+        "narrow/200%",
+        "disabled/busy/hidden/recovery"
+      ],
+      "accessibility": [
+        "axe",
+        "APG pattern review"
+      ],
+      "consumer": [
+        "generated AOT strictTemplates"
+      ]
+    },
+    "evidence": [],
+    "priority": 6,
+    "deliveryScope": "use-case-follow-up",
+    "controlMapping": [
+      {
+        "requested": "内容",
+        "publicRuntimeContract": "value actual qrcode/JsBarcode encoding"
+      },
+      {
+        "requested": "形式",
+        "publicRuntimeContract": "QRCode svg/canvas format and Barcode symbology union"
+      },
+      {
+        "requested": "サイズ",
+        "publicRuntimeContract": "size/height/moduleWidth actual quiet-zone/required width geometry"
+      },
+      {
+        "requested": "説明",
+        "publicRuntimeContract": "required description + full value text preserving app content"
+      }
+    ],
+    "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+    "verificationPending": [
+      "固定候補の全npm検査の実終了・既存回帰",
+      "最終生成後public consumer実証",
+      "最終独立レビューと原文全制御項目の照合"
+    ],
+    "candidateEvidence": [
+      "tests/ui/media.spec.ts",
+      "docs/ui-library-api.json",
+      "docs/verification/ui-library-final-catalog-2026-10-06.md"
+    ]
+  }
+]

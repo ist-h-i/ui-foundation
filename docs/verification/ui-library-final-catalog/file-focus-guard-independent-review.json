@@ -1,0 +1,25 @@
+{
+  "recordedUtc": "2026-10-06T09:47:01.171853+00:00",
+  "scope": "Read-only independent review of proposed FileExplorer test setup guards only; not an independent native replay",
+  "currentCommit": "0190b2b445739ee24d0edd219ade4fc544ffa48c",
+  "file": "tests/ui/specialist-chart-explorer.spec.ts",
+  "beforeSha256": "63268d4d85ea31cf330c152dce276ea6caa8bdb72a0035bcdb9862d7dce59327",
+  "afterSha256": "8887255dfac7e4e94a73357e544551c8f4758a205951163a838a934032aea243",
+  "changedLine": 109,
+  "addedOnly": [
+    "await expect(csv).toBeEnabled();",
+    "await expect(csv).toBeFocused();"
+  ],
+  "allExistingBytesOutsideAddedPreconditionsUnchanged": true,
+  "assertionsPreserved": [
+    "disabled csv/host focus/host aria-label before reenabling",
+    "remove csv/host focus/root tabindex",
+    "outside focus remains after controlled remove",
+    "all existing draft/disabled-operation assertions in separate story"
+  ],
+  "product139Unchanged": true,
+  "rootMutation": false,
+  "verdict": "APPROVE_TEST_ONLY_PRECONDITION_GUARDS",
+  "rootFullNpmSuccessClaim": false,
+  "all181Complete": false
+}

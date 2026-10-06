@@ -1,0 +1,13 @@
+
+> ui-foundation@0.0.0 typecheck
+> tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit
+
+[96m.ui/generated/angular/image-media.ts[0m:[93m31[0m:[93m204[0m - [91merror[0m[90m NG5001: [0mParser Error: Host binding expression cannot contain pipes['カルーセル' | uiMessage] in /private/tmp/ui-foundation-media-gauge-independent-review/repository/.ui/generated/angular/image-media.ts@31:159
+
+[7m31[0m @Component({selector:'ui-gallery,ui-carousel',standalone:true,imports:[ActionControl,Image,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,host:{role:'region','[attr.aria-roledescription]':"'カルーセル' | uiMessage",'[attr.aria-label]':'label()','(focusin)':'stopOnFocus()','(pointerenter)':'setHover($event,true)','(pointerleave)':'setHover($event,false)'},
+[7m  [0m [91m                                                                                                                                                                                                           ~~~~~~~~~~~~~~~~~~~~~[0m
+[96mtests/fixture-app/media-catalog.ts[0m:[93m51[0m:[93m115[0m - [91merror[0m[90m NG2012: [0mComponent imports must be standalone components, directives, pipes, or must be NgModules.
+
+[7m51[0m @Component({selector:'fixture-app',standalone:true,imports:[ActionControl,FileUpload,UploadList,Image,ImageViewer,Gallery,ImageCompare,ImageCropper,PDFViewer,QRCode,Barcode,MediaPlayer,UiLocaleScope,ReactiveFormsModule],
+[7m  [0m [91m                                                                                                                  ~~~~~~~[0m
+

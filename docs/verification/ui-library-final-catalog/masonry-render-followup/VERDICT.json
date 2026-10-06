@@ -1,0 +1,136 @@
+{
+  "verdict": "APPROVE_TEST_ONLY_RENDER_COMPLETION_WAIT",
+  "scope": "Only sole direct columnCount assertion wait in canonical collection-catalog.spec.ts line19; all other bytes/assertions retained",
+  "rootBeforeCommit": "53a785824b86a34ada3ee8619f710fad57117634",
+  "delta": {
+    "kind": "Proposed sole test-only render completion wait; native validation pending",
+    "commitBefore": "53a785824b86a34ada3ee8619f710fad57117634",
+    "path": "tests/ui/collection-catalog.spec.ts",
+    "beforeSha256": "07ff04a5080f81d48fc6fb6c2a04b7aa5569410089dea20bb472b8ad79cdf922",
+    "afterSha256": "c98c92afb4649cfa6b4aaaecf1e5be29e78c6c13b3c26846b2f4141dcbe5fe1c",
+    "replacementCount": 1,
+    "line": 19,
+    "old": "expect(await masonry.locator('ul').evaluate(e=>getComputedStyle(e).columnCount)).toBe('2');",
+    "new": "await expect.poll(()=>masonry.locator('ul').evaluate(e=>getComputedStyle(e).columnCount)).toBe('2');",
+    "reverseReplacementEqualsEveryOriginalByte": true,
+    "assertionTargetUnchanged": "columnCount=2",
+    "allOtherBytesUnchanged": true,
+    "productChanges": 0,
+    "all181Approval": false,
+    "fullNpmApproval": false
+  },
+  "cause": {
+    "rootClickEndMs": 253413.421,
+    "rootDirectEvaluateEndMs": 253423.088,
+    "elapsedMs": 9.666999999986729,
+    "rootDirectRead": "4",
+    "rootPostFailurePhotoActuallyRead": true,
+    "samePhotoShowsTwoUnequalHeightColumns": true,
+    "independentImmediateStaleReadCount": 2,
+    "independentHandlerAllRequestedTwo": true,
+    "independentAutomaticStyleAllEventuallyTwo": true,
+    "denseStaleRepro": {
+      "profile": "dense",
+      "repetition": 3,
+      "passed": true,
+      "heights": [
+        65.984375,
+        133.15625,
+        177.9375
+      ],
+      "immediate": "4",
+      "afterPoll": "2",
+      "observations": [
+        {
+          "phase": "after-registered-native-click-handler",
+          "time": 428.19999980926514,
+          "requested": 2,
+          "computed": "4",
+          "inline": "4"
+        },
+        {
+          "phase": "native-style-mutation",
+          "time": 439.59999990463257,
+          "requested": 2,
+          "computed": "2",
+          "inline": "2"
+        },
+        {
+          "phase": "next-animation-frame",
+          "time": 439.59999990463257,
+          "requested": 2,
+          "computed": "2",
+          "inline": "2"
+        }
+      ],
+      "previousGap": "16px",
+      "changedGap": "8px",
+      "narrow": {
+        "scroll": 320,
+        "client": 320
+      }
+    }
+  },
+  "actualExits": {
+    "aot": 0,
+    "build": 0,
+    "native": 0,
+    "strictSpec": 0
+  },
+  "nativePassCount": 16,
+  "profiles": [
+    "guided",
+    "dense"
+  ],
+  "iterationsPerProfile": 8,
+  "exactOriginalMeasurementAudit": {
+    "unequalHeights": true,
+    "columnCountTwo": true,
+    "gapChanged": true,
+    "narrowBreakpointOneNativePoll": true,
+    "originalStrictOverflowFalseAll16": true
+  },
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "sourceChecks": [
+    {
+      "path": "templates/angular/collection-views.ts",
+      "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+      "git53LiveOwnExact": true
+    },
+    {
+      "path": "tests/fixture-app/collection-catalog.ts",
+      "sha256": "c9a1cbae33ad8619451a6a80a437e8a325cc84b8a490e2a2c7f23c21274e526e",
+      "git53LiveOwnExact": true
+    },
+    {
+      "path": "tests/ui/collection-catalog.spec.ts",
+      "sha256": "07ff04a5080f81d48fc6fb6c2a04b7aa5569410089dea20bb472b8ad79cdf922",
+      "git53LiveOwnExact": true
+    },
+    {
+      "path": ".ui/generated/angular/collection-views.ts",
+      "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+      "liveOwnExact": true
+    },
+    {
+      "path": ".ui/generated/angular/collection-model.ts",
+      "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+      "liveOwnExact": true
+    }
+  ],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "ownOnlyProcessCleanup": true,
+  "productChanges": 0,
+  "all181Approval": false,
+  "fullNpmApproval": false,
+  "finalDocsMatrixApproval": false,
+  "priorHarnessFailuresRetained": {
+    "prematureBuildBeforeAotComplete": 1,
+    "profileGetByLabelMismatch": 1,
+    "canonicalProfileLocatorNowMatchesFormalTest": true
+  }
+}

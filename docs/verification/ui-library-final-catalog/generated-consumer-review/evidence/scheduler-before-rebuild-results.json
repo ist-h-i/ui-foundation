@@ -1,0 +1,29 @@
+{
+  "inputSha256": "98fce926df90d8a65afee4d745c3c12100fc3489c11332d0b55c349de5aa9405",
+  "sources": {
+    "locale.ts": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+    "scheduler.ts": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+    "scheduler-controller.ts": "598da9e5bc96741515f699891abaf76169e1379cb5d124d8a33eedb8e0062fb1",
+    "scheduler-view.ts": "9835b75c70cde877d86a4d5f67351710e7d6a92faa38f97bda218929b6c100be"
+  },
+  "results": [
+    {
+      "profile": "guided",
+      "checks": [],
+      "errors": [],
+      "warnings": [],
+      "pass": false,
+      "error": "Error: page.evaluate: TypeError: window.consumer.moves is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+      "stack": "page.evaluate: TypeError: window.consumer.moves is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /private/tmp/ui-foundation-final-catalog-consumer-review/verify-scheduler-locale.mjs:17:27"
+    },
+    {
+      "profile": "dense",
+      "checks": [],
+      "errors": [],
+      "warnings": [],
+      "pass": false,
+      "error": "Error: page.evaluate: TypeError: window.consumer.moves is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+      "stack": "page.evaluate: TypeError: window.consumer.moves is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /private/tmp/ui-foundation-final-catalog-consumer-review/verify-scheduler-locale.mjs:17:27"
+    }
+  ]
+}

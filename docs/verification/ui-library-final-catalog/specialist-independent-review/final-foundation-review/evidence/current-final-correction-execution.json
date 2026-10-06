@@ -1,0 +1,27 @@
+[
+  {
+    "name": "current-final-gauge-narrow-correction",
+    "command": [
+      "node",
+      "final-native-probes.mjs"
+    ],
+    "filters": {
+      "REVIEW_CASE": "gauge-raw-Intl-pointer-keyboard",
+      "REVIEW_CONFIGURATION": "guided-320-ltr"
+    },
+    "startedAt": "2026-10-06T08:24:51.461908+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:25:00.574525+00:00"
+  },
+  {
+    "name": "current-final-owned-message-correction4",
+    "command": [
+      "node",
+      "current-owned-message-native.mjs"
+    ],
+    "filters": {},
+    "startedAt": "2026-10-06T08:25:00.576298+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:25:06.133450+00:00"
+  }
+]

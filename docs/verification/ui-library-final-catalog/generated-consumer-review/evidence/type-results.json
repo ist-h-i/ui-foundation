@@ -1,0 +1,108 @@
+{
+  "include": [
+    "consumer.ts"
+  ],
+  "publicLibraryImport": "./.ui/generated/angular/index",
+  "formulaAmbient": "sheet-formula.ts triple-reference imports formula-parser.d.ts transitively from public barrel",
+  "results": [
+    {
+      "name": "public-barrel-positive",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.consumer.json"
+      ],
+      "exit": 0,
+      "expectedExit": 0,
+      "diagnostic": ""
+    },
+    {
+      "name": "tree-context",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:13:501 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n13 @Component({selector:'consumer-app',standalone:true,imports:[Ui.Tree,Ui.TreeSelect,Ui.Cascader,Ui.OrganizationChart,Ui.TreeNodeTemplate,ReactiveFormsModule,JsonPipe],styles:layout,template:`<main><h1>部署を選択する</h1><ui-tree treeId=\"tree\" label=\"部署一覧\" [nodes]=\"nodes\" [expandedIds]=\"expanded()\" (expandedIdsChange)=\"expanded.set($event)\" [selectedIds]=\"selected()\" (selectedIdsChange)=\"selected.set($event)\"><ng-template [uiTreeNodeTemplate]=\"nodes\" let-node let-level=\"level\"><span>{{node.data?.amount?.toUpperCase()}} {{node.label}} {{level}}</span></ng-template></ui-tree><output id=\"selection\">{{selected()|json}}</output><ui-tree-select controlId=\"department\" label=\"代表部署\" [nodes]=\"nodes\" [formControl]=\"single\"/><output id=\"single\">{{single.value|json}}</output><ui-cascader controlId=\"path\" label=\"部署経路\" [nodes]=\"nodes\" [formControl]=\"path\"/><output id=\"path\">{{path.value|json}}</output><ui-organization-chart chartId=\"org\" label=\"部署構成\" [nodes]=\"nodes\" [expandedIds]=\"['root']\"><ng-template [uiTreeNodeTemplate]=\"nodes\" let-node>{{node.data?.description?.toUpperCase()}}</ng-template></ui-org"
+    },
+    {
+      "name": "scheduler-context",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:16:501 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n16 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.Scheduler,Ui.Agenda,Ui.SchedulerEventTemplate],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>予定の確認</h1><ui-scheduler #scheduler (moveRequested)=\"recordMove($event)\" schedulerId=\"schedule\" label=\"確認予定\" [date]=\"date()\" timeZone=\"Asia/Tokyo\" [events]=\"events()\" [resources]=\"resources\" view=\"day\"><ng-template [uiSchedulerEvent]=\"events()\" let-event let-entry=\"entry\" let-pending=\"pending\">{{event.data?.amount?.toUpperCase()}} {{event.title}} {{entry.startText}} {{pending}}</ng-template></ui-scheduler><ui-agenda schedulerId=\"agenda\" label=\"確認一覧\" [date]=\"date()\" timeZone=\"Asia/Tokyo\" [events]=\"events()\" [resources]=\"resources\"><ng-template [uiSchedulerEvent]=\"events()\" let-event>{{event.data?.description?.toUpperCase()}}</ng-template></ui-agenda></main>`})\n                                                                                                                                                                                                                                                     "
+    },
+    {
+      "name": "table-context",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:21:902 - error TS2339: Property 'toUpperCase' does not exist on type 'number'.\n\n21 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.DataGrid,Ui.TreeGrid,Ui.VirtualDataTable,Ui.DataTableView,Ui.TableTemplate,Ui.ColumnFilter,Ui.ColumnChooser,Ui.FilterChips,Ui.SearchPanel,Ui.TableToolbar,Ui.CellEditor,Ui.RowEditor],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>一覧を編集する</h1><ui-data-grid #grid caption=\"申請編集\" gridId=\"edit\" [rows]=\"rows\" [columns]=\"columns\" keyField=\"id\" (saveRequested)=\"last.set($event)\"/><button id=\"reject-save\" (click)=\"reject()\">保存失敗を返す</button><button id=\"accept-save\" (click)=\"accept()\">保存完了を返す</button><ui-tree-grid caption=\"階層の申請\" gridId=\"branch\" [nodes]=\"nodes\" [columns]=\"columns\" keyField=\"id\" [expandedIds]=\"['root']\"/><ui-data-table caption=\"申請表示\" tableId=\"normal\" [rows]=\"rows\" [columns]=\"columns\" keyField=\"id\"><ng-template uiTableCell=\"amount\" [uiTableTemplateOf]=\"rows\" let-row let-value=\"value\">{{row.amount.toUpperCase()}} {{value}}</ng-template></ui-data-table><ui-virtual-data-table caption=\"仮想申請\" tableId=\"virtual\" [rows]=\"manyRows\" [columns]=\"columns\" keyField=\"id\" [height]=\"200\"/><ui-column-filte"
+    },
+    {
+      "name": "chart-prop",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:26:375 - error TS2322: Type '\"unknown-chart\"' is not assignable to type 'ChartKind'.\n\n26 @Component({selector:'consumer-app',standalone:true,imports:[Ui.Chart,Ui.Sparkline,Ui.MapView,Ui.Gantt,Ui.Kanban,Ui.Spreadsheet,Ui.CodeEditor,Ui.RichTextEditor,Ui.MarkdownEditor,Ui.MarkdownPreview,Ui.JsonViewer,Ui.DiffViewer,Ui.FileExplorer,Ui.FlowEditor,Ui.Chat,Ui.MessageList,Ui.MessageComposer,ReactiveFormsModule],styles:layout,template:`<main><h1>専門編集の確認</h1><ui-chart kind=\"unknown-chart\" label=\"申請件数\" [series]=\"series\"/><ui-sparkline label=\"推移\" [series]=\"series\"/><ui-map label=\"提出先\" [markers]=\"markers\" workerUrl=\"/assets/maplibre/maplibre-gl-worker.mjs\"/><ui-gantt label=\"確認工程\" [tasks]=\"tasks\"/><ui-kanban label=\"処理段階\" [columns]=\"boardColumns\" [cards]=\"cards\"/><ui-spreadsheet label=\"計算表\" [sheet]=\"sheet\" workerUrl=\"/assets/sheet-formula.worker.js\"/><ui-code-editor label=\"補助コード\" language=\"typescript\" [formControl]=\"code\"/><ui-rich-text-editor label=\"提出説明\" [formControl]=\"rich\"/><ui-markdown-editor label=\"案内編集\" [formControl]=\"markdown\"/><ui-markdown-preview [source]=\"markdown.value??''\"/><ui-json-viewer label=\"構造を確認\" source='{\"a\":1,\"a\":2,\"missing\":null}'/><ui-diff-viewer label"
+    },
+    {
+      "name": "file-prop",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:24:372 - error TS2322: Type 'number' is not assignable to type 'readonly File[]'.\n\n24 @Component({selector:'consumer-app',standalone:true,imports:[Ui.UiLocaleScope,Ui.FileUpload,Ui.Dropzone,Ui.UploadList,Ui.Image,Ui.Lightbox,Ui.Gallery,Ui.ImageCompare,Ui.ImageCropper,Ui.PDFViewer,Ui.MediaPlayer,Ui.QRCode,Ui.Barcode,ReactiveFormsModule],styles:layout,template:`<main [uiLocale]=\"locale()\"><h1>添付と媒体</h1><section id=\"upload\">@if(mounted()){<ui-file-upload [value]=\"3\" #uploader controlId=\"intake\" label=\"提出添付\" accept=\".txt\" [maxBytes]=\"4\" [maxFiles]=\"4\" [items]=\"uploads()\" [formControl]=\"files\" [readonly]=\"readonly()\" (uploadRequested)=\"upload($event)\"/>}<output id=\"file-value\">{{fileNames()}}</output><output id=\"file-status\">{{files.status}}</output><button id=\"upload-remount\" (click)=\"mounted.set(!mounted())\">受付を生成・破棄</button><button id=\"upload-reset\" (click)=\"files.reset(files.value)\">ファイルを戻す</button></section><ui-dropzone controlId=\"drop\" label=\"補助添付\"/><ui-upload-list [items]=\"uploads()\"/><ui-image [src]=\"images[0].src\" alt=\"申請写真\"/><button id=\"lightbox-open\" (click)=\"opened.set(true)\">写真を拡大</button><ui-lightbox [images]=\"images\" [open]=\"opened()\" (openChange)=\"op"
+    },
+    {
+      "name": "nullable-form-types",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:36:52 - error TS2345: Argument of type 'null' is not assignable to parameter of type 'File[] | FormControlState<File[]>'.\n\n36 const invalidFileControl = new FormControl<File[]>(null);\n                                                      ~~~~\nconsumer-negative.ts:37:58 - error TS2345: Argument of type 'null' is not assignable to parameter of type 'DateRange | FormControlState<DateRange>'.\n\n37 const invalidDateControl = new FormControl<Ui.DateRange>(null);\n                                                            ~~~~\n\n"
+    },
+    {
+      "name": "ambient-typed-api",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.negative.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "consumer-negative.ts:38:31 - error TS2322: Type 'string' is not assignable to type 'number'.\n\n38 badParser.parse(\"SUM(A1:B1)\",{row:\"bad\",col:1});\n                                 ~~~\n\n  .ui/generated/angular/formula-parser.d.ts:2:28\n    2   interface CellReference {row:number;col:number;sheet?:string;}\n                                 ~~~\n    The expected type comes from property 'row' which is declared here on type 'CellReference'\n\n"
+    },
+    {
+      "name": "ambient-absent",
+      "command": [
+        "ngc",
+        "-p",
+        "tsconfig.ambient-absent.json"
+      ],
+      "exit": 1,
+      "expectedExit": 1,
+      "diagnostic": "ambient-absent.ts:1:27 - error TS7016: Could not find a declaration file for module 'fast-formula-parser'. '/private/tmp/ui-foundation-final-integration/repository/node_modules/fast-formula-parser/index.js' implicitly has an 'any' type.\n  Try `npm i --save-dev @types/fast-formula-parser` if it exists or add a new declaration (.d.ts) file containing `declare module 'fast-formula-parser';`\n\n1 import FormulaParser from \"fast-formula-parser\";\n                            ~~~~~~~~~~~~~~~~~~~~~\n\n"
+    }
+  ]
+}

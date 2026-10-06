@@ -1,0 +1,269 @@
+{
+  "kind": "Independent public native locale counterexamples",
+  "beforeFullSourceFreeze": "a4fd2d85b47c0dee9211f9b91f1fcd2c3b529f52328f63bbb3f623e56c2aaa4d",
+  "sourceDelta": "evidence/independent-scheduler-compare-final-delta.json",
+  "sourceSha256": {
+    "image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+    "pdf-viewer.ts": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+    "media-player.ts": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6"
+  },
+  "browser": "154.0.8037.98",
+  "checks": [
+    {
+      "name": "initial provider reaches default compare label guided",
+      "actual": "Compare boundary",
+      "expected": "Compare boundary",
+      "passed": true
+    },
+    {
+      "name": "initial native failed image uses explicit owned dictionary guided",
+      "actual": "Before image unavailable",
+      "expected": "Before image unavailable",
+      "passed": true
+    },
+    {
+      "name": "native slider aria-valuetext uses explicit owned dictionary guided",
+      "actual": "After image 50% visible",
+      "expected": "After image 50% visible",
+      "passed": true
+    },
+    {
+      "name": "native carousel role description uses explicit owned dictionary guided",
+      "actual": "carousel",
+      "expected": "carousel",
+      "passed": true
+    },
+    {
+      "name": "native slide role description uses explicit owned dictionary guided",
+      "actual": "slide",
+      "expected": "slide",
+      "passed": true
+    },
+    {
+      "name": "live scope preserves focused native slider and identity guided",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "physical Compare slider stays ltr inside rtl locale guided",
+      "actual": {
+        "parent": "rtl",
+        "range": "ltr"
+      },
+      "expected": {
+        "parent": "rtl",
+        "range": "ltr"
+      },
+      "passed": true
+    },
+    {
+      "name": "native Compare ArrowRight advances physical position guided",
+      "actual": "1",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "name": "Compare image clip and boundary match physical native value guided",
+      "actual": {
+        "percent": 99,
+        "rightClip": "1%",
+        "value": "99"
+      },
+      "expected": {
+        "percent": 99,
+        "rightClip": "1%",
+        "value": "99"
+      },
+      "passed": true
+    },
+    {
+      "name": "live PDF idle status follows new dictionary guided",
+      "actual": "Choose PDF v2 · 0 / 0",
+      "expected": "Choose PDF v2 · 0 / 0",
+      "passed": true
+    },
+    {
+      "name": "live native media stopped status follows new dictionary guided",
+      "actual": "Stopped v2",
+      "expectedAny": [
+        "Stopped v2",
+        "Paused or stopped v2"
+      ],
+      "passed": true
+    },
+    {
+      "name": "live owned image failure follows new dictionary guided",
+      "actual": "Before unavailable v2",
+      "expected": "Before unavailable v2",
+      "passed": true
+    },
+    {
+      "name": "new native after-image failure follows active dictionary guided",
+      "actual": "After unavailable v2",
+      "expected": "After unavailable v2",
+      "passed": true
+    },
+    {
+      "name": "application alt and label remain raw guided",
+      "actual": {
+        "before": "App before",
+        "after": "App after",
+        "audio": "App audio"
+      },
+      "expected": {
+        "before": "App before",
+        "after": "App after",
+        "audio": "App audio"
+      },
+      "passed": true
+    },
+    {
+      "name": "native image decode state guided",
+      "observation": [
+        {
+          "src": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%224%22%20height%3D%224%22%3E%3Crect%20width%3D%224%22%20height%3D%224%22%20fill%3D%22red%22%2F%3E%3C%2Fsvg%3E",
+          "complete": true,
+          "naturalWidth": 4
+        },
+        {
+          "src": "data:image/png;base64,AAAA",
+          "complete": true,
+          "naturalWidth": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "initial provider reaches default compare label dense",
+      "actual": "Compare boundary",
+      "expected": "Compare boundary",
+      "passed": true
+    },
+    {
+      "name": "initial native failed image uses explicit owned dictionary dense",
+      "actual": "Before image unavailable",
+      "expected": "Before image unavailable",
+      "passed": true
+    },
+    {
+      "name": "native slider aria-valuetext uses explicit owned dictionary dense",
+      "actual": "After image 50% visible",
+      "expected": "After image 50% visible",
+      "passed": true
+    },
+    {
+      "name": "native carousel role description uses explicit owned dictionary dense",
+      "actual": "carousel",
+      "expected": "carousel",
+      "passed": true
+    },
+    {
+      "name": "native slide role description uses explicit owned dictionary dense",
+      "actual": "slide",
+      "expected": "slide",
+      "passed": true
+    },
+    {
+      "name": "live scope preserves focused native slider and identity dense",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "physical Compare slider stays ltr inside rtl locale dense",
+      "actual": {
+        "parent": "rtl",
+        "range": "ltr"
+      },
+      "expected": {
+        "parent": "rtl",
+        "range": "ltr"
+      },
+      "passed": true
+    },
+    {
+      "name": "native Compare ArrowRight advances physical position dense",
+      "actual": "1",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "name": "Compare image clip and boundary match physical native value dense",
+      "actual": {
+        "percent": 99,
+        "rightClip": "1%",
+        "value": "99"
+      },
+      "expected": {
+        "percent": 99,
+        "rightClip": "1%",
+        "value": "99"
+      },
+      "passed": true
+    },
+    {
+      "name": "live PDF idle status follows new dictionary dense",
+      "actual": "Choose PDF v2 · 0 / 0",
+      "expected": "Choose PDF v2 · 0 / 0",
+      "passed": true
+    },
+    {
+      "name": "live native media stopped status follows new dictionary dense",
+      "actual": "Paused or stopped v2",
+      "expectedAny": [
+        "Stopped v2",
+        "Paused or stopped v2"
+      ],
+      "passed": true
+    },
+    {
+      "name": "live owned image failure follows new dictionary dense",
+      "actual": "Before unavailable v2",
+      "expected": "Before unavailable v2",
+      "passed": true
+    },
+    {
+      "name": "new native after-image failure follows active dictionary dense",
+      "actual": "After unavailable v2",
+      "expected": "After unavailable v2",
+      "passed": true
+    },
+    {
+      "name": "application alt and label remain raw dense",
+      "actual": {
+        "before": "App before",
+        "after": "App after",
+        "audio": "App audio"
+      },
+      "expected": {
+        "before": "App before",
+        "after": "App after",
+        "audio": "App audio"
+      },
+      "passed": true
+    },
+    {
+      "name": "native image decode state dense",
+      "observation": [
+        {
+          "src": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%224%22%20height%3D%224%22%3E%3Crect%20width%3D%224%22%20height%3D%224%22%20fill%3D%22red%22%2F%3E%3C%2Fsvg%3E",
+          "complete": true,
+          "naturalWidth": 4
+        },
+        {
+          "src": "data:image/png;base64,AAAA",
+          "complete": true,
+          "naturalWidth": 0
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "runtime": [],
+  "console": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  }
+}

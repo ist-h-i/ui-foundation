@@ -1,0 +1,9 @@
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('表示設定', { exact: true })[22m
+
+    at /private/tmp/ui-foundation-final-integration-independent-review/masonry-followup/probe.mjs:19:47 {
+  log: [ "  - waiting for getByLabel('表示設定', { exact: true })" ],
+  name: 'TimeoutError'
+}
+{"actualPassed":0,"failed":2,"runtime":0,"console":0,"cleanup":{"browserClosed":true,"serverListening":false}}

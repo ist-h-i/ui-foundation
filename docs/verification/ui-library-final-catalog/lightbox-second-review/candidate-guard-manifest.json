@@ -1,0 +1,18 @@
+{
+  "path": "tests/ui/media-regressions.spec.ts",
+  "beforeSHA256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+  "afterSHA256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+  "beforeBytes": 25284,
+  "afterBytes": 25381,
+  "uniqueBeforeMatch": 1,
+  "uniqueAfterMatch": 1,
+  "reverseTransformByteExact": true,
+  "addedLines": [
+    "  await expect.poll(()=>viewport.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);"
+  ],
+  "removedLines": [],
+  "existingBlueEscapeFocusAssertionsPreserved": true,
+  "sharedRepositoryEdits": false,
+  "candidateOriginal": "/tmp/ui-foundation-media-gauge-independent-review/followup-lightbox/media-regressions.original.spec.ts",
+  "candidateAfter": "/tmp/ui-foundation-media-gauge-independent-review/followup-lightbox/media-regressions.guarded.spec.ts"
+}

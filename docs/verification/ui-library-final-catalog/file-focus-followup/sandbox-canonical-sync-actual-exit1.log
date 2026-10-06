@@ -1,0 +1,24 @@
+
+> ui-foundation@0.0.0 ui:sync
+> tsx src/cli.ts sync --config examples/ui.config.example.yaml
+
+node:net:2145
+      const error = new UVExceptionWithHostPort(rval, 'listen', address, port);
+                    ^
+
+Error: listen EPERM: operation not permitted /var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/tsx-501/86241.pipe
+    at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+    at listenInCluster (node:net:2224:12)
+    at Server.listen (node:net:2361:5)
+    at file:///Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/tsx/dist/cli.mjs:53:32174
+    at new Promise (<anonymous>)
+    at createIpcServer (file:///Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/tsx/dist/cli.mjs:53:32152)
+    at async file:///Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/tsx/dist/cli.mjs:55:542 {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/tsx-501/86241.pipe',
+  port: -1
+}
+
+Node.js v24.19.0

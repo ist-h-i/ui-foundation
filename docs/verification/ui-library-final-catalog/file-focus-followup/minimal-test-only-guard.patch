@@ -1,0 +1,11 @@
+--- a/tests/ui/specialist-chart-explorer.spec.ts
++++ b/tests/ui/specialist-chart-explorer.spec.ts
+@@ -106,7 +106,7 @@
+   // The DOM click triggers the real Angular input binding without moving focus.
+   await page.getByLabel('選択した証憑を無効にする',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());
+   await expect(csv).toBeDisabled();await expect(host).toBeFocused();await expect(host).toHaveAttribute('aria-label','添付管理の操作領域');
+-  await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await csv.focus();
++  await page.getByLabel('選択した証憑を無効にする',{exact:true}).uncheck();await expect(csv).toBeEnabled();await csv.focus();await expect(csv).toBeFocused();
+   await page.getByLabel('証憑を取り除く',{exact:true}).evaluate((input:HTMLInputElement)=>input.click());
+   await expect(csv).toHaveCount(0);await expect(host).toBeFocused();await expect(root).toHaveAttribute('tabindex','0');
+   await page.getByLabel('証憑を取り除く',{exact:true}).uncheck();

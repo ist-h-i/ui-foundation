@@ -1,0 +1,17 @@
+{
+  "kind": "Proposed sole test-only render completion wait; native validation pending",
+  "commitBefore": "53a785824b86a34ada3ee8619f710fad57117634",
+  "path": "tests/ui/collection-catalog.spec.ts",
+  "beforeSha256": "07ff04a5080f81d48fc6fb6c2a04b7aa5569410089dea20bb472b8ad79cdf922",
+  "afterSha256": "c98c92afb4649cfa6b4aaaecf1e5be29e78c6c13b3c26846b2f4141dcbe5fe1c",
+  "replacementCount": 1,
+  "line": 19,
+  "old": "expect(await masonry.locator('ul').evaluate(e=>getComputedStyle(e).columnCount)).toBe('2');",
+  "new": "await expect.poll(()=>masonry.locator('ul').evaluate(e=>getComputedStyle(e).columnCount)).toBe('2');",
+  "reverseReplacementEqualsEveryOriginalByte": true,
+  "assertionTargetUnchanged": "columnCount=2",
+  "allOtherBytesUnchanged": true,
+  "productChanges": 0,
+  "all181Approval": false,
+  "fullNpmApproval": false
+}

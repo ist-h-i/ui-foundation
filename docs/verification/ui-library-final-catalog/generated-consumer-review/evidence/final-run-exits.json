@@ -1,0 +1,143 @@
+{
+  "inputSha256": "f8df0204a162c19bd77b3c448e6bf3a65de66413870f12c32daec5846fd8da19",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "classification": "Actual tool completion exits observed by the independent reviewer; inherited executions keep their old source provenance.",
+  "freshCommands": [
+    {
+      "command": "normal CLI sync/check/sync-idempotent/dry-run",
+      "actualExits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "toolSession": 99807
+    },
+    {
+      "command": "verify-types.mjs",
+      "actualExit": 0,
+      "positiveExit": 0,
+      "expectedNegativeExits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "toolSession": 84575
+    },
+    {
+      "command": "build-consumer.mjs",
+      "actualExit": 0,
+      "workerCompileExit": 0,
+      "toolSession": 72677
+    },
+    {
+      "command": "verify-source-closure.mjs",
+      "actualExit": 0,
+      "union": 139,
+      "toolSession": 44446
+    },
+    {
+      "command": "verify-main-source-exact.mjs",
+      "actualExit": 0,
+      "comparedFiles": 178
+    },
+    {
+      "command": "verify-root-freeze.mjs",
+      "actualExit": 0,
+      "productFiles": 147
+    },
+    {
+      "command": "verify-evidence-inheritance.mjs",
+      "actualExit": 0,
+      "unchangedAngular": 138
+    },
+    {
+      "command": "verify-card.mjs",
+      "actualExit": 0,
+      "profilesPassed": 2,
+      "geometryStates": 4,
+      "toolSession": 42212
+    },
+    {
+      "command": "inspect-browser.mjs",
+      "actualExit": 0,
+      "routesPassed": 7,
+      "toolSession": 88381
+    },
+    {
+      "command": "verify-distribution.mjs",
+      "actualExit": 0,
+      "httpAssetsVerified": 231,
+      "toolSession": 65938
+    },
+    {
+      "command": "verify-harness-heading.mjs",
+      "actualExit": 0,
+      "toolSession": 9995
+    },
+    {
+      "command": "final-report.mjs",
+      "actualExit": 0
+    }
+  ],
+  "inheritedExecutions": {
+    "sourceCommit": "60cd513e86099dffc756c10402a5262f466a34d0",
+    "inputSha256": "338dcf85f07d61e79aee92e3c212de7068f14bb7cc05ebfe20f94e0677b73c6b",
+    "ledger": "evidence/evidence-inheritance.json",
+    "commands": [
+      {
+        "command": "verify-browser.mjs",
+        "actualExit": 0,
+        "casesPassed": 23,
+        "toolSession": 86137
+      },
+      {
+        "command": "verify-media-locale.mjs",
+        "actualExit": 0,
+        "profilesPassed": 2,
+        "checksPerProfile": 18,
+        "toolSession": 81900
+      },
+      {
+        "command": "verify-scheduler-locale.mjs",
+        "actualExit": 0,
+        "profilesPassed": 2,
+        "checksPerProfile": 9,
+        "toolSession": 3807
+      },
+      {
+        "command": "node --import tsx scope-server-trap.ts",
+        "actualExit": 0,
+        "browserGlobalsRead": 0,
+        "toolSession": 62663
+      }
+    ],
+    "notRerunOnFinalSource": true
+  },
+  "retainedHarnessFailures": [
+    {
+      "command": "verify-card.mjs first context attempt",
+      "actualExit": 1,
+      "proof": "evidence/card-harness-context-classification.json",
+      "classification": "harness_failure"
+    },
+    {
+      "command": "verify-card.mjs initial second-direction selection comparison",
+      "actualExit": 1,
+      "proof": "evidence/card-harness-selection-classification.json",
+      "classification": "harness_baseline_failure_corrected"
+    },
+    {
+      "command": "inline Markdown preview capture",
+      "actualExit": 1,
+      "proof": "evidence/harness-heading-first-attempt.json",
+      "classification": "harness_locator_failure_corrected"
+    }
+  ],
+  "rootFullNpm": "Separately owned, execution incomplete/failed cases are not upgraded to passes by this scoped consumer result."
+}

@@ -1,0 +1,29 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "tests/ui/scheduler-catalog.spec.ts",
+    "tests/ui/choice-catalog.spec.ts",
+    "tests/ui/specialist-chart-explorer.spec.ts",
+    "--grep",
+    "exact gap/fold native time-band controls|plain value binding rejects|FileExplorer retires owned focus",
+    "--reporter=json",
+    "--output",
+    "/tmp/ui-foundation-final-integration/final-failure-replay-0190b2b/test-results"
+  ],
+  "cwd": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+  "start": "2026-10-06T09:38:17.560467+00:00",
+  "sourceCommit": "0190b2b445739ee24d0edd219ade4fc544ffa48c",
+  "differenceFromA808": [
+    "tests/ui/scheduler-catalog.spec.ts"
+  ],
+  "productSourceDifferences": [],
+  "registeredExpectedFromGrep": 12,
+  "workers": 2,
+  "retries": 0,
+  "status": "completed",
+  "pid": 83884,
+  "end": "2026-10-06T09:39:17.320995+00:00",
+  "exit": 1,
+  "sourceChanged": []
+}

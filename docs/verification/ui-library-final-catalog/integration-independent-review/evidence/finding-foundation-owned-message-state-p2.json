@@ -1,0 +1,124 @@
+{
+  "severity": "P2",
+  "state": "REQUEST_CHANGES",
+  "sourceFreeze": "feeda514b79f7c48d16340871c7fa27fffd766817c0f1d1947d1558258ea2e99",
+  "files": {
+    "image-media.ts": "4fefd899bb340fd83e5e660bd660d0abeedb8961103fa26442953966a7a2bd4e",
+    "pdf-viewer.ts": "56884304e73adb2dfb4ea845625dfe4810673c7863313a98953dd7b0abedd7fb",
+    "media-player.ts": "9fadf36c7bdd5eaffd9859b0d6371b95346177dfc8fb8b3c741a4d5b40c76123"
+  },
+  "nativeArtifact": "evidence/locale-boundary-native.json",
+  "nativeActualExit": 1,
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "cleanup": {
+    "browserClosed": true,
+    "serverListening": false
+  },
+  "failedRequirements": [
+    {
+      "name": "initial native failed image uses explicit owned dictionary guided",
+      "actual": "比較前の画像を取得できません。",
+      "expected": "Before image unavailable",
+      "passed": false
+    },
+    {
+      "name": "native slider aria-valuetext uses explicit owned dictionary guided",
+      "actual": "比較後の画像を50%表示",
+      "expected": "After image 50% visible",
+      "passed": false
+    },
+    {
+      "name": "native carousel role description uses explicit owned dictionary guided",
+      "actual": "カルーセル",
+      "expected": "carousel",
+      "passed": false
+    },
+    {
+      "name": "native slide role description uses explicit owned dictionary guided",
+      "actual": "スライド",
+      "expected": "slide",
+      "passed": false
+    },
+    {
+      "name": "live PDF idle status follows new dictionary guided",
+      "actual": "Choose PDF · 0 / 0",
+      "expected": "Choose PDF v2 · 0 / 0",
+      "passed": false
+    },
+    {
+      "name": "live native media stopped status follows new dictionary guided",
+      "actual": "Stopped",
+      "expected": "Stopped v2",
+      "passed": false
+    },
+    {
+      "name": "live owned image failure follows new dictionary guided",
+      "actual": "比較前の画像を取得できません。",
+      "expected": "Before unavailable v2",
+      "passed": false
+    },
+    {
+      "name": "new native after-image failure follows active dictionary guided",
+      "actual": "比較後の画像を取得できません。",
+      "expected": "After unavailable v2",
+      "passed": false
+    },
+    {
+      "name": "initial native failed image uses explicit owned dictionary dense",
+      "actual": "比較前の画像を取得できません。",
+      "expected": "Before image unavailable",
+      "passed": false
+    },
+    {
+      "name": "native slider aria-valuetext uses explicit owned dictionary dense",
+      "actual": "比較後の画像を50%表示",
+      "expected": "After image 50% visible",
+      "passed": false
+    },
+    {
+      "name": "native carousel role description uses explicit owned dictionary dense",
+      "actual": "カルーセル",
+      "expected": "carousel",
+      "passed": false
+    },
+    {
+      "name": "native slide role description uses explicit owned dictionary dense",
+      "actual": "スライド",
+      "expected": "slide",
+      "passed": false
+    },
+    {
+      "name": "live PDF idle status follows new dictionary dense",
+      "actual": "Choose PDF · 0 / 0",
+      "expected": "Choose PDF v2 · 0 / 0",
+      "passed": false
+    },
+    {
+      "name": "live native media stopped status follows new dictionary dense",
+      "actual": "Paused or stopped",
+      "expected": "Stopped v2",
+      "passed": false
+    },
+    {
+      "name": "live owned image failure follows new dictionary dense",
+      "actual": "比較前の画像を取得できません。",
+      "expected": "Before unavailable v2",
+      "passed": false
+    },
+    {
+      "name": "new native after-image failure follows active dictionary dense",
+      "actual": "比較後の画像を取得できません。",
+      "expected": "After unavailable v2",
+      "passed": false
+    }
+  ],
+  "finding": "Library-owned ImageCompare and carousel text bypasses messages; stored translated PDF/media state remains in old locale after live dictionary change.",
+  "expectedRepair": [
+    "Read owned display/status/role text using the active dictionary, including initial provider and existing state after update.",
+    "Retain raw app labels, errors, alt, DTO/intent and native DOM/focus/values.",
+    "Dictionary-only changes must not restart requests, timers, workers, renderers or file/media source lifetimes.",
+    "Accept either current native pause/stop status kind when its active-dictionary text is correct."
+  ],
+  "harnessExcluded": "Initial locale-boundary-native-first-harness was a strict PDF status suffix expectation error, not a product finding."
+}

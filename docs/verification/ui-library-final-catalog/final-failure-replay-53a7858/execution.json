@@ -1,0 +1,39 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "tests/ui/scheduler-catalog.spec.ts",
+    "tests/ui/choice-catalog.spec.ts",
+    "tests/ui/specialist-chart-explorer.spec.ts",
+    "--grep",
+    "exact gap/fold native time-band controls|plain value binding rejects|FileExplorer retires owned focus",
+    "--reporter=json",
+    "--output",
+    "/tmp/ui-foundation-final-integration/final-failure-replay-53a7858-corrected/test-results"
+  ],
+  "cwd": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+  "start": "2026-10-06T09:49:23.060974+00:00",
+  "sourceCommit": "53a785824b86a34ada3ee8619f710fad57117634",
+  "sourceManifestSha256": "6639c242c24f2c6aec38d47548bd0ef6e7dc61fc7351234355de229645bcc812",
+  "trackedInputs": 457,
+  "priorRun": "full-npm-a808a79d",
+  "reason": "Repeat the unchanged product suite after independently reviewed Scheduler selectors and native FileExplorer focus preconditions; retain all prior failures.",
+  "productCodeCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "deltaFromProductCodeCommit": [
+    "tests/ui/scheduler-catalog.spec.ts",
+    "tests/ui/specialist-chart-explorer.spec.ts"
+  ],
+  "productSourceChanges": [],
+  "node": "v24.19.0",
+  "port": 5187,
+  "workers": 2,
+  "retries": 0,
+  "status": "completed",
+  "mode": "focused",
+  "log": "results.json",
+  "npmPid": 93932,
+  "end": "2026-10-06T09:50:15.627862+00:00",
+  "exitCode": 0,
+  "sourceChanged": [],
+  "headAfter": "53a785824b86a34ada3ee8619f710fad57117634"
+}

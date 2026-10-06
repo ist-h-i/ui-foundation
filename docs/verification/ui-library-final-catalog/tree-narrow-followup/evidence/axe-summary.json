@@ -1,0 +1,323 @@
+{
+  "kind": "Losslessly decoded Axe object/array/string/number/boolean trace values; non-JSON special values remain explicit tags if present. Original trace zip is retained.",
+  "scans": [
+    {
+      "profile": "dense",
+      "state": "closed",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@189",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/dense/closed.json",
+      "sha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 3,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "dense",
+      "state": "tree-select-open",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@217",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/dense/tree-select-open.json",
+      "sha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 5,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#multi-tree-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#multi-tree-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "dense",
+      "state": "cascader-open",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--a6fe0--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@273",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/dense/cascader-open.json",
+      "sha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 4,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#cascade-popup > p:nth-child(1)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "guided",
+      "state": "closed",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--c1168--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@48",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/guided/closed.json",
+      "sha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 3,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "guided",
+      "state": "tree-select-open",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--c1168--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@76",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/guided/tree-select-open.json",
+      "sha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 4,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#multi-tree-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "guided",
+      "state": "cascader-open",
+      "traceFile": "evidence/test-results/tree-catalog-tree-catalog--c1168--and-axe-closed-open-popups-chromium/trace.zip",
+      "traceMember": "1-trace.trace",
+      "callId": "call@132",
+      "derivedFromActualTraceReturnValue": true,
+      "resultPath": "evidence/axe-derived/guided/cascader-open.json",
+      "sha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2",
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "violations": 0,
+      "incomplete": [
+        {
+          "id": "aria-valid-attr-value",
+          "impact": "critical",
+          "nodes": 3,
+          "targets": [
+            [
+              "#cascade"
+            ],
+            [
+              "#single"
+            ],
+            [
+              "#multi"
+            ]
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 5,
+          "targets": [
+            [
+              "#departments-item-head > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-lazy > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#departments-item-last > .ui-tree-row[data-disabled=\"false\"] > .ui-tree-check[aria-hidden=\"true\"]"
+            ],
+            [
+              "#cascade-popup > p:nth-child(1)"
+            ],
+            [
+              "#cascade-popup > .ui-tree-popup-state"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "totalScans": 6,
+  "violations": 0,
+  "incompleteRuleNodeCounts": {
+    "aria-valid-attr-value": 18,
+    "color-contrast": 24
+  }
+}

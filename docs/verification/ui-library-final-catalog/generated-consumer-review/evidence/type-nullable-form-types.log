@@ -1,0 +1,9 @@
+[96mconsumer-negative.ts[0m:[93m36[0m:[93m52[0m - [91merror[0m[90m TS2345: [0mArgument of type 'null' is not assignable to parameter of type 'File[] | FormControlState<File[]>'.
+
+[7m36[0m const invalidFileControl = new FormControl<File[]>(null);
+[7m  [0m [91m                                                   ~~~~[0m
+[96mconsumer-negative.ts[0m:[93m37[0m:[93m58[0m - [91merror[0m[90m TS2345: [0mArgument of type 'null' is not assignable to parameter of type 'DateRange | FormControlState<DateRange>'.
+
+[7m37[0m const invalidDateControl = new FormControl<Ui.DateRange>(null);
+[7m  [0m [91m                                                         ~~~~[0m
+

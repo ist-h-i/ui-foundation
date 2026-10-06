@@ -1,0 +1,23 @@
+[
+  {
+    "name": "final-revision-consumer-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "startedAt": "2026-10-06T07:58:44.945003+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:58:48.929041+00:00"
+  },
+  {
+    "name": "final-revision-consumer-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "startedAt": "2026-10-06T07:58:48.930620+00:00",
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:58:50.955010+00:00"
+  }
+]

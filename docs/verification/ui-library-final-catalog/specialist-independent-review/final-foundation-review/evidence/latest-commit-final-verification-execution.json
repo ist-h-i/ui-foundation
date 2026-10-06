@@ -1,0 +1,129 @@
+[
+  {
+    "name": "latest-commit-final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "startedAt": "2026-10-06T08:43:48.661817+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:43:49.634890+00:00"
+  },
+  {
+    "name": "latest-commit-final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "startedAt": "2026-10-06T08:43:49.636283+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:43:50.471286+00:00"
+  },
+  {
+    "name": "latest-commit-final-all139-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.all-generated.json"
+    ],
+    "startedAt": "2026-10-06T08:43:50.472203+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:44:03.860101+00:00"
+  },
+  {
+    "name": "latest-commit-final-positive-barrel",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "startedAt": "2026-10-06T08:44:03.861903+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:44:17.817379+00:00"
+  },
+  {
+    "name": "latest-commit-final-positive-direct",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-direct.json"
+    ],
+    "startedAt": "2026-10-06T08:44:17.818719+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:44:20.609339+00:00"
+  },
+  {
+    "name": "latest-commit-final-positive-code",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-code.json"
+    ],
+    "startedAt": "2026-10-06T08:44:20.611679+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:44:23.284651+00:00"
+  },
+  {
+    "name": "latest-commit-final-negative",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.negative.json"
+    ],
+    "startedAt": "2026-10-06T08:44:23.285890+00:00",
+    "expectedExit": 1,
+    "actualExit": 1,
+    "endedAt": "2026-10-06T08:44:35.758150+00:00",
+    "diagnostics": [
+      "TS2322",
+      "TS2322",
+      "TS2339",
+      "TS2322",
+      "TS2322"
+    ],
+    "preciseFiveOnly": true
+  },
+  {
+    "name": "latest-commit-final-canonical-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "startedAt": "2026-10-06T08:44:35.760603+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:45:26.523964+00:00"
+  },
+  {
+    "name": "latest-commit-final-public-direct-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "startedAt": "2026-10-06T08:45:26.526167+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:45:30.649447+00:00"
+  },
+  {
+    "name": "latest-commit-final-public-direct-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "startedAt": "2026-10-06T08:45:30.650493+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T08:45:32.386118+00:00"
+  }
+]

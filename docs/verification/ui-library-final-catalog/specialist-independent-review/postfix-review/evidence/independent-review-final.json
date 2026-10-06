@@ -1,0 +1,242 @@
+{
+  "decision": "request_changes",
+  "scope": "historical fresh pre-AST raw specialist delta; Foundation after AST not reviewed in this snapshot",
+  "savedAfterTransportResumeAt": "2026-10-06T06:39:47.185745+00:00",
+  "priorInitialDossier": "../../evidence/independent-review-final.json",
+  "exactRawSources": {
+    "chart.ts": "71f6a3b961a115927656573a1d51cde39fec19bd21c0b112855b13aae2b2303c",
+    "chart-options.ts": "9356bd0ae813d921f9faae0637985496e2b86ec6999c8e37e80258eac7d16702",
+    "rich-text-editor.ts": "78ecd19eb573801d3507913785c8b855fa85ab2b7e5fd2fdf92b8332a9ea924f",
+    "markdown-editor.ts": "19221be9c7bf27ebfe82c1781152157ca2dc57d035c8c5427631118e4d37d382",
+    "file-explorer.ts": "6ac229ea623e3d532187a6715f8afa6b68cb27b0177362bc5a5a6cf28de9008c",
+    "sheet-formula.ts": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+    "tree.ts": "d709594e0b472c543c0d7761e0d26665a82ee6d3ec13f0432f4bc08be8130803",
+    "sheet-runner.ts": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+    "sheet-formula.worker.ts": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+    "spreadsheet.ts": "d155d05eda1c43494da8c1d7641441598347e3e3fa93aafca50845e431a0dabf"
+  },
+  "native": {
+    "cases": 16,
+    "success": 14,
+    "failed": 2,
+    "actualExit": 1,
+    "runtimeErrors": 0,
+    "sourceBeforeAfterEqual": true
+  },
+  "axisObservation": {
+    "cases": 16,
+    "actualExit": 0,
+    "status": "observations; not a visual pass"
+  },
+  "findings": [
+    {
+      "id": "S07",
+      "status": "original raw reproduction closed",
+      "proof": "native AX named Rich/Markdown groups in two profiles/wide+narrow"
+    },
+    {
+      "id": "S08",
+      "status": "original legend/category collision closed; new axis-name defect is S10"
+    },
+    {
+      "id": "S09",
+      "priority": "P2",
+      "status": "open; improved wide only",
+      "source": "templates/angular/chart-options.ts:23",
+      "sourceSha": "9356bd0ae813d921f9faae0637985496e2b86ec6999c8e37e80258eac7d16702",
+      "summary": "320px/font200%/RTL gauge title/detail and tick/pointer overlap",
+      "overlapHeightPx": {
+        "guided": 23.8,
+        "dense": 16.4
+      },
+      "evidence": [
+        "gauge-narrow-diagnostic.json",
+        "drawings/guided-narrow-gauge-diagnostic.png",
+        "drawings/dense-narrow-gauge-diagnostic.png"
+      ]
+    },
+    {
+      "id": "S10",
+      "priority": "P2",
+      "status": "open",
+      "source": "templates/angular/chart-options.ts:13 and :30",
+      "sourceSha": "9356bd0ae813d921f9faae0637985496e2b86ec6999c8e37e80258eac7d16702",
+      "summary": "axis-name/legend/category overlap and clipping in narrow layout; RTL and scaling independently observed",
+      "representative320200RTLLine": {
+        "legendYNameOverlap": [
+          81.48,
+          39.3
+        ],
+        "legendLeftClipPx": 83.79,
+        "xNameCategoryOverlap": [
+          28.77,
+          15
+        ]
+      },
+      "representative320200LTRLine": {
+        "legendYNameOverlap": [
+          18.25,
+          39.3
+        ],
+        "xNameRightClipPx": 102.73
+      },
+      "evidence": [
+        "axis-layout-diagnostic.json",
+        "drawings/guided-narrow-line.png",
+        "drawings/guided-narrow-heatmap.png"
+      ]
+    }
+  ],
+  "verification": {
+    "syncCheckExit0": true,
+    "allGeneratedStrictAotExit0": true,
+    "targetToolsExit0": true,
+    "canonicalSplitAndCssCompletedExit0": true,
+    "models20PassActualExit0": true,
+    "publicPositiveConsumers3Exit0": true,
+    "negativeConsumerActualExit1ExpectedFiveOnly": true,
+    "directRuntimeNative2PassActualExit0": true,
+    "logs": [
+      "canonical-verification.json",
+      "target-verification.json",
+      "target-verification-completed.json",
+      "strict-negative.json",
+      "direct-runtime-execution.json",
+      "direct-runtime-probes.json"
+    ]
+  },
+  "axe": {
+    "scopedReports": 12,
+    "violations": 0,
+    "incompleteReports": 2,
+    "reports": [
+      {
+        "section": "rich",
+        "profile": "guided",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "markdown",
+        "profile": "guided",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "code",
+        "profile": "guided",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "rich",
+        "profile": "guided",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "markdown",
+        "profile": "guided",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "section": "code",
+        "profile": "guided",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "rich",
+        "profile": "dense",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "markdown",
+        "profile": "dense",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "code",
+        "profile": "dense",
+        "size": "wide",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "rich",
+        "profile": "dense",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": []
+      },
+      {
+        "section": "markdown",
+        "profile": "dense",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "section": "code",
+        "profile": "dense",
+        "size": "narrow",
+        "violations": 0,
+        "incomplete": []
+      }
+    ],
+    "oldFullSpecialistIncomplete18": "historic separate snapshot, not replayed",
+    "CollectionsContrast24": "separate actor/ledger"
+  },
+  "visualActualRead": {
+    "count": 12,
+    "families": [
+      "Gauge wide+narrow two profiles",
+      "line/heatmap wide+narrow two profiles"
+    ],
+    "allOtherSavedImagesNotClaimedRead": true
+  },
+  "preservedFailures": [
+    "environment-diagnostic",
+    "typecheck.log: pending Foundation tests before generation, actual2",
+    "canonical-split-build.log: initial own snapshot lacked assets/media, actual1 then completed0",
+    "iteration-01-harness-diagnostics: initial gauge output render wait actual1 and direct immediateEnter actual1; repaired probes actual0"
+  ],
+  "consumerImmediateEnter": {
+    "installedInteractionDelayMs": 75,
+    "initialKeyTimingNotRecorded": true,
+    "nativeVisibleOptionClickPassed": true
+  },
+  "cleanup": {
+    "observedAt": "2026-10-06T06:35:53.514382+00:00",
+    "serverPort": 52049,
+    "ownedPid": 30804,
+    "serverStoppedConfirmed": true,
+    "method": "resume ps and lsof show owned PID/cwd/port absent; no signal sent",
+    "ownChrome": "all browser probes completed and finally close awaited",
+    "rootServer5187Touched": false
+  },
+  "sourceAndGitWrites": "own /tmp only; shared/root/author source and Git/GitHub not written",
+  "notAggregated": [
+    "prior independent78",
+    "prior Rich8/ChartFile4/worker14",
+    "author68/18",
+    "root65/68",
+    "root full880",
+    "Collections contrast24"
+  ]
+}

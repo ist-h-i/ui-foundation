@@ -1,0 +1,1373 @@
+{
+  "time": "2026-10-06T08:41:17.082528+00:00",
+  "scope": "Final source including Barcode intrinsic module pixels/named local scroll region and translation of Scheduler library structural diagnostics. Actual new native5 passed; previous interrupted full candidate remains separate.",
+  "beforeManifest": "root-final-source-freeze-f792b158.json",
+  "templateTSFiles": 139,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "bafe9b7776e70b8d9b9bea312e5651ef5ca9040cf7ce36ede65a45c68b289539",
+      "bytes": 261
+    },
+    {
+      "path": "examples/ui.config.example.yaml",
+      "sha256": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040",
+      "bytes": 8901
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "ccfffbff59251d7429b58872f94c11746b72cce2cd624696d3de29e240448d7e",
+      "bytes": 142262
+    },
+    {
+      "path": "package.json",
+      "sha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+      "bytes": 2646
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "7be6135c446d584489e4a05cb94ddaf1438ca27df463a3fb4adec6d343ceee86",
+      "bytes": 673
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "2281e4d60747d2613e727c847490318c04a4afba49963c745f5f6d6386b1c9d0",
+      "bytes": 2533
+    },
+    {
+      "path": "scripts/serve.mjs",
+      "sha256": "9bf42fcac4d499bc6a0ac5085d84d99ffe253925a3f45edf98e352e5d4580baa",
+      "bytes": 1548
+    },
+    {
+      "path": "skills/ui-development/README.md",
+      "sha256": "a0d193c528b03c854d819ed4881d49bec09770674dbbf4251ac8e64ad7cba215",
+      "bytes": 319
+    },
+    {
+      "path": "skills/ui-development/SKILL.md",
+      "sha256": "6d50a51baa2868d03c202c2f1417beca6cc1b168da384138a4c90977d3d8e142",
+      "bytes": 23814
+    },
+    {
+      "path": "skills/ui-development/references/token-design.md",
+      "sha256": "8c0a36ba1091b0b94b80759c6f410ae25dcab2fd7e232bdd65d2478ad3cb89fb",
+      "bytes": 1655
+    },
+    {
+      "path": "skills/ui-development/references/ui-library-runtime.md",
+      "sha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5",
+      "bytes": 6356
+    },
+    {
+      "path": "src/roles.ts",
+      "sha256": "6a59f6d9a236d13907fbab8814e785a6b5e7e3a8a132797a139a3990656aaa14",
+      "bytes": 4410
+    },
+    {
+      "path": "templates/angular/README.md",
+      "sha256": "dc28ad62ff8b642e66422d121df6a49d32e44713899500a75922d47e87a63a7a",
+      "bytes": 1913
+    },
+    {
+      "path": "templates/angular/action-control.ts",
+      "sha256": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+      "bytes": 5078
+    },
+    {
+      "path": "templates/angular/action-feedback.ts",
+      "sha256": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+      "bytes": 3137
+    },
+    {
+      "path": "templates/angular/actions.ts",
+      "sha256": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+      "bytes": 20776
+    },
+    {
+      "path": "templates/angular/agenda.ts",
+      "sha256": "0e18b656599918938f99b11d54aae67e3e7431baefa709ac4ab71f2bf7166fa5",
+      "bytes": 795
+    },
+    {
+      "path": "templates/angular/anchor-navigation.ts",
+      "sha256": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+      "bytes": 12734
+    },
+    {
+      "path": "templates/angular/async-region.ts",
+      "sha256": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+      "bytes": 3228
+    },
+    {
+      "path": "templates/angular/barcode.ts",
+      "sha256": "5ee83be6fd64f76bf0819e1403f491d5f71638254b7e8ee31864e7b6ed6d25a9",
+      "bytes": 5888
+    },
+    {
+      "path": "templates/angular/calendar.ts",
+      "sha256": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+      "bytes": 10695
+    },
+    {
+      "path": "templates/angular/card.ts",
+      "sha256": "465c593c8c574df39cc0fbc800e142aeeb33a2cbce1b2128b5e93449001dc166",
+      "bytes": 10695
+    },
+    {
+      "path": "templates/angular/cascader.ts",
+      "sha256": "96504cd8ff0ed15f21a634d9f88cdb1881c959988fa21a7e696ade8406d42ef4",
+      "bytes": 13399
+    },
+    {
+      "path": "templates/angular/chart-options.ts",
+      "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+      "bytes": 13726
+    },
+    {
+      "path": "templates/angular/chart.ts",
+      "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+      "bytes": 12238
+    },
+    {
+      "path": "templates/angular/chat.ts",
+      "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+      "bytes": 14117
+    },
+    {
+      "path": "templates/angular/choice-controls.ts",
+      "sha256": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+      "bytes": 28743
+    },
+    {
+      "path": "templates/angular/choice-model.ts",
+      "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+      "bytes": 7450
+    },
+    {
+      "path": "templates/angular/code-editor.ts",
+      "sha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+      "bytes": 6183
+    },
+    {
+      "path": "templates/angular/collection-model.ts",
+      "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+      "bytes": 6904
+    },
+    {
+      "path": "templates/angular/collection-runtime.ts",
+      "sha256": "f4bc68041585eb5e0a06ae7094ac59f8657efeefc5f4e2660e282f0e8f18e559",
+      "bytes": 1990
+    },
+    {
+      "path": "templates/angular/collection-views.ts",
+      "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+      "bytes": 15946
+    },
+    {
+      "path": "templates/angular/command-palette.ts",
+      "sha256": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+      "bytes": 15599
+    },
+    {
+      "path": "templates/angular/crop-adapter.ts",
+      "sha256": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+      "bytes": 1839
+    },
+    {
+      "path": "templates/angular/data-grid.ts",
+      "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+      "bytes": 34155
+    },
+    {
+      "path": "templates/angular/data-table-view.ts",
+      "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+      "bytes": 63414
+    },
+    {
+      "path": "templates/angular/data-table.ts",
+      "sha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+      "bytes": 5300
+    },
+    {
+      "path": "templates/angular/date-input.ts",
+      "sha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+      "bytes": 14811
+    },
+    {
+      "path": "templates/angular/date-model.ts",
+      "sha256": "c107155723fdbb9a8ffe88780cc69f8e2c982ce9eb6e1336700e76a707c75d7f",
+      "bytes": 5184
+    },
+    {
+      "path": "templates/angular/date-range-picker.ts",
+      "sha256": "d6ca26b27e392d76834d7a661e6584f731f8880208ebd7804a96e8d7d971be89",
+      "bytes": 9312
+    },
+    {
+      "path": "templates/angular/diagram-layout.ts",
+      "sha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+      "bytes": 945
+    },
+    {
+      "path": "templates/angular/diagram.ts",
+      "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "bytes": 10379
+    },
+    {
+      "path": "templates/angular/dialog-variants.ts",
+      "sha256": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+      "bytes": 12206
+    },
+    {
+      "path": "templates/angular/dialog.ts",
+      "sha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+      "bytes": 16897
+    },
+    {
+      "path": "templates/angular/diff-json.ts",
+      "sha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+      "bytes": 10947
+    },
+    {
+      "path": "templates/angular/disclosure.ts",
+      "sha256": "aaf17f63a1b7830fd7894ddfe0033984856e24d8b121310a7a56bd5d363e1e43",
+      "bytes": 1816
+    },
+    {
+      "path": "templates/angular/display-content.ts",
+      "sha256": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+      "bytes": 12497
+    },
+    {
+      "path": "templates/angular/display-model.ts",
+      "sha256": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+      "bytes": 4932
+    },
+    {
+      "path": "templates/angular/display-style.ts",
+      "sha256": "32f0737eea88894cb0705e8399c329724f79f7daac8c93ca5ae49e689dbba88e",
+      "bytes": 1489
+    },
+    {
+      "path": "templates/angular/display.ts",
+      "sha256": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+      "bytes": 27535
+    },
+    {
+      "path": "templates/angular/drawer.ts",
+      "sha256": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+      "bytes": 8793
+    },
+    {
+      "path": "templates/angular/editor-control.ts",
+      "sha256": "df6a81cf54152501eca71b96c1eb773f751c4e1ce825fe6964d7c2c102cef7a6",
+      "bytes": 1827
+    },
+    {
+      "path": "templates/angular/editor-model.ts",
+      "sha256": "5432d4afccbf1bbc0f0f363403dca5137931810d02cfd9d8e3a6c0e3196c4a22",
+      "bytes": 1901
+    },
+    {
+      "path": "templates/angular/feedback-model.ts",
+      "sha256": "cc7ee57860de833e86e2d7ef6dac9c2e8c088eec10dfa13208a33d536bc251d3",
+      "bytes": 558
+    },
+    {
+      "path": "templates/angular/feedback.ts",
+      "sha256": "7f645a6c799b5ae09f8f437cb46e1e21469e91005c60d07bbb91e4d96871295e",
+      "bytes": 21647
+    },
+    {
+      "path": "templates/angular/file-draft-model.ts",
+      "sha256": "1e90223bc0ba957ddcc0b77ad7a895b9350bb5af419e14b8168550833f4f2c3f",
+      "bytes": 713
+    },
+    {
+      "path": "templates/angular/file-explorer.ts",
+      "sha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+      "bytes": 10502
+    },
+    {
+      "path": "templates/angular/file-upload.ts",
+      "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+      "bytes": 15161
+    },
+    {
+      "path": "templates/angular/filter-builder.ts",
+      "sha256": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+      "bytes": 21980
+    },
+    {
+      "path": "templates/angular/filter-model.ts",
+      "sha256": "fbf795b8638d41378f836a2a0a180f67cc9424391c5e8e65c61fbc6d5e9afa9c",
+      "bytes": 9583
+    },
+    {
+      "path": "templates/angular/floating-model.ts",
+      "sha256": "b74e8243a5e788452092b52bc7f23a419d78277f806271887b9ae926deb1b962",
+      "bytes": 1080
+    },
+    {
+      "path": "templates/angular/floating-panel.ts",
+      "sha256": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+      "bytes": 24693
+    },
+    {
+      "path": "templates/angular/focus.ts",
+      "sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+      "bytes": 2012
+    },
+    {
+      "path": "templates/angular/form-field.ts",
+      "sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+      "bytes": 3684
+    },
+    {
+      "path": "templates/angular/form-layout.ts",
+      "sha256": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+      "bytes": 9491
+    },
+    {
+      "path": "templates/angular/formula-parser.d.ts",
+      "sha256": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
+      "bytes": 426
+    },
+    {
+      "path": "templates/angular/gantt.ts",
+      "sha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+      "bytes": 9722
+    },
+    {
+      "path": "templates/angular/grid-list.ts",
+      "sha256": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+      "bytes": 8955
+    },
+    {
+      "path": "templates/angular/icon.ts",
+      "sha256": "1e42fb1747fbf52f259b6c215cb0a2cf89995486c13d6d4a3a42441594293abd",
+      "bytes": 2535
+    },
+    {
+      "path": "templates/angular/image-cropper.ts",
+      "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+      "bytes": 13547
+    },
+    {
+      "path": "templates/angular/image-media.ts",
+      "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+      "bytes": 17359
+    },
+    {
+      "path": "templates/angular/index.ts",
+      "sha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+      "bytes": 12026
+    },
+    {
+      "path": "templates/angular/infinite-scroll.ts",
+      "sha256": "97ba09990b7bc72be1751cf7c032f495dd00389ed6736d97df2f09f7ad1ba96b",
+      "bytes": 6653
+    },
+    {
+      "path": "templates/angular/inline-edit.ts",
+      "sha256": "f2845b8c5d7e088f83317639032322b4a8f81c743a5acc1d1441aa4e97d01796",
+      "bytes": 12348
+    },
+    {
+      "path": "templates/angular/json-model.ts",
+      "sha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+      "bytes": 2257
+    },
+    {
+      "path": "templates/angular/kanban.ts",
+      "sha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+      "bytes": 5928
+    },
+    {
+      "path": "templates/angular/layout-model.ts",
+      "sha256": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+      "bytes": 1626
+    },
+    {
+      "path": "templates/angular/layout.ts",
+      "sha256": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+      "bytes": 13256
+    },
+    {
+      "path": "templates/angular/listbox.ts",
+      "sha256": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+      "bytes": 22010
+    },
+    {
+      "path": "templates/angular/locale-model.ts",
+      "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+      "bytes": 4644
+    },
+    {
+      "path": "templates/angular/locale.ts",
+      "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+      "bytes": 7353
+    },
+    {
+      "path": "templates/angular/map.ts",
+      "sha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+      "bytes": 9756
+    },
+    {
+      "path": "templates/angular/markdown-editor.ts",
+      "sha256": "200ae80fd142bdade8744fce3da2ba48b9e9c0d0e1d718921958db5ebc289c78",
+      "bytes": 2865
+    },
+    {
+      "path": "templates/angular/media-dom.ts",
+      "sha256": "47edb922f1bcb9465d784cf2c1b93a671e9bd539a1310b2772a43402d76ec733",
+      "bytes": 1395
+    },
+    {
+      "path": "templates/angular/media-model.ts",
+      "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+      "bytes": 5013
+    },
+    {
+      "path": "templates/angular/media-player.ts",
+      "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+      "bytes": 14444
+    },
+    {
+      "path": "templates/angular/media-style.ts",
+      "sha256": "368c53540461fcb5964fc53f1aceb0affd99469fb34cb101b44e716caf021b84",
+      "bytes": 1682
+    },
+    {
+      "path": "templates/angular/mega-menu.ts",
+      "sha256": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+      "bytes": 8311
+    },
+    {
+      "path": "templates/angular/menu-model.ts",
+      "sha256": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+      "bytes": 2956
+    },
+    {
+      "path": "templates/angular/menu.ts",
+      "sha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+      "bytes": 27545
+    },
+    {
+      "path": "templates/angular/menubar.ts",
+      "sha256": "e077743cb1ecf337803bc48642f01d0ce2527647f39de17c56a33fdbc3ff31eb",
+      "bytes": 12043
+    },
+    {
+      "path": "templates/angular/navigation-model.ts",
+      "sha256": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+      "bytes": 6669
+    },
+    {
+      "path": "templates/angular/navigation-tree.ts",
+      "sha256": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+      "bytes": 12010
+    },
+    {
+      "path": "templates/angular/navigation.ts",
+      "sha256": "ce91e5658a3a7cc1a929b648c6093cffa1511fbd9e34c5d1632f7d3969aa250b",
+      "bytes": 9034
+    },
+    {
+      "path": "templates/angular/notification-center.ts",
+      "sha256": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+      "bytes": 9392
+    },
+    {
+      "path": "templates/angular/notification-model.ts",
+      "sha256": "9f8427635a2c41fda1ade57e24b2199f7b01bb5eb2581836a245a5b4edb4c26e",
+      "bytes": 3408
+    },
+    {
+      "path": "templates/angular/notifications.ts",
+      "sha256": "908c46c26dadf235a6eb207f25926a4bcb2b2a27853f79cf65fc52c24623fa75",
+      "bytes": 13524
+    },
+    {
+      "path": "templates/angular/organization-chart.ts",
+      "sha256": "ef91fce1de76c88f10eb7b643f6930187a31632f807ee138cf6d3f3d15e63c0f",
+      "bytes": 13038
+    },
+    {
+      "path": "templates/angular/overlay.ts",
+      "sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+      "bytes": 7772
+    },
+    {
+      "path": "templates/angular/page-frame.ts",
+      "sha256": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+      "bytes": 7085
+    },
+    {
+      "path": "templates/angular/pagination.ts",
+      "sha256": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+      "bytes": 5213
+    },
+    {
+      "path": "templates/angular/panel-handle.ts",
+      "sha256": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+      "bytes": 3897
+    },
+    {
+      "path": "templates/angular/panels.ts",
+      "sha256": "66479ab34858cf822897b8e19353e8c5cdde11aa4af29e52d46aa7732fbd87e5",
+      "bytes": 8252
+    },
+    {
+      "path": "templates/angular/pdf-adapter.ts",
+      "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+      "bytes": 5676
+    },
+    {
+      "path": "templates/angular/pdf-viewer.ts",
+      "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+      "bytes": 9108
+    },
+    {
+      "path": "templates/angular/radio-group.ts",
+      "sha256": "3f7336442ff24771f156168933c96565e6908ec52019c030363942f9e28f7a35",
+      "bytes": 4481
+    },
+    {
+      "path": "templates/angular/rich-text-editor.ts",
+      "sha256": "7508aae7058d582aadeabcf5c7bfa4202615b12112fff8c6c719ae6038bd097c",
+      "bytes": 9213
+    },
+    {
+      "path": "templates/angular/scheduler-controller.ts",
+      "sha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+      "bytes": 16967
+    },
+    {
+      "path": "templates/angular/scheduler-model.ts",
+      "sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+      "bytes": 12968
+    },
+    {
+      "path": "templates/angular/scheduler-move-sequence.ts",
+      "sha256": "a5872aada302153230698446e519a5168c1237d5ef53e4ad16bfba6d17a926c6",
+      "bytes": 81
+    },
+    {
+      "path": "templates/angular/scheduler-template.ts",
+      "sha256": "d8d14762a6444d2136ae5457a44df00e9b983b6cf2aafe43d62a65fd17d7a216",
+      "bytes": 688
+    },
+    {
+      "path": "templates/angular/scheduler-view.ts",
+      "sha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+      "bytes": 12214
+    },
+    {
+      "path": "templates/angular/scheduler.ts",
+      "sha256": "b0f55dc680d651cf3882dadb28d59d1d8f8c013dc0e04e604435afb307c19987",
+      "bytes": 726
+    },
+    {
+      "path": "templates/angular/selection-input.ts",
+      "sha256": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+      "bytes": 21674
+    },
+    {
+      "path": "templates/angular/sheet-formula.ts",
+      "sha256": "c527253df942b5de7a1d627d0882548ce2bd72946e7b8a801103d1d0cf2ead7e",
+      "bytes": 2742
+    },
+    {
+      "path": "templates/angular/sheet-formula.worker.ts",
+      "sha256": "d6bd3076a691accf5c9b69a416b359a2023abe983f3c1acc43ff90c016f86256",
+      "bytes": 1120
+    },
+    {
+      "path": "templates/angular/sheet-runner.ts",
+      "sha256": "c30bfe1d7147228ea7b756be82358d0f55fd4d4e2d82db7510ff94cdd66ba5eb",
+      "bytes": 4654
+    },
+    {
+      "path": "templates/angular/sortable-list.ts",
+      "sha256": "49bbbe5aee5f24683932e4dd29b3707fe675cfaf0bc16ce6e9c3f6176ae32988",
+      "bytes": 16422
+    },
+    {
+      "path": "templates/angular/specialist-browser.ts",
+      "sha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+      "bytes": 2722
+    },
+    {
+      "path": "templates/angular/specialist-model.ts",
+      "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+      "bytes": 18034
+    },
+    {
+      "path": "templates/angular/specialist-style.ts",
+      "sha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+      "bytes": 3008
+    },
+    {
+      "path": "templates/angular/specialist.css",
+      "sha256": "964588880994ab3bfb9724ddcaa4f2442e0243d201ae3867dcbd38fe29ae5704",
+      "bytes": 1848
+    },
+    {
+      "path": "templates/angular/splitter.ts",
+      "sha256": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+      "bytes": 10008
+    },
+    {
+      "path": "templates/angular/spreadsheet.ts",
+      "sha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+      "bytes": 15350
+    },
+    {
+      "path": "templates/angular/structured-input-model.ts",
+      "sha256": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
+      "bytes": 4196
+    },
+    {
+      "path": "templates/angular/structured-input.ts",
+      "sha256": "cb39f709aa2e1c22741cbe7b649f88ac40ce853893b4828a656d5a1fca9aabb3",
+      "bytes": 18261
+    },
+    {
+      "path": "templates/angular/styles.css",
+      "sha256": "5aa49e763929c047fd6096b345c469a4c9715a45e32e0d91ddeafcbb74660dff",
+      "bytes": 12699
+    },
+    {
+      "path": "templates/angular/table-advanced-model.ts",
+      "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+      "bytes": 24519
+    },
+    {
+      "path": "templates/angular/table-column-resize.ts",
+      "sha256": "ead2b70cbcd06f9444d4a4209b8cb92bbf1c94e5ec053c4131865cf6fbb25aa5",
+      "bytes": 4605
+    },
+    {
+      "path": "templates/angular/table-controls.ts",
+      "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+      "bytes": 30724
+    },
+    {
+      "path": "templates/angular/table-editors.ts",
+      "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+      "bytes": 16228
+    },
+    {
+      "path": "templates/angular/table-model.ts",
+      "sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+      "bytes": 10094
+    },
+    {
+      "path": "templates/angular/table-output.ts",
+      "sha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+      "bytes": 4170
+    },
+    {
+      "path": "templates/angular/table-runtime.ts",
+      "sha256": "b32f4716791033429fe3849e25a7f197d4df2f1e0e1c59eb06ba1e079c72275d",
+      "bytes": 2134
+    },
+    {
+      "path": "templates/angular/tabs.ts",
+      "sha256": "95540e374642c15e3d76ed6a318a8295fadba604d830f0dfbae544e207831adc",
+      "bytes": 13865
+    },
+    {
+      "path": "templates/angular/text-input.ts",
+      "sha256": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+      "bytes": 16946
+    },
+    {
+      "path": "templates/angular/timeline-model.ts",
+      "sha256": "60776b9bef211a1ce0e70ba0424c4cca184ea3f423708b48dadd1ffd7e23cde2",
+      "bytes": 3424
+    },
+    {
+      "path": "templates/angular/timeline.ts",
+      "sha256": "28f8e9ebff45abbb5e3dc63f899c3130c2c3236300e08f30754087c5246780e2",
+      "bytes": 13614
+    },
+    {
+      "path": "templates/angular/toolbar.ts",
+      "sha256": "cd27e7c9d0ebd598a6da7c81370be5d5bef71030ca5b3f9dfbef9e6fdc6a2bf4",
+      "bytes": 14515
+    },
+    {
+      "path": "templates/angular/tour.ts",
+      "sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+      "bytes": 10632
+    },
+    {
+      "path": "templates/angular/transfer-list.ts",
+      "sha256": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+      "bytes": 35195
+    },
+    {
+      "path": "templates/angular/transfer-model.ts",
+      "sha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+      "bytes": 6313
+    },
+    {
+      "path": "templates/angular/tree-grid.ts",
+      "sha256": "ca5002aa5f3e7101b6466852ab63a166768fa36467ee6566ea039af9c7d5b9d6",
+      "bytes": 12806
+    },
+    {
+      "path": "templates/angular/tree-item.ts",
+      "sha256": "a85a562b340fc61ae155e98ff5779e9ef3a90f271a30a510d069f16f8cf5917c",
+      "bytes": 1162
+    },
+    {
+      "path": "templates/angular/tree-load-sequence.ts",
+      "sha256": "d1986a400944a4705768c36d540c172296e2522adc1395d152e02138fad8f8bd",
+      "bytes": 201
+    },
+    {
+      "path": "templates/angular/tree-model.ts",
+      "sha256": "df1f0a4f716c54664e64a43c026ecf1cc511d492a1c0156920963407a2e5e7b4",
+      "bytes": 12453
+    },
+    {
+      "path": "templates/angular/tree-node-template.ts",
+      "sha256": "c1c10ca3a00873d1d514c3e33c17dcd50caf17ac68e916751172b5ddb83fb440",
+      "bytes": 821
+    },
+    {
+      "path": "templates/angular/tree-popup-control.ts",
+      "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+      "bytes": 7728
+    },
+    {
+      "path": "templates/angular/tree-select.ts",
+      "sha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+      "bytes": 9722
+    },
+    {
+      "path": "templates/angular/tree.ts",
+      "sha256": "7209dd27534b1d2e8da9a19441c1118886b48a89d6c42c033fc6278e8ff011f5",
+      "bytes": 19428
+    },
+    {
+      "path": "templates/angular/value-control.ts",
+      "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+      "bytes": 2920
+    },
+    {
+      "path": "templates/angular/virtual-data-table.ts",
+      "sha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+      "bytes": 18269
+    },
+    {
+      "path": "templates/angular/virtual-list.ts",
+      "sha256": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+      "bytes": 10572
+    },
+    {
+      "path": "templates/angular/wizard.ts",
+      "sha256": "70824356894d0bc3f4f53abd9551382645ad6e018c1faea464b27cebd433a0ef",
+      "bytes": 14218
+    },
+    {
+      "path": "tests/README.md",
+      "sha256": "b588b8d547fb8bb6d58795cc918304d839d25053b96d4b259fcca470c99a3524",
+      "bytes": 572
+    },
+    {
+      "path": "tests/config/config.test.ts",
+      "sha256": "46c19e49e44779e478fba9e79930ba87ef181c2a3daade3368b76e96a5652829",
+      "bytes": 25840
+    },
+    {
+      "path": "tests/fixture-app/actions-catalog.ts",
+      "sha256": "9d0e9a11a017763f3baa6dc65f5000e63a177137f33cb3e4ccd8606d98401f17",
+      "bytes": 14958
+    },
+    {
+      "path": "tests/fixture-app/app.css",
+      "sha256": "3ef718e0f20ff096cb512be3b47058a2cf37f8a8d577552e90bbcfb1a41cc8a7",
+      "bytes": 5221
+    },
+    {
+      "path": "tests/fixture-app/app.ts",
+      "sha256": "2f009da6c011de709c37f29699d5372f1ea5fdf4d75a151d13fbe9370b30b95f",
+      "bytes": 21037
+    },
+    {
+      "path": "tests/fixture-app/basic-parts.ts",
+      "sha256": "5a8e070c8225d00fa4cf9ff6206d2b01c72c22834a450f4eecaee8e3860d0416",
+      "bytes": 10441
+    },
+    {
+      "path": "tests/fixture-app/catalog.ts",
+      "sha256": "650d47198006dbf7b02a5d8698d3cc64e2d778893596ce712ee9a6ab4afd88ca",
+      "bytes": 10474
+    },
+    {
+      "path": "tests/fixture-app/choice-catalog.ts",
+      "sha256": "44db01e9c110089f3982a17e6dde2c6abbe2a234834626be79416db8196a9c78",
+      "bytes": 22432
+    },
+    {
+      "path": "tests/fixture-app/collection-catalog.ts",
+      "sha256": "c9a1cbae33ad8619451a6a80a437e8a325cc84b8a490e2a2c7f23c21274e526e",
+      "bytes": 19551
+    },
+    {
+      "path": "tests/fixture-app/date-catalog.ts",
+      "sha256": "f8dfbbbfb1a307d26f91e963d6953a19ad34cfe7fae8f68f3576e4c8a4c61e93",
+      "bytes": 6803
+    },
+    {
+      "path": "tests/fixture-app/dialog-variants-catalog.ts",
+      "sha256": "7b34aa092c81ca5ac37837eac5cd2bd4e302d09b1ad196c2bc1c127397b44495",
+      "bytes": 5414
+    },
+    {
+      "path": "tests/fixture-app/display-catalog.ts",
+      "sha256": "bd4e15c61c909046b0bf52bb3f04b93dd7b7bd6d89eef7755c4051dde0349cfe",
+      "bytes": 18756
+    },
+    {
+      "path": "tests/fixture-app/feedback-catalog.ts",
+      "sha256": "e2838cb5d6289c4c7f476070c9857f113ff74ee9b13b3d0b975fe1734ba2e71c",
+      "bytes": 19429
+    },
+    {
+      "path": "tests/fixture-app/floating-catalog.ts",
+      "sha256": "4a939376db5fd965db40472fed44cab022f27c725c1b0bd75878af1ea8229a18",
+      "bytes": 15175
+    },
+    {
+      "path": "tests/fixture-app/foundation-bidi-probe.ts",
+      "sha256": "25702aaeea3e3b42c3ae9e65627f4d4c6e13a54277ce61ac896f83370c483a7f",
+      "bytes": 406
+    },
+    {
+      "path": "tests/fixture-app/foundation-catalog.ts",
+      "sha256": "be90f15bb3187187937868d91beeceb2bbcf7e214238bcd3007bc36bd97a4fad",
+      "bytes": 5055
+    },
+    {
+      "path": "tests/fixture-app/foundation-cva-specimens.ts",
+      "sha256": "5cc5bd3335b44e5ee22d843a407bb31cd832322868f2c10c45a8eaab4bb741ee",
+      "bytes": 15711
+    },
+    {
+      "path": "tests/fixture-app/foundation-new-forms.ts",
+      "sha256": "8b6cb1e0a6bad0e9fc58d00ba7065636e7bf2736c7ad3fadf1f4f8980cf87a89",
+      "bytes": 7605
+    },
+    {
+      "path": "tests/fixture-app/foundation-profile-specimens.ts",
+      "sha256": "048461992a21a357960a3a2c24cc1b2fadf67d5bc14a0a5d50efffbe2cdc4c1b",
+      "bytes": 4698
+    },
+    {
+      "path": "tests/fixture-app/foundation-raw-forms.ts",
+      "sha256": "41f3fdf7c9409c46a15d1aeeaa32aed027711cc414d15a1bdfe22079d86f28de",
+      "bytes": 2152
+    },
+    {
+      "path": "tests/fixture-app/grid-catalog.ts",
+      "sha256": "d1661e38bdcc70a627c136bc78d756e5f40804fc1c599011f4924af7678ca97d",
+      "bytes": 3909
+    },
+    {
+      "path": "tests/fixture-app/index.html",
+      "sha256": "372da4417e1eee17078f9ec7802bfd91fcd0458babdb934e966402005070d0e7",
+      "bytes": 398
+    },
+    {
+      "path": "tests/fixture-app/input-catalog.ts",
+      "sha256": "6b4ebd3304ec1f22693f6f142123bb562efecb6801909ad458fa579ceaef85e7",
+      "bytes": 9712
+    },
+    {
+      "path": "tests/fixture-app/layout-catalog.ts",
+      "sha256": "2fc8b9ed8d6acf1f6c210f97587e895f3d12cf160b2b814207b941b43971e2f4",
+      "bytes": 14091
+    },
+    {
+      "path": "tests/fixture-app/layout-regressions.ts",
+      "sha256": "3c62b4e66c166ccdb048895eff8caae8d6bd3a688f257f8473eeae9120856693",
+      "bytes": 6135
+    },
+    {
+      "path": "tests/fixture-app/main.ts",
+      "sha256": "f2c9935e788d53f89e13e6dd7cf3d4bade0b660e93a3a83be9c22f88de1458af",
+      "bytes": 3248
+    },
+    {
+      "path": "tests/fixture-app/media-catalog.ts",
+      "sha256": "28322d91e8ed4e8b4de441f193d23bb9191a28cbc4d76b88865541512495fe23",
+      "bytes": 8580
+    },
+    {
+      "path": "tests/fixture-app/media-decoder.ts",
+      "sha256": "747a8b10b24f248f8becdc3a30ed74c16f64c90a316ed57d9cf7082e374a9863",
+      "bytes": 918
+    },
+    {
+      "path": "tests/fixture-app/navigation-catalog.ts",
+      "sha256": "27b21701730d9c3024059c6de5b60a3cedf18d3eaba54d64f69c91da42d5067f",
+      "bytes": 22450
+    },
+    {
+      "path": "tests/fixture-app/overlay-catalog.ts",
+      "sha256": "7cbc55428d6db4c69acdcb34bb1278f47846ca2e03dadaeb86873eb518c50a3a",
+      "bytes": 14086
+    },
+    {
+      "path": "tests/fixture-app/scheduler-catalog.ts",
+      "sha256": "211764e05d3053c879512dfcb3ad13863bc667fd4cce3954a5529d5e39857154",
+      "bytes": 13725
+    },
+    {
+      "path": "tests/fixture-app/sheet-locale-catalog.ts",
+      "sha256": "fa4b70148b6ced94e8a0fe190037b53e98574b509eee7344ce3cb880a99c66ef",
+      "bytes": 2109
+    },
+    {
+      "path": "tests/fixture-app/specialist-catalog.css",
+      "sha256": "b5b7a04c55aa8e7625eece4e078fe8059cc740deae426673bec00001f18b9003",
+      "bytes": 1935
+    },
+    {
+      "path": "tests/fixture-app/specialist-catalog.ts",
+      "sha256": "1e46cbf88e575ebf79ff45dfcc3fd34168b1b480a3b337f74244f58f8af26c1e",
+      "bytes": 18312
+    },
+    {
+      "path": "tests/fixture-app/structured-form-catalog.ts",
+      "sha256": "be500fda862a593a5e130c4f5b915c56aae611e5e4b2d87bd28e0f57e27d7217",
+      "bytes": 12077
+    },
+    {
+      "path": "tests/fixture-app/styles.css",
+      "sha256": "2af1730beb31950c4f7694a28d9b682030731a6b5bbd08de1922c7d6e53dff5c",
+      "bytes": 415
+    },
+    {
+      "path": "tests/fixture-app/table-catalog.ts",
+      "sha256": "b3749ee3f287f9f1d6a17c3cc955c8b499b9a1da2be88d23837781cbb7a289f1",
+      "bytes": 20925
+    },
+    {
+      "path": "tests/fixture-app/table-unicode-case.ts",
+      "sha256": "456fdafb3c1615d2907414dcbfa6476d3d640b281c89d2533e971a6a3949e7c8",
+      "bytes": 9903
+    },
+    {
+      "path": "tests/fixture-app/transfer-timeline-catalog.ts",
+      "sha256": "5c57c42169b384c0f4b80c7dbb6e4ae3cb6a45b45279acb012490cf400a1e1bd",
+      "bytes": 12612
+    },
+    {
+      "path": "tests/fixture-app/tree-catalog.ts",
+      "sha256": "44740800ae2c264c570d1fd1c0f8dd4715950fcec973d23f5aad33884cf4410f",
+      "bytes": 17862
+    },
+    {
+      "path": "tests/fixtures/specialist-image.png",
+      "sha256": "5e997ad1bf1f43c6d6c96e3ef4ac138b9c8e5929e23188c4aa35be6ff6b816f4",
+      "bytes": 125
+    },
+    {
+      "path": "tests/generation/consumer.test.ts",
+      "sha256": "a83a2d342c376ef0d2b5c1b9f3a0d876a60c7fa478df842f1859f42d7a0cedca",
+      "bytes": 38176
+    },
+    {
+      "path": "tests/generation/sync.test.ts",
+      "sha256": "35c8d560478bcb3bd72eddf92af791eb80c63589f50ebb2634534df7e99e32f1",
+      "bytes": 11949
+    },
+    {
+      "path": "tests/model/choice-model.test.ts",
+      "sha256": "7772101ad41c2c755436ba67c230dd48d184d14a779b23c528e38fe0165fbc92",
+      "bytes": 4493
+    },
+    {
+      "path": "tests/model/collection-model.test.ts",
+      "sha256": "807c554d05fb1582006918e1c7602d6bd11c100998b4748210f800f29235e526",
+      "bytes": 5422
+    },
+    {
+      "path": "tests/model/date.test.ts",
+      "sha256": "0470eece13bae24f0a42a02d89de11755751808c0e4ca45cdc38574739819e2b",
+      "bytes": 3186
+    },
+    {
+      "path": "tests/model/display.test.ts",
+      "sha256": "a830070dccfe0cd2f7c3232a63e904a104ec12af9f00f3572af2b1f2392236cf",
+      "bytes": 5110
+    },
+    {
+      "path": "tests/model/feedback.test.ts",
+      "sha256": "8cc86bc2a7d61f0f44512117f2deb10586648d8c59e1b75df25b26a7ec3ef9e7",
+      "bytes": 980
+    },
+    {
+      "path": "tests/model/filter-model.test.ts",
+      "sha256": "6f10cfeb8ca2742565efeb3bb08fcff825dcefee7bc325945e9cfba8bdf2c02a",
+      "bytes": 5965
+    },
+    {
+      "path": "tests/model/floating-panel.test.ts",
+      "sha256": "33a1be68ef0f7181342dcde590730d2e89adfeb67734f9eb70516fa21eca6451",
+      "bytes": 1056
+    },
+    {
+      "path": "tests/model/foundation-chart-presentation.test.ts",
+      "sha256": "c003e1cd6c6a1c8ca86e41960ad151e122cb3a3d8fdf5c0de04cb4e723c377f6",
+      "bytes": 3111
+    },
+    {
+      "path": "tests/model/foundation-file-draft.test.ts",
+      "sha256": "65193c7e8b6246307d6fbc20e650725305c0f13c9ec0ede83b347ebf80c7f135",
+      "bytes": 1789
+    },
+    {
+      "path": "tests/model/foundation-locale-operations.test.ts",
+      "sha256": "231608b1d7d6125e3b49dce1e546275e3e87a05de0bb2b00b0b7b6a691e4215c",
+      "bytes": 2212
+    },
+    {
+      "path": "tests/model/foundation-locale-runtime.test.ts",
+      "sha256": "60da140d6aab0de6c5408906bf61ac7472c5b217e75ae4c05d097bb618d332b5",
+      "bytes": 1784
+    },
+    {
+      "path": "tests/model/foundation-locale.test.ts",
+      "sha256": "094f1b5c5e9cdf747edd65b569bd1e542b88837f505309569331f8fc4876e845",
+      "bytes": 2116
+    },
+    {
+      "path": "tests/model/foundation-message-state.test.ts",
+      "sha256": "324070a8508f58d020988ce4c4412500e047d2ab266c7278917a41dcd0acbb33",
+      "bytes": 2348
+    },
+    {
+      "path": "tests/model/layout.test.ts",
+      "sha256": "23f406a68b12457d9f7233214e25db111da372428291b091ccc2e287934ca2d9",
+      "bytes": 1205
+    },
+    {
+      "path": "tests/model/navigation.test.ts",
+      "sha256": "b8bb6a9f1592545dff36803b31b59a8f679c3d76e6279805bd5a96464562a147",
+      "bytes": 4388
+    },
+    {
+      "path": "tests/model/overlay.test.ts",
+      "sha256": "bedd16a48f66b676399d12255df8dfd7fd91c8c130ce1d0c994664cfc536337a",
+      "bytes": 4049
+    },
+    {
+      "path": "tests/model/scheduler.test.ts",
+      "sha256": "c08bb3c2015f32f821195d6bd9efc231174fb0f69c7631e23d78ef828bc9dec5",
+      "bytes": 11802
+    },
+    {
+      "path": "tests/model/specialist-chart-options.test.ts",
+      "sha256": "4673799fea218f2d12f17622be2fbb9b1251212039a4719998c77f7bb5a3c74c",
+      "bytes": 6302
+    },
+    {
+      "path": "tests/model/specialist-model.test.ts",
+      "sha256": "c9c08bdc41a03d2b71fbaa4728a73d6407cb04391d600c237ab44323e49a9a13",
+      "bytes": 7427
+    },
+    {
+      "path": "tests/model/specialist-worker.test.ts",
+      "sha256": "1a246cd89a1f34347b7506d6108ef0c964ca36a76ed809cd8d9be1a1962d0527",
+      "bytes": 8500
+    },
+    {
+      "path": "tests/model/structured-input.test.ts",
+      "sha256": "f659dda2e092a6aac37dc472871ac8318919b7708d54914461540feaaa5804fc",
+      "bytes": 3918
+    },
+    {
+      "path": "tests/model/table-advanced-model.test.ts",
+      "sha256": "641078991679c2fec3011b6674ba9d195d1c62928bfb35a63f08ad15fecfe870",
+      "bytes": 19269
+    },
+    {
+      "path": "tests/model/table.test.ts",
+      "sha256": "f7993fec46a34993431e93679f40416abbc85686177c3c346f97c923e0dbda7b",
+      "bytes": 5976
+    },
+    {
+      "path": "tests/model/transfer-timeline.test.ts",
+      "sha256": "2b21b1a57f68f01dc1d87761493be5f954e9959670b87af41d5112f61625b29b",
+      "bytes": 5238
+    },
+    {
+      "path": "tests/model/tree.test.ts",
+      "sha256": "5da22b52ca65f14e94add3a48e00314e87877acc9ccbb2bf8e281c19683e3bc6",
+      "bytes": 8499
+    },
+    {
+      "path": "tests/ui/actions-catalog.spec.ts",
+      "sha256": "203a9b483d5753e8c3ee251f3212a91122393455dee9f1f7d3c31d4755eb9267",
+      "bytes": 21497
+    },
+    {
+      "path": "tests/ui/barcode-responsive.spec.ts",
+      "sha256": "602f98e9b8aa11635ff78804af621098aefd46e1d099288f1561d6eb36984285",
+      "bytes": 2332
+    },
+    {
+      "path": "tests/ui/basic-parts.spec.ts",
+      "sha256": "46d2bf5f196987b1a2b4debbf3af414a96ddeca2fa05db4f67dc44a1840ef9db",
+      "bytes": 15003
+    },
+    {
+      "path": "tests/ui/catalog-test.ts",
+      "sha256": "d123d42521fc1d937fd10fb31336be2874a98f97ffe47d56dbc755d15580f351",
+      "bytes": 606
+    },
+    {
+      "path": "tests/ui/choice-catalog.spec.ts",
+      "sha256": "256cb90ee0c893525deff205b207ad7945ce2c3a0b19a5e6da85058b2df1c1b7",
+      "bytes": 37033
+    },
+    {
+      "path": "tests/ui/collection-catalog.spec.ts",
+      "sha256": "07ff04a5080f81d48fc6fb6c2a04b7aa5569410089dea20bb472b8ad79cdf922",
+      "bytes": 31610
+    },
+    {
+      "path": "tests/ui/components.spec.ts",
+      "sha256": "726fdc743e2b0c4a649e9e70ea90dca4379e6c2401bbbb6613a938d7039f1b90",
+      "bytes": 21464
+    },
+    {
+      "path": "tests/ui/composer-reset-errors.spec.ts",
+      "sha256": "f23f8ddc6cf636abc0d06a226c23ac3505c1411a8fb398864b6fb042ecdff490",
+      "bytes": 2544
+    },
+    {
+      "path": "tests/ui/data-table-view.spec.ts",
+      "sha256": "a01e00df2afcfb41b9e42f81f841ceab94e0c923dcfb55ac6d4454990aca3d0d",
+      "bytes": 13547
+    },
+    {
+      "path": "tests/ui/dates.spec.ts",
+      "sha256": "ce08e47f9d149eeb301897fb7bcefca51b0ece246cf2a5e482aa202fb1beac48",
+      "bytes": 12752
+    },
+    {
+      "path": "tests/ui/display-catalog.spec.ts",
+      "sha256": "ab757f1849b0a8e571039e20c3a8ebbea318238a826f736f01b955eb26e7af5b",
+      "bytes": 30188
+    },
+    {
+      "path": "tests/ui/feedback-catalog.spec.ts",
+      "sha256": "eee0e5bb461952dd5eac90c808ef604cb9b0fbb5558454fe4fed5c05000e2ee5",
+      "bytes": 25255
+    },
+    {
+      "path": "tests/ui/floating-catalog.spec.ts",
+      "sha256": "b10b0ae5a61f8f6ee1e4f51cfe92298974972ed2b672d199950daf76aab6ad2f",
+      "bytes": 31894
+    },
+    {
+      "path": "tests/ui/foundation-date-format-retention.spec.ts",
+      "sha256": "5af3c6c61f2b7ab8f6613a3758db96662130a6e974ed0c8bde9c1c6d61cd4aa3",
+      "bytes": 6143
+    },
+    {
+      "path": "tests/ui/foundation.spec.ts",
+      "sha256": "e898368649eecf3339962e671b3c1e384ed701a929f6fd3ee371ae4921664a05",
+      "bytes": 40775
+    },
+    {
+      "path": "tests/ui/grid-icon.spec.ts",
+      "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+      "bytes": 4551
+    },
+    {
+      "path": "tests/ui/inputs.spec.ts",
+      "sha256": "aadae2af60529e037e596c01a667eaa994b0cd7e71cb62dd9d61d98ba4d831d8",
+      "bytes": 15727
+    },
+    {
+      "path": "tests/ui/layout-catalog.spec.ts",
+      "sha256": "bfac7792b72fda3030debe2881ad1a2f3312bd0706d8bd761e89a2ef09eaf6af",
+      "bytes": 22739
+    },
+    {
+      "path": "tests/ui/layout-regressions.spec.ts",
+      "sha256": "f7dd9b6a22583fc5625a51af745d5e0bd981c0da940586209e25b4d4ac95d32e",
+      "bytes": 8438
+    },
+    {
+      "path": "tests/ui/local-date-defaults.spec.ts",
+      "sha256": "4a17c74bdcbcfdcb5306c1dff5d869378636ab8df020c9ca55334d61b253e428",
+      "bytes": 1940
+    },
+    {
+      "path": "tests/ui/media-lifetime.spec.ts",
+      "sha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+      "bytes": 8676
+    },
+    {
+      "path": "tests/ui/media-regressions.spec.ts",
+      "sha256": "784bb0cf44bf5aaf320032298caa9821b38c087132d9c06c9b17a36fab37996e",
+      "bytes": 25284
+    },
+    {
+      "path": "tests/ui/media.spec.ts",
+      "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+      "bytes": 18100
+    },
+    {
+      "path": "tests/ui/navigation-catalog.spec.ts",
+      "sha256": "badcb31c6f7670e4b2ecb2e908a51adc78b10dbf4328710619464ea65939c040",
+      "bytes": 43759
+    },
+    {
+      "path": "tests/ui/navigation-regressions.spec.ts",
+      "sha256": "6b98287ccbbf94862bad2d5cdfe5b5cc4faf3faf695f4e127571ae4b9c070386",
+      "bytes": 9412
+    },
+    {
+      "path": "tests/ui/overlay-catalog.spec.ts",
+      "sha256": "fde71092e739dd80c703e9e72d6675bd85060b0d011c46cc7d812b2484fd4ca9",
+      "bytes": 30856
+    },
+    {
+      "path": "tests/ui/profiles.spec.ts",
+      "sha256": "0cb1f8c6f4831e3b0f655f8fe9fb2711d447049b139bc63b84fecc824fa97d01",
+      "bytes": 14042
+    },
+    {
+      "path": "tests/ui/scheduler-catalog.spec.ts",
+      "sha256": "50fb03405384d17af0360aba44feecf7a617395a5d175dcb8206b3825632f53d",
+      "bytes": 34011
+    },
+    {
+      "path": "tests/ui/scheduler-focus-transfer.spec.ts",
+      "sha256": "972d78a7cf240df82e29cedcc8b03935fed091d60d1449ffa227abad9ed11e27",
+      "bytes": 2242
+    },
+    {
+      "path": "tests/ui/scheduler-id-boundaries.spec.ts",
+      "sha256": "8de732a791b88f8657b03eb05b01205c29de3d0af87207d147d2cec35f4faee9",
+      "bytes": 2419
+    },
+    {
+      "path": "tests/ui/scheduler-message-retention.spec.ts",
+      "sha256": "766f1de9e4b1186b9b0698647614f026733db86b45f0567cc35deb296f2e85c2",
+      "bytes": 1833
+    },
+    {
+      "path": "tests/ui/sheet-locale-errors.spec.ts",
+      "sha256": "f59e322cd7631414dccc864b27ae01abfbaeb163b931717bf3fc6af1a30411f2",
+      "bytes": 2590
+    },
+    {
+      "path": "tests/ui/sheet-native-test-helpers.ts",
+      "sha256": "ee5344435196d930ddd8e0b13a9e54cec508feedb9095ceda727433070784e47",
+      "bytes": 3791
+    },
+    {
+      "path": "tests/ui/specialist-accessibility.spec.ts",
+      "sha256": "aa2a938fea633502510cd24560c4ace0a6dda0751148db6b3747540eb4a264a4",
+      "bytes": 1633
+    },
+    {
+      "path": "tests/ui/specialist-catalog.spec.ts",
+      "sha256": "afad182c341f6d2281d97e8e6e632229581d43ab9f1edb75ba300388df1d75b0",
+      "bytes": 17496
+    },
+    {
+      "path": "tests/ui/specialist-chart-explorer.spec.ts",
+      "sha256": "63268d4d85ea31cf330c152dce276ea6caa8bdb72a0035bcdb9862d7dce59327",
+      "bytes": 9937
+    },
+    {
+      "path": "tests/ui/specialist-gauge-responsive.spec.ts",
+      "sha256": "74ad92c840864b9ad2eb6a99bda3368c7866ff74fd2266800a1379f4014086b2",
+      "bytes": 9323
+    },
+    {
+      "path": "tests/ui/specialist-recovery.spec.ts",
+      "sha256": "26c9ccb669e98b9564967a6d6f0b9e9a089cd1a67ebb659debb2e74960dafcd3",
+      "bytes": 10668
+    },
+    {
+      "path": "tests/ui/specialist-rich-boundary.spec.ts",
+      "sha256": "023208a4eef533eaa79612c6862e248600605f3f9efcb4d01faaec8f9fa08b5a",
+      "bytes": 2820
+    },
+    {
+      "path": "tests/ui/specialist-sheet-startup.spec.ts",
+      "sha256": "53f7e1cdb6e2d96f9baf88430e3931b98ea3569ef98d54d46c62a0f428150fe4",
+      "bytes": 7964
+    },
+    {
+      "path": "tests/ui/specialist-test-helpers.ts",
+      "sha256": "faf1bf7ad9ef7272dac28eb0ea14f63fc380d2f0edc40c8723c270b50bc13517",
+      "bytes": 7878
+    },
+    {
+      "path": "tests/ui/specialist-workers.spec.ts",
+      "sha256": "c369d2d79ded486cca71423ca3c48c27eac7823d1bd7f3f96e1071f8966c128d",
+      "bytes": 4445
+    },
+    {
+      "path": "tests/ui/structured-forms.spec.ts",
+      "sha256": "e4404064c58df137346ccb740299fe28d54ff89c63a6dbd0eba15492401096d8",
+      "bytes": 21307
+    },
+    {
+      "path": "tests/ui/table-expansion-checks.ts",
+      "sha256": "f28af7019129bb571ae9076177ebebaa979542fce3d44fd145fbfd11af6728d9",
+      "bytes": 23325
+    },
+    {
+      "path": "tests/ui/table-expansion-contracts.ts",
+      "sha256": "d47103aa24d0f2bb94d7f625f5eaa337aebf4c06718d39bfffab657c2acc763b",
+      "bytes": 20058
+    },
+    {
+      "path": "tests/ui/table-expansion-helpers.ts",
+      "sha256": "1dae1dc3002bb0d4ec01fd147e16d4a8c941f6f41f00f3e80d7cb4a7c1b4d9eb",
+      "bytes": 2085
+    },
+    {
+      "path": "tests/ui/table-expansion-unicode.ts",
+      "sha256": "0334df3c6bd33b6e415fbc90cacda49da28c9857f8f174bd80e11bad6de249a0",
+      "bytes": 17949
+    },
+    {
+      "path": "tests/ui/table-expansion.spec.ts",
+      "sha256": "2be945fb4d377f09735d790db075b49b3c54d21263b8dd565a1356bcb0e26238",
+      "bytes": 11432
+    },
+    {
+      "path": "tests/ui/tailwind-tokens.spec.ts",
+      "sha256": "004f2a52a44a384717ab3626a23c15e810a00514d5514750bc7aa553ab7420f0",
+      "bytes": 2906
+    },
+    {
+      "path": "tests/ui/transfer-timeline.spec.ts",
+      "sha256": "67a73ca1c1544bcbd300f524d0469021f956e7d991545de7390c812e6f8eed8e",
+      "bytes": 18759
+    },
+    {
+      "path": "tests/ui/tree-catalog.spec.ts",
+      "sha256": "46e85526cd18304b73edd7d507ec49bdc415148cd2fd4ac0e6d59803b3192434",
+      "bytes": 32715
+    }
+  ]
+}

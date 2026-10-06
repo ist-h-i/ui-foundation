@@ -1,0 +1,20 @@
+{"name":"date-range-atomic-draft","pass":true}
+{"name":"composer-unknown-reset-ack","pass":true}
+{"name":"composer-reset-error-lifetime","pass":true}
+{"name":"composer-explicit-reset-contracts-guided","pass":true}
+{"name":"composer-explicit-reset-contracts-dense","pass":true}
+{"name":"locale-scope-direction-and-cleanup","pass":true}
+{"name":"popup-focus-and-draft","pass":true}
+{"name":"tree-cva-keyboard-selection","pass":false,"error":"TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-tree-select [data-tree-id=two]')\u001b[22m\n"}
+{"name":"grid-draft-failure-retry-and-clipboard","pass":true}
+{"name":"file-cva-atomic-readonly-reset-remount","pass":true}
+{"name":"media-stale-play-false","pass":true}
+{"name":"media-stale-play-true","pass":true}
+{"name":"media-native-reentry-and-source-epoch","pass":true}
+{"name":"caption-stable-id-source-removal","pass":false,"error":"TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('ui-audio-player').getByLabel('字幕', { exact: true })\u001b[22m\n"}
+{"name":"pdf-native-worker-empty-error-retry-unload","pass":false,"error":"Error: Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"}
+{"name":"gallery-stop-pointer-focus-keyboard","pass":true}
+{"name":"lightbox-positive-rotation-bounds-guided","pass":true}
+{"name":"lightbox-positive-rotation-bounds-dense","pass":true}
+{"name":"specialist-actual-lazy-worker-ready","pass":false,"error":"Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('ui-spreadsheet [role=status]')\nExpected: \"計算済み\"\nError: strict mode violation: locator('ui-spreadsheet [role=status]') resolved to 2 elements:\n    1) <p role=\"status\" _ngcontent-ng-c4055293989=\"\">計算済み</p> aka getByText('計算済み')\n    2) <p role=\"status\" aria-live=\"polite\" _ngcontent-ng-c4055293989=\"\">…</p> aka getByText('選択 A1 / 値')\n\nCall log:\n  - Expect \"toHaveText\" locator('ui-spreadsheet [role=status]') with timeout 5000ms\n  - waiting for locator('ui-spreadsheet [role=status]')\n"}
+{"passed":15,"failed":["tree-cva-keyboard-selection","caption-stable-id-source-removal","pdf-native-worker-empty-error-retry-unload","specialist-actual-lazy-worker-ready"]}

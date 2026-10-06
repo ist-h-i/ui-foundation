@@ -1,0 +1,96 @@
+templates/angular/barcode.ts QRCode extends 
+ value:12 description:12 size:12 format:12 errorCorrection:12
+ methods 
+templates/angular/barcode.ts Barcode extends 
+ value:21 description:21 format:21 size:21 height:21 moduleWidth:21
+ methods 
+templates/angular/cascader.ts Cascader extends extends TreePopupControl implements Validator
+ nodes:30 allowIntermediate:30 placeholder:30 loadRequested:31 loadCancelled:31
+ methods writeValue:56 resolveLoad:57 failLoad:58 invalidateLoads:59 registerOnValidatorChange:69 validate:70
+templates/angular/chart.ts Chart extends 
+ numberOptions:24 dateTimeOptions:24 timeZone:24 locale:25 label:27 kind:28 series:28 xAxis:28 yAxis:28 legend:28 hiddenSeries:28 hiddenSeriesChange:28 selected:28 disabled:28 busy:28 compact:28 selectionChange:28
+ methods numberText:34 indent:35 toggleSeries:36 select:37
+templates/angular/chart.ts Sparkline extends 
+ numberOptions:41 locale:42 label:43 series:44 disabled:44 busy:44
+ methods numberText:41 summary:44
+templates/angular/chat.ts MessageList extends 
+ label:17 messages:18 disabled:18 hasMore:18 cursor:18 loadState:18 retryRequested:18 loadMoreRequested:18 attachmentRequested:18
+ methods stateLabel:19 loadMore:20 completeLoad:21 failLoad:22 invalidateLoad:23
+templates/angular/chat.ts MessageComposer extends implements ControlValueAccessor
+ label:29 value:30 attachments:30 readonly:30 disabled:30 busy:30 textChange:30 sendRequested:30 attachmentsSelected:30 attachmentRemoveRequested:30
+ methods writeValue:33 registerOnChange:34 registerOnTouched:34 setDisabledState:34 leftComposer:35 editText:37 filesSelected:38 send:39 completeSend:40 failSend:41 markSendUnknown:42 invalidatePending:43
+templates/angular/chat.ts Chat extends implements ControlValueAccessor
+ label:48 value:49 messages:49 attachments:49 disabled:49 busy:49 readonly:49 hasMore:49 cursor:49 loadState:49 sendRequested:49 retryRequested:49 loadMoreRequested:49 attachmentsSelected:49 attachmentRemoveRequested:49 attachmentRequested:49 textChange:49
+ methods registerOnChange:51 registerOnTouched:51 setDisabledState:51 edited:52 leftChat:52 completeSend:53 failSend:53 markSendUnknown:53 writeValue:53 completeLoad:53 failLoad:53 invalidatePending:53
+templates/angular/code-editor.ts CodeEditor extends extends SpecialistEditorControl
+ language:17 completions:17 lineNumbers:17
+ methods 
+templates/angular/diagram.ts FlowEditor extends 
+ label:22 model:23 zoom:23 direction:23 selected:23 readonly:23 disabled:23 busy:23 changeRequested:23 layoutRequested:23 zoomChange:23 selectionChange:23
+ methods nodeLabel:26 edgePath:27 edgeMid:28 arrange:29 rename:30 position:31 nodeKey:32 setEndpoint:33 connect:34 add:35
+templates/angular/editor-control.ts SpecialistEditorControl extends implements ControlValueAccessor
+ label:9 value:10 valueChange:10 readonly:10 disabled:10 busy:10
+ methods writeValue:12 registerOnChange:13 registerOnTouched:14 setDisabledState:15
+templates/angular/file-explorer.ts FileExplorer extends 
+ locale:18 label:20 nodes:21 view:21 selected:21 multiple:21 disabled:21 busy:21 readonly:21 error:21 viewChange:21 selectionChange:21 operationRequested:21
+ methods indent:25 search:26 changeView:26 select:28 toggle:29 open:30 editName:31 operationAvailable:31 operation:31 key:32
+templates/angular/file-upload.ts UploadList extends 
+ locale:19 label:21 items:22 disabled:22 cancelable:22 retryable:22 removable:22 cancelRequested:23 retryRequested:23 removeRequested:23
+ methods 
+templates/angular/file-upload.ts FileUpload extends implements ControlValueAccessor,Validator
+ locale:38 controlId:40 label:40 accept:40 maxBytes:40 maxFiles:40 multiple:40 disabled:40 busy:40 items:40 dropEnabled:40 dropLabel:40 existingCount:41 value:42 valueChange:42 readonly:42 required:42 selection:42 uploadRequested:42 cancelRequested:42 removeRequested:42
+ methods writeValue:48 registerOnChange:49 registerOnTouched:49 setDisabledState:49 registerOnValidatorChange:49 validate:50
+templates/angular/gantt.ts Gantt extends 
+ civilDateOptions:24 locale:25 label:27 tasks:28 scale:28 readonly:28 disabled:28 busy:28 taskChange:28 scaleChange:28
+ methods dependencyLabels:32 setScale:33 edit:34
+templates/angular/image-cropper.ts ImageCropper extends 
+ label:17 alt:17 file:17 range:17 rangeChange:17 ratio:17 ratioChange:17 rotation:17 rotationChange:17 disabled:17 confirmed:17 loadFailed:17
+ methods confirm:33
+templates/angular/image-media.ts Image extends 
+ src:8 alt:8 ratio:8 fit:8 loading:8 caption:8 loaded:8 loadFailed:8
+ methods 
+templates/angular/image-media.ts ImageViewer extends 
+ label:16 images:17 open:17 openChange:17 index:17 indexChange:17 zoom:17 zoomChange:17 rotation:17 rotationChange:17
+ methods 
+templates/angular/image-media.ts Gallery extends 
+ label:35 images:35 index:35 indexChange:35 autoplay:35 intervalMs:35 loop:35 disabled:35 ratio:35
+ methods 
+templates/angular/image-media.ts ImageCompare extends 
+ label:49 before:50 after:50 direction:50 position:50 positionChange:50 ratio:50 disabled:50
+ methods 
+templates/angular/kanban.ts Kanban extends 
+ label:18 columns:19 cards:19 disabled:19 busy:19 readonly:19 moveRequested:19
+ methods cardsIn:21 move:22 changeColumn:23 dropped:24
+templates/angular/map.ts MapView extends 
+ label:23 markers:24 regions:24 camera:24 baseStyle:24 workerUrl:24 selected:24 disabled:24 busy:24 selectionChange:24 cameraChange:24
+ methods select:35 zoom:36
+templates/angular/markdown-editor.ts MarkdownPreview extends 
+ source:14
+ methods 
+templates/angular/markdown-editor.ts MarkdownEditor extends extends SpecialistEditorControl
+ mode:17 modeChange:17
+ methods 
+templates/angular/media-player.ts MediaPlayer extends 
+ label:14 kind:14 src:14 poster:14 preload:14 captions:14 transcript:14 disabled:14 stateChange:14 playbackFailed:14
+ methods toggle:30 stop:41 setPlaybackVolume:41 setPlaybackRate:41 showCaption:42 play:79 pause:79 playback:79 fullscreen:81
+templates/angular/organization-chart.ts OrganizationChart extends 
+ chartId:59 label:59 nodes:59 direction:59 expandedIds:59 expandedIdsChange:59 disabled:59 busy:59
+ methods 
+templates/angular/pdf-viewer.ts PDFViewer extends 
+ label:12 source:12 workerUrl:12 assetsBaseUrl:12 page:12 pageChange:12 zoom:12 zoomChange:12 downloadable:12 filename:12 disabled:12 loaded:12 loadFailed:12
+ methods download:20
+templates/angular/rich-text-editor.ts RichTextEditor extends extends SpecialistEditorControl
+ toolbar:20
+ methods actionLabel:39 setUrl:39 setAlt:39 command:40
+templates/angular/scheduler-controller.ts SchedulerController extends 
+ locale:23 schedulerId:25 label:25 date:25 timeZone:25 civilDateOptions:25 dateTimeOptions:25 weekStartsOn:25 listDays:25 dayStart:25 dayEnd:25 events:26 resources:26 resourceFilter:26 showUnassigned:26 disabled:26 busy:26 readonly:26 movable:26 canMove:26 dateChange:27 viewChange:27 resourceFilterChange:27 moveRequested:27 moveCancelled:27
+ methods completeMove:66 failMove:67 invalidatePending:68 resetMoves:69
+templates/angular/spreadsheet.ts Spreadsheet extends 
+ label:26 sheet:27 readonly:27 disabled:27 busy:27 frozenRows:27 frozenColumns:27 cellEditRequested:27 selectionChange:27 importRequested:27 exportRequested:27 workerUrl:27
+ methods retryCalculation:31 columnLabel:32 addressLabel:32 selectedResult:33 rowOffset:34 columnOffset:35 selectedDraft:36 pauseEdit:37 isEditing:38 inSelection:39 cellText:40 focusCell:41 beginEdit:42 draftInput:43 commitEdit:44 key:45 setImport:46 importCsv:47 export:48
+templates/angular/tree-select.ts TreeSelect extends extends TreePopupControl implements Validator
+ nodes:30 multiple:30 linkSelection:30 searchable:30 placeholder:30 loadRequested:32 loadCancelled:32
+ methods writeValue:46 resolveLoad:47 failLoad:48 invalidateLoads:49 registerOnValidatorChange:50 validate:51
+templates/angular/tree.ts Tree extends 
+ locale:68 treeId:70 label:70 nodes:70 expandedIds:71 expandedIdsChange:71 selectedIds:72 selectedIdsChange:72 checkedIds:73 checkedIdsChange:73 selectionMode:74 checkable:74 linkChecks:74 selectionLabel:75 checkLabel:76 disabled:77 busy:77 readonly:77 query:77 activated:78 loadRequested:78 loadCancelled:78 focusLeft:78
+ methods focusFirst:103 resolveLoad:115 failLoad:116 invalidateLoads:117

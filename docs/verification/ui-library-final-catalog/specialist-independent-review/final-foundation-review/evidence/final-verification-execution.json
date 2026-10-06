@@ -1,0 +1,160 @@
+[
+  {
+    "name": "final-sync",
+    "command": [
+      "npm",
+      "run",
+      "ui:sync"
+    ],
+    "startedAt": "2026-10-06T07:43:34.419147+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:43:35.572589+00:00"
+  },
+  {
+    "name": "final-check",
+    "command": [
+      "npm",
+      "run",
+      "ui:check"
+    ],
+    "startedAt": "2026-10-06T07:43:35.574091+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:43:36.315509+00:00"
+  },
+  {
+    "name": "final-all139-generated-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "tsconfig.all-generated.json"
+    ],
+    "startedAt": "2026-10-06T07:43:36.316451+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:43:49.829470+00:00"
+  },
+  {
+    "name": "final-tools-typecheck",
+    "command": [
+      "./node_modules/.bin/tsc",
+      "-p",
+      "tsconfig.tools.json"
+    ],
+    "startedAt": "2026-10-06T07:43:49.831132+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:43:53.250923+00:00"
+  },
+  {
+    "name": "final-positive-barrel",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "startedAt": "2026-10-06T07:43:53.253245+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:44:08.047639+00:00"
+  },
+  {
+    "name": "final-positive-direct",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-direct.json"
+    ],
+    "startedAt": "2026-10-06T07:44:08.050843+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:44:10.634620+00:00"
+  },
+  {
+    "name": "final-positive-code",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-code.json"
+    ],
+    "startedAt": "2026-10-06T07:44:10.636750+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:44:14.444480+00:00"
+  },
+  {
+    "name": "final-negative-consumer",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.negative.json"
+    ],
+    "startedAt": "2026-10-06T07:44:14.446096+00:00",
+    "expectedExit": 1,
+    "actualExit": 1,
+    "endedAt": "2026-10-06T07:44:36.278563+00:00",
+    "diagnostics": [
+      "TS2322",
+      "TS2322",
+      "TS2339",
+      "TS2322",
+      "TS2322"
+    ],
+    "matchesPreciseFive": true
+  },
+  {
+    "name": "final-canonical-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "startedAt": "2026-10-06T07:44:36.283432+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:45:30.970716+00:00"
+  },
+  {
+    "name": "final-direct-consumer-aot",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.direct-runtime.json"
+    ],
+    "startedAt": "2026-10-06T07:45:30.973374+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:45:34.791331+00:00"
+  },
+  {
+    "name": "final-direct-consumer-build",
+    "command": [
+      "node",
+      "build-direct-runtime.mjs"
+    ],
+    "startedAt": "2026-10-06T07:45:34.792693+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:45:36.593081+00:00"
+  },
+  {
+    "name": "final-specialist-foundation-models",
+    "command": [
+      "./node_modules/.bin/tsx",
+      "--test",
+      "tests/model/specialist-chart-options.test.ts",
+      "tests/model/specialist-model.test.ts",
+      "tests/model/specialist-worker.test.ts",
+      "tests/model/foundation-chart-presentation.test.ts",
+      "tests/model/foundation-file-draft.test.ts",
+      "tests/model/foundation-locale-operations.test.ts",
+      "tests/model/foundation-locale-runtime.test.ts",
+      "tests/model/foundation-locale.test.ts"
+    ],
+    "startedAt": "2026-10-06T07:45:36.594473+00:00",
+    "expectedExit": 0,
+    "actualExit": 0,
+    "endedAt": "2026-10-06T07:45:37.908744+00:00"
+  }
+]

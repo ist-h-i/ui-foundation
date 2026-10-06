@@ -1,0 +1,10 @@
+[96mconsumer-negative.ts[0m:[93m38[0m:[93m31[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m38[0m badParser.parse("SUM(A1:B1)",{row:"bad",col:1});
+[7m  [0m [91m                              ~~~[0m
+
+  [96m.ui/generated/angular/formula-parser.d.ts[0m:[93m2[0m:[93m28[0m
+    [7m2[0m   interface CellReference {row:number;col:number;sheet?:string;}
+    [7m [0m [96m                           ~~~[0m
+    The expected type comes from property 'row' which is declared here on type 'CellReference'
+

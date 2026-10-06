@@ -1,0 +1,19 @@
+{
+  "timeUtc": "2026-10-06T09:28:58.230090+00:00",
+  "sourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+  "scope": "Independent review of proposed TWO test selectors only; no root mutation/native PASS fabricated",
+  "file": "tests/ui/scheduler-catalog.spec.ts",
+  "beforeSha256": "50fb03405384d17af0360aba44feecf7a617395a5d175dcb8206b3825632f53d",
+  "proposedAfterSha256": "d86cd1dce7b2da0cf6c69943554b3fa711db167e9dc5d177466b6c50a50ebb15",
+  "lines": [
+    33,
+    40
+  ],
+  "beforeSelector": "page.locator('#schedule-start-gap-cross')",
+  "afterSelector": "crossing.getByLabel('開始の現地日時',{exact:true})",
+  "allOtherBytesAndAssertionsPreserved": true,
+  "proof": "scheduler-controller.ts:33 encodes hyphen as %2D, scheduler-view.ts:19 label-for and input-id use same encoded ID; exact accessible label selects the original real datetime editor in crossing raw business-key card",
+  "verdict": "APPROVE_MINIMAL_TEST_SELECTOR_REPAIR",
+  "rootFullSuitePassedClaim": false,
+  "freshNativeAfterRepairPendingRoot": true
+}

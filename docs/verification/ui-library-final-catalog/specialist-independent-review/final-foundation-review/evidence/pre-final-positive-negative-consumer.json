@@ -1,0 +1,55 @@
+[
+  {
+    "name": "positive-barrel",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-barrel.json"
+    ],
+    "actualExit": 0,
+    "startedAt": "2026-10-06T07:04:26.290595+00:00",
+    "endedAt": "2026-10-06T07:04:37.077289+00:00"
+  },
+  {
+    "name": "positive-direct",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-direct.json"
+    ],
+    "actualExit": 0,
+    "startedAt": "2026-10-06T07:04:37.077468+00:00",
+    "endedAt": "2026-10-06T07:04:38.845624+00:00"
+  },
+  {
+    "name": "positive-code",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.positive-code.json"
+    ],
+    "actualExit": 0,
+    "startedAt": "2026-10-06T07:04:38.845694+00:00",
+    "endedAt": "2026-10-06T07:04:40.683628+00:00"
+  },
+  {
+    "name": "negative",
+    "command": [
+      "./node_modules/.bin/ngc",
+      "-p",
+      "consumer/tsconfig.negative.json"
+    ],
+    "actualExit": 1,
+    "startedAt": "2026-10-06T07:04:40.683697+00:00",
+    "endedAt": "2026-10-06T07:04:50.465629+00:00",
+    "diagnostics": [
+      "TS2322",
+      "TS2322",
+      "TS2339",
+      "TS2322",
+      "TS2322"
+    ],
+    "matchesPreciseFive": true,
+    "verifierCorrection": "strip terminal ANSI before matching; native ngc actual1/log unchanged"
+  }
+]
