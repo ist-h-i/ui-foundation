@@ -1,0 +1,22 @@
+
+> ui-foundation@0.0.0 build
+> npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+≈ tailwindcss v4.3.0
+
+Done in 86ms
+
+Running 1 test using 1 worker
+
+(node:13379) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (4.5s)
+
+  1 passed (6.0s)

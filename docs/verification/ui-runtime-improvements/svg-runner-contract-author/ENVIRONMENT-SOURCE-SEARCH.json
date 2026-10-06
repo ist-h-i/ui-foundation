@@ -1,0 +1,65 @@
+{
+  "scope": "All candidate permanent runner and fixture driver environment references",
+  "rows": [
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 12,
+      "text": "const output=resolve(process.env.UI_SVG_EVIDENCE??join(root,'test-results/svg-paint'));"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 27,
+      "text": "const childEnvironment={...process.env};"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 28,
+      "text": "for(const name of ['PAINT_CONFIG','PAINT_ONE','SVG_PAINT_EVIDENCE_DIR','SVG_CONSUMER_URL','SVG_PORT'])delete childEnvironment[name];"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 31,
+      "text": " const child=spawn(process.execPath,args,{cwd:work,env:{...childEnvironment,...env},stdio:['ignore','pipe','pipe']});let stdout='',stderr='';child.stdout.on('data',data=>{stdout+=data;process.stdout.write(data);});child.stderr.on('data',data=>{stderr+=data;process.stderr.write(data);});"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 45,
+      "text": " server=spawn(process.execPath,['serve-consumer.mjs'],{cwd:work,env:{...childEnvironment,SVG_PORT:'0'},stdio:['ignore','pipe','pipe']});serverExit=new Promise(resolve=>server.once('exit',(code,signal)=>resolve({code,signal})));let serverLog='';server.stderr.on('data',data=>{serverLog+=data;});"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 48,
+      "text": " await run('native-glyph-paint-contrast',['harness/verify-paint.mjs'],{SVG_CONSUMER_URL:`http://127.0.0.1:${ready.port}/`,SVG_PAINT_EVIDENCE_DIR:pathToFileURL(join(work,'evidence')+'/').href});"
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "line": 63,
+      "text": " await writeFile(join(work,'evidence/execution.json'),JSON.stringify({root,work,output,steps,successful,nativeContract,sourceUnchanged:true,ignoredSelectionEnvironment:['PAINT_CONFIG','PAINT_ONE'],ownServerPid:server?.pid??null,ownServerClosed:server?server.exitCode!==null||server.signalCode!==null:true},null,2)+'\\n');"
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "line": 5,
+      "text": "const evidence=new URL(process.env.SVG_PAINT_EVIDENCE_DIR??'../evidence/',import.meta.url),rows=[],browser=await chromium.launch({channel:'chromium'});"
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "line": 18,
+      "text": "  if(process.env.PAINT_CONFIG&&process.env.PAINT_CONFIG!==`${configuration.profile}-${configuration.width}-${configuration.direction}`)continue;"
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "line": 21,
+      "text": "   if(process.env.PAINT_ONE==='1'&&(configuration.width!==320||configuration.direction!=='rtl'||locale!=='ar-EG'||data!=='precision'))continue;"
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "line": 25,
+      "text": "    await page.goto(process.env.SVG_CONSUMER_URL??'http://127.0.0.1:5344/');await select(page,'Review profile',configuration.profile);await select(page,'Review direction',configuration.direction);await page.evaluate(font=>document.documentElement.style.fontSize=font,configuration.font);await select(page,'Review chart kind','gauge');await select(page,'Review chart data',data);await select(page,'Review locale',locale);await select(page,'Review number precision',precision);"
+    },
+    {
+      "path": "tests/consumer-svg-paint/serve-consumer.mjs",
+      "line": 4,
+      "text": "const root=resolve('dist'),port=Number(process.env.SVG_PORT??0),mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.map':'application/json'};"
+    }
+  ]
+}

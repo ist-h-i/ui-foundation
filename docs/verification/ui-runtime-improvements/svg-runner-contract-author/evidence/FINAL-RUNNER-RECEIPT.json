@@ -1,0 +1,195 @@
+{
+  "scope": "New runner-only CI full34 contract. Native renderer/source candidate857 remains separately approved; root37 exact139 bridge is scoped, not claimed identical inputs",
+  "beforeRunnerSha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919",
+  "afterRunnerSha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+  "changedProductionFiles": [],
+  "changedRunnerFiles": [
+    "scripts/test-svg-paint.mjs"
+  ],
+  "fixtureChange": false,
+  "packageChange": false,
+  "syntaxActual": 0,
+  "hostileEnvironment": {
+    "PAINT_CONFIG": "independent-critic-invalid-config",
+    "PAINT_ONE": "1",
+    "SVG_PAINT_EVIDENCE_DIR": "own evidence/must-not-use/",
+    "SVG_CONSUMER_URL": "http://127.0.0.1:1/",
+    "SVG_PORT": "5343"
+  },
+  "hostileEvidenceOverrideUsed": false,
+  "afterActual": 0,
+  "recordedNativeScenarios": 34,
+  "allNativeSuccessful": true,
+  "nativeRuntimeErrorCount": 0,
+  "steps": [
+    {
+      "name": "canonical-sync",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-check",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-idempotent",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "canonical-dry-run",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "sync",
+        "--dry-run",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "public-consumer-production-build",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "build-consumer.mjs"
+      ],
+      "code": 0,
+      "signal": null
+    },
+    {
+      "name": "native-glyph-paint-contrast",
+      "command": [
+        "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+        "harness/verify-paint.mjs"
+      ],
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "ownServerPid": 30005,
+  "ownServerClosed": true,
+  "sourceUnchanged": true,
+  "nativeContract": {
+    "requiredScenarios": 34,
+    "recordedScenarios": 34,
+    "allSuccessful": true,
+    "evidencePath": "/var/folders/57/t9r9mr850f74d7hd68f9zcm80000gn/T/ui-svg-paint-8us8Nf/evidence/candidate-paint-native.json"
+  },
+  "sourceRoot": "/private/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap",
+  "sourceCommitBase": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "ownChartOptionsSha256": "857eab2fba50efe028140d1907e048f0b29762c97feafbe064c9f6798a461d1b",
+  "rootComparisonHead": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "rootComparisonSourceInputCount": 156,
+  "rootComparisonEqualCount": 148,
+  "rootComparisonChanged": [
+    {
+      "path": "src/cli.ts",
+      "own": "fddc768cb390c4d7aff6ca5f84487c29d0d5a3149af79693c01e08220153efcc",
+      "root": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed",
+      "ownBytes": 2010,
+      "rootBytes": 2355
+    },
+    {
+      "path": "src/sync.ts",
+      "own": "c538950d2f972dcb96ab99c6a3d949e66f59f49df0bf4ac7f10520f0251411ab",
+      "root": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e",
+      "ownBytes": 13239,
+      "rootBytes": 16624
+    },
+    {
+      "path": "templates/angular/diagram.ts",
+      "own": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "root": "914840dc04ef11bec4071d02a511917fc5e859a7dbb044063d8cb66a823c2817",
+      "ownBytes": 10379,
+      "rootBytes": 13259
+    },
+    {
+      "path": "templates/angular/menu.ts",
+      "own": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+      "root": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+      "ownBytes": 27545,
+      "rootBytes": 28640
+    },
+    {
+      "path": "templates/angular/specialist-model.ts",
+      "own": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+      "root": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd",
+      "ownBytes": 18034,
+      "rootBytes": 18137
+    },
+    {
+      "path": "skills/ui-development/SKILL.md",
+      "own": "6d50a51baa2868d03c202c2f1417beca6cc1b168da384138a4c90977d3d8e142",
+      "root": "270d215cabeaa01a748e22383c1edb952652413a53a5bac3ede75f110db48422",
+      "ownBytes": 23814,
+      "rootBytes": 24375
+    },
+    {
+      "path": "skills/ui-development/references/ui-library-runtime.md",
+      "own": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5",
+      "root": "b776c2f53c9e78c721251aaa231d1680dc4346bde24b1cfaed8000c671070175",
+      "ownBytes": 6356,
+      "rootBytes": 6957
+    },
+    {
+      "path": "package.json",
+      "own": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+      "root": "52ddccf0d4efd3b8ccc6a43f65cd025807ba5e66db6fec10b06da1930e15a5a5",
+      "ownBytes": 2646,
+      "rootBytes": 2977
+    }
+  ],
+  "wholeRoot37InputEqualityClaim": false,
+  "geometryConsumerHelperByteEquality": true,
+  "sourceExactSharedProductCount": 136,
+  "rootInputsDifferingProductPaths": [
+    "templates/angular/diagram.ts",
+    "templates/angular/menu.ts",
+    "templates/angular/specialist-model.ts"
+  ],
+  "independentCriticResult": {
+    "task": "/root/review_tree_escape_final",
+    "verdict": "APPROVE new runner2f12 source scope; own9f+857 actual34 and root37 independent18 kept as distinct scopes",
+    "ASTControlsActual": 0,
+    "controls": 11,
+    "beforeRealHelperProbe": "invalid PAINT_CONFIG, real native helper exit0 with frames0/no JSON; old whole runner false-success not dynamically executed",
+    "controlsResultSha256": "540cdbd59e868a90a652e77fedbbd60cfb086720290edd715160b2e49551c679"
+  },
+  "oldPackImmutableReferences": [
+    "c7af0a606fbb84fabee4596c45fadd3db52c5311b35c348f2325945329beabde",
+    "e8cedf3e3546b9fa5ff3c7133eae34a3fd55544c5f2ec5876c829622c45a462a"
+  ],
+  "sharedHostSourceGitEdited": false
+}

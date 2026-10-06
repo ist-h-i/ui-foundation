@@ -1,0 +1,65 @@
+
+> ui-foundation@0.0.0 test:cross-browser
+> node scripts/run-cross-browser.mjs
+
+
+> ui-foundation@0.0.0 build
+> npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+≈ tailwindcss v4.3.0
+
+Done in 244ms
+
+Running 36 tests using 1 worker
+
+(node:79095) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (9.6s)
+  ✓   2 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (9.1s)
+  ✓   3 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (7.3s)
+  ✓   4 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (7.7s)
+  ✓   5 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (7.3s)
+  ✓   6 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (7.1s)
+  ✓   7 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (7.0s)
+  ✓   8 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (8.8s)
+  ✓   9 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (7.4s)
+  ✓  10 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (8.0s)
+  ✓  11 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (7.4s)
+  ✓  12 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (6.9s)
+(node:85594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (11.0s)
+  ✓  14 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (15.3s)
+  ✓  15 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (12.6s)
+  ✓  16 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (13.2s)
+  ✓  17 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (12.1s)
+  ✓  18 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (11.6s)
+  ✓  19 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (9.7s)
+  ✓  20 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (10.7s)
+  ✓  21 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (8.1s)
+  ✓  22 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (8.9s)
+  ✓  23 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (11.2s)
+  ✓  24 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (19.6s)
+(node:93897) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  25 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (8.4s)
+  ✓  26 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (9.3s)
+  ✓  27 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (8.7s)
+  ✓  28 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (10.8s)
+  ✓  29 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (6.1s)
+  ✓  30 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (6.0s)
+  ✓  31 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (5.4s)
+  ✓  32 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (8.1s)
+  ✓  33 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:41:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (7.9s)
+  ✓  34 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:51:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (11.4s)
+  ✓  35 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:62:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (8.0s)
+  ✓  36 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:71:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (6.3s)
+
+  36 passed (5.8m)

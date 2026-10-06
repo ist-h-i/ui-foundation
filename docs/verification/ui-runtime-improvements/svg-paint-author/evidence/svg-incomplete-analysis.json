@@ -1,0 +1,221 @@
+{
+  "historicalStatus": "196 incomplete, retained as incomplete",
+  "historical": {
+    "source": "docs/verification/ui-library-final-catalog/specialist-independent-review/final-foundation-review/evidence/current-final-complete-native32.json",
+    "sourceSha256": "6c0b7d4f505f7d548bebc80c1bb185d95c182719cb14ba80d9b868117bc4844d",
+    "rows": [
+      {
+        "profile": "guided",
+        "width": 1280,
+        "direction": "ltr",
+        "nodes": 26,
+        "keys": {
+          "imgNode": 22,
+          "bgOverlap": 4
+        }
+      },
+      {
+        "profile": "guided",
+        "width": 1280,
+        "direction": "rtl",
+        "nodes": 26,
+        "keys": {
+          "imgNode": 22,
+          "bgOverlap": 4
+        }
+      },
+      {
+        "profile": "guided",
+        "width": 320,
+        "direction": "ltr",
+        "nodes": 23,
+        "keys": {
+          "imgNode": 18,
+          "bgOverlap": 5
+        }
+      },
+      {
+        "profile": "guided",
+        "width": 320,
+        "direction": "rtl",
+        "nodes": 23,
+        "keys": {
+          "imgNode": 18,
+          "bgOverlap": 5
+        }
+      },
+      {
+        "profile": "dense",
+        "width": 1280,
+        "direction": "ltr",
+        "nodes": 26,
+        "keys": {
+          "imgNode": 22,
+          "bgOverlap": 4
+        }
+      },
+      {
+        "profile": "dense",
+        "width": 1280,
+        "direction": "rtl",
+        "nodes": 26,
+        "keys": {
+          "imgNode": 22,
+          "bgOverlap": 4
+        }
+      },
+      {
+        "profile": "dense",
+        "width": 320,
+        "direction": "ltr",
+        "nodes": 23,
+        "keys": {
+          "imgNode": 18,
+          "bgOverlap": 5
+        }
+      },
+      {
+        "profile": "dense",
+        "width": 320,
+        "direction": "rtl",
+        "nodes": 23,
+        "keys": {
+          "imgNode": 18,
+          "bgOverlap": 5
+        }
+      }
+    ],
+    "totalNodes": 196,
+    "originalStatus": "incomplete remains unchanged"
+  },
+  "finalStatus": "Separate fresh 212 SVG color-contrast incomplete, retained as incomplete",
+  "axeScopes": [
+    {
+      "profile": "guided",
+      "width": 1280,
+      "direction": "ltr",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 4
+      },
+      "svgLabels": 26,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "guided",
+      "width": 1280,
+      "direction": "rtl",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 4
+      },
+      "svgLabels": 26,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "guided",
+      "width": 320,
+      "direction": "ltr",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 5
+      },
+      "svgLabels": 27,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "guided",
+      "width": 320,
+      "direction": "rtl",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 5
+      },
+      "svgLabels": 27,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "dense",
+      "width": 1280,
+      "direction": "ltr",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 4
+      },
+      "svgLabels": 26,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "dense",
+      "width": 1280,
+      "direction": "rtl",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 4
+      },
+      "svgLabels": 26,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "dense",
+      "width": 320,
+      "direction": "ltr",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 5
+      },
+      "svgLabels": 27,
+      "ariaSnapshotRecorded": true
+    },
+    {
+      "profile": "dense",
+      "width": 320,
+      "direction": "rtl",
+      "violations": 0,
+      "incomplete": {
+        "color-contrast/imgNode": 22,
+        "color-contrast/bgOverlap": 5
+      },
+      "svgLabels": 27,
+      "ariaSnapshotRecorded": true
+    }
+  ],
+  "finalMessageKeys": {
+    "color-contrast/imgNode": 176,
+    "color-contrast/bgOverlap": 36
+  },
+  "dependencySources": [
+    {
+      "path": "node_modules/axe-core/axe.js",
+      "bytes": 1305279,
+      "sha256": "138a93a4ce7b7c6c08ed84144e45dcd8cc36d2d4ff8ed673619faf0406906d88",
+      "diagnosticLines": [
+        18165,
+        18166,
+        18169,
+        24824
+      ]
+    },
+    {
+      "path": "node_modules/echarts/lib/chart/gauge/GaugeView.js",
+      "bytes": 23197,
+      "sha256": "67515c8d702935c96da0c5b4fbc95f3e0f863b860613846b35adec05397328db",
+      "diagnosticLines": [
+        190,
+        207,
+        211,
+        216,
+        217,
+        272
+      ]
+    }
+  ],
+  "causalScope": "axe graphic-node/background-resolution limitation; actual per-glyph contrast is a separate independent check; no rules disabled"
+}

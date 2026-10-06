@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "name": "check",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "src/cli.ts",
+        "check",
+        "--config",
+        "examples/ui.config.example.yaml"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "aot",
+      "command": [
+        "node",
+        "node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js",
+        "-p",
+        "tsconfig.consumer.json"
+      ],
+      "exit": 0
+    }
+  ],
+  "production": true,
+  "ngDevMode": false,
+  "include": [
+    "consumer.ts"
+  ],
+  "publicBarrelOnly": true,
+  "consumerSha": "25ed38a8fedf2ec9aef6b4aa4c15894a6c4561cc1c496b137b484cfd64bb8edc",
+  "templates": {
+    "chart": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+    "options": "21f8de0c14a952624fcb5cec676b4064ac6a38dfa3750041ec14be1fb64464a8"
+  },
+  "generatedManifest": "565e5f0e2da59b820adfad9fe171b6f6fbe03e80edb0bd80e3f9d45392a6fcf0",
+  "outputs": 74
+}

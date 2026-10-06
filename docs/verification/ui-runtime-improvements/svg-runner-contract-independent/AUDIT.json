@@ -1,0 +1,173 @@
+{
+  "createdAtUtc": "2026-10-06T13:51:24.910348+00:00",
+  "verdict": "APPROVE_SCOPED_RUNNER_FALSE_SUCCESS_REPAIR_2F12_SOURCE_PROVENANCE",
+  "wholePrApproval": false,
+  "sourceCheckpoint": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "runnerBeforeSha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919",
+  "runnerAfterSha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+  "rootLiveAfterMatchesCandidate": true,
+  "ownActualExit": 0,
+  "scope": "Read-only runner diff and recorded evidence provenance audit; no repeat native browser/build execution",
+  "oldCounterexample": {
+    "actualHelperExit": 0,
+    "nativeFrames": 0,
+    "nativeJsonCreated": false,
+    "permanentRunnerWithHostileEnvExecutedByThisCritic": false
+  },
+  "otherIndependentContractControls": {
+    "recordedControls": 11,
+    "rejectedCorruptRecords": 10,
+    "acceptedRealRecordedBasis": 1,
+    "ownExecution": false,
+    "nativeClaim": false
+  },
+  "reviewedAuthorAfterNative": {
+    "cases": 34,
+    "exactExpectedSet": true,
+    "labels": 1226,
+    "rgbaDifferences": 0,
+    "runtimeErrors": 0,
+    "minimumContrast": 14.645016318974449,
+    "sourceInputDifferentFromRoot37": [
+      {
+        "path": "src/cli.ts",
+        "authorAfterSha256": "fddc768cb390c4d7aff6ca5f84487c29d0d5a3149af79693c01e08220153efcc",
+        "root37Sha256": "1f05e18598fd4163488c3afab82a115599f83457fdbcaede9dfcf732531521ed"
+      },
+      {
+        "path": "src/sync.ts",
+        "authorAfterSha256": "c538950d2f972dcb96ab99c6a3d949e66f59f49df0bf4ac7f10520f0251411ab",
+        "root37Sha256": "1e71573182356dc5d22ab4e7e8dbc3acdb33700b9db927e7f4864ad74100d89e"
+      },
+      {
+        "path": "templates/angular/diagram.ts",
+        "authorAfterSha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+        "root37Sha256": "914840dc04ef11bec4071d02a511917fc5e859a7dbb044063d8cb66a823c2817"
+      },
+      {
+        "path": "templates/angular/menu.ts",
+        "authorAfterSha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+        "root37Sha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8"
+      },
+      {
+        "path": "templates/angular/specialist-model.ts",
+        "authorAfterSha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+        "root37Sha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+      },
+      {
+        "path": "skills/ui-development/SKILL.md",
+        "authorAfterSha256": "6d50a51baa2868d03c202c2f1417beca6cc1b168da384138a4c90977d3d8e142",
+        "root37Sha256": "270d215cabeaa01a748e22383c1edb952652413a53a5bac3ede75f110db48422"
+      },
+      {
+        "path": "skills/ui-development/references/ui-library-runtime.md",
+        "authorAfterSha256": "d0758a4decb31f7010192a8c87f090b09f82d27342865837d65b84b5bb1c4fd5",
+        "root37Sha256": "b776c2f53c9e78c721251aaa231d1680dc4346bde24b1cfaed8000c671070175"
+      },
+      {
+        "path": "package.json",
+        "authorAfterSha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+        "root37Sha256": "52ddccf0d4efd3b8ccc6a43f65cd025807ba5e66db6fec10b06da1930e15a5a5"
+      }
+    ],
+    "chartChecks": [
+      {
+        "path": "templates/angular/chart-options.ts",
+        "bytes": 14212,
+        "sha256": "857eab2fba50efe028140d1907e048f0b29762c97feafbe064c9f6798a461d1b"
+      },
+      {
+        "path": "templates/angular/chart.ts",
+        "bytes": 12238,
+        "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179"
+      }
+    ],
+    "all6StepsExit0": true,
+    "serverClosed": true,
+    "ownExecution": false
+  },
+  "unchangedFixtureFiles": [
+    {
+      "path": "tests/consumer-svg-paint/build-consumer.mjs",
+      "sha256": "82a66fa08e160a98d26ba3166a70c05472e02bd568b2e4618415d5ff9b825297",
+      "sameAs37": true
+    },
+    {
+      "path": "tests/consumer-svg-paint/consumer.ts",
+      "sha256": "fa8f2f8fa390627b0aee459feecdd70e8c3704102b289ce3fcafeb0ef19a0856",
+      "sameAs37": true
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/svg-paint-audit.mjs",
+      "sha256": "b9fd931069309ae77882d59359c9648c1e236e88a10adb369100ab969efe256a",
+      "sameAs37": true
+    },
+    {
+      "path": "tests/consumer-svg-paint/harness/verify-paint.mjs",
+      "sha256": "1c497fb383052b4a554dbe2c7c59195c2ece6a9a91cf9060705aab4cb3428f3e",
+      "sameAs37": true
+    },
+    {
+      "path": "tests/consumer-svg-paint/serve-consumer.mjs",
+      "sha256": "5ec36883faf4901b70767e85f64fa1328ff5e2bef1d90039408fc6c78ef285f2",
+      "sameAs37": true
+    },
+    {
+      "path": "tests/consumer-svg-paint/tsconfig.consumer.json",
+      "sha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf",
+      "sameAs37": true
+    }
+  ],
+  "limits": [
+    "Whole PR and final source/doc head remain pending.",
+    "Author hostile-environment34 has a base9f source stage; it is not relabeled as final integrated root input.",
+    "Historical helper zero-case exit0 is preserved as a false-success counterexample, not a product pass.",
+    "Axe incomplete and prior paint counterexamples are not retagged.",
+    "No new native browser or server was started in this audit."
+  ],
+  "blockersInScopedRunnerRepair": [],
+  "inputs": [
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/SOURCE-MANIFEST.json",
+      "copy": "reviewed-artifacts/runner-scope-after/SOURCE-MANIFEST.json",
+      "bytes": 2158,
+      "sha256": "7e5024b980e829c22fb8c807ab3b3a830d4dc7e0db5f486f211c9eade009b2c9"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/zero-frame-guard-probe/execution.json",
+      "copy": "reviewed-artifacts/zero-frame-guard-probe/execution.json",
+      "bytes": 555,
+      "sha256": "3d032e4c712600e247cfc6a2f7d59102ac7b4fd6da07f4e438b27685e199b099"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/independent-contract-results.json",
+      "copy": "reviewed-artifacts/runner-scope-after/independent-contract-results.json",
+      "bytes": 3990,
+      "sha256": "540cdbd59e868a90a652e77fedbbd60cfb086720290edd715160b2e49551c679"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/author-after-hostile-execution.json",
+      "copy": "reviewed-artifacts/runner-scope-after/author-after-hostile-execution.json",
+      "bytes": 2449,
+      "sha256": "d7f8fd2f77b0395599bde6bc1eb1412c7206cbab8b1ead879459dfb9d11ac2e0"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/author-after-hostile-candidate-paint-native.json",
+      "copy": "reviewed-artifacts/runner-scope-after/author-after-hostile-candidate-paint-native.json",
+      "bytes": 2481928,
+      "sha256": "38d162c51d655b78635efb655db58045737bab1b9a69f5a3cb2f398870125a9c"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/author-after-hostile-source-input.json",
+      "copy": "reviewed-artifacts/runner-scope-after/author-after-hostile-source-input.json",
+      "bytes": 30796,
+      "sha256": "bc2504297d74a6cfa9a9738ecd71555dcafdf5765fa4877b2e34cdd01cff1d65"
+    },
+    {
+      "origin": "/tmp/ui-foundation-tree-escape-final-review/independent-chart-menu-20261006-124128/integrated-37ecf88/chart/evidence/runner-scope-after/author-after-hostile-build-results.json",
+      "copy": "reviewed-artifacts/runner-scope-after/author-after-hostile-build-results.json",
+      "bytes": 952,
+      "sha256": "76d810d94cda9ee2968addd258c10a90f96c3e9a6475292c991580d1d1da2a51"
+    }
+  ]
+}

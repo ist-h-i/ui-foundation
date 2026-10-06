@@ -1,0 +1,1064 @@
+[
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "button[data-menu-back=\"new\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "24.0pt (32px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__header > .ui-dialog__title[_ngcontent-ng-c994431624=\"\"] > h2"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "42.0pt (56px)",
+          "fontWeight": "bold",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__body[_ngcontent-ng-c994431624=\"\"] > p"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "button[data-menu-back=\"new\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "p[dir=\"auto\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      ".ui-action[_ngcontent-ng-c1651151827=\"\"][data-variant=\"secondary\"]:nth-child(1) > .ui-action-label"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "24.0pt (32px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "button[data-menu-back=\"new\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "24.0pt (32px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__header > .ui-dialog__title[_ngcontent-ng-c994431624=\"\"] > h2"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "42.0pt (56px)",
+          "fontWeight": "bold",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__body[_ngcontent-ng-c994431624=\"\"] > p"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "button[data-menu-back=\"new\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-file"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-file-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-file-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#recursive-menu-item-new"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"recursive-menu-item-new-children\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"recursive-menu-item-new-children\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-template > .ui-menu__label[_ngcontent-ng-c3533522288=\"\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it partially overlaps other elements",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "24.0pt (32px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscuring",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-hint > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-compact > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "#recursive-menu-item-detail > span[_ngcontent-ng-c3533522288=\"\"][aria-hidden=\"true\"]"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element content contains only non-text characters",
+        "data": {
+          "messageKey": "nonBmp"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "aria-valid-attr-value",
+    "impact": "critical",
+    "target": [
+      "#dialog-menu-trigger"
+    ],
+    "reasons": [
+      {
+        "id": "aria-valid-attr-value",
+        "message": "Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup: aria-controls=\"dialog-menu\"",
+        "data": {
+          "messageKey": "controlsWithinPopup",
+          "needsReview": "aria-controls=\"dialog-menu\""
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__header > .ui-dialog__title[_ngcontent-ng-c994431624=\"\"] > h2"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "42.0pt (56px)",
+          "fontWeight": "bold",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rule": "color-contrast",
+    "impact": "serious",
+    "target": [
+      "dialog[label=\"申請の編集\"] > .ui-dialog__body[_ngcontent-ng-c994431624=\"\"] > p"
+    ],
+    "reasons": [
+      {
+        "id": "color-contrast",
+        "message": "Element's background color could not be determined because it's partially obscured by another element",
+        "data": {
+          "contrastRatio": 0,
+          "fontSize": "27.0pt (36px)",
+          "fontWeight": "normal",
+          "messageKey": "elmPartiallyObscured",
+          "expectedContrastRatio": "3:1"
+        }
+      }
+    ]
+  }
+]

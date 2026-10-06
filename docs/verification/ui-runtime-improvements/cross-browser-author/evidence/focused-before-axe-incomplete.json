@@ -1,0 +1,168 @@
+[
+  {
+    "engine": "chromium",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 4
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+    "rules": [
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 2
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 4
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "test": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+    "rules": [
+      {
+        "id": "aria-valid-attr-value",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  }
+]

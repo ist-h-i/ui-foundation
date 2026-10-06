@@ -1,0 +1,111 @@
+
+> ui-foundation@0.0.0 build
+> npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+≈ tailwindcss v4.3.0
+
+Done in 89ms
+
+Running 36 tests using 1 worker
+
+(node:5629) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (3.7s)
+  ✓   2 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (4.0s)
+  ✓   3 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (5.0s)
+  ✓   4 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (4.9s)
+  ✓   5 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (4.4s)
+  ✓   6 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (4.5s)
+  ✓   7 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (5.2s)
+  ✓   8 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (5.7s)
+  ✓   9 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (4.5s)
+  ✓  10 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (4.6s)
+  ✓  11 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (4.6s)
+  ✓  12 [chromium] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (4.8s)
+(node:5954) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (6.4s)
+  ✓  14 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (6.5s)
+  ✓  15 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (5.0s)
+  ✓  16 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (5.1s)
+  ✓  17 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (6.0s)
+  ✘  18 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (10.1s)
+(node:6080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (4.7s)
+  ✓  20 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (4.5s)
+  ✓  21 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (7.6s)
+  ✓  22 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (8.0s)
+  ✓  23 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (5.9s)
+  ✓  24 [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (8.5s)
+(node:6349) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  25 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card guided: collapse/body visibility, profile and input identity (8.6s)
+  ✓  26 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus (5.7s)
+  ✓  27 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange guided: invalid draft, locale/profile, keyboard calendar and focus (8.5s)
+  ✓  28 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer guided: pending/reset keeps input and CodeMirror native editing (11.3s)
+  ✓  29 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog guided: busy/veto, nested RTL Menu, retained input and close return (8.0s)
+  ✓  30 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return (6.8s)
+  ✓  31 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:21:2 › Card dense: collapse/body visibility, profile and input identity (7.6s)
+  ✓  32 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:28:2 › Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus (10.0s)
+  ✓  33 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:36:2 › DateRange dense: invalid draft, locale/profile, keyboard calendar and focus (11.0s)
+  ✓  34 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:46:2 › Composer dense: pending/reset keeps input and CodeMirror native editing (16.2s)
+  ✓  35 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:57:2 › Dialog dense: busy/veto, nested RTL Menu, retained input and close return (5.9s)
+  ✓  36 [webkit] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return (4.9s)
+
+
+  1) [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return 
+
+    Error: expect(locator).toBeHidden() failed
+
+    Locator:  locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar')
+    Expected: hidden
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeHidden" locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar') with timeout 5000ms
+      - waiting for locator('ui-snackbar').filter({ hasText: '申請を保存しました' }).locator('.ui-snackbar')
+        14 × locator resolved to <div class="ui-snackbar" data-severity="success" _ngcontent-ng-c1651151827="" data-position="bottom-center">…</div>
+           - unexpected value "visible"
+
+
+      73 |   await page.getByLabel('通知を自動消去',{exact:true}).check();await page.locator('#notice-seconds').fill('5');await opener.focus();await opener.press('Enter');await page.clock.runFor(20);await page.clock.runFor(2000);await notice.hover();await notice.getByRole('button',{name:'内容を確認',exact:true}).focus();await page.clock.runFor(10000);await page.mouse.move(0,0);await page.clock.runFor(10000);await expect(notice).toBeVisible();await opener.focus();await expect(opener).toBeFocused();expect(await notice.evaluate(surface=>surface.matches(':hover'))).toBe(false);
+      74 |   // Flush effects scheduled by the native focusout at the same fake timestamp; no elapsed-time allowance is added.
+    > 75 |   await page.clock.runFor(0);await info.attach('notification-resume',{body:JSON.stringify(await notice.evaluate(surface=>({virtualNow:performance.now(),hover:surface.matches(':hover'),focusInNotice:surface.contains(document.activeElement),visible:!(surface as HTMLElement).hidden}))),contentType:'application/json'});await page.clock.runFor(2900);await expect(notice).toBeVisible();await page.clock.runFor(100);await expect(notice).toBeHidden();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+      76 |  });
+      77 | }
+      78 |
+        at /private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser/runtime-cross-browser.spec.ts:75:433
+
+    attachment #3: aria-target (text/plain) ────────────────────────────────────────────────────────
+    - status: 申請を保存しました
+    - button "内容を確認"
+    - 'button "通知を閉じる: 申請を保存しました"': 閉じる
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../tmp/ui-foundation-cross-browser-stage/evidence/focused-after/artifacts/runtime-cross-browser-Snac-93ec1-ause-and-owned-focus-return-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [firefox] › tests/cross-browser/runtime-cross-browser.spec.ts:66:2 › Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return 
+  35 passed (4.1m)

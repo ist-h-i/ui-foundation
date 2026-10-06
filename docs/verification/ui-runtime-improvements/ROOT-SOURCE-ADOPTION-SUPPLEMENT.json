@@ -1,0 +1,80 @@
+{
+  "createdUtc": "2026-10-06T13:56:32.042111+00:00",
+  "baseSourceCheckpoint": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "immutableEarlierLedger": "ROOT-SOURCE-ADOPTION.json",
+  "files": [
+    {
+      "path": "templates/angular/menu.ts",
+      "beforeSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+      "afterSha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "bytes": 28668
+    },
+    {
+      "path": "tests/ui/navigation-catalog.spec.ts",
+      "beforeSha256": "badcb31c6f7670e4b2ecb2e908a51adc78b10dbf4328710619464ea65939c040",
+      "afterSha256": "3bd18bff61e2cf289f24b0fa8a7d8db222011cf49a3ab92ba7d75a8f3aa32010",
+      "bytes": 47345
+    },
+    {
+      "path": "tests/fixture-app/main.ts",
+      "beforeSha256": "5cfc812c86c7707001a148117cd5b36df3945d7e689504e06f6921a39be15587",
+      "afterSha256": "17f790771ce470ca910e010456828f7c45af317000427faa800451276abc24c7",
+      "bytes": 3550
+    },
+    {
+      "path": "tests/fixture-app/menu-closed-roving-catalog.ts",
+      "beforeSha256": null,
+      "afterSha256": "4971cf896c80f1c4085f714121a54a97c5564ee0711b29be2687871c287c0958",
+      "bytes": 2157
+    },
+    {
+      "path": "scripts/test-svg-paint.mjs",
+      "beforeSha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919",
+      "afterSha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+      "bytes": 7672
+    },
+    {
+      "path": "tsconfig.ui-runtime.json",
+      "beforeSha256": "208e60ee6a606a9b6f4781117a22105a78c2f231bdc43cda98854acfa8c2d666",
+      "afterSha256": "e1115b6be65a684f90f573098e7df03a1922b574424b18195940e195ce611e0f",
+      "bytes": 306
+    },
+    {
+      "path": "README.md",
+      "beforeSha256": "3b4a23727335f76a2e1bfc4f2079ff9c4343559494bc8554b78330b2f7922f75",
+      "afterSha256": "f5eded1052e18bc2bdccbf5b34b2780fdabc6334e1d72232e905f6878dc99758",
+      "bytes": 9063
+    },
+    {
+      "path": ".ui/generated/angular/menu.ts",
+      "beforeSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+      "afterSha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "bytes": 28668
+    },
+    {
+      "path": ".ui/generated/manifest.json",
+      "beforeSha256": "4f5bdb560cb60e34cef229d5e70bf49a9049cc5c8e2c77a94a7d3e591014fb47",
+      "afterSha256": "cbc43910588a8c96fe05dc6ca1245c21ca90674dc9a879d642f903788b928dc5",
+      "bytes": 20784
+    }
+  ],
+  "menuScope": "Closed descendants and Back buttons get tabindex -1; original forward/backward assertions preserved, public controlled close with retained Back DOM added",
+  "svgRunnerScope": "Clear inherited selection/url/evidence controls; mandatory 34 unique successful native rows and six real steps. Consumer/helper unchanged",
+  "normalGeneration": {
+    "command": "npm run ui:sync",
+    "actualExit": 0,
+    "result": "Generated UI foundation is current.",
+    "generatedManuallyEdited": false
+  },
+  "additionalRootStrictScope": {
+    "config": "tsconfig.ui-runtime.json",
+    "entries": [
+      "tests/ui/tree-axe-contract.spec.ts",
+      "tests/ui/diagram-validation.spec.ts",
+      "tests/ui/diagram-controlled-validation.spec.ts",
+      "tests/ui/navigation-catalog.spec.ts"
+    ],
+    "allUiStrictClaim": false
+  },
+  "verificationState": "Final root affected regression pending; author and scoped independent evidence are not final whole PR approval"
+}

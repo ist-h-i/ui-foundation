@@ -1,0 +1,34 @@
+{
+  "baseCommit": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "scope": "One native roving item per open menu level, including hover and back item; opened trigger/context Tab uses existing composite exit; no container tab stop or Axe exclusion",
+  "path": "templates/angular/menu.ts",
+  "beforeSha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+  "afterSha256": "b5e186f9d573867b9a2353269a24597064c9a06ea85e484041e776a38faef2c8",
+  "guards": [
+    {
+      "before": "tabindex=\"-1\" [attr.aria-disabled]=\"item.disabled?",
+      "after": "[attr.tabindex]=\"tabIndex(item.id,parent,depth)\" (focus)=\"rememberFocus(item.id)\" [attr.aria-disabled]=\"item.disabled?",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "role=\"menuitem\" tabindex=\"-1\" [attr.data-menu-back]",
+      "after": "role=\"menuitem\" [attr.tabindex]=\"focusedBack()===item.id?0:-1\" (focus)=\"rememberFocus(item.id,true)\" [attr.data-menu-back]",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "    protected readonly expanded = signal<readonly string[]>([]);",
+      "after": "    protected readonly expanded = signal<readonly string[]>([]);\n    protected readonly focusedItem = signal<string | null>(null);\n    protected readonly focusedBack = signal<string | null>(null);\n    protected rememberFocus(id: string, back = false): void {\n        this.focusedItem.set(back ? null : id);\n        this.focusedBack.set(back ? id : null);\n    }\n    protected tabIndex(id: string, parent: MenuItem | null, depth: number): 0 | -1 {\n        if (this.focusedBack() === parent?.id) return -1;\n        const commands = menuCommands(parent?.children ?? this.nodes());\n        const selected = commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : this.expanded()[depth] ?? commands[0]?.id;\n        return selected === id ? 0 : -1;\n    }",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {",
+      "after": "        if (event.key === 'Tab' && this.opened()) {\n            this.key(event, null, null, 0);\n            return;\n        }\n        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {",
+      "expectedOccurrences": 1
+    },
+    {
+      "before": "    protected contextKey(event: KeyboardEvent): void {",
+      "after": "    protected contextKey(event: KeyboardEvent): void {\n        if (event.key === 'Tab' && this.opened()) {\n            this.key(event, null, null, 0);\n            return;\n        }",
+      "expectedOccurrences": 1
+    }
+  ]
+}

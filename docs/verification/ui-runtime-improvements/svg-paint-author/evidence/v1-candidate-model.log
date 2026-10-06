@@ -1,0 +1,16 @@
+✔ chart numeric view format reaches axes and gauge without converting application points or labels (57.487458ms)
+✔ chart time formatter requires explicit zone and uses app date options rather than host timezone (11.180834ms)
+✔ each chart axis keeps its own numeric or time presentation (1.515542ms)
+✔ heatmap category coordinates preserve negative values, sparse numeric positions and explicit missing data (33.441084ms)
+✔ heatmap rejects explicit value and time axes while other chart kinds retain their valid numeric axes (1.264125ms)
+✔ multiple gauge points have independent positions and preserve original application selection keys (1.383791ms)
+✔ gauge layout reserves separate dial, title and full value rows as text grows and columns collapse (0.425209ms)
+✔ responsive gauges keep zero, long names, full large formatted values, missing rows and application keys (1.053667ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 506.061875

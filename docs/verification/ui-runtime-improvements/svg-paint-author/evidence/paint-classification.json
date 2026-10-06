@@ -1,0 +1,5465 @@
+{
+  "method": "Independent serialized exact native SVG controls; same Chromium renderer, root dimensions and original transforms; exact causal removal of individual later stroke paints. Original strict alpha>=250/RGBdelta>24 invariant retained.",
+  "rows": [
+    {
+      "profile": "guided",
+      "result": {
+        "width": 479,
+        "height": 1862,
+        "labels": [
+          {
+            "index": 0,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 73,
+              "y": 341,
+              "right": 138,
+              "bottom": 406
+            },
+            "inkPixels": 148,
+            "solidPixels": 63,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 1,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 25,
+              "y": 267,
+              "right": 94,
+              "bottom": 329
+            },
+            "inkPixels": 301,
+            "solidPixels": 141,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 9,
+                "domIndex": 12,
+                "tag": "path",
+                "attributes": {
+                  "d": "M48.0635 301.8054L53.7698 299.9513",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 46,
+                  "y": 297,
+                  "right": 56,
+                  "bottom": 304
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 48,
+                "y": 301,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  97,
+                  110,
+                  129,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 49,
+                "y": 301,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  97,
+                  110,
+                  129,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 50,
+                "y": 301,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  76,
+                  89,
+                  108,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 17,
+              "y": 182,
+              "right": 88,
+              "bottom": 238
+            },
+            "inkPixels": 389,
+            "solidPixels": 202,
+            "strictMismatchPixels": 7,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 14,
+                "domIndex": 18,
+                "tag": "path",
+                "attributes": {
+                  "d": "M40.6869 208.0771L46.6131 209.0157",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 7,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 38,
+                  "y": 206,
+                  "right": 49,
+                  "bottom": 212
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 42,
+                "y": 208,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  107,
+                  120,
+                  138,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 43,
+                "y": 208,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  117,
+                  130,
+                  148,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 44,
+                "y": 208,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  96,
+                  109,
+                  127,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 45,
+                "y": 208,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  81,
+                  94,
+                  113,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 46,
+                "y": 208,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  74,
+                  87,
+                  106,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 45,
+                "y": 209,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  59,
+                  72,
+                  92,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 46,
+                "y": 209,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  73,
+                  86,
+                  105,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 46,
+              "y": 90,
+              "right": 127,
+              "bottom": 167
+            },
+            "inkPixels": 402,
+            "solidPixels": 196,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 19,
+                "domIndex": 24,
+                "tag": "path",
+                "attributes": {
+                  "d": "M76.6661 121.2157L81.5202 124.7424",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 74,
+                  "y": 119,
+                  "right": 84,
+                  "bottom": 127
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 80,
+                "y": 123,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 80,
+                "y": 124,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 81,
+                "y": 124,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  81,
+                  94,
+                  113,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 119,
+              "y": 33,
+              "right": 188,
+              "bottom": 109
+            },
+            "inkPixels": 383,
+            "solidPixels": 185,
+            "strictMismatchPixels": 6,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 24,
+                "domIndex": 30,
+                "tag": "path",
+                "attributes": {
+                  "d": "M148.158 60.1558L150.882 65.5018",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 6,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 146,
+                  "y": 58,
+                  "right": 153,
+                  "bottom": 68
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 148,
+                "y": 61,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  83,
+                  96,
+                  115,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 61,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  66,
+                  79,
+                  98,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 62,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  99,
+                  112,
+                  130,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 63,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  86,
+                  99,
+                  117,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 150,
+                "y": 63,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  67,
+                  80,
+                  100,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 150,
+                "y": 64,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  100,
+                  113,
+                  132,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 216,
+              "y": 17,
+              "right": 264,
+              "bottom": 84
+            },
+            "inkPixels": 402,
+            "solidPixels": 223,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 29,
+                "domIndex": 36,
+                "tag": "path",
+                "attributes": {
+                  "d": "M239.5784 38.2077L239.5784 44.2077",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 237,
+                  "y": 36,
+                  "right": 242,
+                  "bottom": 47
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 239,
+                "y": 41,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 42,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 43,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 290,
+              "y": 32,
+              "right": 361,
+              "bottom": 110
+            },
+            "inkPixels": 340,
+            "solidPixels": 163,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 7,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 353,
+              "y": 90,
+              "right": 433,
+              "bottom": 166
+            },
+            "inkPixels": 391,
+            "solidPixels": 185,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 8,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 390,
+              "y": 182,
+              "right": 464,
+              "bottom": 239
+            },
+            "inkPixels": 413,
+            "solidPixels": 198,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 9,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 381,
+              "y": 266,
+              "right": 458,
+              "bottom": 330
+            },
+            "inkPixels": 391,
+            "solidPixels": 201,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 10,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 333,
+              "y": 333,
+              "right": 414,
+              "bottom": 413
+            },
+            "inkPixels": 291,
+            "solidPixels": 128,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 11,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 73,
+              "y": 961,
+              "right": 138,
+              "bottom": 1027
+            },
+            "inkPixels": 150,
+            "solidPixels": 63,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 12,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 25,
+              "y": 888,
+              "right": 94,
+              "bottom": 950
+            },
+            "inkPixels": 298,
+            "solidPixels": 144,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 64,
+                "domIndex": 78,
+                "tag": "path",
+                "attributes": {
+                  "d": "M48.0635 922.3699L53.7698 920.5158",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 46,
+                  "y": 918,
+                  "right": 56,
+                  "bottom": 925
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 48,
+                "y": 921,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  56,
+                  69,
+                  88,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 49,
+                "y": 921,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  82,
+                  95,
+                  114,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 50,
+                "y": 921,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 48,
+                "y": 922,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  85,
+                  98,
+                  117,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 49,
+                "y": 922,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  67,
+                  80,
+                  99,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 13,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 18,
+              "y": 802,
+              "right": 88,
+              "bottom": 859
+            },
+            "inkPixels": 379,
+            "solidPixels": 192,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 69,
+                "domIndex": 84,
+                "tag": "path",
+                "attributes": {
+                  "d": "M40.6869 828.6417L46.6131 829.5803",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 38,
+                  "y": 826,
+                  "right": 49,
+                  "bottom": 832
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 42,
+                "y": 829,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  68,
+                  81,
+                  100,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 43,
+                "y": 829,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 44,
+                "y": 829,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  91,
+                  104,
+                  123,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 45,
+                "y": 829,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  110,
+                  123,
+                  142,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 46,
+                "y": 829,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  79,
+                  92,
+                  111,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 14,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 46,
+              "y": 710,
+              "right": 127,
+              "bottom": 787
+            },
+            "inkPixels": 401,
+            "solidPixels": 191,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 74,
+                "domIndex": 90,
+                "tag": "path",
+                "attributes": {
+                  "d": "M76.6661 741.7802L81.5202 745.307",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 74,
+                  "y": 739,
+                  "right": 84,
+                  "bottom": 748
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 79,
+                "y": 744,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  70,
+                  83,
+                  102,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 80,
+                "y": 744,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  114,
+                  127,
+                  145,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 81,
+                "y": 744,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  61,
+                  74,
+                  93,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 81,
+                "y": 745,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  65,
+                  78,
+                  97,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 15,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 119,
+              "y": 654,
+              "right": 188,
+              "bottom": 729
+            },
+            "inkPixels": 384,
+            "solidPixels": 186,
+            "strictMismatchPixels": 6,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 79,
+                "domIndex": 96,
+                "tag": "path",
+                "attributes": {
+                  "d": "M148.158 680.7204L150.882 686.0664",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 6,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 146,
+                  "y": 678,
+                  "right": 153,
+                  "bottom": 689
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 148,
+                "y": 681,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 148,
+                "y": 682,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  73,
+                  86,
+                  105,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 682,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  82,
+                  95,
+                  114,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 683,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  113,
+                  126,
+                  144,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 684,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  72,
+                  85,
+                  104,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 150,
+                "y": 684,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  82,
+                  95,
+                  114,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 16,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 216,
+              "y": 637,
+              "right": 264,
+              "bottom": 704
+            },
+            "inkPixels": 408,
+            "solidPixels": 203,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 84,
+                "domIndex": 102,
+                "tag": "path",
+                "attributes": {
+                  "d": "M239.5784 658.7723L239.5784 664.7723",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 237,
+                  "y": 656,
+                  "right": 242,
+                  "bottom": 667
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 239,
+                "y": 662,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 663,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 664,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  92,
+                  105,
+                  124,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 17,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 290,
+              "y": 652,
+              "right": 361,
+              "bottom": 731
+            },
+            "inkPixels": 335,
+            "solidPixels": 164,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 18,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 353,
+              "y": 711,
+              "right": 433,
+              "bottom": 787
+            },
+            "inkPixels": 388,
+            "solidPixels": 188,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 19,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 390,
+              "y": 802,
+              "right": 463,
+              "bottom": 860
+            },
+            "inkPixels": 408,
+            "solidPixels": 204,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 20,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 381,
+              "y": 886,
+              "right": 458,
+              "bottom": 951
+            },
+            "inkPixels": 389,
+            "solidPixels": 196,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 21,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 334,
+              "y": 954,
+              "right": 414,
+              "bottom": 1034
+            },
+            "inkPixels": 290,
+            "solidPixels": 126,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 22,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 73,
+              "y": 1582,
+              "right": 138,
+              "bottom": 1647
+            },
+            "inkPixels": 145,
+            "solidPixels": 68,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 23,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 25,
+              "y": 1508,
+              "right": 94,
+              "bottom": 1570
+            },
+            "inkPixels": 299,
+            "solidPixels": 140,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 119,
+                "domIndex": 144,
+                "tag": "path",
+                "attributes": {
+                  "d": "M48.0635 1542.9345L53.7698 1541.0804",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 46,
+                  "y": 1539,
+                  "right": 56,
+                  "bottom": 1545
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 48,
+                "y": 1542,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  89,
+                  102,
+                  120,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 49,
+                "y": 1542,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  116,
+                  129,
+                  147,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 50,
+                "y": 1542,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  84,
+                  97,
+                  116,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 51,
+                "y": 1542,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  60,
+                  73,
+                  92,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 48,
+                "y": 1543,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  60,
+                  73,
+                  92,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 24,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 18,
+              "y": 1423,
+              "right": 88,
+              "bottom": 1480
+            },
+            "inkPixels": 372,
+            "solidPixels": 187,
+            "strictMismatchPixels": 6,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 124,
+                "domIndex": 150,
+                "tag": "path",
+                "attributes": {
+                  "d": "M40.6869 1449.2062L46.6131 1450.1448",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 6,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 38,
+                  "y": 1447,
+                  "right": 49,
+                  "bottom": 1453
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 44,
+                "y": 1449,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  87,
+                  100,
+                  119,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 45,
+                "y": 1449,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  75,
+                  88,
+                  107,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 46,
+                "y": 1449,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  65,
+                  78,
+                  97,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 44,
+                "y": 1450,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  57,
+                  70,
+                  89,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 45,
+                "y": 1450,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  71,
+                  84,
+                  103,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 46,
+                "y": 1450,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  75,
+                  88,
+                  107,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 25,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 45,
+              "y": 1331,
+              "right": 127,
+              "bottom": 1408
+            },
+            "inkPixels": 403,
+            "solidPixels": 200,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 129,
+                "domIndex": 156,
+                "tag": "path",
+                "attributes": {
+                  "d": "M76.6661 1362.3448L81.5202 1365.8715",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 74,
+                  "y": 1360,
+                  "right": 84,
+                  "bottom": 1368
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 80,
+                "y": 1364,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  72,
+                  85,
+                  104,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 80,
+                "y": 1365,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  83,
+                  96,
+                  114,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 81,
+                "y": 1365,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 26,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 119,
+              "y": 1274,
+              "right": 188,
+              "bottom": 1350
+            },
+            "inkPixels": 381,
+            "solidPixels": 186,
+            "strictMismatchPixels": 8,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 134,
+                "domIndex": 162,
+                "tag": "path",
+                "attributes": {
+                  "d": "M148.158 1301.2849L150.882 1306.631",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 8,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 146,
+                  "y": 1299,
+                  "right": 153,
+                  "bottom": 1309
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 148,
+                "y": 1302,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  91,
+                  104,
+                  122,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 1302,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  61,
+                  74,
+                  93,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 148,
+                "y": 1303,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  55,
+                  68,
+                  88,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 1303,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  95,
+                  108,
+                  126,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 1304,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  90,
+                  103,
+                  122,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 150,
+                "y": 1304,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  62,
+                  75,
+                  94,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 149,
+                "y": 1305,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  54,
+                  67,
+                  86,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 150,
+                "y": 1305,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  96,
+                  109,
+                  128,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 27,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 216,
+              "y": 1258,
+              "right": 264,
+              "bottom": 1325
+            },
+            "inkPixels": 397,
+            "solidPixels": 211,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 139,
+                "domIndex": 168,
+                "tag": "path",
+                "attributes": {
+                  "d": "M239.5784 1279.3368L239.5784 1285.3368",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 237,
+                  "y": 1277,
+                  "right": 242,
+                  "bottom": 1288
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 239,
+                "y": 1282,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 1283,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 1284,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 239,
+                "y": 1285,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  59,
+                  72,
+                  91,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 28,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 290,
+              "y": 1273,
+              "right": 361,
+              "bottom": 1351
+            },
+            "inkPixels": 342,
+            "solidPixels": 163,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 29,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 353,
+              "y": 1331,
+              "right": 433,
+              "bottom": 1407
+            },
+            "inkPixels": 388,
+            "solidPixels": 183,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 30,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 389,
+              "y": 1423,
+              "right": 463,
+              "bottom": 1480
+            },
+            "inkPixels": 408,
+            "solidPixels": 210,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 31,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 382,
+              "y": 1507,
+              "right": 458,
+              "bottom": 1572
+            },
+            "inkPixels": 391,
+            "solidPixels": 202,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 32,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 334,
+              "y": 1574,
+              "right": 414,
+              "bottom": 1654
+            },
+            "inkPixels": 290,
+            "solidPixels": 126,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 33,
+            "text": "Cell0",
+            "bounds": {
+              "x": 196,
+              "y": 484,
+              "right": 283,
+              "bottom": 532
+            },
+            "inkPixels": 1063,
+            "solidPixels": 582,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 34,
+            "text": "٢٫١٢",
+            "bounds": {
+              "x": 205,
+              "y": 554,
+              "right": 275,
+              "bottom": 602
+            },
+            "inkPixels": 762,
+            "solidPixels": 485,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 35,
+            "text": "Cell1",
+            "bounds": {
+              "x": 199,
+              "y": 1105,
+              "right": 280,
+              "bottom": 1153
+            },
+            "inkPixels": 909,
+            "solidPixels": 481,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 36,
+            "text": "٥٫٩٩",
+            "bounds": {
+              "x": 200,
+              "y": 1174,
+              "right": 279,
+              "bottom": 1222
+            },
+            "inkPixels": 930,
+            "solidPixels": 613,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 37,
+            "text": "Cell2",
+            "bounds": {
+              "x": 197,
+              "y": 1725,
+              "right": 282,
+              "bottom": 1773
+            },
+            "inkPixels": 1003,
+            "solidPixels": 543,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 38,
+            "text": "٩٫٥٦",
+            "bounds": {
+              "x": 201,
+              "y": 1795,
+              "right": 278,
+              "bottom": 1843
+            },
+            "inkPixels": 869,
+            "solidPixels": 571,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          }
+        ],
+        "totalSolidPixels": 8893,
+        "strictMismatchPixels": 71,
+        "noStrokesMismatchPixels": 0,
+        "allMismatchAttributableToLaterStrokes": true
+      }
+    },
+    {
+      "profile": "dense",
+      "result": {
+        "width": 409,
+        "height": 1612,
+        "labels": [
+          {
+            "index": 0,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 60,
+              "y": 290,
+              "right": 119,
+              "bottom": 349
+            },
+            "inkPixels": 126,
+            "solidPixels": 46,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 1,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 19,
+              "y": 227,
+              "right": 81,
+              "bottom": 283
+            },
+            "inkPixels": 245,
+            "solidPixels": 111,
+            "strictMismatchPixels": 1,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 9,
+                "domIndex": 12,
+                "tag": "path",
+                "attributes": {
+                  "d": "M42.3056 257.2638L46.1099 256.0277",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 1,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 40,
+                  "y": 254,
+                  "right": 49,
+                  "bottom": 260
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 42,
+                "y": 257,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  79,
+                  92,
+                  111,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 12,
+              "y": 154,
+              "right": 76,
+              "bottom": 205
+            },
+            "inkPixels": 308,
+            "solidPixels": 142,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 14,
+                "domIndex": 18,
+                "tag": "path",
+                "attributes": {
+                  "d": "M36.0566 177.8616L40.0073 178.4873",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 34,
+                  "y": 175,
+                  "right": 43,
+                  "bottom": 181
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 36,
+                "y": 177,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  77,
+                  90,
+                  109,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 37,
+                "y": 177,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  66,
+                  79,
+                  98,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 36,
+                "y": 178,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  68,
+                  81,
+                  100,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 37,
+                "y": 178,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 38,
+                "y": 178,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  91,
+                  104,
+                  122,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 37,
+              "y": 75,
+              "right": 109,
+              "bottom": 143
+            },
+            "inkPixels": 331,
+            "solidPixels": 145,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 19,
+                "domIndex": 24,
+                "tag": "path",
+                "attributes": {
+                  "d": "M66.5364 104.2767L69.7725 106.6279",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 64,
+                  "y": 102,
+                  "right": 72,
+                  "bottom": 109
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 67,
+                "y": 105,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  77,
+                  90,
+                  109,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 105,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  104,
+                  117,
+                  135,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 106,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  60,
+                  73,
+                  93,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 69,
+                "y": 106,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  94,
+                  107,
+                  126,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 100,
+              "y": 26,
+              "right": 162,
+              "bottom": 94
+            },
+            "inkPixels": 312,
+            "solidPixels": 141,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 24,
+                "domIndex": 30,
+                "tag": "path",
+                "attributes": {
+                  "d": "M127.101 52.5497L128.917 56.1137",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 125,
+                  "y": 50,
+                  "right": 131,
+                  "bottom": 59
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 127,
+                "y": 52,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  79,
+                  92,
+                  111,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 53,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  112,
+                  125,
+                  143,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 54,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  71,
+                  84,
+                  103,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 183,
+              "y": 12,
+              "right": 226,
+              "bottom": 72
+            },
+            "inkPixels": 330,
+            "solidPixels": 159,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 29,
+                "domIndex": 36,
+                "tag": "path",
+                "attributes": {
+                  "d": "M204.548 33.9563L204.548 37.9563",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 202,
+                  "y": 31,
+                  "right": 207,
+                  "bottom": 40
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 204,
+                "y": 34,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 35,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 36,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 37,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 247,
+              "y": 25,
+              "right": 310,
+              "bottom": 95
+            },
+            "inkPixels": 281,
+            "solidPixels": 124,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 7,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 300,
+              "y": 75,
+              "right": 372,
+              "bottom": 143
+            },
+            "inkPixels": 322,
+            "solidPixels": 137,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 8,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 332,
+              "y": 154,
+              "right": 398,
+              "bottom": 205
+            },
+            "inkPixels": 335,
+            "solidPixels": 154,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 9,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 325,
+              "y": 226,
+              "right": 393,
+              "bottom": 284
+            },
+            "inkPixels": 319,
+            "solidPixels": 153,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 10,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 284,
+              "y": 284,
+              "right": 355,
+              "bottom": 355
+            },
+            "inkPixels": 242,
+            "solidPixels": 92,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 11,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 60,
+              "y": 828,
+              "right": 119,
+              "bottom": 886
+            },
+            "inkPixels": 123,
+            "solidPixels": 49,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 12,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 19,
+              "y": 764,
+              "right": 81,
+              "bottom": 820
+            },
+            "inkPixels": 254,
+            "solidPixels": 103,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 13,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 13,
+              "y": 691,
+              "right": 76,
+              "bottom": 742
+            },
+            "inkPixels": 309,
+            "solidPixels": 145,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 69,
+                "domIndex": 84,
+                "tag": "path",
+                "attributes": {
+                  "d": "M36.0566 715.314L40.0073 715.9397",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 34,
+                  "y": 713,
+                  "right": 43,
+                  "bottom": 718
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 36,
+                "y": 715,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  109,
+                  122,
+                  140,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 37,
+                "y": 715,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 38,
+                "y": 715,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  94,
+                  107,
+                  126,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 39,
+                "y": 716,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  61,
+                  74,
+                  94,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 14,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 36,
+              "y": 612,
+              "right": 109,
+              "bottom": 681
+            },
+            "inkPixels": 335,
+            "solidPixels": 150,
+            "strictMismatchPixels": 6,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 74,
+                "domIndex": 90,
+                "tag": "path",
+                "attributes": {
+                  "d": "M66.5364 641.7291L69.7725 644.0802",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 6,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 64,
+                  "y": 639,
+                  "right": 72,
+                  "bottom": 647
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 66,
+                "y": 642,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  60,
+                  73,
+                  93,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 67,
+                "y": 642,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  114,
+                  127,
+                  145,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 642,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  71,
+                  84,
+                  103,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 643,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  84,
+                  97,
+                  115,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 69,
+                "y": 643,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  82,
+                  95,
+                  114,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 69,
+                "y": 644,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  71,
+                  84,
+                  103,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 15,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 100,
+              "y": 563,
+              "right": 162,
+              "bottom": 631
+            },
+            "inkPixels": 318,
+            "solidPixels": 144,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 79,
+                "domIndex": 96,
+                "tag": "path",
+                "attributes": {
+                  "d": "M127.101 590.002L128.917 593.5661",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 125,
+                  "y": 588,
+                  "right": 131,
+                  "bottom": 596
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 126,
+                "y": 590,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  56,
+                  69,
+                  88,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 590,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  99,
+                  112,
+                  130,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 591,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  89,
+                  102,
+                  121,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 16,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 183,
+              "y": 549,
+              "right": 226,
+              "bottom": 609
+            },
+            "inkPixels": 338,
+            "solidPixels": 154,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 84,
+                "domIndex": 102,
+                "tag": "path",
+                "attributes": {
+                  "d": "M204.548 571.4087L204.548 575.4087",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 202,
+                  "y": 569,
+                  "right": 207,
+                  "bottom": 578
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 204,
+                "y": 571,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  78,
+                  91,
+                  110,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 572,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 573,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 574,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 575,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  65,
+                  78,
+                  98,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 17,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 247,
+              "y": 562,
+              "right": 310,
+              "bottom": 632
+            },
+            "inkPixels": 278,
+            "solidPixels": 122,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 18,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 300,
+              "y": 612,
+              "right": 372,
+              "bottom": 680
+            },
+            "inkPixels": 323,
+            "solidPixels": 139,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 19,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 332,
+              "y": 691,
+              "right": 398,
+              "bottom": 743
+            },
+            "inkPixels": 333,
+            "solidPixels": 157,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 20,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 325,
+              "y": 763,
+              "right": 393,
+              "bottom": 821
+            },
+            "inkPixels": 321,
+            "solidPixels": 153,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 21,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 284,
+              "y": 821,
+              "right": 355,
+              "bottom": 893
+            },
+            "inkPixels": 240,
+            "solidPixels": 98,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 22,
+            "text": "٠٫٠٠",
+            "bounds": {
+              "x": 60,
+              "y": 1365,
+              "right": 119,
+              "bottom": 1424
+            },
+            "inkPixels": 124,
+            "solidPixels": 49,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 23,
+            "text": "١٠٫٠٠",
+            "bounds": {
+              "x": 19,
+              "y": 1302,
+              "right": 81,
+              "bottom": 1357
+            },
+            "inkPixels": 249,
+            "solidPixels": 107,
+            "strictMismatchPixels": 1,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 119,
+                "domIndex": 144,
+                "tag": "path",
+                "attributes": {
+                  "d": "M42.3056 1332.1685L46.1099 1330.9324",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 1,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 40,
+                  "y": 1328,
+                  "right": 49,
+                  "bottom": 1335
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 42,
+                "y": 1332,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  77,
+                  90,
+                  109,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 24,
+            "text": "٢٠٫٠٠",
+            "bounds": {
+              "x": 13,
+              "y": 1229,
+              "right": 76,
+              "bottom": 1280
+            },
+            "inkPixels": 308,
+            "solidPixels": 140,
+            "strictMismatchPixels": 7,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 124,
+                "domIndex": 150,
+                "tag": "path",
+                "attributes": {
+                  "d": "M36.0566 1252.7663L40.0073 1253.3921",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 7,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 34,
+                  "y": 1250,
+                  "right": 43,
+                  "bottom": 1256
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 36,
+                "y": 1252,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  81,
+                  94,
+                  113,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 37,
+                "y": 1252,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  74,
+                  87,
+                  106,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 38,
+                "y": 1252,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  60,
+                  73,
+                  93,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 36,
+                "y": 1253,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  59,
+                  72,
+                  92,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 37,
+                "y": 1253,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  74,
+                  87,
+                  106,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 38,
+                "y": 1253,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  81,
+                  94,
+                  112,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 39,
+                "y": 1253,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  95,
+                  108,
+                  126,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 25,
+            "text": "٣٠٫٠٠",
+            "bounds": {
+              "x": 36,
+              "y": 1149,
+              "right": 109,
+              "bottom": 1218
+            },
+            "inkPixels": 325,
+            "solidPixels": 147,
+            "strictMismatchPixels": 5,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 129,
+                "domIndex": 156,
+                "tag": "path",
+                "attributes": {
+                  "d": "M66.5364 1179.1815L69.7725 1181.5326",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 5,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 64,
+                  "y": 1177,
+                  "right": 72,
+                  "bottom": 1184
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 67,
+                "y": 1180,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  73,
+                  86,
+                  105,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 1180,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  111,
+                  124,
+                  142,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 69,
+                "y": 1180,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  57,
+                  70,
+                  90,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 68,
+                "y": 1181,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  53,
+                  66,
+                  86,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 69,
+                "y": 1181,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  90,
+                  103,
+                  122,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 26,
+            "text": "٤٠٫٠٠",
+            "bounds": {
+              "x": 100,
+              "y": 1101,
+              "right": 162,
+              "bottom": 1168
+            },
+            "inkPixels": 314,
+            "solidPixels": 143,
+            "strictMismatchPixels": 3,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 134,
+                "domIndex": 162,
+                "tag": "path",
+                "attributes": {
+                  "d": "M127.101 1127.4544L128.917 1131.0184",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 3,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 125,
+                  "y": 1125,
+                  "right": 131,
+                  "bottom": 1134
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 127,
+                "y": 1127,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  81,
+                  94,
+                  113,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 1128,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  91,
+                  104,
+                  122,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 127,
+                "y": 1129,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  67,
+                  80,
+                  99,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 27,
+            "text": "٥٠٫٠٠",
+            "bounds": {
+              "x": 183,
+              "y": 1087,
+              "right": 226,
+              "bottom": 1147
+            },
+            "inkPixels": 334,
+            "solidPixels": 166,
+            "strictMismatchPixels": 4,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 1,
+            "contributors": [
+              {
+                "paintIndex": 139,
+                "domIndex": 168,
+                "tag": "path",
+                "attributes": {
+                  "d": "M204.548 1108.861L204.548 1112.861",
+                  "fill": "none",
+                  "stroke": "#778496"
+                },
+                "removedMismatchPixels": 4,
+                "remainingMismatchPixels": 0,
+                "bounds": {
+                  "x": 202,
+                  "y": 1106,
+                  "right": 207,
+                  "bottom": 1115
+                }
+              }
+            ],
+            "examples": [
+              {
+                "x": 204,
+                "y": 1109,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 1110,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 1111,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  115,
+                  128,
+                  146,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              },
+              {
+                "x": 204,
+                "y": 1112,
+                "expected": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "actual": [
+                  98,
+                  111,
+                  129,
+                  255
+                ],
+                "withoutStrokes": [
+                  28,
+                  41,
+                  61,
+                  255
+                ],
+                "textOnly": [
+                  28,
+                  41,
+                  61,
+                  255
+                ]
+              }
+            ]
+          },
+          {
+            "index": 28,
+            "text": "٦٠٫٠٠",
+            "bounds": {
+              "x": 247,
+              "y": 1099,
+              "right": 310,
+              "bottom": 1170
+            },
+            "inkPixels": 282,
+            "solidPixels": 126,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 29,
+            "text": "٧٠٫٠٠",
+            "bounds": {
+              "x": 300,
+              "y": 1150,
+              "right": 372,
+              "bottom": 1218
+            },
+            "inkPixels": 323,
+            "solidPixels": 142,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 30,
+            "text": "٨٠٫٠٠",
+            "bounds": {
+              "x": 332,
+              "y": 1229,
+              "right": 398,
+              "bottom": 1280
+            },
+            "inkPixels": 336,
+            "solidPixels": 154,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 31,
+            "text": "٩٠٫٠٠",
+            "bounds": {
+              "x": 325,
+              "y": 1301,
+              "right": 393,
+              "bottom": 1359
+            },
+            "inkPixels": 318,
+            "solidPixels": 154,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 32,
+            "text": "١٠٠٫٠٠",
+            "bounds": {
+              "x": 284,
+              "y": 1358,
+              "right": 355,
+              "bottom": 1430
+            },
+            "inkPixels": 237,
+            "solidPixels": 91,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 33,
+            "text": "Cell0",
+            "bounds": {
+              "x": 166,
+              "y": 413,
+              "right": 243,
+              "bottom": 456
+            },
+            "inkPixels": 908,
+            "solidPixels": 469,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 34,
+            "text": "٢٫١٢",
+            "bounds": {
+              "x": 173,
+              "y": 472,
+              "right": 236,
+              "bottom": 515
+            },
+            "inkPixels": 625,
+            "solidPixels": 380,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 35,
+            "text": "Cell1",
+            "bounds": {
+              "x": 168,
+              "y": 951,
+              "right": 241,
+              "bottom": 994
+            },
+            "inkPixels": 741,
+            "solidPixels": 357,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 36,
+            "text": "٥٫٩٩",
+            "bounds": {
+              "x": 169,
+              "y": 1010,
+              "right": 240,
+              "bottom": 1053
+            },
+            "inkPixels": 756,
+            "solidPixels": 474,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 37,
+            "text": "Cell2",
+            "bounds": {
+              "x": 166,
+              "y": 1488,
+              "right": 243,
+              "bottom": 1531
+            },
+            "inkPixels": 809,
+            "solidPixels": 402,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          },
+          {
+            "index": 38,
+            "text": "٩٫٥٦",
+            "bounds": {
+              "x": 170,
+              "y": 1547,
+              "right": 239,
+              "bottom": 1590
+            },
+            "inkPixels": 708,
+            "solidPixels": 447,
+            "strictMismatchPixels": 0,
+            "noStrokesMismatchPixels": 0,
+            "contributorCount": 0,
+            "contributors": [],
+            "examples": []
+          }
+        ],
+        "totalSolidPixels": 6766,
+        "strictMismatchPixels": 55,
+        "noStrokesMismatchPixels": 0,
+        "allMismatchAttributableToLaterStrokes": true
+      }
+    }
+  ]
+}

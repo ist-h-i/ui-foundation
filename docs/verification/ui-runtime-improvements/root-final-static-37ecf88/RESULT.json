@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "-e",
+    "const s=require(\"node:child_process\");for(const t of [\"ui:check\",\"typecheck\",\"test:config\",\"test:model\"]){const r=s.spawnSync(\"npm\",[\"run\",t],{stdio:\"inherit\"});if(r.status!==0)process.exit(r.status??1)}"
+  ],
+  "sourceCommit": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "startedUtc": "2026-10-06T13:11:33.038830+00:00",
+  "finishedUtc": "2026-10-06T13:11:56.937317+00:00",
+  "actualExit": 0,
+  "inputFiles": 457,
+  "inputsUnchanged": true,
+  "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+}

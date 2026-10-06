@@ -1,0 +1,35 @@
+[
+  {
+    "args": [
+      "-c",
+      "playwright.config.ts"
+    ],
+    "actualExit": 1,
+    "blockedBeforeBuildAndServer": true,
+    "log": "runner-negative-0.txt"
+  },
+  {
+    "args": [
+      "-cplaywright.config.ts"
+    ],
+    "actualExit": 1,
+    "blockedBeforeBuildAndServer": true,
+    "log": "runner-negative-1.txt"
+  },
+  {
+    "args": [
+      "--retries=1"
+    ],
+    "actualExit": 1,
+    "blockedBeforeBuildAndServer": true,
+    "log": "runner-negative-2.txt"
+  },
+  {
+    "args": [
+      "--pass-with-no-tests"
+    ],
+    "actualExit": 1,
+    "blockedBeforeBuildAndServer": true,
+    "log": "runner-negative-3.txt"
+  }
+]

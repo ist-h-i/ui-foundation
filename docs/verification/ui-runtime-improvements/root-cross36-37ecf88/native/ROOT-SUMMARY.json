@@ -1,0 +1,63 @@
+{
+  "sourceCommit": "37ecf88b05b6cae1510e3291d7fc75e62217892b",
+  "stats": {
+    "startTime": "2026-10-06T13:19:22.432Z",
+    "duration": 347874.169,
+    "expected": 36,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "total": 36,
+  "engines": {
+    "chromium": {
+      "version": "153.0.8010.12",
+      "passed": 12
+    },
+    "firefox": {
+      "version": "155.0",
+      "passed": 12
+    },
+    "webkit": {
+      "version": "26.6",
+      "passed": 12
+    }
+  },
+  "runtimeErrors": 0,
+  "warnings": 2,
+  "knownEngineAdvisories": 2,
+  "unknownWarnings": 0,
+  "axeViolations": 0,
+  "axeIncompleteCases": 13,
+  "axeIncompleteRules": 22,
+  "axeIncompleteNodes": 54,
+  "incompleteByRule": {
+    "aria-valid-attr-value": 18,
+    "color-contrast": 36
+  },
+  "screenReaderSpeechMeasured": false,
+  "safariDeviceMeasured": false,
+  "receipt": {
+    "startedAtUtc": "2026-10-06T13:16:26.556Z",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "explicitPlaywrightFilters": [],
+    "playwright": "1.63.0",
+    "scope": "Explicit focused cross-browser suite only; npm test/default UI discovery unchanged",
+    "build": {
+      "code": 0,
+      "signal": null
+    },
+    "native": {
+      "code": 0,
+      "signal": null
+    },
+    "serverClosed": true,
+    "bundleSha256": "bbe1c05e2886f8d61e78cc6072c4224ed9789df94a547c32a4dc91379f62d2bd",
+    "origin": "http://127.0.0.1:61585",
+    "completedAtUtc": "2026-10-06T13:25:10.393Z"
+  }
+}

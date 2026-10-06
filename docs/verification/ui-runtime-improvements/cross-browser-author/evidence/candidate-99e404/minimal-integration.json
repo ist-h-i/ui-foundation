@@ -1,0 +1,286 @@
+{
+  "schema": 1,
+  "createdAtUtc": "2026-10-06T12:54:46.027540+00:00",
+  "baseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "scope": "Opt-in focused 36 and one guarded Menu correction; root21134c/Diagram/Chart integration not measured here",
+  "writeScope": "Task-owned /tmp only. Shared repo/Git/GH/root-private unchanged by this agent",
+  "copyActions": [
+    {
+      "source": "playwright.cross-browser.config.ts",
+      "target": "playwright.cross-browser.config.ts",
+      "expectedTarget": "absent",
+      "sha256": "bd83506fd7f960e34a133d13205b5d11cc21663f5931d2d6aaf4c91abb323520"
+    },
+    {
+      "source": "tests/cross-browser/runtime-test.ts",
+      "target": "tests/cross-browser/runtime-test.ts",
+      "expectedTarget": "absent",
+      "sha256": "07128378ddf13aa13852c8c0845da30fa01a5ac8fac8ba21a41c19cb635799bf"
+    },
+    {
+      "source": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "target": "tests/cross-browser/runtime-cross-browser.spec.ts",
+      "expectedTarget": "absent",
+      "sha256": "11cc822bd2652a0eede56cc3a0eb237778911586668e9a80ca6d78c2e70ac2e7"
+    },
+    {
+      "source": "scripts/run-cross-browser.mjs",
+      "target": "scripts/run-cross-browser.mjs",
+      "expectedTarget": "absent",
+      "sha256": "3d35868a87b7dfafa8a1c84fa93d074cc1ea8c83b4842cd8287e0ad56f450573"
+    },
+    {
+      "source": "docs/cross-browser-runtime-verification.ja.md",
+      "target": "docs/cross-browser-runtime-verification.ja.md",
+      "expectedTarget": "absent",
+      "sha256": "e36a35675378b545b1074945e5732d6ed24caed64211814c02c3fc269dbd3c44"
+    }
+  ],
+  "menuGuard": {
+    "source": "templates/angular/menu.ts",
+    "target": "templates/angular/menu.ts",
+    "beforeSha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+    "afterSha256": "99e404d5188711074302963aa7c2948126ce7feb99f3d68a8c755b4e199797ed",
+    "delta": "menu-minimal-delta.json",
+    "deltaSha256": "9e3a1bee115f8432f189d109e91cac95c85d2bb7b516c697cc2f67ab4a180e58",
+    "guardCount": 5,
+    "generatedByteEqual": true
+  },
+  "packageGuard": {
+    "target": "package.json",
+    "before": "\"test:ui\": \"playwright test\"",
+    "after": "\"test:ui\": \"playwright test\",\n    \"test:cross-browser\": \"node scripts/run-cross-browser.mjs\"",
+    "expectedOccurrences": 1,
+    "baselineBeforeSha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75",
+    "snapshotAfterSha256": "0d17c4372c4571e9890b3ad99b99698fbb1af5ea0607e0a20fee185ef65b5235",
+    "newDependencies": []
+  },
+  "patch": {
+    "path": "cross-browser-runtime.patch",
+    "sha256": "8ca74f219f0b6d3c8073005010e372ad6aa4341ae971fd7c07ab1c47703eef61",
+    "generatedEdits": false
+  },
+  "authorNative": {
+    "name": "focused-final",
+    "stats": {
+      "startTime": "2026-10-06T12:37:34.865Z",
+      "duration": 166351.30000000002,
+      "expected": 36,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "counts": {
+      "chromium": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "timedOut": 0,
+        "interrupted": 0,
+        "retryAttempts": 0
+      },
+      "firefox": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "timedOut": 0,
+        "interrupted": 0,
+        "retryAttempts": 0
+      },
+      "webkit": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "timedOut": 0,
+        "interrupted": 0,
+        "retryAttempts": 0
+      }
+    },
+    "versions": {
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "runtimeTelemetryCases": 36,
+    "runtimeErrorCount": 0,
+    "consoleWarningCount": 2,
+    "classifiedEngineAdvisoryCount": 2,
+    "unknownWarningCount": 0,
+    "axe": {
+      "analyzes": 36,
+      "violationCases": 0,
+      "violationRules": 0,
+      "incompleteCases": 13,
+      "incompleteRules": 22,
+      "incompleteNodes": 54,
+      "incompleteByRule": {
+        "aria-valid-attr-value": 18,
+        "color-contrast": 36
+      }
+    },
+    "receipt": {
+      "startedAtUtc": "2026-10-06T12:37:03.593Z",
+      "engines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "explicitPlaywrightFilters": [],
+      "playwright": "1.63.0",
+      "scope": "Explicit focused cross-browser suite only; npm test/default UI discovery unchanged",
+      "build": {
+        "code": 0,
+        "signal": null
+      },
+      "native": {
+        "code": 0,
+        "signal": null
+      },
+      "serverClosed": true,
+      "bundleSha256": "36fa3c7a7cd585b5c5a9e15feef5f44e36e3e0fd896fe9b54f0f0494dbc4cd52",
+      "origin": "http://127.0.0.1:59542",
+      "completedAtUtc": "2026-10-06T12:40:21.249Z"
+    },
+    "exit": 0,
+    "scope": "Headless Playwright engines; explicit native/DOM input and focus operations. ARIA snapshot is serialized browser semantics, not screen-reader speech. Axe incomplete is preserved, never changed to pass."
+  },
+  "nativeRunnerProvenance": {
+    "testedRunnerSha256": "811b8a66d0c681bc6e719bb03c71f7e4d69fd0e430d0f18e08c5181ee08a9f95",
+    "deliveredRunnerSha256": "3d35868a87b7dfafa8a1c84fa93d074cc1ea8c83b4842cd8287e0ad56f450573",
+    "onlyAfterNativeChange": "CLI short -c config override also rejected by one guard; server/browser/build implementation unchanged",
+    "guardVerification": "syntax0, explicit negative4 expected exit1, npm alias expected exit1 before build/server",
+    "nativeRerunAfterGuard": "NOT RUN; same browser source/spec/config checked with prior actual36, root integration run pending"
+  },
+  "staticActual": {
+    "normalSync": 0,
+    "normalCheckAndFullStrictAotAndBuild": 0,
+    "focusedStrict": 0,
+    "runnerSyntax": 0,
+    "dedicatedRegistration": {
+      "actualExit": 0,
+      "count": 36,
+      "files": 1
+    },
+    "defaultRegistration": {
+      "actualExit": 0,
+      "count": 980,
+      "files": 45,
+      "nativeDefault980": "NOT RUN in this delegated task"
+    },
+    "runnerNegatives": [
+      {
+        "actualExit": 1,
+        "expectedExit": 1,
+        "args": [
+          "-c",
+          "playwright.config.ts"
+        ]
+      },
+      {
+        "actualExit": 1,
+        "expectedExit": 1,
+        "args": [
+          "-cplaywright.config.ts"
+        ]
+      },
+      {
+        "actualExit": 1,
+        "expectedExit": 1,
+        "args": [
+          "--retries=1"
+        ]
+      },
+      {
+        "actualExit": 1,
+        "expectedExit": 1,
+        "args": [
+          "--pass-with-no-tests"
+        ]
+      }
+    ],
+    "npmAliasNegative": {
+      "actualExit": 1,
+      "expectedExit": 1
+    }
+  },
+  "capabilityScope": {
+    "allThreeLaunchAndNativeSmoke": "actual passed",
+    "webkitIsSafariRealDevice": false,
+    "screenReaderSpeech": "NOT MEASURED",
+    "clipboardApi": "exposed on owned localhost all3; I/O NOT MEASURED",
+    "clipboardPermissionDescriptor": "Firefox/WebKit TypeError for clipboard-read/write; Chromium prompt/granted",
+    "webgl2": "context available all3; MapLibre draw NOT MEASURED",
+    "representativeRenderer": "CodeMirror native edit/output/same DOM and focus measured in36"
+  },
+  "evidence": [
+    {
+      "path": "evidence/baseline.json",
+      "sha256": "fa99329a7363c5f84078955e02b8f9f7711fd5578f9e8f242b94ef8f47a7ef75"
+    },
+    {
+      "path": "evidence/browser-availability.json",
+      "sha256": "ab9a211ce1f9d6a5ce443f53890c06b320e7c3b97d324658fee54ce7dc0a2968"
+    },
+    {
+      "path": "evidence/browser-inventory.json",
+      "sha256": "f83a46800e704ae6c717288ab239960a12e6b39564ba671dba55073bce28b5f2"
+    },
+    {
+      "path": "evidence/browser-install-firefox-webkit.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/focused-before/results.json",
+      "sha256": "413e37ede43825194071fad5f4432efd9135f89ab0f1d8e64a4706a2dd3158ab"
+    },
+    {
+      "path": "evidence/focused-before-summary.json",
+      "sha256": "162417a751b14f7ff4c91cb8dc9fa6ecd35b2123e30d6fa562f8510bfd77d1a0"
+    },
+    {
+      "path": "evidence/focused-after/results.json",
+      "sha256": "061ecfda0c7855e9ab01e73aaa16026ca18b2a3994cce5fe95bcae35d911f994"
+    },
+    {
+      "path": "evidence/focused-after-summary.json",
+      "sha256": "d9e102cd333a4e0fead552d20f894ee270c3598572ef27f41af0ad745dd52e82"
+    },
+    {
+      "path": "evidence/focused-final/results.json",
+      "sha256": "ca4e81a3fcbb66b2c8fb75a109f586a4e76684e042773b8e62354740f621eb3e"
+    },
+    {
+      "path": "evidence/focused-final-summary.json",
+      "sha256": "f733354941569ffd9977778e32cd09c5c862ebfad629daf27c24e4da8d8fdb60"
+    },
+    {
+      "path": "evidence/focused-final-warnings.json",
+      "sha256": "0921d5464fea72c775ab454079ded25502090e638f42e6b9c099bc4237d9b84b"
+    },
+    {
+      "path": "evidence/focused-final-incomplete.json",
+      "sha256": "975de56053640611d11f14648ace9540c755b1df312dc906f3d1d3bf6e0cb3b2"
+    },
+    {
+      "path": "evidence/focused-final/run-receipt.json",
+      "sha256": "237a2bc7312e57023f5b64d0871d5e866650b5d830476f4f566572d0889193b0"
+    },
+    {
+      "path": "evidence/diagnostics-full-clock-before-navigation-v2.json",
+      "sha256": "e462e4e7c1f9b1e280d0cfc902d11943a50a4418d677fe57671f5e2285e4637c"
+    },
+    {
+      "path": "evidence/runner-negatives.json",
+      "sha256": "50c051143abb0a5acf7f2a2f49b9293678ba8cab5366181f6f0dc743e0ac827f"
+    },
+    {
+      "path": "evidence/package-entry-negative.txt",
+      "sha256": "3ae93d7a5f35468fe7bf18c19f079ce00b653397d861bf4aacef438394efc929"
+    },
+    {
+      "path": "evidence/transport-checkpoint.json",
+      "sha256": "49044849ee5619b19a9f005b943fcf5acb5504b60aeb666f4f016bb59bf66409"
+    }
+  ],
+  "nextOwnerAction": "Root integrates guarded Menu + opt-in harness + docs, normal CLI regeneration; final root source freeze runs desired engines/subset and independent critic before merge."
+}

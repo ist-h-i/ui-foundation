@@ -1,0 +1,65 @@
+{
+  "scope": "Runner-only permanent34 no-case masking repair; candidate author needs critic review; historical4909 and packs immutable",
+  "before": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919",
+  "after": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698",
+  "rootMutation": false,
+  "productSourceChange": false,
+  "packageDependencyChange": false,
+  "fixtureChange": false,
+  "fixtureUnchanged": [
+    {
+      "path": "build-consumer.mjs",
+      "bytes": 3085,
+      "sha256": "82a66fa08e160a98d26ba3166a70c05472e02bd568b2e4618415d5ff9b825297"
+    },
+    {
+      "path": "consumer.ts",
+      "bytes": 5624,
+      "sha256": "fa8f2f8fa390627b0aee459feecdd70e8c3704102b289ce3fcafeb0ef19a0856"
+    },
+    {
+      "path": "harness/svg-paint-audit.mjs",
+      "bytes": 8101,
+      "sha256": "b9fd931069309ae77882d59359c9648c1e236e88a10adb369100ab969efe256a"
+    },
+    {
+      "path": "harness/verify-paint.mjs",
+      "bytes": 11423,
+      "sha256": "1c497fb383052b4a554dbe2c7c59195c2ece6a9a91cf9060705aab4cb3428f3e"
+    },
+    {
+      "path": "serve-consumer.mjs",
+      "bytes": 1027,
+      "sha256": "5ec36883faf4901b70767e85f64fa1328ff5e2bef1d90039408fc6c78ef285f2"
+    },
+    {
+      "path": "tsconfig.consumer.json",
+      "bytes": 363,
+      "sha256": "9398f3d241d08284b12491675e6529101d9e3045a7c01d2791c16223bf074fbf"
+    }
+  ],
+  "syntaxActual": 0,
+  "hostileFresh34": {
+    "status": "running",
+    "sourceRoot": "/tmp/ui-foundation-final-catalog-consumer-review/svg-paint-gap",
+    "sourceScope": "own base9f source plus Chart857, not claimed root37 full input identical",
+    "session": 33333
+  },
+  "files": [
+    {
+      "path": "candidate/scripts/test-svg-paint.mjs",
+      "bytes": 7672,
+      "sha256": "2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698"
+    },
+    {
+      "path": "evidence/runner-before-490967fd.mjs",
+      "bytes": 6057,
+      "sha256": "490967fd0cf3ca0475d7bb36cfc3f945c0c06cced34aee087c744ef32eb29919"
+    },
+    {
+      "path": "runner-scope.patch",
+      "bytes": 6678,
+      "sha256": "23f75c45bfdab7dafec537ea336dfc4535e08610d60768809324ce69569eba1d"
+    }
+  ]
+}

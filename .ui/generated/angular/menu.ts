@@ -24,7 +24,7 @@ export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backward
      @if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}<span class="ui-menu__label">{{item.label}}</span>@if(commands(item.children??[]).length){<span aria-hidden="true">›</span>}
     </button>
     @if(expanded()[depth]===item.id&&commands(item.children??[]).length){<ul [id]="itemId(item.id)+'-children'" role="menu" [attr.aria-labelledby]="itemId(item.id)" [attr.data-menu-parent]="item.id" class="ui-menu__submenu"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:item,depth:depth+1}" />
-     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
+     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="opened()&&focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
     </ul>}</li>}
    }
   </ng-template>`,
@@ -59,7 +59,7 @@ export class Menu {
         this.focusedBack.set(back ? id : null);
     }
     protected tabIndex(id: string, parent: MenuItem | null, depth: number): 0 | -1 {
-        if (this.focusedBack() === parent?.id) return -1;
+        if (!this.opened() || this.focusedBack() === parent?.id) return -1;
         const commands = menuCommands(parent?.children ?? this.nodes());
         const selected = commands.some(item => item.id === this.focusedItem()) ? this.focusedItem() : this.expanded()[depth] ?? commands[0]?.id;
         return selected === id ? 0 : -1;

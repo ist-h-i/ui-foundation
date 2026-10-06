@@ -1,0 +1,17 @@
+COMMAND ['node', '--import', 'tsx', 'src/cli.ts', 'sync', '--config', 'examples/ui.config.example.yaml']
+Generated UI foundation is current.
+ACTUAL EXIT 0
+COMMAND ['node', '--import', 'tsx', 'src/cli.ts', 'check', '--config', 'examples/ui.config.example.yaml']
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+ACTUAL EXIT 0
+COMMAND ['node', 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js', '-p', 'tsconfig.json']
+ACTUAL EXIT 0
+COMMAND ['node', 'scripts/build.mjs']
+[BABEL] Note: The code generator has deoptimised the styling of /Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@lucide/angular/fesm2022/lucide-angular.mjs as it exceeds the max of 500KB.
+Built Angular fixture app in dist/fixture-app
+ACTUAL EXIT 0
+COMMAND ['node', 'node_modules/@tailwindcss/cli/dist/index.mjs', '-i', 'tests/fixture-app/styles.css', '-o', 'dist/fixture-app/styles.css']
+≈ tailwindcss v4.3.0
+
+Done in 93ms
+ACTUAL EXIT 0

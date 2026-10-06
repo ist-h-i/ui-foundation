@@ -1,0 +1,832 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/private/tmp/ui-foundation-cross-browser-stage/source/node_modules/playwright/cli.js",
+      "test",
+      "-c",
+      "playwright.cross-browser.config.ts",
+      "--list"
+    ],
+    "configFile": "/private/tmp/ui-foundation-cross-browser-stage/source/playwright.cross-browser.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/ui-foundation-cross-browser-stage/evidence/registration-final/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser",
+        "testIgnore": [],
+        "testMatch": [
+          "runtime-cross-browser.spec.ts"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/tmp/ui-foundation-cross-browser-stage/evidence/registration-final/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser",
+        "testIgnore": [],
+        "testMatch": [
+          "runtime-cross-browser.spec.ts"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/tmp/ui-foundation-cross-browser-stage/evidence/registration-final/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/private/tmp/ui-foundation-cross-browser-stage/source/tests/cross-browser",
+        "testIgnore": [],
+        "testMatch": [
+          "runtime-cross-browser.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/tmp/ui-foundation-cross-browser-stage/evidence/registration-final/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "runtime-cross-browser.spec.ts",
+      "file": "runtime-cross-browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Card guided: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-23025511981a2809f26d",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-a13add26d00b5775edcf",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange guided: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-873925ec36f4f6bfcb7c",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer guided: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-74de6cc20eb3235b4033",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-f2579f734a13f6241ca8",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-d44603f4815b84f0cfff",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        },
+        {
+          "title": "Card dense: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-e692245fa289bd9c9c8a",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-41bfa08fe3da0a142d85",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange dense: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-b15adacad7f93a021105",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer dense: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-b2c1dd3f15a282232256",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-e0ee8119dfa9089b6818",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-1855c1d08026a2ef7fd4",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        },
+        {
+          "title": "Card guided: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-acc70724df3a294630b1",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-1737e6071acfac921675",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange guided: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-a669b6a8a3fc918201ea",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer guided: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-bf68107ab10e623c7692",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-48aede5d9ea237b8b020",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-de48d7ec5fa7dea6a285",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        },
+        {
+          "title": "Card dense: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-32d6f43ce0af61460ea5",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-8f74813fc2ce4cdb7cc3",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange dense: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-9707d675013049a181ef",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer dense: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-776b02cfe0b61e0a247c",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-2b977d45d2ee02b708dd",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-48015a2840dc1a4bc9ee",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        },
+        {
+          "title": "Card guided: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-1ab501dfe49c81f28ba9",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu guided: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-7861ce436faefa32b839",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange guided: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-b7bfab16b6d26e9f41a2",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer guided: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-91404e7c7f9d65b70aa9",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog guided: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-793d90a24f3b0ed46c95",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar guided: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-b9f8935f6fcd3e1c60a4",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        },
+        {
+          "title": "Card dense: collapse/body visibility, profile and input identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-0e5795a8bdabdab7b79d",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 21,
+          "column": 2
+        },
+        {
+          "title": "Menu dense: recursive RTL keys, disabled intent, Tab exit and parent focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-b928aa772cdab1f547e2",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "title": "DateRange dense: invalid draft, locale/profile, keyboard calendar and focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-6125aaaec4052bd35f85",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 39,
+          "column": 2
+        },
+        {
+          "title": "Composer dense: pending/reset keeps input and CodeMirror native editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-d84b21e53183224f21c5",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 49,
+          "column": 2
+        },
+        {
+          "title": "Dialog dense: busy/veto, nested RTL Menu, retained input and close return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-60bfd121bc3236f4efbc",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 60,
+          "column": 2
+        },
+        {
+          "title": "Snackbar dense: exact timeout, OFF, overlapping pause and owned focus return",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "787c201db07e7851f13f-4367f1846142bb6824db",
+          "file": "runtime-cross-browser.spec.ts",
+          "line": 69,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T12:44:40.122Z",
+    "duration": 191.675,
+    "expected": 0,
+    "skipped": 36,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
