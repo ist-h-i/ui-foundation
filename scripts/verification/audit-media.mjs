@@ -90,8 +90,15 @@ function main() {
   const parsed = config.error ? {errors: [config.error], options: {}} : ts.parseJsonConfigFileContent(config.config, ts.sys, repo, undefined, resolve(repo, configName));
   const compilerEntries = new Set((parsed.fileNames ?? []).map(name => realpathSync(name)));
   const missingCompilerSpecs = names.filter(name => !compilerEntries.has(realpathSync(resolve(repo, name))));
+  const compilerSources = new Set(ts.createProgram({rootNames: parsed.fileNames ?? [], options: parsed.options})
+    .getSourceFiles().map(source => realpathSync(source.fileName)));
+  const missingCompilerHelper = !compilerSources.has(realpathSync(resolve(repo, helperName)));
+  const strictChecks = Object.fromEntries(ts.optionDeclarations.filter(option => option.strictFlag)
+    .map(option => [option.name, ts.getStrictOptionValue(parsed.options, option.name)]));
+  const disabledStrictChecks = Object.keys(strictChecks).filter(name => !strictChecks[name]);
   const configSafe = parsed.errors.length === 0 && parsed.options.strict === true && parsed.options.noEmit === true &&
-    !parsed.options.incremental && !parsed.options.composite && !parsed.options.noCheck && missingCompilerSpecs.length === 0;
+    !parsed.options.incremental && !parsed.options.composite && !parsed.options.noCheck &&
+    missingCompilerSpecs.length === 0 && !missingCompilerHelper && disabledStrictChecks.length === 0;
   mkdirSync(options.output); // Exclusive, after input/ref checks; type/AST failures still retain actual logs.
   const compiler = spawnSync(process.execPath, [require.resolve('typescript/bin/tsc'), '--project', configName, '--pretty', 'false', '--noEmit', '--incremental', 'false', '--noCheck', 'false'],
     {cwd: repo, encoding: 'utf8', timeout: 120_000, maxBuffer: 8_000_000});
@@ -106,7 +113,7 @@ function main() {
     compilerVersion: ts.version, compilerOptions: {strict: parsed.options.strict, noEmit: parsed.options.noEmit,
       skipLibCheck: parsed.options.skipLibCheck, incremental: parsed.options.incremental, composite: parsed.options.composite, noCheck: parsed.options.noCheck},
     configErrors: parsed.errors.map(error => ts.flattenDiagnosticMessageText(error.messageText, '\n')),
-    missingCompilerSpecs,
+    missingCompilerSpecs, missingCompilerHelper, strictChecks, disabledStrictChecks,
     matcherCount: files.reduce((count, file) => count + file.after.matchers.length, 0),
     titleCount: files.reduce((count, file) => count + file.after.titles.length, 0),
     afterAny: files.reduce((count, file) => count + file.after.explicitAny, 0) + helper.explicitAny,

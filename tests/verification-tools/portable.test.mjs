@@ -163,6 +163,42 @@ test('Media audit uses selected Git baseline and real strict compiler failures',
     assert.equal(report.compilerOptions.noCheck,true);assert.notEqual(report.compiler.actualExit,0);
     await writeFile(file,original);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
   });
+  for(const strictCheck of ['noImplicitAny','strictNullChecks','strictFunctionTypes','strictBindCallApply',
+    'strictPropertyInitialization','strictBuiltinIteratorReturn','noImplicitThis','useUnknownInCatchVariables']){
+    await t.test(`disabled strict constituent ${strictCheck} is rejected`,async()=>{
+      if(strictCheck==='noImplicitAny')await writeFile(file,original+'export const implicit=value=>value;\n');
+      await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,compilerOptions:{...config.compilerOptions,[strictCheck]:false}}));
+      const result=audit('disabled-'+strictCheck);assert.equal(result.status,1,result.stderr);
+      const report=JSON.parse(await readFile(join(temporary,'disabled-'+strictCheck,'media-audit.json'),'utf8'));
+      assert.equal(report.strictChecks[strictCheck],false);assert.ok(report.disabledStrictChecks.includes(strictCheck));
+      assert.equal(report.configSafe,false);assert.equal(report.pass,false);
+      if(strictCheck==='noImplicitAny')assert.equal(report.compiler.actualExit,0);
+      await writeFile(file,original);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
+    });
+  }
+  await t.test('helper semantic errors cannot disappear outside the compiler program',async()=>{
+    const helper=join(fixture,'tests/ui/media-test-dom.ts');const helperOriginal=await readFile(helper,'utf8');
+    await writeFile(helper,helperOriginal+"export const invalid:number='text';\n");
+    await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,include:names.map(name=>'tests/ui/'+name)}));
+    const result=audit('omitted-helper');assert.equal(result.status,1,result.stderr);
+    const report=JSON.parse(await readFile(join(temporary,'omitted-helper','media-audit.json'),'utf8'));
+    assert.equal(report.compiler.actualExit,0);assert.deepEqual(report.missingCompilerSpecs,[]);
+    assert.equal(report.missingCompilerHelper,true);assert.equal(report.configSafe,false);assert.equal(report.pass,false);
+    await writeFile(helper,helperOriginal);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
+  });
+  await t.test('transitively imported helper is checked without becoming a compiler root',async()=>{
+    const helper=join(fixture,'tests/ui/media-test-dom.ts');const helperOriginal=await readFile(helper,'utf8');
+    await writeFile(file,"import {readable} from './media-test-dom.js';\n"+original+'readable(1);\n');
+    await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,include:names.map(name=>'tests/ui/'+name)}));
+    const valid=audit('transitive-helper');assert.equal(valid.status,0,valid.stderr);
+    const included=JSON.parse(await readFile(join(temporary,'transitive-helper','media-audit.json'),'utf8'));
+    assert.equal(included.missingCompilerHelper,false);assert.deepEqual(included.disabledStrictChecks,[]);
+    await writeFile(helper,helperOriginal+"export const invalid:number='text';\n");
+    const invalid=audit('transitive-helper-error');assert.equal(invalid.status,1,invalid.stderr);
+    const checked=JSON.parse(await readFile(join(temporary,'transitive-helper-error','media-audit.json'),'utf8'));
+    assert.equal(checked.missingCompilerHelper,false);assert.notEqual(checked.compiler.actualExit,0);
+    await writeFile(file,original);await writeFile(helper,helperOriginal);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
+  });
   await t.test('disabled strict config fails',async()=>{
     await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,compilerOptions:{...config.compilerOptions,strict:false}}));
     assert.notEqual(audit('strict-disabled').status,0);
