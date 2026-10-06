@@ -1,4 +1,4 @@
-PR #11で完了した181要件とIssue #2の完了を維持し、追加改善をIssue #12と専用ブランチで管理する。開始点はmain `9f5430ca87e249af204cc335a8610d0d8040621f`。人による目視は今回の完了条件にしない。
+PR #11で完了した181要件とIssue #2の完了を維持し、追加改善をIssue #12と専用ブランチで管理した。開始点はmain `9f5430ca87e249af204cc335a8610d0d8040621f`。PR #13は2026-10-06 14:49 UTCにマージされ、main `9b8bb12861228c2bb610be2f8827710e7e2e9932` と独立承認済みhead `228ade09f21a613535f7dc1439734db12400fb99` のtree一致と `ui:check` 実終了0を確認した。Issue #12は完了。人による目視は今回の完了条件にしない。
 
 | 対象 | 改善内容 | 必要な実証 | 現在の状態 |
 | --- | --- | --- | --- |
@@ -9,7 +9,9 @@ PR #11で完了した181要件とIssue #2の完了を維持し、追加改善を
 | SVG/Tree axe incomplete | rule/node/state別分類と独立自動検査 | AX/ARIA参照・keyboard/focus・paint/contrast・clip/到達可能性 | Tree42をARIA18・非BMP21・clip3へ分類し、追加6/6・独立6/6 actual0。SVGの34ケース8scanには212ノードの未判定が残り、別の実paint/contrast/到達/操作検査を実証。全axe合格とはしない |
 | 複数browserとMenu | opt-inの重点3engine回帰とopen/closed roving | 実engine/version・2profile・重点操作・異常/終了/時間 | 統合37ecf88で36/36。閉Menuのtabindex修正後a1ed5c0で影響するMenu/Dialog12/12、関連Navigation/Overlay28/28、独立Menu5＋Nav2の7/7 actual0。3engine versionは下記参照 |
 | SVG継続gate | 継承filterで0件になる偽成功の防止 | 修正前0件exit0・必須34件/一意/実終了・6step | 旧0件exit0反例を保持。子環境の5制御を解除し、34件・34組合せ・全成功を検査。独立11契約検査と最終rootのhostile34 actual0 |
-| 最終統合 | Draft PR・独立レビュー・必要な回帰・merge | frozen source SHA・実終了値・main一致 | 最終製品a1ed5c0の必要なlocal回帰は実終了0。最終文書と証拠の独立照合後にmerge・main確認をIssue #12へ記録する |
+| 最終統合 | Draft PR・独立レビュー・必要な回帰・merge | frozen source SHA・実終了値・main一致 | 最終製品a1ed5c0の必要なlocal回帰は実終了0。947a9eeの全変更独立承認と228ade09の証拠採用照合を経てPR #13をマージし、main一致をIssue #12へ記録した |
+
+マージ後の追加bot指摘は、保存された検証script3本のMac固有パスに関するP2で、Issue #14に分けた。継続実行する入口と保存したraw scriptの区別は [検証ツールの再実行](verification-tools.ja.md) を参照する。製品ソースや元の181要件の未完了を示す指摘ではない。
 
 新しい検証は元のactual1/incompleteを消したり、未実施の検査を合格へ置き換えたりしない。今回は追加改善の変更に必要な回帰を行い、既存1248件の全再実行を唯一の条件にはしない。
 
