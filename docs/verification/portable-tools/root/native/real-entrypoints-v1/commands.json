@@ -1,0 +1,51 @@
+[
+  {
+    "name": "media",
+    "argv": [
+      "node",
+      "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/audit-media.mjs",
+      "--baseline",
+      "9f5430ca87e249af204cc335a8610d0d8040621f",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-root/real-entrypoints-v1/media"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-root/unrelated-cwd",
+    "startedUtc": "2026-10-06T15:24:55.899895+00:00",
+    "finishedUtc": "2026-10-06T15:24:58.524583+00:00",
+    "actualExit": 0
+  },
+  {
+    "name": "handoff",
+    "argv": [
+      "python3",
+      "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/build-handoff.py",
+      "--manifest-sha256",
+      "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998",
+      "--transport-metadata-sha256",
+      "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-root/real-entrypoints-v1/handoff"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-root/unrelated-cwd",
+    "startedUtc": "2026-10-06T15:24:58.525119+00:00",
+    "finishedUtc": "2026-10-06T15:24:59.251688+00:00",
+    "actualExit": 0
+  },
+  {
+    "name": "cross-browser",
+    "argv": [
+      "python3",
+      "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/build-public-proof.py",
+      "--manifest-sha256",
+      "e929d1d31b57b55717dcf511388fd82991273b6e661f6afbd737ccfcd184ca78",
+      "--transport-metadata-sha256",
+      "b87271548398f71268790e0710a001622402437ed1ee75bd11b3ebf1391cbe06",
+      "--output",
+      "/tmp/ui-foundation-portable-tools-root/real-entrypoints-v1/cross-browser"
+    ],
+    "cwd": "/tmp/ui-foundation-portable-tools-root/unrelated-cwd",
+    "startedUtc": "2026-10-06T15:24:59.252184+00:00",
+    "finishedUtc": "2026-10-06T15:25:00.422091+00:00",
+    "actualExit": 0
+  }
+]

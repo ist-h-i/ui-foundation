@@ -1,0 +1,4405 @@
+{
+  "schema": 1,
+  "scope": "Selected Media specs and helper: AST baseline comparison and actual strict compiler only",
+  "base": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "requestedBaseline": "9f5430ca87e249af204cc335a8610d0d8040621f",
+  "files": [
+    {
+      "path": "tests/ui/media.spec.ts",
+      "beforeSha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6",
+      "afterSha256": "6edc5706aadf264847c2d1c0c9ebadd071b5d3bbd55a6a91dd124f1187736b59",
+      "titlesExact": true,
+      "matcherArgumentsLabelsExact": true,
+      "before": {
+        "titles": [
+          "'actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus'",
+          "'image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained'",
+          "'carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal'",
+          "'image compare native keyboard/boundary endpoints, direction and RTL'",
+          "'crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates'",
+          "'PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery'",
+          "'actual QR/Barcode encoding independently decodes raster; data change/error recovery'",
+          "'native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen'",
+          "'guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'value'",
+              "'40'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'3'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'alt'",
+              "'申請画像'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'loading'",
+              "'lazy'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'cover'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'400% · 90度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'inset(0px 0% 0px 0px)'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'0'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-direction'",
+              "'vertical'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'dir'",
+              "'rtl'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'99'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-direction'",
+              "'horizontal'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'ltr'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "99",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100×100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'image/png'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "{x1:0,y1:0,x2:100,y2:100}"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[255,0,0,255]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'回転 90度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'回転90'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'First PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'ページを表示しました'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "oldSize.width*2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'Second PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'First PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "oldSize.width"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'document.pdf'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'UI123456'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'UI123456'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'https://example.invalid/application/007'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'復旧123'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0.25"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1.5"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'showing'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "100"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'ui-video-player'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "320"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "page.getByTestId('pdf').locator('canvas')",
+          "upload.getByText('bad.pdf: 受付形式に合いません。')",
+          "upload.getByText('large.txt: 容量の上限を超えています。')",
+          "upload.locator('progress')",
+          "await upload.locator('progress').first().getAttribute('value')",
+          "await page.evaluate(()=>{const app=(window as any).__mediaCatalog;return app.uploads().every((item:any)=>item.file instanceof File&&item.file.size===5)})",
+          "upload.locator('progress').first()",
+          "upload.getByText('取消済み',{exact:false})",
+          "upload.getByTestId('upload-requests')",
+          "await page.evaluate(()=>{const app=(window as any).__mediaCatalog;return app.uploads().find((item:any)=>item.name==='first.txt').requestId})",
+          "upload.getByText('送信先を確認して再試行してください。')",
+          "upload.getByRole('button',{name:'next.txtの送信を取消'})",
+          "upload.locator('.ui-media-list-status')",
+          "upload.getByText('drop.txt',{exact:true})",
+          "upload.getByText('over-count.txt: 件数の上限を超えています。')",
+          "upload.getByText('結果を確認できません',{exact:false})",
+          "image.locator('ui-image img').first()",
+          "image.locator('ui-image img').first()",
+          "await image.locator('ui-image img').first().evaluate(node=>getComputedStyle(node).objectFit)",
+          "image.getByText('申請画像を取得できません。')",
+          "image.locator('ui-image img').first()",
+          "dialog",
+          "dialog.getByRole('status').first()",
+          "dialog.getByRole('img',{name:'青い写真'})",
+          "dialog",
+          "page.locator('#viewer-trigger')",
+          "await sourceHandle!.evaluate(node=>node===document.querySelector('[data-testid=image] ui-image img'))",
+          "gallery.getByRole('button',{name:'自動送りを停止'})",
+          "gallery.getByRole('img',{name:'青い写真'})",
+          "gallery.getByRole('button',{name:'自動送りを開始'})",
+          "gallery.getByRole('img',{name:'青い写真'})",
+          "gallery.getByRole('img',{name:'緑の写真'})",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery.getByRole('button',{name:'自動送りを開始'})",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery",
+          "range",
+          "await compare.locator('img').last().evaluate(node=>getComputedStyle(node).clipPath)",
+          "range",
+          "compare.locator('.ui-image-compare-line')",
+          "page.locator('main')",
+          "range",
+          "range",
+          "compare.locator('.ui-image-compare-line')",
+          "geometry.direction",
+          "geometry.position",
+          "crop.getByRole('button',{name:'切抜きを確定'})",
+          "crop.getByLabel('高さ',{exact:true})",
+          "crop.getByTestId('crop-size')",
+          "result.type",
+          "result.size",
+          "result.bounds",
+          "result.pixel",
+          "crop.locator('ui-image-cropper [role=status]').first()",
+          "crop.getByTestId('crop-size')",
+          "pdf.locator('.ui-pdf-text')",
+          "pdf.getByRole('status')",
+          "()=>pdf.locator('canvas').evaluate(node=>node.width)",
+          "pdf.locator('.ui-pdf-text')",
+          "pdf.locator('.ui-pdf-text')",
+          "()=>pdf.locator('canvas').evaluate(node=>node.width)",
+          "download.suggestedFilename()",
+          "await download.failure()",
+          "pdf.getByText(/PDFを読み込めません/)",
+          "pdf.locator('canvas')",
+          "codes.locator('ui-qr-code canvas')",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "()=>codes.locator('ui-barcode canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node,'code128')}catch{return null}})",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "codes.getByText(/QRコードを作成できません/)",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "()=>audio.locator('audio').evaluate(node=>node.readyState)",
+          "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "await audio.locator('audio').evaluate(node=>node.volume)",
+          "await audio.locator('audio').evaluate(node=>node.playbackRate)",
+          "()=>audio.locator('audio').evaluate(node=>node.textTracks[0]?.mode)",
+          "()=>audio.locator('audio').evaluate(node=>node.currentTime)",
+          "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "audio.getByRole('button',{name:'再生',exact:true})",
+          "await audio.locator('audio').evaluate(node=>node.controls)",
+          "()=>video.locator('video').evaluate(node=>node.readyState)",
+          "()=>video.locator('video').evaluate(node=>node.videoWidth)",
+          "()=>page.evaluate(()=>document.fullscreenElement?.localName)",
+          "()=>page.evaluate(()=>document.documentElement.scrollWidth)",
+          "results.violations.map(item=>({id:item.id,nodes:item.nodes.map(node=>node.target)}))"
+        ],
+        "explicitAny": 11,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "after": {
+        "titles": [
+          "'actual Files, intake/type/size/count/drop, indeterminate/known progress, cancel/retry/id, individual failure, removal focus'",
+          "'image alt/ratio/fit/lazy/error/recovery; viewer actual modal focus, zoom/rotate/navigation/close; profile state retained'",
+          "'carousel interval/navigation/pages/focus/hidden/disabled/reduced-motion stop and disposal'",
+          "'image compare native keyboard/boundary endpoints, direction and RTL'",
+          "'crop actual image, geometry/aspect/rotation/confirmation Blob pixels and source coordinates'",
+          "'PDF.js actual worker rendering pages/zoom/rapid updates/download/error/recovery'",
+          "'actual QR/Barcode encoding independently decodes raster; data change/error recovery'",
+          "'native audio playback/stop/volume/rate/caption/hidden/disabled and actual generated video/fullscreen'",
+          "'guided/dense, 320px 200% text, RTL semantic styles, keyboard and axe'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'value'",
+              "'40'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'3'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'alt'",
+              "'申請画像'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'loading'",
+              "'lazy'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'cover'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'400% · 90度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'inset(0px 0% 0px 0px)'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'0'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-direction'",
+              "'vertical'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'dir'",
+              "'rtl'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'99'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-direction'",
+              "'horizontal'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'ltr'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "99",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100×100'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'image/png'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "{x1:0,y1:0,x2:100,y2:100}"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[255,0,0,255]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'回転 90度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'回転90'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'First PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'ページを表示しました'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "oldSize.width*2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'Second PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'First PDF page'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "oldSize.width"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'document.pdf'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'UI123456'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'UI123456'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'https://example.invalid/application/007'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'復旧123'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0.25"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1.5"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'showing'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "100"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "'ui-video-player'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "320"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)",
+          "page.getByTestId('pdf').locator('canvas')",
+          "upload.getByText('bad.pdf: 受付形式に合いません。')",
+          "upload.getByText('large.txt: 容量の上限を超えています。')",
+          "upload.locator('progress')",
+          "await upload.locator('progress').first().getAttribute('value')",
+          "await page.evaluate(()=>{const app=window.__mediaCatalog;return app.uploads().every(item=>item.file instanceof File&&item.file.size===5)})",
+          "upload.locator('progress').first()",
+          "upload.getByText('取消済み',{exact:false})",
+          "upload.getByTestId('upload-requests')",
+          "await page.evaluate(()=>{const app=window.__mediaCatalog;const item=app.uploads().find(item=>item.name==='first.txt');if(!item)throw new Error('Expected first.txt upload');return item.requestId})",
+          "upload.getByText('送信先を確認して再試行してください。')",
+          "upload.getByRole('button',{name:'next.txtの送信を取消'})",
+          "upload.locator('.ui-media-list-status')",
+          "upload.getByText('drop.txt',{exact:true})",
+          "upload.getByText('over-count.txt: 件数の上限を超えています。')",
+          "upload.getByText('結果を確認できません',{exact:false})",
+          "image.locator('ui-image img').first()",
+          "image.locator('ui-image img').first()",
+          "await image.locator('ui-image img').first().evaluate(node=>getComputedStyle(node).objectFit)",
+          "image.getByText('申請画像を取得できません。')",
+          "image.locator('ui-image img').first()",
+          "dialog",
+          "dialog.getByRole('status').first()",
+          "dialog.getByRole('img',{name:'青い写真'})",
+          "dialog",
+          "page.locator('#viewer-trigger')",
+          "await sourceHandle!.evaluate(node=>node===document.querySelector('[data-testid=image] ui-image img'))",
+          "gallery.getByRole('button',{name:'自動送りを停止'})",
+          "gallery.getByRole('img',{name:'青い写真'})",
+          "gallery.getByRole('button',{name:'自動送りを開始'})",
+          "gallery.getByRole('img',{name:'青い写真'})",
+          "gallery.getByRole('img',{name:'緑の写真'})",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery.getByRole('button',{name:'自動送りを開始'})",
+          "gallery.getByRole('img',{name:'赤い写真'})",
+          "gallery",
+          "range",
+          "await compare.locator('img').last().evaluate(node=>getComputedStyle(node).clipPath)",
+          "range",
+          "compare.locator('.ui-image-compare-line')",
+          "page.locator('main')",
+          "range",
+          "range",
+          "compare.locator('.ui-image-compare-line')",
+          "geometry.direction",
+          "geometry.position",
+          "crop.getByRole('button',{name:'切抜きを確定'})",
+          "crop.getByLabel('高さ',{exact:true})",
+          "crop.getByTestId('crop-size')",
+          "result.type",
+          "result.size",
+          "result.bounds",
+          "result.pixel",
+          "crop.locator('ui-image-cropper [role=status]').first()",
+          "crop.getByTestId('crop-size')",
+          "pdf.locator('.ui-pdf-text')",
+          "pdf.getByRole('status')",
+          "()=>pdf.locator('canvas').evaluate(readNativeCanvasSize).then(size=>size.width)",
+          "pdf.locator('.ui-pdf-text')",
+          "pdf.locator('.ui-pdf-text')",
+          "()=>pdf.locator('canvas').evaluate(readNativeCanvasSize).then(size=>size.width)",
+          "download.suggestedFilename()",
+          "await download.failure()",
+          "pdf.getByText(/PDFを読み込めません/)",
+          "pdf.locator('canvas')",
+          "codes.locator('ui-qr-code canvas')",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})",
+          "()=>codes.locator('ui-barcode canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node,'code128')}catch{return null}})",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})",
+          "codes.getByText(/QRコードを作成できません/)",
+          "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.readyState)",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)",
+          "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.volume)",
+          "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.playbackRate)",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes[0])",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.currentTime)",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)",
+          "audio.getByRole('button',{name:'再生',exact:true})",
+          "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.controls)",
+          "()=>video.locator('video').evaluate(readNativeVideoState).then(media=>media.readyState)",
+          "()=>video.locator('video').evaluate(readNativeVideoState).then(media=>media.videoWidth)",
+          "()=>page.evaluate(()=>document.fullscreenElement?.localName)",
+          "()=>page.evaluate(()=>document.documentElement.scrollWidth)",
+          "results.violations.map(item=>({id:item.id,nodes:item.nodes.map(node=>node.target)}))"
+        ],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "changedAssertionTargets": [
+        {
+          "index": 1,
+          "before": "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "after": "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)"
+        },
+        {
+          "index": 7,
+          "before": "await page.evaluate(()=>{const app=(window as any).__mediaCatalog;return app.uploads().every((item:any)=>item.file instanceof File&&item.file.size===5)})",
+          "after": "await page.evaluate(()=>{const app=window.__mediaCatalog;return app.uploads().every(item=>item.file instanceof File&&item.file.size===5)})"
+        },
+        {
+          "index": 11,
+          "before": "await page.evaluate(()=>{const app=(window as any).__mediaCatalog;return app.uploads().find((item:any)=>item.name==='first.txt').requestId})",
+          "after": "await page.evaluate(()=>{const app=window.__mediaCatalog;const item=app.uploads().find(item=>item.name==='first.txt');if(!item)throw new Error('Expected first.txt upload');return item.requestId})"
+        },
+        {
+          "index": 61,
+          "before": "()=>pdf.locator('canvas').evaluate(node=>node.width)",
+          "after": "()=>pdf.locator('canvas').evaluate(readNativeCanvasSize).then(size=>size.width)"
+        },
+        {
+          "index": 64,
+          "before": "()=>pdf.locator('canvas').evaluate(node=>node.width)",
+          "after": "()=>pdf.locator('canvas').evaluate(readNativeCanvasSize).then(size=>size.width)"
+        },
+        {
+          "index": 70,
+          "before": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "after": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})"
+        },
+        {
+          "index": 71,
+          "before": "()=>codes.locator('ui-barcode canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node,'code128')}catch{return null}})",
+          "after": "()=>codes.locator('ui-barcode canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node,'code128')}catch{return null}})"
+        },
+        {
+          "index": 72,
+          "before": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "after": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})"
+        },
+        {
+          "index": 74,
+          "before": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{try{return (window as any).__mediaDecodeCanvas(node)}catch{return null}})",
+          "after": "()=>codes.locator('ui-qr-code canvas').evaluate(node=>{if(!(node instanceof HTMLCanvasElement))throw new TypeError('Expected a native canvas element');try{return window.__mediaDecodeCanvas(node)}catch{return null}})"
+        },
+        {
+          "index": 75,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.readyState)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.readyState)"
+        },
+        {
+          "index": 76,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 77,
+          "before": "await audio.locator('audio').evaluate(node=>node.volume)",
+          "after": "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.volume)"
+        },
+        {
+          "index": 78,
+          "before": "await audio.locator('audio').evaluate(node=>node.playbackRate)",
+          "after": "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.playbackRate)"
+        },
+        {
+          "index": 79,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.textTracks[0]?.mode)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes[0])"
+        },
+        {
+          "index": 80,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.currentTime)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.currentTime)"
+        },
+        {
+          "index": 81,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 82,
+          "before": "()=>audio.locator('audio').evaluate(node=>node.paused)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 84,
+          "before": "await audio.locator('audio').evaluate(node=>node.controls)",
+          "after": "await audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.controls)"
+        },
+        {
+          "index": 85,
+          "before": "()=>video.locator('video').evaluate(node=>node.readyState)",
+          "after": "()=>video.locator('video').evaluate(readNativeVideoState).then(media=>media.readyState)"
+        },
+        {
+          "index": 86,
+          "before": "()=>video.locator('video').evaluate(node=>node.videoWidth)",
+          "after": "()=>video.locator('video').evaluate(readNativeVideoState).then(media=>media.videoWidth)"
+        }
+      ]
+    },
+    {
+      "path": "tests/ui/media-regressions.spec.ts",
+      "beforeSha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7",
+      "afterSha256": "45496e4e8cb1b6716aeffcf2d5942e0ab57d641d7d61d652cf4b80280a77c1ab",
+      "titlesExact": true,
+      "matcherArgumentsLabelsExact": true,
+      "before": {
+        "titles": [
+          "'real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup'",
+          "'real VTT removal and source replacement reconcile selected caption, native mode and current cue'",
+          "'PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL'",
+          "'open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL'",
+          "'desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling'",
+          "'Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "pauses"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "time"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['playing','stop','new play']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "reentryTime"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'src'",
+              "'/assets/media/tone.wav?replaced'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'確認用の字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "''"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'差し替えた確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','showing']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','showing']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'確認用の字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','disabled']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'PDFを選択してください。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'PDFを読込み中です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'400% · '+rotation+'度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "start.canvasWidth",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "start.canvasHeight",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "end.clientWidth+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "end.clientHeight+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100% · '+rotation+'度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "geometry.start.canvasWidth",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "geometry.start.canvasHeight",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "geometry.clientHeight+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "geometry.clientWidth+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'自動送りを停止'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "stopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "stopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "focusedStop"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "focusedStop"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'自動送りを停止'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": [
+              "'mobile touch catalog runtime errors and warnings'"
+            ]
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "()=>page.getByTestId('audio').locator('audio').evaluate(media=>media.readyState)",
+          "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "()=>native.evaluate(media=>media.paused)",
+          "()=>native.evaluate(media=>media.paused)",
+          "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "()=>native.evaluate(media=>media.paused)",
+          "await page.evaluate(()=>(window as any).nativePlayProbe.pauses)",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "()=>currentTime(page)",
+          "()=>page.evaluate(()=>(window as any).nativeReentryProbe.playing)",
+          "await page.evaluate(()=>(window as any).nativeReentryProbe.sequence)",
+          "()=>page.getByTestId('audio').locator('audio').evaluate(media=>media.paused)",
+          "()=>currentTime(page)",
+          "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "audio",
+          "audio.getByRole('button',{name:/^(再生|一時停止)$/})",
+          "audio.locator('audio')",
+          "page.locator('ui-audio-player')",
+          "()=>page.evaluate(()=>(window as any).savedNativeAudio.paused)",
+          "await page.evaluate(()=>(window as any).savedNativeAudio.paused)",
+          "await page.evaluate(()=>(window as any).savedNativeAudio.hasAttribute('src'))",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(media=>media.textTracks.length)",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "()=>!!release",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "select",
+          "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "page.locator('main')",
+          "pdf.getByRole('status')",
+          "analysis.violations",
+          "()=>!!release",
+          "pdf.getByRole('status')",
+          "analysis.violations",
+          "pdf.locator('canvas')",
+          "analysis.violations",
+          "pdf.getByText(/PDFを読み込めません/)",
+          "analysis.violations",
+          "page.locator('main')",
+          "dialog",
+          "()=>dialog.locator('ui-image img').evaluate(image=>image.naturalWidth)",
+          "dialog.getByRole('status').first()",
+          "()=>viewport.evaluate(node=>node.scrollWidth>node.clientWidth)",
+          "start.left",
+          "start.top",
+          "start.imageWidth",
+          "start.imageHeight",
+          "()=>viewport.evaluate(node=>node.scrollLeft)",
+          "viewport",
+          "()=>viewport.evaluate(node=>node.scrollTop)",
+          "end.right",
+          "end.bottom",
+          "analysis.violations",
+          "()=>viewport.evaluate(node=>node.scrollWidth<=node.clientWidth)",
+          "dialog.getByRole('img',{name:'青い写真'})",
+          "dialog",
+          "page.locator('#viewer-trigger')",
+          "page.locator('main')",
+          "dialog",
+          "()=>dialog.locator('ui-image img').evaluate(image=>image.naturalWidth)",
+          "dialog.getByRole('status').first()",
+          "geometry.start.top",
+          "geometry.start.left",
+          "geometry.start.width",
+          "geometry.start.height",
+          "geometry.end.bottom",
+          "geometry.end.right",
+          "dialog",
+          "control",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "touchControl",
+          "touchControl",
+          "await touchGallery.locator('[aria-current=true]').textContent()",
+          "touchControl",
+          "touchStarted",
+          "touchControl",
+          "await touchGallery.locator('[aria-current=true]').textContent()",
+          "touchErrors"
+        ],
+        "explicitAny": 38,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "after": {
+        "titles": [
+          "'real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup'",
+          "'real VTT removal and source replacement reconcile selected caption, native mode and current cue'",
+          "'PDF empty/loading/loaded/error named scrolling surface passes actual axe in guided/dense 320px 200% RTL'",
+          "'open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL'",
+          "'desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling'",
+          "'Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "pauses"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "time"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['playing','stop','new play']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "reentryTime"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeDisabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'src'",
+              "'/assets/media/tone.wav?replaced'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "false"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'確認用の字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "''"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'差し替えた確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','showing']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','showing']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveValue",
+            "negated": false,
+            "arguments": [
+              "'second'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'二つ目の確認字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'確認用の字幕です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['disabled','disabled']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'PDFを選択してください。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'PDFを読込み中です。'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'400% · '+rotation+'度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "start.canvasWidth",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "start.canvasHeight",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "end.clientWidth+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "end.clientHeight+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeFocused",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'data-ui-profile'",
+              "profile"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThan",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100% · '+rotation+'度'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeGreaterThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "-1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "geometry.start.canvasWidth",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "geometry.start.canvasHeight",
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "geometry.clientHeight+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeLessThanOrEqual",
+            "negated": false,
+            "arguments": [
+              "geometry.clientWidth+1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'自動送りを停止'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "stopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "stopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "focusedStop"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "focusedStop"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveText",
+            "negated": false,
+            "arguments": [
+              "'自動送りを停止'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'true'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveAttribute",
+            "negated": false,
+            "arguments": [
+              "'aria-pressed'",
+              "'false'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": true,
+            "arguments": [
+              "touchStopped"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": [
+              "'mobile touch catalog runtime errors and warnings'"
+            ]
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)",
+          "()=>page.getByTestId('audio').locator('audio').evaluate(readNativeAudioState).then(media=>media.readyState)",
+          "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)",
+          "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)",
+          "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)",
+          "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)",
+          "await page.evaluate(()=>window.nativePlayProbe.pauses)",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "audio.getByRole('button',{name:'一時停止',exact:true})",
+          "()=>currentTime(page)",
+          "()=>page.evaluate(()=>window.nativeReentryProbe.playing)",
+          "await page.evaluate(()=>window.nativeReentryProbe.sequence)",
+          "()=>page.getByTestId('audio').locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)",
+          "()=>currentTime(page)",
+          "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)",
+          "audio",
+          "audio.getByRole('button',{name:/^(再生|一時停止)$/})",
+          "audio.locator('audio')",
+          "page.locator('ui-audio-player')",
+          "()=>page.evaluate(()=>window.savedNativeAudio.paused)",
+          "await page.evaluate(()=>window.savedNativeAudio.paused)",
+          "await page.evaluate(()=>window.savedNativeAudio.hasAttribute('src'))",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.trackCount)",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "()=>!!release",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "select",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)",
+          "select",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "audio.locator('.ui-media-caption')",
+          "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)",
+          "page.locator('main')",
+          "pdf.getByRole('status')",
+          "analysis.violations",
+          "()=>!!release",
+          "pdf.getByRole('status')",
+          "analysis.violations",
+          "pdf.locator('canvas')",
+          "analysis.violations",
+          "pdf.getByText(/PDFを読み込めません/)",
+          "analysis.violations",
+          "page.locator('main')",
+          "dialog",
+          "()=>dialog.locator('ui-image img').evaluate(readNativeImageWidth)",
+          "dialog.getByRole('status').first()",
+          "()=>viewport.evaluate(node=>node.scrollWidth>node.clientWidth)",
+          "start.left",
+          "start.top",
+          "start.imageWidth",
+          "start.imageHeight",
+          "()=>viewport.evaluate(node=>node.scrollLeft)",
+          "viewport",
+          "()=>viewport.evaluate(node=>node.scrollTop)",
+          "end.right",
+          "end.bottom",
+          "analysis.violations",
+          "()=>viewport.evaluate(node=>node.scrollWidth<=node.clientWidth)",
+          "dialog.getByRole('img',{name:'青い写真'})",
+          "dialog",
+          "page.locator('#viewer-trigger')",
+          "page.locator('main')",
+          "dialog",
+          "()=>dialog.locator('ui-image img').evaluate(readNativeImageWidth)",
+          "dialog.getByRole('status').first()",
+          "geometry.start.top",
+          "geometry.start.left",
+          "geometry.start.width",
+          "geometry.start.height",
+          "geometry.end.bottom",
+          "geometry.end.right",
+          "dialog",
+          "control",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "control",
+          "await gallery.locator('[aria-current=true]').textContent()",
+          "touchControl",
+          "touchControl",
+          "await touchGallery.locator('[aria-current=true]').textContent()",
+          "touchControl",
+          "touchStarted",
+          "touchControl",
+          "await touchGallery.locator('[aria-current=true]').textContent()",
+          "touchErrors"
+        ],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "changedAssertionTargets": [
+        {
+          "index": 1,
+          "before": "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "after": "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)"
+        },
+        {
+          "index": 2,
+          "before": "()=>page.getByTestId('audio').locator('audio').evaluate(media=>media.readyState)",
+          "after": "()=>page.getByTestId('audio').locator('audio').evaluate(readNativeAudioState).then(media=>media.readyState)"
+        },
+        {
+          "index": 3,
+          "before": "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)"
+        },
+        {
+          "index": 4,
+          "before": "()=>native.evaluate(media=>media.paused)",
+          "after": "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 5,
+          "before": "()=>native.evaluate(media=>media.paused)",
+          "after": "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 6,
+          "before": "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)"
+        },
+        {
+          "index": 8,
+          "before": "()=>native.evaluate(media=>media.paused)",
+          "after": "()=>native.evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 9,
+          "before": "await page.evaluate(()=>(window as any).nativePlayProbe.pauses)",
+          "after": "await page.evaluate(()=>window.nativePlayProbe.pauses)"
+        },
+        {
+          "index": 13,
+          "before": "()=>page.evaluate(()=>(window as any).nativeReentryProbe.playing)",
+          "after": "()=>page.evaluate(()=>window.nativeReentryProbe.playing)"
+        },
+        {
+          "index": 14,
+          "before": "await page.evaluate(()=>(window as any).nativeReentryProbe.sequence)",
+          "after": "await page.evaluate(()=>window.nativeReentryProbe.sequence)"
+        },
+        {
+          "index": 15,
+          "before": "()=>page.getByTestId('audio').locator('audio').evaluate(media=>media.paused)",
+          "after": "()=>page.getByTestId('audio').locator('audio').evaluate(readNativeAudioState).then(media=>media.paused)"
+        },
+        {
+          "index": 17,
+          "before": "()=>page.evaluate(()=>(window as any).nativePlayProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.nativePlayProbe.pending.length)"
+        },
+        {
+          "index": 22,
+          "before": "()=>page.evaluate(()=>(window as any).savedNativeAudio.paused)",
+          "after": "()=>page.evaluate(()=>window.savedNativeAudio.paused)"
+        },
+        {
+          "index": 23,
+          "before": "await page.evaluate(()=>(window as any).savedNativeAudio.paused)",
+          "after": "await page.evaluate(()=>window.savedNativeAudio.paused)"
+        },
+        {
+          "index": 24,
+          "before": "await page.evaluate(()=>(window as any).savedNativeAudio.hasAttribute('src'))",
+          "after": "await page.evaluate(()=>window.savedNativeAudio.hasAttribute('src'))"
+        },
+        {
+          "index": 26,
+          "before": "()=>audio.locator('audio').evaluate(media=>media.textTracks.length)",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.trackCount)"
+        },
+        {
+          "index": 35,
+          "before": "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)"
+        },
+        {
+          "index": 37,
+          "before": "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)"
+        },
+        {
+          "index": 42,
+          "before": "()=>audio.locator('audio').evaluate(media=>Array.from(media.textTracks,track=>track.mode))",
+          "after": "()=>audio.locator('audio').evaluate(readNativeAudioState).then(media=>media.modes)"
+        },
+        {
+          "index": 55,
+          "before": "()=>dialog.locator('ui-image img').evaluate(image=>image.naturalWidth)",
+          "after": "()=>dialog.locator('ui-image img').evaluate(readNativeImageWidth)"
+        },
+        {
+          "index": 74,
+          "before": "()=>dialog.locator('ui-image img').evaluate(image=>image.naturalWidth)",
+          "after": "()=>dialog.locator('ui-image img').evaluate(readNativeImageWidth)"
+        }
+      ]
+    },
+    {
+      "path": "tests/ui/media-lifetime.spec.ts",
+      "beforeSha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4",
+      "afterSha256": "3fabeac8fecb89d72e6bf50343d945c67d6e4000e462957a94bd64228f5da735",
+      "titlesExact": true,
+      "matcherArgumentsLabelsExact": true,
+      "before": {
+        "titles": [
+          "'native crop closes stale decoded Bitmaps during rapid replacement and destruction'",
+          "'native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs'",
+          "'PDF worker startup failure reports an error and terminates its native Worker'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "200"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['old.png']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "200"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['old.png','current.png','destroy-pending.png']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "1/3",
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100×300'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "page.getByTestId('pdf').locator('canvas')",
+          "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "crop.getByRole('button',{name:'切抜きを確定'})",
+          "()=>crop.locator('ui-image-cropper canvas').evaluate(node=>node.width)",
+          "()=>page.evaluate(()=>(window as any).cropDecodeProbe.closed)",
+          "await crop.locator('ui-image-cropper canvas').evaluate(node=>node.width)",
+          "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "()=>page.evaluate(()=>(window as any).cropDecodeProbe.closed)",
+          "page.locator('ui-image-cropper')",
+          "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput())",
+          "errors",
+          "confirm",
+          "box!.width/box!.height",
+          "crop.getByTestId('crop-size')",
+          "()=>page.evaluate(()=>(window as any).cropEncodingProbe.created.length)",
+          "await page.evaluate(()=>{const p=(window as any).cropEncodingProbe;return p.revoked.includes(p.created[0]);})",
+          "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "crop",
+          "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "confirm",
+          "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "confirm",
+          "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "page.locator('ui-image-cropper')",
+          "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "await page.evaluate(()=>(window as any).cropEncodingProbe.created.length)",
+          "await page.evaluate(()=>{const p=(window as any).cropEncodingProbe;return p.created.every((url:string)=>p.revoked.includes(url));})",
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "page.getByTestId('pdf').getByText(/PDFを読み込めません/)",
+          "()=>page.evaluate(()=>(window as any).mediaWorkerProbe.every((worker:any)=>worker.terminated>0))",
+          "page.getByTestId('pdf').locator('canvas')",
+          "()=>page.evaluate(()=>(window as any).mediaWorkerProbe.every((worker:any)=>worker.terminated>0))"
+        ],
+        "explicitAny": 38,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "after": {
+        "titles": [
+          "'native crop closes stale decoded Bitmaps during rapid replacement and destruction'",
+          "'native crop discards stale encoding on hide/source replacement/destroy; app revokes replaced and destroyed Blob URLs'",
+          "'PDF worker startup failure reports an error and terminates its native Worker'"
+        ],
+        "matchers": [
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "200"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['old.png']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "200"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "3"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "['old.png','current.png','destroy-pending.png']"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeNull",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toEqual",
+            "negated": false,
+            "arguments": [
+              "[]"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBeCloseTo",
+            "negated": false,
+            "arguments": [
+              "1/3",
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toContainText",
+            "negated": false,
+            "arguments": [
+              "'100×300'"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeHidden",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeEnabled",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "1"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toHaveCount",
+            "negated": false,
+            "arguments": [
+              "0"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "currentRequest"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "2"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          },
+          {
+            "matcher": "toBeVisible",
+            "negated": false,
+            "arguments": [],
+            "labels": []
+          },
+          {
+            "matcher": "toBe",
+            "negated": false,
+            "arguments": [
+              "true"
+            ],
+            "labels": []
+          }
+        ],
+        "assertionTargets": [
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)",
+          "page.getByTestId('pdf').locator('canvas')",
+          "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)",
+          "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)",
+          "crop.getByRole('button',{name:'切抜きを確定'})",
+          "()=>crop.locator('ui-image-cropper canvas').evaluate(readNativeCanvasSize).then(size=>size.width)",
+          "()=>page.evaluate(()=>window.cropDecodeProbe.closed)",
+          "await crop.locator('ui-image-cropper canvas').evaluate(readNativeCanvasSize).then(size=>size.width)",
+          "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)",
+          "()=>page.evaluate(()=>window.cropDecodeProbe.closed)",
+          "page.locator('ui-image-cropper')",
+          "await page.evaluate(()=>window.__mediaCatalog.cropOutput())",
+          "errors",
+          "confirm",
+          "box!.width/box!.height",
+          "crop.getByTestId('crop-size')",
+          "()=>page.evaluate(()=>window.cropEncodingProbe.created.length)",
+          "await page.evaluate(()=>{const p=window.cropEncodingProbe;return p.revoked.includes(p.created[0]);})",
+          "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)",
+          "crop",
+          "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})",
+          "confirm",
+          "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)",
+          "confirm",
+          "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})",
+          "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)",
+          "page.locator('ui-image-cropper')",
+          "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})",
+          "await page.evaluate(()=>window.cropEncodingProbe.created.length)",
+          "await page.evaluate(()=>{const p=window.cropEncodingProbe;return p.created.every((url:string)=>p.revoked.includes(url));})",
+          "page.getByRole('heading',{name:'添付・画像・メディアの操作'})",
+          "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)",
+          "page.getByTestId('pdf').getByText(/PDFを読み込めません/)",
+          "()=>page.evaluate(()=>window.mediaWorkerProbe.every(worker=>worker.terminated>0))",
+          "page.getByTestId('pdf').locator('canvas')",
+          "()=>page.evaluate(()=>window.mediaWorkerProbe.every(worker=>worker.terminated>0))"
+        ],
+        "explicitAny": 0,
+        "suppressions": 0,
+        "parseErrors": 0
+      },
+      "changedAssertionTargets": [
+        {
+          "index": 1,
+          "before": "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "after": "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)"
+        },
+        {
+          "index": 3,
+          "before": "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)"
+        },
+        {
+          "index": 4,
+          "before": "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)"
+        },
+        {
+          "index": 6,
+          "before": "()=>crop.locator('ui-image-cropper canvas').evaluate(node=>node.width)",
+          "after": "()=>crop.locator('ui-image-cropper canvas').evaluate(readNativeCanvasSize).then(size=>size.width)"
+        },
+        {
+          "index": 7,
+          "before": "()=>page.evaluate(()=>(window as any).cropDecodeProbe.closed)",
+          "after": "()=>page.evaluate(()=>window.cropDecodeProbe.closed)"
+        },
+        {
+          "index": 8,
+          "before": "await crop.locator('ui-image-cropper canvas').evaluate(node=>node.width)",
+          "after": "await crop.locator('ui-image-cropper canvas').evaluate(readNativeCanvasSize).then(size=>size.width)"
+        },
+        {
+          "index": 9,
+          "before": "()=>page.evaluate(()=>(window as any).cropDecodeProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropDecodeProbe.pending.length)"
+        },
+        {
+          "index": 10,
+          "before": "()=>page.evaluate(()=>(window as any).cropDecodeProbe.closed)",
+          "after": "()=>page.evaluate(()=>window.cropDecodeProbe.closed)"
+        },
+        {
+          "index": 12,
+          "before": "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput())",
+          "after": "await page.evaluate(()=>window.__mediaCatalog.cropOutput())"
+        },
+        {
+          "index": 17,
+          "before": "()=>page.evaluate(()=>(window as any).cropEncodingProbe.created.length)",
+          "after": "()=>page.evaluate(()=>window.cropEncodingProbe.created.length)"
+        },
+        {
+          "index": 18,
+          "before": "await page.evaluate(()=>{const p=(window as any).cropEncodingProbe;return p.revoked.includes(p.created[0]);})",
+          "after": "await page.evaluate(()=>{const p=window.cropEncodingProbe;return p.revoked.includes(p.created[0]);})"
+        },
+        {
+          "index": 19,
+          "before": "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)"
+        },
+        {
+          "index": 21,
+          "before": "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "after": "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})"
+        },
+        {
+          "index": 23,
+          "before": "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)"
+        },
+        {
+          "index": 25,
+          "before": "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "after": "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})"
+        },
+        {
+          "index": 26,
+          "before": "()=>page.evaluate(()=>(window as any).cropEncodingProbe.pending.length)",
+          "after": "()=>page.evaluate(()=>window.cropEncodingProbe.pending.length)"
+        },
+        {
+          "index": 28,
+          "before": "await page.evaluate(()=>(window as any).__mediaCatalog.cropOutput().requestId)",
+          "after": "await page.evaluate(()=>{const output=window.__mediaCatalog.cropOutput();if(!output)throw new Error('Expected confirmed crop output');return output.requestId;})"
+        },
+        {
+          "index": 29,
+          "before": "await page.evaluate(()=>(window as any).cropEncodingProbe.created.length)",
+          "after": "await page.evaluate(()=>window.cropEncodingProbe.created.length)"
+        },
+        {
+          "index": 30,
+          "before": "await page.evaluate(()=>{const p=(window as any).cropEncodingProbe;return p.created.every((url:string)=>p.revoked.includes(url));})",
+          "after": "await page.evaluate(()=>{const p=window.cropEncodingProbe;return p.created.every((url:string)=>p.revoked.includes(url));})"
+        },
+        {
+          "index": 32,
+          "before": "()=>page.evaluate(()=>!!(window as any).__mediaCatalog&&!!(window as any).__mediaApplication)",
+          "after": "()=>page.evaluate(()=>!!window.__mediaCatalog&&!!window.__mediaApplication)"
+        },
+        {
+          "index": 34,
+          "before": "()=>page.evaluate(()=>(window as any).mediaWorkerProbe.every((worker:any)=>worker.terminated>0))",
+          "after": "()=>page.evaluate(()=>window.mediaWorkerProbe.every(worker=>worker.terminated>0))"
+        },
+        {
+          "index": 36,
+          "before": "()=>page.evaluate(()=>(window as any).mediaWorkerProbe.every((worker:any)=>worker.terminated>0))",
+          "after": "()=>page.evaluate(()=>window.mediaWorkerProbe.every(worker=>worker.terminated>0))"
+        }
+      ]
+    }
+  ],
+  "helper": {
+    "titles": [],
+    "matchers": [],
+    "assertionTargets": [],
+    "explicitAny": 0,
+    "suppressions": 0,
+    "parseErrors": 0
+  },
+  "helperSha256": "f23345baaee88ba7a79dc041d0fd0f1070fac6d3642131f7591d7edf8e007f82",
+  "configSha256": "52a7534bfbd99c57e57fd56df7d4b33de5521cfea87760e4a8eb343995620e82",
+  "compilerVersion": "6.0.3",
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  "configErrors": [],
+  "matcherCount": 228,
+  "titleCount": 18,
+  "afterAny": 0,
+  "compiler": {
+    "actualExit": 0,
+    "signal": null,
+    "processError": null
+  },
+  "configSafe": true,
+  "pass": true,
+  "allUiSpecsScope": false,
+  "nativeTestsReexecuted": false
+}
