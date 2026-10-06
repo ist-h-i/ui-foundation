@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/ui-foundation-final-integration-independent-review/audit-final-matrix-docs-4510797.py", line 283, in <module>
+    history.append({'directory':dirname,'executionSha256':SHA((base/'execution.json').read_bytes()),'actualExit':ex['exitCode'],
+                                                                                                                 ~~^^^^^^^^^^^^
+KeyError: 'exitCode'

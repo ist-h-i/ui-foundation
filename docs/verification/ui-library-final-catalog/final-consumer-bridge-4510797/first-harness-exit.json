@@ -1,0 +1,11 @@
+{
+  "actualExit": 1,
+  "classification": "optional_sourceLine_schema_comparison",
+  "reason": "The canonical map explicitly encodes absent sourceLine as null, while the protected original/current matrix omits it. Exact original-vs-current protected-field validation passed; comparing null to undefined in the bridge was stricter than the documented optional field.",
+  "rows": [
+    "foundation-07",
+    "foundation-08",
+    "foundation-09"
+  ],
+  "correction": "Normalize absent line metadata only for map-to-matrix comparison. Retain the exact original-vs-current protected-field check without normalization."
+}

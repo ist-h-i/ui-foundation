@@ -1,14 +1,16 @@
 # 共通UIカタログ最終拡張の検証
 
-全181要求のうち、PR #10までの133行に続く残る48行を本差分で実装する。Tree4、Scheduler1、表16、media11、specialist13、フォーム・locale/RTL・profile基盤3の合計48行。[要求原文](../ui-library-request.ja.md)と[マトリクス](../ui-library-matrix.json)の制御項目は保持する。
+全181要求の実装・ローカル検証・最終証拠の独立レビューが完了した。PR #10までの133行に続くTree4、Scheduler1、表16、media11、specialist13、フォーム・locale/RTL・profile基盤3の48行を追加した。[要求原文](../ui-library-request.ja.md)と[マトリクス](../ui-library-matrix.json)の制御項目は保持する。GitHubのReady/merge状態は[PR #11](https://github.com/ist-h-i/ui-foundation/pull/11)で確認する。
 
 ## 本体全件の実終了
 
 `8e8748afb5d3314c2860d0ae181c23c1a444c9d0` のplain `npm test`は2026-10-06 10:32:02–10:57:36 UTC、actual exit0。設定70・生成15・model183・UI980の計1,248ケースは全件成功、skip/cancel/retry0。457入力の前後SHAとHEADは同一で、sourceChanged=[]。製品139ソースは独立ソース承認済みa808から不変、後続は独立審査済みの正式試験4ファイルだけ。[実終了台帳](ui-library-final-catalog/final-full-npm-8e8748a/execution.json)、[元log](ui-library-final-catalog/final-full-npm-8e8748a/npm-test.log)、[87 artifactsのSHA採取](ui-library-final-catalog/final-full-npm-8e8748a/capture-manifest.json)を保存する。
 
-[181対応表](../ui-library-matrix.json)をverified181 /partial0 /pending0へ更新した。原181のid・分類・部品名・制御項目・行番号・baselineは保持し、追加48行/207制御項目は[canonical対応](ui-library-final-catalog/canonical-prep-8e8748a/requirements-48-controls-8e8748a-canonical.json)の実装/正式試験SHAと照合した。[準備監査](ui-library-final-catalog/root-final-181-matrix-preparation.json)はactual full0を根拠に更新し、全体完了フラグと最終matrix/docs独立承認はまだfalse。表54ケースは共通helperから宣言されるため、4moduleには同一共有suiteへの参照を記録し、各moduleの別54成功として加算しない。
+[181対応表](../ui-library-matrix.json)はverified181 /partial0 /pending0、fullCatalogComplete=true /finalMatrixDocReviewPending=false。原181のid・分類・部品名・制御項目・行番号・baselineは保持し、追加48行/207制御項目は[canonical対応](ui-library-final-catalog/canonical-prep-8e8748a/requirements-48-controls-8e8748a-canonical.json)の実装/正式試験SHAと照合した。[準備監査](ui-library-final-catalog/root-final-181-matrix-preparation.json)の当時の承認待ちフラグは履歴として保持し、現在の完了判定はcheckpointの最新finalCatalogVerificationと最終独立承認を参照する。表54ケースは共通helperから宣言されるため、4moduleには同一共有suiteへの参照を記録し、各moduleの別54成功として加算しない。
 
-rootのMasonry2＋Lightbox1＋Tree2選択再測定も5/5 actual0（skip/retry/flaky0、sourceChanged=[]）。全件の成功と独立consumer/ソース承認、過去のactual1/130、axe incomplete、追加UI spec strict24診断、未実施の人によるレビューは別判定として保持する。次の完了条件は、この実終了を含む181matrix/docsの最終独立照合とPRの既存承認範囲内のmergeである。
+rootのMasonry2＋Lightbox1＋Tree2選択再測定も5/5 actual0（skip/retry/flaky0、sourceChanged=[]）。全件の成功と独立consumer/ソース承認、過去のactual1/130、axe incomplete、媒体回帰spec2コピーの追加strict各24診断、未実施の人によるレビューは別判定として保持する。
+
+[最終181matrix/docsの独立承認](ui-library-final-catalog/final-matrix-docs-review-4510797/REVIEW.ja.md)は4510797に対してAPPROVE、[実判定](ui-library-final-catalog/final-matrix-docs-review-4510797/VERDICT.json)の監査actual0・採用阻害なし。457入力・139ソース・181原文・207制御項目/209参照、原cbbc1858ファイル、87最新capture、consumer1485/Lightbox93 archive entryを照合した。[35成果物と元manifestの本体採用](ui-library-final-catalog/final-matrix-docs-review-4510797/root-adoption-manifest.json)はSHA差0。[consumer最終bridge](ui-library-final-catalog/final-consumer-bridge-4510797/bridge-review.ja.md)も139ソース・150生成物・457入力・元1248ログを照合して記載scopeでAPPROVE、新たなconsumer/native実行とは区別する。[完了metadataの最小差分](ui-library-final-catalog/root-final-completion-status-bridge.json)は全行・歴史checkpoint・実行入力を変更していない。metadata最小差分のexact再確認は、この提案snapshotと区別してPR #11の履歴へ記録する。
 
 ## 過去の検証と判断の記録
 

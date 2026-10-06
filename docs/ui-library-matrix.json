@@ -13120,7 +13120,7 @@
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
     "stage": "complete-component-catalog-and-shared-runtime",
-    "verificationStatus": "all-original-rows-locally-verified-final-independent-evidence-review-pending",
+    "verificationStatus": "all-original-rows-verified-and-final-independent-evidence-review-approved",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -13140,7 +13140,7 @@
       "choices": "source/full approve after F1-F5 fixes; independent operations86, manifest74/runtime63, production consumer, axe limits, all791 actual exit0",
       "collections": "approve after public width adapter and idle IO generation fixes; exact runtime85c5ffd; final proof-only delta review required before merge"
     },
-    "fullCatalogComplete": false,
+    "fullCatalogComplete": true,
     "statusCounts": {
       "verified": 181,
       "pending": 0,
@@ -13424,7 +13424,7 @@
       "independentControlMappingSourceSha256": "fa67a51bc70a870b7bbb07992e4dbc94fdcef3f59fbd32e7233959d9bb7ad25f",
       "notes": "Independent candidate source/control mapping adopted as a requirement index. The original reviewer snapshot and its open findings are preserved; this mapping is not a final native PASS."
     },
-    "finalMatrixDocReviewPending": true,
+    "finalMatrixDocReviewPending": false,
     "sourceCommit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
     "productSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
     "localFullRun": {
@@ -13468,6 +13468,63 @@
       "docs/verification/ui-library-final-catalog/specialist-independent-review/final-foundation-review/evidence/FINAL-REVIEW.ja.md",
       "docs/verification/ui-library-final-catalog/generated-consumer-review/review-final.md"
     ],
-    "validationLimits": "See docs/verification/ui-library-final-catalog-2026-10-06.md; axe incomplete and historical failed/interrupted runs remain separate from actual final success."
+    "validationLimits": "See docs/verification/ui-library-final-catalog-2026-10-06.md; axe incomplete and historical failed/interrupted runs remain separate from actual final success.",
+    "finalIndependentEvidenceReview": {
+      "decision": "APPROVE_FINAL_MATRIX_DOCS",
+      "reviewedEvidenceCommit": "4510797802ae53db7f008006de9bece330b5dd03",
+      "actualAuditExit": 0,
+      "report": "docs/verification/ui-library-final-catalog/final-matrix-docs-review-4510797/REVIEW.ja.md",
+      "verdict": "docs/verification/ui-library-final-catalog/final-matrix-docs-review-4510797/VERDICT.json",
+      "manifest": "docs/verification/ui-library-final-catalog/final-matrix-docs-review-4510797/PACK-MANIFEST.json",
+      "scope": "Original181 requirement contracts and final matrix/docs/evidence association, using separately approved source139 and actual immutable full run. All181 contract completion is approved within documented app-owned responsibilities and validation limits."
+    },
+    "historicalCheckpointFields": {
+      "explanation": "Earlier independentReview entries, per-stage verification records and finalCatalogImplementationCandidate describe their original historical candidate and outcomes. The latest finalCatalogVerification and finalIndependentEvidenceReview are authoritative for current completion; no past source or result is retagged.",
+      "initialFinalCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "previousFieldsKept": true
+    },
+    "finalCatalogVerification": {
+      "originalRequirements": 181,
+      "statusCounts": {
+        "verified": 181,
+        "partial": 0,
+        "pending": 0
+      },
+      "additionalRows": 48,
+      "additionalMappedControls": 207,
+      "actualExecutionSourceCommit": "8e8748afb5d3314c2860d0ae181c23c1a444c9d0",
+      "approvedProductSourceCommit": "a808a79dc5f17c1b87280c2881147c8ab5357a9f",
+      "reviewedEvidenceCommit": "4510797802ae53db7f008006de9bece330b5dd03",
+      "actualFullNpmExit": 0,
+      "actualPassedCounts": {
+        "configuration": 70,
+        "generation": 15,
+        "model": 183,
+        "ui": 980,
+        "total": 1248,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "configuredRetries": 0
+      },
+      "fullExecution": "docs/verification/ui-library-final-catalog/final-full-npm-8e8748a/execution.json",
+      "fullCapture": "docs/verification/ui-library-final-catalog/final-full-npm-8e8748a/capture-manifest.json",
+      "finalMatrixDocsVerdict": "docs/verification/ui-library-final-catalog/final-matrix-docs-review-4510797/VERDICT.json",
+      "consumerEvidenceBridge": "docs/verification/ui-library-final-catalog/final-consumer-bridge-4510797/bridge-manifest.json",
+      "executionInputChanges": [],
+      "validationLimits": [
+        "Shared table aggregate54 and suite pass counts do not claim each control was exercised54 separate times.",
+        "The source mapping/bounded AST work is not a complete source policy AST verifier; actual formal/native/consumer/visual scopes are separate.",
+        "SVG196 and Tree contrast incomplete remain incomplete; scoped visible contrast observations do not certify all offscreen content or all accessibility.",
+        "Specialist paint actual1 with unknown pixel/RGB attribution is retained; image reading does not convert this diagnostic into pixel-perfect pass.",
+        "Media MSI/pharmacode independent decoding was unavailable; intrinsic raster and controls observed, not decoded correctness asserted.",
+        "Whole media spec two-copy extra strict tsc retained actual2/24 diagnostics each; new guard strict0 and product strict AOT0 are distinct.",
+        "Past actual1/130 and pre-navigation browser-close cause unknown remain preserved; new wholeactual0 does not retroactively fix past outcomes.",
+        "App owns backend save/send/Undo, safety/gates and persistent data; intents/ACKs are not backend success.",
+        "Complete SSR/hydration, real AT, OS IME/touch, Safari/Firefox, user comprehension and legal/rebuild validation are not certified.",
+        "No GitHub workflow/CI or human approval result was provided; this is independent agent review, not a GitHub review event."
+      ],
+      "githubOperationResult": "See https://github.com/ist-h-i/ui-foundation/pull/11 for Ready/merge state; this record certifies implementation, observed local verification and independent evidence review."
+    }
   }
 }
