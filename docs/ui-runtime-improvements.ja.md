@@ -5,7 +5,7 @@ PR #11で完了した181要件とIssue #2の完了を維持し、追加改善を
 | output変更のP2 | 固定機械registry、旧v1の明示移行、旧新manifest管理 | dry-run・冪等性・未所有/手編集/symlink拒否・ordinary I/O rollback・consumer | v3回帰8/8、独立42拒否・CLI44・public consumer5とlate-write rollbackを実証。範囲限定の独立承認済み |
 | 媒体strict診断 | Media回帰3specと直接helperの継続型検査 | 既存DOM assertionを維持したruntime narrowing・各媒体実操作 | 43診断→0、87any→0、228matcherと18title保持。作者native18/18、独立5/5 actual0、独立承認済み |
 | PR11追加Diagram P2 | 空ラベル確定と負の座標の拒否 | 純粋model・UI入力保持・keyboard・2profile | モデル19/19、作者native22/22・独立26/26 actual0、最終8sourceを独立承認・採用済み |
-| Arabic SVG描画 | 後描画strokeが目盛文字を上書きする差分の修正 | 元actual1の保存・因果分類・対照描画・foreground/background | 元71/55差分がaxisTickに一致。最終統合34/34・独立18/18 actual0。1,226文字・573,046 alpha画素のRGBA差0、clip/実ink衝突0、最低contrast14.645。負対照と範囲限定の独立承認あり |
+| Arabic SVG描画 | 後描画strokeが目盛文字を上書きする差分の修正 | 元actual1の保存・因果分類・対照描画・foreground/background | 元71/55差分がaxisTickに一致。最終統合34/34・独立18/18 actual0。1,226ラベル・573,046 alpha画素のRGBA差0、clip/実ink衝突0、最低contrast14.645。負対照と範囲限定の独立承認あり |
 | SVG/Tree axe incomplete | rule/node/state別分類と独立自動検査 | AX/ARIA参照・keyboard/focus・paint/contrast・clip/到達可能性 | Tree42をARIA18・非BMP21・clip3へ分類し、追加6/6・独立6/6 actual0。SVGの34ケース8scanには212ノードの未判定が残り、別の実paint/contrast/到達/操作検査を実証。全axe合格とはしない |
 | 複数browserとMenu | opt-inの重点3engine回帰とopen/closed roving | 実engine/version・2profile・重点操作・異常/終了/時間 | 統合37ecf88で36/36。閉Menuのtabindex修正後a1ed5c0で影響するMenu/Dialog12/12、関連Navigation/Overlay28/28、独立Menu5＋Nav2の7/7 actual0。3engine versionは下記参照 |
 | SVG継続gate | 継承filterで0件になる偽成功の防止 | 修正前0件exit0・必須34件/一意/実終了・6step | 旧0件exit0反例を保持。子環境の5制御を解除し、34件・34組合せ・全成功を検査。独立11契約検査と最終rootのhostile34 actual0 |
