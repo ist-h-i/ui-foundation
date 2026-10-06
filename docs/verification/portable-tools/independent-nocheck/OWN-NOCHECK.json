@@ -1,0 +1,137 @@
+{
+  "scope": "Only noCheck strict-option delta; no other hole exploration or UI run",
+  "actualIndependentDeltaCheckExit": 0,
+  "beforeAuditSha256": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85",
+  "afterAuditSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+  "baselineFixtureCommit": "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+  "cases": [
+    {
+      "name": "before-nocheck-hidden-typeerror",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/nocheck-supplement/before-nocheck-hidden-typeerror"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:56:35.760046+00:00",
+      "endedUtc": "2026-10-06T15:56:36.451052+00:00",
+      "actualProcessExit": 0,
+      "sourceSha256": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85",
+      "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": "",
+      "compilerActualExit": 0,
+      "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true
+      },
+      "missingCompilerSpecs": [],
+      "configSafe": true,
+      "pass": true,
+      "strictCompilerOutput": ""
+    },
+    {
+      "name": "after-nocheck-invalid-type",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/nocheck-supplement/after-nocheck-invalid-type"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:56:36.451768+00:00",
+      "endedUtc": "2026-10-06T15:56:37.194740+00:00",
+      "actualProcessExit": 1,
+      "sourceSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+      "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":2}\n",
+      "stderr": "",
+      "compilerActualExit": 2,
+      "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "noCheck": true
+      },
+      "missingCompilerSpecs": [],
+      "configSafe": false,
+      "pass": false,
+      "strictCompilerOutput": "tests/ui/media.spec.ts(2,7): error TS2322: Type 'string' is not assignable to type 'number'.\n"
+    },
+    {
+      "name": "after-nocheck-no-typeerror",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/nocheck-supplement/after-nocheck-no-typeerror"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:56:37.195174+00:00",
+      "endedUtc": "2026-10-06T15:56:38.178284+00:00",
+      "actualProcessExit": 1,
+      "sourceSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+      "stdout": "{\"pass\":false,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": "",
+      "compilerActualExit": 0,
+      "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "noCheck": true
+      },
+      "missingCompilerSpecs": [],
+      "configSafe": false,
+      "pass": false,
+      "strictCompilerOutput": ""
+    },
+    {
+      "name": "after-nocheck-false-valid",
+      "argv": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/relocated checkout 日本語/scripts/verification/audit-media.mjs",
+        "--repo",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/literal whitespace fixture",
+        "--baseline",
+        "8a855a09cbac49793b97f7c64eaac7cd512c031b",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-independent-review-20261006/nocheck-supplement/after-nocheck-false-valid"
+      ],
+      "cwd": "/tmp/ui-foundation-portable-tools-independent-review-20261006/unrelated cwd",
+      "startedUtc": "2026-10-06T15:56:38.178862+00:00",
+      "endedUtc": "2026-10-06T15:56:39.095774+00:00",
+      "actualProcessExit": 0,
+      "sourceSha256": "8af7eccc9de63547ab9bc86ba09846d963fdc41d758348866ee4fca7bafeaae1",
+      "stdout": "{\"pass\":true,\"matcherCount\":3,\"titleCount\":3,\"afterAny\":0,\"compilerActualExit\":0}\n",
+      "stderr": "",
+      "compilerActualExit": 0,
+      "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "noCheck": false
+      },
+      "missingCompilerSpecs": [],
+      "configSafe": true,
+      "pass": true,
+      "strictCompilerOutput": ""
+    }
+  ],
+  "typedError": "const invalid:number='text';",
+  "Python3SourcesUnchanged": true,
+  "sharedWrites": 0,
+  "newNativeStaticFullSuiteExecuted": false,
+  "createdUtc": "2026-10-06T15:56:39.098235+00:00"
+}

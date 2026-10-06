@@ -1,0 +1,58 @@
+
+> ui-foundation@0.0.0 test:verification
+> node --test tests/verification-tools/*.test.mjs
+
+▶ portable evidence tools verify exact historical payloads and reject invalid transfers
+  ✔ media-tree-independent: another cwd exports every exact byte (972.303667ms)
+  ✔ media-tree-independent: exported pack can be verified again (859.231125ms)
+  ✔ media-tree-independent: wrong manifest digest fails (102.102917ms)
+  ✔ media-tree-independent: wrong adoption digest fails (102.464542ms)
+  ✔ media-tree-independent: missing adoption digest fails (103.709041ms)
+  ✔ media-tree-independent: existing output is preserved (103.192666ms)
+  ✔ media-tree-independent: output inside source is rejected (112.717334ms)
+  ✔ media-tree-independent: changed-byte is rejected (115.324125ms)
+  ✔ media-tree-independent: missing-file is rejected (101.656125ms)
+  ✔ media-tree-independent: symlink is rejected (87.108666ms)
+  ✔ media-tree-independent: hardlink is rejected (82.838792ms)
+  ✔ media-tree-independent: unlisted-file is rejected (81.831125ms)
+  ✔ media-tree-independent: duplicate-path is rejected (79.544334ms)
+  ✔ media-tree-independent: parent-path is rejected (78.103583ms)
+  ✔ media-tree-independent: backslash-path is rejected (78.894791ms)
+  ✔ cross-browser-author: another cwd exports every exact byte (1524.316042ms)
+  ✔ cross-browser-author: exported pack can be verified again (1142.071709ms)
+  ✔ cross-browser-author: wrong manifest digest fails (79.967834ms)
+  ✔ cross-browser-author: wrong adoption digest fails (82.418833ms)
+  ✔ cross-browser-author: missing adoption digest fails (81.519708ms)
+  ✔ cross-browser-author: existing output is preserved (81.011375ms)
+  ✔ cross-browser-author: output inside source is rejected (83.917875ms)
+  ✔ cross-browser-author: changed-byte is rejected (158.308792ms)
+  ✔ cross-browser-author: missing-file is rejected (138.97225ms)
+  ✔ cross-browser-author: symlink is rejected (113.33375ms)
+  ✔ cross-browser-author: hardlink is rejected (114.470167ms)
+  ✔ cross-browser-author: unlisted-file is rejected (110.974792ms)
+  ✔ cross-browser-author: duplicate-path is rejected (94.823834ms)
+  ✔ cross-browser-author: parent-path is rejected (91.942167ms)
+  ✔ cross-browser-author: backslash-path is rejected (80.825083ms)
+✔ portable evidence tools verify exact historical payloads and reject invalid transfers (7549.91275ms)
+▶ Media audit uses selected Git baseline and real strict compiler failures
+  ✔ unchanged assertions pass from an unrelated cwd (688.065125ms)
+  ✔ default repo follows the script checkout rather than process cwd (717.19925ms)
+  ✔ missing baseline fails (86.304167ms)
+  ✔ existing audit output is preserved (59.571458ms)
+  ✔ title mismatch fails (678.258584ms)
+  ✔ title whitespace mismatch fails (757.090583ms)
+  ✔ expectation mismatch fails (897.894958ms)
+  ✔ explicit any fails (929.131542ms)
+  ✔ suppression fails (711.8425ms)
+  ✔ compiler diagnostic fails (621.671708ms)
+  ✔ parser error fails (542.184459ms)
+  ✔ disabled strict config fails (622.506583ms)
+✔ Media audit uses selected Git baseline and real strict compiler failures (7457.750917ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15084.088542

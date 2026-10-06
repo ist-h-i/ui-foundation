@@ -1,0 +1,739 @@
+{
+  "schema": 1,
+  "operation": "verified-historical-evidence-transport",
+  "createdUtc": "2026-10-06T15:24:59.224124+00:00",
+  "scope": "Independent Media strict6 and Tree automatic supplement2; core and full integration separate",
+  "sourceManifest": "PACK-MANIFEST.json",
+  "sourceManifestSha256": "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998",
+  "capturedTransportMetadataSha256": "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef",
+  "listedArtifactCount": 139,
+  "listedArtifactBytes": 17905037,
+  "payloadFileCount": 141,
+  "payloadBytes": 17935525,
+  "payload": [
+    {
+      "path": "PACK-MANIFEST.json",
+      "bytes": 30082,
+      "sha256": "bc9049f0128c315ea963e1d7ac371b2a65b7e1789996668fc333ae32777f4998"
+    },
+    {
+      "path": "REPRODUCTION.md",
+      "bytes": 944,
+      "sha256": "64ade949ee10b1baae1e13fbae8856754b36da570c94a515b218428527a97ccd"
+    },
+    {
+      "path": "REVIEW.ja.md",
+      "bytes": 3826,
+      "sha256": "2f13faf99bc457a7751a7f63f25aef4b42128be6a66f43f2589328ad784411f3"
+    },
+    {
+      "path": "ROOT-ADOPTION.json",
+      "bytes": 406,
+      "sha256": "a87cc9844bcd51bc4bc76db85d72d73ae0a981ade45c1dd0544896738bd6dcef"
+    },
+    {
+      "path": "VERDICT.json",
+      "bytes": 5111,
+      "sha256": "0bf6b57105f0b8ae662af8245690b03b7a9a8bde078eb8cf38797c440e909925"
+    },
+    {
+      "path": "candidate/media-author-manifest.json",
+      "bytes": 3092,
+      "sha256": "5b40c2aa03740777296132be580f877b78259cce127147e5c69dfefd6ae3abb8"
+    },
+    {
+      "path": "candidate/package.json",
+      "bytes": 2735,
+      "sha256": "34d9e08710553f709327edb3edfe74ecf2b899ad8393abbf1f897a9ef31b6e8d"
+    },
+    {
+      "path": "candidate/tests/ui/media-lifetime.spec.ts",
+      "bytes": 9557,
+      "sha256": "3fabeac8fecb89d72e6bf50343d945c67d6e4000e462957a94bd64228f5da735"
+    },
+    {
+      "path": "candidate/tests/ui/media-regressions.spec.ts",
+      "bytes": 25782,
+      "sha256": "45496e4e8cb1b6716aeffcf2d5942e0ab57d641d7d61d652cf4b80280a77c1ab"
+    },
+    {
+      "path": "candidate/tests/ui/media-test-dom.ts",
+      "bytes": 1940,
+      "sha256": "f23345baaee88ba7a79dc041d0fd0f1070fac6d3642131f7591d7edf8e007f82"
+    },
+    {
+      "path": "candidate/tests/ui/media.spec.ts",
+      "bytes": 18937,
+      "sha256": "6edc5706aadf264847c2d1c0c9ebadd071b5d3bbd55a6a91dd124f1187736b59"
+    },
+    {
+      "path": "candidate/tests/ui/tree-axe-contract-helpers.ts",
+      "bytes": 12768,
+      "sha256": "8d0712fd0794ae4e6ddf5dc85bf3956741c790f31a8624baf03aea0e9b605bc9"
+    },
+    {
+      "path": "candidate/tests/ui/tree-axe-contract.spec.ts",
+      "bytes": 8839,
+      "sha256": "53106da03bfd559d09f5dadfdf46717e12ca3c82ae60926e37abb209a834dd22"
+    },
+    {
+      "path": "candidate/tree-author-pack-receipt.json",
+      "bytes": 1453,
+      "sha256": "099eaab64d5f2dfe06b2d01c98fbb3eff78d935491807f01c02023db89c2260c"
+    },
+    {
+      "path": "candidate/tsconfig.ui-media.json",
+      "bytes": 247,
+      "sha256": "52a7534bfbd99c57e57fd56df7d4b33de5521cfea87760e4a8eb343995620e82"
+    },
+    {
+      "path": "evidence/final-source-scope-proof.json",
+      "bytes": 33547,
+      "sha256": "b550f1c9941c3be568f7609d70d8b84e17d15fe3b7aac09ea7fd9f3dc8a4c9c6"
+    },
+    {
+      "path": "evidence/initial-snapshot.json",
+      "bytes": 55211,
+      "sha256": "5f79d7f64ad3dff5075af59497bfd2e5be2f0c1f61d1e3a454652adbfd302ed1"
+    },
+    {
+      "path": "evidence/media-ast.command.json",
+      "bytes": 326,
+      "sha256": "c6ecaf3fc22d860534a7fe25ae0456509e9c7910d8b4ec206387de3cd4359ec1"
+    },
+    {
+      "path": "evidence/media-ast.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-ast.log",
+      "bytes": 78,
+      "sha256": "5cbab53a680a5d5d498aef929205d2a693ef156696987127a4bd93dbb4cd6680"
+    },
+    {
+      "path": "evidence/media-build.command.json",
+      "bytes": 318,
+      "sha256": "654b137b672d86c1b022b1bb47f3901177be56508a2923a603645ae16111dce7"
+    },
+    {
+      "path": "evidence/media-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-build.log",
+      "bytes": 679,
+      "sha256": "af2de9c7519f343f4cd4fef1173ed39bd38e413d5c2b4d84b9b2f4767c0da04e"
+    },
+    {
+      "path": "evidence/media-combined-typecheck.command.json",
+      "bytes": 348,
+      "sha256": "43156f094ede6d6b88b356f032239d46a3e08ec55e7205ee3718ce1e24e31bb4"
+    },
+    {
+      "path": "evidence/media-combined-typecheck.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-combined-typecheck.log",
+      "bytes": 201,
+      "sha256": "757f9b840b281ae34dbbfb6d146c31888d655cab6871d970bad8341545a188ec"
+    },
+    {
+      "path": "evidence/media-independent-ast.json",
+      "bytes": 130578,
+      "sha256": "ec6c95b3283278cb1cca82538c799104f752579f4ec064a58339b8020f385a24"
+    },
+    {
+      "path": "evidence/media-native-artifacts/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "evidence/media-native-artifacts/media-lifetime-PDF-worker--fc09c-erminates-its-native-Worker-chromium/trace.zip",
+      "bytes": 355101,
+      "sha256": "dd0f021fe1fa194fbaa4637171c0f501b6565d83b49c3ed6c1fef2767942eeb0"
+    },
+    {
+      "path": "evidence/media-native-artifacts/media-lifetime-native-crop-46c9a-replacement-and-destruction-chromium/trace.zip",
+      "bytes": 242955,
+      "sha256": "4d950bb8f374658f9e07f744a01975f106c9a119574976d6bb748fce72b79ec2"
+    },
+    {
+      "path": "evidence/media-native-artifacts/media-lifetime-native-crop-6601a-ced-and-destroyed-Blob-URLs-chromium/trace.zip",
+      "bytes": 1018092,
+      "sha256": "3b4a5bcd96f5113ec42145fc7e3be3057de343b21775243b30e069e4f791ecf1"
+    },
+    {
+      "path": "evidence/media-native-artifacts/media-regressions-real-VTT-d35c7-native-mode-and-current-cue-chromium/trace.zip",
+      "bytes": 411749,
+      "sha256": "a49f5f3c242bdf537bc1e6c489120a3e104a03cc263ac4838c4fc90f95875275"
+    },
+    {
+      "path": "evidence/media-native-artifacts/media-regressions-real-pla-24daf-d-current-forbidden-cleanup-chromium/trace.zip",
+      "bytes": 2013185,
+      "sha256": "63fe25d59a20f31e7f94225d03b5a518bfac926627def0c8555502aeb49f1329"
+    },
+    {
+      "path": "evidence/media-native-results.json",
+      "bytes": 13032,
+      "sha256": "362057986634a00f06a5d388fa2982332c6673287e78634633cbab6eff9c66a5"
+    },
+    {
+      "path": "evidence/media-native.command.json",
+      "bytes": 579,
+      "sha256": "006f3c5e5e1f8a240179936c6d56c5774bca13547c4e725e1476e15644407d92"
+    },
+    {
+      "path": "evidence/media-native.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-native.log",
+      "bytes": 1257,
+      "sha256": "6bb4f62f4d749c9f89848cb41397bf7236993144b64beb980a0b0be359699575"
+    },
+    {
+      "path": "evidence/media-strict.command.json",
+      "bytes": 333,
+      "sha256": "e94d3a1541e7d299df8ffa1ac002a2e580647933bd9d156a9231db938406d6da"
+    },
+    {
+      "path": "evidence/media-strict.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-strict.log",
+      "bytes": 75,
+      "sha256": "da6ffb65b3cd6cd6cc1b175dbd5c73dff3e43ff47f8d9343c563a2fae1753100"
+    },
+    {
+      "path": "evidence/media-sync-approved.command.json",
+      "bytes": 336,
+      "sha256": "f36fd70aba851f3bcf77213bd5a807c94accb06e7ce9ff1dd2653be44114c5c6"
+    },
+    {
+      "path": "evidence/media-sync-approved.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/media-sync-approved.log",
+      "bytes": 7008,
+      "sha256": "1cabd553c0534d5b25e5c0bfad7040f1c12d66cdf9b6e38e40079ea4d0a2ae61"
+    },
+    {
+      "path": "evidence/media-sync.command.json",
+      "bytes": 318,
+      "sha256": "2ef9b032ea58c542074256ce7afa3ace83f0ea788d3317d2e18a71b436453298"
+    },
+    {
+      "path": "evidence/media-sync.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "evidence/media-sync.log",
+      "bytes": 1002,
+      "sha256": "1ee2256dbce65380044b5413e33d7f317c35c59ca7ecee463094e2938f5c5be3"
+    },
+    {
+      "path": "evidence/own-cleanup.json",
+      "bytes": 625,
+      "sha256": "2ba99661db4caf2218496b3c6f85092f899a151fe4935372685888a5022bcb29"
+    },
+    {
+      "path": "evidence/tree-author-pack-integrity.json",
+      "bytes": 129143,
+      "sha256": "8cdecd5bb285658afbcc9009e674710f02c59a7d28a32439f6ea05d9a03ca5fc"
+    },
+    {
+      "path": "evidence/tree-candidate-application.json",
+      "bytes": 467,
+      "sha256": "9cda79d8b163f1037a41008ef25945eea5352b46698bd74086a808081581263c"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+      "bytes": 111029,
+      "sha256": "1f34b76d95fcd560bc377aaf34d63bde0ae371dbabe29d87ca75f930e61c4c68"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+      "bytes": 66669,
+      "sha256": "a3a757e8d494697d52236da46f6ea8bc453ea807bc5467e44777ae3cb7932f99"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+      "bytes": 56026,
+      "sha256": "92d05a063867368ef49ecff634587038cdfb61edca45f23acfd746092acc2849"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/clipped-text-after-top.json",
+      "bytes": 4444,
+      "sha256": "8bbb55e162fed6218658e01c5beff7c09ea31549220099271292210b43fd2bed"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/clipped-text-before.json",
+      "bytes": 4172,
+      "sha256": "39b88848537ccfb4fb0ddd97f56a25f9ff02ae82813152fd34245aca086b700f"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/contracts-cascader-open.json",
+      "bytes": 32348,
+      "sha256": "2e51f6559f7358242effdfc618163700c8cf9b6a7dc22f5e3b0badf01605f518"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/contracts-closed.json",
+      "bytes": 29169,
+      "sha256": "05f64c89833493249f1dc18948b8400008024045cea8debaec60e65f57221d32"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/contracts-tree-select-open.json",
+      "bytes": 31470,
+      "sha256": "f277f2b5448adea8e3e1555b8aa4c8bee118dcf83d8a4c054a0d9564127bf87c"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/trace.zip",
+      "bytes": 1188417,
+      "sha256": "e946dffed3719bc9207f843d9bdc843ec285ee812d81150bbd5d471d5dac08ea"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+      "bytes": 112384,
+      "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+      "bytes": 56629,
+      "sha256": "8d652d679a16b75a5d16420fb36ba376d2e9b53bfe928f65b77ab40404ddd2c3"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+      "bytes": 48287,
+      "sha256": "3ffb1abdbba2a546b2a284bf8ed5b2bc18cb11aa6066121a3caa9790997d11e9"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/clipped-text-after-top.json",
+      "bytes": 5118,
+      "sha256": "0c75f5f2807c58d734345b55a3b49b4957b15f02cae96a1fc1d61578942448a8"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/clipped-text-before.json",
+      "bytes": 4680,
+      "sha256": "35f652f489265f254dae87a1c9d425f3b933796ef0c603d183bec46ce8867394"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/contracts-cascader-open.json",
+      "bytes": 32336,
+      "sha256": "851fae8a025a6dc436806e0b54ba24a51fdeb1c822737b09399dcb6423eac4a8"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/contracts-closed.json",
+      "bytes": 29159,
+      "sha256": "7a2c78143a0cd628e26758f1f48d97fac609bc598bb92787fb5c867b218f2186"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/contracts-tree-select-open.json",
+      "bytes": 31460,
+      "sha256": "5f31633eade83868618260ed474cc513426884abb5d8a2b2244362bd4397b689"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/trace.zip",
+      "bytes": 969324,
+      "sha256": "5d30b91e81ca40b5d174773e7050efdb27cd6f3deda6db4bc6469eb1602b83a0"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-d1881-ors-reject-broken-contracts-chromium/detector-negative-probes.json",
+      "bytes": 122,
+      "sha256": "8b97eb928f20d974b43294e965178e476a70855f4924be318033dbf1e787065a"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-d1881-ors-reject-broken-contracts-chromium/trace.zip",
+      "bytes": 231715,
+      "sha256": "dd4e0b03c27b3494b0861bec7e5ace565819c1b02f1574935b525f3c15d91646"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-e9f92-ors-reject-broken-contracts-chromium/detector-negative-probes.json",
+      "bytes": 121,
+      "sha256": "47ac92b3cd5c04acd772520f18b529d5e4721290a0876aabeb9014ee4410d468"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-e9f92-ors-reject-broken-contracts-chromium/trace.zip",
+      "bytes": 229498,
+      "sha256": "19eed9fe30e6cc691e8ff2dd1cc2321d4b144c53418a9d0a18ed81e075e83f3a"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+      "bytes": 131287,
+      "sha256": "377b417f9fbd159dd13d033c1364d75885f72ac650b0d3698d0a0109cc74cad6"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-checked.png",
+      "bytes": 566,
+      "sha256": "af4dd17eec9bc098561561ab7f3c920f6177a2aa83c39ac66f09606c0e1397ae"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-head.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-last.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-lazy.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-mixed.png",
+      "bytes": 286,
+      "sha256": "623dd5dcfe32d3ce7ccc44f6c8a26b2c864dbb47c60d7efb6775ff7cf3950f69"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-multi-head.png",
+      "bytes": 252,
+      "sha256": "ff0a007347a9fba04cdadcceda6451d1552f6a16107b434b54a215aa60ec34d1"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-multi-lazy.png",
+      "bytes": 252,
+      "sha256": "ff0a007347a9fba04cdadcceda6451d1552f6a16107b434b54a215aa60ec34d1"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/trace.zip",
+      "bytes": 499425,
+      "sha256": "3e2648fb0617a92f5f5d5b1308a0d6405ad19df1564d6bdef625173cddb00514"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+      "bytes": 121242,
+      "sha256": "25325288b3ccded905202401621ad37a288910dc4d18053acbab57137ae4cf5c"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-checked.png",
+      "bytes": 576,
+      "sha256": "89ac359a8891f16d92b7add59e275de2b1d752da864bbe5e4836c8e638e39156"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-head.png",
+      "bytes": 255,
+      "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-last.png",
+      "bytes": 255,
+      "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-lazy.png",
+      "bytes": 253,
+      "sha256": "2bea80b039ff6af7d5d5efa4863ce2fd5844a961cbea46667fb94290d9a48101"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-mixed.png",
+      "bytes": 276,
+      "sha256": "edd8a7f812a7049fccf228060f39995b74395b0b5885eda89e448b403505ed86"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-head.png",
+      "bytes": 252,
+      "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-lazy.png",
+      "bytes": 252,
+      "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc"
+    },
+    {
+      "path": "evidence/tree-native-artifacts/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/trace.zip",
+      "bytes": 519397,
+      "sha256": "3b2ac5d0d9ad5c0631fc2dec4aa93461fc80d31929e06d9b19aedfbc3b809986"
+    },
+    {
+      "path": "evidence/tree-native-results.json",
+      "bytes": 12489,
+      "sha256": "a098901db7bd049bd94d272cd5bc44ade3ba0741a33781b320cbe2e0d8383521"
+    },
+    {
+      "path": "evidence/tree-native.command.json",
+      "bytes": 419,
+      "sha256": "c78b42574462609ef3c3af43963b0e6249b67599ebc2f1f872c43f1ee11e4181"
+    },
+    {
+      "path": "evidence/tree-native.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/tree-native.log",
+      "bytes": 1568,
+      "sha256": "b51260839fb7de05d560e9f989dcec4d3be6f2f50909375cbd023edca7bba4a9"
+    },
+    {
+      "path": "evidence/tree-original42-and-refs-audit.json",
+      "bytes": 12955,
+      "sha256": "479482950bd5a63c919349d6dc12168cf28bf75b68386a1d323ceb48db8a1aa6"
+    },
+    {
+      "path": "evidence/tree-strict.command.json",
+      "bytes": 385,
+      "sha256": "7148e5803a5843d4022811271227d65fbf1996b7f9a38fb4d26497445d3ede02"
+    },
+    {
+      "path": "evidence/tree-strict.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/tree-strict.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference-base/package.json",
+      "bytes": 2646,
+      "sha256": "0476034aa17842880461d6a63f7fd9f2b07e35121644c892d625f5e99557bc75"
+    },
+    {
+      "path": "reference-base/tests/ui/media-lifetime.spec.ts",
+      "bytes": 8676,
+      "sha256": "6e4be8d79477b80ad0dd0a4824b63ad22f3bcff59d73b11442ab885167e060f4"
+    },
+    {
+      "path": "reference-base/tests/ui/media-regressions.spec.ts",
+      "bytes": 25381,
+      "sha256": "3e3b32025f0c3e04cc5d71efadebfe7a5afbb1123dac255e5b07a3d72fe2d4a7"
+    },
+    {
+      "path": "reference-base/tests/ui/media.spec.ts",
+      "bytes": 18100,
+      "sha256": "d931cc983b3e69c508cc395dbae81c29f9ee08205b6d5bd91a9830ee41aaabd6"
+    },
+    {
+      "path": "review-tools/audit-media-independent.mjs",
+      "bytes": 3569,
+      "sha256": "18691057f3eb363add05baea03f308797eb0caf948d419e62bdb37abc207ace6"
+    },
+    {
+      "path": "review-tools/audit-tree-classification.py",
+      "bytes": 2446,
+      "sha256": "6eeefe7d656e186ae319756d03d8d1e748935e7e4e640ee6cb3be4b4fc2dd826"
+    },
+    {
+      "path": "review-tools/build-handoff.py",
+      "bytes": 11424,
+      "sha256": "3e73a55dea9547d0926c56010e3b0d3c8cd84a4ba0e7aff6f80d9436adb54402"
+    },
+    {
+      "path": "review-tools/playwright.independent-review.config.ts",
+      "bytes": 652,
+      "sha256": "a24d312cc9b87b9788f56bf96309fbb1db1a929db5076e82b7e2c0b7e5df4139"
+    },
+    {
+      "path": "review-tools/playwright.tree-independent-review.config.ts",
+      "bytes": 323,
+      "sha256": "917375b8b528b8fddde18ca62efd13f77525dbf16f815d9a8ab2e97b705d4c64"
+    },
+    {
+      "path": "review-tools/run-command.py",
+      "bytes": 867,
+      "sha256": "19c6221e0c1193b15054ebba8e6d404526caa93ce101c66ff49ea8c892b64c82"
+    },
+    {
+      "path": "review-tools/tsconfig.ui.tree-independent.json",
+      "bytes": 223,
+      "sha256": "1388e9b0186e02e8fbb26b7416bd2370f95588afb623c04535f3ca57eedf3d8a"
+    },
+    {
+      "path": "upstream-tree/MANIFEST.json",
+      "bytes": 108338,
+      "sha256": "28a0dacaf5baef31522e779423000135545b2b9a6abdfbe06f09624cfb0145ad"
+    },
+    {
+      "path": "upstream-tree/REPORT.ja.md",
+      "bytes": 5861,
+      "sha256": "9be6e7b513e5d4f5bb25affc9917d703336d7ef357ab2061f7c60e091a0d4b82"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+      "bytes": 111029,
+      "sha256": "4839e2aad65504c45535a73948dce27010ef1c2f0eddc4ae3ce0089b53971033"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+      "bytes": 66669,
+      "sha256": "a3a757e8d494697d52236da46f6ea8bc453ea807bc5467e44777ae3cb7932f99"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-7e9de-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+      "bytes": 56026,
+      "sha256": "92d05a063867368ef49ecff634587038cdfb61edca45f23acfd746092acc2849"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/automatic-contracts.json",
+      "bytes": 112384,
+      "sha256": "935f48e027a52991caa8cba61b06fb54ffc4d5f46c2b279403760c34db45764b"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-after.png",
+      "bytes": 56629,
+      "sha256": "8d652d679a16b75a5d16420fb36ba376d2e9b53bfe928f65b77ab40404ddd2c3"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ae714-pped-text-and-nested-Escape-chromium/cascader-clipping-before.png",
+      "bytes": 48287,
+      "sha256": "3ffb1abdbba2a546b2a284bf8ed5b2bc18cb11aa6066121a3caa9790997d11e9"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/automatic-paint.json",
+      "bytes": 131525,
+      "sha256": "ea4f2ad9c4b6883cbe09e7c61815ea1e9dcec1866d4f8df57ee1d071afd28ef7"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-head.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-last.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-departments-lazy.png",
+      "bytes": 252,
+      "sha256": "f5ea2b9a67227760a51be5d7d17eb508a74c0eb61beae723720d5443b40ab43e"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-ecdbe-foreground-background-paint-chromium/paint-multi-head.png",
+      "bytes": 252,
+      "sha256": "ff0a007347a9fba04cdadcceda6451d1552f6a16107b434b54a215aa60ec34d1"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/automatic-paint.json",
+      "bytes": 121480,
+      "sha256": "651d17fad1aaba566d3b45a05f1fae770295cebe98848a06e790a17b3b4d0306"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-head.png",
+      "bytes": 255,
+      "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-last.png",
+      "bytes": 255,
+      "sha256": "2bb84c73c745511fda27d76788b0c20cb468ea2e5de362506bb5efce7edd214c"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-departments-lazy.png",
+      "bytes": 253,
+      "sha256": "2bea80b039ff6af7d5d5efa4863ce2fd5844a961cbea46667fb94290d9a48101"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-head.png",
+      "bytes": 252,
+      "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc"
+    },
+    {
+      "path": "upstream-tree/evidence/automatic-keyboard-final/test-results/tree-axe-contract-tree-aut-fdaf7-foreground-background-paint-chromium/paint-multi-lazy.png",
+      "bytes": 252,
+      "sha256": "a06f6a36a333ba7302575fb7f7ed929fff41d9b52e2c998f3a129d5c59a7bddc"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/dense/cascader-open.json",
+      "bytes": 713882,
+      "sha256": "2177b19d4a49a639e7cf75fd683437cc2d9b3d2dbe1cecf827e0b60c4d9c65a9"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/dense/closed.json",
+      "bytes": 578349,
+      "sha256": "59627aa7d72f4cc78f71ec912d50eac99e4c484397be0d674ea4ffbbc0121fd7"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/dense/tree-select-open.json",
+      "bytes": 661367,
+      "sha256": "a915ca17495f1aaabd19d08027832c14c3672148d373fe995fb3cd1a2d73fb26"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/guided/cascader-open.json",
+      "bytes": 713673,
+      "sha256": "8ba527e93ead5c9846b8ae80067d2c14715bf2315bcb8304699cd91fedf9f3b9"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/guided/closed.json",
+      "bytes": 578354,
+      "sha256": "2fef037ec0825320ebe700946952ef3bd905596b78585720821ca452c52421c3"
+    },
+    {
+      "path": "upstream-tree/evidence/before/axe-derived/guided/tree-select-open.json",
+      "bytes": 658744,
+      "sha256": "ff79129c9544ccf79dfeacbe49ad2c2ee186e33b2191a05c3d92ce49167a32cd"
+    },
+    {
+      "path": "upstream-tree/evidence/classification-final42.json",
+      "bytes": 111632,
+      "sha256": "c13a065a1da70ff0e0beb7209d7c9cc3296410d6a080110e2ed3fe9448354d5e"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/dense/cascader-open.json",
+      "bytes": 713882,
+      "sha256": "85b3e16e44faad58f13f28ce7bac6db4e962159081f6797f5ac19c0c9ef3dfe1"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/dense/closed.json",
+      "bytes": 578349,
+      "sha256": "a36480c809de1f7e6c0b2deb97a866faa892f681c070ea01f67672abd7b8c469"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/dense/tree-select-open.json",
+      "bytes": 661367,
+      "sha256": "4a48c831d99aae521ebd776710e9536467794f8bfa8a386b820c8aa74737f38c"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/guided/cascader-open.json",
+      "bytes": 713673,
+      "sha256": "e095375a5d23a638f380c0248d2789429316fdd8da791a1114a569d24be121f2"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/guided/closed.json",
+      "bytes": 578354,
+      "sha256": "cc6692afb24499434ecd2a4488582f113d59521980d648044c86b7d1a2d1f731"
+    },
+    {
+      "path": "upstream-tree/evidence/original/axe-derived/guided/tree-select-open.json",
+      "bytes": 658744,
+      "sha256": "b73a4ab3caa897e61f7c736c5188a06ff6af5abaec3efa95e2d40855a5e02302"
+    }
+  ],
+  "archive": {
+    "path": "payload.tar.gz",
+    "bytes": 6760137,
+    "sha256": "4584e5831b8dc8378b064cb8c43acff3c8e656cc0ac4fb7e360553463c5c725e"
+  },
+  "historicalScopeChecks": {
+    "kind": "media-tree-independent",
+    "historicalSourceReferencesChecked": 12,
+    "recordedDecisionBytesPreserved": true,
+    "reviewReexecuted": false
+  },
+  "historicalNativeResultsReexecuted": false,
+  "historicalReviewDecisionsRenewed": false,
+  "currentUiVerificationPerformed": false,
+  "runtime": {
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "platform": "Darwin",
+    "architecture": "arm64"
+  }
+}

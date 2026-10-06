@@ -1,0 +1,13 @@
+9986f3265784e7a39ad0079460ced3d278882d7f を作者外で承認します。判定は `APPROVE_PORTABLE_VERIFICATION_TOOLS_PR15_9986F326`、最後の読み取り照合は実終了0、残るblockerはありません。
+
+対象は保存one-shot script3本の継続入口と、既存Media/Tree・cross-browserの2packの検証付き再出力です。共通stdlib helperはこの2形式に限定されています。汎用format/framework、tar入力、新しいUI試験や独立承認の生成は加えていません。raw scripts・manifest・判定・失敗の元bytesを保持し、入口を文書とnpm scriptから明示する方針はbot P2を実質解消します。
+
+空白・日本語を含む別checkoutに独立Git objectsを用意し、無関係なcwdからdefault入口を実行しました。最終Mediaは228 matcher・18title・any0・実compiler0でaudit0、root作成47試験も独立47/47・実0です。Media report全体はrootの最終reportとbyte一致します。期待値string内部の空白を見逃す反例と、Media3をcompiler対象から外す反例を実証し、最終dc88ac8で両方がaudit1になることを確認しました。真の型誤りもcompiler2/audit1です。初期の偽一致actual0は合格扱いせず、beforeの観測として残しています。
+
+既存2packは139/359 listed payload、17,905,037/31,495,634bytesを搬送しました。Python -Oでの検査付き再輸出も0、期待SHA誤りと既存outputは1で拒否しowned sentinelを保持します。独立生成した2tarは再輸出時にも、root transport receiptのdigestとも一致します。輸送receiptはhistorical native/review/UI renewalをfalseとし、元のVERDICT/README/4phase exit1,1,0,0を保持します。
+
+Code91の8差分とproof79追加は期待集合と一致します。root78payload（3,391,143bytes）のmanifest `a2aca6f559a3ec2f71c0c9e3c6d40961d5e151250ccfafa1c0d5cb1fd86e1419` をGit/live間で全SHA・bytes照合し、最終2実行の463入力の前後一致と998の実入力一致を確認しました。原5519のうち5517不変、元の変更はpackageの4script追加とruntime文書の終了記録だけです。原181・2,020証拠・139component・生成/設定/依存・両旧packは不変です。
+
+rootの旧44/46、起動前IPC actual1とhistorical capture pendingを保持したまま、最終47と最終Mediaを判定対象にしています。全UI strict・既存1248再実行・新native UIの成功へ置換していません。captured-execution-toolsのscriptは当時の監査用で、保守対象の継続入口ではありません。
+
+共有Git/source/hostの書込み0、ブラウザー/server起動0、他者process終了0です。GitHub CI、人の承認、Ready、mergeはこの判定では主張しません。review証拠の採用とguide pointerだけを追加する場合は、別の短いbyte bridgeで確認できます。

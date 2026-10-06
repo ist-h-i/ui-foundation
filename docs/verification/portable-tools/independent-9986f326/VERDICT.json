@@ -1,0 +1,152 @@
+{
+  "verdict": "APPROVE_PORTABLE_VERIFICATION_TOOLS_PR15_9986F326",
+  "reviewedHead": "9986f3265784e7a39ad0079460ced3d278882d7f",
+  "codeCommit": "91a9c78e0a18270e79210b34e964ef9ba9bc89ed",
+  "actualReadOnlyFinalAuditExit": 0,
+  "wholeScopedPrApproval": true,
+  "remainingBlockers": [],
+  "scope": "Only3 maintained entrypoints for captured one-shot scripts and existing2 historical packs; no generic format/framework/tar input or new UI run",
+  "codeChanges": 8,
+  "proofOnlyAdditions": 79,
+  "rootManifest": {
+    "sha256": "a2aca6f559a3ec2f71c0c9e3c6d40961d5e151250ccfafa1c0d5cb1fd86e1419",
+    "payloadFiles": 78,
+    "payloadBytes": 3391143,
+    "GitLiveAllShaBytesExact": true
+  },
+  "original5519": {
+    "unchanged": 5517,
+    "changedOriginal": [
+      "package.json",
+      "docs/ui-runtime-improvements.ja.md"
+    ],
+    "original181AndOldProofRetained": true
+  },
+  "rootChecksAudited": [
+    {
+      "scope": "checks/portable-tool-regressions-v1",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-regressions-v2",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-regressions-v3",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-typecheck-v1",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-typecheck-v2",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-ui-check-v1",
+      "actualExit": 1,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-ui-check-v2",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-relocated-v1",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-media-exact-v3",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    },
+    {
+      "scope": "checks/portable-tool-media-final-v4",
+      "actualExit": 0,
+      "inputCount": 463,
+      "unchanged": true
+    }
+  ],
+  "rootFinalMedia": {
+    "matchers": 228,
+    "titles": 18,
+    "any": 0,
+    "compilerActualExit": 0
+  },
+  "rootFinalRegressions": {
+    "pass": 47,
+    "actualExit": 0
+  },
+  "transports": [
+    {
+      "kind": "media-tree-independent",
+      "listedFiles": 139,
+      "payloadFiles": 141,
+      "rootIndependentArchiveAndPayloadExact": true
+    },
+    {
+      "kind": "cross-browser-author",
+      "listedFiles": 359,
+      "payloadFiles": 361,
+      "rootIndependentArchiveAndPayloadExact": true
+    }
+  ],
+  "ownSourceChecks": "Relocated independentGit Japanese/space checkout; actual final Media228/18/0, root47 suite47/47, independent false-negative repairs and true compiler refusal, existing2pack Python -O/reexport/deterministic tar/owned-output preservation",
+  "failuresAndScopesRetained": "Ownold literal false-positive actual0 and compiler omission actual0 preserved as counterexamples; root44/46 and IPC failure1 remain historical. New receipt passes transport/static-only and does not renew APPROVE/native results.",
+  "capturePendingState": "Root RESULTS capture-time wholeNewPrIndependentApprovalPending remains unchanged; this subsequent exactHEAD decision is authoritative within PR15 scope",
+  "independence": {
+    "productAuthor": false,
+    "sharedSourceGitHostWrites": 0,
+    "newUiOrBrowserServer": false,
+    "otherOwnerProcessesKilled": 0
+  },
+  "futureGitHubActions": "CI/human GitHub approval/Ready/merge are not claimed. Following reviewpack/guide-pointer-only adoption needs final exact byte bridge.",
+  "completedUtc": "2026-10-06T15:46:51.772893+00:00",
+  "finalCoreSourceSha256": {
+    "scripts/verification/audit-media.mjs": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85",
+    "scripts/verification/build-handoff.py": "9afe19b4419401f1d0b574cde9ec7c6528f6264dd90c40e94117c3d7c6013ad8",
+    "scripts/verification/build-public-proof.py": "8c2311e699c2427214f89a48e44f7011c3f241e5f60e4ed187ad32ec4db7e6c2",
+    "scripts/verification/evidence_pack.py": "5eca660dc5a92cc3c94f88e90f7a5061f59a051273864eea4510ceb63b5fb639"
+  },
+  "ownCurrentMediaReportMatchesRootByteExact": true,
+  "ownCurrentMediaReportSha256": "2a6dc119ff1b22cc2489fac6418b2ea2d7950defb40a3e9e886b44d4c62e17cf",
+  "ownCurrentMediaActualExit": 0,
+  "ownRegressions47ActualExit": 0,
+  "observedAndRepairedFindings": [
+    {
+      "priority": "P2",
+      "beforeSourceSha256": "35320de06660d1e9b1485d108c246b9066e4cf2d538c2014f4bfac96dc869e62",
+      "problem": "Matcher literal/label whitespace normalized into false equality",
+      "beforeNegativeActualExit": 0,
+      "afterNegativeActualExit": 1,
+      "repairedByFinalSource": true
+    },
+    {
+      "priority": "P2",
+      "beforeSourceSha256": "ce9f017b6f090b68777fd2e91719153e604f65d808958e4f5d32abc1e783673c",
+      "problem": "Media3 could be omitted from actual compiler target set",
+      "beforeNegativeActualExit": 0,
+      "afterNegativeActualExit": 1,
+      "afterCompilerActualExit": 0,
+      "afterMissingCompilerSpecs": 3,
+      "repairedByFinalSource": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/tmp/ui-foundation-portable-tools-independent-review-20261006/audit-nocheck-supplement.py", line 31, in <module>
+    require(newguide==expectedguide,'Guide delta exceeds3 reviewed lines')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/ui-foundation-portable-tools-independent-review-20261006/audit-nocheck-supplement.py", line 11, in require
+    if not condition:raise AssertionError(msg)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Guide delta exceeds3 reviewed lines

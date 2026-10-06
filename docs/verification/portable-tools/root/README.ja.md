@@ -1,0 +1,3 @@
+このpackは今回の実行時に保存したraw記録である。captured-execution-tools/のharnessやcommandのcwdは当時の実行場所を記録したもので、継続実行の入口ではない。再実行にはdocs/verification-tools.ja.mdの3入口を使い、出力先を明示する。
+
+47件の最終回帰と最終Mediaは最終audit dc88ac8の実結果。44/46件および初期Mediaは独立レビューで見つかった反例の修正前を含む履歴として分ける。通常typecheckは同じ製品・spec・型設定で成功し、ui:check起動前IPC失敗と許可環境での成功を両方保存する。既存2packは変えていないPython3ファイルで検証・搬送した。輸送receiptはUI操作や過去の独立承認の再実施を意味しない。

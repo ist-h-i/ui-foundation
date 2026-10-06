@@ -21,7 +21,11 @@
     "typecheck:ui:media": "tsc -p tsconfig.ui-media.json",
     "typecheck:ui:runtime": "tsc -p tsconfig.ui-runtime.json",
     "test:cross-browser": "node scripts/run-cross-browser.mjs",
-    "test:svg-paint": "node scripts/test-svg-paint.mjs"
+    "test:svg-paint": "node scripts/test-svg-paint.mjs",
+    "audit:media": "node scripts/verification/audit-media.mjs",
+    "verify:evidence:handoff": "python3 scripts/verification/build-handoff.py",
+    "verify:evidence:cross-browser": "python3 scripts/verification/build-public-proof.py",
+    "test:verification": "node --test tests/verification-tools/*.test.mjs"
   },
   "devDependencies": {
     "@angular/cdk": "22.2.1",

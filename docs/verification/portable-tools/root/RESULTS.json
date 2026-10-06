@@ -1,0 +1,252 @@
+{
+  "createdUtc": "2026-10-06T15:35:07.217007+00:00",
+  "baselineCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+  "baselineTree": "17e670c22ec9b724d5446647457813ff71a7ecbd",
+  "codeCommit": "91a9c78e0a18270e79210b34e964ef9ba9bc89ed",
+  "scope": "Only three portable replacements for captured one-shot scripts and the two existing historical packs",
+  "sourceFiles": [
+    {
+      "path": "package.json",
+      "bytes": 3288,
+      "sha256": "46c2a6109107cd8db5dbc884074459c56eb666364434c8b464f32720f1f5fb23"
+    },
+    {
+      "path": "docs/ui-runtime-improvements.ja.md",
+      "bytes": 7632,
+      "sha256": "91fb4a6c2868768160c89f713b42ba1388d9f4050390f11180114a7c6b57d8a1"
+    },
+    {
+      "path": "docs/verification-tools.ja.md",
+      "bytes": 4774,
+      "sha256": "775fd99c9a9dbd005ae2b895b01fd881b0e61602e2310d0f59a792570a575b08"
+    },
+    {
+      "path": "scripts/verification/audit-media.mjs",
+      "bytes": 9432,
+      "sha256": "dc88ac8d913ae77f11b2b1e8611c092e3329caa5971c0f345413dc77d04dfd85"
+    },
+    {
+      "path": "scripts/verification/build-handoff.py",
+      "bytes": 1555,
+      "sha256": "9afe19b4419401f1d0b574cde9ec7c6528f6264dd90c40e94117c3d7c6013ad8"
+    },
+    {
+      "path": "scripts/verification/build-public-proof.py",
+      "bytes": 1827,
+      "sha256": "8c2311e699c2427214f89a48e44f7011c3f241e5f60e4ed187ad32ec4db7e6c2"
+    },
+    {
+      "path": "scripts/verification/evidence_pack.py",
+      "bytes": 10959,
+      "sha256": "5eca660dc5a92cc3c94f88e90f7a5061f59a051273864eea4510ceb63b5fb639"
+    },
+    {
+      "path": "tests/verification-tools/portable.test.mjs",
+      "bytes": 11857,
+      "sha256": "5edd931d4c784defca02e84e00a8d254b18a4aa35c1d5afdbdbb7f95aabdc47c"
+    }
+  ],
+  "originalTrackedCount": 5519,
+  "originalUnchangedCount": 5517,
+  "changedOriginal": [
+    {
+      "path": "docs/ui-runtime-improvements.ja.md",
+      "beforeSha256": "4ab20b4b53fd01c88559ed94c49e76e4f6c14c48def2224818eaaf706a48e447",
+      "afterSha256": "91fb4a6c2868768160c89f713b42ba1388d9f4050390f11180114a7c6b57d8a1"
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "52ddccf0d4efd3b8ccc6a43f65cd025807ba5e66db6fec10b06da1930e15a5a5",
+      "afterSha256": "46c2a6109107cd8db5dbc884074459c56eb666364434c8b464f32720f1f5fb23"
+    }
+  ],
+  "productsGeneratedOriginal181AndHistoryUnchanged": true,
+  "actualRegressionsFinal": {
+    "total": 47,
+    "pass": 47,
+    "fail": 0,
+    "skip": 0,
+    "retry": 0,
+    "result": "checks/portable-tool-regressions-v3/RESULT.json"
+  },
+  "finalMedia": {
+    "matcherCount": 228,
+    "titleCount": 18,
+    "afterAny": 0,
+    "actualCompilerExit": 0,
+    "actualProcessExit": 0,
+    "result": "checks/portable-tool-media-final-v4/RESULT.json",
+    "nativeTestsReexecuted": false
+  },
+  "existingPackTransport": [
+    {
+      "listedFiles": 139,
+      "receipt": "native/real-entrypoints-v1/handoff/transport-receipt.json"
+    },
+    {
+      "listedFiles": 359,
+      "receipt": "native/real-entrypoints-v1/cross-browser/transport-receipt.json"
+    }
+  ],
+  "checks": [
+    {
+      "path": "checks/portable-tool-regressions-v1/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "test:verification"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:22:05.472325+00:00",
+      "finishedUtc": "2026-10-06T15:22:20.943959+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-regressions-v2/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "test:verification"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:27:28.168624+00:00",
+      "finishedUtc": "2026-10-06T15:27:42.968848+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-regressions-v3/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "test:verification"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:30:30.973644+00:00",
+      "finishedUtc": "2026-10-06T15:30:46.332479+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-typecheck-v1/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:22:35.367397+00:00",
+      "finishedUtc": "2026-10-06T15:22:49.250021+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-typecheck-v2/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:28:24.777345+00:00",
+      "finishedUtc": "2026-10-06T15:28:39.774027+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-ui-check-v1/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "ui:check"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:22:36.538654+00:00",
+      "finishedUtc": "2026-10-06T15:22:36.877837+00:00",
+      "actualExit": 1,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-ui-check-v2/RESULT.json",
+      "command": [
+        "npm",
+        "run",
+        "ui:check"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:23:23.162230+00:00",
+      "finishedUtc": "2026-10-06T15:23:23.748938+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-relocated-v1/RESULT.json",
+      "command": [
+        "python3",
+        "/tmp/ui-foundation-portable-tools-root/run-real-entrypoints.py"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:24:55.830925+00:00",
+      "finishedUtc": "2026-10-06T15:25:00.519607+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-media-exact-v3/RESULT.json",
+      "command": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/audit-media.mjs",
+        "--baseline",
+        "9f5430ca87e249af204cc335a8610d0d8040621f",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-root/real-exact-media-v3"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:28:24.777338+00:00",
+      "finishedUtc": "2026-10-06T15:28:28.183642+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    },
+    {
+      "path": "checks/portable-tool-media-final-v4/RESULT.json",
+      "command": [
+        "node",
+        "/tmp/ui-foundation-portable-tools-root/relocated-checkout/scripts/verification/audit-media.mjs",
+        "--baseline",
+        "9f5430ca87e249af204cc335a8610d0d8040621f",
+        "--output",
+        "/tmp/ui-foundation-portable-tools-root/real-media-final-v4"
+      ],
+      "sourceCommit": "9b8bb12861228c2bb610be2f8827710e7e2e9932",
+      "startedUtc": "2026-10-06T15:31:35.394623+00:00",
+      "finishedUtc": "2026-10-06T15:31:38.260621+00:00",
+      "actualExit": 0,
+      "inputFiles": 463,
+      "inputsUnchanged": true,
+      "scope": "Explicit repository product/tool/spec/generated/contract inputs; excludes verification artifacts"
+    }
+  ],
+  "failureScope": "Original unrelated-cwd actual1 and initial sandbox IPC actual1 are preserved; root44/46 and earlier Media audit results precede independently found literal/scope repairs. Final gate uses final47 and finalMedia only. Transport captures unchanged three Python files.",
+  "nativeUiSuiteReexecuted": false,
+  "historicalReviewRenewed": false,
+  "wholeNewPrIndependentApprovalPending": true
+}
