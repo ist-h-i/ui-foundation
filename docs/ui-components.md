@@ -374,3 +374,31 @@ ConfirmPopoverは必須`label/message`、`confirmLabel/cancelLabel/busyLabel`、
 対象/内容の監視はdocumentElementを含む。根のdir/profile/style変更でもPopupを再配置し、根がhidden/inertとなる場合もMenu/Popupの後始末とDrawer/Sheetのnative modal解除を行う。根の利用可能状態を戻した後、別の操作へ移ったfocusを奪わない。
 
 参照は[HTML popover](https://html.spec.whatwg.org/multipage/popover.html)、[APG modal Dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)、[APG Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)。Tooltip patternはwork in progress。native意味/実操作/axe/描画と実screen reader・利用者理解を区別する。
+
+## 数値・色・編集・段階・条件
+
+生成した`angular/index.ts`からimportする。操作デモは`/catalog/choices`。共通の`controlId`/`label`/`hint`/`error`/`required`/`disabled`/`busy`/`readonly`/`name`とCVAまたは`value`/`valueChange`を接続する。CVAの外部resetはUIの未完了要求を失効させるが、アプリの通信を取消さない。
+
+| 部品 | 設定と値 | 操作とアプリへの出力 |
+| --- | --- | --- |
+| Slider | 数値。`min`/`max`/`step`/`unit`/`ticks: SliderTick[]`/`labelPosition` | native rangeの矢印/Home/End。minを起点としてsnapし、datalist目盛りと文字ラベルを表示。 |
+| RangeSlider | `{start,end}`。上記の範囲と目盛り、`startLabel`/`endLabel` | native rangeを2個使い、開始≦終了を守る。動く範囲が変わってもDOM順は変えない。 |
+| Knob | 数値。上記の範囲/刻み/単位/`labelPosition` | SVGの270度の指針、native range、pointer capture、増減button。`size.knob`がprofileごとの寸法。 |
+| Rating | 数値。`stars`（1〜20）、`halfSteps`/`clearable`/`clearLabel` | native radio群で整数/0.5段階、0へ解除。必須時は0が不正。readonlyで操作を抑止して値の説明を残す。 |
+| ColorPicker | 文字列。`format: hex/rgb/hsl`/`allowAlpha`/`freeSelection`/`palette: ColorChoice[]`/`valueLabel`/`freeLabel`/`alphaLabel`/`paletteLabel` | raw text/native color/alpha range/palette。focus中の文字を保持し、妥当なblurで指定書式へ変換する。 |
+| InlineEdit | 文字列。`multiline`/`rows`/`maxLength`/`validateValue`/`editLabel`/`saveLabel`/`cancelLabel`/`emptyLabel`/`busyLabel` | `saveRequested:{requestId,value,previousValue}`と`editingChange`。アプリが`complete(id,value?)`/`fail(id,message)`を返す。 |
+| Wizard / Stepper | `controlId`/`label`/`current`/`direction`/`disabled`/`busy`/`deferTransitions`/`nonlinear`と各操作・状態label | `currentChange`、`transitionRequested:{requestId,from,to,reason}`、`completionAccepted`。`approve`/`reject`/`restart`。 |
+| WizardStep | `stepId`/`label`/`disabled`/`canProceed`/`next` | 本文を投影。未表示でもmounted/hiddenで入力を残し、移動時に自前の見出しへfocusする。 |
+| FilterBuilder / QueryBuilder | 再帰`FilterGroup`、`fields:FilterField[]`、各group/field/operator/value/add/remove/save/clear/restore/状態label | `saveRequested:{requestId,value}`/`savedCleared`。`completeSave`/`failSave`は一致する要求だけを適用。 |
+
+数値の設定はfinite `min<max`と表現できる正のstep。maxが刻みに合わなければ到達できる最後の値まで使う。不正modelは保持したままvalidatorと説明で示し、native描画だけ安全な範囲へ収める。ユーザーの編集時にsnapし、Rangeの逆転したmodelは実編集時に有効範囲から修正できる。値/設定と目盛りの重複を検査し、設定不正では編集を抑止する。nativeのreadonly代替はdisabledによる操作抑止で、値の文字説明は残る。
+
+Colorはhex3/4/6/8桁、rgbのbyte/%、hslの角度/百分率とalphaを解析する。RGBAへ揃えて表示書式を変換するため、hexのalphaはbyte精度、rgb/hslは小数3桁まで。未完成raw入力を無言で戻さない。透明度OFFでは透明なmodelを無言で不透明へ書換えず、明示errorと新しい選択で修正する。`freeSelection=false`はpalette選択と値の読取りだけ。native colorのOS選択UIは環境に依存し、補助的な文字入力とpalette経路を維持する。
+
+InlineEditはEnter（複数行ではControl/Meta＋Enter）で保存要求、Escapeで取消。IME変換中はこれらを実行しない。保存待ちで同じeditorをreadonlyにして入力とfocusを保持し、連打を抑止する。保存失敗はそのdraftへ戻り再試行できる。確認済みcompleteはCVAへ公開し、通常の編集commitとは分けてbusy中でも反映する。reset/破棄後の古い結果はfalse。`[value]`の外部変更が部品へ反映された場合も旧要求を失効させ、同じeditorを新しい値へ同期する。complete/failは要求時のpreviousValueも照合する。自分のfocusだけを編集開始/終了時に移し、結果ボタンなど外部focusは奪わない。最大文字数はUnicode codepoint数で、grapheme数ではない。
+
+Wizardの`next=undefined`は次の有効な投影段階、`null`は完了、ID指定は分岐。線形設定では訪問済み段階へだけ直接戻れ、`nonlinear=true`では未訪問も選べる。戻るは実移動履歴を使う。保留中に進行可否、from/to、分岐、利用可能な段階が変われば旧承認を失効させる。`deferTransitions=false`はUI移動を即時受理し、trueはアプリのapprove/rejectを待つ。完了はUIの段階終了で、backend提出成功ではない。外部currentの無効IDは最初の有効段階へ表示を戻す。入力の検証・業務分岐・永続化・未保存判断はアプリが決める。親wizardは入れ子wizardの段階を所有しない。
+
+Filterはtext/number/date/boolean/choiceのfield、型に合う演算子、再帰and/or、安定した重複しないIDを使う。欠損はnull/undefined/型不正で、0/false/空文字と区別する。dateは有効なYYYY-MM-DDまたはDateのUTC日で比較。`compileFilter`は妥当な条件をコピーし、rowのown propertyのみを評価する。空グループは評価から除外、ルートが空なら制限なし。任意コード・SQL・通信を実行しない。不正構造/値/未知fieldはvalidatorと欄の説明へ残す。保存した条件の復元はUI snapshotで、backend保存結果をアプリがcompleteSaveとして返す。fieldsのID/説明/型/選択肢が部品へ反映された時点で保留要求を失効させ、条件データを残して再検証する。completeSave/failSaveでも同じ定義と妥当な条件を要求する。busy/pendingで操作を抑止し、保存失敗draft、reset/外部条件変更/破棄後の古い結果、除去前の自前focusを確認する。復元されたfield/operator/boolean/choiceは、nativeの選択表示を実際のモデルへ合わせる。
+
+InlineEditとFilterBuilderの`invalidatePending()`は、下書きや保存済みsnapshotを消さずにUIの保留要求だけを失効させる。親signalの変更と応答処理を同じturnで行う場合、Angularが子inputへ反映する前の親の状態は子から観測できない。アプリは親値を置換する前にこのメソッドを呼ぶか、子inputへの反映後に応答を処理する。CVAのwriteValue/resetは同期して失効する。I/O中止、サーバー上の更新取消、外部の同値再書込みの識別はアプリの責任である。

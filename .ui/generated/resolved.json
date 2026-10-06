@@ -148,6 +148,14 @@
       "type": "length",
       "value": "320px"
     },
+    "knob-dense": {
+      "type": "length",
+      "value": "128px"
+    },
+    "knob-guided": {
+      "type": "length",
+      "value": "160px"
+    },
     "leading-body": {
       "type": "number",
       "value": 1.6
@@ -554,6 +562,11 @@
           "type": "length",
           "value": "320px"
         },
+        "size.knob": {
+          "reference": "knob-dense",
+          "type": "length",
+          "value": "128px"
+        },
         "size.mega-menu": {
           "reference": "mega-menu-dense",
           "type": "length",
@@ -911,6 +924,11 @@
           "reference": "input-max-height",
           "type": "length",
           "value": "320px"
+        },
+        "size.knob": {
+          "reference": "knob-guided",
+          "type": "length",
+          "value": "160px"
         },
         "size.mega-menu": {
           "reference": "mega-menu-guided",

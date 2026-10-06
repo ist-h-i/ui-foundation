@@ -2345,14 +2345,16 @@
       "requestedControls": "最小・最大、刻み、目盛り、単一値／範囲",
       "sourceLine": 70,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2374,9 +2376,26 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "最小・最大",
+        "刻み",
+        "目盛り",
+        "単一値／範囲"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-23",
@@ -2385,14 +2404,16 @@
       "requestedControls": "値、範囲、刻み、単位、読取り専用",
       "sourceLine": 71,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2414,9 +2435,27 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "値",
+        "範囲",
+        "刻み",
+        "単位",
+        "読取り専用"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-24",
@@ -2425,14 +2464,16 @@
       "requestedControls": "評価数、半段階、クリア、読取り専用",
       "sourceLine": 72,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2454,9 +2495,26 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "評価数",
+        "半段階",
+        "クリア",
+        "読取り専用"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-25",
@@ -2465,14 +2523,16 @@
       "requestedControls": "色形式、透明度、パレット、自由選択",
       "sourceLine": 73,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/choice-model.ts",
+        "templates/angular/choice-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2494,9 +2554,26 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/choice-model.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "色形式",
+        "透明度",
+        "パレット",
+        "自由選択"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-26",
@@ -2505,14 +2582,16 @@
       "requestedControls": "表示／編集、保存、取消、エラー、処理中",
       "sourceLine": 74,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/inline-edit.ts",
+        "templates/angular/value-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2534,9 +2613,26 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "表示／編集",
+        "保存",
+        "取消",
+        "エラー",
+        "処理中"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-27",
@@ -2653,14 +2749,16 @@
       "requestedControls": "現在段階、進行可否、戻る、分岐、入力保持",
       "sourceLine": 77,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/wizard.ts",
+        "templates/angular/focus.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2682,9 +2780,26 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "implementedControls": [
+        "現在段階",
+        "進行可否",
+        "戻る",
+        "分岐",
+        "入力保持"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "forms-30",
@@ -2693,14 +2808,17 @@
       "requestedControls": "条件、演算子、AND/OR、入れ子、保存・解除",
       "sourceLine": 78,
       "baseline": "new",
-      "status": "pending",
-      "implementation": [],
+      "status": "verified",
+      "implementation": [
+        "templates/angular/filter-model.ts",
+        "templates/angular/filter-builder.ts",
+        "templates/angular/value-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
         "focus",
-        "locale",
-        "virtual-scroll"
+        "locale"
       ],
       "verification": {
         "static": [
@@ -2722,9 +2840,27 @@
           "generated AOT strictTemplates"
         ]
       },
-      "evidence": [],
+      "evidence": [
+        "docs/ui-library-choice-expansion-spec.ja.md",
+        "tests/fixture-app/choice-catalog.ts",
+        "tests/ui/choice-catalog.spec.ts",
+        "tests/generation/consumer.test.ts",
+        "tests/model/filter-model.test.ts",
+        "docs/verification/ui-library-choices-2026-10-06.md",
+        "docs/verification/ui-library-choices-2026-10-06.json",
+        "scripts/consumer-browser.mjs"
+      ],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "implementedControls": [
+        "条件",
+        "演算子",
+        "AND/OR",
+        "入れ子",
+        "保存・解除"
+      ],
+      "remainingControls": [],
+      "verificationPending": []
     },
     {
       "id": "dates-01",
@@ -8885,8 +9021,8 @@
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
   "checkpoint": {
-    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating-navigation",
-    "verificationStatus": "verified-nine-stages-and-local-default-focus-fixes",
+    "stage": "business-priority-overlays-layout-actions-feedback-display-structured-forms-and-floating-navigation-choices-and-workflows",
+    "verificationStatus": "verified-ten-stages-and-local-default-focus-fixes",
     "requestRowCount": 181,
     "independentReview": {
       "table": "approve after corrections",
@@ -8902,13 +9038,14 @@
       "display": "approve after six P2 fixes; independent 28 browser cases, 18 images and full 452 log verified",
       "structuredForms": "approve after Unicode letter grapheme fix; independent native operations, full 518 log/exit and 59 manifest hashes verified",
       "floating": "approve after pending key and root mutation P2 fixes; independent 48 scenarios/274 assertions, 18 axe states with incomplete limits, 62 manifest hashes/16 images and full 608 log/exit verified",
-      "navigation": "source review approve after R1–R7 corrections; independent native keyboard/modal/visibility/lifecycle, manifest68/runtime14, axe limits and full 683 actual exit0"
+      "navigation": "source review approve after R1–R7 corrections; independent native keyboard/modal/visibility/lifecycle, manifest68/runtime14, axe limits and full 683 actual exit0",
+      "choices": "source/full approve after F1-F5 fixes; independent operations86, manifest74/runtime63, production consumer, axe limits, all791 actual exit0"
     },
     "fullCatalogComplete": false,
     "statusCounts": {
-      "verified": 114,
-      "pending": 56,
-      "partial": 11
+      "verified": 121,
+      "partial": 11,
+      "pending": 49
     },
     "knownIssues": [
       {
@@ -9050,6 +9187,41 @@
         "followup": "PR #8 corrected and independently verified",
         "codeHead": "9d8840e45b7f863d2095a51aa4a93ead0ab1a220",
         "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+      },
+      {
+        "severity": "P1",
+        "issue": "External [value] change does not invalidate an outstanding request; stale complete publishes old draft over newer input.",
+        "followup": "PR #9 corrected and independently verified",
+        "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+        "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
+      },
+      {
+        "severity": "P1",
+        "issue": "Field type changes while saving do not invalidate pendingKey; completeSave marks invalid current conditions as saved.",
+        "followup": "PR #9 corrected and independently verified",
+        "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+        "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Restored native field/operator options disagree with the filter model.",
+        "followup": "PR #9 corrected and independently verified",
+        "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+        "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "Numeric rating ratio visually reverses in RTL.",
+        "followup": "PR #9 corrected and independently verified",
+        "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+        "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
+      },
+      {
+        "severity": "P2",
+        "issue": "toPrecision(15) removes an exact representable first step in an accepted domain.",
+        "followup": "PR #9 corrected and independently verified",
+        "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+        "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
       }
     ],
     "maintenanceVerification": {
@@ -9116,6 +9288,20 @@
         "total": 683
       },
       "evidence": "docs/verification/ui-library-navigation-2026-10-05.md"
+    },
+    "choicesVerification": {
+      "pullRequest": 9,
+      "baseCommit": "657e5ba3f2993bc85912f5801bb7a7d9966c2b7a",
+      "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+      "runtimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "testCounts": {
+        "config": 67,
+        "generation": 15,
+        "model": 75,
+        "ui": 634,
+        "total": 791
+      },
+      "evidence": "docs/verification/ui-library-choices-2026-10-06.md"
     }
   }
 }

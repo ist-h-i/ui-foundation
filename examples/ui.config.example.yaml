@@ -74,6 +74,8 @@ primitives:
   mega-menu-dense: { type: length, value: 768px }
   navigation-column-guided: { type: length, value: 192px }
   navigation-column-dense: { type: length, value: 160px }
+  knob-guided: { type: length, value: 160px }
+  knob-dense: { type: length, value: 128px }
   elevation-blur: { type: length, value: 12px }
   overlay-min: { type: length, value: 192px }
   dialog-min: { type: length, value: 280px }
@@ -146,6 +148,7 @@ semantic:
   size.navigation-rail: navigation-rail-guided
   size.mega-menu: mega-menu-guided
   size.navigation-column: navigation-column-guided
+  size.knob: knob-guided
   size.elevation-blur: elevation-blur
   size.overlay-min: overlay-min
   size.dialog-min: dialog-min
@@ -194,6 +197,7 @@ profiles:
       size.navigation-rail: navigation-rail-dense
       size.mega-menu: mega-menu-dense
       size.navigation-column: navigation-column-dense
+      size.knob: knob-dense
       color.action: green
       color.action-hover: green-hover
       color.link: green

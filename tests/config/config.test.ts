@@ -12,6 +12,12 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('knob size follows its own positive semantic role and profile mapping',()=>{
+ const result=resolve();assert.equal(result.profiles.guided.semantic['size.knob'].value,'160px');assert.equal(result.profiles.dense.semantic['size.knob'].value,'128px');
+ assert.match(renderTailwind(result),/--spacing-size-knob: var\(--ui-size-knob\)/);assert.match(renderTokens(result),/--ui-size-knob: var\(--ui-p-knob-guided\)/);
+ rejects(edited(config=>{delete config.semantic['size.knob'];}),/size.knob/);rejects(edited(config=>{config.primitives['knob-guided'].value='0px';}),/greater than zero/);
+ rejects(edited(config=>{config.semantic['size.knob']='ink';}),/size.knob/);
+});
 test('navigation rail has a required positive semantic width in each profile',()=>{
  const result=resolve();assert.equal(result.profiles.guided.semantic['size.navigation-rail'].value,'72px');assert.equal(result.profiles.dense.semantic['size.navigation-rail'].value,'64px');
  assert.match(renderTailwind(result),/--spacing-size-navigation-rail: var\(--ui-size-navigation-rail\)/);assert.match(renderTokens(result),/--ui-size-navigation-rail: var\(--ui-p-navigation-rail-guided\)/);

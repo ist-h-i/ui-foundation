@@ -1,0 +1,552 @@
+{
+  "pullRequest": 9,
+  "baseCommit": "657e5ba3f2993bc85912f5801bb7a7d9966c2b7a",
+  "codeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+  "runtimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+  "productFilesUnchangedAcrossConsumerTestBudgetCommit": true,
+  "fullRun": {
+    "head": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+    "startedAt": "2026-10-06T00:16:10.664106+00:00",
+    "pid": 1069,
+    "launchMode": "detached_session",
+    "endedHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+    "finishedAt": "2026-10-06T00:31:53.364067+00:00",
+    "exit": 0
+  },
+  "testCounts": {
+    "config": 67,
+    "generation": 15,
+    "model": 75,
+    "ui": 634,
+    "total": 791
+  },
+  "fullLogSha256": "a82b66aa97b64d24c43c53426693840e62845525cde511d20402a79471bb435f",
+  "generatedManifestEntries": 74,
+  "independentCompiledRuntimeSources": 63,
+  "independentSourceReview": "approve at 07d3d63; F1-F5 resolved; no remaining observed P1/P2",
+  "finalApprovalRequirement": "independent evidence-only final-head delta review before merge",
+  "independentBrowser": "154.0.8037.98",
+  "independentVerification": {
+    "runtimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+    "finalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+    "build": {
+      "exit": 0,
+      "log": "build.log"
+    },
+    "uiCheckTypecheckModelConfig": {
+      "exit": 0,
+      "modelPassed": 75,
+      "configPassed": 67,
+      "log": "static-model-config.log",
+      "logContains": "config suite; check/typecheck/model are recorded by session 77048 completion and summary"
+    },
+    "choice": {
+      "exit": 0,
+      "passed": 86,
+      "failed": 0,
+      "skipped": 0,
+      "operationChecks": 78,
+      "axeStates": 8,
+      "log": "choice-ui.log",
+      "json": "choice-ui.json"
+    },
+    "productionConsumer": {
+      "exit": 0,
+      "passed": 1,
+      "durationMs": 224708.860125,
+      "positiveProductionConsumer": 1,
+      "negativeAotCompilations": 6,
+      "log": "consumer.log"
+    },
+    "edgeConsumer": {
+      "exit": 0,
+      "profiles": [
+        "guided",
+        "dense"
+      ],
+      "scenarios": 2,
+      "production": true,
+      "log": "edge.log"
+    },
+    "edgeLargeConsumer": {
+      "exit": 0,
+      "profiles": [
+        "guided",
+        "dense"
+      ],
+      "production": true,
+      "log": "edge-large.log"
+    },
+    "drawing": {
+      "exit": 0,
+      "states": 8,
+      "violations": 0,
+      "incompleteColorContrastNodes": 88,
+      "overflow": 0,
+      "consolePageErrors": 0,
+      "log": "drawing.log"
+    }
+  },
+  "resolvedFindings": [
+    {
+      "id": "F1",
+      "severity": "P1",
+      "source": "templates/angular/inline-edit.ts",
+      "line": 80,
+      "summary": "External [value] change does not invalidate an outstanding request; stale complete publishes old draft over newer input.",
+      "expected": "Return false, retain external model and synchronize draft in same native editor.",
+      "head": "2952e5128606a098b94e036148983427179f6c2a",
+      "discoveredHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "resolved": true,
+      "fixedRuntimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "reverifiedAtFinalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685"
+    },
+    {
+      "id": "F2",
+      "severity": "P1",
+      "source": "templates/angular/filter-builder.ts",
+      "line": 97,
+      "summary": "Field type changes while saving do not invalidate pendingKey; completeSave marks invalid current conditions as saved.",
+      "expected": "Definitions/validation changes supersede outstanding request; reject old completeSave and retain current draft.",
+      "head": "2952e5128606a098b94e036148983427179f6c2a",
+      "discoveredHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "resolved": true,
+      "fixedRuntimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "reverifiedAtFinalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685"
+    },
+    {
+      "id": "F3",
+      "severity": "P2",
+      "source": "templates/angular/filter-builder.ts",
+      "line": 17,
+      "summary": "Restored native field/operator options disagree with the filter model.",
+      "evidence": "drawing-axe.json, filter-restored-1280-guided.png, filter-restored-1280-dense.png",
+      "discoveredHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "resolved": true,
+      "fixedRuntimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "reverifiedAtFinalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685"
+    },
+    {
+      "id": "F4",
+      "severity": "P2",
+      "source": "templates/angular/choice-controls.ts",
+      "line": 124,
+      "summary": "Numeric rating ratio visually reverses in RTL.",
+      "evidence": "rating-color-320-200-rtl-guided.png, rating-color-320-200-rtl-dense.png",
+      "discoveredHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "resolved": true,
+      "fixedRuntimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "reverifiedAtFinalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685"
+    },
+    {
+      "id": "F5",
+      "severity": "P2",
+      "source": "templates/angular/choice-model.ts",
+      "line": 12,
+      "summary": "toPrecision(15) removes an exact representable first step in an accepted domain.",
+      "evidence": "edge-large-observations.json, edge-large.log, numeric-large-step-guided.png, numeric-large-step-dense.png",
+      "discoveredHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "resolved": true,
+      "fixedRuntimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "reverifiedAtFinalHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685"
+    }
+  ],
+  "independentAxe": {
+    "states": 8,
+    "violations": 0,
+    "incompleteColorContrastOccurrences": 88,
+    "incompleteIsNotPass": true,
+    "paletteAriaProhibitedAttrResolved": true
+  },
+  "drawing": {
+    "codeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+    "startedAt": "2026-10-05T23:57:16.493Z",
+    "browserVersion": "153.0.8010.12",
+    "assets": {
+      "index.html": "372da4417e1eee17078f9ec7802bfd91fcd0458babdb934e966402005070d0e7",
+      "main.js": "0673f0268ef9dd663e5a625f026b9cafe5fb676f9463d8134d7e9f70a40b9de8",
+      "styles.css": "8abe74115334e2c74757457e1f04f39eb3d9de8e45d703bf6b348e837a07b65f"
+    },
+    "finishedAt": "2026-10-05T23:57:39.253Z",
+    "images": [
+      {
+        "profile": "guided",
+        "name": "numeric-1280",
+        "label": "数値と範囲",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": -0.40625,
+          "width": 1056,
+          "height": 1155.4375
+        },
+        "sha256": "843bf7fbf242d2389926e5739574f2d089f283aebc5167ce13d7ec9b7896ac2d",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:18.150Z",
+        "file": "choices-numeric-1280-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "color-invalid-1280",
+        "label": "評価と色",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": -0.375,
+          "width": 1056,
+          "height": 980.453125
+        },
+        "sha256": "dfd458480a1bcfd9721423ed7b568cadbafc9c04e6803a814470b22be687ea72",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:20.449Z",
+        "file": "choices-color-invalid-1280-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "inline-failed-1280",
+        "label": "保存を伴う編集",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": -0.3125,
+          "width": 1056,
+          "height": 472.28125
+        },
+        "sha256": "00836c7ec00a409568ff73729ec412671525139dc1244d4795e3e0d52eab95c3",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:23.419Z",
+        "file": "choices-inline-failed-1280-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "wizard-confirm-1280",
+        "label": "段階を保持",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": -0.421875,
+          "width": 1056,
+          "height": 618.484375
+        },
+        "sha256": "3e26ff0bfe7fd8216afb151dfeaa089ea8c3129c09d2c29a7b666c0e083d9d01",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:24.124Z",
+        "file": "choices-wizard-confirm-1280-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "filter-nested-1280",
+        "label": "入れ子の条件",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 112,
+          "y": 0.265625,
+          "width": 1056,
+          "height": 4212.28125
+        },
+        "sha256": "afe758a3dfc371cffc55ec23dc4268891578e088e38be1627564e670346d5a0d",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:25.114Z",
+        "file": "choices-filter-nested-1280-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "rating-320-200-rtl",
+        "label": "評価と色",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 0.15625,
+          "width": 256,
+          "height": 3013.8125
+        },
+        "sha256": "5caf69a5ae98027c96da2bf62d69a226f6547c59651747cd4f9b48ccfd7e0def",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:25.942Z",
+        "file": "choices-rating-320-200-rtl-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "color-320-200-rtl",
+        "label": "強調色",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": 0.46875,
+          "width": 256,
+          "height": 714.75
+        },
+        "sha256": "fb489a2125865d63c7d2fd93a17de276d0d886beb46b8a358e7d54933507a784",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:25.993Z",
+        "file": "choices-color-320-200-rtl-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "guided",
+        "name": "filter-320-200-rtl",
+        "label": "入れ子の条件",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 32,
+          "y": -0.125,
+          "width": 256,
+          "height": 12831.9375
+        },
+        "sha256": "6ceb7dbc4c7efa7285d930359d9e935e9af8cb37e5844afb4d2dd9afbea9fa6d",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:28.020Z",
+        "file": "choices-filter-320-200-rtl-guided.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "numeric-1280",
+        "label": "数値と範囲",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": -0.015625,
+          "width": 1088,
+          "height": 952.484375
+        },
+        "sha256": "3fbecee00836a1363cfe4d1aa948719ade6967970f67083020437846ac9e1dc2",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:29.540Z",
+        "file": "choices-numeric-1280-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "color-invalid-1280",
+        "label": "評価と色",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": -0.140625,
+          "width": 1088,
+          "height": 760.71875
+        },
+        "sha256": "5051c39621b1af299837c483fe8cfe9b188c47f5b40dbb5f9747cb36c44c2538",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:31.751Z",
+        "file": "choices-color-invalid-1280-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "inline-failed-1280",
+        "label": "保存を伴う編集",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": -0.40625,
+          "width": 1088,
+          "height": 378.5625
+        },
+        "sha256": "81a3c739aff533b4a061ca70d39526022bc50670b6d96a6b12fdb34356091e89",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:34.679Z",
+        "file": "choices-inline-failed-1280-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "wizard-confirm-1280",
+        "label": "段階を保持",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": 0.375,
+          "width": 1088,
+          "height": 487.765625
+        },
+        "sha256": "223c618ec54ff28289a773c77d6f354dbfccc16313f91310502386969a7f41d1",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:35.465Z",
+        "file": "choices-wizard-confirm-1280-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "filter-nested-1280",
+        "label": "入れ子の条件",
+        "width": 1280,
+        "font": "16px",
+        "dir": "ltr",
+        "box": {
+          "x": 96,
+          "y": -0.453125,
+          "width": 1088,
+          "height": 3516.765625
+        },
+        "sha256": "8f36c421cc04deab5de2e826ca00c567905058a5a8120397fc28ff73a1b87b6b",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:36.188Z",
+        "file": "choices-filter-nested-1280-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "rating-320-200-rtl",
+        "label": "評価と色",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": -0.296875,
+          "width": 288,
+          "height": 2267.25
+        },
+        "sha256": "34b62f0c8f3bb7ab966d96865ebbc3588b122e22c84ede12fcb938b0abdccc80",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:36.980Z",
+        "file": "choices-rating-320-200-rtl-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "color-320-200-rtl",
+        "label": "強調色",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": 0.328125,
+          "width": 288,
+          "height": 550.5
+        },
+        "sha256": "bb443f9032eb8c0e686b801ff84aa3fd536433b2bc6874f9fa1f4785cca7ec87",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:37.031Z",
+        "file": "choices-color-320-200-rtl-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      },
+      {
+        "profile": "dense",
+        "name": "filter-320-200-rtl",
+        "label": "入れ子の条件",
+        "width": 320,
+        "font": "32px",
+        "dir": "rtl",
+        "box": {
+          "x": 16,
+          "y": 0,
+          "width": 288,
+          "height": 9228.59375
+        },
+        "sha256": "b980f2a76cdb609ee0195f55f2b4d7a13eef9b1a2f1075a63fce1020ef646508",
+        "overflow": false,
+        "errors": [],
+        "capturedAt": "2026-10-05T23:57:39.239Z",
+        "file": "choices-filter-320-200-rtl-dense.png",
+        "rootViewEvidence": "opened with view_image after final runtime fixes"
+      }
+    ],
+    "axeStates": 8,
+    "violations": 0,
+    "incompleteNodeOccurrences": {
+      "color-contrast": 89
+    },
+    "pageOverflow": 0,
+    "consolePageErrors": 0
+  },
+  "fullSuiteHistory": [
+    {
+      "runtimeHead": "2952e5128606a098b94e036148983427179f6c2a",
+      "run": "initial",
+      "exit": 130,
+      "complete": false,
+      "reason": "interrupted to repair independent findings"
+    },
+    {
+      "runtimeHead": "f7ecd1468d062b0e5e01059c0e28c9827517f376",
+      "run": "fixed",
+      "exit": 1,
+      "complete": false,
+      "reason": "production consumer 120-second deadline cancelled"
+    },
+    {
+      "runtimeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+      "run": "third",
+      "exit": null,
+      "complete": false,
+      "observedUiChecks": 308,
+      "reason": "executor key change ended runner; no exit saved"
+    },
+    {
+      "runtimeHead": "07d3d63cd6de2f35eb9c0ce23532147c0678d685",
+      "run": "fourth",
+      "exit": 0,
+      "complete": true,
+      "reason": "completed detached npm test",
+      "totalPassed": 791
+    }
+  ],
+  "knownLimits": [
+    "Firefox/Safari",
+    "real screen reader",
+    "touch assistive technology",
+    "OS-native color picker",
+    "backend persistence/cancellation/undo",
+    "user effectiveness",
+    "exhaustive AST drift analysis",
+    "Parent input changes before Angular propagates them require explicit application invalidation before acknowledging an old request.",
+    "Axe incomplete results are unresolved observations, not passed WCAG checks.",
+    "Existing output relocation Skill ownership P2 remains tracked; fixed output sync is unaffected."
+  ],
+  "requestRowsRetained": 181,
+  "statusCounts": {
+    "verified": 121,
+    "partial": 11,
+    "pending": 49
+  },
+  "fullCatalogComplete": false
+}

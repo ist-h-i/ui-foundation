@@ -19,7 +19,8 @@ export abstract class ValueControl<T> implements ControlValueAccessor {
   private readonly stored = signal<T | undefined>(undefined);
   private readonly formDisabled = signal(false);
   protected readonly current = computed(() => this.value() !== undefined ? this.value()! : this.stored() === undefined ? this.emptyValue : this.stored()!);
-  protected readonly blocked = computed(() => this.disabled() || this.busy() || this.formDisabled());
+  protected readonly disabledState = computed(() => this.disabled() || this.formDisabled());
+  protected readonly blocked = computed(() => this.disabledState() || this.busy());
   protected readonly descriptionIds = computed(() => [this.hint() ? this.controlId() + '-hint' : '', this.error() ? this.controlId() + '-error' : ''].filter(Boolean).join(' ') || null);
   private notifyChange: (value: T) => void = () => {};
   private notifyTouched: () => void = () => {};
@@ -31,6 +32,10 @@ export abstract class ValueControl<T> implements ControlValueAccessor {
   protected touch(): void { this.notifyTouched(); }
   protected commit(value: T): void {
     if (this.blocked() || this.readonly()) return;
+    this.publishValue(value);
+  }
+  /** Explicit application-confirmed result; does not authorize user edits or perform I/O. */
+  protected publishValue(value: T): void {
     this.stored.set(value); this.valueChange.emit(value); this.notifyChange(value);
   }
   protected text(event: Event): string { return (event.target as HTMLInputElement).value; }

@@ -87,3 +87,11 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - Menubarのroot rovingと再帰Menuの階層focus、左右によるroot間移動、Tab全体退出、disabled/typeahead/check/radio、描画前の連続キーを確認する。Rootは操作項目、group/separatorはpopup内に置く。MegaMenuはgroupの見出し/説明とnativeリンク/階層を使い、全リンクへTabで到達できるようにする。
 - CommandPaletteはnative modal Dialogとcombobox/listboxを使い、検索/グループ/明示shortcut/呼出し履歴を接続する。commandRequestedは実行の意思で、busy/error/再試行/completeはアプリ結果を反映する。成功履歴やbackend更新を先取りしない。通常の入力/defaultPrevented/IME/repeat/別modalを横取りしない。検索と同じnative editorを閉じ戻る/候補差替えでも保持する。狭幅・拡大で開いた直後、矢印移動、エラー、再検索の検索欄とEnterの対象操作名の可視を、dialog/listbox/viewportのclipと実hit-testで確認する。検索領域の実高さ変更と破棄後のobserver/描画予約の解除も確認する。
 - 方向・profile等の外部設定変更後の試験は、実DOM/ARIAへの反映を観測してからキーを送る。固定sleep/retryでraceを隠さない。全propとアプリ責任はdocs/ui-components.mdのナビゲーション各節を参照する。
+
+## 数値・色・編集・段階・条件
+
+- Slider/RangeSliderはnative rangeとmin基準の正のstep、Knobは同じnative rangeとSVG指針/明示増減を使う。size.knobを設定正本の各profileへ対応付ける。不正modelはvalidationと説明へ残し、表示fallbackをmodelの成功へ読み替えない。native矢印/Home/End、範囲の交差抑止、pointer取消とkeyboard代替、readonly/CVA disabledを実操作で確認する。
+- Ratingはnative radio群の整数/半段階と0の解除を接続する。ColorPickerはhex/rgb/hsl、alpha、native color/rangeとpaletteを接続する。focusで入力文字を差替えず、不完全raw値を保持する。blur時の書式変換、alpha0、透明度OFFの不正値、paletteのみの設定、native editorの同一性とprofile変更を検証する。
+- InlineEditのsaveRequestedとrequestIdに実アプリ結果を接続する。complete/failは一致する未完了要求とpreviousValueへだけ適用し、失敗draftを残す。busy中の明示completeは確認済みCVA値を公開できる。CVA resetと反映済み[value]の外部変更で旧要求を失効し、同じeditorを同期する。連打、Enter/Escape/IME、外部focusを確認し、backend保存やI/O取消を先取りしない。
+- Wizard/Stepperはprojected WizardStepをhiddenで保持する。nextのundefinedは次の有効段階、nullは完了、IDは明示分岐。canProceed/disabled/分岐変更で古い保留要求を失効させ、戻るは実移動経路を使う。deferTransitionsのapprove/rejectはアプリの業務判断に接続する。見出しへの自前focus、入力DOM保持、段階除去、完了/再開、入れ子の所有範囲を確認する。
+- FilterBuilder/QueryBuilderはtyped field/operatorと再帰AND/OR、0/false/未取得を区別する。compileFilterはown propertyだけを評価し、空グループは絞り込みから除く。不正条件は結果を捏造せず復旧経路を残す。保存はアプリ結果、saved snapshotはUI内の復元。fieldsのID/説明/型/選択肢変更や再検証errorは保留saveを失効させ、旧complete/failを拒否する。復元modelとnative選択表示の一致、全型/入れ子/解除/readonlyを確認する。親signal変更と旧応答を同じturnで扱う場合は、InlineEdit/FilterBuilderのinvalidatePendingを親変更前にアプリから呼び、未反映の親状態を自動検出する保証を作らない。SQL、コード実行、通信は持たない。全propとapp責任はdocs/ui-components.mdを参照する。
