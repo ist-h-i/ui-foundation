@@ -16,3 +16,7 @@ axeのviolations、incomplete、実ブラウザー操作、AIによる意味/画
 
 
 追加正式回帰は修正後6/6 actual PASS（DateRangeのnative badInputを含む4ケース＋実数式workerの2ケース）。元locator失敗は保持する。[修正後のログ](ui-library-final-catalog/root-final-new-native-corrected.log)と[JSON](ui-library-final-catalog/root-final-new-native-corrected-report.json)を対応付ける。保持文言の新独立指摘に対し31 string state /104 library writerを表示境界へ移し、branch/件数/app値を操作時snapshotとして保持した。[限定した変換台帳](ui-library-final-catalog/cached-message-state-manifest.json)は全ソースAST逸脱検査ではない。現在の製品入力は [SHA一覧](ui-library-final-catalog/root-message-final-source-freeze.json)に固定し、全体検証を続ける。
+
+全npmの初回候補 `f792b158` は設定70・生成15・model183が実成功し、UI135成功・2中断・839未実行で実終了130。Media独立検証で狭幅RTLにおけるBarcodeのCSS縮小による実表示decode失敗を確認したため、ソース変更前に自分のPlaywrightへSIGINTを送って停止した。前後455入力のSHAは不変（sourceChanged=[]）。[元ログ・実終了](ui-library-final-catalog/first-full-npm-f792b158-interrupted/execution.json)を保持し、全体PASSへ読み替えない。Barcodeの実寸module幅保持・named部品内スクロール、Schedulerの純モデル構造診断の表示境界翻訳を最小修正し、正式回帰と新候補の全検査へ進む。
+
+最小表示修正後、追加正式5回帰はactual exit0（両profile Barcode2、Scheduler3入力変更解除2、RTL Compare1）。[実行台帳](ui-library-final-catalog/last-display-execution.json)と[raw結果](ui-library-final-catalog/last-display-native-report.json)を保存した。同期・一致・139source strict AOTも同候補でactual0。新候補の全検査と最終独立採否を続ける。

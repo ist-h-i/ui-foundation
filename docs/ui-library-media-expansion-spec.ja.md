@@ -41,3 +41,5 @@ PDF.js6.4.299、qrcode1.5.4、JsBarcode3.12.3の公開JS APIとnative File/Bitma
 正式`media.spec.ts/media-regressions.spec.ts/media-lifetime.spec.ts`で選択/drop・受付復旧・実PDFページ・PNG pixels・画像回転bounds・timer・再生source epoch・字幕cue・QR/Code128独立decodeを扱う。exact sourceと実結果はmatrixへ記録し、実uploadサービスや他browserの成功と混同しない。
 
 ImageCompare の比較座標は画像の物理的な左端／上端を0、右端／下端を100とします。周囲のRTLや言語変更でもこの座標は変えず、native rangeはLTR方向で境界線とつまみを一致させます。ラベルと説明文は周囲の言語・方向へ追随します。
+
+Barcode の `size` と `moduleWidth` は符号化した実寸を指定し、CSSでバーを縮小しません。領域より広いコードは、説明付きの部品内スクロール領域でキーボード・ポインター・タッチ操作により端まで確認できます。周囲RTLでも画像座標はLTRです。アプリは必要なmodule幅と表示先に応じて `size` を選びます。切り取られた単一viewportにコード全体が収まる・全読み取り機で読み取れることは保証しません。

@@ -2242,7 +2242,11 @@
       "sourceLine": 67,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/cascader.ts",
+        "templates/angular/tree-popup-control.ts",
+        "templates/angular/tree-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
@@ -2272,7 +2276,32 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "階層選択",
+          "publicRuntimeContract": "nodes + canonical path value/CVA"
+        },
+        {
+          "requested": "途中階層の選択可否",
+          "publicRuntimeContract": "allowIntermediate + intermediate Validator"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loadRequested/resolveLoad/failLoad/invalidateLoads with retained raw draft"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/tree-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "forms-20",
@@ -2282,7 +2311,11 @@
       "sourceLine": 68,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/tree-select.ts",
+        "templates/angular/tree-popup-control.ts",
+        "templates/angular/tree.ts"
+      ],
       "dependencies": [
         "tokens",
         "forms",
@@ -2312,7 +2345,36 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "ツリー選択",
+          "publicRuntimeContract": "nodes/value + popup Tree selection"
+        },
+        {
+          "requested": "複数選択",
+          "publicRuntimeContract": "multiple + cardinality Validator"
+        },
+        {
+          "requested": "親子の選択連動",
+          "publicRuntimeContract": "linkSelection + linked checks/branch chip removal"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "searchable + search draft/query and ancestor retention"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/tree-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "forms-21",
@@ -3238,7 +3300,13 @@
       "sourceLine": 90,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/scheduler.ts",
+        "templates/angular/agenda.ts",
+        "templates/angular/scheduler-view.ts",
+        "templates/angular/scheduler-controller.ts",
+        "templates/angular/scheduler-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "locale",
@@ -3267,7 +3335,42 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "日・週・月・一覧表示",
+          "publicRuntimeContract": "view day/week/month/list + Scheduler/Agenda actual grids"
+        },
+        {
+          "requested": "予定",
+          "publicRuntimeContract": "events + SchedulerEvent/Entry + typed projected templates"
+        },
+        {
+          "requested": "リソース",
+          "publicRuntimeContract": "resources/resourceFilter/showUnassigned + native selection"
+        },
+        {
+          "requested": "時間帯",
+          "publicRuntimeContract": "dayStart/dayEnd/timeZone + exact civil/DST bands"
+        },
+        {
+          "requested": "予定移動",
+          "publicRuntimeContract": "movable/canMove + native move draft + moveRequested/current-ID complete/fail"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/scheduler-catalog.spec.ts",
+        "tests/ui/scheduler-focus-transfer.spec.ts",
+        "tests/ui/scheduler-id-boundaries.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "navigation-01",
@@ -5601,7 +5704,11 @@
       "sourceLine": 154,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/tree.ts",
+        "templates/angular/tree-item.ts",
+        "templates/angular/tree-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5631,7 +5738,40 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "階層",
+          "publicRuntimeContract": "nodes/children + TreeEntry/TreeItem native tree hierarchy"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/expandedIdsChange"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/selectedIds/selectedIdsChange"
+        },
+        {
+          "requested": "チェック",
+          "publicRuntimeContract": "checkable/linkChecks/checkedIds and mixed states"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loadRequested/resolveLoad/failLoad + stale/collapse/source invalidation"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/tree-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-09",
@@ -5641,7 +5781,11 @@
       "sourceLine": 155,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/tree-grid.ts",
+        "templates/angular/data-grid.ts",
+        "templates/angular/tree-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5671,7 +5815,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "階層付き表",
+          "publicRuntimeContract": "TreeGrid nodes + treeRows native grid hierarchy"
+        },
+        {
+          "requested": "列",
+          "publicRuntimeContract": "columns TableEditableColumn<T>"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/displayExpandedIds + native tree-toggle"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/selectedIds + canonical raw IDs"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "editable + delegated DataGrid CellEditor/current-ID acknowledgement"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-10",
@@ -5793,7 +5971,10 @@
       "sourceLine": 158,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/organization-chart.ts",
+        "templates/angular/tree-node-template.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5823,7 +6004,36 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "親子関係",
+          "publicRuntimeContract": "nodes/children + native nested list/tree content"
+        },
+        {
+          "requested": "方向",
+          "publicRuntimeContract": "direction top-down/bottom-up/left-right/right-left"
+        },
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedIds/expandedIdsChange"
+        },
+        {
+          "requested": "ノード内容",
+          "publicRuntimeContract": "typed TreeNodeTemplate<T> with app-owned DOM"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/tree-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-13",
@@ -5865,7 +6075,36 @@
       },
       "evidence": [],
       "priority": 1,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "表題",
+          "publicRuntimeContract": "caption native caption/region heading"
+        },
+        {
+          "requested": "領域名",
+          "publicRuntimeContract": "required label named scroll region"
+        },
+        {
+          "requested": "スクロール",
+          "publicRuntimeContract": "scrollDirection/scrollTop/scrollLeft + scrollChange"
+        },
+        {
+          "requested": "表示サイズ",
+          "publicRuntimeContract": "displaySize/height/maxHeight + semantic viewport"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-14",
@@ -5876,8 +6115,9 @@
       "baseline": "partial",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table.ts",
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-model.ts",
+        "templates/angular/table-advanced-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -5925,7 +6165,44 @@
         "複数条件編集UI",
         "行編集・グループ・出力・仮想化"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "列定義",
+          "publicRuntimeContract": "columns TableEditableColumn<T>/typed templates"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "globalSearch/searchColumns/state.search"
+        },
+        {
+          "requested": "ソート",
+          "publicRuntimeContract": "sortable/sortMode/state.sort/nextTableSort"
+        },
+        {
+          "requested": "フィルター",
+          "publicRuntimeContract": "columnFilters/typed filters + ColumnFilter UI"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selectionMode/rowSelectable/selectAllScope/selectedKeys"
+        },
+        {
+          "requested": "表示形式",
+          "publicRuntimeContract": "striped/borders/hoverRows/rowSpacing/wrapCells/ellipsis"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/data-table-view.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-15",
@@ -5935,7 +6212,11 @@
       "sourceLine": 161,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/data-grid.ts",
+        "templates/angular/table-editors.ts",
+        "templates/angular/table-advanced-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -5965,7 +6246,38 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "セル移動",
+          "publicRuntimeContract": "native roving cell Arrow/Home/End + handled/IME guards"
+        },
+        {
+          "requested": "セル選択",
+          "publicRuntimeContract": "selectionMode/GridRange/selectionChange"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "editable/CellEditor/saveRequested/current-ID completeEdit/failEdit"
+        },
+        {
+          "requested": "コピー・貼付け",
+          "publicRuntimeContract": "actual clipboardWriter/clipboardReader/native paste + atomic typed matrix parse + stale read guard"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "tests/ui/table-expansion-unicode.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-16",
@@ -6030,7 +6342,10 @@
       "sourceLine": 163,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/table-controls.ts",
+        "templates/angular/data-table-view.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -6060,7 +6375,36 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "全体検索",
+          "publicRuntimeContract": "TableToolbar.searchable/state.search/stateChange"
+        },
+        {
+          "requested": "列設定",
+          "publicRuntimeContract": "chooseColumns/ColumnChooser"
+        },
+        {
+          "requested": "一括操作",
+          "publicRuntimeContract": "selectedKeys/bulkActions/bulkRequested intent"
+        },
+        {
+          "requested": "出力",
+          "publicRuntimeContract": "outputs/outputRequested -> real clipboard/CSV/print adapter"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-18",
@@ -6071,7 +6415,8 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/table-controls.ts",
+        "templates/angular/table-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6117,7 +6462,41 @@
       "remainingControls": [
         "複数条件を編集するUI"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "列条件",
+          "publicRuntimeContract": "ColumnFilter.column/filter/filterChange typed constraints"
+        },
+        {
+          "requested": "表示・非表示",
+          "publicRuntimeContract": "ColumnChooser state.hiddenColumns + keep-last-column"
+        },
+        {
+          "requested": "順序",
+          "publicRuntimeContract": "state.columnOrder + native before/after"
+        },
+        {
+          "requested": "固定",
+          "publicRuntimeContract": "state.pinnedColumns start/end/none + own property lookup"
+        },
+        {
+          "requested": "リセット",
+          "publicRuntimeContract": "column reset updates only column state, keeps search/filter"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "tests/ui/table-expansion-unicode.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-19",
@@ -6127,7 +6506,11 @@
       "sourceLine": 165,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/table-editors.ts",
+        "templates/angular/table-runtime.ts",
+        "templates/angular/table-advanced-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -6157,7 +6540,42 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "CellEditor/RowEditor native retained draft"
+        },
+        {
+          "requested": "検証",
+          "publicRuntimeContract": "required/minimum/maximum/parseDraft/validateValue + safe errors record"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "saveRequested + complete(current requestId,row)"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "Escape/native Cancel without app/backend success claims"
+        },
+        {
+          "requested": "処理中",
+          "publicRuntimeContract": "pending/busy native disabled + stale acknowledgement rejection"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "tests/ui/table-expansion-unicode.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "data-20",
@@ -6167,7 +6585,9 @@
       "sourceLine": 166,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/table-controls.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -6197,7 +6617,36 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "適用条件",
+          "publicRuntimeContract": "FilterChips effective state.search/filters display"
+        },
+        {
+          "requested": "個別解除",
+          "publicRuntimeContract": "single filter/search removal stateChange"
+        },
+        {
+          "requested": "全解除",
+          "publicRuntimeContract": "clear-all stateChange"
+        },
+        {
+          "requested": "保存条件",
+          "publicRuntimeContract": "SearchPanel savedSearches/saveRequested + deep snapshot restore"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-01",
@@ -6262,7 +6711,9 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/table-model.ts"
+        "templates/angular/table-controls.ts",
+        "templates/angular/table-model.ts",
+        "templates/angular/data-table-view.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6307,7 +6758,32 @@
       "remainingControls": [
         "AND/OR複数条件モデルは実装済み。複数条件を編集するUIは未実装"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "ON/OFF",
+          "publicRuntimeContract": "columnFilters switch preserves state while disables evaluation"
+        },
+        {
+          "requested": "文字・数値・日付・選択肢",
+          "publicRuntimeContract": "text/number/date/boolean/options operators + native typed value and raw badInput draft"
+        },
+        {
+          "requested": "複数条件",
+          "publicRuntimeContract": "constraints[] + match and/or native add/remove/operator/value UI"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-03",
@@ -6427,7 +6903,10 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-model.ts",
+        "templates/angular/table-column-resize.ts",
+        "templates/angular/table-controls.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6473,7 +6952,37 @@
       "remainingControls": [
         "列境界のpointer resize"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "自動調節ON/OFF",
+          "publicRuntimeContract": "autoWidth/autoFit content/available + measured DOM widths"
+        },
+        {
+          "requested": "固定幅",
+          "publicRuntimeContract": "column.width/state.columnWidths"
+        },
+        {
+          "requested": "最小・最大幅",
+          "publicRuntimeContract": "minWidth/maxWidth + semantic profile minimum + ResizeObserver"
+        },
+        {
+          "requested": "手動リサイズ",
+          "publicRuntimeContract": "TableColumnResize actual pointer/cancel/RTL + native range Home/End/key and Chooser width"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "tests/ui/table-expansion-unicode.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-06",
@@ -6536,7 +7045,8 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-advanced-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6580,7 +7090,32 @@
         "多段見出し",
         "列グループ"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "固定ON/OFF",
+          "publicRuntimeContract": "stickyHeader true/false"
+        },
+        {
+          "requested": "多段見出し",
+          "publicRuntimeContract": "recursive tableHeaderRows colSpan/rowSpan"
+        },
+        {
+          "requested": "列グループ",
+          "publicRuntimeContract": "columnGroups/TableHeaderGroup + native th scope + td.headers association"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-unicode.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-08",
@@ -6591,7 +7126,8 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6635,7 +7171,32 @@
         "固定行",
         "集計フッター"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "左右の固定列",
+          "publicRuntimeContract": "state logical start/end pin header/body/footer with shared offsets in LTR/RTL"
+        },
+        {
+          "requested": "固定行",
+          "publicRuntimeContract": "fixedStartKeys/fixedEndKeys + real row measurement and reachable body row"
+        },
+        {
+          "requested": "集計フッター",
+          "publicRuntimeContract": "aggregates/aggregateScope + stickyFooter + native aggregate footer"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-checks.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-09",
@@ -6754,7 +7315,8 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-advanced-model.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6799,7 +7361,35 @@
         "グループ化",
         "集計"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "展開",
+          "publicRuntimeContract": "expandedKeys + typed detail slot with editor DOM retained"
+        },
+        {
+          "requested": "操作ボタン",
+          "publicRuntimeContract": "rowActions/rowAction + disabled predicate"
+        },
+        {
+          "requested": "グループ化",
+          "publicRuntimeContract": "groupBy/collapsedGroupIds + recursive native groups"
+        },
+        {
+          "requested": "集計",
+          "publicRuntimeContract": "aggregates sum/average/min/max/count and explicit missing/known totals"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-12",
@@ -6809,7 +7399,10 @@
       "sourceLine": 183,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-editors.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -6840,7 +7433,37 @@
       },
       "evidence": [],
       "priority": 1,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "なし／セル／行",
+          "publicRuntimeContract": "editMode none/cell/row"
+        },
+        {
+          "requested": "検証",
+          "publicRuntimeContract": "typed draft parser/validator + native errors"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "saveRequested + completeEdit(current ID) + rowsChange"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "Cancel/Escape retains app inputs and focus without fake backend undo"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-contracts.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-13",
@@ -6908,7 +7531,9 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/data-table-view.ts"
+        "templates/angular/data-table-view.ts",
+        "templates/angular/virtual-data-table.ts",
+        "templates/angular/infinite-scroll.ts"
       ],
       "dependencies": [
         "tokens",
@@ -6952,7 +7577,32 @@
         "追加取得",
         "仮想スクロール"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "アプリ内処理／サーバー処理",
+          "publicRuntimeContract": "mode client/server with server rows not client-requeried"
+        },
+        {
+          "requested": "追加取得",
+          "publicRuntimeContract": "moreAvailable/moreFinished/loadingMore/moreError + loadMoreRequested/completeLoad/failLoad"
+        },
+        {
+          "requested": "仮想スクロール",
+          "publicRuntimeContract": "public CDK CdkVirtualScrollViewport/fixed-size/overscan + range/position/scroll API; incompatible composites explicit diagnostic and actual nativeViewRequested recovery"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "tests/ui/table-expansion-checks.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "table-features-15",
@@ -7014,7 +7664,11 @@
       "sourceLine": 187,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/data-table-view.ts",
+        "templates/angular/table-output.ts",
+        "templates/angular/table-advanced-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "virtual-scroll",
@@ -7045,7 +7699,36 @@
       },
       "evidence": [],
       "priority": 1,
-      "deliveryScope": "business-first"
+      "deliveryScope": "business-first",
+      "controlMapping": [
+        {
+          "requested": "コピー",
+          "publicRuntimeContract": "actual clipboard Promise completion and rejection"
+        },
+        {
+          "requested": "CSV出力",
+          "publicRuntimeContract": "CSV Blob/download with escaped raw fields and formula safeguards"
+        },
+        {
+          "requested": "印刷",
+          "publicRuntimeContract": "named print document/window with actual print intent adapter"
+        },
+        {
+          "requested": "出力対象の指定",
+          "publicRuntimeContract": "TableOutputScope page/filtered/selected/supplied + matrix/columnIds/rowCount"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/table-expansion.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "display-01",
@@ -7663,7 +8346,10 @@
       "sourceLine": 209,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/file-upload.ts",
+        "templates/angular/media-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7692,7 +8378,45 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "形式",
+          "publicRuntimeContract": "accept actual File type/name conditions"
+        },
+        {
+          "requested": "容量",
+          "publicRuntimeContract": "maxBytes actual File.size"
+        },
+        {
+          "requested": "件数",
+          "publicRuntimeContract": "multiple/maxFiles/existingCount + atomic complete accepted batch CVA"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "items UploadList progress known/null"
+        },
+        {
+          "requested": "取消",
+          "publicRuntimeContract": "cancelRequested current id/requestId (app owns network cancellation)"
+        },
+        {
+          "requested": "再試行",
+          "publicRuntimeContract": "UploadList retryRequested -> same File/id new uploadRequested requestId"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/foundation.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-02",
@@ -7702,7 +8426,10 @@
       "sourceLine": 210,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/file-upload.ts",
+        "templates/angular/media-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7731,7 +8458,33 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "ドロップ受付",
+          "publicRuntimeContract": "ui-dropzone actual dragover/drop and native file picker alternative"
+        },
+        {
+          "requested": "複数ファイル",
+          "publicRuntimeContract": "multiple + native File[] batch"
+        },
+        {
+          "requested": "受付条件",
+          "publicRuntimeContract": "shared uploadConditions/selectFiles type/size/count validation"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/foundation.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-03",
@@ -7741,7 +8494,9 @@
       "sourceLine": 211,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/file-upload.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7770,7 +8525,40 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "ファイル情報",
+          "publicRuntimeContract": "UploadList items name/type/size/status retained File"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "native progress actual/null indeterminate"
+        },
+        {
+          "requested": "個別失敗",
+          "publicRuntimeContract": "item.error/status failed with app raw body"
+        },
+        {
+          "requested": "削除",
+          "publicRuntimeContract": "removeRequested id/requestId + own focus recovery"
+        },
+        {
+          "requested": "再試行",
+          "publicRuntimeContract": "retryRequested id/requestId + exact app retained File"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-04",
@@ -7780,7 +8568,10 @@
       "sourceLine": 212,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/pdf-viewer.ts",
+        "templates/angular/pdf-adapter.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7809,7 +8600,38 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "表示対象",
+          "publicRuntimeContract": "source URL/Blob/Uint8Array with actual PDF.js session"
+        },
+        {
+          "requested": "ページ",
+          "publicRuntimeContract": "page/pageChange + text/canvas actual render"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom/zoomChange actual canvas dimensions"
+        },
+        {
+          "requested": "ダウンロード",
+          "publicRuntimeContract": "downloadable/filename/getData Blob download"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/media-lifetime.spec.ts",
+        "tests/ui/media-regressions.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-05",
@@ -7819,7 +8641,9 @@
       "sourceLine": 213,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/image-media.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7848,7 +8672,40 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "代替説明",
+          "publicRuntimeContract": "required alt actual img/failed image explanation"
+        },
+        {
+          "requested": "縦横比",
+          "publicRuntimeContract": "ratio actual figure aspect-ratio"
+        },
+        {
+          "requested": "収め方",
+          "publicRuntimeContract": "fit actual img object-fit"
+        },
+        {
+          "requested": "取得失敗",
+          "publicRuntimeContract": "native error/loadFailed + retry"
+        },
+        {
+          "requested": "遅延読込み",
+          "publicRuntimeContract": "loading lazy/eager actual native loading attribute"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-06",
@@ -7858,7 +8715,10 @@
       "sourceLine": 214,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/image-media.ts",
+        "templates/angular/dialog.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7887,7 +8747,37 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom 25-400% actual image transform and scroll bounds"
+        },
+        {
+          "requested": "回転",
+          "publicRuntimeContract": "rotation 90deg geometry canvas bounds"
+        },
+        {
+          "requested": "前後移動",
+          "publicRuntimeContract": "index/indexChange native next/previous keyboard/buttons"
+        },
+        {
+          "requested": "閉じる",
+          "publicRuntimeContract": "open/openChange native Dialog close + focus return"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/media-regressions.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-07",
@@ -7897,7 +8787,9 @@
       "sourceLine": 215,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/image-media.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7926,7 +8818,45 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "項目",
+          "publicRuntimeContract": "images/index + actual selected img"
+        },
+        {
+          "requested": "移動",
+          "publicRuntimeContract": "native previous/next + indexChange"
+        },
+        {
+          "requested": "ページ表示",
+          "publicRuntimeContract": "page buttons/aria-current and index/total"
+        },
+        {
+          "requested": "自動送り",
+          "publicRuntimeContract": "autoplay + internal running real interval timer"
+        },
+        {
+          "requested": "間隔",
+          "publicRuntimeContract": "intervalMs validated timer and reschedule"
+        },
+        {
+          "requested": "停止",
+          "publicRuntimeContract": "Stop/Start + focus/hover/hidden/reduced motion/destroy ownership"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/media-regressions.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-08",
@@ -7936,7 +8866,10 @@
       "sourceLine": 216,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/image-media.ts",
+        "templates/angular/media-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -7965,7 +8898,32 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "比較方向",
+          "publicRuntimeContract": "direction horizontal/vertical actual clip boundary"
+        },
+        {
+          "requested": "境界位置",
+          "publicRuntimeContract": "position linked value and clip-path"
+        },
+        {
+          "requested": "操作",
+          "publicRuntimeContract": "native range min/max/keyboard/positionChange in RTL"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-09",
@@ -7975,7 +8933,10 @@
       "sourceLine": 217,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/media-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -8004,7 +8965,37 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "切抜き範囲",
+          "publicRuntimeContract": "range native X/Y/width/height and actual decoded Bitmap crop"
+        },
+        {
+          "requested": "比率",
+          "publicRuntimeContract": "ratio native selector + constrained geometry"
+        },
+        {
+          "requested": "回転",
+          "publicRuntimeContract": "rotation 90deg source/display bounds"
+        },
+        {
+          "requested": "確定",
+          "publicRuntimeContract": "confirmed real PNG Blob/pixel bounds/current request and stale discard"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/media-lifetime.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-10",
@@ -8014,7 +9005,9 @@
       "sourceLine": 218,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/media-player.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -8043,7 +9036,45 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "再生",
+          "publicRuntimeContract": "play/toggle native HTMLMediaElement.play Promise and state"
+        },
+        {
+          "requested": "停止",
+          "publicRuntimeContract": "stop pause + currentTime0 and native pause"
+        },
+        {
+          "requested": "音量",
+          "publicRuntimeContract": "setPlaybackVolume + native volume/range"
+        },
+        {
+          "requested": "速度",
+          "publicRuntimeContract": "setPlaybackRate + native rate/select"
+        },
+        {
+          "requested": "字幕",
+          "publicRuntimeContract": "captions TextTrack mode/current cue + source/removal reorder"
+        },
+        {
+          "requested": "全画面",
+          "publicRuntimeContract": "fullscreen actual player region requestFullscreen/exitFullscreen"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "tests/ui/media-regressions.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "media-11",
@@ -8053,7 +9084,9 @@
       "sourceLine": 219,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/barcode.ts"
+      ],
       "dependencies": [
         "tokens",
         "overlay",
@@ -8082,7 +9115,36 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "内容",
+          "publicRuntimeContract": "value actual qrcode/JsBarcode encoding"
+        },
+        {
+          "requested": "形式",
+          "publicRuntimeContract": "QRCode svg/canvas format and Barcode symbology union"
+        },
+        {
+          "requested": "サイズ",
+          "publicRuntimeContract": "size/height/moduleWidth actual quiet-zone/required width geometry"
+        },
+        {
+          "requested": "説明",
+          "publicRuntimeContract": "required description + full value text preserving app content"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/media.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-01",
@@ -8092,7 +9154,10 @@
       "sourceLine": 225,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/chart.ts",
+        "templates/angular/chart-options.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8121,7 +9186,70 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "折線",
+          "publicRuntimeContract": "kind line ECharts line renderer"
+        },
+        {
+          "requested": "棒",
+          "publicRuntimeContract": "kind bar renderer"
+        },
+        {
+          "requested": "面",
+          "publicRuntimeContract": "kind area line areaStyle"
+        },
+        {
+          "requested": "円・ドーナツ",
+          "publicRuntimeContract": "kind pie/doughnut real PieChart with inner radius"
+        },
+        {
+          "requested": "散布図",
+          "publicRuntimeContract": "kind scatter x/y renderer"
+        },
+        {
+          "requested": "ヒートマップ",
+          "publicRuntimeContract": "kind heatmap real HeatmapChart and coordinate validation"
+        },
+        {
+          "requested": "レーダー",
+          "publicRuntimeContract": "kind radar RadarChart"
+        },
+        {
+          "requested": "ゲージ",
+          "publicRuntimeContract": "kind gauge independent series/needle/label/value per accepted point"
+        },
+        {
+          "requested": "ツリーマップなどの種別",
+          "publicRuntimeContract": "kind treemap children hierarchy renderer"
+        },
+        {
+          "requested": "軸",
+          "publicRuntimeContract": "xAxis/yAxis type/name/options and raw values/timeZone"
+        },
+        {
+          "requested": "凡例",
+          "publicRuntimeContract": "legend/hiddenSeries/hiddenSeriesChange + native toolbar"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected/selectionChange native data point buttons + ECharts event"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-chart-explorer.spec.ts",
+        "tests/ui/specialist-gauge-responsive.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-02",
@@ -8131,7 +9259,9 @@
       "sourceLine": 226,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/chart.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8160,7 +9290,32 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "小型の推移表示",
+          "publicRuntimeContract": "compact real Chart renderer + numberText"
+        },
+        {
+          "requested": "比較",
+          "publicRuntimeContract": "first/last/delta native summary"
+        },
+        {
+          "requested": "欠損",
+          "publicRuntimeContract": "null values retained and explicit missing count/text"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-03",
@@ -8170,7 +9325,10 @@
       "sourceLine": 227,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/map.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8199,7 +9357,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "地図表示",
+          "publicRuntimeContract": "real MapLibre canvas + baseStyle public API"
+        },
+        {
+          "requested": "マーカー",
+          "publicRuntimeContract": "markers real Marker/native labelled button coordinates"
+        },
+        {
+          "requested": "領域",
+          "publicRuntimeContract": "regions GeoJSONSource Polygon fill/outline"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected + native marker/region/list selectionChange"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "camera zoom/public native controls and engine moveend"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-workers.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-04",
@@ -8209,7 +9401,10 @@
       "sourceLine": 228,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/gantt.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8238,7 +9433,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "タスク",
+          "publicRuntimeContract": "tasks actual ECharts CustomChart bars/native list"
+        },
+        {
+          "requested": "期間",
+          "publicRuntimeContract": "start/end civil validated period/native fields"
+        },
+        {
+          "requested": "依存関係",
+          "publicRuntimeContract": "dependencies verified IDs/cycle and actual lines"
+        },
+        {
+          "requested": "進捗",
+          "publicRuntimeContract": "progress0-100/null explicit missing + native editor"
+        },
+        {
+          "requested": "時間軸",
+          "publicRuntimeContract": "scale day/week/month + civil axis/options"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-05",
@@ -8248,7 +9477,10 @@
       "sourceLine": 229,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/kanban.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8277,7 +9509,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "列",
+          "publicRuntimeContract": "columns actual CDK DropList zones"
+        },
+        {
+          "requested": "カード",
+          "publicRuntimeContract": "cards actual CDK Drag/native named cards"
+        },
+        {
+          "requested": "移動",
+          "publicRuntimeContract": "moveRequested validated from/to/index with native alternatives"
+        },
+        {
+          "requested": "順序",
+          "publicRuntimeContract": "native previous/next reorder + controlled immutable intent"
+        },
+        {
+          "requested": "件数制限",
+          "publicRuntimeContract": "column.limit actual WIP validation preserving full columns"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-06",
@@ -8287,7 +9553,11 @@
       "sourceLine": 230,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/spreadsheet.ts",
+        "templates/angular/sheet-runner.ts",
+        "templates/angular/sheet-formula.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8316,7 +9586,46 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "セル",
+          "publicRuntimeContract": "sheet rectangular typed raw cells + native grid"
+        },
+        {
+          "requested": "数式",
+          "publicRuntimeContract": "actual fast-formula-parser Worker preserving original formula/raw values"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "native retained cell draft/cellEditRequested"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "native cell/GridRange selectionChange/keyboard"
+        },
+        {
+          "requested": "固定",
+          "publicRuntimeContract": "frozenRows/frozenColumns measured native sticky headers/cells"
+        },
+        {
+          "requested": "入出力",
+          "publicRuntimeContract": "CSV/JSON raw import/export intents and validation"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "tests/ui/specialist-sheet-startup.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-07",
@@ -8326,7 +9635,11 @@
       "sourceLine": 231,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/rich-text-editor.ts",
+        "templates/angular/editor-control.ts",
+        "templates/angular/editor-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8355,7 +9668,42 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "書式",
+          "publicRuntimeContract": "actual ProseMirror schema/transactions/marks/history"
+        },
+        {
+          "requested": "ツールバー",
+          "publicRuntimeContract": "toolbar RichToolbarAction named native controls"
+        },
+        {
+          "requested": "画像",
+          "publicRuntimeContract": "schema image src/alt with safe URL validation"
+        },
+        {
+          "requested": "リンク",
+          "publicRuntimeContract": "schema link safe URL and actual command"
+        },
+        {
+          "requested": "読取り専用",
+          "publicRuntimeContract": "readonly/disabled/busy vendor edit guard + CVA draft retention"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-rich-boundary.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-08",
@@ -8365,7 +9713,10 @@
       "sourceLine": 232,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/markdown-editor.ts",
+        "templates/angular/editor-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8394,7 +9745,33 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "actual CodeMirror edit/CVA/retained EditorView"
+        },
+        {
+          "requested": "プレビュー",
+          "publicRuntimeContract": "marked parse then Angular sanitizer preview"
+        },
+        {
+          "requested": "分割表示",
+          "publicRuntimeContract": "mode edit/preview/split + modeChange and retained hidden DOM"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-09",
@@ -8404,7 +9781,10 @@
       "sourceLine": 233,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/code-editor.ts",
+        "templates/angular/editor-control.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8433,7 +9813,37 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "言語",
+          "publicRuntimeContract": "CodeLanguage actual CodeMirror Compartment/language packages"
+        },
+        {
+          "requested": "補完",
+          "publicRuntimeContract": "CodeCompletion actual autocomplete native suggestions"
+        },
+        {
+          "requested": "行番号",
+          "publicRuntimeContract": "lineNumbers actual CodeMirror gutter"
+        },
+        {
+          "requested": "読取り専用",
+          "publicRuntimeContract": "readonly/disabled/busy actual view guard and retained CVA/editor DOM"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-10",
@@ -8443,7 +9853,10 @@
       "sourceLine": 234,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/diff-json.ts",
+        "templates/angular/json-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8472,7 +9885,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "比較",
+          "publicRuntimeContract": "DiffViewer before/after actual MergeView"
+        },
+        {
+          "requested": "差分",
+          "publicRuntimeContract": "actual chunks/diff move operations"
+        },
+        {
+          "requested": "階層展開",
+          "publicRuntimeContract": "JsonViewer original-offset parse tree and native node toggles"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "CodeMirror search and Json query preserving huge number/duplicate key raw text"
+        },
+        {
+          "requested": "コピー",
+          "publicRuntimeContract": "writer Promise clipboard success/rejection/stale state"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-11",
@@ -8482,7 +9929,10 @@
       "sourceLine": 235,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/file-explorer.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8511,7 +9961,41 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "階層",
+          "publicRuntimeContract": "nodes recursive native tree/expansion"
+        },
+        {
+          "requested": "表示方式",
+          "publicRuntimeContract": "view tree/list/grid + viewChange"
+        },
+        {
+          "requested": "選択",
+          "publicRuntimeContract": "selected/multiple + canonical disabled/readonly guards"
+        },
+        {
+          "requested": "検索",
+          "publicRuntimeContract": "native query/filter with canonical focus"
+        },
+        {
+          "requested": "ファイル操作",
+          "publicRuntimeContract": "operationRequested open/rename/delete/create-folder/download intents, app owns actual I/O/Undo"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-chart-explorer.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-12",
@@ -8521,7 +10005,11 @@
       "sourceLine": 236,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/diagram.ts",
+        "templates/angular/diagram-layout.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8550,7 +10038,40 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "ノード",
+          "publicRuntimeContract": "DiagramModel nodes actual SVG/native content"
+        },
+        {
+          "requested": "接続",
+          "publicRuntimeContract": "edges actual SVG paths and native endpoint editors"
+        },
+        {
+          "requested": "配置",
+          "publicRuntimeContract": "public Dagre layout real coordinates + layoutRequested"
+        },
+        {
+          "requested": "拡大",
+          "publicRuntimeContract": "zoom/zoomChange actual SVG scaling/native controls"
+        },
+        {
+          "requested": "編集",
+          "publicRuntimeContract": "node label/position/add/connect changeRequested + readonly guards"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "specialist-13",
@@ -8560,7 +10081,10 @@
       "sourceLine": 237,
       "baseline": "new",
       "status": "pending",
-      "implementation": [],
+      "implementation": [
+        "templates/angular/chat.ts",
+        "templates/angular/specialist-model.ts"
+      ],
       "dependencies": [
         "tokens",
         "mature-library-adapter",
@@ -8589,7 +10113,42 @@
       },
       "evidence": [],
       "priority": 6,
-      "deliveryScope": "use-case-follow-up"
+      "deliveryScope": "use-case-follow-up",
+      "controlMapping": [
+        {
+          "requested": "メッセージ",
+          "publicRuntimeContract": "MessageList messages actual native semantic list"
+        },
+        {
+          "requested": "添付",
+          "publicRuntimeContract": "MessageComposer actual File picker metadata + selected/remove/activate attachment intents"
+        },
+        {
+          "requested": "送信状態",
+          "publicRuntimeContract": "sendRequested + current-ID completeSend/failSend/markSendUnknown preserving pending/unknown/raw text"
+        },
+        {
+          "requested": "再送",
+          "publicRuntimeContract": "retryRequested actual app-controlled retry eligibility"
+        },
+        {
+          "requested": "追加読込み",
+          "publicRuntimeContract": "hasMore/cursor/loadState/loadMoreRequested/current-ID completeLoad/failLoad"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "candidateEvidence": [
+        "tests/ui/specialist-catalog.spec.ts",
+        "tests/ui/specialist-recovery.spec.ts",
+        "tests/ui/foundation.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "priority-properties-01",
@@ -9083,7 +10642,12 @@
       "baseline": "partial",
       "status": "partial",
       "implementation": [
-        "templates/angular/value-control.ts"
+        "templates/angular/value-control.ts",
+        "templates/angular/date-range-picker.ts",
+        "templates/angular/editor-control.ts",
+        "templates/angular/tree-popup-control.ts",
+        "templates/angular/file-upload.ts",
+        "templates/angular/chat.ts"
       ],
       "dependencies": [
         "tokens"
@@ -9118,7 +10682,25 @@
         "全入力への展開",
         "DateRange draft"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "フォーム接続",
+          "publicRuntimeContract": "Public native/vendor/tree/composer/upload CVA/Validator nullable reset/disabled/touched/blur + explicit ack boundaries; containers and app-owned storage intent are not fake CVA"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/foundation.spec.ts",
+        "tests/ui/composer-reset-errors.spec.ts",
+        "tests/ui/date-format-draft.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "foundation-08",
@@ -9128,7 +10710,10 @@
       "baseline": "new",
       "status": "partial",
       "implementation": [
-        "templates/angular/date-model.ts"
+        "templates/angular/locale.ts",
+        "templates/angular/locale-model.ts",
+        "templates/angular/date-input.ts",
+        "templates/angular/date-range-picker.ts"
       ],
       "dependencies": [
         "tokens"
@@ -9163,7 +10748,25 @@
         "共通locale provider",
         "残カテゴリ適用"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "言語・日付書式・RTL",
+          "publicRuntimeContract": "provideUiLocale/UiLocaleScope/messages/Intl/civil formats/timeZone/native lang/dir + public CDK Directionality; P2 owned state translation repair pending"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/foundation.spec.ts",
+        "tests/ui/date-format-draft.spec.ts",
+        "tests/ui/sheet-locale-errors.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     },
     {
       "id": "foundation-09",
@@ -9173,7 +10776,11 @@
       "baseline": "partial",
       "status": "partial",
       "implementation": [
-        "templates/angular/styles.css"
+        "templates/angular/styles.css",
+        "templates/angular/specialist-style.ts",
+        "templates/angular/media-style.ts",
+        "templates/angular/specialist-browser.ts",
+        "templates/angular/locale.ts"
       ],
       "dependencies": [
         "tokens"
@@ -9207,7 +10814,25 @@
       "remainingControls": [
         "全カテゴリへの展開"
       ],
-      "verificationPending": []
+      "verificationPending": [
+        "固定候補の全npm検査の実終了・既存回帰",
+        "最終生成後public consumer実証",
+        "最終独立レビューと原文全制御項目の照合"
+      ],
+      "controlMapping": [
+        {
+          "requested": "プロファイル適用",
+          "publicRuntimeContract": "YAML semantic profiles/default_profile/data-ui-profile + scoped CSS role measurements/theme observers preserving DOM/focus/native draft/timers"
+        }
+      ],
+      "implementationCandidateCommit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "candidateEvidence": [
+        "tests/ui/foundation.spec.ts",
+        "tests/ui/media.spec.ts",
+        "tests/ui/specialist-accessibility.spec.ts",
+        "docs/ui-library-api.json",
+        "docs/verification/ui-library-final-catalog-2026-10-06.md"
+      ]
     }
   ],
   "latestPriorityEvidence": "2026-10-05 05:18:47 UTC: DataTable/Pagination → inputs/selectors → Calendar/dates → GridList → Icon. Full original catalog retained.",
@@ -9508,6 +11133,14 @@
         "total": 880
       },
       "evidence": "docs/verification/ui-library-collections-2026-10-06.md"
+    },
+    "finalCatalogImplementationCandidate": {
+      "commit": "f792b1584ab81013cfc666beaae0acdff074b2ba",
+      "rows": 48,
+      "requestedControls": 207,
+      "state": "implemented, final observed verification pending",
+      "independentControlMappingSourceSha256": "fa67a51bc70a870b7bbb07992e4dbc94fdcef3f59fbd32e7233959d9bb7ad25f",
+      "notes": "Independent candidate source/control mapping adopted as a requirement index. The original reviewer snapshot and its open findings are preserved; this mapping is not a final native PASS."
     }
   }
 }

@@ -1,0 +1,290 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/.bin/playwright",
+      "test",
+      "tests/ui/barcode-responsive.spec.ts",
+      "tests/ui/scheduler-message-retention.spec.ts",
+      "tests/ui/media.spec.ts",
+      "--grep",
+      "retains module|changing date|image compare native",
+      "--reporter=list,json"
+    ],
+    "configFile": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/playwright.config.ts",
+    "rootDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run build && node scripts/serve.mjs",
+      "url": "http://127.0.0.1:5187",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "barcode-responsive.spec.ts",
+      "file": "barcode-responsive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Barcode guided: retains module pixels and locally scrolls at 320px, 200% and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5230,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:40:07.938Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "barcode-responsive-observations",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9maWxlIjogImd1aWRlZCIsCiAgImRpbWVuc2lvbnMiOiB7CiAgICAicmFzdGVyIjogNDAwLAogICAgImRpc3BsYXkiOiA0MDAKICB9LAogICJsaW1pdHMiOiB7CiAgICAid2lkdGgiOiAyNTYsCiAgICAiY29udGVudCI6IDQwMAogIH0sCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c269126692c41eef148f-7e00bce53dc53833af7f",
+          "file": "barcode-responsive.spec.ts",
+          "line": 4,
+          "column": 41
+        },
+        {
+          "title": "Barcode dense: retains module pixels and locally scrolls at 320px, 200% and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5396,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:40:07.942Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "barcode-responsive-observations",
+                      "contentType": "application/json",
+                      "body": "ewogICJwcm9maWxlIjogImRlbnNlIiwKICAiZGltZW5zaW9ucyI6IHsKICAgICJyYXN0ZXIiOiA0MDAsCiAgICAiZGlzcGxheSI6IDQwMAogIH0sCiAgImxpbWl0cyI6IHsKICAgICJ3aWR0aCI6IDI4OCwKICAgICJjb250ZW50IjogNDAwCiAgfSwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10KfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c269126692c41eef148f-ca1cb491b2491e344d38",
+          "file": "barcode-responsive.spec.ts",
+          "line": 4,
+          "column": 41
+        }
+      ]
+    },
+    {
+      "title": "media.spec.ts",
+      "file": "media.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "image compare native keyboard/boundary endpoints, direction and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:40:14.580Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "66eff6f10bb92964d9d6-ed39a822016d047c2605",
+          "file": "media.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scheduler-message-retention.spec.ts",
+      "file": "scheduler-message-retention.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Scheduler guided: changing date, resource or zone clears the preceding owned status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3222,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:40:14.728Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3b960a79051239592a07-dd83a1d21eb2908d2496",
+          "file": "scheduler-message-retention.spec.ts",
+          "line": 3,
+          "column": 41
+        },
+        {
+          "title": "Scheduler dense: changing date, resource or zone clears the preceding owned status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2489,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T08:40:17.977Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3b960a79051239592a07-d637d2652b837ce5e0d4",
+          "file": "scheduler-message-retention.spec.ts",
+          "line": 3,
+          "column": 41
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T08:39:22.353Z",
+    "duration": 58286.072,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
