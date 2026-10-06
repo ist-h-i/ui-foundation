@@ -6,7 +6,7 @@
 
 - List/ListItem: native list、安定キー、補助情報、意味icon、型付き行templateとnative行操作、区切り/余白。同じ行の入力を不要に再作成しない。
 - Listbox/SelectionList: 単一/複数CVA、検索、group、選択上限、全可視選択、個別不可、APG manual selection。矢印/Home/End/文字検索/Space、IME、同一activeの再選択、検索後のhidden選択保持、不正復元値の説明とapp resetを確認する。group仮想化は実AX treeで描画済optionだけの所有関係を検証する。
-- VirtualList: CDK固定高さ、表示領域/行高/先読み/実scroll位置、range/position出力。1000行を小さな実DOMで表示し、Home/End/PageUp/Down、端、profile/200%再測定、破棄と所有focusを観測する。native geometry変更で旧content高さによる一時scroll clampを位置保持へ採用せず、最後の安定した論理先頭indexを、新しい行高で復元する。末尾は表示領域の物理上限内に収める。編集stateはキーに接続したappが保持する。
+- VirtualList: CDK固定高さ、表示領域/行高/先読み/実scroll位置、range/position出力。1000行を小さな実DOMで表示し、Home/End/PageUp/Down、端、profile/200%再測定、破棄と所有focusを観測する。native geometry変更で旧content高さによる一時scroll clampを位置保持へ採用せず、最後の安定した論理先頭indexを、新しい行高で復元する。末尾は表示領域の物理上限内に収める。編集stateはキーに接続したappが保持する。VirtualList/Listboxの仮想行は公開clientWidthを測って自前行の幅へ反映し、長いラベルによるintrinsic幅の拡大と不要な水平スクロールを防ぐ。LTR/RTL、200%文字、親幅/profile変更、ellipsis、投影editorの同一DOMと値を実測する。
 - Masonry: CSS columnsとbreak-insideで異なる行高を配置。列数/間隔/最小幅/幅別指定、DOM順、320px/200%/RTLを実描画する。
 - DataView: 同じ行DOMのlist/grid、実検索/自然ソート/ページとtyped app-owned state。機能OFFでは保存条件を適用せず、未使用pager設定を拒否しない。範囲外のpageは補正stateをアプリへ公開。template indexは絞込後の絶対index、pageIndexはページ内index。
 - SortableList/OrderList: pointer/touch handle、上下/前後button、keyboard draft/Enter確定/Escape取消、移動可能範囲、source差替え、連打、破棄、RTL、親DialogでのEscape順を確認。指定した許可callbackはtrueだけを許可し、false・undefined・例外では更新しない。source差替え取消後は、終了/drop後のepoch microtaskで所有CDK dragを公開reset()により清掃し、モデル・DOM順と実矩形の一致を検証する。keyboard draftによる行移動でnative handleのfocusがBODYへ落ちた場合だけ、描画後に同じhandleへ戻す。

@@ -101,7 +101,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - 生成consumerはAngularとRxJSに加え`@angular/cdk`の互換版を導入する。公開scrolling/drag-drop APIを用い、private内部や別Overlayをpatchしない。size.collection-item/collection-viewportをYAML正本のprofileへ対応付ける。CDK採用・更新条件はdocs/adr/0002-collections-cdk.mdを参照する。
 - List/Masonry/DataViewは安定keyとtyped uiCollectionItemOfを使う。template indexはfiltered絶対位置、pageIndexはページ内位置。行操作はnative操作にする。DataViewの機能OFF、範囲外pageのstate補正、list/gridで同じeditor、異なる高さのMasonryとDOM順を検証する。
 - Listbox/SelectionListのoption templateは表示用とし、内部へ独立button/linkを置かない。CVA不正値はエラーとして保持し、明示app resetで修復する。検索のhidden/disabled選択を勝手に解除しない。仮想groupは描画済optionだけをaria-ownsで接続し、Chrome AX treeでgroup/option/active参照を観測する。
-- VirtualListは固定行高を契約とし、1000行の実DOM数、終端/scroll position/先読み、profileと文字拡大の再測定、破棄、行内focus退避を確認する。仮想DOMの外へ消えるeditor値はアプリがkeyへ保存する。
+- VirtualListは固定行高を契約とし、1000行の実DOM数、終端/scroll position/先読み、profileと文字拡大の再測定、破棄、行内focus退避を確認する。仮想DOMの外へ消えるeditor値はアプリがkeyへ保存する。VirtualList/Listboxの自前仮想行幅は公開viewportのclientWidthに従う。長ラベルのellipsis/水平scroll、LTR/RTL/200%と親幅/profile変更、投影editorの幅・DOM・値保持を確認する。CDK内部wrapperはpatchしない。
 - Sortable/Transferはpointerとbutton/keyboardの同じ移動許可を使う。app snapshotが変われば古いdrop/keyboard draftを拒否する。移動中Escapeは共有Overlayのoperationに登録し、子defaultPrevented/IME/新しいpopupを優先する。取消後の次Escapeは親へ届く。CDK endedより後のdropまで開始snapshotを保持する。
 - InfiniteScroll/Timelineは同じ要求を出したhostへid付きcomplete/failを接続する。破棄/明示失効/reset後の古い応答、連打、error/再試行/終端、実IntersectionObserverを確認する。contentVersionは実追加/カーソル進行時だけ変更する。backend更新/通信取消/実Undoはアプリが所有する。
 - 組込みnative操作が無効/除去となる際は部品内の説明可能なhostへ自前focusだけを残し、投影された入力と外部focusを奪わない。全prop/責任範囲はdocs/ui-components.mdを参照する。
