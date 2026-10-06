@@ -13,7 +13,9 @@ import { syncProject, checkProject } from '../../src/sync.ts';
 const repository=fileURLToPath(new URL('../../',import.meta.url));
 const run=promisify(execFile);
 
-test('a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail', {timeout:120_000}, async t=>{
+// This includes one production consumer and six independent negative AOT builds.
+// Bound the complete sequence, and stop its active child if the test is cancelled.
+test('a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail', {timeout:240_000}, async t=>{
  const root=await mkdtemp(resolve(tmpdir(),'ui-foundation-consumer-'));
  t.after(()=>rm(root,{recursive:true,force:true}));
  const config=parseConfig(await readFile(resolve(repository,'examples/ui.config.example.yaml'),'utf8'));
@@ -127,22 +129,22 @@ bootstrapApplication(Consumer,{providers}).catch(error=>console.error(error));
 `;
  const ngc=resolve(repository,'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js');
  await writeFile(resolve(root,'consumer.ts'),consumer);
- await run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root});
+ await run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal});
  await readFile(resolve(root,'compiled/consumer.js'));
- const browser=JSON.parse((await run(process.execPath,[resolve(repository,'scripts/consumer-browser.mjs'),root],{cwd:root})).stdout);
+ const browser=JSON.parse((await run(process.execPath,[resolve(repository,'scripts/consumer-browser.mjs'),root],{cwd:root,signal:t.signal})).stdout);
  assert.equal(browser.runtime,true);assert.deepEqual(browser.profiles.map((item:{profile:string})=>item.profile),['guided','dense']);
  await writeFile(resolve(root,'consumer.ts'),consumer.replace("navNodes=[{id:'parent',label:","navNodes=[{id:'parent',wrongLabel:"));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/label.*missing|missing.*label/);return true;});
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/label.*missing|missing.*label/);return true;});
  await writeFile(resolve(root,'consumer.ts'),consumer.replace("popupContext.busy?","popupContext.nonexistent?"));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
  await writeFile(resolve(root,'consumer.ts'),consumer.replace('{{option.label}}','{{option.nonexistent}}'));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
  await writeFile(resolve(root,'consumer.ts'),consumer.replace('{{item.label}}','{{item.nonexistent}}'));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;});
  await writeFile(resolve(root,'consumer.ts'),consumer.replace('[fields]="choiceFields"','[fields]="[{id: \'bad\', label: \'不正な型\', type: \'unknown\'}]"'));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/unknown.*FilterFieldType|FilterFieldType.*unknown/);return true;});
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{const failure=error as Error&{code?:number;stderr?:string};assert.equal(failure.code,1);assert.match(failure.stderr??'',/unknown.*FilterFieldType|FilterFieldType.*unknown/);return true;});
  await writeFile(resolve(root,'consumer.ts'),consumer.replace('{{row.name}}','{{row.nonexistent}}'));
- await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root}),error=>{
+ await assert.rejects(run(process.execPath,[ngc,'-p','tsconfig.json'],{cwd:root,signal:t.signal}),error=>{
   const failure=error as Error&{code?:number;stderr?:string};
   assert.equal(failure.code,1);assert.match(failure.stderr??'',/nonexistent.*does not exist|does not exist.*nonexistent/);return true;
  });
