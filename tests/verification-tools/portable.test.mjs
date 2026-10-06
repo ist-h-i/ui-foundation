@@ -155,6 +155,14 @@ test('Media audit uses selected Git baseline and real strict compiler failures',
     assert.equal(report.compiler.actualExit,0);assert.equal(report.missingCompilerSpecs.length,3);
     await writeFile(file,original);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
   });
+  await t.test('noCheck cannot hide a type error while strict and all selected entries remain enabled',async()=>{
+    await writeFile(file,original+"const invalid:number='text';\n");
+    await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,compilerOptions:{...config.compilerOptions,noCheck:true}}));
+    assert.notEqual(audit('no-check').status,0);
+    const report=JSON.parse(await readFile(join(temporary,'no-check','media-audit.json'),'utf8'));
+    assert.equal(report.compilerOptions.noCheck,true);assert.notEqual(report.compiler.actualExit,0);
+    await writeFile(file,original);await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify(config));
+  });
   await t.test('disabled strict config fails',async()=>{
     await writeFile(join(fixture,'tsconfig.ui-media.json'),JSON.stringify({...config,compilerOptions:{...config.compilerOptions,strict:false}}));
     assert.notEqual(audit('strict-disabled').status,0);

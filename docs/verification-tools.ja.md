@@ -28,14 +28,14 @@ npm run verify:evidence:cross-browser -- \
   --output /tmp/ui-cross-browser-transport
 ```
 
-別cwdからはcheckout内のscriptのパスを直接指定する。`--repo`・`--source-pack`・`--output` の明示相対パスは呼出し時のcwdを起点とする。Mediaのbaselineは必須で、Git履歴が足りない場合も成功にはしない。タイトル・matcherの期待値とlabelは原文のまま比較するため、書式だけの変更も不一致になる。コンパイラの対象集合に固定3specが含まれ、strict/noEmitが有効であることも検査する。
+別cwdからはcheckout内のscriptのパスを直接指定する。`--repo`・`--source-pack`・`--output` の明示相対パスは呼出し時のcwdを起点とする。Mediaのbaselineは必須で、Git履歴が足りない場合も成功にはしない。タイトル・matcherの期待値とlabelは原文のまま比較するため、書式だけの変更も不一致になる。コンパイラの対象集合に固定3specが含まれ、strict/noEmitが有効であることも検査する。型検査を無効にする `noCheck=true` は拒否し、実コンパイラにも `--noCheck false` を明示する。
 
 証拠builderはdirectory入力を扱う。`--source-pack` と `--manifest` を省略すると、上記の保存packとそのmanifestをcheckoutから選ぶ。期待SHAは別途保存した値を必ず渡す。rootによる採用情報 `ROOT-ADOPTION.json` があるpackでは、そちらの期待SHAも必要になる。元のmanifestやpayloadを修正せず、列挙されていないファイル、パスの逸脱、symlink、重複、改変、既存出力、入出力の重なりを拒否する。
 
 出力の `payload/` は元のlisted file・manifest・検査した採用情報のバイト列を保持し、`payload.tar.gz` と `transport-receipt.json` を付ける。receiptの成功は搬送検査の実終了だけを表す。履歴packに含まれる判定・失敗・対象commitは元のまま残る。
 
-追加対応のローカル回帰は `npm run test:verification` の47/47が実終了0。別checkoutの3入口から、実Mediaの228 matcher・18タイトル・any0・コンパイラ実終了0、および既存2packの139/359 payloadのバイト一致と再搬送を確認した。回帰数には失敗を正しく拒否する検査と親testを含み、UI操作の件数ではない。
+追加対応のローカル回帰は `npm run test:verification` の48/48が実終了0。別checkoutの3入口から、実Mediaの228 matcher・18タイトル・any0・コンパイラ実終了0、および既存2packの139/359 payloadのバイト一致と再搬送を確認した。回帰数には失敗を正しく拒否する検査と親testを含み、UI操作の件数ではない。
 
-通常の `npm run typecheck` と `ui:check` も実終了0。初回 `ui:check` はsandboxの一時IPC制限で起動前に実終了1となり、同じ入力を許可された環境で照合して成功した。元の失敗は保持する。独立レビューで見つかった文字列内空白の偽一致と、コンパイラからの3spec除外も専用回帰で検査する。原181要件・製品・151管理生成ファイル・旧証拠は変えていない。
+通常の `npm run typecheck` と `ui:check` も実終了0。初回 `ui:check` はsandboxの一時IPC制限で起動前に実終了1となり、同じ入力を許可された環境で照合して成功した。元の失敗は保持する。独立レビューで見つかった文字列内空白の偽一致とコンパイラからの3spec除外、最終確認で実証したnoCheckによる型検査の無効化は専用回帰で検査する。原181要件・製品・151管理生成ファイル・旧証拠は変えていない。
 
 実行証拠と独立判定は、この追加対応のPR/Issue #14へ対応付ける。

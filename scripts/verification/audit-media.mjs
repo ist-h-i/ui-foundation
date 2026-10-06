@@ -91,9 +91,9 @@ function main() {
   const compilerEntries = new Set((parsed.fileNames ?? []).map(name => realpathSync(name)));
   const missingCompilerSpecs = names.filter(name => !compilerEntries.has(realpathSync(resolve(repo, name))));
   const configSafe = parsed.errors.length === 0 && parsed.options.strict === true && parsed.options.noEmit === true &&
-    !parsed.options.incremental && !parsed.options.composite && missingCompilerSpecs.length === 0;
+    !parsed.options.incremental && !parsed.options.composite && !parsed.options.noCheck && missingCompilerSpecs.length === 0;
   mkdirSync(options.output); // Exclusive, after input/ref checks; type/AST failures still retain actual logs.
-  const compiler = spawnSync(process.execPath, [require.resolve('typescript/bin/tsc'), '--project', configName, '--pretty', 'false', '--noEmit', '--incremental', 'false'],
+  const compiler = spawnSync(process.execPath, [require.resolve('typescript/bin/tsc'), '--project', configName, '--pretty', 'false', '--noEmit', '--incremental', 'false', '--noCheck', 'false'],
     {cwd: repo, encoding: 'utf8', timeout: 120_000, maxBuffer: 8_000_000});
   const stdout = compiler.stdout ?? '', stderr = (compiler.stderr ?? '') + (compiler.error ? '\n' + String(compiler.error) + '\n' : '');
   const compilerPassed = !compiler.error && compiler.signal === null && compiler.status === 0;
@@ -104,7 +104,7 @@ function main() {
     base: baseline, requestedBaseline: options.baseline, files, helper,
     helperSha256: hash(helperText), configSha256: hash(readFileSync(resolve(repo, configName))),
     compilerVersion: ts.version, compilerOptions: {strict: parsed.options.strict, noEmit: parsed.options.noEmit,
-      skipLibCheck: parsed.options.skipLibCheck, incremental: parsed.options.incremental, composite: parsed.options.composite},
+      skipLibCheck: parsed.options.skipLibCheck, incremental: parsed.options.incremental, composite: parsed.options.composite, noCheck: parsed.options.noCheck},
     configErrors: parsed.errors.map(error => ts.flattenDiagnosticMessageText(error.messageText, '\n')),
     missingCompilerSpecs,
     matcherCount: files.reduce((count, file) => count + file.after.matchers.length, 0),
