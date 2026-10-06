@@ -11,8 +11,10 @@ import {StructuredFormCatalog} from './structured-form-catalog';
 import {FloatingCatalog} from './floating-catalog';
 import {NavigationCatalog} from './navigation-catalog';
 import {ChoiceCatalog} from './choice-catalog';
+import {CollectionCatalog} from './collection-catalog';
+import {TransferTimelineCatalog} from './transfer-timeline-catalog';
 
-bootstrapApplication(location.pathname === '/catalog/choices' ? ChoiceCatalog : location.pathname === '/catalog/navigation' ? NavigationCatalog : location.pathname === '/catalog/floating' ? FloatingCatalog : location.pathname === '/catalog/forms' ? StructuredFormCatalog : location.pathname === '/catalog/display' ? DisplayCatalog : location.pathname === '/catalog/feedback' ? FeedbackCatalog : location.pathname === '/catalog/actions' ? ActionsCatalog : location.pathname === '/catalog/layout' ? LayoutCatalog : location.pathname === '/catalog' ? CatalogFixture : FixtureApp, {providers:[provideUiIcons(LucideFolder)]}).catch((error: unknown) => {
+bootstrapApplication(location.pathname === '/catalog/transfers' ? TransferTimelineCatalog : location.pathname === '/catalog/collections' ? CollectionCatalog : location.pathname === '/catalog/choices' ? ChoiceCatalog : location.pathname === '/catalog/navigation' ? NavigationCatalog : location.pathname === '/catalog/floating' ? FloatingCatalog : location.pathname === '/catalog/forms' ? StructuredFormCatalog : location.pathname === '/catalog/display' ? DisplayCatalog : location.pathname === '/catalog/feedback' ? FeedbackCatalog : location.pathname === '/catalog/actions' ? ActionsCatalog : location.pathname === '/catalog/layout' ? LayoutCatalog : location.pathname === '/catalog' ? CatalogFixture : FixtureApp, {providers:[provideUiIcons(LucideFolder)]}).then(ref => {if(location.pathname==='/catalog/transfers')Object.defineProperty(globalThis,'__collectionTransfers',{value:ref.components[0].instance,configurable:true});}).catch((error: unknown) => {
   console.error(error);
   document.body.textContent = '検証アプリを開始できませんでした。ブラウザーのコンソールを確認してください。';
 });

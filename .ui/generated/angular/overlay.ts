@@ -6,7 +6,7 @@ export type OverlayPlacement = 'bottom-start' | 'bottom-end' | 'top-start' | 'to
 export interface OverlayEntry {
     element: HTMLElement;
     anchor?: HTMLElement;
-    kind: 'popup' | 'native-dialog';
+    kind: 'popup' | 'native-dialog' | 'operation';
     outside?: boolean;
     dismiss: (reason: OverlayCloseReason) => void;
 }
@@ -46,12 +46,12 @@ export class OverlayRegistry {
         this.entries.splice(index, 1); }; }
     private prune(): void { for (const record of [...this.entries].reverse()) {
         const entry = record.entry;
-        if (record.owner === this && entry.kind === 'popup' && (!entry.element.isConnected || entry.anchor && !availableOverlayAnchor(entry.anchor)))
+        if (record.owner === this && entry.kind !== 'native-dialog' && (!entry.element.isConnected || entry.anchor && !availableOverlayAnchor(entry.anchor)))
             entry.dismiss('scope-exit');
     } }
     private readonly closed = (event: Event): void => { const target = event.target as HTMLElement | null; if (!target || target.tagName !== 'DIALOG' || (target as HTMLDialogElement).open)
         return; for (const record of [...this.entries].reverse())
-        if (record.owner === this && record.entry.kind === 'popup' && (target.contains(record.entry.element) || !!record.entry.anchor && target.contains(record.entry.anchor)))
+        if (record.owner === this && record.entry.kind !== 'native-dialog' && (target.contains(record.entry.element) || !!record.entry.anchor && target.contains(record.entry.anchor)))
             record.entry.dismiss('scope-exit'); };
     private readonly keydown = (event: KeyboardEvent): void => {
         const record = this.entries.at(-1), top = record?.entry;

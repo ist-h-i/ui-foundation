@@ -60,7 +60,7 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 `init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。
 
-利用アプリは生成されたangular/indexからstandalone部品をimportします。Tailwind v4を利用アプリ側で導入し、CSS入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
+利用アプリは生成されたangular/indexからstandalone部品をimportします。生成AngularコードにはAngular/RxJSと`@angular/cdk@22.2.1`が必要です。CDKの公開APIで固定高さの仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)に契約を記録しています。Tailwind v4を利用アプリ側で導入し、CSS入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
 
 `default_profile`が初期値です。実行時の切替が必要なら、利用アプリが設定に存在するIDを選び、スコープに`data-ui-profile="ID"`を付けます。初期化時に一つだけを選ぶ利用もできます。CLIは利用者の属性から勝手に選択しません。
 

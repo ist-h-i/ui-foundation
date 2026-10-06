@@ -402,3 +402,49 @@ Wizardの`next=undefined`は次の有効な投影段階、`null`は完了、ID�
 Filterはtext/number/date/boolean/choiceのfield、型に合う演算子、再帰and/or、安定した重複しないIDを使う。欠損はnull/undefined/型不正で、0/false/空文字と区別する。dateは有効なYYYY-MM-DDまたはDateのUTC日で比較。`compileFilter`は妥当な条件をコピーし、rowのown propertyのみを評価する。空グループは評価から除外、ルートが空なら制限なし。任意コード・SQL・通信を実行しない。不正構造/値/未知fieldはvalidatorと欄の説明へ残す。保存した条件の復元はUI snapshotで、backend保存結果をアプリがcompleteSaveとして返す。fieldsのID/説明/型/選択肢が部品へ反映された時点で保留要求を失効させ、条件データを残して再検証する。completeSave/failSaveでも同じ定義と妥当な条件を要求する。busy/pendingで操作を抑止し、保存失敗draft、reset/外部条件変更/破棄後の古い結果、除去前の自前focusを確認する。復元されたfield/operator/boolean/choiceは、nativeの選択表示を実際のモデルへ合わせる。
 
 InlineEditとFilterBuilderの`invalidatePending()`は、下書きや保存済みsnapshotを消さずにUIの保留要求だけを失効させる。親signalの変更と応答処理を同じturnで行う場合、Angularが子inputへ反映する前の親の状態は子から観測できない。アプリは親値を置換する前にこのメソッドを呼ぶか、子inputへの反映後に応答を処理する。CVAのwriteValue/resetは同期して失効する。I/O中止、サーバー上の更新取消、外部の同値再書込みの識別はアプリの責任である。
+
+## 一覧・選択・仮想化・移動
+
+生成Angular consumerは`@angular/cdk`をAngularの互換版で導入する。このリポジトリは22.2.1をexact固定する。[ADR 0002](adr/0002-collections-cdk.md)と[段階受入仕様](ui-library-collection-expansion-spec.ja.md)を参照。以下の実装は段階検証中で、完了行はマトリクスのverifiedと実証記録を照合する。
+
+List/ui-list、Masonry/ui-masonry、DataView/ui-data-viewは`items`、`keyField`、`labelField`、`label`、任意`descriptionField/iconField/emptyMessage`を持つ。キーは重複しない非空string/finite number、内容はapp-owned immutable snapshot。`ng-template uiCollectionItem [uiCollectionItemOf]=items`のcontextは`$implicit/index/pageIndex/count/key/label`。ListItem相当の主/補助/行操作を差替えられる。Listは`separators/spacing`、Masonryは`columns/maxColumns/minimumItemWidth/breakpoints/gap`でCSS複数列に高さの異なる行を置く。
+
+DataViewの`state/stateChange: CollectionViewState`はquery/sort/page/pageSize/layoutを保持する。`locale/searchable/sortable/paginated/pageSizes/disabled/busy`を設定。機能OFFはその条件を実処理から外し、保存値はapp stateへ残す。未使用pager設定は検証しない。有効pagerの範囲外pageは最寄りのpageをstateChangeへ返す。context indexはfiltered/sorted一覧の絶対index、pageIndexはページ内index。layoutだけ変えた場合は安定keyの同じ入力DOMを保持する。
+
+Listbox/ui-listboxとSelectionList/ui-selection-listは同じCVA部品。`ListChoice {value,label,disabled?,group?}`、single値string|null、multiple値readonly string[]|null。`multiple/searchable/showSelectAll/maxSelected/clearable/locale/virtual/itemHeight/height/overscan`と共通ValueControl入力を使う。`uiListChoice`のcontextは`$implicit/selected/active/index`、表示内容だけを差替える。選択とfocusは独立、矢印/Home/End/文字検索でfocus、Space/Enterで選択、Ctrl/Meta+Aで可視の有効候補を選択。hidden/disabled選択は残す。max超過の復元値は解除で修復できる。不正shape/重複/unknownは検証errorに残し、アプリが明示form.resetで修復する。仮想group metadataは描画済optionを所有し、未描画active IDを公開しない。
+
+VirtualListは`items/keyField/labelField/label/itemHeight/height/overscan/emptyLabel`と`rangeChange/positionChange`、公開`scrollToIndex/scrollToOffset`を使う。寸法nullは意味tokenの測定。`ng-template uiVirtualItem [uiVirtualItemOf]=items`のcontextは`$implicit/index/count`。固定高さの内部は局所scroll、editor stateはappが安定keyに接続する。仮想化で自前focus行が消えた場合はviewportへ移し、外部focusを奪わない。
+
+SortableList/ui-sortable-listとOrderList/ui-order-listは`items/keyField/labelField/controlId/label/orientation/disabled/busy/readonly/canMove/emptyMessage`、`itemsChange/moved`を持つ。候補更新はappがitemsChangeを受けて接続。`moved {item,fromIndex,toIndex,items,reason}`のreasonはbutton/pointer/keyboard。canMove例外は拒否。公開CDKのhandle/touch-delay、native位置変更button、ハンドルclick→矢印/Home/Endの仮配置→Enter確定/Escape取消を使う。pointer開始sourceが差替わった場合は旧dropを拒否。指を離す前の取消は更新を公開せず、pointer releaseの説明を残す。実Undo/サーバー更新の成功ではない。
+
+InfiniteScrollは`label/loading/finished/error/disabled/autoLoad/observerRoot/rootMargin/resetKey/contentVersion/loadingMessage/endMessage`、`loadRequested {id,reason}`、`completeLoad(id)/failLoad(id,message)/invalidatePending()`を持つ。reasonはbutton/intersection/retry。初期versionで自動要求は一度、アプリの実追加/カーソル進行でversionを更新するとvisible sentinelでも次を取得できる。空応答でversionを進めない。manual/retryは同一versionでも要求できる。明示invalidateはUIの待機を失効し、通信をabortしない。アプリはcallbackに元のhostをcaptureし、再作成した別hostへ古いidを渡さない。
+
+### TransferとTimelineの契約
+
+forms-21 原文: **TransferList / PickList — 左右移動、検索、複数選択、順序変更**。data-11 原文: **Timeline / ActivityLog — 日時、種別、詳細展開、追加読込み**。
+
+TransferList / PickList
+
+- selector `ui-transfer-list` / `ui-pick-list`、`TransferList<T>`。CVA値は `readonly (string | number)[] | null`。キー順が選択済みの順序。`items` / `keyField` / `labelField`、`controlId` / `label` は必須。
+- `disabledField` / `hiddenField` は任意のbooleanプロパティ。未設定値はfalse。非表示項目とdisabled選択はCVA値から削除しない。変更不可をnative checkbox/actionのdisabledで示す。
+- `sourceLabel` / `targetLabel`、`searchable`、`locale`、`reorderable`、`maxSelected`、共通ValueControlの `required` / `readonly` / `disabled` / `busy` / `hint` / `error` を接続。
+- 両側の native checkbox が一括移動する一時的なチェック状態。全選択のscopeは**今の検索に一致する表示中・有効な項目すべて**。disabled/非表示/検索外の値を解除しない。検索外に保持したチェックも、別scopeの一括移動で移動しない。
+- 一括追加で上限を超えると全件拒否する。一括削除で上限超過を修復できる。requiredエラーでもユーザーの削除は許可する。配列以外・重複・unknownキーは表示説明とValidatorを出し、その値を保持する。ユーザー操作で不正値を勝手に正規化しない。アプリの `FormControl.reset()` で修復。
+- `canTransfer: (TransferChange<T>) => boolean` は移動batch、`canReorder: (TransferReorder<T>) => boolean` はcanonical移動位置を判定。省略時許可、指定時はtrueのみ許可。例外とundefinedはfail closed。関数は同期・純粋で、I/O/実保存/実Undo/業務上の認可はアプリが所有する。
+- `transferred` / `reordered` と継承 `valueChange` が意図と変更値を返す。順序のキー解決で、フィルタした画面indexを元配列へ流用しない。
+- 接続CDK dragの候補↔選択、選択内並べ替えに加え、追加・削除・上へ・下へのnative buttons。移動ハンドルを押すとdraftを開始し、左右キーで両側、上下/Home/Endで対象位置、Enter/Spaceで確定、Escapeで取消。RTLで左右の意味を対応。draft中にCVA値を確定しない。
+- pointerとdraftはOverlayRegistryの `kind:'operation'` をregister。子が消費したEscapeとIMEを尊重。終了・取消・破棄で同期解除する。CDK endedはdroppedに先行するのでsnapshotをepoch付きmicrotaskで清掃。候補/値/状態/検索/ポリシー/方向更新後の古いdropは拒否。`invalidatePending()` はアプリの同一turn更新前の明示失効。
+- `ng-template uiTransferItem [uiTransferItemOf]="items"` は補助内容。typed context は `$implicit` / `key` / `label` / `side` / `index` / `pageIndex` / `count` / `checked` / `selected`。indexは左の元catalogまたは右の元選択配列index。pageIndexは現在の表示index。native checkbox labelは部品が維持し、投影template内の操作を所有focus helperの対象にしない。
+
+Timeline / ActivityLog
+
+- selector `ui-timeline` / `ui-activity-log`、`Timeline<T>`。`items` / `keyField` / `labelField` / `label`、`dateTimeField` / `typeField` / `timeZone` 必須。アプリの配列順で表示する。並び順や業務種別の意味はアプリが決める。
+- 日時はオフセット付きISO文字列、有限epoch milliseconds、または有効なDate。civil date/オフセット無しのlocal datetimeは拒否。`Intl.DateTimeFormat(locale, {...dateTimeOptions, timeZone})` で表示し、native `time.datetime` にUTC ISOを残す。null/undefinedは未取得、無効値は明示エラー。元の項目を保持する。`dateTimeOptions` 既定はmedium日時/short時刻。
+- `typeField` の説明を文字で表示し色だけに依存しない。欠損と不正値を区別する。`detailsField` または詳細templateがある場合にnative `details` / `summary` を出す。折畳み中も詳細DOM/編集を保持。
+- `expandedKeys` / `expandedKeysChange` で外部制御、省略時はローカル状態。focusが閉じられる詳細内に残る場合だけそのsummaryへ戻す。外部focusは奪わない。
+- `ng-template uiTimelineItem [uiTimelineItemOf]="items"` のslot既定 `item`、`uiTimelineItemSlot="details"` は詳細。typed contextは `$implicit` / `key` / `label` / `index` / `pageIndex` / `count` / `type` / `dateTime` / `expanded`。
+- `loadMore` をtrueにすると同じ `InfiniteScroll` hostを使う。`loading` / `finished` / `loadError` / `disabled` / `autoLoad` / `observerRoot` / `rootMargin` / `resetKey` / `contentVersion` / `loadingMessage` / `endMessage` を委譲。
+- `loadRequested` は同じ要求元hostが発行した未完了要求のidとreason。idの恒久・別bundle間の一意性を保証しない。アプリは実取得して結果を確認し、**同じTimeline host**の `completeLoad(id)` / `failLoad(id,message)` でackする。受理を確認してデータを追加する。finished/追加items/I/O/backend/実取消はアプリが所有。部品は成功やデータ追加を先取りしない。
+- ackは同じ未完了id・同じresetKey・同じInfiniteScroll hostにのみ適用。終端/失敗/再試行、古いquery、loader再作成、破棄後を区別する。`invalidatePending()` はアプリの同一turn条件変更前の明示失効。
+
+共通: 意味tokenのみ、guided/denseを外部profileで切替、RTL/狭幅/文字拡大。色/余白のprimitive直参照、全ソースAST逸脱検査、backend成功/スクリーンリーダー/Firefox/Safari/実利用評価の合格主張はしません。
