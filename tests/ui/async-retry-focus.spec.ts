@@ -202,7 +202,10 @@ for(const profile of ['guided','dense'] as const){
   await page.goto('/catalog/choices');await page.getByRole('combobox',{name:'表示設定',exact:true}).selectOption(profile);await narrow(page);
   await page.locator('#restore-nested').click();
   const builder=page.locator('ui-filter-builder'),save=builder.getByRole('button',{name:'条件を保存',exact:true}),status=builder.locator('[data-filter-status]'),model=page.locator('#filter-model'),requests=page.locator('#filter-request-count'),result=page.locator('#filter-result');
-  const original=await model.textContent(),editor=builder.locator('#filter-word-value'),handle=await editor.elementHandle();
+  const editor=builder.locator('#filter-word-value');
+  // The restore event can finish before the OnPush view renders its new model.
+  await expect(model).toContainText('"id": "nested"');await expect(editor).toHaveValue('申請');
+  const original=await model.textContent(),handle=await editor.elementHandle();
   await save.focus();await page.keyboard.press('Enter');
   await expect(requests).toHaveText('1');await expect(builder.locator('section')).toHaveAttribute('aria-busy','true');
   await expect(save).toBeDisabled();await expect(status).toHaveText('保存結果を確認しています。');await readableFocus(status);await expect(model).toHaveText(original!);

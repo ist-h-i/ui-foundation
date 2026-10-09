@@ -25,7 +25,11 @@
 
 修正前に開始した aggregate は、初期レビューの修正を適用するため途中で停止した。成功とも製品テスト失敗とも数えない。[中断理由](aggregate-interruption.json) と [実行記録](interrupted-execution.json) を保持する。
 
-修正後の `npm test` と `npm run test:verification` を実行中。最終結果をこの記録へ追記する。独立 UI レビューは、[source / runtime manifest](ui-review-candidate.json) に固定した active source 480件・runtime309件と専用 localhost server を対象に実施中。完了後、正確な PR head の差分を別担当が再確認する。
+修正後の aggregate では、新しい source import を UI runtime の noEmit 型検査が拒否した。[失敗記録](import-type-failure-execution.json) と [ログ](import-type-failure.txt) を保持する。`allowImportingTsExtensions` を noEmit 検査に設定し、[型検査は成功](typecheck-after-import-fix.txt)。独立担当も [P1 修正と設定を承認](independent-code-review-fixed.md)した。
+
+次の aggregate は設定70件・生成23件・モデル193件を通過し、UI の条件保存試験が1件失敗した。復元直後の描画前に旧値を baseline として読み取った原因を [trace と24回の実操作](condition-save-synchronization.md)で確認した。[独立同期レビュー](independent-condition-sync-review.md)を経て、既存 assertion を保持したまま復元完了確認を追加する。旧候補の未実行部分は合格に数えず、新しい完全な aggregate を実行する。
+
+`npm test` と `npm run test:verification` の最終結果をこの記録へ追記する。独立 UI レビューは、[source / runtime manifest](ui-review-candidate.json) に固定した active source 480件・runtime309件と専用 localhost server を対象に実施中。[対応確認](artifact-equivalence.json)のとおり、型検査の設定変更は固定 runtime に影響していない。完了後、正確な PR head の差分を別担当が再確認する。
 
 ## 範囲
 
