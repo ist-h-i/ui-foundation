@@ -35,35 +35,42 @@ export class DialogTemplate {
     } { return true; }
 }
 /** Shared native panel rendering; Drawer and BottomSheet add concrete geometry. */
-export const DIALOG_TEMPLATE = `
+export const DIALOG_HEADER_TEMPLATE = `
     <header [hidden]="!showHeader()" class="ui-dialog__header">
       <div class="ui-dialog__title">
         @if (template('header'); as header) { <ng-container [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
         @else { <ng-content select="[uiDialogHeader]" /><h2>{{ title() || label() }}</h2> }
       </div>
       <div class="ui-dialog__handles">
-        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
+        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
         @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
-        @if (closable()) { <button uiAction [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
+        @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
       </div>
     </header>
-    @if (!showHeader()) { <div class="ui-dialog__handles">
-      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
+    @if (!showHeader() && (draggable() || maximizable() || closable())) { <div class="ui-dialog__handles ui-dialog__standalone-handles">
+      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
       @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
+      @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
     </div> }
+  `;
+export const DIALOG_BODY_TEMPLATE = `
     <div class="ui-dialog__body">
       @if (template('body'); as body) { <ng-container [ngTemplateOutlet]="body.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
       @else { <ng-content /> }
     </div>
+  `;
+export const DIALOG_FOOTER_TEMPLATE = `
     <footer [hidden]="!showFooter()" class="ui-dialog__footer">
       @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
       @else { <ng-content select="[uiDialogFooter]" /> }
     </footer>
-    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログのサイズを変更' | uiMessage" [attr.title]="'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage">{{'サイズ変更' | uiMessage}}</button></div> }
+    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログのサイズを変更' | uiMessage" [attr.title]="'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage">{{'サイズ変更' | uiMessage}}</button></div> }
     <p role="status" aria-atomic="true" class="ui-dialog__status">{{ busy() ? uiEffective_busyLabel() : '' }}</p>
   `;
+export const DIALOG_TEMPLATE = DIALOG_HEADER_TEMPLATE + DIALOG_BODY_TEMPLATE + DIALOG_FOOTER_TEMPLATE;
 export const DIALOG_STYLES = `
     :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }
+    :host:not(:modal) { z-index:1; }
     :host::backdrop { background:var(--ui-color-backdrop); }
     :host([data-size="small"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }
     :host([data-size="large"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }
@@ -75,8 +82,9 @@ export const DIALOG_STYLES = `
     [hidden] { display:none!important; }
     .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }
     .ui-dialog__header { margin-block-end:var(--ui-space-field); }
+    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }
     .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }
-    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); }
+    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); text-wrap:balance; }
     .ui-dialog__footer { margin-block-start:var(--ui-space-field); }
     .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }
     .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
@@ -164,6 +172,11 @@ export class Dialog {
                         this.element.showModal();
                     else
                         this.element.show();
+                    // A visible close must not replace the established initial content focus.
+                    if (!this.showHeader() && this.element.ownerDocument.activeElement?.matches('.ui-dialog__close')) {
+                        const initial = tabbableElements(this.element).find(element => !element.matches('.ui-dialog__close'));
+                        if (initial) restoreFocus(initial, this.element);
+                    }
                     this.unregister = this.registry.register({ element: this.element, kind: modal ? 'native-dialog' : 'popup', outside: !modal, dismiss: reason => { if (reason !== 'scope-exit' && (reason === 'escape' ? this.closeOnEscape() : this.closeOnOutsideClick()))
                             this.finish(reason); } });
                 }
@@ -233,7 +246,11 @@ export class Dialog {
     protected backdropStart(event: PointerEvent): void { this.backdropPointer = this.closeOnOutsideClick() && event.button === 0 && this.outside(event) ? event.pointerId : null; }
     protected backdropEnd(event: PointerEvent): void { const dismiss = this.backdropPointer === event.pointerId && this.outside(event); this.backdropPointer = null; if (dismiss)
         this.finish('outside'); }
-    protected setRect(rect: PanelRect): void { this.rectangle.set(rect); }
+    protected setRect(rect: PanelRect): void {
+        this.rectangle.set(rect);
+        // Apply each native key intent before a following key reads the target bounds.
+        this.layout(this.maximized() ? null : rect, this.size(), this.position(), this.maximized());
+    }
     protected resetGeometry(): void { this.rectangle.set(null); }
     protected toggleMaximized(): void { if (!this.busy())
         this.maximized.update(value => !value); }

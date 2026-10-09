@@ -42,9 +42,9 @@ import { ActionControl } from './action-control';
       }
       @if (pageSizeOptions().length) {
         <div><span>{{'表示件数' | uiMessage}}</span>
-          <select [attr.aria-label]="'表示件数' | uiMessage" class="ui-field-control" [value]="pageSize()" [disabled]="disabled() || busy() || !valid()" (change)="changeSize($event)">
+          <div class="ui-select-control"><select [attr.aria-label]="'表示件数' | uiMessage" class="ui-field-control" [value]="pageSize()" [disabled]="disabled() || busy() || !valid()" (change)="changeSize($event)">
             @for (size of pageSizeOptions(); track size) { <option [value]="size" [selected]="size === pageSize()">{{ size }} {{'件' | uiMessage}}</option> }
-          </select>
+          </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></div>
         </div>
       }
     </nav>

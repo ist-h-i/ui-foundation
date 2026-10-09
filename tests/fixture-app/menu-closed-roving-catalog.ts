@@ -3,7 +3,7 @@ import {Menu,OverlayHost,type MenuItem} from '../../.ui/generated/angular/index'
 
 @Component({selector:'fixture-app',standalone:true,imports:[Menu,OverlayHost],changeDetection:ChangeDetectionStrategy.OnPush,
 template:`<main id="menu-closed-proof" dir="rtl" [attr.data-ui-profile]="profile()"><h1>Menu外部入力の終了検証</h1>
-<label for="closed-menu-profile">Menu検証profile</label><select id="closed-menu-profile" [value]="profile()" (change)="changeProfile($event)"><option value="guided">guided</option><option value="dense">dense</option></select>
+<div class="catalog-setting"><label for="closed-menu-profile">Menu検証profile</label><span class="ui-select-control fixture-select"><select class="ui-field-control" id="closed-menu-profile" [value]="profile()" (change)="changeProfile($event)"><option value="guided">guided</option><option value="dense">dense</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
 <label><input data-testid="menu-external-open" type="checkbox" [checked]="opened()" (change)="changeOpen($event)">Menuを外部から開く</label>
 <ui-overlay-host><ui-menu menuId="external-open-menu" label="外部openの階層Menu" [items]="items" [open]="opened()" (openChange)="opened.set($event)" [closeOnSelect]="false"/></ui-overlay-host>
 <output data-testid="menu-external-state">{{opened()?'open':'closed'}}</output><button data-testid="menu-external-after">次の外部操作</button></main>`,

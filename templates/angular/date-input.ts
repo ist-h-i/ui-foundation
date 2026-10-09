@@ -8,7 +8,7 @@ import {FieldValueControl} from './value-control';
 import {Calendar} from './calendar';
 import {Dialog} from './dialog';
 import {civilDate,civilLabel,formatCivilInput,parseCivilInput,timeSeconds,localDateTimeSeconds,type DateInputFormat} from './date-model';
-const temporalStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}.ui-date-controls{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;}.ui-date-controls input{flex:1 1 12ch;min-inline-size:min(100%,12ch);max-inline-size:100%;}.ui-date-format{color:var(--ui-color-muted);font-size:var(--ui-text-small);overflow-wrap:anywhere;}`;
+const temporalStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}.ui-date-controls{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;}.ui-date-controls input{flex:1 1 12ch;min-inline-size:min(100%,12ch);max-inline-size:100%;}.ui-date-format{margin:0;color:var(--ui-color-muted);font-size:var(--ui-text-small);overflow-wrap:anywhere;}`;
 @Directive({standalone:true})
 abstract class TemporalControl extends FieldValueControl<string|null> implements Validator{
  protected readonly emptyValue=null;protected abstract readonly kind:'date'|'time'|'datetime-local'|'month'|'year';
@@ -42,7 +42,7 @@ abstract class TemporalControl extends FieldValueControl<string|null> implements
   <input #editor uiFieldControl [type]="activeInputFormat()==='native'?'date':'text'" [value]="editorValue()" [name]="name()" [attr.min]="min()" [attr.max]="max()" [attr.placeholder]="activeInputFormat()==='native'?null:activeInputFormat()" [disabled]="blocked()" [readOnly]="readonly()" (input)="dateChanged($event)" (blur)="touch()">
   <button uiAction [disabled]="blocked()||readonly()" [attr.aria-label]="label()+('のカレンダーを開く' | uiMessage)" aria-haspopup="dialog" (click)="calendarOpen.set(true)">{{'カレンダー' | uiMessage}}</button>
   @if(clearable()){<button uiAction [disabled]="blocked()||readonly()||current()===null&&!invalidDraft()" [attr.aria-label]="label()+('をクリア' | uiMessage)" (click)="clear()">{{'クリア' | uiMessage}}</button>}</div>
-  <p class="ui-date-format">{{current()?formatted():''}}{{activeInputFormat()==='native'?'':(' · 入力書式: ' | uiMessage)+activeInputFormat()}}</p>
+  @if(current() || activeInputFormat()!=='native'){<p class="ui-date-format">{{current()?formatted():''}}{{current()&&activeInputFormat()!=='native'?' · ':''}}{{activeInputFormat()==='native'?'':('入力書式: ' | uiMessage)+activeInputFormat()}}</p>}
  </ui-form-field>
  <dialog uiDialog [label]="label()+('の日付を選択' | uiMessage)" [open]="calendarOpen()" (openChange)="calendarOpen.set($event)">
   <ui-calendar [controlId]="controlId()+'-calendar'" [label]="label()+('の日付' | uiMessage)" [value]="current()" (valueChange)="choose($event)" [min]="min()" [max]="max()" [disabledDates]="disabledDates()" [dateDisabled]="dateDisabled()" [weekStartsOn]="weekStartsOn()" [locale]="effectiveLocale()" [initialMonth]="initialMonth()" [disabled]="blocked()" [readonly]="readonly()" />
@@ -62,7 +62,7 @@ export class DatePicker extends TemporalControl{
 }
 const nativeTemplate=`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()"><div class="ui-date-controls">
  <input #editor uiFieldControl [type]="nativeType" [value]="current()??''" [name]="name()" [attr.min]="min()" [attr.max]="max()" [attr.step]="inputStep()" [disabled]="blocked()" [readOnly]="readonly()" (input)="changed($event)" (blur)="touch()">
- @if(clearable()){<button uiAction [disabled]="blocked()||readonly()||current()===null&&!invalidDraft()" [attr.aria-label]="label()+('をクリア' | uiMessage)" (click)="clear()">{{'クリア' | uiMessage}}</button>}</div><p class="ui-date-format">{{display()}}</p></ui-form-field>`;
+ @if(clearable()){<button uiAction [disabled]="blocked()||readonly()||current()===null&&!invalidDraft()" [attr.aria-label]="label()+('をクリア' | uiMessage)" (click)="clear()">{{'クリア' | uiMessage}}</button>}</div>@if(display()){<p class="ui-date-format">{{display()}}</p>}</ui-form-field>`;
 @Component({selector:'ui-time-picker',standalone:true,imports:[FormField,FieldControl,ActionControl,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>TimePicker),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>TimePicker),multi:true}],template:nativeTemplate,styles:temporalStyles})
 export class TimePicker extends TemporalControl{

@@ -55,11 +55,10 @@ const REVIEW_ROWS: ReviewRow[] = [
           <p data-testid="basic-page-count">ページ変更: {{ pageCount() }}</p>
         </div>
         <div class="fixture-control-label fixture-basic-control">
-          <label for="page-information">ページ情報の状態</label>
-          <select id="page-information" [value]="pageInformation()" (change)="changePageInformation($event)">
+          <div class="catalog-setting"><label for="page-information">ページ情報の状態</label><span class="ui-select-control fixture-select"><select class="ui-field-control" id="page-information" [value]="pageInformation()" (change)="changePageInformation($event)">
             <option value="normal">正常な3ページ</option><option value="empty">対象なし（0ページ）</option>
             <option value="invalid">不正な総ページ数（1.5）</option>
-          </select>
+          </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
         </div>
       </section>
 
@@ -119,8 +118,8 @@ const REVIEW_ROWS: ReviewRow[] = [
         <h3>表示設定の確認</h3>
         <p>申請の通知方法を「{{ notificationLabel(notification()) }}」に変更します。</p>
         <div class="fixture-actions">
-          <button uiAction variant="primary" autofocus (click)="applySettings()">設定を適用</button>
-          <button uiAction (click)="dialogOpen.set(false)">設定の確認を閉じる</button>
+          <div class="catalog-actions"><button uiAction variant="primary" autofocus (click)="applySettings()">設定を適用</button>
+          <button uiAction (click)="dialogOpen.set(false)">設定の確認を閉じる</button></div>
         </div>
       </dialog>
     </section>

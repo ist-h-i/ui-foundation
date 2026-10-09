@@ -23,7 +23,7 @@ for (const profile of ['guided','dense']) {
    await page.getByLabel('ソートを有効にする').uncheck();await expect(table.locator('thead tr').first()).toContainText('金額');await expect(table.getByRole('button',{name:/で並べ替え/})).toHaveCount(0);
   });
   test('number/date/select filters operate and disabling filtering restores source rows',async({page})=>{
-   const table=page.locator('ui-data-table');await table.getByLabel('金額の条件',{exact:true}).fill('2000');
+   const table=page.locator('ui-data-table');await table.locator('.ui-data-table__filters > summary').click();await table.getByLabel('金額の条件',{exact:true}).fill('2000');
    await table.getByLabel('金額の比較方法',{exact:true}).selectOption('gte');await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
    await table.getByLabel('申請日の条件',{exact:true}).fill('2026-10-02');await table.getByLabel('申請日の比較方法',{exact:true}).selectOption('before');
    await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(1);await expect(table.locator('tbody')).toContainText('備品購入');
@@ -31,11 +31,11 @@ for (const profile of ['guided','dense']) {
    await page.getByLabel('列フィルターを有効にする').uncheck();await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
   });
   test('comparison chosen before its value is retained and stale pages recover when filters return',async({page})=>{
-   const table=page.locator('ui-data-table');const compare=table.getByLabel('金額の比較方法',{exact:true});
+   const table=page.locator('ui-data-table');await table.locator('.ui-data-table__filters > summary').click();const compare=table.getByLabel('金額の比較方法',{exact:true});
    await compare.selectOption('gte');await expect(compare).toHaveValue('gte');await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
    await table.getByLabel('金額の条件',{exact:true}).fill('2000');await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
    await page.getByLabel('列フィルターを有効にする').uncheck();await table.getByRole('button',{name:'最後のページ'}).click();
-   await page.getByLabel('列フィルターを有効にする').check();await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
+   await page.getByLabel('列フィルターを有効にする').check();await table.locator('.ui-data-table__filters > summary').click();await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(2);
    await expect(table.getByRole('navigation')).toContainText('1 / 1 ページ');await expect(table.locator('tbody')).not.toContainText('条件に一致する結果はありません。');
    const dates=table.getByLabel('申請日の比較方法',{exact:true});await dates.selectOption('before');await expect(dates).toHaveValue('before');
    await table.getByLabel('申請日の条件',{exact:true}).fill('2026-10-02');await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(1);
@@ -61,7 +61,7 @@ for (const profile of ['guided','dense']) {
    await expect(nav).toContainText('1 / 2 ページ');await page.getByLabel('ページ送りを有効にする').uncheck();await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(6);await expect(nav).toHaveCount(0);
   });
   test('column hide/order/pin/resize can be saved, restored and reset using keyboard alternatives',async({page})=>{
-   const table=page.locator('ui-data-table');await table.locator('summary').click();
+   const table=page.locator('ui-data-table');await table.locator('.ui-data-table__columns > summary').click();
    await table.getByLabel('金額',{exact:true}).uncheck();await expect(table.locator('th[data-column-id="amount"]')).toHaveCount(0);
    await table.getByRole('button',{name:'申請日列を前へ',exact:true}).click();await expect(table.locator('th[data-column-id]').nth(1)).toHaveAttribute('data-column-id','date');
    await table.getByLabel('固定: 申請名',{exact:true}).selectOption('start');await table.getByLabel('固定: 状態',{exact:true}).selectOption('end');
@@ -101,7 +101,7 @@ for (const profile of ['guided','dense']) {
   });
   test('320px, 200% text and RTL keep overflow inside the table and fixed columns on the correct side',async({page})=>{
    await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByLabel('RTL',{exact:true}).check();
-   const table=page.locator('ui-data-table');await table.locator('summary').click();await table.getByLabel('固定: 申請名',{exact:true}).selectOption('start');
+   const table=page.locator('ui-data-table');await table.locator('.ui-data-table__columns > summary').click();await table.getByLabel('固定: 申請名',{exact:true}).selectOption('start');
    const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:document.documentElement.clientWidth}));expect(widths.scroll).toBeLessThanOrEqual(widths.viewport);
    const header=table.locator('th[data-column-id="name"]');await expect(header).toHaveCSS('right','0px');
    await table.getByRole('region',{name:'申請一覧の表領域'}).focus();await page.keyboard.press('ArrowLeft');await expect(table.getByRole('region')).toBeFocused();

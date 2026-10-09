@@ -3,7 +3,7 @@ import {injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, linkedSignal, output, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
-import { Dialog, DIALOG_STYLES, DIALOG_TEMPLATE } from './dialog';
+import { Dialog, DIALOG_STYLES, DIALOG_TEMPLATE, DIALOG_HEADER_TEMPLATE, DIALOG_BODY_TEMPLATE, DIALOG_FOOTER_TEMPLATE } from './dialog';
 import { MoveHandle, ResizeHandle } from './panel-handle';
 import { panelSize, sheetStages } from './floating-model';
 import { restoreFocus } from './focus';
@@ -65,14 +65,13 @@ export class Drawer extends EdgePanel {
         afterRenderEffect(()=>{const edge=this.edge();untracked(()=>{if(previous!==null&&previous!==edge)this.resetGeometry();previous=edge;});});
     }
 }
-const sheetControls = `<fieldset class="ui-sheet-stages"><legend>{{uiEffective_stageLabel()}}</legend><div class="ui-sheet-controls"><button uiAction data-sheet-reduce [disabled]="busy()||currentStage()===0" (click)="setStage(currentStage()-1)">{{uiEffective_reduceLabel()}}</button><label><span>{{uiEffective_stageLabel()}}</span><input type="range" min="0" [max]="stages().length-1" step="1" [value]="currentStage()" [disabled]="busy()" [attr.aria-valuetext]="stageText()" (input)="stageInput($event)"></label><button uiAction data-sheet-expand [disabled]="busy()||currentStage()===stages().length-1" (click)="setStage(currentStage()+1)">{{uiEffective_expandLabel()}}</button></div><p role="status" aria-atomic="true">{{stageText()}}</p></fieldset>`;
+const sheetControls = `<fieldset class="ui-sheet-stages"><legend>{{uiEffective_stageLabel()}}</legend><div class="ui-sheet-controls"><button uiAction data-sheet-reduce [attr.aria-label]="uiEffective_reduceLabel()" [attr.title]="uiEffective_reduceLabel()" [disabled]="busy()||currentStage()===0" (click)="setStage(currentStage()-1)"><span aria-hidden="true">−</span></button><input type="range" [attr.aria-label]="uiEffective_stageLabel()" min="0" [max]="stages().length-1" step="1" [value]="currentStage()" [disabled]="busy()" [attr.aria-valuetext]="stageText()" (input)="stageInput($event)"><button uiAction data-sheet-expand [attr.aria-label]="uiEffective_expandLabel()" [attr.title]="uiEffective_expandLabel()" [disabled]="busy()||currentStage()===stages().length-1" (click)="setStage(currentStage()+1)"><span aria-hidden="true">＋</span></button></div><p role="status" aria-atomic="true">{{stageText()}}</p></fieldset>`;
 @Component({selector:'dialog[uiBottomSheet]',standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
-    template:sheetControls+DIALOG_TEMPLATE,styles:DIALOG_STYLES+edgeStyles+`
+    template:DIALOG_HEADER_TEMPLATE+DIALOG_BODY_TEMPLATE+sheetControls+DIALOG_FOOTER_TEMPLATE,styles:DIALOG_STYLES+edgeStyles+`
     :host([data-edge="bottom"]) { height:min(var(--ui-sheet-height),100dvh); }
     :host([data-maximized="true"]) { height:100dvh; }
-    .ui-sheet-stages { min-inline-size:0;margin:0 0 var(--ui-space-field);padding:var(--ui-space-control-y);border:var(--ui-border-control) solid var(--ui-color-border); }
-    .ui-sheet-controls { display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center; }
-    .ui-sheet-controls label { display:grid;gap:var(--ui-space-control-gap);min-inline-size:0;flex:1 1 calc(var(--ui-text-body) * 6); }
+    .ui-sheet-stages { min-inline-size:0;margin:var(--ui-space-field) 0 0;padding:0;border:0; }
+    .ui-sheet-controls { display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--ui-space-control-gap);align-items:center; }
     .ui-sheet-controls input { inline-size:100%;min-inline-size:var(--ui-size-control);block-size:var(--ui-size-control);accent-color:var(--ui-color-action); }
     .ui-sheet-stages p { margin:var(--ui-space-control-gap) 0 0;color:var(--ui-color-muted); }
     `,host:{'data-edge':'bottom'}})

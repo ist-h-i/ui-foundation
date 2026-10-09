@@ -87,7 +87,7 @@ export interface SearchRequest{query:string;requestId:number}
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-input-group"><input #editor uiFieldControl type="search" [name]="name()" [value]="current()" [placeholder]="placeholder()" [disabled]="blocked()" [readOnly]="readonly()"
    [attr.list]="hasSuggestions() ? controlId() + '-suggestions' : null" (input)="changed($event)" (blur)="touch()" (keydown.enter)="enter($event)" (compositionstart)="compositionStarted()" (compositionend)="compositionEnded($event)">
-   <button uiAction [disabled]="blocked() || readonly() || !current()" [attr.aria-label]="label()+('をクリア' | uiMessage)" (click)="clear()">{{'クリア' | uiMessage}}</button>
+   <button uiAction [disabled]="blocked() || readonly() || !current()" [attr.aria-label]="'検索語をクリア' | uiMessage" [attr.aria-controls]="controlId()" (click)="clear()">{{'クリア' | uiMessage}}</button>
    <button uiAction [busy]="loading()" [disabled]="blocked() || readonly()" (click)="runSearch()">{{'検索' | uiMessage}}</button></div>
   <datalist [id]="controlId()+'-suggestions'">@if(hasSuggestions()){@for(option of suggestions();track option){<option [value]="option"></option>}}</datalist>
   <p class="ui-input-count" role="status" aria-atomic="true">{{loading()?('候補を取得しています。' | uiMessage):''}}</p>

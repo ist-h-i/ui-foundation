@@ -14,8 +14,8 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
  template: `
   <main class="catalog" [attr.data-ui-profile]="profile()" [attr.dir]="rtl() ? 'rtl' : 'ltr'">
     <h1>共通部品の操作確認</h1><a href="/catalog/feedback">状態表示の確認</a> <a href="/catalog/actions">操作部品の確認</a><a href="/catalog/layout">配置部品の操作確認</a>
-    <div><label for="catalog-profile">表示設定</label><select id="catalog-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(value($event))">@for (item of profiles; track item.id) { <option [value]="item.id">{{ item.label }}</option> }</select></div>
-    <div class="catalog-options">
+    <div><div class="catalog-setting"><label for="catalog-profile">表示設定</label><span class="ui-select-control fixture-select"><select id="catalog-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(value($event))">@for (item of profiles; track item.id) { <option [value]="item.id" [selected]="item.id===profile()">{{ item.label }}</option> }</select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div></div>
+    <div class="catalog-options catalog-settings">
       <label><input type="checkbox" [checked]="rtl()" (change)="rtl.set(checked($event))">RTL</label>
       <label><input type="checkbox" [checked]="sortable()" (change)="sortable.set(checked($event))">ソートを有効にする</label>
       <label><input type="checkbox" [checked]="multipleSort()" (change)="multipleSort.set(checked($event))">複数列ソート</label>
@@ -24,10 +24,10 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
       <label><input type="checkbox" [checked]="paginationEnabled()" (change)="paginationEnabled.set(checked($event))">ページ送りを有効にする</label>
       <label><input type="checkbox" [checked]="sticky()" (change)="sticky.set(checked($event))">ヘッダーを固定する</label>
       <label><input type="checkbox" [checked]="autoWidth()" (change)="autoWidth.set(checked($event))">自動列幅</label>
-      <div><label for="catalog-fit">自動幅の方式</label><select id="catalog-fit" class="ui-field-control" [value]="autoFit()" (change)="changeFit($event)"><option value="available">表示領域</option><option value="content">内容</option></select></div>
-      <div><label for="catalog-widths">列幅の境界条件</label><select id="catalog-widths" class="ui-field-control" [value]="widthCase()" (change)="widthCase.set(value($event))"><option value="normal">標準</option><option value="minimum">最小400・最大450</option><option value="maximum">単一列・最大100</option></select></div>
-      <div><label for="catalog-selection">行選択</label><select id="catalog-selection" class="ui-field-control" [value]="selectionMode()" (change)="changeSelection($event)"><option value="none">なし</option><option value="single">単一</option><option value="multiple">複数</option></select></div>
-      <div><label for="catalog-status">一覧の状態</label><select id="catalog-status" class="ui-field-control" [value]="status()" (change)="changeStatus($event)"><option value="ready">通常</option><option value="loading">取得中</option><option value="updating">更新中</option><option value="error">エラー</option><option value="partial">部分欠損</option></select></div>
+      <div><div class="catalog-setting"><label for="catalog-fit">自動幅の方式</label><span class="ui-select-control fixture-select"><select id="catalog-fit" class="ui-field-control" [value]="autoFit()" (change)="changeFit($event)"><option value="available">表示領域</option><option value="content">内容</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div></div>
+      <div><div class="catalog-setting"><label for="catalog-widths">列幅の境界条件</label><span class="ui-select-control fixture-select"><select id="catalog-widths" class="ui-field-control" [value]="widthCase()" (change)="widthCase.set(value($event))"><option value="normal">標準</option><option value="minimum">最小400・最大450</option><option value="maximum">単一列・最大100</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div></div>
+      <div><div class="catalog-setting"><label for="catalog-selection">行選択</label><span class="ui-select-control fixture-select"><select id="catalog-selection" class="ui-field-control" [value]="selectionMode()" (change)="changeSelection($event)"><option value="none">なし</option><option value="single">単一</option><option value="multiple">複数</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div></div>
+      <div><div class="catalog-setting"><label for="catalog-status">一覧の状態</label><span class="ui-select-control fixture-select"><select id="catalog-status" class="ui-field-control" [value]="status()" (change)="changeStatus($event)"><option value="ready">通常</option><option value="loading">取得中</option><option value="updating">更新中</option><option value="error">エラー</option><option value="partial">部分欠損</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div></div>
       <label><input type="checkbox" [checked]="server()" (change)="server.set(checked($event)); state.set(initialState)">サーバー処理</label>
     </div>
     <section aria-label="表の検証">
@@ -45,9 +45,9 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
       <p data-testid="selected">選択: {{ selected().join(',') }}</p>
       <p data-testid="row-action">操作: {{ lastAction() }}</p>
       <p data-testid="requests">状態変更: {{ requests() }}</p>
-      <button uiAction (click)="savedState.set(state())">表示状態を保存</button>
+      <div class="catalog-actions"><button uiAction (click)="savedState.set(state())">表示状態を保存</button>
       <button uiAction [disabled]="!savedState()" (click)="restore()">表示状態を復元</button>
-      <button uiAction (click)="state.set(initialState)">検索とソートを初期化</button>
+      <button uiAction (click)="state.set(initialState)">検索とソートを初期化</button></div>
     </section>
     <input-catalog />
     <date-catalog />
@@ -59,7 +59,7 @@ interface RecordRow { id: number; name: string; amount: number | null; date: str
   .catalog { padding: var(--ui-space-page); max-inline-size: var(--ui-size-content); margin-inline: auto; color: var(--ui-color-text); background: var(--ui-color-surface); font-family: var(--ui-font-body); font-size: var(--ui-text-body); line-height: var(--ui-leading-body); overflow-wrap: anywhere; }
   h1 { font-size: var(--ui-text-heading); line-height: var(--ui-leading-heading); }
   .catalog-options { display: flex; flex-wrap: wrap; gap: var(--ui-space-field); margin-block: var(--ui-space-section); }
-  .catalog-options > label { display: grid; gap: var(--ui-space-control-gap); max-inline-size: 100%; }
+  .catalog-options > label { display: flex; align-items:center; min-block-size:var(--ui-size-control); gap: var(--ui-space-control-gap); max-inline-size: 100%; }
   .catalog-options input[type="checkbox"] { inline-size: var(--ui-size-icon); block-size: var(--ui-size-icon); }
  `,
 })

@@ -30,7 +30,7 @@ ImageCropResultはblob/width/height/sourceBounds/displayBounds/rotation/requestI
 
 Lightboxは25〜400%zoom・90度回転。回転画像の実boundsを持つnamed regionから全内容へscrollで到達できる。Galleryはfocusで停止し自動再開せず、pointer停止の意図をfocusイベントで反転しない。hover/hidden/inert/文書非表示/destroyでtimerを扱い、reduced motionとmanual Stopを尊重する。
 
-Media停止はpause+time0。source替え/hidden/disabled/destroyは現owner再生を止め、旧play Promiseは新再生を変更しない。字幕削除・同ID src替え・順替えでmode/cueを整合する。Fullscreenはプレイヤー領域を対象にする。
+Media停止はpause+time0。source替え/hidden/disabled/destroyは現owner再生を止め、旧play Promiseは新再生を変更しない。字幕削除・同ID src替え・順替えでmode/cueを整合する。Fullscreenはプレイヤー領域を対象にする。再生開始・再取得で自前buttonが無効化・除去される前に状態説明へfocusを保持する。完了時はまだ自前focusを持つ場合だけ利用可能な再生・再試行操作へ戻し、利用者が別の操作へ移したfocusと画面位置を奪わない。自前focusを保持する状態説明と完了後の操作は、描画後に文字とfocus枠が画面内で読めるように表示する。
 
 画像/QRの符号化画素はデータ。外側の文言/surface/focus/寸法をsemantic/profileに接続し、quiet zoneや白黒をテーマで変更しない。Barcode型はCODE128/CODE39/EAN13/EAN8/UPC/ITF/ITF14/MSI/pharmacode/codabar。内容/必要幅不足は診断する。
 

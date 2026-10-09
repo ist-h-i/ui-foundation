@@ -5,7 +5,8 @@ import {chartKinds,chartProblem,chartPointRows,chartAxisProblem,sparklineSummary
 import {evaluateSheet} from '../../.ui/generated/angular/sheet-formula.ts';
 import {checkedRichDocument} from '../../.ui/generated/angular/editor-model.ts';
 import {jsonRows,visibleJsonRows} from '../../.ui/generated/angular/json-model.ts';
-import {layoutDiagram} from '../../.ui/generated/angular/diagram-layout.ts';
+import {layoutDiagram,placeDiagramLabels} from '../../.ui/generated/angular/diagram-layout.ts';
+import {diagramConnection} from '../../templates/angular/diagram-layout.ts';
 test('all requested chart kinds validate real values and explicit missing points',()=>{
  for(const kind of chartKinds)assert.equal(chartProblem(kind,[{id:'first',label:'系列',points:[{id:'one',label:'観測',value:12,x:0,y:0},{id:'missing',label:'未取得',value:null,x:1,y:0}]}]),null);
  assert.match(chartProblem('scatter',[{id:'a',label:'a',points:[{id:'a',label:'a',value:1}]}])! ,/Coordinates/);
@@ -60,4 +61,51 @@ test('Dagre produces actual node placement for typed graph edges without mutatin
 
 test('chart preserves tree descendants in the keyboard read model and rejects ambiguous IDs and axis ranges',()=>{
  const series=[{id:'tree',label:'区分',points:[{id:'parent',label:'大分類',value:10,children:[{id:'child',label:'小分類',value:4}]}]}];assert.deepEqual(chartPointRows(series).map(row=>[row.point.id,row.depth]),[['parent',0],['child',1]]);assert.equal(chartProblem('treemap',series),null);assert.match(chartProblem('treemap',[{...series[0],points:[...series[0].points,{id:'child',label:'duplicate',value:1}]}])!,/unique/);assert.ok(chartAxisProblem({label:'x',type:'value',min:5,max:4},{label:'y',type:'value'}));
+});
+
+
+test('Diagram auto layout reserves measured caption space along each rank direction and preserves the controlled graph',()=>{
+ const model={nodes:[{id:'a',label:'提出',x:16,y:16},{id:'b',label:'承認'.repeat(100),x:300,y:100}],edges:[{id:'e',from:'a',to:'b',label:'確認'.repeat(20)}]},original=structuredClone(model);
+ for(const direction of ['LR','TB'] as const){
+  const width=200,height=1600,gap=12,captionSpace=direction==='LR'?640:80;
+  const arranged=layoutDiagram(model,width,height,gap,direction,captionSpace+gap*2),from=arranged.nodes[0]!,to=arranged.nodes[1]!;
+  assert.ok(direction==='LR'?to.x-(from.x+width)>=captionSpace+gap*2:to.y-(from.y+height)>=captionSpace+gap*2);
+  assert.deepEqual(model,original);assert.deepEqual(arranged.edges,original.edges);assert.notEqual(arranged.nodes[0],model.nodes[0]);assert.notEqual(arranged.edges[0],model.edges[0]);
+ }
+ assert.throws(()=>layoutDiagram(model,200,44,12,'LR',0),/positive/);
+});
+test('Diagram captions stay clear of manual tall nodes, other captions and the canvas origin without changing node coordinates',()=>{
+ const nodes=[{x:16,y:16,width:200,height:80},{x:300,y:100,width:200,height:1600}],original=structuredClone(nodes),labels=[{id:'short',x:218,y:490,width:80,height:38},{id:'long',x:-220,y:890,width:960,height:38},{id:'other',x:220,y:490,width:80,height:38}],gap=12;
+ const placed=placeDiagramLabels(nodes,labels,gap),all=[...nodes];
+ for(const label of labels){
+  const box=placed.get(label.id)!;assert.ok(box.x>=gap&&box.y>=gap);assert.equal(box.width,label.width);assert.equal(box.height,label.height);
+  for(const occupied of all)assert.ok(box.x+box.width<=occupied.x-gap||box.x>=occupied.x+occupied.width+gap||box.y+box.height<=occupied.y-gap||box.y>=occupied.y+occupied.height+gap);
+  all.push(box);
+ }
+ assert.deepEqual(nodes,original);assert.ok(placed.get('short')!.y!==labels[0]!.y);
+});
+
+test('Diagram connection direction reaches measured boundaries for forward, reverse, vertical and self edges',()=>{
+ const from={x:12,y:12,width:200,height:160},right={x:320,y:96,width:200,height:440},below={x:48,y:400,width:200,height:100},original=structuredClone({from,right,below});
+ const cases=[
+  {from,to:right,direction:'LR' as const,end:{x:320,y:316}},
+  {from:right,to:from,direction:'LR' as const,end:{x:212,y:92}},
+  {from,to:below,direction:'TB' as const,end:{x:148,y:400}},
+  {from:below,to:from,direction:'TB' as const,end:{x:112,y:172}},
+  {from,to:from,direction:'LR' as const,self:true,end:{x:112,y:172}},
+  {from,to:from,direction:'TB' as const,self:true,end:{x:212,y:92}},
+ ];
+ for(const example of cases){
+  const geometry=diagramConnection(example.from,example.to,12,example.direction,example.self);
+  assert.deepEqual(geometry.points.at(-1),example.end);
+  const triangle=geometry.arrow.split(' ').map(point=>point.split(',').map(Number)),tip=triangle[0]!,base={x:(triangle[1]![0]!+triangle[2]![0]!)/2,y:(triangle[1]![1]!+triangle[2]![1]!)/2},last=geometry.points.at(-2)!;
+  assert.deepEqual(tip,[example.end.x,example.end.y]);
+  const dx=tip[0]!-last.x,dy=tip[1]!-last.y,ax=tip[0]!-base.x,ay=tip[1]!-base.y;
+  assert.ok(dx*ax+dy*ay>0,'arrow points toward the connection target');assert.ok(Math.abs(dx*ay-dy*ax)<.0001);
+  assert.ok(geometry.path.startsWith('M'));assert.ok(Number.isFinite(geometry.middle.x)&&Number.isFinite(geometry.middle.y));
+  for(const point of geometry.points){assert.ok(point.x>=geometry.bounds.x&&point.x<=geometry.bounds.x+geometry.bounds.width);assert.ok(point.y>=geometry.bounds.y&&point.y<=geometry.bounds.y+geometry.bounds.height);}
+ }
+ assert.deepEqual({from,right,below},original);
+ const touching=diagramConnection(from,{...right,x:212,y:12,height:160},12);
+ assert.ok(touching.arrow);assert.ok(touching.points.some(point=>point.y>from.y+from.height),'touching nodes retain a visible route outside their surfaces');assert.deepEqual(touching.points.at(-1),{x:312,y:172});
 });

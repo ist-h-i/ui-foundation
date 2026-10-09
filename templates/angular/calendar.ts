@@ -40,7 +40,7 @@ export class Calendar extends ValueControl<string|null>{
  protected readonly dayTemplate=contentChild(CalendarDay);private readonly dayButtons=viewChildren<ElementRef<HTMLButtonElement>>('dayButton');
  protected readonly month=linkedSignal(()=>this.displayMonth()??this.current()?.slice(0,7)??(civilDate(this.initialMonth()+'-01')?this.initialMonth()!:this.today().slice(0,7)));
  protected readonly focused=linkedSignal(()=>{const preferred=this.current()??this.today();return preferred.startsWith(this.month()+'-')?preferred:this.month()+'-01';});
- private readonly pendingFocus=signal<string|null>(null);private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+ private readonly pendingFocus=signal<string|null>(null);private readonly pendingReveal=signal<string|null>(null);private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
  protected readonly heading=computed(()=>civilLabel(this.month()+'-01',this.effectiveLocale(),{year:'numeric',month:'long'}));
  protected readonly previousMonth=computed(()=>shiftCivilMonth(this.month()+'-01',-1).slice(0,7));protected readonly nextMonth=computed(()=>shiftCivilMonth(this.month()+'-01',1).slice(0,7));
  protected readonly weeks=computed(()=>{const days=calendarDays(this.month(),this.weekStartsOn());return Array.from({length:6},(_,index)=>days.slice(index*7,index*7+7));});
@@ -49,11 +49,12 @@ export class Calendar extends ValueControl<string|null>{
  readonly dayDescription=input<((date:string)=>string)|null>(null);
  protected dayLabel(date:string):string{const description=this.dayDescription()?.(date);return civilLabel(date,this.effectiveLocale())+(description?'、'+description:'');}
  protected unavailable(date:string):boolean{return !!(this.min()&&date<this.min()!||this.max()&&date>this.max()!||this.disabledDates().includes(date)||this.dateDisabled()?.(date));}
- constructor(){super();const render=afterRenderEffect(()=>{const date=this.pendingFocus();if(date){const button=this.dayButtons().find(button=>button.nativeElement.dataset['date']===date)?.nativeElement;if(button){button.focus();this.pendingFocus.set(null);}}});inject(DestroyRef).onDestroy(()=>render.destroy());}
- protected setMonth(month:string):void{if(this.blocked()||!civilDate(month+'-01'))return;this.month.set(month);this.focused.set(month+'-01');this.monthChange.emit(month);}
+ constructor(){super();const render=afterRenderEffect(()=>{const focus=this.pendingFocus(),date=focus??this.pendingReveal();if(date){const button=this.dayButtons().find(button=>button.nativeElement.dataset['date']===date)?.nativeElement;if(button){if(focus)this.revealDate(button);else button.scrollIntoView({block:'nearest',inline:'nearest'});this.pendingFocus.set(null);this.pendingReveal.set(null);}}});inject(DestroyRef).onDestroy(()=>render.destroy());}
+ private revealDate(button:HTMLButtonElement):void{button.focus({preventScroll:true});button.scrollIntoView({block:'nearest',inline:'nearest'});}
+ protected setMonth(month:string):void{if(this.blocked()||!civilDate(month+'-01'))return;this.month.set(month);this.focused.set(month+'-01');this.pendingFocus.set(null);this.pendingReveal.set(month+'-01');this.monthChange.emit(month);}
  protected navigate(offset:number):void{this.setMonth(shiftCivilMonth(this.month()+'-01',offset).slice(0,7));}
  protected choose(date:string):void{if(this.blocked()||this.readonly()||this.unavailable(date))return;this.commit(date);this.touch();}
- focusDate(date:string=this.current()??this.focused()):void{if(!civilDate(date)||this.blocked())return;this.month.set(date.slice(0,7));this.focused.set(date);this.pendingFocus.set(date);}
+ focusDate(date:string=this.current()??this.focused()):void{if(!civilDate(date)||this.blocked())return;this.month.set(date.slice(0,7));this.focused.set(date);this.pendingReveal.set(null);this.pendingFocus.set(date);}
  protected key(event:KeyboardEvent,date:string):void{
   if(this.blocked()||event.isComposing||event.keyCode===229)return;
   // A second key may arrive before Angular renders a changed month. Continue
@@ -63,6 +64,6 @@ export class Calendar extends ValueControl<string|null>{
   const weekday=(civilDate(date)!.getUTCDay()-this.weekStartsOn()+7)%7;const rtl=this.element.ownerDocument.defaultView?.getComputedStyle(this.element).direction==='rtl';
   const offset=event.key==='ArrowDown'?7:event.key==='ArrowUp'?-7:event.key==='ArrowRight'?(rtl?-1:1):event.key==='ArrowLeft'?(rtl?1:-1):event.key==='Home'?-weekday:event.key==='End'?6-weekday:null;
   let next:string|null=offset!==null?addCivilDays(date,offset):event.key==='PageUp'?shiftCivilMonth(date,event.shiftKey?-12:-1):event.key==='PageDown'?shiftCivilMonth(date,event.shiftKey?12:1):null;
-  if(next){event.preventDefault();this.month.set(next.slice(0,7));this.focused.set(next);this.pendingFocus.set(next);this.dayButtons().find(button=>button.nativeElement.dataset['date']===next)?.nativeElement.focus();this.monthChange.emit(next.slice(0,7));}
+  if(next){event.preventDefault();this.month.set(next.slice(0,7));this.focused.set(next);this.pendingReveal.set(null);this.pendingFocus.set(next);const button=this.dayButtons().find(button=>button.nativeElement.dataset['date']===next)?.nativeElement;if(button)this.revealDate(button);this.monthChange.emit(next.slice(0,7));}
  }
 }

@@ -10,7 +10,7 @@ import {SpecialistEditorControl} from './editor-control';
 import {type CodeLanguage,type CodeCompletion} from './editor-model';
 import {observeSpecialistScope} from './specialist-browser';
 import {specialistStyles} from './specialist-style';
-@Component({imports:[UiMessagePipe],selector:'ui-code-editor',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>CodeEditor),multi:true}],styles:specialistStyles,template:`<section [attr.aria-label]="uiEffective_label()"><p>{{uiEffective_label()}}</p><div #surface class="ui-code-surface" (focusout)="touched()"></div>@if(loading()){<p role="status">{{'エディターを準備しています。' | uiMessage}}</p>}@if(renderError()){<p class="ui-specialist-error" role="alert">{{renderError()}}</p>}<ng-content/></section>`})
+@Component({imports:[UiMessagePipe],selector:'ui-code-editor',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>CodeEditor),multi:true}],styles:specialistStyles,template:`<section [attr.aria-label]="uiEffective_label()"><p>{{uiEffective_label()}}</p><div #surface class="ui-code-surface" dir="ltr" (focusout)="touched()"></div>@if(loading()){<p role="status">{{'エディターを準備しています。' | uiMessage}}</p>}@if(renderError()){<p class="ui-specialist-error" role="alert">{{renderError()}}</p>}<ng-content/></section>`})
 export class CodeEditor extends SpecialistEditorControl {
  private readonly uiRuntimeText_CodeEditor=injectUiRuntimeText();
 

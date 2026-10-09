@@ -5,11 +5,11 @@ import {map} from 'rxjs';
 import {ActionControl,Calendar,CalendarDay,DatePicker,DateRangePicker,TimePicker,DateTimePicker,MonthPicker,YearPicker,FormLayout,type DateRange,type DateInputFormat} from '../../.ui/generated/angular/index';
 @Component({selector:'date-catalog',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,imports:[ReactiveFormsModule,ActionControl,Calendar,CalendarDay,DatePicker,DateRangePicker,TimePicker,DateTimePicker,MonthPicker,YearPicker,FormLayout],
  template:`<section aria-label="日付部品の検証"><h2>日付と期間を選ぶ</h2>
-  <label for="date-format">日付の入力書式</label><select id="date-format" class="ui-field-control" [value]="inputFormat()" (change)="changeFormat($event)"><option value="native">ブラウザ標準</option><option value="yyyy/MM/dd">yyyy/MM/dd</option><option value="dd/MM/yyyy">dd/MM/yyyy</option><option value="MM/dd/yyyy">MM/dd/yyyy</option></select>
+  <div class="catalog-setting"><label for="date-format">日付の入力書式</label><span class="ui-select-control fixture-select"><select id="date-format" class="ui-field-control" [value]="inputFormat()" (change)="changeFormat($event)"><option value="native">ブラウザ標準</option><option value="yyyy/MM/dd">yyyy/MM/dd</option><option value="dd/MM/yyyy">dd/MM/yyyy</option><option value="MM/dd/yyyy">MM/dd/yyyy</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
   <label><input type="checkbox" [checked]="monday()" (change)="monday.set(checked($event))">月曜から表示</label>
   <label><input type="checkbox" [checked]="marchInitial()" (change)="marchInitial.set(checked($event))">日付の初期表示を3月にする</label>
   <label><input type="checkbox" [checked]="offsetStep()" (change)="offsetStep.set(checked($event))">日時を9:10起点の15分間隔にする</label>
-  <button uiAction (click)="disable()">{{form.disabled?'日付入力を有効にする':'日付入力を無効にする'}}</button><button uiAction (click)="reset()">日付を初期化</button>
+  <div class="catalog-actions"><button uiAction (click)="disable()">{{form.disabled?'日付入力を有効にする':'日付入力を無効にする'}}</button><button uiAction (click)="reset()">日付を初期化</button></div>
   <form [formGroup]="form" uiFormLayout [columns]="2" novalidate>
    <ui-date-picker controlId="event-date" label="予定日" formControlName="date" [required]="true" min="2026-01-01" max="2026-12-31" [disabledDates]="['2026-10-03']" [weekStartsOn]="monday()?1:0" [initialMonth]="marchInitial()?'2026-03':'2026-10'" [inputFormat]="inputFormat()" [error]="error('date')" hint="10月3日は選択できません。" />
    <ui-time-picker controlId="event-time" label="開始時刻" formControlName="time" min="09:00" max="18:00" [stepSeconds]="900" [hourFormat]="12" [error]="error('time')" />

@@ -58,12 +58,11 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
 
         <div class="fixture-display-settings">
           <div class="fixture-control-label">
-            <label for="display-profile">表示設定</label>
-            <select id="display-profile" class="ui-field-control" [value]="profile()" (change)="changeProfile($event)">
+            <div class="catalog-setting"><label for="display-profile">表示設定</label><span class="ui-select-control fixture-select"><select id="display-profile" class="ui-field-control" [value]="profile()" (change)="changeProfile($event)">
               @for (option of displayProfiles; track option.id) {
                 <option [value]="option.id" [selected]="option.id === profile()">{{ option.label }}</option>
               }
-            </select>
+            </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
           </div>
           <p data-testid="profile-utility" class="bg-color-action text-color-on-action px-control-x py-control-y font-family-body text-size-body rounded-control">選んだ設定で編集を続けられます。</p>
         </div>
@@ -79,9 +78,9 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
               <p id="name-policy" class="fixture-secondary">保存すると、同じ申請の一覧表示も更新されます。</p>
 
               <ui-form-field controlId="application-category" label="申請区分">
-                <select uiFieldControl name="category" [value]="category()" (change)="changeCategory($event)">
+                <span class="ui-select-control fixture-select"><select class="ui-field-control" uiFieldControl name="category" [value]="category()" (change)="changeCategory($event)">
                   <option value="general">一般</option><option value="equipment">備品</option><option value="travel">旅費</option>
-                </select>
+                </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span>
               </ui-form-field>
 
               <ui-form-field controlId="application-notes" label="補足" hint="判断に必要な情報があれば記入してください。">
@@ -93,8 +92,8 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
               </ui-form-field>
 
               <div class="fixture-actions">
-                <button uiAction type="reset" [disabled]="saving() || unresolved()">入力を戻す</button>
-                <button uiAction variant="danger" [disabled]="saving() || unresolved() || !selectedApplication()" (click)="deleteApplication()">申請を削除</button>
+                <div class="catalog-actions"><button uiAction type="reset" [disabled]="saving() || unresolved()">入力を戻す</button>
+                <button uiAction variant="danger" [disabled]="saving() || unresolved() || !selectedApplication()" (click)="deleteApplication()">申請を削除</button></div>
               </div>
               <p class="fixture-secondary">削除は一覧に反映されます。「元に戻す」で同じデータを復元できます。</p>
             </form>
@@ -146,8 +145,8 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
           <h2 id="purge-title">精算済み申請の整理</h2>
           <p>対象: 出張旅費の精算</p>
           <div class="fixture-actions">
-            <button uiAction [disabled]="!hasPurgeTarget()" (click)="reviewPurge()">完全削除の影響を確認</button>
-            <button uiAction variant="danger" [disabled]="!purgeAcknowledged() || !hasPurgeTarget()" (click)="purgeApplication()">完全に削除</button>
+            <div class="catalog-actions"><button uiAction [disabled]="!hasPurgeTarget()" (click)="reviewPurge()">完全削除の影響を確認</button>
+            <button uiAction variant="danger" [disabled]="!purgeAcknowledged() || !hasPurgeTarget()" (click)="purgeApplication()">完全に削除</button></div>
           </div>
           <ui-action-feedback data-testid="purge-feedback" [state]="purgeFeedback()" />
         </section>
@@ -178,17 +177,15 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
           <p>この画面のデータはメモリ内だけに保存され、再読み込みで初期状態に戻ります。保存先への反映と画面への応答を分け、応答が届かない状態を再現できます。</p>
           <div class="fixture-control-grid">
             <div class="fixture-control-label">
-              <label for="save-outcome">保存結果</label>
-              <select id="save-outcome" [value]="saveOutcome()" (change)="changeOutcome($event)">
+              <div class="catalog-setting"><label for="save-outcome">保存結果</label><span class="ui-select-control fixture-select"><select class="ui-field-control" id="save-outcome" [value]="saveOutcome()" (change)="changeOutcome($event)">
                 <option value="success">成功</option><option value="error">失敗</option><option value="unknown">応答が届かない</option>
-              </select>
+              </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
             </div>
             <div class="fixture-control-label">
-              <label for="list-state">一覧の状態</label>
-              <select id="list-state" [value]="listState().kind" [disabled]="retrying()" (change)="changeRegion($event)">
+              <div class="catalog-setting"><label for="list-state">一覧の状態</label><span class="ui-select-control fixture-select"><select class="ui-field-control" id="list-state" [value]="listState().kind" [disabled]="retrying()" (change)="changeRegion($event)">
                 <option value="ready">正常</option><option value="loading">取得中</option><option value="empty">空</option>
                 <option value="error">取得失敗</option><option value="refreshing">更新中</option><option value="partial">一部欠損</option><option value="stale">更新失敗</option>
-              </select>
+              </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
             </div>
             <label class="fixture-checkbox-label" for="link-disabled">
               <input id="link-disabled" type="checkbox" [checked]="linksDisabled()" (change)="linksDisabled.set(checked($event))">詳細リンクを無効にする
