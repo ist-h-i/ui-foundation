@@ -1,0 +1,15 @@
+{
+  "candidate": "08d524e13975ba279ca9db9c39330a371eae527c",
+  "observedAt": "2026-10-10T00:11:44.683632+00:00",
+  "aggregateExitCode": null,
+  "status": "interrupted",
+  "reason": "The managed execution session disappeared; the runner and test workers were no longer alive. An owned webServer remained orphaned. No complete exit/result JSON was produced. The last log recorded 366 passed and 1 failed UI tests; 806 UI tests and the SVG phase were not executed. This is not an aggregate pass.",
+  "ui": {
+    "expected": 1173,
+    "passed": 366,
+    "failed": 1,
+    "notRun": 806
+  },
+  "failedTest": "Diagram dense: app-owned removal preserves external focus and blocked controls preserve the model",
+  "fix": "Wait for the add button to be enabled after each blocked state is unchecked; independent raw-trace review approved the one-line addition."
+}

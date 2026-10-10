@@ -29,7 +29,9 @@
 
 次の aggregate は設定70件・生成23件・モデル193件を通過し、UI の条件保存試験が1件失敗した。復元直後の描画前に旧値を baseline として読み取った原因を [trace と24回の実操作](condition-save-synchronization.md)で確認した。[独立同期レビュー](independent-condition-sync-review.md)を経て、既存 assertion を保持したまま復元完了確認を追加する。旧候補の未実行部分は合格に数えず、新しい完全な aggregate を実行する。
 
-`npm test` と `npm run test:verification` の最終結果をこの記録へ追記する。独立 UI レビューは、[source / runtime manifest](ui-review-candidate.json) に固定した active source 480件・runtime309件と専用 localhost server を対象に実施中。[対応確認](artifact-equivalence.json)のとおり、型検査の設定変更は固定 runtime に影響していない。完了後、正確な PR head の差分を別担当が再確認する。
+続く候補08d524eの実行は UI 366合格・1失敗の時点で実行セッションが消失した。806件は未実行であり、全体合格には数えない。Diagram の操作抑止解除が描画へ反映される前に Enter を送った試験同期不足を [raw trace と独立レビュー](diagram-removal-synchronization.md) で確認し、解除後の有効化確認を一行追加する。復旧したサーバーで対象を再検証し、変更後の候補で全1173件を含む完全な aggregate を実行する。
+
+`npm test` と `npm run test:verification` の最終結果をこの記録へ追記する。独立 UI レビューは、[source / runtime manifest](ui-review-candidate.json) に固定した active source 480件・runtime309件と専用 localhost server を対象に実施中。[対応確認](artifact-equivalence.json)のとおり、型検査の設定変更と試験準備の同期確認は固定 runtime に影響していない。完了後、正確な PR head の差分を別担当が再確認する。
 
 ## 範囲
 

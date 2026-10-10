@@ -1,0 +1,13 @@
+{
+  "purpose": "A copied isolated spec was attempted on the unchanged frozen review runtime before editing the checkout.",
+  "stats": {
+    "startTime": "2026-10-10T00:06:24.403Z",
+    "duration": 24785.173000000003,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 14,
+    "flaky": 0
+  },
+  "executedApplicationTests": 0,
+  "reason": "All 14 tests failed navigation with ERR_CONNECTION_REFUSED because the managed frozen-server session had disappeared. This was an infrastructure failure, not a successful revalidation or a demonstrated product defect. The identical server build was restarted before revalidation."
+}

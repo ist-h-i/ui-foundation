@@ -175,6 +175,7 @@ for(const profile of profiles)test(`Diagram ${profile}: app-owned removal preser
   await flow.getByRole('button',{name:'承認を削除',exact:true}).evaluate(element=>(element as HTMLButtonElement).click());
   await expect(flow.locator('tbody tr')).toHaveCount(2);await expect(flow.getByRole('list',{name:'接続',exact:true}).locator('li')).toHaveCount(1);
   await page.getByLabel(name,{exact:true}).uncheck();
+  await expect(flow.getByRole('button',{name:'ノードを追加',exact:true})).toBeEnabled();
  }
  await flow.getByRole('button',{name:'ノードを追加',exact:true}).press('Enter');await expect(flow.locator('tbody tr')).toHaveCount(3);
  const nodeRemove=flow.getByRole('button',{name:'新しいノードを削除',exact:true});

@@ -1,0 +1,617 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/ui/diagram-connection-geometry.spec.ts",
+      "--config=playwright.config.ts"
+    ],
+    "configFile": "/private/tmp/ui-foundation-pr-20261009/diagram-synchronization-check/playwright.config.ts",
+    "rootDir": "/private/tmp/ui-foundation-pr-20261009/diagram-synchronization-check/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/ui-foundation-pr-20261009/diagram-synchronization-check/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/ui-foundation-pr-20261009/diagram-synchronization-check/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "diagram-connection-geometry.spec.ts",
+      "file": "diagram-connection-geometry.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Diagram guided: bright action backgrounds keep a selected connection and its arrow visible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4629,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:15.827Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-fbf6091294a67c4cf820",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 8,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: bright action backgrounds keep a selected connection and its arrow visible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4860,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:15.836Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-544193dfe9564dfb0aef",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 8,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: connections follow actual node geometry across viewport, text, zoom, edits and recreation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:21.430Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "connection-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwib2JzZXJ2YXRpb25zIjpbeyJ3aWR0aCI6MTI4MCwidGV4dCI6MTAwLCJnZW9tZXRyeSI6eyJzdGFydCI6eyJ4IjoyNDgsInkiOjUxOS45NzY1NjI1fSwiZW5kIjp7IngiOjMzMiwieSI6NjAzLjk3NjU2MjV9LCJub2RlcyI6W3sieCI6NDgsInkiOjQ5Mi41NzgxMjUsIndpZHRoIjoyMDAsImhlaWdodCI6NTQuNzk2ODc1LCJ0b3AiOjQ5Mi41NzgxMjUsInJpZ2h0IjoyNDgsImJvdHRvbSI6NTQ3LjM3NSwibGVmdCI6NDh9LHsieCI6MzMyLCJ5Ijo1NzYuNTc4MTI1LCJ3aWR0aCI6MjAwLCJoZWlnaHQiOjU0Ljc5Njg3NSwidG9wIjo1NzYuNTc4MTI1LCJyaWdodCI6NTMyLCJib3R0b20iOjYzMS4zNzUsImxlZnQiOjMzMn1dLCJlcnJvcnMiOlswLDAsMCwwXX19LHsid2lkdGgiOjEyODAsInRleHQiOjIwMCwiZ2VvbWV0cnkiOnsic3RhcnQiOnsieCI6MjQ4LCJ5Ijo4MjUuNTQ2ODc1fSwiZW5kIjp7IngiOjMzMiwieSI6OTA5LjU0Njg3NX0sIm5vZGVzIjpbeyJ4Ijo0OCwieSI6NzgzLjc1LCJ3aWR0aCI6MjAwLCJoZWlnaHQiOjgzLjU5Mzc1LCJ0b3AiOjc4My43NSwicmlnaHQiOjI0OCwiYm90dG9tIjo4NjcuMzQzNzUsImxlZnQiOjQ4fSx7IngiOjMzMiwieSI6ODY3Ljc1LCJ3aWR0aCI6MjAwLCJoZWlnaHQiOjgzLjU5Mzc1LCJ0b3AiOjg2Ny43NSwicmlnaHQiOjUzMiwiYm90dG9tIjo5NTEuMzQzNzUsImxlZnQiOjMzMn1dLCJlcnJvcnMiOlswLDAsMCwwXX19LHsid2lkdGgiOjMyMCwidGV4dCI6MjAwLCJnZW9tZXRyeSI6eyJzdGFydCI6eyJ4IjoyNDgsInkiOjI2OTguNjA5Mzc1fSwiZW5kIjp7IngiOjMzMiwieSI6Mjc4Mi42MDkzNzV9LCJub2RlcyI6W3sieCI6NDgsInkiOjI2NTYuODEyNSwid2lkdGgiOjIwMCwiaGVpZ2h0Ijo4My41OTM3NSwidG9wIjoyNjU2LjgxMjUsInJpZ2h0IjoyNDgsImJvdHRvbSI6Mjc0MC40MDYyNSwibGVmdCI6NDh9LHsieCI6MzMyLCJ5IjoyNzQwLjgxMjUsIndpZHRoIjoyMDAsImhlaWdodCI6ODMuNTkzNzUsInRvcCI6Mjc0MC44MTI1LCJyaWdodCI6NTMyLCJib3R0b20iOjI4MjQuNDA2MjUsImxlZnQiOjMzMn1dLCJlcnJvcnMiOlswLDAsMCwwXX19XSwiZWRpdGVkIjp7InN0YXJ0Ijp7IngiOjE4OS4xMzk0MTk1NTU2NjQwNiwieSI6MjgwOS43NX0sImVuZCI6eyJ4IjoyNDMuMDAwOTQ2MDQ0OTIxODgsInkiOjIzOTMuODUzMDI3MzQzNzV9LCJub2RlcyI6W3sieCI6LTUwLjg1OTM3NSwieSI6MjM1MC42MDkzNzUsIndpZHRoIjoyNDAsImhlaWdodCI6OTE4LjI4MTI1LCJ0b3AiOjIzNTAuNjA5Mzc1LCJyaWdodCI6MTg5LjE0MDYyNSwiYm90dG9tIjozMjY4Ljg5MDYyNSwibGVmdCI6LTUwLjg1OTM3NX0seyJ4IjoyNDMsInkiOjIzNTAuNjA5Mzc1LCJ3aWR0aCI6MjQwLCJoZWlnaHQiOjg2LjQ4NDM3NSwidG9wIjoyMzUwLjYwOTM3NSwicmlnaHQiOjQ4MywiYm90dG9tIjoyNDM3LjA5Mzc1LCJsZWZ0IjoyNDN9XSwiZXJyb3JzIjpbMC4wMDEyMDU0NDQzMzU5Mzc1LDAsMC4wMDA5NDYwNDQ5MjE4NzUsMC4wMDE0NjQ4NDM3NV19fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-1d339d9e572f56a2f9b9",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 76,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: connections follow actual node geometry across viewport, text, zoom, edits and recreation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5874,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:21.628Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "connection-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJvYnNlcnZhdGlvbnMiOlt7IndpZHRoIjoxMjgwLCJ0ZXh0IjoxMDAsImdlb21ldHJ5Ijp7InN0YXJ0Ijp7IngiOjIyNCwieSI6MzU2Ljk2ODc1fSwiZW5kIjp7IngiOjMxNiwieSI6NDQwLjk2ODc1fSwibm9kZXMiOlt7IngiOjMyLCJ5IjozMzQuOTY4NzUsIndpZHRoIjoxOTIsImhlaWdodCI6NDQsInRvcCI6MzM0Ljk2ODc1LCJyaWdodCI6MjI0LCJib3R0b20iOjM3OC45Njg3NSwibGVmdCI6MzJ9LHsieCI6MzE2LCJ5Ijo0MTguOTY4NzUsIndpZHRoIjoxOTIsImhlaWdodCI6NDQsInRvcCI6NDE4Ljk2ODc1LCJyaWdodCI6NTA4LCJib3R0b20iOjQ2Mi45Njg3NSwibGVmdCI6MzE2fV0sImVycm9ycyI6WzAsMCwwLDBdfX0seyJ3aWR0aCI6MTI4MCwidGV4dCI6MjAwLCJnZW9tZXRyeSI6eyJzdGFydCI6eyJ4IjoyMjQsInkiOjYwNS4xMjV9LCJlbmQiOnsieCI6MzE2LCJ5Ijo2ODkuMTI1fSwibm9kZXMiOlt7IngiOjMyLCJ5Ijo1NzAuNTMxMjUsIndpZHRoIjoxOTIsImhlaWdodCI6NjkuMTg3NSwidG9wIjo1NzAuNTMxMjUsInJpZ2h0IjoyMjQsImJvdHRvbSI6NjM5LjcxODc1LCJsZWZ0IjozMn0seyJ4IjozMTYsInkiOjY1NC41MzEyNSwid2lkdGgiOjE5MiwiaGVpZ2h0Ijo2OS4xODc1LCJ0b3AiOjY1NC41MzEyNSwicmlnaHQiOjUwOCwiYm90dG9tIjo3MjMuNzE4NzUsImxlZnQiOjMxNn1dLCJlcnJvcnMiOlswLDAsMCwwXX19LHsid2lkdGgiOjMyMCwidGV4dCI6MjAwLCJnZW9tZXRyeSI6eyJzdGFydCI6eyJ4IjoyMjQsInkiOjE3NTQuOTUzMTI1fSwiZW5kIjp7IngiOjMxNiwieSI6MTgzOC45NTMxMjV9LCJub2RlcyI6W3sieCI6MzIsInkiOjE3MjAuMzU5Mzc1LCJ3aWR0aCI6MTkyLCJoZWlnaHQiOjY5LjE4NzUsInRvcCI6MTcyMC4zNTkzNzUsInJpZ2h0IjoyMjQsImJvdHRvbSI6MTc4OS41NDY4NzUsImxlZnQiOjMyfSx7IngiOjMxNiwieSI6MTgwNC4zNTkzNzUsIndpZHRoIjoxOTIsImhlaWdodCI6NjkuMTg3NSwidG9wIjoxODA0LjM1OTM3NSwicmlnaHQiOjUwOCwiYm90dG9tIjoxODczLjU0Njg3NSwibGVmdCI6MzE2fV0sImVycm9ycyI6WzAsMCwwLDBdfX1dLCJlZGl0ZWQiOnsic3RhcnQiOnsieCI6NDAuMzU5Mzc4ODE0Njk3MjY2LCJ5Ijo0MjI2LjQ5MjE4NzV9LCJlbmQiOnsieCI6NzQuOTk5Nzg2Mzc2OTUzMTIsInkiOjM2NTAuNTU4MTA1NDY4NzV9LCJub2RlcyI6W3sieCI6LTIwOS42NDA2MjUsInkiOjM1OTguMzEyNSwid2lkdGgiOjI1MCwiaGVpZ2h0IjoxMjU2LjM2NzE4NzUsInRvcCI6MzU5OC4zMTI1LCJyaWdodCI6NDAuMzU5Mzc1LCJib3R0b20iOjQ4NTQuNjc5Njg3NSwibGVmdCI6LTIwOS42NDA2MjV9LHsieCI6NzUsInkiOjM1OTguMzEyNSwid2lkdGgiOjI1MCwiaGVpZ2h0IjoxMDQuNDkyMTg3NSwidG9wIjozNTk4LjMxMjUsInJpZ2h0IjozMjUsImJvdHRvbSI6MzcwMi44MDQ2ODc1LCJsZWZ0Ijo3NX1dLCJlcnJvcnMiOlswLjAwMDAwMzgxNDY5NzI2NTYyNSwwLjAwMzkwNjI1LDAuMDAwMjEzNjIzMDQ2ODc1LDAuMDAwNDg4MjgxMjVdfX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-82e7e98059606dd87ecc",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 76,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: automatic placement reserves readable connection labels beside long nodes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:27.067Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "connection-label-clearance",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwib2JzZXJ2YXRpb25zIjpbeyJ3aWR0aCI6MTI4MCwiZGlyZWN0aW9uIjoibHRyIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjMxMiwieSI6NjU1LjQ0NzE0MzU1NDY4NzUsIndpZHRoIjo3My44NTkzNzUsImhlaWdodCI6NDcsInRvcCI6NjU1LjQ0NzE0MzU1NDY4NzUsInJpZ2h0IjozODUuODU5Mzc1LCJib3R0b20iOjcwMi40NDcxNDM1NTQ2ODc1LCJsZWZ0IjozMTJ9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0Ijo0N31dfV0sImNhbnZhcyI6eyJ4IjozMiwieSI6MTc5Ljc1LCJ3aWR0aCI6NjMzLjg1OTM3NSwiaGVpZ2h0IjoxODYyLjI5Njg3NSwidG9wIjoxNzkuNzUsInJpZ2h0Ijo2NjUuODU5Mzc1LCJib3R0b20iOjIwNDIuMDQ2ODc1LCJsZWZ0IjozMn0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MTI4MCwiZGlyZWN0aW9uIjoicnRsIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjgyMy4zNzUsInkiOjEyOTUuNzg5Nzk0OTIxODc1LCJ3aWR0aCI6ODguNjI1LCJoZWlnaHQiOjU2LCJ0b3AiOjEyOTUuNzg5Nzk0OTIxODc1LCJyaWdodCI6OTEyLCJib3R0b20iOjEzNTEuNzg5Nzk0OTIxODc1LCJsZWZ0Ijo4MjMuMzc1fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6NTZ9XX1dLCJjYW52YXMiOnsieCI6NDg3LjM3NSwieSI6NzI0Ljc1LCJ3aWR0aCI6NzYwLjYyNSwiaGVpZ2h0IjoyMjM0Ljc2NTYyNSwidG9wIjo3MjQuNzUsInJpZ2h0IjoxMjQ4LCJib3R0b20iOjI5NTkuNTE1NjI1LCJsZWZ0Ijo0ODcuMzc1fSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjozMjAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4Ijo0MjQsInkiOjk3NS42ODkzMzEwNTQ2ODc1LCJ3aWR0aCI6MTAzLjQwNjI1LCJoZWlnaHQiOjY2LCJ0b3AiOjk3NS42ODkzMzEwNTQ2ODc1LCJyaWdodCI6NTI3LjQwNjI1LCJib3R0b20iOjEwNDEuNjg5MzMxMDU0Njg3NSwibGVmdCI6NDI0fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6NjZ9XX1dLCJjYW52YXMiOnsieCI6MzIsInkiOjMwOS44MTI1LCJ3aWR0aCI6ODg3LjQwNjI1LCJoZWlnaHQiOjI2MDcuMjE4NzUsInRvcCI6MzA5LjgxMjUsInJpZ2h0Ijo5MTkuNDA2MjUsImJvdHRvbSI6MjkxNy4wMzEyNSwibGVmdCI6MzJ9LCJvdmVybGFwQXJlYSI6MH19LHsid2lkdGgiOjMyMCwiZGlyZWN0aW9uIjoicnRsIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOi0yNzguMTcxODEzOTY0ODQzNzUsInkiOjEwNzEuMDMxOTgyNDIxODc1LCJ3aWR0aCI6MTE4LjE3MTg3NSwiaGVpZ2h0Ijo3NSwidG9wIjoxMDcxLjAzMTk4MjQyMTg3NSwicmlnaHQiOi0xNTkuOTk5OTM4OTY0ODQzNzUsImJvdHRvbSI6MTE0Ni4wMzE5ODI0MjE4NzUsImxlZnQiOi0yNzguMTcxODEzOTY0ODQzNzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0Ijo3NX1dfV0sImNhbnZhcyI6eyJ4IjotNzI2LjE3MTg3NSwieSI6MzA5LjgxMjUsIndpZHRoIjoxMDE0LjE3MTg3NSwiaGVpZ2h0IjoyOTc5LjY4NzUsInRvcCI6MzA5LjgxMjUsInJpZ2h0IjoyODgsImJvdHRvbSI6MzI4OS41LCJsZWZ0IjotNzI2LjE3MTg3NX0sIm92ZXJsYXBBcmVhIjowfX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-b68266e401264910fa47",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 100,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: automatic placement reserves readable connection labels beside long nodes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5929,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:27.530Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "connection-label-clearance",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJvYnNlcnZhdGlvbnMiOlt7IndpZHRoIjoxMjgwLCJkaXJlY3Rpb24iOiJsdHIiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6Mjc2LCJ5Ijo1OTcuMTk5MjE4NzUsIndpZHRoIjo2NC42NDA2MjUsImhlaWdodCI6NDEsInRvcCI6NTk3LjE5OTIxODc1LCJyaWdodCI6MzQwLjY0MDYyNSwiYm90dG9tIjo2MzguMTk5MjE4NzUsImxlZnQiOjI3Nn0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjowfSx7IndpZHRoIjowLCJoZWlnaHQiOjQxfV19XSwiY2FudmFzIjp7IngiOjE2LCJ5IjoyNjAuNTMxMjUsIndpZHRoIjo1ODQuNjQwNjI1LCJoZWlnaHQiOjEzMjIuMTg3NSwidG9wIjoyNjAuNTMxMjUsInJpZ2h0Ijo2MDAuNjQwNjI1LCJib3R0b20iOjE1ODIuNzE4NzUsImxlZnQiOjE2fSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjoxMjgwLCJkaXJlY3Rpb24iOiJydGwiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6ODc0LjQ1MzEyNSwieSI6OTU4LjEzMzMwMDc4MTI1LCJ3aWR0aCI6NzcuNTQ2ODc1LCJoZWlnaHQiOjUwLCJ0b3AiOjk1OC4xMzMzMDA3ODEyNSwicmlnaHQiOjk1MiwiYm90dG9tIjoxMDA4LjEzMzMwMDc4MTI1LCJsZWZ0Ijo4NzQuNDUzMTI1fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6NTB9XX1dLCJjYW52YXMiOnsieCI6NTYyLjQ1MzEyNSwieSI6NTU0LjUzMTI1LCJ3aWR0aCI6NzAxLjU0Njg3NSwiaGVpZ2h0IjoxNTg2LjYyNSwidG9wIjo1NTQuNTMxMjUsInJpZ2h0IjoxMjY0LCJib3R0b20iOjIxNDEuMTU2MjUsImxlZnQiOjU2Mi40NTMxMjV9LCJvdmVybGFwQXJlYSI6MH19LHsid2lkdGgiOjMyMCwiZGlyZWN0aW9uIjoibHRyIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjM4MCwieSI6MTEwMC4wODIxNTMzMjAzMTI1LCJ3aWR0aCI6OTAuNDg0Mzc1LCJoZWlnaHQiOjU3LjAwMDEyMjA3MDMxMjUsInRvcCI6MTEwMC4wODIxNTMzMjAzMTI1LCJyaWdodCI6NDcwLjQ4NDM3NSwiYm90dG9tIjoxMTU3LjA4MjI3NTM5MDYyNSwibGVmdCI6MzgwfSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6NTcuMDAwMTIyMDcwMzEyNX1dfV0sImNhbnZhcyI6eyJ4IjoxNiwieSI6NjI4LjU0Njg3NSwid2lkdGgiOjgxOC40ODQzNzUsImhlaWdodCI6MTg1MS4wNjI1LCJ0b3AiOjYyOC41NDY4NzUsInJpZ2h0Ijo4MzQuNDg0Mzc1LCJib3R0b20iOjI0NzkuNjA5Mzc1LCJsZWZ0IjoxNn0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJkaXJlY3Rpb24iOiJydGwiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6LTIxNS40MDYzMTEwMzUxNTYyNSwieSI6MTA1OC44Mjg0OTEyMTA5Mzc1LCJ3aWR0aCI6MTAzLjQwNjI1LCJoZWlnaHQiOjY2LCJ0b3AiOjEwNTguODI4NDkxMjEwOTM3NSwicmlnaHQiOi0xMTIuMDAwMDYxMDM1MTU2MjUsImJvdHRvbSI6MTEyNC44Mjg0OTEyMTA5Mzc1LCJsZWZ0IjotMjE1LjQwNjMxMTAzNTE1NjI1fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6NjZ9XX1dLCJjYW52YXMiOnsieCI6LTYzMS40MDYyNSwieSI6NTIwLjM1OTM3NSwid2lkdGgiOjkzNS40MDYyNSwiaGVpZ2h0IjoyMTE1LjUsInRvcCI6NTIwLjM1OTM3NSwicmlnaHQiOjMwNCwiYm90dG9tIjoyNjM1Ljg1OTM3NSwibGVmdCI6LTYzMS40MDYyNX0sIm92ZXJsYXBBcmVhIjowfX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-4da6a3fc100fa8efd181",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 100,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: manual captions retain full text and connection geometry across text size and direction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5719,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:32.638Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "manual-caption-readability",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwib2JzZXJ2YXRpb25zIjpbeyJ3aWR0aCI6MTI4MCwidGV4dCI6MTAwLCJkaXJlY3Rpb24iOiJsdHIiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6MzM2LjAzMTI1LCJ5Ijo1NzEuODI2MTcxODc1LCJ3aWR0aCI6MzYuOTM3NSwiaGVpZ2h0IjoyMywidG9wIjo1NzEuODI2MTcxODc1LCJyaWdodCI6MzcyLjk2ODc1LCJib3R0b20iOjU5NC44MjYxNzE4NzUsImxlZnQiOjMzNi4wMzEyNX0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjowfSx7IndpZHRoIjowLCJoZWlnaHQiOjB9XX1dLCJjYW52YXMiOnsieCI6MzIsInkiOjQ3Ni41NzgxMjUsIndpZHRoIjo2NDAsImhlaWdodCI6MjIwLCJ0b3AiOjQ3Ni41NzgxMjUsInJpZ2h0Ijo2NzIsImJvdHRvbSI6Njk2LjU3ODEyNSwibGVmdCI6MzJ9LCJvdmVybGFwQXJlYSI6MH19LHsid2lkdGgiOjEyODAsInRleHQiOjEwMCwiZGlyZWN0aW9uIjoicnRsIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjkxMi4wMzEyNSwieSI6NTcxLjgyNjE3MTg3NSwid2lkdGgiOjM2LjkzNzUsImhlaWdodCI6MjMsInRvcCI6NTcxLjgyNjE3MTg3NSwicmlnaHQiOjk0OC45Njg3NSwiYm90dG9tIjo1OTQuODI2MTcxODc1LCJsZWZ0Ijo5MTIuMDMxMjV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjowfV19XSwiY2FudmFzIjp7IngiOjYwOCwieSI6NDc2LjU3ODEyNSwid2lkdGgiOjY0MCwiaGVpZ2h0IjoyMjAsInRvcCI6NDc2LjU3ODEyNSwicmlnaHQiOjEyNDgsImJvdHRvbSI6Njk2LjU3ODEyNSwibGVmdCI6NjA4fSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjoxMjgwLCJ0ZXh0IjoyMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjozMTcuNTcwMjIwOTQ3MjY1NiwieSI6ODUyLjk5MjEyNjQ2NDg0MzgsIndpZHRoIjo3My44NTk0MDU1MTc1NzgxMiwiaGVpZ2h0Ijo0NywidG9wIjo4NTIuOTkyMTI2NDY0ODQzOCwicmlnaHQiOjM5MS40Mjk2MjY0NjQ4NDM3NSwiYm90dG9tIjo4OTkuOTkyMTI2NDY0ODQzOCwibGVmdCI6MzE3LjU3MDIyMDk0NzI2NTZ9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MjMuMjUwMDYxMDM1MTU2MjV9LHsid2lkdGgiOjAsImhlaWdodCI6MjMuMjQyMTI2NDY0ODQzNzV9XX1dLCJjYW52YXMiOnsieCI6MzIsInkiOjc1MS43NSwid2lkdGgiOjY0MCwiaGVpZ2h0IjoyNDQuNDg0Mzc1LCJ0b3AiOjc1MS43NSwicmlnaHQiOjY3MiwiYm90dG9tIjo5OTYuMjM0Mzc1LCJsZWZ0IjozMn0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MTI4MCwidGV4dCI6MjAwLCJkaXJlY3Rpb24iOiJydGwiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6ODkzLjU3MDE5MDQyOTY4NzUsInkiOjg1Mi45OTIxMjY0NjQ4NDM4LCJ3aWR0aCI6NzMuODU5NDM2MDM1MTU2MjUsImhlaWdodCI6NDcsInRvcCI6ODUyLjk5MjEyNjQ2NDg0MzgsInJpZ2h0Ijo5NjcuNDI5NjI2NDY0ODQzOCwiYm90dG9tIjo4OTkuOTkyMTI2NDY0ODQzOCwibGVmdCI6ODkzLjU3MDE5MDQyOTY4NzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MjMuMjUwMDYxMDM1MTU2MjV9LHsid2lkdGgiOjAsImhlaWdodCI6MjMuMjQyMTI2NDY0ODQzNzV9XX1dLCJjYW52YXMiOnsieCI6NjA4LCJ5Ijo3NTEuNzUsIndpZHRoIjo2NDAsImhlaWdodCI6MjQ0LjQ4NDM3NSwidG9wIjo3NTEuNzUsInJpZ2h0IjoxMjQ4LCJib3R0b20iOjk5Ni4yMzQzNzUsImxlZnQiOjYwOH0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoxMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxNDEuMDMxMjUsInkiOjQzOC41OTE3OTY4NzUsIndpZHRoIjozNi45Mzc1LCJoZWlnaHQiOjIzLCJ0b3AiOjQzOC41OTE3OTY4NzUsInJpZ2h0IjoxNzcuOTY4NzUsImJvdHRvbSI6NDYxLjU5MTc5Njg3NSwibGVmdCI6MTQxLjAzMTI1fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6MH1dfV0sImNhbnZhcyI6eyJ4IjotMTYzLCJ5IjozNDMuMzQzNzUsIndpZHRoIjo2NDAsImhlaWdodCI6MjIwLCJ0b3AiOjM0My4zNDM3NSwicmlnaHQiOjQ3NywiYm90dG9tIjo1NjMuMzQzNzUsImxlZnQiOi0xNjN9LCJvdmVybGFwQXJlYSI6MH19LHsid2lkdGgiOjMyMCwidGV4dCI6MTAwLCJkaXJlY3Rpb24iOiJydGwiLCJnZW9tZXRyeSI6eyJsYWJlbHMiOlt7InRleHQiOiLnorroqo0iLCJib3giOnsieCI6MTQxLjAzMTI1LCJ5Ijo0MzguNTkxNzk2ODc1LCJ3aWR0aCI6MzYuOTM3NSwiaGVpZ2h0IjoyMywidG9wIjo0MzguNTkxNzk2ODc1LCJyaWdodCI6MTc3Ljk2ODc1LCJib3R0b20iOjQ2MS41OTE3OTY4NzUsImxlZnQiOjE0MS4wMzEyNX0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjowfSx7IndpZHRoIjowLCJoZWlnaHQiOjB9XX1dLCJjYW52YXMiOnsieCI6LTE2MywieSI6MzQzLjM0Mzc1LCJ3aWR0aCI6NjQwLCJoZWlnaHQiOjIyMCwidG9wIjozNDMuMzQzNzUsInJpZ2h0Ijo0NzcsImJvdHRvbSI6NTYzLjM0Mzc1LCJsZWZ0IjotMTYzfSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjozMjAsInRleHQiOjIwMCwiZGlyZWN0aW9uIjoibHRyIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjEyMi41NzAyMjA5NDcyNjU2MiwieSI6NDI2LjA1NDYyNjQ2NDg0Mzc1LCJ3aWR0aCI6NzMuODU5NDA1NTE3NTc4MTIsImhlaWdodCI6NDcsInRvcCI6NDI2LjA1NDYyNjQ2NDg0Mzc1LCJyaWdodCI6MTk2LjQyOTYyNjQ2NDg0Mzc1LCJib3R0b20iOjQ3My4wNTQ2MjY0NjQ4NDM3NSwibGVmdCI6MTIyLjU3MDIyMDk0NzI2NTYyfSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjIzLjI1MDA2MTAzNTE1NjI1fSx7IndpZHRoIjowLCJoZWlnaHQiOjIzLjI0MjEyNjQ2NDg0Mzc1fV19XSwiY2FudmFzIjp7IngiOi0xNjMsInkiOjMyNC44MTI1LCJ3aWR0aCI6NjQwLCJoZWlnaHQiOjI0NC40ODQzNzUsInRvcCI6MzI0LjgxMjUsInJpZ2h0Ijo0NzcsImJvdHRvbSI6NTY5LjI5Njg3NSwibGVmdCI6LTE2M30sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoyMDAsImRpcmVjdGlvbiI6InJ0bCIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxMjIuNTcwMjIwOTQ3MjY1NjIsInkiOjQyNi4wNTQ2MjY0NjQ4NDM3NSwid2lkdGgiOjczLjg1OTQwNTUxNzU3ODEyLCJoZWlnaHQiOjQ3LCJ0b3AiOjQyNi4wNTQ2MjY0NjQ4NDM3NSwicmlnaHQiOjE5Ni40Mjk2MjY0NjQ4NDM3NSwiYm90dG9tIjo0NzMuMDU0NjI2NDY0ODQzNzUsImxlZnQiOjEyMi41NzAyMjA5NDcyNjU2Mn0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjoyMy4yNTAwNjEwMzUxNTYyNX0seyJ3aWR0aCI6MCwiaGVpZ2h0IjoyMy4yNDIxMjY0NjQ4NDM3NX1dfV0sImNhbnZhcyI6eyJ4IjotMTYzLCJ5IjozMjQuODEyNSwid2lkdGgiOjY0MCwiaGVpZ2h0IjoyNDQuNDg0Mzc1LCJ0b3AiOjMyNC44MTI1LCJyaWdodCI6NDc3LCJib3R0b20iOjU2OS4yOTY4NzUsImxlZnQiOi0xNjN9LCJvdmVybGFwQXJlYSI6MH19LHsibG9uZ1RhcmdldCI6dHJ1ZSwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjEyMi41NzAzMTI1LCJ5Ijo1MjcuMDA5OTQ4NzMwNDY4OCwid2lkdGgiOjczLjg1OTM3NSwiaGVpZ2h0Ijo0NywidG9wIjo1MjcuMDA5OTQ4NzMwNDY4OCwicmlnaHQiOjE5Ni40Mjk2ODc1LCJib3R0b20iOjU3NC4wMDk5NDg3MzA0Njg4LCJsZWZ0IjoxMjIuNTcwMzEyNX0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjowfSx7IndpZHRoIjowLCJoZWlnaHQiOjQ3fV19XSwiY2FudmFzIjp7IngiOi0xNjMsInkiOi02LjE4NzUsIndpZHRoIjo2NDAsImhlaWdodCI6MTk3Mi4yOTY4NzUsInRvcCI6LTYuMTg3NSwicmlnaHQiOjQ3NywiYm90dG9tIjoxOTY2LjEwOTM3NSwibGVmdCI6LTE2M30sIm92ZXJsYXBBcmVhIjowfX0seyJzaG93bkFmdGVyU2NvcGVDaGFuZ2UiOnRydWUsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4Ijo2Ny4zMzU5Mzc1LCJ5Ijo4NzguNTExNzE4NzUsIndpZHRoIjozMi4zMjgxMjUsImhlaWdodCI6MjEsInRvcCI6ODc4LjUxMTcxODc1LCJyaWdodCI6OTkuNjY0MDYyNSwiYm90dG9tIjo4OTkuNTExNzE4NzUsImxlZnQiOjY3LjMzNTkzNzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjoyMX1dfV0sImNhbnZhcyI6eyJ4IjotMjM0LCJ5Ijo3MTcuMTU2MjUsIndpZHRoIjo2MjUsImhlaWdodCI6NDc3LjQyMTg3NSwidG9wIjo3MTcuMTU2MjUsInJpZ2h0IjozOTEsImJvdHRvbSI6MTE5NC41NzgxMjUsImxlZnQiOi0yMzR9LCJvdmVybGFwQXJlYSI6MH19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-a35509703d870910fe86",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 126,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: manual captions retain full text and connection geometry across text size and direction",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5524,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:33.488Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "manual-caption-readability",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJvYnNlcnZhdGlvbnMiOlt7IndpZHRoIjoxMjgwLCJ0ZXh0IjoxMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjozMTcuMzM1OTM3NSwieSI6NDA4LjQ2ODc1LCJ3aWR0aCI6MzIuMzI4MTI1LCJoZWlnaHQiOjIxLCJ0b3AiOjQwOC40Njg3NSwicmlnaHQiOjM0OS42NjQwNjI1LCJib3R0b20iOjQyOS40Njg3NSwibGVmdCI6MzE3LjMzNTkzNzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjowfV19XSwiY2FudmFzIjp7IngiOjE2LCJ5IjozMTguOTY4NzUsIndpZHRoIjo2MjUsImhlaWdodCI6MjIwLCJ0b3AiOjMxOC45Njg3NSwicmlnaHQiOjY0MSwiYm90dG9tIjo1MzguOTY4NzUsImxlZnQiOjE2fSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjoxMjgwLCJ0ZXh0IjoxMDAsImRpcmVjdGlvbiI6InJ0bCIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4Ijo5NDAuMzM1OTM3NSwieSI6NDA4LjQ2ODc1LCJ3aWR0aCI6MzIuMzI4MTI1LCJoZWlnaHQiOjIxLCJ0b3AiOjQwOC40Njg3NSwicmlnaHQiOjk3Mi42NjQwNjI1LCJib3R0b20iOjQyOS40Njg3NSwibGVmdCI6OTQwLjMzNTkzNzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjowfV19XSwiY2FudmFzIjp7IngiOjYzOSwieSI6MzE4Ljk2ODc1LCJ3aWR0aCI6NjI1LCJoZWlnaHQiOjIyMCwidG9wIjozMTguOTY4NzUsInJpZ2h0IjoxMjY0LCJib3R0b20iOjUzOC45Njg3NSwibGVmdCI6NjM5fSwib3ZlcmxhcEFyZWEiOjB9fSx7IndpZHRoIjoxMjgwLCJ0ZXh0IjoyMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjozMDEuMTc5NjU2OTgyNDIxOSwieSI6NjQ5Ljc3MzQzNzUsIndpZHRoIjo2NC42NDA2MjUsImhlaWdodCI6NDEsInRvcCI6NjQ5Ljc3MzQzNzUsInJpZ2h0IjozNjUuODIwMjgxOTgyNDIxOSwiYm90dG9tIjo2OTAuNzczNDM3NSwibGVmdCI6MzAxLjE3OTY1Njk4MjQyMTl9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MTEuMjQyMTg3NX0seyJ3aWR0aCI6MCwiaGVpZ2h0IjoxMS4yNDIxODc1fV19XSwiY2FudmFzIjp7IngiOjE2LCJ5Ijo1NTQuNTMxMjUsIndpZHRoIjo2MjUsImhlaWdodCI6MjIxLjQ4NDM3NSwidG9wIjo1NTQuNTMxMjUsInJpZ2h0Ijo2NDEsImJvdHRvbSI6Nzc2LjAxNTYyNSwibGVmdCI6MTZ9LCJvdmVybGFwQXJlYSI6MH19LHsid2lkdGgiOjEyODAsInRleHQiOjIwMCwiZGlyZWN0aW9uIjoicnRsIiwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjkyNC4xNzk2ODc1LCJ5Ijo2NDkuNzczNDM3NSwid2lkdGgiOjY0LjY0MDYyNSwiaGVpZ2h0Ijo0MSwidG9wIjo2NDkuNzczNDM3NSwicmlnaHQiOjk4OC44MjAzMTI1LCJib3R0b20iOjY5MC43NzM0Mzc1LCJsZWZ0Ijo5MjQuMTc5Njg3NX0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjoxMS4yNDIxODc1fSx7IndpZHRoIjowLCJoZWlnaHQiOjExLjI0MjE4NzV9XX1dLCJjYW52YXMiOnsieCI6NjM5LCJ5Ijo1NTQuNTMxMjUsIndpZHRoIjo2MjUsImhlaWdodCI6MjIxLjQ4NDM3NSwidG9wIjo1NTQuNTMxMjUsInJpZ2h0IjoxMjY0LCJib3R0b20iOjc3Ni4wMTU2MjUsImxlZnQiOjYzOX0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoxMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxNDMuMzM1OTY4MDE3NTc4MTIsInkiOjgxMy42NTYyNSwid2lkdGgiOjMyLjMyODEyNSwiaGVpZ2h0IjoyMSwidG9wIjo4MTMuNjU2MjUsInJpZ2h0IjoxNzUuNjY0MDkzMDE3NTc4MTIsImJvdHRvbSI6ODM0LjY1NjI1LCJsZWZ0IjoxNDMuMzM1OTY4MDE3NTc4MTJ9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjowfV19XSwiY2FudmFzIjp7IngiOi0xNTgsInkiOjcyNC4xNTYyNSwid2lkdGgiOjYyNSwiaGVpZ2h0IjoyMjAsInRvcCI6NzI0LjE1NjI1LCJyaWdodCI6NDY3LCJib3R0b20iOjk0NC4xNTYyNSwibGVmdCI6LTE1OH0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoxMDAsImRpcmVjdGlvbiI6InJ0bCIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxNDMuMzM1OTY4MDE3NTc4MTIsInkiOjgxMy42NTYyNSwid2lkdGgiOjMyLjMyODEyNSwiaGVpZ2h0IjoyMSwidG9wIjo4MTMuNjU2MjUsInJpZ2h0IjoxNzUuNjY0MDkzMDE3NTc4MTIsImJvdHRvbSI6ODM0LjY1NjI1LCJsZWZ0IjoxNDMuMzM1OTY4MDE3NTc4MTJ9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0IjowfV19XSwiY2FudmFzIjp7IngiOi0xNTgsInkiOjcyNC4xNTYyNSwid2lkdGgiOjYyNSwiaGVpZ2h0IjoyMjAsInRvcCI6NzI0LjE1NjI1LCJyaWdodCI6NDY3LCJib3R0b20iOjk0NC4xNTYyNSwibGVmdCI6LTE1OH0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoyMDAsImRpcmVjdGlvbiI6Imx0ciIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoyMzkuMTc5NjU2OTgyNDIxODgsInkiOjQyOS43ODkwNjI1LCJ3aWR0aCI6NjQuNjQwNjI1LCJoZWlnaHQiOjQxLCJ0b3AiOjQyOS43ODkwNjI1LCJyaWdodCI6MzAzLjgyMDI4MTk4MjQyMTksImJvdHRvbSI6NDcwLjc4OTA2MjUsImxlZnQiOjIzOS4xNzk2NTY5ODI0MjE4OH0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjoxMS4yNDIxODc1fSx7IndpZHRoIjowLCJoZWlnaHQiOjExLjI0MjE4NzV9XX1dLCJjYW52YXMiOnsieCI6LTQ2LCJ5IjozMzQuNTQ2ODc1LCJ3aWR0aCI6NjI1LCJoZWlnaHQiOjIyMS40ODQzNzUsInRvcCI6MzM0LjU0Njg3NSwicmlnaHQiOjU3OSwiYm90dG9tIjo1NTYuMDMxMjUsImxlZnQiOi00Nn0sIm92ZXJsYXBBcmVhIjowfX0seyJ3aWR0aCI6MzIwLCJ0ZXh0IjoyMDAsImRpcmVjdGlvbiI6InJ0bCIsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxNi4xNzk2NTY5ODI0MjE4NzUsInkiOjQyOS43ODkwNjI1LCJ3aWR0aCI6NjQuNjQwNjI1LCJoZWlnaHQiOjQxLCJ0b3AiOjQyOS43ODkwNjI1LCJyaWdodCI6ODAuODIwMjgxOTgyNDIxODgsImJvdHRvbSI6NDcwLjc4OTA2MjUsImxlZnQiOjE2LjE3OTY1Njk4MjQyMTg3NX0sIm92ZXJsYXBzIjpbeyJ3aWR0aCI6MCwiaGVpZ2h0IjoxMS4yNDIxODc1fSx7IndpZHRoIjowLCJoZWlnaHQiOjExLjI0MjE4NzV9XX1dLCJjYW52YXMiOnsieCI6LTI2OSwieSI6MzM0LjU0Njg3NSwid2lkdGgiOjYyNSwiaGVpZ2h0IjoyMjEuNDg0Mzc1LCJ0b3AiOjMzNC41NDY4NzUsInJpZ2h0IjozNTYsImJvdHRvbSI6NTU2LjAzMTI1LCJsZWZ0IjotMjY5fSwib3ZlcmxhcEFyZWEiOjB9fSx7ImxvbmdUYXJnZXQiOnRydWUsImdlb21ldHJ5Ijp7ImxhYmVscyI6W3sidGV4dCI6IueiuuiqjSIsImJveCI6eyJ4IjoxNi4xNzk2NTY5ODI0MjE4NzUsInkiOjczMy43MTQ5MDQ3ODUxNTYyLCJ3aWR0aCI6NjQuNjQwNjI1LCJoZWlnaHQiOjQwLjk5OTkzODk2NDg0Mzc1LCJ0b3AiOjczMy43MTQ5MDQ3ODUxNTYyLCJyaWdodCI6ODAuODIwMjgxOTgyNDIxODgsImJvdHRvbSI6Nzc0LjcxNDg0Mzc1LCJsZWZ0IjoxNi4xNzk2NTY5ODI0MjE4NzV9LCJvdmVybGFwcyI6W3sid2lkdGgiOjAsImhlaWdodCI6MH0seyJ3aWR0aCI6MCwiaGVpZ2h0Ijo0MC45OTk5Mzg5NjQ4NDM3NX1dfV0sImNhbnZhcyI6eyJ4IjotMjY5LCJ5IjozMzQuNTQ2ODc1LCJ3aWR0aCI6NjI1LCJoZWlnaHQiOjE0MzcuMTg3NSwidG9wIjozMzQuNTQ2ODc1LCJyaWdodCI6MzU2LCJib3R0b20iOjE3NzEuNzM0Mzc1LCJsZWZ0IjotMjY5fSwib3ZlcmxhcEFyZWEiOjB9fSx7InNob3duQWZ0ZXJTY29wZUNoYW5nZSI6dHJ1ZSwiZ2VvbWV0cnkiOnsibGFiZWxzIjpbeyJ0ZXh0Ijoi56K66KqNIiwiYm94Ijp7IngiOjMyLjAzOTAzMTk4MjQyMTg3NSwieSI6NDM4LjU4MDY4ODQ3NjU2MjUsIndpZHRoIjozNi45MjE4NzUsImhlaWdodCI6MjMsInRvcCI6NDM4LjU4MDY4ODQ3NjU2MjUsInJpZ2h0Ijo2OC45NjA5MDY5ODI0MjE4OCwiYm90dG9tIjo0NjEuNTgwNjg4NDc2NTYyNSwibGVmdCI6MzIuMDM5MDMxOTgyNDIxODc1fSwib3ZlcmxhcHMiOlt7IndpZHRoIjowLCJoZWlnaHQiOjB9LHsid2lkdGgiOjAsImhlaWdodCI6MjN9XX1dLCJjYW52YXMiOnsieCI6LTI3MiwieSI6MjUzLjM0Mzc1LCJ3aWR0aCI6NjQwLCJoZWlnaHQiOjU2OC40NTMxMjUsInRvcCI6MjUzLjM0Mzc1LCJyaWdodCI6MzY4LCJib3R0b20iOjgyMS43OTY4NzUsImxlZnQiOi0yNzJ9LCJvdmVybGFwQXJlYSI6MH19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-a6be4a6d185ca7a5a231",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 126,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: keyboard removal retains a visible native focus and Tab continues",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4499,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:38.381Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remove-focus",
+                      "contentType": "application/json",
+                      "body": "eyJub2RlcyI6MiwiZWRnZXMiOjAsImFjdGl2ZSI6eyJ0YWciOiJTRUxFQ1QiLCJsYWJlbCI6IuaOpee2muWFiCJ9fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-fe4609518d473e9d384b",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 147,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: keyboard removal retains a visible native focus and Tab continues",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4501,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:39.033Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "remove-focus",
+                      "contentType": "application/json",
+                      "body": "eyJub2RlcyI6MiwiZWRnZXMiOjAsImFjdGl2ZSI6eyJ0YWciOiJTRUxFQ1QiLCJsYWJlbCI6IuaOpee2muWFiCJ9fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-d06dab216cd2ac58224b",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 147,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: app-owned removal preserves external focus and blocked controls preserve the model",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4267,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:42.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-14df6dfea7e965e60ea5",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 169,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: app-owned removal preserves external focus and blocked controls preserve the model",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4253,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:43.558Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-703c3f7e6790c0d0954e",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 169,
+          "column": 31
+        },
+        {
+          "title": "Diagram guided: forward and reverse arrows point into their target and retain semantic paint through zoom and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3793,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:47.198Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "rendered-direction-arrows",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZ3VpZGVkIiwib2JzZXJ2YXRpb25zIjpbeyJ3aWR0aCI6MTI4MCwiZ2VvbWV0cnkiOlt7InBhaW50IjoicmdiKDExOSwgMTMyLCAxNTApIiwidGFyZ2V0RXJyb3IiOjAuMDA1Njc2MjY5NTMxMjUsInRpcEVycm9yIjowLCJkaXJlY3Rpb24iOjEyfSx7InBhaW50IjoicmdiKDExOSwgMTMyLCAxNTApIiwidGFyZ2V0RXJyb3IiOjAuMDAyMzE5MzM1OTM3NSwidGlwRXJyb3IiOjAsImRpcmVjdGlvbiI6MTJ9XX0seyJ3aWR0aCI6MzIwLCJnZW9tZXRyeSI6W3sicGFpbnQiOiJyZ2IoMTE5LCAxMzIsIDE1MCkiLCJ0YXJnZXRFcnJvciI6MCwidGlwRXJyb3IiOjAsImRpcmVjdGlvbiI6MTJ9LHsicGFpbnQiOiJyZ2IoMTE5LCAxMzIsIDE1MCkiLCJ0YXJnZXRFcnJvciI6MCwidGlwRXJyb3IiOjAsImRpcmVjdGlvbiI6MTJ9XX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-c0aba25a332a51265e43",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 191,
+          "column": 31
+        },
+        {
+          "title": "Diagram dense: forward and reverse arrows point into their target and retain semantic paint through zoom and RTL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3770,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T00:12:47.837Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "rendered-direction-arrows",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9maWxlIjoiZGVuc2UiLCJvYnNlcnZhdGlvbnMiOlt7IndpZHRoIjoxMjgwLCJnZW9tZXRyeSI6W3sicGFpbnQiOiJyZ2IoMTE5LCAxMzIsIDE1MCkiLCJ0YXJnZXRFcnJvciI6MCwidGlwRXJyb3IiOjAsImRpcmVjdGlvbiI6OH0seyJwYWludCI6InJnYigxMTksIDEzMiwgMTUwKSIsInRhcmdldEVycm9yIjowLCJ0aXBFcnJvciI6MCwiZGlyZWN0aW9uIjo4fV19LHsid2lkdGgiOjMyMCwiZ2VvbWV0cnkiOlt7InBhaW50IjoicmdiKDExOSwgMTMyLCAxNTApIiwidGFyZ2V0RXJyb3IiOjAsInRpcEVycm9yIjowLCJkaXJlY3Rpb24iOjh9LHsicGFpbnQiOiJyZ2IoMTE5LCAxMzIsIDE1MCkiLCJ0YXJnZXRFcnJvciI6MCwidGlwRXJyb3IiOjAsImRpcmVjdGlvbiI6OH1dfV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bbc88caba6b32d659b75-92095e2eaee6c6c6be5b",
+          "file": "diagram-connection-geometry.spec.ts",
+          "line": 191,
+          "column": 31
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-10T00:12:14.977Z",
+    "duration": 36853.621,
+    "expected": 14,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
