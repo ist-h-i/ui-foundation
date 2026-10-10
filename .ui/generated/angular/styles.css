@@ -1,5 +1,5 @@
 /* Generated tokens.css owns concrete values. Components consume semantic roles. */
-.ui-form-layout { display: grid; grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr)); gap: var(--ui-form-gap, var(--ui-space-field)); min-inline-size: 0; }
+.ui-form-layout { display: grid; grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr)); gap: var(--ui-form-gap, var(--ui-space-field)); align-items: start; min-inline-size: 0; }
 .ui-form-layout[data-direction="horizontal"] { display: flex; flex-wrap: wrap; }
 .ui-form-layout[data-direction="horizontal"] > * { flex: 1 1 var(--ui-size-form-label); min-inline-size: 0; }
 .ui-form-layout[hidden] { display: none; }
@@ -105,6 +105,8 @@
 .ui-action-busy { flex-shrink: 0; white-space: nowrap; font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); }
 
 .ui-form-field { margin-block-end: var(--ui-space-field); }
+/* FormLayout owns the space between fields; their standalone margin must not add to it. */
+.ui-form-layout .ui-form-field { margin-block-end: 0; }
 .ui-form-field-label { display: block; font-weight: var(--ui-weight-control); margin-block-end: var(--ui-space-control-gap); }
 .ui-form-field-requirement { margin-inline-start: var(--ui-space-control-gap); font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); color: var(--ui-color-muted); }
 .ui-form-field-hint, .ui-form-field-error {
@@ -133,6 +135,11 @@
   line-height: var(--ui-leading-control);
 }
 input.ui-field-control:not([type="checkbox"]):not([type="radio"]), textarea.ui-field-control, select.ui-field-control { inline-size: 100%; }
+.ui-select-control { display: block; position: relative; min-inline-size: 0; max-inline-size: 100%; }
+.ui-select-control > select.ui-field-control { appearance: none; padding-inline-end: calc(var(--ui-space-control-x) + var(--ui-size-icon) + var(--ui-space-control-gap)); }
+.ui-select-control__chevron { position: absolute; inset-inline-end: var(--ui-space-control-x); inset-block-start: 50%; transform: translateY(-50%); inline-size: var(--ui-size-icon); block-size: var(--ui-size-icon); pointer-events: none; color: var(--ui-color-muted); }
+/* Restore the platform indicator when the operating system supplies contrast colors. */
+@media (forced-colors: active) { .ui-select-control > select.ui-field-control { appearance: auto; } .ui-select-control__chevron { display: none; } }
 input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   padding: 0;
   min-block-size: var(--ui-size-icon);
@@ -234,3 +241,7 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 .ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:last-child) { border-start-end-radius:0;border-end-end-radius:0; }
 .ui-button-group[data-connected="true"][data-direction="vertical"]>.ui-action:not(:first-child) { border-block-start-width:0;border-start-start-radius:0;border-start-end-radius:0; }
 .ui-button-group[data-connected="true"][data-direction="vertical"]>.ui-action:not(:last-child) { border-end-start-radius:0;border-end-end-radius:0; }
+
+/* Projected Card content keeps a single gap between adjacent regions. */
+ui-card .ui-card__body > :first-child { margin-block-start: 0; }
+ui-card .ui-card__body > :last-child, ui-card footer > :last-child { margin-block-end: 0; }

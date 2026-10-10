@@ -1,0 +1,560 @@
+[
+  {
+    "step": "audio-initial",
+    "state": {
+      "text": "音声添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n\n一時停止または停止中\n\n文字起こし",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "再生",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BODY",
+        "text": "添付・画像・メディアの操作プロファイル guidedRTL false無効 false媒体を表示・非表示媒体を生成・破棄ファイル受付申請の添付ファイル形式: .txt,image/png。1件 1,000 Bまで。複数選択可。合計 3件までここへファイルをドロップできます。ファイルを選択添付ファイル 0件ファイルはありません。進捗40%結果不明個別失敗アプリで完了0画像画像取得失敗・復旧画像ビューアーを開く画像ビューアー閉じる閉じる前の画像次の画像拡大率右へ90度回転表示をリセット1 / 3 · 100% · 0度申請1の添付ギャラリー自動送りを開始前へ次へ申請1の添付申請2の添付申請3の添付1 / 3123外部自動送り切替画像比較赤い写真 / 青い写真比較境界比較方向を変更画像切抜き切抜くファイル提出写真画像の座標で範囲を指定するか、画像上で始点から終点へドラッグします。比率自由1:14:316:9XY幅高さ右へ90度回転範囲をリセット切抜きを確定画像を選択してください。 · 回転 0度PDF申請資料前のページページ次のページ拡大率50%100%150%200%300%PDFをダウンロードページを表示しました。 · 1 / 2ページの文字First PDF page PDF表示対象を変更音声音声添付再生停止音量再生速度0.5倍1倍1.5倍2倍字幕字幕なし日本語字幕一時停止または停止中文字起こし確認用の一定音です。動画動画ファイル動画添付再生停止音量再生速度0.5倍1倍1.5倍2倍字幕字幕なし日本語字幕全画面メディアを取得できません。表示対象と形式を確認して再試行してください。メディアを再取得機械可読コードコード内容申請参照用QRコードUI123456申請番号のバーコードUI123456",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": true,
+          "time": 0,
+          "duration": 8,
+          "rate": 1,
+          "ready": 4
+        }
+      ],
+      "images": []
+    }
+  },
+  {
+    "step": "native-audio-play",
+    "state": {
+      "text": "音声添付\n\n一時停止\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n\n再生中\n\n文字起こし",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "一時停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "一時停止",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": false,
+          "time": 0,
+          "duration": 8,
+          "rate": 1,
+          "ready": 4
+        }
+      ],
+      "images": []
+    }
+  },
+  {
+    "step": "native-audio-pause-retains-rate",
+    "state": {
+      "text": "音声添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n\n一時停止または停止中\n\n文字起こし",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "再生",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1.5",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "停止",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": true,
+          "time": 0,
+          "duration": 8,
+          "rate": 1.5,
+          "ready": 4
+        }
+      ],
+      "images": []
+    }
+  },
+  {
+    "step": "image-error-external-focus",
+    "state": {
+      "text": "画像\n\n申請画像を取得できません。\n\n画像を再取得\n画像取得失敗・復旧\n画像ビューアーを開く",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "画像を再取得",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "画像取得失敗・復旧",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "画像ビューアーを開く",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "ダイアログを閉じる",
+          "text": "閉じる",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "ダイアログを閉じる",
+          "text": "閉じる",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "前の画像",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "次の画像",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "右へ90度回転",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "表示をリセット",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "画像取得失敗・復旧",
+        "label": null
+      },
+      "media": [],
+      "images": [
+        {
+          "src": "/assets/media/red.svg",
+          "loaded": true,
+          "alt": "赤い写真"
+        }
+      ]
+    }
+  },
+  {
+    "step": "image-recovery-external-focus",
+    "state": {
+      "text": "画像\n画像取得失敗・復旧\n画像ビューアーを開く",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "画像取得失敗・復旧",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "画像ビューアーを開く",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "ダイアログを閉じる",
+          "text": "閉じる",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": "ダイアログを閉じる",
+          "text": "閉じる",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "前の画像",
+          "value": "",
+          "disabled": true
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "次の画像",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "右へ90度回転",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "表示をリセット",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "画像取得失敗・復旧",
+        "label": null
+      },
+      "media": [],
+      "images": [
+        {
+          "src": "/assets/media/red.svg",
+          "loaded": true,
+          "alt": "申請画像"
+        },
+        {
+          "src": "/assets/media/red.svg",
+          "loaded": true,
+          "alt": "赤い写真"
+        }
+      ]
+    }
+  },
+  {
+    "step": "audio-narrow-enlarged-state",
+    "state": {
+      "text": "音声添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n\n一時停止または停止中\n\n文字起こし",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "再生",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1.5",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "RTL true",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": true,
+          "time": 0,
+          "duration": 8,
+          "rate": 1.5,
+          "ready": 4
+        }
+      ],
+      "images": []
+    }
+  },
+  {
+    "step": "video-no-source-error",
+    "state": {
+      "text": "動画添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n全画面\n\nメディアを取得できません。表示対象と形式を確認して再試行してください。\n\nメディアを再取得",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "再生",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "全画面",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "メディアを再取得",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "RTL true",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "rate": 1,
+          "ready": 0,
+          "error": 4
+        }
+      ],
+      "images": []
+    }
+  },
+  {
+    "step": "video-retry-still-missing-source",
+    "state": {
+      "text": "動画添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n全画面\n\nメディアを取得できません。表示対象と形式を確認して再試行してください。\n\nメディアを再取得",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "再生",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "停止",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "INPUT",
+          "label": null,
+          "text": "",
+          "value": "100",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "0.5倍\n1倍\n1.5倍\n2倍",
+          "value": "1",
+          "disabled": false
+        },
+        {
+          "tag": "SELECT",
+          "label": null,
+          "text": "字幕なし\n日本語字幕",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "全画面",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "tag": "BUTTON",
+          "label": null,
+          "text": "メディアを再取得",
+          "value": "",
+          "disabled": false
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "メディアを再取得",
+        "label": null
+      },
+      "media": [
+        {
+          "paused": true,
+          "time": 0,
+          "duration": null,
+          "rate": 1,
+          "ready": 0,
+          "error": 4
+        }
+      ],
+      "images": []
+    }
+  }
+]

@@ -1,0 +1,365 @@
+{
+  "config": {
+    "argv": [
+      "/Users/inouehiroshi/.nodebrew/node/v24.19.0/bin/node",
+      "/Users/inouehiroshi/Documents/GitHub/ui-foundation/node_modules/.bin/playwright",
+      "test",
+      "tests/ui/table-filter-disclosure.spec.ts",
+      "--grep",
+      "bright action",
+      "--workers=1",
+      "--reporter=json"
+    ],
+    "configFile": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/playwright.config.ts",
+    "rootDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run build && node scripts/serve.mjs",
+      "url": "http://127.0.0.1:4228",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "table-filter-disclosure.spec.ts",
+      "file": "table-filter-disclosure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "table layout and filtering guided",
+          "file": "table-filter-disclosure.spec.ts",
+          "line": 32,
+          "column": 7,
+          "specs": [
+            {
+              "title": "bright action backgrounds preserve readable sort and row/cell edit actions",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4386,
+                      "error": {
+                        "message": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m",
+                        "stack": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4",
+                        "location": {
+                          "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                          "column": 70,
+                          "line": 26
+                        },
+                        "snippet": "  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.416)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: normal: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgb(255, 255, 255)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.533)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.992)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: normal: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgb(255, 255, 255)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.416)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.9)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-09T23:19:25.000Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-d8bd1-t-and-row-cell-edit-actions-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-d8bd1-t-and-row-cell-edit-actions-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-d8bd1-t-and-row-cell-edit-actions-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                        "column": 70,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5136f1eae4905676462b-5103ade7206d9c9d2199",
+              "file": "table-filter-disclosure.spec.ts",
+              "line": 33,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "table layout and filtering dense",
+          "file": "table-filter-disclosure.spec.ts",
+          "line": 32,
+          "column": 7,
+          "specs": [
+            {
+              "title": "bright action backgrounds preserve readable sort and row/cell edit actions",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3684,
+                      "error": {
+                        "message": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m",
+                        "stack": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4",
+                        "location": {
+                          "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                          "column": 70,
+                          "line": 26
+                        },
+                        "snippet": "  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.15)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(255, 255, 255, 0.416)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:44:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: normal: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgb(255, 255, 255)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.286)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.533)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:47:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: normal: {\"contrast\":1,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgb(255, 255, 255)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: hover: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.286)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                            "column": 70,
+                            "line": 26
+                          },
+                          "message": "Error: focus: {\"contrast\":1.0732231150424139,\"foreground\":\"rgb(255, 255, 255)\",\"background\":\"rgba(245, 247, 250, 0.643)\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m4.5\u001b[39m\nReceived:    \u001b[31m1.0732231150424139\u001b[39m\n\n  24 |    return{contrast:(Math.max(foreground,back)+0.05)/(Math.min(foreground,back)+0.05),foreground:style.color,background};\n  25 |   });\n> 26 |   expect.soft(colors.contrast,`${state}: ${JSON.stringify(colors)}`).toBeGreaterThanOrEqual(4.5);\n     |                                                                      ^\n  27 |  }\n  28 |  await expect(action).toBeFocused();\n  29 | }\n    at expectReadableAction (/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:26:70)\n    at /Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts:55:4"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-09T23:19:31.062Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-4de9f-t-and-row-cell-edit-actions-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-4de9f-t-and-row-cell-edit-actions-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/test-results/table-filter-disclosure-ta-4de9f-t-and-row-cell-edit-actions-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/inouehiroshi/Documents/GitHub/ui-foundation/tests/ui/table-filter-disclosure.spec.ts",
+                        "column": 70,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5136f1eae4905676462b-745140972887f80a95b6",
+              "file": "table-filter-disclosure.spec.ts",
+              "line": 33,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-09T23:18:48.452Z",
+    "duration": 47123.18,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

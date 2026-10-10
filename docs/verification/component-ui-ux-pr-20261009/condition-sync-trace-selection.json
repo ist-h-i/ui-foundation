@@ -1,0 +1,92 @@
+{
+  "sourceHead": "a6bd7b5c24b3b2a5235d4a3fbc35291eb65271dd",
+  "test": "guided: native condition save retains pending focus, returns owned failure to Save and preserves external focus and stale-result ownership",
+  "failedAssertion": "tests/ui/async-retry-focus.spec.ts:208:134 expect(model).toHaveText(original!)",
+  "errorMeaning": "Expected the pre-render empty model, but the DOM held the correctly restored nested model.",
+  "traceSha256": "3b1e7a4bf1d2f27d81baf2cac7aba610a53d17900f60affbd80fdd9ccb44c973",
+  "traceSelection": [
+    {
+      "type": "before",
+      "callId": "call@1184",
+      "startTime": 102351.783,
+      "method": "click",
+      "params": {
+        "selector": "#restore-nested",
+        "strict": true
+      }
+    },
+    {
+      "type": "after",
+      "callId": "call@1184",
+      "endTime": 102390.8
+    },
+    {
+      "type": "before",
+      "callId": "call@1186",
+      "startTime": 102393.715,
+      "method": "textContent",
+      "params": {
+        "selector": "#filter-model",
+        "strict": true
+      }
+    },
+    {
+      "type": "after",
+      "callId": "call@1186",
+      "endTime": 102397.726,
+      "result": {
+        "value": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": []\n}"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "call@1188",
+      "startTime": 102554.737,
+      "method": "waitForSelector",
+      "params": {
+        "selector": "ui-filter-builder >> #filter-word-value",
+        "strict": true,
+        "state": "attached"
+      }
+    },
+    {
+      "type": "after",
+      "callId": "call@1188",
+      "endTime": 102577.173,
+      "result": {
+        "element": "<ElementHandle>"
+      }
+    },
+    {
+      "type": "before",
+      "callId": "call@1216",
+      "startTime": 102829.021,
+      "method": "expect",
+      "params": {
+        "selector": "#filter-model",
+        "expression": "to.have.text",
+        "expectedText": [
+          {
+            "string": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": []\n}",
+            "normalizeWhiteSpace": true
+          }
+        ],
+        "expectedValue": {
+          "value": {
+            "v": "undefined"
+          },
+          "handles": []
+        },
+        "isNot": false,
+        "timeout": 5000
+      }
+    },
+    {
+      "type": "after",
+      "callId": "call@1216",
+      "endTime": 107833.679
+    }
+  ],
+  "rawTraceLocalPath": "/tmp/ui-foundation-pr-20261009/condition-save-failure/trace.zip",
+  "assertionsRemoved": false
+}

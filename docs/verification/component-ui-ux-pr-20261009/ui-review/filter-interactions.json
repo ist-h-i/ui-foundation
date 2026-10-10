@@ -1,0 +1,1081 @@
+[
+  {
+    "step": "restored-nested",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "0",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "申請",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "複数階層の条件を復元",
+        "id": "restore-nested",
+        "testid": null
+      },
+      "status": [
+        ""
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "3"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": 0\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"申請\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "0"
+      },
+      {
+        "id": "filter-result",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "step": "edited",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "INPUT",
+        "text": "",
+        "id": "filter-word-value",
+        "testid": null
+      },
+      "status": [
+        ""
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "0"
+      },
+      {
+        "id": "filter-result",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "step": "pending-duplicate-enter",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n\n保存結果を確認しています。",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "P",
+        "text": "保存結果を確認しています。",
+        "id": "",
+        "testid": null
+      },
+      "status": [
+        "保存結果を確認しています。"
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "1"
+      },
+      {
+        "id": "filter-result",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "step": "failure-external-focus",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n\n条件を保存できません。",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "条件保存を失敗",
+        "id": "filter-fail",
+        "testid": null
+      },
+      "status": [
+        "条件を保存できません。",
+        ""
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "1"
+      },
+      {
+        "id": "filter-result",
+        "text": "true"
+      }
+    ]
+  },
+  {
+    "step": "retry",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n\n保存結果を確認しています。",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": true,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": true,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "P",
+        "text": "保存結果を確認しています。",
+        "id": "",
+        "testid": null
+      },
+      "status": [
+        "保存結果を確認しています。"
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "2"
+      },
+      {
+        "id": "filter-result",
+        "text": "true"
+      }
+    ]
+  },
+  {
+    "step": "success-external-focus",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n保存した条件へ戻す\n保存済み条件を除去\n\n条件を保存しました。",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "text": "条件保存を完了",
+        "id": "filter-approve",
+        "testid": null
+      },
+      "status": [
+        "条件を保存しました。"
+      ],
+      "extent": {
+        "client": 1366,
+        "scroll": 1366
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "2"
+      },
+      {
+        "id": "filter-result",
+        "text": "true"
+      }
+    ]
+  },
+  {
+    "step": "narrow-enlarged-retains-input",
+    "state": {
+      "text": "条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n超える\n以上\n未満\n以下\n未取得\n取得済み\n値\n除去\n入れ子の条件 (1)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nを含む\nで始まる\nと等しい\nと異なる\n未取得\n取得済み\n値\n除去\n入れ子の条件 (2)\n条件の結合\nすべて\nいずれか\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\n未取得\n取得済み\n値\n値を選択\nはい\nいいえ\n除去\n項目\n項目を選択\n件名\n金額\n承認\n日付\n種類\n演算子\n演算子を選択\nと等しい\nと異なる\nより前\nより後\n未取得\n取得済み\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n除去\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n保存した条件へ戻す\n保存済み条件を除去\n\n条件を保存しました。",
+      "inputs": [
+        {
+          "tag": "SELECT",
+          "id": "filter-root-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-field",
+          "value": "field:amount",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-money-operator",
+          "value": "gte",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-money-value",
+          "value": "14",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-nested-match",
+          "value": "or",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-field",
+          "value": "field:title",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-word-operator",
+          "value": "contains",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "INPUT",
+          "id": "filter-word-value",
+          "value": "独立確認メモ",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-deep-match",
+          "value": "and",
+          "disabled": false,
+          "invalid": null,
+          "description": null
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-field",
+          "value": "field:approved",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-operator",
+          "value": "eq",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-done-value",
+          "value": "false",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-field",
+          "value": "field:date",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        },
+        {
+          "tag": "SELECT",
+          "id": "filter-day-operator",
+          "value": "missing",
+          "disabled": false,
+          "invalid": null,
+          "description": "filter-hint"
+        }
+      ],
+      "focus": {
+        "tag": "INPUT",
+        "text": "",
+        "id": "",
+        "testid": null
+      },
+      "status": [
+        "条件を保存しました。"
+      ],
+      "extent": {
+        "client": 320,
+        "scroll": 320
+      },
+      "dialog": []
+    },
+    "outputs": [
+      {
+        "id": "matched",
+        "text": "0"
+      },
+      {
+        "id": "filter-model",
+        "text": "{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": [\n    {\n      \"type\": \"rule\",\n      \"id\": \"money\",\n      \"field\": \"amount\",\n      \"operator\": \"gte\",\n      \"value\": \"14\"\n    },\n    {\n      \"type\": \"group\",\n      \"id\": \"nested\",\n      \"match\": \"or\",\n      \"children\": [\n        {\n          \"type\": \"rule\",\n          \"id\": \"word\",\n          \"field\": \"title\",\n          \"operator\": \"contains\",\n          \"value\": \"独立確認メモ\"\n        },\n        {\n          \"type\": \"group\",\n          \"id\": \"deep\",\n          \"match\": \"and\",\n          \"children\": [\n            {\n              \"type\": \"rule\",\n              \"id\": \"done\",\n              \"field\": \"approved\",\n              \"operator\": \"eq\",\n              \"value\": false\n            },\n            {\n              \"type\": \"rule\",\n              \"id\": \"day\",\n              \"field\": \"date\",\n              \"operator\": \"missing\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "filter-request-count",
+        "text": "2"
+      },
+      {
+        "id": "filter-result",
+        "text": "true"
+      }
+    ]
+  }
+]

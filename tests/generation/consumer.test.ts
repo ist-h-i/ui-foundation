@@ -14,8 +14,9 @@ const repository=fileURLToPath(new URL('../../',import.meta.url));
 const run=promisify(execFile);
 
 // This includes one production consumer and six independent negative AOT builds.
+// The production build/browser sequence alone can take over three minutes.
 // Bound the complete sequence, and stop its active child if the test is cancelled.
-test('a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail', {timeout:240_000}, async t=>{
+test('a separate generated consumer compiles and operates with strict forms and typed templates; wrong row properties fail', {timeout:480_000}, async t=>{
  const root=await mkdtemp(resolve(tmpdir(),'ui-foundation-consumer-'));
  t.after(()=>rm(root,{recursive:true,force:true}));
  const config=parseConfig(await readFile(resolve(repository,'examples/ui.config.example.yaml'),'utf8'));

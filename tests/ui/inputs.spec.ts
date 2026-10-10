@@ -9,7 +9,7 @@ for(const profile of ['guided','dense']){
   test('reactive form values, required errors and summary links lead to the native field',async({page})=>{
    const form=page.locator('input-catalog');await form.getByRole('button',{name:'申請内容を確認',exact:true}).click();
    await expect(form.getByRole('alert',{name:'入力内容を確認してください'})).toBeVisible();
-   await form.getByRole('button',{name:'件名: 入力または選択してください。',exact:true}).click();await expect(page.locator('#request-title')).toBeFocused();
+   await form.getByRole('button',{name:'件名: 件名を入力してください。',exact:true}).click();await expect(page.locator('#request-title')).toBeFocused();
    await page.locator('#request-title').fill('部品を購入');await page.locator('#request-amount').fill('1234.5');await page.locator('#request-department').selectOption('general');
    await form.getByRole('button',{name:'申請内容を確認',exact:true}).click();await expect(page.getByTestId('form-status')).toContainText('フォーム: 有効');
    await expectValues(page,{title:'部品を購入',amount:1234.5,department:'general'});
@@ -89,7 +89,7 @@ for(const profile of ['guided','dense']){
    await page.clock.install({time:new Date('2026-10-05T10:00:00Z')});await page.clock.pauseAt(new Date('2026-10-05T10:00:01Z'));const search=page.locator('#request-search');await search.fill('備');await page.clock.fastForward(200);await search.fill('備品');await page.clock.fastForward(299);
    expect(await page.getByTestId('search-requests').textContent()).toBe('検索: ');await page.clock.fastForward(1);await page.clock.runFor(20);await expect(page.getByTestId('search-requests')).toHaveText('検索: 1:備品');
    await search.fill('出張');await search.press('Enter');await page.clock.runFor(20);await expect(page.getByTestId('search-requests')).toHaveText('検索: 1:備品 | 2:出張');await page.clock.fastForward(1000);await expect(page.getByTestId('search-requests')).toHaveText('検索: 1:備品 | 2:出張');
-   await search.press('Enter');await page.clock.runFor(20);await expect(page.getByTestId('search-requests')).toHaveText('検索: 1:備品 | 2:出張 | 3:出張');await page.getByRole('button',{name:'関連申請を検索をクリア',exact:true}).click();await page.clock.fastForward(300);await page.clock.runFor(20);await expect(search).toBeFocused();await expectValues(page,{search:''});
+   await search.press('Enter');await page.clock.runFor(20);await expect(page.getByTestId('search-requests')).toHaveText('検索: 1:備品 | 2:出張 | 3:出張');await page.getByRole('button',{name:'検索語をクリア',exact:true}).click();await page.clock.fastForward(300);await page.clock.runFor(20);await expect(search).toBeFocused();await expectValues(page,{search:''});
   });
   test('320px, enlarged RTL form stays within the viewport; errors and combobox pass automatic axe',async({page})=>{
    await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByLabel('RTL',{exact:true}).check();

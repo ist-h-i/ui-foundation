@@ -60,9 +60,9 @@ export class TableTemplate<T extends object> {
               <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を前へ' | uiMessage)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{'前へ' | uiMessage}}</button>
               <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を後へ' | uiMessage)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{'後へ' | uiMessage}}</button>
               <div><label [for]="tableId() + '-pin-' + column.id">{{'固定:' | uiMessage}} {{ column.header }}</label>
-                <select data-table-owned-control [id]="tableId() + '-pin-' + column.id" class="ui-field-control" [value]="pin(column) || 'none'" [disabled]="blocked()" (change)="setPin(column.id, value($event))">
+                <div class="ui-select-control"><select data-table-owned-control [id]="tableId() + '-pin-' + column.id" class="ui-field-control" [value]="pin(column) || 'none'" [disabled]="blocked()" (change)="setPin(column.id, value($event))">
                   <option value="none">{{'固定しない' | uiMessage}}</option><option value="start">{{'先頭側' | uiMessage}}</option><option value="end">{{'末尾側' | uiMessage}}</option>
-                </select>
+                </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></div>
               </div>
               @if (resizableColumns()) {
                 <label>{{'列幅:' | uiMessage}} {{ column.header }} ({{ width(column) || measuredWidth(column) || minimumColumnWidth() }}px)
@@ -77,6 +77,18 @@ export class TableTemplate<T extends object> {
       }
       <ng-content select="[uiTableToolbar]" />
     </div>
+    @if (columnFilters()) {
+      <details class="ui-data-table__filters">
+        <summary data-table-owned-control>{{'列で絞り込む' | uiMessage}} <span>({{'適用中' | uiMessage}} {{activeFilterCount()}} {{'列' | uiMessage}})</span></summary>
+        <div class="ui-data-table__filter-fields">
+          @for (column of orderedColumns(); track column.id) {
+            @if (column.filterable !== false) {
+              <ui-column-filter [column]="column" [controlId]="fieldId(column.id)" [filter]="columnFilter(column.id)" [disabled]="blocked()" (filterChange)="setFilter(column.id,$event)" />
+            }
+          }
+        </div>
+      </details>
+    }
     <span #minimumProbe class="ui-data-table__minimum-probe" aria-hidden="true"></span>
     <div class="ui-sr-only" role="status" aria-atomic="true">{{ statusMessage() }}</div>
     @if(displayStateDeferred()){<p role="status" class="ui-data-table__view-status">{{'編集中または保存待機中の行・列があります。検索・列表示・ページの変更は、先に編集を保存するか取り消すまで保留しています。' | uiMessage}}</p>}
@@ -108,26 +120,12 @@ export class TableTemplate<T extends object> {
             @for(header of headerRow;track header.id){
               @if(header.kind==='group'){<th scope="colgroup" [id]="header.id" [attr.colspan]="header.colSpan" [attr.rowspan]="header.rowSpan">{{header.label}}</th>}
               @else{@let column=columnById(header.columnId!);<th scope="col" class="ui-data-table__header-cell" [id]="header.id" [attr.rowspan]="header.rowSpan" [attr.data-column-id]="column.id" [attr.aria-sort]="ariaSort(column.id)" [class.ui-data-table__pinned]="!!pin(column)" [style.inset-inline-start.px]="pin(column)==='start'?pinOffset(column,'start'):null" [style.inset-inline-end.px]="pin(column)==='end'?pinOffset(column,'end'):null">
-                @if(sortable()&&column.sortable!==false){<button uiAction data-table-control data-table-owned-control [disabled]="blocked()" [attr.aria-label]="sortLabel(column)" (click)="sort(column.id)">{{column.header}} {{sortMarker(column.id)}}</button>}@else{ {{column.header}} }
+                @if(sortable()&&column.sortable!==false){<button uiAction class="ui-data-table__sort" data-table-control data-table-owned-control [disabled]="blocked()" [attr.aria-label]="sortLabel(column)" (click)="sort(column.id)">{{column.header}} {{sortMarker(column.id)}}</button>}@else{ {{column.header}} }
                 @if(resizableColumns()){<button type="button" data-table-control data-table-owned-control class="ui-data-table__resize" uiTableColumnResize [label]="column.header+('の列境界' | uiMessage)" [value]="resolvedWidths()[column.id]" [minimum]="minimumWidth(column)" [maximum]="maximumWidth(column)" [disabled]="blocked()" (resizeChange)="resizeColumn(column,$event)"></button>}
               </th>}
             }
             @if(hi===0){@if(rowActions().length){<th scope="col" [attr.rowspan]="headerRows().length">{{'操作' | uiMessage}}</th>}@if(editMode()==='row'){<th scope="col" [attr.rowspan]="headerRows().length">{{'行編集' | uiMessage}}</th>}}
           </tr>}
-          @if (columnFilters()) {
-            <tr>
-              @if (selectionMode() !== 'none') { <td></td> }
-              @if (detailTemplate()) { <td></td> }
-              @for (column of visibleColumns(); track column.id) {
-                <td [class.ui-data-table__pinned]="!!pin(column)"
-                  [style.inset-inline-start.px]="pin(column) === 'start' ? pinOffset(column, 'start') : null"
-                  [style.inset-inline-end.px]="pin(column) === 'end' ? pinOffset(column, 'end') : null">
-                  @if(column.filterable!==false){<ui-column-filter [column]="column" [controlId]="fieldId(column.id)" [filter]="columnFilter(column.id)" [disabled]="blocked()" (filterChange)="setFilter(column.id,$event)"/>}
-                </td>
-              }
-              @if (rowActions().length) { <td></td> }@if(editMode()==='row'){<td></td>}
-            </tr>
-          }
         </thead>
         <tbody>
           @for(entry of bodyEntries();track entryId(entry)){
@@ -157,7 +155,7 @@ export class TableTemplate<T extends object> {
                   @for (action of rowActions(); track action.id) { <button uiAction data-table-owned-control [disabled]="blocked() || !!action.disabled?.(row)" (click)="activate(action.id, row)">{{ action.label }}</button> }
                 </div></td>
               }
-              @if(editMode()==='row'){<td><button uiAction data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-label]="('編集: ' | uiMessage)+rowLabel(row)" data-table-row-edit-start (click)="beginRow(row)">{{'行を編集' | uiMessage}}</button></td>}
+              @if(editMode()==='row'){<td><button uiAction class="ui-data-table__edit-start" data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-label]="('編集: ' | uiMessage)+rowLabel(row)" data-table-row-edit-start (click)="beginRow(row)">{{'行を編集' | uiMessage}}</button></td>}
             </tr>
             @if(editMode()==='row'){<tr [hidden]="entry.hidden||!rowEditor.isEditing()"><td [attr.colspan]="columnCount()"><ui-row-editor data-table-managed-editor #rowEditor [row]="row" [keyField]="keyField()" [columns]="columns()" [controlId]="tableId()+'-row-edit-'+encodedKey(row)" [label]="rowLabel(row)+('の行編集' | uiMessage)" [disabled]="disabled()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="rowEditingChanged(row,$event)"/></td></tr>}
             @if (detailTemplate(); as detail) {
@@ -173,7 +171,6 @@ export class TableTemplate<T extends object> {
       @if(moreAvailable()){<ui-infinite-scroll #more [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="autoLoadMore()" [observerRoot]="stickyHeader()?viewport:null" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     </div>
     }@else{
-      @if(columnFilters()){<details><summary data-table-owned-control>{{'列条件' | uiMessage}}</summary>@for(column of visibleColumns();track column.id){@if(column.filterable!==false){<ui-column-filter [column]="column" [controlId]="fieldId(column.id)" [filter]="columnFilter(column.id)" [disabled]="blocked()" (filterChange)="setFilter(column.id,$event)"/>}}</details>}
       @if(!configurationError()){<ui-virtual-data-table [caption]="caption()" [tableId]="tableId()" [rows]="pageRows()" [columns]="visibleColumns()" [keyField]="keyField()" [state]="state()" [busy]="busy()" [disabled]="disabled()" [height]="virtualHeight()" [itemHeight]="virtualRowHeight()" [overscan]="virtualOverscan()" [sortable]="sortable()" [selectionMode]="selectionMode()" [selectedKeys]="selectedKeys()" [rowSelectable]="rowSelectable()" [cellTemplates]="virtualTemplates()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (columnWidthsChange)="virtualWidths($event)" (sortRequested)="sort($event)" (selectedKeysChange)="selectedKeysChange.emit($event)" (rangeChange)="virtualRangeChange.emit($event)" (positionChange)="virtualPositionChange.emit($event)"/>}
       @if(moreAvailable()){<ui-infinite-scroll [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="false" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     }
@@ -190,6 +187,9 @@ export class TableTemplate<T extends object> {
     .ui-data-table__toolbar { margin-block-end: var(--ui-space-field); }
     .ui-data-table__toolbar label, .ui-data-table__column-setting label { display: grid; grid-template-columns:minmax(0,1fr); gap: var(--ui-space-control-gap); min-inline-size: 0; max-inline-size: 100%; }
     .ui-data-table__columns { max-inline-size: 100%; }
+    .ui-data-table__filters { min-inline-size: 0; margin-block-end: var(--ui-space-field); }
+    .ui-data-table__filters summary span { color: var(--ui-color-muted); }
+    .ui-data-table__filter-fields { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,calc(var(--ui-size-table-column-min) * 2)),1fr)); gap: var(--ui-space-field); padding-block-start: var(--ui-space-control-gap); }
     .ui-data-table__column-setting { padding-block: var(--ui-space-control-y); }
     summary { cursor: pointer; padding: var(--ui-space-control-y); min-block-size: var(--ui-size-control); box-sizing: border-box; }
     .ui-data-table__viewport { overflow: auto; max-inline-size: 100%; min-inline-size: 0; position: relative; overscroll-behavior: contain; }
@@ -200,7 +200,13 @@ export class TableTemplate<T extends object> {
     .ui-data-table__table--fixed { inline-size: 100%; table-layout: fixed; }
     th, td { min-inline-size: var(--ui-size-table-column-min); overflow-wrap: anywhere; }
     .ui-data-table__utility-column { inline-size: calc(var(--ui-size-control) + 2 * var(--ui-space-table-x)); }
-    .ui-data-table__head--sticky { position: sticky; inset-block-start: 0; z-index: 4; }
+    .ui-data-table__head--sticky { position: sticky; inset-block-start: 0; z-index: 4; background: var(--ui-color-background); }
+    .ui-data-table__head--sticky th { background: var(--ui-color-background); }
+    .ui-data-table__edit-start.ui-action:not(:disabled) { border-color: transparent; background: transparent; color: var(--ui-color-text); }
+    .ui-data-table__edit-start.ui-action { padding-inline: var(--ui-space-control-gap); }
+    .ui-data-table__edit-start.ui-action:hover:not(:disabled) { background: var(--ui-color-background); }
+    .ui-data-table__sort.ui-action { border-color:transparent; background:transparent; padding-inline:0; }
+    .ui-data-table__sort.ui-action:hover:not(:disabled) { background:var(--ui-color-surface); color:var(--ui-color-text); }
     .ui-data-table__header-cell:not(.ui-data-table__pinned) {position:relative;}
     .ui-data-table__header-cell {padding-inline-end:var(--ui-size-control);}
     .ui-data-table__resize {position:absolute;inset-inline-end:0;inset-block:0;inline-size:var(--ui-size-control);border:0;border-inline-end:var(--ui-border-control) solid var(--ui-color-border);background:transparent;cursor:col-resize;touch-action:none;}
@@ -398,6 +404,7 @@ export class DataTableView<T extends object> {
     protected readonly allSelected = computed(() => this.selectionRows().length > 0 && this.selectionRows().every(row => this.selectedKeys().includes(this.key(row))));
     protected readonly someSelected = computed(() => this.selectionRows().some(row => this.selectedKeys().includes(this.key(row))));
     protected readonly columnCount = computed(() => this.visibleColumns().length + Number(this.selectionMode() !== 'none') + Number(!!this.detailTemplate()) + Number(this.rowActions().length > 0) + Number(this.editMode() === 'row'));
+    protected readonly activeFilterCount = computed(() => this.state().filters.filter(filter => this.columns().some(column => column.id === filter.column && column.filterable !== false) && filter.constraints.some(rule => rule.operator === 'missing' || rule.value !== undefined)).length);
     protected readonly statusMessage = computed(() => { const state = this.dataState(); return state.kind === 'ready' ? '' : state.message; });
     protected readonly emptyMessage = computed(() => this.busy() ? this.uiRuntimeText_DataTableView('一覧を取得しています。') : this.dataState().kind === 'error' ? this.uiRuntimeText_DataTableView('一覧を取得できません。')
         : this.globalSearch() && this.state().search.trim() || this.columnFilters() && this.state().filters.some(filter => filter.constraints.some(rule => rule.operator === 'missing' || rule.value !== undefined)) ? this.uiRuntimeText_DataTableView('条件に一致する結果はありません。') : this.uiRuntimeText_DataTableView('データはありません。'));

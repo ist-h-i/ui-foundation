@@ -25,6 +25,45 @@ async function delayNativePlay(page:Page,delayBoth=false){
 }
 async function currentTime(page:Page){return page.getByTestId('audio').locator('audio').evaluate(readNativeAudioState).then(media=>media.currentTime);}
 
+for(const profile of ['guided','dense'] as const){
+ test(`selected native caption names remain readable in ${profile} at 320px and 200% text`,async({page})=>{
+  await page.setViewportSize({width:320,height:844});await open(page);
+  if(profile==='dense')await page.getByRole('button',{name:'プロファイル guided',exact:true}).click();
+  await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);
+  await page.evaluate(()=>document.documentElement.style.fontSize='32px');
+  const observations:unknown[]=[];
+  for(const direction of ['ltr','rtl'] as const){
+   if(direction==='rtl')await page.getByRole('button',{name:'RTL false',exact:true}).click();
+   await expect(page.locator('main')).toHaveAttribute('dir',direction);
+   for(const player of ['audio','video'] as const){
+    const select=page.getByTestId(player).getByRole('combobox',{name:'字幕',exact:true});
+    await select.selectOption('ja');await expect(select).toHaveValue('ja');
+    const observation=await select.evaluate(el=>{
+     if(!(el instanceof HTMLSelectElement))throw new TypeError('Expected the native caption select');
+     const style=getComputedStyle(el),text=el.selectedOptions[0].label;
+     const span=document.createElement('span');span.textContent=text;
+     Object.assign(span.style,{position:'absolute',visibility:'hidden',whiteSpace:'pre',fontFamily:style.fontFamily,fontSize:style.fontSize,fontWeight:style.fontWeight,fontStyle:style.fontStyle,letterSpacing:style.letterSpacing});
+     document.body.append(span);const measuredWidth=span.getBoundingClientRect().width;span.remove();
+     // The fixture's five Japanese glyphs must also fit a full-em system CJK fallback.
+     const requiredWidth=Math.max(measuredWidth,Array.from(text).length*parseFloat(style.fontSize));
+     const availableWidth=el.clientWidth-parseFloat(style.paddingInlineStart)-parseFloat(style.paddingInlineEnd);
+     const rect=el.getBoundingClientRect(),chevron=el.parentElement?.querySelector('svg')?.getBoundingClientRect();
+     if(!chevron)throw new Error('Expected the decorative select indicator');
+     const endInset=style.direction==='rtl'?chevron.left-rect.left:rect.right-chevron.right;
+     return {text,measuredWidth,requiredWidth,availableWidth,endInset,fontSize:style.fontSize,pageOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+    });
+    expect(observation.text).toBe('日本語字幕');
+    expect(observation.availableWidth).toBeGreaterThanOrEqual(observation.requiredWidth);
+    expect(observation.endInset).toBeGreaterThanOrEqual(8);
+    expect(observation.pageOverflow).toBeLessThanOrEqual(1);
+    await select.press('Tab');await page.keyboard.press('Shift+Tab');await expect(select).toBeFocused();
+    observations.push({profile,direction,player,...observation});
+   }
+  }
+  await evidence('native-caption-readable-name',observations);
+ });
+}
+
 test('real play completion ownership: Stop/newPlay/old fulfillment, native playing reentry and current forbidden cleanup',async({page})=>{
  const observations:unknown[]=[];
  // Delay fulfillment only after actual native playback starts. The media state is never faked.
@@ -146,11 +185,13 @@ test('PDF empty/loading/loaded/error named scrolling surface passes actual axe i
  await evidence('pdf-named-region-axe',observations);
 });
 
-test('open Lightbox named zoomed image scrolling surface passes actual axe in both profiles at 320px 200% RTL',async({page})=>{
+for(const profile of ['guided','dense'] as const){
+test(`open Lightbox named zoomed image scrolling surface passes actual axe in ${profile} at 320px 200% RTL`,async({page})=>{
+ // Four rotations each include native scrolling and an actual axe scan.
+ test.setTimeout(60_000);
  await open(page);await page.setViewportSize({width:320,height:1000});
  await page.evaluate(()=>{document.documentElement.style.fontSize='200%';window.__mediaCatalog.rtl.set(true);});
  const observations:unknown[]=[];
- for(const profile of ['guided','dense'] as const){
   await page.evaluate(profile=>window.__mediaCatalog.profile.set(profile),profile);
   await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);
   await page.getByRole('button',{name:'画像ビューアーを開く'}).click();
@@ -190,9 +231,9 @@ test('open Lightbox named zoomed image scrolling surface passes actual axe in bo
   await expect(dialog.getByRole('img',{name:'青い写真'})).toBeVisible();
   await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);
   await expect(page.locator('#viewer-trigger')).toBeFocused();
- }
  await evidence('lightbox-rotation-geometry',observations);
 });
+}
 
 test('desktop 100% Lightbox rotation retains all four image edges in both profiles with native scrolling',async({page})=>{
  await open(page);const observations:unknown[]=[];
@@ -224,38 +265,42 @@ test('desktop 100% Lightbox rotation retains all four image edges in both profil
 
 test('Gallery pointer Stop intent survives focus pause; explicit keyboard/touch Start and reduced-motion resume retain control',async({page,browser})=>{
  const observations:unknown[]=[];
- await open(page);await page.clock.install();const gallery=page.getByTestId('gallery'),control=gallery.locator('button').first();
- await page.getByRole('button',{name:'プロファイル guided'}).focus();await page.mouse.move(0,0);
- await page.evaluate(()=>window.__mediaCatalog.autoplay.set(true));await expect(control).toHaveText('自動送りを停止');
- await control.click();await page.mouse.move(0,0);await expect(control).toHaveAttribute('aria-pressed','false');
- const stopped=await gallery.locator('[aria-current=true]').textContent();await page.clock.runFor(1100);
- expect(await gallery.locator('[aria-current=true]').textContent()).toBe(stopped);
- observations.push({case:'native mouse Stop/focus order',pressed:await control.getAttribute('aria-pressed'),indexBefore:stopped,indexAfter:await gallery.locator('[aria-current=true]').textContent(),timerAdvanceMs:1100});
- await control.focus();await control.press('Space');await expect(control).toHaveAttribute('aria-pressed','true');
- await page.clock.runFor(400);expect(await gallery.locator('[aria-current=true]').textContent()).not.toBe(stopped);
- await gallery.getByRole('button',{name:'次へ',exact:true}).focus();await expect(control).toHaveAttribute('aria-pressed','false');
- await page.getByRole('button',{name:'プロファイル guided'}).focus();await page.mouse.move(0,0);
- const focusedStop=await gallery.locator('[aria-current=true]').textContent();
- await page.emulateMedia({reducedMotion:'reduce'});await page.emulateMedia({reducedMotion:'no-preference'});
- await page.clock.runFor(1100);await expect(control).toHaveAttribute('aria-pressed','false');
- expect(await gallery.locator('[aria-current=true]').textContent()).toBe(focusedStop);
- observations.push({case:'focus Stop retained after reduce/no-preference',pressed:await control.getAttribute('aria-pressed'),indexBefore:focusedStop,indexAfter:await gallery.locator('[aria-current=true]').textContent(),timerAdvanceMs:1100});
- await page.emulateMedia({reducedMotion:'reduce'});await control.focus();await control.press('Enter');
- await expect(control).toHaveAttribute('aria-pressed','true');await page.clock.runFor(400);
- expect(await gallery.locator('[aria-current=true]').textContent()).not.toBe(focusedStop);
- observations.push({case:'native Enter explicit Start under reduced motion',pressed:await control.getAttribute('aria-pressed'),indexBefore:focusedStop,indexAfter:await gallery.locator('[aria-current=true]').textContent(),timerAdvanceMs:400});
+ // install alone keeps real time advancing. Pause between explicit advances so
+ // autoplay cannot move again while a native tap is waiting for actionability.
+ const pauseClock=async(target:Page)=>{const anchor=Date.parse('2026-10-09T12:00:00Z');await target.clock.install({time:anchor-1000});await target.clock.pauseAt(anchor);};
+ const flush=async(target:Page)=>{await target.clock.runFor(0);};
+ const next=(index:string|null)=>String(Number(index)%3+1);
+ await open(page);await pauseClock(page);await page.getByRole('button',{name:'プロファイル guided'}).focus();await page.mouse.move(0,0);
+ const gallery=page.getByTestId('gallery'),control=gallery.locator('button').first(),current=gallery.locator('[aria-current=true]');
+ await page.evaluate(()=>window.__mediaCatalog.autoplay.set(true));await flush(page);await expect(control).toHaveText('自動送りを停止');
+ await control.click();await page.mouse.move(0,0);await flush(page);await expect(control).toHaveAttribute('aria-pressed','false');
+ const stopped=await current.textContent();await page.clock.runFor(1100);await expect(current).toHaveText(stopped!);
+ observations.push({case:'pointer Stop retains the prior running intent through focusin',indexBefore:stopped,indexAfter:await current.textContent(),pressed:await control.getAttribute('aria-pressed')});
+ await control.focus();await control.press('Space');await flush(page);await expect(control).toHaveAttribute('aria-pressed','true');await page.clock.runFor(400);
+ await expect(current).toHaveText(next(stopped));
+ observations.push({case:'keyboard Space explicitly restarts while focused',pressed:await control.getAttribute('aria-pressed'),indexBefore:stopped,indexAfter:await current.textContent()});
+ await gallery.getByRole('button',{name:'次へ',exact:true}).focus();await page.getByRole('button',{name:'プロファイル guided'}).focus();await page.mouse.move(0,0);await flush(page);
+ const focusedStop=await current.textContent();await page.emulateMedia({reducedMotion:'reduce'});await page.emulateMedia({reducedMotion:'no-preference'});await page.clock.runFor(1100);
+ await expect(control).toHaveAttribute('aria-pressed','false');await expect(current).toHaveText(focusedStop!);
+ observations.push({case:'focus Stop survives reduced-motion preference being lifted',indexBefore:focusedStop,indexAfter:await current.textContent()});
+ await page.emulateMedia({reducedMotion:'reduce'});await control.focus();await control.press('Enter');await flush(page);await expect(control).toHaveAttribute('aria-pressed','true');await page.clock.runFor(400);await expect(current).toHaveText(next(focusedStop));
+ observations.push({case:'explicit Enter Start is allowed even with reduced motion',pressed:await control.getAttribute('aria-pressed'),indexBefore:focusedStop,indexAfter:await current.textContent()});
  const touch=await browser.newContext({hasTouch:true,isMobile:true,viewport:{width:390,height:900},baseURL:new URL(page.url()).origin});
- try{const touchPage=await touch.newPage();const touchErrors:string[]=[];touchPage.on('pageerror',error=>touchErrors.push(error.message));touchPage.on('console',message=>{if(message.type()==='error'||message.type()==='warning')touchErrors.push(message.type()+': '+message.text());});await open(touchPage);await touchPage.clock.install();
-  const touchGallery=touchPage.getByTestId('gallery'),touchControl=touchGallery.locator('button').first();
-  await touchPage.evaluate(()=>window.__mediaCatalog.autoplay.set(true));await expect(touchControl).toHaveText('自動送りを停止');
-  await touchControl.tap();await expect(touchControl).toHaveAttribute('aria-pressed','false');
-  const touchStopped=await touchGallery.locator('[aria-current=true]').textContent();await touchPage.clock.runFor(1100);
-  expect(await touchGallery.locator('[aria-current=true]').textContent()).toBe(touchStopped);
-  await touchControl.tap();await expect(touchControl).toHaveAttribute('aria-pressed','true');await touchPage.clock.runFor(400);
-  const touchStarted=await touchGallery.locator('[aria-current=true]').textContent();expect(touchStarted).not.toBe(touchStopped);
-  await touchGallery.getByRole('button',{name:'次へ',exact:true}).tap();await expect(touchControl).toHaveAttribute('aria-pressed','false');
-  expect(await touchGallery.locator('[aria-current=true]').textContent()).not.toBe(touchStopped);
-  observations.push({case:'actual mobile touch Stop then Start advances and Next alternative',pressedAfterNextFocus:await touchControl.getAttribute('aria-pressed'),indexBefore:touchStopped,indexAfterStart:touchStarted,indexAfter:await touchGallery.locator('[aria-current=true]').textContent(),touchContext:true,mobileContext:true});expect(touchErrors,'mobile touch catalog runtime errors and warnings').toEqual([]);
+ try{
+  const touchPage=await touch.newPage(),touchErrors:string[]=[];touchPage.on('pageerror',error=>touchErrors.push(error.message));touchPage.on('console',message=>{if(['error','warning'].includes(message.type()))touchErrors.push(message.type()+': '+message.text());});await open(touchPage);await pauseClock(touchPage);
+  const touchGallery=touchPage.getByTestId('gallery'),touchControl=touchGallery.locator('button').first(),touchCurrent=touchGallery.locator('[aria-current=true]'),touchNext=touchGallery.getByRole('button',{name:'次へ',exact:true});
+  await touchPage.evaluate(()=>window.__mediaCatalog.autoplay.set(true));await flush(touchPage);await expect(touchControl).toHaveText('自動送りを停止');
+  await touchControl.tap();await flush(touchPage);await expect(touchControl).toHaveAttribute('aria-pressed','false');
+  const touchStopped=await touchCurrent.textContent();await touchPage.clock.runFor(1100);await expect(touchCurrent).toHaveText(touchStopped!);
+  await touchControl.tap();await flush(touchPage);await expect(touchControl).toHaveAttribute('aria-pressed','true');await touchPage.clock.runFor(400);
+  await expect(touchCurrent).toHaveText(next(touchStopped));const touchStarted=await touchCurrent.textContent();
+  await touchNext.tap();await flush(touchPage);await expect(touchControl).toHaveAttribute('aria-pressed','false');await expect(touchCurrent).toHaveText(next(touchStarted));
+  observations.push({case:'actual mobile touch Stop then Start and one Next step',indexBefore:touchStopped,indexAfterStart:touchStarted,indexBeforeNext:touchStarted,indexAfterNext:await touchCurrent.textContent(),pressedAfterNextFocus:await touchControl.getAttribute('aria-pressed'),touchContext:true,mobileContext:true});
+  await touchGallery.getByRole('button',{name:/^画像3を表示/}).tap();await flush(touchPage);await expect(touchCurrent).toHaveText('3');
+  await touchNext.tap();await flush(touchPage);await expect(touchCurrent).toHaveText('1');await expect(touchControl).toHaveAttribute('aria-pressed','false');
+  await touchPage.clock.runFor(1100);await expect(touchCurrent).toHaveText('1');await expect(touchControl).toHaveAttribute('aria-pressed','false');
+  observations.push({case:'actual mobile touch Next wraps3 to1 and stays stopped1100ms',indexBeforeNext:'3',indexAfterNext:await touchCurrent.textContent(),touchContext:true,mobileContext:true,clockProtocol:'paused between explicit runFor advances'});
+  expect(touchErrors,'mobile touch catalog runtime errors and warnings').toEqual([]);
  }finally{await touch.close();}
  await evidence('gallery-stop-intent',observations);
 });

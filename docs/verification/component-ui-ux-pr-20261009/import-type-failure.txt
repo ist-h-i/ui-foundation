@@ -1,0 +1,27 @@
+
+> ui-foundation@0.0.0 test
+> npm run ui:check && npm run typecheck && npm run test:config && npm run test:generation && npm run test:model && npm run test:ui && npm run test:svg-paint
+
+
+> ui-foundation@0.0.0 ui:check
+> tsx src/cli.ts check --config examples/ui.config.example.yaml
+
+Configuration and generated files match. Application behavior and user understanding are not checked by this command.
+
+> ui-foundation@0.0.0 typecheck
+> tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media && npm run typecheck:ui:runtime
+
+
+> ui-foundation@0.0.0 typecheck:ui:media
+> tsc -p tsconfig.ui-media.json
+
+
+> ui-foundation@0.0.0 typecheck:ui:runtime
+> tsc -p tsconfig.ui-runtime.json
+
+src/config.ts(2,96): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+src/tokens.ts(2,71): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+tests/ui/diagram-connection-geometry.spec.ts(5,41): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+tests/ui/diagram-connection-geometry.spec.ts(6,28): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+tests/ui/table-filter-disclosure.spec.ts(4,41): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+tests/ui/table-filter-disclosure.spec.ts(5,28): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.

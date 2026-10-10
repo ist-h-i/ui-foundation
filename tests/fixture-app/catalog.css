@@ -1,0 +1,58 @@
+/* Catalog controls stay distinct from the components being demonstrated. */
+.catalog-setting {
+  display: inline-grid;
+  gap: var(--ui-space-control-gap);
+  align-content: start;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  margin-block: var(--ui-space-control-gap);
+  margin-inline-end: var(--ui-space-control-gap);
+  vertical-align: top;
+}
+.catalog-setting > label { font-weight: var(--ui-weight-control); }
+.catalog-setting > .fixture-select { inline-size: 100%; }
+.fixture-select {
+  display: inline-grid;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  vertical-align: middle;
+}
+.fixture-select > select { min-inline-size: 0; }
+.catalog-settings > .catalog-setting { margin: 0; }
+.catalog-settings > label:has(> input[type="checkbox"]),
+fixture-app > main > label:has(> input[type="checkbox"]),
+fixture-app > main > section > label:has(> input[type="checkbox"]) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-control-gap);
+  min-block-size: var(--ui-size-control);
+  max-inline-size: 100%;
+  margin-inline-end: var(--ui-space-control-gap);
+}
+.catalog-settings input[type="checkbox"],
+fixture-app > main > label > input[type="checkbox"],
+fixture-app > main > section > label > input[type="checkbox"] {
+  flex: 0 0 var(--ui-size-icon);
+  inline-size: var(--ui-size-icon);
+  block-size: var(--ui-size-icon);
+  accent-color: var(--ui-color-action);
+}
+.catalog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-control-gap);
+  margin-block: var(--ui-space-field);
+  min-inline-size: 0;
+}
+fixture-app > main > a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--ui-size-control);
+  margin-inline-end: var(--ui-space-field);
+}
+.specialist-fixture nav button[aria-pressed="true"] {
+  color: var(--ui-color-on-action);
+  background: var(--ui-color-action);
+  border-color: var(--ui-color-action);
+}

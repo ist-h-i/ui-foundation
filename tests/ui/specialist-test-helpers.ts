@@ -28,7 +28,7 @@ export async function openSpecialistSurface(page:Page,name:SpecialistSurface):Pr
  const section=page.locator('#'+specialistSurfaces[name]);await expect(section).toBeVisible();
  switch(name){
   case 'Map':await expect(section.locator('[data-map-ready]')).toHaveAttribute('data-map-ready','true');break;
-  case 'Gantt':await expect(section.locator('svg')).toBeVisible();break;
+  case 'Gantt':await expect(section.locator('.ui-specialist-surface svg')).toBeVisible();break;
   case 'Spreadsheet':await expect(section.locator('[data-sheet-cell="0,2"]')).not.toHaveValue('');await expect(section).not.toContainText('計算しています');break;
   case 'RichText':await expect(section.locator('.ui-rich-editor')).toBeVisible();break;
   case 'Markdown':case 'Code':await expect(section.locator('.cm-content')).toBeVisible();break;

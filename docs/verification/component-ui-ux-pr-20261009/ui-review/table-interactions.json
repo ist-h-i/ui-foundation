@@ -1,0 +1,558 @@
+[
+  {
+    "profile": "guided",
+    "width": 320,
+    "textPercent": 200,
+    "dir": "ltr",
+    "logs": [
+      {
+        "step": "F2 edit -> native Escape cancel",
+        "observed": {
+          "focus": {
+            "tag": "TD",
+            "id": "",
+            "text": "備品購入\n編集",
+            "class": "ui-data-grid__selected"
+          },
+          "summary": [
+            "保存要求: 0",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "whitespace rejection -> no save request",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 0",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "   ",
+              "readonly": false,
+              "disabled": false,
+              "invalid": "true",
+              "describedby": "requests-edit-number%3A1-name-field-name-error"
+            }
+          ],
+          "errors": [
+            "入力してください。"
+          ],
+          "statuses": [],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "valid draft -> pending -> repeated native Enter",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 1",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認guided",
+              "readonly": true,
+              "disabled": false,
+              "invalid": null,
+              "describedby": null
+            }
+          ],
+          "errors": [],
+          "statuses": [
+            "保存結果を確認しています。入力内容を保持しています。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "failure -> raw draft and external acknowledgement focus retained",
+        "observed": {
+          "focus": {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "待機した要求を失敗",
+            "class": ""
+          },
+          "summary": [
+            "保存要求: 1",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認guided",
+              "readonly": false,
+              "disabled": false,
+              "invalid": null,
+              "describedby": "requests-edit-number%3A1-name-result-error"
+            }
+          ],
+          "errors": [
+            "保存できませんでした。修正して再試行できます。"
+          ],
+          "statuses": [
+            "保存できませんでした。修正して再試行できます。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "retry from retained draft -> pending",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 2",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認guided",
+              "readonly": true,
+              "disabled": false,
+              "invalid": null,
+              "describedby": null
+            }
+          ],
+          "errors": [],
+          "statuses": [
+            "保存結果を確認しています。入力内容を保持しています。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "success -> confirmed row and external acknowledgement focus retained",
+        "observed": {
+          "focus": {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "待機した要求を確定",
+            "class": ""
+          },
+          "summary": [
+            "保存要求: 2",
+            "独立確認guided / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "独立確認guided",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "second edit/cancel -> confirmed value preserved",
+        "observed": {
+          "focus": {
+            "tag": "TD",
+            "id": "",
+            "text": "独立確認guided\n編集",
+            "class": "ui-data-grid__selected"
+          },
+          "summary": [
+            "保存要求: 2",
+            "独立確認guided / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "独立確認guided",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      }
+    ]
+  },
+  {
+    "profile": "dense",
+    "width": 320,
+    "textPercent": 200,
+    "dir": "rtl",
+    "logs": [
+      {
+        "step": "F2 edit -> native Escape cancel",
+        "observed": {
+          "focus": {
+            "tag": "TD",
+            "id": "",
+            "text": "備品購入\n編集",
+            "class": "ui-data-grid__selected"
+          },
+          "summary": [
+            "保存要求: 0",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "whitespace rejection -> no save request",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 0",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "   ",
+              "readonly": false,
+              "disabled": false,
+              "invalid": "true",
+              "describedby": "requests-edit-number%3A1-name-field-name-error"
+            }
+          ],
+          "errors": [
+            "入力してください。"
+          ],
+          "statuses": [],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "valid draft -> pending -> repeated native Enter",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 1",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認dense",
+              "readonly": true,
+              "disabled": false,
+              "invalid": null,
+              "describedby": null
+            }
+          ],
+          "errors": [],
+          "statuses": [
+            "保存結果を確認しています。入力内容を保持しています。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "failure -> raw draft and external acknowledgement focus retained",
+        "observed": {
+          "focus": {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "待機した要求を失敗",
+            "class": ""
+          },
+          "summary": [
+            "保存要求: 1",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認dense",
+              "readonly": false,
+              "disabled": false,
+              "invalid": null,
+              "describedby": "requests-edit-number%3A1-name-result-error"
+            }
+          ],
+          "errors": [
+            "保存できませんでした。修正して再試行できます。"
+          ],
+          "statuses": [
+            "保存できませんでした。修正して再試行できます。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "retry from retained draft -> pending",
+        "observed": {
+          "focus": {
+            "tag": "INPUT",
+            "id": "requests-edit-number%3A1-name-field-name",
+            "text": "",
+            "class": "ui-field-control"
+          },
+          "summary": [
+            "保存要求: 2",
+            "備品購入 / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [
+            {
+              "id": "requests-edit-number%3A1-name-field-name",
+              "value": "独立確認dense",
+              "readonly": true,
+              "disabled": false,
+              "invalid": null,
+              "describedby": null
+            }
+          ],
+          "errors": [],
+          "statuses": [
+            "保存結果を確認しています。入力内容を保持しています。"
+          ],
+          "firstGridValue": "備品購入",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "success -> confirmed row and external acknowledgement focus retained",
+        "observed": {
+          "focus": {
+            "tag": "BUTTON",
+            "id": "",
+            "text": "待機した要求を確定",
+            "class": ""
+          },
+          "summary": [
+            "保存要求: 2",
+            "独立確認dense / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "独立確認dense",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      },
+      {
+        "step": "second edit/cancel -> confirmed value preserved",
+        "observed": {
+          "focus": {
+            "tag": "TD",
+            "id": "",
+            "text": "独立確認dense\n編集",
+            "class": "ui-data-grid__selected"
+          },
+          "summary": [
+            "保存要求: 2",
+            "独立確認dense / 0",
+            "表示",
+            "検索結果: 1,2,3",
+            "",
+            "",
+            "",
+            "追加要求: 0",
+            "仮想位置: 0",
+            "0 / 0",
+            "選択:"
+          ],
+          "visibleInputs": [],
+          "errors": [],
+          "statuses": [],
+          "firstGridValue": "独立確認dense",
+          "pageExtent": {
+            "clientWidth": 320,
+            "scrollWidth": 320
+          }
+        }
+      }
+    ]
+  }
+]

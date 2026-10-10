@@ -24,7 +24,7 @@ export class ConfirmDialog {
     readonly completed = output<DialogResult>();
 }
 @Component({ selector: 'ui-alert-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<dialog uiDialog role="alertdialog" [label]="label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [closable]="false" [closeOnEscape]="false" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction autofocus (click)="context.finish('confirm',true)">{{uiEffective_acknowledgeLabel()}}</button></ng-template></dialog>` })
+    template: `<dialog uiDialog role="alertdialog" [label]="label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [closable]="false" [closeOnEscape]="false" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" autofocus (click)="context.finish('confirm',true)">{{uiEffective_acknowledgeLabel()}}</button></ng-template></dialog>` })
 export class AlertDialog {
  protected readonly uiText_AlertDialog=injectUiText();
     readonly label = input.required<string>();
@@ -37,10 +37,11 @@ export class AlertDialog {
     readonly completed = output<DialogResult>();
 }
 @Component({ selector: 'ui-form-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: `fieldset{min-inline-size:0;margin-block:var(--ui-space-field);padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);}legend{max-inline-size:100%;overflow-wrap:anywhere;}.ui-form-dialog-guard-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-field);}[role="status"]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
     template: `<dialog uiDialog [label]="label()" [title]="label()" [open]="open()" (openChange)="changed($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="requested($event)" (completed)="completed.emit($event)">
-  <ng-content /><p role="status" aria-atomic="true">{{error()}}</p>
-  @if(held();as request){<fieldset><legend>{{'保存していない変更があります。閉じますか。' | uiMessage}}</legend><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'編集を続ける' | uiMessage}}</button><button uiAction variant="danger" [disabled]="busy()" (click)="discard(request)">{{'変更を破棄して閉じる' | uiMessage}}</button></fieldset>}
-  <ng-template uiDialogTemplate="footer"><button uiAction variant="primary" [disabled]="busy()||!valid()" (click)="save()">{{uiEffective_saveLabel()}}</button><button uiAction [disabled]="busy()" (click)="cancel()">{{'取消' | uiMessage}}</button></ng-template>
+  <ng-content /><p #saveStatus tabindex="-1" role="status" aria-atomic="true">{{busy()?('保存しています。' | uiMessage):error()}}</p>
+  @if(held();as request){<fieldset><legend>{{'保存していない変更があります。閉じますか。' | uiMessage}}</legend><div class="ui-form-dialog-guard-actions"><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'編集を続ける' | uiMessage}}</button><button uiAction variant="danger" [disabled]="busy()" (click)="discard(request)">{{'保存せずに閉じる' | uiMessage}}</button></div></fieldset>}
+  <ng-template uiDialogTemplate="footer"><button #saveButton uiAction variant="primary" [disabled]="busy()||!valid()" (click)="save()">{{uiEffective_saveLabel()}}</button><button uiAction [disabled]="busy()" (click)="cancel()">{{'取消' | uiMessage}}</button></ng-template>
  </dialog>` })
 export class FormDialog {
  protected readonly uiText_FormDialog=injectUiText();
@@ -61,9 +62,38 @@ export class FormDialog {
     protected readonly held = signal<DialogCloseRequest | null>(null);
     private readonly dialog = viewChild(Dialog);
     private discardAllowed = false;
+    private readonly saveButton = viewChild<unknown, ElementRef<HTMLButtonElement>>('saveButton', { read: ElementRef });
+    private readonly saveStatus = viewChild<unknown, ElementRef<HTMLParagraphElement>>('saveStatus', { read: ElementRef });
+    private readonly saveFocus = signal<HTMLButtonElement | null>(null);
+    private saveWasBusy = false;
     private readonly keepButton = viewChild<unknown, ElementRef<HTMLButtonElement>>('keepButton', { read: ElementRef });
-    constructor() { afterRenderEffect(() => { if (this.held())
-        this.keepButton()?.nativeElement.focus({ preventScroll: true }); }); }
+    constructor() {
+        afterRenderEffect(() => { if (this.held())
+            this.revealFocus(this.keepButton()?.nativeElement); });
+        afterRenderEffect(() => {
+            const previous = this.saveFocus(), busy = this.busy(), open = this.open(), button = this.saveButton()?.nativeElement, status = this.saveStatus()?.nativeElement;
+            untracked(() => {
+                if (!previous) return;
+                if (!open || !button?.closest('dialog')?.open) {
+                    this.saveFocus.set(null); this.saveWasBusy = false; return;
+                }
+                if (busy) {
+                    this.saveWasBusy = true;
+                    const document = previous.ownerDocument;
+                    if (document.activeElement === previous || document.activeElement === document.body || document.activeElement === document.documentElement)
+                        this.revealFocus(status);
+                    return;
+                }
+                const wasBusy = this.saveWasBusy;
+                this.saveFocus.set(null); this.saveWasBusy = false;
+                const document = previous.ownerDocument;
+                if (wasBusy && (document.activeElement === status || document.activeElement === document.body || document.activeElement === document.documentElement)) {
+                    if (!button.disabled) this.revealFocus(button);
+                    else this.focusEditor();
+                }
+            });
+        });
+    }
     protected requested(request: DialogCloseRequest): void { if (this.dirty() && request.reason !== 'confirm' && !this.discardAllowed) {
         request.preventDefault();
         this.held.set(request);
@@ -79,13 +109,25 @@ export class FormDialog {
     finally {
         this.discardAllowed = false;
     } }
-    protected save(): void { if (!this.busy() && this.valid())
-        this.saveRequested.emit(); }
+    protected save(): void { if (!this.busy() && this.valid()) {
+        const button = this.saveButton()?.nativeElement;
+        this.saveWasBusy = false;
+        this.saveFocus.set(button && button.ownerDocument.activeElement === button ? button : null);
+        this.saveRequested.emit();
+    } }
     protected cancel(): void { this.dialog()?.finish('cancel'); }
     /** App calls after validation/persistence succeeds; failure leaves content and errors visible. */
     complete(value?: unknown, returnValue = ''): boolean { const closed = this.dialog()?.complete(value, returnValue) ?? false; if (closed)
         this.held.set(null); return closed; }
-    private focusEditor(): void { this.dialog()?.focusFirst(); }
+    private revealFocus(element?: HTMLElement): void {
+        element?.focus({ preventScroll: true });
+        if (element && element.ownerDocument.activeElement === element) element.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+    private focusEditor(): void {
+        this.dialog()?.focusFirst();
+        const owner = this.saveButton()?.nativeElement.closest('dialog'), active = owner?.ownerDocument.activeElement;
+        if (active instanceof HTMLElement && active !== owner && owner?.contains(active)) active.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
 }
 export const UI_DYNAMIC_DIALOG_DATA = new InjectionToken<unknown>('UI_DYNAMIC_DIALOG_DATA');
 export const UI_DYNAMIC_DIALOG_REF = new InjectionToken<DynamicDialogRef>('UI_DYNAMIC_DIALOG_REF');

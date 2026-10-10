@@ -8,8 +8,8 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
  template:`
  <main [attr.data-ui-profile]="profile()" [attr.dir]="rtl()?'rtl':'ltr'">
   <h1>フォームと構造化入力</h1><p>書式に合わない内容と処理中の入力を残し、修正して再操作するための検証です。</p>
-  <div class="settings">
-   <label for="structured-profile">表示設定</label><select id="structured-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(text($event))"><option value="guided">guided</option><option value="dense">dense</option></select>
+  <div class="settings catalog-settings">
+   <div class="catalog-setting"><label for="structured-profile">表示設定</label><span class="ui-select-control fixture-select"><select id="structured-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(text($event))"><option value="guided">guided</option><option value="dense">dense</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
    <label><input type="checkbox" [checked]="rtl()" (change)="rtl.set(checked($event))">RTL</label>
    <label><input type="checkbox" [checked]="inline()" (change)="inline.set(checked($event))">横並びのラベル</label>
    <label><input type="checkbox" [checked]="readOnly()" (change)="readOnly.set(checked($event))">読取り専用</label>
@@ -18,7 +18,7 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
    <label><input type="checkbox" [checked]="freeTags()" (change)="freeTags.set(checked($event))">タグを自由入力</label>
    <label><input type="checkbox" [checked]="duplicates()" (change)="duplicates.set(checked($event))">タグの重複を許可</label>
    <label><input type="checkbox" [checked]="horizontal()" (change)="horizontal.set(checked($event))">選択肢と操作を横並びにする</label>
-   <button uiAction (click)="toggleDisabled()">フォームの無効状態を切替</button><button uiAction (click)="busy.set(!busy())">操作の処理中を切替</button><button uiAction (click)="reset()">フォームを初期化</button>
+   <div class="catalog-actions"><button uiAction (click)="toggleDisabled()">フォームの無効状態を切替</button><button uiAction (click)="busy.set(!busy())">操作の処理中を切替</button><button uiAction (click)="reset()">フォームを初期化</button></div>
   </div>
   <form id="structured-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
    <ui-form-group groupId="structured-fields" label="提出する内容" [hint]="clearIncomplete()?'整理番号の途中入力は離脱時にクリアします。':'未完成の入力は保持します。'" [disabled]="groupDisabled()" [labelPosition]="inline()?'inline':'above'">
@@ -32,12 +32,12 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
     </ui-radio-group>
    </ui-form-group>
    <ui-form-actions [busy]="busy()" [direction]="horizontal()?'horizontal':'vertical'" [disabled]="form.disabled" (cancelled)="cancelled.update(increment)" />
-   <button uiAction (click)="narrowNote.set(!narrowNote())">補足の幅を切替</button><button uiAction (click)="hideNote.set(!hideNote())">補足の表示を切替</button>
+   <div class="catalog-actions"><button uiAction (click)="narrowNote.set(!narrowNote())">補足の幅を切替</button><button uiAction (click)="hideNote.set(!hideNote())">補足の表示を切替</button></div>
   </form>
   <p data-testid="structured-status">{{snapshot().valid?'有効':'要確認'}} / {{snapshot().touched?'操作済み':'未操作'}} / 送信 {{submitted()}} / 取消 {{cancelled()}}</p><pre data-testid="structured-values">{{snapshot().values}}</pre>
   <section aria-label="検索応答の検証"><h2>同じ検索語へ戻った場合</h2>
    <ui-search-input controlId="structured-search" label="申請を検索" [formControl]="search" [debounceMs]="50" [suggestions]="suggestions()" [suggestionsQuery]="response()?.query??null" [suggestionsRequestId]="response()?.requestId??null" (searchRequest)="requests.update(append($event))" />
-   <button uiAction (click)="applySearch(false)">現在の検索応答</button><button uiAction (click)="applySearch(true)">古い検索応答</button><button uiAction (click)="search.reset(search.value)">同じ検索値をreset</button><p data-testid="structured-requests">{{serialize(requests())}}</p>
+   <div class="catalog-actions"><button uiAction (click)="applySearch(false)">現在の検索応答</button><button uiAction (click)="applySearch(true)">古い検索応答</button><button uiAction (click)="search.reset(search.value)">同じ検索値をreset</button></div><p data-testid="structured-requests">{{serialize(requests())}}</p>
   </section>
   <section aria-label="候補テンプレートとOverlayの検証"><h2>候補の補助情報</h2><ui-overlay-host>
    <ui-combobox controlId="structured-combo" label="担当部署" [options]="departments" [formControl]="owner" placement="bottom-end"><ng-template uiComboboxOption let-option let-active="active" let-selected="selected"><strong>{{option.label}}</strong><span class="option-detail">コード {{option.value}} {{active?'選択候補':''}} {{selected?'選択済み':''}}</span></ng-template></ui-combobox>

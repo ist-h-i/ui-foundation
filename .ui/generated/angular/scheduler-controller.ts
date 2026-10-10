@@ -31,13 +31,24 @@ export abstract class SchedulerController<T=unknown> {
  protected readonly layout=computed(()=>schedulerLayout(this.events(),this.resources(),this.configuration()));protected readonly visibleCount=computed(()=>this.layout().entries.filter(entry=>entry.visible).length);protected readonly eventTemplate=contentChild<SchedulerEventTemplate<T>>(SchedulerEventTemplate);
  protected readonly editing=signal<readonly string[]>([]);protected readonly drafts=signal<Readonly<Record<string,EditingDraft>>>({});private readonly pending=signal<PendingMove<T>|null>(null);protected readonly pendingId=computed(()=>this.pending()?.request.event.id??null);protected readonly message=uiMessageState('');
  protected readonly encode=(value:string):string=>treeDomIdToken(value).replace(/-/g,'%2D');private readonly host=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private owned=false;private destroyed=false;private readonly pendingFocus=signal<string|null>(null);private pendingFocusOrigin:Element|null=null;
+ private lastDisplayedDay:string|null=null;
  constructor(){
   const focused=()=>{this.owned=true;};const exited=(event:FocusEvent)=>{if(event.relatedTarget&&event.relatedTarget!==this.host.ownerDocument.body&&!this.host.contains(event.relatedTarget as Node))this.owned=false;};this.host.addEventListener('focusin',focused);this.host.addEventListener('focusout',exited);
   effect(()=>{this.events();this.resources();this.effectiveTimeZone();this.canMove();this.movable();this.readonly();untracked(()=>{const pending=this.pending();if(pending&&(!this.matches(pending)||!this.movable()||this.readonly()))this.invalidatePending('source-change');});});
+  afterRenderEffect(()=>{const key=this.shownView()+':'+this.shownDate();this.layout();untracked(()=>{if(key!==this.lastDisplayedDay&&canFocus(this.host)){this.lastDisplayedDay=key;this.showDisplayedDay();}});});
   afterRenderEffect(()=>{this.layout();this.blocked();this.editing();const focusId=this.pendingFocus();if(!this.schedulerId().trim()||/\s/.test(this.schedulerId())||!this.label().trim())throw new Error('Scheduler requires a nonempty ID and label.');untracked(()=>{if(focusId){const active=this.host.ownerDocument.activeElement,origin=this.pendingFocusOrigin;this.pendingFocusOrigin=null;this.pendingFocus.set(null);if(!this.editing().includes(focusId)&&origin&&(active===origin||this.owned&&(!active||active===this.host.ownerDocument.body))){const button=this.host.querySelector<HTMLButtonElement>('[data-scheduler-event="'+CSS.escape(focusId)+'"] [data-move-editor]');if(canFocus(button))button.focus({preventScroll:true});}}const active=this.host.ownerDocument.activeElement;if(this.owned&&(!active||active===this.host.ownerDocument.body||this.host.contains(active)&&!canFocus(active as HTMLElement)))this.host.querySelector<HTMLElement>('[data-scheduler-status]')?.focus({preventScroll:true});});});
   inject(DestroyRef).onDestroy(()=>{this.destroyed=true;this.pendingFocusOrigin=null;this.pendingFocus.set(null);this.invalidatePending('destroy');this.host.removeEventListener('focusin',focused);this.host.removeEventListener('focusout',exited);});
  }
  protected eventContext(entry:SchedulerEntry<T>):SchedulerEventContext<T>{return {$implicit:entry.event,event:entry.event,entry,pending:this.pendingId()===entry.event.id};}
+ /** Scroll only this viewport; changing periods must not move application focus or the page. */
+ protected showDisplayedDay():void{
+  if(this.shownView()==='list')return;
+  const viewport=this.host.querySelector<HTMLElement>('.ui-scheduler-viewport'),day=this.host.querySelector<HTMLElement>('[data-scheduler-day="'+CSS.escape(this.shownDate())+'"]');
+  if(!viewport||!canFocus(day))return;
+  const outer=viewport.getBoundingClientRect(),box=day.getBoundingClientRect(),left=outer.left+viewport.clientLeft,right=left+viewport.clientWidth;
+  const delta=box.left<left?box.left-left:box.right>right?box.right-right:0;
+  if(delta)viewport.scrollBy({left:delta,behavior:'auto'});
+ }
  protected text(event:Event):string{return(event.target as HTMLInputElement).value;}
  protected changeDate(event:Event):void{if(this.blocked())return;const date=this.text(event);if(!this.uiDiagnostic_SchedulerController(schedulerConfigurationProblem({...this.configuration(),date}))){this.shownDate.set(date);this.dateChange.emit(date);}}
  protected changeView(event:Event):void{if(this.blocked()||!this.allowsViewSwitch)return;const view=this.text(event) as SchedulerView;if(['day','week','month','list'].includes(view)){this.shownView.set(view);this.viewChange.emit(view);}}

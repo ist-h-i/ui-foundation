@@ -1,0 +1,52 @@
+{
+  "purpose": "Read-only response to a user question about slow/stopped verification; no duplicate tests, cancellation or criteria change.",
+  "throughput": {
+    "checkedAt": "2026-10-10T00:38:49.466826+00:00",
+    "uiPassed": 585,
+    "uiFailed": 0,
+    "uiRemaining": 588,
+    "observedRateSinceFirstSamplePerMinute": 27.58757306471593,
+    "recentWindowMinutes": 10.969012733333333,
+    "recentRatePerMinute": 26.985108614241682,
+    "uiRemainingMinutesAtObservedRate": 21.31394445682657,
+    "uiRemainingMinutesAtRecentRate": 21.789795564864864,
+    "comparableCompletedCases": 364,
+    "oldMedianSeconds": 3.5,
+    "currentMedianSeconds": 3.8,
+    "medianCurrentToOldRatio": 1.0625,
+    "currentAllCasesMedianSeconds": 3.7,
+    "currentMaxCompletedSeconds": 49.8,
+    "scope": "Read-only observations of the already running suite, not a duplicate invocation; remaining-minute calculation assumes the measured pace persists and excludes SVG/tools/review/merge"
+  },
+  "powerEvents": {
+    "checkedAt": "2026-10-10T00:38:39.817072+00:00",
+    "scope": "Only macOS Sleep/Wake/DarkWake event timestamps since 2026-10-09 22:00 UTC; application and other log details excluded",
+    "events": []
+  },
+  "observedProcess": {
+    "checkedAt": "2026-10-10T00:38:21.612930+00:00",
+    "runnerPid": 10604,
+    "runnerAlive": true,
+    "workerStates": [
+      {
+        "pid": 11538,
+        "state": "R",
+        "cpuPercent": "0.1"
+      },
+      {
+        "pid": 11539,
+        "state": "R",
+        "cpuPercent": "27.4"
+      }
+    ],
+    "logUpdatedAt": "2026-10-10T00:38:21.567111+00:00",
+    "logAgeSeconds": 0.04581904411315918
+  },
+  "subsequentCompleteAggregate": {
+    "head": "5c0b545d68cf2b3fdad06aa35b7298e49e9e9221",
+    "exitCode": 0,
+    "uiPassed": 1173,
+    "startedAt": "2026-10-10T00:13:44.961598+00:00",
+    "endedAt": "2026-10-10T01:04:14.485709+00:00"
+  }
+}

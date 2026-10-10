@@ -1,0 +1,36 @@
+{
+  "stoppedAt": "2026-10-09T23:37:47.238444+00:00",
+  "reason": "One real test failure: restore click was immediately followed by a stale DOM baseline read. Trace identifies line 208; 24 native save probes preserve the rendered model and 19 immediate reads are stale. Stop remaining suite to add explicit restore-completion assertions and execute fresh full aggregate. Unrun tests are not counted as passing.",
+  "head": "a6bd7b5c24b3b2a5235d4a3fbc35291eb65271dd",
+  "uiPassedBeforeStop": 257,
+  "uiFailuresBeforeStop": [
+    "42 [chromium] › tests/ui/async-retry-focus.spec.ts:201:2 › guided: native condition save retains pending focus, returns owned failure to Save and preserves external focus and stale-result ownership (7.5s)"
+  ],
+  "ownedRunnerPid": 97423,
+  "terminatedChildren": [
+    289,
+    290,
+    291,
+    305,
+    306,
+    307,
+    97437,
+    97452,
+    98060,
+    98082,
+    98083,
+    98263,
+    98271,
+    98284,
+    98313,
+    98315,
+    98316,
+    98502,
+    98562,
+    98565,
+    98574,
+    98575,
+    98576,
+    98585
+  ]
+}

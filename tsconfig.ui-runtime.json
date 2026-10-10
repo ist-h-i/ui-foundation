@@ -2,12 +2,36 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "types": ["node"]
+    "allowImportingTsExtensions": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "tests/ui/tree-axe-contract.spec.ts",
     "tests/ui/diagram-validation.spec.ts",
     "tests/ui/diagram-controlled-validation.spec.ts",
-    "tests/ui/navigation-catalog.spec.ts"
+    "tests/ui/navigation-catalog.spec.ts",
+    "tests/ui/overlay-catalog.spec.ts",
+    "tests/ui/async-retry-focus.spec.ts",
+    "tests/ui/calendar-focus-visibility.spec.ts",
+    "tests/ui/confirm-popover-pending.spec.ts",
+    "tests/ui/diagram-connection-geometry.spec.ts",
+    "tests/ui/file-explorer-direction.spec.ts",
+    "tests/ui/filter-select-legibility.spec.ts",
+    "tests/ui/gantt-axis-layout.spec.ts",
+    "tests/ui/kanban-current-column.spec.ts",
+    "tests/ui/listbox-text-scale.spec.ts",
+    "tests/ui/palette-error-recovery.spec.ts",
+    "tests/ui/segmented-responsive-content.spec.ts",
+    "tests/ui/specialist-responsive-inputs.spec.ts",
+    "tests/ui/sheet-freeze-focus.spec.ts",
+    "tests/ui/library-visual-affordances.spec.ts",
+    "tests/ui/table-filter-disclosure.spec.ts",
+    "tests/ui/surface-affordances.spec.ts",
+    "tests/ui/specialist-visual-semantics.spec.ts",
+    "tests/ui/scheduler-focus-transfer.spec.ts",
+    "tests/ui/library-readability.spec.ts",
+    "tests/ui/library-final-recovery.spec.ts"
   ]
 }

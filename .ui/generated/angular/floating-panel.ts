@@ -1,7 +1,7 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiText} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, effect, ElementRef, inject, input, linkedSignal, output, TemplateRef, untracked } from '@angular/core';
+import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, effect, ElementRef, inject, input, linkedSignal, output, signal, TemplateRef, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
 import { restoreFocus, tabbableElements } from './focus';
 import { availableOverlayAnchor, observeOverlay, OverlayRegistry, positionOverlay, type OverlayPlacement } from './overlay';
@@ -33,8 +33,8 @@ const popupStyles = `
  .ui-popup-heading { flex:1 1 calc(var(--ui-text-heading) * 4);min-inline-size:0; }
  .ui-popup-header { margin-block-end:var(--ui-space-control-gap); }
  .ui-popup-actions:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
- h2 { margin:0;font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading); }
- p { margin-block:var(--ui-space-control-gap); }
+ h2 { margin:0;font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);text-wrap:balance; }
+ p { margin-block:var(--ui-space-control-gap);text-wrap:pretty; }
  .ui-popup-status { margin:0;color:var(--ui-color-muted); }
  .ui-popup-error { color:var(--ui-color-danger); }
 `;
@@ -209,10 +209,11 @@ export abstract class AnchoredPopup {
         this.clearTimer();if(this.opened())return true;this.source=source;this.opened.set(true);this.openChange.emit(true);return true;
     }
     /** UI endings may be held; explicit app open=false and unavailable scope force cleanup. */
+    protected closeBlocked():boolean { return this.busy(); }
     close(reason:PopupCloseReason='programmatic',value:unknown=undefined,force=false):boolean {
         if(this.closing||this.destroyed||!this.opened()&&!this.visible())return false;
         const request=new PopupCloseRequest(reason,value);
-        if(this.busy()&&!force)request.preventDefault();
+        if(this.closeBlocked()&&!force)request.preventDefault();
         this.closeRequested.emit(request);if(request.defaultPrevented&&!force)return false;
         this.closing=true;this.clearTimer();if(reason==='escape')this.dismissedUntilLeave=true;
         const active=this.element.ownerDocument.activeElement;
@@ -265,7 +266,7 @@ export class HoverCard extends Popover {
     override readonly showDelayMs=input(300);
     override readonly hideDelayMs=input(150);
 }
-@Component({selector:'ui-tooltip',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,template:'{{message()}}',styles:popupStyles+':host{font-size:var(--ui-text-small);padding:var(--ui-space-control-y) var(--ui-space-control-x);}',host:{...popupHost,role:'tooltip'}})
+@Component({selector:'ui-tooltip',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,template:'{{message()}}',styles:popupStyles+':host{font-size:var(--ui-text-small);padding:var(--ui-space-control-y) var(--ui-space-control-x);text-wrap:pretty;}',host:{...popupHost,role:'tooltip'}})
 export class Tooltip extends AnchoredPopup {
     readonly message=input.required<string>();
     override readonly trigger=input<PopupTrigger>('hover');
@@ -290,7 +291,7 @@ export class Tooltip extends AnchoredPopup {
     }
 }
 @Component({selector:'ui-confirm-popover',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,
-    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction data-popup-action [disabled]="busy()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
+    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
 export class ConfirmPopover extends AnchoredPopup {
  protected readonly uiText_ConfirmPopover=injectUiText();
     readonly label=input.required<string>();
@@ -303,11 +304,16 @@ export class ConfirmPopover extends AnchoredPopup {
  protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_ConfirmPopover('処理しています。'));
     readonly error=input('');
     readonly confirmRequested=output<void>();
+    // Only bridge the emit-to-render interval. The app owns processing and results.
+    protected readonly pending=signal(false);
     constructor() {
         super();let held:HTMLElement|null=null;
-        effect(()=>{if(!this.label().trim()||!this.message().trim())throw new Error('ConfirmPopover requires a label and message.');const busy=this.busy();untracked(()=>{const active=this.element.ownerDocument.activeElement as HTMLElement|null;if(busy&&active&&this.element.contains(active)&&active.matches('[data-popup-action]')){held=active;this.element.focus({preventScroll:true});}});});
-        afterRenderEffect(()=>{const busy=this.busy();untracked(()=>{if(!busy&&held){if(this.element.ownerDocument.activeElement===this.element)restoreFocus(held,this.element);held=null;}});});
+        effect(()=>{if(!this.label().trim()||!this.message().trim())throw new Error('ConfirmPopover requires a label and message.');const blocked=this.busy()||this.pending();untracked(()=>{const active=this.element.ownerDocument.activeElement as HTMLElement|null;if(blocked&&active&&this.element.contains(active)&&active.matches('[data-popup-action]')){held=active;this.element.focus({preventScroll:true});}});});
+        afterRenderEffect(()=>{const busy=this.busy(),pending=this.pending();untracked(()=>{if(pending)this.pending.set(false);else if(!busy&&held){if(this.element.ownerDocument.activeElement===this.element)restoreFocus(held,this.element);held=null;}});});
+        inject(DestroyRef).onDestroy(()=>{this.pending.set(false);held=null;});
     }
+    protected override closeBlocked():boolean { return this.busy()||this.pending(); }
+    override close(reason:PopupCloseReason='programmatic',value:unknown=undefined,force=false):boolean { const closed=super.close(reason,value,force);if(closed)this.pending.set(false);return closed; }
     protected override initialFocus(source:'click'|'automatic'|'programmatic'):HTMLElement|null { return source==='automatic'?null:this.element.querySelector<HTMLElement>('[data-popup-cancel]')??this.element; }
-    protected confirm():void { if(!this.busy())this.confirmRequested.emit(); }
+    protected confirm():void { if(this.busy()||this.pending())return;this.pending.set(true);this.confirmRequested.emit(); }
 }

@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "name": "aggregate",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "startedAt": "2026-10-09T23:15:40.030005+00:00",
+      "endedAt": "2026-10-09T23:17:46.547381+00:00",
+      "exitCode": -15,
+      "log": "aggregate.log",
+      "diffSha256Before": "d0efb2d9ad2a341890d8d08a54b207184179c52ab9acb7b4e37e8567f6442b0e",
+      "diffUnchanged": true
+    },
+    {
+      "name": "verification-tools",
+      "command": [
+        "npm",
+        "run",
+        "test:verification"
+      ],
+      "startedAt": "2026-10-09T23:17:46.801471+00:00",
+      "endedAt": "2026-10-09T23:18:17.201371+00:00",
+      "exitCode": 0,
+      "log": "verification-tools.log",
+      "diffSha256Before": "d0efb2d9ad2a341890d8d08a54b207184179c52ab9acb7b4e37e8567f6442b0e",
+      "diffUnchanged": true
+    }
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "CI": "1",
+    "UI_FIXTURE_PORT": "4227",
+    "retries": 0,
+    "workers": 2
+  }
+}
