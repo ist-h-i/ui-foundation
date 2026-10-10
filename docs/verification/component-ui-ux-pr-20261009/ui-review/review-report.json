@@ -1,0 +1,428 @@
+{
+  "reviewedAt": "2026-10-10T00:24:41.952Z",
+  "reviewer": "/root/independent_ui_review",
+  "verdict": "verified",
+  "scope": "Requested select-arrow/table-edit checks and representative changed catalog state paths",
+  "independence": {
+    "separateReviewer": true,
+    "renderObservedBeforeSource": true,
+    "priorVerdictsUsed": false,
+    "builderDiagnosisUsedAsEvidence": false,
+    "productEdits": false,
+    "buildSyncOrGitMutation": false
+  },
+  "artifactIdentity": {
+    "checkedAt": "2026-10-10T00:19:12.081Z",
+    "head": "5c0b545d68cf2b3fdad06aa35b7298e49e9e9221",
+    "base": "eeae8a9952489dc406fb70a478e25974ca695017",
+    "branch": "feat/component-ui-ux-review",
+    "manifestPath": "/tmp/ui-foundation-pr-20261009/ui-review-candidate.json",
+    "manifestSha256": "63732621c1be6e2ce9f3fda024c4d6f11769bf2964ca8a2365ecd168e62e461b",
+    "sourceCount": 480,
+    "sourceMismatches": [
+      {
+        "path": "tests/ui/async-retry-focus.spec.ts",
+        "expected": "89443ff833a1a1d4e2d6dc89b60e5c07f81d28ce8b698e59deefbfd30bd7b088",
+        "actual": "7f36558adc60e1cd07a60451ee3cf7c6f09f3c6d9a71d0ac9abd5ec81cbc7760"
+      },
+      {
+        "path": "tests/ui/diagram-connection-geometry.spec.ts",
+        "expected": "068613739b77e3648030fb0bbd95043f67007e7de4f257a977fa2a409e263873",
+        "actual": "9acc28deab3ac9a65b01663d5da29b9d4d1ee5536782ad708ef6f0ae617e30d6"
+      },
+      {
+        "path": "tsconfig.ui-runtime.json",
+        "expected": "754e0e8d4210301d82ac50366e657f4942ca41f4f14ce32769a63b6b8c901f85",
+        "actual": "e2417d91526bde1c72508a3a0ba9ff5233e4c46fba66a9711c29be900dd08be1"
+      }
+    ],
+    "runtimeCount": 309,
+    "runtimeMismatches": [],
+    "server": "http://127.0.0.1:4229",
+    "httpStatus": 200,
+    "servedMainSha256": "06dc140f93f029b7a14347975ded98720f4b4ba3f61aab2f7649ed00d6b7f447",
+    "expectedMainSha256": "06dc140f93f029b7a14347975ded98720f4b4ba3f61aab2f7649ed00d6b7f447"
+  },
+  "contract": {
+    "owner": "repository user configuration",
+    "authoritativeConfig": "examples/ui.config.example.yaml",
+    "configSha256": "6d3c3ec8cd99bb3b087f0e977f75d57f0aed6e251605bb8a1ee7b01febd9e040",
+    "manifestSha256": "63732621c1be6e2ce9f3fda024c4d6f11769bf2964ca8a2365ecd168e62e461b"
+  },
+  "environment": {
+    "os": "macOS",
+    "browser": "Chrome 154.0.8037.98",
+    "browserMode": "headless",
+    "controller": "project-local Playwright",
+    "profiles": [
+      "guided",
+      "dense"
+    ],
+    "viewportWidths": [
+      1366,
+      320
+    ],
+    "viewportHeight": 1000,
+    "textPercent": [
+      100,
+      200
+    ],
+    "textEnlargementMethod": "document.documentElement.style.fontSize",
+    "directions": [
+      "ltr",
+      "rtl"
+    ]
+  },
+  "measurements": {
+    "selectVariants": 16,
+    "selectInstances": 224,
+    "arrowInlineEndInsetPx": {
+      "guided": 24,
+      "dense": 16
+    },
+    "lineBoxArrowGapPx": {
+      "guided": 13,
+      "dense": 9
+    },
+    "dataGridVariants": 16,
+    "nativeTableCellRowVariants": 32,
+    "maxIdleHoverFocusCellWidthChangePx": 0,
+    "cellEditReservedWidthPx": 44,
+    "maxLeafHeaderCellWidthDeltaPx": 0,
+    "initialAdditionalRoutes": 15,
+    "specialistPanels": 12
+  },
+  "criteria": [
+    {
+      "id": "identity",
+      "required": true,
+      "status": "pass",
+      "rationale": "Concrete fixed artifact and source/runtime/HTTP correspondence",
+      "evidence": "final-identity-check.json"
+    },
+    {
+      "id": "independence",
+      "required": true,
+      "status": "pass",
+      "rationale": "Fresh reviewer observed render before diff; no product edits",
+      "evidence": "01-initial-observation.json"
+    },
+    {
+      "id": "spacing",
+      "required": true,
+      "status": "pass",
+      "rationale": "Spacing rhythm and operational groups in actual catalog viewports",
+      "evidence": "catalog-route-observations.json"
+    },
+    {
+      "id": "emphasis",
+      "required": true,
+      "status": "pass",
+      "rationale": "Primary save and quiet idle table edits, visible focus",
+      "evidence": "native-table-cell-focus-desktop.png"
+    },
+    {
+      "id": "select_end_inset",
+      "required": true,
+      "status": "pass",
+      "rationale": "All 16 variants: guided 24px / dense 16px SVG-box end inset",
+      "evidence": "select-matrix.json"
+    },
+    {
+      "id": "select_label_clearance",
+      "required": true,
+      "status": "pass",
+      "rationale": "All 224 select observations: guided 13px / dense 9px line-box-to-SVG clearance",
+      "evidence": "select-matrix.json"
+    },
+    {
+      "id": "table_reserved_geometry",
+      "required": true,
+      "status": "pass",
+      "rationale": "DataGrid 16 + Native cell/row 32: max idle/hover/focus width delta 0px; cell action 44px",
+      "evidence": "native-table-matrix.json"
+    },
+    {
+      "id": "table_alignment",
+      "required": true,
+      "status": "pass",
+      "rationale": "DataGrid/Native leaf header-cell max width delta 0px",
+      "evidence": "table-matrix.json"
+    },
+    {
+      "id": "native_keyboard_edit_cancel",
+      "required": true,
+      "status": "pass",
+      "rationale": "F2/Enter edit, Escape cancel, Native cell/row start and cancel, visible focus",
+      "evidence": "table-interactions.json"
+    },
+    {
+      "id": "editable_constraints",
+      "required": true,
+      "status": "pass",
+      "rationale": "Required-name whitespace rejected with zero requests, invalid draft retained",
+      "evidence": "table-interactions.json"
+    },
+    {
+      "id": "state_semantics",
+      "required": true,
+      "status": "pass",
+      "rationale": "Normal/pending/error/retry and missing values observed across representative paths",
+      "evidence": "spreadsheet-interactions.json"
+    },
+    {
+      "id": "input_focus_repeat",
+      "required": true,
+      "status": "pass",
+      "rationale": "DataGrid/Filter/Spreadsheet retained input and stable external focus; duplicate pending requests suppressed",
+      "evidence": "filter-interactions.json"
+    },
+    {
+      "id": "cancel_and_next_action",
+      "required": true,
+      "status": "pass",
+      "rationale": "DataGrid cancellation and FormDialog dirty-close handling, retained app-owned draft, origin focus",
+      "evidence": "form-dialog-interactions.json"
+    },
+    {
+      "id": "narrow_enlarged_rtl",
+      "required": true,
+      "status": "pass",
+      "rationale": "16 select + 48 table variants fit document; actual local horizontal scrolling and representative narrow states",
+      "evidence": "local-horizontal-scroll.json"
+    },
+    {
+      "id": "palette_chat_stable_external_focus",
+      "required": false,
+      "status": "unverified",
+      "rationale": "Response fixture buttons change disabled state; BODY focus observed. Not used as stable external-focus pass evidence."
+    },
+    {
+      "id": "valid_video_fullscreen_recovery",
+      "required": false,
+      "status": "unverified",
+      "rationale": "Only missing-source error and truthful retry observed; no valid video source supplied."
+    },
+    {
+      "id": "os_font_browser_zoom_other_engines_at_forced_colors",
+      "required": false,
+      "status": "unverified",
+      "rationale": "Root CSS font size enlargement, Chrome only. Real OS/browser zoom, AT and forced colors not exercised."
+    },
+    {
+      "id": "all_components_all_states",
+      "required": false,
+      "status": "unverified",
+      "rationale": "Initial route/panel views and representative changed operations, not all 181 components × all states."
+    }
+  ],
+  "materialFindings": [],
+  "observations": [
+    {
+      "id": "I1",
+      "severity": "informational",
+      "trigger": "320px long native selected labels; guided profile at 100%; guided profile/date-format/grid-columns and dense profile at 200%, both directions",
+      "impact": "Closed select does not show the entire selected text",
+      "location": [
+        "tests/fixture-app/catalog.ts: catalog-profile/date-format/grid-columns",
+        "templates/angular/styles.css: .ui-select-control"
+      ],
+      "evidence": [
+        "select-matrix.json",
+        "select-profile-guided-320-200-rtl.png",
+        "select-profile-dense-320-200-ltr.png"
+      ],
+      "disposition": "No full-caption contract adopted; arrow and line-box separation passes. Native popup full-text readability unverified."
+    },
+    {
+      "id": "I2",
+      "severity": "informational",
+      "trigger": "320px / 200% table minimum columns wider than local viewport",
+      "impact": "Horizontal local scrolling needed for adjacent cells and full long content",
+      "location": [
+        "templates/angular/data-grid.ts",
+        "templates/angular/data-table-view.ts"
+      ],
+      "evidence": [
+        "local-horizontal-scroll.json",
+        "table-matrix.json",
+        "native-table-matrix.json"
+      ],
+      "disposition": "Local scrolling allowed by table specification and actually observed; no document overflow or state-induced column movement."
+    }
+  ],
+  "actionEvidence": [
+    "select-matrix.json",
+    "table-matrix.json",
+    "native-table-matrix.json",
+    "table-interactions.json",
+    "native-table-cell-cancel.json",
+    "supplemental-table-keyboard.json",
+    "local-horizontal-scroll.json",
+    "filter-interactions.json",
+    "palette-interactions.json",
+    "form-dialog-interactions.json",
+    "spreadsheet-interactions.json",
+    "specialist-interactions.json",
+    "media-interactions.json"
+  ],
+  "recommendedPng": [
+    {
+      "name": "select-profile-guided-320-200-rtl.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/select-profile-guided-320-200-rtl.png",
+      "bytes": 9426,
+      "sha256": "ff176c67563c41051af600bedd0d343de8ac428317d7a77630423ad001607ede"
+    },
+    {
+      "name": "select-profile-dense-320-200-ltr.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/select-profile-dense-320-200-ltr.png",
+      "bytes": 9311,
+      "sha256": "7e41613ecdb0566268d84b587aed2bd5398154a1844f8e723f3490e645380e1d"
+    },
+    {
+      "name": "native-table-cell-idle-desktop-actual.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/native-table-cell-idle-desktop-actual.png",
+      "bytes": 100494,
+      "sha256": "abc8bcf7b0bac8d364bc8291f1f2f8907f102ebdebc1502c467688ea80dea775"
+    },
+    {
+      "name": "native-table-cell-focus-desktop.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/native-table-cell-focus-desktop.png",
+      "bytes": 96664,
+      "sha256": "ad9a40ce374035ecb067737912d3bb659ceda38d95d0dcb757922caf98819412"
+    },
+    {
+      "name": "table-edit-failure-desktop.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/table-edit-failure-desktop.png",
+      "bytes": 112237,
+      "sha256": "bf3423987c6eb8752bc19ce23e47ef6d709175c1ec97ead50fe42d309686850c"
+    },
+    {
+      "name": "spreadsheet-worker-recovery-desktop.png",
+      "path": "/tmp/ui-foundation-ui-review-20261009/spreadsheet-worker-recovery-desktop.png",
+      "bytes": 100201,
+      "sha256": "0f1e09a4f26026a98dd702757cf6d25600956d7500511e335a11b602ab18e19e"
+    }
+  ],
+  "recommendedRawEvidence": [
+    {
+      "name": "select-matrix.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/select-matrix.json",
+      "bytes": 251990,
+      "sha256": "2af92f77c02698649ae66dd847bdafefb583ad3545997ef82a35d7259fa78c98"
+    },
+    {
+      "name": "table-matrix.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/table-matrix.json",
+      "bytes": 617557,
+      "sha256": "4b82122dfc0ee9385695c95a34bc43bdd9de533a12ed3643ff710748572cbe1e"
+    },
+    {
+      "name": "native-table-matrix.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/native-table-matrix.json",
+      "bytes": 575229,
+      "sha256": "fddffcec3d9fb06c91f7c1a88fa085d133a9e61d9d7152e7dfa8f917da4ffdcd"
+    },
+    {
+      "name": "table-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/table-interactions.json",
+      "bytes": 15123,
+      "sha256": "75bb951d0e8b8e606c9ff8bae7b1ba27923732cae25ce11f27eb5cf692a57ed0"
+    },
+    {
+      "name": "native-table-cell-cancel.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/native-table-cell-cancel.json",
+      "bytes": 144,
+      "sha256": "f4e91bdec71996e7ad9affc4e572529143904c2051b25510a0a5e9145ae34397"
+    },
+    {
+      "name": "supplemental-table-keyboard.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/supplemental-table-keyboard.json",
+      "bytes": 504,
+      "sha256": "f693bd1f85615b358cd78152ef78254de4e761cd4ded9bfe6f04db9901d75a9e"
+    },
+    {
+      "name": "local-horizontal-scroll.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/local-horizontal-scroll.json",
+      "bytes": 403,
+      "sha256": "205eb19e2c65cca0baf65fb43b7d1f0156047633d9c4064a7d2d89a9088d6705"
+    },
+    {
+      "name": "filter-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/filter-interactions.json",
+      "bytes": 42183,
+      "sha256": "0bdffba93c5b56dd1a2641156d98a20327c10609028d614d86f4f8b453f44c55"
+    },
+    {
+      "name": "palette-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/palette-interactions.json",
+      "bytes": 9680,
+      "sha256": "7f907c44a67df85368bfce0eea5344d6655f88c8662f89548daf8ef1f0c206f7"
+    },
+    {
+      "name": "form-dialog-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/form-dialog-interactions.json",
+      "bytes": 4085,
+      "sha256": "2c29ea4046292a660563b58e5eae76f1445c401d9b851712e63ad03ca677a28d"
+    },
+    {
+      "name": "spreadsheet-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/spreadsheet-interactions.json",
+      "bytes": 18182,
+      "sha256": "30b903e933f2cbb7575bc6de7866994a62999febf47da1a9c6b710c69ebcc7df"
+    },
+    {
+      "name": "specialist-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/specialist-interactions.json",
+      "bytes": 22534,
+      "sha256": "ccba575459f8beede963ab09d4d0f99b823517cd3862f3fc1ae8fbd845a1d5e8"
+    },
+    {
+      "name": "media-interactions.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/media-interactions.json",
+      "bytes": 15290,
+      "sha256": "f12bfea5b5b24756a29b1fbbfb77c1026de43becf0f462c7c842abe6d358f3fc"
+    },
+    {
+      "name": "catalog-route-observations.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/catalog-route-observations.json",
+      "bytes": 132086,
+      "sha256": "0f020fcb8f7a2b88e96f7fbb5314791cbfca9318dce8776659dfcc0dcd094e56"
+    },
+    {
+      "name": "specialist-observations.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/specialist-observations.json",
+      "bytes": 77380,
+      "sha256": "531367f88b2dce2909b1a7614ca43020841e4cc8605163aee7123435fee85b40"
+    },
+    {
+      "name": "final-identity-check.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/final-identity-check.json",
+      "bytes": 1403,
+      "sha256": "b39ae8b0d8c77eb6ce7f69db02ee229532ad0a13316f60e95100347e54e1195c"
+    },
+    {
+      "name": "frozen-input-manifest.raw.json",
+      "path": "/tmp/ui-foundation-ui-review-20261009/frozen-input-manifest.raw.json",
+      "bytes": 121795,
+      "sha256": "63732621c1be6e2ce9f3fda024c4d6f11769bf2964ca8a2365ecd168e62e461b"
+    }
+  ],
+  "commandEvidence": [
+    "node /tmp/ui-foundation-ui-review-20261009/review-console.mjs",
+    "saved measurement/interaction modules in evidence root",
+    "node /tmp/ui-foundation-ui-review-20261009/resume-media.mjs",
+    "node /tmp/ui-foundation-ui-review-20261009/audit-identity.mjs"
+  ],
+  "rejectedAsPassEvidence": [
+    "specialist-interactions-initial.json: initial locator/native-option driver limitations",
+    "filter-invalid-input-observations.json: invalid numeric input; convenience step names do not mean pending/save paths executed"
+  ],
+  "screenshotsPersonallyInspected": true,
+  "repositoryBrowserTestsUsedAsVisualApproval": false,
+  "pending": [
+    "Exact final head correspondence after documentation/evidence commit",
+    "Parent-owned aggregate test final outcome"
+  ],
+  "humanReport": "/tmp/ui-foundation-independent-ui-review.md"
+}

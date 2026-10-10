@@ -1,0 +1,72 @@
+
+> ui-foundation@0.0.0 test:verification
+> node --test tests/verification-tools/*.test.mjs
+
+▶ portable evidence tools verify exact historical payloads and reject invalid transfers
+  ✔ media-tree-independent: another cwd exports every exact byte (1809.996917ms)
+  ✔ media-tree-independent: exported pack can be verified again (963.320875ms)
+  ✔ media-tree-independent: wrong manifest digest fails (114.745083ms)
+  ✔ media-tree-independent: wrong adoption digest fails (112.01375ms)
+  ✔ media-tree-independent: missing adoption digest fails (119.374292ms)
+  ✔ media-tree-independent: existing output is preserved (119.0115ms)
+  ✔ media-tree-independent: output inside source is rejected (126.481583ms)
+  ✔ media-tree-independent: changed-byte is rejected (155.884083ms)
+  ✔ media-tree-independent: missing-file is rejected (135.084709ms)
+  ✔ media-tree-independent: symlink is rejected (115.580458ms)
+  ✔ media-tree-independent: hardlink is rejected (145.841834ms)
+  ✔ media-tree-independent: unlisted-file is rejected (151.240625ms)
+  ✔ media-tree-independent: duplicate-path is rejected (141.375375ms)
+  ✔ media-tree-independent: parent-path is rejected (120.060625ms)
+  ✔ media-tree-independent: backslash-path is rejected (122.804209ms)
+  ✔ cross-browser-author: another cwd exports every exact byte (2124.205041ms)
+  ✔ cross-browser-author: exported pack can be verified again (1149.772791ms)
+  ✔ cross-browser-author: wrong manifest digest fails (77.717125ms)
+  ✔ cross-browser-author: wrong adoption digest fails (81.467625ms)
+  ✔ cross-browser-author: missing adoption digest fails (80.957167ms)
+  ✔ cross-browser-author: existing output is preserved (78.073042ms)
+  ✔ cross-browser-author: output inside source is rejected (76.195625ms)
+  ✔ cross-browser-author: changed-byte is rejected (102.953459ms)
+  ✔ cross-browser-author: missing-file is rejected (103.556167ms)
+  ✔ cross-browser-author: symlink is rejected (88.418792ms)
+  ✔ cross-browser-author: hardlink is rejected (94.644125ms)
+  ✔ cross-browser-author: unlisted-file is rejected (152.209542ms)
+  ✔ cross-browser-author: duplicate-path is rejected (232.655375ms)
+  ✔ cross-browser-author: parent-path is rejected (144.760125ms)
+  ✔ cross-browser-author: backslash-path is rejected (122.122958ms)
+✔ portable evidence tools verify exact historical payloads and reject invalid transfers (9802.409583ms)
+▶ Media audit uses selected Git baseline and real strict compiler failures
+  ✔ unchanged assertions pass from an unrelated cwd (1645.262417ms)
+  ✔ default repo follows the script checkout rather than process cwd (1301.274584ms)
+  ✔ missing baseline fails (111.491916ms)
+  ✔ existing audit output is preserved (75.469625ms)
+  ✔ title mismatch fails (1395.876375ms)
+  ✔ title whitespace mismatch fails (1993.669208ms)
+  ✔ expectation mismatch fails (1944.653875ms)
+  ✔ expectation literal whitespace mismatch fails (1634.928958ms)
+  ✔ matcher label whitespace mismatch fails (1756.463625ms)
+  ✔ explicit any fails (2024.304ms)
+  ✔ suppression fails (1169.65975ms)
+  ✔ compiler diagnostic fails (1139.06575ms)
+  ✔ parser error fails (1300.519833ms)
+  ✔ omitting Media specs from compiler scope fails even when helper compilation succeeds (2001.607916ms)
+  ✔ noCheck cannot hide a type error while strict and all selected entries remain enabled (1543.8005ms)
+  ✔ disabled strict constituent noImplicitAny is rejected (1393.519125ms)
+  ✔ disabled strict constituent strictNullChecks is rejected (1335.563083ms)
+  ✔ disabled strict constituent strictFunctionTypes is rejected (1268.482792ms)
+  ✔ disabled strict constituent strictBindCallApply is rejected (1225.591666ms)
+  ✔ disabled strict constituent strictPropertyInitialization is rejected (1374.440958ms)
+  ✔ disabled strict constituent strictBuiltinIteratorReturn is rejected (1292.381209ms)
+  ✔ disabled strict constituent noImplicitThis is rejected (1243.832792ms)
+  ✔ disabled strict constituent useUnknownInCatchVariables is rejected (1220.313ms)
+  ✔ helper semantic errors cannot disappear outside the compiler program (1255.942542ms)
+  ✔ transitively imported helper is checked without becoming a compiler root (2938.120083ms)
+  ✔ disabled strict config fails (1460.258667ms)
+✔ Media audit uses selected Git baseline and real strict compiler failures (37362.9055ms)
+ℹ tests 58
+ℹ suites 0
+ℹ pass 58
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47367.629334

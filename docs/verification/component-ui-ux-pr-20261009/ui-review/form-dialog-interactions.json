@@ -1,0 +1,163 @@
+[
+  {
+    "step": "native-save-button-enter",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存しています。\n\n保存\n取消\n\n処理しています。",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "P",
+        "id": "",
+        "text": "保存しています。"
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "failure-after-repeat-enter",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存に失敗しました。入力内容を保持しています。\n\n保存\n取消",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "保存"
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "narrow-enlarged-error",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存に失敗しました。入力内容を保持しています。\n\n保存\n取消",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "保存"
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "dirty-cancel-held",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存に失敗しました。入力内容を保持しています。\n\n保存\n取消",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "取消"
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "continue-editing-retains-value",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存に失敗しました。入力内容を保持しています。\n\n保存\n取消",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "INPUT",
+        "id": "form-dialog-title",
+        "text": ""
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "explicit-discard-close",
+    "observed": {
+      "text": "",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "FormDialogを開く"
+      },
+      "open": false
+    }
+  },
+  {
+    "step": "reopen-app-owned-draft",
+    "observed": {
+      "text": "申請名を編集\n閉じる\nDialog内の申請名 必須\n\n保存に失敗しました。入力内容を保持しています。\n\n保存\n取消",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "閉じる"
+      },
+      "open": true
+    }
+  },
+  {
+    "step": "success-close-return-origin",
+    "observed": {
+      "text": "",
+      "inputs": [
+        {
+          "value": "復旧を確認する申請",
+          "disabled": false,
+          "readonly": false,
+          "invalid": null
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "FormDialogを開く"
+      },
+      "open": false
+    },
+    "result": "Dialog結果: confirm / 復旧を確認する申請"
+  }
+]

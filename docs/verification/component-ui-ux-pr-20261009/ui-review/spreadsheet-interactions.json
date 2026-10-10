@@ -1,0 +1,697 @@
+[
+  {
+    "step": "worker-network-abort-error",
+    "requests": 1,
+    "state": {
+      "text": "申請集計\n\n数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。\n\n矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。\n\n選択 A1 / 値 2\n\n行\tA\tB\tC\tD\n1\t\t\t\t\n2\t\t\t\t\n3\t\t\t\t\n数式の計算を再試行\nCSVを書き出す\n数式を含むJSONを書き出す\n読み込むCSV\nCSVを読み込む",
+      "inputs": [
+        {
+          "label": "A1",
+          "type": "text",
+          "value": "2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B1",
+          "type": "text",
+          "value": "3",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C1",
+          "type": "text",
+          "value": "=SUM(A1:B1)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D1",
+          "type": "text",
+          "value": "=C1*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A2",
+          "type": "text",
+          "value": "4",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B2",
+          "type": "text",
+          "value": "5",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C2",
+          "type": "text",
+          "value": "=SUM(A2:B2)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D2",
+          "type": "text",
+          "value": "=C2*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A3",
+          "type": "text",
+          "value": "",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B3",
+          "type": "text",
+          "value": "001",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C3",
+          "type": "text",
+          "value": "=A1+A2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D3",
+          "type": "text",
+          "value": "=1/0",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": null,
+          "type": "textarea",
+          "value": "",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "label": null,
+        "text": "Spreadsheet"
+      },
+      "status": [
+        "数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。",
+        "選択 A1 / 値 2"
+      ],
+      "extent": {
+        "width": 1366,
+        "scroll": 1366
+      }
+    }
+  },
+  {
+    "step": "native-draft-escape",
+    "requests": 1,
+    "state": {
+      "text": "申請集計\n\n数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。\n\n矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。\n\n選択 A1 / 値 2\n\n行\tA\tB\tC\tD\n1\t\t\t\t\n2\t\t\t\t\n3\t\t\t\t\n数式の計算を再試行\nCSVを書き出す\n数式を含むJSONを書き出す\n読み込むCSV\nCSVを読み込む",
+      "inputs": [
+        {
+          "label": "A1",
+          "type": "text",
+          "value": "2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B1",
+          "type": "text",
+          "value": "3",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C1",
+          "type": "text",
+          "value": "=SUM(A1:B1)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D1",
+          "type": "text",
+          "value": "=C1*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A2",
+          "type": "text",
+          "value": "4",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B2",
+          "type": "text",
+          "value": "5",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C2",
+          "type": "text",
+          "value": "=SUM(A2:B2)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D2",
+          "type": "text",
+          "value": "=C2*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A3",
+          "type": "text",
+          "value": "",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B3",
+          "type": "text",
+          "value": "001",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C3",
+          "type": "text",
+          "value": "=A1+A2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D3",
+          "type": "text",
+          "value": "=1/0",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": null,
+          "type": "textarea",
+          "value": "",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        }
+      ],
+      "focus": {
+        "tag": "INPUT",
+        "label": "A1",
+        "text": ""
+      },
+      "status": [
+        "数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。",
+        "選択 A1 / 値 2"
+      ],
+      "extent": {
+        "width": 1366,
+        "scroll": 1366
+      }
+    }
+  },
+  {
+    "step": "edit-preserved-during-worker-error",
+    "requests": 2,
+    "state": {
+      "text": "申請集計\n\n数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。\n\n矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。\n\n選択 A1 / 値 9\n\n行\tA\tB\tC\tD\n1\t\t\t\t\n2\t\t\t\t\n3\t\t\t\t\n数式の計算を再試行\nCSVを書き出す\n数式を含むJSONを書き出す\n読み込むCSV\nCSVを読み込む",
+      "inputs": [
+        {
+          "label": "A1",
+          "type": "text",
+          "value": "9",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B1",
+          "type": "text",
+          "value": "3",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C1",
+          "type": "text",
+          "value": "=SUM(A1:B1)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D1",
+          "type": "text",
+          "value": "=C1*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A2",
+          "type": "text",
+          "value": "4",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B2",
+          "type": "text",
+          "value": "5",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C2",
+          "type": "text",
+          "value": "=SUM(A2:B2)",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D2",
+          "type": "text",
+          "value": "=C2*2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A3",
+          "type": "text",
+          "value": "",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B3",
+          "type": "text",
+          "value": "001",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C3",
+          "type": "text",
+          "value": "=A1+A2",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D3",
+          "type": "text",
+          "value": "=1/0",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": null,
+          "type": "textarea",
+          "value": "",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        }
+      ],
+      "focus": {
+        "tag": "INPUT",
+        "label": "A1",
+        "text": ""
+      },
+      "status": [
+        "数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。",
+        "選択 A1 / 値 9"
+      ],
+      "extent": {
+        "width": 1366,
+        "scroll": 1366
+      }
+    }
+  },
+  {
+    "step": "retry-pending",
+    "requests": 3,
+    "state": {
+      "text": "申請集計\n\n数式を計算しています。\n\n矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。\n\n選択 A1 / 値 9\n\n行\tA\tB\tC\tD\n1\t\t\t\t\n2\t\t\t\t\n3\t\t\t\t\n数式の計算を再試行\nCSVを書き出す\n数式を含むJSONを書き出す\n読み込むCSV\nCSVを読み込む",
+      "inputs": [
+        {
+          "label": "A1",
+          "type": "text",
+          "value": "9",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B1",
+          "type": "text",
+          "value": "3",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C1",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D1",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A2",
+          "type": "text",
+          "value": "4",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B2",
+          "type": "text",
+          "value": "5",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C2",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D2",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "A3",
+          "type": "text",
+          "value": "",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B3",
+          "type": "text",
+          "value": "001",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C3",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": "D3",
+          "type": "text",
+          "value": "#CALCULATING",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": null,
+          "type": "textarea",
+          "value": "",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        }
+      ],
+      "focus": {
+        "tag": "P",
+        "label": null,
+        "text": "数式を計算しています。"
+      },
+      "status": [
+        "数式を計算しています。",
+        "選択 A1 / 値 9"
+      ],
+      "extent": {
+        "width": 1366,
+        "scroll": 1366
+      }
+    }
+  },
+  {
+    "step": "worker-retry-success-external-focus",
+    "requests": 3,
+    "state": {
+      "text": "申請集計\n\n計算済み\n\n矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。\n\n選択 A1 / 値 9\n\n行\tA\tB\tC\tD\n1\t\t\t\t\n2\t\t\t\t\n3\t\t\t\t\n数式の計算を再試行\nCSVを書き出す\n数式を含むJSONを書き出す\n読み込むCSV\nCSVを読み込む",
+      "inputs": [
+        {
+          "label": "A1",
+          "type": "text",
+          "value": "9",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B1",
+          "type": "text",
+          "value": "3",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C1",
+          "type": "text",
+          "value": "12",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "D1",
+          "type": "text",
+          "value": "24",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "A2",
+          "type": "text",
+          "value": "4",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B2",
+          "type": "text",
+          "value": "5",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C2",
+          "type": "text",
+          "value": "9",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "D2",
+          "type": "text",
+          "value": "18",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "A3",
+          "type": "text",
+          "value": "",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "B3",
+          "type": "text",
+          "value": "001",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "C3",
+          "type": "text",
+          "value": "13",
+          "readonly": true,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        },
+        {
+          "label": "D3",
+          "type": "text",
+          "value": "#DIV/0!",
+          "readonly": true,
+          "disabled": false,
+          "invalid": "true",
+          "visible": true
+        },
+        {
+          "label": null,
+          "type": "textarea",
+          "value": "",
+          "readonly": false,
+          "disabled": false,
+          "invalid": null,
+          "visible": true
+        }
+      ],
+      "focus": {
+        "tag": "BUTTON",
+        "label": null,
+        "text": "プロファイル: guided"
+      },
+      "status": [
+        "計算済み",
+        "選択 A1 / 値 9"
+      ],
+      "extent": {
+        "width": 1366,
+        "scroll": 1366
+      }
+    }
+  }
+]

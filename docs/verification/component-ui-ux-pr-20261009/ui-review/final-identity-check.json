@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-10T00:19:12.081Z",
+  "head": "5c0b545d68cf2b3fdad06aa35b7298e49e9e9221",
+  "base": "eeae8a9952489dc406fb70a478e25974ca695017",
+  "branch": "feat/component-ui-ux-review",
+  "manifestPath": "/tmp/ui-foundation-pr-20261009/ui-review-candidate.json",
+  "manifestSha256": "63732621c1be6e2ce9f3fda024c4d6f11769bf2964ca8a2365ecd168e62e461b",
+  "sourceCount": 480,
+  "sourceMismatches": [
+    {
+      "path": "tests/ui/async-retry-focus.spec.ts",
+      "expected": "89443ff833a1a1d4e2d6dc89b60e5c07f81d28ce8b698e59deefbfd30bd7b088",
+      "actual": "7f36558adc60e1cd07a60451ee3cf7c6f09f3c6d9a71d0ac9abd5ec81cbc7760"
+    },
+    {
+      "path": "tests/ui/diagram-connection-geometry.spec.ts",
+      "expected": "068613739b77e3648030fb0bbd95043f67007e7de4f257a977fa2a409e263873",
+      "actual": "9acc28deab3ac9a65b01663d5da29b9d4d1ee5536782ad708ef6f0ae617e30d6"
+    },
+    {
+      "path": "tsconfig.ui-runtime.json",
+      "expected": "754e0e8d4210301d82ac50366e657f4942ca41f4f14ce32769a63b6b8c901f85",
+      "actual": "e2417d91526bde1c72508a3a0ba9ff5233e4c46fba66a9711c29be900dd08be1"
+    }
+  ],
+  "runtimeCount": 309,
+  "runtimeMismatches": [],
+  "server": "http://127.0.0.1:4229",
+  "httpStatus": 200,
+  "servedMainSha256": "06dc140f93f029b7a14347975ded98720f4b4ba3f61aab2f7649ed00d6b7f447",
+  "expectedMainSha256": "06dc140f93f029b7a14347975ded98720f4b4ba3f61aab2f7649ed00d6b7f447"
+}

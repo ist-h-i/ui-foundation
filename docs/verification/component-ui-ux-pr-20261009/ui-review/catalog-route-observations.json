@@ -1,0 +1,4059 @@
+[
+  {
+    "route": "feedback",
+    "screenshot": "catalog-feedback-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/feedback",
+    "text": "状態表示の確認\n表・入力・日付・通知操作部品配置部品\n表示設定\n一覧と入力を繰り返し使う\n手順を確認しながら使う\nRTL\n結果不明と復旧\n操作の結果\n結果不明\n成功\n失敗\n要確認\n未操作\n復旧結果を返す\n\n処理の結果が不明です。状態を確認してください。\n\n処理の結果が不明です。状態を確認してください。\n\n状態を確認する\n復旧中の下書き\n\n復旧 0\n\n取得と欠損\n取得の状態\n通常\n取得中\n更新中\n空\nエラー\n部分欠損\n古い情報\n再取得結果を返す\n\n取得領域の下書き\n\n取得済みの記録を保持します。\n\n再試行 0\n\n閉じる通知\n通知を再表示\n通知の処理中\n通知の閉じる操作を表示\n通知の確認操作を表示\n入れ子の通知操作を表示\n確認が必要です\n\n未取得の項目を確認してください。\n\n補助情報\n内容を確認\n通知を閉じる\n\n操作 0 / 閉じる 0\n\n空と次の操作\n検索結果なし\n結果操作を処理中\n記録はまだありません\n\n最初の記録を追加できます。\n\n記録を追加\n結果表示の種別\n完了\n失敗\n結果不明\n要確認\n情報\n操作の結果\n\n結果を確認できます。\n\n結果の詳細\n一覧へ戻る\n\n空 0 / 結果 0\n\n進捗と取消\n進捗の値\n進捗不定\n記録の転送\n\n40 / 200 (20%)\n\n転送を取消\n取消状態を戻す\n\n取消要求 0\n\n表示待ちと仮の形\nSpinnerを表示表示遅延ms\nSpinnerのサイズ\n小\n中\n大\n円形の進捗を表示\nSkeletonの形\n行\n四角\n円\nSkeletonを動かす\n領域だけを抑止\n抑止領域の入力\n対象の操作\nこの領域を抑止\n外側から領域を抑止\n他の領域の操作\n\n対象 0 / 他 0 / 取消 0\n\n未読と追加取得\n通知操作を無効\n申請の通知\n通知の状態\nすべて\n未読\n既読\n通知の分類\nすべて\n申請\n環境\n\n3件表示、未読 2件\n\n提出内容を確認\n\n確認が必要な項目があります。\n\n申請\n未読\n\n既読にする\n削除\n受付を確認\n\n記録を受け付けました。\n\n申請\n既読\n\n未読に戻す\n削除\n取得状態を確認\n\n一部の情報を取得できません。\n\n環境\n未読\n\n既読にする\n削除\n通知を追加取得\n追加取得を失敗させる\n追加取得結果を返す\n\n取得要求 0\n\n対象と再開\n案内の入力対象\n案内の操作対象\n案内の操作対象を隠す\n案内を再開\n案内を最初から\nアプリ側から案内を閉じる\n\n段階 0 / 表示済み / 終了 / 操作 0",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "状態表示の確認"
+      },
+      {
+        "tag": "H2",
+        "text": "結果不明と復旧"
+      },
+      {
+        "tag": "H2",
+        "text": "取得と欠損"
+      },
+      {
+        "tag": "H2",
+        "text": "閉じる通知"
+      },
+      {
+        "tag": "H2",
+        "text": "確認が必要です"
+      },
+      {
+        "tag": "H2",
+        "text": "空と次の操作"
+      },
+      {
+        "tag": "H2",
+        "text": "記録はまだありません"
+      },
+      {
+        "tag": "H2",
+        "text": "操作の結果"
+      },
+      {
+        "tag": "H2",
+        "text": "進捗と取消"
+      },
+      {
+        "tag": "H2",
+        "text": "表示待ちと仮の形"
+      },
+      {
+        "tag": "H2",
+        "text": "領域だけを抑止"
+      },
+      {
+        "tag": "H2",
+        "text": "未読と追加取得"
+      },
+      {
+        "tag": "H2",
+        "text": "申請の通知"
+      },
+      {
+        "tag": "H3",
+        "text": "提出内容を確認"
+      },
+      {
+        "tag": "H3",
+        "text": "受付を確認"
+      },
+      {
+        "tag": "H3",
+        "text": "取得状態を確認"
+      },
+      {
+        "tag": "H2",
+        "text": "対象と再開"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "復旧結果を返す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "状態を確認する",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "再取得結果を返す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "通知を再表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補助情報",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "内容を確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "通知を閉じる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "記録を追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "一覧へ戻る",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "転送を取消",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取消状態を戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "対象の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "この領域を抑止",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外側から領域を抑止",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "他の領域の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "既読にする",
+        "label": "既読にする: 提出内容を確認",
+        "disabled": false
+      },
+      {
+        "text": "削除",
+        "label": "削除: 提出内容を確認",
+        "disabled": false
+      },
+      {
+        "text": "未読に戻す",
+        "label": "未読に戻す: 受付を確認",
+        "disabled": false
+      },
+      {
+        "text": "削除",
+        "label": "削除: 受付を確認",
+        "disabled": false
+      },
+      {
+        "text": "既読にする",
+        "label": "既読にする: 取得状態を確認",
+        "disabled": false
+      },
+      {
+        "text": "削除",
+        "label": "削除: 取得状態を確認",
+        "disabled": false
+      },
+      {
+        "text": "通知を追加取得",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "追加取得を失敗させる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "追加取得結果を返す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "案内の操作対象",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "案内を再開",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "案内を最初から",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "アプリ側から案内を閉じる",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "操作の結果",
+      "復旧中の下書き",
+      "取得の状態",
+      "取得領域の下書き",
+      "通知の処理中",
+      "通知の閉じる操作を表示",
+      "通知の確認操作を表示",
+      "入れ子の通知操作を表示",
+      "検索結果なし",
+      "結果操作を処理中",
+      "結果表示の種別",
+      "進捗の値",
+      "進捗不定",
+      "記録の転送",
+      "Spinnerを表示",
+      "表示遅延ms",
+      "Spinnerのサイズ",
+      "円形の進捗を表示",
+      "Skeletonの形",
+      "Skeletonを動かす",
+      "抑止領域の入力",
+      "通知操作を無効",
+      "通知の状態",
+      "通知の分類",
+      "案内の入力対象",
+      "案内の操作対象を隠す"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "actions",
+    "screenshot": "catalog-actions-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/actions",
+    "text": "操作部品の確認\n表・入力・日付・通知配置部品\n表示設定\n一覧と入力を繰り返し使う\n手順を確認しながら使う\nRTL\n種別・サイズ・処理状態\n操作のサイズ\n中\n小\n大\n処理中にする\n操作を無効にする\n幅いっぱいに表示\nアイコンを末尾に表示\n確認して申請する\n下書きを削除する\n参照資料\n外部リンク↗\n\n操作 0 / 遷移 0\n\n送信\n入力を戻す\n\n送信 0 / 戻す 0\n\n説明と選択状態\n履歴を固定\n未固定\n連結と共通サイズ\n連結して表示\n操作群を縦方向にする\n概要\n申請内容\n履歴\n単一・複数選択\n複数の表示を選ぶ\n選択肢を縦方向にする\n均等幅にする\n選択をformから無効にする\n選択をformから有効にする\n選択を初期化\n選択肢を差し替える\n表示する領域 (必須)\n概要\n履歴\n利用不可\n\n選択した領域を表示します。\n\n\"summary\" / 有効 / 未操作\n\n主操作と補助メニュー\n選択後もメニューを保持\n下書きを保存\n保存の補助操作\n\n選択:\n\n狭幅の退避とキーボード\n操作帯の幅\n1000px\n280px\n160px\n操作帯を縦方向にする\n退避せず折り返す\n操作帯を固定\n最新の申請を取得\n選択した申請を編集\n内容をコピー\n申請を保管\n利用不可の操作\n操作帯を差し替える\n別領域の確認\n\n操作:\n\nコピーと結果の表示時間\nコピーする下書き\nコピー経路\n実Clipboard API\n権限拒否を発生\n完了を保留\n保留したコピーを完了\nコピー操作を表示\n下書きをコピー\n\n実行 0 / 成功 0 / 失敗 0 / 対象\n\n固定操作と展開方向\n固定操作を表示\n固定操作の位置\n右下\n左下\n右上\n左上\n補助操作の展開方向\n上\n下\n左\n右",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "操作部品の確認"
+      },
+      {
+        "tag": "H2",
+        "text": "種別・サイズ・処理状態"
+      },
+      {
+        "tag": "H2",
+        "text": "説明と選択状態"
+      },
+      {
+        "tag": "H2",
+        "text": "連結と共通サイズ"
+      },
+      {
+        "tag": "H2",
+        "text": "単一・複数選択"
+      },
+      {
+        "tag": "H2",
+        "text": "主操作と補助メニュー"
+      },
+      {
+        "tag": "H2",
+        "text": "狭幅の退避とキーボード"
+      },
+      {
+        "tag": "H2",
+        "text": "コピーと結果の表示時間"
+      },
+      {
+        "tag": "H2",
+        "text": "固定操作と展開方向"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "確認して申請する",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下書きを削除する",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "入力を戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": "確認済み",
+        "disabled": false
+      },
+      {
+        "text": "履歴を固定\n未固定",
+        "label": "履歴を固定",
+        "disabled": false
+      },
+      {
+        "text": "概要",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請内容",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "履歴",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択をformから無効にする",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択をformから有効にする",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択を初期化",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択肢を差し替える",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下書きを保存",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "保存の補助操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最新の申請を取得",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択した申請を編集",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "内容をコピー",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請を保管",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "利用不可の操作",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "操作帯を差し替える",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "別領域の確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "保留したコピーを完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下書きをコピー",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "操作のサイズ",
+      "処理中にする",
+      "操作を無効にする",
+      "幅いっぱいに表示",
+      "アイコンを末尾に表示",
+      "連結して表示",
+      "操作群を縦方向にする",
+      "複数の表示を選ぶ",
+      "選択肢を縦方向にする",
+      "均等幅にする",
+      "概要",
+      "履歴",
+      "利用不可",
+      "選択後もメニューを保持",
+      "操作帯の幅",
+      "操作帯を縦方向にする",
+      "退避せず折り返す",
+      "操作帯を固定",
+      "コピーする下書き",
+      "コピー経路",
+      "コピー操作を表示",
+      "固定操作を表示",
+      "固定操作の位置",
+      "補助操作の展開方向"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "layout",
+    "screenshot": "catalog-layout-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/layout",
+    "text": "配置部品の操作確認\n表・入力・日付・通知の操作確認\n表示設定\n一覧と入力を繰り返し使う\n手順を確認しながら使う\nRTL\n画面領域\n短いスクロール領域に配置\n長い画面の構成\nサイドバーを表示\nヘッダーを表示\nフッターを表示\n操作領域を表示\n領域を固定\n申請の確認\n\n申請内容と履歴を照合します。\n\n承認前に確認\n申請内容\n画面の下書き\n\nフッターの説明\n\n幅・余白・方向\n最大幅\n800px\n280px\n領域の余白\n標準\n小\nなし\n大\n横方向に並べる\n折返す\n申請の比較\n総務部\n申請内容を確認して次の手続きに進みます\n担当者\nセル結合と幅別配置\n行数\n2行\n3行\nGridの下書き\n補助項目\n複数列と行にまたがる内容\n開閉と無効状態\nパネルを無効にする\nパネルの枠を表示\n下書きの詳細\n折り畳む: 下書きの詳細\n参照先\n下書きを確認\nPanelの下書き\n\n操作回数: 0\n\n単一・複数展開\n複数の領域を展開\n開申請内容\nAccordionの下書き\n+履歴\n+利用不可の項目\n\n展開: draft-section\n\n分割サイズ\n上下に分割\n分割操作を無効にする\nリサイズを有効にする\n外部比率60へ変更\n外部比率70へ変更\n外部から折り畳む\n0から100の境界を使用\n申請一覧を縮小\n申請一覧を拡大\n折り畳む: 申請一覧\n分割領域の下書き\n⋮\n\n選択した申請の詳細を保持します。\n\n第二分割領域の下書き\n\n比率: 40 / 折畳み: false\n\nスクロールの位置と固定\n位置240へ移動\nスクロール内で固定\n固定した見出し\n\n最初の項目\n\n最後の項目\n\n位置: 0\n\n境界とメディア\n関連情報\n\n左の内容\n\n右の内容\n\n画像の形状\n標準160×120\n縦長10×2000\n横長2000×10\n画像の収め方\ncontain\ncover\nfill\n表示幅\n広い画面の追加入力\n追加入力の次の操作",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "配置部品の操作確認"
+      },
+      {
+        "tag": "H2",
+        "text": "画面領域"
+      },
+      {
+        "tag": "H2",
+        "text": "申請の確認"
+      },
+      {
+        "tag": "H2",
+        "text": "幅・余白・方向"
+      },
+      {
+        "tag": "H2",
+        "text": "セル結合と幅別配置"
+      },
+      {
+        "tag": "H2",
+        "text": "開閉と無効状態"
+      },
+      {
+        "tag": "H2",
+        "text": "単一・複数展開"
+      },
+      {
+        "tag": "H2",
+        "text": "分割サイズ"
+      },
+      {
+        "tag": "H2",
+        "text": "スクロールの位置と固定"
+      },
+      {
+        "tag": "H2",
+        "text": "境界とメディア"
+      },
+      {
+        "tag": "H2",
+        "text": "表示幅"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "承認前に確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "折り畳む: 下書きの詳細",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下書きを確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "開申請内容",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "+履歴",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "+利用不可の項目",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "外部比率60へ変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部比率70へ変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から折り畳む",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "0から100の境界を使用",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請一覧を縮小",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請一覧を拡大",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "折り畳む: 申請一覧",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "位置240へ移動",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "追加入力の次の操作",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "短いスクロール領域に配置",
+      "長い画面の構成",
+      "サイドバーを表示",
+      "ヘッダーを表示",
+      "フッターを表示",
+      "操作領域を表示",
+      "領域を固定",
+      "画面の下書き",
+      "最大幅",
+      "領域の余白",
+      "横方向に並べる",
+      "折返す",
+      "行数",
+      "Gridの下書き",
+      "パネルを無効にする",
+      "パネルの枠を表示",
+      "Panelの下書き",
+      "複数の領域を展開",
+      "Accordionの下書き",
+      "上下に分割",
+      "分割操作を無効にする",
+      "リサイズを有効にする",
+      "分割領域の下書き",
+      "第二分割領域の下書き",
+      "スクロール内で固定",
+      "画像の形状",
+      "画像の収め方",
+      "広い画面の追加入力"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "display",
+    "screenshot": "catalog-display-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/display",
+    "text": "文字・情報・数値表示の検証\nプロファイル\nguided\ndense\nRTL\n意味と見出し\n意味色\nneutral\nmuted\ninfo\nsuccess\nwarning\nerror\n文字の整列\nstart\ncenter\nend\njustify\n折返し\nwrap\nnowrap\nbalance\n文字の強調\nnormal\nstrong\nitalic\n\n比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n\nアプリのtabindexを保持\n\nnativeの強い意味nativeの強調\n件数と選択\n表示件数\n件数の上限\nBadge位置\ninline\ntop-start\ntop-center\ntop-end\nbottom-start\nbottom-center\nbottom-end\nドット表示\n0件も表示\n通知を確認\n99+\nタグを選択可能\nタグを削除可能\nタグを無効\nタグを処理中\n総務\nタグを戻す\n\n選択 false / 削除 0\n\n画像と代替文字\n担当者名\n担当者の画像\n画像なし\n取得失敗\n画像あり\nAvatarサイズ\nmedium\nsmall\nlarge\n四角のAvatar\n山太\n\n画像失敗 0\n\nAvatar表示上限\n山太\n佐花\nほか2人を表示\n0・空・未取得と比較\n項目列数\n1\n2\n3\n項目を横に配置\n項目テンプレート\n0件\n0\n未選択\nfalse\n空の値\n空の文字列\n未取得の値\n未取得\n統計値\n比較値\n統計値が未取得\n増減を百分率で表示\n数値表示\n数値\n円\n表示言語\nja-JP\nen-US\nde-DE\n確認した申請\n\n1,250 件\n\n前回: 1,000\n\n増減: +250\n\n既知の範囲と区分\n計測値\n計測値が未取得\n保存容量\n45 MB / 100\n小数の区分を表示\n\n容量の区分: 取得済み 60 / 100\n\n使用中\n30 MB / 100\n予約済み\n20 MB / 100\n追加領域\n10 MB / 100\n補助説明と全文\n説明につながる入力\n入力例を確認して、未取得の情報はそのまま残せます。\n⌘\n+\nEnter\nvalue === null\n省略する行数\n長文内容\n記録 1: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 2: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 3: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 4: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 5: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 6: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 7: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n記録 8: 比較情報と操作の対象を保ち、未知の値を0や成功と決めつけずに確認できます。LongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformationLongUnbrokenApplicationComparisonInformation\n全文を表示\n\n全文 false\n\n整形とコピー\nコード内容\nJSONを整形\n行番号を表示\nコードを折り返す\nコピーを拒否\nコピーの応答を待つ\nコピー操作を表示\njson\nコードをコピー\n\n1\n{\n2\n  \"申請\": 1,\n3\n  \"説明\": \"<script>unsafe</script>\",\n4\n  \"value\": -0,\n5\n  \"value\": 1e999\n6\n}\n\n成功 0 / 失敗 0\n\n操作を遮らない透かし\n透かしを繰り返す\n透かし位置\ntop-start\ntop-center\ntop-end\ncenter-start\ncenter\ncenter-end\nbottom-start\nbottom-center\nbottom-end\n透かし濃度\n濃度をプロファイルに戻す\n透かし内の入力\n透かし内の操作\n\n操作 0\n\n確認用",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "文字・情報・数値表示の検証"
+      },
+      {
+        "tag": "H2",
+        "text": "意味と見出し"
+      },
+      {
+        "tag": "H2",
+        "text": "件数と選択"
+      },
+      {
+        "tag": "H2",
+        "text": "画像と代替文字"
+      },
+      {
+        "tag": "H2",
+        "text": "0・空・未取得と比較"
+      },
+      {
+        "tag": "H2",
+        "text": "既知の範囲と区分"
+      },
+      {
+        "tag": "H2",
+        "text": "補助説明と全文"
+      },
+      {
+        "tag": "H2",
+        "text": "整形とコピー"
+      },
+      {
+        "tag": "H2",
+        "text": "操作を遮らない透かし"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "通知を確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "総務",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "",
+        "label": "総務を削除",
+        "disabled": false
+      },
+      {
+        "text": "タグを戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全文を表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "コードをコピー",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "濃度をプロファイルに戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "透かし内の操作",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "プロファイル\nguided\ndense",
+      "RTL",
+      "意味色\nneutral\nmuted\ninfo\nsuccess\nwarning\nerror",
+      "文字の整列\nstart\ncenter\nend\njustify",
+      "折返し\nwrap\nnowrap\nbalance",
+      "文字の強調\nnormal\nstrong\nitalic",
+      "表示件数",
+      "件数の上限",
+      "Badge位置\ninline\ntop-start\ntop-center\ntop-end\nbottom-start\nbottom-center\nbottom-end",
+      "ドット表示",
+      "0件も表示",
+      "タグを選択可能",
+      "タグを削除可能",
+      "タグを無効",
+      "タグを処理中",
+      "担当者名",
+      "担当者の画像\n画像なし\n取得失敗\n画像あり",
+      "Avatarサイズ\nmedium\nsmall\nlarge",
+      "四角のAvatar",
+      "Avatar表示上限",
+      "項目列数\n1\n2\n3",
+      "項目を横に配置",
+      "項目テンプレート",
+      "統計値",
+      "比較値",
+      "統計値が未取得",
+      "増減を百分率で表示",
+      "数値表示\n数値\n円",
+      "表示言語\nja-JP\nen-US\nde-DE",
+      "計測値",
+      "計測値が未取得",
+      "小数の区分を表示",
+      "説明につながる入力",
+      "省略する行数",
+      "長文内容",
+      "コード内容",
+      "JSONを整形",
+      "行番号を表示",
+      "コードを折り返す",
+      "コピーを拒否",
+      "コピーの応答を待つ",
+      "コピー操作を表示",
+      "透かしを繰り返す",
+      "透かし位置\ntop-start\ntop-center\ntop-end\ncenter-start\ncenter\ncenter-end\nbottom-start\nbottom-center\nbottom-end",
+      "透かし濃度",
+      "透かし内の入力"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "forms",
+    "screenshot": "catalog-forms-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/forms",
+    "text": "フォームと構造化入力\n\n書式に合わない内容と処理中の入力を残し、修正して再操作するための検証です。\n\n表示設定\nguided\ndense\nRTL\n横並びのラベル\n読取り専用\nグループを無効にする\n途中の書式入力を離脱時にクリア\nタグを自由入力\nタグの重複を許可\n選択肢と操作を横並びにする\nフォームの無効状態を切替\n操作の処理中を切替\nフォームを初期化\n提出する内容\n\n未完成の入力は保持します。\n\n整理番号 任意\n\n入力書式: ___-__\n\n数字3桁と2桁。例: 001-23\n\n確認コード 必須\n\n0 / 6 桁 (数字)\n\n対象のタグ 必須\n追加\n\n0 件 / 最大 3 件\n\n補足 任意\n\n0 文字\n\n確認担当者\n選択肢\n山田\n佐藤\n田中\n確認不可\n\n0 件選択 / 最大 2 件\n\n提出方法 任意\nオンライン\n受付終了\n窓口\n送信\n入力を戻す\n取消\n補足の幅を切替\n補足の表示を切替\n\n要確認 / 未操作 / 送信 0 / 取消 0\n\n{\"mask\":\"\",\"otp\":\"\",\"tags\":[],\"note\":\"\",\"checks\":[],\"radio\":\"online\"}\n同じ検索語へ戻った場合\n申請を検索 任意\nクリア\n検索\n\n現在の検索応答\n古い検索応答\n同じ検索値をreset\n\n[]\n\n候補の補助情報\n担当部署 任意\nクリア\n\n候補から選択してください。\n\n候補入りDialogを開く\n\n/\n\n別の操作\n入力条件の変更\n貼付けの空白とハイフンを除く\n文字と数字 任意\n\n入力書式: __-__\n\n英数字コード 任意\n\n0 / 4 桁 (英数字)\n\n上限超過と重複を復元\n直接接続した入力 任意\n\n補助説明\n\n確認メッセージ\n\n配置を明示したチェック\n任意",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "フォームと構造化入力"
+      },
+      {
+        "tag": "H2",
+        "text": "同じ検索語へ戻った場合"
+      },
+      {
+        "tag": "H2",
+        "text": "候補の補助情報"
+      },
+      {
+        "tag": "H2",
+        "text": "入力条件の変更"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "フォームの無効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "操作の処理中を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "フォームを初期化",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "入力を戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取消",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補足の幅を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補足の表示を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "検索語をクリア",
+        "disabled": true
+      },
+      {
+        "text": "検索",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "現在の検索応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い検索応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "同じ検索値をreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "担当部署をクリア",
+        "disabled": true
+      },
+      {
+        "text": "候補入りDialogを開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "別の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "上限超過と重複を復元",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "横並びのラベル",
+      "読取り専用",
+      "グループを無効にする",
+      "途中の書式入力を離脱時にクリア",
+      "タグを自由入力",
+      "タグの重複を許可",
+      "選択肢と操作を横並びにする",
+      "整理番号 任意",
+      "確認コード 必須",
+      "対象のタグ 必須",
+      "補足 任意",
+      "山田",
+      "佐藤",
+      "田中",
+      "確認不可",
+      "オンライン",
+      "受付終了",
+      "窓口",
+      "申請を検索 任意",
+      "担当部署 任意",
+      "貼付けの空白とハイフンを除く",
+      "文字と数字 任意",
+      "英数字コード 任意",
+      "直接接続した入力 任意",
+      "配置を明示したチェック\n任意"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "floating",
+    "screenshot": "catalog-floating-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/floating",
+    "text": "浮動表示と補助操作\n\n開閉の理由、説明の遅延、入力の保持を確認します。確認操作だけで保存成功とは扱いません。\n\n表示設定\nguided\ndense\nRTL\n別の操作\n0\n対象の近くに表示\n開く契機\nclick\nhover\nfocus\nmanual\n表示位置\nbottom-start\nbottom-end\ntop-start\ntop-end\nright-start\nleft-start\n対象を変更\n内容の表示を切替\n対象の表示を切替\n浮動表示の無効状態\n外部の開閉\n補助内容の終了を保留\n補助を破棄して再作成\n外側操作で終了\nEscapeで終了\n補助内容を開く\n別の補助対象\n元の説明を保持します。\n\n説明とプレビュー\n説明の対象\n別の説明対象\n説明の対象を変更\n説明参照を追加\n追加した説明\n説明を破棄して再作成\n担当者プレビュー\n0\n処理の確認\n確認後の応答\n処理中\n待機\n即時完了\n確認を破棄して再作成\n変更を確認\n失敗応答\n完了応答\n0\n\n端に表示\n背景の操作を抑止\n左の領域を開く\n右の領域を開く\n上の領域を開く\n下の領域を開く\n領域を外部から閉じる\n領域を非表示\n\n表示する高さを変更\n下のシートを開く\n外部から最大段階\n\n閉じ戻る操作\n補助内容入り確認を開く",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "浮動表示と補助操作"
+      },
+      {
+        "tag": "H2",
+        "text": "対象の近くに表示"
+      },
+      {
+        "tag": "H2",
+        "text": "説明とプレビュー"
+      },
+      {
+        "tag": "H2",
+        "text": "処理の確認"
+      },
+      {
+        "tag": "H2",
+        "text": "端に表示"
+      },
+      {
+        "tag": "H2",
+        "text": "表示する高さを変更"
+      },
+      {
+        "tag": "H2",
+        "text": "閉じ戻る操作"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "別の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "対象を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "内容の表示を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "対象の表示を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "浮動表示の無効状態",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部の開閉",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補助を破棄して再作成",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補助内容を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "別の補助対象",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "説明の対象",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "別の説明対象",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "説明の対象を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "説明参照を追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "説明を破棄して再作成",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "担当者プレビュー",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認を破棄して再作成",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "変更を確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "失敗応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "完了応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "左の領域を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "右の領域を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "上の領域を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下の領域を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "領域を外部から閉じる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "領域を非表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "下のシートを開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から最大段階",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "補助内容入り確認を開く",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "開く契機\nclick\nhover\nfocus\nmanual",
+      "表示位置\nbottom-start\nbottom-end\ntop-start\ntop-end\nright-start\nleft-start",
+      "補助内容の終了を保留",
+      "外側操作で終了",
+      "Escapeで終了",
+      "確認後の応答\n処理中\n待機\n即時完了",
+      "背景の操作を抑止"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "navigation",
+    "screenshot": "catalog-navigation-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/navigation",
+    "text": "移動先とコマンド\n表示設定\nguided\ndense\nRTL\n外側の操作\n0\n画面の移動先\n移動先の方向\n横\n縦\n狭い幅の配置\n折返し\nスクロール\n申請一覧\n申請内容と承認履歴を詳しく確認する\nReviewApplicationDetailsAndApprovalHistoryBeforeContinuing\n階層の移動先\n外部から折畳みを切替\n承認の階層を閉じる\n確認先を除去\n移動先の幅\n折畳み\n申請\n申請へ移動\n承認の確認\n申請内容を確認する\n利用できない移動先\n承認履歴\nよく使う移動先\n移動先のラベル\n移動先を固定\n固定する端\n下\n上\n左\n右\n申請一覧\n確認する内容\n承認履歴\n現在地\n階層の展開を切替\nホーム\n›\n省略した階層（6件）\n›\n現在の申請\n確認する内容\nタブを戻す\n未保存タブの終了を保留\nタブの方向\n横\n縦\nタブをスクロール\n全タブを除去\n選択タブを外部から除去\n申請\n確認\n利用できない\n履歴\nReviewApplicationDetailsAndApprovalHistoryBeforeContinuing\n申請のメモ\n選択中のタブを前へ\n選択中のタブを後ろへ\n選択中のタブを閉じる\n\n操作のメニュー\nメニューの前\n記号を含む操作ID\nFile操作を除去\nFile\nEdit\n○View\nUnavailable\nメニューの後\n\n分類した移動先\n移動先の起動操作\n分類した移動先を開く\n起動操作の表示を切替\n分類した移動先を除去\nコマンドを探す\nコマンド検索を開く\nコマンドを差し替える\n外部から検索を切替\n\nControl + K で開けます。入力と操作履歴は閉じた後も残ります。\n\n長いコマンドエラー\n\n0\n\nページ内の移動\nページ内移動を切替\nページ内移動の固定\n通常\nスクロールに追従\n固定\n申請一覧へ\n確認内容へ\n承認履歴へ\n申請一覧\n\n申請の一覧を確認する説明です。\n\n確認内容\n\n入力内容と承認の状態を確認できます。\n\n承認履歴\n\nこれまでの操作を確認できます。\n\nintro\n\n領域内の確認を非表示\n領域内の最初へ\n領域内の確認へ\n領域内の最初\n領域内の確認",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "移動先とコマンド"
+      },
+      {
+        "tag": "H2",
+        "text": "画面の移動先"
+      },
+      {
+        "tag": "H2",
+        "text": "階層の移動先"
+      },
+      {
+        "tag": "H2",
+        "text": "よく使う移動先"
+      },
+      {
+        "tag": "H2",
+        "text": "現在地"
+      },
+      {
+        "tag": "H2",
+        "text": "確認する内容"
+      },
+      {
+        "tag": "H2",
+        "text": "操作のメニュー"
+      },
+      {
+        "tag": "H2",
+        "text": "分類した移動先"
+      },
+      {
+        "tag": "H2",
+        "text": "コマンドを探す"
+      },
+      {
+        "tag": "H2",
+        "text": "ページ内の移動"
+      },
+      {
+        "tag": "H3",
+        "text": "申請一覧"
+      },
+      {
+        "tag": "H3",
+        "text": "確認内容"
+      },
+      {
+        "tag": "H3",
+        "text": "承認履歴"
+      },
+      {
+        "tag": "H3",
+        "text": "領域内の最初"
+      },
+      {
+        "tag": "H3",
+        "text": "領域内の確認"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "外側の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から折畳みを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "承認の階層を閉じる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認先を除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "折畳み",
+        "label": "移動先を折り畳む",
+        "disabled": false
+      },
+      {
+        "text": "階層の展開を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "タブを戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全タブを除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択タブを外部から除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "利用できない",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "履歴",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ReviewApplicationDetailsAndApprovalHistoryBeforeContinuing",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択中のタブを前へ",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "選択中のタブを後ろへ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択中のタブを閉じる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "メニューの前",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "記号を含む操作ID",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "File操作を除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "File",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Edit",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "○View",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Unavailable",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "メニューの後",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "分類した移動先を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "起動操作の表示を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "分類した移動先を除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "コマンド検索を開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "コマンドを差し替える",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から検索を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ページ内移動を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "領域内の確認を非表示",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定\nguided\ndense",
+      "RTL",
+      "移動先の方向\n横\n縦",
+      "狭い幅の配置\n折返し\nスクロール",
+      "移動先の幅",
+      "移動先のラベル",
+      "移動先を固定",
+      "固定する端\n下\n上\n左\n右",
+      "未保存タブの終了を保留",
+      "タブの方向\n横\n縦",
+      "タブをスクロール",
+      "申請のメモ",
+      "長いコマンドエラー",
+      "ページ内移動の固定\n通常\nスクロールに追従\n固定"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "choices",
+    "screenshot": "catalog-choices-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/choices",
+    "text": "数値・色・編集・段階・条件\n\n入力を残して確認し、保存や段階移動の結果をアプリから受け取るための検証です。\n\n表示設定\nguided\ndense\nRTL\n読取り専用\n処理中\nフォームの無効状態を切替\nフォームを初期化\n別の操作\n数値と範囲\n予算 任意\n20 万円\n小さく\n中ほど\n大きく\n\n最小値からの刻みで選びます。\n\n20\n条件の範囲\n開始値: 14\n終了値: 26\n下限\n中ほど\n上限\n{ \"start\": 14, \"end\": 26 }\n割当量 任意\n50 %\n−\n＋\n50\n刻みに合わない値を復元\n刻みの有効状態を切替\n小数の範囲へ切替\n大きな整数の範囲へ切替\n順序が逆の範囲を復元\n範囲外の割当量を復元\nKnobの作成状態を切替\n評価と色\n評価\n★\n0.5 / 5\n★\n1 / 5\n★\n1.5 / 5\n★\n2 / 5\n★\n2.5 / 5\n★\n3 / 5\n★\n3.5 / 5\n★\n4 / 5\n★\n4.5 / 5\n★\n5 / 5\n2.5 / 5\n評価を解除\n2.5\n強調色\n色の値\n自由に色を選ぶ\n不透明度: 50%\n透明な赤\n青\n#2244aa80\n#2244aa80\n半段階\n評価を必須にする\n自由な色選択\n透明度を許可\n色の書式\nhex\nrgb\nhsl\n外部の色を復元\n範囲外の評価を復元\n保存を伴う編集\n初期の入力\n編集\n複数行の編集\n編集を失敗\n編集を保存\n古い編集結果\n編集を外部reset\n編集の作成状態を切替\n初期の入力\n0\n段階を保持\n1. 入力\n2. 省略する段階\n3. 確認\n入力\n段階のメモ\n戻る\n次へ\n段階を進められる\n移動をアプリが承認\n未訪問の段階にも移動\n段階を縦方向に並べる\n移動先を変更\n存在しない移動先\n外部から段階変更\n確認段階の作成状態を切替\n確認段階の無効状態を切替\n移動を保留\n移動を許可\n古い移動結果\n段階を再開\n段階入力の作成状態を切替\n0\n入れ子の条件\n\n条件を満たす検証用の行数を表示します。\n\n絞り込み\n条件の結合\nすべて\nいずれか\n\n未設定のグループは絞り込み条件に使いません。\n\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n\n条件を必須にする\n条件保存を失敗\n条件保存を完了\n古い条件保存結果\n条件を外部reset\n複数階層の条件を復元\n不明な項目を復元\n条件の作成状態を切替\n金額の項目をbooleanへ変更\n金額の説明を変更\n明示失効して項目変更と旧応答\n3\n{\n  \"type\": \"group\",\n  \"id\": \"root\",\n  \"match\": \"and\",\n  \"children\": []\n}\n0\n外部値を接続した編集\n値接続の検証を切替\n外部から内容を変更\n値接続の保存結果\n明示失効して外部変更と旧応答\n値接続の旧失敗結果\n外部の初期値\n段階の所有範囲\n入れ子の検証を切替",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "数値・色・編集・段階・条件"
+      },
+      {
+        "tag": "H2",
+        "text": "数値と範囲"
+      },
+      {
+        "tag": "H2",
+        "text": "評価と色"
+      },
+      {
+        "tag": "H2",
+        "text": "保存を伴う編集"
+      },
+      {
+        "tag": "H2",
+        "text": "段階を保持"
+      },
+      {
+        "tag": "H3",
+        "text": "入力"
+      },
+      {
+        "tag": "H2",
+        "text": "入れ子の条件"
+      },
+      {
+        "tag": "H2",
+        "text": "外部値を接続した編集"
+      },
+      {
+        "tag": "H2",
+        "text": "段階の所有範囲"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "フォームの無効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "フォームを初期化",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "別の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "−",
+        "label": "割当量を減らす",
+        "disabled": false
+      },
+      {
+        "text": "＋",
+        "label": "割当量を増やす",
+        "disabled": false
+      },
+      {
+        "text": "刻みに合わない値を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "刻みの有効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "小数の範囲へ切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "大きな整数の範囲へ切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "順序が逆の範囲を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "範囲外の割当量を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Knobの作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "評価を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "透明な赤",
+        "label": "透明な赤",
+        "disabled": false
+      },
+      {
+        "text": "青",
+        "label": "青",
+        "disabled": false
+      },
+      {
+        "text": "外部の色を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "範囲外の評価を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集を失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集を保存",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い編集結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集を外部reset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "1. 入力",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "2. 省略する段階",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "3. 確認",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "戻る",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "次へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動先を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "存在しない移動先",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から段階変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認段階の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認段階の無効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動を保留",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動を許可",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い移動結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "段階を再開",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "段階入力の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件グループを追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を保存",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件保存を失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件保存を完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い条件保存結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を外部reset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "複数階層の条件を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "不明な項目を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "金額の項目をbooleanへ変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "金額の説明を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "明示失効して項目変更と旧応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "値接続の検証を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から内容を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "値接続の保存結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "明示失効して外部変更と旧応答",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "値接続の旧失敗結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "入れ子の検証を切替",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "RTL",
+      "読取り専用",
+      "処理中",
+      "予算 任意",
+      "開始値: 14",
+      "終了値: 26",
+      "割当量 任意",
+      "★\n0.5 / 5",
+      "★\n1 / 5",
+      "★\n1.5 / 5",
+      "★\n2 / 5",
+      "★\n2.5 / 5",
+      "★\n3 / 5",
+      "★\n3.5 / 5",
+      "★\n4 / 5",
+      "★\n4.5 / 5",
+      "★\n5 / 5",
+      "色の値",
+      "自由に色を選ぶ",
+      "不透明度: 50%",
+      "半段階",
+      "評価を必須にする",
+      "自由な色選択",
+      "透明度を許可",
+      "色の書式",
+      "複数行の編集",
+      "段階のメモ",
+      "段階を進められる",
+      "移動をアプリが承認",
+      "未訪問の段階にも移動",
+      "段階を縦方向に並べる",
+      "条件の結合",
+      "条件を必須にする"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "collections",
+    "screenshot": "catalog-collections-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/collections",
+    "text": "一覧・選択・スクロール・移動\n表示設定\nguided\ndense\nRTL\n処理中\n読取り専用\n外側の操作\n記録と操作\n記録10\n確認する最初の記録\n記録2\n補助情報を残す記録\n別の記録\n種類が異なる記録\n記録10 / 確認する最初の記録\n確認\n記録2 / 補助情報を残す記録\n確認\n別の記録 / 種類が異なる記録\n確認\n区切りを切替\n0\n検索と表示形式\n検索\n並び順\n元の順\n昇順\n降順\nリスト表示\nグリッド表示\n\n5件\n\n記録10\n0 / 0\n記録2\n1 / 1\n前へ\n1 / 3 ページ\n次へ\n表示件数\n2件\n3件\n5件\n範囲外のページ\n検索とソートを切替\nページ送りを切替\n検索を戻す\n記録を減らす\n{\n  \"query\": \"\",\n  \"sort\": \"none\",\n  \"page\": 1,\n  \"pageSize\": 2,\n  \"layout\": \"list\"\n}\n高さの異なる記録\n記録10\n確認する最初の記録\n記録2\n補助情報を残す記録補助情報を残す記録補助情報を残す記録補助情報を残す記録補助情報を残す記録補助情報を残す記録\n別の記録\n種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録種類が異なる記録\n列数を切替\n間隔を切替\n幅別の列数\n候補を選択\n確認する候補\n候補を検索\n表示中をすべて選択\n表示中の選択を解除\n候補0001\n候補0002\n前半の候補\n候補0003\n前半の候補\n候補0004\n前半の候補\n候補0005\n前半の候補\n候補0006\n前半の候補\n候補0007\n前半の候補\n候補0008\n\n2件選択\n\n候補の長いラベルを切替\n選択方式を切替\n候補の仮想化を切替\n不正な選択を復元\n選択をreset\n選択の無効状態を切替\n選択上限を切替\n候補を差替え\n高さの有効状態を切替\n識別子を変更\n必須を切替\n候補の作成状態を切替\n[\n  \"option0001\",\n  \"option0700\"\n]\ntrue\n長い一覧\n長い記録1\n長い記録2\n長い記録3\n長い記録4\n長い記録5\n長い記録6\n長い記録7\n長い記録8\n行テンプレートを切替\n長いラベルを切替\n先頭へ\n末尾へ\n位置を指定\n仮想領域の高さを切替\n先読みを切替\n先頭の行を除去\n長い一覧の作成状態を切替\n{\n  \"start\": 0,\n  \"end\": 8\n}\n{\n  \"offset\": 0,\n  \"index\": 0\n}\n位置を移動\n\n移動ボタンで位置を変えられます。ハンドルを押すとキーボードで仮の位置を選べます。\n\n記録10\n移動\n上へ\n下へ\n記録2\n移動\n上へ\n下へ\n別の記録\n移動\n上へ\n下へ\n\n順序を戻す\n移動方向を切替\n移動許可を切替\n移動許可の未確定\n移動許可の障害\n移動中に一覧を差替え\nDialog内の移動\n1,2,3\nnull\n追加取得\n自動追加取得\nさらに読み込む\n取得を完了して追加\n空応答を完了\n取得を失敗\n古い取得結果\n待機中の取得を失効\n取得をreset\n取得の終端を切替\n追加取得の作成状態を切替\n0\n0",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "一覧・選択・スクロール・移動"
+      },
+      {
+        "tag": "H2",
+        "text": "記録と操作"
+      },
+      {
+        "tag": "H2",
+        "text": "検索と表示形式"
+      },
+      {
+        "tag": "H2",
+        "text": "高さの異なる記録"
+      },
+      {
+        "tag": "H2",
+        "text": "候補を選択"
+      },
+      {
+        "tag": "H2",
+        "text": "長い一覧"
+      },
+      {
+        "tag": "H2",
+        "text": "位置を移動"
+      },
+      {
+        "tag": "H2",
+        "text": "追加取得"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "外側の操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認",
+        "label": "記録10を確認",
+        "disabled": false
+      },
+      {
+        "text": "確認",
+        "label": "記録2を確認",
+        "disabled": false
+      },
+      {
+        "text": "確認",
+        "label": "別の記録を確認",
+        "disabled": false
+      },
+      {
+        "text": "区切りを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "リスト表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "グリッド表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "前へ",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "次へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "範囲外のページ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "検索とソートを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ページ送りを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "検索を戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "記録を減らす",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "列数を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "間隔を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "幅別の列数",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示中をすべて選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示中の選択を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "候補の長いラベルを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択方式を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "候補の仮想化を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "不正な選択を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択をreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択の無効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択上限を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "候補を差替え",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "高さの有効状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "識別子を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "必須を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "候補の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "行テンプレートを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "長いラベルを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "先頭へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "末尾へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "位置を指定",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "仮想領域の高さを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "先読みを切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "先頭の行を除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "長い一覧の作成状態を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動",
+        "label": "記録10の移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "上へ",
+        "label": "記録10を上へ",
+        "disabled": true
+      },
+      {
+        "text": "下へ",
+        "label": "記録10を下へ",
+        "disabled": false
+      },
+      {
+        "text": "移動",
+        "label": "記録2の移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "上へ",
+        "label": "記録2を上へ",
+        "disabled": false
+      },
+      {
+        "text": "下へ",
+        "label": "記録2を下へ",
+        "disabled": true
+      },
+      {
+        "text": "移動",
+        "label": "別の記録の移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "上へ",
+        "label": "別の記録を上へ",
+        "disabled": false
+      },
+      {
+        "text": "下へ",
+        "label": "別の記録を下へ",
+        "disabled": true
+      },
+      {
+        "text": "順序を戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動方向を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動許可を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動許可の未確定",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動許可の障害",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動中に一覧を差替え",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Dialog内の移動",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "さらに読み込む",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得を完了して追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "空応答を完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得を失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い取得結果",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "待機中の取得を失効",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得をreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得の終端を切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "追加取得の作成状態を切替",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定\nguided\ndense",
+      "RTL",
+      "処理中",
+      "読取り専用",
+      "検索",
+      "並び順\n元の順\n昇順\n降順",
+      "記録10",
+      "記録2",
+      "表示件数\n2件\n3件\n5件",
+      "候補を検索",
+      "長い記録1",
+      "長い記録2",
+      "長い記録3",
+      "長い記録4",
+      "長い記録5",
+      "長い記録6",
+      "長い記録7",
+      "長い記録8",
+      "自動追加取得"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "transfers",
+    "screenshot": "catalog-transfers-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/transfers",
+    "text": "選択と履歴の検証画面\nプロファイル\nguided\ndense\n方向\nLTR\nRTL\n日時のタイムゾーン\nAsia/Tokyo\nUTC\n文字を200%に切替\n承認の選択\nフォームreset\n不正値\n重複値\n未知キー\n上限超過値\n全件の順序\nフォーム無効切替\n読取専用切替\n処理中切替\nAの表示切替\n移動拒否切替\nポリシー例外切替\n上限3件\nDialogを開く\n承認対象\n\nチェックした表示中の項目を一括移動できます。移動ハンドル、追加・削除、上下ボタンはキーボードでも操作できます。\n\n候補 · 3件表示\n候補を検索\n表示中の有効な候補をすべて選択\n一括追加\n承認A\n申請者と金額を確認 · source 0/0\n移動\n追加\n承認B\n担当部門を確認 · source 1/1\n移動\n追加\n承認E\n最終確認 · source 4/2\n移動\n追加\n選択済み · 2件選択 · 1件表示\n選択済みを検索\n表示中の有効な選択をすべて選択\n一括削除\n変更不可の承認D（変更不可）\nアプリ指定で変更不可 · target 1/0\n移動\n削除\n上へ\n下へ\n\n非表示と変更不可の選択は保持されます。\n\nフォーム値 [3,4]\n\n検証 VALID · touched false · 最終操作\n\n外部メモ\n操作履歴\n取得完了\n取得失敗\n取得終端\n取得条件を変更\n履歴の表示切替\n古い応答を適用\n詳細を外部から閉じる\n受付\n2026/10/06 10:00\nAsia/Tokyo\n申請を受付\n担当A · 1 / 2 ·\n詳細を表示\n照会\n日時は未取得です。\nAsia/Tokyo\n時刻を確認中\n担当B · 2 / 2 · 未取得\n詳細を表示\nさらに読み込む\n\n要求 0 · ID · 応答",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "選択と履歴の検証画面"
+      },
+      {
+        "tag": "H2",
+        "text": "承認の選択"
+      },
+      {
+        "tag": "H2",
+        "text": "操作履歴"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "文字を200%に切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "フォームreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "不正値",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "重複値",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "未知キー",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "上限超過値",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全件の順序",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "フォーム無効切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "読取専用切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "処理中切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Aの表示切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動拒否切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ポリシー例外切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "上限3件",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Dialogを開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "一括追加",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "移動",
+        "label": "承認Aの移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": "承認Aを追加",
+        "disabled": false
+      },
+      {
+        "text": "移動",
+        "label": "承認Bの移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": "承認Bを追加",
+        "disabled": false
+      },
+      {
+        "text": "移動",
+        "label": "承認Eの移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": "承認Eを追加",
+        "disabled": false
+      },
+      {
+        "text": "一括削除",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "移動",
+        "label": "変更不可の承認Dの移動位置を選ぶ",
+        "disabled": true
+      },
+      {
+        "text": "削除",
+        "label": "変更不可の承認Dを削除",
+        "disabled": true
+      },
+      {
+        "text": "上へ",
+        "label": "変更不可の承認Dを上へ",
+        "disabled": true
+      },
+      {
+        "text": "下へ",
+        "label": "変更不可の承認Dを下へ",
+        "disabled": true
+      },
+      {
+        "text": "取得完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得終端",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得条件を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "履歴の表示切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "古い応答を適用",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "詳細を外部から閉じる",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "さらに読み込む",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "プロファイル\nguided\ndense",
+      "方向\nLTR\nRTL",
+      "日時のタイムゾーン\nAsia/Tokyo\nUTC",
+      "候補を検索",
+      "表示中の有効な候補をすべて選択",
+      "承認A",
+      "承認B",
+      "承認E",
+      "選択済みを検索",
+      "表示中の有効な選択をすべて選択",
+      "変更不可の承認D（変更不可）",
+      "外部メモ"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "trees",
+    "screenshot": "catalog-trees-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/trees",
+    "text": "階層の選択と組織の確認\nINVALID\n表示設定\n手順を確認\n一覧を比較\n右から左\n読み取り専用\n処理中\nformの無効切替\nnullable reset\n階層の展開・選択・チェック\n外部から全て折り畳む\n外部から階層を差し替え\n\n上下で移動、左右で展開・親へ戻る。Spaceでまとめて処理する部署を変更。Enterで詳細を表示する部署を選択。\n\n＋\n☐\n申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ\n＋\n☐\n支社（未取得）\n・\n☐\n独立部署\n親子チェックを連動\n[]\n[]\n階層の経路を選ぶ\n途中階層の選択を許可\n申請先の経路 必須\n申請先の経路を選ぶ\n申請先の経路をクリア\n\n末端の項目を選択してください。\n\n[]\n{\n  \"required\": true\n}\n禁止の途中経路を復元\n単一と複数のツリー選択\n代表部署 必須\n代表部署を選ぶ\n代表部署をクリア\n\n0 件選択\n\n対象部署 必須\n対象部署を選ぶ\n対象部署をクリア\n\n0 件選択\n\n親の選択を復元\n無効な選択を復元\n未取得の選択を復元\n検索を切り替え\n[]\n[]\nfalse\n{\n  \"required\": true\n}\n削除済みの選択を復元\n単一へ複数値を復元\n子項目の取得と再試行\n最新の要求を失敗\n最新の要求へ子項目\n最初の旧要求へ子項目\n要求を明示失効\n0\nnull\n0\n親子関係を確認する\n組織図の方向\n上から下\n下から上\n左から右\n右から左\n外部から組織図を折り畳む\n未取得の組織を接続\n取得した子組織を接続\n申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\nHQ / 1 階層\n\n申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZのメモ\n子組織を折り畳む\n企画部\n\nP / 2 階層\n\n企画部のメモ\n子組織を折り畳む\n企画第一課\n\nP1 / 3 階層\n\n企画第一課のメモ\n企画第二課\n\nP2 / 3 階層\n\n企画第二課のメモ\n運用部\n\nO / 2 階層\n\n運用部のメモ\n停止部署\n\n/ 2 階層\n\n停止部署のメモ\n子組織を展開\n独立部署\n\nI / 1 階層\n\n独立部署のメモ\nmodal内の階層選択\nダイアログを開く\nアプリの操作を含む階層\nnative投影を表示\n特殊IDの階層\n全候補を外部除去\n0\n0\n[]\n[]\n\nnativeリンクの目的地\n\n確認を続ける",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "階層の選択と組織の確認"
+      },
+      {
+        "tag": "H2",
+        "text": "階層の展開・選択・チェック"
+      },
+      {
+        "tag": "H2",
+        "text": "階層の経路を選ぶ"
+      },
+      {
+        "tag": "H2",
+        "text": "単一と複数のツリー選択"
+      },
+      {
+        "tag": "H2",
+        "text": "子項目の取得と再試行"
+      },
+      {
+        "tag": "H2",
+        "text": "親子関係を確認する"
+      },
+      {
+        "tag": "H2",
+        "text": "modal内の階層選択"
+      },
+      {
+        "tag": "H2",
+        "text": "アプリの操作を含む階層"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "formの無効切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "nullable reset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から全て折り畳む",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から階層を差し替え",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "＋",
+        "label": "申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZを展開",
+        "disabled": false
+      },
+      {
+        "text": "＋",
+        "label": "支社（未取得）を展開",
+        "disabled": false
+      },
+      {
+        "text": "申請先の経路を選ぶ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請先の経路をクリア",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "禁止の途中経路を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "代表部署を選ぶ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "代表部署をクリア",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "対象部署を選ぶ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "対象部署をクリア",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "親の選択を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "無効な選択を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "未取得の選択を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "検索を切り替え",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "削除済みの選択を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "単一へ複数値を復元",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最新の要求を失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最新の要求へ子項目",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最初の旧要求へ子項目",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "要求を明示失効",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から組織図を折り畳む",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "未取得の組織を接続",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "取得した子組織を接続",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "子組織を折り畳む",
+        "label": "申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZの子組織を折り畳む",
+        "disabled": false
+      },
+      {
+        "text": "子組織を折り畳む",
+        "label": "企画部の子組織を折り畳む",
+        "disabled": false
+      },
+      {
+        "text": "子組織を展開",
+        "label": "停止部署の子組織を展開",
+        "disabled": true
+      },
+      {
+        "text": "ダイアログを開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "native投影を表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "特殊IDの階層",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全候補を外部除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "確認を続ける",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "表示設定",
+      "右から左",
+      "読み取り専用",
+      "処理中",
+      "親子チェックを連動",
+      "途中階層の選択を許可",
+      "申請先の経路 必須",
+      "代表部署 必須",
+      "対象部署 必須",
+      "組織図の方向",
+      "申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZのメモ",
+      "企画部のメモ",
+      "企画第一課のメモ",
+      "企画第二課のメモ",
+      "運用部のメモ",
+      "停止部署のメモ",
+      "独立部署のメモ"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "scheduler",
+    "screenshot": "catalog-scheduler-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/scheduler",
+    "text": "予定の確認と移動\n利用profile\nguided\ndense\nRTL\n処理中\n読み取り専用\n移動を拒否\nformと部品を無効切替\nformと移動をreset\n表示タイムゾーン\nAmerica/New_York\nAsia/Tokyo\nUTC\nAustralia/Lord_Howe\nPacific/Apia\nAmerica/St_Johns\nMissing/Zone\n表示時間帯\n全日\n09:00–17:00\n01:20–01:40\n02:15–02:45\n01:45–03:15\n02:05–02:25\n02:25–02:35\n23:00–24:00\n14:20–14:40\n実時間帯の予定例\n既定の予約\n重複時刻\n欠落時刻\n30分の欠落\n全日のスキップ\n深夜に前日へ戻る\n合法な予定IDの境界\n会議室の予定\n表示日\n予定の表示\n日\n週\n月\n一覧\n前の期間\n次の期間\n表示日へ移動\n\n表示タイムゾーン: America/New_York · 時間帯: 00:00–24:00 · 2026-10-26–2026-11-01 · 6 件\n\n表示するリソース\n東会議室\n西会議室\n閉鎖中の会議室\n全リソースを表示\n未割当の予定も表示します。\n\n予定移動は各予定の「移動先を編集」から開始できます。\n\n2026年10月26日月曜日\n\n0 件\n\n2026年10月27日火曜日\n\n0 件\n\n2026年10月28日水曜日\n\n0 件\n\n2026年10月29日木曜日\n\n0 件\n\n2026年10月30日金曜日\n\n0 件\n\n2026年10月31日土曜日\n\n1 件\n\n2026年11月1日日曜日\n\n5 件\n\n継続中: 継続する複数日の予約\n\n継続する複数日の予約\n\n2026/10/31 23:00 ～ 2026/11/03 12:00\n\n東会議室\n\n2026-10-31–2026-11-01 にわたる予定\n\nUTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。\n\n管理担当\n\n継続する複数日の予約のメモ移動先を編集\n重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\n2026/11/01 1:30 ～ 2026/11/01 1:15\n\n東会議室\n\nUTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。\n\n受付担当\n\n予約メモ移動先を編集\n同じ01時30分の後の予定\n\n2026/11/01 1:30 ～ 2026/11/01 2:30\n\n西会議室\n\n西担当\n\n同じ01時30分の後の予定のメモ移動先を編集\n移動できない予定\n\n2026/11/01 10:00 ～ 2026/11/01 11:00\n\n西会議室\n\n移動できない予定のメモ移動先を編集\nリソース未割当の予定\n\n2026/11/01 13:00 ～ 2026/11/01 14:00\n\nリソース未割当\n\nリソース未割当の予定のメモ移動先を編集\n日時の確認が必要な予定\n\n2026-11-01T15:00:00 ～ 2026-11-01T16:00:00\n\nリソース未割当\n\n予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。\n\n日時の確認が必要な予定のメモ移動先を編集\n\"最初のメモ\"\nnull\n最新の移動を失敗\n最新の移動を完了\n最初の旧要求を完了\n外部から予定を変更\n編集中の予定を除去\nSchedulerを破棄\n移動要求を失効\n0\nnull\n0\n一覧の予定\n表示日\n前の期間\n次の期間\n\n表示タイムゾーン: America/New_York · 時間帯: 00:00–24:00 · 2026-11-01–2026-11-03 · 6 件\n\n表示するリソース\n東会議室\n西会議室\n閉鎖中の会議室\n全リソースを表示\n未割当の予定も表示します。\n\n予定移動は各予定の「移動先を編集」から開始できます。\n\n継続する複数日の予約\n\n2026/10/31 23:00 ～ 2026/11/03 12:00\n\n東会議室\n\n2026-11-01–2026-11-03 にわたる予定\n\nUTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。\n\n移動先を編集\n重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\n2026/11/01 1:30 ～ 2026/11/01 1:15\n\n東会議室\n\nUTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。\n\n移動先を編集\n同じ01時30分の後の予定\n\n2026/11/01 1:30 ～ 2026/11/01 2:30\n\n西会議室\n\n移動先を編集\n移動できない予定\n\n2026/11/01 10:00 ～ 2026/11/01 11:00\n\n西会議室\n\n移動先を編集\nリソース未割当の予定\n\n2026/11/01 13:00 ～ 2026/11/01 14:00\n\nリソース未割当\n\n移動先を編集\n日時の確認が必要な予定\n\n2026-11-01T15:00:00 ～ 2026-11-01T16:00:00\n\nリソース未割当\n\n予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。\n\n移動先を編集\n次の確認へ",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "予定の確認と移動"
+      },
+      {
+        "tag": "H2",
+        "text": "会議室の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月26日月曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月27日火曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月28日水曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月29日木曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月30日金曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月31日土曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年11月1日日曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "継続する複数日の予約"
+      },
+      {
+        "tag": "H3",
+        "text": "重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      },
+      {
+        "tag": "H3",
+        "text": "同じ01時30分の後の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "移動できない予定"
+      },
+      {
+        "tag": "H3",
+        "text": "リソース未割当の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "日時の確認が必要な予定"
+      },
+      {
+        "tag": "H2",
+        "text": "一覧の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "継続する複数日の予約"
+      },
+      {
+        "tag": "H3",
+        "text": "重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      },
+      {
+        "tag": "H3",
+        "text": "同じ01時30分の後の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "移動できない予定"
+      },
+      {
+        "tag": "H3",
+        "text": "リソース未割当の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "日時の確認が必要な予定"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "formと部品を無効切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "formと移動をreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "前の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "次の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示日へ移動",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全リソースを表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "継続する複数日の予約の移動先を編集",
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZの移動先を編集",
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "同じ01時30分の後の予定の移動先を編集",
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "移動できない予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "リソース未割当の予定の移動先を編集",
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "日時の確認が必要な予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "最新の移動を失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最新の移動を完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "最初の旧要求を完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "外部から予定を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集中の予定を除去",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Schedulerを破棄",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動要求を失効",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "前の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "次の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全リソースを表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "継続する複数日の予約の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "重複する時刻の会議と長い予約名ABCDEFGHIJKLMNOPQRSTUVWXYZの移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "同じ01時30分の後の予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "移動できない予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "リソース未割当の予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "移動先を編集",
+        "label": "日時の確認が必要な予定の移動先を編集",
+        "disabled": true
+      },
+      {
+        "text": "次の確認へ",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "利用profile",
+      "RTL",
+      "処理中",
+      "読み取り専用",
+      "移動を拒否",
+      "表示タイムゾーン",
+      "表示時間帯",
+      "実時間帯の予定例",
+      "表示日",
+      "予定の表示",
+      "東会議室",
+      "西会議室",
+      "閉鎖中の会議室",
+      "継続する複数日の予約のメモ",
+      "予約メモ",
+      "同じ01時30分の後の予定のメモ",
+      "移動できない予定のメモ",
+      "リソース未割当の予定のメモ",
+      "日時の確認が必要な予定のメモ",
+      "表示日",
+      "東会議室",
+      "西会議室",
+      "閉鎖中の会議室"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "specialist",
+    "screenshot": "catalog-specialist-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/specialist",
+    "text": "グラフ・地図・編集・会話\nプロファイル: guided\n方向: LTR\n操作抑止\n処理中\n専門部品を破棄\n読取り専用\nChart\nMap\nGantt\nKanban\nSpreadsheet\nRichText\nMarkdown\nCode\nDiff / JSON\nFileExplorer\nDiagram\nChat\nグラフと推移\nグラフの種別\nline\nbar\narea\npie\ndoughnut\nscatter\nheatmap\nradar\ngauge\ntreemap\n数値軸\n申請件数\n値\n順番\n0\n2\n4\n6\n8\n10\n12\n受付\n承認\n差戻し\n今回\n凡例\n今回\n申請件数の値と選択\n系列\t項目\t値\t座標\t選択\n今回\t受付\t12\t0, 0\t受付を選択\n今回\t承認\t7\t1, 0\t承認を選択\n今回\t差戻し\t3\t2, 1\t差戻しを選択\nなし\n今回\n前回\n欠損のある推移と比較\n欠損のある推移と比較の値と選択\n系列\t項目\t値\t座標\t選択\n今回\t1日\t2\t—, —\t1日を選択\n今回\t2日\t未取得\t—, —\t2日を選択\n今回\t3日\t5\t—, —\t3日を選択\n前回\t1日\t1\t—, —\t1日を選択\n前回\t2日\t2\t—, —\t2日を選択\n前回\t3日\t3\t—, —\t3日を選択\n\n今回: 変化 3 / 未取得 1 件\n\n前回: 変化 2 / 未取得 0 件",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "グラフ・地図・編集・会話"
+      },
+      {
+        "tag": "H2",
+        "text": "グラフと推移"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "プロファイル: guided",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "方向: LTR",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "専門部品を破棄",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Chart",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Map",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Gantt",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Kanban",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Spreadsheet",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "RichText",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Markdown",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Code",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Diff / JSON",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "FileExplorer",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Diagram",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Chat",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "受付を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "承認を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "差戻しを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "1日を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "2日を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "3日を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "1日を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "2日を選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "3日を選択",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "操作抑止",
+      "処理中",
+      "読取り専用",
+      "グラフの種別\nline\nbar\narea\npie\ndoughnut\nscatter\nheatmap\nradar\ngauge\ntreemap",
+      "数値軸",
+      "今回"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "foundation",
+    "screenshot": "catalog-foundation-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/foundation",
+    "text": "共通基盤の実操作検証\n外部期間をreset\n期間\n期間の開始日 任意\nカレンダー\nクリア\n\n2026年2月1日日曜日 · 入力書式: dd/MM/yyyy\n\n期間の終了日 任意\nカレンダー\nクリア\n\n2026年2月7日土曜日 · 入力書式: dd/MM/yyyy\n\n期間をクリア\n{\"start\":\"2026-02-01\",\"end\":\"2026-02-07\"}\nVALID\n金額 任意\n\n表示: 1,234.5\n\nFind scoped\nApp label 任意\n\n表示: 1.234,5\n\nExplicit 任意\n\n表示: 1,234.5\n\nFind scoped\nNested 任意\n送信の下書き\nメッセージを入力\n添付ファイル\n送信\n確認用下書き\nVALID\n0\nBlur draft\n添付ファイル\n送信\nblur origin\n会話への入力\n添付ファイル\n送信\nwrapper initial\nフォームのファイル選択\n申請の添付\n\n形式: .txt。1件 4 Bまで。複数選択可。合計 2件まで\n\nここへファイルをドロップできます。\n\nファイルを選択\n添付ファイル 0件\nファイルはありません。\nnull\nINVALID\n0\nBlur files\n\n形式の制限なし。容量の制限なし。複数選択可\n\nここへファイルをドロップできます。\n\nファイルを選択\n添付ファイル 0件\nファイルはありません。\nnull\n編集内容\n\nコード\n\n1\nconst count = 1;\nconst count = 1;\n\n文書\n\n太字\n斜体\nコード\n段落\n見出し\nリンクを設定\n画像を挿入\n元に戻す\nやり直す\nリンク・画像URL\n画像の代替説明\n\n保つ文書\n\n{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"保つ文書\"}]}]}\n編集\nプレビュー\n分割表示\n\n原稿のMarkdown\n\n1\n# Draft\nDraft\n# Draft\n既存入力のフォーム接続\nTextInput 任意\n\"origin\"\nVALID\nTextarea 任意\n\"origin\"\nVALID\nPasswordInput 任意\n表示\n\"origin\"\nVALID\nSearchInput 任意\nクリア\n検索\n\n\"origin\"\nVALID\nNumberInput 任意\n\n表示: 12\n\n12\nVALID\nCheckbox\n任意\nfalse\nVALID\nSwitch\n任意\nfalse\nVALID\nSelect 任意\n未選択\nIsparta\nİzmir\n\"a\"\nVALID\nMultiSelect\nMultiSelectの候補を検索\n表示中をすべて選択\n選択を解除\nIsparta ×\n選択肢\nIsparta\nİzmir\n\n1 件選択\n\n[\"a\"]\nVALID\nCombobox 任意\nクリア\n\n自由に入力できます。\n\n\"origin\"\nVALID\nMaskedInput 任意\n\n入力書式: __\n\n\"12\"\nVALID\nOTPInput 任意\n\n6 / 6 桁 (数字)\n\n\"123456\"\nVALID\nTagInput 任意\nseed\n削除\n追加\n\n1 件\n\n[\"seed\"]\nVALID\nSlider 任意\n10\n10\nVALID\nRangeSlider\n開始値: 10\n終了値: 70\n{\"start\":10,\"end\":70}\nVALID\nKnob 任意\n10\n−\n＋\n10\nVALID\nRating\n★\n1 / 5\n★\n2 / 5\n★\n3 / 5\n★\n4 / 5\n★\n5 / 5\n1 / 5\n評価を解除\n1\nVALID\nColorPicker\n色の値\n自由に色を選ぶ\n不透明度: 100%\n#112233\n\"#112233\"\nVALID\nDatePicker 任意\nカレンダー\nクリア\n\n2026年2月1日日曜日 · 入力書式: dd/MM/yyyy\n\n\"2026-02-01\"\nVALID\nTimePicker 任意\nクリア\n\n12:00\n\n\"12:00\"\nVALID\nDateTimePicker 任意\nクリア\n\nAsia/Tokyo の現地日時 · 2026-02-01T12:00\n\n\"2026-02-01T12:00\"\nVALID\nMonthPicker 任意\nクリア\n\n2026年2月\n\n\"2026-02\"\nVALID\nYearPicker 任意\nクリア\n\n2026年\n\n\"2026\"\nVALID\n前月\n2026年2月\n次月\n日\t月\t火\t水\t木\t金\t土\n1\t2\t3\t4\t5\t6\t7\n8\t9\t10\t11\t12\t13\t14\n15\t16\t17\t18\t19\t20\t21\n22\t23\t24\t25\t26\t27\t28\n1\t2\t3\t4\t5\t6\t7\n8\t9\t10\t11\t12\t13\t14\n\n矢印キーで日、Home/Endで週、PageUp/PageDownで月を移動します。Shiftを押すと年を移動します。\n\n\"2026-02-01\"\nVALID\nRadioGroup 任意\nAlpha\nBeta\n\"a\"\nVALID\nSegmentedControl\nAlpha\nBeta\n\"a\"\nVALID\norigin\n編集\n\"origin\"\nVALID\nFilterBuilder\n条件の結合\nすべて\nいずれか\n\n未設定のグループは絞り込み条件に使いません。\n\n条件を追加\n条件グループを追加\n条件を保存\n条件を解除\n\n{\"type\":\"group\",\"id\":\"root\",\"match\":\"and\",\"children\":[]}\nVALID\nListbox\nIsparta\nİzmir\n\n1件選択\n\n\"a\"\nVALID\nTransferList\n\nチェックした表示中の項目を一括移動できます。移動ハンドル、追加・削除、上下ボタンはキーボードでも操作できます。\n\n候補 · 1件表示\n候補を検索\n表示中の有効な候補をすべて選択\n一括追加\nİzmir\n移動\n追加\n選択済み · 1件選択 · 1件表示\n選択済みを検索\n表示中の有効な選択をすべて選択\n一括削除\nIsparta\n移動\n削除\n上へ\n下へ\n\n[\"a\"]\nVALID\nTreeSelect 任意\nTreeSelectを選ぶ\nTreeSelectをクリア\nIsparta\n\n1 件選択\n\n[\"a\"]\nVALID\nCascader 任意\nCascaderを選ぶ\nCascaderをクリア\n\n末端の項目を選択してください。\n\n[\"a\"]\nVALID\nプロファイル標本\nフォームへ編集へ\n継続操作\n保持する入力\n未確定のメモ\nA\nB\n\n最初の内容\n\nアプリの確認メッセージ\n\n3\n件数\n\n1,234.5\n\n申請の金額\n申請\n\t\n金額\n\t\n確認\n\n原文を保持\t1,234.5\tはい\n確認中\t1,000\tいいえ\n種別は未取得です。\n2026/10/06 10:00\nAsia/Tokyo\n原文の種別を保持\n詳細を表示\n種別は未取得です。\n日時は未取得です。\nAsia/Tokyo\n未取得の種別\n詳細を表示\n担当の予定\n表示日\n予定の表示\n日\n週\n月\n一覧\n前の期間\n次の期間\n表示日へ移動\n\n表示タイムゾーン: Asia/Tokyo · 時間帯: 00:00–24:00 · 2026-10-06–2026-10-06 · 1 件\n\n表示するリソース\n全リソースを表示\n未割当の予定も表示します。\n\n予定移動は各予定の「移動先を編集」から開始できます。\n\n2026年10月6日火曜日\n\n1 件\n\nアプリの予定名\n\n2026/10/06 10:00 ～ 2026/10/06 11:00\n\nリソース未割当\n\n移動先を編集\n申請件数のグラフ\n値\n項目\n0\n300\n600\n900\n1,200\n1,500\n原値A\n原値B\n件数\n凡例\n件数\n申請件数のグラフの値と選択\n系列\t項目\t値\t座標\t選択\n件数\t原値A\t1,234.5\t—, —\t原値Aを選択\n件数\t原値B\t1,500\t—, —\t原値Bを選択\n明示した書式\n値\n項目\n0\n300\n600\n900\n1200\n1500\n原値A\n原値B\n件数\n凡例\n件数\n明示した書式の値と選択\n系列\t項目\t値\t座標\t選択\n件数\t原値A\t1234.5\t—, —\t原値Aを選択\n件数\t原値B\t1500\t—, —\t原値Bを選択\n時間軸のグラフ\n値\nApplication time\n0\n1\n2\n3\n4\n2026/10/06 10:05\n2026/10/06 10:10\n2026/10/06 10:15\n2026/10/06 10:20\n2026/10/06 10:25\n2026/10/06 10:30\n2026/10/06 10:35\n2026/10/06 10:40\n2026/10/06 10:45\n2026/10/06 10:50\n2026/10/06 10:55\nClock\n凡例\nClock\n時間軸のグラフの値と選択\n系列\t項目\t値\t座標\t選択\nClock\tApp first\t3\t1791248400000, —\tApp firstを選択\nClock\tApp second\t4\t1791252000000, —\tApp secondを選択\n\n実行の工程\n\n時間軸\n日\n週\n月\nApp task\n2026年10月6日火曜日\n2026年10月7日水曜日\n2026年10月8日木曜日\n2026年10月9日金曜日\n2026年10月10日土曜日\n期間・依存関係・進捗\nタスク\t開始\t終了\t依存\t進捗\nApp task\t\t\tなし\t\nメッセージを入力\n添付ファイル\n送信\nraw draft\nVALID\n\nDirect code\n\n1\nraw = 1\nraw = 1\n\nDirect rich\n\n太字\n斜体\nコード\n段落\n見出し\nリンクを設定\n画像を挿入\n元に戻す\nやり直す\nリンク・画像URL\n画像の代替説明\n\nRaw\n\n{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Raw\"}]}]}\nDirect file\n\n形式: .txt。容量の制限なし。複数選択可\n\nここへファイルをドロップできます。\n\nファイルを選択\n添付ファイル 0件\nファイルはありません。\nnull\nVALID",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "共通基盤の実操作検証"
+      },
+      {
+        "tag": "H2",
+        "text": "送信の下書き"
+      },
+      {
+        "tag": "H2",
+        "text": "フォームのファイル選択"
+      },
+      {
+        "tag": "H2",
+        "text": "編集内容"
+      },
+      {
+        "tag": "H1",
+        "text": "Draft"
+      },
+      {
+        "tag": "H2",
+        "text": "既存入力のフォーム接続"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年2月"
+      },
+      {
+        "tag": "H2",
+        "text": "プロファイル標本"
+      },
+      {
+        "tag": "H2",
+        "text": "保持する入力"
+      },
+      {
+        "tag": "H2",
+        "text": "担当の予定"
+      },
+      {
+        "tag": "H3",
+        "text": "2026年10月6日火曜日"
+      },
+      {
+        "tag": "H3",
+        "text": "アプリの予定名"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "期間をreset",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "カレンダー",
+        "label": "期間の開始日のカレンダーを開く",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "期間の開始日をクリア",
+        "disabled": false
+      },
+      {
+        "text": "カレンダー",
+        "label": "期間の終了日のカレンダーを開く",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "期間の終了日をクリア",
+        "disabled": false
+      },
+      {
+        "text": "期間をクリア",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ファイルを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ファイルを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "太字",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "斜体",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "コード",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "段落",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "見出し",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "リンクを設定",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "画像を挿入",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "元に戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "やり直す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "編集",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "プレビュー",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "分割表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示",
+        "label": "パスワードを表示",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "検索語をクリア",
+        "disabled": false
+      },
+      {
+        "text": "検索",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示中をすべて選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "選択を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Isparta ×",
+        "label": "Ispartaの選択を解除",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "Comboboxをクリア",
+        "disabled": false
+      },
+      {
+        "text": "削除",
+        "label": "seedを削除 (1)",
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "−",
+        "label": "Knobを減らす",
+        "disabled": false
+      },
+      {
+        "text": "＋",
+        "label": "Knobを増やす",
+        "disabled": false
+      },
+      {
+        "text": "評価を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "カレンダー",
+        "label": "DatePickerのカレンダーを開く",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "DatePickerをクリア",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "TimePickerをクリア",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "DateTimePickerをクリア",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "MonthPickerをクリア",
+        "disabled": false
+      },
+      {
+        "text": "クリア",
+        "label": "YearPickerをクリア",
+        "disabled": false
+      },
+      {
+        "text": "前月",
+        "label": "Calendarの前の月",
+        "disabled": false
+      },
+      {
+        "text": "次月",
+        "label": "Calendarの次の月",
+        "disabled": false
+      },
+      {
+        "text": "1",
+        "label": "2026年2月1日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "2",
+        "label": "2026年2月2日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "3",
+        "label": "2026年2月3日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "4",
+        "label": "2026年2月4日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "5",
+        "label": "2026年2月5日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "6",
+        "label": "2026年2月6日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "7",
+        "label": "2026年2月7日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "8",
+        "label": "2026年2月8日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "9",
+        "label": "2026年2月9日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "10",
+        "label": "2026年2月10日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "11",
+        "label": "2026年2月11日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "12",
+        "label": "2026年2月12日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "13",
+        "label": "2026年2月13日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "14",
+        "label": "2026年2月14日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "15",
+        "label": "2026年2月15日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "16",
+        "label": "2026年2月16日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "17",
+        "label": "2026年2月17日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "18",
+        "label": "2026年2月18日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "19",
+        "label": "2026年2月19日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "20",
+        "label": "2026年2月20日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "21",
+        "label": "2026年2月21日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "22",
+        "label": "2026年2月22日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "23",
+        "label": "2026年2月23日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "24",
+        "label": "2026年2月24日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "25",
+        "label": "2026年2月25日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "26",
+        "label": "2026年2月26日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "27",
+        "label": "2026年2月27日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "28",
+        "label": "2026年2月28日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "1",
+        "label": "2026年3月1日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "2",
+        "label": "2026年3月2日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "3",
+        "label": "2026年3月3日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "4",
+        "label": "2026年3月4日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "5",
+        "label": "2026年3月5日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "6",
+        "label": "2026年3月6日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "7",
+        "label": "2026年3月7日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "8",
+        "label": "2026年3月8日日曜日",
+        "disabled": false
+      },
+      {
+        "text": "9",
+        "label": "2026年3月9日月曜日",
+        "disabled": false
+      },
+      {
+        "text": "10",
+        "label": "2026年3月10日火曜日",
+        "disabled": false
+      },
+      {
+        "text": "11",
+        "label": "2026年3月11日水曜日",
+        "disabled": false
+      },
+      {
+        "text": "12",
+        "label": "2026年3月12日木曜日",
+        "disabled": false
+      },
+      {
+        "text": "13",
+        "label": "2026年3月13日金曜日",
+        "disabled": false
+      },
+      {
+        "text": "14",
+        "label": "2026年3月14日土曜日",
+        "disabled": false
+      },
+      {
+        "text": "編集",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件グループを追加",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を保存",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "条件を解除",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "一括追加",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "移動",
+        "label": "İzmirの移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "追加",
+        "label": "İzmirを追加",
+        "disabled": false
+      },
+      {
+        "text": "一括削除",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "移動",
+        "label": "Ispartaの移動位置を選ぶ",
+        "disabled": false
+      },
+      {
+        "text": "削除",
+        "label": "Ispartaを削除",
+        "disabled": false
+      },
+      {
+        "text": "上へ",
+        "label": "Ispartaを上へ",
+        "disabled": true
+      },
+      {
+        "text": "下へ",
+        "label": "Ispartaを下へ",
+        "disabled": true
+      },
+      {
+        "text": "TreeSelectを選ぶ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "TreeSelectをクリア",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Cascaderを選ぶ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "Cascaderをクリア",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "継続操作",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "A",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "B",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "申請",
+        "label": "申請で並べ替え",
+        "disabled": false
+      },
+      {
+        "text": "金額",
+        "label": "金額で並べ替え",
+        "disabled": false
+      },
+      {
+        "text": "確認",
+        "label": "確認で並べ替え",
+        "disabled": false
+      },
+      {
+        "text": "前の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "次の期間",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "表示日へ移動",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全リソースを表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "移動先を編集",
+        "label": "アプリの予定名の移動先を編集",
+        "disabled": false
+      },
+      {
+        "text": "原値Aを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "原値Bを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "原値Aを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "原値Bを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "App firstを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "App secondを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "送信",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "太字",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "斜体",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "コード",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "段落",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "見出し",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "リンクを設定",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "画像を挿入",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "元に戻す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "やり直す",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ファイルを選択",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "外部",
+      "期間の開始日 任意",
+      "期間の終了日 任意",
+      "金額 任意",
+      "App label 任意",
+      "Explicit 任意",
+      "Nested 任意",
+      "メッセージを入力",
+      "添付ファイル",
+      "Blur draft",
+      "添付ファイル",
+      "会話への入力",
+      "添付ファイル",
+      "申請の添付",
+      "Blur files",
+      "リンク・画像URL",
+      "画像の代替説明",
+      "TextInput 任意",
+      "Textarea 任意",
+      "PasswordInput 任意",
+      "SearchInput 任意",
+      "NumberInput 任意",
+      "Checkbox\n任意",
+      "Switch\n任意",
+      "Select 任意",
+      "MultiSelectの候補を検索",
+      "Isparta",
+      "İzmir",
+      "Combobox 任意",
+      "MaskedInput 任意",
+      "OTPInput 任意",
+      "TagInput 任意",
+      "Slider 任意",
+      "開始値: 10",
+      "終了値: 70",
+      "Knob 任意",
+      "★\n1 / 5",
+      "★\n2 / 5",
+      "★\n3 / 5",
+      "★\n4 / 5",
+      "★\n5 / 5",
+      "色の値",
+      "自由に色を選ぶ",
+      "不透明度: 100%",
+      "DatePicker 任意",
+      "TimePicker 任意",
+      "DateTimePicker 任意",
+      "MonthPicker 任意",
+      "YearPicker 任意",
+      "Alpha",
+      "Beta",
+      "Alpha",
+      "Beta",
+      "条件の結合",
+      "候補を検索",
+      "表示中の有効な候補をすべて選択",
+      "İzmir",
+      "選択済みを検索",
+      "表示中の有効な選択をすべて選択",
+      "Isparta",
+      "TreeSelect 任意",
+      "Cascader 任意",
+      "未確定のメモ",
+      "表示日",
+      "予定の表示",
+      "件数",
+      "件数",
+      "Clock",
+      "時間軸\n日\n週\n月",
+      "メッセージを入力",
+      "添付ファイル",
+      "リンク・画像URL",
+      "画像の代替説明",
+      "Direct file"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  },
+  {
+    "route": "media",
+    "screenshot": "catalog-media-initial-desktop.png",
+    "url": "http://127.0.0.1:4229/catalog/media",
+    "text": "添付・画像・メディアの操作\nプロファイル guided\nRTL false\n無効 false\n媒体を表示・非表示\n媒体を生成・破棄\nファイル受付\n申請の添付ファイル\n\n形式: .txt,image/png。1件 1,000 Bまで。複数選択可。合計 3件まで\n\nここへファイルをドロップできます。\n\nファイルを選択\n添付ファイル 0件\nファイルはありません。\n進捗40%\n結果不明\n個別失敗\nアプリで完了\n\n0\n\n画像\n画像取得失敗・復旧\n画像ビューアーを開く\nギャラリー\n自動送りを開始\n前へ\n次へ\n申請1の添付\n\n1 / 3\n\n1\n2\n3\n外部自動送り切替\n画像比較\n赤い写真 / 青い写真\n比較境界\n比較方向を変更\n画像切抜き\n切抜くファイル\n\n提出写真\n\n画像の座標で範囲を指定するか、画像上で始点から終点へドラッグします。\n\n比率\n自由\n1:1\n4:3\n16:9\nX\nY\n幅\n高さ\n右へ90度回転\n範囲をリセット\n切抜きを確定\n\n画像を選択してください。 · 回転 0度\n\nPDF\n\n申請資料\n\n前のページ\nページ\n次のページ\n拡大率\n50%\n100%\n150%\n200%\n300%\nPDFをダウンロード\n\nページを表示しました。 · 1 / 2\n\nページの文字\nPDF表示対象を変更\n音声\n\n音声添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n\n一時停止または停止中\n\n文字起こし\n動画\n動画ファイル\n\n動画添付\n\n再生\n停止\n音量\n再生速度\n0.5倍\n1倍\n1.5倍\n2倍\n字幕\n字幕なし\n日本語字幕\n全画面\n\nメディアを取得できません。表示対象と形式を確認して再試行してください。\n\nメディアを再取得\n機械可読コード\nコード内容\n申請参照用QRコード\n\nUI123456\n\n申請番号のバーコード\n\nUI123456",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "添付・画像・メディアの操作"
+      },
+      {
+        "tag": "H2",
+        "text": "ファイル受付"
+      },
+      {
+        "tag": "H2",
+        "text": "画像"
+      },
+      {
+        "tag": "H2",
+        "text": "ギャラリー"
+      },
+      {
+        "tag": "H2",
+        "text": "画像比較"
+      },
+      {
+        "tag": "H2",
+        "text": "画像切抜き"
+      },
+      {
+        "tag": "H2",
+        "text": "PDF"
+      },
+      {
+        "tag": "H2",
+        "text": "音声"
+      },
+      {
+        "tag": "H2",
+        "text": "動画"
+      },
+      {
+        "tag": "H2",
+        "text": "機械可読コード"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "プロファイル guided",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "RTL false",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "無効 false",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "媒体を表示・非表示",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "媒体を生成・破棄",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "ファイルを選択",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "進捗40%",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "結果不明",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "個別失敗",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "アプリで完了",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "画像取得失敗・復旧",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "画像ビューアーを開く",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "自動送りを開始",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "前へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "次へ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "1",
+        "label": "画像1を表示: 赤い写真",
+        "disabled": false
+      },
+      {
+        "text": "2",
+        "label": "画像2を表示: 青い写真",
+        "disabled": false
+      },
+      {
+        "text": "3",
+        "label": "画像3を表示: 緑の写真",
+        "disabled": false
+      },
+      {
+        "text": "外部自動送り切替",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "比較方向を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "右へ90度回転",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "範囲をリセット",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "切抜きを確定",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "前のページ",
+        "label": null,
+        "disabled": true
+      },
+      {
+        "text": "次のページ",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "PDFをダウンロード",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "PDF表示対象を変更",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "再生",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "停止",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "再生",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "停止",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "全画面",
+        "label": null,
+        "disabled": false
+      },
+      {
+        "text": "メディアを再取得",
+        "label": null,
+        "disabled": false
+      }
+    ],
+    "labels": [
+      "申請の添付ファイル",
+      "比較境界",
+      "切抜くファイル",
+      "比率\n自由\n1:1\n4:3\n16:9",
+      "X",
+      "Y",
+      "幅",
+      "高さ",
+      "ページ",
+      "拡大率\n50%\n100%\n150%\n200%\n300%",
+      "音量",
+      "再生速度\n0.5倍\n1倍\n1.5倍\n2倍",
+      "字幕\n字幕なし\n日本語字幕",
+      "動画ファイル",
+      "音量",
+      "再生速度\n0.5倍\n1倍\n1.5倍\n2倍",
+      "字幕\n字幕なし\n日本語字幕",
+      "コード内容"
+    ],
+    "pageExtent": {
+      "clientWidth": 1366,
+      "scrollWidth": 1366
+    }
+  }
+]
