@@ -72,10 +72,10 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
             <h2 id="editor-title">編集内容</h2>
             <form id="application-form" novalidate (submit)="save($event)" (reset)="resetForm($event)">
               <ui-form-field controlId="application-name" label="申請名" [required]="true"
-                hint="一覧で内容を識別できる名前にしてください。" [error]="nameError()" describedBy="name-policy">
+                hint="一覧で内容が分かる名前を付けてください。" [error]="nameError()" describedBy="name-policy">
                 <input uiFieldControl name="applicationName" autocomplete="off" [value]="name()" (input)="name.set(value($event))">
               </ui-form-field>
-              <p id="name-policy" class="fixture-secondary">保存すると、同じ申請の一覧表示も更新されます。</p>
+              <p id="name-policy" class="fixture-secondary">保存すると、一覧にも変更が反映されます。</p>
 
               <ui-form-field controlId="application-category" label="申請区分">
                 <span class="ui-select-control fixture-select"><select class="ui-field-control" uiFieldControl name="category" [value]="category()" (change)="changeCategory($event)">
@@ -95,7 +95,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
                 <div class="catalog-actions"><button uiAction type="reset" [disabled]="saving() || unresolved()">入力を戻す</button>
                 <button uiAction variant="danger" [disabled]="saving() || unresolved() || !selectedApplication()" (click)="deleteApplication()">申請を削除</button></div>
               </div>
-              <p class="fixture-secondary">削除は一覧に反映されます。「元に戻す」で同じデータを復元できます。</p>
+              <p class="fixture-secondary">削除すると一覧からも消えます。「元に戻す」で削除前のデータを復元できます。</p>
             </form>
 
             <ui-action-feedback data-testid="save-feedback" [state]="saveFeedback()"
@@ -174,7 +174,7 @@ const REGION_MESSAGES: Record<Exclude<RegionKind, 'ready'>, string> = {
 
         <section class="fixture-controls" aria-labelledby="controls-title">
           <h2 id="controls-title">検証用の状態操作</h2>
-          <p>この画面のデータはメモリ内だけに保存され、再読み込みで初期状態に戻ります。保存先への反映と画面への応答を分け、応答が届かない状態を再現できます。</p>
+          <p>この画面のデータはメモリ内だけに保存され、再読み込みすると初期状態に戻ります。保存先への反映と画面への応答を別々に再現できるため、保存されても応答が届かない状態を確認できます。</p>
           <div class="fixture-control-grid">
             <div class="fixture-control-label">
               <div class="catalog-setting"><label for="save-outcome">保存結果</label><span class="ui-select-control fixture-select"><select class="ui-field-control" id="save-outcome" [value]="saveOutcome()" (change)="changeOutcome($event)">
