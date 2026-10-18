@@ -1,12 +1,13 @@
 import {runWithLifecycleCleanup} from './runtime-lifecycle';
 import {type Page} from '@playwright/test';
 import {test,expect,contexts,ready,environment,settle,create,host,destroy,record,update} from './css-override-test';
+import {installPostBurstPaintObserver} from './post-burst-paint';
 
 const rows=(count:number)=>Array.from({length:count},(_,id)=>({id,name:`申請 ${id} `+'長い内容と保持する名前 '.repeat(8),amount:id}));
 type Kind='list'|'table';
 interface Snapshot{time:number;active:string;range:{start:number;end:number};dom:number[];limit:number;key:{time:number;key:string;trusted:boolean;shift:boolean;active:string;cancelled:boolean}|null;}
 /** Only identity, public range, and DOM indices: no geometry, polling, or frame wait per key. */
-async function installProbe(page:Page,id:number,kind:Kind){const native={ltr:await nativeScrollReference(page,id,kind,1,'ltr'),rtl:await nativeScrollReference(page,id,kind,1,'rtl')};for(const reference of Object.values(native))expect(reference.wheel).toEqual([{trusted:true,cancelled:false}]);await record(kind+'-native-scrollbar-reference',native);await page.evaluate(({id,kind,gutter})=>{
+async function installProbe(page:Page,id:number,kind:Kind){const native={ltr:await nativeScrollReference(page,id,kind,1,'ltr'),rtl:await nativeScrollReference(page,id,kind,1,'rtl')};for(const reference of Object.values(native))expect(reference.wheel).toEqual([{trusted:true,cancelled:false}]);await record(kind+'-native-scrollbar-reference',native);await page.evaluate(installPostBurstPaintObserver);await page.evaluate(({id,kind,gutter})=>{
  const root=document.querySelector<HTMLElement>(`[data-runtime-id="${id}"]`)!,instance=(window as any).__runtime.instance(id),component=kind==='list'?instance.list():instance.table(),viewport=component.viewport(),element=viewport.elementRef.nativeElement as HTMLElement;
  const identify=(node:Element|null):string=>{
   if(!node)return 'null';if(node===document.body)return 'BODY';if(node===element)return 'viewport';if(node.matches('cdk-virtual-scroll-viewport'))return 'nested-viewport';if(node.hasAttribute('data-fast-nested'))return 'nested:'+node.getAttribute('data-fast-nested')+':main';
@@ -16,8 +17,8 @@ async function installProbe(page:Page,id:number,kind:Kind){const native={ltr:awa
   if(root.contains(node)&&row){const index=kind==='list'?Number(row.getAttribute('aria-posinset'))-1:Number(row.getAttribute('aria-rowindex'))-2,control=node.getAttribute('data-fast-control')??(node.getAttribute('role')==='cell'?'cell'+node.getAttribute('aria-colindex'):node.tagName==='INPUT'?'main':node.tagName);return `row:${index}:${control}`;}
   return node.id||'external:'+node.tagName;
  };
- // This explicit post-burst oracle performs layout and hit testing. The keyup
- // recorder below never invokes it, so it cannot pace the keyboard traversal.
+ // Layout/hit testing belongs to explicit paint observations. The immediate
+ // keyup recorder below never invokes it or waits for native scroll completion.
  const paint=(mode:'active'|'first-visible')=>{
   const scrollbar=gutter[getComputedStyle(element).direction as 'ltr'|'rtl'],vp=element.getBoundingClientRect(),viewportBox={left:vp.left+element.clientLeft,top:vp.top+element.clientTop,right:vp.left+element.clientLeft+element.clientWidth-scrollbar.right,bottom:vp.top+element.clientTop+element.clientHeight};viewportBox.left+=scrollbar.left;
   const target=mode==='active'?document.activeElement:[...element.querySelectorAll<HTMLElement>(kind==='list'?'.ui-virtual-row':'[data-virtual-row-key]')].filter(row=>row.closest('cdk-virtual-scroll-viewport')===element).find(row=>{const box=row.getBoundingClientRect();return box.bottom>viewportBox.top&&box.top<viewportBox.bottom;})??null;
@@ -37,7 +38,7 @@ async function installProbe(page:Page,id:number,kind:Kind){const native={ltr:awa
  const keydown=(event:KeyboardEvent)=>{if(event.key==='Tab'){keyEvent=event;key={time:performance.now(),key:event.key,trusted:event.isTrusted,shift:event.shiftKey,active:identify(document.activeElement),cancelled:event.defaultPrevented};}};
  const keyup=(event:KeyboardEvent)=>{if(event.key==='Tab')events.push(read());};
  document.addEventListener('keydown',keydown,true);document.addEventListener('keyup',keyup,true);
- (window as any).__fastTab={snapshot:read,paint,drain:()=>events.splice(0),dispose:()=>{document.removeEventListener('keydown',keydown,true);document.removeEventListener('keyup',keyup,true);}};
+ (window as any).__fastTab={snapshot:read,paint,identify,drain:()=>events.splice(0),dispose:()=>{document.removeEventListener('keydown',keydown,true);document.removeEventListener('keyup',keyup,true);}};
  },{id,kind,gutter:{ltr:native.ltr.gutter,rtl:native.rtl.gutter}});}
 async function snapshot(page:Page):Promise<Snapshot>{return page.evaluate(()=>(window as any).__fastTab.snapshot());}
 interface ExpectedKey{active:string;backwards:boolean;cancelled:boolean;}
@@ -84,7 +85,8 @@ async function nativeNestedSequence(page:Page,id:number,kind:Kind):Promise<strin
 }
 
 // The original 1000-row/default-height/overscan-2 projection and D → C environment change.
-// Settling is confined to setup, explicit End navigation, and profile transitions.
+// Setup/End/profile transitions settle separately. Native key bursts remain
+// unpaced; their explicit post-burst paint observation has its own bounded phase.
 test('fast native Tab original D to C: terminal projected inputs never exit before row 999',async({page,lifecycle})=>{
  await ready(page,contexts[3]);const id=await create(page,'RuntimeReassessmentVirtual',{kind:'list',rows:rows(1000),height:360,itemHeight:null,overscan:2,editors:true}),node=host(page,id),log:Snapshot[]=[];
  await node.evaluate(root=>{const after=document.createElement('button');after.id='fast-original-after';after.textContent='一覧の後';root.after(after);});await settle(page);await installProbe(page,id,'list');
@@ -94,18 +96,78 @@ test('fast native Tab original D to C: terminal projected inputs never exit befo
    const terminal=await snapshot(page);expect(terminal.dom.at(-1),'setup must actually render the final row').toBe(999);expect(terminal.range.end).toBe(1000);const terminalPaint=await page.evaluate(()=>(window as any).__fastTab.paint('first-visible'));await record('original-'+context.name+'-End-first-visible-paint',terminalPaint);expect(terminalPaint?.painted,'first visible terminal row is painted and owns its native hit points').toBe(true);
    const start=terminal.dom[0]!;await page.locator('#runtime-anchor').focus();await tab(page,'viewport',log);
    for(let index=start;index<1000;index++)await tab(page,`row:${index}:main`,log);
-   await flush(page,log);await geometry(page,id,'list','original-'+context.name+'-forward-burst');await tab(page,'fast-original-after',log);await flush(page,log);
+   await flush(page,log);await geometry(page,id,'list','original-'+context.name+'-forward-burst',log.at(-1)!.active);await tab(page,'fast-original-after',log);await flush(page,log);
   }
  },async()=>{await record('original-D-C-immediate-native-tab',log);await disposeProbe(page);});
  await destroy(page,id);
 });
 
-async function geometry(page:Page,id:number,kind:Kind,label:string){
- const metric=await page.evaluate(({id,kind})=>{const instance=(window as any).__runtime.instance(id),component=kind==='list'?instance.list():instance.table(),viewport=component.viewport(),element=viewport.elementRef.nativeElement as HTMLElement,wrapper=element.querySelector<HTMLElement>('.ui-virtual-window')!,cdkWrapper=element.querySelector<HTMLElement>('.cdk-virtual-scroll-content-wrapper')!,range=viewport.getRenderedRange(),active=document.activeElement as HTMLElement,box=active.getBoundingClientRect(),bounds=element.getBoundingClientRect(),height=component.rowSize(),nodes=[...element.querySelectorAll<HTMLElement>(kind==='list'?'.ui-virtual-row':'[data-virtual-row-key]')];return {range,height,offset:parseFloat(getComputedStyle(wrapper).paddingBlockStart)||0,cdkOffset:new DOMMatrixReadOnly(getComputedStyle(cdkWrapper).transform).m42,rows:nodes.map(row=>({index:kind==='list'?Number(row.getAttribute('aria-posinset'))-1:Number(row.getAttribute('aria-rowindex'))-2,height:row.getBoundingClientRect().height})),active:{top:box.top,bottom:box.bottom},viewport:{top:bounds.top+element.clientTop,bottom:bounds.top+element.clientTop+element.clientHeight},activePaint:(window as any).__fastTab.paint('active'),firstVisiblePaint:(window as any).__fastTab.paint('first-visible')};},{id,kind});
+async function geometry(page:Page,id:number,kind:Kind,label:string,expectedIdentity:string){
+ const observation=await page.evaluate(({id,kind,expectedIdentity})=>window.__observePostBurstPaint({expectedIdentity,identify:(window as any).__fastTab.identify,timeoutMs:1000,
+  read:()=>{const instance=(window as any).__runtime.instance(id),component=kind==='list'?instance.list():instance.table(),viewport=component.viewport(),element=viewport.elementRef.nativeElement as HTMLElement,wrapper=element.querySelector<HTMLElement>('.ui-virtual-window')!,cdkWrapper=element.querySelector<HTMLElement>('.cdk-virtual-scroll-content-wrapper')!,range=viewport.getRenderedRange(),active=document.activeElement as HTMLElement,box=active.getBoundingClientRect(),bounds=element.getBoundingClientRect(),height=component.rowSize(),nodes=[...element.querySelectorAll<HTMLElement>(kind==='list'?'.ui-virtual-row':'[data-virtual-row-key]')];return {range,height,scrollTop:element.scrollTop,offset:parseFloat(getComputedStyle(wrapper).paddingBlockStart)||0,cdkOffset:new DOMMatrixReadOnly(getComputedStyle(cdkWrapper).transform).m42,rows:nodes.map(row=>({index:kind==='list'?Number(row.getAttribute('aria-posinset'))-1:Number(row.getAttribute('aria-rowindex'))-2,height:row.getBoundingClientRect().height})),active:{top:box.top,bottom:box.bottom},viewport:{top:bounds.top+element.clientTop,bottom:bounds.top+element.clientTop+element.clientHeight},activePaint:(window as any).__fastTab.paint('active'),firstVisiblePaint:(window as any).__fastTab.paint('first-visible')};},
+  isReady:metric=>metric.active.top<metric.viewport.bottom&&metric.active.bottom>metric.viewport.top&&metric.activePaint?.painted===true&&metric.firstVisiblePaint?.painted===true,
+ }),{id,kind,expectedIdentity});
+ // Record before asserting so a persistent defect keeps its FIRST metric and
+ // final failure state. One second bounds native paint readiness only; every
+ // exact keyup/range/DOM assertion has already run without any per-key wait.
+ await record(label+'-post-burst-paint-observation',observation);expect(observation.outcome,label+': pinned native target becomes painted within the post-burst deadline').toBe('ready');
+ const metric=observation.final.metric!;
  expect(metric.range.start,label+': public range begins at first DOM row').toBe(metric.rows[0]?.index);expect(metric.range.end-metric.range.start).toBe(metric.rows.length);expect(Math.abs(metric.offset-metric.range.start*metric.height),label+': owned window follows public range').toBeLessThanOrEqual(1);expect(metric.cdkOffset,label+': CDK wrapper does not add a second offset').toBe(0);
  for(const row of metric.rows)expect(Math.abs(row.height-metric.height),label+': fixed rows match measured size').toBeLessThanOrEqual(1);
  expect(metric.active.top,label+': burst target is above the viewport bottom').toBeLessThan(metric.viewport.bottom);expect(metric.active.bottom,label+': burst target is below the viewport top').toBeGreaterThan(metric.viewport.top);await record(label,metric);expect(metric.activePaint?.painted,label+': focused target owns all center/inset hit samples').toBe(true);expect(metric.firstVisiblePaint?.painted,label+': first visible row is painted and hit testable').toBe(true);
 }
+
+type PaintControl='ready'|'transient-offscreen'|'transient-occluded'|'persistent-offscreen'|'persistent-occluded'|'changed-focus'|'returned-focus'|'replaced-target'|'changed-identity';
+// These self-contained native DOM producers exercise the oracle contract only.
+// They model completion after the FIRST sample; they are not native-scroll
+// causal evidence and never add pacing to any application keyboard burst.
+async function paintControl(page:Page,control:PaintControl){
+ await page.setContent('<!doctype html><html><head><style>html,body{margin:0}#paint-viewport{position:fixed;left:20px;top:20px;width:240px;height:100px;overflow:hidden;border:1px solid black}#paint-viewport input{position:absolute;left:12px;width:160px;height:32px;padding:0;border:0;border-radius:0;box-sizing:border-box;font:16px sans-serif}#paint-other{top:58px}#paint-cover{position:absolute;inset:0;background:white;z-index:3}</style></head><body><section id="paint-viewport"><input id="paint-target" aria-label="Pinned target"><input id="paint-other" aria-label="Other target"><div id="paint-cover" hidden></div></section></body></html>');
+ await page.evaluate(installPostBurstPaintObserver);
+ await page.evaluate(control=>{const target=document.querySelector<HTMLElement>('#paint-target')!,cover=document.querySelector<HTMLElement>('#paint-cover')!;target.style.top=control==='ready'||control.includes('occluded')?'12px':'160px';cover.hidden=!control.includes('occluded');target.focus({preventScroll:true});},control);
+ const observation=await page.evaluate(control=>{
+  const viewport=document.querySelector<HTMLElement>('#paint-viewport')!,target=document.querySelector<HTMLElement>('#paint-target')!,other=document.querySelector<HTMLElement>('#paint-other')!,cover=document.querySelector<HTMLElement>('#paint-cover')!;
+  const result=window.__observePostBurstPaint({expectedIdentity:'paint-target',identify:element=>element?.id??'null',timeoutMs:control.startsWith('persistent')?100:1000,
+   read:()=>{const active=document.activeElement as HTMLElement,box=active.getBoundingClientRect(),bounds=viewport.getBoundingClientRect(),clip={left:bounds.left+viewport.clientLeft,top:bounds.top+viewport.clientTop,right:bounds.left+viewport.clientLeft+viewport.clientWidth,bottom:bounds.top+viewport.clientTop+viewport.clientHeight},intersection={left:Math.max(0,clip.left,box.left),top:Math.max(0,clip.top,box.top),right:Math.min(innerWidth,clip.right,box.right),bottom:Math.min(innerHeight,clip.bottom,box.bottom)},nonempty=intersection.right>intersection.left&&intersection.bottom>intersection.top;
+    const hits=nonempty?[intersection.left+4,(intersection.left+intersection.right)/2,intersection.right-4].flatMap(x=>[intersection.top+4,(intersection.top+intersection.bottom)/2,intersection.bottom-4].map(y=>{const hit=document.elementFromPoint(x,y);return {x,y,hit:hit?.id??null,owned:hit===active||!!hit&&active.contains(hit)};})):[];
+    return {target:active.id,active:{left:box.left,top:box.top,right:box.right,bottom:box.bottom},viewport:clip,intersection,hits,painted:nonempty&&hits.length===9&&hits.every(hit=>hit.owned),scrollTop:viewport.scrollTop};
+   },isReady:metric=>metric.active.top<metric.viewport.bottom&&metric.active.bottom>metric.viewport.top&&metric.painted,
+  });
+  // Calling the async observer synchronously captures/clones its initial metric
+  // before returning this promise. The producer then runs in a microtask, with
+  // no timer or guessed browser timing and no mutation by the observer itself.
+  queueMicrotask(()=>{
+   if(control==='transient-offscreen')target.style.top='12px';
+   if(control==='transient-occluded')cover.hidden=true;
+   if(control==='changed-focus'||control==='returned-focus'){target.style.top='12px';other.focus({preventScroll:true});if(control==='returned-focus')target.focus({preventScroll:true});}
+   if(control==='replaced-target'){const replacement=target.cloneNode(true) as HTMLElement;replacement.style.top='12px';target.replaceWith(replacement);replacement.focus({preventScroll:true});}
+   if(control==='changed-identity'){target.style.top='12px';target.id='different-logical-target';}
+  });
+  return result;
+ },control);
+ await record('post-burst-paint-control-'+control,observation);return observation;
+}
+
+test('post-burst paint observer: an initially painted target needs no wait',async({page})=>{
+ const observation=await paintControl(page,'ready');expect(observation.outcome).toBe('ready');expect(observation.attempts).toBe(1);expect(observation.initial.ready).toBe(true);expect(observation.final).toEqual(observation.initial);
+});
+for(const control of ['transient-offscreen','transient-occluded'] as const)test('post-burst paint observer: '+control+' completion preserves the first metric',async({page})=>{
+ const observation=await paintControl(page,control);expect(observation.outcome).toBe('ready');expect(observation.initial.ready).toBe(false);expect(observation.final.ready).toBe(true);expect(observation.attempts).toBeGreaterThan(1);expect(observation.final.sameTarget).toBe(true);expect(observation.final.connected).toBe(true);expect(observation.final.activeIdentity).toBe('paint-target');
+ if(control==='transient-offscreen'){expect(observation.initial.metric!.active.top).toBeGreaterThanOrEqual(observation.initial.metric!.viewport.bottom);expect(observation.initial.metric!.hits).toHaveLength(0);}else{expect(observation.initial.metric!.active.top).toBeLessThan(observation.initial.metric!.viewport.bottom);expect(observation.initial.metric!.hits.some(hit=>!hit.owned)).toBe(true);}
+ expect(observation.final.metric!.painted).toBe(true);
+});
+for(const control of ['persistent-offscreen','persistent-occluded'] as const)test('post-burst paint observer: '+control+' remains a bounded failure',async({page})=>{
+ const observation=await paintControl(page,control);expect(observation.outcome).toBe('timeout');expect(observation.initial.ready).toBe(false);expect(observation.final.ready).toBe(false);expect(observation.attempts).toBeGreaterThan(1);expect(observation.elapsedMs).toBeGreaterThanOrEqual(observation.timeoutMs);expect(observation.final.sameTarget).toBe(true);expect(observation.targetIssue).toBeNull();
+ if(control==='persistent-offscreen'){expect(observation.final.metric!.active.top).toBeGreaterThanOrEqual(observation.final.metric!.viewport.bottom);expect(observation.final.metric!.hits).toHaveLength(0);}else{expect(observation.final.metric!.active.top).toBeLessThan(observation.final.metric!.viewport.bottom);expect(observation.final.metric!.hits.some(hit=>!hit.owned)).toBe(true);}
+});
+for(const control of ['changed-focus','returned-focus','replaced-target','changed-identity'] as const)test('post-burst paint observer: '+control+' cannot become a passing replacement',async({page})=>{
+ const observation=await paintControl(page,control);expect(observation.outcome).toBe('target-changed');expect(observation.initial.ready).toBe(false);expect(observation.final.ready,'even painted geometry cannot excuse a different focus history or target').toBe(true);expect(observation.targetIssue).not.toBeNull();
+ if(control==='changed-focus'){expect(observation.final.sameTarget).toBe(false);expect(observation.final.activeIdentity).toBe('paint-other');}
+ if(control==='returned-focus'){expect(observation.final.sameTarget).toBe(true);expect(observation.final.activeIdentity).toBe('paint-target');}
+ if(control==='replaced-target'){expect(observation.final.sameTarget).toBe(false);expect(observation.final.connected).toBe(false);expect(observation.final.activeIdentity).toBe('paint-target');}
+ if(control==='changed-identity'){expect(observation.final.sameTarget).toBe(true);expect(observation.final.connected).toBe(true);expect(observation.final.pinnedIdentity).toBe('different-logical-target');}
+});
+
 for(const kind of ['list','table'] as const)test(`fast native Tab ${kind}: A-D mixed controls visit every row forward and backward`,async({page,lifecycle})=>{
  // Four same-instance contexts send 1040/2064 native keys. Budget the full
  // matrix as in the cross-browser runner without pacing any key burst.
@@ -116,9 +178,9 @@ for(const kind of ['list','table'] as const)test(`fast native Tab ${kind}: A-D m
    await environment(page,context);await update(page,id,{itemHeight:context.name==='C'?220:null,overscan:context.name==='C'?0:2});await node.locator('[data-fast-boundary="before"]').focus();await tab(page,'viewport',log);
    const controls=kind==='list'?['main','tail']:['cell1','main','tail','cell2'];
    for(let index=0;index<count;index++)for(const control of controls)await tab(page,`row:${index}:${control}`,log);
-   await flush(page,log);await geometry(page,id,kind,kind+'-'+context.name+'-forward-burst');if(context.name==='C')await test.info().attach(kind+'-C-post-forward-painted',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});await tab(page,'after',log);
+   await flush(page,log);await geometry(page,id,kind,kind+'-'+context.name+'-forward-burst',log.at(-1)!.active);if(context.name==='C')await test.info().attach(kind+'-C-post-forward-painted',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});await tab(page,'after',log);
    for(let index=count-1;index>=0;index--)for(const control of [...controls].reverse())await tab(page,`row:${index}:${control}`,log,true);
-   await flush(page,log);await geometry(page,id,kind,kind+'-'+context.name+'-backward-burst');await tab(page,'viewport',log,true);await tab(page,'before',log,true);await flush(page,log);
+   await flush(page,log);await geometry(page,id,kind,kind+'-'+context.name+'-backward-burst',log.at(-1)!.active);await tab(page,'viewport',log,true);await tab(page,'before',log,true);await flush(page,log);
   }
  },async()=>{await record(kind+'-A-D-immediate-native-tab',log);await disposeProbe(page);});
  await destroy(page,id);
