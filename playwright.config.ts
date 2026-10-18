@@ -21,6 +21,7 @@ export default defineConfig({
     command: 'npm run build && node scripts/serve.mjs',
     url: baseURL,
     reuseExistingServer: false,
-    timeout: 240_000,
+    // The source check alone can exceed four minutes on this complete fixture.
+    timeout: 600_000,
   },
 });
