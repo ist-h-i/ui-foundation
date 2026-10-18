@@ -214,6 +214,9 @@ for (const context of contexts) {
       const dimensions = await table.evaluate(el => {const style = getComputedStyle(el), parent = el.parentElement!;const unit = document.createElement('span');unit.style.cssText = 'position:absolute;visibility:hidden;inline-size:max(var(--ui-size-table-column-min),calc(8em + var(--ui-space-table-x) * 2));';el.append(unit);const minimum = unit.getBoundingClientRect().width;unit.remove();return {minimum, width: el.getBoundingClientRect().width, minWidth: parseFloat(style.minWidth), client: parent.clientWidth, scroll: parent.scrollWidth};});
       near(dimensions.minWidth, dimensions.minimum * columns, 'shared CSS used table minimum from actual consumer');expect(dimensions.width).toBeGreaterThanOrEqual(dimensions.minWidth - 1);expect(dimensions.scroll).toBeGreaterThan(dimensions.client);
       await nativeFocus(page, viewport);await viewport.press('End');await expect.poll(() => viewport.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+      // Native End can keep scrolling after its first positive offset. Finish it before test-owned writes.
+      await expect.poll(() => viewport.evaluate(el => Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop))).toBeLessThanOrEqual(1);
+      const nativeEnd = await viewport.evaluate(el => ({scrollTop: el.scrollTop, maximum: el.scrollHeight - el.clientHeight}));
       await viewport.evaluate(el => {el.scrollLeft = getComputedStyle(el).direction === 'rtl' ? -el.scrollWidth : el.scrollWidth;el.scrollTop = el.scrollHeight;});
       const last = node.locator('tbody tr').last().locator('td').last();await expect(last).toContainText('保持する長文 23');
       await last.evaluate(el => {
@@ -225,7 +228,7 @@ for (const context of contexts) {
       });await settle(page);
       const end = await last.evaluate(el => {const text = el.querySelector('code')!.firstChild!, range = document.createRange();range.setStart(text, Math.max(0, text.textContent!.length - 1));range.setEnd(text, text.textContent!.length);return {last: range.getBoundingClientRect().toJSON(), view: el.closest('.ui-specialist-scroll')!.getBoundingClientRect().toJSON()};});
       expect(end.last.width).toBeGreaterThan(0);expect(end.last.bottom).toBeLessThanOrEqual(end.view.bottom + 1);expect(end.last.right).toBeLessThanOrEqual(end.view.right + 1);expect(end.last.left).toBeGreaterThanOrEqual(end.view.left - 1);
-      await record('specialist-json-columns-' + columns, {dimensions, end});
+      await record('specialist-json-columns-' + columns, {dimensions, nativeEnd, end});
     }
     await update(page, id, {source: JSON.stringify({更新された申請: '更新後も消えない全文末尾'})});await expect(table).toContainText('更新後も消えない全文末尾');
     const search = node.getByRole('searchbox');await nativeFocus(page, search);await search.fill('更新された申請');await ring(search);await expect(table).toContainText('更新後も消えない全文末尾');await destroy(page, id);
