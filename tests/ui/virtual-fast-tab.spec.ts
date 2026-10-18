@@ -1,7 +1,15 @@
 import {runWithLifecycleCleanup} from './runtime-lifecycle';
 import {type Page} from '@playwright/test';
 import {test,expect,contexts,ready,environment,settle,create,host,destroy,record,update} from './css-override-test';
-import {installPostBurstPaintObserver} from './post-burst-paint';
+import {installPostBurstPaintObserver,type PostBurstIdentityRules} from './post-burst-paint';
+
+// These are the finite attribute/selector inputs of identify below. Class
+// membership is guarded by token; cosmetic classes and style are not identity.
+const fastTabIdentityRules:PostBurstIdentityRules={
+ targetAttributes:['id','data-fast-nested','data-fast-boundary','data-fast-control','role','aria-colindex','aria-posinset','aria-rowindex','data-virtual-row-key'],
+ ancestorAttributes:['aria-posinset','aria-rowindex','data-virtual-row-key'],
+ classTokens:['ui-virtual-row'],
+};
 
 const rows=(count:number)=>Array.from({length:count},(_,id)=>({id,name:`申請 ${id} `+'長い内容と保持する名前 '.repeat(8),amount:id}));
 type Kind='list'|'table';
@@ -103,10 +111,10 @@ test('fast native Tab original D to C: terminal projected inputs never exit befo
 });
 
 async function geometry(page:Page,id:number,kind:Kind,label:string,expectedIdentity:string){
- const observation=await page.evaluate(({id,kind,expectedIdentity})=>window.__observePostBurstPaint({expectedIdentity,identify:(window as any).__fastTab.identify,timeoutMs:1000,
+ const observation=await page.evaluate(({id,kind,expectedIdentity,identityRules})=>window.__observePostBurstPaint({expectedIdentity,identify:(window as any).__fastTab.identify,identityRules,timeoutMs:1000,
   read:()=>{const instance=(window as any).__runtime.instance(id),component=kind==='list'?instance.list():instance.table(),viewport=component.viewport(),element=viewport.elementRef.nativeElement as HTMLElement,wrapper=element.querySelector<HTMLElement>('.ui-virtual-window')!,cdkWrapper=element.querySelector<HTMLElement>('.cdk-virtual-scroll-content-wrapper')!,range=viewport.getRenderedRange(),active=document.activeElement as HTMLElement,box=active.getBoundingClientRect(),bounds=element.getBoundingClientRect(),height=component.rowSize(),nodes=[...element.querySelectorAll<HTMLElement>(kind==='list'?'.ui-virtual-row':'[data-virtual-row-key]')];return {range,height,scrollTop:element.scrollTop,offset:parseFloat(getComputedStyle(wrapper).paddingBlockStart)||0,cdkOffset:new DOMMatrixReadOnly(getComputedStyle(cdkWrapper).transform).m42,rows:nodes.map(row=>({index:kind==='list'?Number(row.getAttribute('aria-posinset'))-1:Number(row.getAttribute('aria-rowindex'))-2,height:row.getBoundingClientRect().height})),active:{top:box.top,bottom:box.bottom},viewport:{top:bounds.top+element.clientTop,bottom:bounds.top+element.clientTop+element.clientHeight},activePaint:(window as any).__fastTab.paint('active'),firstVisiblePaint:(window as any).__fastTab.paint('first-visible')};},
   isReady:metric=>metric.active.top<metric.viewport.bottom&&metric.active.bottom>metric.viewport.top&&metric.activePaint?.painted===true&&metric.firstVisiblePaint?.painted===true,
- }),{id,kind,expectedIdentity});
+ }),{id,kind,expectedIdentity,identityRules:fastTabIdentityRules});
  // Record before asserting so a persistent defect keeps its FIRST metric and
  // final failure state. One second bounds native paint readiness only; every
  // exact keyup/range/DOM assertion has already run without any per-key wait.
@@ -117,17 +125,36 @@ async function geometry(page:Page,id:number,kind:Kind,label:string,expectedIdent
  expect(metric.active.top,label+': burst target is above the viewport bottom').toBeLessThan(metric.viewport.bottom);expect(metric.active.bottom,label+': burst target is below the viewport top').toBeGreaterThan(metric.viewport.top);await record(label,metric);expect(metric.activePaint?.painted,label+': focused target owns all center/inset hit samples').toBe(true);expect(metric.firstVisiblePaint?.painted,label+': first visible row is painted and hit testable').toBe(true);
 }
 
-type PaintControl='ready'|'transient-offscreen'|'transient-occluded'|'persistent-offscreen'|'persistent-occluded'|'changed-focus'|'returned-focus'|'replaced-target'|'changed-identity';
+type IdentityHistoryControl='restored-target-id'|'restored-target-control'|'restored-target-role'|'restored-target-column'|'restored-target-boundary'|'restored-target-nested'|'restored-ancestor-position'|'restored-ancestor-rowindex'|'restored-ancestor-key'|'restored-ancestor-class';
+type PaintControl='ready'|'transient-offscreen'|'transient-occluded'|'persistent-offscreen'|'persistent-occluded'|'changed-focus'|'returned-focus'|'replaced-target'|'changed-identity'|'cosmetic-style-completion'|IdentityHistoryControl;
 // These self-contained native DOM producers exercise the oracle contract only.
 // They model completion after the FIRST sample; they are not native-scroll
 // causal evidence and never add pacing to any application keyboard burst.
 async function paintControl(page:Page,control:PaintControl){
- await page.setContent('<!doctype html><html><head><style>html,body{margin:0}#paint-viewport{position:fixed;left:20px;top:20px;width:240px;height:100px;overflow:hidden;border:1px solid black}#paint-viewport input{position:absolute;left:12px;width:160px;height:32px;padding:0;border:0;border-radius:0;box-sizing:border-box;font:16px sans-serif}#paint-other{top:58px}#paint-cover{position:absolute;inset:0;background:white;z-index:3}</style></head><body><section id="paint-viewport"><input id="paint-target" aria-label="Pinned target"><input id="paint-other" aria-label="Other target"><div id="paint-cover" hidden></div></section></body></html>');
+ await page.setContent('<!doctype html><html><head><style>html,body{margin:0}#paint-viewport{position:fixed;left:20px;top:20px;width:240px;height:100px;overflow:hidden;border:1px solid black}#paint-viewport input{position:absolute;left:12px;width:160px;height:32px;padding:0;border:0;border-radius:0;box-sizing:border-box;font:16px sans-serif}#paint-other{top:58px}#paint-cover{position:absolute;inset:0;background:white;z-index:3}</style></head><body><section id="paint-viewport" aria-posinset="5" aria-rowindex="6"><div id="paint-row" class="paint-row ui-virtual-row" aria-posinset="1" aria-rowindex="2" data-virtual-row-key="row-a"><input id="paint-target" aria-label="Pinned target"><input id="paint-other" aria-label="Other target"></div><div id="paint-cover" hidden></div></section></body></html>');
  await page.evaluate(installPostBurstPaintObserver);
- await page.evaluate(control=>{const target=document.querySelector<HTMLElement>('#paint-target')!,cover=document.querySelector<HTMLElement>('#paint-cover')!;target.style.top=control==='ready'||control.includes('occluded')?'12px':'160px';cover.hidden=!control.includes('occluded');target.focus({preventScroll:true});},control);
- const observation=await page.evaluate(control=>{
-  const viewport=document.querySelector<HTMLElement>('#paint-viewport')!,target=document.querySelector<HTMLElement>('#paint-target')!,other=document.querySelector<HTMLElement>('#paint-other')!,cover=document.querySelector<HTMLElement>('#paint-cover')!;
-  const result=window.__observePostBurstPaint({expectedIdentity:'paint-target',identify:element=>element?.id??'null',timeoutMs:control.startsWith('persistent')?100:1000,
+ await page.evaluate(control=>{const target=document.querySelector<HTMLElement>('#paint-target')!,cover=document.querySelector<HTMLElement>('#paint-cover')!,row=document.querySelector<HTMLElement>('#paint-row')!,viewport=document.querySelector<HTMLElement>('#paint-viewport')!;target.style.top=control==='ready'||control.includes('occluded')?'12px':'160px';cover.hidden=!control.includes('occluded');
+  if(control==='restored-target-control')target.setAttribute('data-fast-control','main');
+  if(control==='restored-target-role'||control==='restored-target-column'){target.setAttribute('role','cell');target.setAttribute('aria-colindex','1');}
+  if(control==='restored-target-boundary')target.setAttribute('data-fast-boundary','before');
+  if(control==='restored-target-nested')target.setAttribute('data-fast-nested','0');
+  if(control==='restored-ancestor-key'||control==='restored-ancestor-class')viewport.classList.add('ui-virtual-row');
+  if(control==='restored-ancestor-key')row.classList.remove('ui-virtual-row');
+  if(control==='restored-ancestor-class')row.removeAttribute('data-virtual-row-key');
+  target.focus({preventScroll:true});
+ },control);
+ const observation=await page.evaluate(({control,identityRules})=>{
+  const viewport=document.querySelector<HTMLElement>('#paint-viewport')!,target=document.querySelector<HTMLElement>('#paint-target')!,other=document.querySelector<HTMLElement>('#paint-other')!,cover=document.querySelector<HTMLElement>('#paint-cover')!,row=document.querySelector<HTMLElement>('#paint-row')!,producerIdentityHistory:string[]=[];
+  const identify=(element:Element|null):string=>{
+   if(!element)return 'null';
+   if(control==='restored-target-control')return 'control:'+element.getAttribute('data-fast-control');
+   if(control==='restored-target-role'||control==='restored-target-column')return element.getAttribute('role')==='cell'?'cell'+element.getAttribute('aria-colindex'):'control:'+element.tagName;
+   if(control==='restored-target-boundary')return element.getAttribute('data-fast-boundary')??element.id;
+   if(control==='restored-target-nested')return 'nested:'+element.getAttribute('data-fast-nested')+':main';
+   if(control.startsWith('restored-ancestor')){const owner=element.closest('.ui-virtual-row,[data-virtual-row-key]');return 'row:'+(control==='restored-ancestor-rowindex'?Number(owner?.getAttribute('aria-rowindex'))-2:Number(owner?.getAttribute('aria-posinset'))-1)+':main';}
+   return element.id;
+  };
+  const result=window.__observePostBurstPaint({expectedIdentity:identify(target),identify,identityRules,timeoutMs:control.startsWith('persistent')?100:1000,
    read:()=>{const active=document.activeElement as HTMLElement,box=active.getBoundingClientRect(),bounds=viewport.getBoundingClientRect(),clip={left:bounds.left+viewport.clientLeft,top:bounds.top+viewport.clientTop,right:bounds.left+viewport.clientLeft+viewport.clientWidth,bottom:bounds.top+viewport.clientTop+viewport.clientHeight},intersection={left:Math.max(0,clip.left,box.left),top:Math.max(0,clip.top,box.top),right:Math.min(innerWidth,clip.right,box.right),bottom:Math.min(innerHeight,clip.bottom,box.bottom)},nonempty=intersection.right>intersection.left&&intersection.bottom>intersection.top;
     const hits=nonempty?[intersection.left+4,(intersection.left+intersection.right)/2,intersection.right-4].flatMap(x=>[intersection.top+4,(intersection.top+intersection.bottom)/2,intersection.bottom-4].map(y=>{const hit=document.elementFromPoint(x,y);return {x,y,hit:hit?.id??null,owned:hit===active||!!hit&&active.contains(hit)};})):[];
     return {target:active.id,active:{left:box.left,top:box.top,right:box.right,bottom:box.bottom},viewport:clip,intersection,hits,painted:nonempty&&hits.length===9&&hits.every(hit=>hit.owned),scrollTop:viewport.scrollTop};
@@ -142,9 +169,23 @@ async function paintControl(page:Page,control:PaintControl){
    if(control==='changed-focus'||control==='returned-focus'){target.style.top='12px';other.focus({preventScroll:true});if(control==='returned-focus')target.focus({preventScroll:true});}
    if(control==='replaced-target'){const replacement=target.cloneNode(true) as HTMLElement;replacement.style.top='12px';target.replaceWith(replacement);replacement.focus({preventScroll:true});}
    if(control==='changed-identity'){target.style.top='12px';target.id='different-logical-target';}
+   if(control==='cosmetic-style-completion'){target.style.top='12px';target.classList.add('cosmetic\u00a0ui-virtual-row');target.classList.add('paint-ready');row.classList.add('paint-complete');target.setAttribute('aria-label','Completed native target');}
+   const changes:Partial<Record<IdentityHistoryControl,{element:HTMLElement;name:string;value:string|null}>>={
+    'restored-target-id':{element:target,name:'id',value:'different-logical-target'},
+    'restored-target-control':{element:target,name:'data-fast-control',value:'tail'},
+    'restored-target-role':{element:target,name:'role',value:'button'},
+    'restored-target-column':{element:target,name:'aria-colindex',value:'2'},
+    'restored-target-boundary':{element:target,name:'data-fast-boundary',value:'after'},
+    'restored-target-nested':{element:target,name:'data-fast-nested',value:'1'},
+    'restored-ancestor-position':{element:row,name:'aria-posinset',value:'2'},
+    'restored-ancestor-rowindex':{element:row,name:'aria-rowindex',value:'3'},
+    'restored-ancestor-key':{element:row,name:'data-virtual-row-key',value:null},
+    'restored-ancestor-class':{element:row,name:'class',value:'paint-row'},
+   },change=changes[control as IdentityHistoryControl];
+   if(change){const before=change.element.getAttribute(change.name);producerIdentityHistory.push(identify(target));if(change.value===null)change.element.removeAttribute(change.name);else change.element.setAttribute(change.name,change.value);producerIdentityHistory.push(identify(target));if(before===null)change.element.removeAttribute(change.name);else change.element.setAttribute(change.name,before);producerIdentityHistory.push(identify(target));target.style.top='12px';}
   });
-  return result;
- },control);
+  return result.then(observation=>({...observation,producerIdentityHistory}));
+ },{control,identityRules:fastTabIdentityRules});
  await record('post-burst-paint-control-'+control,observation);return observation;
 }
 
@@ -166,6 +207,12 @@ for(const control of ['changed-focus','returned-focus','replaced-target','change
  if(control==='returned-focus'){expect(observation.final.sameTarget).toBe(true);expect(observation.final.activeIdentity).toBe('paint-target');}
  if(control==='replaced-target'){expect(observation.final.sameTarget).toBe(false);expect(observation.final.connected).toBe(false);expect(observation.final.activeIdentity).toBe('paint-target');}
  if(control==='changed-identity'){expect(observation.final.sameTarget).toBe(true);expect(observation.final.connected).toBe(true);expect(observation.final.pinnedIdentity).toBe('different-logical-target');}
+});
+for(const control of ['restored-target-id','restored-target-control','restored-target-role','restored-target-column','restored-target-boundary','restored-target-nested','restored-ancestor-position','restored-ancestor-rowindex','restored-ancestor-key','restored-ancestor-class'] as const)test('post-burst paint observer: '+control+' history cannot be hidden between frames',async({page})=>{
+ const observation=await paintControl(page,control);expect(observation.outcome).toBe('target-changed');expect(observation.initial.ready).toBe(false);expect(observation.final.ready).toBe(true);expect(observation.final.sameTarget).toBe(true);expect(observation.final.connected).toBe(true);expect(observation.final.activeIdentity).toBe(observation.initialIdentity);expect(observation.final.pinnedIdentity).toBe(observation.initialIdentity);expect(observation.targetIssue).toContain('identity');expect(observation.producerIdentityHistory).toHaveLength(3);expect(observation.producerIdentityHistory[0]).toBe(observation.initialIdentity);expect(observation.producerIdentityHistory[1]).not.toBe(observation.initialIdentity);expect(observation.producerIdentityHistory[2]).toBe(observation.initialIdentity);
+});
+test('post-burst paint observer: cosmetic classes and style completion preserve identity',async({page})=>{
+ const observation=await paintControl(page,'cosmetic-style-completion');expect(observation.outcome).toBe('ready');expect(observation.initial.ready).toBe(false);expect(observation.final.ready).toBe(true);expect(observation.final.sameTarget).toBe(true);expect(observation.final.activeIdentity).toBe(observation.initialIdentity);expect(observation.targetIssue).toBeNull();
 });
 
 for(const kind of ['list','table'] as const)test(`fast native Tab ${kind}: A-D mixed controls visit every row forward and backward`,async({page,lifecycle})=>{

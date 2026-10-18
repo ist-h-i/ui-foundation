@@ -6902,8 +6902,14 @@
         {
           "file": "tests/ui/virtual-fast-tab.spec.ts",
           "anchor": "fast native Tab ${kind}",
-          "sha256": "9c92e334585b2cbadc04dcdb7aac894e053987e7ad1162c320ed8598de79db26",
+          "sha256": "523b4df14e8245db103e680f47d996c95f3029a0ab3538ac3b8447646300dd54",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
+        },
+        {
+          "file": "tests/ui/post-burst-paint.ts",
+          "anchor": "export function installPostBurstPaintObserver(){",
+          "sha256": "25c0fd3a2def34739fddd649f52c57302b92644e3d3f6539044a7659b3dbc837",
+          "scope": "連続Tab後の表示を確認する観測器とidentity履歴guardの直接参照。操作中の即時focus・順序・描画数検査とは別の有限回帰であり、任意の実行時更新を保証しない。"
         }
       ],
       "producer_static_status": "Unknown",
@@ -7172,8 +7178,14 @@
         {
           "file": "tests/ui/virtual-fast-tab.spec.ts",
           "anchor": "fast native Tab ${kind}",
-          "sha256": "9c92e334585b2cbadc04dcdb7aac894e053987e7ad1162c320ed8598de79db26",
+          "sha256": "523b4df14e8245db103e680f47d996c95f3029a0ab3538ac3b8447646300dd54",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
+        },
+        {
+          "file": "tests/ui/post-burst-paint.ts",
+          "anchor": "export function installPostBurstPaintObserver(){",
+          "sha256": "25c0fd3a2def34739fddd649f52c57302b92644e3d3f6539044a7659b3dbc837",
+          "scope": "連続Tab後の表示を確認する観測器とidentity履歴guardの直接参照。操作中の即時focus・順序・描画数検査とは別の有限回帰であり、任意の実行時更新を保証しない。"
         }
       ],
       "producer_static_status": "Unknown",
