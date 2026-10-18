@@ -1,4 +1,2431 @@
 {
+  "checks": {
+    "approved_components": [
+      {
+        "export": "Dir",
+        "module": "@angular/cdk/bidi",
+        "reason": "CDKの公開Directionalityをnative dirへ接続する"
+      },
+      {
+        "export": "CdkVirtualScrollViewport",
+        "module": "@angular/cdk/scrolling",
+        "reason": "公開CDK viewportによる仮想一覧"
+      },
+      {
+        "export": "CdkFixedSizeVirtualScroll",
+        "module": "@angular/cdk/scrolling",
+        "reason": "公開CDK固定行高の仮想一覧"
+      },
+      {
+        "export": "CdkVirtualForOf",
+        "module": "@angular/cdk/scrolling",
+        "reason": "公開CDK仮想行template"
+      },
+      {
+        "export": "CdkDropList",
+        "module": "@angular/cdk/drag-drop",
+        "reason": "公開CDKの移動領域"
+      },
+      {
+        "export": "CdkDropListGroup",
+        "module": "@angular/cdk/drag-drop",
+        "reason": "公開CDKの領域間移動"
+      },
+      {
+        "export": "CdkDrag",
+        "module": "@angular/cdk/drag-drop",
+        "reason": "公開CDKのpointer移動とkeyboard代替"
+      },
+      {
+        "export": "CdkDragHandle",
+        "module": "@angular/cdk/drag-drop",
+        "reason": "公開CDKの移動handle"
+      },
+      {
+        "export": "CdkDragPlaceholder",
+        "module": "@angular/cdk/drag-drop",
+        "reason": "公開CDKの移動中placeholder"
+      },
+      {
+        "export": "LucideDynamicIcon",
+        "module": "@lucide/angular",
+        "reason": "採用したLucideの公開SVG directive"
+      }
+    ],
+    "exceptions": [
+      {
+        "file": "templates/angular/specialist-browser.ts",
+        "reason": "描画エンジンへ渡す文字サイズを隠したDOM probeでpxへ変換する測定用途。画面上の配置寸法としてtextトークンを使うものではない。",
+        "rule": "token-category",
+        "source": "inline-size:var(--ui-text-body)"
+      },
+      {
+        "file": "templates/angular/specialist-browser.ts",
+        "reason": "描画エンジンへ渡す角丸を隠したDOM probeでpxへ変換する測定用途。画面上の配置寸法としてradiusトークンを使うものではない。",
+        "rule": "token-category",
+        "source": "inline-size:var(--ui-radius-control)"
+      },
+      {
+        "file": "templates/angular/actions.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-inline-size:calc(100vw - 2*var(--ui-space-page))}"
+      },
+      {
+        "file": "templates/angular/anchor-navigation.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "nav{max-block-size:calc(100dvh - var(--ui-anchor-offset))}"
+      },
+      {
+        "file": "templates/angular/calendar.ts",
+        "reason": "Calendarの二桁の日付を文字拡大後も切らずに表示する文字幅の下限。操作領域の下限はsize.controlへ接続する。",
+        "rule": "literal-token",
+        "source": "table{min-inline-size:calc(7 * max(var(--ui-size-control), 2em + var(--ui-space-control-gap)))}"
+      },
+      {
+        "file": "templates/angular/card.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/choice-controls.ts",
+        "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
+        "rule": "literal-token",
+        "source": ".ui-knob:focus-within{border-radius:50%}"
+      },
+      {
+        "column": 995,
+        "file": "templates/angular/collection-views.ts",
+        "line": 58,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1701,
+        "file": "templates/angular/collection-views.ts",
+        "line": 59,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/collection-views.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "ul[data-layout=\"grid\"]{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}"
+      },
+      {
+        "file": "templates/angular/command-palette.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-palette-results{max-block-size:calc(100dvh / 2)}"
+      },
+      {
+        "file": "templates/angular/data-grid.ts",
+        "reason": "日付文字列／編集表の文字列を省略せず収めるための文字幅に対する下限。操作領域と余白は別の意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "min-inline-size:(dynamic expression; fixed 12ch)"
+      },
+      {
+        "file": "templates/angular/data-grid.ts",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": "td.ui-data-grid__selected{outline:var(--ui-border-control) solid Highlight}"
+      },
+      {
+        "file": "templates/angular/data-table-view.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/data-table-view.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-data-table__filter-fields{grid-template-columns: repeat(auto-fit,minmax(min(100%,calc(var(--ui-size-table-column-min) * 2)),1fr))}"
+      },
+      {
+        "file": "templates/angular/data-table-view.ts",
+        "reason": "表見出しの末尾操作が文字を覆わないよう、操作部品の実寸size.controlと同じ幅を予約する。通常の余白とは用途が異なる。",
+        "rule": "token-category",
+        "source": ".ui-data-table__header-cell{padding-inline-end:var(--ui-size-control)}"
+      },
+      {
+        "file": "templates/angular/data-table.ts",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": ":host:focus-visible{outline-color: Highlight}"
+      },
+      {
+        "file": "templates/angular/date-input.ts",
+        "reason": "日付文字列／編集表の文字列を省略せず収めるための文字幅に対する下限。操作領域と余白は別の意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-date-controls input{flex:1 1 12ch}"
+      },
+      {
+        "file": "templates/angular/date-input.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-date-controls input{min-inline-size:min(100%,12ch)}"
+      },
+      {
+        "file": "templates/angular/date-range-picker.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-range-inputs,.ui-range-calendars{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-dialog)),1fr))}"
+      },
+      {
+        "column": 504,
+        "file": "templates/angular/diagram.ts",
+        "line": 21,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1050,
+        "file": "templates/angular/diagram.ts",
+        "line": 21,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-inline-size:calc(100vw - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-size=\"small\"]){inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-size=\"large\"]){inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-size=\"full\"]),:host([data-maximized=\"true\"]){inline-size:calc(100vw - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/dialog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-size=\"full\"]),:host([data-maximized=\"true\"]){block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/display-content.ts",
+        "reason": "CodeBlockの一文字幅／一行高へ行番号と空行を揃える相対文字寸法。本文・code書体・文字サイズは意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-code-line{min-block-size:1lh}"
+      },
+      {
+        "file": "templates/angular/display-content.ts",
+        "reason": "CodeBlockの一文字幅／一行高へ行番号と空行を揃える相対文字寸法。本文・code書体・文字サイズは意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-code-line[data-numbers=\"true\"]{grid-template-columns:calc(var(--ui-code-number-digits)*1ch) minmax(0,1fr)}"
+      },
+      {
+        "file": "templates/angular/display.ts",
+        "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
+        "rule": "literal-token",
+        "source": ":host([data-dot=\"true\"]) .ui-badge-value{border-radius:50%}"
+      },
+      {
+        "file": "templates/angular/display.ts",
+        "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
+        "rule": "literal-token",
+        "source": ":host([data-shape=\"circle\"]){border-radius:50%}"
+      },
+      {
+        "file": "templates/angular/display.ts",
+        "reason": "Avatarの頭文字をglyph領域の中央へ収めるための無次元行高。本文の行間とは分け、書体・文字サイズは意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-avatar-fallback{line-height:1}"
+      },
+      {
+        "file": "templates/angular/display.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{min-inline-size:min(var(--ui-size-dialog-min),100vw)}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-inline-size:100vw}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-block-size:100dvh}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-edge=\"left\"]),:host([data-edge=\"right\"]){width:min(var(--ui-panel-width,var(--ui-size-drawer-inline)),100vw)}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-edge=\"left\"]),:host([data-edge=\"right\"]){height:min(var(--ui-panel-height,100dvh),100dvh)}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-edge=\"top\"]),:host([data-edge=\"bottom\"]){width:min(var(--ui-panel-width,100vw),100vw)}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-edge=\"top\"]),:host([data-edge=\"bottom\"]){height:min(var(--ui-panel-height,var(--ui-size-drawer-block)),100dvh)}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-maximized=\"true\"]){width:100vw}"
+      },
+      {
+        "column": 77,
+        "file": "templates/angular/drawer.ts",
+        "line": 19,
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-maximized=\"true\"]){height:100dvh}"
+      },
+      {
+        "file": "templates/angular/drawer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-edge=\"bottom\"]){height:min(var(--ui-sheet-height),100dvh)}"
+      },
+      {
+        "column": 38,
+        "file": "templates/angular/drawer.ts",
+        "line": 72,
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host([data-maximized=\"true\"]){height:100dvh}"
+      },
+      {
+        "file": "templates/angular/feedback.ts",
+        "reason": "SpinnerのSVG円弧の線幅は内部viewBoxの描画座標。外側の表示寸法と色は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "svg{stroke-width:3}"
+      },
+      {
+        "file": "templates/angular/feedback.ts",
+        "reason": "Spinnerの無限回転は角速度を一定にする。通常のtransitionのease-outとは用途が異なり、周期はmotion.durationに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-spinner[data-indeterminate=\"true\"] svg{animation:ui-spin calc(6 * var(--ui-motion-duration)) linear infinite}"
+      },
+      {
+        "file": "templates/angular/feedback.ts",
+        "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
+        "rule": "literal-token",
+        "source": ":host([data-shape=\"circle\"]) .ui-skeleton-line{border-radius:50%}"
+      },
+      {
+        "file": "templates/angular/feedback.ts",
+        "reason": "Skeleton pulseの補間点だけの一時透明度。処理中の形状を示すために固定し、durationとeasingは意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "50%{opacity:.5}"
+      },
+      {
+        "file": "templates/angular/file-explorer.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-explorer-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}"
+      },
+      {
+        "file": "templates/angular/file-explorer.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 761,
+        "file": "templates/angular/filter-builder.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1759,
+        "file": "templates/angular/filter-builder.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 2598,
+        "file": "templates/angular/filter-builder.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 3585,
+        "file": "templates/angular/filter-builder.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 4369,
+        "file": "templates/angular/filter-builder.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/floating-panel.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/floating-panel.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-block-size:calc(100dvh - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/gantt.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/image-cropper.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/image-cropper.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-crop-frame{inline-size:min(100%,calc(var(--ui-size-media-viewport) * var(--ui-crop-ratio,1)))}"
+      },
+      {
+        "file": "templates/angular/kanban.ts",
+        "reason": "移動中の元位置を示すCDK placeholderだけの一時透明度。通常のsurfaceや業務状態色には適用しない。",
+        "rule": "literal-token",
+        "source": ".cdk-drag-placeholder{opacity:.25}"
+      },
+      {
+        "file": "templates/angular/kanban.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/listbox.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-listbox-group-meta{inline-size:1px}"
+      },
+      {
+        "file": "templates/angular/listbox.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-listbox-group-meta{block-size:1px}"
+      },
+      {
+        "file": "templates/angular/listbox.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-listbox-group-meta{margin:-1px}"
+      },
+      {
+        "file": "templates/angular/listbox.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-listbox-group-meta{clip-path:inset(50%)}"
+      },
+      {
+        "file": "templates/angular/markdown-editor.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "column": 1872,
+        "file": "templates/angular/media-player.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 2411,
+        "file": "templates/angular/media-player.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/media-player.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/media-style.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-media-fields{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}"
+      },
+      {
+        "file": "templates/angular/mega-menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/mega-menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ":host{max-block-size:calc(100dvh - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/mega-menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-mega-columns{grid-template-columns:repeat(auto-fit,minmax(min(100%,max(var(--ui-size-navigation-column),calc((100% - (var(--ui-mega-columns) - 1) * var(--ui-space-field)) / var(--ui-mega-columns)))),1fr))}"
+      },
+      {
+        "file": "templates/angular/menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-menu__popup,.ui-menu__submenu{min-inline-size:min(var(--ui-size-overlay-min),calc(100vw - 2 * var(--ui-space-control-gap)))}"
+      },
+      {
+        "file": "templates/angular/menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-menu__popup,.ui-menu__submenu{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-menu__popup>ul,.ui-menu__submenu{max-block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/menu.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-menu__popup>ul{max-block-size:calc(100dvh - 2 * var(--ui-space-section) - 2 * var(--ui-space-control-y))}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": "nav[data-collapsed='true'] .ui-side-label{inline-size:1px}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": "nav[data-collapsed='true'] .ui-side-label{block-size:1px}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": "nav[data-collapsed='true'] .ui-side-label{margin:-1px}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": "nav[data-collapsed='true'] .ui-side-label{clip-path:inset(50%)}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "ul{max-block-size:calc(100dvh - 2 * var(--ui-space-control-y) - 2 * var(--ui-border-control))}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-nav-label-hidden{inline-size:1px}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-nav-label-hidden{block-size:1px}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-nav-label-hidden{clip-path:inset(50%)}"
+      },
+      {
+        "file": "templates/angular/navigation-tree.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "nav[data-fixed='true']{max-block-size:100dvh}"
+      },
+      {
+        "file": "templates/angular/navigation.ts",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": ".ui-navigation-item:focus-visible{outline-color: Highlight}"
+      },
+      {
+        "column": 616,
+        "file": "templates/angular/notification-center.ts",
+        "line": 21,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1258,
+        "file": "templates/angular/notification-center.ts",
+        "line": 21,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": "[data-position$=\"center\"]{left:50%}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": "[data-position$=\"center\"]{transform:translateX(-50%)}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-snackbar{max-inline-size:calc(100vw - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-snackbar:not([data-position=\"inline\"]){max-block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-snackbar:not([data-position=\"inline\"]){inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-notification-stack{inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section)))}"
+      },
+      {
+        "file": "templates/angular/notifications.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-notification-stack{max-block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children::before{inset-inline-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children>.ui-org-item::before{inset-inline-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children>.ui-org-item::after{inline-size:calc(100% + var(--ui-space-field))}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children>.ui-org-item:first-child::after{inset-inline-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children>.ui-org-item:first-child::after{inline-size:calc(50% + var(--ui-space-field) / 2)}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": ".ui-org-children>.ui-org-item:last-child::after{inline-size:calc(50% + var(--ui-space-field) / 2)}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children::before{inset-block-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='right-left'] .ui-org-children::before{inset-block-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item::before,[data-direction='right-left'] .ui-org-children>.ui-org-item::before{inset-block-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item::after,[data-direction='right-left'] .ui-org-children>.ui-org-item::after{block-size:calc(100% + var(--ui-space-field))}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item:first-child::after,[data-direction='right-left'] .ui-org-children>.ui-org-item:first-child::after{inset-block-start:50%}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item:first-child::after,[data-direction='right-left'] .ui-org-children>.ui-org-item:first-child::after{block-size:calc(50% + var(--ui-space-field) / 2)}"
+      },
+      {
+        "file": "templates/angular/organization-chart.ts",
+        "reason": "階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。",
+        "rule": "literal-token",
+        "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item:last-child::after,[data-direction='right-left'] .ui-org-children>.ui-org-item:last-child::after{block-size:calc(50% + var(--ui-space-field) / 2)}"
+      },
+      {
+        "file": "templates/angular/page-frame.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/pagination.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/pdf-viewer.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 561,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 3,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 672,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 22,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 664,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 23,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/selection-input.ts",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/selection-input.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-combobox__popup{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/selection-input.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-combobox__popup{max-block-size:min(var(--ui-size-input-max-height),calc(100dvh - 2 * var(--ui-space-control-gap)))}"
+      },
+      {
+        "file": "templates/angular/selection-input.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/specialist-style.ts",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": ".ui-select-control__chevron{inset-block-start:50%}"
+      },
+      {
+        "file": "templates/angular/specialist-style.ts",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": ".ui-select-control__chevron{transform:translateY(-50%)}"
+      },
+      {
+        "file": "templates/angular/specialist-style.ts",
+        "reason": "専門表の文字列とnative listのmarkerを文字倍率に応じて収める下限。表幅・余白の基準は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-specialist-data-table{min-inline-size:calc(var(--ui-specialist-columns) * max(var(--ui-size-table-column-min),calc(8em + var(--ui-space-table-x) * 2)))}"
+      },
+      {
+        "file": "templates/angular/specialist-style.ts",
+        "reason": "専門表の文字列とnative listのmarkerを文字倍率に応じて収める下限。表幅・余白の基準は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "ul,ol{padding-inline-start:max(var(--ui-space-section),2em)}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width: 40rem)"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-sr-only{inline-size: 1px}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-sr-only{block-size: 1px}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-sr-only{margin: -1px}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。",
+        "rule": "literal-token",
+        "source": ".ui-sr-only{clip-path: inset(50%)}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "PageFrame見出しと補助操作の折返しを決めるflex配置の基準幅。見出しの書体・文字サイズ・領域余白は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-page-frame__heading{flex: 1 1 16rem}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width:40rem)"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": ".ui-select-control__chevron{inset-block-start: 50%}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
+        "rule": "literal-token",
+        "source": ".ui-select-control__chevron{transform: translateY(-50%)}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "inline formのラベルが入力領域を奪わないよう親幅40%を上限とする配置比率。基準ラベル幅はsize.form-labelへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-form-field[data-label-position=\"inline\"]:has(input.ui-field-control[type=\"checkbox\"]){grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": ".ui-action:focus-visible, .ui-field-control:focus-visible{outline-color: Highlight}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": ".ui-action:disabled, .ui-action--disabled, .ui-action--busy{color: GrayText}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。",
+        "rule": "literal-token",
+        "source": ".ui-action:disabled, .ui-action--disabled, .ui-action--busy{border-color: GrayText}"
+      },
+      {
+        "file": "templates/angular/styles.css",
+        "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
+        "rule": "literal-token",
+        "source": ".ui-icon-button[data-shape=\"round\"]{border-radius:50%}"
+      },
+      {
+        "column": 544,
+        "file": "templates/angular/table-controls.ts",
+        "line": 16,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 593,
+        "file": "templates/angular/table-controls.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 520,
+        "file": "templates/angular/table-controls.ts",
+        "line": 19,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 527,
+        "file": "templates/angular/table-controls.ts",
+        "line": 20,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/table-controls.ts",
+        "reason": "表操作のラベル文字列を文字拡大後も読める文字幅の下限。列と操作余白の基準は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-table-controls__row>label{flex:1 1 max(var(--ui-size-table-column-min),calc(10em + 2 * var(--ui-space-control-x)))}"
+      },
+      {
+        "column": 1504,
+        "file": "templates/angular/table-controls.ts",
+        "line": 151,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1547,
+        "file": "templates/angular/table-controls.ts",
+        "line": 259,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1647,
+        "file": "templates/angular/table-controls.ts",
+        "line": 305,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/table-editors.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "templates/angular/tabs.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "[role='tablist'][data-scroll='true']{max-block-size:calc(100dvh - 2 * var(--ui-space-section))}"
+      },
+      {
+        "file": "templates/angular/tour.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-tour-popup{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/tour.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-tour-popup{max-block-size:calc(100dvh - 2 * var(--ui-space-field))}"
+      },
+      {
+        "file": "templates/angular/tree-popup-control.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-tree-popup{inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-control-gap)))}"
+      },
+      {
+        "file": "templates/angular/tree-popup-control.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-tree-popup{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/tree-popup-control.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".ui-tree-popup{max-block-size:calc(100dvh - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "column": 439,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 15,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 489,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 16,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 474,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 23,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 624,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 24,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 631,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 25,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1169,
+        "file": "tests/fixture-app/actions-catalog.ts",
+        "line": 25,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/app.css",
+        "reason": "root文字倍率は利用者のブラウザー既定値を保持する100%リセット。本文・見出しの文字サイズは意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "html{font-size: 100%}"
+      },
+      {
+        "file": "tests/fixture-app/app.css",
+        "reason": "fixtureの説明文と記録ラベルの文字数に対する配置幅。本文・見出し・余白の見た目は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".fixture-context{max-width: 54ch}"
+      },
+      {
+        "file": "tests/fixture-app/app.css",
+        "reason": "fixtureの説明文と記録ラベルの文字数に対する配置幅。本文・見出し・余白の見た目は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".fixture-saved dl > div{grid-template-columns: 5em minmax(0, 1fr)}"
+      },
+      {
+        "file": "tests/fixture-app/app.css",
+        "reason": "fixtureの説明文と記録ラベルの文字数に対する配置幅。本文・見出し・余白の見た目は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".fixture-controls > p{max-width: 78ch}"
+      },
+      {
+        "file": "tests/fixture-app/app.css",
+        "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
+        "rule": "literal-token",
+        "source": "@media (max-width: 760px)"
+      },
+      {
+        "column": 116,
+        "file": "tests/fixture-app/app.ts",
+        "line": 65,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 120,
+        "file": "tests/fixture-app/app.ts",
+        "line": 83,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 118,
+        "file": "tests/fixture-app/app.ts",
+        "line": 182,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 118,
+        "file": "tests/fixture-app/app.ts",
+        "line": 188,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/basic-parts.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 469,
+        "file": "tests/fixture-app/catalog.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 403,
+        "file": "tests/fixture-app/catalog.ts",
+        "line": 27,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 469,
+        "file": "tests/fixture-app/catalog.ts",
+        "line": 28,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 452,
+        "file": "tests/fixture-app/catalog.ts",
+        "line": 29,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 513,
+        "file": "tests/fixture-app/catalog.ts",
+        "line": 30,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 444,
+        "file": "tests/fixture-app/choice-catalog.ts",
+        "line": 9,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 929,
+        "file": "tests/fixture-app/choice-catalog.ts",
+        "line": 20,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/collection-catalog.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/date-catalog.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 409,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 311,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 12,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 390,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 13,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 351,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 14,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 361,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 15,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 337,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 20,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 468,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 27,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 367,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 28,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 318,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 33,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 516,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 36,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 973,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 36,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 552,
+        "file": "tests/fixture-app/display-catalog.ts",
+        "line": 47,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 668,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 5,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 525,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 6,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 592,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 7,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1075,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 9,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 772,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 11,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1565,
+        "file": "tests/fixture-app/feedback-catalog.ts",
+        "line": 11,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 448,
+        "file": "tests/fixture-app/floating-catalog.ts",
+        "line": 6,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 431,
+        "file": "tests/fixture-app/floating-catalog.ts",
+        "line": 8,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1053,
+        "file": "tests/fixture-app/floating-catalog.ts",
+        "line": 8,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 423,
+        "file": "tests/fixture-app/floating-catalog.ts",
+        "line": 19,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 420,
+        "file": "tests/fixture-app/grid-catalog.ts",
+        "line": 7,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 415,
+        "file": "tests/fixture-app/grid-catalog.ts",
+        "line": 8,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 437,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 6,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 484,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1016,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 408,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 12,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 730,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1230,
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "reason": "短い表示領域と長い内容によるスクロール／sticky／復帰を再現する回帰fixtureの固定寸法。製品の部品寸法には使わない。",
+        "rule": "literal-token",
+        "source": ".shell-viewport--short{block-size:80px}"
+      },
+      {
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "reason": "短い表示領域と長い内容によるスクロール／sticky／復帰を再現する回帰fixtureの固定寸法。製品の部品寸法には使わない。",
+        "rule": "literal-token",
+        "source": ".shell-long-content{min-block-size:900px}"
+      },
+      {
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "reason": "短い表示領域と長い内容によるスクロール／sticky／復帰を再現する回帰fixtureの固定寸法。製品の部品寸法には使わない。",
+        "rule": "literal-token",
+        "source": ".scroll-content{block-size:720px}"
+      },
+      {
+        "file": "tests/fixture-app/layout-catalog.ts",
+        "reason": "短い表示領域と長い内容によるスクロール／sticky／復帰を再現する回帰fixtureの固定寸法。製品の部品寸法には使わない。",
+        "rule": "literal-token",
+        "source": ".scroll-content{min-inline-size:360px}"
+      },
+      {
+        "file": "tests/fixture-app/menu-closed-roving-catalog.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 466,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 5,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 368,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 7,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 782,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 7,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 642,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 9,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 581,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 11,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 527,
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "line": 15,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/navigation-catalog.ts",
+        "reason": "AnchorNavigationが既存のアプリ指定scroll余白を保存・復元することを確認するfixtureの初期値。",
+        "rule": "literal-token",
+        "source": "scroll-margin-block-start:7px"
+      },
+      {
+        "column": 955,
+        "file": "tests/fixture-app/overlay-catalog.ts",
+        "line": 26,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 578,
+        "file": "tests/fixture-app/overlay-catalog.ts",
+        "line": 35,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 415,
+        "file": "tests/fixture-app/overlay-catalog.ts",
+        "line": 38,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 930,
+        "file": "tests/fixture-app/overlay-catalog.ts",
+        "line": 38,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 534,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 30,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 667,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 31,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1449,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 31,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 2121,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 31,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 325,
+        "file": "tests/fixture-app/sheet-locale-catalog.ts",
+        "line": 10,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 445,
+        "file": "tests/fixture-app/sheet-locale-catalog.ts",
+        "line": 11,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/specialist-catalog.css",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": ".specialist-fixture main{min-block-size:100vh}"
+      },
+      {
+        "column": 398,
+        "file": "tests/fixture-app/specialist-catalog.ts",
+        "line": 6,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 546,
+        "file": "tests/fixture-app/specialist-catalog.ts",
+        "line": 13,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/structured-form-catalog.ts",
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/structured-form-catalog.ts",
+        "reason": "Textareaの親領域の幅変更に対するautoResizeを再現するfixtureのコンテナ比率。",
+        "rule": "literal-token",
+        "source": "inline-size:50%"
+      },
+      {
+        "column": 681,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1336,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 17,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 614,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 22,
+        "reason": "列選択UIの幅変更・hidden復帰への追随を確認するfixtureの局所token上書き。製品設定はYAMLに置く。",
+        "rule": "literal-token",
+        "source": "--ui-size-table-column-min:256px"
+      },
+      {
+        "column": 20,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 23,
+        "reason": "列選択UIの幅変更・hidden復帰への追随を確認するfixtureの局所token上書き。製品設定はYAMLに置く。",
+        "rule": "literal-token",
+        "source": "--ui-size-table-column-min:256px"
+      },
+      {
+        "column": 598,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 25,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 923,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 29,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 384,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 16,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 829,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 16,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 1280,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 16,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "reason": "文字拡大200%で情報・focus・scrollを維持する回帰fixtureの拡大指定。通常の文字サイズは意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "font-size:200%"
+      },
+      {
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "dialog{max-inline-size:calc(100% - var(--ui-space-page))}"
+      },
+      {
+        "column": 499,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 21,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "column": 521,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 32,
+        "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
+        "rule": "literal-token",
+        "source": "stroke-width:2"
+      },
+      {
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "dialog{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
+        "rule": "literal-token",
+        "source": "dialog{max-block-size:calc(100dvh - 2 * var(--ui-space-control-gap))}"
+      },
+      {
+        "file": "templates/angular/tree-popup-control.ts",
+        "reason": "RTLで階層移動の矢印glyphだけを左右反転する描画処理。大きさ・色は意味トークンを使い、通常のUI拡大率には転用しない。",
+        "rule": "literal-token",
+        "source": ":host-context([dir='rtl']) .ui-cascader-marker{transform:scaleX(-1)}"
+      },
+      {
+        "column": 601,
+        "file": "templates/angular/chart.ts",
+        "line": 18,
+        "reason": "[R009] Chartの階層行の字下げ。depthは外部CSS値ではなくchartPointRowsが0から増分生成し、rows()はchartProblemの深さ32・循環検証に合格した系列だけを渡す。意味トークンに非負整数係数を掛ける用途に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row.depth)\""
+      },
+      {
+        "column": 68,
+        "file": "templates/angular/data-grid.ts",
+        "line": 39,
+        "reason": "[R018] 表の最小幅は列数を係数にしてtable-column-min/control/table-xの意味トークンと文字幅を組み合わせる。係数は配列lengthで非負整数、表示中は設定検証により1列以上であり、任意CSSやDOM計測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'\""
+      },
+      {
+        "column": 1260,
+        "file": "templates/angular/diagram.ts",
+        "line": 19,
+        "reason": "[R043] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.left.px]=\"node.x*zoom()\""
+      },
+      {
+        "column": 1292,
+        "file": "templates/angular/diagram.ts",
+        "line": 19,
+        "reason": "[R044] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.top.px]=\"node.y*zoom()\""
+      },
+      {
+        "column": 1401,
+        "file": "templates/angular/diagram.ts",
+        "line": 19,
+        "reason": "[R047] Diagramのscale()は有限0.25〜4に検証されたzoomだけで生成するデータ表示倍率。異常zoomでdisplayModel.nodesは空となりnode transform bindingは生成されない。DOM実測のノード寸法診断へは広げない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.transform]=\"'scale('+zoom()+')'\""
+      },
+      {
+        "column": 1006,
+        "file": "templates/angular/diff-json.ts",
+        "line": 27,
+        "reason": "[R048] JSON階層の字下げはjsonRowsが0から生成するdepth（最大64）の係数をcontrol-x/control-gapに掛ける。任意外部CSSやDOM計測ではなく、検証された構文木の階層表現に限定される。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row)\""
+      },
+      {
+        "column": 104,
+        "file": "templates/angular/display-content.ts",
+        "line": 12,
+        "reason": "[R049] 全文表示の視覚クリップ行数という数値構造係数。sink producerはdisplayIntegerを呼び、safe integerかつ1..100の範囲を検査してから返す。通常の色／余白を置換する値ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-read-lines]=\"lineCount()\""
+      },
+      {
+        "column": 580,
+        "file": "templates/angular/display-content.ts",
+        "line": 31,
+        "reason": "[R052] コード行番号欄の桁数は原文分割後の配列lengthをString化した文字数。外部CSS文字列や意匠値を返さず、正の整数のデータ係数になる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-code-number-digits]=\"numberDigits()\""
+      },
+      {
+        "column": 12,
+        "file": "templates/angular/display.ts",
+        "line": 76,
+        "reason": "[R064] Avatar fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0除算を排除した正整数のデータ係数。semantic text-avatarを基準にする。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-avatar-graphemes]=\"letterCount()\""
+      },
+      {
+        "column": 418,
+        "file": "templates/angular/display.ts",
+        "line": 137,
+        "reason": "[R068] MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaximumは正finite、各値は0〜maximum、合計超過を拒否しnullは幅要素を生成しない。意味色を使う区分のデータ長に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.inline-size.%]=\"item.value/maximum()*100\""
+      },
+      {
+        "column": 887,
+        "file": "templates/angular/file-explorer.ts",
+        "line": 11,
+        "reason": "[R083] FileExplorer階層の字下げ。explorerRowsがdepthを0から生成し>64、重複ID/循環を拒否、problem時rowsは空。tree表示では意味space tokenの整数係数、他viewは意味tokenそのもの。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row)\""
+      },
+      {
+        "column": 65,
+        "file": "templates/angular/form-layout.ts",
+        "line": 6,
+        "reason": "[R085] FormLayout列数は構造count。checkedColumns producer内でpositiveIntegerを呼びsafe integer>0を検査してから同値を返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-form-columns]=\"checkedColumns()\""
+      },
+      {
+        "column": 34,
+        "file": "templates/angular/image-media.ts",
+        "line": 6,
+        "reason": "[R100] Image aspect-ratioはpositiveMediaNumberを経由するfinite正数またはnullのみ。任意CSSstringではなく画像の表示縦横比というデータ値に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\""
+      },
+      {
+        "column": 56,
+        "file": "templates/angular/image-media.ts",
+        "line": 46,
+        "reason": "[R107] ImageCompare aspect-ratioはpositiveMediaNumberで検証済みfinite正数。画像比較frameの縦横比を表すデータ値で、任意CSSstringやDOM実測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\""
+      },
+      {
+        "column": 223,
+        "file": "templates/angular/image-media.ts",
+        "line": 46,
+        "reason": "[R108] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.clip-path]=\"clip()\""
+      },
+      {
+        "column": 360,
+        "file": "templates/angular/image-media.ts",
+        "line": 46,
+        "reason": "[R109] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.left.%]=\"direction()==='horizontal'?positionValue():null\""
+      },
+      {
+        "column": 425,
+        "file": "templates/angular/image-media.ts",
+        "line": 46,
+        "reason": "[R110] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.top.%]=\"direction()==='vertical'?positionValue():null\""
+      },
+      {
+        "column": 12,
+        "file": "templates/angular/layout.ts",
+        "line": 27,
+        "reason": "[R116] gridAtWidthはpublic/default/breakpointの全列・行countを正のsafe integerとして検査する。repeatの列数は構造上のデータ数で、minmax(0,1fr)の固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-template-columns]=\"&quot;repeat(&quot;+resolved().columns+&quot;,minmax(0,1fr))&quot;\""
+      },
+      {
+        "column": 12,
+        "file": "templates/angular/layout.ts",
+        "line": 27,
+        "reason": "[R117] gridAtWidthがdefault/breakpointの行数を正のsafe integerとして検査して返す。repeatの行数は構造上のデータ数でauto trackの固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-template-rows]=\"&quot;repeat(&quot;+resolved().rows+&quot;,auto)&quot;\""
+      },
+      {
+        "column": 63,
+        "file": "templates/angular/layout.ts",
+        "line": 33,
+        "reason": "[R119] GridCellのcolumn/spanはsafe positive整数検査し、gridAtWidthで検査された列count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-column]=\"columnValue()\""
+      },
+      {
+        "column": 63,
+        "file": "templates/angular/layout.ts",
+        "line": 33,
+        "reason": "[R120] GridCellのrow/spanはsafe positive整数検査し、gridAtWidthで検査された行count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-row]=\"rowValue()\""
+      },
+      {
+        "column": 113,
+        "file": "templates/angular/layout.ts",
+        "line": 53,
+        "reason": "[R131] AspectRatioの比率はratioValueでNumber.isFiniteかつ正数を確認してから返す無次元の配置比率。任意CSS文字列・DOM実測・色/文字/余白の固定値を含まない構造用途に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\""
+      },
+      {
+        "column": 186,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 9,
+        "reason": "[R153] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\""
+      },
+      {
+        "column": 105,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 10,
+        "reason": "[R154] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.gridColumn]=\"day.column\""
+      },
+      {
+        "column": 137,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 10,
+        "reason": "[R155] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.gridRow]=\"day.row\""
+      },
+      {
+        "column": 112,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 11,
+        "reason": "[R156] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.gridColumn]=\"entry.problem?'1 / -1':entry.column\""
+      },
+      {
+        "column": 169,
+        "file": "templates/angular/scheduler-view.ts",
+        "line": 11,
+        "reason": "[R157] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.gridRow]=\"entry.row\""
+      },
+      {
+        "column": 196,
+        "file": "templates/angular/selection-input.ts",
+        "line": 85,
+        "reason": "[R159] CheckboxGroup列数はoptionの構造count。checkedColumns computedがsafe integer>=1を検査してから返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-option-columns]=\"checkedColumns()\""
+      },
+      {
+        "column": 126,
+        "file": "templates/angular/splitter.ts",
+        "line": 9,
+        "reason": "[R163] Splitterのflex-growはvalue()がsplitterBoundsでfinite min/max/valueを検査し0〜100内へclampした配置配分。shrink=1/basis=0%は固定の構造文法で、UIの色/文字/余白/px寸法を固定する用途ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.flex]=\"value()+' 1 0%'\""
+      },
+      {
+        "column": 126,
+        "file": "templates/angular/splitter.ts",
+        "line": 11,
+        "reason": "[R164] Splitterのsecondary flex-growはfolded時100、通常は100からsplitterBounds検査済みvalueを引いた0〜100の配分。固定shrink=1/basis=0%と合わせた構造文法で、任意CSS文字列やUIの固定px値を渡さない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.flex]=\"(folded()?100:(100-value()))+' 1 0%'\""
+      },
+      {
+        "column": 158,
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 17,
+        "reason": "[R184] min-inline-sizeは固定semantic table-column-min × (実列配列length + boolean由来utilityCount)だけ。非空列をconfigurationで検査してproblem時はsinkを描画しない。実データ列数を反映する構造用途例外であり、px入力のgridColumnsとは別に扱う。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"minimumInline()\""
+      },
+      {
+        "column": 195,
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 18,
+        "reason": "[R186] headerと同じminimumInlineを仮想viewportへ用いる。固定semantic table-column-min × (非空実列配列length + boolean由来utilityCount)による構造列数の用途例外であり、row高/px列幅の実測値を含まない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"minimumInline()\""
+      },
+      {
+        "column": 104,
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 10,
+        "reason": "[D002] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.inset-block-start.px]=\"checkedOffset()\""
+      },
+      {
+        "column": 104,
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 10,
+        "reason": "[D003] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-anchor-offset]=\"checkedOffset()+'px'\""
+      },
+      {
+        "column": 25,
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 73,
+        "reason": "[D005] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "target.style.setProperty('scroll-margin-block-start', margin);"
+      },
+      {
+        "column": 1725,
+        "file": "templates/angular/choice-controls.ts",
+        "line": 163,
+        "reason": "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで検証、alpha禁止・ラベル・重複も拒否するため、データ色として狭い理由付き例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.background-color]=\"choice.value\""
+      },
+      {
+        "column": 196,
+        "file": "templates/angular/display-content.ts",
+        "line": 13,
+        "reason": "[D043] 全文をDOMに保持し見た目だけ折り畳むline-clampの行数。lineCountはdisplayInteger(lines,1,100)を通りCSS custom propertyへ供給される。行数はtoken化する視覚尺度とは別の構造パラメータであるため、この消費箇所の例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": ".ui-read-content[data-expanded=\"false\"]{-webkit-line-clamp:var(--ui-read-lines)}"
+      },
+      {
+        "column": 832,
+        "file": "templates/angular/display-content.ts",
+        "line": 32,
+        "reason": "[D045] 行番号欄の幅は表示コードの行数をString化した桁数であり、情報量に応じた構造係数。sourceLinesはsplitで最低1行となり、numberDigitsはその配列長の文字数なので0除算や任意CSS文字列を出力しない。データ量に基づく欄幅として局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": ".ui-code-line[data-numbers=\"true\"]{grid-template-columns:calc(var(--ui-code-number-digits)*1ch) minmax(0,1fr)}"
+      },
+      {
+        "column": 77,
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "reason": "[D046] 装飾watermarkの利用者指定opacityはnull時semantic token、指定時はNumber.isFiniteかつ0〜1を検証して数値を返す。公開の装飾パラメータとしてこのbinding限定の例外候補であり、任意の通常UI透明度の許可ではない。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.opacity]=\"opacityValue()\""
+      },
+      {
+        "column": 182,
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "reason": "[D047] watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.inline-size]=\"widthValue()\""
+      },
+      {
+        "column": 217,
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "reason": "[D048] watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.block-size]=\"heightValue()\""
+      },
+      {
+        "column": 684,
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "reason": "[D051] rectのfillは任意色や外部URLではなく、同componentのdefs/patternを参照するurl(#id)。patternIdはsimple IDの正規表現検証と内部serialを結合するため、ローカルSVG参照の構造用途として局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[attr.fill]=\"'url(#'+patternId()+')'\""
+      },
+      {
+        "column": 670,
+        "file": "templates/angular/display.ts",
+        "line": 78,
+        "reason": "[D056] fallback initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えMath.max(2, count)を供給し、0除算を避ける。semantic text tokenを基準にした文字量の補正として、このCSS消費箇所に限る例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": ".ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}"
+      },
+      {
+        "column": 80,
+        "file": "templates/angular/display.ts",
+        "line": 101,
+        "reason": "[D057] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-description-columns]=\"checkedColumns()\""
+      },
+      {
+        "column": 62,
+        "file": "templates/angular/display.ts",
+        "line": 102,
+        "reason": "[D058] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}"
+      },
+      {
+        "column": 22,
+        "file": "templates/angular/drawer.ts",
+        "line": 51,
+        "reason": "[D063] Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "this.element.style.setProperty('--ui-panel-width', width + 'px');"
+      },
+      {
+        "column": 22,
+        "file": "templates/angular/drawer.ts",
+        "line": 53,
+        "reason": "[D064] Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "this.element.style.setProperty('--ui-panel-height', height + 'px');"
+      },
+      {
+        "column": 99,
+        "file": "templates/angular/drawer.ts",
+        "line": 100,
+        "reason": "[D066] BottomSheetの段階操作をheightへ反映する構造寸法。sheetStagesは各ratioをfinite・0超1以下・昇順、stageを有効整数indexに制限し、heightはpanelSizeでpositive finite/nullへ制限する。出力はratio*100 dvhまたはheight*ratio pxでありtoken集合には閉じない。残余リスクは極端なheight、browser viewport単位、段階変更時の可用領域。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "this.element.style.setProperty('--ui-sheet-height',height===null?ratio*100+'dvh':height*ratio+'px');});"
+      },
+      {
+        "column": 513,
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "reason": "[D083] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.left.%]=\"100*range.x1/dimensions().width\""
+      },
+      {
+        "column": 562,
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "reason": "[D084] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.top.%]=\"100*range.y1/dimensions().height\""
+      },
+      {
+        "column": 611,
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "reason": "[D085] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\""
+      },
+      {
+        "column": 672,
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "reason": "[D086] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\""
+      },
+      {
+        "column": 12,
+        "file": "templates/angular/layout.ts",
+        "line": 15,
+        "reason": "[D094] Containerのmax-inline-sizeは本文領域の上限という構造寸法。numeric branchでpositive finiteを検査しmin(100%, value px)に制限、他branchはsemantic contentまたは100%。数値branchはtokenに帰着しないためSにはできない。残余リスクは極端に小さいcapによる本文/操作の可読性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.max-inline-size]=\"maximum()\""
+      },
+      {
+        "column": 182,
+        "file": "templates/angular/layout.ts",
+        "line": 49,
+        "reason": "[D107] ScrollAreaのblock-sizeは内容をスクロールさせる領域の構造寸法。heightValueは数値をpositive finiteに検査し、auto/semantic viewportと区別してpx化する。無限個の数値出力のためSではない。残余リスクは小さいscrollportの操作可能性、focus/scrollと大きな内容の関係。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.block-size]=\"heightValue()\""
+      },
+      {
+        "column": 123,
+        "file": "templates/angular/layout.ts",
+        "line": 51,
+        "reason": "[D108] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.top]=\"edge()===&quot;top&quot;?offsetValue():null\""
+      },
+      {
+        "column": 123,
+        "file": "templates/angular/layout.ts",
+        "line": 51,
+        "reason": "[D109] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.bottom]=\"edge()===&quot;bottom&quot;?offsetValue():null\""
+      },
+      {
+        "column": 234,
+        "file": "templates/angular/mega-menu.ts",
+        "line": 14,
+        "reason": "[D121] MegaMenuの--ui-mega-columnsはナビゲーション列数を決める構造係数。checkedColumnsはpositiveIntegerを通し、positiveIntegerはNumber.isSafeIntegerかつ>0を強制する。寸法tokenを選ぶ処理ではないためSではない。残余リスクは過大count、CSS repeat/minmaxでの内容密度、外部alias上書き。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.--ui-mega-columns]=\"checkedColumns()\""
+      },
+      {
+        "column": 28,
+        "file": "templates/angular/selection-input.ts",
+        "line": 26,
+        "reason": "[D131] --ui-option-columnsは色/寸法のtheme値ではなく、checkbox選択肢を何列に組むかという正整数の構造data。実bindingはcheckedColumnsのみで、safe integerかつ1以上を満たさなければthrowする。CSS repeatの列数引数という用途に限定した理由付き例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": ".ui-options{grid-template-columns:repeat(var(--ui-option-columns,1),minmax(0,1fr))}"
+      },
+      {
+        "column": 80,
+        "file": "templates/angular/splitter.ts",
+        "line": 8,
+        "reason": "[D134] Splitterのpanes block-sizeは分割scroll領域の外枠高さ。heightValueはviewport tokenまたはpositive finite pxのみを返す。pixel branchはsemantic token適合にできず、構造用途の限定例外候補。残余リスクは小さい高さでの両pane/handleの操作、orientationと内容overflow。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.block-size]=\"heightValue()\""
+      },
+      {
+        "column": 51,
+        "file": "templates/angular/text-input.ts",
+        "line": 46,
+        "reason": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.max-block-size.px]=\"checkedMaxHeight()\""
+      },
+      {
+        "column": 112,
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 17,
+        "reason": "[D153] gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-template-columns]=\"gridColumns()\""
+      },
+      {
+        "column": 339,
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 19,
+        "reason": "[D158] gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.grid-template-columns]=\"gridColumns()\""
+      },
+      {
+        "column": 127,
+        "file": "tests/fixture-app/runtime-priority2-tables.ts",
+        "line": 9,
+        "reason": "[D171] 列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.width.px]=\"width()\""
+      },
+      {
+        "column": 160,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 24,
+        "reason": "[D175] 列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
+        "rule": "unresolved",
+        "source": "[style.width.px]=\"width()\""
+      },
+      {
+        "column": 12,
+        "file": "templates/angular/layout.ts",
+        "line": 15,
+        "reason": "[F001] Containerの100%は親領域を超えないための配置上限とfull幅。content時はsize.contentとminで組み合わせる。任意のpx入力を許可する例外ではなく、具体値100%の診断一箇所だけに限定する。",
+        "rule": "literal-token",
+        "source": "max-inline-size:(dynamic expression; fixed 100%)"
+      },
+      {
+        "column": 49,
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 169,
+        "reason": "[D007] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "box.style.height = height + 'px';"
+      },
+      {
+        "column": 39,
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 170,
+        "reason": "[D008] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "marker.style.top = css;"
+      },
+      {
+        "column": 75,
+        "file": "templates/angular/command-palette.ts",
+        "line": 163,
+        "reason": "[D014] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "recovery.style.insetBlockStart = margin + 'px';"
+      },
+      {
+        "column": 72,
+        "file": "templates/angular/command-palette.ts",
+        "line": 164,
+        "reason": "[D015] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "recovery.style.maxBlockSize = height + 'px';"
+      },
+      {
+        "column": 71,
+        "file": "templates/angular/command-palette.ts",
+        "line": 177,
+        "reason": "[D016] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "results.style.maxBlockSize = height + 'px';"
+      },
+      {
+        "column": 13,
+        "file": "templates/angular/dialog.ts",
+        "line": 262,
+        "reason": "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });"
+      },
+      {
+        "column": 5,
+        "file": "templates/angular/overlay.ts",
+        "line": 112,
+        "reason": "[D124] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "element.style.left = Math.max(left + padding, Math.min(x, left + width - popup.width - padding)) + 'px';"
+      },
+      {
+        "column": 5,
+        "file": "templates/angular/overlay.ts",
+        "line": 113,
+        "reason": "[D125] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "element.style.top = Math.max(top + padding, Math.min(y, top + height - popup.height - padding)) + 'px';"
+      },
+      {
+        "column": 50,
+        "file": "templates/angular/selection-input.ts",
+        "line": 143,
+        "reason": "[D132] Comboboxのpopup inline-sizeを同じeditor anchorのgetBoundingClientRect().widthへ一致させる構造寸法。open/blocked/availabilityの判定後、observeOverlayのresize/scroll更新内で実測し、配置helperへ渡す。通常のcontrol寸法はsemantic CSSに残し、popupが対象と同じ幅になる関係だけを例外にする。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "popup.style.inlineSize=anchor.getBoundingClientRect().width+'px';positionOverlay(popup,anchor,placement);});"
+      },
+      {
+        "column": 895,
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "reason": "[D148] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      {
+        "column": 922,
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "reason": "[D149] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      {
+        "column": 947,
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "reason": "[D150] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      {
+        "column": 976,
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "reason": "[D151] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.height.px]=\"box.height\"></div>}`,"
+      },
+      {
+        "column": 5,
+        "file": "templates/angular/tree-popup-control.ts",
+        "line": 32,
+        "reason": "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+        "rule": "unresolved",
+        "source": "popup.style.minInlineSize=Math.min(width,viewport,Number.isFinite(resolved)&&resolved>=0?resolved:viewport)+'px';positionOverlay(popup,editor,placement);};"
+      },
+      {
+        "column": 124,
+        "file": "templates/angular/styles.css",
+        "line": 119,
+        "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
+        "rule": "literal-token",
+        "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
+      }
+    ],
+    "source_roots": [
+      "tests/fixture-app",
+      "templates/angular"
+    ],
+    "tsconfig": "tsconfig.json"
+  },
   "context": {
     "constraints": [
       "未取得の情報を確認済みの情報として表示しない",
@@ -183,6 +2610,10 @@
     "leading-heading": {
       "type": "number",
       "value": 1.35
+    },
+    "map-region-opacity": {
+      "type": "number",
+      "value": 0.25
     },
     "mega-menu-dense": {
       "type": "length",
@@ -503,6 +2934,11 @@
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.map-region": {
+          "reference": "map-region-opacity",
+          "type": "number",
+          "value": 0.25
+        },
         "opacity.watermark": {
           "reference": "watermark-opacity",
           "type": "number",
@@ -677,6 +3113,11 @@
           "reference": "space-8",
           "type": "length",
           "value": "8px"
+        },
+        "text.avatar": {
+          "reference": "avatar-dense",
+          "type": "length",
+          "value": "48px"
         },
         "text.body": {
           "reference": "text-dense",
@@ -886,6 +3327,11 @@
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.map-region": {
+          "reference": "map-region-opacity",
+          "type": "number",
+          "value": 0.25
+        },
         "opacity.watermark": {
           "reference": "watermark-opacity",
           "type": "number",
@@ -1060,6 +3506,11 @@
           "reference": "space-12",
           "type": "length",
           "value": "12px"
+        },
+        "text.avatar": {
+          "reference": "avatar-guided",
+          "type": "length",
+          "value": "64px"
         },
         "text.body": {
           "reference": "text-guided",

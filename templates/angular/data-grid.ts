@@ -13,7 +13,7 @@ import { installTableControlFocus } from './table-runtime';
 export interface GridTreeRow {
     id: string;
     parentId: string | null;
-    level: number;
+    /** Matches the Tree/TreeGrid supported depth: 1 through 100. */ level: number;
     position: number;
     setSize: number;
     branch: boolean;
@@ -39,7 +39,7 @@ let gridPasteSequence = 0;
  <div class="ui-data-grid__viewport" [hidden]="!!problem()"><table [style.min-inline-size]="'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'" [attr.role]="treeRows()?'treegrid':'grid'" [attr.aria-label]="caption()" [attr.aria-describedby]="gridId()+'-instructions'" [attr.aria-rowcount]="rows().length+1" [attr.aria-colcount]="columns().length" [attr.aria-multiselectable]="selectionMode()==='range'||rowSelection()==='multiple'?'true':null" [attr.aria-busy]="blocked()?'true':null" (keydown)="key($event)" (paste)="paste($event)"><caption>{{caption()}}</caption><thead><tr role="row">@for(column of columns();track column.id){<th role="columnheader" scope="col" [id]="headerId(column.id)">{{column.header}}</th>}</tr></thead><tbody>
  @for(row of rows();track rowKey(row);let ri=$index){<tr role="row" [attr.data-row-key]="rowKey(row)" [attr.aria-rowindex]="ri+2" [attr.aria-level]="treeRows()?.[ri]?.level??null" [attr.aria-posinset]="treeRows()?.[ri]?.position??null" [attr.aria-setsize]="treeRows()?.[ri]?.setSize??null" [attr.aria-expanded]="treeRows()?.[ri]?.branch?treeRows()![ri].expanded:null" [attr.aria-busy]="treeRows()?.[ri]?.loading?'true':null" [attr.aria-selected]="rowSelection()!=='none'?selectedKeys().includes(rowKey(row)):null">
  @for(column of columns();track column.id;let ci=$index){<td role="gridcell" data-table-control data-grid-cell [attr.data-row-index]="ri" [attr.data-column-index]="ci" [attr.tabindex]="active().row===ri&&active().column===ci?0:-1" [attr.headers]="headerId(column.id)" [attr.aria-selected]="selectionMode()!=='none'?selected({row:ri,column:ci}):null" [attr.aria-disabled]="blocked()||treeRows()?.[ri]?.disabled?'true':null" [class.ui-data-grid__selected]="selected({row:ri,column:ci})" (click)="clickCell(ri,ci,$event)" (dblclick)="editCell(ri,ci)">
- @if(ci===0&&treeRows()?.[ri];as meta){<span class="ui-data-grid__hierarchy" [style.padding-inline-start]="'calc(var(--ui-space-control-x) * '+(meta.level-1)+')'">@if(meta.branch){<button uiAction data-table-control type="button" tabindex="-1" [attr.aria-label]="(meta.expanded?('閉じる: ' | uiMessage):('展開: ' | uiMessage))+cellText(row,column)" [attr.aria-expanded]="meta.expanded" [disabled]="blocked()||meta.disabled" (click)="toggleTree(ri,$event)">{{meta.expanded?'−':'+'}}</button>}@if(rowSelection()!=='none'){<input data-table-control type="checkbox" tabindex="-1" [attr.aria-label]="('行を選択: ' | uiMessage)+cellText(row,column)" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="blocked()||meta.disabled||meta.selectable===false" (change)="selectRow(ri)">}</span>}
+ @if(ci===0&&!problem()&&treeRows()?.[ri];as meta){<span class="ui-data-grid__hierarchy" [style.padding-inline-start]="indent(meta.level)">@if(meta.branch){<button uiAction data-table-control type="button" tabindex="-1" [attr.aria-label]="(meta.expanded?('閉じる: ' | uiMessage):('展開: ' | uiMessage))+cellText(row,column)" [attr.aria-expanded]="meta.expanded" [disabled]="blocked()||meta.disabled" (click)="toggleTree(ri,$event)">{{meta.expanded?'−':'+'}}</button>}@if(rowSelection()!=='none'){<input data-table-control type="checkbox" tabindex="-1" [attr.aria-label]="('行を選択: ' | uiMessage)+cellText(row,column)" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="blocked()||meta.disabled||meta.selectable===false" (change)="selectRow(ri)">}</span>}
  @if(editable()&&column.editable!==false&&column.field!==keyField()){<ui-cell-editor #editor [row]="row" [keyField]="keyField()" [column]="column" [controlId]="fieldId(rowKey(row),column.id)" [label]="column.header+'・'+rowLabel(row)" [tabEntry]="false" [restoreStartFocus]="false" [disabled]="disabled()||!!treeRows()?.[ri]?.disabled||!!pendingPaste()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="editingChanged(editor,ri,ci,$event)"/>}@else{<span>{{cellText(row,column)}}</span>}
  </td>}</tr>}@empty{<tr role="row"><td role="gridcell" [attr.colspan]="columns().length">{{uiEffective_emptyLabel()}}</td></tr>}
  </tbody></table></div>`, styles: `
@@ -94,7 +94,7 @@ export class DataGrid<T extends object> {
     private ownedCell: HTMLElement | null = null;
     private shouldFocus = false;
     private currentEditor: CellEditor<T> | null = null;
-    protected readonly problem = computed(() => this.uiDiagnostic_DataGrid(tableConfigurationError(this.rows(), this.columns(), this.keyField(), createTableState())) || this.uiDiagnostic_DataGrid(tableEditProblem(this.columns(), this.keyField())) || (!this.caption().trim() || !this.gridId().trim() ? this.uiRuntimeText_DataGrid('グリッドの説明とIDを指定してください。') : this.treeRows() && (this.treeRows()!.length !== this.rows().length || this.treeRows()!.some(row => !row.id.trim() || !Number.isSafeInteger(row.level) || row.level < 1 || row.position < 1 || row.setSize < row.position)) ? this.uiRuntimeText_DataGrid('階層行と表示行の対応を確認してください。') : null));
+    protected readonly problem = computed(() => this.uiDiagnostic_DataGrid(tableConfigurationError(this.rows(), this.columns(), this.keyField(), createTableState())) || this.uiDiagnostic_DataGrid(tableEditProblem(this.columns(), this.keyField())) || (!this.caption().trim() || !this.gridId().trim() ? this.uiRuntimeText_DataGrid('グリッドの説明とIDを指定してください。') : this.treeRows() && (this.treeRows()!.length !== this.rows().length || this.treeRows()!.some(row => !row.id.trim() || !Number.isSafeInteger(row.level) || row.level < 1 || row.level > 100 || row.position < 1 || row.setSize < row.position)) ? this.uiRuntimeText_DataGrid('階層行と表示行の対応を確認してください。') : null));
     protected readonly blocked = computed(() => this.disabled() || this.busy() || !!this.pendingPaste() || !!this.problem());
     protected rowKey(row: T): TableKey { return row[this.keyField()] as TableKey; }
     protected rowLabel(row: T): string { return tableText(row, this.columns()[0], this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages); }
@@ -462,4 +462,11 @@ export class DataGrid<T extends object> {
         });
         this.destroy.onDestroy(() => { this.clipboardGeneration++; this.pendingPaste.set(null); this.pasteColumns = []; this.ownedCell = null; });
     }
+    /** Keep the style producer closed over the same supported tree-depth domain. */
+    protected indent(level: number): string {
+        if (typeof level !== 'number' || !Number.isSafeInteger(level) || level < 1 || level > 100)
+            throw new Error('DataGrid hierarchy level must be a safe integer from 1 through 100.');
+        return 'calc(var(--ui-space-control-x) * ' + (level - 1) + ')';
+    }
+
 }

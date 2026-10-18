@@ -1,6 +1,4 @@
-# Imported source/license material and raw verification evidence retain original bytes.
-assets/pdf-source/* -whitespace
-assets/third-party/* -whitespace
-assets/media/third-party-notices.txt -whitespace
-assets/media/*.pdf binary
-docs/verification/** -whitespace
+# Preserve the exact license bytes copied from bundled dependencies.
+.ui/generated/CHECKER-NOTICE.txt -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+# The deterministic bundle renderer appends an empty separator line.
+.ui/generated/check-ui.cjs whitespace=-blank-at-eof

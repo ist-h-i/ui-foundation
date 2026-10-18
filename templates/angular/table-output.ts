@@ -37,7 +37,13 @@ export function createTablePrintDocument(matrix: readonly (readonly string[])[],
     target.title = title;
     target.documentElement.lang = document.documentElement.lang;
     target.documentElement.dir = scope.ownerDocument.defaultView?.getComputedStyle(scope).direction ?? document.documentElement.dir;
-    const sourceStyle = scope.ownerDocument.defaultView?.getComputedStyle(scope);
+    const sourceView = scope.ownerDocument.defaultView;
+    const sourceStyle = sourceView?.getComputedStyle(scope);
+    // Custom properties retain rem units in their computed token values. Preserve
+    // the source document's rem base rather than the iframe's initial 16px base.
+    const rootFontSize = sourceView?.getComputedStyle(scope.ownerDocument.documentElement).fontSize;
+    if (rootFontSize)
+        target.documentElement.style.fontSize = rootFontSize;
     for (const name of ['font-body', 'text-body', 'leading-body', 'weight-control', 'space-page', 'space-table-y', 'space-table-x', 'border-control', 'color-border', 'color-text', 'color-surface']) {
         const value = sourceStyle?.getPropertyValue('--ui-' + name).trim();
         if (value)

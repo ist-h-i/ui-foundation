@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {cp,link,mkdir,mkdtemp,readFile,rm,symlink,writeFile} from 'node:fs/promises';
+import {cp,link,mkdir,mkdtemp,readFile,readdir,rm,symlink,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {test} from 'node:test';
+import {parse as parseYaml} from 'yaml';
+import {prepareSvgConsumer} from '../../scripts/verification/prepare-svg-consumer.mjs';
 
 const repository=fileURLToPath(new URL('../../',import.meta.url));
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
@@ -20,6 +22,50 @@ const payloads=[
   {script:'build-handoff.py',name:'media-tree-independent',manifest:'PACK-MANIFEST.json'},
   {script:'build-public-proof.py',name:'cross-browser-author',manifest:'files-manifest.json'}
 ];
+
+test('SVG consumer preparation preserves all canonical check inputs and public consumer bytes',async t=>{
+  const work=await mkdtemp(join(tmpdir(),'ui-verification-svg-'));
+  t.after(()=>rm(work,{recursive:true,force:true}));
+  const fixtures=join(repository,'tests/consumer-svg-paint');
+  const {sourceFiles}=await prepareSvgConsumer({root:repository,work,fixtures});
+  const inventory=new Map(sourceFiles.map(file=>[file.path,file]));
+  const configPath='examples/ui.config.example.yaml';
+  const config=parseYaml(await readFile(join(repository,configPath),'utf8'));
+  async function exactInput(path){
+    const expected=await readFile(join(repository,path));
+    assert.deepEqual(await readFile(join(work,path)),expected,'Exact canonical input '+path);
+    assert.deepEqual(inventory.get(path),{path,bytes:expected.length,sha256:hash(expected)},'Inventoried canonical input '+path);
+  }
+  async function filesBelow(root,relative=''){
+    const files=[];
+    for(const item of await readdir(join(root,relative),{withFileTypes:true})){
+      const path=join(relative,item.name);
+      if(item.isDirectory())files.push(...await filesBelow(root,path));
+      else if(item.isFile())files.push(path);
+    }
+    return files;
+  }
+  await t.test('configured tsconfig is copied and inventoried with exact bytes',async()=>{
+    assert.equal(typeof config.checks.tsconfig,'string');
+    await exactInput(config.checks.tsconfig);
+  });
+  await t.test('every configured source and exception anchor is copied and inventoried',async()=>{
+    assert.ok(config.checks.source_roots.length>0);
+    const expected=new Set(config.checks.exceptions.map(exception=>exception.file));
+    for(const root of config.checks.source_roots){
+      const files=await filesBelow(join(repository,root));
+      assert.ok(files.length>0,'Canonical source root '+root);
+      for(const file of files)expected.add(join(root,file));
+    }
+    await exactInput(configPath);
+    for(const path of expected)await exactInput(path);
+  });
+  await t.test('public consumer files retain exact fixture bytes',async()=>{
+    const files=await filesBelow(fixtures);
+    assert.ok(files.length>0);
+    for(const path of files)assert.deepEqual(await readFile(join(work,path)),await readFile(join(fixtures,path)),'Exact public consumer fixture '+path);
+  });
+});
 
 test('portable evidence tools verify exact historical payloads and reject invalid transfers',async t=>{
   const temporary=await mkdtemp(join(tmpdir(),'ui-verification-transfer-'));

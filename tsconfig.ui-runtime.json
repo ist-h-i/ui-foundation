@@ -8,6 +8,8 @@
     ]
   },
   "include": [
+    "tests/ui/code-editor-native.spec.ts",
+    "tests/cross-browser/runtime-cross-browser.spec.ts",
     "tests/ui/tree-axe-contract.spec.ts",
     "tests/ui/diagram-validation.spec.ts",
     "tests/ui/diagram-controlled-validation.spec.ts",
@@ -32,6 +34,33 @@
     "tests/ui/specialist-visual-semantics.spec.ts",
     "tests/ui/scheduler-focus-transfer.spec.ts",
     "tests/ui/library-readability.spec.ts",
-    "tests/ui/library-final-recovery.spec.ts"
+    "tests/ui/library-final-recovery.spec.ts",
+    "tests/ui/static-runtime-data-grid.spec.ts",
+    "tests/ui/static-runtime-geometry.spec.ts",
+    "tests/ui/static-runtime-layout.spec.ts",
+    "tests/ui/static-runtime-final-style-domain.spec.ts",
+    "tests/ui/static-runtime-media.spec.ts",
+    "tests/ui/static-runtime-p2-tables.spec.ts",
+    "tests/ui/static-runtime-p2-cascade.spec.ts",
+    "tests/ui/static-runtime-p2-engines.spec.ts",
+    "tests/ui/static-runtime-p2-measured.spec.ts",
+    "tests/ui/static-runtime-css-paint.spec.ts",
+    "tests/ui/static-runtime-css-tracks.spec.ts",
+    "tests/ui/static-runtime-css-panels.spec.ts",
+    "tests/ui/static-runtime-residual-scroll.spec.ts",
+    "tests/ui/static-runtime-residual-frozen.spec.ts",
+    "tests/ui/static-runtime-residual-engines.spec.ts",
+    "tests/ui/static-runtime-reassessment-guards.spec.ts",
+    "tests/ui/static-runtime-reassessment-tour.spec.ts",
+    "tests/ui/static-runtime-reassessment-viewer.spec.ts",
+    "tests/ui/static-runtime-reassessment-virtual.spec.ts",
+    "tests/ui/static-runtime-reassessment-navigation.spec.ts",
+    "tests/ui/static-runtime-reassessment-layout.spec.ts",
+    "tests/ui/static-runtime-reassessment-content.spec.ts",
+    "tests/ui/virtual-fast-tab.spec.ts",
+    "tests/ui/virtual-sparse-tab.spec.ts",
+    "tests/ui/runtime-lifecycle.spec.ts",
+    "tests/ui/virtual-radio.spec.ts",
+    "tests/ui/static-warning-recheck-*.spec.ts"
   ]
 }

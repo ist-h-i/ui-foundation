@@ -1,0 +1,775 @@
+{
+  "base_head": "b4aea63f67447dda1cabcf2da749617aa39c2d6f",
+  "scope": "read-only purpose audit; no source/YAML edits; only new audit artifacts",
+  "source_report": "tests/fixtures/static-checks/warning-implementation/cli-v8.log",
+  "source_report_sha256": "9d974f3837e433c8b7f433787845ea330ef9b03f447b3c1d3fdd72c6801f5be0",
+  "summary": {
+    "audited": 15,
+    "eligible": 14,
+    "rejected": 1
+  },
+  "evidence_status": "Source purpose Supported by direct producer/helper inspection; saved finite cases are historical; runtime numeric values and universal behavior Unknown",
+  "eligible": [
+    {
+      "id": "D007",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 169,
+        "column": 49,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "box.style.height = height + 'px';"
+      },
+      "purpose": "invisible_native_scroll_padding_measurement",
+      "reason_ja": "[D007] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "rule": "unresolved",
+        "source": "box.style.height = height + 'px';",
+        "line": 169,
+        "column": 49,
+        "reason": "[D007] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "anchor-navigation.ts:149-156 computed scrollPaddingBlockStart; auto/px/% direct handling; root clientHeight as reference",
+        "anchor-navigation.ts:160-167 new aria-hidden hidden zero-width contained measurement DOM",
+        "anchor-navigation.ts:169 root clientHeight -> box.style.height; :170 computed padding CSS -> marker.style.top; :171 computed top -> Math.max(0,parseFloat||0)",
+        "anchor-navigation.ts:97 destroy removes probe; :139-143/:173 measured padding consumed only in scrolling/tracking"
+      ],
+      "proof_sha256": {
+        "templates/angular/anchor-navigation.ts": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+        "templates/angular/navigation-model.ts": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da"
+      },
+      "historical_proof_ids": [
+        "historical-navigation-reassessment"
+      ],
+      "runtime_limits": [
+        "arbitrary CSS calc/var/env、writing mode、browser computed-style表現の完全解決は未証明。",
+        "markerのraw CSSはprobe-only。nav aliasやlease restorationの承認に拡張しない。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D008",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 170,
+        "column": 39,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "marker.style.top = css;"
+      },
+      "purpose": "invisible_native_scroll_padding_measurement",
+      "reason_ja": "[D008] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "rule": "unresolved",
+        "source": "marker.style.top = css;",
+        "line": 170,
+        "column": 39,
+        "reason": "[D008] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "anchor-navigation.ts:149-156 computed scrollPaddingBlockStart; auto/px/% direct handling; root clientHeight as reference",
+        "anchor-navigation.ts:160-167 new aria-hidden hidden zero-width contained measurement DOM",
+        "anchor-navigation.ts:169 root clientHeight -> box.style.height; :170 computed padding CSS -> marker.style.top; :171 computed top -> Math.max(0,parseFloat||0)",
+        "anchor-navigation.ts:97 destroy removes probe; :139-143/:173 measured padding consumed only in scrolling/tracking"
+      ],
+      "proof_sha256": {
+        "templates/angular/anchor-navigation.ts": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+        "templates/angular/navigation-model.ts": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da"
+      },
+      "historical_proof_ids": [
+        "historical-navigation-reassessment"
+      ],
+      "runtime_limits": [
+        "arbitrary CSS calc/var/env、writing mode、browser computed-style表現の完全解決は未証明。",
+        "markerのraw CSSはprobe-only。nav aliasやlease restorationの承認に拡張しない。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D014",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/command-palette.ts",
+        "line": 163,
+        "column": 75,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "recovery.style.insetBlockStart = margin + 'px';"
+      },
+      "purpose": "measured_recovery_scroll_budget",
+      "reason_ja": "[D014] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/command-palette.ts",
+        "rule": "unresolved",
+        "source": "recovery.style.insetBlockStart = margin + 'px';",
+        "line": 163,
+        "column": 75,
+        "reason": "[D014] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "command-palette.ts:133-150 rAF + opened/native dialog guard -> viewport-clipped inner height and measured controls margin",
+        "command-palette.ts:151-156 recovery/error/retry presence -> measured name/retry/padding/gap -> Math.max(0,remaining) -> Math.min(view.innerHeight/3,available)",
+        "command-palette.ts:163-164 measured inset/maxBlockSize sinks; :171 adds measured recovery; :176-177 results Math.min(innerHeight/2,Math.max(0,remaining)) maxBlockSize"
+      ],
+      "proof_sha256": {
+        "templates/angular/command-palette.ts": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+        "templates/angular/dialog.ts": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b"
+      },
+      "historical_proof_ids": [
+        "historical-navigation-reassessment"
+      ],
+      "runtime_limits": [
+        "arbitrary CSS margin/padding/line-heightや全viewportでのfocus/文字到達は未証明。",
+        "finite testは特定error、query、profile、direction、font、viewportのみ。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D015",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/command-palette.ts",
+        "line": 164,
+        "column": 72,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "recovery.style.maxBlockSize = height + 'px';"
+      },
+      "purpose": "measured_recovery_scroll_budget",
+      "reason_ja": "[D015] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/command-palette.ts",
+        "rule": "unresolved",
+        "source": "recovery.style.maxBlockSize = height + 'px';",
+        "line": 164,
+        "column": 72,
+        "reason": "[D015] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "command-palette.ts:133-150 rAF + opened/native dialog guard -> viewport-clipped inner height and measured controls margin",
+        "command-palette.ts:151-156 recovery/error/retry presence -> measured name/retry/padding/gap -> Math.max(0,remaining) -> Math.min(view.innerHeight/3,available)",
+        "command-palette.ts:163-164 measured inset/maxBlockSize sinks; :171 adds measured recovery; :176-177 results Math.min(innerHeight/2,Math.max(0,remaining)) maxBlockSize"
+      ],
+      "proof_sha256": {
+        "templates/angular/command-palette.ts": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+        "templates/angular/dialog.ts": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b"
+      },
+      "historical_proof_ids": [
+        "historical-navigation-reassessment"
+      ],
+      "runtime_limits": [
+        "arbitrary CSS margin/padding/line-heightや全viewportでのfocus/文字到達は未証明。",
+        "finite testは特定error、query、profile、direction、font、viewportのみ。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D016",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/command-palette.ts",
+        "line": 177,
+        "column": 71,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "results.style.maxBlockSize = height + 'px';"
+      },
+      "purpose": "measured_recovery_scroll_budget",
+      "reason_ja": "[D016] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/command-palette.ts",
+        "rule": "unresolved",
+        "source": "results.style.maxBlockSize = height + 'px';",
+        "line": 177,
+        "column": 71,
+        "reason": "[D016] CommandPaletteで検索control、選択command名、error/retryを実測して可視scrollportを分配する構造容量。dialog padding/rectとviewport内の内高、controlsの実高、recovery margin/gapからinsetを作り、recovery最大高をviewport/3と残余、results最大高をviewport/2と残余で制限する。文字量や画面に従う操作可能領域であり、theme寸法として固定しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "command-palette.ts:133-150 rAF + opened/native dialog guard -> viewport-clipped inner height and measured controls margin",
+        "command-palette.ts:151-156 recovery/error/retry presence -> measured name/retry/padding/gap -> Math.max(0,remaining) -> Math.min(view.innerHeight/3,available)",
+        "command-palette.ts:163-164 measured inset/maxBlockSize sinks; :171 adds measured recovery; :176-177 results Math.min(innerHeight/2,Math.max(0,remaining)) maxBlockSize"
+      ],
+      "proof_sha256": {
+        "templates/angular/command-palette.ts": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+        "templates/angular/dialog.ts": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b"
+      },
+      "historical_proof_ids": [
+        "historical-navigation-reassessment"
+      ],
+      "runtime_limits": [
+        "arbitrary CSS margin/padding/line-heightや全viewportでのfocus/文字到達は未証明。",
+        "finite testは特定error、query、profile、direction、font、viewportのみ。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "N004",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/dialog.ts",
+        "line": 262,
+        "column": 13,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });"
+      },
+      "purpose": "user_move_resize_geometry",
+      "reason_ja": "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/dialog.ts",
+        "rule": "unresolved",
+        "source": "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });",
+        "line": 262,
+        "column": 13,
+        "reason": "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "dialog.ts:45,51,67 native handle rectChange -> setRect:249",
+        "panel-handle.ts:22 getBoundingClientRect -> start/move/key:23-41 -> adjust:43-51 viewport/min-size clamp",
+        "dialog.ts:249-263 rectangle signal -> layout -> exact Object.assign sink; null/max clears inline geometry"
+      ],
+      "proof_sha256": {
+        "templates/angular/dialog.ts": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
+        "templates/angular/panel-handle.ts": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a"
+      },
+      "historical_proof_ids": [
+        "historical-dialog-catalog"
+      ],
+      "runtime_limits": [
+        "DOM/CSS minimumの実解決、非有限の外部改変、oversized pre-existing rect、全viewportは未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D124",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/overlay.ts",
+        "line": 112,
+        "column": 5,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "element.style.left = Math.max(left + padding, Math.min(x, left + width - popup.width - padding)) + 'px';"
+      },
+      "purpose": "anchored_viewport_coordinates",
+      "reason_ja": "[D124] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/overlay.ts",
+        "rule": "unresolved",
+        "source": "element.style.left = Math.max(left + padding, Math.min(x, left + width - popup.width - padding)) + 'px';",
+        "line": 112,
+        "column": 5,
+        "reason": "[D124] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "overlay.ts:79-111 DOM anchor/popup rect + viewport + computed padding/direction + optional point -> placement flip",
+        "menu.ts:423,441,458-459 point = native clientX/Y or target rect (repo-local point callers)",
+        "overlay.ts:112-113 viewport clamped left/top sinks; observeOverlay:115-127 observes resize/scroll and cleanup"
+      ],
+      "proof_sha256": {
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+        "templates/angular/menu.ts": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39"
+      },
+      "historical_proof_ids": [
+        "historical-overlay-measured"
+      ],
+      "runtime_limits": [
+        "positionOverlayはexported helperであり、任意consumerのpointをfinite guardするものではない。",
+        "popupがviewportより大きい場合の全辺containment、CSS top-layer/cascade、browser zoom全条件は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D125",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/overlay.ts",
+        "line": 113,
+        "column": 5,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "element.style.top = Math.max(top + padding, Math.min(y, top + height - popup.height - padding)) + 'px';"
+      },
+      "purpose": "anchored_viewport_coordinates",
+      "reason_ja": "[D125] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/overlay.ts",
+        "rule": "unresolved",
+        "source": "element.style.top = Math.max(top + padding, Math.min(y, top + height - popup.height - padding)) + 'px';",
+        "line": 113,
+        "column": 5,
+        "reason": "[D125] native popoverの配置用left/topであり、anchor/popupのDOM実測、visualViewportまたはwindow寸法、実paddingとdirectionから作り、flipとMath.max/minでviewport予算へclampする。context pointのrepo内producerはMenuのnative pointer座標または対象DOM rect。themeの寸法ではなく実際の対象へ接続する配置座標として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "overlay.ts:79-111 DOM anchor/popup rect + viewport + computed padding/direction + optional point -> placement flip",
+        "menu.ts:423,441,458-459 point = native clientX/Y or target rect (repo-local point callers)",
+        "overlay.ts:112-113 viewport clamped left/top sinks; observeOverlay:115-127 observes resize/scroll and cleanup"
+      ],
+      "proof_sha256": {
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+        "templates/angular/menu.ts": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39"
+      },
+      "historical_proof_ids": [
+        "historical-overlay-measured"
+      ],
+      "runtime_limits": [
+        "positionOverlayはexported helperであり、任意consumerのpointをfinite guardするものではない。",
+        "popupがviewportより大きい場合の全辺containment、CSS top-layer/cascade、browser zoom全条件は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D132",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/selection-input.ts",
+        "line": 143,
+        "column": 50,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "popup.style.inlineSize=anchor.getBoundingClientRect().width+'px';positionOverlay(popup,anchor,placement);});"
+      },
+      "purpose": "popup_anchor_width",
+      "reason_ja": "[D132] Comboboxのpopup inline-sizeを同じeditor anchorのgetBoundingClientRect().widthへ一致させる構造寸法。open/blocked/availabilityの判定後、observeOverlayのresize/scroll更新内で実測し、配置helperへ渡す。通常のcontrol寸法はsemantic CSSに残し、popupが対象と同じ幅になる関係だけを例外にする。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/selection-input.ts",
+        "rule": "unresolved",
+        "source": "popup.style.inlineSize=anchor.getBoundingClientRect().width+'px';positionOverlay(popup,anchor,placement);});",
+        "line": 143,
+        "column": 50,
+        "reason": "[D132] Comboboxのpopup inline-sizeを同じeditor anchorのgetBoundingClientRect().widthへ一致させる構造寸法。open/blocked/availabilityの判定後、observeOverlayのresize/scroll更新内で実測し、配置helperへ渡す。通常のcontrol寸法はsemantic CSSに残し、popupが対象と同じ幅になる関係だけを例外にする。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "selection-input.ts:139-142 open/blocked/availableOverlayAnchor -> native showPopover",
+        "selection-input.ts:143 anchor.getBoundingClientRect().width -> popup.style.inlineSize -> positionOverlay",
+        "selection-input.ts:144 cleanup release; overlay.ts:115-127 resize/scroll observation"
+      ],
+      "proof_sha256": {
+        "templates/angular/selection-input.ts": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [],
+      "runtime_limits": [
+        "外部CSSのmin/max、拡大、transform、overflow下の完全な表示や幅の妥当性は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D148",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "column": 895,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      "purpose": "target_rect_highlight_geometry",
+      "reason_ja": "[D148] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/tour.ts",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,",
+        "line": 16,
+        "column": 895,
+        "reason": "[D148] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "tour.ts:124-133 opened/popover-open/current eligible guard",
+        "tour.ts:134-137 target.getBoundingClientRect -> next {left,top,width,height} -> highlight signal on changed rect",
+        "tour.ts:16 highlight box -> four exact px style bindings; :17 semantic border/radius; overlay observer and destroy cleanup :97-120"
+      ],
+      "proof_sha256": {
+        "templates/angular/tour.ts": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [
+        "historical-tour-reassessment"
+      ],
+      "runtime_limits": [
+        "任意transform、stacking/top-layer、CSS override、全browser/viewportでのhighlight位置・可視性は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D149",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "column": 922,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      "purpose": "target_rect_highlight_geometry",
+      "reason_ja": "[D149] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/tour.ts",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,",
+        "line": 16,
+        "column": 922,
+        "reason": "[D149] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "tour.ts:124-133 opened/popover-open/current eligible guard",
+        "tour.ts:134-137 target.getBoundingClientRect -> next {left,top,width,height} -> highlight signal on changed rect",
+        "tour.ts:16 highlight box -> four exact px style bindings; :17 semantic border/radius; overlay observer and destroy cleanup :97-120"
+      ],
+      "proof_sha256": {
+        "templates/angular/tour.ts": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [
+        "historical-tour-reassessment"
+      ],
+      "runtime_limits": [
+        "任意transform、stacking/top-layer、CSS override、全browser/viewportでのhighlight位置・可視性は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D150",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "column": 947,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,"
+      },
+      "purpose": "target_rect_highlight_geometry",
+      "reason_ja": "[D150] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/tour.ts",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"></div>}`,",
+        "line": 16,
+        "column": 947,
+        "reason": "[D150] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "tour.ts:124-133 opened/popover-open/current eligible guard",
+        "tour.ts:134-137 target.getBoundingClientRect -> next {left,top,width,height} -> highlight signal on changed rect",
+        "tour.ts:16 highlight box -> four exact px style bindings; :17 semantic border/radius; overlay observer and destroy cleanup :97-120"
+      ],
+      "proof_sha256": {
+        "templates/angular/tour.ts": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [
+        "historical-tour-reassessment"
+      ],
+      "runtime_limits": [
+        "任意transform、stacking/top-layer、CSS override、全browser/viewportでのhighlight位置・可視性は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D151",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/tour.ts",
+        "line": 16,
+        "column": 976,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.height.px]=\"box.height\"></div>}`,"
+      },
+      "purpose": "target_rect_highlight_geometry",
+      "reason_ja": "[D151] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/tour.ts",
+        "rule": "unresolved",
+        "source": "<div class=\"ui-tour-highlight\" aria-hidden=\"true\" [style.left.px]=\"box.left\" [style.top.px]=\"box.top\" [style.width.px]=\"box.width\" [style.height.px]=\"box.height\"> :: [style.height.px]=\"box.height\"></div>}`,",
+        "line": 16,
+        "column": 976,
+        "reason": "[D151] Tourが現在の接続・可視・利用可能なtargetのgetBoundingClientRectを読み、highlight用signalへleft/top/width/heightの4値だけをコピーする。fixed highlightは対象と同じviewport座標を表し、border色／幅／radiusはsemantic tokenへ接続する。themeの固定寸法ではなく、案内対象を囲む実測幾何として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "tour.ts:124-133 opened/popover-open/current eligible guard",
+        "tour.ts:134-137 target.getBoundingClientRect -> next {left,top,width,height} -> highlight signal on changed rect",
+        "tour.ts:16 highlight box -> four exact px style bindings; :17 semantic border/radius; overlay observer and destroy cleanup :97-120"
+      ],
+      "proof_sha256": {
+        "templates/angular/tour.ts": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [
+        "historical-tour-reassessment"
+      ],
+      "runtime_limits": [
+        "任意transform、stacking/top-layer、CSS override、全browser/viewportでのhighlight位置・可視性は未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "D152",
+      "disposition": "eligible_reasoned_exception",
+      "diagnostic": {
+        "file": "templates/angular/tree-popup-control.ts",
+        "line": 32,
+        "column": 5,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "popup.style.minInlineSize=Math.min(width,viewport,Number.isFinite(resolved)&&resolved>=0?resolved:viewport)+'px';positionOverlay(popup,editor,placement);};"
+      },
+      "purpose": "popup_anchor_minimum_budget",
+      "reason_ja": "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
+      "exception": {
+        "file": "templates/angular/tree-popup-control.ts",
+        "rule": "unresolved",
+        "source": "popup.style.minInlineSize=Math.min(width,viewport,Number.isFinite(resolved)&&resolved>=0?resolved:viewport)+'px';positionOverlay(popup,editor,placement);};",
+        "line": 32,
+        "column": 5,
+        "reason": "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
+      },
+      "flow": [
+        "tree-popup-control.ts:23-27 open/blocked/available guard -> showPopover",
+        "tree-popup-control.ts:28-31 editor DOM width + viewport + computed maximum strict px regex -> finite/nonnegative guard",
+        "tree-popup-control.ts:32 Math.min(width,viewport,resolved-budget) -> minInlineSize -> positionOverlay; resize/scope observers:33-37"
+      ],
+      "proof_sha256": {
+        "templates/angular/tree-popup-control.ts": "392c4ae2c31aacb1fbd8db9ef161ba4f2934b730f5364ec94c2f8dc5a876d181",
+        "templates/angular/overlay.ts": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+        "templates/angular/focus.ts": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887"
+      },
+      "historical_proof_ids": [
+        "historical-tree-catalog"
+      ],
+      "runtime_limits": [
+        "percentage/none/calc maximumの一般的used-value保証、外部min/max競合、全viewportは未証明。"
+      ],
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    }
+  ],
+  "rejected": [
+    {
+      "id": "D006",
+      "diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 114,
+        "column": 9,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "target.style.setProperty('scroll-margin-block-start', lease.margin, lease.marginPriority); if (lease.changedTab && target.getAttribute('tabindex') === '-1') {"
+      },
+      "disposition": "retain_warning",
+      "reason_ja": "lease.marginは初回target.style.scrollMarginBlockStartと、consumerが変更した旧inline値をそのまま保存する。release時のlast/prio一致は所有権guardであり、保存済み値の範囲・semantic分類を制限しない。任意のconsumer CSS復元なので今回の実測構造用途では承認しない。",
+      "flow": [
+        "anchor-navigation.ts:60-71 old inline string + priority saved; consumer edit replaces saved value",
+        "anchor-navigation.ts:113-114 ownership guard -> restore arbitrary lease.margin/prio"
+      ],
+      "proof_sha256": {
+        "templates/angular/anchor-navigation.ts": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328"
+      },
+      "static_value_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    }
+  ],
+  "explicit_non_target": [
+    "D004 anchor-navigation.ts:12 --ui-anchor-offset CSS alias remains warning; appearance/cascade not approved"
+  ],
+  "historical_proofs": [
+    {
+      "id": "historical-navigation-reassessment",
+      "results": "docs/verification/ui-static-runtime-reassessment-20261014/results.json",
+      "receipt": "docs/verification/ui-static-runtime-reassessment-20261014/browser-complete-receipt.json",
+      "receipt_sha256": "09592a15a3bd08f20a07fe0abab5f9a6be2890d95bdd0f4835e114f37b4a84f0",
+      "log": "docs/verification/ui-static-runtime-reassessment-20261014/browser-complete.log",
+      "log_sha256": "1f61af17340dbd85a40c730974839a3b9cb93660cb6ae37375356d7cca9dad51",
+      "exit_code": 0,
+      "cases": "anchor-scroll-geometry A-D; palette-recovery-geometry A-D",
+      "specs": [
+        "tests/ui/static-runtime-reassessment-navigation.spec.ts"
+      ],
+      "claim_status": "Verified for saved finite cases; current audited owner/helper hashes match saved source hashes; no new browser run"
+    },
+    {
+      "id": "historical-tour-reassessment",
+      "results": "docs/verification/ui-static-runtime-reassessment-20261014/results.json",
+      "receipt": "docs/verification/ui-static-runtime-reassessment-20261014/browser-complete-receipt.json",
+      "receipt_sha256": "09592a15a3bd08f20a07fe0abab5f9a6be2890d95bdd0f4835e114f37b4a84f0",
+      "log": "docs/verification/ui-static-runtime-reassessment-20261014/browser-complete.log",
+      "log_sha256": "1f61af17340dbd85a40c730974839a3b9cb93660cb6ae37375356d7cca9dad51",
+      "exit_code": 0,
+      "cases": "tour reassessment A-D: same-instance highlight/message/native actions/retained editor",
+      "specs": [
+        "tests/ui/static-runtime-reassessment-tour.spec.ts"
+      ],
+      "claim_status": "Verified for saved finite cases; current audited owner/helper hashes match saved source hashes; no new browser run"
+    },
+    {
+      "id": "historical-overlay-measured",
+      "log": "docs/verification/ui-static-runtime-residual-p2-20261014/browser-regression.log",
+      "receipt": "docs/verification/ui-static-runtime-residual-p2-20261014/browser-regression-receipt.json",
+      "specs": [
+        "tests/ui/static-runtime-p2-measured.spec.ts:17"
+      ],
+      "cases": "overlay-actual-position A-D; six placements/corners/reposition/removed anchor",
+      "claim_status": "Existing historical finite proof reference; complete source/bundle freshness was not revalidated in this audit"
+    },
+    {
+      "id": "historical-tree-catalog",
+      "log": "docs/verification/ui-static-runtime-residual-p2-20261014/browser-regression.log:249",
+      "receipt": "docs/verification/ui-static-runtime-residual-p2-20261014/browser-regression-receipt.json",
+      "specs": [
+        "tests/ui/tree-catalog.spec.ts:66"
+      ],
+      "cases": "guided/dense single TreeSelect search/ancestor/selection/reset",
+      "claim_status": "Historical catalog operation only; does not by itself prove minInlineSize or universal CSS behavior"
+    },
+    {
+      "id": "historical-dialog-catalog",
+      "log": "docs/verification/component-ui-ux-review/candidate-8/checks/candidate-8-all-ui-final.log:742",
+      "specs": [
+        "tests/ui/overlay-catalog.spec.ts:63",
+        "tests/ui/overlay-catalog.spec.ts:69",
+        "tests/ui/overlay-catalog.spec.ts:107"
+      ],
+      "cases": "guided/dense keyboard/pointer move-resize/maximize/restore; rapid native key accumulation",
+      "claim_status": "Saved log pass reference only; no current browser run or historic bundle validation in this audit"
+    }
+  ],
+  "reassessment_source_match": {
+    "templates/angular/anchor-navigation.ts": {
+      "current_sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+      "saved_sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+      "equal": true
+    },
+    "templates/angular/command-palette.ts": {
+      "current_sha256": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+      "saved_sha256": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+      "equal": true
+    },
+    "templates/angular/dialog.ts": {
+      "current_sha256": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
+      "saved_sha256": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
+      "equal": true
+    },
+    "templates/angular/focus.ts": {
+      "current_sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+      "saved_sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+      "equal": true
+    },
+    "templates/angular/menu.ts": {
+      "current_sha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "saved_sha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "equal": true
+    },
+    "templates/angular/navigation-model.ts": {
+      "current_sha256": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+      "saved_sha256": "d5ebfedcb7016b00ceeb0c601fe8d94cf076314558d34b8e9c96fff132af20da",
+      "equal": true
+    },
+    "templates/angular/overlay.ts": {
+      "current_sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+      "saved_sha256": "cb525ece71402ced6235553344dc3d157491cbe6b83efb89e5c716b3ff0fd982",
+      "equal": true
+    },
+    "templates/angular/panel-handle.ts": {
+      "current_sha256": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+      "saved_sha256": "6c9f8619b5ce2122e07daa864dae620b1a5da352ff78fb9060aeae6134286f5a",
+      "equal": true
+    },
+    "templates/angular/selection-input.ts": {
+      "current_sha256": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
+      "saved_sha256": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
+      "equal": true
+    },
+    "templates/angular/tour.ts": {
+      "current_sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+      "saved_sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+      "equal": true
+    },
+    "templates/angular/tree-popup-control.ts": {
+      "current_sha256": "392c4ae2c31aacb1fbd8db9ef161ba4f2934b730f5364ec94c2f8dc5a876d181",
+      "saved_sha256": "392c4ae2c31aacb1fbd8db9ef161ba4f2934b730f5364ec94c2f8dc5a876d181",
+      "equal": true
+    }
+  },
+  "negative_regression_plan": [
+    {
+      "case": "stale exact source/line/column",
+      "operation": "Use each new exact exception against a source mutation or shifted line/column in isolated temporary consumer; require exception-error rather than silent reuse."
+    },
+    {
+      "case": "same source in wrong file",
+      "operation": "Place identical warning source in sibling temporary consumer file while approval stays bound to original file; sibling must remain warning. If original removed, stale original exception must error."
+    },
+    {
+      "case": "unrelated appearance violation",
+      "operation": "Keep reviewed geometry warning/exception and add color:#123456 or padding:13px in same temporary file; literal-token must remain and CLI exit1. Do not alter permanent sources."
+    },
+    {
+      "case": "producer/helper drift",
+      "operation": "Run actual dependency hash validator against temporary snapshot with altered panel-handle/overlay/focus/menu plus each owning template. Require mismatch failure before refreshing audit proof."
+    }
+  ],
+  "not_run": [
+    "No new runtime/browser operations",
+    "No approval/YAML integration or checker execution in this read-only subtask",
+    "Negative regressions are proposed to root, not executed here"
+  ]
+}

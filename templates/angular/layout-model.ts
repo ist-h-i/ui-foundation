@@ -1,5 +1,15 @@
 export type LayoutSpace = 'none' | 'compact' | 'normal' | 'wide';
-export const layoutSpace = (value: LayoutSpace): string => ({none:'0',compact:'var(--ui-space-control-gap)',normal:'var(--ui-space-field)',wide:'var(--ui-space-section)'}[value]);
+const layoutSpaces = {none:'0',compact:'var(--ui-space-control-gap)',normal:'var(--ui-space-field)',wide:'var(--ui-space-section)'} as const;
+export const layoutSpace = (value: LayoutSpace): string => {
+ if(typeof value!=='string'||!Object.hasOwn(layoutSpaces,value))throw new Error('Layout spacing must be none, compact, normal or wide.');
+ return layoutSpaces[value];
+};
+/** Public union types also need a guard for values arriving from JS or stored data. */
+export function layoutKeyword<T extends string>(value: unknown, allowed: readonly T[], label: string): T {
+ if(typeof value!=='string')throw new Error(label+' must be '+allowed.join(', ')+'.');
+ for(let index=0;index<allowed.length;index++){const candidate=allowed[index]!;if(candidate===value)return candidate;}
+ throw new Error(label+' must be '+allowed.join(', ')+'.');
+}
 export interface LayoutBreakpoint { minWidth: number; columns: number; rows?: number }
 export interface GridPlacement { minWidth: number; column?: number; row?: number; columnSpan?: number; rowSpan?: number }
 export function positiveInteger(value: number): boolean { return Number.isSafeInteger(value) && value > 0; }

@@ -10,13 +10,14 @@
   "scripts": {
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.example.yaml",
     "ui:check": "tsx src/cli.ts check --config examples/ui.config.example.yaml",
+    "ui:check:warnings": "tsx src/warning-review-cli.ts",
     "typecheck": "tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media && npm run typecheck:ui:runtime",
     "build": "npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css",
     "start": "npm run build && node scripts/serve.mjs",
-    "test": "npm run ui:check && npm run typecheck && npm run test:config && npm run test:generation && npm run test:model && npm run test:ui && npm run test:svg-paint",
+    "test": "npm run ui:check:warnings && npm run typecheck && npm run test:config && npm run test:generation && npm run test:static && npm run test:model && npm run test:ui && npm run test:svg-paint",
     "test:model": "tsx --test tests/model/*.test.ts",
     "test:config": "tsx --test tests/config/*.test.ts",
-    "test:generation": "tsx --test tests/generation/*.test.ts",
+    "test:generation": "tsx --test --test-concurrency=1 tests/generation/*.test.ts",
     "test:ui": "playwright test",
     "typecheck:ui:media": "tsc -p tsconfig.ui-media.json",
     "typecheck:ui:runtime": "tsc -p tsconfig.ui-runtime.json",
@@ -25,7 +26,9 @@
     "audit:media": "node scripts/verification/audit-media.mjs",
     "verify:evidence:handoff": "python3 scripts/verification/build-handoff.py",
     "verify:evidence:cross-browser": "python3 scripts/verification/build-public-proof.py",
-    "test:verification": "node --test tests/verification-tools/*.test.mjs"
+    "test:verification": "node --test tests/verification-tools/*.test.mjs",
+    "test:static": "tsx --test --test-concurrency=1 tests/static/*.test.ts",
+    "test:ui:radio:cross-browser": "node scripts/run-cross-browser.mjs --suite=virtual-radio"
   },
   "devDependencies": {
     "@angular/cdk": "22.2.1",
@@ -73,6 +76,10 @@
     "jsbarcode": "3.12.3",
     "@types/qrcode": "1.5.6",
     "@zxing/library": "0.23.0",
-    "temporal-polyfill": "1.0.5"
+    "temporal-polyfill": "1.0.5",
+    "postcss": "8.5.30",
+    "postcss-scss": "4.0.9",
+    "postcss-selector-parser": "7.1.6",
+    "postcss-value-parser": "4.2.0"
   }
 }

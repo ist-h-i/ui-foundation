@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-10-18T12:36:18.305126+00:00",
+  "scope": "Main-agent direct readback of publication evidence review and bounded probe records, not final normal acceptance.",
+  "implementation_head": "88a72c2a94f6649a935d764166d83fe6d45b2758",
+  "review_reports": {
+    "review-evidence-recipe-v1.md": "e07207c669bd7e06f4042a7fc2329e087eb3c302821c099d9421332c23e79730",
+    "review-evidence-recipe-v2.md": "a6403592b94568c3dfb0c60ceb27d002f083262abcf0990cbdb6034bd25d602f",
+    "review-evidence-recipe-v3.md": "8752a795aeddab8b247fd7206b5fda1c06df415a5eb6d4b1af2b1fc511b1dd16",
+    "review-evidence-recipe-v4.md": "d2a035b9bf677d80ef2329dcd93b9d7d4d9dbe70a1de24bf1de758b2988e985d"
+  },
+  "findings_adopted": [
+    "v1 F1 direct raw/internal/capture/summary/log validation",
+    "v2 F1 raw config/argv/project/catalog scope matching",
+    "v3 F1 expected source root independent of raw with explicit context provenance"
+  ],
+  "findings_excluded": [],
+  "final_v4_findings": 0,
+  "snapshot_inputs_verified": 32,
+  "actual_io_controls_rejected": 16,
+  "raw_probe_sha256": "dde12a0c9fc71a5d2f3509bc684563cd8d7789b695de9f91deba38c0a9067380",
+  "existing_unit_controls": {
+    "command": [
+      "python3",
+      "-B",
+      "docs/verification/ui-static-warning-release-20261018/test-browser-run-proof.py"
+    ],
+    "tests": 35,
+    "exit_code": 0,
+    "result": "OK; direct tool execution completed in 1.628s"
+  },
+  "root_binding_limit": "Original captures have no cwd field. Fixed trusted task repository root and reviewed capture driver context are exposed; no historical receipt rewritten.",
+  "normal_gate_at_adjudication": "RUNNING; full normal result and final archive must be directly checked later."
+}

@@ -37,7 +37,9 @@ export class Gantt {
    const canvas=surface.ownerDocument.createElement('canvas'),context=canvas.getContext('2d');
    if(context)context.font=`${theme.fontSize}px ${theme.font}`;
    const measure=(label:string)=>context?.measureText(label).width??[...label].length*theme.fontSize;
-   const format=(value:number)=>civilLabel(new Date(value).toISOString().slice(0,10),this.effectiveLocale(),this.effectiveCivilDateOptions());
+   // Axis bounds include the exclusive day after 9999-12-31; format that native UTC date without truncating its extended year.
+   const axisDateFormat=new Intl.DateTimeFormat(this.effectiveLocale(),{...this.effectiveCivilDateOptions(),timeZone:'UTC'});
+   const format=(value:number)=>axisDateFormat.format(new Date(value));
    const min=tasks.length?Math.min(...tasks.map(task=>civilEpoch(task.start))):undefined;
    const max=tasks.length?Math.max(...tasks.map(task=>civilEpoch(task.end)+day)):undefined;
    const dateLabels=tasks.flatMap(task=>[format(civilEpoch(task.start)),format(civilEpoch(task.end))]);
@@ -69,7 +71,7 @@ export class Gantt {
    const dependencyPairs=tasks.flatMap((task,index)=>task.dependencies.map(id=>({source:tasks.findIndex(t=>t.id===id),target:index})));
    const renderEdge=(_p:CustomSeriesRenderItemParams,api:CustomSeriesRenderItemAPI)=>{
     const from=api.coord([api.value(0),api.value(1)]),to=api.coord([api.value(2),api.value(3)]),bend=from[0]+theme.gap;
-    return {type:'group' as const,children:[{type:'polyline' as const,shape:{points:[[from[0],from[1]],[bend,from[1]],[bend,to[1]],[to[0],to[1]]]},style:{stroke:theme.muted,lineWidth:1,fill:'none'}},{type:'polygon' as const,shape:{points:[[to[0],to[1]],[to[0]-theme.gap/2,to[1]-theme.gap/3],[to[0]-theme.gap/2,to[1]+theme.gap/3]]},style:{fill:theme.muted}}]};
+    return {type:'group' as const,children:[{type:'polyline' as const,shape:{points:[[from[0],from[1]],[bend,from[1]],[bend,to[1]],[to[0],to[1]]]},style:{stroke:theme.muted,lineWidth:theme.borderWidth,fill:'none'}},{type:'polygon' as const,shape:{points:[[to[0],to[1]],[to[0]-theme.gap/2,to[1]-theme.gap/3],[to[0]-theme.gap/2,to[1]+theme.gap/3]]},style:{fill:theme.muted}}]};
    };
    const axisLabel={color:theme.text,fontFamily:theme.font,fontSize:theme.fontSize,lineHeight,margin:theme.gap};
    const option:EChartsOption={

@@ -1,0 +1,484 @@
+{
+  "baseline_warnings": 195,
+  "records": [
+    {
+      "id": "R009",
+      "exception": {
+        "file": "templates/angular/chart.ts",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row.depth)\"",
+        "line": 18,
+        "column": 601,
+        "reason": "[R009] Chartの階層行の字下げ。depthは外部CSS値ではなくchartPointRowsが0から増分生成し、rows()はchartProblemの深さ32・循環検証に合格した系列だけを渡す。意味トークンに非負整数係数を掛ける用途に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/chart.ts": "f7aca5bc1e58d7b50fe30c28482ddffdeb99289efedeb451d1e654f706d9dba4",
+        "templates/angular/specialist-model.ts": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+      }
+    },
+    {
+      "id": "R018",
+      "exception": {
+        "file": "templates/angular/data-grid.ts",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'\"",
+        "line": 39,
+        "column": 68,
+        "reason": "[R018] 表の最小幅は列数を係数にしてtable-column-min/control/table-xの意味トークンと文字幅を組み合わせる。係数は配列lengthで非負整数、表示中は設定検証により1列以上であり、任意CSSやDOM計測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/data-grid.ts": "28e69fad3a9b667a2cd5f10323fe5a5b32b4459ae4c3fabcd43603eee723c6c0",
+        "templates/angular/table-model.ts": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155"
+      }
+    },
+    {
+      "id": "R043",
+      "exception": {
+        "file": "templates/angular/diagram.ts",
+        "rule": "unresolved",
+        "source": "[style.left.px]=\"node.x*zoom()\"",
+        "line": 19,
+        "column": 1260,
+        "reason": "[R043] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/diagram.ts": "5427ec941c519492dac84051d403123b8f171ffae8035fb2a27152b7f28393c2",
+        "templates/angular/specialist-model.ts": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+      }
+    },
+    {
+      "id": "R044",
+      "exception": {
+        "file": "templates/angular/diagram.ts",
+        "rule": "unresolved",
+        "source": "[style.top.px]=\"node.y*zoom()\"",
+        "line": 19,
+        "column": 1292,
+        "reason": "[R044] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/diagram.ts": "5427ec941c519492dac84051d403123b8f171ffae8035fb2a27152b7f28393c2",
+        "templates/angular/specialist-model.ts": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+      }
+    },
+    {
+      "id": "R047",
+      "exception": {
+        "file": "templates/angular/diagram.ts",
+        "rule": "unresolved",
+        "source": "[style.transform]=\"'scale('+zoom()+')'\"",
+        "line": 19,
+        "column": 1401,
+        "reason": "[R047] Diagramのscale()は有限0.25〜4に検証されたzoomだけで生成するデータ表示倍率。異常zoomでdisplayModel.nodesは空となりnode transform bindingは生成されない。DOM実測のノード寸法診断へは広げない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/diagram.ts": "5427ec941c519492dac84051d403123b8f171ffae8035fb2a27152b7f28393c2"
+      }
+    },
+    {
+      "id": "R048",
+      "exception": {
+        "file": "templates/angular/diff-json.ts",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row)\"",
+        "line": 27,
+        "column": 1006,
+        "reason": "[R048] JSON階層の字下げはjsonRowsが0から生成するdepth（最大64）の係数をcontrol-x/control-gapに掛ける。任意外部CSSやDOM計測ではなく、検証された構文木の階層表現に限定される。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/diff-json.ts": "e414bac111632d00e4952a3d8b9fe98a70d7f1efb85130404df16726daeececc",
+        "templates/angular/json-model.ts": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799"
+      }
+    },
+    {
+      "id": "R049",
+      "exception": {
+        "file": "templates/angular/display-content.ts",
+        "rule": "unresolved",
+        "source": "[style.--ui-read-lines]=\"lineCount()\"",
+        "line": 12,
+        "column": 104,
+        "reason": "[R049] 全文表示の視覚クリップ行数という数値構造係数。sink producerはdisplayIntegerを呼び、safe integerかつ1..100の範囲を検査してから返す。通常の色／余白を置換する値ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/display-content.ts": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+        "templates/angular/display-model.ts": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a"
+      }
+    },
+    {
+      "id": "R052",
+      "exception": {
+        "file": "templates/angular/display-content.ts",
+        "rule": "unresolved",
+        "source": "[style.--ui-code-number-digits]=\"numberDigits()\"",
+        "line": 31,
+        "column": 580,
+        "reason": "[R052] コード行番号欄の桁数は原文分割後の配列lengthをString化した文字数。外部CSS文字列や意匠値を返さず、正の整数のデータ係数になる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/display-content.ts": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f"
+      }
+    },
+    {
+      "id": "R064",
+      "exception": {
+        "file": "templates/angular/display.ts",
+        "rule": "unresolved",
+        "source": "[style.--ui-avatar-graphemes]=\"letterCount()\"",
+        "line": 73,
+        "column": 12,
+        "reason": "[R064] Avatar fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0除算を排除した正整数のデータ係数。semantic text-avatarを基準にする。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/display-model.ts": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+        "templates/angular/display.ts": "940df3e35aed1340fbe66985c025ea1b432f5298778acd46a8986694db55201b"
+      }
+    },
+    {
+      "id": "R068",
+      "exception": {
+        "file": "templates/angular/display.ts",
+        "rule": "unresolved",
+        "source": "[style.inline-size.%]=\"item.value/maximum()*100\"",
+        "line": 133,
+        "column": 418,
+        "reason": "[R068] MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaximumは正finite、各値は0〜maximum、合計超過を拒否しnullは幅要素を生成しない。意味色を使う区分のデータ長に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/display-model.ts": "1d3a6e2c3d1b36c2373b1e86e3d7ff1fa4694ceae5c1fb73214b372d05092b3a",
+        "templates/angular/display.ts": "940df3e35aed1340fbe66985c025ea1b432f5298778acd46a8986694db55201b"
+      }
+    },
+    {
+      "id": "R083",
+      "exception": {
+        "file": "templates/angular/file-explorer.ts",
+        "rule": "unresolved",
+        "source": "[style.padding-inline-start]=\"indent(row)\"",
+        "line": 11,
+        "column": 887,
+        "reason": "[R083] FileExplorer階層の字下げ。explorerRowsがdepthを0から生成し>64、重複ID/循環を拒否、problem時rowsは空。tree表示では意味space tokenの整数係数、他viewは意味tokenそのもの。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/file-explorer.ts": "741c54ffaedce3a4f279ec3b83c63a07587de390d43a7e378279c0a3f23c558b",
+        "templates/angular/specialist-model.ts": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd"
+      }
+    },
+    {
+      "id": "R085",
+      "exception": {
+        "file": "templates/angular/form-layout.ts",
+        "rule": "unresolved",
+        "source": "[style.--ui-form-columns]=\"checkedColumns()\"",
+        "line": 6,
+        "column": 65,
+        "reason": "[R085] FormLayout列数は構造count。checkedColumns producer内でpositiveIntegerを呼びsafe integer>0を検査してから同値を返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/form-layout.ts": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+        "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25"
+      }
+    },
+    {
+      "id": "R100",
+      "exception": {
+        "file": "templates/angular/image-media.ts",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\"",
+        "line": 6,
+        "column": 34,
+        "reason": "[R100] Image aspect-ratioはpositiveMediaNumberを経由するfinite正数またはnullのみ。任意CSSstringではなく画像の表示縦横比というデータ値に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      }
+    },
+    {
+      "id": "R107",
+      "exception": {
+        "file": "templates/angular/image-media.ts",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\"",
+        "line": 46,
+        "column": 56,
+        "reason": "[R107] ImageCompare aspect-ratioはpositiveMediaNumberで検証済みfinite正数。画像比較frameの縦横比を表すデータ値で、任意CSSstringやDOM実測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      }
+    },
+    {
+      "id": "R108",
+      "exception": {
+        "file": "templates/angular/image-media.ts",
+        "rule": "unresolved",
+        "source": "[style.clip-path]=\"clip()\"",
+        "line": 46,
+        "column": 223,
+        "reason": "[R108] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      }
+    },
+    {
+      "id": "R109",
+      "exception": {
+        "file": "templates/angular/image-media.ts",
+        "rule": "unresolved",
+        "source": "[style.left.%]=\"direction()==='horizontal'?positionValue():null\"",
+        "line": 46,
+        "column": 360,
+        "reason": "[R109] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      }
+    },
+    {
+      "id": "R110",
+      "exception": {
+        "file": "templates/angular/image-media.ts",
+        "rule": "unresolved",
+        "source": "[style.top.%]=\"direction()==='vertical'?positionValue():null\"",
+        "line": 46,
+        "column": 425,
+        "reason": "[R110] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/image-media.ts": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+        "templates/angular/media-model.ts": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984"
+      }
+    },
+    {
+      "id": "R116",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "unresolved",
+        "source": "[style.grid-template-columns]=\"&quot;repeat(&quot;+resolved().columns+&quot;,minmax(0,1fr))&quot;\"",
+        "line": 27,
+        "column": 12,
+        "reason": "[R116] gridAtWidthはpublic/default/breakpointの全列・行countを正のsafe integerとして検査する。repeatの列数は構造上のデータ数で、minmax(0,1fr)の固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+        "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      }
+    },
+    {
+      "id": "R117",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "unresolved",
+        "source": "[style.grid-template-rows]=\"&quot;repeat(&quot;+resolved().rows+&quot;,auto)&quot;\"",
+        "line": 27,
+        "column": 12,
+        "reason": "[R117] gridAtWidthがdefault/breakpointの行数を正のsafe integerとして検査して返す。repeatの行数は構造上のデータ数でauto trackの固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+        "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      }
+    },
+    {
+      "id": "R119",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "unresolved",
+        "source": "[style.grid-column]=\"columnValue()\"",
+        "line": 33,
+        "column": 63,
+        "reason": "[R119] GridCellのcolumn/spanはsafe positive整数検査し、gridAtWidthで検査された列count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      }
+    },
+    {
+      "id": "R120",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "unresolved",
+        "source": "[style.grid-row]=\"rowValue()\"",
+        "line": 33,
+        "column": 63,
+        "reason": "[R120] GridCellのrow/spanはsafe positive整数検査し、gridAtWidthで検査された行count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      }
+    },
+    {
+      "id": "R131",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "unresolved",
+        "source": "[style.aspect-ratio]=\"ratioValue()\"",
+        "line": 53,
+        "column": 113,
+        "reason": "[R131] AspectRatioの比率はratioValueでNumber.isFiniteかつ正数を確認してから返す無次元の配置比率。任意CSS文字列・DOM実測・色/文字/余白の固定値を含まない構造用途に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout.ts": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571"
+      }
+    },
+    {
+      "id": "R153",
+      "exception": {
+        "file": "templates/angular/scheduler-view.ts",
+        "rule": "unresolved",
+        "source": "[style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\"",
+        "line": 9,
+        "column": 186,
+        "reason": "[R153] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/scheduler-controller.ts": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+        "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "templates/angular/scheduler-view.ts": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742"
+      }
+    },
+    {
+      "id": "R154",
+      "exception": {
+        "file": "templates/angular/scheduler-view.ts",
+        "rule": "unresolved",
+        "source": "[style.gridColumn]=\"day.column\"",
+        "line": 10,
+        "column": 105,
+        "reason": "[R154] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/scheduler-controller.ts": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+        "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "templates/angular/scheduler-view.ts": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742"
+      }
+    },
+    {
+      "id": "R155",
+      "exception": {
+        "file": "templates/angular/scheduler-view.ts",
+        "rule": "unresolved",
+        "source": "[style.gridRow]=\"day.row\"",
+        "line": 10,
+        "column": 137,
+        "reason": "[R155] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/scheduler-controller.ts": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+        "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "templates/angular/scheduler-view.ts": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742"
+      }
+    },
+    {
+      "id": "R156",
+      "exception": {
+        "file": "templates/angular/scheduler-view.ts",
+        "rule": "unresolved",
+        "source": "[style.gridColumn]=\"entry.problem?'1 / -1':entry.column\"",
+        "line": 11,
+        "column": 112,
+        "reason": "[R156] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/scheduler-controller.ts": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+        "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "templates/angular/scheduler-view.ts": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742"
+      }
+    },
+    {
+      "id": "R157",
+      "exception": {
+        "file": "templates/angular/scheduler-view.ts",
+        "rule": "unresolved",
+        "source": "[style.gridRow]=\"entry.row\"",
+        "line": 11,
+        "column": 169,
+        "reason": "[R157] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/scheduler-controller.ts": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+        "templates/angular/scheduler-model.ts": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+        "templates/angular/scheduler-view.ts": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742"
+      }
+    },
+    {
+      "id": "R159",
+      "exception": {
+        "file": "templates/angular/selection-input.ts",
+        "rule": "unresolved",
+        "source": "[style.--ui-option-columns]=\"checkedColumns()\"",
+        "line": 85,
+        "column": 196,
+        "reason": "[R159] CheckboxGroup列数はoptionの構造count。checkedColumns computedがsafe integer>=1を検査してから返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/selection-input.ts": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db"
+      }
+    },
+    {
+      "id": "R163",
+      "exception": {
+        "file": "templates/angular/splitter.ts",
+        "rule": "unresolved",
+        "source": "[style.flex]=\"value()+' 1 0%'\"",
+        "line": 9,
+        "column": 126,
+        "reason": "[R163] Splitterのflex-growはvalue()がsplitterBoundsでfinite min/max/valueを検査し0〜100内へclampした配置配分。shrink=1/basis=0%は固定の構造文法で、UIの色/文字/余白/px寸法を固定する用途ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+        "templates/angular/splitter.ts": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224"
+      }
+    },
+    {
+      "id": "R164",
+      "exception": {
+        "file": "templates/angular/splitter.ts",
+        "rule": "unresolved",
+        "source": "[style.flex]=\"(folded()?100:(100-value()))+' 1 0%'\"",
+        "line": 11,
+        "column": 126,
+        "reason": "[R164] Splitterのsecondary flex-growはfolded時100、通常は100からsplitterBounds検査済みvalueを引いた0〜100の配分。固定shrink=1/basis=0%と合わせた構造文法で、任意CSS文字列やUIの固定px値を渡さない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/layout-model.ts": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+        "templates/angular/splitter.ts": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224"
+      }
+    },
+    {
+      "id": "R184",
+      "exception": {
+        "file": "templates/angular/virtual-data-table.ts",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"minimumInline()\"",
+        "line": 17,
+        "column": 158,
+        "reason": "[R184] min-inline-sizeは固定semantic table-column-min × (実列配列length + boolean由来utilityCount)だけ。非空列をconfigurationで検査してproblem時はsinkを描画しない。実データ列数を反映する構造用途例外であり、px入力のgridColumnsとは別に扱う。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/table-model.ts": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+        "templates/angular/virtual-data-table.ts": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8"
+      }
+    },
+    {
+      "id": "R186",
+      "exception": {
+        "file": "templates/angular/virtual-data-table.ts",
+        "rule": "unresolved",
+        "source": "[style.min-inline-size]=\"minimumInline()\"",
+        "line": 18,
+        "column": 195,
+        "reason": "[R186] headerと同じminimumInlineを仮想viewportへ用いる。固定semantic table-column-min × (非空実列配列length + boolean由来utilityCount)による構造列数の用途例外であり、row高/px列幅の実測値を含まない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+      },
+      "proof_sha256": {
+        "templates/angular/table-model.ts": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+        "templates/angular/virtual-data-table.ts": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8"
+      }
+    }
+  ]
+}

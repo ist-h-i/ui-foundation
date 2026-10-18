@@ -23,3 +23,5 @@ bundleの最小consumer比較は段階の検証記録に残す。prototypeの総
 参照: [CDK scrolling](https://material.angular.dev/cdk/scrolling/overview)、[CDK drag/drop](https://material.angular.dev/cdk/drag-drop/overview)、[APG Listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)、[ARIA aria-owns](https://www.w3.org/TR/wai-aria-1.2/#aria-owns)（2026-10-06に確認）。
 
 採用時の実測は[一覧12要求の検証](../verification/ui-library-collections-2026-10-06.md)に保持する。最小consumerのJS差分はraw257172B/gzip62795Bで、一覧adapter・Forms・CDK・共通コードを含む。公開module直接importとbarrelの保持挙動を区別し、自動tree shakingを保証しない。CDKの公開viewport.elementRef.nativeElement.clientWidthから所有する仮想行の幅を測定するadapterにより、320px/200%の長いラベルとprojected editorを収める。CDK内部DOM/CSSはpatchしない。
+
+2026-10-14追補: 編集可能なVirtualList/VirtualDataTableの固定行配置は、高速native Tab時の同期要件により公開strategy adapterへ変更する。[ADR 0003](0003-virtual-native-tab.md)を参照。Listbox/dragの採用方針は維持する。

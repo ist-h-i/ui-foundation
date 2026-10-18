@@ -7,7 +7,7 @@ import { NavigationItem } from './navigation';
 import { canFocus } from './focus';
 import { navigationHref, navigationNodes, navigationPath, visibleNavigation, type NavigationNode } from './navigation-model';
 @Component({ selector: 'ui-side-nav,ui-navigation-rail', standalone: true, imports: [NgTemplateOutlet, Icon, ActionControl, NavigationItem,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<nav [attr.aria-label]="label()" [attr.data-collapsed]="folded()" [style.inline-size.px]="folded()?null:width()"><button #collapse uiAction [attr.aria-label]="folded()?('移動先を展開' | uiMessage):('移動先を折り畳む' | uiMessage)" [attr.aria-expanded]="!folded()" [attr.aria-controls]="navId()+'-items'" (click)="setCollapsed(!folded())">{{folded()?('展開' | uiMessage):('折畳み' | uiMessage)}}</button><ul [id]="navId()+'-items'"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:visible(nodes())}" /></ul></nav>
+    template: `<nav [attr.aria-label]="label()" [attr.data-collapsed]="folded()" [style.inline-size.px]="folded()?null:checkedWidth()"><button #collapse uiAction [attr.aria-label]="folded()?('移動先を展開' | uiMessage):('移動先を折り畳む' | uiMessage)" [attr.aria-expanded]="!folded()" [attr.aria-controls]="navId()+'-items'" (click)="setCollapsed(!folded())">{{folded()?('展開' | uiMessage):('折畳み' | uiMessage)}}</button><ul [id]="navId()+'-items'"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:visible(nodes())}" /></ul></nav>
  <ng-template #entries let-nodes="nodes">@for(node of nodes;track node.id){<li>
   @if(visible(node.children??[]).length){<details [attr.data-nav-id]="node.id" [open]="!folded()&&expanded().includes(node.id)"><summary [attr.aria-label]="node.label" [attr.aria-disabled]="node.disabled?'true':null" (click)="toggle($event,node)"><ng-container [ngTemplateOutlet]="content" [ngTemplateOutletContext]="{node:node}" /></summary>@if(node.href){<a uiNavigationItem [attr.href]="node.disabled?null:href(node.href)" [attr.role]="node.disabled?'link':null" [attr.aria-disabled]="node.disabled?'true':null" [attr.tabindex]="node.disabled?0:null" [currentPage]="current()===node.id" (click)="destination($event,node)">{{node.label}}{{'へ移動' | uiMessage}}</a>}<ul><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:visible(node.children??[])}" /></ul></details>}
   @else{<a uiNavigationItem [attr.data-nav-id]="node.id" [attr.href]="node.disabled?null:href(node.href)" [attr.role]="node.disabled||!node.href?'link':null" [attr.aria-disabled]="node.disabled||!node.href?'true':null" [attr.tabindex]="node.disabled||!node.href?0:null" [currentPage]="current()===node.id" [attr.aria-label]="node.label" (click)="destination($event,node)"><ng-container [ngTemplateOutlet]="content" [ngTemplateOutletContext]="{node:node}" /></a>}
@@ -24,6 +24,7 @@ export class SideNav {
     readonly collapsed = input(false, { transform: booleanAttribute });
     readonly collapsedChange = output<boolean>();
     readonly width = input<number | null>(null);
+    protected readonly checkedWidth = computed(() => { const width = this.width(); if (width !== null && (!Number.isFinite(width) || width <= 0)) throw new Error('SideNav width must be positive.'); return width; });
     readonly selected = output<NavigationNode>();
     protected readonly nodes = computed(() => navigationNodes(this.items()));
     protected readonly visible = visibleNavigation;
@@ -46,9 +47,7 @@ export class SideNav {
             const nodes = this.nodes();
             this.folded();
             this.expanded();
-            const width = this.width();
-            if (width !== null && (!Number.isFinite(width) || width <= 0))
-                throw new Error('SideNav width must be positive.');
+            this.checkedWidth();
             if (!this.navId().trim() || /\s/.test(this.navId()) || !this.label().trim())
                 throw new Error('SideNav requires an ID and label.');
             untracked(() => {

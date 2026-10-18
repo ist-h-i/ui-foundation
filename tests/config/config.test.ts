@@ -379,3 +379,26 @@ for (const role of ['color.link', 'color.tab-selected']) {
     });
   }
 }
+
+test('source checks are optional and retain explicit settings through resolution', () => {
+  const config = parseConfig(example);
+  delete config.checks;
+  assert.equal(resolveConfig(config).checks, undefined);
+  config.checks = { source_roots: ['src'], tsconfig: 'tsconfig.app.json',
+    approved_components: [{ module: '@vendor/ui', export: 'ForeignButton', reason: 'Adopted control' }],
+    exceptions: [{ file: 'src/app.css', rule: 'literal-token', source: 'width:400px', reason: 'Fixed scrolling specimen' }] };
+  assert.deepEqual(resolveConfig(config).checks, config.checks);
+});
+
+test('source check config rejects invalid roots, approvals, and exceptions', () => {
+  for (const checks of [
+    { source_roots: [] }, { source_roots: ['../outside'] }, { source_roots: ['src/**'] },
+    { source_roots: ['node_modules/vendor'] }, { source_roots: ['src','src'] },
+    { source_roots: ['src'], approved_components: [{ module: '@vendor/ui', export: 'Button', reason: '' }] },
+    { source_roots: ['src'], exceptions: [{ file: 'src/app.css', rule: 'parse-error', source: 'invalid', reason: 'Cannot suppress unreadable sources' }] },
+    { source_roots: ['src'], unknown: true },
+  ]) {
+    const config = parseConfig(example);
+    assert.throws(() => resolveConfig({ ...config, checks } as never), ConfigValidationError);
+  }
+});

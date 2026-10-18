@@ -7,6 +7,15 @@ for (const profile of ['guided', 'dense'] as const) {
     await page.getByLabel('表示設定', { exact: true }).selectOption(profile);
     await page.setViewportSize({ width: 320, height: 1000 });
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+    // Verify the catalog setting before calendar actions so unrelated native
+    // select layout cannot be mistaken for calendar overflow.
+    await expect.poll(() => page.getByLabel('表示設定', { exact: true }).evaluate(element => {
+      const wrapper = element.parentElement!;
+      const box = wrapper.getBoundingClientRect();
+      return box.left >= -1 && box.right <= window.innerWidth + 1
+        && wrapper.scrollWidth <= wrapper.clientWidth + 1;
+    }), { message: `${profile}: the profile selector fits at 320px and 200%` }).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(321);
     const trigger = page.getByRole('button', { name: '予定日のカレンダーを開く', exact: true });
     const dialog = page.getByRole('dialog', { name: '予定日の日付を選択', exact: true });
     const visibleDestination = () => dialog.evaluate(element => {
@@ -67,6 +76,7 @@ for (const profile of ['guided', 'dense'] as const) {
     }
     await page.getByRole('button', { name: '年の月一覧を切替', exact: true }).click();
     const calendar = page.locator('ui-calendar').filter({ has: page.locator('section[aria-label="予定カレンダー"]') });
+    for (let month = 1; month <= 12; month++) await expect(calendar.getByRole('button', { name: `${month}月`, exact: true })).toHaveCount(1);
     for (const direction of ['ltr', 'rtl'] as const) {
       await page.getByLabel('RTL', { exact: true }).setChecked(direction === 'rtl');
       const january = calendar.getByRole('button', { name: '1月', exact: true });

@@ -1,6 +1,7 @@
 import {test,expect} from './runtime-test';
 import AxeBuilder from '@axe-core/playwright';
 import type {Page,TestInfo} from '@playwright/test';
+import {verifyCodeEditorNativeInput} from '../ui/code-editor-native';
 type Profile='guided'|'dense';
 const other=(profile:Profile):Profile=>profile==='guided'?'dense':'guided';
 async function narrow(page:Page){await page.setViewportSize({width:320,height:800});await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>document.documentElement.style.fontSize='200%');}
@@ -18,6 +19,12 @@ async function evidence(page:Page,info:TestInfo,selector:string){
  await info.attach('aria-target',{body:await target.ariaSnapshot(),contentType:'text/plain'});
 }
 for(const profile of ['guided','dense'] as const){
+ test(`CodeEditor ${profile}: native input retains text and doc-only configuration`,async({page},info)=>{
+  await verifyCodeEditorNativeInput(page,profile,info);
+ });
+ test(`CodeEditor ${profile}: native input survives scroll before mutation delivery`,async({page},info)=>{
+  await verifyCodeEditorNativeInput(page,profile,info,true);
+ });
  test(`Card ${profile}: collapse/body visibility, profile and input identity`,async({page},info)=>{
   await catalog(page,profile);const input=page.getByRole('textbox',{name:'Card内メモ',exact:true}),card=page.locator('ui-card').filter({has:page.locator('#verification-card-content')});await input.fill('再開する未保存の下書き');await input.evaluate(element=>(window as any).__crossCardInput=element);
   const inside=page.getByRole('button',{name:'本文から折り畳む',exact:true});await inside.focus();await inside.press('Enter');await expect(input).toBeHidden();const expand=page.getByRole('button',{name:'展開: 申請内容',exact:true});await expect(expand).toBeFocused();await expand.press('Enter');await expect(input).toHaveValue('再開する未保存の下書き');expect(await input.evaluate(element=>element===(window as any).__crossCardInput)).toBe(true);
@@ -63,7 +70,7 @@ for(const profile of ['guided','dense'] as const){
   await catalog(page,profile);const opener=page.getByRole('button',{name:'編集Dialogを開く',exact:true});await opener.focus();await opener.press('Enter');const dialog=page.getByRole('dialog',{name:'申請の編集',exact:true}),input=dialog.getByRole('textbox',{name:'Dialogの入力',exact:true});await expect(input).toBeFocused();expect(await dialog.evaluate(element=>element.matches(':modal'))).toBe(true);await input.fill('閉じ戻っても保持');await input.evaluate(element=>(window as any).__crossDialogInput=element);
   // Scoped profile is an application-controlled DOM scope; the native modal background stays inert.
   await dialog.evaluate((element,profile)=>element.setAttribute('data-ui-profile',profile),other(profile));await expect(input).toHaveValue('閉じ戻っても保持');await expect(input).toBeFocused();expect(await input.evaluate(element=>element===(window as any).__crossDialogInput)).toBe(true);
-  await dialog.getByLabel('終了保留を解除',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(page.getByTestId('dialog-held')).toHaveText('終了保留: 1');await dialog.getByLabel('終了保留を解除',{exact:true}).uncheck();await dialog.getByLabel('処理中',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(dialog.getByRole('button',{name:'ダイアログを閉じる',exact:true})).toBeDisabled();await dialog.getByLabel('処理中',{exact:true}).uncheck();
+  await dialog.getByLabel('終了を保留する',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(page.getByTestId('dialog-held')).toHaveText('終了保留: 1');await dialog.getByLabel('終了を保留する',{exact:true}).uncheck();await dialog.getByLabel('処理中',{exact:true}).check();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();await expect(dialog.getByRole('button',{name:'ダイアログを閉じる',exact:true})).toBeDisabled();await dialog.getByLabel('処理中',{exact:true}).uncheck();
   const menu=dialog.getByRole('button',{name:'Dialog内Menu',exact:true});await menu.focus();await menu.press('ArrowDown');const file=page.locator('#dialog-menu').getByRole('menuitem',{name:'ファイル',exact:true});await expect(file).toBeFocused();await file.press('ArrowLeft');await expect(page.locator('#dialog-menu').getByRole('menuitem',{name:'新規',exact:true})).toBeFocused();await page.keyboard.press('Escape');await expect(file).toBeFocused();await page.keyboard.press('Escape');await expect(menu).toBeFocused();await expect(dialog).toBeVisible();
   await evidence(page,info,'dialog[open]');await page.keyboard.press('Escape');await expect(dialog).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('dialog-result')).toHaveText('終了: escape / ');
   await opener.press('Enter');await expect(input).toHaveValue('閉じ戻っても保持');expect(await input.evaluate(element=>element===(window as any).__crossDialogInput)).toBe(true);await dialog.getByRole('button',{name:'編集を確定',exact:true}).focus();await page.keyboard.press('Enter');await expect(dialog).toBeHidden();await expect(opener).toBeFocused();await expect(page.getByTestId('dialog-result')).toHaveText('終了: confirm / saved');

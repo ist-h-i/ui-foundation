@@ -1,6 +1,7 @@
 import { isAlias, isMap, isScalar, isSeq, LineCounter, parseDocument } from 'yaml';
 import { CATEGORY_TYPES, CONTRAST_PAIRS, CORE_ROLES, semanticVariable, tailwindVariable } from './roles.ts';
 import type { PrimitiveType } from './roles.ts';
+import type { ChecksConfig } from './check/types.ts';
 
 export type { PrimitiveType } from './roles.ts';
 export interface Primitive { type: PrimitiveType; value: string | number }
@@ -20,6 +21,7 @@ export interface FoundationConfig {
   primitives: Record<string, Primitive>;
   semantic: Record<string, string>;
   profiles: Record<string, Profile>;
+  checks?: ChecksConfig;
 }
 export interface ResolvedToken extends Primitive { reference: string }
 export interface ResolvedProfile extends Omit<Profile, 'semantic'> { semantic: Record<string, ResolvedToken> }
@@ -55,7 +57,7 @@ class Validator {
     this.issues.push({ path, message, ...position });
   }
   finish() { if (this.issues.length) throw new ConfigValidationError(this.issues); }
-  object(value: unknown, path: string, allowed?: readonly string[]): Record<string, unknown> {
+  object(value: unknown, path: string, allowed?: readonly string[], optional: readonly string[] = []): Record<string, unknown> {
     if (!value || typeof value !== 'object' || Array.isArray(value)) {
       this.issue(path, 'Expected a mapping');
       return {};
@@ -66,7 +68,7 @@ class Validator {
         if (!allowed.includes(key)) this.issue(path === '$' ? key : `${path}.${key}`, `Unknown key "${key}"`);
       }
       for (const key of allowed) {
-        if (!own(result, key)) this.issue(path === '$' ? key : `${path}.${key}`, `Required field "${key}" is missing`);
+        if (!own(result, key) && !optional.includes(key)) this.issue(path === '$' ? key : `${path}.${key}`, `Required field "${key}" is missing`);
       }
     }
     return result;
@@ -118,7 +120,7 @@ function validValue(type: PrimitiveType, value: unknown): boolean {
 
 function validateConfig(input: unknown, source: SourceLocations): FoundationConfig {
   const validator = new Validator(source);
-  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles']);
+  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles', 'checks'], ['checks']);
   if (root.schema_version !== 1) validator.issue('schema_version', 'Only schema_version: 1 is supported');
   const context = validator.object(root.context, 'context', ['product', 'goals', 'constraints']);
   const output = validator.text(root.output, 'output');
@@ -173,9 +175,56 @@ function validateConfig(input: unknown, source: SourceLocations): FoundationConf
     primitives,
     semantic: validator.semantics(root.semantic, 'semantic'),
     profiles,
+    ...(own(root, 'checks') ? { checks: validateChecks(root.checks, validator) } : {}),
   };
   validator.finish();
   return config;
+}
+
+function validateChecks(input: unknown, validator: Validator): ChecksConfig {
+  const checks = validator.object(input, 'checks', ['source_roots', 'tsconfig', 'approved_components', 'exceptions'], ['tsconfig', 'approved_components', 'exceptions']);
+  const path = (value: unknown, at: string): string => {
+    const text = validator.text(value, at);
+    if (text !== text.trim() || /[\\\u0000-\u001f<>:"|?*]/.test(text) || text.startsWith('/')
+      || text.split('/').some(part => !part || part === '.' || part === '..' || ['.git', 'node_modules'].includes(part.toLowerCase()))) {
+      validator.issue(at, 'Expected a normalized project-relative path without traversal or glob patterns');
+    }
+    return text;
+  };
+  const source_roots = validator.list(checks.source_roots, 'checks.source_roots', true)
+    .map((value, index) => path(value, `checks.source_roots.${index}`));
+  if (new Set(source_roots).size !== source_roots.length) validator.issue('checks.source_roots', 'Duplicate source roots');
+  const array = (key: string): unknown[] => {
+    if (!own(checks, key)) return [];
+    if (!Array.isArray(checks[key])) { validator.issue(`checks.${key}`, 'Expected a list'); return []; }
+    return checks[key] as unknown[];
+  };
+  const approved_components = array('approved_components').map((item, index) => {
+    const at = `checks.approved_components.${index}`;
+    const approval = validator.object(item, at, ['module', 'export', 'reason']);
+    const module = validator.text(approval.module, `${at}.module`);
+    if (!/^(?:@[a-z0-9_-]+\/)?[a-z0-9_-]+(?:\/[a-z0-9_.-]+)*$/i.test(module) || module.split('/').includes('..')) validator.issue(`${at}.module`, 'Expected a bare package module specifier');
+    const name = validator.text(approval.export, `${at}.export`);
+    if (!/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name)) validator.issue(`${at}.export`, 'Expected an exported identifier');
+    return { module, export: name, reason: validator.text(approval.reason, `${at}.reason`) };
+  });
+  const approvalKeys = approved_components.map(item => `${item.module}:${item.export}`);
+  if (new Set(approvalKeys).size !== approvalKeys.length) validator.issue('checks.approved_components', 'Duplicate component approvals');
+  const exceptionRules = new Set(['literal-token', 'primitive-reference', 'unknown-token', 'token-category', 'unapproved-component', 'unresolved']);
+  const exceptions = array('exceptions').map((item, index) => {
+    const at = `checks.exceptions.${index}`;
+    const exception = validator.object(item, at, ['file', 'rule', 'source', 'reason', 'line', 'column'], ['line', 'column']);
+    const rule = validator.text(exception.rule, `${at}.rule`);
+    if (!exceptionRules.has(rule)) validator.issue(`${at}.rule`, 'Unknown or non-exemptible check rule');
+    const coordinates: { line?: number; column?: number } = {};
+    for (const coordinate of ['line', 'column'] as const) if (own(exception, coordinate)) {
+      if (!Number.isSafeInteger(exception[coordinate]) || Number(exception[coordinate]) < 1) validator.issue(`${at}.${coordinate}`, 'Expected a positive integer source coordinate');
+      else coordinates[coordinate] = Number(exception[coordinate]);
+    }
+    return { file: path(exception.file, `${at}.file`), rule,
+      source: validator.text(exception.source, `${at}.source`), reason: validator.text(exception.reason, `${at}.reason`), ...coordinates };
+  });
+  return { source_roots, ...(own(checks, 'tsconfig') ? { tsconfig: path(checks.tsconfig, 'checks.tsconfig') } : {}), approved_components, exceptions };
 }
 
 /** Parse only literal YAML values; diagnostics retain the original key/value locations. */
@@ -317,5 +366,6 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
     default_profile: config.default_profile,
     primitives: config.primitives,
     profiles,
+    ...(config.checks ? { checks: config.checks } : {}),
   };
 }

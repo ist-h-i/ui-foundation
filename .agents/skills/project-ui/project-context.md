@@ -194,6 +194,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.map-region": {
+          "reference": "map-region-opacity",
+          "type": "number",
+          "value": 0.25
+        },
         "opacity.watermark": {
           "reference": "watermark-opacity",
           "type": "number",
@@ -368,6 +373,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "space-8",
           "type": "length",
           "value": "8px"
+        },
+        "text.avatar": {
+          "reference": "avatar-dense",
+          "type": "length",
+          "value": "48px"
         },
         "text.body": {
           "reference": "text-dense",
@@ -577,6 +587,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "type": "easing",
           "value": "ease-out"
         },
+        "opacity.map-region": {
+          "reference": "map-region-opacity",
+          "type": "number",
+          "value": 0.25
+        },
         "opacity.watermark": {
           "reference": "watermark-opacity",
           "type": "number",
@@ -751,6 +766,11 @@ YAMLから生成した判断材料です。変更は設定の正本へ戻して�
           "reference": "space-12",
           "type": "length",
           "value": "12px"
+        },
+        "text.avatar": {
+          "reference": "avatar-guided",
+          "type": "length",
+          "value": "64px"
         },
         "text.body": {
           "reference": "text-guided",

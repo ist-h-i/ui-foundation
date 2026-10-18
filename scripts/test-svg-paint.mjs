@@ -1,10 +1,11 @@
-import {mkdtemp,cp,readFile,writeFile,mkdir,readdir,symlink,realpath} from 'node:fs/promises';
+import {mkdtemp,cp,readFile,writeFile,mkdir,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {resolve,join} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
+import {prepareSvgConsumer} from './verification/prepare-svg-consumer.mjs';
 
 const root=await realpath(process.argv[2]??fileURLToPath(new URL('../',import.meta.url)));
 const fixtures=fileURLToPath(new URL('../tests/consumer-svg-paint/',import.meta.url));
@@ -12,16 +13,7 @@ const work=await mkdtemp(join(tmpdir(),'ui-svg-paint-'));
 const output=resolve(process.env.UI_SVG_EVIDENCE??join(root,'test-results/svg-paint'));
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 await mkdir(join(work,'evidence'));await mkdir(output,{recursive:true});
-const sourceFiles=[];
-async function sourceInventory(relative){for(const item of await readdir(join(root,relative),{withFileTypes:true})){const path=join(relative,item.name);if(item.isDirectory())await sourceInventory(path);else if(item.isFile()){const bytes=await readFile(join(root,path));sourceFiles.push({path,bytes:bytes.length,sha256:digest(bytes)});}}}
-for(const folder of ['src','templates','skills','examples'])await sourceInventory(folder);
-for(const path of ['package.json','package-lock.json','tests/fixture-app/app.css']){const bytes=await readFile(join(root,path));sourceFiles.push({path,bytes:bytes.length,sha256:digest(bytes)});}
-for(const folder of ['src','templates','skills','examples'])await cp(join(root,folder),join(work,folder),{recursive:true});
-for(const path of ['package.json','package-lock.json','tests/fixture-app/app.css']){await mkdir(resolve(work,path,'..'),{recursive:true});await cp(join(root,path),join(work,path));}
-await cp(fixtures,work,{recursive:true});await symlink(await realpath(join(root,'node_modules')),join(work,'node_modules'),'dir');
-for(const file of sourceFiles)assert.equal(digest(await readFile(join(work,file.path))),file.sha256,'Exact raw copy '+file.path);
-const dependencies=JSON.parse(await readFile(join(work,'package.json'),'utf8')).devDependencies;
-const installed=[];for(const [name,expected] of Object.entries(dependencies)){const actual=JSON.parse(await readFile(join(work,'node_modules',name,'package.json'),'utf8')).version;assert.equal(actual,expected,name+' exact dependency');installed.push({name,expected,actual});}
+const {sourceFiles,installed}=await prepareSvgConsumer({root,work,fixtures});
 await writeFile(join(work,'evidence/source-input.json'),JSON.stringify({root,work,sourceFiles,installed},null,2)+'\n');
 // Diagnostic helper filters must never narrow the permanent 34-scenario contract.
 const childEnvironment={...process.env};

@@ -1,0 +1,72 @@
+{
+  "source_report": "tests/fixtures/static-checks/seven-candidates/cli-1.log",
+  "source_report_sha256": "091230e55f005a2d12dec18615f8951bff4595cd66979977b1a0039bbd53687f",
+  "records": [
+    {
+      "id": "existing-data-grid-12ch",
+      "before": {
+        "file": "templates/angular/data-grid.ts",
+        "rule": "literal-token",
+        "source": "min-inline-size:(dynamic expression)",
+        "reason": "日付文字列／編集表の文字列を省略せず収めるための文字幅に対する下限。操作領域と余白は別の意味トークンへ接続する。"
+      },
+      "exception": {
+        "file": "templates/angular/data-grid.ts",
+        "rule": "literal-token",
+        "source": "min-inline-size:(dynamic expression; fixed 12ch)",
+        "reason": "日付文字列／編集表の文字列を省略せず収めるための文字幅に対する下限。操作領域と余白は別の意味トークンへ接続する。"
+      },
+      "reason": "既存の文字幅12chの用途を維持し、動的式全般を許可するmatcherから具体値12chへ狭めた。columns幅・toolbar寸法の既存guardは変更なし。",
+      "proof_sha256": {
+        "templates/angular/data-grid.ts": "79c3cd9887da671dfc7625fb6da5ef161bdeca1ce8a830096eaa4e6fc6b5d644"
+      }
+    },
+    {
+      "id": "F001",
+      "exception": {
+        "file": "templates/angular/layout.ts",
+        "rule": "literal-token",
+        "source": "max-inline-size:(dynamic expression; fixed 100%)",
+        "line": 15,
+        "column": 12,
+        "reason": "[F001] Containerの100%は親領域を超えないための配置上限とfull幅。content時はsize.contentとminで組み合わせる。任意のpx入力を許可する例外ではなく、具体値100%の診断一箇所だけに限定する。"
+      },
+      "producer": "Container.maximum(): number branch is min(100%, value+px), content is min(100%, size.content), full is100%; numericinput remains unresolved.",
+      "scope": "Only fixed100% reported at this sink. Future concretepx orotherpercentages are separatediagnostics.",
+      "proof_sha256": {
+        "templates/angular/layout.ts": "581a9b65f23c7cc516f720fe7027039c7238589a895448e08a4366c404567d75"
+      },
+      "reaudit": {
+        "file": "templates/angular/layout.ts",
+        "prior_snapshot": "docs/verification/ui-static-runtime-final-gaps-20261015/release-snapshot/source/templates/angular/layout.ts",
+        "before_sha256": "30282afb2e7eab6937d94d65f80ee038bda000ae07bac7d1a8a80cf612556493",
+        "after_sha256": "581a9b65f23c7cc516f720fe7027039c7238589a895448e08a4366c404567d75",
+        "affected_ids": [
+          "R116",
+          "R117",
+          "R119",
+          "R120",
+          "R131",
+          "D094",
+          "D107",
+          "D108",
+          "D109"
+        ],
+        "affected_literal_ids": [
+          "F001"
+        ],
+        "permitted_replacements": [
+          [
+            "'[style.gap]':'resolvedGap()','[attr.data-columns]'",
+            "'[style.gap]':'resolvedGap() === \"0\" ? \"0\" : resolvedGap() === \"var(--ui-space-control-gap)\" ? \"var(--ui-space-control-gap)\" : resolvedGap() === \"var(--ui-space-section)\" ? \"var(--ui-space-section)\" : \"var(--ui-space-field)\"','[attr.data-columns]'"
+          ]
+        ],
+        "judgment": "Only the Grid final gap host binding is normalized to four permitted outputs. All existing purpose-excepted Container width cap, Grid row/column counts, GridCell spans, ScrollArea height, StickyRegion offsets, and AspectRatio numeric-ratio producers, guards, sinks, and helper imports are byte-identical. F001 retains exactly the Container maximum() fixed 100% fragment and its one-site literal-token matcher; the parent cap semantics and all numeric branches are unchanged.",
+        "static_status": "Unknown",
+        "universal_runtime_status": "Unknown"
+      }
+    }
+  ],
+  "prior": "docs/verification/ui-static-warning-implementation-20261015/literal-purpose-proof.json",
+  "prior_sha256": "1e0b831918de36a93d5ffcff1805cc074900cbf0478845fd75d67cd263455dc4"
+}

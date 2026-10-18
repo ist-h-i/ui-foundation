@@ -20,6 +20,19 @@ for(const profile of profiles){
  await openSpecialistSurface(page,'Gantt');await expect(page.locator('#gantt .ui-specialist-surface svg')).toBeVisible();await expect(page.locator('#gantt')).toContainText('未取得');await expect(page.locator('#gantt table')).toContainText('提出');await page.getByLabel('時間軸').selectOption('week');await page.getByLabel('承認 進捗を編集',{exact:true}).fill('40');await page.getByLabel('承認 進捗を編集',{exact:true}).press('Tab');await expect(page.locator('#gantt progress').last()).toHaveAttribute('value','40');await page.getByLabel('承認 開始',{exact:true}).fill('2026-10-09');await page.getByLabel('承認 開始',{exact:true}).press('Tab');await expect(page.locator('#gantt [role=alert]')).toHaveCount(0);
    await info.attach('control-observation',{body:JSON.stringify({profile,category:'Gantt',route:'/catalog/specialist',source:'public generated Angular index'}),contentType:'application/json'});
   });
+  test('Map: token opacity changes redraw an existing region layer',async({page},info)=>{
+    await openSpecialistSurface(page,'Map');
+    await expect(page.locator('#map [data-map-ready]')).toHaveAttribute('data-map-ready','true');
+    const canvas=page.locator('#map canvas');
+    const before=await canvas.screenshot();
+    const bounds=await canvas.boundingBox();
+    await page.locator('ui-map').evaluate(element=>(element as HTMLElement).style.setProperty('--ui-opacity-map-region','0'));
+    await expect.poll(async()=>Buffer.compare(await canvas.screenshot(),before)).not.toBe(0);
+    expect(await canvas.boundingBox()).toEqual(bounds);
+    await expect(page.locator('#map [role=alert]')).toHaveCount(0);
+    await expect(page.locator('[data-map-selection]')).toHaveText('なし');
+    await info.attach('map-region-opacity-zero',{body:await canvas.screenshot(),contentType:'image/png'});
+  });
   test('Kanban: keyboard reorder, cross-column move and actual WIP limit',async({page},info)=>{
  await openSpecialistSurface(page,'Kanban');await page.getByRole('button',{name:'申請Bを前へ',exact:true}).press('Enter');await expect(page.locator('[data-board-cards]')).toHaveText('b:todo,a:todo,c:done');await expect(page.getByLabel('申請Aの移動先').locator('option[value=done]')).toHaveJSProperty('disabled',true);await page.getByLabel('申請Aの移動先').selectOption('doing');await expect(page.locator('[data-board-cards]')).toHaveText('b:todo,a:doing,c:done');
    await info.attach('control-observation',{body:JSON.stringify({profile,category:'Kanban',route:'/catalog/specialist',source:'public generated Angular index'}),contentType:'application/json'});

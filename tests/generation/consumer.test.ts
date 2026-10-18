@@ -21,11 +21,13 @@ test('a separate generated consumer compiles and operates with strict forms and 
  t.after(()=>rm(root,{recursive:true,force:true}));
  const config=parseConfig(await readFile(resolve(repository,'examples/ui.config.example.yaml'),'utf8'));
  config.output='foundation';
+ delete config.checks;
  await writeFile(resolve(root,'ui.config.yaml'),stringify(config));
  await symlink(resolve(repository,'node_modules'),resolve(root,'node_modules'));
  await syncProject({root});
  assert.deepEqual(await syncProject({root}),{changes:[],written:false});
- assert.deepEqual(await checkProject({root}),{valid:true,differences:[]});
+ const checked=await checkProject({root});
+ assert.equal(checked.valid,true);assert.deepEqual(checked.differences,[]);assert.equal(checked.source.status,'not_configured');
  await writeFile(resolve(root,'tsconfig.json'),JSON.stringify({compilerOptions:{target:'ES2022',module:'ESNext',moduleResolution:'bundler',lib:['ES2022','DOM'],strict:true,experimentalDecorators:true,skipLibCheck:true,noEmitOnError:true,outDir:'compiled'},angularCompilerOptions:{strictTemplates:true,strictInjectionParameters:true,compilationMode:'full'},include:['foundation/angular/**/*.ts','consumer.ts']}));
  const consumer=`import {Component} from '@angular/core';
 import {bootstrapApplication} from '@angular/platform-browser';

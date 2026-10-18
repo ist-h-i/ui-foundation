@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "scope": "Fresh independent read-only review probes for the v5 frozen recipe snapshot. No finalizer main, validate_release, curator main, build, browser or full npm test invocation. These are review observations, not new execution-success receipts.",
+  "base_sha": "b4aea63f67447dda1cabcf2da749617aa39c2d6f",
+  "head_sha": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+  "branch": "feat/ui-static-warning-release",
+  "opening_hash_check": {
+    "snapshot_sha256": "5e5ff7e70e472c23dad586b569a2306e01ff59cc6628b7b61ad1c5dd070e60e7",
+    "patch_sha256": "e7112def1cbf34f0b30e87ea31e1fbc1eb3951fb29f2f782f55fd6f0a82dfc37",
+    "tar_sha256": "f89c175bcbfd756f715c8a150eaa617fc6317783750d21eaced99cefbf875931",
+    "files_checked": 29,
+    "mismatches": []
+  },
+  "closing_hash_and_inventory_check": {
+    "utc": "2026-10-18T13:33:35.371103+00:00",
+    "protected_inputs": 493,
+    "protected_input_mismatches": [],
+    "selected_current_inventory_excluding_future_svg": 440,
+    "duplicate_names": [],
+    "private_checkpoints": [],
+    "recursive_symlinks": [],
+    "historical_normal_v2_artifacts": 116,
+    "historical_normal_v3_artifacts": 83,
+    "uncreated_sealed_outputs": {
+      "normal-v4-summary.json": true,
+      "final-scope-bridge-v2.json": true,
+      "release-proof.tar.gz": true,
+      "release-proof-index.json": true
+    },
+    "fixed_inputs": [
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/finalize-release-results-v2.py",
+        "expected": "7b3bcce53b17da51853af01967cc33281660fa86d99d2699f34a1ada4006ffc4",
+        "actual": "7b3bcce53b17da51853af01967cc33281660fa86d99d2699f34a1ada4006ffc4"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/curate-release-proof-v2.py",
+        "expected": "bda3541c3159e735de827f2098dbe671c9a7a5ed07e904d22c53929618324afe",
+        "actual": "bda3541c3159e735de827f2098dbe671c9a7a5ed07e904d22c53929618324afe"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/finalization-mapping-preparation-v2.json",
+        "expected": "18953a51adf7b43eddf65aba9047c397f30ed233cede1c65dae7d63cf57feef1",
+        "actual": "18953a51adf7b43eddf65aba9047c397f30ed233cede1c65dae7d63cf57feef1"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/finalize-release-results.py",
+        "expected": "62bcea6e75e3195bd1f289eb7e3c31373f4c77ff52a63c010e3f918a14fa85d8",
+        "actual": "62bcea6e75e3195bd1f289eb7e3c31373f4c77ff52a63c010e3f918a14fa85d8"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/curate-release-proof.py",
+        "expected": "5fb49f2eef81c7d408d424600befce755a5a38541bd979a3c34f00ed071e57fb",
+        "actual": "5fb49f2eef81c7d408d424600befce755a5a38541bd979a3c34f00ed071e57fb"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/browser_run_proof.py",
+        "expected": "784764f646d5a21fe0b949654f33d66b8207d6572c3378fc6b3779697416d10b",
+        "actual": "784764f646d5a21fe0b949654f33d66b8207d6572c3378fc6b3779697416d10b"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/test-browser-run-proof.py",
+        "expected": "70a2dea8fcd345fb7dc9af4c5cbbc0c57ddc52bc6c674b3add832c9c99597e85",
+        "actual": "70a2dea8fcd345fb7dc9af4c5cbbc0c57ddc52bc6c674b3add832c9c99597e85"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/run.py",
+        "expected": "4c76cb2eaf1c1d26e4974feaafafd1fb1ba225ee489d14b7629905bf51e3c107",
+        "actual": "4c76cb2eaf1c1d26e4974feaafafd1fb1ba225ee489d14b7629905bf51e3c107"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/run-clean-checkout-v4.py",
+        "expected": "1ef51bb54276cacec8580c74d82d014706c0201184131dc04cf65e75cdfeaf34",
+        "actual": "1ef51bb54276cacec8580c74d82d014706c0201184131dc04cf65e75cdfeaf34"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/candidate-manifest-v8.json",
+        "expected": "e88065d518ab9a32651edf68fdff5ce0ba9571117ba47b77fadc4a0b8ef0781c",
+        "actual": "e88065d518ab9a32651edf68fdff5ce0ba9571117ba47b77fadc4a0b8ef0781c"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/classification-evidence-v8.json",
+        "expected": "42a888dcee318de5bc69bcfd500f221a852410ae53791c478bf6f4b36a05d946",
+        "actual": "42a888dcee318de5bc69bcfd500f221a852410ae53791c478bf6f4b36a05d946"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/review-evidence-recipe-v4.md",
+        "expected": "d2a035b9bf677d80ef2329dcd93b9d7d4d9dbe70a1de24bf1de758b2988e985d",
+        "actual": "d2a035b9bf677d80ef2329dcd93b9d7d4d9dbe70a1de24bf1de758b2988e985d"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/review-evidence-recipe-v4-snapshot.json",
+        "expected": "a74356e71e696e36aac576c24dd92292c881ab522857d1bef5006968498f0e76",
+        "actual": "a74356e71e696e36aac576c24dd92292c881ab522857d1bef5006968498f0e76"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/review-evidence-recipe-v4-probes.json",
+        "expected": "dde12a0c9fc71a5d2f3509bc684563cd8d7789b695de9f91deba38c0a9067380",
+        "actual": "dde12a0c9fc71a5d2f3509bc684563cd8d7789b695de9f91deba38c0a9067380"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/review-evidence-adjudication-v4.json",
+        "expected": "9d09f49a301ba690b0a00616dc47ff49ee52960cfa2fda452ae45448d3de398b",
+        "actual": "9d09f49a301ba690b0a00616dc47ff49ee52960cfa2fda452ae45448d3de398b"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/verification-tools-final-v2.log",
+        "expected": "12ec0e0477263572eda266ab4a28539769841291b5de19c8380509dd82f4e5c8",
+        "actual": "12ec0e0477263572eda266ab4a28539769841291b5de19c8380509dd82f4e5c8"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/verification-tools-final-v2-receipt.json",
+        "expected": "5adfc195397fdaef508c2a2bbd19fa40d70b4f2e585a25e65c9fd654b9def9a5",
+        "actual": "5adfc195397fdaef508c2a2bbd19fa40d70b4f2e585a25e65c9fd654b9def9a5"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-radio-v12/results.json",
+        "expected": "58079fffc501392c65a4d7a1674140d751bb173f56279858ef54e7baed31c5da",
+        "actual": "58079fffc501392c65a4d7a1674140d751bb173f56279858ef54e7baed31c5da"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-radio-v12/run-receipt.json",
+        "expected": "0163dac24a9a2d8f85bb487e0695e4af6c6a2c856d77248dd8bc27e255d52754",
+        "actual": "0163dac24a9a2d8f85bb487e0695e4af6c6a2c856d77248dd8bc27e255d52754"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-radio-v12-receipt.json",
+        "expected": "1002f52f64b21e7066882e68ff3152af5b2b36d1749add72307d7080323fd425",
+        "actual": "1002f52f64b21e7066882e68ff3152af5b2b36d1749add72307d7080323fd425"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-radio-v12-summary.json",
+        "expected": "7d1c668ff3c578b61bf7e01f4cbc83e821b58edd783379077a215117cf4e6e1c",
+        "actual": "7d1c668ff3c578b61bf7e01f4cbc83e821b58edd783379077a215117cf4e6e1c"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-runtime-v9/results.json",
+        "expected": "88ef75f1f0cdaf905056f912c1740da89ce97a24e48c6ca44453fbc1ffbf3351",
+        "actual": "88ef75f1f0cdaf905056f912c1740da89ce97a24e48c6ca44453fbc1ffbf3351"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-runtime-v9/run-receipt.json",
+        "expected": "6d039b379a2a7a5c10c812ffa58a3f494ceba503cf06b722bff3eebbcd2a08a5",
+        "actual": "6d039b379a2a7a5c10c812ffa58a3f494ceba503cf06b722bff3eebbcd2a08a5"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-runtime-v9-receipt.json",
+        "expected": "a6d6c9947d47dbf13e973a0907334d99e4f7311d24b9665e87c235b53cd17862",
+        "actual": "a6d6c9947d47dbf13e973a0907334d99e4f7311d24b9665e87c235b53cd17862"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/cross-browser-runtime-summary.json",
+        "expected": "c278cecc0fe59a48269a754b124ad52bf0eebd8fc45cede0aacefbd7c2773829",
+        "actual": "c278cecc0fe59a48269a754b124ad52bf0eebd8fc45cede0aacefbd7c2773829"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/run-existing-bundle.mjs",
+        "expected": "85ac485b6eb8d60b48fdb79ec1b555e104ff762a6064491790781ed9ef7633d1",
+        "actual": "85ac485b6eb8d60b48fdb79ec1b555e104ff762a6064491790781ed9ef7633d1"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/normal-v3-failure-summary.json",
+        "expected": "5ddcd2ca73bab0f1c20215415893de34a9c527ff4ba394388f751d184e17a3b4",
+        "actual": "5ddcd2ca73bab0f1c20215415893de34a9c527ff4ba394388f751d184e17a3b4"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/json-terminal-targeted-v1-summary.json",
+        "expected": "67f52b303ecd76cead83574fc478a5821facf9ad8241489dc7dff752c73f6f26",
+        "actual": "67f52b303ecd76cead83574fc478a5821facf9ad8241489dc7dff752c73f6f26"
+      },
+      {
+        "path": "docs/verification/ui-static-warning-release-20261018/review-json-terminal-v1.md",
+        "expected": "bde10038cba25b16cbed66d2a4532f5c0baeb249595727bb06b03ec1b3e6ef1e",
+        "actual": "bde10038cba25b16cbed66d2a4532f5c0baeb249595727bb06b03ec1b3e6ef1e"
+      }
+    ],
+    "container_hashes": {
+      "snapshot": "5e5ff7e70e472c23dad586b569a2306e01ff59cc6628b7b61ad1c5dd070e60e7",
+      "patch": "e7112def1cbf34f0b30e87ea31e1fbc1eb3951fb29f2f782f55fd6f0a82dfc37",
+      "tar": "f89c175bcbfd756f715c8a150eaa617fc6317783750d21eaced99cefbf875931"
+    },
+    "head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26"
+  },
+  "safe_imports_blob_checks_and_tar_members": {
+    "safe_imports": [
+      "finalizer",
+      "curator"
+    ],
+    "candidate_head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+    "committed_blobs_verified": 718,
+    "root_source_mismatches": [],
+    "verify_committed_inputs_negative_controls": {
+      "wrong_digest": "rejected",
+      "directory_is_not_blob": "rejected",
+      "missing_path": "rejected",
+      "parent_path": "rejected",
+      "invalid_head": "rejected"
+    },
+    "tar_entries": 29,
+    "tar_input_mismatches": {},
+    "shared_validator_v4_unchanged": {
+      "browser_run_proof.py": true,
+      "test-browser-run-proof.py": true
+    }
+  },
+  "pure_units": {
+    "command": "python3 -B docs/verification/ui-static-warning-release-20261018/test-browser-run-proof.py",
+    "exit_code": 0,
+    "tests": 35,
+    "passed": 35,
+    "output": "test_actual_raw_runtime48_and_native180 (__main__.BrowserRecordControls.test_actual_raw_runtime48_and_native180) ... ok\ntest_attempt_error_rejected (__main__.BrowserRecordControls.test_attempt_error_rejected) ... ok\ntest_bad_totals_rejected (__main__.BrowserRecordControls.test_bad_totals_rejected) ... ok\ntest_changed_sources_rejected (__main__.BrowserRecordControls.test_changed_sources_rejected) ... ok\ntest_duplicate_case_rejected (__main__.BrowserRecordControls.test_duplicate_case_rejected) ... ok\ntest_expected_failure_rejected (__main__.BrowserRecordControls.test_expected_failure_rejected) ... ok\ntest_failed_attempt_rejected (__main__.BrowserRecordControls.test_failed_attempt_rejected) ... ok\ntest_filtered_run_rejected (__main__.BrowserRecordControls.test_filtered_run_rejected) ... ok\ntest_global_error_rejected (__main__.BrowserRecordControls.test_global_error_rejected) ... ok\ntest_missing_attempt_rejected (__main__.BrowserRecordControls.test_missing_attempt_rejected) ... ok\ntest_missing_raw_files_rejected (__main__.BrowserRecordControls.test_missing_raw_files_rejected) ... ok\ntest_nonzero_capture_exit_rejected (__main__.BrowserRecordControls.test_nonzero_capture_exit_rejected) ... ok\ntest_nonzero_native_exit_rejected (__main__.BrowserRecordControls.test_nonzero_native_exit_rejected) ... ok\ntest_not_run_build_is_never_promoted (__main__.BrowserRecordControls.test_not_run_build_is_never_promoted) ... ok\ntest_partial_case_list_rejected (__main__.BrowserRecordControls.test_partial_case_list_rejected) ... ok\ntest_raw_all_checkout_roots_mismatch_rejected (__main__.BrowserRecordControls.test_raw_all_checkout_roots_mismatch_rejected) ... ok\ntest_raw_argv_filter_rejected (__main__.BrowserRecordControls.test_raw_argv_filter_rejected) ... ok\ntest_raw_argv_named_file_rejected (__main__.BrowserRecordControls.test_raw_argv_named_file_rejected) ... ok\ntest_raw_config_file_mismatch_rejected (__main__.BrowserRecordControls.test_raw_config_file_mismatch_rejected) ... ok\ntest_raw_grep_invert_rejected (__main__.BrowserRecordControls.test_raw_grep_invert_rejected) ... ok\ntest_raw_ignore_rejected (__main__.BrowserRecordControls.test_raw_ignore_rejected) ... ok\ntest_raw_match_mismatch_rejected (__main__.BrowserRecordControls.test_raw_match_mismatch_rejected) ... ok\ntest_raw_project_dir_mismatch_rejected (__main__.BrowserRecordControls.test_raw_project_dir_mismatch_rejected) ... ok\ntest_raw_repeat_rejected (__main__.BrowserRecordControls.test_raw_repeat_rejected) ... ok\ntest_raw_root_dir_mismatch_rejected (__main__.BrowserRecordControls.test_raw_root_dir_mismatch_rejected) ... ok\ntest_raw_shard_rejected (__main__.BrowserRecordControls.test_raw_shard_rejected) ... ok\ntest_raw_spec_file_mismatch_rejected (__main__.BrowserRecordControls.test_raw_spec_file_mismatch_rejected) ... ok\ntest_raw_suite_file_mismatch_rejected (__main__.BrowserRecordControls.test_raw_suite_file_mismatch_rejected) ... ok\ntest_retry_rejected (__main__.BrowserRecordControls.test_retry_rejected) ... ok\ntest_server_left_open_rejected (__main__.BrowserRecordControls.test_server_left_open_rejected) ... ok\ntest_skip_flaky_and_unexpected_rejected (__main__.BrowserRecordControls.test_skip_flaky_and_unexpected_rejected) ... ok\ntest_stale_raw_execution_time_rejected (__main__.BrowserRecordControls.test_stale_raw_execution_time_rejected) ... ok\ntest_stale_summary_hashes_rejected (__main__.BrowserRecordControls.test_stale_summary_hashes_rejected) ... ok\ntest_wrong_engine_rejected (__main__.BrowserRecordControls.test_wrong_engine_rejected) ... ok\ntest_wrong_scope_rejected (__main__.BrowserRecordControls.test_wrong_scope_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 35 tests in 0.879s\n\nOK\n"
+  },
+  "browser_proofs_from_existing_shared_validator": {
+    "runtime48": {
+      "tests": 48,
+      "passed": 48,
+      "by_engine": {
+        "chromium": 16,
+        "firefox": 16,
+        "webkit": 16
+      },
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0,
+      "suite": "runtime",
+      "test_scope": {
+        "testDir": "tests/cross-browser",
+        "testMatch": [
+          "runtime-cross-browser.spec.ts"
+        ]
+      },
+      "build": "NOT RUN: local diagnostic of the explicit existing compiled fixture",
+      "recorded_source_root": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "root_binding": "Explicit trusted task repository context; original capture has no cwd field.",
+      "native_exit_code": 0,
+      "server_closed": true,
+      "started_at": "2026-10-18T09:11:31.618Z",
+      "completed_at": "2026-10-18T09:14:51.632Z",
+      "raw_result_sha256": "88ef75f1f0cdaf905056f912c1740da89ce97a24e48c6ca44453fbc1ffbf3351",
+      "capture_receipt_sha256": "a6d6c9947d47dbf13e973a0907334d99e4f7311d24b9665e87c235b53cd17862",
+      "log_sha256": "943c3f7bf53ee762136906550ba9f2ef368ed3e5d134fb3ed623b4c21c5ad57e",
+      "internal_receipt_sha256": "6d039b379a2a7a5c10c812ffa58a3f494ceba503cf06b722bff3eebbcd2a08a5",
+      "summary_sha256": "c278cecc0fe59a48269a754b124ad52bf0eebd8fc45cede0aacefbd7c2773829"
+    },
+    "native180": {
+      "tests": 180,
+      "passed": 180,
+      "by_engine": {
+        "chromium": 60,
+        "firefox": 60,
+        "webkit": 60
+      },
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0,
+      "suite": "virtual-radio",
+      "test_scope": {
+        "testDir": "tests/ui",
+        "testMatch": [
+          "virtual-radio.spec.ts",
+          "virtual-sparse-tab.spec.ts",
+          "virtual-fast-tab.spec.ts"
+        ]
+      },
+      "build": {
+        "code": 0,
+        "signal": null
+      },
+      "recorded_source_root": "/Users/inouehiroshi/Documents/GitHub/ui-foundation",
+      "root_binding": "Explicit trusted task repository context; original capture has no cwd field.",
+      "native_exit_code": 0,
+      "server_closed": true,
+      "started_at": "2026-10-18T11:24:54.650Z",
+      "completed_at": "2026-10-18T11:40:37.112Z",
+      "raw_result_sha256": "58079fffc501392c65a4d7a1674140d751bb173f56279858ef54e7baed31c5da",
+      "capture_receipt_sha256": "1002f52f64b21e7066882e68ff3152af5b2b36d1749add72307d7080323fd425",
+      "log_sha256": "bbfff78700183c83fb843932d638b16bd01d2a58e017b3254ec1af0daaa0ba30",
+      "internal_receipt_sha256": "0163dac24a9a2d8f85bb487e0695e4af6c6a2c856d77248dd8bc27e255d52754",
+      "summary_sha256": "7d1c668ff3c578b61bf7e01f4cbc83e821b58edd783379077a215117cf4e6e1c"
+    }
+  },
+  "frozen_patch_application": {
+    "patch_application": [
+      {
+        "from": "docs/verification/ui-static-warning-release-20261018/finalize-release-results.py",
+        "to": "docs/verification/ui-static-warning-release-20261018/finalize-release-results-v2.py",
+        "hunks": 1,
+        "in_memory_apply_equals_current_target": true,
+        "applied_sha256": "7b3bcce53b17da51853af01967cc33281660fa86d99d2699f34a1ada4006ffc4"
+      },
+      {
+        "from": "docs/verification/ui-static-warning-release-20261018/curate-release-proof.py",
+        "to": "docs/verification/ui-static-warning-release-20261018/curate-release-proof-v2.py",
+        "hunks": 2,
+        "in_memory_apply_equals_current_target": true,
+        "applied_sha256": "bda3541c3159e735de827f2098dbe671c9a7a5ed07e904d22c53929618324afe"
+      }
+    ],
+    "note": "Frozen patch has a blank separator between file diffs. Each unified patch applied only in memory reproduces the frozen target bytes."
+  },
+  "receipt_source_bundle_and_verification65_inspection": "candidate_metadata {\n  \"created_utc\": \"2026-10-18T13:21:06.672035+00:00\",\n  \"base_sha\": \"b4aea63f67447dda1cabcf2da749617aa39c2d6f\",\n  \"head_sha\": \"a96f3ec0fae4908cf47be83246b1043f7dc8af26\",\n  \"all_inputs_committed\": true,\n  \"input_count\": 718,\n  \"reviews\": {\n    \"review-checker-v4-snapshot.json\": {\n      \"manifest_sha256\": \"618ce2ec512e425e55ae1c826b6cb78ee80d0c9fdf4599ab1e4654f452465e3c\",\n      \"files\": 23,\n      \"differing_files\": [\n        {\n          \"file\": \".ui/generated/manifest.json\",\n          \"expected\": \"4ed83cfe2004a1ee2f2a6e960532c83ab4c0b7d3ebc0948eebdcafd185faec9f\",\n          \"current\": \"f4e128e43c03a239581cecfe8521c7b47895e405652e33adfec357de216ef15b\"\n        }\n      ]\n    },\n    \"review-runtime-v3-typed-snapshot.json\": {\n      \"manifest_sha256\": \"222bb847753a6979cf99a6dcac90ccf09dd6a940ee27ad94449214381dd2c2c6\",\n      \"files\": 13,\n      \"differing_files\": []\n    },\n    \"review-editor-v3-snapshot.json\": {\n      \"manifest_sha256\": \"c755ec4dce8fdfcfc95ffa4c55710fa5cf67459eaca90cc7950888e24a72faaa\",\n      \"files\": 23,\n      \"differing_files\": []\n    },\n    \"review-test-corrections-v1-snapshot.json\": {\n      \"manifest_sha256\": \"41dab6194486363412c318b28ffd3e93575c334dafe128b859fe4bc9e8c3e80f\",\n      \"files\": 17,\n      \"differing_files\": [\n        {\n          \"file\": \"docs/ui-warning-reviews.json\",\n          \"expected\": \"fbab2b042cb1aa97ea0190064ac4acff7f306c49400615f70cf204f5fe36da47\",\n          \"current\": \"7eafd9ca66c623ffebfa2b5cfea00a81d5d371f3dd9b0c2b7f9b354716c18396\"\n        }\n      ]\n    },\n    \"review-fast-tab-budget-v1-snapshot.json\": {\n      \"manifest_sha256\": \"a823de0c992b015fb8e595e3722d5ac98131d08a53634e8c38e64a8f777d61c7\",\n      \"files\": 12,\n      \"differing_files\": [\n        {\n          \"file\": \"tests/ui/virtual-fast-tab.spec.ts\",\n          \"expected\": \"bd6657b953083ca945c00792ab58dbada533ea704612c3a3cf0f7951b014f616\",\n          \"current\": \"523b4df14e8245db103e680f47d996c95f3029a0ab3538ac3b8447646300dd54\"\n        },\n        {\n          \"file\": \"docs/ui-warning-reviews.json\",\n          \"expected\": \"cdc500e856c9c4bfeae0990ab1bf083ab76b811ad195345ea7aed28d22c73271\",\n          \"current\": \"7eafd9ca66c623ffebfa2b5cfea00a81d5d371f3dd9b0c2b7f9b354716c18396\"\n        }\n      ]\n    },\n    \"review-post-burst-paint-v2-snapshot.json\": {\n      \"manifest_sha256\": \"7a178ff00dfe8732d21ec74bede5eaf84f47f71ab584b746dcd41e1b8c9a9391\",\n      \"files\": 26,\n      \"differing_files\": [\n        {\n          \"file\": \"docs/ui-warning-reviews.json\",\n          \"expected\": \"f1f6b05605f30d79331b9a5d3f50b9d28d68bb6e5463a690625a1896354a60db\",\n          \"current\": \"7eafd9ca66c623ffebfa2b5cfea00a81d5d371f3dd9b0c2b7f9b354716c18396\"\n        }\n      ]\n    },\n    \"review-svg-preparation-v1-snapshot.json\": {\n      \"manifest_sha256\": \"a88b8a9060399c88e3f4598ca5e027efb85fad789cb12dc31429b80b57923368\",\n      \"files\": 14,\n      \"differing_files\": []\n    },\n    \"review-json-terminal-v1-snapshot.json\": {\n      \"manifest_sha256\": \"459a2357bd35f69e16cfada04fc66bf2c3ef0c24e873f90badf978b3918806ff\",\n      \"files\": 16,\n      \"differing_files\": [],\n      \"report_sha256\": \"bde10038cba25b16cbed66d2a4532f5c0baeb249595727bb06b03ec1b3e6ef1e\"\n    }\n  },\n  \"resolved_review_differences\": {\n    \"checker_manifest\": \"Generated CodeEditor helper ownership/hash entries, separately reviewed in editor-v3. Checker bundle unchanged.\",\n    \"test_corrections_registry\": \"Only later fast-spec evidence hashes and two direct observer-helper references. Reasons/Unknown statuses/producer contracts unchanged; readjudications v6/v7/v8 and post-burst-v2 snapshot cover later changes.\",\n    \"fast_budget_spec_and_registry\": \"Cumulative post-burst observer and identity-history controls plus two direct helper evidence refs are in post-burst-v2 snapshot; original native bursts/timeouts/geometry assertions preserved by the stated review requirement.\",\n    \"json_terminal\": \"Only one R161 test adds a native terminal-position observation before existing test-owned writes, plus 8 corresponding registry reference hashes. Fresh 16-input review-json-terminal-v1 and readjudication-v9 cover this change; all Unknown/reasons/acceptance geometry remain unchanged.\"\n  },\n  \"scope\": \"Committed final source/test candidate. Since native180 only SVG consumer preparation and an unrelated R161 JSON terminal test/8 registry reference hashes changed. Application/compiler/fixture/cross-browser driver bytes unchanged. Full normal acceptance on this head required separately. Publication docs are outside enumerated inputs.\",\n  \"source_changes_after_native180\": [\n    {\n      \"file\": \"docs/ui-warning-reviews.json\",\n      \"before\": \"f1f6b05605f30d79331b9a5d3f50b9d28d68bb6e5463a690625a1896354a60db\",\n      \"after\": \"7eafd9ca66c623ffebfa2b5cfea00a81d5d371f3dd9b0c2b7f9b354716c18396\"\n    },\n    {\n      \"file\": \"scripts/test-svg-paint.mjs\",\n      \"before\": \"2f12befdfe27b1c2bdef9fae228e289dd498c8722446e19908b0824dd319e698\",\n      \"after\": \"c9690e445f8b10833134f88f4e1e94260e711cabcd0eaf29f6aeea12f6978f2d\"\n    },\n    {\n      \"file\": \"scripts/verification/prepare-svg-consumer.mjs\",\n      \"before\": null,\n      \"after\": \"458694bd4fff465f7fc5769435a1874ac5a94fa9579f6fbcb15443db349b342b\"\n    },\n    {\n      \"file\": \"tests/ui/static-runtime-reassessment-layout.spec.ts\",\n      \"before\": \"673f83f0c2b0a025f2ed9c8f101940c4af953a5d361e408f8d335ed5e7c05715\",\n      \"after\": \"0e2d5a39c976dcb1bd606ef637b89a153595a3b57bf0ca722034e8e80ab77861\"\n    },\n    {\n      \"file\": \"tests/verification-tools/portable.test.mjs\",\n      \"before\": \"7a5ec1186ecfdf5a0f71c5e038b7046f2bd481a266edc74ce9be82b94c814297\",\n      \"after\": \"68b3e1ba666b2757e03643280b9906c676d39ba07ff8993c6f2d4ae67a0bfb15\"\n    }\n  ],\n  \"native180_implementation_head\": \"469e142750a4edb5fdb995e3c2542d481774da50\",\n  \"changes_after_v7\": [\n    \"docs/ui-warning-reviews.json\",\n    \"tests/ui/static-runtime-reassessment-layout.spec.ts\"\n  ]\n}\nnative180 {\n  \"run\": \"cross-browser-radio-v12\",\n  \"command\": [\n    \"env\",\n    \"CI=1\",\n    \"NODE_PATH=\",\n    \"UI_CROSS_BROWSER_ENGINES=chromium,firefox,webkit\",\n    \"UI_CROSS_BROWSER_EVIDENCE=docs/verification/ui-static-warning-release-20261018/cross-browser-radio-v12\",\n    \"npm\",\n    \"run\",\n    \"test:ui:radio:cross-browser\"\n  ],\n  \"exit_code\": 0,\n  \"source_inputs\": 717,\n  \"source_after_identical\": true,\n  \"source_changes\": [],\n  \"source_diff_to_candidate\": [\n    \"docs/ui-warning-reviews.json\",\n    \"scripts/test-svg-paint.mjs\",\n    \"scripts/verification/prepare-svg-consumer.mjs\",\n    \"tests/ui/static-runtime-reassessment-layout.spec.ts\",\n    \"tests/verification-tools/portable.test.mjs\"\n  ],\n  \"bundle_files\": 309,\n  \"bundle_after_identical\": true,\n  \"bundle_changes\": [],\n  \"log_hash_matches\": true\n}\nruntime48 {\n  \"run\": \"cross-browser-runtime-v9\",\n  \"command\": [\n    \"env\",\n    \"UI_CROSS_BROWSER_EVIDENCE=docs/verification/ui-static-warning-release-20261018/cross-browser-runtime-v9\",\n    \"node\",\n    \"docs/verification/ui-static-warning-release-20261018/run-existing-bundle.mjs\"\n  ],\n  \"exit_code\": 0,\n  \"source_inputs\": 716,\n  \"source_after_identical\": true,\n  \"source_changes\": [],\n  \"source_diff_to_candidate\": [\n    \"docs/ui-warning-reviews.json\",\n    \"scripts/test-svg-paint.mjs\",\n    \"scripts/verification/prepare-svg-consumer.mjs\",\n    \"tests/ui/post-burst-paint.ts\",\n    \"tests/ui/static-runtime-p2-tables.spec.ts\",\n    \"tests/ui/static-runtime-reassessment-layout.spec.ts\",\n    \"tests/ui/static-runtime-reassessment-navigation.spec.ts\",\n    \"tests/ui/virtual-fast-tab.spec.ts\",\n    \"tests/verification-tools/portable.test.mjs\"\n  ],\n  \"bundle_files\": 309,\n  \"bundle_after_identical\": true,\n  \"bundle_changes\": [],\n  \"log_hash_matches\": true\n}\nverification65 {\n  \"run\": \"verification-tools-final-v2\",\n  \"command\": [\n    \"npm\",\n    \"run\",\n    \"test:verification\"\n  ],\n  \"exit_code\": 0,\n  \"source_inputs\": 718,\n  \"source_after_identical\": true,\n  \"source_changes\": [],\n  \"source_diff_to_candidate\": [],\n  \"bundle_files\": 309,\n  \"bundle_after_identical\": true,\n  \"bundle_changes\": [],\n  \"log_hash_matches\": true\n}\nhistorical_bundle_equality True\nverification65_raw_counts {\"tests\": [\"65\"], \"pass\": [\"65\"], \"fail\": [\"0\"], \"cancelled\": [\"0\"], \"skipped\": [\"0\"], \"todo\": [\"0\"]}\nbase_and_head ['b4aea63f67447dda1cabcf2da749617aa39c2d6f', 'a96f3ec0fae4908cf47be83246b1043f7dc8af26']\n",
+  "curator_selection_and_failed_normal_v3_inspection": "{\n  \"new_names\": 157,\n  \"unique_names\": 157,\n  \"removed_names\": [\n    \"final-scope-bridge.json\",\n    \"normal-v3-summary.json\"\n  ],\n  \"added_names\": [\n    \"candidate-manifest-v8.json\",\n    \"classification-evidence-v8.json\",\n    \"clean-checkout-v4.json\",\n    \"curate-release-proof-v2.py\",\n    \"final-scope-bridge-v2.json\",\n    \"finalization-mapping-preparation-v2.json\",\n    \"finalize-release-results-v2.py\",\n    \"json-terminal-diagnostic-v1-receipt.json\",\n    \"json-terminal-diagnostic-v1-summary.json\",\n    \"json-terminal-diagnostic-v1.log\",\n    \"json-terminal-investigation-v1/README.md\",\n    \"json-terminal-investigation-v1/diagnose.mjs\",\n    \"json-terminal-investigation-v1/inputs.sha256.json\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/journal.jsonl\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/native-dom-clone.html\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/raw.json\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/trace-actual-end-terminal-gate.zip\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/trace-actual-original.zip\",\n    \"json-terminal-investigation-v1/run-2026-10-18T13-08-36-552Z-7d1fc3d4-4d8c-44cb-8d23-692c56b39b2f/trace-native-clone-original.zip\",\n    \"json-terminal-investigation-v1/run.claim.json\",\n    \"json-terminal-targeted-v1-receipt.json\",\n    \"json-terminal-targeted-v1-summary.json\",\n    \"json-terminal-targeted-v1.log\",\n    \"json-terminal-targeted-v1/artifacts/.last-run.json\",\n    \"json-terminal-targeted-v1/results.json\",\n    \"json-terminal-targeted-v1/run-receipt.json\",\n    \"normal-v3-failure-summary.json\",\n    \"normal-v4-summary.json\",\n    \"npm-test-clean-v4-receipt.json\",\n    \"npm-test-clean-v4.log\",\n    \"review-evidence-adjudication-v4.json\",\n    \"review-evidence-recipe-v4-probes.json\",\n    \"review-evidence-recipe-v4-snapshot.json\",\n    \"review-evidence-recipe-v4.patch\",\n    \"review-evidence-recipe-v4.tar\",\n    \"review-fix-readjudication-v9.json\",\n    \"review-json-terminal-v1-adjudication.json\",\n    \"review-json-terminal-v1-readonly-probes.json\",\n    \"review-json-terminal-v1-snapshot.json\",\n    \"review-json-terminal-v1.md\",\n    \"review-json-terminal-v1.patch\",\n    \"review-json-terminal-v1.tar\",\n    \"run-clean-checkout-v4.py\",\n    \"run-json-terminal-targeted-v1.py\",\n    \"verification-tools-final-v2-receipt.json\",\n    \"verification-tools-final-v2.log\"\n  ],\n  \"currently_missing_explicit_names\": [\n    \"npm-test-clean-v4-receipt.json\",\n    \"normal-v4-summary.json\",\n    \"final-scope-bridge-v2.json\"\n  ],\n  \"explicit_symlinks\": [],\n  \"checkpoint_in_names\": [],\n  \"v5_review_excluded\": true\n}\n{\n  \"normal_v3_status\": \"FAILED\",\n  \"normal_v3_ui\": {\n    \"expected\": 1903,\n    \"passed\": 1902,\n    \"failed\": 1,\n    \"retries\": 0,\n    \"skipped\": 0,\n    \"owned_listener_closed\": true,\n    \"failure\": [\n      \"tests/ui/static-runtime-reassessment-layout.spec.ts:208:3 \\u203a reassessment specialist-style R161 B: JsonViewer real table consumer has local full-content reach after update (2.0s)\"\n    ]\n  },\n  \"normal_v3_svg\": \"NOT_RUN because npm test && stopped at UI failure\",\n  \"artifact_inventory\": 83,\n  \"artifact_mismatches\": [],\n  \"hash_bindings\": {\n    \"log\": true,\n    \"capture\": true\n  },\n  \"capture_exit\": 1,\n  \"clean_status\": \"FAILED\",\n  \"clean_exit\": 1\n}\n",
+  "historical_git_blob_binding": "{\n  \".agents/skills\": 5,\n  \".gitattributes\": 1,\n  \".gitignore\": 1,\n  \".ui/generated\": 261,\n  \"docs/static-checks.ja.md\": 1,\n  \"docs/ui-warning-reviews.ja.md\": 1,\n  \"docs/ui-warning-reviews.json\": 1,\n  \"examples/ui.config.example.yaml\": 1,\n  \"package-lock.json\": 1,\n  \"package.json\": 1,\n  \"playwright.config.ts\": 1,\n  \"playwright.cross-browser.config.ts\": 1,\n  \"scripts/build.mjs\": 1,\n  \"scripts/catalog-api.mjs\": 1,\n  \"scripts/consumer-browser.mjs\": 1,\n  \"scripts/run-cross-browser.mjs\": 1,\n  \"scripts/serve.mjs\": 1,\n  \"scripts/test-svg-paint.mjs\": 1,\n  \"scripts/verification\": 5,\n  \"scripts/webkit-keyboard-launcher.sh\": 1,\n  \"src/README.md\": 1,\n  \"src/check\": 11,\n  \"src/cli.ts\": 1,\n  \"src/config.ts\": 1,\n  \"src/roles.ts\": 1,\n  \"src/sync.ts\": 1,\n  \"src/tokens.ts\": 1,\n  \"src/warning-review-cli.ts\": 1,\n  \"src/warning-review.ts\": 1,\n  \"templates/angular\": 146,\n  \"tests/README.md\": 1,\n  \"tests/config\": 1,\n  \"tests/consumer-svg-paint\": 6,\n  \"tests/cross-browser\": 2,\n  \"tests/fixture-app\": 56,\n  \"tests/fixtures\": 13,\n  \"tests/generation\": 3,\n  \"tests/model\": 33,\n  \"tests/static\": 27,\n  \"tests/ui\": 117,\n  \"tests/verification-tools\": 2,\n  \"tsconfig.json\": 1,\n  \"tsconfig.tools.json\": 1,\n  \"tsconfig.ui-media.json\": 1,\n  \"tsconfig.ui-runtime.json\": 1\n}\ncross-browser-radio-v12-receipt.json historical_git_blobs_identical 717\ncross-browser-runtime-v9-receipt.json historical_git_blobs_identical 716\n",
+  "nested_frozen_tar_member_inspection": {
+    "review-evidence-recipe-v4.tar": {
+      "members": 34,
+      "private_checkpoint": [],
+      "unsafe_members": [],
+      "symlinks": []
+    },
+    "review-json-terminal-v1.tar": {
+      "members": 18,
+      "private_checkpoint": [],
+      "unsafe_members": [],
+      "symlinks": []
+    }
+  },
+  "json_terminal_targeted_raw_inspection": "{\n  \"targeted_raw\": {\n    \"stats\": {\n      \"startTime\": \"2026-10-18T13:12:15.662Z\",\n      \"duration\": 187242.959,\n      \"expected\": 4,\n      \"skipped\": 0,\n      \"unexpected\": 0,\n      \"flaky\": 0\n    },\n    \"errors\": [],\n    \"cases\": [\n      {\n        \"title\": \"reassessment specialist-style R161 A: JsonViewer real table consumer has local full-content reach after update\",\n        \"engine\": \"chromium\",\n        \"status\": \"expected\",\n        \"expected_status\": \"passed\",\n        \"attempts\": 1,\n        \"results\": [\n          {\n            \"status\": \"passed\",\n            \"retry\": 0,\n            \"errors\": []\n          }\n        ]\n      },\n      {\n        \"title\": \"reassessment specialist-style R161 B: JsonViewer real table consumer has local full-content reach after update\",\n        \"engine\": \"chromium\",\n        \"status\": \"expected\",\n        \"expected_status\": \"passed\",\n        \"attempts\": 1,\n        \"results\": [\n          {\n            \"status\": \"passed\",\n            \"retry\": 0,\n            \"errors\": []\n          }\n        ]\n      },\n      {\n        \"title\": \"reassessment specialist-style R161 C: JsonViewer real table consumer has local full-content reach after update\",\n        \"engine\": \"chromium\",\n        \"status\": \"expected\",\n        \"expected_status\": \"passed\",\n        \"attempts\": 1,\n        \"results\": [\n          {\n            \"status\": \"passed\",\n            \"retry\": 0,\n            \"errors\": []\n          }\n        ]\n      },\n      {\n        \"title\": \"reassessment specialist-style R161 D: JsonViewer real table consumer has local full-content reach after update\",\n        \"engine\": \"chromium\",\n        \"status\": \"expected\",\n        \"expected_status\": \"passed\",\n        \"attempts\": 1,\n        \"results\": [\n          {\n            \"status\": \"passed\",\n            \"retry\": 0,\n            \"errors\": []\n          }\n        ]\n      }\n    ],\n    \"raw_hash_matches\": true,\n    \"capture_hash_matches\": true,\n    \"log_hash_matches\": true,\n    \"capture_exit\": 0,\n    \"source_changes\": [],\n    \"bundle_changes\": [],\n    \"execution\": {\n      \"started_at\": \"2026-10-18T13:12:14.986446+00:00\",\n      \"head\": \"88a72c2a94f6649a935d764166d83fe6d45b2758\",\n      \"command\": [\n        \"npm\",\n        \"run\",\n        \"test:ui\",\n        \"--\",\n        \"tests/ui/static-runtime-reassessment-layout.spec.ts\",\n        \"--grep\",\n        \"reassessment specialist-style R161\",\n        \"--workers=1\",\n        \"--reporter=json\",\n        \"--output=/Users/inouehiroshi/Documents/GitHub/ui-foundation/docs/verification/ui-static-warning-release-20261018/json-terminal-targeted-v1/artifacts\"\n      ],\n      \"scope\": \"Explicit R161 A/B/C/D only; normal guarded Playwright webServer build, no existing server reuse.\",\n      \"fixture_port\": 52278,\n      \"status\": \"PASSED\",\n      \"exit_code\": 0,\n      \"owned_listener_closed\": true,\n      \"completed_at\": \"2026-10-18T13:15:22.920835+00:00\"\n    }\n  },\n  \"source_review_snapshot_inputs\": 16\n}\n",
+  "probe_development_note": "A textual difflib comparison differed because the fixed patch has an inter-file separator and uses another hunk algorithm. A first in-memory parser rejected that separator; the corrected read-only parser applied both hunks to the actual old sources and produced exactly the new source hashes. No reviewed file was modified.",
+  "not_executed": [
+    "finalize-release-results-v2.py::main",
+    "finalize-release-results-v2.py::validate_release",
+    "curate-release-proof-v2.py::main",
+    "build",
+    "browser",
+    "full npm test",
+    "finalization or archive generation",
+    "commit",
+    "push"
+  ],
+  "findings": [],
+  "decision": "approve for the frozen recipe scope; normal-v4 acceptance and final archive remain unverified"
+}

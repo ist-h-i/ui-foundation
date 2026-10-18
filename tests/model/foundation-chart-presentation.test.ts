@@ -2,7 +2,7 @@ import {test} from 'node:test';import assert from 'node:assert/strict';
 import {chartOptions} from '../../.ui/generated/angular/chart-options';
 import {chartLocaleProblem} from '../../.ui/generated/angular/specialist-model';
 import type {SpecialistTheme} from '../../.ui/generated/angular/specialist-browser';
-const theme:SpecialistTheme={text:'#000',muted:'#555',surface:'#fff',background:'#eee',border:'#999',action:'#00f',onAction:'#fff',success:'#080',danger:'#900',focus:'#00f',font:'sans-serif',codeFont:'monospace',fontSize:16,controlSize:44,gap:8,radius:4,reducedMotion:true};
+const theme:SpecialistTheme={text:'#000',muted:'#555',surface:'#fff',background:'#eee',border:'#999',action:'#00f',onAction:'#fff',success:'#080',danger:'#900',focus:'#00f',font:'sans-serif',codeFont:'monospace',fontSize:16,controlSize:44,gap:8,radius:4,borderWidth:1,mapRegionOpacity:.25,reducedMotion:true};
 const series=[{id:'a',label:'App label',points:[{id:'p',label:'Unmodified data',value:1234.5}]}];
 test('chart numeric view format reaches axes and gauge without converting application points or labels',()=>{
  const presentation={locale:'de-DE',timeZone:null,numberOptions:{minimumFractionDigits:2,maximumFractionDigits:2},dateTimeOptions:{}};

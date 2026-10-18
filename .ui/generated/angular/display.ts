@@ -5,6 +5,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, computed, content
 import { Icon } from './icon';
 import { restoreFocus } from './focus';
 import { focusBeforeHiding } from './layout';
+import { layoutKeyword } from './layout-model';
 import { displayStyles } from './display-style';
 import { avatarInitials, comparisonDelta, displayInteger, finiteDisplayValue, meterGroupValues, meterValues, numberDisplay, type DisplayTone, type MeterSegment } from './display-model';
 
@@ -13,7 +14,7 @@ import { avatarInitials, comparisonDelta, displayInteger, finiteDisplayValue, me
  class:'ui-typography',
  '[style.font-family]':'"var(--ui-font-body)"','[style.font-size]':'fontSize()','[style.line-height]':'lineHeight()',
  '[style.font-weight]':'fontWeight()','[style.font-style]':'emphasis()==="italic"?"italic":null',
- '[style.text-align]':'align()','[style.color]':'foreground()','[style.background-color]':'surface()',
+ '[style.text-align]':'checkedAlign()','[style.color]':'foreground()','[style.background-color]':'surface()',
  '[style.overflow-wrap]':'"anywhere"','[style.white-space]':'wrap()==="nowrap"?"nowrap":null',
  '[style.text-wrap]':'wrap()==="balance"?"balance":null','[style.max-inline-size]':'"100%"',
  '[style.display]':'wrap()==="nowrap"?"block":null','[style.overflow-x]':'wrap()==="nowrap"?"auto":null',
@@ -24,12 +25,14 @@ export class Typography {
  readonly tone=input<DisplayTone>('neutral');readonly align=input<'start'|'center'|'end'|'justify'>('start');
  readonly wrap=input<'wrap'|'nowrap'|'balance'>('wrap');readonly emphasis=input<'normal'|'strong'|'italic'>('normal');
  private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private readonly tag=this.element.tagName;private addedTabstop=false;
- private readonly variant=computed(()=>this.uiTypography()||(/^H[1-6]$/.test(this.tag)?'heading':'body'));
+ protected readonly checkedAlign=computed(()=>layoutKeyword(this.align(),['start','center','end','justify'] as const,'Typography align'));
+ private readonly checkedTone=computed(()=>layoutKeyword(this.tone(),['neutral','muted','info','success','warning','error'] as const,'Typography tone'));
+ private readonly variant=computed(()=>layoutKeyword(this.uiTypography(),['','body','heading','small'] as const,'Typography variant')||(/^H[1-6]$/.test(this.tag)?'heading':'body'));
  protected readonly fontSize=computed(()=>'var(--ui-text-'+this.variant()+')');
  protected readonly lineHeight=computed(()=>'var(--ui-leading-'+(this.variant()==='heading'?'heading':'body')+')');
  protected readonly fontWeight=computed(()=>'var(--ui-weight-'+(this.variant()==='heading'?'heading':this.emphasis()==='strong'||this.tag==='STRONG'?'control':'body')+')');
- protected readonly foreground=computed(()=>'var(--ui-color-'+({neutral:'text',muted:'muted',info:'link',success:'success',warning:'warning',error:'danger'}[this.tone()])+')');
- protected readonly surface=computed(()=>'var(--ui-color-'+({neutral:'surface',muted:'surface',info:'surface',success:'success-surface',warning:'warning-surface',error:'error-surface'}[this.tone()])+')');
+ protected readonly foreground=computed(()=>'var(--ui-color-'+({neutral:'text',muted:'muted',info:'link',success:'success',warning:'warning',error:'danger'}[this.checkedTone()])+')');
+ protected readonly surface=computed(()=>'var(--ui-color-'+({neutral:'surface',muted:'surface',info:'surface',success:'success-surface',warning:'warning-surface',error:'error-surface'}[this.checkedTone()])+')');
  constructor(){effect(()=>{if(this.wrap()==='nowrap'&&!this.element.hasAttribute('tabindex')&&!this.element.matches('a[href],button,input,select,textarea,summary')){this.element.tabIndex=0;this.addedTabstop=true;}else if(this.wrap()!=='nowrap'&&this.addedTabstop){if(this.element.getAttribute('tabindex')==='0')this.element.removeAttribute('tabindex');this.addedTabstop=false;}});}
 }
 
@@ -72,7 +75,7 @@ export interface AvatarItem { id:string;name:string;src?:string|null;alt?:string
 @Component({selector:'ui-avatar',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,
  host:{'[attr.data-size]':'size()','[attr.data-shape]':'shape()','[style.--ui-avatar-graphemes]':'letterCount()'},
  template:`@if(src()&&!failedSource()){<img [src]="src()!" [alt]="decorative()?'':alt()??name()" [attr.aria-hidden]="decorative()?'true':null" (error)="fail()">}@else{<span class="ui-avatar-fallback" [attr.role]="decorative()?null:'img'" [attr.aria-label]="decorative()?null:alt()??name()" [attr.aria-hidden]="decorative()?'true':null">{{initials()}}</span>}`,
- styles:[displayStyles,`:host{--ui-avatar-size:var(--ui-size-avatar);display:inline-flex;inline-size:var(--ui-avatar-size);aspect-ratio:1;flex:0 0 auto;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);overflow:hidden;background:var(--ui-color-background);}:host([data-size="small"]){--ui-avatar-size:calc(var(--ui-size-avatar)*0.75);}:host([data-size="large"]){--ui-avatar-size:calc(var(--ui-size-avatar)*1.25);}:host([data-shape="circle"]){border-radius:50%;}img{inline-size:100%;block-size:100%;object-fit:cover;}.ui-avatar-fallback{display:flex;align-items:center;justify-content:center;inline-size:100%;block-size:100%;font-size:calc(var(--ui-avatar-size)*0.76/var(--ui-avatar-graphemes));line-height:1;white-space:nowrap;overflow-wrap:normal;font-weight:var(--ui-weight-heading);}`]})
+ styles:[displayStyles,`:host{--ui-avatar-scale:1;--ui-avatar-size:calc(var(--ui-size-avatar)*var(--ui-avatar-scale));display:inline-flex;inline-size:var(--ui-avatar-size);aspect-ratio:1;flex:0 0 auto;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);overflow:hidden;background:var(--ui-color-background);}:host([data-size="small"]){--ui-avatar-scale:0.75;}:host([data-size="large"]){--ui-avatar-scale:1.25;}:host([data-shape="circle"]){border-radius:50%;}img{inline-size:100%;block-size:100%;object-fit:cover;}.ui-avatar-fallback{display:flex;align-items:center;justify-content:center;inline-size:100%;block-size:100%;font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes));line-height:1;white-space:nowrap;overflow-wrap:normal;font-weight:var(--ui-weight-heading);}`]})
 export class Avatar {
  readonly name=input.required<string>();readonly src=input<string|null>(null);readonly alt=input<string|null>(null);readonly decorative=input(false,{transform:booleanAttribute});protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=computed(()=>this.locale()??this.uiLocaleDefaults().locale);readonly size=input<'small'|'medium'|'large'>('medium');readonly shape=input<'circle'|'square'>('circle');readonly imageFailed=output<string>();
  protected readonly failedSource=linkedSignal(()=>{this.src();return false;});protected readonly initials=computed(()=>avatarInitials(this.name(),this.effectiveLocale()));protected readonly letterCount=computed(()=>Math.max(2,Array.from(new Intl.Segmenter(this.effectiveLocale(),{granularity:'grapheme'}).segment(this.initials())).length));
@@ -95,14 +98,15 @@ export interface DescriptionContext { $implicit:DescriptionItem;value:Descriptio
 @Directive({selector:'ng-template[uiDescriptionValue]',standalone:true})
 export class DescriptionTemplate {readonly template=inject<TemplateRef<DescriptionContext>>(TemplateRef);static ngTemplateContextGuard(_directive:DescriptionTemplate,context:unknown):context is DescriptionContext{return true;}}
 @Component({selector:'ui-descriptions,ui-key-value',standalone:true,imports:[NgTemplateOutlet],changeDetection:ChangeDetectionStrategy.OnPush,
- template:`<dl [attr.aria-label]="label()" [attr.data-direction]="direction()" [style.--ui-description-columns]="columns()">@for(item of items();track item.id){<div class="ui-description"><dt>{{item.label}}</dt><dd>@if(valueTemplate();as custom){<ng-container [ngTemplateOutlet]="custom.template" [ngTemplateOutletContext]="{$implicit:item,value:item.value,missing:item.value==null}" /> }@else{ {{item.value==null?uiEffective_missingLabel():item.value===''?uiEffective_emptyLabel():item.value}} }</dd></div>}</dl>`,
+ template:`<dl [attr.aria-label]="label()" [attr.data-direction]="direction()" [style.--ui-description-columns]="checkedColumns()">@for(item of items();track item.id){<div class="ui-description"><dt>{{item.label}}</dt><dd>@if(valueTemplate();as custom){<ng-container [ngTemplateOutlet]="custom.template" [ngTemplateOutletContext]="{$implicit:item,value:item.value,missing:item.value==null}" /> }@else{ {{item.value==null?uiEffective_missingLabel():item.value===''?uiEffective_emptyLabel():item.value}} }</dd></div>}</dl>`,
  styles:[displayStyles,`:host{display:block;}dl{display:grid;grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr));gap:var(--ui-space-field);margin:0;}.ui-description{min-inline-size:0;overflow-wrap:anywhere;}dt{font-weight:var(--ui-weight-control);}dd{margin:0;padding-block-start:var(--ui-space-control-gap);}[data-direction="horizontal"] .ui-description{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}[data-direction="horizontal"] dd{padding:0;}@media(max-width:40rem){dl{grid-template-columns:minmax(0,1fr);}}`]})
 export class Descriptions {
  protected readonly uiText_Descriptions=injectUiText();
  readonly items=input.required<readonly DescriptionItem[]>();readonly columns=input(1);readonly direction=input<'horizontal'|'vertical'>('vertical');readonly label=input<string|null>(null);readonly missingLabel=input<string>();
+ protected readonly checkedColumns=computed(()=>displayInteger(this.columns(),'Descriptions columns',1,12));
  protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_Descriptions('未取得'));readonly emptyLabel=input<string>();
  protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_Descriptions('空の文字列'));protected readonly valueTemplate=contentChild(DescriptionTemplate);
- constructor(){effect(()=>{displayInteger(this.columns(),'Descriptions columns',1,12);const ids=new Set<string>();for(const item of this.items()){if(!item.id.trim()||!item.label.trim()||ids.has(item.id))throw new Error('Descriptions need unique IDs and labels.');if(typeof item.value==='number')finiteDisplayValue(item.value);ids.add(item.id);}});}
+ constructor(){effect(()=>{this.checkedColumns();const ids=new Set<string>();for(const item of this.items()){if(!item.id.trim()||!item.label.trim()||ids.has(item.id))throw new Error('Descriptions need unique IDs and labels.');if(typeof item.value==='number')finiteDisplayValue(item.value);ids.add(item.id);}});}
 }
 
 @Component({selector:'ui-statistic,ui-metric-card',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,

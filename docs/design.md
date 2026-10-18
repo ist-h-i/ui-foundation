@@ -28,7 +28,7 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | --- | --- | --- |
 | color | text, muted, surface, background, border, action, action-hover, on-action, link, tab-selected, danger, danger-hover, on-danger, success, success-surface, warning, warning-surface, error-surface, focus, disabled-surface, backdrop, shadow | color |
 | font | body, code | fontFamily |
-| text | body, small, heading | length |
+| text | body, small, heading, avatar | length |
 | leading | body, heading, control | number |
 | weight | body, heading, control | number |
 | space | page, section, field, control-x, control-y, control-gap, table-x, table-y | length |
@@ -36,7 +36,9 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min, drawer-inline, drawer-block, navigation-rail, mega-menu, navigation-column, knob, collection-item, collection-viewport, media-viewport, visualization-viewport | length |
 | border | control, focus, focus-offset | length |
 | motion | duration, easing | duration / easing |
-| opacity | watermark | number（0〜1） |
+| opacity | watermark, map-region | number（0〜1） |
+
+Avatarの文字には`text.avatar`、地図領域の透明度には`opacity.map-region`を使う。これらを持たない既存設定は役割を追加してから再同期する。設定例では前者を既存のAvatar寸法と同じプリミティブ、後者を0.25へ対応させ、両プロファイルの従来の表示を維持している。
 
 未対応版、未知の構造項目、重複キー、参照切れ、型違い、必須役割不足、未知のdefault_profile、危険な値を位置・理由付きで拒否する。各プロファイルで定義済みの文字/背景ペアのコントラストを検査する。この数値検査をUXやアクセシビリティ全体の合格とは扱わない。
 
@@ -54,7 +56,7 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
       ├─ tokens.css（プリミティブと全プロファイルの意味トークン）
       ├─ tailwind.css（@theme inlineによる同じ意味トークンへの接続）
       ├─ angular/（意味トークンを使う部品と構造CSS）
-      ├─ profiles.ts / resolved.json / policy.json / manifest.json
+      ├─ profiles.ts / resolved.json / policy.json / check-ui.cjs / CHECKER-NOTICE.txt / manifest.json
       └─ .agents/skills/project-ui/（利用者の文脈とAIの設計手順）
 ```
 
@@ -66,7 +68,7 @@ Tailwindでは色と文字サイズが`text-*`、書体と太さが`font-*`を�
 
 Tailwind v4のテーマ定義はトップレベルの`@theme inline`。YAMLを直接Tailwindに渡さず、CSSを生成して読み込む。[公式仕様](https://tailwindcss.com/docs/theme#referencing-other-variables)、[CLI](https://tailwindcss.com/docs/installation/tailwind-cli)を参照する。
 
-`init`は既存ファイルを上書きせず雛形を作る。`sync --dry-run`は書き込みなしで差分を示す。`sync`は同じ入力・ツール版で同じ内容を生成する。前回manifestとの照合で手編集、未所有ファイルとの衝突、symlink/プロジェクト外の出力を拒否する。`check`は設定と生成物の一致およびmanifest所有範囲を実際に検査する。全ソースのASTによる逸脱検査を実装したとは主張しない。
+`init`は既存ファイルを上書きせず雛形を作る。`sync --dry-run`は書き込みなしで差分を示す。`sync`は同じ入力・ツール版で同じ内容を生成する。前回manifestとの照合で手編集、未所有ファイルとの衝突、symlink/プロジェクト外の出力を拒否する。`check`は設定と生成物の一致およびmanifest所有範囲を実際に検査する。任意の`checks`を指定すると、設定したAngular/CSS/SCSSソースの静的逸脱検査も実行する。対象、例外、未確認は[静的検査](static-checks.ja.md)に従う。
 
 固定Skillのownership.jsonはschema_version・output・manifest_pathを持ち、output内のv1 manifestがそのSHAを所有する。manifest自身のSHAはregistryへ入れない。output変更時はこの機械情報から旧manifestを読み、旧・新生成先とSkillの全ファイルを検査してから移行する。旧ownedファイルだけを列挙削除し、新manifest、registry更新、旧manifest退役の順で所有metadataを確定する。通常のI/O失敗は両manifestとregistryを含む全試行ファイルを復元する。root内の同時書込みや強制終了に対するtransaction原子性は保証しない。
 

@@ -1,0 +1,1516 @@
+{
+  "scope": "Each of the 32 E candidates was reread at its actual producer, guard and consuming site. Candidates are not active exceptions until the finalizer matches a still-unresolved warning. Literal violations may never be excepted by this ledger.",
+  "static_status": "Unknown",
+  "universal_runtime_status": "Unknown",
+  "records": [
+    {
+      "id": "D002",
+      "group": "guarded_anchor_offset",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 10,
+        "column": 104,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.inset-block-start.px]=\"checkedOffset()\"> :: ttr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': \"checkedOffset()+'px'\" }, changeDetection: ChangeDetectionStrategy.OnPush,"
+      },
+      "match_source": "[style.inset-block-start.px]=\"checkedOffset()\"",
+      "purpose": "Anchor navigation exposes the occluding header offset as layout coordinates; the very same checked value is written to targets.",
+      "producer_and_actual_guard": "checkedOffset → finite/nonnegative number → host inset/custom property or same offset scroll-margin px",
+      "scope_limit": "Large offsets and arbitrary cascade/scroll roots remain runtime concerns.",
+      "reason_ja": "固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。",
+      "proof_files": [
+        "templates/angular/anchor-navigation.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 10,
+          "note_ja": "対象の未解決診断のsink。<div [style.inset-block-start.px]=\"checkedOffset()\">"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 18,
+          "note_ja": "finite/nonnegative guardを持つ唯一のcheckedOffset producer。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 47,
+          "note_ja": "afterRenderEffectはcheckedOffsetを取得。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 60,
+          "note_ja": "scroll-marginのmargin=offset+pxを構築。"
+        },
+        {
+          "file": "docs/static-checks.ja.md",
+          "line": 63,
+          "note_ja": "配置用寸法は用途確認を経て限定例外とする。"
+        }
+      ]
+    },
+    {
+      "id": "D003",
+      "group": "guarded_anchor_offset",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 10,
+        "column": 104,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.--ui-anchor-offset]=\"checkedOffset()+'px'\"> :: ttr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': \"checkedOffset()+'px'\" }, changeDetection: ChangeDetectionStrategy.OnPush,"
+      },
+      "match_source": "[style.--ui-anchor-offset]=\"checkedOffset()+'px'\"",
+      "purpose": "Anchor navigation exposes the occluding header offset as layout coordinates; the very same checked value is written to targets.",
+      "producer_and_actual_guard": "checkedOffset → finite/nonnegative number → host inset/custom property or same offset scroll-margin px",
+      "scope_limit": "Large offsets and arbitrary cascade/scroll roots remain runtime concerns.",
+      "reason_ja": "固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。",
+      "proof_files": [
+        "templates/angular/anchor-navigation.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 10,
+          "note_ja": "対象の未解決診断のsink。<div [style.--ui-anchor-offset]=\"checkedOffset()+'px'\">"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 18,
+          "note_ja": "finite/nonnegative guardを持つ唯一のcheckedOffset producer。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 47,
+          "note_ja": "afterRenderEffectはcheckedOffsetを取得。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 60,
+          "note_ja": "scroll-marginのmargin=offset+pxを構築。"
+        },
+        {
+          "file": "docs/static-checks.ja.md",
+          "line": 63,
+          "note_ja": "配置用寸法は用途確認を経て限定例外とする。"
+        }
+      ]
+    },
+    {
+      "id": "D005",
+      "group": "guarded_anchor_offset",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/anchor-navigation.ts",
+        "line": 73,
+        "column": 25,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "target.style.setProperty('scroll-margin-block-start', margin);"
+      },
+      "match_source": "target.style.setProperty('scroll-margin-block-start', margin);",
+      "purpose": "Anchor navigation exposes the occluding header offset as layout coordinates; the very same checked value is written to targets.",
+      "producer_and_actual_guard": "checkedOffset → finite/nonnegative number → host inset/custom property or same offset scroll-margin px",
+      "scope_limit": "Large offsets and arbitrary cascade/scroll roots remain runtime concerns.",
+      "reason_ja": "固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。",
+      "proof_files": [
+        "templates/angular/anchor-navigation.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 73,
+          "note_ja": "対象の未解決診断のsink。target.style.setProperty('scroll-margin-block-start', margin);"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 18,
+          "note_ja": "finite/nonnegative guardを持つ唯一のcheckedOffset producer。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 47,
+          "note_ja": "afterRenderEffectはcheckedOffsetを取得。"
+        },
+        {
+          "file": "templates/angular/anchor-navigation.ts",
+          "line": 60,
+          "note_ja": "scroll-marginのmargin=offset+pxを構築。"
+        },
+        {
+          "file": "docs/static-checks.ja.md",
+          "line": 63,
+          "note_ja": "配置用寸法は用途確認を経て限定例外とする。"
+        }
+      ]
+    },
+    {
+      "id": "D012",
+      "group": "color-picker-palette-data",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/choice-controls.ts",
+        "line": 163,
+        "column": 1725,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<span class=\"ui-color-swatch\" aria-hidden=\"true\" [style.background-color]=\"choice.value\"> :: [style.background-color]=\"choice.value\"></span>{{choice.label??choice.value}}</button>}</div>}<output class=\"ui-choice-value\">{{current()||('未選択' | uiMessage)}}</output>@if(error()||problem()){<p class=\"ui-choice-error\" [id]=\"controlId()+'-error'\">{{error()||problem()}}</p>}</fieldset>`,"
+      },
+      "match_source": "[style.background-color]=\"choice.value\"",
+      "purpose": "The swatch displays the color being selected as content data; it is not the interface theme.",
+      "producer_and_actual_guard": "palette → configurationError → parseColor → !configurationError @if → choice.value swatch",
+      "scope_limit": "The guard rejects invalid/duplicate choices and disallowed alpha; color contrast and rendering remain runtime concerns.",
+      "reason_ja": "paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで検証、alpha禁止・ラベル・重複も拒否するため、データ色として狭い理由付き例外の候補。",
+      "proof_files": [
+        "templates/angular/choice-controls.ts",
+        "templates/angular/choice-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/choice-controls.ts",
+          "line": 163,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/choice-controls.ts",
+          "line": 189,
+          "note_ja": "configurationErrorはpalette全件にparseColor/alpha/label/重複を検査。"
+        },
+        {
+          "file": "templates/angular/choice-model.ts",
+          "line": 62,
+          "note_ja": "hex/rgb/hslのみを構文解析し不正形式をnullにする。"
+        }
+      ]
+    },
+    {
+      "id": "D043",
+      "group": "read-more-line-count",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 13,
+        "column": 196,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-read-lines cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-read-content[data-expanded=\"false\"]{-webkit-line-clamp:var(--ui-read-lines)}"
+      },
+      "match_source": ".ui-read-content[data-expanded=\"false\"]{-webkit-line-clamp:var(--ui-read-lines)}",
+      "purpose": "A bounded structural count controls visual clipping while preserving the full text DOM.",
+      "producer_and_actual_guard": "lines → displayInteger(1,100) → --ui-read-lines → -webkit-line-clamp",
+      "scope_limit": "Overflow detection and assistive technology behavior are outside this exception.",
+      "reason_ja": "全文をDOMに保持し見た目だけ折り畳むline-clampの行数。lineCountはdisplayInteger(lines,1,100)を通りCSS custom propertyへ供給される。行数はtoken化する視覚尺度とは別の構造パラメータであるため、この消費箇所の例外候補。",
+      "proof_files": [
+        "templates/angular/display-content.ts",
+        "templates/angular/display-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 13,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 9,
+          "note_ja": "全文DOM保持と視覚clippingという用途を明記。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 12,
+          "note_ja": "--ui-read-linesの唯一のcomponent binding。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 19,
+          "note_ja": "lineCountは1〜100の整数guardを通る。"
+        },
+        {
+          "file": "templates/angular/display-model.ts",
+          "line": 3,
+          "note_ja": "safe integerと上下限を実装で拒否。"
+        }
+      ]
+    },
+    {
+      "id": "D045",
+      "group": "code-line-number-digits",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 32,
+        "column": 832,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-code-number-digits cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-code-line[data-numbers=\"true\"]{grid-template-columns:calc(var(--ui-code-number-digits)*1ch) minmax(0,1fr)}"
+      },
+      "match_source": ".ui-code-line[data-numbers=\"true\"]{grid-template-columns:calc(var(--ui-code-number-digits)*1ch) minmax(0,1fr)}",
+      "purpose": "The digit count tracks source line number data and sizes only the line-number column.",
+      "producer_and_actual_guard": "codePresentation.text → split(newline).length → String(length).length → --ui-code-number-digits → digits*1ch",
+      "scope_limit": "The positive count follows array/string lengths; layout width and formatter correctness are not asserted.",
+      "reason_ja": "行番号欄の幅は表示コードの行数をString化した桁数であり、情報量に応じた構造係数。sourceLinesはsplitで最低1行となり、numberDigitsはその配列長の文字数なので0除算や任意CSS文字列を出力しない。データ量に基づく欄幅として局所例外の候補。",
+      "proof_files": [
+        "templates/angular/display-content.ts",
+        "templates/angular/display-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 32,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 38,
+          "note_ja": "sourceLines=text.split、新しい桁数はString(length).length。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 31,
+          "note_ja": "桁数を--ui-code-number-digitsへ供給。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 32,
+          "note_ja": "calc(digits*1ch)は行番号欄のみ。"
+        }
+      ]
+    },
+    {
+      "id": "D046",
+      "group": "watermark-explicit-opacity",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "column": 77,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-watermark-layer\" aria-hidden=\"true\" [style.opacity]=\"opacityValue()\" [attr.data-position]=\"position()\"> :: [style.opacity]=\"opacityValue()\" [attr.data-position]=\"position()\"><span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,"
+      },
+      "match_source": "[style.opacity]=\"opacityValue()\"",
+      "purpose": "The documented decorative watermark API intentionally accepts an explicit opacity.",
+      "producer_and_actual_guard": "opacity → null semantic default or finite 0..1 → opacityValue binding",
+      "scope_limit": "This does not authorize arbitrary interface opacity or offer security/copy protection.",
+      "reason_ja": "装飾watermarkの利用者指定opacityはnull時semantic token、指定時はNumber.isFiniteかつ0〜1を検証して数値を返す。公開の装飾パラメータとしてこのbinding限定の例外候補であり、任意の通常UI透明度の許可ではない。",
+      "proof_files": [
+        "templates/angular/display-content.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 50,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 48,
+          "note_ja": "装飾でありsecurity/copy protection保証をしない用途。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 53,
+          "note_ja": "公開opacity入力。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 55,
+          "note_ja": "nullと有限0〜1のguardを実装。"
+        }
+      ]
+    },
+    {
+      "id": "D047",
+      "group": "watermark-explicit-tile-size",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "column": 182,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"> :: [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,"
+      },
+      "match_source": "[style.inline-size]=\"widthValue()\"",
+      "purpose": "The documented decorative watermark API accepts explicit repeat-tile dimensions.",
+      "producer_and_actual_guard": "tileWidth/tileHeight → null semantic defaults or finite positive → px → hidden tile size",
+      "scope_limit": "Only these bindings are allowed; DOM-measured pattern geometry remains separately unresolved.",
+      "reason_ja": "watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。",
+      "proof_files": [
+        "templates/angular/display-content.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 50,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 53,
+          "note_ja": "tileWidth/tileHeightを明示入力。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 55,
+          "note_ja": "null時token、指定時finite positive guardを通る。"
+        }
+      ]
+    },
+    {
+      "id": "D048",
+      "group": "watermark-explicit-tile-size",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "column": 217,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"> :: [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,"
+      },
+      "match_source": "[style.block-size]=\"heightValue()\"",
+      "purpose": "The documented decorative watermark API accepts explicit repeat-tile dimensions.",
+      "producer_and_actual_guard": "tileWidth/tileHeight → null semantic defaults or finite positive → px → hidden tile size",
+      "scope_limit": "Only these bindings are allowed; DOM-measured pattern geometry remains separately unresolved.",
+      "reason_ja": "watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。",
+      "proof_files": [
+        "templates/angular/display-content.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 50,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 53,
+          "note_ja": "tileWidth/tileHeightを明示入力。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 55,
+          "note_ja": "null時token、指定時finite positive guardを通る。"
+        }
+      ]
+    },
+    {
+      "id": "D051",
+      "group": "watermark-local-pattern-reference",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display-content.ts",
+        "line": 50,
+        "column": 684,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /> :: [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,"
+      },
+      "match_source": "[attr.fill]=\"'url(#'+patternId()+')'\"",
+      "purpose": "The fill is a same-component local SVG pattern reference, not a color or external resource.",
+      "producer_and_actual_guard": "controlId → simple ASCII ID regex → local serial suffix → same defs/pattern id → url(#id)",
+      "scope_limit": "The ID contract and local defs association were inspected; arbitrary URL fill is not allowed.",
+      "reason_ja": "rectのfillは任意色や外部URLではなく、同componentのdefs/patternを参照するurl(#id)。patternIdはsimple IDの正規表現検証と内部serialを結合するため、ローカルSVG参照の構造用途として局所例外候補。",
+      "proof_files": [
+        "templates/angular/display-content.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 50,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 46,
+          "note_ja": "serialはmodule内で生成。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 50,
+          "note_ja": "defs patternとrectが同じpatternIdを参照する。"
+        },
+        {
+          "file": "templates/angular/display-content.ts",
+          "line": 54,
+          "note_ja": "IDは英字開始のsimple identifierへ限定。"
+        }
+      ]
+    },
+    {
+      "id": "D056",
+      "group": "avatar-grapheme-data-coefficient",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display.ts",
+        "line": 78,
+        "column": 670,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-avatar-graphemes cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}"
+      },
+      "match_source": ".ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}",
+      "purpose": "A positive content grapheme count sizes avatar initials within a semantic font expression.",
+      "producer_and_actual_guard": "avatarInitials → Intl.Segmenter → Array.from(...).length → Math.max(2,count) → --ui-avatar-graphemes → semantic font calculation",
+      "scope_limit": "Locale glyph metrics, fit, and external custom-property overrides remain runtime concerns.",
+      "reason_ja": "fallback initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えMath.max(2, count)を供給し、0除算を避ける。semantic text tokenを基準にした文字量の補正として、このCSS消費箇所に限る例外候補。",
+      "proof_files": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display.ts",
+          "line": 78,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 76,
+          "note_ja": "letterCountを--ui-avatar-graphemesへ供給。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 81,
+          "note_ja": "initialsの実grapheme数を最低2へ制限。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 78,
+          "note_ja": "text-avatar tokenにscaleと係数を掛けgraphemesで割る。"
+        }
+      ]
+    },
+    {
+      "id": "D057",
+      "group": "description-structural-column-count",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display.ts",
+        "line": 101,
+        "column": 80,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<dl [attr.aria-label]=\"label()\" [attr.data-direction]=\"direction()\" [style.--ui-description-columns]=\"checkedColumns()\"> :: [style.--ui-description-columns]=\"checkedColumns()\">@for(item of items();track item.id){<div class=\"ui-description\"><dt>{{item.label}}</dt><dd>@if(valueTemplate();as custom){<ng-container [ngTemplateOutlet]=\"custom.template\" [ngTemplateOutletContext]=\"{$implicit:item,value:item.value,missing:item.value==null}\" /> }@else{ {{item.value==null?uiEffective_missingLabel():item.value===''?uiEffective_emptyLabel():item.value}} }</dd></div>}</dl>`,"
+      },
+      "match_source": "[style.--ui-description-columns]=\"checkedColumns()\"",
+      "purpose": "A bounded column count is a structural parameter, not an interface size token.",
+      "producer_and_actual_guard": "columns → displayInteger(1,12) → checkedColumns → --ui-description-columns → repeat(count,minmax(0,1fr))",
+      "scope_limit": "Only this grid structure is excepted; responsive readability is not established.",
+      "reason_ja": "Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。",
+      "proof_files": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display.ts",
+          "line": 101,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 101,
+          "note_ja": "checkedColumnsをcustom propertyに供給。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 102,
+          "note_ja": "repeat列数に使い狭幅では1列へ変える。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 106,
+          "note_ja": "1〜12 safe integer guard。"
+        },
+        {
+          "file": "templates/angular/display-model.ts",
+          "line": 3,
+          "note_ja": "範囲外や非整数はthrow。"
+        }
+      ]
+    },
+    {
+      "id": "D058",
+      "group": "description-structural-column-count",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/display.ts",
+        "line": 102,
+        "column": 62,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-description-columns cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": "dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}"
+      },
+      "match_source": "dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}",
+      "purpose": "A bounded column count is a structural parameter, not an interface size token.",
+      "producer_and_actual_guard": "columns → displayInteger(1,12) → checkedColumns → --ui-description-columns → repeat(count,minmax(0,1fr))",
+      "scope_limit": "Only this grid structure is excepted; responsive readability is not established.",
+      "reason_ja": "Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。",
+      "proof_files": [
+        "templates/angular/display.ts",
+        "templates/angular/display-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/display.ts",
+          "line": 102,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 101,
+          "note_ja": "checkedColumnsをcustom propertyに供給。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 102,
+          "note_ja": "repeat列数に使い狭幅では1列へ変える。"
+        },
+        {
+          "file": "templates/angular/display.ts",
+          "line": 106,
+          "note_ja": "1〜12 safe integer guard。"
+        },
+        {
+          "file": "templates/angular/display-model.ts",
+          "line": 3,
+          "note_ja": "範囲外や非整数はthrow。"
+        }
+      ]
+    },
+    {
+      "id": "D063",
+      "group": "guarded_edge_panel_size",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/drawer.ts",
+        "line": 51,
+        "column": 22,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "this.element.style.setProperty('--ui-panel-width', width + 'px');"
+      },
+      "match_source": "this.element.style.setProperty('--ui-panel-width', width + 'px');",
+      "purpose": "The drawer and sheet public API exposes explicit user layout dimensions.",
+      "producer_and_actual_guard": "width/height → panelSize finite positive or null → remove property or explicit px → edgeStyles viewport-capped geometry",
+      "scope_limit": "Panel geometry and viewport/cascade interaction remain runtime concerns.",
+      "reason_ja": "Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。",
+      "proof_files": [
+        "templates/angular/drawer.ts",
+        "templates/angular/floating-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 51,
+          "note_ja": "対象の未解決診断のsink。this.element.style.setProperty('--ui-panel-width', width + 'px');"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 46,
+          "note_ja": "width/height両方がpanelSizeを経由。"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 50,
+          "note_ja": "nullは除去、数値のみpx出力。"
+        },
+        {
+          "file": "templates/angular/floating-model.ts",
+          "line": 14,
+          "note_ja": "panelSizeはnullまたはpositive finiteを強制。"
+        }
+      ]
+    },
+    {
+      "id": "D064",
+      "group": "guarded_edge_panel_size",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/drawer.ts",
+        "line": 53,
+        "column": 22,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "this.element.style.setProperty('--ui-panel-height', height + 'px');"
+      },
+      "match_source": "this.element.style.setProperty('--ui-panel-height', height + 'px');",
+      "purpose": "The drawer and sheet public API exposes explicit user layout dimensions.",
+      "producer_and_actual_guard": "width/height → panelSize finite positive or null → remove property or explicit px → edgeStyles viewport-capped geometry",
+      "scope_limit": "Panel geometry and viewport/cascade interaction remain runtime concerns.",
+      "reason_ja": "Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。",
+      "proof_files": [
+        "templates/angular/drawer.ts",
+        "templates/angular/floating-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 53,
+          "note_ja": "対象の未解決診断のsink。this.element.style.setProperty('--ui-panel-height', height + 'px');"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 46,
+          "note_ja": "width/height両方がpanelSizeを経由。"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 50,
+          "note_ja": "nullは除去、数値のみpx出力。"
+        },
+        {
+          "file": "templates/angular/floating-model.ts",
+          "line": 14,
+          "note_ja": "panelSizeはnullまたはpositive finiteを強制。"
+        }
+      ]
+    },
+    {
+      "id": "D066",
+      "group": "guarded_sheet_stage_geometry",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/drawer.ts",
+        "line": 100,
+        "column": 99,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "this.element.style.setProperty('--ui-sheet-height',height===null?ratio*100+'dvh':height*ratio+'px');});"
+      },
+      "match_source": "this.element.style.setProperty('--ui-sheet-height',height===null?ratio*100+'dvh':height*ratio+'px');});",
+      "purpose": "The bottom-sheet stage is a fraction of the supplied panel height or viewport.",
+      "producer_and_actual_guard": "sheetStages positive strictly ascending ratios <=1 and valid index + panelSize finite positive/null → stage ratio*dvh or ratio*height px",
+      "scope_limit": "The multiplication, CSS serialization, actual viewport fit, and interaction remain runtime concerns.",
+      "reason_ja": "BottomSheetの段階操作をheightへ反映する構造寸法。sheetStagesは各ratioをfinite・0超1以下・昇順、stageを有効整数indexに制限し、heightはpanelSizeでpositive finite/nullへ制限する。出力はratio*100 dvhまたはheight*ratio pxでありtoken集合には閉じない。残余リスクは極端なheight、browser viewport単位、段階変更時の可用領域。",
+      "proof_files": [
+        "templates/angular/drawer.ts",
+        "templates/angular/floating-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 100,
+          "note_ja": "対象の未解決診断のsink。this.element.style.setProperty('--ui-sheet-height',height===null?ratio*100+'dvh':height*ratio+'px');});"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 90,
+          "note_ja": "ratioはsheetStages(stages,currentStage)のcomputed。"
+        },
+        {
+          "file": "templates/angular/drawer.ts",
+          "line": 99,
+          "note_ja": "panelSize済みheightとratioから出力。"
+        },
+        {
+          "file": "templates/angular/floating-model.ts",
+          "line": 1,
+          "note_ja": "ratio・indexの実行時検証。"
+        },
+        {
+          "file": "templates/angular/floating-model.ts",
+          "line": 14,
+          "note_ja": "heightのpositive finite/null guard。"
+        }
+      ]
+    },
+    {
+      "id": "D083",
+      "group": "crop-selection-data-percentage",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "column": 513,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'比率' | uiMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'指定比率' | uiMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'自由' | uiMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'幅' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'高さ' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'右へ90度回転' | uiMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'範囲をリセット' | uiMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'切抜きを確定' | uiMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'· 回転' | uiMessage}} {{turns()*90}}{{'度' | uiMessage}}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,"
+      },
+      "match_source": "[style.left.%]=\"100*range.x1/dimensions().width\"",
+      "purpose": "The overlay represents crop coordinates in source-image data, transformed to percentages.",
+      "producer_and_actual_guard": "range + CropSession bitmap dimensions → previewBounds → cropBoundsError finite positive dimensions + finite ordered bounds inside image → percent bindings",
+      "scope_limit": "Bitmap decode and preview selection are checked separately from rendered overlay alignment.",
+      "reason_ja": "crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。",
+      "proof_files": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/media-model.ts",
+        "templates/angular/crop-adapter.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 20,
+          "note_ja": "previewBoundsがcropBoundsError成功時だけrangeを返す。"
+        },
+        {
+          "file": "templates/angular/media-model.ts",
+          "line": 32,
+          "note_ja": "画像寸法finite positive、range finite、正面積、画像境界、ratioを検証。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "百分率表示は@if(previewBounds)に限る。"
+        }
+      ]
+    },
+    {
+      "id": "D084",
+      "group": "crop-selection-data-percentage",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "column": 562,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'比率' | uiMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'指定比率' | uiMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'自由' | uiMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'幅' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'高さ' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'右へ90度回転' | uiMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'範囲をリセット' | uiMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'切抜きを確定' | uiMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'· 回転' | uiMessage}} {{turns()*90}}{{'度' | uiMessage}}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,"
+      },
+      "match_source": "[style.top.%]=\"100*range.y1/dimensions().height\"",
+      "purpose": "The overlay represents crop coordinates in source-image data, transformed to percentages.",
+      "producer_and_actual_guard": "range + CropSession bitmap dimensions → previewBounds → cropBoundsError finite positive dimensions + finite ordered bounds inside image → percent bindings",
+      "scope_limit": "Bitmap decode and preview selection are checked separately from rendered overlay alignment.",
+      "reason_ja": "crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。",
+      "proof_files": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/media-model.ts",
+        "templates/angular/crop-adapter.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 20,
+          "note_ja": "previewBoundsがcropBoundsError成功時だけrangeを返す。"
+        },
+        {
+          "file": "templates/angular/media-model.ts",
+          "line": 32,
+          "note_ja": "画像寸法finite positive、range finite、正面積、画像境界、ratioを検証。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "百分率表示は@if(previewBounds)に限る。"
+        }
+      ]
+    },
+    {
+      "id": "D085",
+      "group": "crop-selection-data-percentage",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "column": 611,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'比率' | uiMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'指定比率' | uiMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'自由' | uiMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'幅' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'高さ' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'右へ90度回転' | uiMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'範囲をリセット' | uiMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'切抜きを確定' | uiMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'· 回転' | uiMessage}} {{turns()*90}}{{'度' | uiMessage}}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,"
+      },
+      "match_source": "[style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\"",
+      "purpose": "The overlay represents crop coordinates in source-image data, transformed to percentages.",
+      "producer_and_actual_guard": "range + CropSession bitmap dimensions → previewBounds → cropBoundsError finite positive dimensions + finite ordered bounds inside image → percent bindings",
+      "scope_limit": "Bitmap decode and preview selection are checked separately from rendered overlay alignment.",
+      "reason_ja": "crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。",
+      "proof_files": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/media-model.ts",
+        "templates/angular/crop-adapter.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 20,
+          "note_ja": "previewBoundsがcropBoundsError成功時だけrangeを返す。"
+        },
+        {
+          "file": "templates/angular/media-model.ts",
+          "line": 32,
+          "note_ja": "画像寸法finite positive、range finite、正面積、画像境界、ratioを検証。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "百分率表示は@if(previewBounds)に限る。"
+        }
+      ]
+    },
+    {
+      "id": "D086",
+      "group": "crop-selection-data-percentage",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/image-cropper.ts",
+        "line": 10,
+        "column": 672,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'比率' | uiMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'指定比率' | uiMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'自由' | uiMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'幅' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'高さ' | uiMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'右へ90度回転' | uiMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'範囲をリセット' | uiMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'切抜きを確定' | uiMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'· 回転' | uiMessage}} {{turns()*90}}{{'度' | uiMessage}}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,"
+      },
+      "match_source": "[style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"",
+      "purpose": "The overlay represents crop coordinates in source-image data, transformed to percentages.",
+      "producer_and_actual_guard": "range + CropSession bitmap dimensions → previewBounds → cropBoundsError finite positive dimensions + finite ordered bounds inside image → percent bindings",
+      "scope_limit": "Bitmap decode and preview selection are checked separately from rendered overlay alignment.",
+      "reason_ja": "crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。",
+      "proof_files": [
+        "templates/angular/image-cropper.ts",
+        "templates/angular/media-model.ts",
+        "templates/angular/crop-adapter.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "対象診断の実際の代入・binding・CSS消費箇所。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 20,
+          "note_ja": "previewBoundsがcropBoundsError成功時だけrangeを返す。"
+        },
+        {
+          "file": "templates/angular/media-model.ts",
+          "line": 32,
+          "note_ja": "画像寸法finite positive、range finite、正面積、画像境界、ratioを検証。"
+        },
+        {
+          "file": "templates/angular/image-cropper.ts",
+          "line": 10,
+          "note_ja": "百分率表示は@if(previewBounds)に限る。"
+        }
+      ]
+    },
+    {
+      "id": "D094",
+      "group": "guarded_container_cap",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/layout.ts",
+        "line": 15,
+        "column": 12,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.max-inline-size]=\"maximum()\"> :: yle.max-inline-size]':'maximum()','[style.padding]':'inset()','[attr.data-align]':'align()','[attr.data-background]':'background()'},"
+      },
+      "match_source": "[style.max-inline-size]=\"maximum()\"",
+      "purpose": "The container public API intentionally accepts an explicit content width cap.",
+      "producer_and_actual_guard": "maxWidth numeric branch → finite positive → min(100%,number px), otherwise semantic/full fallback",
+      "scope_limit": "Finite numeric validity alone does not imply semantic conformity; accepted only for this cap API.",
+      "reason_ja": "Containerのmax-inline-sizeは本文領域の上限という構造寸法。numeric branchでpositive finiteを検査しmin(100%, value px)に制限、他branchはsemantic contentまたは100%。数値branchはtokenに帰着しないためSにはできない。残余リスクは極端に小さいcapによる本文/操作の可読性。",
+      "proof_files": [
+        "templates/angular/layout.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 15,
+          "note_ja": "対象の未解決診断のsink。<div [style.max-inline-size]=\"maximum()\">"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 20,
+          "note_ja": "numeric guard、100% cap、semantic既定値の各producer。"
+        },
+        {
+          "file": "docs/static-checks.ja.md",
+          "line": 63,
+          "note_ja": "構造配置用途の限定例外と通常UI tokenを区別。"
+        }
+      ]
+    },
+    {
+      "id": "D107",
+      "group": "guarded_scrollport_height",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/layout.ts",
+        "line": 49,
+        "column": 182,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div #viewport tabindex=\"0\" role=\"region\" [attr.aria-label]=\"label()\" [style.block-size]=\"heightValue()\" [attr.data-direction]=\"direction()\" (scroll)=\"positionChange.emit(positionOf($event))\"> :: [style.block-size]=\"heightValue()\" [attr.data-direction]=\"direction()\" (scroll)=\"positionChange.emit(positionOf($event))\"><ng-content /></div>`,styles:common+`:host{display:block;}div{box-sizing:border-box;max-inline-size:100%;overscroll-behavior:contain;}div[data-direction=\"both\"]{overflow:auto;}div[data-direction=\"vertical\"]{overflow-y:auto;overflow-x:hidden;}div[data-direction=\"horizontal\"]{overflow-x:auto;overflow-y:hidden;}div:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`})"
+      },
+      "match_source": "[style.block-size]=\"heightValue()\"",
+      "purpose": "The scroll region public API intentionally accepts an explicit viewport height.",
+      "producer_and_actual_guard": "height numeric branch → finite positive → px, auto or semantic viewport fallback",
+      "scope_limit": "Scroll behavior, hidden states and rendered content fit remain runtime concerns.",
+      "reason_ja": "ScrollAreaのblock-sizeは内容をスクロールさせる領域の構造寸法。heightValueは数値をpositive finiteに検査し、auto/semantic viewportと区別してpx化する。無限個の数値出力のためSではない。残余リスクは小さいscrollportの操作可能性、focus/scrollと大きな内容の関係。",
+      "proof_files": [
+        "templates/angular/layout.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 49,
+          "note_ja": "対象の未解決診断のsink。<div #viewport tabindex=\"0\" role=\"region\" [attr.aria-label]=\"label()\" [style.block-size]=\"heightValue()\" [attr.data-direction]=\"direction()\" (scroll)=\"positionChange.emit(positionOf($event))\">"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 50,
+          "note_ja": "heightValueのnumeric guardとauto/semantic branch。"
+        }
+      ]
+    },
+    {
+      "id": "D108",
+      "group": "guarded_sticky_offset",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/layout.ts",
+        "line": 51,
+        "column": 123,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.top]=\"edge()===&quot;top&quot;?offsetValue():null\"> :: yle.position]':'enabled()?\"sticky\":\"static\"','[style.top]':'edge()===\"top\"?offsetValue():null','[style.bottom]':'edge()===\"bottom\"?offsetValue():null','[class.ui-sticky-region--active]':'enabled()'},template:'<ng-content />',styles:common+`:host{display:block;}:host(.ui-sticky-region--active){background:var(--ui-color-surface);z-index:1;}`})"
+      },
+      "match_source": "[style.top]=\"edge()===&quot;top&quot;?offsetValue():null\"",
+      "purpose": "The sticky region uses an explicit occluding-area offset as a layout coordinate.",
+      "producer_and_actual_guard": "offset → page semantic token or finite nonnegative → px → edge-selected top/bottom",
+      "scope_limit": "Cascade, containing scrollport, and oversized offset remain runtime concerns.",
+      "reason_ja": "StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。",
+      "proof_files": [
+        "templates/angular/layout.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 51,
+          "note_ja": "対象の未解決診断のsink。<div [style.top]=\"edge()===&quot;top&quot;?offsetValue():null\">"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 51,
+          "note_ja": "top/bottom各branchでoffsetValueまたはnull。"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 52,
+          "note_ja": "page tokenとfinite/nonnegative numeric guard。"
+        }
+      ]
+    },
+    {
+      "id": "D109",
+      "group": "guarded_sticky_offset",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/layout.ts",
+        "line": 51,
+        "column": 123,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.bottom]=\"edge()===&quot;bottom&quot;?offsetValue():null\"> :: yle.position]':'enabled()?\"sticky\":\"static\"','[style.top]':'edge()===\"top\"?offsetValue():null','[style.bottom]':'edge()===\"bottom\"?offsetValue():null','[class.ui-sticky-region--active]':'enabled()'},template:'<ng-content />',styles:common+`:host{display:block;}:host(.ui-sticky-region--active){background:var(--ui-color-surface);z-index:1;}`})"
+      },
+      "match_source": "[style.bottom]=\"edge()===&quot;bottom&quot;?offsetValue():null\"",
+      "purpose": "The sticky region uses an explicit occluding-area offset as a layout coordinate.",
+      "producer_and_actual_guard": "offset → page semantic token or finite nonnegative → px → edge-selected top/bottom",
+      "scope_limit": "Cascade, containing scrollport, and oversized offset remain runtime concerns.",
+      "reason_ja": "StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。",
+      "proof_files": [
+        "templates/angular/layout.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 51,
+          "note_ja": "対象の未解決診断のsink。<div [style.bottom]=\"edge()===&quot;bottom&quot;?offsetValue():null\">"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 51,
+          "note_ja": "top/bottom各branchでoffsetValueまたはnull。"
+        },
+        {
+          "file": "templates/angular/layout.ts",
+          "line": 52,
+          "note_ja": "page tokenとfinite/nonnegative numeric guard。"
+        }
+      ]
+    },
+    {
+      "id": "D121",
+      "group": "guarded_navigation_column_count",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/mega-menu.ts",
+        "line": 14,
+        "column": 234,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<nav [attr.aria-label]=\"label()\" class=\"ui-mega-columns\" [style.--ui-mega-columns]=\"checkedColumns()\"> :: [style.--ui-mega-columns]=\"checkedColumns()\">"
+      },
+      "match_source": "[style.--ui-mega-columns]=\"checkedColumns()\"",
+      "purpose": "A positive structural navigation column count participates in a semantic width expression.",
+      "producer_and_actual_guard": "columns → positiveInteger(safe positive integer) → checkedColumns → --ui-mega-columns → semantic column calculation",
+      "scope_limit": "Very large counts, layout usability and cascade remain runtime concerns.",
+      "reason_ja": "MegaMenuの--ui-mega-columnsはナビゲーション列数を決める構造係数。checkedColumnsはpositiveIntegerを通し、positiveIntegerはNumber.isSafeIntegerかつ>0を強制する。寸法tokenを選ぶ処理ではないためSではない。残余リスクは過大count、CSS repeat/minmaxでの内容密度、外部alias上書き。",
+      "proof_files": [
+        "templates/angular/mega-menu.ts",
+        "templates/angular/layout-model.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/mega-menu.ts",
+          "line": 14,
+          "note_ja": "対象の未解決診断のsink。<nav [attr.aria-label]=\"label()\" class=\"ui-mega-columns\" [style.--ui-mega-columns]=\"checkedColumns()\">"
+        },
+        {
+          "file": "templates/angular/mega-menu.ts",
+          "line": 24,
+          "note_ja": "checkedColumnsはguard成功後にのみcolumnsを返す。"
+        },
+        {
+          "file": "templates/angular/layout-model.ts",
+          "line": 14,
+          "note_ja": "positiveIntegerはsafe integerかつpositive。"
+        }
+      ]
+    },
+    {
+      "id": "D131",
+      "group": "structural_option_column_count",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/selection-input.ts",
+        "line": 26,
+        "column": 28,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-option-columns cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-options{grid-template-columns:repeat(var(--ui-option-columns,1),minmax(0,1fr))}"
+      },
+      "match_source": ".ui-options{grid-template-columns:repeat(var(--ui-option-columns,1),minmax(0,1fr))}",
+      "purpose": "The options stylesheet consumes a positive structural option-column count.",
+      "producer_and_actual_guard": "CheckboxGroup columns → Number.isSafeInteger and >=1 → checkedColumns → --ui-option-columns → repeat(count,...)",
+      "scope_limit": "This producer does not impose an upper bound. Very large column counts, narrow-width readability and external override remain runtime concerns.",
+      "reason_ja": "--ui-option-columnsは色/寸法のtheme値ではなく、checkbox選択肢を何列に組むかという正整数の構造data。実bindingはcheckedColumnsのみで、safe integerかつ1以上を満たさなければthrowする。CSS repeatの列数引数という用途に限定した理由付き例外候補になる。",
+      "proof_files": [
+        "templates/angular/selection-input.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/selection-input.ts",
+          "line": 26,
+          "note_ja": "固定診断の対象sink。host生成位置の場合は以下の実binding行も参照。"
+        },
+        {
+          "file": "templates/angular/selection-input.ts",
+          "line": 26,
+          "note_ja": "ローカルpropertyをrepeatの列数として消費。"
+        },
+        {
+          "file": "templates/angular/selection-input.ts",
+          "line": 85,
+          "note_ja": "同じui-optionsへcheckedColumnsをinline binding。"
+        },
+        {
+          "file": "templates/angular/selection-input.ts",
+          "line": 96,
+          "note_ja": "実producerはNumber.isSafeIntegerかつ1以上を検査。"
+        },
+        {
+          "file": "src/check/styles.ts",
+          "line": 83,
+          "note_ja": "local UI custom propertyをsemantic未解決として扱う。"
+        },
+        {
+          "file": "src/check/styles.ts",
+          "line": 302,
+          "note_ja": "任意custom property書込みがあるとalias解決をcompleteにしない。"
+        }
+      ]
+    },
+    {
+      "id": "D134",
+      "group": "guarded_splitter_viewport_height",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/splitter.ts",
+        "line": 8,
+        "column": 80,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div #panes class=\"ui-splitter-panes\" [attr.data-orientation]=\"orientation()\" [style.block-size]=\"heightValue()\"> :: [style.block-size]=\"heightValue()\">"
+      },
+      "match_source": "[style.block-size]=\"heightValue()\"",
+      "purpose": "The splitter public API intentionally exposes an explicit viewport height.",
+      "producer_and_actual_guard": "height → viewport semantic token or finite positive → px → pane viewport height",
+      "scope_limit": "Pane content fit and interactions remain runtime concerns.",
+      "reason_ja": "Splitterのpanes block-sizeは分割scroll領域の外枠高さ。heightValueはviewport tokenまたはpositive finite pxのみを返す。pixel branchはsemantic token適合にできず、構造用途の限定例外候補。残余リスクは小さい高さでの両pane/handleの操作、orientationと内容overflow。",
+      "proof_files": [
+        "templates/angular/splitter.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/splitter.ts",
+          "line": 8,
+          "note_ja": "対象の未解決診断のsink。<div #panes class=\"ui-splitter-panes\" [attr.data-orientation]=\"orientation()\" [style.block-size]=\"heightValue()\">"
+        },
+        {
+          "file": "templates/angular/splitter.ts",
+          "line": 17,
+          "note_ja": "heightValueのtoken branchとpositive finite guard。"
+        }
+      ]
+    },
+    {
+      "id": "D146",
+      "group": "guarded_textarea_max_height",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/text-input.ts",
+        "line": 46,
+        "column": 51,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"current()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"commit(text($event))\" (blur)=\"touch()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"commit(text($event))\" (blur)=\"touch()\"></textarea>"
+      },
+      "match_source": "[style.max-block-size.px]=\"checkedMaxHeight()\"",
+      "purpose": "The textarea public API exposes a caller-specified maximum editing viewport height.",
+      "producer_and_actual_guard": "maxHeight → null or finite positive → checkedMaxHeight → px binding",
+      "scope_limit": "Autosize DOM measurements and actual editing behavior remain separately unresolved.",
+      "reason_ja": "Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。",
+      "proof_files": [
+        "templates/angular/text-input.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/text-input.ts",
+          "line": 46,
+          "note_ja": "対象の未解決診断のsink。<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"current()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"commit(text($event))\" (blur)=\"touch()\">"
+        },
+        {
+          "file": "templates/angular/text-input.ts",
+          "line": 52,
+          "note_ja": "maxHeightのnull/positive finite guard。"
+        },
+        {
+          "file": "templates/angular/text-input.ts",
+          "line": 57,
+          "note_ja": "autoResize effectも同じcheckedMaxHeightを読む。"
+        }
+      ]
+    },
+    {
+      "id": "D153",
+      "group": "virtual_table_column_width_data",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 17,
+        "column": 112,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div role=\"row\" aria-rowindex=\"1\" class=\"ui-virtual-table__row ui-virtual-table__header\" [style.grid-template-columns]=\"gridColumns()\" [style.min-inline-size]=\"minimumInline()\"> :: [style.grid-template-columns]=\"gridColumns()\" [style.min-inline-size]=\"minimumInline()\">@if(selectionMode()!=='none'){<div role=\"columnheader\">@if(selectionMode()==='multiple'){<input data-table-virtual-control type=\"checkbox\" [attr.aria-label]=\"('取得済み表示行をすべて選択' | uiMessage)\" [checked]=\"allSelected()\" [indeterminate]=\"someSelected()&&!allSelected()\" [disabled]=\"busy()||disabled()||!selectionRows().length\" (change)=\"selectAll($event)\">}@else{{{'選択' | uiMessage}}}</div>}@for(column of columns();track column.id){<div role=\"columnheader\" [id]=\"headerId(column.id)\" [attr.data-column-id]=\"column.id\" [attr.aria-colindex]=\"$index+1+utilityCount()\" [attr.aria-sort]=\"ariaSort(column.id)\">@if(sortable()&&column.sortable!==false){<button uiAction data-table-virtual-control type=\"button\" [disabled]=\"busy()||disabled()\" [attr.aria-label]=\"column.header+('で並べ替え' | uiMessage)\" (click)=\"sortRequested.emit(column.id)\">{{column.header}}</button>}@else{ {{column.header}} }</div>}</div></div>"
+      },
+      "match_source": "[style.grid-template-columns]=\"gridColumns()\"",
+      "purpose": "Saved/resizable column widths are table layout data; only the two grid-template bindings are excepted.",
+      "producer_and_actual_guard": "columns/state → tableConfigurationError finite positive width/min/max and ordered limits → !problem template branch → gridColumns clamp and semantic fallback",
+      "scope_limit": "Invalid settings suppress the table branch; rendered column sizing/scroll interaction is runtime.",
+      "reason_ja": "gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。",
+      "proof_files": [
+        "templates/angular/virtual-data-table.ts",
+        "templates/angular/table-model.ts",
+        "templates/angular/table-column-resize.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 17,
+          "note_ja": "固定診断の対象sink。host生成位置の場合は以下の実binding行も参照。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 15,
+          "note_ja": "problemがあれば表領域を生成しない。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 72,
+          "note_ja": "column/state幅、min/max、semantic fallbackからgrid定義を生成。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 79,
+          "note_ja": "tableConfigurationErrorを実際のproblemへ接続。"
+        },
+        {
+          "file": "templates/angular/table-model.ts",
+          "line": 159,
+          "note_ja": "column幅/min/maxの有限正数と順序を検査。"
+        },
+        {
+          "file": "templates/angular/table-model.ts",
+          "line": 160,
+          "note_ja": "state.columnWidthsの有限正数を検査。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 2,
+          "note_ja": "表のborder-box列幅をlayout dataとする用途説明。"
+        }
+      ]
+    },
+    {
+      "id": "D158",
+      "group": "virtual_table_column_width_data",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "templates/angular/virtual-data-table.ts",
+        "line": 19,
+        "column": 339,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div role=\"row\" class=\"ui-virtual-table__row\" [attr.data-ui-virtual-index]=\"index\" [attr.aria-rowindex]=\"index+2\" [attr.data-virtual-row-key]=\"encodedKey(row)\" [style.block-size.px]=\"rowSize()\" [style.grid-template-columns]=\"gridColumns()\"> :: [style.grid-template-columns]=\"gridColumns()\">@if(selectionMode()!=='none'){<div role=\"cell\"><input data-table-virtual-control [type]=\"selectionMode()==='single'?'radio':'checkbox'\" [name]=\"tableId()+'-virtual-selection'\" [value]=\"encodedKey(row)\" [attr.aria-label]=\"('行を選択: ' | uiMessage)+rowLabel(row)\" [checked]=\"selectedKeys().includes(rowKey(row))\" [disabled]=\"busy()||disabled()||!rowSelectable()(row)\" (change)=\"select(row,$event)\"></div>}@for(column of columns();track column.id){<div role=\"cell\" class=\"ui-virtual-table__cell\" tabindex=\"0\" [attr.aria-colindex]=\"$index+1+utilityCount()\" [attr.aria-describedby]=\"headerId(column.id)\">@if(cellTemplate(column);as template){<ng-container [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{$implicit:row,value:cellValue(row,column),column}\"/>}@else{<span>{{cellText(row,column)}}</span>}</div>}</div>"
+      },
+      "match_source": "[style.grid-template-columns]=\"gridColumns()\"",
+      "purpose": "Saved/resizable column widths are table layout data; only the two grid-template bindings are excepted.",
+      "producer_and_actual_guard": "columns/state → tableConfigurationError finite positive width/min/max and ordered limits → !problem template branch → gridColumns clamp and semantic fallback",
+      "scope_limit": "Invalid settings suppress the table branch; rendered column sizing/scroll interaction is runtime.",
+      "reason_ja": "gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。",
+      "proof_files": [
+        "templates/angular/virtual-data-table.ts",
+        "templates/angular/table-model.ts",
+        "templates/angular/table-column-resize.ts"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 19,
+          "note_ja": "固定診断の対象sink。host生成位置の場合は以下の実binding行も参照。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 15,
+          "note_ja": "problemがあれば表領域を生成しない。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 72,
+          "note_ja": "column/state幅、min/max、semantic fallbackからgrid定義を生成。"
+        },
+        {
+          "file": "templates/angular/virtual-data-table.ts",
+          "line": 79,
+          "note_ja": "tableConfigurationErrorを実際のproblemへ接続。"
+        },
+        {
+          "file": "templates/angular/table-model.ts",
+          "line": 159,
+          "note_ja": "column幅/min/maxの有限正数と順序を検査。"
+        },
+        {
+          "file": "templates/angular/table-model.ts",
+          "line": 160,
+          "note_ja": "state.columnWidthsの有限正数を検査。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 2,
+          "note_ja": "表のborder-box列幅をlayout dataとする用途説明。"
+        }
+      ]
+    },
+    {
+      "id": "D171",
+      "group": "resize_fixture_width_data",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "tests/fixture-app/runtime-priority2-tables.ts",
+        "line": 9,
+        "column": 127,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div data-resize-column [style.width.px]=\"width()\" style=\"box-sizing:border-box;position:relative;min-width:0\"> :: [style.width.px]=\"width()\" style=\"box-sizing:border-box;position:relative;min-width:0\"><span>申請の可変列</span><button type=\"button\" uiTableColumnResize label=\"申請列の幅\" [value]=\"width()\" [minimum]=\"80\" [maximum]=\"300\" [disabled]=\"disabled()||busy()\" (resizeChange)=\"resize($event)\" style=\"position:absolute;inset-inline-end:0;top:0;height:100%\">境界</button></div>`})"
+      },
+      "match_source": "[style.width.px]=\"width()\"",
+      "purpose": "The fixture reflects the component resize output as table column layout data.",
+      "producer_and_actual_guard": "fixture width initialized150 → TableColumnResize value/min80/max300 → valid finite input range + pointer/keyboard clamp → resizeChange → width signal → px binding",
+      "scope_limit": "No fixture-only blanket exemption: pointer platform coordinates and interaction are runtime concerns.",
+      "reason_ja": "列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。",
+      "proof_files": [
+        "tests/fixture-app/runtime-priority2-tables.ts",
+        "templates/angular/table-column-resize.ts"
+      ],
+      "evidence": [
+        {
+          "file": "tests/fixture-app/runtime-priority2-tables.ts",
+          "line": 9,
+          "note_ja": "固定診断の対象sink。host生成位置の場合は以下の実binding行も参照。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 2,
+          "note_ja": "border-box幅をlayout dataとする明示説明。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 20,
+          "note_ja": "開始/keyboard操作にfinite value/min/max検査。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 21,
+          "note_ja": "出力はmin/max clamp。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 39,
+          "note_ja": "pointer差分からresizeChangeをemit。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 89,
+          "note_ja": "keyboard操作のclamp出力。"
+        },
+        {
+          "file": "tests/fixture-app/runtime-priority2-tables.ts",
+          "line": 10,
+          "note_ja": "fixture width更新はresize(value)がresizeChangeを受けsignalへ反映。"
+        }
+      ]
+    },
+    {
+      "id": "D175",
+      "group": "resize_fixture_width_data",
+      "status": "reviewed_candidate_pending_final_diagnostic",
+      "baseline_diagnostic": {
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 24,
+        "column": 160,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div class=\"resize-demo\" [style.width.px]=\"width()\"> :: [style.width.px]=\"width()\"><button #resizeHandle type=\"button\" class=\"resize-handle\" uiTableColumnResize label=\"申請名の列幅\" [value]=\"width()\" [minimum]=\"80\" [maximum]=\"300\" [disabled]=\"busy()\" (resizeChange)=\"width.set($event)\"></button></div></div>"
+      },
+      "match_source": "[style.width.px]=\"width()\"",
+      "purpose": "The fixture reflects the component resize output as table column layout data.",
+      "producer_and_actual_guard": "fixture width initialized150 → TableColumnResize value/min80/max300 → valid finite input range + pointer/keyboard clamp → resizeChange → width signal → px binding",
+      "scope_limit": "No fixture-only blanket exemption: pointer platform coordinates and interaction are runtime concerns.",
+      "reason_ja": "列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。",
+      "proof_files": [
+        "tests/fixture-app/table-catalog.ts",
+        "templates/angular/table-column-resize.ts"
+      ],
+      "evidence": [
+        {
+          "file": "tests/fixture-app/table-catalog.ts",
+          "line": 24,
+          "note_ja": "固定診断の対象sink。host生成位置の場合は以下の実binding行も参照。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 2,
+          "note_ja": "border-box幅をlayout dataとする明示説明。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 20,
+          "note_ja": "開始/keyboard操作にfinite value/min/max検査。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 21,
+          "note_ja": "出力はmin/max clamp。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 39,
+          "note_ja": "pointer差分からresizeChangeをemit。"
+        },
+        {
+          "file": "templates/angular/table-column-resize.ts",
+          "line": 89,
+          "note_ja": "keyboard操作のclamp出力。"
+        },
+        {
+          "file": "tests/fixture-app/table-catalog.ts",
+          "line": 37,
+          "note_ja": "width signal宣言。24行のresizeChange bindingが更新経路。初期値だけを証明に使わない。"
+        }
+      ]
+    }
+  ]
+}

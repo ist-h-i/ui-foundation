@@ -21,7 +21,7 @@ const loader = import.meta.resolve('tsx');
 async function project(t: TestContext) {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-output-migration-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const source = await readFile(resolve(repository, 'examples/ui.config.example.yaml'), 'utf8');
+  const source = (await readFile(resolve(repository, 'examples/ui.config.example.yaml'), 'utf8')).replace(/\nchecks:\n[\s\S]*$/, '\n');
   const config = parseConfig(source);
   await writeFile(resolve(root, 'ui.config.yaml'), source);
   await syncProject({ root });

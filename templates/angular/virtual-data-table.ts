@@ -3,22 +3,22 @@ import {injectUiText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, untracked, viewChild, type TemplateRef } from '@angular/core';
-import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { afterRenderEffect, booleanAttribute, ChangeDetectorRef, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, untracked, viewChild, isSignal, type Signal, type TemplateRef } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ActionControl } from './action-control';
-import { canFocus } from './focus';
+import { canFocus } from './focus';import {VirtualScroll} from './virtual-scroll';import {VirtualRows} from './virtual-rows';import {virtualRadioProblem,type VirtualRadioGroup} from './virtual-radio';export type {VirtualRadioGroup,VirtualRadioMember} from './virtual-radio';
 import { createTableState, tableConfigurationError, tableOwnValue, tableText, tableValue, type TableColumn, type TableKey, type TableState } from './table-model';
 import { type TableTemplateContext } from './data-table-view';
 import { tableDomIdToken } from './table-advanced-model';
 /** CDK public fixed-size scrolling with explicit table row/column relationships. */
-@Component({ selector: 'ui-virtual-data-table', standalone: true, imports: [NgTemplateOutlet, ActionControl, CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, template: `
+@Component({ selector: 'ui-virtual-data-table', standalone: true, imports: [NgTemplateOutlet, ActionControl, VirtualScroll, VirtualRows, CdkVirtualScrollViewport,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, template: `
  <span #rowProbe class="ui-virtual-table__row-probe" aria-hidden="true"></span>@if(problem()){<p role="alert">{{problem()}}</p>}@else if(rowSize()>0){
  <div role="table" class="ui-virtual-table__table" [attr.aria-label]="caption()" [attr.aria-rowcount]="rows().length+1" [attr.aria-colcount]="columns().length+utilityCount()" [attr.aria-busy]="busy()?'true':null"><p class="ui-virtual-table__caption">{{caption()}} ({{rows().length}}{{'件の取得済み行)' | uiMessage}}</p><div class="ui-virtual-table__horizontal">
  <div role="rowgroup"><div role="row" aria-rowindex="1" class="ui-virtual-table__row ui-virtual-table__header" [style.grid-template-columns]="gridColumns()" [style.min-inline-size]="minimumInline()">@if(selectionMode()!=='none'){<div role="columnheader">@if(selectionMode()==='multiple'){<input data-table-virtual-control type="checkbox" [attr.aria-label]="('取得済み表示行をすべて選択' | uiMessage)" [checked]="allSelected()" [indeterminate]="someSelected()&&!allSelected()" [disabled]="busy()||disabled()||!selectionRows().length" (change)="selectAll($event)">}@else{{{'選択' | uiMessage}}}</div>}@for(column of columns();track column.id){<div role="columnheader" [id]="headerId(column.id)" [attr.data-column-id]="column.id" [attr.aria-colindex]="$index+1+utilityCount()" [attr.aria-sort]="ariaSort(column.id)">@if(sortable()&&column.sortable!==false){<button uiAction data-table-virtual-control type="button" [disabled]="busy()||disabled()" [attr.aria-label]="column.header+('で並べ替え' | uiMessage)" (click)="sortRequested.emit(column.id)">{{column.header}}</button>}@else{ {{column.header}} }</div>}</div></div>
- <cdk-virtual-scroll-viewport #viewport role="rowgroup" tabindex="0" class="ui-virtual-table__viewport" [attr.aria-label]="caption()+('の仮想スクロール領域' | uiMessage)" [style.block-size.px]="height()" [style.min-inline-size]="minimumInline()" [itemSize]="rowSize()" [minBufferPx]="rowSize()*overscan()" [maxBufferPx]="rowSize()*(overscan()+1)" (keydown)="key($event)">
- <div role="row" class="ui-virtual-table__row" *cdkVirtualFor="let row of rows();let index=index;trackBy:track;templateCacheSize:0" [attr.aria-rowindex]="index+2" [attr.data-virtual-row-key]="encodedKey(row)" [style.block-size.px]="rowSize()" [style.grid-template-columns]="gridColumns()">@if(selectionMode()!=='none'){<div role="cell"><input data-table-virtual-control [type]="selectionMode()==='single'?'radio':'checkbox'" [name]="tableId()+'-virtual-selection'" [attr.aria-label]="('行を選択: ' | uiMessage)+rowLabel(row)" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="busy()||disabled()||!rowSelectable()(row)" (change)="select(row,$event)"></div>}@for(column of columns();track column.id){<div role="cell" class="ui-virtual-table__cell" tabindex="0" [attr.aria-colindex]="$index+1+utilityCount()" [attr.aria-describedby]="headerId(column.id)">@if(cellTemplate(column);as template){<ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit:row,value:cellValue(row,column),column}"/>}@else{<span>{{cellText(row,column)}}</span>}</div>}</div>
- </cdk-virtual-scroll-viewport></div></div>@if(!rows().length){<p role="status">{{'データはありません。' | uiMessage}}</p>}}@else{<p role="status">{{'表領域を準備しています。' | uiMessage}}</p>}`, styles: `
- :host{display:block;min-inline-size:0;max-inline-size:100%;font:inherit;color:var(--ui-color-text);}:host([hidden]){display:none;}.ui-virtual-table__caption{font-weight:var(--ui-weight-control);overflow-wrap:anywhere;margin-block:var(--ui-space-table-y);}.ui-virtual-table__horizontal{max-inline-size:100%;overflow:auto;overscroll-behavior:contain;}.ui-virtual-table__viewport{display:block;box-sizing:border-box;block-size:var(--ui-size-table-viewport);background:var(--ui-color-surface);}.ui-virtual-table__viewport:focus-visible,.ui-virtual-table__cell:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}.ui-virtual-table__row{display:grid;box-sizing:border-box;}.ui-virtual-table__row>[role=cell],.ui-virtual-table__row>[role=columnheader]{min-inline-size:0;box-sizing:border-box;padding:var(--ui-space-table-y) var(--ui-space-table-x);border-block-end:var(--ui-border-control) solid var(--ui-color-border);border-inline-end:var(--ui-border-control) solid var(--ui-color-border);overflow:auto;}.ui-virtual-table__header{background:var(--ui-color-background);font-weight:var(--ui-weight-control);}.ui-virtual-table__cell>span{display:block;white-space:nowrap;overflow-wrap:normal;}.ui-virtual-table__row-probe{position:absolute;visibility:hidden;pointer-events:none;inline-size:0;block-size:calc(max(var(--ui-size-control),calc(var(--ui-text-body) * var(--ui-leading-body))) + 2 * var(--ui-space-table-y));}input[type=checkbox],input[type=radio]{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);accent-color:var(--ui-color-action);}` })
+ <cdk-virtual-scroll-viewport #viewport role="rowgroup" tabindex="0" class="ui-virtual-table__viewport" [attr.aria-label]="caption()+('の仮想スクロール領域' | uiMessage)" [style.block-size.px]="height()" [style.min-inline-size]="minimumInline()" [uiVirtualScroll]="rowSize()" [uiVirtualOverscan]="overscan()" [uiVirtualRadioGroups]="effectiveRadioGroups()" [uiVirtualRender]="refreshWindow" (keydown)="key($event)"><div class="ui-virtual-window" [style.padding-block-start.px]="scroller()?.offset()??0">
+ <div class="ui-virtual-slot" *uiVirtualRows="let row of rows();let index=index;let gap=gap;trackBy:track" [style.padding-block-start.px]="gap"><div role="row" class="ui-virtual-table__row" [attr.data-ui-virtual-index]="index" [attr.aria-rowindex]="index+2" [attr.data-virtual-row-key]="encodedKey(row)" [style.block-size.px]="rowSize()" [style.grid-template-columns]="gridColumns()">@if(selectionMode()!=='none'){<div role="cell"><input data-table-virtual-control [type]="selectionMode()==='single'?'radio':'checkbox'" [name]="tableId()+'-virtual-selection'" [value]="encodedKey(row)" [attr.aria-label]="('行を選択: ' | uiMessage)+rowLabel(row)" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="busy()||disabled()||!rowSelectable()(row)" (change)="select(row,$event)"></div>}@for(column of columns();track column.id){<div role="cell" class="ui-virtual-table__cell" tabindex="0" [attr.aria-colindex]="$index+1+utilityCount()" [attr.aria-describedby]="headerId(column.id)">@if(cellTemplate(column);as template){<ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit:row,value:cellValue(row,column),column}"/>}@else{<span>{{cellText(row,column)}}</span>}</div>}</div>
+ </div></div></cdk-virtual-scroll-viewport></div></div>@if(!rows().length){<p role="status">{{'データはありません。' | uiMessage}}</p>}}@else{<p role="status">{{'表領域を準備しています。' | uiMessage}}</p>}`, styles: `
+ :host{display:block;min-inline-size:0;max-inline-size:100%;font:inherit;color:var(--ui-color-text);}:host([hidden]){display:none;}.ui-virtual-table__caption{font-weight:var(--ui-weight-control);overflow-wrap:anywhere;margin-block:var(--ui-space-table-y);}.ui-virtual-table__horizontal{max-inline-size:100%;overflow:auto;overscroll-behavior:contain;}.ui-virtual-table__viewport{scroll-padding:calc(var(--ui-border-focus) + var(--ui-border-focus-offset));display:block;box-sizing:border-box;block-size:var(--ui-size-table-viewport);background:var(--ui-color-surface);}.ui-virtual-table__viewport:focus-visible,.ui-virtual-table__cell:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}.ui-virtual-table__row{display:grid;box-sizing:border-box;}.ui-virtual-table__row>[role=cell],.ui-virtual-table__row>[role=columnheader]{min-inline-size:0;box-sizing:border-box;padding:var(--ui-space-table-y) var(--ui-space-table-x);border-block-end:var(--ui-border-control) solid var(--ui-color-border);border-inline-end:var(--ui-border-control) solid var(--ui-color-border);overflow:auto;}.ui-virtual-table__header{background:var(--ui-color-background);font-weight:var(--ui-weight-control);}.ui-virtual-table__cell>span{display:block;white-space:nowrap;overflow-wrap:normal;}.ui-virtual-table__row-probe{position:absolute;visibility:hidden;pointer-events:none;inline-size:0;block-size:calc(max(var(--ui-size-control),calc(var(--ui-text-body) * var(--ui-leading-body))) + 2 * var(--ui-space-table-y));}input[type=checkbox],input[type=radio]{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);accent-color:var(--ui-color-action);}` })
 export class VirtualDataTable<T extends object> {
  private readonly uiDiagnostic_VirtualDataTable=(()=>{const text=injectUiDiagnosticText();return (value:string|null):string|null=>value===null?null:text(value);})();
 
@@ -36,13 +36,14 @@ export class VirtualDataTable<T extends object> {
     readonly height = input<number | null>(null);
     readonly itemHeight = input<number | null>(null);
     readonly overscan = input(3);
+    readonly radioGroupsSource=input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'radioGroups'});readonly radioGroups=computed(()=>{const source=this.radioGroupsSource();return isSignal(source)?source():source;});
     readonly locale = input('ja-JP');
     readonly missingLabel = input<string>();
  protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_VirtualDataTable('未取得'));
     readonly sortable = input(true, { transform: booleanAttribute });
     readonly sortRequested = output<string>();
     readonly selectionMode = input<'none' | 'single' | 'multiple'>('none');
-    readonly selectedKeys = input<readonly TableKey[]>([]);
+    readonly selectedKeysSource=input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'});readonly selectedKeys=computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;});
     readonly selectedKeysChange = output<readonly TableKey[]>();
     readonly rowSelectable = input<(row: T) => boolean>(() => true);
     readonly cellTemplates = input<Readonly<Record<string, TemplateRef<TableTemplateContext<T>>>>>({});
@@ -55,6 +56,8 @@ export class VirtualDataTable<T extends object> {
         offset: number;
         index: number;
     }>();
+    protected readonly scroller = viewChild(VirtualScroll);
+    private readonly changeDetector = inject(ChangeDetectorRef);readonly refreshWindow=()=>this.changeDetector.detectChanges();
     private readonly viewport = viewChild(CdkVirtualScrollViewport);
     private readonly probe = viewChild<ElementRef<HTMLElement>>('rowProbe');
     private readonly measuredRow = signal(0);
@@ -62,6 +65,7 @@ export class VirtualDataTable<T extends object> {
     private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     private priorRowSize = 0;
     private owned: HTMLElement | null = null;
+    private readonly renderedRange = signal({start:0,end:0});
     protected readonly rowSize = computed(() => this.itemHeight() ?? this.measuredRow());
     protected readonly utilityCount = computed(() => Number(this.selectionMode() !== 'none'));
     protected readonly minimumInline = computed(() => `calc(var(--ui-size-table-column-min) * ${this.columns().length + this.utilityCount()})`);
@@ -72,7 +76,8 @@ export class VirtualDataTable<T extends object> {
             const minimum = column.minWidth !== undefined ? column.minWidth + 'px' : 'var(--ui-size-table-column-min)';
             return `minmax(${minimum},${column.maxWidth !== undefined ? column.maxWidth + 'px' : '1fr'})`;
         })].join(' '));
-    protected readonly problem = computed(() => this.uiDiagnostic_VirtualDataTable(tableConfigurationError(this.rows(), this.columns(), this.keyField(), this.state())) || (!this.caption().trim() || !this.tableId().trim() || this.itemHeight() !== null && (!Number.isFinite(this.itemHeight()) || this.itemHeight()! <= 0) || this.height() !== null && (!Number.isFinite(this.height()) || this.height()! <= 0) || !Number.isSafeInteger(this.overscan()) || this.overscan() < 0 ? this.uiRuntimeText_VirtualDataTable('仮想表の説明、行高、領域高、先読みを確認してください。') : null));
+    protected readonly problem = computed(() => this.uiDiagnostic_VirtualDataTable(tableConfigurationError(this.rows(), this.columns(), this.keyField(), this.state())) || (!this.caption().trim() || !this.tableId().trim() || this.itemHeight() !== null && (!Number.isFinite(this.itemHeight()) || this.itemHeight()! <= 0) || this.height() !== null && (!Number.isFinite(this.height()) || this.height()! <= 0) || !Number.isSafeInteger(this.overscan()) || this.overscan() < 0 ? this.uiRuntimeText_VirtualDataTable('仮想表の説明、行高、領域高、先読みを確認してください。') : null) || virtualRadioProblem(this.radioGroups(),this.rows().map(row=>this.rowKey(row)),this.host.closest('form')?.id??null) || virtualRadioProblem(this.effectiveRadioGroups(),this.rows().map(row=>this.rowKey(row)),this.host.closest('form')?.id??null));
+    protected readonly effectiveRadioGroups = computed<readonly VirtualRadioGroup[]>(()=>[...this.radioGroups(),...(this.selectionMode()==='single'?[{name:this.tableId()+'-virtual-selection',value:this.rows().filter(row=>this.selectedKeys().includes(this.rowKey(row))).map(row=>this.encodedKey(row))[0]??null,members:this.rows().map(row=>({key:this.rowKey(row),value:this.encodedKey(row),disabled:this.busy()||this.disabled()||!this.rowSelectable()(row)}))}]:[])]);
     protected readonly selectionRows = computed(() => this.rows().filter(row => this.rowSelectable()(row)));
     protected readonly allSelected = computed(() => this.selectionRows().length > 0 && this.selectionRows().every(row => this.selectedKeys().includes(this.rowKey(row))));
     protected readonly someSelected = computed(() => this.selectionRows().some(row => this.selectedKeys().includes(this.rowKey(row))));
@@ -108,12 +113,20 @@ export class VirtualDataTable<T extends object> {
         const viewport = this.viewport();
         if (this.destroy.destroyed || !viewport || this.problem() || !Number.isFinite(offset) || offset < 0)
             return false;
+        this.scroller()?.releaseKeyboard();
         viewport.scrollToOffset(offset, 'instant');
         return true;
     }
     protected key(event: KeyboardEvent): void {
         const viewport = this.viewport();
-        if (!viewport || event.target !== viewport.elementRef.nativeElement || event.defaultPrevented || event.isComposing || event.keyCode === 229)
+        if (!viewport || event.defaultPrevented || event.isComposing || event.keyCode === 229)
+            return;
+        if(!event.altKey&&!event.ctrlKey&&!event.metaKey&&this.scroller()?.prepareRadioArrow(event,()=>this.changeDetector.detectChanges()))return;
+        if (event.key === 'Tab' && !event.altKey && !event.ctrlKey && !event.metaKey) {
+            this.scroller()?.prepareTab(event, () => this.changeDetector.detectChanges());
+            return;
+        }
+        if (event.target !== viewport.elementRef.nativeElement)
             return;
         const current = Math.floor(viewport.measureScrollOffset() / this.rowSize()), page = Math.max(1, Math.floor(viewport.getViewportSize() / this.rowSize()));
         let index: number;
@@ -132,7 +145,7 @@ export class VirtualDataTable<T extends object> {
     }
     constructor() {
         const document = this.host.ownerDocument;
-        const focus = (event: FocusEvent) => { const target = event.target; this.owned = target instanceof HTMLElement && target.matches('.ui-virtual-table__cell,[data-table-virtual-control]') && target.closest('ui-virtual-data-table') === this.host ? target : null; };
+        const focus = (event: FocusEvent) => { const target = event.target; this.owned = target instanceof HTMLElement && !!target.closest('[data-virtual-row-key],[data-table-virtual-control]') && target.closest('ui-virtual-data-table') === this.host ? target : null; };
         document.addEventListener('focusin', focus, true);
         this.destroy.onDestroy(() => { document.removeEventListener('focusin', focus, true); this.owned = null; });
         afterRenderEffect(onCleanup => {
@@ -176,6 +189,7 @@ export class VirtualDataTable<T extends object> {
             if (!viewport)
                 return;
             const range = viewport.renderedRangeStream.subscribe(value => {
+                this.renderedRange.set(value);
                 this.rangeChange.emit(value);
                 if (this.owned && !this.owned.isConnected && document.activeElement === document.body && canFocus(viewport.elementRef.nativeElement)) {
                     this.owned = null;
@@ -186,6 +200,7 @@ export class VirtualDataTable<T extends object> {
             onCleanup(() => { range.unsubscribe(); position.unsubscribe(); observer.disconnect(); });
         });
         afterRenderEffect(() => {
+            this.renderedRange();
             this.columns();
             this.rows();
             const viewport = this.viewport();

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-18T14:37:53.060998+00:00",
+  "status": "PASSED_FOR_SPECIFIED_SOURCE_CHECKS_AND_RECORDED_FINITE_TESTS",
+  "implementation_head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+  "base_sha": "b4aea63f67447dda1cabcf2da749617aa39c2d6f",
+  "candidate_manifest_sha256": "e88065d518ab9a32651edf68fdff5ce0ba9571117ba47b77fadc4a0b8ef0781c",
+  "committed_source_inputs": 718,
+  "completion_scope": "Specified-source static UI checks, portable consumer distribution, reasoned warning acceptance and the recorded finite regressions. Unknowns remain Unknown.",
+  "classification": {
+    "scope": "All122 actual warnings matched the ledger in completed normal-v4; producer and universal-runtime statuses stay Unknown. The separate evidence audit checks only bytes/anchors.",
+    "registry_sha256": "7eafd9ca66c623ffebfa2b5cfea00a81d5d371f3dd9b0c2b7f9b354716c18396",
+    "reviewed_warnings": 122,
+    "input_hashes_verified": 22,
+    "evidence_references_verified": 908,
+    "distinct_evidence_files": 92,
+    "categories": {
+      "callable-replacement": 1,
+      "public-css-override": 32,
+      "dom-state": 1,
+      "external-renderer": 11,
+      "runtime-input": 20,
+      "layout-measurement": 27,
+      "async-resource": 8,
+      "virtual-scroll": 10,
+      "print-document": 2,
+      "fixture-input": 10
+    },
+    "producer_static": "Unknown for all122",
+    "universal_runtime": "Unknown for all122",
+    "new_exceptions": 0,
+    "suppressed_diagnostics": 0,
+    "actual_source_check": {
+      "files": 201,
+      "checks": 10308,
+      "errors": 0,
+      "unverified_warnings": 122,
+      "reasoned_exceptions": 334,
+      "source": "Actual canonical check log inside completed normal-v4 SVG stage"
+    },
+    "warning_acceptance": {
+      "reviewed": 122,
+      "total": 122,
+      "source_errors": 0,
+      "unclassified": 0,
+      "stale": 0
+    },
+    "evidence_audit": {
+      "file": "classification-evidence-v8.json",
+      "scope_at_audit": "Current evidence bytes/anchors and retained-warning states only. No scanner or runtime success inferred; the new normal warning gate remains required."
+    }
+  },
+  "normal_test": {
+    "summary": "normal-v4-summary.json",
+    "sha256": "ce44eab248e9027048816e182855bcbded2527201e01bd9566d55e61ad86c4b8",
+    "execution_head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "typecheck": {
+      "tools": "PASSED",
+      "angular": "PASSED",
+      "ui_media": "PASSED",
+      "ui_runtime": "PASSED"
+    },
+    "units": {
+      "test:config": {
+        "tests": 72,
+        "pass": 72,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "test:generation": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "test:static": {
+        "tests": 518,
+        "pass": 518,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "test:model": {
+        "tests": 247,
+        "pass": 247,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    "ui": {
+      "engine": "chromium",
+      "tests": 1903,
+      "passed": 1903,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0,
+      "workers": 2,
+      "recorded_success_rows": 1903,
+      "owned_listener_closed": true
+    },
+    "svg_consumer": {
+      "tests": 34,
+      "passed": 34,
+      "distinct_scenarios": 34,
+      "runtime_errors": 0,
+      "canonical_steps": 6,
+      "all_steps_exit_zero": true,
+      "source_unchanged": true,
+      "owned_server_closed": true,
+      "inventoried_files": 229,
+      "pinned_dependencies": 50,
+      "execution_sha256": "21dd4bb2041817beaa466bbcae1bfc8dcb6890db3192f476460744812e5aa972",
+      "native_result_sha256": "70aedb33209bc6bfd12bc69fc0fd6fa8dcc9de50816def08f32ecd92d9f59112",
+      "source_inventory_sha256": "67895856d1230a2cdf2eacdb2c71e7b4c9de40818827ad4a3e928bd348c5b6d0"
+    },
+    "source_and_bundle_changes": []
+  },
+  "verification_tools": {
+    "command": [
+      "npm",
+      "run",
+      "test:verification"
+    ],
+    "tests": 65,
+    "passed": 65,
+    "failed": 0,
+    "receipt_sha256": "5adfc195397fdaef508c2a2bbd19fa40d70b4f2e585a25e65c9fd654b9def9a5"
+  },
+  "cross_browser": {
+    "scope_bridge": "final-scope-bridge-v2.json",
+    "scope_bridge_sha256": "99a1658b3b5d9f90d2cd82cfbfcf158ed5d03a221511fdba63b293661474fbe9",
+    "native180": {
+      "execution_head": "469e142750a4edb5fdb995e3c2542d481774da50",
+      "source_inputs": 717,
+      "guarded_build": "PASSED",
+      "native": "180/180 PASSED",
+      "source_changes_to_final": [
+        "docs/ui-warning-reviews.json",
+        "scripts/test-svg-paint.mjs",
+        "scripts/verification/prepare-svg-consumer.mjs",
+        "tests/ui/static-runtime-reassessment-layout.spec.ts",
+        "tests/verification-tools/portable.test.mjs"
+      ]
+    },
+    "runtime48": {
+      "execution_head": "20761f986c6480546ddf405235b1ddf4faa8b405",
+      "source_inputs": 716,
+      "build_in_that_execution": "NOT_RUN; diagnostic build preceded it",
+      "native": "48/48 PASSED",
+      "source_changes_to_final": [
+        "docs/ui-warning-reviews.json",
+        "scripts/test-svg-paint.mjs",
+        "scripts/verification/prepare-svg-consumer.mjs",
+        "tests/ui/post-burst-paint.ts",
+        "tests/ui/static-runtime-p2-tables.spec.ts",
+        "tests/ui/static-runtime-reassessment-layout.spec.ts",
+        "tests/ui/static-runtime-reassessment-navigation.spec.ts",
+        "tests/ui/virtual-fast-tab.spec.ts",
+        "tests/verification-tools/portable.test.mjs"
+      ]
+    },
+    "compiled_files_identical": 309,
+    "main_sha256": "b381a2a994a883ec91cc2c8856cd5d9f9b37715b8a8d46d88711f54f7ae7c27a",
+    "scope": "Prior actual180/48 executions, with exact source differences and all compiled bytes compared; not newly rerun at publication head.",
+    "post_burst_control_summary": "post-burst-controls-v2-summary.json inside release-proof.tar.gz",
+    "post_burst_scope": "20 DOM controls x3 engines=60 passed; a separate existing-bundle subset. All54 application paint observations in the wide180 run were initially ready."
+  },
+  "independent_reviews": {
+    "current_scoped_reports": {
+      "review-checker-v4.md": "3fc60aaa815e4724003436edf0a4ae3a9202be9650454cf84ef7f9d3337d998e",
+      "review-warning-v1.md": "fef712da98dbf7672b59a510549a8a08fe6613abf58f31d1f9eb031e1f34dd97",
+      "review-runtime-v3.md": "5a1dfe8a51a562bb580f706d95c989bd9ce60545317960614b9e3977e2c26236",
+      "review-editor-v3.md": "a739a85164df02433f7d57452db69bdbbc1106d6f58c67d82f34fd65f14268f0",
+      "review-test-corrections-v1.md": "77a429f463c7bf13dabb54b1950fde2009b7743071d1fe0659b7298a91f3faf1",
+      "review-post-burst-paint-v2.md": "426d473e99a4a4ae5814245a20529256976e05cd831bc2bdc232292edad9932a",
+      "review-svg-preparation-v1.md": "824ba523e61d3e85ca0b1a9c8c1a6f330e86676c404c943174b8cb845c0cbdef",
+      "review-json-terminal-v1.md": "bde10038cba25b16cbed66d2a4532f5c0baeb249595727bb06b03ec1b3e6ef1e",
+      "review-evidence-recipe-v5.md": "0d72dd7ccc882f2e70ca83bb673a340ca8403dacae33ffc02539402b37ded4b6",
+      "review-fast-tab-budget-v1-publication.md": "85c59e6a4a522816d9bd2cc97687903bb81f54ec61eb02bf03791d77d01fcb37"
+    },
+    "required_findings_remaining": 0,
+    "original_findings": "Adopted and checked in code/raw evidence. Earlier request-changes reports remain historical and are not rewritten.",
+    "scope": "Fresh reviewers without implementation conversation, frozen snapshots; main integration/readback separate.",
+    "publication_copies": {
+      "review-fast-tab-budget-v1-publication.md": {
+        "original_archive_entry": "review-fast-tab-budget-v1.md",
+        "original_sha256": "a18fce15b419f4e7a8830f873ca9412188e847f11fee6a8135de34506c37c7d1",
+        "published_sha256": "85c59e6a4a522816d9bd2cc97687903bb81f54ec61eb02bf03791d77d01fcb37",
+        "normalization": "One final empty line removed for publication whitespace check; original frozen reviewer bytes unchanged in local file and release-proof.tar.gz."
+      }
+    }
+  },
+  "historical_runs": {
+    "normal_v2": "FAILED: UI1871/1883,12 failures; SVG NOT_RUN",
+    "normal_v3": "FAILED: UI1902/1903,1 failure; SVG NOT_RUN",
+    "native_v10": "FAILED:119/120; WebKit terminal-paint observation",
+    "native_v11": "INTERRUPTED during build; browser NOT_RUN",
+    "original_observer_v1": "Major identity-history finding adopted and fixed; fresh v2 review, wide180 and separate DOM controls60 passed.",
+    "json_terminal_diagnostic": "Original actual procedure did not reproduce in the instrumented run. Scripts-free equivalent DOM showed the failure category. The first measurement is retained; later observations do not replace it."
+  },
+  "proof": {
+    "archive": "release-proof.tar.gz",
+    "sha256": "13a8b03c9147acaae0c751070c374c22a6ee4df891b17c5f4ccd85c593da99bc",
+    "bytes": 83731511,
+    "entries": 460,
+    "index": "release-proof-index.json",
+    "index_sha256": "5222a0ebfe5f729b32c23a5344dc63ebfa9a1c3f0be140fe4fbe254fe6ab23e7",
+    "main_verification": "release-proof-verification.json",
+    "main_verification_sha256": "3a2643e306489ba1d28ebddb74b6bf37c4495fdb7cf29abb74695a41a93e7a46",
+    "sealing_commands": [
+      {
+        "command": [
+          "python3",
+          "docs/verification/ui-static-warning-release-20261018/finalize-release-results-v2.py"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "python3",
+          "docs/verification/ui-static-warning-release-20261018/curate-release-proof-v2.py",
+          "cross-browser-radio-v12",
+          "180"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "v5_review_diff": {
+      "file": "review-evidence-recipe-v5.patch.gz",
+      "sha256": "2eb04636da772f30687b05ebb7b1e3aae99f2fa30f89338a1926ed66542a7660",
+      "original_sha256": "e7112def1cbf34f0b30e87ea31e1fbc1eb3951fb29f2f782f55fd6f0a82dfc37",
+      "scope": "Lossless compression; exact original reviewed diff bytes unchanged."
+    }
+  },
+  "retained_unknowns": {
+    "warnings": 122,
+    "producer_static": "Unknown",
+    "universal_runtime": "Unknown",
+    "boundaries": [
+      "Public CSS writers, inheritance and cascade outside the proven source scope",
+      "DOM measurement, async lifetime, arbitrary runtime input and external renderer internals",
+      "Original WebKit249px and JsonViewer446px browser-internal timing not uniquely established",
+      "Whole visual quality, user understanding, real IME, mobile, assistive technology and physical Safari acceptance"
+    ],
+    "references": [
+      "../../ui-warning-reviews.json",
+      "../../ui-warning-reviews.ja.md",
+      "README.md"
+    ]
+  },
+  "publication": {
+    "pull_request": "https://github.com/ist-h-i/ui-foundation/pull/19",
+    "scope": "Repository change and verification records. Remote merge identity is verified separately from local test completion.",
+    "external_ci": "No registered checks was observed during preflight; this is not a CI-green claim.",
+    "production_deployment": "NOT_REQUESTED_OR_EXECUTED"
+  }
+}

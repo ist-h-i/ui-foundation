@@ -36,8 +36,18 @@ fixtureは生成した部品をコンパイルし、Tailwind CLIでCSSを作る�
 
 ## 実行とレビュー
 
-`npm run ui:sync`→`npm run ui:check`→`npm run typecheck`→`npm run test:config`→`npm run test:generation`→`npm run test:model`→`npm run test:ui`。`npm test`は同期済みであることを確認して全検査を実行する。`npm run build`も未同期を拒否する。
+設定・生成元を変更したら`npm run ui:sync`で同期する。通常の`npm test`は、`ui:check:warnings`による設定・生成一致・静的検査と台帳照合、型検査、設定・生成・静的検査・純モデル・UI操作・SVG実描画の回帰を実行する。検証ツール自体は`npm run test:verification`、重点操作の複数engine検証は`npm run test:cross-browser`、仮想radioの追加回帰は`npm run test:ui:radio:cross-browser`で確認する。`npm run build`も生成物の未同期を拒否する。試験の成功は、実行した対象・条件・source hashと結び付けて記録する。
 
-実装後は正確なbase/headと実diffをfresh context reviewerへ渡す。結果はソース/試験を主担当が確認する。コミット・Draft PR更新後もマージやReady化は別の判断。全ソースASTによる逸脱検査、Skillの自動選択の評価、Firefox/Safari、実スクリーンリーダー、実サービスの復元、実利用での有効性はこの初版で確認済みとは扱わない。
+実装後は正確なbase/headと実diffをfresh context reviewerへ渡す。未コミット変更を含む場合は対象ファイルとhashを固定する。主担当が指摘をソース・試験・実行結果で確認し、重要な追加修正は別のfresh reviewerで再確認する。指定ソースのAST検査や有限の複数engine試験が成功しても、Skillの自動選択、任意のruntime/CSS供給、実スクリーンリーダー、実サービスの復元、実利用での有効性まで確認済みとは扱わない。
 
-今回のユーザー指示は独立レビューとマージまでを含む。実装・全ローカル検証・正確な候補SHAのレビューを終えてから、同じheadをReady化・マージする。途中の段階完了やCIだけで全要求完了に変更しない。npm公開は含めない。
+今回のユーザー指示はcommit・push・通常mergeまでを含む。実装、必要なローカル検証、正確な候補SHAの独立レビューを終え、リポジトリ・取り込み先・現在head・関連checkを確認してから主担当が公開操作を行う。PR上でもレビュー対象headとcheckを確認し、通常のmerge条件に従う。途中の段階完了やCIだけで全要求完了に変更しない。npm公開や本番deployは含めない。
+
+## 指定ソースの静的検査
+
+任意の`checks`を正本YAMLへ置き、全トークン用途と未承認Angular部品・directiveを検査する。同梱`check-ui.cjs`はNodeで単独実行でき、CLIの生成一致検査と同じソース検査を使う。確定した違反は失敗、動的な未確認は警告、理由付き例外は別一覧へ記録する。設定・対象・例外・配布境界は[静的検査](static-checks.ja.md)を正本とする。
+
+`test:static`は全用途の負例/許可例、省略形・関数・utility、Angular metadata/binding/DOM操作、外部部品の参照identity、例外のcardinality、パス境界、別リポジトリの単独CLI終了状態を検証する。生成の冪等性、NOTICE/検査器の所有範囲、output移行は生成回帰で確認する。実操作・視覚・利用者理解の検証とは区別する。
+
+本リポジトリの全警告は`docs/ui-warning-reviews.json`に一対一で分類し、理由、producer、有限回帰、Unknownの境界、再確認条件、根拠のanchor/hashを記録する。`ui:check:warnings`は`checkProject`の元診断を変更せずに照合し、未分類・消滅・重複・理由不足・台帳不備・根拠変更を失敗にする。エラーは台帳で承認できない。通常testに含めるが、利用アプリのYAMLや同梱CLIの警告終了状態は変更しない。正負回帰は`tests/static/warning-review.test.ts`へ置く。
+
+取り込み対象、全件分類と今回の検証・独立レビュー・公開結果は[固定した検証記録](verification/ui-static-warning-release-20261018/README.md)へまとめる。試験に必要な過去の固定入力は`tests/fixtures/static-checks/`へ置き、巨大なローカルtraceや一時checkoutをテストの依存にしない。古い件数・試験結果を現在の対象の証拠として流用せず、未実行と未確認を残す。

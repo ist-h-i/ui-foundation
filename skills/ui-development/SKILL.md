@@ -35,7 +35,7 @@ Cardは各領域のテンプレート／投影とshow/collapseを接続し、hid
 
 ## 検証
 
-checkで設定と生成物を照合し、型検査/ビルド/対象操作試験を実行する。リポジトリではnpm run ui:sync / ui:check / typecheck / test:model / test:uiを使う。利用アプリでは保存されたプロジェクトコマンド、またはcheckoutのsrc/cli.tsをtsxで実行する。checkは全ソースのAST逸脱やUX全体を確認しない。
+checkで設定と生成物を照合し、型検査/ビルド/対象操作試験を実行する。リポジトリではnpm run ui:sync / ui:check / typecheck / test:model / test:uiを使う。利用アプリでは保存されたプロジェクトコマンド、またはcheckoutのsrc/cli.tsをtsxで実行する。checkはYAMLのchecksで指定したAngular/CSS/SCSSソースの逸脱を検査する。動的な式などの未確認は警告として残し、UX全体の合格と扱わない。取り込み先ではoutput内のcheck-ui.cjsをNodeで実行する。検査器とpolicyは手編集せず再同期する。
 
 各採用profileで狭い画面、文字拡大、キーボード、動きの低減、正常/処理中/エラー/欠損/復旧を確認する。描画・操作・自動アクセシビリティ・意味レビュー・利用者確認を分けて報告する。未実行を合格扱いしない。詳細な判断例は必要時に[参照](references/token-design.md)を読む。
 
@@ -104,6 +104,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - List/Masonry/DataViewは安定keyとtyped uiCollectionItemOfを使う。template indexはfiltered絶対位置、pageIndexはページ内位置。行操作はnative操作にする。DataViewの機能OFF、範囲外pageのstate補正、list/gridで同じeditor、異なる高さのMasonryとDOM順を検証する。
 - Listbox/SelectionListのoption templateは表示用とし、内部へ独立button/linkを置かない。CVA不正値はエラーとして保持し、明示app resetで修復する。検索のhidden/disabled選択を勝手に解除しない。既定の仮想行は意味tokenを下限にグループ名とラベルの文字行を測り、拡大時も両行を欠かさない。明示itemHeight/投影内容の固定行高と局所scrollはアプリが確認する。仮想groupは描画済optionだけをaria-ownsで接続し、Chrome AX treeでgroup/option/active参照を観測する。
 - VirtualListは固定行高を契約とし、1000行の実DOM数、終端/scroll position/先読み、profileと文字拡大の再測定、破棄、行内focus退避を確認する。仮想DOMの外へ消えるeditor値はアプリがkeyへ保存する。VirtualList/Listboxの自前仮想行幅は公開viewportのclientWidthに従う。長ラベルのellipsis/水平scroll、LTR/RTL/200%と親幅/profile変更、投影editorの幅・DOM・値保持を確認する。CDK内部wrapperはpatchしない。
+- 仮想行へ分かれたnative radioはVirtualList/VirtualDataTableのradioGroupsへ全memberの行key/value/effective disabled/hiddenとcanonical valueを渡し、native changeでappがvalueを更新する。動的modelはreadonly Signalのまま`[radioGroups]="groups"`へ渡し、親bindingのフレーム反映を待たず最新値を読む。表singleの動的selectedKeysもSignalのまま渡せる。form省略はviewportの継承form、別formはidで明示する。選択値をDOMへキャッシュせず、reset/拒否/再順序/削除もappのmodelへ反映する。表の組込みsingle選択はselectedKeysへ内部接続済み。TabとArrowの既定動作を保ち、同一行の複数option順はDOMに従う。未選択groupのTab入口と利用不可checkedの扱いは同一engineのnative参照と比較する。Firefox/Chromium/WebKitの内部Tab方針を持ち、Arrowのwrapや選択はbrowserへ委ねる。macOS WebKitの全controlへのTab試験はtest processだけAppleKeyboardUIMode=2で起動し、利用者の設定DBは変更しない。未検証engine/OSやUA偽装の動作は合格としない。groupの別viewport/外部member共有、正のtabindexやshadow DOMは別途検証する。
 - Sortable/Transferはpointerとbutton/keyboardの同じ移動許可を使う。app snapshotが変われば古いdrop/keyboard draftを拒否する。移動中Escapeは共有Overlayのoperationに登録し、子defaultPrevented/IME/新しいpopupを優先する。取消後の次Escapeは親へ届く。CDK endedより後のdropまで開始snapshotを保持する。
 - InfiniteScroll/Timelineは同じ要求を出したhostへid付きcomplete/failを接続する。破棄/明示失効/reset後の古い応答、連打、error/再試行/終端、実IntersectionObserverを確認する。contentVersionは実追加/カーソル進行時だけ変更する。backend更新/通信取消/実Undoはアプリが所有する。
 - 組込みnative操作が無効/除去となる際は部品内の説明可能なhostへ自前focusだけを残し、投影された入力と外部focusを奪わない。自前focus先は状態更新後の文字と枠を実viewport・局所clip・hit-testで確認し、対象が画面外なら描画後に表示する。外部focusと画面位置は応答で動かさない。全prop/責任範囲はdocs/ui-components.mdを参照する。
