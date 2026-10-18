@@ -107,6 +107,9 @@ async function geometry(page:Page,id:number,kind:Kind,label:string){
  expect(metric.active.top,label+': burst target is above the viewport bottom').toBeLessThan(metric.viewport.bottom);expect(metric.active.bottom,label+': burst target is below the viewport top').toBeGreaterThan(metric.viewport.top);await record(label,metric);expect(metric.activePaint?.painted,label+': focused target owns all center/inset hit samples').toBe(true);expect(metric.firstVisiblePaint?.painted,label+': first visible row is painted and hit testable').toBe(true);
 }
 for(const kind of ['list','table'] as const)test(`fast native Tab ${kind}: A-D mixed controls visit every row forward and backward`,async({page,lifecycle})=>{
+ // Four same-instance contexts send 1040/2064 native keys. Budget the full
+ // matrix as in the cross-browser runner without pacing any key burst.
+ test.setTimeout(90_000);
  await ready(page,contexts[0]);const count=64,id=await create(page,'RuntimeFastTab',{kind,rows:rows(count),mixed:true,itemHeight:null}),node=host(page,id),log:Snapshot[]=[];await settle(page);await installProbe(page,id,kind);
  await runWithLifecycleCleanup(lifecycle,async()=>{
   for(const context of contexts){
