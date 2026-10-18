@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+  "scope": "New publication recipes and source-map migration; not normal-v4 acceptance.",
+  "review_report_sha256": "0d72dd7ccc882f2e70ca83bb673a340ca8403dacae33ffc02539402b37ded4b6",
+  "snapshot_sha256": "5e5ff7e70e472c23dad586b569a2306e01ff59cc6628b7b61ad1c5dd070e60e7",
+  "probe_sha256": "0b126a92ffa60ee45a2aff2f52687b4177047cc1b121ac6812b7df377094a51c",
+  "snapshot_inputs_verified_by_main": 29,
+  "findings": [],
+  "main_adjudication": "Main read both new scripts in full and the independent report. Source-map differences5/9, actual verification65, targeted4 and current718 Git blobs were independently checked by main. Frozen shared validator is unchanged. No new source finding to adopt or exclude. Old failed records are preserved.",
+  "normal_v4_status_at_adjudication": "RUNNING",
+  "sealed_outputs_created": false,
+  "next": "Wait for actual normal-v4 complete pass. Verify raw gate/log/SVG/all309 assets/listener closure, then execute the approved new finalizer and curator once and verify output archive/index before publication."
+}

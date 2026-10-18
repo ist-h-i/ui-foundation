@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-18T14:34:51.592064+00:00",
+  "status": "PASSED",
+  "scope": "Actual complete npm test from a committed git archive with a private copy of pinned dependencies. No main-checkout node_modules symlink; no historical working directories. Finite tested behavior only.",
+  "implementation_head": "a96f3ec0fae4908cf47be83246b1043f7dc8af26",
+  "command": [
+    "npm",
+    "test"
+  ],
+  "candidate_manifest": "candidate-manifest-v8.json",
+  "candidate_manifest_sha256": "e88065d518ab9a32651edf68fdff5ce0ba9571117ba47b77fadc4a0b8ef0781c",
+  "committed_git_blob_inputs_verified": 718,
+  "started_at": "2026-10-18T13:21:27.804902+00:00",
+  "completed_at": "2026-10-18T14:33:58.620315+00:00",
+  "source_inputs": 718,
+  "source_changes": [],
+  "root_source_changes": [],
+  "root_bundle_changes": [],
+  "dependencies": {
+    "typescript": "6.0.3",
+    "@angular/core": "22.2.1",
+    "@playwright/test": "1.63.0"
+  },
+  "warning_gate": {
+    "reviewed": 122,
+    "total": 122,
+    "source_errors": 0,
+    "unclassified": 0,
+    "stale": 0
+  },
+  "typecheck": {
+    "tools": "PASSED",
+    "angular": "PASSED",
+    "ui_media": "PASSED",
+    "ui_runtime": "PASSED"
+  },
+  "unit_suites": {
+    "test:config": {
+      "tests": 72,
+      "pass": 72,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "test:generation": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "test:static": {
+      "tests": 518,
+      "pass": 518,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "test:model": {
+      "tests": 247,
+      "pass": 247,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  },
+  "normal_ui": {
+    "engine": "chromium",
+    "tests": 1903,
+    "passed": 1903,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "retries": 0,
+    "workers": 2,
+    "recorded_success_rows": 1903,
+    "owned_listener_closed": true
+  },
+  "svg_public_consumer": {
+    "tests": 34,
+    "passed": 34,
+    "distinct_scenarios": 34,
+    "runtime_errors": 0,
+    "canonical_steps": 6,
+    "all_steps_exit_zero": true,
+    "source_unchanged": true,
+    "owned_server_closed": true,
+    "inventoried_files": 229,
+    "pinned_dependencies": 50,
+    "execution_sha256": "21dd4bb2041817beaa466bbcae1bfc8dcb6890db3192f476460744812e5aa972",
+    "native_result_sha256": "70aedb33209bc6bfd12bc69fc0fd6fa8dcc9de50816def08f32ecd92d9f59112",
+    "source_inventory_sha256": "67895856d1230a2cdf2eacdb2c71e7b4c9de40818827ad4a3e928bd348c5b6d0"
+  },
+  "verification_tools": {
+    "command": [
+      "npm",
+      "run",
+      "test:verification"
+    ],
+    "tests": 65,
+    "passed": 65,
+    "failed": 0,
+    "receipt_sha256": "5adfc195397fdaef508c2a2bbd19fa40d70b4f2e585a25e65c9fd654b9def9a5"
+  },
+  "normal_log_sha256": "7f052ad32e20d664b2e3260d230e2763a6a695a3f181bffbdfea9fcf78397d8b",
+  "capture_receipt_sha256": "3d2d4390fb945dd53e01ebe6f18c3d73f840de43445154dfa6d33d34171c1a50",
+  "clean_receipt_sha256": "497cce0f53edb944edc2973d98a742201ffbd070212aa54fb0ed5012bc8ae9e1",
+  "compiled_files": 309,
+  "fixture_main_sha256": "b381a2a994a883ec91cc2c8856cd5d9f9b37715b8a8d46d88711f54f7ae7c27a",
+  "limits": [
+    "No claim of universal runtime dataflow or CSS cascade completeness.",
+    "No claim of complete visual quality, real IME, mobile, assistive technology or physical Safari acceptance.",
+    "Historical failed and interrupted runs remain separate records."
+  ]
+}
