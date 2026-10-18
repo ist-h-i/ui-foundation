@@ -2,7 +2,7 @@ import {NgTemplateOutlet} from '@angular/common';
 import {Component,computed,input,signal,viewChild} from '@angular/core';
 import {VirtualList,VirtualItem,VirtualDataTable,type TableColumn} from '../../.ui/generated/angular';
 
-export interface SparseTabRow{id:number;name:string;amount:number;mode:'controls'|'none'|'hidden'|'disabled'|'negative'|'radio'|'checkedradio';}
+export interface SparseTabRow{id:number;name:string;amount:number;mode:'controls'|'none'|'hidden'|'disabled'|'negative'|'radio'|'checkedradio'|'scroll';scrollState?:'negative'|'hidden'|'inert'|'disabled';}
 /** The consumer owns drafts by row key; the collection owns virtual rendering. */
 @Component({selector:'runtime-sparse-tab',standalone:true,imports:[NgTemplateOutlet,VirtualList,VirtualItem,VirtualDataTable],template:`
  <button type="button" data-sparse-boundary="before">一覧の前</button>
@@ -21,6 +21,10 @@ export interface SparseTabRow{id:number;name:string;amount:number;mode:'controls
    @case('hidden'){<input hidden data-sparse-control="hidden" [attr.aria-label]="'非表示 '+row.id">}
    @case('disabled'){<button disabled data-sparse-control="disabled">無効操作 {{row.id}}</button>}
    @case('negative'){<input tabindex="-1" data-sparse-control="negative" [attr.aria-label]="'Tab対象外 '+row.id">}
+   @case('scroll'){
+    @if(row.scrollState==='disabled'){<button class="sparse-tab-scroll" data-sparse-control="scroll" disabled>{{row.name}}</button>}
+    @else{<div class="sparse-tab-scroll" data-sparse-control="scroll" [attr.tabindex]="row.scrollState==='negative'?-1:null" [hidden]="row.scrollState==='hidden'" [inert]="row.scrollState==='inert'">{{row.name}}</div>}
+   }
    @default{<span>{{row.name}}</span>}
   }
  </span></ng-template>
@@ -32,7 +36,7 @@ export interface SparseTabRow{id:number;name:string;amount:number;mode:'controls
   <ui-virtual-data-table caption="Tab対象が疎な表" tableId="sparse-tab-table" [rows]="rows()" [radioGroups]="radioGroups" [columns]="columns" keyField="id" [height]="360" [itemHeight]="itemHeight()" [overscan]="overscan()" [sortable]="false" [disabled]="disabled()" [cellTemplates]="{name:controls}" />
  }
  <button type="button" data-sparse-boundary="after">一覧の後</button>
- `,styles:`:host{display:block;min-inline-size:0;max-inline-size:100%;}.sparse-tab-controls{display:flex;gap:var(--ui-space-control-gap);min-inline-size:0;}.sparse-tab-controls>.ui-field-control{flex:1;min-inline-size:0;max-inline-size:100%;}.sparse-tab-controls>[data-sparse-control=negative]{max-inline-size:var(--ui-size-icon);min-inline-size:0;}`})
+ `,styles:`:host{display:block;min-inline-size:0;max-inline-size:100%;}.sparse-tab-controls{display:flex;gap:var(--ui-space-control-gap);min-inline-size:0;}.sparse-tab-controls>.ui-field-control{flex:1;min-inline-size:0;max-inline-size:100%;}.sparse-tab-controls>[data-sparse-control=negative]{max-inline-size:var(--ui-size-icon);min-inline-size:0;}.sparse-tab-scroll{display:block;min-inline-size:0;max-inline-size:100%;block-size:var(--ui-size-collection-item);overflow:auto;}.sparse-tab-scroll[hidden]{display:none;}`})
 export class RuntimeSparseTab{
  readonly kind=input<'list'|'table'>('list');
  readonly rows=input<readonly SparseTabRow[]>([]);

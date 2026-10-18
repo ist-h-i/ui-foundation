@@ -13,7 +13,7 @@ async function install(page:Page,id:number,kind:Kind){await page.evaluate(({id,k
  const index=(row:Element)=>kind==='list'?Number(row.getAttribute('aria-posinset'))-1:Number(row.getAttribute('aria-rowindex'))-2;
  const identify=(node:Element|null):string=>{
   if(!node)return 'null';if(node===document.body)return 'BODY';if(node===element)return 'viewport';const boundary=node.getAttribute('data-sparse-boundary');if(boundary)return boundary;
-  const row=node.closest('.ui-virtual-row,[data-virtual-row-key]');if(root.contains(node)&&row)return `row:${index(row)}:${node.getAttribute('data-sparse-control')??('cell'+node.getAttribute('aria-colindex'))}`;
+  const row=node.closest('.ui-virtual-row,[data-virtual-row-key]');if(root.contains(node)&&row)return `row:${index(row)}:${node===row?'row':node.getAttribute('data-sparse-control')??('cell'+node.getAttribute('aria-colindex'))}`;
   return node.id||'external:'+node.tagName;
  };
  let event:KeyboardEvent|null=null,key={active:'',trusted:false,backwards:false,cancelled:false};const events:Sample[]=[];
@@ -50,7 +50,7 @@ async function nativeRowOrder(page:Page,id:number,kind:Kind='list'):Promise<stri
   const source=root.querySelector<HTMLElement>('cdk-virtual-scroll-viewport')!,row=source.querySelector<HTMLElement>('.ui-virtual-row,[data-virtual-row-key]')!,reference=document.createElement('div'),before=document.createElement('button'),after=document.createElement('button'),viewport=source.cloneNode(false) as HTMLElement,copy=row.cloneNode(true) as HTMLElement;
   reference.id='sparse-row-reference';reference.style.width=source.getBoundingClientRect().width+'px';before.type=after.type='button';before.textContent='参照の前';after.textContent='参照の後';viewport.append(copy);reference.append(before,viewport,after);root.before(reference);
   const inert=root.getAttribute('inert');root.setAttribute('inert','');const trace:{active:string;trusted:boolean;cancelled:boolean}[]=[];let key:KeyboardEvent|null=null,done=false;
-  const down=(event:KeyboardEvent)=>{if(event.key==='Tab')key=event;},up=(event:KeyboardEvent)=>{if(event.key!=='Tab'||done)return;const active=document.activeElement;let name=active===viewport?'viewport':active===after?'after':active instanceof Element&&copy.contains(active)?active.getAttribute('data-sparse-control')??'cell'+active.getAttribute('aria-colindex'):'outside';trace.push({active:name,trusted:event.isTrusted,cancelled:key?.defaultPrevented??false});if(active===after)done=true;};
+  const down=(event:KeyboardEvent)=>{if(event.key==='Tab')key=event;},up=(event:KeyboardEvent)=>{if(event.key!=='Tab'||done)return;const active=document.activeElement;let name=active===viewport?'viewport':active===after?'after':active===copy?'row':active instanceof Element&&copy.contains(active)?active.getAttribute('data-sparse-control')??'cell'+active.getAttribute('aria-colindex'):'outside';trace.push({active:name,trusted:event.isTrusted,cancelled:key?.defaultPrevented??false});if(active===after)done=true;};
   document.addEventListener('keydown',down,true);document.addEventListener('keyup',up,true);(window as any).__sparseRowReference={trace,dispose:()=>{document.removeEventListener('keydown',down,true);document.removeEventListener('keyup',up,true);reference.remove();if(inert===null)root.removeAttribute('inert');else root.setAttribute('inert',inert);(window as any).__sparseTab.drain();}};before.focus();
  });
  let trace:{active:string;trusted:boolean;cancelled:boolean}[]=[];
@@ -74,6 +74,87 @@ test('sparse native Tab list: A-D skips 498-row gaps in both directions and reta
   await burst(page,[...afterMain(0),...row(499),...beforeMain(999)],log);expect(await node.locator('.ui-virtual-row[aria-posinset="1000"] [data-sparse-control="main"]').inputValue(),'recycled final row restores its key-owned draft').toBe(last);
   await burst(page,[...reverse(row(999).slice(0,main)),...reverse(row(499)),...reverse(row(0)),key('viewport',true),key('before',true)],log);
  }},async()=>{try{await record('sparse-list-A-D-native-keyups',log);}finally{await dispose(page);}});await destroy(page,id);
+});
+
+/** Clone a complete collection without Angular or virtual-scroll listeners. The
+ * same engine decides whether an overflowing row is a sequential Tab target. */
+async function nativeScrollingOrder(page:Page,id:number,count:number,projected:boolean,isolated:{index:number;html:string}|null=null){
+ await host(page,id).evaluate((root,{count,projected,isolated})=>{
+  const source=root.querySelector<HTMLElement>('cdk-virtual-scroll-viewport')!,first=source.querySelector<HTMLElement>('[data-ui-virtual-index="0"]')!,empty=source.querySelector<HTMLElement>('[data-ui-virtual-index="1"]')!,reference=document.createElement('div'),viewport=source.cloneNode(false) as HTMLElement;
+  reference.id='sparse-scrolling-reference';reference.style.width=source.getBoundingClientRect().width+'px';
+  const before=document.createElement('button'),after=document.createElement('button');before.textContent='参照の前';after.textContent='参照の後';before.dataset['sparseBoundary']='before';after.dataset['sparseBoundary']='after';
+  const isolatedTemplate=document.createElement('template');if(isolated)isolatedTemplate.innerHTML=isolated.html;
+  for(let index=0;index<count;index++){
+   const row=(isolated?.index===index?isolatedTemplate.content.firstElementChild!:index===0||index===count-1?first:empty).cloneNode(true) as HTMLElement;row.dataset['uiVirtualIndex']=String(index);row.setAttribute('aria-posinset',String(index+1));
+   if(projected&&!isolated&&index>0&&index<count-1){
+    const scroller=row.querySelector<HTMLElement>('[data-sparse-control="scroll"]')!,state=(index-1)%5;
+    if(state===1)scroller.tabIndex=-1;else if(state===2)scroller.hidden=true;else if(state===3)scroller.inert=true;else if(state===4){const button=document.createElement('button');for(const attribute of scroller.attributes)button.setAttribute(attribute.name,attribute.value);button.disabled=true;button.textContent=scroller.textContent;scroller.replaceWith(button);}
+   }
+   viewport.append(row);
+  }
+  reference.append(before,viewport,after);root.before(reference);root.setAttribute('inert','');
+  const identify=(node:Element|null):string=>{if(node===viewport)return 'viewport';if(node===before)return 'before';if(node===after)return 'after';const row=node?.closest<HTMLElement>('[data-ui-virtual-index]');return row?`row:${row.dataset['uiVirtualIndex']}:${node===row?'row':node?.getAttribute('data-sparse-control')}`:'outside';};
+  const trace:{active:string;trusted:boolean;backwards:boolean;cancelled:boolean}[]=[];let down:KeyboardEvent|null=null;
+  const keydown=(event:KeyboardEvent)=>{if(event.key==='Tab')down=event;},keyup=(event:KeyboardEvent)=>{if(event.key==='Tab')trace.push({active:identify(document.activeElement),trusted:event.isTrusted,backwards:event.shiftKey,cancelled:down?.defaultPrevented??false});};
+  document.addEventListener('keydown',keydown,true);document.addEventListener('keyup',keyup,true);
+  const metric=(element:HTMLElement)=>({tabindex:element.getAttribute('tabindex'),tabIndex:element.tabIndex,clientHeight:element.clientHeight,scrollHeight:element.scrollHeight,clientWidth:element.clientWidth,scrollWidth:element.scrollWidth,overflow:getComputedStyle(element).overflow,hidden:element.hidden,inert:element.inert,disabled:element.matches(':disabled')});
+  const metrics=[...viewport.querySelectorAll<HTMLElement>('[data-ui-virtual-index]')].map(row=>{const scroller=row.querySelector<HTMLElement>('[data-sparse-control="scroll"]');return {index:Number(row.dataset['uiVirtualIndex']),...metric(row),focusableChildren:row.querySelectorAll('input,button,[tabindex]').length,scroller:scroller?metric(scroller):null};});
+  (window as any).__sparseScrollingReference={metrics,trace,focus:(index:number)=>viewport.querySelector<HTMLElement>(`[data-ui-virtual-index="${index}"] [data-sparse-control="main"]`)!.focus(),dispose:()=>{document.removeEventListener('keydown',keydown,true);document.removeEventListener('keyup',keyup,true);reference.remove();root.removeAttribute('inert');(window as any).__sparseTab.drain();}};
+  (window as any).__sparseScrollingReference.focus(0);
+ },{count,projected,isolated});
+ const trace:{active:string;trusted:boolean;backwards:boolean;cancelled:boolean}[]=[];
+ try{
+  for(const backwards of [false,true]){
+   if(backwards)await page.evaluate((count:number)=>(window as any).__sparseScrollingReference.focus(count-1),count);
+   for(let index=0;index<count+4;index++){
+    await page.keyboard.press(backwards?'Shift+Tab':'Tab');
+    const sample=await page.evaluate(()=>(window as any).__sparseScrollingReference.trace.at(-1));trace.push(sample);
+    if(sample.active===`row:${backwards?0:count-1}:main`)break;
+   }
+  }
+  const metrics=await page.evaluate(()=>(window as any).__sparseScrollingReference.metrics);await record('implicit-scrolling-native-reference',{metrics,trace});
+  for(const sample of trace){expect(sample.trusted).toBe(true);expect(sample.cancelled).toBe(false);}
+  expect(trace.filter(sample=>!sample.backwards).at(-1)?.active).toBe(`row:${count-1}:main`);expect(trace.filter(sample=>sample.backwards).at(-1)?.active).toBe('row:0:main');
+  const candidateRow=metrics[isolated?.index??1],candidate=projected?candidateRow.scroller:candidateRow;expect(candidate.tabindex).toBeNull();expect(candidate.scrollHeight).toBeGreaterThan(candidate.clientHeight);
+  if(projected){expect(candidateRow.scrollHeight,'only the projected element overflows').toBeLessThanOrEqual(candidateRow.clientHeight);for(const sample of trace){const match=/^row:(\d+):scroll$/.exec(sample.active);if(match){if(isolated)expect(Number(match[1])).toBe(isolated.index);else expect([0,4],'negative, hidden and inert scrollers do not enter the native sequence; disabled scrollers follow the engine oracle').toContain((Number(match[1])-1)%5);}}}
+  else expect(metrics[1].focusableChildren).toBe(0);
+  return trace;
+ }finally{await page.evaluate(()=>(window as any).__sparseScrollingReference.dispose());}
+}
+
+for(const projected of [false,true])test(`sparse native Tab implicit scrolling: ${projected?'projected scrollers and native guards':'overflowing rows'} match the native reference in both directions`,async({page,browser,lifecycle})=>{
+ await page.setViewportSize({width:320,height:1000});await page.goto('/catalog/static-runtime');await expect.poll(()=>page.evaluate(()=>typeof(window as any).__runtime?.create)).toBe('function');
+ const count=20,states=[undefined,'negative','hidden','inert','disabled'],data=Array.from({length:count},(_,id)=>({id,name:id===0||id===count-1?`申請 ${id}`:'長い内容を行内で読み進めるための文章。'.repeat(300),amount:id,mode:id===0||id===count-1?'controls':projected?'scroll':'none',scrollState:projected?states[(id-1)%states.length]:undefined}));
+ const id=await create(page,'RuntimeSparseTab',{rows:data,itemHeight:220,overscan:0}),node=host(page,id),log:Sample[]=[];
+ await expect.poll(()=>node.locator(`[data-ui-virtual-index="1"]${projected?' [data-sparse-control="scroll"]':''}`).evaluate(row=>row.scrollHeight>row.clientHeight)).toBe(true);await install(page,id,'list');
+ await record('implicit-scrolling-engine',{name:browser.browserType().name(),version:browser.version(),userAgent:await page.evaluate(()=>navigator.userAgent)});
+ await runWithLifecycleCleanup(lifecycle,async()=>{
+  const native=await nativeScrollingOrder(page,id,count,projected);
+  for(const backwards of [false,true]){
+   if(backwards)await page.evaluate(({id,count})=>(window as any).__runtime.instance(id).list().scrollToOffset((count-1)*220),{id,count});
+   await node.locator(`[data-ui-virtual-index="${backwards?count-1:0}"] [data-sparse-control="main"]`).focus();
+   const sequence=native.filter(sample=>sample.backwards===backwards).map(sample=>key(sample.active,backwards));await burst(page,sequence,log);
+  }
+ },async()=>{try{await record('implicit-scrolling-virtual-native-keyups',log);}finally{await dispose(page);}});
+ await page.evaluate(id=>(window as any).__runtime.destroy(id),id);await expect(node).toHaveCount(0);
+});
+
+test('sparse native Tab implicit scrolling: isolated disabled scroller across 498-row gaps matches the native engine',async({page,browser,lifecycle})=>{
+ await page.setViewportSize({width:320,height:1000});await page.goto('/catalog/static-runtime');await expect.poll(()=>page.evaluate(()=>typeof(window as any).__runtime?.create)).toBe('function');
+ const count=1000,index=499,data=Array.from({length:count},(_,id)=>({id,name:id===index?'長い内容を行内で読み進めるための文章。'.repeat(300):`申請 ${id}`,amount:id,mode:id===0||id===count-1?'controls':id===index?'scroll':'none',scrollState:id===index?'disabled':undefined}));
+ const id=await create(page,'RuntimeSparseTab',{rows:data,itemHeight:220,overscan:0}),node=host(page,id),log:Sample[]=[];
+ await expect(node.locator('[data-ui-virtual-index="0"]')).toHaveCount(1);await page.evaluate(({id,index})=>(window as any).__runtime.instance(id).list().scrollToOffset(index*220),{id,index});
+ const isolated=node.locator(`[data-ui-virtual-index="${index}"]`);await expect.poll(()=>isolated.locator('[data-sparse-control="scroll"]').evaluate(element=>element.scrollHeight>element.clientHeight)).toBe(true);const html=await isolated.evaluate(row=>row.outerHTML);
+ await page.evaluate(id=>(window as any).__runtime.instance(id).list().scrollToOffset(0),id);await expect(node.locator('[data-ui-virtual-index="0"]')).toHaveCount(1);await install(page,id,'list');
+ await record('implicit-scrolling-engine',{name:browser.browserType().name(),version:browser.version(),userAgent:await page.evaluate(()=>navigator.userAgent)});
+ await runWithLifecycleCleanup(lifecycle,async()=>{
+  const native=await nativeScrollingOrder(page,id,count,true,{index,html});
+  for(const backwards of [false,true]){
+   if(backwards)await page.evaluate(({id,count})=>(window as any).__runtime.instance(id).list().scrollToOffset((count-1)*220),{id,count});
+   await node.locator(`[data-ui-virtual-index="${backwards?count-1:0}"] [data-sparse-control="main"]`).focus();await burst(page,native.filter(sample=>sample.backwards===backwards).map(sample=>key(sample.active,backwards)),log);
+  }
+ },async()=>{try{await record('implicit-scrolling-virtual-native-keyups',log);}finally{await dispose(page);}});
+ await page.evaluate(id=>(window as any).__runtime.destroy(id),id);await expect(node).toHaveCount(0);
 });
 
 test('sparse native Tab list: leading and trailing empty rows preserve true entry and exit',async({page,lifecycle})=>{

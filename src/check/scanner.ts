@@ -78,6 +78,12 @@ function addition(left: Evaluated, right: Evaluated): Evaluated {
   if (dynamic) values.push(...left.values,...right.values);
   return {values:values.slice(0,128),dynamic,fragments:dynamic,completeValues:completeValues.slice(0,128)};
 }
+function assignmentExpression(node: ts.Node): node is ts.BinaryExpression {
+  return ts.isBinaryExpression(node) && node.operatorToken.kind >= ts.SyntaxKind.FirstAssignment && node.operatorToken.kind <= ts.SyntaxKind.LastAssignment;
+}
+function updateExpression(node: ts.Node): node is ts.PrefixUnaryExpression | ts.PostfixUnaryExpression {
+  return (ts.isPrefixUnaryExpression(node) || ts.isPostfixUnaryExpression(node)) && (node.operator === ts.SyntaxKind.PlusPlusToken || node.operator === ts.SyntaxKind.MinusMinusToken);
+}
 function propertyName(node: ts.PropertyName | undefined): string | undefined {
   if (!node) return;
   if (ts.isIdentifier(node) || ts.isStringLiteralLike(node) || ts.isNumericLiteral(node)) return node.text;
@@ -123,8 +129,21 @@ function coreExport(expression: ts.Expression, file: ts.SourceFile, checker?: ts
   }
   if (!name && checker) {
     let symbol = checker.getSymbolAtLocation(ts.isPropertyAccessExpression(expression) ? expression.name : expression);
-    if (symbol && symbol.flags & ts.SymbolFlags.Alias) symbol = checker.getAliasedSymbol(symbol);
-    if (symbol?.declarations?.some(d => d.getSourceFile().fileName.replaceAll('\\', '/').includes('/node_modules/@angular/core/'))) name = symbol.name;
+    const seen = new Set<ts.Symbol>();
+    while (symbol && !seen.has(symbol) && seen.size < 32) {
+      seen.add(symbol);
+      if (symbol.declarations?.some(d => d.getSourceFile().fileName.replaceAll('\\', '/').includes('/node_modules/@angular/core/'))) { name = symbol.name; break; }
+      // Preserve each explicit import/reexport hop even when the consumer has
+      // no Angular declarations installed. Resolving straight to the ultimate
+      // symbol loses these named hops when that final module is unavailable.
+      for (const declaration of symbol.declarations ?? []) {
+        const parent = ts.isImportSpecifier(declaration) ? declaration.parent.parent.parent : ts.isExportSpecifier(declaration) ? declaration.parent.parent : undefined;
+        if (parent && (ts.isImportDeclaration(parent) || ts.isExportDeclaration(parent)) && parent.moduleSpecifier && ts.isStringLiteral(parent.moduleSpecifier) && parent.moduleSpecifier.text === '@angular/core'
+          && (ts.isImportSpecifier(declaration) || ts.isExportSpecifier(declaration))) name = declaration.propertyName?.text ?? declaration.name.text;
+      }
+      if (name || !(symbol.flags & ts.SymbolFlags.Alias)) break;
+      symbol = checker.getImmediateAliasedSymbol(symbol);
+    }
   }
   return name;
 }
@@ -880,7 +899,10 @@ class Evaluator {
     if (ts.isPrefixUnaryExpression(node)) {
       const r = ev(node.operand);
       if (node.operator === ts.SyntaxKind.ExclamationToken) return { values: expanded(r.values).filter(value => value !== unknown).map(value => !value), dynamic: r.dynamic };
-      return { values: r.values.filter(v => typeof v === 'number').map(v => node.operator === ts.SyntaxKind.MinusToken ? -(v as number) : v), dynamic: r.dynamic || !r.values.every(v => typeof v === 'number') };
+      // Increment/decrement mutate storage; their result cannot be inferred from
+      // the operand's initializer. Only pure, explicitly supported operators fold.
+      if (![ts.SyntaxKind.PlusToken, ts.SyntaxKind.MinusToken, ts.SyntaxKind.TildeToken].includes(node.operator)) return { values: [], dynamic: true };
+      return { values: r.values.filter(v => typeof v === 'number').map(v => node.operator === ts.SyntaxKind.MinusToken ? -(v as number) : node.operator === ts.SyntaxKind.TildeToken ? ~(v as number) : v), dynamic: r.dynamic || !r.values.every(v => typeof v === 'number') };
     }
     if (ts.isBinaryExpression(node)) {
       const left = ev(node.left);
@@ -1154,6 +1176,25 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   compilerHost.getCurrentDirectory = () => root;
   if (libraryRoot) for (const library of compilerOptions.lib ?? []) if (!fileAllowed(path.join(libraryRoot, library))) problem(path.join(libraryRoot, library), 'source-error', 'Requested TypeScript standard library is unavailable; DOM type coverage cannot be established.');
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
+  function assignedValue(node: ts.BinaryExpression): Evaluated {
+    const right = evaluator.evaluate(node.right);
+    if ([ts.SyntaxKind.EqualsToken, ts.SyntaxKind.BarBarEqualsToken, ts.SyntaxKind.AmpersandAmpersandEqualsToken, ts.SyntaxKind.QuestionQuestionEqualsToken].includes(node.operatorToken.kind)) return right;
+    // The existing DOM value is runtime state. Keep RHS fragments for +=, but
+    // never treat them as the complete result or as a closed CSS supplier.
+    if (node.operatorToken.kind === ts.SyntaxKind.PlusEqualsToken) return addition({ values: [], dynamic: true }, right);
+    return { values: [], dynamic: true };
+  }
+  function styleWrite(node: ts.Node): { target: ts.Expression; value: () => Evaluated } | undefined {
+    if (assignmentExpression(node)) { let result: Evaluated | undefined; return { target: node.left, value: () => result ??= assignedValue(node) }; }
+    if (updateExpression(node)) return { target: node.operand, value: () => ({ values: [], dynamic: true }) };
+    return;
+  }
+  function hostBindingKeys(call: ts.CallExpression, member: ts.ClassElement): Evaluated {
+    const name = propertyName(member.name);
+    const result = call.arguments.length ? evaluator.evaluate(call.arguments[0]) : { values: name === undefined ? [] : [name], dynamic: name === undefined };
+    const values = expanded(result.values);
+    return { values: values.filter((value): value is string => typeof value === 'string').map(value => /^attr\.(style|class|id)$/.exec(value)?.[1] ?? value), dynamic: result.dynamic || values.some(value => typeof value !== 'string') };
+  }
   for (const error of program.getSyntacticDiagnostics()) if (error.file && all.has(error.file.fileName)) problem(error.file.fileName, 'parse-error', ts.flattenDiagnosticMessageText(error.messageText, '\n'), error.file.text, error.start ?? 0);
   const declarationList: Declaration[] = [];
   // Import identity is taken from the exported name, never the consumer's local alias.
@@ -1555,7 +1596,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   const nativeProducers = new Map<ts.ClassDeclaration, NativeSubject[]>();
   const hostProducers = new Map<ts.ClassDeclaration, Map<string, Evaluated>>();
   const hostWriters = new Map<string, Set<ts.ClassDeclaration>>();
-  type SelectorState = { selectors: Set<string>; optional: Set<string>; classesUnknown: boolean; idUnknown: boolean; classAlternatives?: Set<string>[] };
+  type SelectorState = { selectors: Set<string>; optional: Set<string>; classesUnknown: boolean; idUnknown: boolean; classAlternatives?: Set<string>[]; keyAlternatives?: SelectorState[][]; keyBranch?: object };
   const selectorState = (): SelectorState => ({ selectors: new Set(), optional: new Set(), classesUnknown: false, idUnknown: false, classAlternatives: [new Set()] });
   // Finite alternatives describe simultaneous class names. A union would make
   // mutually exclusive branches look like a possible compound selector.
@@ -1587,6 +1628,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     for (const selector of source.optional) target.optional.add(selector);
     target.classesUnknown ||= source.classesUnknown; target.idUnknown ||= source.idUnknown;
     target.classAlternatives = joinClasses(target.classAlternatives, source.classAlternatives);
+    if (source.keyAlternatives?.length) target.keyAlternatives = [...new Set([...(target.keyAlternatives ?? []), ...source.keyAlternatives])];
   };
   const bindingSelectors = (state: SelectorState, key: string, value: Evaluated, fixedKeys = false) => {
     const add = (selector: string) => { state.selectors.add(selector); state.optional.add(selector); };
@@ -1662,7 +1704,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       const member=staticMember(node as ts.Expression,checker);
       if(member&&styleAttribute(member.receiver)&&evaluator.written(node as ts.Expression)) {
         runtimeScopeUnsafe=true;
-        if(ts.isBinaryExpression(node.parent)&&node.parent.left===node&&['value','nodeValue','textContent'].includes(member.name??''))recordReplacement(evaluator.evaluate(node.parent.right));
+        if(assignmentExpression(node.parent)&&node.parent.left===node&&['value','nodeValue','textContent'].includes(member.name??''))recordReplacement(assignedValue(node.parent));
         else ctx.customPropertyWrites='unknown';
       }
       if(member&&mutationDOMObject(member.receiver)) {
@@ -1757,14 +1799,15 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
         }
       }
       if (ts.isDeleteExpression(node) && ts.isElementAccessExpression(node.expression) && domStyle(node.expression.expression)) recordProperties(evaluator.evaluate(node.expression.argumentExpression));
-      if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.EqualsToken) {
-        const left = node.left;
+      const write = styleWrite(node);
+      if (write) {
+        const left = write.target, value = write.value;
         const access=staticMember(left,checker);
-        if(access&&domStyle(access.receiver)&&access.name?.startsWith('--'))recordProperties({values:[access.name],dynamic:false},evaluator.evaluate(node.right));
-        if(access?.name==='style'&&domElement(access.receiver))recordReplacement(evaluator.evaluate(node.right));
-        if(access?.name==='cssText'&&domStyle(access.receiver))recordReplacement(evaluator.evaluate(node.right));
-        if (ts.isPropertyAccessExpression(left) && left.name.text === 'cssText' && (domStyle(left.expression) || checker.getTypeAtLocation(left.expression).flags & (ts.TypeFlags.Any | ts.TypeFlags.Unknown))) recordReplacement(evaluator.evaluate(node.right));
-        if (ts.isElementAccessExpression(left) && ts.isPropertyAccessExpression(left.expression) && left.expression.name.text === 'style') recordProperties(evaluator.evaluate(left.argumentExpression));
+        if(access&&domStyle(access.receiver)&&access.name?.startsWith('--'))recordProperties({values:[access.name],dynamic:false},value());
+        if(access?.name==='style'&&domElement(access.receiver))recordReplacement(value());
+        if(access?.name==='cssText'&&domStyle(access.receiver))recordReplacement(value());
+        if (ts.isPropertyAccessExpression(left) && left.name.text === 'cssText' && (domStyle(left.expression) || checker.getTypeAtLocation(left.expression).flags & (ts.TypeFlags.Any | ts.TypeFlags.Unknown))) recordReplacement(value());
+        if (ts.isElementAccessExpression(left) && domStyle(left.expression)) recordProperties(evaluator.evaluate(left.argumentExpression));
       }
       ts.forEachChild(node, visit);
     }
@@ -1898,16 +1941,25 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
         const producers = hostProducers.get(node) ?? new Map<string, Evaluated>(); mergeProducer(producers, name, result); hostProducers.set(node, producers);
       };
       for (const member of node.members) for (const decorator of decorators(member)) {
-        if (!ts.isCallExpression(decorator.expression) || coreExport(decorator.expression.expression, source, checker) !== 'HostBinding') continue;
-        const keys = evaluator.evaluate(decorator.expression.arguments[0]);
+        if (!ts.isCallExpression(decorator.expression)) continue;
+        const api = coreExport(decorator.expression.expression, source, checker);
+        if (api !== 'HostBinding') {
+          if (!api && checker.getTypeAtLocation(decorator.expression.expression).flags & (ts.TypeFlags.Any | ts.TypeFlags.Unknown)) {
+            ctx.customPropertyWrites = 'unknown'; const state = ownSelectorState(node); state.classesUnknown = state.idUnknown = true;
+          }
+          continue;
+        }
+        const keys = hostBindingKeys(decorator.expression, member);
         if (keys.dynamic) { ctx.customPropertyWrites = 'unknown'; const state = ownSelectorState(node); state.classesUnknown = state.idUnknown = true; }
         const value = ts.isPropertyDeclaration(member) ? evaluator.declarationValue(member) : { values: [], dynamic: true };
-        for (const raw of strings(keys)) {
-          const key = raw.replace(/^attr\./, '');
-          bindingSelectors(ownSelectorState(node), key, value);
+        const names = [...new Set(strings(keys))], state = ownSelectorState(node), branches: SelectorState[] = [];
+        for (const raw of names) {
+          const key = raw;
+          const selectors = names.length > 1 ? selectorState() : state;
+          bindingSelectors(selectors, key, value); branches.push(selectors);
           if (key.startsWith('style.--')) {
             const [name, unit] = key.slice(6).split('.');
-            recordHostValue(name, { ...value, values: value.values.map(item => typeof item === 'number' && unit ? `${item}${unit}` : item) });
+            recordHostValue(name, { ...value, dynamic: value.dynamic || keys.dynamic || names.length > 1, values: value.values.map(item => typeof item === 'number' && unit ? `${item}${unit}` : item) });
           } else if (key === 'style') {
             // A replaceable style bag keeps coverage open. Its known values
             // belong to this host, never to the unscoped DOM mutation pool.
@@ -1918,6 +1970,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
             }
           }
         }
+        if (names.length > 1 && branches.some(branch => branch.selectors.size || branch.classesUnknown || branch.idUnknown)) (state.keyAlternatives ??= []).push(branches);
       }
       const props = objectMetadata(m.expression, evaluator); if (!props) { ctx.customPropertyWrites = 'unknown'; continue; }
       const members = new Map<string, ts.Expression>(); for (const member of node.members) { const name = propertyName(member.name); if (name && ts.isPropertyDeclaration(member) && member.initializer) members.set(name, member.initializer); else if (name && ts.isMethodDeclaration(member) && ts.isIdentifier(member.name)) members.set(name, member.name); }
@@ -2067,7 +2120,34 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       }
     }
   }
-  const selectorVariants = (fixed: Iterable<string>, state: SelectorState) => {
+  type SelectorVariant = { selectors: string[]; subjectClassesUnknown: boolean; subjectIdUnknown: boolean; subjectOptionalSelectors: string[]; classBranch?: Set<string>; idBranch?: string; keyBranch?: object };
+  const selectorBudgetWarnings = new Set<ts.ClassDeclaration>();
+  // The incoming/native and receiving-host views share this frozen selector Set.
+  // Reuse branch identities so their correlated variants can still be paired.
+  const keySelectorStates = new WeakMap<Set<string>, SelectorState[]>();
+  const selectorVariants = (fixed: Iterable<string>, state: SelectorState, owner: ts.ClassDeclaration): SelectorVariant[] => {
+    if (state.keyAlternatives?.length) {
+      const cached = keySelectorStates.get(state.selectors);
+      if (cached) return cached.flatMap(choice => selectorVariants(fixed, choice, owner));
+      let choices: SelectorState[] = [{ ...state, keyAlternatives: undefined }];
+      for (const group of state.keyAlternatives) {
+        const next: SelectorState[] = []; let truncated = false;
+        for (const current of choices) for (const branch of group) {
+          if (next.length >= 128) { truncated = true; continue; }
+          const combined = selectorState(); mergeSelectors(combined, current); mergeSelectors(combined, branch);
+          // A dynamic class value can erase classAlternatives. The key choice
+          // still has to stay paired across the two views of this physical host.
+          combined.keyBranch = {}; next.push(combined);
+        }
+        choices = next;
+        if (truncated) {
+          ctx.customPropertyWrites = 'unknown';
+          if (!selectorBudgetWarnings.has(owner)) { const source = owner.getSourceFile(); unresolved(source.fileName, source.text, owner.getStart(), 'HostBinding selector alternatives exceed 128; bounded candidates were inspected and coverage remains unknown.'); selectorBudgetWarnings.add(owner); }
+        }
+      }
+      keySelectorStates.set(state.selectors, choices);
+      return choices.flatMap(choice => selectorVariants(fixed, choice, owner));
+    }
     const base = [...fixed], all = new Set([...base, ...state.selectors]);
     const fixedClasses = base.filter(selector => selector.startsWith('.'));
     const branches = state.classAlternatives?.map(branch => ({ classes: new Set([...branch, ...fixedClasses]), identity: branch }));
@@ -2077,7 +2157,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       const optional = new Set([...state.optional].filter(selector => selectors.includes(selector)));
       if ([...optional].some(name => name.startsWith('.'))) for (const name of selectors) if (name.startsWith('.')) optional.add(name);
       if ([...optional].some(name => name.startsWith('#'))) for (const name of selectors) if (name.startsWith('#')) optional.add(name);
-      return { selectors, subjectClassesUnknown: state.classesUnknown, subjectIdUnknown: state.idUnknown, subjectOptionalSelectors: [...optional], classBranch: branch?.identity, idBranch: id };
+      return { selectors, subjectClassesUnknown: state.classesUnknown, subjectIdUnknown: state.idUnknown, subjectOptionalSelectors: [...optional], classBranch: branch?.identity, idBranch: id, keyBranch: state.keyBranch };
     }));
   };
   type HostContext = { id: object; owner: ts.ClassDeclaration; depth: number; values: Map<string, Evaluated>; facts: CustomPropertyOrigin; parent?: { context: HostContext; subject: NativeSubject } };
@@ -2098,7 +2178,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     // An actual application already includes this owner's bindings exactly once.
     let parentBudget = 128;
     const contexts = (applications?.length ? applications : fallbacks).flatMap(application => {
-      const variants = selectorVariants([...base, ...application.selectors], application.state);
+      const variants = selectorVariants([...base, ...application.selectors], application.state, owner);
       // Reused child templates must remain tied to each real parent instance.
       // Recursive components and large graphs retain local candidates only;
       // these bounded links never certify that all writers were enumerated.
@@ -2132,7 +2212,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     const cached = nativeContexts.get(application); if (cached) return cached;
     const variantsByNode = new Map<object, CustomPropertyOrigin[]>();
     for (const node of nativeProducers.get(application.owner) ?? []) {
-      const variants = selectorVariants(node.selectors, node.bindings);
+      const variants = selectorVariants(node.selectors, node.bindings, application.owner);
       variantsByNode.set(node.values, variants.map(variant => ({ ...variant, applicationId: application.id, hostDetached: node.hostDetached,
         documentStyles: node.hostDetached || unknownStylesOwners.has(application.owner) ? undefined : shadowStylesOwners.has(application.owner) ? false : application.facts.documentStyles,
         sharedStyles: node.hostDetached || unknownStylesOwners.has(application.owner) ? undefined : shadowStylesOwners.has(application.owner) ? true : application.facts.sharedStyles,
@@ -2150,7 +2230,8 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     if (!application.parent) return [];
     const { context: parent, subject } = application.parent;
     return (nativeContext(parent).get(subject.values) ?? []).filter(origin =>
-      (!origin.classBranch || !application.facts.classBranch || origin.classBranch === application.facts.classBranch)
+      origin.keyBranch === application.facts.keyBranch
+      && (!origin.classBranch || !application.facts.classBranch || origin.classBranch === application.facts.classBranch)
       && (!origin.idBranch || !application.facts.idBranch || origin.idBranch === application.facts.idBranch));
   };
   const sourceContext = (application: HostContext): StyleContext => {
@@ -2338,16 +2419,26 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
           }
         }
       }
-      for (const member of node.members) for (const decorator of decorators(member)) if (ts.isCallExpression(decorator.expression) && importedIdentity(decorator.expression.expression, sf)?.module === '@angular/core' && importedIdentity(decorator.expression.expression, sf)?.export === 'HostBinding') {
-        const key = strings(evaluator.evaluate(decorator.expression.arguments[0]))[0]?.replace(/^attr\./, '');
-        if (!key || !(key === 'class' || key === 'style' || key.startsWith('style.') || key.startsWith('class.'))) continue;
-        const location = loc(file, text, member.getStart());
-        if (key.startsWith('class.')) {
-          const constant = ts.isPropertyDeclaration(member) && member.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.ReadonlyKeyword) ? evaluator.evaluate(member.initializer) : undefined;
-          if (!constant || constant.dynamic || constant.values.some(possiblyTruthy)) checkClasses(key.slice(6), location, ctx, classes);
+      for (const member of node.members) for (const decorator of decorators(member)) {
+        if (!ts.isCallExpression(decorator.expression)) continue;
+        const api = coreExport(decorator.expression.expression, sf, checker);
+        if (api !== 'HostBinding') {
+          if (!api && checker.getTypeAtLocation(decorator.expression.expression).flags & (ts.TypeFlags.Any | ts.TypeFlags.Unknown)) unresolved(file, text, member.getStart(), 'Decorator identity is unavailable; host style/class coverage requires manual review.');
+          continue;
         }
-        else if (ts.isPropertyDeclaration(member)) { const [property, unit] = key.startsWith('style.') ? key.slice(6).split('.') : ['', '']; inspectValue(evaluator.declarationValue(member), key === 'class' ? 'class' : key === 'style' ? 'css' : 'style', property!, location, unit, ctx, classes); }
-        else unresolved(file, text, member.getStart(), `Computed HostBinding ${key} cannot be resolved.`);
+        const keys = hostBindingKeys(decorator.expression, member);
+        const location = loc(file, text, member.getStart());
+        if (keys.dynamic || !keys.values.length) unresolved(file, text, member.getStart(), 'Dynamic HostBinding key cannot be fully resolved; known keys were inspected.');
+        for (const raw of new Set(strings(keys))) {
+          const key = raw;
+          if (!(key === 'class' || key === 'style' || key.startsWith('style.') || key.startsWith('class.'))) continue;
+          if (key.startsWith('class.')) {
+            const constant = ts.isPropertyDeclaration(member) && member.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.ReadonlyKeyword) ? evaluator.evaluate(member.initializer) : undefined;
+            if (!constant || constant.dynamic || constant.values.some(possiblyTruthy)) checkClasses(key.slice(6), location, ctx, classes);
+          }
+          else if (ts.isPropertyDeclaration(member)) { const [property, unit] = key.startsWith('style.') ? key.slice(6).split('.') : ['', '']; inspectValue(evaluator.declarationValue(member), key === 'class' ? 'class' : key === 'style' ? 'css' : 'style', property!, location, unit, ctx, classes); }
+          else unresolved(file, text, member.getStart(), `Computed HostBinding ${key} cannot be resolved.`);
+        }
       }
     }
     function attributeWrite(node: ts.CallExpression, name: ts.Expression | undefined, value: ts.Expression | undefined, classes = globalClasses) {
@@ -2362,13 +2453,14 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     function unresolvedStyleReceiver(expression: ts.Expression): boolean { return ts.isPropertyAccessExpression(expression) && expression.name.text === 'style' && !!(checker.getTypeAtLocation(expression).flags & (ts.TypeFlags.Any | ts.TypeFlags.Unknown)); }
     function visit(node: ts.Node, classes = globalClasses) {
       if (ts.isClassDeclaration(node)) classes = componentClasses.get(node) ?? globalClasses;
-      if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.EqualsToken) {
-        const left = node.left;
-        if(domStyle(left))inspectValue(evaluator.evaluate(node.right),'css','style',loc(file,text,node.getStart()));
-        else if (ts.isPropertyAccessExpression(left) && domStyle(left.expression)) inspectValue(evaluator.evaluate(node.right), left.name.text === 'cssText' ? 'css' : 'style', left.name.text.replace(/[A-Z]/g, c => '-' + c.toLowerCase()), loc(file, text, node.getStart()));
+      const write = styleWrite(node);
+      if (write) {
+        const left = write.target, value = write.value;
+        if(domStyle(left))inspectValue(value(),'css','style',loc(file,text,node.getStart()));
+        else if (ts.isPropertyAccessExpression(left) && domStyle(left.expression)) inspectValue(value(), left.name.text === 'cssText' ? 'css' : 'style', left.name.text.replace(/[A-Z]/g, c => '-' + c.toLowerCase()), loc(file, text, node.getStart()));
         else if (ts.isElementAccessExpression(left) && domStyle(left.expression)) {
           const names = evaluator.evaluate(left.argumentExpression), properties = strings(names);
-          for (const property of new Set(properties)) inspectValue(evaluator.evaluate(node.right), property === 'cssText' ? 'css' : 'style', property, loc(file, text, node.getStart()));
+          for (const property of new Set(properties)) inspectValue(value(), property === 'cssText' ? 'css' : 'style', property, loc(file, text, node.getStart()));
           if (names.dynamic || !properties.length) unresolved(file, text, node.getStart(), 'Dynamic DOM style property cannot be fully resolved; known names were inspected.');
         } else if ((ts.isPropertyAccessExpression(left) || ts.isElementAccessExpression(left)) && unresolvedStyleReceiver(left.expression)) unresolved(file, text, node.getStart(), 'DOM style target type is unavailable; this style assignment requires manual review.');
       }

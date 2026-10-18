@@ -46,6 +46,10 @@ node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.
 
 TypeScriptとAngularの構文を読み、inline/外部template・styles、host metadata、`HostBinding`、class/style/ngClass/ngStyle、静的に識別できるDOM style操作を検査します。コメントや通常の業務文字列をCSSとして検索せず、アプリのコードを実行しません。
 
+`HostBinding`は実Angular exportのidentityで識別し、import alias・namespace・明示した再exportを追跡します。Angular宣言がない取り込み先でも、明示した名前付きimport/reexportを最大32 symbolまで辿ります。利用できない宣言に依存するmember decoratorは未確認を残し、CSS writerの完全性も認定しません。有限keyは全候補を調べ、引数なしはmember名を使い、未知keyや不正な型は警告にします。条件付きkeyは無条件の供給元にせず、class/idの排他的な選択と計算元・instanceの対応を保ちます。選択の積は128候補で打ち切り、未確認を報告します。`attr.style`・`attr.class`は検査し、`attr.style.color`等の通常属性をstyle宣言と混同しません。同名のローカル関数やshadowをAngular APIと認定しません。
+
+DOM styleの論理代入は書込み得る右辺を検査します。`+=`は既存値を未確認とし、既知断片だけを検査します。断片を完全なCSS供給値に昇格させません。その他の未解決な複合代入とstorageを更新する`++`/`--`は警告を残します。数値の単項`+`・`-`・`~`は演算結果を使い、非ゼロの値をゼロとして許可しません。
+
 CSSはPostCSS、SCSSは[postcss-scssの仕様](https://github.com/postcss/postcss-scss)に従って構文解析します。Sassのコンパイル、変数計算、mixin展開は実行しません。解決できない変数・mixin等は未確認として報告します。
 
 | 対象 | 検査する内容 |
@@ -78,7 +82,7 @@ CSSカスタムプロパティは、消費側に届き得る既知の値候補�
 
 単純なtag/class/idと有限のclass/id bindingは、対応する要素・分岐ごとに確認します。同じselectorに一致する要素の一部だけで供給の完全性を認定せず、値がない要素や未知のclass/idも保持します。複雑selectorは既知の終端条件に矛盾しない候補を検査して未確認を残します。Angularのカンマ区切りselectorは代替であり、同時成立するclass/tagへ集約しません。
 
-同じ物理hostでは、親からのincomingと子自身のownを最初のlookupで分け、依存aliasは必要な全層を参照します。親から渡した値を子の新しいwriterとして反射させず、子自身のCSS/metadata/HostBindingは候補に保ちます。親scoped CSSを子の定義poolへコピーしません。実native祖先の供給は実際の子孫への候補として渡し、兄弟やhostへ逆流させません。`@property`登録による継承境界と、host自身の書込み・疑似要素自身の定義を区別します。
+同じ物理hostでは、親からのincomingと子自身のownを最初のlookupで分け、依存aliasは必要な全層を参照します。HostBindingのkey選択はclass値が未確定でも独立した対応を保ち、排他的なclass/idを別の供給元として組み合わせません。親から渡した値を子の新しいwriterとして反射させず、子自身のCSS/metadata/HostBindingは候補に保ちます。親scoped CSSを子の定義poolへコピーしません。実native祖先の供給は実際の子孫への候補として渡し、兄弟やhostへ逆流させません。`@property`登録による継承境界と、host自身の書込み・疑似要素自身の定義を区別します。
 
 `ng-container`は透過させ、描画しないtemplate要素のstyleは供給元にしません。明示した`ng-template`内部のviewは別outletへ移動できるため、外側hostとのDOM祖先関係やdocument到達を確定しません。view内部の実祖先・同一要素・component host自身の既知候補は保持します。
 

@@ -103,6 +103,8 @@ export interface CustomPropertyOrigin {
    * Class branch identity comes from its shared selector binding state. */
   classBranch?: object;
   idBranch?: string;
+  /** Exclusive HostBinding key choice, retained even when class values are unknown. */
+  keyBranch?: object;
   /** Embedded views may be instantiated outside the declaring component host. */
   hostDetached?: boolean;
   /** Proven document selector reachability; undefined keeps placement unknown. */

@@ -108,15 +108,18 @@ export class VirtualScroll implements VirtualScrollStrategy {
    if(row.closest('cdk-virtual-scroll-viewport')!==element)continue;
    const index=Number(row.dataset['uiVirtualIndex']);if(backwards?index>=origin:index<=origin)continue;
    // Existence only. The browser owns the actual order and focus operation.
-   if([...row.querySelectorAll<HTMLElement>('a[href],button,input,select,textarea,[tabindex],summary,[contenteditable],audio[controls],video[controls],iframe')].some(control=>this.isTabStop(control,backwards)))return true;
+   if([row,...row.querySelectorAll<HTMLElement>('*')].some(control=>this.isTabStop(control,backwards)))return true;
   }
   return false;
  }
  private isTabStop(control:HTMLElement,backwards:boolean):boolean{
-  if(!canFocus(control))return false;
+  // Firefox permits native scroll entry on disabled buttons/fieldsets, while
+  // disabled editors remain outside sequential navigation. No focus is moved.
+  const disabledScroller=this.radios.profile==='firefox'&&(control instanceof HTMLButtonElement||control instanceof HTMLFieldSetElement)&&control.matches(':disabled')&&this.isImplicitScrollStop(control);
+  if(!canFocus(control))return disabledScroller;
   // A top-level editing host participates in native Tab even when tabIndex is -1.
   const editing=control.isContentEditable&&!control.parentElement?.isContentEditable&&!control.hasAttribute('tabindex');
-  if(control.tabIndex<0&&!editing)return false;
+  if(control.tabIndex<0&&!editing)return this.isImplicitScrollStop(control);
   if(control instanceof HTMLInputElement&&control.type==='radio'&&this.radios.isManaged(control))return this.radios.isTabStop(control,backwards);
   if(control instanceof HTMLInputElement&&control.type==='radio'&&control.name){
    const root=control.getRootNode() as Document|ShadowRoot;
@@ -130,6 +133,20 @@ export class VirtualScroll implements VirtualScrollStrategy {
    return control===(backwards?eligible.at(-1):eligible[0]);
   }
   return true;
+ }
+ private isImplicitScrollStop(control:HTMLElement):boolean{
+  // Native scroll-container entry is engine-specific and is suppressed by an
+  // explicit negative tabindex. Never add tabindex or move focus to emulate it.
+  if(control.hasAttribute('tabindex')||this.radios.profile==='webkit'||!control.isConnected||control.closest('[inert],[hidden]')||!control.getClientRects().length)return false;
+  const style=control.ownerDocument.defaultView?.getComputedStyle(control);if(!style||style.visibility!=='visible')return false;
+  // This also protects the Firefox disabled-scroller exception, for which
+  // canFocus intentionally returns false before checking closed details.
+  let details=control.closest('details:not([open])');
+  while(details){const summary=[...details.children].find(child=>child.tagName==='SUMMARY');if(!summary?.contains(control))return false;details=details.parentElement?.closest('details:not([open])')??null;}
+  if(!((/^(auto|scroll)$/.test(style.overflowY)&&control.scrollHeight>control.clientHeight)||(/^(auto|scroll)$/.test(style.overflowX)&&control.scrollWidth>control.clientWidth)))return false;
+  // Chromium exposes the scroller only when it has no keyboard-focusable child;
+  // Firefox also exposes scrollers that contain such controls.
+  return this.radios.profile!=='chromium'||![...control.querySelectorAll<HTMLElement>('*')].some(child=>canFocus(child)&&(child.tabIndex>=0||child.isContentEditable&&!child.parentElement?.isContentEditable&&!child.hasAttribute('tabindex')));
  }
  private window(range:{start:number;end:number},retained:number|null,extra:readonly number[]=[]):void{
   const indices=Array.from({length:range.end-range.start},(_,offset)=>range.start+offset);

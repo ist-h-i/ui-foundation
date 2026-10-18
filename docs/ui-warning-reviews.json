@@ -14,13 +14,15 @@
     "src/check/entry.ts": "749de4d133b176b00956a282cdf3bd38522b5a33c4e9db792d8cf69b005b9bd7",
     "src/check/policy.ts": "7657b3050d8a63e5be226fbedf91211d783d01058ad2dea91679deb70925be42",
     "src/check/report.ts": "9b689ad19b504e02c29d4cb816e4d07b934b7cd4c86949a14f467b7650db1972",
-    "src/check/scanner.ts": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+    "src/check/scanner.ts": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
     "src/check/styles.ts": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
-    "src/check/types.ts": "67f8a7d70edd784ddee2b5e1515648ac8b1f631242d65710c6c4aa2ff3266939",
+    "src/check/types.ts": "55856842ab45bcd19ede3963c6849adaa213535078d167891d6c6e2ca14f5ad6",
     "src/warning-review.ts": "817d44333f9d651d380ce40fb637e7b077f6dcc516a03add84e80a82525359d5",
     "src/warning-review-cli.ts": "30f58fe92ad04eabba6c0e010ca49f88dc74ea4c64b28136548bb1afc7edcf47",
-    "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34"
+    "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34",
+    "tests/static/write-sinks.test.ts": "8ec17aad28c151b6e22522fad1aabfc2a551ef7000a93df4e548af57c4bfd610",
+    "tests/static/write-sinks-portable.test.ts": "bb61341b61775c05d834fe318ef66f162cca3b759c0e91f7c6cf1855b2dcfb57"
   },
   "reviews": [
     {
@@ -160,7 +162,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -274,7 +276,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -406,7 +408,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -6870,25 +6872,25 @@
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "private window(",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "this.offset.set(",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "private update()",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "detach():void",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6966,7 +6968,7 @@
         {
           "file": "tests/ui/virtual-sparse-tab.spec.ts",
           "anchor": "sparse native Tab list: A-D skips",
-          "sha256": "479fabd2a0da9ad7118640ece1994620b55202d6fd5702b0041354071f3185e5",
+          "sha256": "034c5fe991fcaee9af0608b18c568f31e57cf1d35d567861290602f2c8b491b2",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -7140,25 +7142,25 @@
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "private window(",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "this.offset.set(",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "private update()",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-scroll.ts",
           "anchor": "detach():void",
-          "sha256": "e3bf26f209e48ea07a24158c61afe08fe1d0969e1dadcb89834ee45285ffc813",
+          "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7236,7 +7238,7 @@
         {
           "file": "tests/ui/virtual-sparse-tab.spec.ts",
           "anchor": "sparse native Tab list: A-D skips",
-          "sha256": "479fabd2a0da9ad7118640ece1994620b55202d6fd5702b0041354071f3185e5",
+          "sha256": "034c5fe991fcaee9af0608b18c568f31e57cf1d35d567861290602f2c8b491b2",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -8156,7 +8158,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8258,7 +8260,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8360,7 +8362,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8474,7 +8476,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8588,7 +8590,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8696,7 +8698,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8780,7 +8782,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8876,7 +8878,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8972,7 +8974,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9068,7 +9070,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "5688768884438c229eadb66f7bc6c65efff9e28fc8c8a163831255060fcfc0b4",
+          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
           "scope": "Read source at audited snapshot."
         },
         {
