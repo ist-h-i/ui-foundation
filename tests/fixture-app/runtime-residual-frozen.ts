@@ -1,0 +1,8 @@
+import {Component,input,signal} from '@angular/core';
+import {DataTableView,TableTemplate,createTableState,type TableColumn,type TableState} from '../../.ui/generated/angular';
+export interface FrozenRow {id:number;name:string;amount:number;extra:string;last:string;}
+@Component({selector:'runtime-residual-frozen-table',standalone:true,imports:[DataTableView,TableTemplate],styles:`:host{display:block;min-inline-size:0}:host([hidden]){display:none!important}`,template:`<ui-data-table caption="固定offsetを確認する一覧" tableId="residual-fixed" [rows]="rows()" [columns]="columns()" keyField="id" [state]="state()" [pagination]="false" [stickyHeader]="true" [stickyFooter]="true" [fixedStartKeys]="fixedStartKeys()" [fixedEndKeys]="fixedEndKeys()" [aggregates]="aggregates" [columnControls]="false" [resizableColumns]="false"><ng-template uiTableCell="name" [uiTableTemplateOf]="rows()" let-row><input class="ui-field-control" [attr.aria-label]="'固定表入力 '+row.id" [value]="drafts().get(row.id)??row.name" (input)="save(row.id,$event)"></ng-template></ui-data-table>`})
+export class RuntimeResidualFrozenTable {
+ readonly rows=input<readonly FrozenRow[]>([]);readonly columns=input<readonly TableColumn<FrozenRow>[]>([]);readonly state=input<TableState>(createTableState());readonly fixedStartKeys=input<readonly number[]>([0,1]);readonly fixedEndKeys=input<readonly number[]>([22,23]);readonly aggregates=[{column:'amount',kind:'sum' as const,label:'合計'}];readonly drafts=signal<ReadonlyMap<number,string>>(new Map());
+ save(id:number,event:Event):void{this.drafts.update(old=>new Map(old).set(id,(event.target as HTMLInputElement).value));}
+}

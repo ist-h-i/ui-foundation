@@ -417,7 +417,17 @@ DataViewの`state/stateChange: CollectionViewState`はquery/sort/page/pageSize/l
 
 Listbox/ui-listboxとSelectionList/ui-selection-listは同じCVA部品。`ListChoice {value,label,disabled?,group?}`、single値string|null、multiple値readonly string[]|null。`multiple/searchable/showSelectAll/maxSelected/clearable/locale/virtual/itemHeight/height/overscan`と共通ValueControl入力を使う。`uiListChoice`のcontextは`$implicit/selected/active/index`、表示内容だけを差替える。選択とfocusは独立、矢印/Home/End/文字検索でfocus、Space/Enterで選択、Ctrl/Meta+Aで可視の有効候補を選択。hidden/disabled選択は残す。max超過の復元値は解除で修復できる。不正shape/重複/unknownは検証errorに残し、アプリが明示form.resetで修復する。仮想group metadataは描画済optionを所有し、未描画active IDを公開しない。仮想行の幅は公開viewportのclientWidthへ合わせ、長い既定ラベルをその幅内で省略表示する。通常表示の行幅は親領域に従う。`itemHeight=null`の仮想行高はsize.collection-itemを下限とし、既定のグループ名と選択肢の文字行・paddingを実測して全行へ同じ高さを適用する。profile・文字サイズ・グループ有無の変更で再測定する。明示itemHeightと投影内容の固定行高はアプリの契約であり、大きい内容は行内でスクロールできる。
 
-VirtualListは`items/keyField/labelField/label/itemHeight/height/overscan/emptyLabel`と`rangeChange/positionChange`、公開`scrollToIndex/scrollToOffset`を使う。寸法nullは意味tokenの測定。`ng-template uiVirtualItem [uiVirtualItemOf]=items`のcontextは`$implicit/index/count`。固定高さの内部は局所scroll、editor stateはappが安定keyに接続する。仮想化で自前focus行が消えた場合はviewportへ移し、外部focusを奪わない。公開viewportのclientWidthをResizeObserverで測り、自前の行幅だけに適用する。長い既定ラベルは行内で省略し、アプリの大きな投影内容は行内でスクロールできる。CDK内部の要素やCSSを変更しない。
+VirtualListは`items/keyField/labelField/label/itemHeight/height/overscan/emptyLabel/radioGroups`と`rangeChange/positionChange`、公開`scrollToIndex/scrollToOffset`を使う。寸法nullは意味tokenの測定。`ng-template uiVirtualItem [uiVirtualItemOf]=items`のcontextは`$implicit/index/count`。固定高さの内部は局所scroll、editor stateはappが安定keyに接続する。仮想化で自前focus行が消えた場合はviewportへ移し、外部focusを奪わない。公開viewportのclientWidthをResizeObserverで測り、自前の行幅だけに適用する。長い既定ラベルは行内で省略し、アプリの大きな投影内容は行内でスクロールできる。CDK内部の要素やCSSを変更しない。
+
+VirtualListとVirtualDataTableの投影操作は、Tab/Shift+Tabの標準動作より前に現在行と隣接行を固定行windowへ描画する。各キーのRAF待機は不要。Tab順とfocus移動はブラウザが所有し、consumerが処理済みのキー、IME変換中、修飾付きTab、内側viewportの操作を奪わない。pointer/wheelや明示スクロールで現在行の保持を解除し、行が消えた際は自前focusだけをviewportへ退避する。`rangeChange`は描画予定範囲の通知であり、DOM更新完了の通知ではない。多数の連続行にTab対象がない投影など、未描画の全論理行のTab順は別途アプリで検証する。[配置の判断と制限](adr/0003-virtual-native-tab.md)。
+
+仮想行を跨ぐnative radioには `radioGroups: readonly VirtualRadioGroup[] | Signal<readonly VirtualRadioGroup[]>` を渡す。`{name, form?, value: string|null, members: [{key: CollectionKey, value: string, disabled?, hidden?}]}` のkeyは行key、valueはnative input.value。form省略はviewportの継承form ownerで、指定時はnative form.idと一致させる。一groupの全memberを一viewport内で記述し、disabled/hiddenには描画外も含む実効状態を渡す。native changeを受けてappがcanonical valueを更新する。動的なmodelはreadonly Signal自体を `[radioGroups]="groups"` へ渡す。配列は静的modelまたは通常の親binding反映後に使い、連続キー中の最新値にはSignalを使う。表のselectedKeysも配列とSignalの両方を受け付ける。adapterはcheckedとTab入口をその値へ同期し、選択stateを別途保存しない。未選択時の入口はFirefoxでは先頭、WebKitでは移動方向の端、Chromiumでは移動方向とfocus履歴へ従い、同一行内のoption順はmetadata配列順によらずDOMに従う。
+
+表の組込みsingle選択は同じadapterをselectedKeysへ接続し、selectedKeysChangeをappが反映する。native form.resetもappがcanonical valueを初期値へ戻す。拒否・遅延中は現在のcanonical valueを再適用する。Tab/Shift+Tabは既定動作を保ち、Arrowでは現在行と前後のeligible member行を最大3行だけ用意してnativeの方向・wrap・input/changeに任せる。全memberを同時DOMへ保持しない。
+
+例: appで `groups = computed(() => [{name: 'decision', value: decision(), members: [{key: 0, value: 'yes'}, {key: 499, value: 'no'}]}])` を定義し、`[radioGroups]="groups"` と各投影 `<input type="radio" name="decision" [value]="row.value" [checked]="decision()===row.value" (change)="decision.set(row.value)">` を接続する。複数選択肢が同じ行keyを使う場合もnative valueを一意にする。不明な行key、重複group/value、不明な選択値は設定エラーを表示し、modelを自動で消去しない。
+
+この契約はgroupの外部member/別viewport共有、正のtabindex、shadow DOM/別documentを含めない。member記述と実DOMのname/form/value/無効・非表示状態をappが一致させる。これらの追加構成は個別の検証が必要。[radio検証](verification/ui-virtual-radio-20261014/README.md)。
 
 SortableList/ui-sortable-listとOrderList/ui-order-listは`items/keyField/labelField/controlId/label/orientation/disabled/busy/readonly/canMove/emptyMessage`、`itemsChange/moved`を持つ。候補更新はappがitemsChangeを受けて接続。`moved {item,fromIndex,toIndex,items,reason}`のreasonはbutton/pointer/keyboard。canMove例外は拒否。公開CDKのhandle/touch-delay、native位置変更button、ハンドルclick→矢印/Home/Endの仮配置→Enter確定/Escape取消を使う。pointer開始sourceが差替わった場合は旧dropを拒否。指を離す前の取消は更新を公開せず、pointer releaseの説明を残す。実Undo/サーバー更新の成功ではない。
 
@@ -482,3 +492,9 @@ CommandPaletteの局所スクロール内にある再試行ボタンは、フォ
 予定の重複時刻の選択は「要確認／早い方／遅い方」と表示し、同じ現地日時が二度現れる場合の扱いであることを開始・終了の選択欄へ関連付けて説明します。reject/earlier/laterの値と利用側の判断は保持します。
 
 音声・動画の選択欄は狭幅で左右の余白をcontrol-gapに合わせ、文字200%でも「日本語字幕」の全文と矢印の余白を確保します。デスクトップの余白とnative selectの値・track制御は保持します。
+
+
+仮想表のラッパー `DataTableView` でも、動的な `selectedKeys` は readonly Signal 自体を渡す。`virtualRadioGroups` は投影セル用の同じモデルを受け付け、子へSignalを保持して渡す。メンバーは現在の検索・ページ適用後の行に限定し、表示外の選択はアプリで保持する。検索やページ変更時は、アプリが表示中のメンバーと、その中の選択値（なければnull）を計算する。通常表の投影radioはブラウザのnative groupを使う。
+
+
+仮想radioのクロスブラウザ回帰は `npm run test:ui:radio:cross-browser` で実行する。必要なPlaywrightブラウザを配置した環境を使う。macOS WebKitは起動プロセス内のCocoa引数で全controlへのkeyboard navigationを有効化する（利用者の設定DBは変更しない）。Tab資格の内部方針は報告UAから選び、未知・偽装UAや未検証OSは保証しない。WebKitではcheckedがhidden/disabledのgroupへTabで入らず、Arrowは端で折り返さない。選択値はその場合もappのcanonical modelに残す。[検証条件と残件](verification/ui-virtual-radio-cross-browser-20261014/README.md)。

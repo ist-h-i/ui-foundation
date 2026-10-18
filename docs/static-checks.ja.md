@@ -1,0 +1,123 @@
+# UIソースの静的検査
+
+確定したYAMLから検査policyとNode用の`check-ui.cjs`を生成します。取り込み先のリポジトリだけで実行でき、検査専用のnpm依存やui-foundationのcheckoutは不要です。`checker-lib/`と依存のNOTICEも使うため、生成ディレクトリ全体を取り込みます。部品をビルドするための通常の依存は別に必要です。
+
+指定ソースで確定できる違反を失敗にし、実行時の値や未知の供給元を静的に確定できない箇所を警告として残します。警告は違反の確定でも、安全性の証明でもありません。本リポジトリでは、残す全警告の理由と検証範囲を別の台帳で確認します。
+
+## 設定と配布
+
+`ui.config.yaml`の任意の`checks`で対象を指定します。パスはプロジェクト内のファイルまたはディレクトリです。glob、絶対パス、親への移動、symlinkは使いません。
+
+```yaml
+checks:
+  source_roots: [src]
+  tsconfig: tsconfig.app.json
+  approved_components:
+    - module: '@vendor/ui'
+      export: AdoptedButton
+      reason: このプロジェクトで採用した外部操作部品
+  exceptions:
+    - file: src/scroll-specimen.css
+      rule: literal-token
+      source: 'width:400px'
+      reason: 狭い領域でのスクロールを再現する試験用の固定寸法
+```
+
+`tsconfig`、承認一覧、例外一覧は省略できます。`source_roots`は空にできず、各rootに少なくとも一つの対象ソースが必要です。生成先、`.agents`、`.git`、`node_modules`、build/dist/coverage等は対象から除きます。検査器が確認するのは指定したソースです。`checks`がない従来の設定は`NOT_CONFIGURED`と表示し、設定・生成一致検査を維持します。`init`の新規設定は`src`を対象とします。
+
+本リポジトリではfixture画面と`templates/angular/`の生成元部品を対象にし、生成済みコピーを重複検査しません。新規アプリの`init`は、本リポジトリ固有の例外や外部部品承認を引き継ぎません。
+
+```sh
+# 正本を編集してから生成元のCLIで同期
+npm run ui:sync
+# ui-foundation本体の設定・生成一致・ソース検査
+npm run ui:check
+npm run ui:check -- --format json
+# 取り込み先のソース検査（例は既定のoutput）
+node .ui/generated/check-ui.cjs --config ui.config.yaml
+node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.yaml --format json
+```
+
+取り込み先の`package.json`へ`"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"`を追加し、CIやbuildの前段で実行します。CLIは取り込み先のpackage.jsonを自動編集しません。outputを移行したら、このコマンドとアプリ側importも更新します。検査器はNode専用で、アプリのブラウザーbundleには含めません。
+
+同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定・生成元を修正し、`ui:sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
+
+## 対象と結果
+
+TypeScriptとAngularの構文を読み、inline/外部template・styles、host metadata、`HostBinding`、class/style/ngClass/ngStyle、静的に識別できるDOM style操作を検査します。コメントや通常の業務文字列をCSSとして検索せず、アプリのコードを実行しません。
+
+CSSはPostCSS、SCSSは[postcss-scssの仕様](https://github.com/postcss/postcss-scss)に従って構文解析します。Sassのコンパイル、変数計算、mixin展開は実行しません。解決できない変数・mixin等は未確認として報告します。
+
+| 対象 | 検査する内容 |
+| --- | --- |
+| トークン | 色、書体、文字サイズ、行高、太さ、余白、角丸、寸法、境界、動き、透明度。具体値、primitive直接参照、未定義semantic、用途違いを検出する。 |
+| CSS値 | 省略形、論理プロパティ、関数、fallback。`calc(var(--ui-space-page) + 12px)`の固定値も検査する。ゼロ、継承・リセット、適合する構造用キーワード、無次元の計算係数は許可する。 |
+| Tailwind | 保護対象utilityと状態・レスポンシブ等のvariant。固定版の組み込み構文解析で得た宣言をCSSと同じ値検査へ通す。 |
+| native寸法 | HTML/SVGの`width`・`height`。Angular部品の同名の業務入力とは区別する。データ寸法は用途を確認し、表示寸法はsemanticを使う。 |
+| Angular部品・directive | native HTML、生成部品、対象内で宣言された自作部品、Angular標準のcore/common/forms/routerを許可する。その他は参照元モジュールと公開名で明示承認する。 |
+
+Tailwindの生成テーマutilityはpolicyのsemanticへ接続します。ローカルclassは対応するCSS宣言を検査し、Emulated/ShadowDomの部品内classを他部品へ許可しません。global CSSと明示した`ViewEncapsulation.None`のclassは共有できます。アプリのTailwind設定・plugin・importは実行しません。数値utilityや具体的な任意値は違反です。任意値はTailwindの型指定と既定動作で用途を判定し、例えば文字サイズは`text-(length:--ui-text-body)`、境界幅は`border-(length:--ui-border-control)`とします。slash modifierの未解決変数は警告です。名前付きbreakpointはframeworkの構造として許可し、`min-[900px]`や`@min-[40rem]/sidebar`等の明示寸法は複合variantを含めて個別例外を必要とします。
+
+外部部品はimport aliasや再exportを辿って参照identityを検査します。alias名や属性の綴りだけでは承認しません。service・pipe・モデルをUI部品と混同せず、外部描画エンジン一般の採否を網羅する検査とも区別します。
+
+結果にはファイル、行・列、ルール、理由、修正案、検査件数、未確認箇所、適用した例外を出し、JSONも提供します。違反、設定不備、対象欠損、読み取り・解析失敗は終了1です。通常の`ui:check`と同梱版は警告のみなら終了0とし、警告の件数と場所を結果へ残します。
+
+## 有限な式の追跡
+
+定数、配列、文字列結合、有限の条件分岐を読み取ります。条件が動的でも値が確定する全分岐を検査します。名前が固定されたclassのtoggleは新しいclass名を作りません。入力の既定値、型注釈だけ、書き換え可能な初期値を、実行時の値の保証には使いません。
+
+実symbolで参照元を確認したreadonlyのAngular `computed`、閉じたprivate helperの引数と正常return、限定したMap書込み、配列・添字ループ等を解析します。throw guardのmembership、own-key、安全な整数範囲による絞込みも、組込み関数の同一性と変更経路を確認した範囲で使います。値やhelperのescape、書換え、未知のcallback、未対応の制御フローは警告を維持します。guard済みASCII識別子の固定prefix付きclassも、固定版Tailwind registryとutility grammarへ到達しないことを確認した場合だけ判定を完了します。
+
+露出したinstanceのmethodは、通常本文や明示的な差替えの既知returnを追加検査しても値域を閉じません。const callable alias、同期function、限定した`Object.assign`の既知own dataを対応させ、未知receiver・factory・spread・accessor・key・複数sourceは未確認に残します。同期IIFE等で同じ実行frameと確認できる初期化前の確定失敗は値候補にせず、後から実行されるclosure、async/generator、反射、未知callsiteと区別します。任意のmethodやgetterを実行する検査ではありません。
+
+## CSS上書きと継承の契約
+
+CSSカスタムプロパティは、消費側に届き得る既知の値候補を検査します。cascadeの勝者を選ばず、未知writerや動的CSSを含む全供給元の網羅を証明しません。状態、祖先、media/supports等の条件付き定義だけで無条件の消費を確認済みにはしません。未解決style bag、reset、循環、不確かな継承があれば警告を保ち、同時に既知候補の具体値やtoken違反を検出します。
+
+候補はCSS owner、適用instance、実native要素、hostの計算元、selector/条件、lookup層を区別して保持します。aliasの依存値を消費する子・兄弟・疑似要素や別instanceから借りず、定義した計算元で評価します。複数の`styles`や`styleUrl(s)`、共有stylesheet、親template、同一要素directive、host metadata/HostBindingの既知供給も、この対応を保って追跡します。本文が同じ別stylesheetの到達判定を流用しません。
+
+単純なtag/class/idと有限のclass/id bindingは、対応する要素・分岐ごとに確認します。同じselectorに一致する要素の一部だけで供給の完全性を認定せず、値がない要素や未知のclass/idも保持します。複雑selectorは既知の終端条件に矛盾しない候補を検査して未確認を残します。Angularのカンマ区切りselectorは代替であり、同時成立するclass/tagへ集約しません。
+
+同じ物理hostでは、親からのincomingと子自身のownを最初のlookupで分け、依存aliasは必要な全層を参照します。親から渡した値を子の新しいwriterとして反射させず、子自身のCSS/metadata/HostBindingは候補に保ちます。親scoped CSSを子の定義poolへコピーしません。実native祖先の供給は実際の子孫への候補として渡し、兄弟やhostへ逆流させません。`@property`登録による継承境界と、host自身の書込み・疑似要素自身の定義を区別します。
+
+`ng-container`は透過させ、描画しないtemplate要素のstyleは供給元にしません。明示した`ng-template`内部のviewは別outletへ移動できるため、外側hostとのDOM祖先関係やdocument到達を確定しません。view内部の実祖先・同一要素・component host自身の既知候補は保持します。
+
+外部document CSS、Noneの共有CSS、Emulated/ShadowDomのscoped CSSは到達範囲を分けます。documentのselectorをshadow tree内部へ適用せず、hostへ届くcustom property継承と内部へのselector適用を区別します。標準ShadowDom自身のstylesとAngularのSharedStylesHostが配るNone CSSは内部の候補に含めます。外側hostの配置が未確定でも標準ShadowDom内部の共有到達を確認できる場合があります。未知encapsulation、隔離renderer、未確定の配置をdocument/共有先と推定しません。
+
+外部global CSSや親None CSSが子内部nativeを消費する場合は、到達を確認できた実nativeと同じinstanceのhost resolverへ結びます。hostのaliasをleafの同名値で再計算せず、追加したnative消費のために同じhostを重複検査しません。None CSSの未変換`:host`は、そのNone部品自身のhost定義として扱いません。有効なglobal selectorやhost bindingは検査します。共有CSSの`:host`が囲むShadowRootのhostへ作用する全経路、hostを経由しない任意の子内部scoped CSS、動的adopted stylesheet等は網羅しません。
+
+循環はalias名だけでなく計算するresolver環境と参照名の組で判定します。別計算元の同名aliasは追跡し、同一計算元の真の循環は未確認にします。alias深さ32・一宣言の候補訪問512、親追跡の深さ8・親分岐32・受信ownerの展開予算128を超えた場合も未探索を保持し、alias外の具体値は引き続き検査します。診断や用途カテゴリを計算値のcacheへ混ぜません。
+
+## 理由付き例外
+
+配置寸法、データ色、円形表現、支援技術用クリップ等は用途と生成経路を確認して個別例外にします。通常のUI値はsemanticへ戻します。用途例外はトークン要件への限定した許可であり、実寸法、操作、任意入力の安全性を承認するものではありません。
+
+例外はファイル、ルール、`source`のコード片で一つの診断だけに一致させます。同じコード片が繰り返される場合は`line`・`column`で限定できます。位置の変更、一致なし、複数一致、重複指定は設定エラーです。JSONの完全な`source`を使い、理由には用途とトークン化しない根拠を書きます。例外は別一覧に残り、入力ソースは変更しません。全ファイルの除外、検出結果からの自動承認、読み取り・解析失敗を隠す例外は認めません。
+
+alias経由の違反の`source`には消費宣言と` :: 名前=候補値`を含めます。固定値だけの例外が、追加された上書きや別の依存値を承認しないようにします。既存例外が新しい候補にも一致すれば複数一致で失敗します。生成元の構造・データ用途例外は、その根拠ソースやhelperの変更を回帰で検出します。この根拠保全を、同梱版による任意データフローの証明とは扱いません。
+
+## 本リポジトリの警告分類と受入確認
+
+残す警告は[分類台帳](ui-warning-reviews.json)で一対一に管理します。各項目に診断identity、警告が妥当な理由、値のproducer、確認した有限回帰、残るUnknownの境界、再確認条件、根拠ファイルのanchorとhashを記録します。理由が分かる警告を一律の例外へ変えず、静的に改善できる箇所は検査器や実装を修正します。
+
+```sh
+# 元の診断と生成一致を確認
+npm run ui:check -- --format json
+# このリポジトリの全警告と分類台帳を照合
+npm run ui:check:warnings
+npm run ui:check:warnings -- --format json
+# 台帳検証の正負回帰を含む静的検査の回帰
+npm run test:static
+```
+
+`ui:check:warnings`は本リポジトリの`checkProject`結果と台帳を照合する受入確認です。新規・未分類の警告、消滅した分類、重複、理由不足、欠損・不正な台帳、根拠のhash/anchor変更で終了1にします。元の診断は削除・変更せず、エラーを台帳で承認することもできません。通常の`npm test`からも実行します。利用アプリのYAML schemaや同梱CLIの「警告のみなら終了0」は変更しません。
+
+ソースや根拠が変わったら、通常CLIで差分を確認し、producer・影響する有限回帰・Unknownの境界を再調査して台帳を更新します。消えた警告の項目も取り除きます。hashだけを機械的に更新する全件承認コマンドは用意しません。
+
+2026-10-18の取り込み前の通常CLI基準値は警告122件、確定違反0件、理由付き例外334件です。固定した対象、全件分類、今回実行した検証と未確認事項は[取り込み時の検証記録](verification/ui-static-warning-release-20261018/README.md)にまとめます。古い件数や過去の有限試験は当時の対象に対する記録であり、現行ソースの合格根拠へ流用しません。回帰が使う固定資料は[試験fixture](../tests/fixtures/static-checks/README.md)で管理します。
+
+## 検証の範囲と完成の意味
+
+`test:static`では全トークン用途の違反・許可・例外、省略形・関数・utility variant、動的式内の確定値、inline/外部ファイル、業務文字列の非対象、部品承認、alias/instanceの分離、パス・解析・例外の失敗を確認します。別の一時リポジトリへ生成物をコピーし、本体checkoutや検査用node_modulesに依存せず起動すること、違反なら終了1、未確認だけなら終了0、policy未同期なら終了1も実CLIで確認します。生成の冪等性、NOTICE/検査器の所有範囲、output移行は`test:generation`で別に検証します。
+
+静的検査の完成は、指定ソースへこれらのルールを実行し、残る警告の理由と再確認条件を追えることです。任意の実行時データフロー、未知CSS供給元、全cascade、外部描画エンジン内部、実利用での理解、視覚品質・アクセシビリティ全体の合格は別の検証です。DOM実測、画像decode、非同期更新、操作順序等の有限な実ブラウザー試験が成功しても、それだけで静的Unknownを解消しません。

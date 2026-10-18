@@ -25,7 +25,11 @@ export abstract class TreePopupControl extends FieldValueControl<readonly string
    if(!opened||blocked){if(popup.matches(':popover-open'))popup.hidePopover();if(opened&&blocked)this.closePopup('scope-exit');if(this.blocked()&&this.popupHost.contains(editor.ownerDocument.activeElement)&&editor.ownerDocument.activeElement?.matches(':disabled'))this.state()?.nativeElement.focus({preventScroll:true});return;}
    if(!availableOverlayAnchor(editor)){this.closePopup('scope-exit');return;}
    popup.showPopover();const unregister=this.registry.register({element:popup,anchor:editor,kind:'popup',outside:true,dismiss:reason=>this.closePopup(reason)});
-   const update=()=>{const width=editor.getBoundingClientRect().width;popup.style.minInlineSize=Math.min(width,editor.ownerDocument.defaultView?.innerWidth??width)+'px';positionOverlay(popup,editor,placement);};
+   const update=()=>{const width=editor.getBoundingClientRect().width,view=editor.ownerDocument.defaultView,viewport=view?.innerWidth??width;
+    // The popup's minimum must not overrule its native CSS maximum. Only a
+    // resolved px maximum is a pixel budget; percentages/none keep the viewport cap.
+    const maximum=view?.getComputedStyle(popup).maxInlineSize??'',resolved=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?px$/i.test(maximum)?Number.parseFloat(maximum):NaN;
+    popup.style.minInlineSize=Math.min(width,viewport,Number.isFinite(resolved)&&resolved>=0?resolved:viewport)+'px';positionOverlay(popup,editor,placement);};
    const resize=observeOverlay(popup,editor,update);
    const scopeObserver=typeof MutationObserver==='undefined'?null:new MutationObserver(()=>{if(availableOverlayAnchor(editor))update();else this.closePopup('scope-exit');});
    for(let ancestor:HTMLElement|null=editor;ancestor;ancestor=ancestor.parentElement)scopeObserver?.observe(ancestor,{attributes:true,attributeFilter:['dir','data-ui-profile','style','class','hidden','inert']});

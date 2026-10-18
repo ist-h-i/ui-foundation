@@ -17,7 +17,7 @@ const loader = import.meta.resolve('tsx');
 async function project(t: TestContext) {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-generation-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const source = await readFile(resolve(repository, 'examples/ui.config.example.yaml'), 'utf8');
+  const source = (await readFile(resolve(repository, 'examples/ui.config.example.yaml'), 'utf8')).replace(/\nchecks:\n[\s\S]*$/, '\n');
   await writeFile(resolve(root, 'ui.config.yaml'), source);
   return { root, source, config: parseConfig(source) };
 }
@@ -31,7 +31,10 @@ test('dry-run writes nothing; repeated generation is stable and check observes t
   await assert.rejects(readFile(resolve(root, '.agents/skills/project-ui/SKILL.md')), { code: 'ENOENT' });
   assert.equal((await syncProject({ root })).written, true);
   assert.deepEqual(await syncProject({ root }), { changes: [], written: false });
-  assert.deepEqual(await checkProject({ root }), { valid: true, differences: [] });
+  const report = await checkProject({ root });
+  assert.equal(report.valid, true);
+  assert.deepEqual(report.differences, []);
+  assert.equal(report.source.status, 'not_configured');
 });
 
 test('a changed primitive reaches CSS, resolved policy and AI context; stale output fails check', async t => {
@@ -177,6 +180,10 @@ test('init preserves existing config and creates a runnable fresh configuration'
   assert.equal(await readFile(resolve(root, 'ui.config.yaml'), 'utf8'), source);
   await rm(resolve(root, 'ui.config.yaml'));
   assert.equal(await initProject({ root }), 'ui.config.yaml');
+  const initial = parseConfig(await readFile(resolve(root, 'ui.config.yaml'), 'utf8'));
+  assert.deepEqual(initial.checks?.source_roots, ['src']);
+  await mkdir(resolve(root, 'src'));
+  await writeFile(resolve(root, 'src/app.ts'), 'export const application = true;\n');
   await syncProject({ root });
   assert.equal((await checkProject({ root })).valid, true);
 });

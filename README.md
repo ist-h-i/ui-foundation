@@ -38,17 +38,19 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 | --- | --- |
 | `npm run ui:sync -- --dry-run` | 生成予定の差分を表示。書き込みなし。 |
 | `npm run ui:sync` | 設定検証、全プロファイルの解決、生成・同期。 |
-| `npm run ui:check` | 設定検証と生成物の一致。欠損・変更・未管理ファイルで失敗。 |
+| `npm run ui:check` | 設定・生成一致と、設定したソースの静的逸脱検査。違反で失敗、動的な未確認は警告。 |
+| `npm run ui:check:warnings` | 本リポジトリの全警告と分類台帳を照合。未分類・消滅・重複・根拠変更で失敗する。 |
 | `npm run typecheck` | 設定/CLIのTypeScript、生成Angular部品のstrictTemplates、下記Media/Tree/Diagram回帰の型検査。 |
 | `npm run test:config` | 型、参照、必須役割、プロファイル、色ペアの検査。 |
 | `npm run test:generation` | 冪等性、dry-run、衝突、パス境界、CLIの失敗状態。 |
+| `npm run test:static` | 全トークン用途、部品承認、例外、未確認警告、取り込み先での同梱検査器の実行。 |
 | `npm run typecheck:ui:media` | Media3specと直接helperのstrict型検査。通常typecheckにも含める。全UI specのstrict検査ではない。 |
 | `npm run typecheck:ui:runtime` | Tree/Diagram/Menuの4specと直接helper・consumerのstrict型検査。通常typecheckにも含める。 |
 | `npm run test:ui` | 実ブラウザーの操作・表示・自動アクセシビリティ。 |
 | `npm run test:svg-paint` | 新規公開consumerの生成・AOTと34ケースのSVG実描画検査。通常testにも含める。 |
 | `npm run test:cross-browser` | 2プロファイル×重点6操作×Chromium/Firefox/WebKitの36件。追加実行の詳細は[検証ガイド](docs/cross-browser-runtime-verification.ja.md)。 |
 
-ビルドは`ui:check`を通し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。
+ビルドは`ui:check`を通し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。通常の`npm test`は警告の分類確認も行います。
 
 ## 利用アプリに導入する
 
@@ -62,7 +64,7 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 /path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts check
 ```
 
-`init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。rootごとに一つの生成UIとSkillを所有し、複数YAMLから並行して別の所有者を作りません。
+`init`は設定雛形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、check-ui.cjs、checker-lib/、CHECKER-NOTICE.txt、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。rootごとに一つの生成UIとSkillを所有し、複数YAMLから並行して別の所有者を作りません。
 
 利用アプリは生成されたangular/indexからstandalone部品をimportします。Angular/RxJS/CDKに加え、日程・媒体・専門部品の正規runtime依存と型が必要です。[生成consumerの導入手順](docs/ui-library-consumer-guide.ja.md)にexact版、公開API、CSS、workerとassetの配信を記録しています。CDKの公開APIで仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)を保ちます。Tailwind v4の入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。vendorのglobal CSSも含む[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
 
@@ -78,7 +80,11 @@ PDF/MapLibre/Spreadsheetのworkerは別assetとして配信し、利用アプリ
 
 ## 検査の範囲と文書
 
-`ui:check`は全ソースのASTによる逸脱検査、業務の正しさ、利用者の理解を確認しません。定義済み色ペアの数値検査、自動アクセシビリティ、実操作、意味・視覚レビューを区別します。Firefox/Safari、実スクリーンリーダー、実サービスの復元、実利用での有効性は別途確認が必要です。
+`ui:check`は指定ソースの全トークン用途と未承認Angular部品・directiveを静的検査します。生成先の`check-ui.cjs`は、本体checkoutや検査専用の追加依存なしで取り込み先から実行できます。明確な違反は失敗にし、動的な未確認は警告として残します。[検査の設定・配布・判定範囲](docs/static-checks.ja.md)を参照してください。
+
+本リポジトリでは`ui:check:warnings`が、全警告の具体的な理由、producer、有限の回帰、残る未確認範囲と再確認条件を[分類台帳](docs/ui-warning-reviews.json)へ照合します。元の警告は消さず、新規・消滅・重複や根拠の変更を受入確認の失敗にします。現在の対象と検証結果は[取り込み時の記録](docs/verification/ui-static-warning-release-20261018/README.md)へ固定します。利用アプリの通常検査は警告のみなら終了0という契約を維持します。
+
+静的検査、定義済み色ペアの数値検査、自動アクセシビリティ、実操作、意味・視覚レビューは別の確認です。有限のブラウザー試験を、任意の入力・OS・支援技術、実サービスの復元、利用者の理解や実業務での有効性の保証へ広げません。
 
 - [要件](docs/project-brief.ja.md)
 - [設定・生成・責任境界](docs/design.md)

@@ -5,4 +5,4 @@
 - sync.ts：部品とSkill、解決設定、検査設定、manifestの生成・所有範囲・一致検査。
 - cli.ts：init / sync / check。
 
-機能ソースの全AST逸脱検査は含めません。[設計](../docs/design.md)と[検証計画](../docs/implementation-plan.md)を参照してください。
+`check/`は指定したAngular/CSS/SCSSソースのトークンと部品を検査し、同梱Node検査器を生成します。動的な未確認箇所を残します。[静的検査](../docs/static-checks.ja.md)を参照してください。[設計](../docs/design.md)と[検証計画](../docs/implementation-plan.md)を参照してください。

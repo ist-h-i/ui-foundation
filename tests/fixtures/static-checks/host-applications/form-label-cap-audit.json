@@ -1,0 +1,29 @@
+{
+  "new_diagnostic": {
+    "file": "templates/angular/styles.css",
+    "line": 119,
+    "column": 124,
+    "rule": "literal-token",
+    "severity": "error",
+    "message": "Concrete value 40% in grid-template-columns needs a semantic token or a justified exception. Via --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr).",
+    "suggestion": "Use a semantic token of the matching category, or record a narrow reasoned exception.",
+    "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
+  },
+  "purpose": "inline form label maximum is a parent-relative 40% layout ratio; the base width remains a semantic size. Same purpose already approved for the checkbox branch at styles.css:172. This approval covers only the fixed 40% alias value, not arbitrary widths or overriding aliases.",
+  "existing_checkbox_exception": {
+    "file": "templates/angular/styles.css",
+    "line": 172,
+    "column": 93,
+    "rule": "literal-token",
+    "severity": "error",
+    "message": "Concrete value 40% in grid-template-columns needs a semantic token or a justified exception.",
+    "suggestion": "Use a semantic token of the matching category, or record a narrow reasoned exception.",
+    "source": ".ui-form-field[data-label-position=\"inline\"]:has(input.ui-field-control[type=\"checkbox\"]){grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)}",
+    "exception": "inline formのラベルが入力領域を奪わないよう親幅40%を上限とする配置比率。基準ラベル幅はsize.form-labelへ接続する。"
+  },
+  "producer_sha256": {
+    "templates/angular/form-field.ts": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+    "templates/angular/form-layout.ts": "1d8a05d9d022bb8c23330eb409d2d289b4429d1c30e6d53cc035484357ba3783",
+    "templates/angular/styles.css": "cafa6bda56c433d1fe15bff90c0492dd066333371ee36e71728dab41d22fc0a4"
+  }
+}

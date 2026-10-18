@@ -1,0 +1,5 @@
+import {Component,input} from '@angular/core';
+import {FormLayout,FormField,FieldControl} from '../../.ui/generated/angular';
+/** Test-only consumer; real native controls retain their DOM and value. */
+@Component({selector:'runtime-p2-cascade-form',standalone:true,imports:[FormLayout,FormField,FieldControl],template:`<div uiFormLayout [columns]="columns()" [gap]="$any(gap())" [direction]="$any(direction())" [labelPosition]="$any(labelPosition())" [labelWidth]="labelWidth()"><ui-form-field controlId="p2-editor" label="長い項目名と意味のある説明 ABCDEFGHIJKLMN" [labelPosition]="$any(fieldPosition())" [error]="error()"><input uiFieldControl value="保持する下書き"></ui-form-field><ui-form-field controlId="p2-checkbox" label="説明を確認しました" [labelPosition]="$any(fieldPosition())"><input type="checkbox" uiFieldControl></ui-form-field></div>`})
+export class RuntimeP2CascadeForm{readonly columns=input(1);readonly gap=input('normal');readonly direction=input('vertical');readonly labelPosition=input('inline');readonly fieldPosition=input('inherit');readonly labelWidth=input<number|null>(null);readonly error=input('');}

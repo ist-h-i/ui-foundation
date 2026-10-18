@@ -1,0 +1,41 @@
+import {test,expect,type Page} from '@playwright/test';
+const matrices=[{name:'A',profile:'guided',width:1280,font:100,dir:'ltr'},{name:'B',profile:'dense',width:320,font:200,dir:'rtl'},{name:'C',profile:'guided',width:320,font:200,dir:'ltr'},{name:'D',profile:'dense',width:1280,font:100,dir:'rtl'}] as const;
+const host=(page:Page,id:number)=>page.locator(`[data-runtime-id="${id}"]`);
+async function create(page:Page,name:string,inputs:Record<string,unknown>,projection=''){return page.evaluate(({name,inputs,projection})=>(window as any).__runtime.create(name,inputs,projection),{name,inputs,projection});}
+async function update(page:Page,id:number,inputs:Record<string,unknown>){await page.evaluate(({id,inputs})=>(window as any).__runtime.update(id,inputs),{id,inputs});}
+async function errors(page:Page,id:number){return page.evaluate(id=>(window as any).__runtime.inspect(id).errors as string[],id);}
+const imageInputs={src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="40"><rect width="80" height="40" fill="red"/></svg>'),alt:'検証する画像',loading:'eager',ratio:1,fit:'contain'};
+for(const matrix of matrices)test.describe(`final style boundary ${matrix.name}`,()=>{
+ test.beforeEach(async({page})=>{await page.setViewportSize({width:matrix.width,height:900});await page.goto('/catalog/static-runtime');await expect.poll(()=>page.evaluate(()=>typeof(window as any).__runtime?.create)).toBe('function');await page.evaluate(m=>{document.documentElement.style.fontSize=m.font+'%';document.documentElement.dir=m.dir;document.querySelector('main')!.setAttribute('data-ui-profile',m.profile);},matrix);});
+ test('FormLayout and Grid retain every layoutSpace mapping, invalid rejection, inline precedence and draft',async({page})=>{
+  for(const name of ['FormBoundaryRuntime','Grid']){
+   const id=await create(page,name,{gap:'normal'},name==='Grid'?'<input aria-label="保持する下書き" value="元の内容">':''),root=host(page,id),sink=name==='Grid'?root:root.locator('[uiFormLayout]'),property=name==='Grid'?'gap':'--ui-form-gap',editor=root.getByRole('textbox');
+   await editor.fill('保持する下書き');await editor.focus();
+   for(const [gap,css]of [['none','0'],['compact','var(--ui-space-control-gap)'],['normal','var(--ui-space-field)'],['wide','var(--ui-space-section)']]){
+    await update(page,id,{gap});expect(await sink.evaluate((el,p)=>(el as HTMLElement).style.getPropertyValue(p),property)).toBe(property==='gap'&&css==='0'?'0px':css);await expect(editor).toHaveValue('保持する下書き');await expect(editor).toBeFocused();
+   }
+   for(const gap of ['red','17px','__proto__',null]){const count=(await errors(page,id)).length;await update(page,id,{gap});expect((await errors(page,id)).length).toBeGreaterThan(count);expect(await sink.evaluate((el,p)=>(el as HTMLElement).style.getPropertyValue(p),property)).toBe('var(--ui-space-section)');await update(page,id,{gap:'wide'});}
+   const selector=name==='Grid'?`#runtime-${id}`:`#runtime-${id} [uiFormLayout]`,override=await page.addStyleTag({content:`${selector}{${property}:7px!important}`});
+   await update(page,id,{gap:'compact'});expect(await sink.evaluate((el,p)=>getComputedStyle(el).getPropertyValue(p),property)).toBe('7px');expect(await sink.evaluate((el,p)=>(el as HTMLElement).style.getPropertyValue(p),property)).toBe('var(--ui-space-control-gap)');await override.evaluate(el=>(el as HTMLElement).remove());
+   const measured=await sink.evaluate((el,p)=>{const probe=document.createElement('span');probe.style.display='block';probe.style.width='var(--ui-space-control-gap)';el.append(probe);const expected=probe.getBoundingClientRect().width;probe.remove();return {raw:(el as HTMLElement).style.getPropertyValue(p),actual:parseFloat(getComputedStyle(el).gap),expected};},property);expect(measured.actual).toBeCloseTo(measured.expected,3);await expect(editor).toHaveValue('保持する下書き');await expect(editor).toBeFocused();await page.evaluate(id=>(window as any).__runtime.destroy(id),id);
+  }
+ });
+ test('Image retains all five fits, rejects coercible inputs despite replaced membership, and recovers',async({page})=>{
+  const id=await create(page,'Image',imageInputs),image=host(page,id).locator('img');await expect.poll(()=>image.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBe(80);
+  for(const fit of ['contain','cover','fill','none','scale-down']){await update(page,id,{fit});await expect(image).toHaveCSS('object-fit',fit);expect(await image.evaluate(el=>(el as HTMLElement).style.objectFit)).toBe(fit);}
+  await update(page,id,{fit:'cover'});
+  const result=await page.evaluate(id=>{const runtime=(window as any).__runtime,original=Array.prototype.includes,out=[] as {errors:number;style:string}[];
+   Array.prototype.includes=function(search:unknown,from?:number){if(this.length===5&&this[0]==='contain'&&this[1]==='cover'&&this[4]==='scale-down')return true;return original.call(this,search,from);};
+   try{for(const fit of ['inherit','var(--app-fit)',null,{},new String('cover')]){const before=runtime.inspect(id).errors.length;runtime.update(id,{fit});const after=runtime.inspect(id).errors;out.push({errors:after.length-before,style:document.querySelector(`#runtime-${id} img`)?.getAttribute('style')??''});runtime.update(id,{fit:'cover'});}}finally{Array.prototype.includes=original;}return out;},id);
+  for(const item of result){expect(item.errors).toBeGreaterThan(0);expect(item.style).toContain('object-fit: cover');}await expect(image).toHaveCSS('object-fit','cover');expect((await errors(page,id)).some(x=>x==='Image fit must be contain, cover, fill, none or scale-down.')).toBe(true);
+  const style=await page.addStyleTag({content:`#runtime-${id} img{object-fit:none!important}`});await update(page,id,{fit:'fill'});await expect(image).toHaveCSS('object-fit','none');expect(await image.evaluate(el=>(el as HTMLElement).style.objectFit)).toBe('fill');await style.evaluate(el=>(el as HTMLElement).remove());await expect(image).toHaveCSS('object-fit','fill');await page.evaluate(id=>(window as any).__runtime.destroy(id),id);
+ });
+ test('exposed computed replacements cannot emit arbitrary CSS and throwing replacements remain failures',async({page})=>{
+  for(const name of ['FormBoundaryRuntime','Grid','Image']){
+   const id=await create(page,name,name==='Image'?{...imageInputs,fit:'cover'}:{gap:'wide'}),sink=name==='Image'?host(page,id).locator('img'):name==='Grid'?host(page,id):host(page,id).locator('[uiFormLayout]'),property=name==='Image'?'object-fit':name==='Grid'?'gap':'--ui-form-gap';
+   const results=await page.evaluate(({id,name,property})=>{const runtime=(window as any).__runtime,owner=runtime.instance(id),target=name==='FormBoundaryRuntime'?owner.layout():owner,key=name==='Image'?'fitValue':name==='Grid'?'resolvedGap':'spacing',old=target[key],node=document.querySelector(name==='Image'?`#runtime-${id} img`:name==='Grid'?`#runtime-${id}`:`#runtime-${id} [uiFormLayout]`) as HTMLElement,records=[] as {value:string;errors:number;calls:number}[];let refreshes=0;const refresh=()=>runtime.update(id,name==='Image'?{fit:++refreshes%2?'none':'cover'}:{gap:++refreshes%2?'none':'compact'});
+    try{for(const value of ['red','17px',null,{},['cover']]){let calls=0;target[key]=()=>{calls++;return value;};refresh();records.push({value:node.style.getPropertyValue(property),errors:runtime.inspect(id).errors.length,calls});}let index=0;const changing=['garbage',null,{},17];target[key]=()=>changing[index++%changing.length];refresh();records.push({value:node.style.getPropertyValue(property),errors:runtime.inspect(id).errors.length,calls:index});const count=runtime.inspect(id).errors.length;let calls=0;target[key]=()=>{calls++;throw new Error('deliberate computed failure');};refresh();records.push({value:node.style.getPropertyValue(property),errors:runtime.inspect(id).errors.length-count,calls});}finally{target[key]=old;runtime.render(id);}return records;},{id,name,property});
+   for(const item of results){expect(item.calls,name+': replaced computed must actually be read').toBeGreaterThan(0);expect(item.value,name+': only a finite boundary value may reach CSS').toBe(name==='Image'?'contain':'var(--ui-space-field)');}expect(results.at(-1)!.errors).toBeGreaterThan(0);await page.evaluate(id=>(window as any).__runtime.destroy(id),id);
+  }
+ });
+});

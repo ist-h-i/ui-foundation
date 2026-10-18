@@ -89,6 +89,7 @@
 .ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
   box-shadow: inset 0 0 0 var(--ui-border-control) currentColor;
 }
+.ui-action { scroll-margin: calc(var(--ui-border-focus) + var(--ui-border-focus-offset)); }
 .ui-action:focus-visible, .ui-field-control:focus-visible, .ui-typography:focus-visible {
   outline: var(--ui-border-focus) solid var(--ui-color-focus);
   outline-offset: var(--ui-border-focus-offset);

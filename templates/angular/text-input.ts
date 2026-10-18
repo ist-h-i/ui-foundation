@@ -43,17 +43,18 @@ export class TextInput extends FieldValueControl<string> {
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Textarea),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="current()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
-   [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="maxHeight()" (input)="commit(text($event))" (blur)="touch()"></textarea>
+   [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="commit(text($event))" (blur)="touch()"></textarea>
   @if(showCount()){<p class="ui-input-count">{{ current().length }}{{ maxLength() !== null ? ' / ' + maxLength() : '' }} {{'文字' | uiMessage}}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
 export class Textarea extends FieldValueControl<string>{
  protected readonly emptyValue='';readonly rows=input(3);readonly maxLength=input<number|null>(null);readonly maxHeight=input<number|null>(null);
+ protected readonly checkedMaxHeight=computed(()=>{const height=this.maxHeight();if(height!==null&&(!Number.isFinite(height)||height<=0))throw new Error('ui-textarea maxHeight must be a positive pixel size.');return height;});
  readonly autoResize=input(false,{transform:booleanAttribute});readonly showCount=input(false,{transform:booleanAttribute});readonly placeholder=input('');
  private readonly editor=viewChild<ElementRef<HTMLTextAreaElement>>('editor');
  protected coerce(value:unknown):string{return typeof value==='string'?value:'';}
  constructor(){super();const render=afterRenderEffect(onCleanup=>{
-   this.current();this.rows();this.maxHeight();const automatic=this.autoResize(),element=this.editor()?.nativeElement;if(!element)return;
+   this.current();this.rows();this.checkedMaxHeight();const automatic=this.autoResize(),element=this.editor()?.nativeElement;if(!element)return;
    if(!automatic){element.style.height='';return;}
    const view=element.ownerDocument.defaultView;let frame:number|null=null;
    const resize=()=>{frame=null;if(!element.getClientRects().length)return;const previous=element.style.height;element.style.height='auto';const height=element.scrollHeight+(element.offsetHeight-element.clientHeight)+'px';element.style.height=height;if(previous===height)return;};

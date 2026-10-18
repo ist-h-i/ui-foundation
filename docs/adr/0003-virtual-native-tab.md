@@ -1,0 +1,25 @@
+# 0003: 編集可能な仮想行の配置を公開CDK strategyで所有する
+
+日付: 2026-10-14。状態: 採用。初版の検証は[高速Tab](../verification/ui-virtual-fast-tab-20261014/README.md)、疎な投影への拡張は[疎なTabと切断診断](../verification/ui-sparse-tab-20261014/README.md)で追跡する。
+
+## 背景
+
+VirtualList/VirtualDataTableの投影入力を高速にTab移動すると、CDKの公開range通知、行DOM、内部wrapperのtransformが別のタイミングで更新され、次の行が現れる前に一覧外へ出る。固定行strategyの更新と局所detectChangesだけでは内部wrapperのroot effectを同期できなかった。各キーで2RAFを待つことは利用者の操作契約にできない。
+
+## 判断
+
+公開CdkVirtualScrollViewportを維持し、2部品には公開VirtualScrollStrategyとCdkVirtualScrollRepeaterを実装する内部directiveを使う。固定行の総寸法と範囲をCDKへ通知し、自前のui-virtual-windowのpaddingで範囲先頭までのレイアウト空間を確保する。子だけのtransformはCDKのpaint containmentに切られるため使わない。CDK内部wrapperのtransformは変更しない。行DOMと自前の配置を同じAngular viewで更新する。
+
+Tabのbubble handlerは、consumerのキー処理後、現在行と前後の行を上限内で用意し、そのviewを同期検査する。次のTab対象がなければ、現在の行のviewを最大1行だけ保持し、行を有限batchで描画して前後を探索する。CdkVirtualForOfの連続rangeだけでは離れた現在行を破棄せず保持できないため、公開repeaterを実装してkeyでviewを再利用し、隙間はpaddingで配置する。公開rangeは探索中の連続batchを示し、DOMには範囲外のfocus行が1行だけ追加され得る。TabをpreventDefaultせず、focus先を選ばず、独自のTab順を実装しない。探索の継続判定にはDOM上の有効な対象の存在を調べる。IME・処理済み・修飾付きTabは処理しない。内側viewportは自分の範囲だけを扱う。pointer/wheel、領域外へのfocus、明示scroll要求でキーボードの行保持を解除する。データと編集draftは引き続きアプリが安定keyで所有する。
+
+## 比較と帰結
+
+固定RAF待ち、CDK private API/style patch、全体tick、全件DOM保持は採用しない。非同期でTabを取消しfocusを再実装する方式は、radioや正のtabindex等のブラウザ標準順序を再現する責任を増やすため採用しない。
+
+[ADR 0002](0002-collections-cdk.md)の公開API・固定行・状態所有の判断を維持する。Listboxとdragには今回のadapterを適用しない。自前adapterの範囲計算、再測定、行数減少、破棄、外部focusを保守対象にする。rangeChangeは描画予定範囲の通知であり、DOM準備完了イベントではない。
+
+任意の投影内容の全Tab順を保証するものではない。標準の無効・非表示・負tabindex・空行を挟む移動は有限batchで探索する。探索は同期で最大データ件数に比例するview生成を伴うため、極端な件数や高コストなconsumer投影はアプリで追加検証する。viewportからの再入場は現在のスクロール位置を保ち、全論理データの先頭へ戻る操作は公開scroll APIで行う。正のtabindex、明示モデルを渡さない描画外radio group状態、shadow DOM等の任意投影の全順序は別途検証を要する。完全なradioモデルを渡す拡張は[ADR 0004](0004-virtual-controlled-radio.md)に従う。
+
+## 再検討条件
+
+Angular/CDK更新、可変行高、水平仮想化、shadow DOM、別document、SSR/hydration、任意投影の完全なキーボード到達性を要求する場合に再評価する。有限Chromium試験を他ブラウザ・実機・支援技術の合格へ拡張しない。

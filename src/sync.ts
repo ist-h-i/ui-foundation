@@ -2,8 +2,15 @@ import { createHash, randomUUID } from 'node:crypto';
 import { lstat, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { stringify } from 'yaml';
 import { parseConfig, resolveConfig, type ResolvedConfig } from './config.ts';
 import { renderTailwind, renderTokens } from './tokens.ts';
+import { stableJSON } from './check/canonical.ts';
+import { renderCheckerBundle, renderCheckerNotice, renderCheckerLibraries } from './check/bundle.ts';
+import { createSourcePolicy } from './check/policy.ts';
+import { checkSources } from './check/scanner.ts';
+import type { SourceReport } from './check/types.ts';
+export { stableJSON } from './check/canonical.ts';
 
 const toolRoot = fileURLToPath(new URL('../', import.meta.url));
 const skillDirectory = '.agents/skills/project-ui';
@@ -31,17 +38,6 @@ interface Ownership { schema_version: 1; output: string; manifest_path: string }
 function ownership(output: string): Ownership {
   return { schema_version: 1, output, manifest_path: `${output}/manifest.json` };
 }
-
-function canonical(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (value !== null && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b, 'en'))
-      .map(([key, item]) => [key, canonical(item)]));
-  }
-  return value;
-}
-
-export function stableJSON(value: unknown): string { return JSON.stringify(canonical(value), null, 2) + '\n'; }
 
 function containedPath(root: string, name: string): string {
   if (!name || isAbsolute(name) || name.includes('\\') || name.split('/').some(part => !part || part === '.' || part === '..')
@@ -104,13 +100,17 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     [`${config.output}/profiles.ts`, '/* Generated profile choices; edit the YAML configuration. */\n'
       + 'export const uiProfiles = ' + stableJSON({ defaultProfile: config.default_profile,
         profiles: Object.entries(config.profiles).map(([id, profile]) => ({ id, label: profile.label })) }).trimEnd() + ' as const;\n'],
-    [`${config.output}/policy.json`, stableJSON({ schema_version: 1, default_profile: config.default_profile,
-      profiles: config.profiles, styling: 'semantic-tokens', checks: ['configuration', 'defined-color-pairs', 'generated-consistency'],
-      not_checked: ['application-source-deviations', 'business-correctness', 'user-understanding'] })],
     [`${skillDirectory}/project-context.md`, projectContext(config)],
     [ownershipPath, stableJSON(ownership(config.output))],
   ]);
   for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) files.set(`${config.output}/angular/${path}`, content);
+  files.set(`${config.output}/check-ui.cjs`, await renderCheckerBundle());
+  files.set(`${config.output}/CHECKER-NOTICE.txt`, await renderCheckerNotice());
+  for (const [name, text] of await renderCheckerLibraries()) files.set(`${config.output}/checker-lib/${name}`, text);
+  files.set(`${config.output}/policy.json`, stableJSON({ schema_version: 1, default_profile: config.default_profile,
+    profiles: config.profiles, styling: 'semantic-tokens', checks: ['configuration', 'defined-color-pairs', 'generated-consistency', ...(config.checks ? ['application-source-deviations'] : [])],
+    source_policy: createSourcePolicy(config, files),
+    not_checked: [...(!config.checks ? ['application-source-deviations'] : []), 'runtime-data-flow', 'business-correctness', 'user-understanding', 'overall-visual-quality'] }));
   const skill = await sourceFiles(resolve(toolRoot, 'skills/ui-development'));
   if (!skill.has('SKILL.md')) throw new Error('The UI development Skill source is missing.');
   for (const [path, content] of skill) files.set(`${skillDirectory}/${path}`, content);
@@ -287,7 +287,7 @@ export async function syncProject(options: SyncOptions): Promise<{ changes: Chan
   return { changes, written: true };
 }
 
-export async function checkProject(options: ProjectOptions): Promise<{ valid: boolean; differences: string[] }> {
+export async function checkProject(options: ProjectOptions): Promise<{ valid: boolean; differences: string[]; source: SourceReport }> {
   const { root, config, files } = await loadProject(options);
   const present = [...await managedFiles(root, config.output), ...await managedFiles(root, skillDirectory)];
   const differences: string[] = [];
@@ -297,7 +297,8 @@ export async function checkProject(options: ProjectOptions): Promise<{ valid: bo
     if (actual !== expected) differences.push(`${actual === undefined ? 'Missing' : 'Changed'}: ${path}`);
   }
   for (const path of present) if (!files.has(path)) differences.push(`Unowned: ${path}`);
-  return { valid: differences.length === 0, differences: differences.sort() };
+  const source = await checkSources({ root, config, policy: createSourcePolicy(config, files) });
+  return { valid: differences.length === 0 && source.valid, differences: differences.sort(), source };
 }
 
 export async function initProject(options: ProjectOptions): Promise<string> {
@@ -306,7 +307,11 @@ export async function initProject(options: ProjectOptions): Promise<string> {
   const path = containedPath(root, name);
   await rejectSymlinks(root, path);
   const example = await readFile(resolve(toolRoot, 'examples/ui.config.example.yaml'), 'utf8');
+  // Repository fixture roots are not valid application defaults.
+  const initialConfig = parseConfig(example);
+  initialConfig.checks = { source_roots: ['src'], approved_components: [], exceptions: [] };
+  const initial = stringify(initialConfig);
   await mkdir(dirname(path), { recursive: true });
-  await writeFile(path, example, { flag: 'wx' });
+  await writeFile(path, initial, { flag: 'wx' });
   return name;
 }

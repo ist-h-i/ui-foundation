@@ -6,11 +6,12 @@ import { ActionControl } from './action-control';
 import { AnchoredPopup } from './floating-panel';
 import { tabbableElements } from './focus';
 import { Icon } from './icon';
+import { positiveInteger } from './layout-model';
 import { navigationHref, navigationNodes, validNavigationId, visibleNavigation, type MegaMenuGroup, type NavigationNode } from './navigation-model';
 /** A grouped navigation popup uses native links/disclosures, without menu-widget key interception. */
 @Component({ selector: 'ui-mega-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'controlId()', 'popover': 'manual', 'role': 'dialog', 'aria-modal': 'false', 'tabindex': '-1', '[attr.aria-label]': 'label()', '[attr.aria-busy]': 'busy()' },
-    template: `<div class="ui-mega-heading"><h2>{{label()}}</h2><button uiAction [disabled]="busy()" (click)="close('close-button')">{{uiEffective_closeLabel()}}</button></div><nav [attr.aria-label]="label()" class="ui-mega-columns" [style.--ui-mega-columns]="columns()">
+    template: `<div class="ui-mega-heading"><h2>{{label()}}</h2><button uiAction [disabled]="busy()" (click)="close('close-button')">{{uiEffective_closeLabel()}}</button></div><nav [attr.aria-label]="label()" class="ui-mega-columns" [style.--ui-mega-columns]="checkedColumns()">
  @for(group of checkedGroups();track group.id){<section [attr.aria-labelledby]="controlId()+'-group-'+group.id"><h3 [id]="controlId()+'-group-'+group.id">{{group.label}}</h3>@if(group.description){<p class="ui-mega-description">{{group.description}}</p>}<ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visibleItems(group.items)}" /></section>}
  </nav><ng-template #entries let-items="items"><ul>@for(item of items;track item.id){<li>@if(item.children?.length){<details><summary>{{item.label}}</summary>@if(item.description){<p class="ui-mega-description">{{item.description}}</p>}@if(item.href){<a [attr.href]="item.disabled||busy()?null:href(item.href)" [attr.role]="item.disabled||busy()?'link':null" [attr.aria-disabled]="item.disabled||busy()?'true':null" [attr.tabindex]="item.disabled||busy()?0:null" [attr.aria-current]="current()===item.id?'page':null" (click)="choose($event,item)">{{item.label}}{{'へ移動' | uiMessage}}</a>}<ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visibleItems(item.children)}" /></details>}
  @else{<a [attr.href]="item.disabled||busy()?null:href(item.href)" [attr.role]="item.disabled||busy()||!item.href?'link':null" [attr.aria-disabled]="item.disabled||busy()||!item.href?'true':null" [attr.tabindex]="item.disabled||busy()||!item.href?0:null" [attr.aria-current]="current()===item.id?'page':null" (click)="choose($event,item)">@if(item.icon){<ui-icon [name]="item.icon" />}<span>{{item.label}}@if(item.description){<span class="ui-mega-description">{{item.description}}</span>}</span></a>}</li>}</ul></ng-template>`,
@@ -20,6 +21,7 @@ export class MegaMenu extends AnchoredPopup {
     readonly label = input.required<string>();
     readonly groups = input<readonly MegaMenuGroup[]>([]);
     readonly columns = input(3);
+    protected readonly checkedColumns = computed(() => { const columns=this.columns(); if(!positiveInteger(columns))throw new Error('MegaMenu columns must be a positive integer.'); return columns; });
     readonly current = input('');
     readonly closeOnSelect = input(true, { transform: booleanAttribute });
     readonly closeLabel = input<string>();
@@ -29,8 +31,7 @@ export class MegaMenu extends AnchoredPopup {
     protected readonly href = navigationHref;
     private owned = false;
     protected readonly checkedGroups = computed(() => { if (!this.label().trim() || !this.uiEffective_closeLabel().trim())
-        throw new Error('MegaMenu requires nonempty labels.'); if (!Number.isSafeInteger(this.columns()) || this.columns() < 1)
-        throw new Error('MegaMenu columns must be a positive integer.'); const groups = this.groups(), ids = new Set<string>(); for (const group of groups) {
+        throw new Error('MegaMenu requires nonempty labels.'); this.checkedColumns(); const groups = this.groups(), ids = new Set<string>(); for (const group of groups) {
         if (!validNavigationId(group.id) || ids.has(group.id) || !group.label.trim())
             throw new Error('MegaMenu groups require unique IDs and labels.');
         ids.add(group.id);

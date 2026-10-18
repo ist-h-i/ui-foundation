@@ -10,7 +10,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'color.success-surface': 'color', 'color.warning': 'color', 'color.warning-surface': 'color',
   'color.error-surface': 'color', 'color.focus': 'color', 'color.disabled-surface': 'color',
   'color.backdrop': 'color', 'color.shadow': 'color', 'font.body': 'fontFamily', 'font.code': 'fontFamily',
-  'text.body': 'length', 'text.small': 'length', 'text.heading': 'length',
+  'text.body': 'length', 'text.small': 'length', 'text.heading': 'length', 'text.avatar': 'length',
   'leading.body': 'number', 'leading.heading': 'number', 'leading.control': 'number',
   'weight.body': 'number', 'weight.heading': 'number', 'weight.control': 'number',
   'space.page': 'length', 'space.section': 'length', 'space.field': 'length',
@@ -28,7 +28,7 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'size.media-viewport': 'length',
   'size.visualization-viewport': 'length',
   'border.control': 'length', 'border.focus': 'length', 'border.focus-offset': 'length',
-  'motion.duration': 'duration', 'motion.easing': 'easing', 'opacity.watermark': 'number',
+  'motion.duration': 'duration', 'motion.easing': 'easing', 'opacity.watermark': 'number', 'opacity.map-region': 'number',
 };
 
 export const CATEGORY_TYPES: Readonly<Record<string, readonly PrimitiveType[]>> = {

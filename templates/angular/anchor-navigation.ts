@@ -7,7 +7,7 @@ export interface AnchorNavigationItem {
     label: string;
     target: HTMLElement | null;
 }
-@Component({ selector: 'ui-anchor-navigation', standalone: true, imports: [NavigationItem], host: { '[attr.data-position]': 'position()', '[style.inset-block-start.px]': 'offset()', '[style.--ui-anchor-offset]': "offset()+'px'" }, changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-anchor-navigation', standalone: true, imports: [NavigationItem], host: { '[attr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': "checkedOffset()+'px'" }, changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<nav [attr.aria-label]="label()" ><ul>@for(item of entries();track item.id){<li><a uiNavigationItem [attr.href]="available(item.target)?'#'+encode(item.target!.id):null" [attr.role]="available(item.target)?null:'link'" [attr.tabindex]="available(item.target)?null:0" [attr.aria-disabled]="available(item.target)?null:'true'" [attr.aria-current]="current()===item.id?'location':null" (click)="move($event,item)">{{item.label}}</a></li>}</ul></nav>`,
     styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}nav{box-sizing:border-box;max-inline-size:100%;max-block-size:calc(100dvh - var(--ui-anchor-offset));overflow:auto;overscroll-behavior:contain;background:var(--ui-color-surface);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);padding:var(--ui-space-control-y);border-inline-start:var(--ui-border-control) solid var(--ui-color-border);}ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);padding:0;margin:0;}li{min-inline-size:0;max-inline-size:100%;}:host([data-position='sticky']){position:sticky;align-self:start;}:host([data-position='fixed']){position:fixed;z-index:1;}[aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}a[aria-current='location']{font-weight:var(--ui-weight-heading);background:var(--ui-color-background);}` })
 export class AnchorNavigation {
@@ -15,6 +15,7 @@ export class AnchorNavigation {
     readonly items = input<readonly AnchorNavigationItem[]>([]);
     readonly scrollRoot = input<HTMLElement | null>(null);
     readonly offset = input(0);
+    protected readonly checkedOffset = computed(() => { const offset = this.offset(); if (!Number.isFinite(offset) || offset < 0) throw new Error('Anchor offset must be finite and nonnegative.'); return offset; });
     readonly position = input<'static' | 'sticky' | 'fixed'>('static');
     readonly behavior = input<'auto' | 'smooth'>('auto');
     readonly updateHash = input(true, { transform: booleanAttribute });
@@ -43,9 +44,7 @@ export class AnchorNavigation {
     } return items; });
     constructor() {
         afterRenderEffect(() => {
-            const items = this.entries(), root = this.scrollRoot(), offset = this.offset();
-            if (!Number.isFinite(offset) || offset < 0)
-                throw new Error('Anchor offset must be finite and nonnegative.');
+            const items = this.entries(), root = this.scrollRoot(), offset = this.checkedOffset();
             if (!this.label().trim())
                 throw new Error('Anchor navigation requires a label.');
             if (root && (root.ownerDocument !== this.element.ownerDocument || items.some(item => item.target && !root.contains(item.target))))
@@ -139,7 +138,7 @@ export class AnchorNavigation {
             view.history.pushState(view.history.state, '', '#' + encodeURIComponent(target.id));
         const behavior = view.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : this.behavior(), root = this.scrollRoot();
         if (root && root.contains(target))
-            root.scrollTo({ top: root.scrollTop + target.getBoundingClientRect().top - root.getBoundingClientRect().top - root.clientTop - this.offset() - this.scrollPadding(root), behavior });
+            root.scrollTo({ top: root.scrollTop + target.getBoundingClientRect().top - root.getBoundingClientRect().top - root.clientTop - this.checkedOffset() - this.scrollPadding(root), behavior });
         else
             target.scrollIntoView({ block: 'start', behavior });
         target.focus({ preventScroll: true });
@@ -171,7 +170,7 @@ export class AnchorNavigation {
         if (marker.style.top !== css) marker.style.top = css;
         return Math.max(0, parseFloat(view.getComputedStyle(marker).top) || 0);
     }
-    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.offset() + this.scrollPadding(root), items = this.items().filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
+    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.checkedOffset() + this.scrollPadding(root), items = this.items().filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
         this.current.set(current);
         this.currentChange.emit(current);
     } }

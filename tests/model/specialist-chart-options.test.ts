@@ -3,8 +3,25 @@ import {test} from 'node:test';
 import {chartOptions,gaugeLayout} from '../../.ui/generated/angular/chart-options.ts';
 import {chartAxisProblem} from '../../.ui/generated/angular/specialist-model.ts';
 import type {SpecialistTheme} from '../../.ui/generated/angular/specialist-browser.ts';
+import {readSpecialistTheme} from '../../templates/angular/specialist-browser.ts';
 
-const theme:SpecialistTheme={surface:'#fff',background:'#eee',text:'#111',muted:'#555',border:'#999',action:'#123456',onAction:'#fff',success:'#086',danger:'#c11',focus:'#269',font:'sans-serif',codeFont:'monospace',fontSize:16,gap:12,controlSize:44,radius:4,reducedMotion:true};
+const theme:SpecialistTheme={surface:'#fff',background:'#eee',text:'#111',muted:'#555',border:'#999',action:'#123456',onAction:'#fff',success:'#086',danger:'#c11',focus:'#269',font:'sans-serif',codeFont:'monospace',fontSize:16,gap:12,controlSize:44,radius:4,borderWidth:1,mapRegionOpacity:.25,reducedMotion:true};
+test('specialist theme reads measured semantic border widths and numeric region opacity on each refresh',()=>{
+ const descriptors=new Map(['getComputedStyle','matchMedia'].map(key=>[key,Object.getOwnPropertyDescriptor(globalThis,key)]));
+ const tokens=new Map([['--ui-opacity-map-region',' .25 ']]),lengths=new Map([['text-body',16],['size-control',44],['space-control-gap',12],['radius-control',4],['border-control',1]]);
+ const measured:string[]=[],probes:{removed:boolean}[]=[];
+ const host={ownerDocument:{createElement:()=>{const probe={style:{cssText:'',inlineSize:''},removed:false,getBoundingClientRect:()=>{const name=probe.style.inlineSize.slice('var(--ui-'.length,-1);measured.push(name);return {width:lengths.get(name)};},remove:()=>{probe.removed=true;}};probes.push(probe);return probe;}},append:()=>{}} as unknown as HTMLElement;
+ Object.defineProperty(globalThis,'getComputedStyle',{configurable:true,value:()=>({getPropertyValue:(key:string)=>tokens.get(key)??''})});
+ Object.defineProperty(globalThis,'matchMedia',{configurable:true,value:()=>({matches:true})});
+ try{
+  const initial=readSpecialistTheme(host);assert.equal(initial.borderWidth,1);assert.equal(initial.mapRegionOpacity,.25);
+  lengths.set('border-control',3);tokens.set('--ui-opacity-map-region','.6');
+  const changed=readSpecialistTheme(host);assert.equal(changed.borderWidth,3);assert.equal(changed.mapRegionOpacity,.6);assert.equal(changed.fontSize,16);assert.equal(changed.controlSize,44);
+  tokens.set('--ui-opacity-map-region','0');assert.equal(readSpecialistTheme(host).mapRegionOpacity,0);
+  tokens.delete('--ui-opacity-map-region');assert.ok(Number.isNaN(readSpecialistTheme(host).mapRegionOpacity));
+  assert.equal(measured.filter(name=>name==='border-control').length,4);assert.ok(probes.every(probe=>probe.removed));
+ }finally{for(const [key,descriptor] of descriptors){if(descriptor)Object.defineProperty(globalThis,key,descriptor);else Reflect.deleteProperty(globalThis,key);}}
+});
 test('heatmap category coordinates preserve negative values, sparse numeric positions and explicit missing data',()=>{
  const series=[{id:'measure',label:'観測',points:[{id:'a',label:'A',x:10,y:20,value:-5},{id:'b',label:'B',x:-10,y:10,value:7},{id:'missing',label:'未取得',x:30,y:20,value:null}]}];
  const options=chartOptions('heatmap',series,{label:'X',type:'category'},{label:'Y',type:'category'},true,null,theme) as any;

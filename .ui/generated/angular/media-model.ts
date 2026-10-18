@@ -31,7 +31,7 @@ export interface MediaImage { id:string; src:string; alt:string; caption?:string
 export interface CropBounds { x1:number;y1:number;x2:number;y2:number; }
 export function cropBoundsError(bounds:CropBounds,width:number,height:number,ratio:number|null=null):string|null {
  if(![width,height].every(value=>Number.isFinite(value)&&value>0))return '画像の寸法を確認できません。';
- if(!Object.values(bounds).every(Number.isFinite)||bounds.x1<0||bounds.y1<0||bounds.x2<=bounds.x1||bounds.y2<=bounds.y1||bounds.x2>width||bounds.y2>height)return '切抜き範囲を画像内の正の範囲にしてください。';
+ if(!bounds||typeof bounds!=='object'||![bounds.x1,bounds.y1,bounds.x2,bounds.y2].every(Number.isFinite)||bounds.x1<0||bounds.y1<0||bounds.x2<=bounds.x1||bounds.y2<=bounds.y1||bounds.x2>width||bounds.y2>height)return '切抜き範囲を画像内の正の範囲にしてください。';
  if(ratio!==null&&(!Number.isFinite(ratio)||ratio<=0||Math.abs((bounds.x2-bounds.x1)/(bounds.y2-bounds.y1)-ratio)>0.02))return '切抜き範囲が指定した比率に合いません。';return null;
 }
 export function positiveMediaNumber(value:number,label:string):number {if(!Number.isFinite(value)||value<=0)throw new Error(label+' must be positive.');return value;}

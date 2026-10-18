@@ -3,12 +3,12 @@ import {injectUiText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, Directive, ElementRef, inject, input, output, signal, TemplateRef, viewChild, viewChildren, untracked, } from '@angular/core';
+import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, Directive, ElementRef, inject, input, isSignal, output, signal, type Signal, TemplateRef, viewChild, viewChildren, untracked, } from '@angular/core';
 import { canFocus } from './focus';
 import { ActionControl } from './action-control';
 import { Pagination } from './pagination';
 import { DataTable } from './data-table';
-import { VirtualDataTable } from './virtual-data-table';
+import { VirtualDataTable } from './virtual-data-table';import type {VirtualRadioGroup} from './virtual-radio';
 import { ColumnFilter, TableToolbar, type TableBulkAction, type TableOutputIntent } from './table-controls';
 import { TableColumnResize } from './table-column-resize';
 import { CellEditor, RowEditor } from './table-editors';
@@ -157,7 +157,7 @@ export class TableTemplate<T extends object> {
               }
               @if(editMode()==='row'){<td><button uiAction class="ui-data-table__edit-start" data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-label]="('編集: ' | uiMessage)+rowLabel(row)" data-table-row-edit-start (click)="beginRow(row)">{{'行を編集' | uiMessage}}</button></td>}
             </tr>
-            @if(editMode()==='row'){<tr [hidden]="entry.hidden||!rowEditor.isEditing()"><td [attr.colspan]="columnCount()"><ui-row-editor data-table-managed-editor #rowEditor [row]="row" [keyField]="keyField()" [columns]="columns()" [controlId]="tableId()+'-row-edit-'+encodedKey(row)" [label]="rowLabel(row)+('の行編集' | uiMessage)" [disabled]="disabled()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="rowEditingChanged(row,$event)"/></td></tr>}
+            @if(editMode()==='row'){<tr [hidden]="entry.hidden||!rowEditor.isEditing()" [attr.data-table-editor-key]="encodedKey(row)"><td [attr.colspan]="columnCount()"><ui-row-editor data-table-managed-editor #rowEditor [row]="row" [keyField]="keyField()" [columns]="columns()" [controlId]="tableId()+'-row-edit-'+encodedKey(row)" [label]="rowLabel(row)+('の行編集' | uiMessage)" [disabled]="disabled()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="rowEditingChanged(row,$event)"/></td></tr>}
             @if (detailTemplate(); as detail) {
               <tr [hidden]="entry.hidden||!expandedKeys().includes(key(row))"><td [attr.colspan]="columnCount()"><ng-container [ngTemplateOutlet]="detail" [ngTemplateOutletContext]="{ $implicit: row, value: null, column: null }" /></td></tr>
             }
@@ -171,7 +171,7 @@ export class TableTemplate<T extends object> {
       @if(moreAvailable()){<ui-infinite-scroll #more [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="autoLoadMore()" [observerRoot]="stickyHeader()?viewport:null" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     </div>
     }@else{
-      @if(!configurationError()){<ui-virtual-data-table [caption]="caption()" [tableId]="tableId()" [rows]="pageRows()" [columns]="visibleColumns()" [keyField]="keyField()" [state]="state()" [busy]="busy()" [disabled]="disabled()" [height]="virtualHeight()" [itemHeight]="virtualRowHeight()" [overscan]="virtualOverscan()" [sortable]="sortable()" [selectionMode]="selectionMode()" [selectedKeys]="selectedKeys()" [rowSelectable]="rowSelectable()" [cellTemplates]="virtualTemplates()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (columnWidthsChange)="virtualWidths($event)" (sortRequested)="sort($event)" (selectedKeysChange)="selectedKeysChange.emit($event)" (rangeChange)="virtualRangeChange.emit($event)" (positionChange)="virtualPositionChange.emit($event)"/>}
+      @if(!configurationError()){<ui-virtual-data-table [caption]="caption()" [tableId]="tableId()" [rows]="pageRows()" [columns]="visibleColumns()" [keyField]="keyField()" [state]="state()" [busy]="busy()" [disabled]="disabled()" [height]="virtualHeight()" [itemHeight]="virtualRowHeight()" [overscan]="virtualOverscan()" [sortable]="sortable()" [selectionMode]="selectionMode()" [selectedKeys]="selectedKeys" [radioGroups]="virtualRadioGroups" [rowSelectable]="rowSelectable()" [cellTemplates]="virtualTemplates()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (columnWidthsChange)="virtualWidths($event)" (sortRequested)="sort($event)" (selectedKeysChange)="selectedKeysChange.emit($event)" (rangeChange)="virtualRangeChange.emit($event)" (positionChange)="virtualPositionChange.emit($event)"/>}
       @if(moreAvailable()){<ui-infinite-scroll [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="false" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     }
     @if(showOutput()||bulkActions().length){<ui-table-toolbar [label]="caption()+('の出力と一括操作' | uiMessage)" [columns]="columns()" [state]="state()" [searchable]="false" [chooseColumns]="false" [outputs]="showOutput()" [busy]="busy()" [disabled]="disabled()||!!configurationError()" [selectedKeys]="selectedKeys()" [bulkActions]="bulkActions()" (bulkRequested)="bulkRequested.emit($event)" (outputRequested)="export($event)"/>}
@@ -307,7 +307,11 @@ export class DataTableView<T extends object> {
     readonly columnControls = input(true, { transform: booleanAttribute });
     readonly resizableColumns = input(true, { transform: booleanAttribute });
     readonly selectionMode = input<'none' | 'single' | 'multiple'>('none');
-    readonly selectedKeys = input<readonly TableKey[]>([]);
+    readonly selectedKeysSource = input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'});
+    readonly selectedKeys = computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;});
+    /** Complete projected groups for the current filtered/page rows, not all source rows. */
+    readonly virtualRadioGroupsSource = input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'virtualRadioGroups'});
+    readonly virtualRadioGroups = computed(()=>{const source=this.virtualRadioGroupsSource();return isSignal(source)?source():source;});
     readonly selectedKeysChange = output<readonly TableKey[]>();
     readonly rowSelectable = input<(row: T) => boolean>(() => true);
     readonly selectAllScope = input<'page' | 'filtered'>('page');
@@ -516,7 +520,65 @@ export class DataTableView<T extends object> {
                     this.host.focus({ preventScroll: true });
             }
         });
-        inject(DestroyRef).onDestroy(() => { observer?.disconnect(); render.destroy(); this.owned = null; });
+        // A projected resource can resize a fixed stack without changing table
+        // inputs. Recheck the active ordinary control or managed editor after the measured insets
+        // have reached the DOM; keep its native focus and selection untouched.
+        const reveal = afterRenderEffect(() => {
+            this.startStack(); this.endStack(); this.maximumBodyHeight();
+            this.availableWidth(); this.measuredWidths(); this.viewport();
+            untracked(() => this.revealFocusedBodyControl());
+        });
+        inject(DestroyRef).onDestroy(() => { observer?.disconnect(); render.destroy(); reveal.destroy(); this.owned = null; });
+    }
+    private revealFocusedBodyControl(): void {
+        const container = this.viewport()?.nativeElement;
+        const active = this.host.ownerDocument.activeElement;
+        if (!container || !(active instanceof HTMLElement) || !container.contains(active) || !canFocus(active))
+            return;
+        const owner = active.closest<HTMLElement>('[data-table-owner]');
+        const managed = !!owner?.hasAttribute('data-table-managed-editor') && owner.parentElement?.closest('[data-table-owner]') === this.host;
+        if (owner !== this.host && !managed)
+            return;
+        const table = container.querySelector(':scope > table'), row = active.closest('tbody tr');
+        if (!table || !row || row.closest('table') !== table)
+            return;
+        // Expansion rows retain a separate identity: they must not enter native
+        // data-row queries, and their source row still owns the fixed-row boundary.
+        const editorKey = row.getAttribute('data-table-editor-key');
+        const source = row.hasAttribute('data-row-key') ? row : managed && editorKey !== null
+            ? Array.from(table.querySelectorAll(':scope > tbody > tr[data-table-key]')).find(candidate => candidate.getAttribute('data-table-key') === editorKey) : null;
+        if (!source || source.hasAttribute('data-fixed-row'))
+            return;
+        const view = this.host.ownerDocument.defaultView;
+        if (!view)
+            return;
+        const style = view.getComputedStyle(active), bounds = container.getBoundingClientRect();
+        const ring = style.outlineStyle === 'none' ? 0 : Math.max(0, (parseFloat(style.outlineWidth) || 0) + (parseFloat(style.outlineOffset) || 0));
+        const top = bounds.top + container.clientTop + this.startStack();
+        const bottom = bounds.top + container.clientTop + container.clientHeight - this.endStack();
+        const scrollWithin = (start: number, end: number) => {
+            const current = active.getBoundingClientRect();
+            if (current.height + 2 * ring > end - start)
+                return;
+            if (current.top - ring < start)
+                container.scrollTop += Math.floor(current.top - ring - start);
+            else if (current.bottom + ring > end)
+                container.scrollTop += Math.ceil(current.bottom + ring - end);
+        };
+        // First move past the caption/natural table origin. Before that move,
+        // not-yet-stuck rows can temporarily leave less room than the stack budget.
+        scrollWithin(top, bottom);
+        // clientHeight/scrollTop may round to whole CSS pixels. Correct once more
+        // against the actual painted sticky edges after the first scroll's layout.
+        let paintedTop = top, paintedBottom = bottom;
+        row.closest('table')?.querySelectorAll<HTMLElement>(':scope > tbody > tr[data-fixed-row],:scope > thead.ui-data-table__head--sticky,:scope > tfoot.ui-data-table__footer--sticky').forEach(fixed => {
+            const edge = fixed.getBoundingClientRect();
+            if (fixed.dataset['fixedRow'] === 'start' || fixed.tagName === 'THEAD')
+                paintedTop = Math.max(paintedTop, edge.bottom);
+            else
+                paintedBottom = Math.min(paintedBottom, edge.top);
+        });
+        scrollWithin(paintedTop, paintedBottom);
     }
     protected ownFocus(event: FocusEvent): void {
         const target = event.target;
@@ -526,6 +588,9 @@ export class DataTableView<T extends object> {
         }
         const owner = target.closest<HTMLElement>('[data-table-owner]');
         this.owned = target === this.viewport()?.nativeElement || target.hasAttribute('data-table-owned-control') && owner === this.host || (target.hasAttribute('data-table-control') || target === owner) && !!owner?.hasAttribute('data-table-managed-editor') && owner.parentElement?.closest('[data-table-owner]') === this.host ? target : null;
+        // Focus can change after all measured geometry has settled. Native
+        // scrolling alone need not reveal the control past the fixed stacks.
+        this.revealFocusedBodyControl();
     }
     protected leaveFocus(event: FocusEvent): void {
         if (event.relatedTarget instanceof Node && event.relatedTarget !== this.host.ownerDocument.body && !this.host.contains(event.relatedTarget))

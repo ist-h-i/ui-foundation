@@ -36,7 +36,7 @@ export class CalendarDay{readonly template=inject<TemplateRef<CalendarDayContext
 export class Calendar extends ValueControl<string|null>{
  protected readonly emptyValue=null;readonly min=input<string|null>(null);readonly max=input<string|null>(null);readonly disabledDates=input<readonly string[]>([]);readonly dateDisabled=input<((date:string)=>boolean)|null>(null);
  readonly weekStartsOn=input(0);protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=computed(()=>this.locale()??this.uiLocaleDefaults().locale);readonly today=input(localCivilISO(new Date()));readonly initialMonth=input<string|null>(null);readonly displayMonth=input<string|null>(null);readonly selectedDates=input<readonly string[]>([]);readonly view=input<'month'|'year'>('month');readonly monthChange=output<string>();
- protected readonly Number=Number;protected readonly months=Array.from({length:12},(_,index)=>String(index+1).padStart(2,'0'));
+ protected readonly Number=(value:string):number=>Number(value);protected readonly months=Array.from({length:12},(_,index)=>String(index+1).padStart(2,'0'));
  protected readonly dayTemplate=contentChild(CalendarDay);private readonly dayButtons=viewChildren<ElementRef<HTMLButtonElement>>('dayButton');
  protected readonly month=linkedSignal(()=>this.displayMonth()??this.current()?.slice(0,7)??(civilDate(this.initialMonth()+'-01')?this.initialMonth()!:this.today().slice(0,7)));
  protected readonly focused=linkedSignal(()=>{const preferred=this.current()??this.today();return preferred.startsWith(this.month()+'-')?preferred:this.month()+'-01';});

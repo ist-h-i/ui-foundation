@@ -1,0 +1,105 @@
+{
+  "copies": [
+    {
+      "old": "docs/verification/ui-static-warning-disposition-20261013/approved-exceptions.json",
+      "new": "tests/fixtures/static-checks/warning-disposition/approved-exceptions.json",
+      "old_sha256": "b03597ddfee1004c82fabc14ff1a967e146076e3f58068d476991d947f4ac3cc",
+      "new_sha256": "b03597ddfee1004c82fabc14ff1a967e146076e3f58068d476991d947f4ac3cc"
+    },
+    {
+      "old": "docs/verification/ui-static-warning-disposition-20261013/baseline-check.json",
+      "new": "tests/fixtures/static-checks/warning-disposition/baseline-check.json",
+      "old_sha256": "1cb31a1781f9cc282e72e5c9c0ff72f6af14e7db8fe7cadadb8817c1014207c7",
+      "new_sha256": "1cb31a1781f9cc282e72e5c9c0ff72f6af14e7db8fe7cadadb8817c1014207c7"
+    },
+    {
+      "old": "docs/verification/ui-static-warning-implementation-20261015/newphase/candidate-purpose-audit.json",
+      "new": "tests/fixtures/static-checks/warning-implementation/newphase/candidate-purpose-audit.json",
+      "old_sha256": "78b2db620f589e5d40a2ea053adeeca3db9b581010e13951b5c78377ca2049b3",
+      "new_sha256": "78b2db620f589e5d40a2ea053adeeca3db9b581010e13951b5c78377ca2049b3"
+    },
+    {
+      "old": "docs/verification/ui-static-warning-implementation-20261015/baseline-classification.json",
+      "new": "tests/fixtures/static-checks/warning-implementation/baseline-classification.json",
+      "old_sha256": "54f3c5cef0ed311e5583386dfb4ac94ebcf5a15c902bb71f4e86c4d8021c7edf",
+      "new_sha256": "54f3c5cef0ed311e5583386dfb4ac94ebcf5a15c902bb71f4e86c4d8021c7edf"
+    },
+    {
+      "old": "docs/verification/ui-static-seven-candidates-20261016/purpose/purpose-proof-current.json",
+      "new": "tests/fixtures/static-checks/seven-candidates/purpose/purpose-proof-current.json",
+      "old_sha256": "1d0747f916c3a3810e4106e2c2b941b7065286c519c9010e8335b6399dd52d92",
+      "new_sha256": "f98e60f1f14521e2a757d2c0f9536d6b9d512f662f16dc92757c3782d7e305e9"
+    },
+    {
+      "old": "docs/verification/ui-static-seven-candidates-20261016/purpose/purpose-sites-current.json",
+      "new": "tests/fixtures/static-checks/seven-candidates/purpose/purpose-sites-current.json",
+      "old_sha256": "91ba54d04b345477d485280bb14888e028ed9a6fdb8483234dc5466f789cd9d4",
+      "new_sha256": "a248e78e765686f4be54c737bf679d441798bb857edb208516ef3e1cb3f034fe"
+    },
+    {
+      "old": "docs/verification/ui-static-seven-candidates-20261016/purpose/literal-purpose-proof-current.json",
+      "new": "tests/fixtures/static-checks/seven-candidates/purpose/literal-purpose-proof-current.json",
+      "old_sha256": "381829e088ac02ff11fbd8d5eb8ff0372bb79fa6ad592493b193571bfd7918c4",
+      "new_sha256": "50ef37c83d78fdd44070b32f68d1ca57bd59fed439399beb4905dacfa145e30a"
+    },
+    {
+      "old": "docs/verification/ui-static-warning-followup-20261016/geometry-audit.json",
+      "new": "tests/fixtures/static-checks/warning-followup/geometry-audit.json",
+      "old_sha256": "138bdb99f5d2cb916527ccdac0dbc4f4acebae5d67aa98dffddb5b46e07a87b3",
+      "new_sha256": "5e54d1ed9730a22ea34ea16f3923b05e2b4f3af68b519a08a949ab877b75e6d3"
+    },
+    {
+      "old": "docs/verification/ui-static-host-applications-20261016/form-label-cap-audit.json",
+      "new": "tests/fixtures/static-checks/host-applications/form-label-cap-audit.json",
+      "old_sha256": "28a9ce6298ccf6d1b0ffca7234c188bcde5d159244a8d55be6375d731c1e0889",
+      "new_sha256": "28a9ce6298ccf6d1b0ffca7234c188bcde5d159244a8d55be6375d731c1e0889"
+    },
+    {
+      "old": "docs/verification/ui-static-seven-candidates-20261016/cli-1.log",
+      "new": "tests/fixtures/static-checks/seven-candidates/cli-1.log",
+      "old_sha256": "091230e55f005a2d12dec18615f8951bff4595cd66979977b1a0039bbd53687f",
+      "new_sha256": "091230e55f005a2d12dec18615f8951bff4595cd66979977b1a0039bbd53687f"
+    },
+    {
+      "old": "docs/verification/ui-static-warning-implementation-20261015/cli-v8.log",
+      "new": "tests/fixtures/static-checks/warning-implementation/cli-v8.log",
+      "old_sha256": "9d974f3837e433c8b7f433787845ea330ef9b03f447b3c1d3fdd72c6801f5be0",
+      "new_sha256": "9d974f3837e433c8b7f433787845ea330ef9b03f447b3c1d3fdd72c6801f5be0"
+    }
+  ],
+  "test_rewrites": [
+    {
+      "file": "tests/static/reasoned-exceptions.test.ts",
+      "line": 20,
+      "old": "const historicalEvidence = resolve(root, 'docs/verification/ui-static-warning-disposition-20261013');",
+      "new": "const historicalEvidence = resolve(root, 'tests/fixtures/static-checks/warning-disposition');"
+    },
+    {
+      "file": "tests/static/reasoned-exceptions.test.ts",
+      "line": 21,
+      "old": "const evidence = resolve(root, 'docs/verification/ui-static-warning-implementation-20261015/newphase');",
+      "new": "const evidence = resolve(root, 'tests/fixtures/static-checks/warning-implementation/newphase');"
+    },
+    {
+      "file": "tests/static/reasoned-exceptions.test.ts",
+      "line": 22,
+      "old": "const currentEvidence = resolve(root, 'docs/verification/ui-static-seven-candidates-20261016/purpose');",
+      "new": "const currentEvidence = resolve(root, 'tests/fixtures/static-checks/seven-candidates/purpose');"
+    },
+    {
+      "file": "tests/static/geometry-exceptions.test.ts",
+      "line": 13,
+      "old": "const directory=resolve(root,'docs/verification/ui-static-warning-followup-20261016');",
+      "new": "const directory=resolve(root,'tests/fixtures/static-checks/warning-followup');"
+    },
+    {
+      "file": "tests/static/host-application-context.test.ts",
+      "line": 229,
+      "old": "../../docs/verification/ui-static-host-applications-20261016/form-label-cap-audit.json",
+      "new": "../fixtures/static-checks/host-applications/form-label-cap-audit.json"
+    }
+  ],
+  "unchanged_producer_helper_hashes": 45,
+  "guard_assertions_removed": 0,
+  "historical_files_modified": 0
+}
