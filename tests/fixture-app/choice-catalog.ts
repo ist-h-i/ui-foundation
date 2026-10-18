@@ -5,7 +5,7 @@ import {ActionControl,Slider,RangeSlider,Knob,Rating,ColorPicker,InlineEdit,Wiza
 
 @Component({selector:'fixture-app',standalone:true,imports:[JsonPipe,ReactiveFormsModule,ActionControl,Slider,RangeSlider,Knob,Rating,ColorPicker,InlineEdit,Wizard,WizardStep,FilterBuilder],template:`
 <main [attr.data-ui-profile]="profile()" [attr.dir]="rtl()?'rtl':'ltr'">
- <h1>数値・色・編集・段階・条件</h1><p>入力を残して確認し、保存や段階移動の結果をアプリから受け取るための検証です。</p>
+ <h1>数値・色・編集・段階・条件</h1><p>入力内容を保持したまま確認できることと、保存やステップ間の移動の結果をアプリから受け取れることを検証します。</p>
  <div class="settings catalog-settings"><div class="catalog-setting"><label for="choice-profile">表示設定</label><span class="ui-select-control fixture-select"><select id="choice-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(text($event))"><option value="guided">guided</option><option value="dense">dense</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
  <label><input type="checkbox" [checked]="rtl()" (change)="rtl.set(checked($event))">RTL</label><label><input type="checkbox" [checked]="readOnly()" (change)="readOnly.set(checked($event))">読取り専用</label><label><input type="checkbox" [checked]="busy()" (change)="busy.set(checked($event))">処理中</label><div class="catalog-actions"><button uiAction type="button" (click)="toggleDisabled()">フォームの無効状態を切替</button><button uiAction type="button" (click)="reset()">フォームを初期化</button><button uiAction type="button" id="outside">別の操作</button></div></div>
  <section aria-label="数値と範囲"><h2>数値と範囲</h2>

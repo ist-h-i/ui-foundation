@@ -87,7 +87,7 @@ async function sourceFiles(directory: string): Promise<Map<string, string>> {
 }
 
 function projectContext(config: ResolvedConfig): string {
-  return '# プロジェクトのUI設定\n\nYAMLから生成した判断材料です。変更は設定の正本へ戻してください。利用者の文脈からCLIが見た目を推測することはありません。\n\n'
+  return '# プロジェクトのUI設定\n\n画面設計の参考として、YAMLの設定内容をまとめたものです。設定を変更する場合は、正本のYAMLを編集してください。CLIは利用者の状況に関する説明から見た目を推測しません。\n\n'
     + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, output: config.output, profiles: config.profiles }) + '```\n';
 }
 

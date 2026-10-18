@@ -7,7 +7,7 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
  imports:[ReactiveFormsModule,ActionControl,FormField,FieldControl,FormLayout,UiFormGroup,FormActions,Textarea,SearchInput,MaskedInput,OTPInput,TagInput,MultiSelect,RadioGroup,RadioOption,Combobox,ComboboxOption,Dialog,OverlayHost],
  template:`
  <main [attr.data-ui-profile]="profile()" [attr.dir]="rtl()?'rtl':'ltr'">
-  <h1>フォームと構造化入力</h1><p>書式に合わない内容と処理中の入力を残し、修正して再操作するための検証です。</p>
+  <h1>フォームと構造化入力</h1><p>書式に合わない場合や処理中でも入力内容を保持し、修正して再操作できることを検証します。</p>
   <div class="settings catalog-settings">
    <div class="catalog-setting"><label for="structured-profile">表示設定</label><span class="ui-select-control fixture-select"><select id="structured-profile" class="ui-field-control" [value]="profile()" (change)="profile.set(text($event))"><option value="guided">guided</option><option value="dense">dense</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></div>
    <label><input type="checkbox" [checked]="rtl()" (change)="rtl.set(checked($event))">RTL</label>
