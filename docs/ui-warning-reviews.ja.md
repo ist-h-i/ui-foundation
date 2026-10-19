@@ -4,6 +4,8 @@
 
 正本は[機械可読台帳](ui-warning-reviews.json)。`npm run ui:check:warnings`は最新ソースとの一対一対応、根拠hashとanchorを検査する。各項目の有限回帰はソースとして調査した範囲であり、今回の実行結果は[最終検証記録](verification/ui-static-warning-release-20261018/README.md)で確認する。
 
+2026/10/19のnpmベータ準備では、配布metadata、通知収集、同期の排他・Skill参照追加を再確認し、解析入力のhashを更新した。依存の固定版、部品・scanner・policy・122件の分類理由は変更していない。[入力差分の再確認](verification/npm-beta-20261019/warning-input-reaudit.json)は警告の解消や実操作の追加合格を意味しない。
+
 | 分類 | 件数 |
 |---|---:|
 | 関数の差し替え | 1 |
