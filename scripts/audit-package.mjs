@@ -8,7 +8,8 @@ export const runtimeEngines = ['@codemirror/autocomplete', '@codemirror/commands
 export const foundation = ['@angular/cdk', '@angular/common', '@angular/core', '@angular/forms', '@angular/platform-browser', '@lucide/angular', 'rxjs'];
 export const consumerBuildTools = ['@angular/compiler', '@angular/compiler-cli', '@babel/core', 'esbuild', 'typescript', 'tailwindcss', '@tailwindcss/cli', '@types/qrcode'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
-const licenseName = /^(?:(?:licen[cs]e|copying)(?:[.-]|$)|notice|third[-_]?party)/i;
+const licenseName = /^(?:(?:[a-z0-9]+[-_])?(?:licen[cs]e|copying)(?:[.-]|$)|notice|third[-_]?party)/i;
+const specialOriginals = { 'murmurhash-js@1.0.0': { path: 'README.md', sha256: 'e137ced8967fc334ec9b5fc5c8500992f9e49d2e9cc0f6e2439e46af2f2481a4' } };
 const json = async path => JSON.parse(await readFile(path, 'utf8'));
 
 // Missing/malformed responses and production-only scans must never become zero.
@@ -51,23 +52,57 @@ export function resolveLockedDependency(packages, from, name) {
 
 export function dependencyClosure(packages, roots) {
   const reached = new Set();
-  const missing = [];
-  function visit(path) {
-    if (reached.has(path)) return;
+  const required = new Set();
+  const states = new Set();
+  const missing = new Map();
+  function visit(path, optionalChain) {
+    const state = `${path}:${optionalChain}`;
+    if (states.has(state)) return;
+    states.add(state);
     reached.add(path);
+    if (!optionalChain) required.add(path);
     const item = packages[path];
     const peers = Object.keys(item.peerDependencies ?? {}).filter(name => !item.peerDependenciesMeta?.[name]?.optional);
     for (const name of new Set([...Object.keys(item.dependencies ?? {}), ...Object.keys(item.optionalDependencies ?? {}), ...peers])) {
       const dependency = resolveLockedDependency(packages, path, name);
-      if (dependency) visit(dependency);
-      else if (!item.optionalDependencies?.[name]) missing.push({ from: path, name });
+      const childOptional = optionalChain || Object.hasOwn(item.optionalDependencies ?? {}, name);
+      if (dependency) visit(dependency, childOptional);
+      else {
+        const key = `${path}:${name}`;
+        const previous = missing.get(key);
+        const bundled = item.bundleDependencies ?? item.bundledDependencies;
+        missing.set(key, { from: path, name, optionalChain: previous ? previous.optionalChain && childOptional : childOptional, declaredBundled: bundled === true || (Array.isArray(bundled) && bundled.includes(name)) });
+      }
     }
   }
   for (const name of roots) {
     const path = resolveLockedDependency(packages, '', name);
-    if (path) visit(path); else missing.push({ from: '', name });
+    if (path) visit(path, false); else missing.set(`:${name}`, { from: '', name, optionalChain: false, declaredBundled: false });
   }
-  return { paths: [...reached].sort(), missing };
+  return { paths: [...reached].sort(), requiredPaths: [...required].sort(), missing: [...missing.values()] };
+}
+
+export function classifyMissingDependencies(packages, closure, installedPaths, platform = process.platform, arch = process.arch) {
+  const inactiveOptional = [], actionable = [];
+  const excludes = (values, current) => Array.isArray(values) && (values.includes(`!${current}`) || (values.some(value => !value.startsWith('!')) && !values.includes(current)));
+  for (const missing of closure.missing) {
+    const parent = packages[missing.from];
+    const inactive = missing.optionalChain && !closure.requiredPaths.includes(missing.from) && parent?.optional && !installedPaths.has(missing.from) && (excludes(parent.os, platform) || excludes(parent.cpu, arch));
+    if (inactive) inactiveOptional.push({ ...missing, status: 'Unknown', reason: 'Not installed; reachable only through optional edges; locked OS/CPU excludes this host. Bundled declaration does not establish the missing version, source license or execution.', os: parent.os ?? null, cpu: parent.cpu ?? null });
+    else actionable.push(missing);
+  }
+  return { inactiveOptional, actionable };
+}
+
+export async function originalNoticeFiles(directory, name, version) {
+  const files = (await readdir(directory, { withFileTypes: true })).filter(file => file.isFile() && licenseName.test(file.name)).map(file => ({ path: file.name, kind: 'root-license-notice' }));
+  const special = specialOriginals[`${name}@${version}`];
+  if (special) {
+    const bytes = await readFile(join(directory, special.path));
+    if (sha256(bytes) !== special.sha256) throw new Error(`Unrecognized original license source bytes: ${name}@${version}/${special.path}`);
+    files.push({ path: special.path, kind: 'allowlisted-original-license-in-readme', expectedSha256: special.sha256 });
+  }
+  return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 
 async function regularFiles(directory) {
@@ -78,6 +113,52 @@ async function regularFiles(directory) {
     else throw new Error(`Non-regular asset: ${join(directory, item.name)}`);
   }
   return result.sort();
+}
+
+const nativeProofFlags = ['reportPassed', 'tarballMatches', 'metafileHashMatches', 'inputPathsHashMatches', 'outputBindingsVerified', 'noCanvasInputs', 'noNativeInputs', 'noNativeFiles', 'noNativeBinaryCopies'];
+export function canExcludeNativeNotice(proof) {
+  return proof.name === '@napi-rs/canvas-darwin-arm64' && proof.version === '1.0.10' && proof.platform === 'darwin' && proof.arch === 'arm64' && nativeProofFlags.every(key => proof[key] === true);
+}
+
+export async function nativeExclusionProof(root, packageRoot, delivery, tarball) {
+  const proof = { name: '@napi-rs/canvas-darwin-arm64', version: '1.0.10', platform: process.platform, arch: process.arch, verified: false, originalLicenseStatus: 'Unknown' };
+  if (!delivery || !tarball) return { ...proof, reason: 'Final delivery and candidate tarball are required' };
+  try {
+    const evidenceRoot = dirname(packageRoot);
+    const report = await json(join(evidenceRoot, 'report.json'));
+    const bundle = report.smoke?.bundle;
+    if (!bundle) return { ...proof, reason: 'No saved browser metafile/output binding' };
+    const inside = (base, path) => {
+      const target = resolve(base, path);
+      if (!target.startsWith(`${resolve(base)}/`)) throw new Error('Evidence path leaves its root');
+      return target;
+    };
+    const metaBytes = await readFile(inside(evidenceRoot, bundle.metafile));
+    const meta = JSON.parse(metaBytes);
+    const inputPaths = Object.keys(meta.inputs).sort();
+    const outputPaths = Object.keys(meta.outputs).sort();
+    const canvasInputs = inputPaths.filter(path => /(?:^|[/\\])node_modules[/\\]@napi-rs[/\\]canvas(?:[-/\\]|$)/.test(path));
+    const nativeInputs = inputPaths.filter(path => /\.node$/i.test(path));
+    const outputChecks = [];
+    for (const output of bundle.outputs ?? []) {
+      const bytes = await readFile(inside(delivery, output.delivery_path));
+      outputChecks.push({ path: output.path, deliveryPath: output.delivery_path, sha256: sha256(bytes), exact: output.path === `public/${output.delivery_path}` && sha256(bytes) === output.sha256 && bytes.length === output.bytes && meta.outputs[output.path]?.bytes === bytes.length });
+    }
+    const native = await readFile(join(root, 'node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node'));
+    const nativeSha256 = sha256(native);
+    const nativeFiles = [], nativeBinaryCopies = [];
+    for (const [kind, directory] of [['candidate', packageRoot], ['delivery', delivery]]) for (const file of await regularFiles(directory)) {
+      if (/\.node$/i.test(file)) nativeFiles.push({ kind, file });
+      const bytes = await readFile(join(directory, file));
+      if (bytes.length === native.length && sha256(bytes) === nativeSha256) nativeBinaryCopies.push({ kind, file });
+    }
+    Object.assign(proof, { reportPassed: report.status === 'passed', tarballMatches: sha256(await readFile(tarball)) === report.candidate_sha256, metafileHashMatches: sha256(metaBytes) === bundle.metafile_sha256, inputPathsHashMatches: sha256(JSON.stringify(inputPaths)) === bundle.input_paths_sha256 && inputPaths.length === bundle.input_count,
+      outputBindingsVerified: inside(evidenceRoot, bundle.delivery_root) === resolve(delivery) && outputChecks.length > 0 && outputChecks.every(item => item.exact) && JSON.stringify(outputChecks.map(item => item.path).sort()) === JSON.stringify(outputPaths),
+      noCanvasInputs: canvasInputs.length === 0, noNativeInputs: nativeInputs.length === 0, noNativeFiles: nativeFiles.length === 0, noNativeBinaryCopies: nativeBinaryCopies.length === 0,
+      metafileSha256: sha256(metaBytes), canvasInputs, nativeInputs, outputChecks, nativeSha256, nativeFiles, nativeBinaryCopies });
+    proof.verified = canExcludeNativeNotice(proof);
+    return proof;
+  } catch (error) { return { ...proof, reason: `Missing or invalid exclusion evidence: ${error.message}` }; }
 }
 
 async function exactAssets(root, packageRoot, delivery) {
@@ -158,6 +239,7 @@ export async function auditPackage({ root, packageRoot, delivery, tarball, skipN
   const bundled = new Set([...cli, ...checker].map(item => `node_modules/${item.name}`));
   const inventory = [];
   const noticeChecks = [];
+  const nativeProof = await nativeExclusionProof(root, packageRoot, delivery, tarball);
   for (const [path, item] of Object.entries(packages).sort(([a], [b]) => a.localeCompare(b))) {
     if (!path) continue;
     const name = path.slice(path.lastIndexOf('node_modules/') + 'node_modules/'.length);
@@ -167,12 +249,16 @@ export async function auditPackage({ root, packageRoot, delivery, tarball, skipN
     const license = item.license ?? installed?.license ?? installed?.licenses?.map(value => value.type).join(' OR ') ?? null;
     inventory.push({ path, name, version: item.version, license, licenseMetadataSource: item.license ? 'package-lock' : installed?.license || installed?.licenses ? 'installed-package.json' : 'Unknown', integrity: item.integrity ?? null, optional: !!item.optional, installed: !!installed, installedVersionMatches: installed ? installed.version === item.version : null, scopes });
     if (!installed || (!bundled.has(path) && !runtime.paths.includes(path))) continue;
-    const files = (await readdir(join(root, path), { withFileTypes: true })).filter(file => file.isFile() && licenseName.test(file.name)).map(file => file.name).sort();
-    if (!files.length) noticeChecks.push({ name, version: item.version, path, file: null, status: 'Unknown', reason: 'no root license/notice text; inspect upstream source' });
+    const files = await originalNoticeFiles(join(root, path), name, item.version);
+    if (!files.length) {
+      const shippingGateExcluded = nativeProof.verified && name === nativeProof.name && item.version === nativeProof.version;
+      noticeChecks.push({ name, version: item.version, path, file: null, status: 'Unknown', shippingGateExcluded, reason: shippingGateExcluded ? 'Original license text is Unknown. Exact platform native code is excluded from this measured shipment; see nativeExclusionProof.' : 'no recognized original license/notice text; inspect upstream source' });
+      inventory.at(-1).originalLicenseStatus = 'Unknown';
+    }
     for (const file of files) {
-      const original = await readFile(join(root, path, file));
+      const original = await readFile(join(root, path, file.path));
       for (const [kind, notice, selected] of [['cli', cliNotice, cli.some(p => p.name === name)], ['checker', checkerNotice, checker.some(p => p.name === name)], ['generated-app', runtimeNotice, runtime.paths.includes(path)]]) {
-        if (selected) noticeChecks.push({ kind, name, version: item.version, path, file, sha256: sha256(original), exact: noticeContainsOriginal(notice, name, item.version, original) });
+        if (selected) noticeChecks.push({ kind, name, version: item.version, path, file: file.path, sourceKind: file.kind, sha256: sha256(original), exact: noticeContainsOriginal(notice, name, item.version, original) });
       }
     }
   }
@@ -181,14 +267,17 @@ export async function auditPackage({ root, packageRoot, delivery, tarball, skipN
   const auditResult = skipNetwork ? null : run(auditArgs);
   const security = auditResult ? { ...classifyAudit(auditResult, Object.values(packages).filter(item => item.dev).length), command: `npm ${auditArgs.join(' ')}`, exitStatus: auditResult.status, registry: 'https://registry.npmjs.org', npmVersion: run(['--version']).stdout?.trim() || null } : { status: 'Unknown', reason: 'network scan skipped' };
   const assetChecks = await exactAssets(root, packageRoot, delivery);
+  const installedPaths = new Set(inventory.filter(item => item.installed).map(item => item.path));
+  const runtimeMissing = classifyMissingDependencies(packages, runtime, installedPaths);
+  const toolchainMissing = classifyMissingDependencies(packages, toolchain, installedPaths);
   const mismatches = inventory.filter(item => item.installedVersionMatches === false || (!item.installed && !item.optional));
-  const failures = noticeChecks.filter(check => check.exact === false || check.status === 'Unknown');
+  const failures = noticeChecks.filter(check => check.exact === false || (check.status === 'Unknown' && !check.shippingGateExcluded));
   const tarballBytes = tarball ? await readFile(tarball) : undefined;
-  return { schemaVersion: 1, observedAt: new Date().toISOString(), node: process.version, lockSha256: sha256(lockBytes), packageRoot, delivery: delivery ?? null, tarball: tarballBytes ? { path: tarball, bytes: tarballBytes.length, sha256: sha256(tarballBytes), extractionBinding: 'Use the package verification receipt to bind this extracted directory to the tarball.' } : null, buildInventory,
-    status: security.status === 'ActionRequired' || mismatches.length || failures.length || runtime.missing.length || toolchain.missing.length || assetChecks.some(item => !item.exact) || bundleChecks.some(item => !item.exact) ? 'ActionRequired' : security.status === 'Unknown' || !delivery ? 'Unknown' : 'Verified',
+  return { schemaVersion: 1, observedAt: new Date().toISOString(), node: process.version, platform: process.platform, arch: process.arch, verdictScope: 'The actual candidate/consumer shipping gate on this host only; explicitly recorded source-license and inactive optional-platform Unknowns remain Unknown.', lockSha256: sha256(lockBytes), packageRoot, delivery: delivery ?? null, tarball: tarballBytes ? { path: tarball, bytes: tarballBytes.length, sha256: sha256(tarballBytes), extractionBinding: 'Use the package verification receipt to bind this extracted directory to the tarball.' } : null, buildInventory,
+    status: security.status === 'ActionRequired' || mismatches.length || failures.length || runtimeMissing.actionable.length || toolchainMissing.actionable.length || assetChecks.some(item => !item.exact) || bundleChecks.some(item => !item.exact) ? 'ActionRequired' : security.status === 'Unknown' || !delivery ? 'Unknown' : 'Verified',
     security, scopes: { bundledCli: cli, bundledChecker: checker, runtimeEngines, foundation, consumerBuildTools, consumerBuildToolClosureInstances: toolchain.paths.length, consumerBuildToolMissingDependencies: toolchain.missing, generatedAppClosureInstances: runtime.paths.length, generatedAppMissingDependencies: runtime.missing, inventoryInstances: inventory.length },
-    inventory, installedMismatches: mismatches, bundleChecks, noticeChecks, assetChecks,
-    limits: ['Declared runtime dependency/required-peer closure is conservative, not a measured browser bundle.', 'Optional packages absent for this OS remain lock inventory, not executed tests.', 'npm advisory responses are time-bound and do not prove absence of unknown vulnerabilities, malicious code, or application misuse.', 'Preserved notice bytes and SPDX metadata do not establish legal compliance or select the project license.', ...(delivery ? [] : ['No final application delivery path supplied; delivery of source kit/notices is Unknown.'])] };
+    inventory, installedMismatches: mismatches, bundleChecks, noticeChecks, assetChecks, nativeExclusionProof: nativeProof, missingDependencyDisposition: { generatedApp: runtimeMissing, consumerBuildTools: toolchainMissing },
+    limits: ['Declared runtime dependency/required-peer closure is conservative; the separately bound browser metafile measures this consumer only.', 'Optional packages absent for this OS remain lock inventory, not executed tests. Inactive optional-platform missing bundled versions and licenses remain Unknown.', 'The native canvas platform package original-license text remains Unknown even if its exclusion from this exact shipment is verified.', 'npm advisory responses are time-bound and do not prove absence of unknown vulnerabilities, malicious code, or application misuse.', 'Preserved notice bytes and SPDX metadata do not establish legal compliance or select the project license.', ...(delivery ? [] : ['No final application delivery path supplied; delivery of source kit/notices is Unknown.'])] };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -200,6 +289,6 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   if (!packageRoot || !output) throw new Error('Usage: node scripts/audit-package.mjs --package-root /extracted/package --output /receipt.json [--delivery /built/app] [--skip-network]');
   const receipt = await auditPackage({ root, packageRoot: resolve(packageRoot), delivery: option('--delivery') && resolve(option('--delivery')), tarball: option('--tarball') && resolve(option('--tarball')), skipNetwork: args.includes('--skip-network') });
   await writeFile(resolve(output), JSON.stringify(receipt, null, 2) + '\n');
-  console.log(JSON.stringify({ status: receipt.status, security: receipt.security.status, bundlePackages: receipt.scopes.bundledCli.length, runtimeClosure: receipt.scopes.generatedAppClosureInstances, noticeFailures: receipt.noticeChecks.filter(item => item.exact === false || item.status === 'Unknown').length, assetFailures: receipt.assetChecks.filter(item => !item.exact).length, output: resolve(output) }));
+  console.log(JSON.stringify({ status: receipt.status, security: receipt.security.status, bundlePackages: receipt.scopes.bundledCli.length, runtimeClosure: receipt.scopes.generatedAppClosureInstances, noticeFailures: receipt.noticeChecks.filter(item => item.exact === false || (item.status === 'Unknown' && !item.shippingGateExcluded)).length, noticeUnknowns: receipt.noticeChecks.filter(item => item.status === 'Unknown').length, assetFailures: receipt.assetChecks.filter(item => !item.exact).length, output: resolve(output) }));
   if (receipt.status !== 'Verified') process.exitCode = 1;
 }

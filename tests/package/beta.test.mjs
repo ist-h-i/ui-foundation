@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { chmod, cp, lstat, mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { dirname, resolve } from 'node:path';
+import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { run, checkoutIsolation } from '../../scripts/package-verification/run.mjs';
@@ -63,7 +63,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
         await mkdir(evidence, { recursive: true });
         await cp(candidate, resolve(evidence, 'candidate.tgz'));
         await run('tar', ['-xzf', candidate, '-C', evidence], { cwd: root, timeout: 15_000 });
-        for (const [source, target] of [['public', 'dist'], ['.ui', '.ui'], ['.agents', '.agents'], ['ui.config.yaml', 'ui.config.yaml'], ['consumer.ts', 'consumer.ts'], ['tsconfig.json', 'tsconfig.json']]) {
+        for (const [source, target] of [['public', 'dist'], ['bundle-metafile.json', 'bundle-metafile.json'], ['.ui', '.ui'], ['.agents', '.agents'], ['ui.config.yaml', 'ui.config.yaml'], ['consumer.ts', 'consumer.ts'], ['tsconfig.json', 'tsconfig.json']]) {
           const path = resolve(consumer, source);
           try { await lstat(path); }
           catch (error) { if (error.code === 'ENOENT') continue; throw error; }
@@ -196,6 +196,35 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(smoke.strictAot, true); assert.equal(smoke.inputAndProfileRetention, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
   assert.ok(smoke.servedAssetHashes > 20);
+  const metafileBytes = await readFile(resolve(consumer, 'bundle-metafile.json'));
+  const metafile = JSON.parse(metafileBytes);
+  assert.equal(smoke.bundle.metafile, 'consumer/bundle-metafile.json');
+  assert.equal(smoke.bundle.metafile_sha256, sha(metafileBytes));
+  assert.equal(smoke.bundle.delivery_root, 'consumer/dist');
+  const inputs = Object.keys(metafile.inputs).sort();
+  assert.ok(inputs.length > 0, 'actual esbuild input evidence is required');
+  assert.equal(smoke.bundle.input_count, inputs.length);
+  assert.equal(smoke.bundle.input_paths_sha256, sha(JSON.stringify(inputs)));
+  const canvasInputs = inputs.filter(path => /(?:^|\/)@napi-rs\/canvas(?:[-/]|$)/.test(path));
+  const nativeInputs = inputs.filter(path => path.endsWith('.node'));
+  assert.deepEqual(canvasInputs, [], 'native canvas exclusion must follow the actual bundle inputs');
+  assert.deepEqual(nativeInputs, [], 'actual bundle inputs must not contain native addons');
+  assert.deepEqual(smoke.bundle.optional_native_exclusion, {
+    package_family: '@napi-rs/canvas*', scope: 'this-esbuild-browser-bundle-inputs-only',
+    canvas_inputs: canvasInputs, native_addon_inputs: nativeInputs, license_status: 'Unknown',
+  });
+  const outputs = [];
+  const delivery = resolve(consumer, 'public');
+  for (const path of Object.keys(metafile.outputs).sort()) {
+    const destination = resolve(consumer, path);
+    const deliveryPath = relative(delivery, destination);
+    assert.ok(deliveryPath && !isAbsolute(deliveryPath) && deliveryPath !== '..' && !deliveryPath.startsWith('../'), `metafile output must be inside the delivered app: ${path}`);
+    const bytes = await readFile(destination);
+    assert.equal(bytes.length, metafile.outputs[path].bytes, path);
+    outputs.push({ path, delivery_path: deliveryPath, bytes: bytes.length, sha256: sha(bytes) });
+  }
+  assert.ok(outputs.length > 0, 'the bundle must contain emitted files');
+  assert.deepEqual(smoke.bundle.outputs, outputs, 'the report must bind every emitted output to its actual delivery bytes');
   finalReport = { ...smoke, skillReferences };
   t.diagnostic(`candidate sha256=${tarballDigest}; ${JSON.stringify(smoke)}`);
 });

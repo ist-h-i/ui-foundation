@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
 import { cp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
-import { extname, resolve } from 'node:path';
+import { extname, isAbsolute, relative, resolve } from 'node:path';
 import { build } from 'esbuild';
 import { transformAsync } from '@babel/core';
 import linkerPlugin from '@angular/compiler-cli/linker/babel';
@@ -14,9 +14,9 @@ import { chromium, expect } from '@playwright/test';
 const packageName = process.argv[2];
 const output = resolve('public');
 await mkdir(output, { recursive: true });
-await build({
+const bundle = await build({
   entryPoints: { main: 'compiled/consumer.js', 'assets/sheet-formula.worker': 'compiled/.ui/generated/angular/sheet-formula.worker.js' },
-  outdir: output, splitting: true, bundle: true, format: 'esm', target: 'es2022', minify: true, define: { ngDevMode: 'false' },
+  outdir: output, splitting: true, bundle: true, format: 'esm', target: 'es2022', minify: true, define: { ngDevMode: 'false' }, metafile: true,
   plugins: [{ name: 'angular-linker', setup(builder) {
     builder.onLoad({ filter: /\.mjs$/ }, async ({ path }) => {
       const source = await readFile(path, 'utf8');
@@ -27,6 +27,35 @@ await build({
     });
   }}],
 });
+const sha = value => createHash('sha256').update(value).digest('hex');
+assert.ok(bundle.metafile);
+const metafileText = JSON.stringify(bundle.metafile, null, 2) + '\n';
+// Keep provenance outside public/: the audit artifact does not become an app
+// asset. Preserve esbuild's actual inputs/outputs rather than a proposed graph.
+await writeFile('bundle-metafile.json', metafileText);
+const inputs = Object.keys(bundle.metafile.inputs).sort();
+assert.ok(inputs.length > 0, 'the consumer bundle must record its actual inputs');
+const canvasInputs = inputs.filter(path => /(?:^|\/)@napi-rs\/canvas(?:[-/]|$)/.test(path));
+const nativeInputs = inputs.filter(path => path.endsWith('.node'));
+assert.deepEqual(canvasInputs, [], 'optional native canvas must not enter this browser bundle');
+assert.deepEqual(nativeInputs, [], 'native addons must not enter this browser bundle');
+const outputs = [];
+for (const path of Object.keys(bundle.metafile.outputs).sort()) {
+  const deliveryPath = relative(output, resolve(path));
+  assert.ok(deliveryPath && !isAbsolute(deliveryPath) && deliveryPath !== '..' && !deliveryPath.startsWith('../'), `bundle output leaves the delivery root: ${path}`);
+  const bytes = await readFile(resolve(path));
+  assert.equal(bytes.length, bundle.metafile.outputs[path].bytes, path);
+  outputs.push({ path, delivery_path: deliveryPath, bytes: bytes.length, sha256: sha(bytes) });
+}
+assert.ok(outputs.length > 0, 'the consumer bundle must emit delivery files');
+const bundleEvidence = {
+  metafile: 'consumer/bundle-metafile.json', metafile_sha256: sha(metafileText),
+  delivery_root: 'consumer/dist', input_count: inputs.length, input_paths_sha256: sha(JSON.stringify(inputs)), outputs,
+  optional_native_exclusion: {
+    package_family: '@napi-rs/canvas*', scope: 'this-esbuild-browser-bundle-inputs-only',
+    canvas_inputs: canvasInputs, native_addon_inputs: nativeInputs, license_status: 'Unknown',
+  },
+};
 const assets = [];
 async function copyAsset(source, target) {
   const destination = resolve(output, target);
@@ -121,7 +150,7 @@ try {
   await expect(page.locator('ui-map canvas')).toBeVisible();
   for (const expected of ['/assets/sheet-formula.worker.js', '/assets/pdf/pdf.worker.mjs', '/assets/maplibre/maplibre-gl-worker.mjs']) assert.ok(workers.includes(expected), `worker not started: ${expected}`);
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ strictAot: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers }));
+  console.log(JSON.stringify({ strictAot: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
 } finally {
   await browser?.close();
   server.closeAllConnections();
