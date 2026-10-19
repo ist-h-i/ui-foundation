@@ -54,7 +54,7 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 ## 利用アプリに導入する
 
-現在はソースをチェックアウトしてCLIを実行します。npmへの公開はしていません。利用アプリのディレクトリを作業ディレクトリにし、チェックアウト内のtsxとCLIを指定します。
+現在はソースをチェックアウトしてCLIを実行します。npmへの公開はしていません。ローカルtarballでの導入と公開準備は[npm公開計画](docs/npm-release-plan.ja.md)にあります。利用アプリのディレクトリを作業ディレクトリにし、チェックアウト内のtsxとCLIを指定します。
 
 ```sh
 /path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts init

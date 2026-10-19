@@ -2,19 +2,42 @@
   "name": "ui-foundation",
   "version": "0.0.0",
   "private": true,
+  "bin": {
+    "ui-foundation": "dist/cli.js"
+  },
+  "files": [
+    "dist/cli.js",
+    "dist/check-ui.cjs",
+    "dist/checker-lib/",
+    "dist/CLI-NOTICE.txt",
+    "dist/CHECKER-NOTICE.txt",
+    "templates/angular/",
+    "skills/ui-development/",
+    "examples/ui.config.example.yaml",
+    "assets/pdf-source/",
+    "assets/third-party/",
+    "docs/*.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ist-h-i/ui-foundation.git"
+  },
   "description": "Generate persona profiles, two-layer design tokens, Tailwind themes and Angular foundations from one YAML configuration.",
   "type": "module",
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   },
   "scripts": {
+    "package:build": "tsx scripts/build-package.ts",
+    "prepack": "npm run package:build",
+    "test:package": "node --test tests/package/*.test.mjs",
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.example.yaml",
     "ui:check": "tsx src/cli.ts check --config examples/ui.config.example.yaml",
     "ui:check:warnings": "tsx src/warning-review-cli.ts",
     "typecheck": "tsc -p tsconfig.tools.json && ngc -p tsconfig.json --noEmit && npm run typecheck:ui:media && npm run typecheck:ui:runtime",
     "build": "npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css",
     "start": "npm run build && node scripts/serve.mjs",
-    "test": "npm run ui:check:warnings && npm run typecheck && npm run test:config && npm run test:generation && npm run test:static && npm run test:model && npm run test:ui && npm run test:svg-paint",
+    "test": "npm run ui:check:warnings && npm run typecheck && npm run test:config && npm run test:generation && npm run test:package && npm run test:static && npm run test:model && npm run test:ui && npm run test:svg-paint",
     "test:model": "tsx --test tests/model/*.test.ts",
     "test:config": "tsx --test tests/config/*.test.ts",
     "test:generation": "tsx --test --test-concurrency=1 tests/generation/*.test.ts",

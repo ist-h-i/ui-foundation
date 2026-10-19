@@ -22,7 +22,7 @@
 
 ## 開発ツールと共通UIの範囲
 
-単一リポジトリ、単一の非公開npmパッケージ、Angular/TypeScript、Tailwind v4、YAML設定、init/sync/check、プロファイル例、生成Skill、実ブラウザー検証。実行時のAI API、サーバー、DB、全画面YAML DSL、複数フレームワーク、UX総合点、npm公開は含めない。
+単一リポジトリ、単一の非公開npmパッケージ、Angular/TypeScript、Tailwind v4、YAML設定、init/sync/check、プロファイル例、生成Skill、実ブラウザー検証。実行時のAI API、サーバー、DB、全画面YAML DSL、複数フレームワーク、UX総合点は含めない。既存基盤の受入後、2026/10/19の追加依頼で[npm公開準備と公開計画](npm-release-plan.ja.md)を別工程に追加した。準備中は非公開設定を維持する。
 
 共通UIの拡張範囲は、[ユーザーの依頼原文](ui-library-request.ja.md)にあるすべてのカテゴリ・制御項目と共通基盤。[要求マトリクス](ui-library-matrix.json)の181行で既存機能での充足・変更・新規実装・依存関係・検証を追跡する。Cardの全領域、再帰構造のMenu、終了を保留できるDialog、時間指定と表示保持ができるSnackbarだけで打ち切らず、編集表・階層・日程・媒体・専門部品と、フォーム・言語・日付書式・RTL・プロファイルへの接続まで含める。
 

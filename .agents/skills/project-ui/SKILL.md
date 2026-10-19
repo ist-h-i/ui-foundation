@@ -115,7 +115,7 @@ Calendarは狭幅・文字拡大・LTR/RTLで、初期focus・矢印移動・月
 
 Kanbanの移動先selectは所在列・モデルと一致し、移動後の再作成でも一致することを確認する。列移動と先頭／末尾への順序移動後は、focusしたカード名とfocus枠が局所scroll領域内で読めること、Tabで続けられることを確認する。FlowEditorはSVG接続端と実nodeの位置・中心を照合し、長文・文字拡大・zoom・自動配置で実高に追随することを確認する。接続ラベルの全文と接続との対応、node/edge削除後の自前focusと外部focusの保持も確認する。Filterの固定演算子は入れ子・狭幅・文字拡大でも全文を読める既定表示を使い、語尾の省略で肯定／否定を曖昧にしない。
 
-フォーム・locale/日付書式・RTL/CDK Directionality・全カテゴリのプロファイル接続、Tree/Scheduler/編集表、媒体と専門部品を使う場合は、生成Skillに同梱する[利用契約](references/ui-library-runtime.md)を読む。部品は必要な画面だけで使用する。ソースcheckoutの`docs/ui-library-consumer-guide.ja.md`で正規依存とworker/asset/NOTICEの配信手順、`docs/ui-components.md`でカテゴリ別API、`docs/ui-library-matrix.json`で要求と実行済み証拠を確認する。実送信・保存・取消・Undoの成功をUIだけで確定しない。
+フォーム・locale/日付書式・RTL/CDK Directionality・全カテゴリのプロファイル接続、Tree/Scheduler/編集表、媒体と専門部品を使う場合は、生成Skillに同梱する[利用契約](references/ui-library-runtime.md)を読む。部品は必要な画面だけで使用する。ソースcheckout、または導入した`node_modules/<パッケージ名>/`の`docs/ui-library-consumer-guide.ja.md`で正規依存とworker/asset/NOTICEの配信手順、`docs/ui-components.md`でカテゴリ別APIを確認する。要求と過去の実行済み証拠はソースcheckoutの`docs/ui-library-matrix.json`を参照し、npm候補に同梱された証拠と推測しない。実送信・保存・取消・Undoの成功をUIだけで確定しない。
 
 TransferList/PickListのCVA値は安定キー配列またはnull。左右のnative checkboxは現在検索scopeの一時選択で、disabled/hidden/検索外の値を削除しない。追加上限はbatch全体で判定し、削除で上限超過を修復できる。未知・重複・不正モデルはValidatorで説明し値を保持する。callbackは同期・純粋で指定時trueのみ許可、例外は拒否する。pointer/draftは同じsnapshotとcanonicalキーを使い、同一turnのapp更新前にinvalidatePendingで古い操作を明示失効できる。
 Timeline/ActivityLogはoffset付きinstant、明示timeZoneとIntlで日時を表示し、missingとinvalid日時/種別を分ける。native detailsは投影DOMと編集を保持する。追加取得は同じTimeline/InfiniteScroll hostの未完了idにcompleteLoad/failLoadでackし、受理を確認してappがデータを追加する。IDは恒久・別bundle間一意を保証しない。reset/query更新前にはinvalidatePending、loader再作成・破棄後の古い結果は拒否する。実I/O/保存/Undo/業務認可はappが所有する。

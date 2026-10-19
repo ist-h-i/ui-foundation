@@ -1,7 +1,7 @@
 import { checkProject, initProject, syncProject } from './sync.ts';
 import { formatSourceReport } from './check/report.ts';
 
-const usage = 'Usage: tsx src/cli.ts <init|sync|check> [--config ui.config.yaml] [--dry-run (sync only)] [--from-output previous/path (sync only)] [--format text|json (check only)]';
+const usage = 'Usage: ui-foundation <init|sync|check> [--config ui.config.yaml] [--dry-run (sync only)] [--from-output previous/path (sync only)] [--format text|json (check only)]';
 async function main(args: string[]): Promise<void> {
   if (args.length === 0 || (args.length === 1 && ['--help', '-h'].includes(args[0]))) { console.log(usage); return; }
   const command = args.shift();
