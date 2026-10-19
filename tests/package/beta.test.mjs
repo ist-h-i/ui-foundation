@@ -81,6 +81,11 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   });
   const manifest = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
   assert.equal(manifest.private, true);
+  assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
+  assert.equal(manifest.license, 'MIT');
+  assert.equal(manifest.version, '0.1.0-beta.1');
+  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
+  const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
   const execute = (file, args, cwd = consumer, timeout = 120_000) => run(file, args, { cwd, timeout, signal: t.signal });
   const isolated = (file, args, timeout = 120_000) => execute('/usr/bin/sandbox-exec', ['-p', profile, file, ...args], consumer, timeout);
@@ -111,6 +116,9 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/application.ts'), 'export const consumerApplication = true;\n');
   await cli('sync');
+  for (const path of ['node_modules/' + manifest.name + '/LICENSE', '.ui/generated/UI-FOUNDATION-LICENSE.txt', '.agents/skills/project-ui/UI-FOUNDATION-LICENSE.txt']) {
+    assert.deepEqual(await readFile(resolve(consumer, path)), ownLicense, path);
+  }
   assert.equal(JSON.parse(await cli('check', '--format', 'json')).valid, true);
   const skillReferences = await verifySkillReferences(consumer);
   const candidateState = await snapshot(consumer);
@@ -193,6 +201,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   }));
   await isolated(process.execPath, [resolve(consumer, 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js'), '-p', 'tsconfig.json'], 180_000);
   const smoke = JSON.parse(await isolated(process.execPath, ['consumer-smoke.mjs', manifest.name], 180_000));
+  assert.deepEqual(await readFile(resolve(consumer, 'public/ui-foundation/LICENSE.txt')), ownLicense);
   assert.equal(smoke.strictAot, true); assert.equal(smoke.inputAndProfileRetention, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
   assert.ok(smoke.servedAssetHashes > 20);

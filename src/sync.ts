@@ -96,7 +96,10 @@ function projectContext(config: ResolvedConfig): string {
 
 export async function generatedFiles(config: ResolvedConfig): Promise<Map<string, string>> {
   const version = JSON.parse(await readFile(resolve(toolRoot, 'package.json'), 'utf8')).version as string;
+  const license = await readFile(resolve(toolRoot, 'LICENSE'), 'utf8');
   const files = new Map<string, string>([
+    [`${config.output}/UI-FOUNDATION-LICENSE.txt`, license],
+    [`${skillDirectory}/UI-FOUNDATION-LICENSE.txt`, license],
     [`${config.output}/tokens.css`, renderTokens(config)],
     [`${config.output}/tailwind.css`, renderTailwind(config)],
     [`${config.output}/resolved.json`, stableJSON(config)],

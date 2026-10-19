@@ -20,4 +20,4 @@ Angular/TypeScriptの既存standalone、signal、OnPush、native HTMLを使う�
 
 ## 公開
 
-`private: true`。10/19の追加依頼により、[npm公開準備](npm-release-plan.ja.md)の配布構成・tarball検証・文書・見積りを進める。registry公開、名前予約、ライセンスの確定、第三者への権利許諾は本人の判断前に行わない。関連する変更をまとめてcommitし、Draft PRで提示する。mergeとReady化はユーザーの明示的な判断まで行わない。
+`private: true`。10/19の追加依頼により、[npm公開準備](npm-release-plan.ja.md)の配布構成・tarball検証・文書・見積りを進める。本人の追加決定により、公開予定名`@hiroshi.inoue/ui-foundation`、初版`0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成コードのMIT License（Hiroshi Inoue）を反映する。第三者の既存条件は保持する。registry公開、名前予約、権限変更は行わない。関連する変更をまとめてcommitし、Draft PRで提示する。mergeとReady化はユーザーの明示的な判断まで行わない。

@@ -1,11 +1,12 @@
 {
-  "name": "ui-foundation",
-  "version": "0.0.0",
+  "name": "@hiroshi.inoue/ui-foundation",
+  "version": "0.1.0-beta.1",
   "private": true,
   "bin": {
     "ui-foundation": "dist/cli.js"
   },
   "files": [
+    "LICENSE",
     "dist/cli.js",
     "dist/check-ui.cjs",
     "dist/checker-lib/",
@@ -110,5 +111,11 @@
     "postcss-scss": "4.0.9",
     "postcss-selector-parser": "7.1.6",
     "postcss-value-parser": "4.2.0"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "tag": "beta"
   }
 }

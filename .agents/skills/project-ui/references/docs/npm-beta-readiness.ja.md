@@ -1,6 +1,6 @@
 # 公開ベータの利用・更新契約
 
-2026/10/19の追加依頼に対応する技術準備。公開名・自作コードのライセンスは未定で、`private: true`を維持する。ローカルの候補検証が通っても、権利許諾・npm公開・実サービス採用が完了したとは扱わない。
+2026/10/19の追加依頼に対応する技術準備。本人の決定により、公開予定名は`@hiroshi.inoue/ui-foundation`、初版は`0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）とする。第三者資産の既存条件は保持する。npm未公開で`private: true`を維持し、公開権限・2FAは別途確認する。ローカル候補の検証をnpm公開・実サービス採用の完了と扱わない。
 
 ## ベータで受け入れる範囲
 
@@ -20,6 +20,8 @@
 開発元を参照できない別プロジェクトへtgzを導入し、インストールされたbinでinit/dry-run/sync/checkを行う。[導入コマンド](npm-release-plan.ja.md#ローカル候補の作成と導入)を参照する。`checks.source_roots`には実際のアプリソースを用意する。
 
 生成Skillの`references/docs/`へAPI・設計・利用ガイド・ADRを同梱する。アプリのルートに開発元のdocsがあるとは仮定しない。要求マトリクスや開発元の保存記録は、導入したアプリの検証成功を証明しない。配布外の過去ログやfixtureへの参照は必須入力にしない。
+
+自作部分のMIT本文は生成outputと生成Skillの`UI-FOUNDATION-LICENSE.txt`に同梱する。利用アプリのroot LICENSEを上書きせず、配布成果物には`ui-foundation/LICENSE.txt`として保存する。この許諾で利用アプリ自身や第三者コードの条件を変更しない。
 
 第三者通知とPDF source kitはnpm内の`assets/third-party/`・`assets/pdf-source/`を**全内容**配信成果物へコピーする。生成checkerのCHECKER-NOTICE.txtとCLIのCLI-NOTICE.txtは対象が別。生成アプリの基盤依存にはFOUNDATION-NOTICES.txtも必要。[依存監査](npm-beta-dependency-audit.ja.md)と[資産配信](ui-library-consumer-guide.ja.md#css-と配布資産)を参照する。最終HTTP応答のバイト列とworker実行を、単なるファイル存在とは分けて確認する。
 
@@ -55,4 +57,4 @@ CSV出力は数式対策を既定で有効にするが、既存TSV/コピーは�
 
 ## 公開ゲート
 
-技術ゲートは配布境界、強制隔離された導入、生成UIのstrict AOT/build/操作、worker/通知/source kit、版更新と復旧、依存監査、対象検証と独立レビュー。公開ゲートはさらに名前・version・自作コードと生成コードの利用条件・公開権限・本人の公開指示を必要とする。今回は後者を未決定・保留とする。
+技術ゲートは配布境界、強制隔離された導入、生成UIのstrict AOT/build/操作、worker/通知/source kit、版更新と復旧、依存監査、対象検証と独立レビュー。公開ゲートはさらに名前・version・自作コードと生成コードの利用条件・公開権限・本人の公開指示を必要とする。名称・version・MITは確定した。アカウントの認証・2FA・公開権限の確認と本人の公開指示は未完了で、公開日は設定しない。

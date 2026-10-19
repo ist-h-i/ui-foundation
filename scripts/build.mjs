@@ -46,4 +46,6 @@ await copyFile('node_modules/pdfjs-dist/LICENSE','dist/fixture-app/assets/pdf/LI
 await copyFile('node_modules/maplibre-gl/LICENSE.txt','dist/fixture-app/assets/maplibre/LICENSE.txt');
 await cp('assets/pdf-source','dist/fixture-app/assets/pdf/source',{recursive:true});
 await cp('assets/third-party','dist/fixture-app/assets/third-party',{recursive:true});
+await mkdir('dist/fixture-app/ui-foundation', { recursive: true });
+await copyFile('.ui/generated/UI-FOUNDATION-LICENSE.txt', 'dist/fixture-app/ui-foundation/LICENSE.txt');
 console.log('Built Angular fixture app in dist/fixture-app');

@@ -1,0 +1,28 @@
+{
+  "base": "3ef614710efb56c6e3e3c499ab276d67ce4d004c",
+  "changed_inputs": [
+    {
+      "path": "package.json",
+      "before": "db7366661bd4db9c0919660a7eb92a21a56c0658389c4b4557a0f1ee8142d788",
+      "after": "da97c9ec2ab3309e5171ae1cd6d6a59929781650eb30a6f483d1be892b5e0967"
+    },
+    {
+      "path": "package-lock.json",
+      "before": "2e9db4ca1de76eec6390409938bbf6f111c86fac5a24de860ad08574b2708952",
+      "after": "195b669709037d403699025b8b9e5038e7124cfe3b93845d2530340bd280e88c"
+    },
+    {
+      "path": "src/sync.ts",
+      "before": "d982ebd700e720d27d677d8a5406ea71308deee013904d94dee8cba84a11ad0f",
+      "after": "6225ba00f604cad2221d8e8b29945f679cf9a2cb1afd69744ab509c5e51e3d3b"
+    }
+  ],
+  "reasons": {
+    "package.json": "Only scoped name/version/MIT/files LICENSE/publishConfig. private true and dependencies unchanged.",
+    "package-lock.json": "Root name/version/license only; all dependency entries exact JSON equality checked.",
+    "src/sync.ts": "Read root MIT text and add two manifest-owned license copies. No checker, template, policy, diagnostic changes."
+  },
+  "review_records_changed": false,
+  "suppression_added": false,
+  "limits": "122 classified warnings remain Unknown. Final check required after refresh."
+}

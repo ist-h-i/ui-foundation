@@ -1,8 +1,10 @@
 # 公開前ベータ候補の変更記録
 
-未公開の準備記録。公開名・version・ライセンスは確定していない。公開日や権利許諾を示すものではない。
+未公開の`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`準備記録。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持する。`private: true`を維持し、公開日は未定。
 
 ## この候補
+
+- 自作MIT本文をnpm候補・生成output・生成Skill・配布アプリへ保存し、同一バイトを検査する。
 
 - checkout不要のCLI・検査器・TypeScript標準lib、依存inventoryと原通知を同梱する。
 - 生成SkillへAPI文書とADRを同梱し、配布外の保存記録を必須参照にしない。
