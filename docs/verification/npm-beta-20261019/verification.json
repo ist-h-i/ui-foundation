@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-19T07:00:12.427022+00:00",
+  "verified_candidate_commit": "5844a9cd5d0de8a85590e7399582e499d040046d",
+  "candidate": {
+    "sha256": "36c7c4ad1ef7d26df56413919279c0674dab0b9d5d35613619fa0ef4e5337eb4",
+    "files": 315,
+    "unpacked_bytes": 20359117,
+    "evidence_directory": "/Users/inouehiroshi/.codex/visualizations/2026/10/19/01a15268-cee4-78d3-8df1-c00f00410fff/npm-beta/package-test-2026-10-19T06-54-33-539Z",
+    "report_sha256": "a2637b6763a86e702423b18cdf88d831ae383da664d12029c3e3e30115e9da39",
+    "metafile_sha256": "0524c2b58f1f6991c374f9ae2e247092971958fa69aff6056f092e4e707ea5cf",
+    "compressed_bytes": 7074292,
+    "post_record_pack_boundary": {
+      "files_identical": 315,
+      "source_byte_mismatches": 0,
+      "verification_records_excluded": true
+    }
+  },
+  "support": {
+    "node": "v24.19.0",
+    "os": "darwin",
+    "arch": "arm64",
+    "angular_cdk": "22.2.1",
+    "typescript": "6.0.3",
+    "browser": "Playwright Chromium"
+  },
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "result": "passed: tools/Angular/media/runtime",
+      "source_commit": "7da6c9a21279bf4e644250c866a77ad9f23abf83",
+      "applicability": "Typed implementation/tool sources unchanged through candidate; later changes are docs, audit/package JS harness and review input metadata."
+    },
+    {
+      "command": "npm run test:config",
+      "passed": 72
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/generation/sync-lock.test.ts tests/generation/sync.test.ts tests/generation/output-migration.test.ts",
+      "passed": 28,
+      "unchanged_files": [
+        "src/sync.ts",
+        "src/sync-lock.ts"
+      ],
+      "final_lock_replay_passed": 6
+    },
+    {
+      "command": "node --import tsx --test tests/static/warning-review.test.ts tests/generation/skill-docs.test.ts",
+      "passed": 11
+    },
+    {
+      "command": "npm run ui:check",
+      "result": "passed:201files10308checks0errors122unverified334exceptions",
+      "source_commit": "7da6c9a21279bf4e644250c866a77ad9f23abf83"
+    },
+    {
+      "command": "npm run ui:check:warnings",
+      "result": "passed:122/122 classified,0sourceerrors,0unclassified,0stale",
+      "source_commit": "a7cc066bbc5bab5f7cdce562adaf0d85b511ae1d",
+      "log_sha256": "5d3b6381ae2c1a7aa9f6f97559cccb1282e07275c6f88c1a46f92a78d13cd08e",
+      "afterward": "5844a9cd only removes duplicate documentation argument and regenerates its reference/manifest; canonical sync dry-run reports current and Skill-link test passes."
+    },
+    {
+      "command": "npm run test:package:audit",
+      "passed": 9,
+      "source_commit": "a7cc066bbc5bab5f7cdce562adaf0d85b511ae1d"
+    },
+    {
+      "command": "npm run test:package",
+      "passed": 2,
+      "source_commit": "5844a9cd5d0de8a85590e7399582e499d040046d",
+      "duration_ms": 139614,
+      "log_sha256": "a779b871585a0ce87dc075d67aab7053acc632eda19ca8b1559f00a937aeb140",
+      "smoke": {
+        "strictAot": true,
+        "inputAndProfileRetention": true,
+        "sheetCalculation": true,
+        "pdfCanvas": true,
+        "mapCanvas": true,
+        "servedAssetHashes": 221,
+        "fontSizes": [
+          "18px",
+          "16px"
+        ],
+        "workers": [
+          "/assets/sheet-formula.worker.js",
+          "/assets/pdf/pdf.worker.mjs",
+          "/assets/maplibre/maplibre-gl-worker.mjs"
+        ],
+        "bundle": {
+          "metafile": "consumer/bundle-metafile.json",
+          "metafile_sha256": "0524c2b58f1f6991c374f9ae2e247092971958fa69aff6056f092e4e707ea5cf",
+          "delivery_root": "consumer/dist",
+          "input_count": 1203,
+          "input_paths_sha256": "9169b2daec4b77c946559d109b178bcb028a8a2282d1f1056bba0059b36bfbd1",
+          "outputs": [
+            {
+              "path": "public/JsBarcode-5WSVOVEY.js",
+              "delivery_path": "JsBarcode-5WSVOVEY.js",
+              "bytes": 67524,
+              "sha256": "53372ed378960dd37847ce09d50c9cf21613588cc5a0c966e0fee10b9fb52dd4"
+            },
+            {
+              "path": "public/assets/sheet-formula.worker.js",
+              "delivery_path": "assets/sheet-formula.worker.js",
+              "bytes": 328679,
+              "sha256": "45a8d0d7e5b363bfa49a81d876572d94dcbc991bfcaf641e98a0293139d6f392"
+            },
+            {
+              "path": "public/browser-MEOKFDMR.js",
+              "delivery_path": "browser-MEOKFDMR.js",
+              "bytes": 24267,
+              "sha256": "2b9e3ff85a2ffc060d7d4352e16f13f1cf0bd17100c97686155dff32d441decb"
+            },
+            {
+              "path": "public/charts-ZQRUQITL.js",
+              "delivery_path": "charts-ZQRUQITL.js",
+              "bytes": 261877,
+              "sha256": "0eba5c9ee2d1f3bb4275fcfa2ac335d32047242d0ddb323364ba8f9f855492d5"
+            },
+            {
+              "path": "public/chunk-74UKFFWV.js",
+              "delivery_path": "chunk-74UKFFWV.js",
+              "bytes": 52874,
+              "sha256": "dddc191c5fd7559652d0b149c1b4821441e3442033694dc386ee3f4b6ad39dc6"
+            },
+            {
+              "path": "public/chunk-7VFPSVTS.js",
+              "delivery_path": "chunk-7VFPSVTS.js",
+              "bytes": 46252,
+              "sha256": "2d2fde594fdaa67e040c1a1a203babaa53ebeb8c86487283b2d829078b7a2f18"
+            },
+            {
+              "path": "public/chunk-BKCE7NSH.js",
+              "delivery_path": "chunk-BKCE7NSH.js",
+              "bytes": 3015,
+              "sha256": "c2fee2482f6743c472066a27b7444e55715728125e28ca71e8715628d322d873"
+            },
+            {
+              "path": "public/chunk-CR2C4CWR.js",
+              "delivery_path": "chunk-CR2C4CWR.js",
+              "bytes": 250650,
+              "sha256": "e768afd6aee988e20f36c2dea7fb208d5a7ee6f7eb3e4b8e668b7f2cc29483de"
+            },
+            {
+              "path": "public/chunk-ESAHZO5C.js",
+              "delivery_path": "chunk-ESAHZO5C.js",
+              "bytes": 49502,
+              "sha256": "3c32c46714c33dfb42e4c04f016b320cb68ae08f0e8dee8d9b848cf64b5671c6"
+            },
+            {
+              "path": "public/chunk-GY2DLNKD.js",
+              "delivery_path": "chunk-GY2DLNKD.js",
+              "bytes": 86904,
+              "sha256": "ec1745f1bfd39a4fb09dc729767c667e76cc11c9550f37a4497089ce7b876d18"
+            },
+            {
+              "path": "public/chunk-ILE44FN6.js",
+              "delivery_path": "chunk-ILE44FN6.js",
+              "bytes": 1502,
+              "sha256": "25e092d7c07091d3e184c7e799a6b8148827744e2275e1e1187fee3a5ea19bac"
+            },
+            {
+              "path": "public/chunk-K7PBZN73.js",
+              "delivery_path": "chunk-K7PBZN73.js",
+              "bytes": 43324,
+              "sha256": "733156a14824ca12c673c28b378310a5fcef524dc789a18a2b856c02737aa441"
+            },
+            {
+              "path": "public/chunk-LVHFVIOB.js",
+              "delivery_path": "chunk-LVHFVIOB.js",
+              "bytes": 26553,
+              "sha256": "d6737b738d1e760ccfe51576f651c6468540fe255b621547b1606f84ec97000c"
+            },
+            {
+              "path": "public/chunk-OOJM4CTU.js",
+              "delivery_path": "chunk-OOJM4CTU.js",
+              "bytes": 638,
+              "sha256": "9dbaaa1b267ebd74b96fc498735a78d76804f1e96e532871291c937cf83694e7"
+            },
+            {
+              "path": "public/chunk-PK77Q5ZU.js",
+              "delivery_path": "chunk-PK77Q5ZU.js",
+              "bytes": 3216,
+              "sha256": "fc473829164281837db2b29ea18183a9b6d7182c4d98f6c98235dc3a706e0cc9"
+            },
+            {
+              "path": "public/chunk-RJ2NEQ4U.js",
+              "delivery_path": "chunk-RJ2NEQ4U.js",
+              "bytes": 200366,
+              "sha256": "f731fa037acfbed113b2fca2753dec1a490de9d7883ea45c033c512579a74c0d"
+            },
+            {
+              "path": "public/chunk-URW62OZJ.js",
+              "delivery_path": "chunk-URW62OZJ.js",
+              "bytes": 146025,
+              "sha256": "e9d53b6157e62eadbf5513e0ee0a9897618781749af1f735bb3994aa32aa31aa"
+            },
+            {
+              "path": "public/chunk-XVMV45CE.js",
+              "delivery_path": "chunk-XVMV45CE.js",
+              "bytes": 37679,
+              "sha256": "b486e58fc902f3ee51944ce30f9be60419b3a547c952f9200093d9fef174c819"
+            },
+            {
+              "path": "public/chunk-YUPSXWXX.js",
+              "delivery_path": "chunk-YUPSXWXX.js",
+              "bytes": 152200,
+              "sha256": "d071b59eea3349ad4454456ff59210195f1f0a589fbb86c2f2ddecc27709dc26"
+            },
+            {
+              "path": "public/components-24JU4CV2.js",
+              "delivery_path": "components-24JU4CV2.js",
+              "bytes": 261965,
+              "sha256": "1760fff6d078c49c7283a30859dde740b60f57a0ff5fb252fcf95fc8c7de2de2"
+            },
+            {
+              "path": "public/core-TH54V4MQ.js",
+              "delivery_path": "core-TH54V4MQ.js",
+              "bytes": 4678,
+              "sha256": "6eca70e19b8ff64f9014f64ece3a5c2e68b4b35adc81b863dc286b8349a4a35a"
+            },
+            {
+              "path": "public/dist-3GECEHAP.js",
+              "delivery_path": "dist-3GECEHAP.js",
+              "bytes": 503,
+              "sha256": "2074abc53c71978b198caf29dd7a4ee564390781bdf7f5ab99fca4212c5eabad"
+            },
+            {
+              "path": "public/dist-AJZQIIRL.js",
+              "delivery_path": "dist-AJZQIIRL.js",
+              "bytes": 1447,
+              "sha256": "1c22c3c556be5471b369dc59427b9ec16d85b1513ed1bb5da8952f0a09c0d4cb"
+            },
+            {
+              "path": "public/dist-BJ5VPFSW.js",
+              "delivery_path": "dist-BJ5VPFSW.js",
+              "bytes": 2195,
+              "sha256": "1c1e308b4d8cf29f00b669e775d8fb933132ca22fa500ee4969821556de43e2b"
+            },
+            {
+              "path": "public/dist-F4IHLCNN.js",
+              "delivery_path": "dist-F4IHLCNN.js",
+              "bytes": 98050,
+              "sha256": "08807f0c4774e5ef607a543312dbbe69b0fc4a122e58dad413a54071e571fe5e"
+            },
+            {
+              "path": "public/dist-GVQ3OKZM.js",
+              "delivery_path": "dist-GVQ3OKZM.js",
+              "bytes": 604,
+              "sha256": "11f0aad7c991b441c9135ff1178bb12cc2b52f7491056e13c2845faa1239c816"
+            },
+            {
+              "path": "public/dist-GYOAGQMX.js",
+              "delivery_path": "dist-GYOAGQMX.js",
+              "bytes": 313,
+              "sha256": "96c74cc0bf462046366795b8e5551878cedfb9c8c655f5923cbfa0828446a62b"
+            },
+            {
+              "path": "public/dist-HIWMGCHF.js",
+              "delivery_path": "dist-HIWMGCHF.js",
+              "bytes": 893,
+              "sha256": "8289ce48647c175e5a5cdcadec3852173a07d0345f6287101d823d86e7ec9090"
+            },
+            {
+              "path": "public/dist-JHABT4R6.js",
+              "delivery_path": "dist-JHABT4R6.js",
+              "bytes": 1377,
+              "sha256": "dd2b287ed4521fe6bd6d3aaa4c1b495e0428586c80299c90f7717c14a8e68bf0"
+            },
+            {
+              "path": "public/dist-NVTEFXDH.js",
+              "delivery_path": "dist-NVTEFXDH.js",
+              "bytes": 2536,
+              "sha256": "870d8fca5b0b3c6cc578b3a3edb45c649d9086d120af9ca5474994ce5ec8a9aa"
+            },
+            {
+              "path": "public/dist-OIP5ER3L.js",
+              "delivery_path": "dist-OIP5ER3L.js",
+              "bytes": 12647,
+              "sha256": "c29d59220bc496ddb05b035f51c7ee7f61464fa2c15c403c95fef07de0e992c9"
+            },
+            {
+              "path": "public/dist-PW65ITFH.js",
+              "delivery_path": "dist-PW65ITFH.js",
+              "bytes": 29408,
+              "sha256": "c92d6095afb93015423b6f073b18d48c64347c0fa38350d3bca36d24a62058c0"
+            },
+            {
+              "path": "public/dist-QXRKCVFO.js",
+              "delivery_path": "dist-QXRKCVFO.js",
+              "bytes": 100931,
+              "sha256": "0b64808f03a5a6a0f6bc0a25c31ba834cc4c8c883fb3a2a202fc4b5828e84780"
+            },
+            {
+              "path": "public/dist-YQ5FSMQR.js",
+              "delivery_path": "dist-YQ5FSMQR.js",
+              "bytes": 9553,
+              "sha256": "a9eb4ec161c5f1ed02acae6c4e10bdfda1831ccd8e8e44a98b730be8099e7cdc"
+            },
+            {
+              "path": "public/dist-ZQZP5V34.js",
+              "delivery_path": "dist-ZQZP5V34.js",
+              "bytes": 29134,
+              "sha256": "083a6d523aef4f056e87c5a70f212ab27d37b918ad7f33ff3f1e36671b2a5140"
+            },
+            {
+              "path": "public/main.js",
+              "delivery_path": "main.js",
+              "bytes": 1059673,
+              "sha256": "61ef731a628e9f48ef428cc832a02906263d7d04b97b258b85bdc04577688259"
+            },
+            {
+              "path": "public/maplibre-gl-7MXTVC5W.js",
+              "delivery_path": "maplibre-gl-7MXTVC5W.js",
+              "bytes": 1073166,
+              "sha256": "3447786325e13f0e1e1ee8877df3fcf48d78351c04b6aea294e7f57985410a15"
+            },
+            {
+              "path": "public/pdf-LWQFMWK7.js",
+              "delivery_path": "pdf-LWQFMWK7.js",
+              "bytes": 432564,
+              "sha256": "eca1023e20afb785c20b0b58be4e9635c327dfeb812a59500c89ed2de022c0e9"
+            },
+            {
+              "path": "public/renderers-5G3UNP6G.js",
+              "delivery_path": "renderers-5G3UNP6G.js",
+              "bytes": 34144,
+              "sha256": "11f52c48f8583b6f46daf068fb00369133bd0b7ed971ea2a07b0905d4dda62dc"
+            }
+          ],
+          "optional_native_exclusion": {
+            "package_family": "@napi-rs/canvas*",
+            "scope": "this-esbuild-browser-bundle-inputs-only",
+            "canvas_inputs": [],
+            "native_addon_inputs": [],
+            "license_status": "Unknown"
+          }
+        },
+        "skillReferences": 80
+      }
+    },
+    {
+      "command": "node scripts/audit-package.mjs --package-root <evidence>/package --delivery <evidence>/consumer/dist --tarball <evidence>/candidate.tgz --output docs/verification/npm-beta-20261019/dependency-audit.json",
+      "result": "Verified for actual shipment/consumer/host only",
+      "receipt_sha256": "9b127fc349ea61285329f9a7dca1e521222b9c7516ef6e17ba825c1c4d26ef42",
+      "known_advisories": 0,
+      "audit_dependency_count": 293,
+      "original_notice_exact": 149,
+      "original_notice_unknown_nonshipped": 1,
+      "asset_checks": 40,
+      "bound_browser_outputs": 39,
+      "inactive_optional_missing_unknown": 5
+    }
+  ],
+  "independent_reviews": [
+    {
+      "file": "independent-review-initial.md",
+      "sha256": "17277668cd2e2a1a341fb49e676e06436061e80e1acc5a4247bde00d53c3c5df"
+    },
+    {
+      "file": "independent-review-inputs.md",
+      "sha256": "10ace3798885e8288159bb7b49f17ffc6bf13e5bb3ac1d533829dd913a8fb44a"
+    },
+    {
+      "file": "independent-review-shipping.md",
+      "sha256": "3458be55faaf7a5b0ac64f9de5b5a6096619f4c7005f0f1898c3bb167423ede8"
+    }
+  ],
+  "estimate": {
+    "technical_integration_target": "2026-10-23 tentative",
+    "technical_recheck_ai_hours": [
+      0,
+      1
+    ],
+    "human_integration_hours": [
+      0.25,
+      1
+    ],
+    "human_integration_representative_hours": 0.5,
+    "publication_date": null,
+    "post_decision_ai_hours": [
+      2,
+      4
+    ],
+    "human_publication_decisions_hours": [
+      1,
+      3
+    ],
+    "human_publication_representative_hours": 2,
+    "human_actual_hours": null
+  },
+  "gantt": {
+    "url": "https://docs.google.com/spreadsheets/d/1mn0avjunNZtAaDdBvmkhX5spkx0DgCwVHhV03dtu8hs/edit?gid=1115838130#gid=1115838130",
+    "state": "U3.1 verified/integration pending; U3.2 held/undated",
+    "remaining_human_all_projects_hours": 14,
+    "weekly_allocated_human_hours": 12,
+    "undated_publication_human_hours": 2,
+    "final_readback_sha256": "b2e3bfea967d90eded0a1e95f5061d1da370e728051b034e7aab3d161e72763c"
+  },
+  "publication": {
+    "performed": false,
+    "name_and_license": "undecided; provisional package name/version retained",
+    "private": true,
+    "merged": false,
+    "pull_request": "https://github.com/ist-h-i/ui-foundation/pull/22"
+  },
+  "unverified": [
+    "Full npm test not rerun; earlier generation consumer480s timeout remains historical and separate from passing new tgz consumer.",
+    "Other Node/OS/browser engines, SSR, registry publish/freshregistry install and account permissions are unverified.",
+    "Native platform original license1 and inactive WASI dependency versions/licenses/execution5 remain Unknown, excluded only from current measured shipment gate."
+  ],
+  "preserved_failure_receipts": [
+    "dependency-audit-initial.json",
+    "warning-input-reaudit.json"
+  ]
+}
