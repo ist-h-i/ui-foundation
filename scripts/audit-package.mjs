@@ -161,8 +161,19 @@ export async function nativeExclusionProof(root, packageRoot, delivery, tarball)
   } catch (error) { return { ...proof, reason: `Missing or invalid exclusion evidence: ${error.message}` }; }
 }
 
+export async function ownLicenseChecks(root, packageRoot, delivery) {
+  const original = await readFile(join(root, 'LICENSE'));
+  const targets = [{ kind: 'self-license-package', path: join(packageRoot, 'LICENSE') }];
+  if (delivery) targets.push({ kind: 'self-license-delivery', path: join(delivery, 'ui-foundation/LICENSE.txt') });
+  return Promise.all(targets.map(async target => {
+    let actual;
+    try { actual = await readFile(target.path); } catch { /* Missing is actionable. */ }
+    return { kind: target.kind, source: 'LICENSE', target: target.path, sha256: sha256(original), bytes: original.length, exact: !!actual?.equals(original) };
+  }));
+}
+
 async function exactAssets(root, packageRoot, delivery) {
-  const results = [];
+  const results = await ownLicenseChecks(root, packageRoot, delivery);
   for (const directory of ['assets/pdf-source', 'assets/third-party']) {
     for (const name of await regularFiles(join(root, directory))) {
       const source = await readFile(join(root, directory, name));

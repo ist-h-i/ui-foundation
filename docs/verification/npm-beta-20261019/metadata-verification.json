@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "source_commit": "4820be8309d503026c1b085684b1d684e9c95f0c",
+  "metadata": {
+    "name": "@hiroshi.inoue/ui-foundation",
+    "version": "0.1.0-beta.1",
+    "license": "MIT",
+    "copyright": "2026 Hiroshi Inoue",
+    "private": true,
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org/",
+      "access": "public",
+      "tag": "beta"
+    }
+  },
+  "candidate": {
+    "sha256": "0cd6d4ffe7e6d4768713d65fd16485b6de014c5b5afcae55dedfe4377c1a8567",
+    "files": 316,
+    "compressed_bytes": 7075534,
+    "unpacked_bytes": 20362718,
+    "evidence_directory": "/Users/inouehiroshi/.codex/visualizations/2026/10/19/01a15268-cee4-78d3-8df1-c00f00410fff/npm-beta/package-test-2026-10-19T14-35-33-625Z",
+    "report_sha256": "8f2c2bf81bbca573c41a5dc15dee6e4f53bb5b94ca458e1cda8c6b792f735e69",
+    "license_sha256": "8a37eec5a3c72f402f170a31547a367d5d3f8d252538dbc72dfe44d9a088f5cd",
+    "own_license_exact_in_package_generated_output_skill_delivery": true,
+    "post_record_pack_boundary": {
+      "files_identical": 316,
+      "source_byte_mismatches": 0,
+      "verification_records_excluded": true
+    }
+  },
+  "checks": {
+    "typecheck": "passed: tools/Angular/media/runtime",
+    "focused_generation": "2/2 passed",
+    "audit_unit": "10/10 passed",
+    "warning_classification": "122/122 classified; 0 source errors; 0 unclassified; 0 stale; retained Unknown",
+    "package": "2/2 passed; enforced checkout read-denial; offline distribution; A/B/A update/rollback; strict AOT; browser/3 workers",
+    "served_asset_hashes": 222,
+    "skill_references": 80,
+    "final_audit": "Verified",
+    "security_advisories": 0,
+    "security_inventory_instances": 293,
+    "assets_exact": 42,
+    "native_license_unknown_shipping_excluded": true
+  },
+  "independent_review": "independent-review-metadata.md; no findings",
+  "account": {
+    "username_user_selected": "hiroshi.inoue",
+    "browser_account_observed": "hiroshi.inoue",
+    "cli_whoami_verified": "hiroshi.inoue",
+    "email_verified": true,
+    "tfa_raw_value": false,
+    "two_factor_configuration": "disabled; user explicitly deferred setup",
+    "scope": "Personal scope matches authenticated username; actual publication is not exercised",
+    "publication_authorization": false
+  },
+  "limits": [
+    "private:true retained; no registry writes, name reservations, permission changes, Ready, merge or publication",
+    "CLI username and verified email confirmed. 2FA is disabled and explicitly deferred by user. No package write/publication permission test.",
+    "Node24.19.0/macOSarm64/AngularCDK22.2.1/TS6.0.3/Chromium only",
+    "Native original license Unknown and five inactive optional WASI dependencies remain Unknown",
+    "Full npm test and published registry installation not executed"
+  ],
+  "estimates": {
+    "human_integration_hours": [
+      0.25,
+      1
+    ],
+    "human_auth_publication_decision_hours": [
+      0.5,
+      1.5
+    ],
+    "human_auth_publication_representative_hours": 1,
+    "ai_after_publication_authorization_hours": [
+      1,
+      2
+    ],
+    "publication_date": null,
+    "actual_human_hours": null
+  },
+  "base_main": {
+    "commit": "275b710fa799d4fd564312d05049cebe981ea69c",
+    "merged_pr": 22,
+    "merged_at": "2026-10-19T14:38:02Z",
+    "note": "Previous preparation PR merged separately while this metadata work was running. New metadata/license additions remain unmerged."
+  },
+  "additional_draft_pr": "https://github.com/ist-h-i/ui-foundation/pull/23"
+}

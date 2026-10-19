@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { classifyAudit, noticeContainsOriginal, inventoryMatchesNotice, resolveLockedDependency, dependencyClosure, classifyMissingDependencies, originalNoticeFiles, canExcludeNativeNotice, nativeExclusionProof, sha256 } from '../../scripts/audit-package.mjs';
+import { classifyAudit, noticeContainsOriginal, inventoryMatchesNotice, resolveLockedDependency, dependencyClosure, classifyMissingDependencies, originalNoticeFiles, canExcludeNativeNotice, nativeExclusionProof, sha256, ownLicenseChecks } from '../../scripts/audit-package.mjs';
 
 const response = ({ high = 0, critical = 0, dev = 30 } = {}) => ({ status: high || critical ? 1 : 0, stdout: JSON.stringify({ auditReportVersion: 2, vulnerabilities: high || critical ? { vulnerable: {} } : {}, metadata: { vulnerabilities: { info: 0, low: 0, moderate: 0, high, critical, total: high + critical }, dependencies: { dev } } }) });
 
@@ -105,4 +105,23 @@ test('native exclusion checks saved metafile, emitted output bytes and actual na
   assert.equal((await nativeExclusionProof(source, packageRoot, delivery, tarball)).noNativeFiles, false);
   await rm(join(root, 'consumer/bundle-metafile.json'));
   assert.equal((await nativeExclusionProof(source, packageRoot, delivery, tarball)).verified, false);
+});
+
+
+test('self-license gate rejects missing or modified package and final-delivery text', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'self-license-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const pkg = join(root, 'package'), delivery = join(root, 'delivery');
+  await mkdir(pkg); await mkdir(join(delivery, 'ui-foundation'), { recursive: true });
+  const original = await readFile(new URL('../../LICENSE', import.meta.url));
+  await writeFile(join(root, 'LICENSE'), original);
+  assert.ok((await ownLicenseChecks(root, pkg, delivery)).every(item => !item.exact));
+  await writeFile(join(pkg, 'LICENSE'), original);
+  await writeFile(join(delivery, 'ui-foundation/LICENSE.txt'), original);
+  assert.ok((await ownLicenseChecks(root, pkg, delivery)).every(item => item.exact));
+  for (const target of [join(pkg, 'LICENSE'), join(delivery, 'ui-foundation/LICENSE.txt')]) {
+    await writeFile(target, original.toString().replace('Hiroshi Inoue', 'changed'));
+    assert.equal((await ownLicenseChecks(root, pkg, delivery)).filter(item => !item.exact).length, 1);
+    await writeFile(target, original);
+  }
 });

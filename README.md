@@ -101,4 +101,6 @@ PDF/MapLibre/Spreadsheetのworkerは別アセットとして配信し、利用�
 
 ownership.jsonがまだない従来のv1生成物は、同じoutputで一度syncすれば通常移行を利用できます。ツール更新と同時にoutputを変更する場合は、`sync --from-output .ui/generated --dry-run`で旧生成先を明示し、確認した計画を`sync --from-output .ui/generated`で適用します。既存の所有情報が壊れている場合にこのオプションで上書きすることはできません。大文字・小文字だけの移動は異なる中間生成先を経由してください。
 
-パッケージは`private: true`、ライセンスは未決定です。npmへの公開や権利許諾を指定していません。
+公開予定名は`@hiroshi.inoue/ui-foundation`、初版は`0.1.0-beta.1`です。npm未公開で`private: true`を維持します。
+
+自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[利用ガイド](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。

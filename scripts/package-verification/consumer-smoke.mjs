@@ -77,6 +77,7 @@ await copyAsset(`node_modules/${packageName}/assets/pdf-source`, 'assets/pdf/sou
 await copyAsset(`node_modules/${packageName}/assets/third-party`, 'assets/third-party');
 await copyAsset('.ui/generated/CHECKER-NOTICE.txt', 'assets/CHECKER-NOTICE.txt');
 await copyAsset(`node_modules/${packageName}/dist/CLI-NOTICE.txt`, 'assets/CLI-NOTICE.txt');
+await copyAsset('.ui/generated/UI-FOUNDATION-LICENSE.txt', 'ui-foundation/LICENSE.txt');
 await cp('.ui/generated/tokens.css', resolve(output, 'tokens.css'));
 await cp('.ui/generated/angular/styles.css', resolve(output, 'styles.css'));
 await writeFile(resolve(output, 'index.html'), '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/assets/maplibre/maplibre-gl.css"></head><body><package-consumer></package-consumer><script type="module" src="/main.js"></script></body></html>');
