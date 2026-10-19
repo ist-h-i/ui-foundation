@@ -6,7 +6,7 @@
 
 ## 静的検査の導入と更新
 
-生成には、依存を導入したui-foundationのチェックアウトを使います。以下は利用アプリのルートで実行する例です。初回だけ `init` を実行し、作成された `ui.config.yaml` の利用者・トークン・プロファイルをアプリに合わせて編集します。既存設定がある場合は、その設定を編集します。
+生成には、依存を導入したui-foundationのチェックアウトを使います。ローカルtarballの配布候補を使う場合は[npm公開準備の導入手順](npm-release-plan.ja.md#ローカル候補の作成と導入)に従い、以下のtsxとCLIの組合せを`./node_modules/.bin/ui-foundation`へ置き換えます。以下は利用アプリのルートで実行する例です。初回だけ `init` を実行し、作成された `ui.config.yaml` の利用者・トークン・プロファイルをアプリに合わせて編集します。既存設定がある場合は、その設定を編集します。
 
 ```sh
 /path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts init

@@ -9,6 +9,8 @@ import { stableJSON } from './check/canonical.ts';
 import { renderCheckerBundle, renderCheckerNotice, renderCheckerLibraries } from './check/bundle.ts';
 import { createSourcePolicy } from './check/policy.ts';
 import { checkSources } from './check/scanner.ts';
+import { acquireSyncLock, syncLockName } from './sync-lock.ts';
+import { renderSkillDocumentation } from './skill-docs.ts';
 import type { SourceReport } from './check/types.ts';
 export { stableJSON } from './check/canonical.ts';
 
@@ -41,6 +43,7 @@ function ownership(output: string): Ownership {
 
 function containedPath(root: string, name: string): string {
   if (!name || isAbsolute(name) || name.includes('\\') || name.split('/').some(part => !part || part === '.' || part === '..')
+      || name.split('/')[0].toLowerCase() === syncLockName
       || name.split('/').some(part => ['.git', 'node_modules'].includes(part.toLowerCase()))) {
     throw new SyncConflictError([`Unsafe project-relative path: ${name}`]);
   }
@@ -114,6 +117,7 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
   const skill = await sourceFiles(resolve(toolRoot, 'skills/ui-development'));
   if (!skill.has('SKILL.md')) throw new Error('The UI development Skill source is missing.');
   for (const [path, content] of skill) files.set(`${skillDirectory}/${path}`, content);
+  for (const [path, content] of await renderSkillDocumentation()) files.set(`${skillDirectory}/references/${path}`, content);
   const manifest: Manifest = { version: 1, tool_version: version, configuration_hash: digest(stableJSON(config)),
     files: Object.fromEntries([...files].map(([path, content]) => [path, { sha256: digest(content) }])) };
   files.set(`${config.output}/manifest.json`, stableJSON(manifest));
@@ -220,6 +224,12 @@ async function atomicWrite(path: string, content: string): Promise<void> {
 }
 
 export async function syncProject(options: SyncOptions): Promise<{ changes: Change[]; written: boolean }> {
+  const lock = await acquireSyncLock(options.root);
+  try { return await syncWithLock({ ...options, root: lock.root }, lock); }
+  finally { await lock.release(); }
+}
+
+async function syncWithLock(options: SyncOptions, lock: Awaited<ReturnType<typeof acquireSyncLock>>): Promise<{ changes: Change[]; written: boolean }> {
   const { root, config, files, manifestPath } = await loadProject(options);
   const owned = await previousOwnership(root, config.output, options.fromOutput);
   if (owned.output !== config.output && owned.output.toLowerCase() === config.output.toLowerCase()) {
@@ -256,6 +266,10 @@ export async function syncProject(options: SyncOptions): Promise<{ changes: Chan
   if (previous && owned.path !== manifestPath) changes.push({ path: owned.path, kind: 'delete' });
   changes.sort((a, b) => a.path.localeCompare(b.path, 'en'));
   if (options.dryRun || changes.length === 0) return { changes, written: false };
+  await lock.recordWriting(changes.map(change => ({ ...change,
+    before_sha256: oldContents.get(change.path) === undefined ? null : digest(oldContents.get(change.path)!),
+    after_sha256: files.has(change.path) ? digest(files.get(change.path)!) : null,
+  })));
   // Commit ownership metadata after file changes; retire only the validated old manifest.
   // Restore every attempted file, including both manifests and the registry, on ordinary I/O failure.
   const ordered = changes.filter(change => change.path !== manifestPath && change.path !== ownershipPath && change.path !== owned.path);
@@ -281,7 +295,10 @@ export async function syncProject(options: SyncOptions): Promise<{ changes: Chan
         else await atomicWrite(path, content);
       } catch { rollbackErrors.push(`Restore manually from Git: ${change.path}`); }
     }
-    if (rollbackErrors.length) throw new SyncConflictError([String(error), ...rollbackErrors]);
+    if (rollbackErrors.length) {
+      await lock.retainForRecovery();
+      throw new SyncConflictError([String(error), ...rollbackErrors, `Sync recovery required; retained ${syncLockName}.`]);
+    }
     throw error;
   }
   return { changes, written: true };

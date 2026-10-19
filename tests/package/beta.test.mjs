@@ -1,0 +1,230 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { chmod, cp, lstat, mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, isAbsolute, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { test } from 'node:test';
+import { run, checkoutIsolation } from '../../scripts/package-verification/run.mjs';
+
+const repository = await realpath(fileURLToPath(new URL('../../', import.meta.url)));
+const sha = value => createHash('sha256').update(value).digest('hex');
+
+async function snapshot(root) {
+  const result = {};
+  async function visit(path) {
+    for (const entry of await readdir(resolve(root, path), { withFileTypes: true })) {
+      const name = `${path}/${entry.name}`;
+      if (entry.isDirectory()) await visit(name);
+      else { assert.equal(entry.isSymbolicLink(), false, name); result[name] = sha(await readFile(resolve(root, name))); }
+    }
+  }
+  await visit('.ui'); await visit('.agents');
+  return result;
+}
+
+function assertSnapshot(actual, expected, message) {
+  const changed = [...new Set([...Object.keys(actual), ...Object.keys(expected)])].filter(path => actual[path] !== expected[path]);
+  assert.deepEqual(changed, [], message);
+}
+
+async function verifySkillReferences(consumer) {
+  const skill = resolve(consumer, '.agents/skills/project-ui');
+  for (const path of ['references/docs/ui-components.md', 'references/docs/ui-library-api.json', 'references/docs/ui-library-matrix.json', 'references/docs/adr/0001-overlay-escape.md', 'references/examples/ui.config.example.yaml']) await readFile(resolve(skill, path));
+  let checked = 0;
+  async function visit(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const path = resolve(directory, entry.name);
+      if (entry.isDirectory()) { await visit(path); continue; }
+      if (!entry.name.endsWith('.md')) continue;
+      for (const [, target] of (await readFile(path, 'utf8')).matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
+        if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) continue;
+        const reference = resolve(dirname(path), target.split('#')[0]);
+        assert.ok(reference.startsWith(`${skill}/`), `Skill reference leaves its package: ${path}: ${target}`);
+        await readFile(reference); checked++;
+      }
+    }
+  }
+  await visit(skill);
+  assert.ok(checked > 0, 'the generated Skill must retain its operational documentation links');
+  return checked;
+}
+
+test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 480_000 }, async t => {
+  const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-beta-'));
+  const consumer = resolve(root, 'consumer');
+  await mkdir(consumer);
+  let candidate, tarballDigest, finalReport;
+  const evidenceBase = process.env.UI_FOUNDATION_PACKAGE_EVIDENCE;
+  t.after(async () => {
+    try {
+      if (evidenceBase && candidate) {
+        const evidence = resolve(evidenceBase, `package-test-${new Date().toISOString().replace(/[:.]/g, '-')}`);
+        await mkdir(evidence, { recursive: true });
+        await cp(candidate, resolve(evidence, 'candidate.tgz'));
+        await run('tar', ['-xzf', candidate, '-C', evidence], { cwd: root, timeout: 15_000 });
+        for (const [source, target] of [['public', 'dist'], ['bundle-metafile.json', 'bundle-metafile.json'], ['.ui', '.ui'], ['.agents', '.agents'], ['ui.config.yaml', 'ui.config.yaml'], ['consumer.ts', 'consumer.ts'], ['tsconfig.json', 'tsconfig.json']]) {
+          const path = resolve(consumer, source);
+          try { await lstat(path); }
+          catch (error) { if (error.code === 'ENOENT') continue; throw error; }
+          await mkdir(resolve(evidence, 'consumer'), { recursive: true });
+          await cp(path, resolve(evidence, 'consumer', target), { recursive: true });
+        }
+        await writeFile(resolve(evidence, 'report.json'), JSON.stringify({
+          status: finalReport ? 'passed' : 'incomplete', candidate_sha256: tarballDigest,
+          node: process.version, platform: process.platform, arch: process.arch,
+          smoke: finalReport ?? null,
+        }, null, 2) + '\n');
+        t.diagnostic(`package evidence: ${evidence}`);
+      }
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
+  const manifest = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
+  assert.equal(manifest.private, true);
+  const profile = checkoutIsolation(repository);
+  const execute = (file, args, cwd = consumer, timeout = 120_000) => run(file, args, { cwd, timeout, signal: t.signal });
+  const isolated = (file, args, timeout = 120_000) => execute('/usr/bin/sandbox-exec', ['-p', profile, file, ...args], consumer, timeout);
+  // Fail closed when the runner cannot actually deny both source and dependency
+  // reads. A temp cwd, cleared NODE_PATH or successful CLI run is insufficient.
+  const sentinel = await isolated(process.execPath, ['-e', `
+    const fs=require('node:fs');
+    for(const path of ${JSON.stringify([resolve(repository, 'package.json'), resolve(repository, 'node_modules/typescript/package.json')])}) {
+      let denied=false;
+      try { fs.readFileSync(path); } catch(error) { if(!['EPERM','EACCES'].includes(error.code))throw error; denied=true; }
+      if(!denied)throw new Error('Checkout remains readable: '+path);
+    }
+    console.log('checkout-and-node_modules-denied');
+  `]);
+  assert.match(sentinel, /checkout-and-node_modules-denied/);
+  t.diagnostic('enforced checkout and checkout/node_modules read-denial sentinel passed');
+  await execute(process.execPath, ['--import', 'tsx', 'scripts/build-package.ts'], repository);
+  const [pack] = JSON.parse(await execute('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', root], repository));
+  candidate = resolve(root, pack.filename);
+  tarballDigest = sha(await readFile(candidate));
+  await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
+  const install = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--no-save', tarball]);
+  await install(candidate);
+  const installed = resolve(consumer, 'node_modules', manifest.name);
+  assert.equal((await lstat(installed)).isSymbolicLink(), false);
+  const cli = (...args) => isolated(process.execPath, [resolve(installed, 'dist/cli.js'), ...args]);
+  await cli('init');
+  await mkdir(resolve(consumer, 'src'));
+  await writeFile(resolve(consumer, 'src/application.ts'), 'export const consumerApplication = true;\n');
+  await cli('sync');
+  assert.equal(JSON.parse(await cli('check', '--format', 'json')).valid, true);
+  const skillReferences = await verifySkillReferences(consumer);
+  const candidateState = await snapshot(consumer);
+
+  // These private, unpublished tarballs model a real differing-version upgrade.
+  // Their metadata and explicit template delta never modify the candidate.
+  async function versionFixture(version, changed) {
+    const directory = resolve(root, version); await mkdir(directory);
+    await execute('tar', ['-xzf', candidate, '-C', directory]);
+    const source = resolve(directory, 'package');
+    await writeFile(resolve(source, 'package.json'), JSON.stringify({ ...manifest, version, private: true }));
+    if (changed) {
+      const path = resolve(source, 'templates/angular/text-input.ts');
+      await writeFile(path, `${await readFile(path, 'utf8')}\n// Private synthetic beta upgrade fixture B.\n`);
+      await writeFile(resolve(source, 'templates/angular/beta-upgrade.ts'), 'export const privateSyntheticUpgrade = true;\n');
+      const skill = resolve(source, 'skills/ui-development/SKILL.md');
+      await writeFile(skill, `${await readFile(skill, 'utf8')}\nPrivate synthetic upgrade fixture B.\n`);
+    }
+    const [fixture] = JSON.parse(await execute('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', directory], source));
+    return resolve(directory, fixture.filename);
+  }
+  const versionA = '0.0.0-beta.package-test.1', versionB = '0.0.0-beta.package-test.2';
+  const a = await versionFixture(versionA, false), b = await versionFixture(versionB, true);
+  await install(a); await cli('sync');
+  assert.equal(JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8')).version, versionA);
+  const baseline = await snapshot(consumer);
+  const original = await readFile(resolve(consumer, '.ui/generated/tokens.css'), 'utf8');
+  await writeFile(resolve(consumer, '.ui/generated/tokens.css'), `${original}\n/* consumer manual edit */\n`);
+  await install(b);
+  assert.equal(JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8')).version, versionB);
+  let protectedState = await snapshot(consumer);
+  await assert.rejects(cli('sync'), /conflict|manually|edited/i);
+  assertSnapshot(await snapshot(consumer), protectedState, 'upgrade must preserve edited output');
+  await writeFile(resolve(consumer, '.ui/generated/tokens.css'), original);
+  const collision = resolve(consumer, '.ui/generated/angular/beta-upgrade.ts');
+  await writeFile(collision, 'application-owned content\n');
+  protectedState = await snapshot(consumer);
+  await assert.rejects(cli('sync'), /conflict|unowned|owned/i);
+  assertSnapshot(await snapshot(consumer), protectedState, 'upgrade must preserve unowned collisions');
+  await rm(collision);
+  assert.notEqual(process.getuid?.(), 0, 'rollback permission fixture requires a non-root user');
+  protectedState = await snapshot(consumer);
+  const output = resolve(consumer, '.ui/generated');
+  await chmod(output, 0o555);
+  try { await assert.rejects(cli('sync'), /EACCES|permission denied/i); }
+  finally { await chmod(output, 0o755); }
+  assertSnapshot(await snapshot(consumer), protectedState, 'ordinary I/O failure must roll back every generated/skill byte');
+  await cli('sync');
+  assert.match(await readFile(resolve(consumer, '.ui/generated/angular/text-input.ts'), 'utf8'), /synthetic beta upgrade fixture B/);
+  assert.equal(JSON.parse(await cli('check', '--format', 'json')).valid, true);
+  await install(a); await cli('sync');
+  assertSnapshot(await snapshot(consumer), baseline, 'reinstalling version A and resyncing must restore original owned output');
+  await install(candidate); await cli('sync');
+  assert.equal(JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8')).version, manifest.version);
+  assertSnapshot(await snapshot(consumer), candidateState, 'the actual candidate must recover its own versioned manifest and output');
+  t.diagnostic(`private synthetic ${versionA} → ${versionB} → ${versionA}: edited/unowned protection, ordinary I/O rollback and recovery passed`);
+
+  // Resolve the consumer runtime from the root lock, then install the tarball
+  // into that independent tree. No dependency is linked to the source checkout.
+  const lock = JSON.parse(await readFile(resolve(repository, 'package-lock.json'), 'utf8'));
+  const runtimeManifest = { name: 'private-beta-package-consumer', version: '0.0.0', private: true, type: 'module', devDependencies: manifest.devDependencies };
+  lock.name = runtimeManifest.name; lock.version = runtimeManifest.version;
+  lock.packages[''] = { ...lock.packages[''], name: runtimeManifest.name, version: runtimeManifest.version };
+  delete lock.packages[''].bin;
+  await writeFile(resolve(consumer, 'package.json'), JSON.stringify(runtimeManifest));
+  await writeFile(resolve(consumer, 'package-lock.json'), JSON.stringify(lock));
+  await isolated('npm', ['ci', '--ignore-scripts', '--no-audit', '--no-fund'], 180_000);
+  await install(candidate);
+  const typescript = resolve(consumer, 'node_modules/typescript');
+  assert.equal((await lstat(typescript)).isSymbolicLink(), false);
+  assert.ok(!(await realpath(typescript)).startsWith(repository));
+  await cli('check');
+  for (const [source, target] of [['consumer.ts', 'consumer.ts'], ['consumer-smoke.mjs', 'consumer-smoke.mjs']]) {
+    await cp(resolve(repository, 'scripts/package-verification', source), resolve(consumer, target));
+  }
+  await writeFile(resolve(consumer, 'tsconfig.json'), JSON.stringify({
+    compilerOptions: { target: 'ES2022', module: 'ESNext', moduleResolution: 'bundler', lib: ['ES2022', 'DOM'], strict: true, experimentalDecorators: true, skipLibCheck: true, noEmitOnError: true, rootDir: '.', outDir: 'compiled' },
+    angularCompilerOptions: { strictTemplates: true, strictInjectionParameters: true, compilationMode: 'full' },
+    include: ['.ui/generated/angular/**/*.ts', 'consumer.ts'],
+  }));
+  await isolated(process.execPath, [resolve(consumer, 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js'), '-p', 'tsconfig.json'], 180_000);
+  const smoke = JSON.parse(await isolated(process.execPath, ['consumer-smoke.mjs', manifest.name], 180_000));
+  assert.equal(smoke.strictAot, true); assert.equal(smoke.inputAndProfileRetention, true);
+  assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
+  assert.ok(smoke.servedAssetHashes > 20);
+  const metafileBytes = await readFile(resolve(consumer, 'bundle-metafile.json'));
+  const metafile = JSON.parse(metafileBytes);
+  assert.equal(smoke.bundle.metafile, 'consumer/bundle-metafile.json');
+  assert.equal(smoke.bundle.metafile_sha256, sha(metafileBytes));
+  assert.equal(smoke.bundle.delivery_root, 'consumer/dist');
+  const inputs = Object.keys(metafile.inputs).sort();
+  assert.ok(inputs.length > 0, 'actual esbuild input evidence is required');
+  assert.equal(smoke.bundle.input_count, inputs.length);
+  assert.equal(smoke.bundle.input_paths_sha256, sha(JSON.stringify(inputs)));
+  const canvasInputs = inputs.filter(path => /(?:^|\/)@napi-rs\/canvas(?:[-/]|$)/.test(path));
+  const nativeInputs = inputs.filter(path => path.endsWith('.node'));
+  assert.deepEqual(canvasInputs, [], 'native canvas exclusion must follow the actual bundle inputs');
+  assert.deepEqual(nativeInputs, [], 'actual bundle inputs must not contain native addons');
+  assert.deepEqual(smoke.bundle.optional_native_exclusion, {
+    package_family: '@napi-rs/canvas*', scope: 'this-esbuild-browser-bundle-inputs-only',
+    canvas_inputs: canvasInputs, native_addon_inputs: nativeInputs, license_status: 'Unknown',
+  });
+  const outputs = [];
+  const delivery = resolve(consumer, 'public');
+  for (const path of Object.keys(metafile.outputs).sort()) {
+    const destination = resolve(consumer, path);
+    const deliveryPath = relative(delivery, destination);
+    assert.ok(deliveryPath && !isAbsolute(deliveryPath) && deliveryPath !== '..' && !deliveryPath.startsWith('../'), `metafile output must be inside the delivered app: ${path}`);
+    const bytes = await readFile(destination);
+    assert.equal(bytes.length, metafile.outputs[path].bytes, path);
+    outputs.push({ path, delivery_path: deliveryPath, bytes: bytes.length, sha256: sha(bytes) });
+  }
+  assert.ok(outputs.length > 0, 'the bundle must contain emitted files');
+  assert.deepEqual(smoke.bundle.outputs, outputs, 'the report must bind every emitted output to its actual delivery bytes');
+  finalReport = { ...smoke, skillReferences };
+  t.diagnostic(`candidate sha256=${tarballDigest}; ${JSON.stringify(smoke)}`);
+});

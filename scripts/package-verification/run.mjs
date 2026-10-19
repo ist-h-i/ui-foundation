@@ -1,0 +1,41 @@
+import { spawn } from 'node:child_process';
+
+// Each invocation owns a process group, including browser descendants. Stop that
+// group on timeout/cancellation/failure instead of leaving a child test behind.
+export function run(file, args, { cwd, timeout = 120_000, signal, env = {} } = {}) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(file, args, {
+      cwd, detached: true, stdio: ['ignore', 'pipe', 'pipe'],
+      env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '', ...env },
+    });
+    let stdout = '', stderr = '', stopped = false, escalation;
+    const kill = signal => {
+      if (child.pid) try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== 'ESRCH') throw error; }
+    };
+    const stop = () => {
+      if (stopped) return;
+      stopped = true;
+      // Let Playwright close its independently grouped browser before escalation.
+      kill('SIGTERM');
+      escalation = setTimeout(() => kill('SIGKILL'), 5_000);
+    };
+    const timer = setTimeout(stop, timeout);
+    signal?.addEventListener('abort', stop, { once: true });
+    child.stdout.on('data', data => { stdout += data; });
+    child.stderr.on('data', data => { stderr += data; });
+    child.on('error', error => { clearTimeout(timer); clearTimeout(escalation); signal?.removeEventListener('abort', stop); reject(error); });
+    child.on('close', (code, terminationSignal) => {
+      clearTimeout(timer); clearTimeout(escalation); signal?.removeEventListener('abort', stop);
+      // A normally exited wrapper must not leave its own descendants running.
+      kill('SIGKILL');
+      if (code === 0 && !stopped) resolve(stdout);
+      else reject(Object.assign(new Error(`${file} ${args.join(' ')} failed (${stopped ? 'timeout/cancelled' : code ?? terminationSignal})\n${stderr}\n${stdout}`), { code, stdout, stderr }));
+    });
+    if (signal?.aborted) stop();
+  });
+}
+
+export function checkoutIsolation(repository) {
+  if (process.platform !== 'darwin') throw new Error('Package checkout-denial verification requires macOS sandbox-exec; no enforced isolation is configured on this platform.');
+  return `(version 1)(allow default)(deny file-read* (subpath ${JSON.stringify(repository.replace(/\/$/, ''))}))`;
+}

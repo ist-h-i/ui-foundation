@@ -16,7 +16,7 @@ async function checkerAssets(): Promise<{ script: string; notice: string }> {
   for (const name of packages) {
     const directory = resolve(root, 'node_modules', name);
     const metadata = JSON.parse(await readFile(resolve(directory, 'package.json'), 'utf8'));
-    const licenses = (await readdir(directory)).filter(file => /^(?:licen[cs]e|copying)(?:[.-]|$)/i.test(file)).sort();
+    const licenses = (await readdir(directory)).filter(file => /^(?:(?:licen[cs]e|copying)(?:[.-]|$)|notice|third[-_]?party)/i.test(file)).sort();
     if (!licenses.length) throw new Error(`Missing license text for bundled dependency: ${name}`);
     notices.push(`${name}@${metadata.version}\n${licenses.join('\n')}\n\n` + (await Promise.all(licenses.map(file => readFile(resolve(directory, file), 'utf8')))).join('\n'));
   }
