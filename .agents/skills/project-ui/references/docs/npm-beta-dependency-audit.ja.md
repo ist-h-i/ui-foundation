@@ -44,7 +44,6 @@ node scripts/audit-package.mjs \
   --package-root /absolute/path/to/extracted/package \
   --tarball /absolute/path/to/candidate.tgz \
   --delivery /absolute/path/to/consumer/dist \
-  --tarball /absolute/path/to/candidate.tgz \
   --output /absolute/path/to/dependency-audit.json
 ```
 
