@@ -32,6 +32,10 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const installed = resolve(consumer, 'node_modules', manifest.name);
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.ok(!installedMetadata.dependencies || Object.keys(installedMetadata.dependencies).length === 0);
+  const upstreamNotice = await readFile(resolve(repository, 'node_modules/typescript/ThirdPartyNoticeText.txt'), 'utf8');
+  for (const name of ['CLI-NOTICE.txt', 'CHECKER-NOTICE.txt']) {
+    assert.ok((await readFile(resolve(installed, 'dist', name), 'utf8')).includes(upstreamNotice), `TypeScript third-party notice missing from ${name}`);
+  }
   const bin = resolve(consumer, 'node_modules/.bin/ui-foundation');
   const cli = (...args) => run(bin, args, consumer);
   assert.match(cli('--help'), /Usage: ui-foundation/);
@@ -47,6 +51,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(valid.valid, true);
   assert.ok(!valid.source.diagnostics.some(item => /standard libraries are unavailable/.test(item.message)));
   const generated = resolve(consumer, '.ui/generated');
+  assert.ok((await readFile(resolve(generated, 'CHECKER-NOTICE.txt'), 'utf8')).includes(upstreamNotice));
   const sourceConsumer = resolve(root, 'source-consumer'); await mkdir(sourceConsumer);
   await cp(resolve(consumer, 'ui.config.yaml'), resolve(sourceConsumer, 'ui.config.yaml'));
   run(process.execPath, ['--import', resolve(repository, 'node_modules/tsx/dist/loader.mjs'), resolve(repository, 'src/cli.ts'), 'sync'], sourceConsumer);
