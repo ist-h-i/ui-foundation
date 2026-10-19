@@ -2,7 +2,61 @@
 
 生成した Angular の公開入口を利用アプリへ組み込み、必要な画面だけで部品を使うためのガイドです。要求カタログの全部品を一つの業務画面に配置する必要はありません。ツリーの選択、予定、一覧編集、添付、専門エディターなどを用途ごとの画面に分け、利用者の目的、欠損の影響、失敗時に保持する入力、復旧経路を先に決めます。
 
-機械設定の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[開発手順](development.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定・`templates/angular/`・Skill を変更して `npm run ui:sync`、`npm run ui:check` を実行します。
+設定項目の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。利用アプリでは、そのアプリの `ui.config.yaml` を正本として管理します。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[開発手順](development.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定や生成元を変更してCLIで同期・検査します。
+
+## 静的検査の導入と更新
+
+生成には、依存を導入したui-foundationのチェックアウトを使います。以下は利用アプリのルートで実行する例です。初回だけ `init` を実行し、作成された `ui.config.yaml` の利用者・トークン・プロファイルをアプリに合わせて編集します。既存設定がある場合は、その設定を編集します。
+
+```sh
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts init
+```
+
+`checks.source_roots` に検査するソースを指定します。新規の `init` は `src` を設定します。対象ディレクトリには、実際のTypeScript・Angular template・CSS/SCSS等の対象ファイルが必要です。アプリの配置が異なる場合は変更してください。`tsconfig` は省略できます。指定する場合は、アプリに存在する設定ファイルへのプロジェクト相対パスを使います。
+
+```yaml
+checks:
+  source_roots: [src]
+  # tsconfig: tsconfig.app.json
+```
+
+利用アプリのルートで、設定から部品・スタイル・Skill・検査器を一緒に生成します。設定変更や生成元の更新後も同じ手順で同期します。
+
+```sh
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync --dry-run --config ui.config.yaml
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync --config ui.config.yaml
+/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts check --config ui.config.yaml
+```
+
+`output` の既定値は `.ui/generated/` です。`check-ui.cjs` だけを抜き出さず、`checker-lib/`・`policy.json`・`CHECKER-NOTICE.txt` 等を含む生成ディレクトリ全体と、`.agents/skills/project-ui/` を管理します。生成物とSkillはGitで追跡します。所有範囲や移行は[生成契約](design.md#生成と利用)に従います。
+
+生成後のソース検査は、利用アプリのNode.jsから実行できます。Node.jsの対応版はui-foundationの [`package.json`](../package.json) の `engines` に従います。本体のチェックアウトや検査専用の追加npm依存は不要ですが、部品のビルド・実行に必要なAngular等の依存は別途導入します。同梱検査器をアプリのブラウザーバンドルへ含めません。
+
+```sh
+node .ui/generated/check-ui.cjs --config ui.config.yaml
+node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
+```
+
+利用アプリの既存 `package.json` の `scripts` へ、次の項目を追加し、CIやbuildの前段で実行します。`output` を変えた場合は、検査コマンドのパスとアプリのimportも更新します。
+
+```json
+{
+  "scripts": {
+    "ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"
+  }
+}
+```
+
+ui-foundation自身の `npm run ui:sync`・`npm run ui:check` は本リポジトリの例設定を使います。利用アプリの設定を同期するときは、上記の本体CLIを利用アプリのルートから実行してください。本体CLIの `check` は設定・生成物の一致と指定ソースを検査します。同梱版は設定と生成policyの一致・指定ソースを検査し、生成物全体の一致や所有範囲の確認は代替しません。policy未同期を検出したら、生成物を手直しせず本体CLIで再同期します。
+
+### 判定と修正の進め方
+
+- 確定した違反、設定不備、対象欠損、読み取り・解析失敗は終了コード1です。診断のファイル・行・ルール・理由を確認し、アプリのソースや正本設定を修正します。
+- 静的に確定できない箇所は警告として残り、警告だけなら終了コード0です。動的な値やCSSの供給元等を確認し、必要な実行時・操作検証を別に行います。終了0を視覚品質・アクセシビリティ・実利用の合格に広げません。
+- `checks` がない既存設定は `NOT_CONFIGURED` です。ソース検査を導入する場合は対象を設定して再同期します。
+- 外部部品の承認や配置寸法等の例外には、用途に応じた理由と対象を明示します。警告を消すための全ファイル除外や一律承認は行いません。
+
+対象・除外、承認部品、理由付き例外、JSONの使い方、静的に確認できない範囲は[静的検査の設定・配布・判定範囲](static-checks.ja.md)にまとめています。本体リポジトリの `ui:check:warnings` は本体の警告分類台帳を照合する専用の受入確認であり、利用アプリの同梱版 `ui:check` とは区別します。
 
 ## 公開入口と Angular のビルド
 
