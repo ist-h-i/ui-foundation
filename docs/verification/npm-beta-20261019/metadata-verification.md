@@ -1,6 +1,6 @@
 # 名称・MIT確定後の候補検証
 
-公開予定名`@hiroshi.inoue/ui-foundation`、初版`0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成自作コードのMIT License（2026 Hiroshi Inoue）を本人が決定した。第三者の原条件は保持する。`private: true`を維持し、npm公開・名前予約・権限変更・PRのReady化・mergeは行っていない。
+公開予定名`@hiroshi.inoue/ui-foundation`、初版`0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成自作コードのMIT License（2026 Hiroshi Inoue）を本人が決定した。第三者の原条件は保持する。`private: true`を維持し、npm公開・名前予約・権限変更・今回追加分のPRのReady化・mergeは行っていない。
 
 ## 固定した候補
 
@@ -20,8 +20,8 @@ tgz SHA256 `0cd6d4ffe7e6d4768713d65fd16485b6de014c5b5afcae55dedfe4377c1a8567`。
 
 ## 未完了の公開ゲート
 
-本人申告のnpmユーザー名は`hiroshi.inoue`で、公式ブラウザー画面の識別子も一致した。未認証のregistry照会はE404で、公開版や利用権限の証明にはならない。CLIはENEEDAUTH。ブラウザーログインとは別のCLI連携を案内したが完了確認には至らず、本人のターミナル操作へ切り替えた。CLIのユーザー一致、メール認証、2FA設定、個人scope公開権限は未確認。認証情報は記録しない。
+本人申告のnpmユーザー名は`hiroshi.inoue`で、公式ブラウザー画面の識別子も一致した。未認証のregistry照会はE404で、公開版や利用権限の証明にはならない。当初CLIはENEEDAUTHだったが、本人のターミナルでの認証後、公式registryへのwhoamiは`hiroshi.inoue`、profileの`email_verified`はtrueと確認した。`tfa`はfalse（2FA無効）。本人は2FA設定を後日にすると明示した。個人scope名と認証ユーザーは一致するが、実際の公開権限をregistry書込みで試験してはいない。認証情報は記録しない。配布文書内の未確認という記述は固定候補作成時点の状態で、最新のアカウント確認はこの追加記録を正本とする。
 
-本人の明示公開指示後にprivate解除と候補再作成・再検証が必要で、現tgzをそのまま公開可能とは扱わない。公開後のregistry取得・version/integrity確認も未実行。通常merge・Ready化も未実施。
+本人の明示公開指示後にprivate解除と候補再作成・再検証が必要で、現tgzをそのまま公開可能とは扱わない。公開後のregistry取得・version/integrity確認も未実行。前段のPR #22は作業中の14:38:02 UTCにmain `275b710fa799d4fd564312d05049cebe981ea69c`へmerge済みになった。今回追加のmetadata・MIT変更は別のDraft PRへ切り出し、未merge・未Ready。
 
-本人の残枠は統合判断0.25〜1h（代表0.5h）、認証・公開判断0.5〜1.5h（代表1h）。AI作業目安は統合差分再確認0〜1h、公開指示後の再検証・公開後導入1〜2h。実測・待ち時間ではない。統合は10/23仮目標、公開日は未定。詳細と証拠の保存先は[機械可読記録](metadata-verification.json)を参照する。
+本人の残枠は統合判断0.25〜1h（代表0.5h）、2FA設定・公開判断0.5〜1.5h（代表1h）。AI作業目安は統合差分再確認0〜1h、公開指示後の再検証・公開後導入1〜2h。実測・待ち時間ではない。統合は10/23仮目標、公開日は未定。詳細と証拠の保存先は[機械可読記録](metadata-verification.json)を参照する。

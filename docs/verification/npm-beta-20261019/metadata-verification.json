@@ -46,13 +46,16 @@
   "account": {
     "username_user_selected": "hiroshi.inoue",
     "browser_account_observed": "hiroshi.inoue",
-    "cli_login": "pending user terminal operation",
-    "two_factor_configuration": "Unknown",
+    "cli_whoami_verified": "hiroshi.inoue",
+    "email_verified": true,
+    "tfa_raw_value": false,
+    "two_factor_configuration": "disabled; user explicitly deferred setup",
+    "scope": "Personal scope matches authenticated username; actual publication is not exercised",
     "publication_authorization": false
   },
   "limits": [
     "private:true retained; no registry writes, name reservations, permission changes, Ready, merge or publication",
-    "Scope permissions and MFA not yet verified with authenticated CLI",
+    "CLI username and verified email confirmed. 2FA is disabled and explicitly deferred by user. No package write/publication permission test.",
     "Node24.19.0/macOSarm64/AngularCDK22.2.1/TS6.0.3/Chromium only",
     "Native original license Unknown and five inactive optional WASI dependencies remain Unknown",
     "Full npm test and published registry installation not executed"
@@ -73,5 +76,11 @@
     ],
     "publication_date": null,
     "actual_human_hours": null
+  },
+  "base_main": {
+    "commit": "275b710fa799d4fd564312d05049cebe981ea69c",
+    "merged_pr": 22,
+    "merged_at": "2026-10-19T14:38:02Z",
+    "note": "Previous preparation PR merged separately while this metadata work was running. New metadata/license additions remain unmerged."
   }
 }
