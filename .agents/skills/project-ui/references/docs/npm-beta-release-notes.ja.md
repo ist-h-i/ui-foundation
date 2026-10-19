@@ -1,6 +1,6 @@
 # 公開前ベータ候補の変更記録
 
-未公開の`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`準備記録。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持する。`private: true`を維持し、公開日は未定。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`の変更記録。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持する。配布タグは`beta`。公開結果・日時・integrityはregistryと公開検証記録で確認する。
 
 ## この候補
 
