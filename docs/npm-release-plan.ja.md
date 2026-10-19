@@ -53,7 +53,7 @@ npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.
 
 1. 公開予定名・初版・MITは決定済み。npm CLIの認証ユーザーが`hiroshi.inoue`であること、メール認証・2FA・個人scopeの公開権限を確認する。未認証での404応答を名前の予約や権限確認と扱わない。
 2. 確定metadataを候補commitに固定し、検証・独立レビュー後に通常mergeする。名前/version変更後は候補tarballを再検証する。
-3. 手動公開は既存の正規アカウントと2FAを使い、認証情報を保存しない。Trusted Publishingを選ぶ場合はnpm側の設定と対応CIが別途必要。未設定のOIDC/provenanceを有効と記録しない。
+3. 手動公開は既存の正規アカウントと2FAを使い、認証情報をリポジトリや検証記録へ保存しない。npm公式ログインが保存する通常のローカル認証設定は、本人の操作で作成する。Trusted Publishingを選ぶ場合はnpm側の設定と対応CIが別途必要。未設定のOIDC/provenanceを有効と記録しない。
 4. 公開の明示指示後に`private: true`を変更し、`beta`タグ・public access・公式registryを指定して、再検証した同一tgzを公開する。`publishConfig`はその既定値を設定するが、公開指示や権限の代わりにはならない。今回の準備ではregistry書込み、名前予約、権限変更を行わない。
 5. 公開version/integrityを記録し、checkoutやローカルtarballを使わず取得・導入して確認する。公開済みversionの上書きは試みない。
 
