@@ -20,12 +20,13 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const manifest = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
   assert.equal(manifest.private, true, 'preparation must not enable registry publication');
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
-  for (const name of ['dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt',
+  for (const name of ['dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
     'dist/checker-lib/lib.es2022.d.ts', 'templates/angular/index.ts', 'skills/ui-development/SKILL.md',
-    'examples/ui.config.example.yaml', 'assets/pdf-source/FONT-MAPPING.json', 'assets/third-party/THIRD-PARTY-NOTICES.txt']) {
+    'examples/ui.config.example.yaml', 'assets/pdf-source/FONT-MAPPING.json', 'assets/third-party/THIRD-PARTY-NOTICES.txt',
+    'assets/third-party/FOUNDATION-NOTICES.txt', 'docs/ui-library-api.json', 'docs/ui-library-matrix.json', 'docs/adr/0001-overlay-escape.md']) {
     assert.ok(paths.includes(name), `missing package resource: ${name}`);
   }
-  for (const path of paths) assert.ok(/^(?:package\.json|README\.md|dist\/(?:cli\.js|check-ui\.cjs|CLI-NOTICE\.txt|CHECKER-NOTICE\.txt|checker-lib\/[^/]+\.d\.ts)|templates\/angular\/.*|skills\/ui-development\/.*|examples\/ui\.config\.example\.yaml|assets\/(?:pdf-source|third-party)\/.*|docs\/[^/]+\.md)$/.test(path), `unexpected packed file: ${path}`);
+  for (const path of paths) assert.ok(/^(?:package\.json|README\.md|dist\/(?:cli\.js|check-ui\.cjs|CLI-NOTICE\.txt|CHECKER-NOTICE\.txt|CLI-DEPENDENCIES\.json|checker-lib\/[^/]+\.d\.ts)|templates\/angular\/.*|skills\/ui-development\/.*|examples\/ui\.config\.example\.yaml|assets\/(?:pdf-source|third-party)\/.*|docs\/(?:[^/]+\.md|adr\/[^/]+\.md|ui-library-(?:api|matrix)\.json))$/.test(path), `unexpected packed file: ${path}`);
   const consumer = resolve(root, 'consumer'); await mkdir(consumer);
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', resolve(root, pack.filename)], consumer);

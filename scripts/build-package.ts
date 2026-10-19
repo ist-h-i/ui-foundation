@@ -3,6 +3,7 @@ import { chmod, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isBuiltin } from 'node:module';
+import { createHash } from 'node:crypto';
 import { renderCheckerBundle, renderCheckerLibraries, renderCheckerNotice } from '../src/check/bundle.ts';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -45,13 +46,17 @@ if (external.length) throw new Error(`Unexpected runtime dependencies: ${externa
 const packages = [...new Set(Object.keys(result.metafile!.inputs).filter(path => path.startsWith('node_modules/'))
   .map(path => path.startsWith('node_modules/@') ? path.split('/').slice(1, 3).join('/') : path.split('/')[1]))].sort();
 const notices: string[] = [];
+const dependencies: { name: string; version: string; licenseFiles: { path: string; sha256: string }[] }[] = [];
 for (const name of packages) {
   const directory = resolve(root, 'node_modules', name);
   const metadata = JSON.parse(await readFile(resolve(directory, 'package.json'), 'utf8'));
   const licenses = (await readdir(directory)).filter(file => /^(?:(?:licen[cs]e|copying)(?:[.-]|$)|notice|third[-_]?party)/i.test(file)).sort();
   if (!licenses.length) throw new Error(`Missing license text for bundled CLI dependency: ${name}`);
+  dependencies.push({ name, version: metadata.version, licenseFiles: await Promise.all(licenses.map(async path => ({ path,
+    sha256: createHash('sha256').update(await readFile(resolve(directory, path))).digest('hex') }))) });
   notices.push(`${name}@${metadata.version}\n${licenses.join('\n')}\n\n` + (await Promise.all(licenses.map(file => readFile(resolve(directory, file), 'utf8')))).join('\n'));
 }
 await writeFile(resolve(output, 'CLI-NOTICE.txt'), 'Third-party notices for the bundled ui-foundation CLI only.\n\n' + notices.join('\n\n---\n\n') + '\n');
+await writeFile(resolve(output, 'CLI-DEPENDENCIES.json'), JSON.stringify({ schema_version: 1, dependencies }, null, 2) + '\n');
 await chmod(resolve(output, 'cli.js'), 0o755);
 console.log(`Built npm CLI, checker, standard libraries and notices (${packages.length} bundled CLI dependencies).`);

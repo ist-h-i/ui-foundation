@@ -11,12 +11,16 @@
     "dist/checker-lib/",
     "dist/CLI-NOTICE.txt",
     "dist/CHECKER-NOTICE.txt",
+    "dist/CLI-DEPENDENCIES.json",
     "templates/angular/",
     "skills/ui-development/",
     "examples/ui.config.example.yaml",
     "assets/pdf-source/",
     "assets/third-party/",
-    "docs/*.md"
+    "docs/*.md",
+    "docs/adr/*.md",
+    "docs/ui-library-api.json",
+    "docs/ui-library-matrix.json"
   ],
   "repository": {
     "type": "git",
@@ -25,12 +29,12 @@
   "description": "Generate persona profiles, two-layer design tokens, Tailwind themes and Angular foundations from one YAML configuration.",
   "type": "module",
   "engines": {
-    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+    "node": "24.19.0"
   },
   "scripts": {
     "package:build": "tsx scripts/build-package.ts",
     "prepack": "npm run package:build",
-    "test:package": "node --test tests/package/*.test.mjs",
+    "test:package": "node --test --test-concurrency=1 tests/package/*.test.mjs",
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.example.yaml",
     "ui:check": "tsx src/cli.ts check --config examples/ui.config.example.yaml",
     "ui:check:warnings": "tsx src/warning-review-cli.ts",
@@ -51,7 +55,9 @@
     "verify:evidence:cross-browser": "python3 scripts/verification/build-public-proof.py",
     "test:verification": "node --test tests/verification-tools/*.test.mjs",
     "test:static": "tsx --test --test-concurrency=1 tests/static/*.test.ts",
-    "test:ui:radio:cross-browser": "node scripts/run-cross-browser.mjs --suite=virtual-radio"
+    "test:ui:radio:cross-browser": "node scripts/run-cross-browser.mjs --suite=virtual-radio",
+    "test:package:audit": "node --test tests/package-audit/*.test.mjs",
+    "audit:package": "node scripts/audit-package.mjs"
   },
   "devDependencies": {
     "@angular/cdk": "22.2.1",
