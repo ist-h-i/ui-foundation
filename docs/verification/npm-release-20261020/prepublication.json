@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source_commit": "a784a0018943bc8e22957d343a556752bb444dbf",
+  "release": {
+    "name": "@hiroshi.inoue/ui-foundation",
+    "version": "0.1.0-beta.1",
+    "tag": "beta",
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "private": false
+  },
+  "candidate": {
+    "path": "/Users/inouehiroshi/.codex/visualizations/2026/10/19/01a15268-cee4-78d3-8df1-c00f00410fff/npm-release-20261020/candidate/hiroshi.inoue-ui-foundation-0.1.0-beta.1.tgz",
+    "sha256": "ec0e66ec4189c24f4cab2be8780b0c2cfbc90dcbe08d553eefe890b19b3aa271",
+    "integrity": "sha512-6YYkDXcLwgdSHXdIq/7la6UdwmKQ8TiU9A4hRRX6Movgd7tNBnOzbEtp4uSfee76+d+av5vJnHhb7cLQuGEHRg==",
+    "shasum": "4ab2b41c60a4625969f987f52ca1a48f42edb877",
+    "files": 316,
+    "compressed_bytes": 7075620,
+    "unpacked_bytes": 20363608,
+    "all_packed_source_bytes_match": true
+  },
+  "prepublication": {
+    "package_tests": "2/2 passed",
+    "package_report": "/Users/inouehiroshi/.codex/visualizations/2026/10/19/01a15268-cee4-78d3-8df1-c00f00410fff/npm-release-20261020/prepublish/package-test-2026-10-19T15-09-26-305Z/report.json",
+    "report_sha256": "6f442ffe0b282862f7e653e15c13e370e3e8751a57751564ea87acd25f559bf5",
+    "helper_and_audit_unit": "16/16 passed",
+    "generation_tests": "2/2 passed",
+    "warning_classification": "122/122;0errors;0unclassified;0stale;Unknown retained",
+    "audit": "Verified",
+    "known_advisories": 0,
+    "inventory_instances": 293,
+    "asset_checks": 42,
+    "smoke": {
+      "strictAot": true,
+      "inputAndProfileRetention": true,
+      "sheetCalculation": true,
+      "pdfCanvas": true,
+      "mapCanvas": true,
+      "servedAssetHashes": 222,
+      "fontSizes": [
+        "18px",
+        "16px"
+      ],
+      "workers": [
+        "/assets/sheet-formula.worker.js",
+        "/assets/maplibre/maplibre-gl-worker.mjs",
+        "/assets/pdf/pdf.worker.mjs"
+      ],
+      "skillReferences": 80
+    },
+    "publish_dry_run_integrity_matches": true,
+    "independent_review": "no findings at exact source commit"
+  },
+  "publication": "not performed at time of this receipt",
+  "limits": [
+    "Node24.19.0/macOSarm64/AngularCDK22.2.1/TypeScript6.0.3/Chromium only",
+    "122 source warnings retain Unknown; native original license and inactive optional-platform internal dependencies retain scoped Unknowns",
+    "Full npm test not rerun; UI templates, checker and fixed runtime dependency versions unchanged",
+    "MFA, actual registry write and registry-fetched installation are distinct later gates"
+  ]
+}

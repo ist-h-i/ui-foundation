@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parse, stringify } from 'yaml';
+import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-verification/candidate.mjs';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
@@ -13,12 +14,11 @@ const run = (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8
 
 test('packed CLI works offline without checkout dependencies and preserves generation/check boundaries', async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-package-'));
-  t.after(() => rm(root, { recursive: true, force: true }));
-  run(process.execPath, ['--import', 'tsx', 'scripts/build-package.ts'], repository);
-  const [pack] = JSON.parse(run('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', root], repository));
-  const paths = pack.files.map(file => file.path);
-  const manifest = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
-  assert.equal(manifest.private, true, 'preparation must not enable registry publication');
+  let candidate;
+  t.after(async () => { try { if (candidate) await assertFrozenCandidate(candidate); } finally { await rm(root, { recursive: true, force: true }); } });
+  candidate = await prepareCandidate({ repository, root, execute: run });
+  const { paths, manifest } = candidate;
+  assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
   assert.equal(manifest.version, '0.1.0-beta.1');
@@ -33,7 +33,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   for (const path of paths) assert.ok(/^(?:package\.json|README\.md|LICENSE|dist\/(?:cli\.js|check-ui\.cjs|CLI-NOTICE\.txt|CHECKER-NOTICE\.txt|CLI-DEPENDENCIES\.json|checker-lib\/[^/]+\.d\.ts)|templates\/angular\/.*|skills\/ui-development\/.*|examples\/ui\.config\.example\.yaml|assets\/(?:pdf-source|third-party)\/.*|docs\/(?:[^/]+\.md|adr\/[^/]+\.md|ui-library-(?:api|matrix)\.json))$/.test(path), `unexpected packed file: ${path}`);
   const consumer = resolve(root, 'consumer'); await mkdir(consumer);
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
-  run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', resolve(root, pack.filename)], consumer);
+  run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', candidate.tarball], consumer);
   const installed = resolve(consumer, 'node_modules', manifest.name);
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.equal(installedMetadata.license, manifest.license);
@@ -93,5 +93,5 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const warning = JSON.parse(run(process.execPath, [checker, '--format', 'json'], standalone));
   assert.ok(warning.diagnostics.some(item => item.severity === 'warning'));
   assert.equal(warning.diagnostics.filter(item => item.severity === 'error').length, 0);
-  t.diagnostic(`tarball ${pack.filename}: ${paths.length} files, ${pack.size} bytes; offline clean install and standalone checker verified`);
+  t.diagnostic(`tarball ${candidate.origin} sha256=${candidate.sha256}: ${paths.length} files, ${candidate.size} bytes; offline clean install and standalone checker verified`);
 });
