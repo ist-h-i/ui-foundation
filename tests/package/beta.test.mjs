@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
+import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-verification/candidate.mjs';
 import { run, checkoutIsolation } from '../../scripts/package-verification/run.mjs';
 
 const repository = await realpath(fileURLToPath(new URL('../../', import.meta.url)));
@@ -54,10 +55,11 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-beta-'));
   const consumer = resolve(root, 'consumer');
   await mkdir(consumer);
-  let candidate, tarballDigest, finalReport;
+  let candidate, candidateDetails, tarballDigest, finalReport;
   const evidenceBase = process.env.UI_FOUNDATION_PACKAGE_EVIDENCE;
   t.after(async () => {
     try {
+      if (candidateDetails) await assertFrozenCandidate(candidateDetails);
       if (evidenceBase && candidate) {
         const evidence = resolve(evidenceBase, `package-test-${new Date().toISOString().replace(/[:.]/g, '-')}`);
         await mkdir(evidence, { recursive: true });
@@ -71,7 +73,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
           await cp(path, resolve(evidence, 'consumer', target), { recursive: true });
         }
         await writeFile(resolve(evidence, 'report.json'), JSON.stringify({
-          status: finalReport ? 'passed' : 'incomplete', candidate_sha256: tarballDigest,
+          status: finalReport ? 'passed' : 'incomplete', candidate_sha256: tarballDigest, candidate_origin: candidateDetails.origin,
           node: process.version, platform: process.platform, arch: process.arch,
           smoke: finalReport ?? null,
         }, null, 2) + '\n');
@@ -80,7 +82,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
     } finally { await rm(root, { recursive: true, force: true }); }
   });
   const manifest = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
-  assert.equal(manifest.private, true);
+  assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
   assert.equal(manifest.version, '0.1.0-beta.1');
@@ -102,15 +104,16 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   `]);
   assert.match(sentinel, /checkout-and-node_modules-denied/);
   t.diagnostic('enforced checkout and checkout/node_modules read-denial sentinel passed');
-  await execute(process.execPath, ['--import', 'tsx', 'scripts/build-package.ts'], repository);
-  const [pack] = JSON.parse(await execute('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', root], repository));
-  candidate = resolve(root, pack.filename);
-  tarballDigest = sha(await readFile(candidate));
+  candidateDetails = await prepareCandidate({ repository, root, execute });
+  candidate = candidateDetails.tarball;
+  tarballDigest = candidateDetails.sha256;
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   const install = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--no-save', tarball]);
   await install(candidate);
   const installed = resolve(consumer, 'node_modules', manifest.name);
   assert.equal((await lstat(installed)).isSymbolicLink(), false);
+  const installedManifest = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
+  assert.deepEqual(installedManifest, candidateDetails.manifest, 'npm must preserve the candidate metadata');
   const cli = (...args) => isolated(process.execPath, [resolve(installed, 'dist/cli.js'), ...args]);
   await cli('init');
   await mkdir(resolve(consumer, 'src'));
@@ -129,7 +132,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
     const directory = resolve(root, version); await mkdir(directory);
     await execute('tar', ['-xzf', candidate, '-C', directory]);
     const source = resolve(directory, 'package');
-    await writeFile(resolve(source, 'package.json'), JSON.stringify({ ...manifest, version, private: true }));
+    await writeFile(resolve(source, 'package.json'), JSON.stringify({ ...installedManifest, version, private: true }));
     if (changed) {
       const path = resolve(source, 'templates/angular/text-input.ts');
       await writeFile(path, `${await readFile(path, 'utf8')}\n// Private synthetic beta upgrade fixture B.\n`);
@@ -235,5 +238,6 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.ok(outputs.length > 0, 'the bundle must contain emitted files');
   assert.deepEqual(smoke.bundle.outputs, outputs, 'the report must bind every emitted output to its actual delivery bytes');
   finalReport = { ...smoke, skillReferences };
-  t.diagnostic(`candidate sha256=${tarballDigest}; ${JSON.stringify(smoke)}`);
+  await assertFrozenCandidate(candidateDetails);
+  t.diagnostic(`candidate origin=${candidateDetails.origin} sha256=${tarballDigest}; ${JSON.stringify(smoke)}`);
 });

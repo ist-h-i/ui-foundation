@@ -54,17 +54,20 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 ## 利用アプリに導入する
 
-現在はソースをチェックアウトしてCLIを実行します。npmへの公開はしていません。ローカルtarballでの導入と公開準備は[npm公開計画](docs/npm-release-plan.ja.md)にあります。利用アプリのディレクトリを作業ディレクトリにし、チェックアウト内のtsxとCLIを指定します。
+CLIはnpmパッケージ`@hiroshi.inoue/ui-foundation`として配布します。ベータの対応環境と更新・復旧手順は[利用・更新契約](docs/npm-beta-readiness.ja.md)、Angular依存とworker・資産の配信は[利用ガイド](docs/ui-library-consumer-guide.ja.md)を参照してください。利用アプリのルートで実行します。
 
 ```sh
-/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts init
-# ui.config.yamlの利用者・トークン・プロファイルを編集
-/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync --dry-run
-/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts sync
-/path/to/ui-foundation/node_modules/.bin/tsx /path/to/ui-foundation/src/cli.ts check
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
+./node_modules/.bin/ui-foundation init
+# ui.config.yamlとchecks.source_rootsを実際のアプリに合わせて編集
+./node_modules/.bin/ui-foundation sync --dry-run
+./node_modules/.bin/ui-foundation sync
+./node_modules/.bin/ui-foundation check --format json
 ```
 
-`init`は設定のひな形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、check-ui.cjs、checker-lib/、CHECKER-NOTICE.txt、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。プロジェクトルートごとに一つの生成UIとSkillを所有し、複数のYAMLから並行して別の所有者を作ることはできません。
+開発元のcheckoutから試す手順と、ローカルtgzの検証・公開工程は[npm公開計画](docs/npm-release-plan.ja.md)にあります。
+
+`init`は設定のひな形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、check-ui.cjs、checker-lib/、CHECKER-NOTICE.txt、UI-FOUNDATION-LICENSE.txt、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。プロジェクトルートごとに一つの生成UIとSkillを所有し、複数のYAMLから並行して別の所有者を作ることはできません。
 
 利用アプリは生成されたangular/indexからstandalone部品をインポートします。Angular/RxJS/CDKに加え、日程・媒体・専門部品では、実行時に必要な依存パッケージと型も導入します。[生成consumerの導入手順](docs/ui-library-consumer-guide.ja.md)に固定バージョン、公開API、CSS、workerとアセットの配信を記録しています。CDKの公開APIで仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)を保ちます。Tailwind v4の入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。外部ライブラリのグローバルCSSも含む[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
 
@@ -101,6 +104,6 @@ PDF/MapLibre/Spreadsheetのworkerは別アセットとして配信し、利用�
 
 ownership.jsonがまだない従来のv1生成物は、同じoutputで一度syncすれば通常移行を利用できます。ツール更新と同時にoutputを変更する場合は、`sync --from-output .ui/generated --dry-run`で旧生成先を明示し、確認した計画を`sync --from-output .ui/generated`で適用します。既存の所有情報が壊れている場合にこのオプションで上書きすることはできません。大文字・小文字だけの移動は異なる中間生成先を経由してください。
 
-公開予定名は`@hiroshi.inoue/ui-foundation`、初版は`0.1.0-beta.1`です。npm未公開で`private: true`を維持します。
+パッケージ名は`@hiroshi.inoue/ui-foundation`、初版は`0.1.0-beta.1`、配布タグは`beta`です。公開版の有無とintegrityはnpm registryで確認し、公開・導入検証の結果は検証記録に保存します。
 
 自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[利用ガイド](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。

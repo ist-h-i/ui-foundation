@@ -1,6 +1,6 @@
 # npm公開の準備と見積り
 
-2026/10/19の追加依頼による、既存UI基盤の完成後の配布工程。従来の「npm公開は対象外」は既存基盤の受入範囲であり、この工程では公開を計画する。本人が公開予定名`@hiroshi.inoue/ui-foundation`、初版`0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成コードのMIT License（2026 Hiroshi Inoue）を決定した。npm未公開で`private: true`を維持する。npmユーザー名は本人申告`hiroshi.inoue`。CLI認証・2FA・公開権限は未確認。
+パッケージは`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。2026/10/20に本人が最終検証、`beta`タグでのnpm公開、公開版の導入確認を明示した。CLIユーザー`hiroshi.inoue`、メール認証、2FAは確認済み。今回の公開用に`private: false`とする。公開結果は実際のregistry応答と新規取得物へ結び付け、未実行を成功と扱わない。
 
 ## 配布仕様と受入条件
 
@@ -34,27 +34,23 @@ npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.
 
 文書は`node_modules/<パッケージ名>/docs/`、PDF source kitと原通知は同パッケージの`assets/pdf-source/`と`assets/third-party/`から取得する。アプリへのコピーとworker配信は[利用ガイド](ui-library-consumer-guide.ja.md#css-と配布資産)に従う。`dist/CLI-NOTICE.txt`と生成先の`CHECKER-NOTICE.txt`は別のbundleに対応する。
 
-## 残作業と見直した日程
+## 公開工程と見積り
 
-名称・初版・MITは確定した。10/23は技術準備を統合するための仮目標とし、公開日は設定しない。待ち時間を工数へ含めず、本人稼働の実測値とも扱わない。
+技術準備・名称・MIT・初版は10/19にPR #23までmain統合済み。10/20の公開工程は次の順に行う。作業量の目安は1〜2hで、待ち時間や本人の実測時間とは別。過去の準備候補は[保存記録](verification/npm-beta-20261019/README.md)、今回の実施結果は公開検証記録とガントを参照する。
 
-| 工程 | 目安日 | 残る作業量の目安 |
-| --- | --- | --- |
-| 決定したmetadata・MITの配布経路を実装し、候補を再作成・再監査・独立レビュー | 10/19〜20 | AI実装・検証1〜2h。今回実施する |
-| 技術準備の統合判断 | 10/20〜23（仮） | 本人判断0.25〜1h（代表値0.5h）。Draft PRのまま提示する |
-| npmログイン・メール認証・2FA・scope権限確認と公開判断 | 未定・保留 | 本人0.5〜1.5h（代表値1h）。登録・設定待ちは含めない |
-| 明示的な公開指示後のprivate解除・候補の再検証・公開・registry版導入確認 | 公開指示後 | AI作業1〜2h。今回の公開操作は行わない |
-
-ガントでは本人判断の技術統合0.5hと公開準備・判断1hを別行に置く。後者は日程未定のため週次負荷へ割り当てない。過去の着手時見積り・候補検証の実績は[検証記録](verification/npm-beta-20261019/README.md)に保持する。
+1. 公開用metadata・案内をcommitへ固定し、CLI・検査器をbuild、`npm pack --ignore-scripts --json`で候補を一度作る。SHA256とnpm integrityを保存する。
+2. `UI_FOUNDATION_PACKAGE_TARBALL`と`UI_FOUNDATION_PACKAGE_SHA256`を指定したpackage試験で、その候補を隔離導入する。入力は一時領域へコピーし前後hashと全metadataを照合する。digest不一致は導入前に失敗させ、候補の再build・再packへ置換しない。
+3. 候補と実consumer成果物を依存監査へ渡す。未知の原ライセンスや非稼働optional経路のUnknownを保持する。対象試験・静的検査・独立レビューの結果を固定する。
+4. 正規アカウントと2FAで、検証済みの同一tgzを`npm publish /absolute/path/to/candidate.tgz --ignore-scripts --tag beta --access public --registry=https://registry.npmjs.org/`で公開する。`latest`タグを設定せず、既存versionを上書きしない。応答が不明なときはregistryを先に確認し、publishを盲目的に再実行しない。
+5. registryのname/version/dist-tags/dist.integrityを照合する。新規cacheとcheckout外のプロジェクトから固定versionを取得し、取得したtgzのSHA256/integrityが公開候補と同じことを確認する。同じpackage試験を取得物で再実行し、公開版の導入・生成・検査・UI操作を確認する。
+6. 公開日時、候補と取得物のdigest、registry integrity、検証範囲・未確認事項を保存し、ガントへ完了を反映する。
 
 対応範囲はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3。重点ブラウザー試験はChromium。未検証の版・OS・ブラウザーを合格へ補完しない。技術ゲートと公開ゲートの違い、更新・復旧、通信先と表計算コピーの制約は[ベータの利用・更新契約](npm-beta-readiness.ja.md)、依存監査の範囲は[監査文書](npm-beta-dependency-audit.ja.md)を参照する。
 
-## 公開前の判断
+## 認証と公開結果の扱い
 
-1. 公開予定名・初版・MITは決定済み。npm CLIの認証ユーザーが`hiroshi.inoue`であること、メール認証・2FA・個人scopeの公開権限を確認する。未認証での404応答を名前の予約や権限確認と扱わない。
-2. 確定metadataを候補commitに固定し、検証・独立レビュー後に通常mergeする。名前/version変更後は候補tarballを再検証する。
-3. 手動公開は既存の正規アカウントと2FAを使い、認証情報をリポジトリや検証記録へ保存しない。npm公式ログインが保存する通常のローカル認証設定は、本人の操作で作成する。Trusted Publishingを選ぶ場合はnpm側の設定と対応CIが別途必要。未設定のOIDC/provenanceを有効と記録しない。
-4. 公開の明示指示後に`private: true`を変更し、`beta`タグ・public access・公式registryを指定して、再検証した同一tgzを公開する。`publishConfig`はその既定値を設定するが、公開指示や権限の代わりにはならない。今回の準備ではregistry書込み、名前予約、権限変更を行わない。
-5. 公開version/integrityを記録し、checkoutやローカルtarballを使わず取得・導入して確認する。公開済みversionの上書きは試みない。
+今回の公開先・version・タグに対する本人の指示を適用し、別の公開へ拡大しない。認証情報・OTP・復旧コードは検証記録に保存しない。npm公式ログインの通常のローカル認証設定は本人が管理する。2FAの本人確認が求められた場合は公式画面で本人が完了する。Trusted Publishing/provenanceはこの手動公開では設定済みと記録しない。
 
-仕様参照: [npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)、[Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)。`private`、`files`、`bin`と公開条件の説明を2026/10/19に確認した。
+公開後に問題が見つかった場合、公開済みversionを上書きしない。結果を保存し、修正版・タグ変更・非推奨化などの対応方針を確認する。公開後の導入失敗を合格へ補完せず、今回の結果に残す。
+
+仕様参照: [npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)、[npm publish](https://docs.npmjs.com/cli/v11/commands/npm-publish/)、[Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)。
