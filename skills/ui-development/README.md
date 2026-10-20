@@ -1,3 +1,5 @@
-# UI開発Skillの生成元
+# プロジェクト用UI開発Skill
 
-SKILL.mdとreferences/は実際の生成元です。syncが`.agents/skills/project-ui/`へコピーし、同じ解決設定からproject-context.mdを追加します。UI変更前にSkillと必要な文脈を読みます。配置だけで自動選択が成立したとは扱いません。
+`sync`は`SKILL.md`と`references/`を利用アプリの`.agents/skills/project-ui/`へコピーし、正本YAMLから`project-context.md`を生成します。利用者文書は`references/docs/`に収録されます。
+
+UI変更前にSkillと必要な文脈・APIを読みます。配置だけでAIツールの自動選択や読み込みが成立したとは扱いません。設定やパッケージ版を更新したら、dry-runで差分を確認して再同期します。

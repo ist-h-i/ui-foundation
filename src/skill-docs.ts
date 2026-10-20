@@ -1,26 +1,41 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { lstat, readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const example = 'examples/ui.config.example.yaml';
 
-/** Copy the operational contracts with the generated Skill, including offline links. */
-export async function renderSkillDocumentation(): Promise<Map<string, string>> {
-  const sources = new Map<string, string>();
-  for (const directory of ['docs', 'docs/adr']) {
-    for (const entry of (await readdir(resolve(root, directory), { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
-      if (entry.isSymbolicLink()) throw new Error(`Skill documentation symlink is unsupported: ${directory}/${entry.name}`);
-      if (entry.isFile() && entry.name.endsWith('.md')) sources.set(resolve(root, directory, entry.name), `${directory}/${entry.name}`);
+/** Share the npm files allowlist instead of discovering repository documents. */
+export async function renderSkillDocumentation(resourceRoot: string = root): Promise<Map<string, string>> {
+  const base = resolve(resourceRoot);
+  async function readResource(path: string): Promise<string> {
+    let current = base;
+    for (const part of path.split('/')) {
+      current = resolve(current, part);
+      if ((await lstat(current)).isSymbolicLink()) throw new Error(`Skill documentation symlink is unsupported: ${path}`);
     }
+    if (!(await lstat(current)).isFile()) throw new Error(`Skill documentation must be a file: ${path}`);
+    return readFile(current, 'utf8');
   }
-  for (const path of ['docs/ui-library-api.json', 'docs/ui-library-matrix.json', 'examples/ui.config.example.yaml']) sources.set(resolve(root, path), path);
+  const metadata: unknown = JSON.parse(await readResource('package.json'));
+  const files = metadata && typeof metadata === 'object' && 'files' in metadata ? metadata.files : undefined;
+  if (!Array.isArray(files) || !files.every((path): path is string => typeof path === 'string')) {
+    throw new Error('Package files must contain an explicit documentation allowlist.');
+  }
+  const documents = files.filter(path => path === 'docs' || path.startsWith('docs/'));
+  if (!documents.length || new Set(documents).size !== documents.length || documents.some(path =>
+    !/^docs\/(?:[a-z0-9][a-z0-9.-]*\/)*[a-z0-9][a-z0-9.-]*\.(?:md|json)$/.test(path)
+    || path.split('/').some(part => part === '.' || part === '..'))) {
+    throw new Error('Documentation allowlist must name explicit files without globs or traversal.');
+  }
+  if (!files.includes(example)) throw new Error(`Package files must include the Skill example: ${example}`);
+  const sources = new Map([...documents, example].sort().map(path => [resolve(base, path), path]));
   const result = new Map<string, string>();
   for (const [source, destination] of sources) {
-    let text = await readFile(source, 'utf8');
-    if (source.endsWith('.md')) {
-      // Historical evidence, build scripts and fixture links are not operational
-      // dependencies of the installed Skill. Preserve their labels and provenance
-      // without leaving broken relative links or implying consumer test success.
+    let text = await readResource(destination);
+    if (destination.endsWith('.md')) {
+      // Only allowlisted documents are local operational dependencies. Optional
+      // source examples outside the package retain their labels and provenance.
       text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (link, label: string, target: string) => {
         if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) return link;
         const path = target.split('#')[0];

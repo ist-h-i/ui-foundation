@@ -1,35 +1,8 @@
-# 表・グリッド拡張の仕様
+# 表・グリッドの利用契約
 
-この仕様は表関連の原文16要求、既存TableState、最終12生成元の契約を整理する。設定の正本は `examples/ui.config.example.yaml`、部品の正本は `templates/angular/`。生成物を手編集せず、設定・生成元から同期する。本文の型名、入力名、イベント名、enum値は生成元と一致させる。
+生成した`angular/index.ts`から公開部品をimportします。設定変更後は利用アプリで同期・検査し、生成物は直接編集しません。
 
-作者の実操作54件、独立consumerの重点操作56件、正式移植の型・登録検査は別の範囲である。この資料やstage履歴だけでは全181要求、統合後の正式suite、PRやmergeの完了を宣言しない。
-
-## 原文16要求との対応
-
-requestedControlsは原文のまま記載する。対応する操作は具体的な部品・状態・イベントに接続する。
-
-| ID | 原文の部品 | requestedControls（原文） | 対応 |
-| --- | --- | --- | --- |
-| data-09 | TreeTable / TreeGrid | 階層付き表、列、展開、選択、編集 | 公開 `TreeGrid`、TreeNode、展開・選択のcontrolled state、DataGridの編集・貼付け、取得要求 |
-| data-13 | TableContainer | 表題、領域名、スクロール、表示サイズ | `TableContainer` のcaption/label、scrollDirection/displaySize、位置入力とscrollChange |
-| data-14 | DataTable | 列定義、検索、ソート、フィルター、選択、表示形式 | `DataTableView`、TableEditableColumn、TableState、表示enum、native表 |
-| data-15 | DataGrid | セル移動、セル選択、編集、コピー・貼付け | roving cell、GridRange、CellEditor、実Clipboard、全矩形検証とアプリ応答 |
-| data-17 | TableToolbar | 全体検索、列設定、一括操作、出力 | `TableToolbar`、ColumnChooser、stateChange、bulkRequested、outputRequested |
-| data-18 | ColumnFilter / ColumnChooser | 列条件、表示・非表示、順序、固定、リセット | typed条件、AND/OR、列順・非表示・pin・widthをTableStateに保持 |
-| data-19 | CellEditor / RowEditor | 編集、検証、確定、取消、処理中 | raw draft、saveRequested、complete/fail、取消、readonly/disabled、保持 |
-| data-20 | FilterChips / SearchPanel | 適用条件、個別解除、全解除、保存条件 | 個別条件・全体検索の解除、savedSearches復元、保存intent |
-| table-features-02 | 列フィルター | ON/OFF、文字・数値・日付・選択肢、複数条件 | columnFilters、ColumnFilter、TableFilter/Constraint、native不完全入力の保持 |
-| table-features-05 | 列幅 | 自動調節ON/OFF、固定幅、最小・最大幅、手動リサイズ | autoWidth/autoFit、width/minWidth/maxWidth、測定、native range、TableColumnResize |
-| table-features-07 | ヘッダー | 固定ON/OFF、多段見出し、列グループ | stickyHeader、TableHeaderGroup、colSpan/rowSpan、headers関連 |
-| table-features-08 | 固定表示 | 左右の固定列、固定行、集計フッター | logical start/end pin、fixedStartKeys/fixedEndKeys、stickyFooter、実測offset |
-| table-features-11 | 行の詳細 | 展開、操作ボタン、グループ化、集計 | detail投影、expandedKeys、rowActions、groupBy、collapsedGroupIds、集計 |
-| table-features-12 | 編集 | なし／セル／行、検証、確定、取消 | editMode、CellEditor/RowEditor、requestId応答、表示変更の保留 |
-| table-features-14 | データ処理 | アプリ内処理／サーバー処理、追加取得、仮想スクロール | mode、追加取得のrequest/complete/fail、CDK fixed-size、通常表への復旧 |
-| table-features-16 | 出力 | コピー、CSV出力、印刷、出力対象の指定 | TableOutputScope、matrix/textのintent、Clipboard/CSV/print adapter |
-
-## 公開部品・型と生成元
-
-12ファイルは `table-model.ts`、`table-advanced-model.ts`、`table-runtime.ts`、`table-column-resize.ts`、`table-controls.ts`、`table-editors.ts`、`data-grid.ts`、`tree-grid.ts`、`virtual-data-table.ts`、`table-output.ts`、`data-table.ts`、`data-table-view.ts`。既存 `table-model.ts`、`data-table.ts`、`data-table-view.ts` を拡張し、残り9ファイルを追加する。共有tree-model/tree-load-sequenceはtree部品の契約を再利用する。新しい依存や有償table engineは追加していない。
+## 公開部品と型
 
 公開部品は `DataTable`（`table[uiTable]`）、`TableContainer`（`ui-table-container`）、`DataTableView`（`ui-data-table`）、`TableTemplate`、`DataGrid`、`TreeGrid`、`VirtualDataTable`、`CellEditor`、`RowEditor`、`ColumnFilter`、`ColumnChooser`、`FilterChips`、`SearchPanel`、`TableToolbar`、`TableColumnResize`。
 
@@ -215,16 +188,6 @@ profileは有効なdata-ui-profileで選ぶ。tableの余白、文字、focus、
 
 null/undefined、typed値の不正やinvalid DateはmissingLabelで伝え、0/falseを欠損へ変えない。処理中・部分欠損・結果不明を成功表示へ変えない。listener、observer、CDK subscription、pointercapture、pending/Clipboard generationは破棄時に後始末する。保存、取得、送信、実Undo、永続性、OS権限、業務安全範囲はアプリが担当する。
 
-## 検証範囲
+## 利用アプリで確認する範囲
 
-| 範囲 | 実行結果と限界 |
-| --- | --- |
-| 作者stage | 同raw12でChrome 154、guided/denseの27件ずつ、全54 distinct操作がactual0。runtime/console error0、baseとenabled Unicode sceneのaxe0。実Clipboard、CSV内容、print frame/呼出し、fixed footer start/end×LTR/RTL×2profileの8座標、native scroll、CDK1000行、320px/200%/RTL、draft/stale/focusを確認 |
-| 作者モデル・consumer | pure22 actual0、TypeScript strict/full Angular AOTとpublic barrel AOT actual0。不正keyFieldの独立作者入口はTS2322×2でexpected exit1。GridCellとTableGridCellの両公開型を確認 |
-| 正式追加分の移植 | 原52の本文・登録順序とmodel19を保持するAST/登録検査、追加2profileとモデル3で54/22を維持。fixtureのpublic proxy strictAOT、spec strictTS、モデルstrictTS、registration54、pure22を確認。proxyを正式CLI生成の証拠に数えない |
-| 独立レビュー | 独立の正規CLI生成consumerでraw12/source依存/public index一致、strict publicAOT、pure33、negative4のexpected rejection、重点40＋辞書16操作の合計56がactual0。source12採用を承認。作者54やroot全体とは別のscope |
-| 統合後 | rootが正式sync/check、型・build、generation consumer、旧DataTable回帰と全UIを行い、独立全体レビュー、PR、merge、要求matrixを確定する |
-
-旧失敗は保存する。URIError、compound/groupとerror suffixのID衝突、prototype error/width/pasteの反例と修正後を分ける。projection fixtureのimplicit row誤り、native描画待ちや試験設定の失敗も製品成功へ置き換えない。追加2ケースを補強しており、従来52の本文・順序を新試験に翻案していない。
-
-Safari/Firefox、実screenreader、OS IME、人の利用評価、backend/実Undo、保存先の永続性、実プリンター完了はこの候補stageでは未実行。既存sorting/paging/format/detail/action回帰、複数隣接fixed列、pointer lifecycle、TreeGrid wrapperの全lazy組合せなどは統合後のsuiteと独立レビューの証拠を参照する。未対応virtual組合せは上述の具体的な通常表復旧契約で示す。
+実screen reader、OS IME、ブラウザー差、業務保存・実Undo、保存先の永続性、実プリンター完了はアプリの採用環境で確認してください。型・生成一致・ブラウザー操作・自動アクセシビリティ・視覚や意味の確認は区別します。未対応の仮想化の組合せは、上述の通常表への復旧契約に従います。

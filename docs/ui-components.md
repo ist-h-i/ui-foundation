@@ -1,25 +1,18 @@
-# 初版のUI部品
+# UI部品の公開API
 
-五つの基盤部品群、ラジオグループ、ナビゲーション／パンくず、タブ、開閉領域、ダイアログ、表、ページ送りを、プロファイルと二段階トークンへ接続します。検証アプリはCLIが生成したAngularソースとCSSを使用します。設定・生成・型検査・ビルド・実操作・自動アクセシビリティは別々に検証します。
+生成したAngularソースの入力・イベント・操作と、利用アプリが所有する状態・処理の契約を説明します。全体の選び方は[コンポーネント一覧](components.ja.md)、導入と依存関係は[利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
-## 実装と受入条件
-
-- Angular 22.2.1、TypeScript 6.0.3、Node 24.19.0を採用する。standalone、signal input/output、OnPush、通常のCSSとHTML標準要素を使う。新しいフォームライブラリや実行時APIは不要。
-- `templates/angular/`は生成元。CLIで同期した`output/angular/index.ts`から各部品をimportする。共通CSSは生成した`tokens.css`、`tailwind.css`、`angular/styles.css`を読み込む。検証アプリは`.ui/generated/angular/index.ts`を使用する。
-- 表示の意味、入力と業務状態の所有権は利用アプリに残す。部品はHTTP、実データ復元、業務判断を行わない。
-- 操作テストで処理中の再操作抑止、buttonとlinkの意味、入力とエラーの関連付け、入力保持、選択、局所再試行、部分欠損、結果不明、実状態を戻すUndo、キーボード、狭い画面、動きの低減を確認する。
-- 拡張部品ではナビゲーションの現在地、タブのキーボードと入力保持、開閉、モーダルのEscapeとフォーカス復帰、表の見出し・ソート表示・欠損表現、ページ送りの境界、ラジオ選択を確認する。
-- 静的コンパイル、実操作、自動アクセシビリティ、表示レビューを分ける。利用者による理解や実業務の有効性は未確認。
+利用アプリはCLIで同期した`<output>/angular/index.ts`から各standalone部品をimportします。共通CSSは生成した`tokens.css`、`angular/styles.css`と、Tailwindを使う場合は`tailwind.css`を読み込みます。HTTP、データの復元、業務判断、保存・送信・Undoはアプリが所有します。型検査・build・実操作・自動アクセシビリティ・表示や意味の確認は区別し、利用者の理解や実業務の有効性を自動検査だけで保証しません。
 
 ## トークンとプロファイル
 
 具体値はYAMLの`primitives`、役割との対応は`semantic`、利用者別の上書きは`profiles.<id>.semantic`に置く。必須roleと型は[設計](design.md)を参照。部品のCSSは`--ui-color-action`、`--ui-text-body`、`--ui-space-control-x`等の意味トークンを参照し、色・文字・余白・寸法・角丸・border・weight・line height・motionの具体値を持たない。`--ui-font-body`は書体であり、文字サイズは`--ui-text-body`。旧テーマ変数やdensityの互換層は持たない。
 
-生成したTailwindテーマの`bg-color-action`、`text-color-on-action`、`px-control-x`、`py-control-y`、`font-family-body`、`text-size-body`、`font-weight-body`、`rounded-control`も同じ意味トークンへ接続する。色／文字サイズ、書体／太さをutility名で区別する。検証アプリの`styles.css`をTailwind CLIの入力にし、トークン、adapter、部品CSS、アプリCSSを読み込んで実際のutilityを生成する。
+生成したTailwindテーマの`bg-color-action`、`text-color-on-action`、`px-control-x`、`py-control-y`、`font-family-body`、`text-size-body`、`font-weight-body`、`rounded-control`も同じ意味トークンへ接続する。色／文字サイズ、書体／太さをutility名で区別する。利用アプリの`styles.css`をTailwind CLIの入力にし、トークン、adapter、部品CSS、アプリCSSを読み込んで実際のutilityを生成する。
 
-`:root`は既定プロファイル。`data-ui-profile="guided"`または`"dense"`を持つスコープでは全意味トークンを再定義する。検証アプリの初期値とlabel付きselect「表示設定」のID・labelは、同じYAMLから生成した`.ui/generated/profiles.ts`の`uiProfiles`を使う。設定例の既定はguided。選択で同じmain要素の属性を変更し、入力・選択・取得状態・処理中・実行結果をアプリのsignalと同じDOMへ保持する。生成メタデータにないIDはアプリ側で選択を受け付けない。
+`:root`は既定プロファイル。`data-ui-profile="guided"`または`"dense"`を持つスコープでは全意味トークンを再定義する。プロファイル切替UIのID・labelは、同じYAMLから生成した`.ui/generated/profiles.ts`の`uiProfiles`を使う。設定例の既定はguided。選択で同じmain要素の属性を変更し、入力・選択・取得状態・処理中・実行結果をアプリのsignalと同じDOMへ保持する。生成メタデータにないIDはアプリ側で選択を受け付けない。
 
-guidedは青の主操作、初期本文18px、広い余白、12pxの操作角丸。denseは緑の主操作、初期本文16px、狭い余白、4pxの操作角丸。文字サイズはremで定義し、root文字サイズの変更に追随する。検証アプリの入れ子ではdenseの内側へguided、guidedの内側へdenseを適用する。プロファイルのcontext/guidanceはAIが構成を判断する材料であり、runtimeの部品は対象利用者や画面構成を自動推定しない。
+guidedは青の主操作、初期本文18px、広い余白、12pxの操作角丸。denseは緑の主操作、初期本文16px、狭い余白、4pxの操作角丸。文字サイズはremで定義し、root文字サイズの変更に追随する。入れ子でも各スコープの全意味トークンを適用する。プロファイルのcontext/guidanceはAIが構成を判断する材料であり、runtimeの部品は対象利用者や画面構成を自動推定しない。
 
 ## 公開API
 
@@ -127,37 +120,9 @@ native modal Dialogと入力focusを維持するcombobox/listbox、group名と�
 
 `<ui-pagination [page]="page()" [totalPages]="totalPages()" (pageChange)="page.set($event)" label="申請一覧のページ" />`。pageは1以上、totalPagesは0以上のsafe integer。totalPages>0ではpage<=totalPages、既知の0件ではpage=1を渡す。範囲外や不明な数値は『ページ情報を表示できません』と示して操作を抑止する。取得前の総頁数を0に置き換えず、AsyncRegion等で状態を分ける。disabledは既定false。前後操作と現在頁／総頁を示し、全頁分のボタンを大量生成しない。
 
-## 初版で対象外だった部品と拡張範囲
-
-初版では検索付きcombobox、メニュー、日付選択等を対象外とした。拡張依頼により現在は全181要求行を実装対象としている。各部品の現契約はこの文書の拡張節、実装・検証済みと残件は`docs/ui-library-matrix.json`に記録する。ファイルアップロード、仮想化、専門部品等を、名称や単純な標準inputの配置だけで完成とは扱わない。
-
-## 表示方針
-
-検証アプリは申請の一覧と編集フォームを持つ作業画面。最初に現在の申請、保存操作、表示設定と入力欄を示す。主操作は保存、破壊的操作は対象と不可逆性の説明を添える。不要なHero、カードの入れ子、繰り返し説明は置かない。両プロファイルでOS標準フォント、意味別の色、44px以上の操作領域、見えるfocusを採用し、外部フォント・画像を読み込まない。入れ子のスコープは下部の表示比較例へ限定する。
-
-## 今回の検証範囲
-
-`tests/ui/`は既存の27操作シナリオをguided/denseの両方へ適用する。色・書体・文字サイズ・余白・角丸・checkbox寸法・表の余白はcomputed styleで確認する。プロファイル変更前後の同じ入力DOM、部分欠損・非表示領域・処理中の一回だけの実行・完了結果を確認し、入れ子の全必須意味トークンと実際の部品／utilityの見た目を比較する。
-
-狭幅、文字サイズ100%／200%、キーボード、正常／エラー／部分欠損／結果不明／処理中、展開とdialog、reduced-motion、touch、自動axeの試験を両プロファイルで実行する。文字拡大試験では実際のfont-sizeが2倍になったことも確認する。実行結果は後続の検証記録に記載し、未実行を合格扱いしない。
-
-## 検証記録（2026-10-05）
-
-- 実行環境: Node 24.19.0、Angular 22.2.1、Tailwind CLI 4.3.0、Chromium。
-- 生成: `npm run ui:sync -- --dry-run`で差分を表示し、`npm run ui:sync`で同期した。`npm run ui:check`で設定と生成物の一致を確認した。型検査とビルドも成功し、生成したAngularソースのAOTコンパイル／公式linkerとTailwind CSSの実生成を実行した。
-- 全体検証: `npm ci`後に`npm test`を実行し、設定60件、生成14件、Chromiumの操作66件（計140件）がすべて成功した。skip／retryは0。操作66件は既存27シナリオの両プロファイル実行54件、切替・生成metadata・入れ子等の7件、追加roleのTailwind実生成・描画1件、ナビゲーションの配色・長いラベルの回帰4件。対象状態のaxe自動検査違反は0件。
-- 独立検証で、hidden解除直後のTab操作がAngularの再表示より先に進む試験のraceを確認した。主担当も修正前の両プロファイルの失敗を再現し、Tabs／Disclosureの再表示をassertionで待ってからTabを送るよう修正した。`--workers=1 --repeat-each=3`で対象2件を各3回実行し、6件すべて成功した。固定時間のsleepやretryによる回避は使わない。
-- 追加roleによるTailwindのutility名衝突を確認し、色・文字サイズ・書体・太さを用途別の名称へ統一した。修正前の描画試験の失敗を確認し、修正後は同じbody／controlの役割名を色と書体へ追加しても、両プロファイルの色・文字サイズ・書体・太さが独立して適用されることをTailwind CLIとChromiumで確認した。生成Skillの実装例も同じ名称へ揃えた。
-- 外部ディレクトリの新規利用アプリからcheckoutのCLIを実行し、init／sync --dry-run／sync／checkとprofile metadata・Skillの生成を確認した。
-- 表示: guided／denseの部品とutilityが同じroleから青／緑、本文18px／16px、余白、角丸を解決することをcomputed styleで確認した。checkboxの20px寸法、表の余白、全50必須roleを持つ入れ子、100%／200%の文字サイズ、320pxの横はみ出し、dialogの中央配置を測定した。
-- 描画レビュー: Chromiumで両プロファイルの1280×1000／390×844の初期画面、保存失敗・部分欠損、modal dialogを撮影して確認した。主操作の色と寸法、本文と補助文の読み分け、狭幅での折返し、入力を残す障害表示、dialogの中央配置と操作名の表示を確認した。静止画の確認を実利用者による理解評価とは扱わない。
-- 今回のP2回帰: 修正前のテンプレートで両プロファイルの4件が失敗することを確認した。修正後は白いaction／action-hoverとinkのon-actionを持つ設定が通り、nav／パンくずの通常・現在地・hover、surface／backgroundの実背景、選択タブの文字・下線が4.5:1以上となる。不適切なlink／tab-selectedの配色、必須参照の不足・型違い・参照切れは設定検証で拒否する。
-- 長い移動先: 実Angular部品のnav／パンくずを両プロファイル、320px、100%／200%、日本語／連続英字で検証した。全文の各描画行がリンク・list itemの枠内に収まり、ページの横スクロールを生じさせない。nativeのTab／Enter、href、aria-current、hidden／再表示も確認した。Chromium 153.0.8010.12で320px・200%の両部品、白い主操作背景、独立したリンク・選択タブの色を撮影し、実描画を確認した。
-- 未確認: Firefox／Safari、実スクリーンリーダー、SSR／hydration、多重modal、Angular forms／Routerとの統合、実サービスの通信と復元、利用者の理解・実業務での有効性。自動コンパイル・操作・axeの成功から、これらの成立は推測しない。
-
 ## 共通ライブラリの拡張
 
-全依頼は[原文](ui-library-request.ja.md)と[要求マトリクス](ui-library-matrix.json)で追跡します。下記は実装したAPIの契約であり、全カタログの完了を意味しません。高度な表編集、集計・グループ、仮想化、出力、専門部品などの残件はマトリクスに保持します。
+以下は拡張部品の公開APIと利用上の制約です。
 
 Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`、Iconを使うconsumerは`@lucide/angular`を導入します。このrepoでは22.2.1／1.52.0を固定し、AOTで利用します。Lucideは[公式Angular adapter](https://lucide.dev/guide/angular)と[ISCライセンス](https://lucide.dev/license)を確認しました。追加のアカウントや有償serviceは使用しません。アイコンの依存ソースはAngular linkerを通し、実際に描画したSVGで検証します。
 
@@ -196,7 +161,7 @@ TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Sw
 - MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除、direction=vertical/horizontal、columns。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
 - Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。`ng-template[uiComboboxOption]`のtyped contextは`$implicit:SelectOption`、active/selected。候補templateは表示内容だけに使い、入れ子の別操作を置きません。native popoverとOverlayRegistry、placementとviewport反転/クランプを使い、native modal内にも留めます。最初のEscapeは候補、その後のEscapeはDialogへ届きます。Tab/outside/選択で同期して登録を解除し、入力focusを別の操作から奪いません。
 
-FormLayout（`[uiFormLayout]`）はcolumns、direction、gap=none/compact/normal/wide、labelPosition=above/inline、labelWidth（正のpx、nullはsize.form-label）を持ちます。FormFieldのlabelPosition=inherit/above/inlineは既定でlayoutを継承し、inline幅は入力を保つため領域の40%まで、viewport 40rem以下では文字入力を縦に戻します。native checkboxは明示above/inlineも指定できます。InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。FormGroupはgroupId/label/hint/disabledと同じlayout設定を持つnative fieldset/legendです。disabledはnative子操作を無効にし、値を消しません。Angularのvalidationからも除外する場合はアプリがFormGroup.disable()を使います。他の入力カテゴリはマトリクスで追跡します。
+FormLayout（`[uiFormLayout]`）はcolumns、direction、gap=none/compact/normal/wide、labelPosition=above/inline、labelWidth（正のpx、nullはsize.form-label）を持ちます。FormFieldのlabelPosition=inherit/above/inlineは既定でlayoutを継承し、inline幅は入力を保つため領域の40%まで、viewport 40rem以下では文字入力を縦に戻します。native checkboxは明示above/inlineも指定できます。InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。FormGroupはgroupId/label/hint/disabledと同じlayout設定を持つnative fieldset/legendです。disabledはnative子操作を無効にし、値を消しません。Angularのvalidationからも除外する場合はアプリがFormGroup.disable()を使います。他の入力カテゴリは[コンポーネント一覧](components.ja.md)から参照できます。
 
 ### 構造化入力とフォーム操作
 
@@ -371,7 +336,7 @@ Tooltipは必須`message`だけを表示し、操作を投影しない。既定5
 
 ConfirmPopoverは必須`label/message`、`confirmLabel/cancelLabel/busyLabel`、`error`を持つ。確認を主操作の色、取消を補助操作の色で表示し、初期focusは取消。`confirmRequested`はUIの意思表示で、自動で閉じない。確認要求から次の描画までは部品内で二重要求と通常の終了を抑止し、その後の処理状態はアプリのbusyに従う。アプリがbusy/error/retryを接続し、結果後に`complete(value)`または明示open=falseを行う。取消はcancelで閉じる。処理失敗は入力とerrorを残し、再試行できる。ライブラリはbackendの保存成功・実Undoを保証しない。
 
-共通Escapeは子のキー処理の後で最上位Overlayへ渡し、defaultPreventedまたはIME変換中のキーでは終了しない。busy/終了保留の連続Escapeも保持する。native Dialogはmodalの背景抑止とTabを所有する。native cancelの拒否だけでは連続した閉じ要求を必ず保留できないため、アプリのキー契約を共通Registryで扱う。[判断と制限](adr/0001-overlay-escape.md)を参照する。OSの戻る操作など、キー以外の終了要求の保留を保証しない。
+共通Escapeは子のキー処理の後で最上位Overlayへ渡し、defaultPreventedまたはIME変換中のキーでは終了しない。busy/終了保留の連続Escapeも保持する。native Dialogはmodalの背景抑止とTabを所有する。native cancelの拒否だけでは連続した閉じ要求を必ず保留できないため、アプリのキー契約を共通Registryで扱う。最上位がbusyや終了保留で閉じない場合も、そのEscapeを消費し、下位のDialogへ送らない。OSの戻る操作など、キー以外の終了要求の保留を保証しない。
 
 対象/内容の監視はdocumentElementを含む。根のdir/profile/style変更でもPopupを再配置し、根がhidden/inertとなる場合もMenu/Popupの後始末とDrawer/Sheetのnative modal解除を行う。根の利用可能状態を戻した後、別の操作へ移ったfocusを奪わない。
 
@@ -409,7 +374,7 @@ InlineEditとFilterBuilderの`invalidatePending()`は、下書きや保存済み
 
 ## 一覧・選択・仮想化・移動
 
-生成Angular consumerは`@angular/cdk`をAngularの互換版で導入する。このリポジトリは22.2.1をexact固定する。[ADR 0002](adr/0002-collections-cdk.md)と[段階受入仕様](ui-library-collection-expansion-spec.ja.md)を参照。以下の実装は段階検証中で、完了行はマトリクスのverifiedと実証記録を照合する。
+生成Angular consumerは`@angular/cdk`をAngularの互換版で導入する。対応する検証版と依存一覧は[利用ガイド](ui-library-consumer-guide.ja.md#依存関係)を参照する。公開scrolling/drag-drop APIを使用し、CDK内部のprivate APIやstyleを変更しない。
 
 List/ui-list、Masonry/ui-masonry、DataView/ui-data-viewは`items`、`keyField`、`labelField`、`label`、任意`descriptionField/iconField/emptyMessage`を持つ。キーは重複しない非空string/finite number、内容はapp-owned immutable snapshot。`ng-template uiCollectionItem [uiCollectionItemOf]=items`のcontextは`$implicit/index/pageIndex/count/key/label`。ListItem相当の主/補助/行操作を差替えられる。Listは`separators/spacing`、Masonryは`columns/maxColumns/minimumItemWidth/breakpoints/gap`でCSS複数列に高さの異なる行を置く。
 
@@ -419,7 +384,7 @@ Listbox/ui-listboxとSelectionList/ui-selection-listは同じCVA部品。`ListCh
 
 VirtualListは`items/keyField/labelField/label/itemHeight/height/overscan/emptyLabel/radioGroups`と`rangeChange/positionChange`、公開`scrollToIndex/scrollToOffset`を使う。寸法nullは意味tokenの測定。`ng-template uiVirtualItem [uiVirtualItemOf]=items`のcontextは`$implicit/index/count`。固定高さの内部は局所scroll、editor stateはappが安定keyに接続する。仮想化で自前focus行が消えた場合はviewportへ移し、外部focusを奪わない。公開viewportのclientWidthをResizeObserverで測り、自前の行幅だけに適用する。長い既定ラベルは行内で省略し、アプリの大きな投影内容は行内でスクロールできる。CDK内部の要素やCSSを変更しない。
 
-VirtualListとVirtualDataTableの投影操作は、Tab/Shift+Tabの標準動作より前に現在行と隣接行を固定行windowへ描画する。各キーのRAF待機は不要。Tab順とfocus移動はブラウザが所有し、consumerが処理済みのキー、IME変換中、修飾付きTab、内側viewportの操作を奪わない。pointer/wheelや明示スクロールで現在行の保持を解除し、行が消えた際は自前focusだけをviewportへ退避する。`rangeChange`は描画予定範囲の通知であり、DOM更新完了の通知ではない。多数の連続行にTab対象がない投影など、未描画の全論理行のTab順は別途アプリで検証する。[配置の判断と制限](adr/0003-virtual-native-tab.md)。
+VirtualListとVirtualDataTableの投影操作は、Tab/Shift+Tabの標準動作より前に現在行と隣接行を固定行windowへ描画する。各キーのRAF待機は不要。Tab順とfocus移動はブラウザが所有し、consumerが処理済みのキー、IME変換中、修飾付きTab、内側viewportの操作を奪わない。pointer/wheelや明示スクロールで現在行の保持を解除し、行が消えた際は自前focusだけをviewportへ退避する。`rangeChange`は描画予定範囲の通知であり、DOM更新完了の通知ではない。多数の連続行にTab対象がない投影など、未描画の全論理行のTab順は別途アプリで検証する。同期探索は最大データ件数に比例するview生成を伴うため、極端な件数や高コストな投影はアプリで追加確認する。
 
 仮想行を跨ぐnative radioには `radioGroups: readonly VirtualRadioGroup[] | Signal<readonly VirtualRadioGroup[]>` を渡す。`{name, form?, value: string|null, members: [{key: CollectionKey, value: string, disabled?, hidden?}]}` のkeyは行key、valueはnative input.value。form省略はviewportの継承form ownerで、指定時はnative form.idと一致させる。一groupの全memberを一viewport内で記述し、disabled/hiddenには描画外も含む実効状態を渡す。native changeを受けてappがcanonical valueを更新する。動的なmodelはreadonly Signal自体を `[radioGroups]="groups"` へ渡す。配列は静的modelまたは通常の親binding反映後に使い、連続キー中の最新値にはSignalを使う。表のselectedKeysも配列とSignalの両方を受け付ける。adapterはcheckedとTab入口をその値へ同期し、選択stateを別途保存しない。未選択時の入口はFirefoxでは先頭、WebKitでは移動方向の端、Chromiumでは移動方向とfocus履歴へ従い、同一行内のoption順はmetadata配列順によらずDOMに従う。
 
@@ -427,7 +392,7 @@ VirtualListとVirtualDataTableの投影操作は、Tab/Shift+Tabの標準動作�
 
 例: appで `groups = computed(() => [{name: 'decision', value: decision(), members: [{key: 0, value: 'yes'}, {key: 499, value: 'no'}]}])` を定義し、`[radioGroups]="groups"` と各投影 `<input type="radio" name="decision" [value]="row.value" [checked]="decision()===row.value" (change)="decision.set(row.value)">` を接続する。複数選択肢が同じ行keyを使う場合もnative valueを一意にする。不明な行key、重複group/value、不明な選択値は設定エラーを表示し、modelを自動で消去しない。
 
-この契約はgroupの外部member/別viewport共有、正のtabindex、shadow DOM/別documentを含めない。member記述と実DOMのname/form/value/無効・非表示状態をappが一致させる。これらの追加構成は個別の検証が必要。[radio検証](verification/ui-virtual-radio-20261014/README.md)。
+この契約はgroupの外部member/別viewport共有、正のtabindex、shadow DOM/別documentを含めない。member記述と実DOMのname/form/value/無効・非表示状態をappが一致させる。これらの追加構成は個別の検証が必要。同期探索のコストは最大データ件数に比例し、metadataも全member分を保持する。極端な件数・高コストな投影の性能は保証しない。
 
 SortableList/ui-sortable-listとOrderList/ui-order-listは`items/keyField/labelField/controlId/label/orientation/disabled/busy/readonly/canMove/emptyMessage`、`itemsChange/moved`を持つ。候補更新はappがitemsChangeを受けて接続。`moved {item,fromIndex,toIndex,items,reason}`のreasonはbutton/pointer/keyboard。canMove例外は拒否。公開CDKのhandle/touch-delay、native位置変更button、ハンドルclick→矢印/Home/Endの仮配置→Enter確定/Escape取消を使う。pointer開始sourceが差替わった場合は旧dropを拒否。指を離す前の取消は更新を公開せず、pointer releaseの説明を残す。実Undo/サーバー更新の成功ではない。
 
@@ -435,7 +400,7 @@ InfiniteScrollは`label/loading/finished/error/disabled/autoLoad/observerRoot/ro
 
 ### TransferとTimelineの契約
 
-forms-21 原文: **TransferList / PickList — 左右移動、検索、複数選択、順序変更**。data-11 原文: **Timeline / ActivityLog — 日時、種別、詳細展開、追加読込み**。
+TransferList / PickListは左右移動・検索・複数選択・順序変更、Timeline / ActivityLogは日時・種別・詳細展開・追加取得を扱う。
 
 TransferList / PickList
 
@@ -465,7 +430,7 @@ Timeline / ActivityLog
 
 ## 全カテゴリの拡張API
 
-既存部品を含む要求の正本は[181行のマトリクス](ui-library-matrix.json)。以下は公開barrelの型、各制御項目、失敗/復旧、native操作、生成consumerの供給条件を記す。元の仮部品名と公開名の対応も各契約に含む。
+以下は公開barrelの型、各制御項目、失敗・復旧、native操作、生成consumerの供給条件を記す。
 
 - [Tree / TreeSelect / Cascader / OrganizationChart](ui-library-tree-expansion-spec.ja.md)
 - [Scheduler / Agenda](ui-library-scheduler-expansion-spec.ja.md)
@@ -475,7 +440,7 @@ Timeline / ActivityLog
 - [全入力のフォーム接続・locale/日付書式・RTL/CDK・profile](ui-library-runtime-foundation-spec.ja.md)
 - [生成後の独立consumer・runtime依存・worker/asset/NOTICE](ui-library-consumer-guide.ja.md)
 
-exactソースから取得した[prop/event/method/型とexport一覧](ui-library-api.json)は`node scripts/catalog-api.mjs`で更新する。これはAPI目録で、全ソースのAST逸脱やアクセシビリティを検査するものではない。compiler inferenceと継承入力はstrict consumerで確認する。
+[prop・event・method・型とexport一覧](ui-library-api.json)も参照できる。これはAPI目録で、全ソースのAST逸脱やアクセシビリティを検査するものではない。compiler inferenceと継承入力はstrict consumerで確認する。
 
 列条件は文字拡大に応じて比較方法と値を別の行へ配置します。native日付欄の内部表示が狭くなる場合も、列条件とセル・行編集は入力した日付全体を関連付けた説明で確認できます。DataGrid/TreeGridの列は値と常設編集操作の幅を確保し、狭幅では局所scrollで確認します。Schedulerの週・月表示も予定名・日時を読むカード幅を保ち、表示日へ移動する操作を提供します。FlowEditorの編集入力はセルの内容幅を越えません。
 
@@ -497,4 +462,4 @@ CommandPaletteの局所スクロール内にある再試行ボタンは、フォ
 仮想表のラッパー `DataTableView` でも、動的な `selectedKeys` は readonly Signal 自体を渡す。`virtualRadioGroups` は投影セル用の同じモデルを受け付け、子へSignalを保持して渡す。メンバーは現在の検索・ページ適用後の行に限定し、表示外の選択はアプリで保持する。検索やページ変更時は、アプリが表示中のメンバーと、その中の選択値（なければnull）を計算する。通常表の投影radioはブラウザのnative groupを使う。
 
 
-仮想radioのクロスブラウザ回帰は `npm run test:ui:radio:cross-browser` で実行する。必要なPlaywrightブラウザを配置した環境を使う。macOS WebKitは起動プロセス内のCocoa引数で全controlへのkeyboard navigationを有効化する（利用者の設定DBは変更しない）。Tab資格の内部方針は報告UAから選び、未知・偽装UAや未検証OSは保証しない。WebKitではcheckedがhidden/disabledのgroupへTabで入らず、Arrowは端で折り返さない。選択値はその場合もappのcanonical modelに残す。[検証条件と残件](verification/ui-virtual-radio-cross-browser-20261014/README.md)。
+仮想radioのTab資格の内部方針は報告UAから選ぶ。未知・偽装UA、未検証のブラウザー版・OS・実機・支援技術や、すべてのcontrolがTab対象にならないOS設定では成立を保証しない。WebKitではcheckedがhidden/disabledのgroupへTabで入らず、Arrowは端で折り返さない。選択値はその場合もアプリのcanonical modelに残す。採用する環境で同じengineのnative radioと比較し、ブラウザー更新時も確認する。

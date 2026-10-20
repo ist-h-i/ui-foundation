@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, writeFile, rm, cp } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, writeFile, rm, cp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,16 +21,21 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.1');
+  assert.equal(manifest.version, '0.1.0-beta.2');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
-  for (const name of ['LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
+  for (const name of ['README.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
     'dist/checker-lib/lib.es2022.d.ts', 'templates/angular/index.ts', 'skills/ui-development/SKILL.md',
     'examples/ui.config.example.yaml', 'assets/pdf-source/FONT-MAPPING.json', 'assets/third-party/THIRD-PARTY-NOTICES.txt',
-    'assets/third-party/FOUNDATION-NOTICES.txt', 'docs/ui-library-api.json', 'docs/ui-library-matrix.json', 'docs/adr/0001-overlay-escape.md']) {
+    'assets/third-party/FOUNDATION-NOTICES.txt', 'docs/ui-library-api.json', 'docs/components.ja.md', 'docs/ui-library-consumer-guide.ja.md', 'docs/npm-beta-readiness.ja.md', 'docs/npm-beta-release-notes.ja.md', 'docs/commands.ja.md']) {
     assert.ok(paths.includes(name), `missing package resource: ${name}`);
   }
-  for (const path of paths) assert.ok(/^(?:package\.json|README\.md|LICENSE|dist\/(?:cli\.js|check-ui\.cjs|CLI-NOTICE\.txt|CHECKER-NOTICE\.txt|CLI-DEPENDENCIES\.json|checker-lib\/[^/]+\.d\.ts)|templates\/angular\/.*|skills\/ui-development\/.*|examples\/ui\.config\.example\.yaml|assets\/(?:pdf-source|third-party)\/.*|docs\/(?:[^/]+\.md|adr\/[^/]+\.md|ui-library-(?:api|matrix)\.json))$/.test(path), `unexpected packed file: ${path}`);
+  assert.ok(!paths.some(path => /^templates\/.*\.md$/.test(path)), 'template authoring documentation must not be published');
+  const allowedDocs = manifest.files.filter(path => path.startsWith('docs/')).sort();
+  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.ja)?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
+  assert.deepEqual(paths.filter(path => path.startsWith('docs/')).sort(), allowedDocs, 'the tarball documentation must exactly match the explicit allowlist');
+  assert.ok(!paths.some(path => /(?:^docs\/adr\/|^docs\/verification\/|^docs\/(?:development|implementation-plan|npm-release-plan|ui-library-matrix)\.)/.test(path)), 'developer records and validation evidence must not be published');
+  for (const path of paths) assert.ok(allowedDocs.includes(path) || /^(?:package\.json|README\.md|LICENSE|dist\/(?:cli\.js|check-ui\.cjs|CLI-NOTICE\.txt|CHECKER-NOTICE\.txt|CLI-DEPENDENCIES\.json|checker-lib\/[^/]+\.d\.ts)|templates\/angular\/.*|skills\/ui-development\/.*|examples\/ui\.config\.example\.yaml|assets\/(?:pdf-source|third-party)\/.*)$/.test(path), `unexpected packed file: ${path}`);
   const consumer = resolve(root, 'consumer'); await mkdir(consumer);
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', candidate.tarball], consumer);
@@ -38,6 +43,9 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.equal(installedMetadata.license, manifest.license);
   assert.equal(installedMetadata.version, manifest.version);
+  for (const path of ['README.md', 'docs/components.ja.md', 'docs/ui-library-consumer-guide.ja.md', 'docs/commands.ja.md']) {
+    assert.deepEqual(await readFile(resolve(installed, path)), await readFile(resolve(repository, path)), `consumer documentation must be current: ${path}`);
+  }
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   assert.deepEqual(await readFile(resolve(installed, 'LICENSE')), ownLicense);
   assert.ok(!installedMetadata.dependencies || Object.keys(installedMetadata.dependencies).length === 0);
@@ -56,6 +64,18 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   await assert.rejects(readFile(resolve(consumer, '.ui/generated/manifest.json')), { code: 'ENOENT' });
   cli('sync');
   assert.match(cli('sync'), /current/);
+  const skillDocs = resolve(consumer, '.agents/skills/project-ui/references/docs');
+  const generatedDocs = [];
+  async function visitSkillDocs(directory, prefix = 'docs') {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const path = `${prefix}/${entry.name}`;
+      assert.equal(entry.isSymbolicLink(), false, path);
+      if (entry.isDirectory()) await visitSkillDocs(resolve(directory, entry.name), path);
+      else generatedDocs.push(path);
+    }
+  }
+  await visitSkillDocs(skillDocs);
+  assert.deepEqual(generatedDocs.sort(), allowedDocs, 'generated Skill docs must match the tarball allowlist');
   const valid = JSON.parse(cli('check', '--format', 'json'));
   assert.equal(valid.valid, true);
   assert.ok(!valid.source.diagnostics.some(item => /standard libraries are unavailable/.test(item.message)));

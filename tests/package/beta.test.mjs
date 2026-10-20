@@ -29,14 +29,16 @@ function assertSnapshot(actual, expected, message) {
   assert.deepEqual(changed, [], message);
 }
 
-async function verifySkillReferences(consumer) {
+async function verifySkillReferences(consumer, allowedDocs) {
   const skill = resolve(consumer, '.agents/skills/project-ui');
-  for (const path of ['references/docs/ui-components.md', 'references/docs/ui-library-api.json', 'references/docs/ui-library-matrix.json', 'references/docs/adr/0001-overlay-escape.md', 'references/examples/ui.config.example.yaml']) await readFile(resolve(skill, path));
+  for (const path of ['references/docs/ui-components.md', 'references/docs/ui-library-api.json', 'references/docs/components.ja.md', 'references/docs/ui-library-consumer-guide.ja.md', 'references/docs/npm-beta-readiness.ja.md', 'references/docs/npm-beta-release-notes.ja.md', 'references/docs/commands.ja.md', 'references/examples/ui.config.example.yaml']) await readFile(resolve(skill, path));
   let checked = 0;
+  const generatedDocs = [];
   async function visit(directory) {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
       const path = resolve(directory, entry.name);
       if (entry.isDirectory()) { await visit(path); continue; }
+      if (path.startsWith(`${skill}/references/docs/`)) generatedDocs.push(relative(resolve(skill, 'references'), path));
       if (!entry.name.endsWith('.md')) continue;
       for (const [, target] of (await readFile(path, 'utf8')).matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
         if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) continue;
@@ -47,6 +49,7 @@ async function verifySkillReferences(consumer) {
     }
   }
   await visit(skill);
+  assert.deepEqual(generatedDocs.sort(), allowedDocs, 'isolated generated Skill documentation must match the tarball allowlist');
   assert.ok(checked > 0, 'the generated Skill must retain its operational documentation links');
   return checked;
 }
@@ -85,7 +88,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.1');
+  assert.equal(manifest.version, '0.1.0-beta.2');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
@@ -107,6 +110,10 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   candidateDetails = await prepareCandidate({ repository, root, execute });
   candidate = candidateDetails.tarball;
   tarballDigest = candidateDetails.sha256;
+  const allowedDocs = candidateDetails.manifest.files.filter(path => path.startsWith('docs/')).sort();
+  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.ja)?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
+  assert.deepEqual(candidateDetails.paths.filter(path => path.startsWith('docs/')).sort(), allowedDocs, 'the isolated tarball must contain exactly the allowlisted documentation');
+  assert.ok(!allowedDocs.some(path => /(?:adr|verification|development|implementation-plan|release-plan|matrix)/.test(path)), 'developer documentation must not be distributed');
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   const install = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--no-save', tarball]);
   await install(candidate);
@@ -123,7 +130,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
     assert.deepEqual(await readFile(resolve(consumer, path)), ownLicense, path);
   }
   assert.equal(JSON.parse(await cli('check', '--format', 'json')).valid, true);
-  const skillReferences = await verifySkillReferences(consumer);
+  const skillReferences = await verifySkillReferences(consumer, allowedDocs);
   const candidateState = await snapshot(consumer);
 
   // These private, unpublished tarballs model a real differing-version upgrade.

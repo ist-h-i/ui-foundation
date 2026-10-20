@@ -65,7 +65,7 @@ ui-foundation -h
 | 出力先 | 内容 |
 | --- | --- |
 | `<output>/` | `tokens.css`、`tailwind.css`、`profiles.ts`、`resolved.json`、`angular/`、`policy.json`、`check-ui.cjs`、`checker-lib/`、通知・ライセンス、`manifest.json` |
-| `.agents/skills/project-ui/` | UI開発Skill、`project-context.md`、参照文書、ライセンス、`ownership.json` |
+| `.agents/skills/project-ui/` | UI開発Skill、`project-context.md`、利用者文書の`references/docs/`、ライセンス、`ownership.json` |
 
 **副作用**として、同期対象に`create`・`update`・`delete`を適用します。前回manifestが所有する不要なファイルは削除対象になります。生成先とSkillに業務コードや独自ファイルを置かないでください。手編集、未所有ファイル、所有情報の破損や不一致を検出すると書込み前に停止します。同じ内容のファイルでも、未所有なら自動採用しません。強制上書きのオプションはありません。
 

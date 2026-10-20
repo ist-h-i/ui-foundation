@@ -1,6 +1,8 @@
-# npm公開の準備と見積り
+# npm公開の手順と記録
 
-パッケージは`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`、自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。2026/10/20に本人が最終検証、`beta`タグでのnpm公開、公開版の導入確認を明示した。CLIユーザー`hiroshi.inoue`、メール認証、2FAは確認済み。今回の公開用に`private: false`とする。公開結果は実際のregistry応答と新規取得物へ結び付け、未実行を成功と扱わない。
+現在の公開対象は`@hiroshi.inoue/ui-foundation@0.1.0-beta.2`、配布タグは`beta`、accessは`public`です。2026/10/21の本人の明示依頼により、利用者文書だけの配布への整理、独立レビュー、PRの通常merge、新版のnpm公開と公開版の導入確認を実施します。旧版の公開認可ではなく、この依頼を今回版の認可とします。認証状態は公開前に確認し、認証情報は記録へ含めません。既存versionを上書きせず、`latest`タグは変更しません。
+
+自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。第三者資産の既存条件を保持し、候補と公開版を同じdigestへ結び付けます。CLI exitだけでは公開成功とせず、registryのstatus・version・tag・integrityと新規取得物の導入結果を確認します。過去のbeta.1検証記録は履歴として保持します。
 
 ## 配布仕様と受入条件
 
@@ -13,18 +15,26 @@
 
 ## ローカル候補の作成と導入
 
+公開候補を作る前に、生成・型検査・対象試験・独立レビューを終えます。公開候補は新しい専用ディレクトリへ一回だけpackし、JSON出力、SHA256、SHA512 integrityを固定します。
+
 ```sh
-npm ci
 npm run ui:sync
-npm run ui:check
+npm run ui:check:warnings
+npm run package:build
+npm pack --ignore-scripts --json --pack-destination /absolute/path/to/release-candidate
+# 上のpack結果と独立計算したdigestを固定する
+UI_FOUNDATION_PACKAGE_TARBALL=/absolute/path/to/release-candidate/candidate.tgz \
+UI_FOUNDATION_PACKAGE_SHA256=<固定したSHA256> \
+UI_FOUNDATION_PACKAGE_EVIDENCE=/absolute/path/to/release-evidence \
 npm run test:package
-npm pack --pack-destination /absolute/path/to/release-candidate
 ```
 
-`npm pack`のprepackはパッケージ用ビルドを行う。fixtureアプリ用`npm run build`とは別工程。次は利用アプリのルートで実行する。`init`後にアプリ用YAMLと、`checks.source_roots`が指す実際の対象ファイルを用意する。
+実際のtgz名はpackの結果に従います。外部候補とdigestを指定した試験はbuild/packを迂回し、前後のバイト列と全package metadataを照合します。試験用のprivate合成版A/Bは更新・復旧の検証用であり、公開候補とは区別します。公開候補を再build/repackして置き換えません。失敗や終了不明は記録を保存し、公開前に原因と受入条件への影響を確認します。
+
+通常の`npm pack`のprepackはパッケージ用ビルドを行います。固定公開工程では先に`package:build`し、`--ignore-scripts`で一回packします。fixtureアプリ用`npm run build`とは別工程です。次は利用アプリのルートで実行する。`init`後にアプリ用YAMLと、`checks.source_roots`が指す実際の対象ファイルを用意する。
 
 ```sh
-npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.1.tgz
+npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.2.tgz
 ./node_modules/.bin/ui-foundation init
 # ui.config.yamlとchecks.source_rootsをアプリに合わせて編集
 ./node_modules/.bin/ui-foundation sync --dry-run
@@ -36,14 +46,14 @@ npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.
 
 ## 公開工程と見積り
 
-技術準備・名称・MIT・初版は10/19にPR #23までmain統合済み。10/20の公開工程は次の順に行う。作業量の目安は1〜2hで、待ち時間や本人の実測時間とは別。過去の準備候補は[保存記録](verification/npm-beta-20261019/README.md)、今回の実施結果は公開検証記録とガントを参照する。
+初版の準備・公開工程は履歴として保存済みです。今回のbeta.2も次の順で進めます。作業量の目安は1〜2hで、待ち時間や本人の実測時間とは別。過去の準備候補は[保存記録](verification/npm-beta-20261019/README.md)、今回の実施結果は公開検証記録とガントを参照する。
 
 1. 公開用metadata・案内をcommitへ固定し、CLI・検査器をbuild、`npm pack --ignore-scripts --json`で候補を一度作る。SHA256とnpm integrityを保存する。
 2. `UI_FOUNDATION_PACKAGE_TARBALL`と`UI_FOUNDATION_PACKAGE_SHA256`を指定したpackage試験で、その候補を隔離導入する。入力は一時領域へコピーし前後hashと全metadataを照合する。digest不一致は導入前に失敗させ、候補の再build・再packへ置換しない。
 3. 候補と実consumer成果物を依存監査へ渡す。未知の原ライセンスや非稼働optional経路のUnknownを保持する。対象試験・静的検査・独立レビューの結果を固定する。
 4. 正規アカウントと2FAで、検証済みの同一tgzを`npm publish /absolute/path/to/candidate.tgz --ignore-scripts --tag beta --access public --registry=https://registry.npmjs.org/`で公開する。`latest`タグを設定せず、既存versionを上書きしない。応答が不明なときはregistryを先に確認し、publishを盲目的に再実行しない。
 5. registryのname/version/dist-tags/dist.integrityを照合する。新規cacheとcheckout外のプロジェクトから固定versionを取得し、取得したtgzのSHA256/integrityが公開候補と同じことを確認する。同じpackage試験を取得物で再実行し、公開版の導入・生成・検査・UI操作を確認する。
-6. 公開日時、候補と取得物のdigest、registry integrity、検証範囲・未確認事項を保存し、ガントへ完了を反映する。
+6. 公開日時、候補と取得物のdigest、registry integrity、検証範囲・未確認事項を今回専用の証跡へ保存する。今回の依頼に含まれない外部計画表は更新しない。
 
 対応範囲はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3。重点ブラウザー試験はChromium。未検証の版・OS・ブラウザーを合格へ補完しない。技術ゲートと公開ゲートの違い、更新・復旧、通信先と表計算コピーの制約は[ベータの利用・更新契約](npm-beta-readiness.ja.md)、依存監査の範囲は[監査文書](npm-beta-dependency-audit.ja.md)を参照する。
 
@@ -54,3 +64,9 @@ npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.
 公開後に問題が見つかった場合、公開済みversionを上書きしない。結果を保存し、修正版・タグ変更・非推奨化などの対応方針を確認する。公開後の導入失敗を合格へ補完せず、今回の結果に残す。
 
 仕様参照: [npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)、[npm publish](https://docs.npmjs.com/cli/v11/commands/npm-publish/)、[Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)。
+
+## beta.2の文書配布境界
+
+`package.json`の`files`に利用者向け文書をファイル名で明示し、生成Skillも同じリストを参照します。READMEと14 Markdown、API目録、設定例を利用先へ渡し、開発計画・ADR・要求追跡・監査/検証記録は配布しません。既存の開発説明は`docs/development.md`等に残します。第三者通知と対応ソースは文書分類と別に、従来の全内容を保持します。
+
+試験では、任意の開発文書を追加しても生成対象へ入らないこと、許可資料の欠損・glob・symlinkを拒否すること、実tarballと生成Skillの文書集合が一致すること、旧版で所有していた開発文書だけが再同期で退役すること、手編集/未所有物を保護することを確認します。

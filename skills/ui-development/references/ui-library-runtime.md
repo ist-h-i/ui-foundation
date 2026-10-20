@@ -32,7 +32,7 @@ Code/Rich/MarkdownのCVAは編集内容。RichのJSON schema/URLを表示前に�
 
 ## 配信と確認
 
-生成consumerにはAngular/RxJS/CDKに加え、採用部品の正規runtime依存が必要。PDF/MapLibre/Sheet worker、MapLibre CSS、PDF fonts/cmaps/wasm/iccsは利用アプリのビルドで配信する。worker URLは利用アプリで明示し、CSPやbundler対応を実HTTPで確認する。第三者NOTICEとPDF fontsの原license/source kitを配布物へ含める。このSkillに同梱した`docs/ui-library-consumer-guide.ja.md`と`docs/dependency-license-audit.ja.md`が詳細。原資産はインストールしたnpmパッケージの`node_modules/<パッケージ名>/assets/pdf-source/`と`node_modules/<パッケージ名>/assets/third-party/`から取得する。Skill自体はこれらのバイナリー資産を含まない。ビルド全体の参考例は開発元checkoutの`scripts/build.mjs`にあるが、導入時の必須入力にはしない。
+生成consumerにはAngular/RxJS/CDKに加え、採用部品の正規runtime依存が必要。PDF/MapLibre/Sheet worker、MapLibre CSS、PDF fonts/cmaps/wasm/iccsは利用アプリのビルドで配信する。worker URLは利用アプリで明示し、CSPやbundler対応を実HTTPで確認する。第三者NOTICEとPDF fontsの原license/source kitを配布物へ含める。このSkillの`references/docs/ui-library-consumer-guide.ja.md`の「CSSと配布資産」で、基盤・第三者通知、worker原LICENSE、PDF source kit、MIT本文の保持条件を確認する。原資産はインストールしたnpmパッケージの`node_modules/<パッケージ名>/assets/pdf-source/`と`node_modules/<パッケージ名>/assets/third-party/`から取得する。Skill自体はこれらのバイナリー資産を含まない。両assetsディレクトリの全内容を配布成果物へ含め、`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`を省略しない。
 
 同期・一致検査とstrict AOT、生成後の独立consumer、実操作、axe、意味/視覚レビューは別の証拠。全ソースAST逸脱検査や実AT/Safari/SSR hydrationを実施したと推測しない。個別の業務保存・Undo・安全な継続の保証はアプリの責任。
 
