@@ -1,26 +1,82 @@
 # ui-foundation
 
-利用者の目的と利用環境から、プロファイルごとのUI基盤を作る開発ツールです。AIが配色・文字・余白の体系と画面構成を提案し、確定した一つのYAMLから、Angular部品・Tailwindテーマ・プロジェクト用Skill・検査設定を生成します。
+動作を実装したAngularのUI部品と、設定ファイルで見た目を調整できる仕組みを提供するnpmパッケージです。フォーム、表、ナビゲーション、ダイアログなどの部品を組み合わせて、アプリの画面を作れます。
 
-## 二段階のトークン
+色・文字・余白・寸法・角丸などを一つのYAMLで定義し、UI部品、Tailwindテーマ、AIの開発指針、検査設定へまとめて反映できます。
 
-具体値を持つ**プリミティブ**と、用途を表す**セマンティック**を分けます。部品と画面はセマンティックだけを参照します。プロファイルで対応関係を変えると、同じ部品の色、文字、余白、寸法、角丸を一括して変更できます。
+## できること
 
-```yaml
-primitives:
-  blue-700: { type: color, value: "#1856a6" }
-  green-700: { type: color, value: "#17634a" }
-semantic:
-  color.action: blue-700
-profiles:
-  dense:
-    semantic:
-      color.action: green-700
+- **部品を組み合わせて画面を作る**：入力、選択、開閉、キーボード操作、処理中・エラーなどの表示や操作を備えたAngular部品を使えます。表示だけのモックではなく、アプリの状態やイベントにつないで利用する部品です。
+- **アプリに合う見た目へ調整する**：色だけでなく文字、余白、形状、部品の寸法などを設定できます。Angular部品とTailwindのユーティリティが同じ設定を参照します。
+- **生成と更新をまとめて行う**：CLIの`init`で設定のひな形を作り、`sync`で部品・スタイル・プロジェクト用Skill・検査器を一括生成します。変更前には`sync --dry-run`で差分を確認できます。
+- **設計と実装のずれを確認する**：`check`で設定と生成物の不一致を調べ、指定したアプリソースのデザインルール逸脱を静的に検査できます。
+- **AIにも設計の意図を渡す**：利用目的、制約、画面設計の指針、採用した設定をプロジェクト用Skillへ反映し、AIが画面を実装するときの判断材料にできます。
+
+## 使える部品
+
+| 用途 | 代表的な部品 |
+| --- | --- |
+| 入力・フォーム | テキスト入力、選択、日付・期間入力、段階的入力、条件編集 |
+| 表・一覧 | データテーブル、編集表、仮想一覧、ツリー、項目の移動 |
+| ナビゲーション | メニュー、サイドナビゲーション、タブ、パンくず |
+| 操作・通知 | ボタン、ダイアログ、ポップオーバー、通知、進捗表示 |
+| レイアウト・表示 | ページ枠、カード、グリッド、ドロワー、アバター、統計値 |
+| 日程・業務画面 | カレンダー、予定表、ガント、カンバン |
+| ファイル・媒体 | ファイル選択、画像・音声・動画、PDF、QR・バーコード |
+| 可視化・編集 | チャート、地図、表計算、コード・リッチテキスト編集、フロー編集 |
+
+部品の公開名、機能、制約、サンプルの案内は[コンポーネント一覧](docs/components.ja.md)を参照してください。
+
+## 設定で変えられること
+
+具体値を定義する「プリミティブ」と、その値をどこで使うかを定義する「セマンティック」を分けています。「プロファイル」は、この対応関係を名前付きでまとめた設定集です。独自の値とプロファイルを定義でき、決まったテーマから選ぶ方式には限定されません。
+
+設定例の`guided`と`dense`は、同じ画面・部品へ異なる設定を適用するためのサンプルです。機能が組み込まれた特別な名前ではありません。
+
+| 設定例の違い | `guided` | `dense` |
+| --- | --- | --- |
+| 主操作色 | 青 | 緑 |
+| 本文サイズ | 1.125rem | 1rem |
+| ページ余白 | 32px | 16px |
+| 操作部品の角丸 | 12px | 4px |
+
+`guided`を選ぶだけで画面が手順型になる、といった自動変換は行いません。画面構成や操作経路は、開発者やAIがアプリの目的に合わせて実装します。サンプル画面の「表示設定」は生成済みの設定を比較するもので、選択をYAMLへ保存する機能ではありません。実際のアプリでは一つのプロファイルに固定することもできます。
+
+## 提供範囲
+
+npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScriptソース、CSS、プロジェクト用Skill、検査器を生成します。コンパイル済みのAngularライブラリを直接importする方式ではなく、生成した部品を利用アプリでビルドします。Angularや描画エンジンなどの依存は[usageの依存関係](docs/ui-library-consumer-guide.ja.md#依存関係)に従って導入します。
+
+| ui-foundationが提供するもの | 利用アプリが組み込むもの |
+| --- | --- |
+| UI部品の表示・操作・状態とイベント | 画面構成、業務ロジック、HTTP通信、保存・送信・Undo |
+| ナビゲーションやリンクのUI | Angular Routerのルート定義・画面切替・遷移制御。既存部品とのRouter合成は未検証 |
+| 設定からの生成と静的検査 | アプリのビルド、実操作・アクセシビリティ・見た目・使いやすさの確認 |
+
+実行時のLLM API、サーバー、DBは提供しません。専門部品のworker、補助資産、外部サービスの認証や配信設定は利用アプリが用意します。静的検査の成功を、UX全体や任意の実行時挙動の保証とは扱いません。
+
+## 使い始める
+
+```sh
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
 ```
 
-これは構造の抜粋です。必須の役割や利用者の文脈を含む実行可能な設定は[設定例](examples/ui.config.example.yaml)を参照してください。旧preset/density方式との互換は提供しません。
+ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。
 
-## 試す
+| 知りたいこと | ドキュメント |
+| --- | --- |
+| 使える部品と機能を探す | [コンポーネント一覧](docs/components.ja.md) |
+| 導入・設定・生成・組み込み・更新を進める | [usage](docs/ui-library-consumer-guide.ja.md) |
+| コマンド、引数、結果、エラー対処を調べる | [CLIコマンド一覧](docs/commands.ja.md) |
+| prop・イベントなどの詳細を調べる | [部品API](docs/ui-components.md) |
+| 設定の構造と生成の契約を調べる | [設計](docs/design.md) |
+| 静的検査の対象と限界を調べる | [静的検査](docs/static-checks.ja.md) |
+
+## 開発元のサンプルと検証
+
+次はこのリポジトリのcheckoutで使う既存の手順です。npmパッケージをインストールした利用先アプリの手順は[usage](docs/ui-library-consumer-guide.ja.md)を参照してください。
+
+<details>
+<summary>開発元の検証アプリとnpmスクリプト</summary>
 
 Node.js 24.19.0で検証します。依存関係はロックファイルで固定します。
 
@@ -52,58 +108,10 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 ビルド時には`ui:check`を実行し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。通常の`npm test`は警告の分類確認も行います。
 
-## 利用アプリに導入する
+</details>
 
-CLIはnpmパッケージ`@hiroshi.inoue/ui-foundation`として配布します。ベータの対応環境と更新・復旧手順は[利用・更新契約](docs/npm-beta-readiness.ja.md)、Angular依存とworker・資産の配信は[利用ガイド](docs/ui-library-consumer-guide.ja.md)を参照してください。利用アプリのルートで実行します。
+開発元の[要件](docs/project-brief.ja.md)、[実装・検証計画](docs/implementation-plan.md)、[開発方針](docs/development.md)も参照できます。
 
-```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
-./node_modules/.bin/ui-foundation init
-# ui.config.yamlとchecks.source_rootsを実際のアプリに合わせて編集
-./node_modules/.bin/ui-foundation sync --dry-run
-./node_modules/.bin/ui-foundation sync
-./node_modules/.bin/ui-foundation check --format json
-```
+## ライセンス
 
-開発元のcheckoutから試す手順と、ローカルtgzの検証・公開工程は[npm公開計画](docs/npm-release-plan.ja.md)にあります。
-
-`init`は設定のひな形だけを作り、既存設定を上書きしません。`--config`でプロジェクト内の別のYAMLを指定できます。`output`は生成専用ディレクトリです。同期対象はそこに置くtokens.css、tailwind.css、angular/、profiles.ts、resolved.json、policy.json、check-ui.cjs、checker-lib/、CHECKER-NOTICE.txt、UI-FOUNDATION-LICENSE.txt、manifest.jsonと、`.agents/skills/project-ui/`です。固定Skill内のownership.jsonは、現在の所有manifestを指す機械情報です。プロジェクトルートごとに一つの生成UIとSkillを所有し、複数のYAMLから並行して別の所有者を作ることはできません。
-
-利用アプリは生成されたangular/indexからstandalone部品をインポートします。Angular/RxJS/CDKに加え、日程・媒体・専門部品では、実行時に必要な依存パッケージと型も導入します。[生成consumerの導入手順](docs/ui-library-consumer-guide.ja.md)に固定バージョン、公開API、CSS、workerとアセットの配信を記録しています。CDKの公開APIで仮想化と移動を接続し、[依存判断と制限](docs/adr/0002-collections-cdk.md)を保ちます。Tailwind v4の入口にTailwind、tokens.css、tailwind.css、angular/styles.cssを読み込み、部品と画面のソースを`@source`へ指定します。外部ライブラリのグローバルCSSも含む[検証アプリのCSS入口](tests/fixture-app/styles.css)が実例です。
-
-PDF/MapLibre/Spreadsheetのworkerは別アセットとして配信し、利用アプリのURLを部品へ渡します。[ビルド実例](scripts/build.mjs)は共有ESM chunks、PDFのcmaps/fonts/wasm/iccs、MapLibre CSS、元のNOTICE、PDF font source kitも配布します。第三者依存の出典と条件は[監査記録](docs/dependency-license-audit.ja.md)を参照してください。
-
-`default_profile`が初期値です。実行時の切替が必要なら、利用アプリが設定に存在するIDを選び、スコープに`data-ui-profile="ID"`を付けます。初期化時に一つだけを選ぶ利用もできます。CLIは利用者の属性から勝手に選択しません。
-
-## AIが担当する設計
-
-生成Skillは利用者の文脈と、解決済みのトークンの対応を読みます。API・利用ガイド・ADRはSkill内の`references/docs/`へ同梱し、利用先から参照できます。AIは新しいプリミティブや対応関係も提案できます。プレビューで採用する設定を決め、その設定をコードと検査へ固定します。実行時のLLM API、モデル選択、課金、サーバー、DBは持ちません。
-
-画面構成や補助説明の出し方はプロファイルのguidanceを参照してAIが実装します。全画面のDOMや業務仕様をYAMLに記述しません。処理中・エラー・復旧・入力保持の意味、業務上の判断、実データのUndoは、それぞれ部品と利用アプリが責任を持ちます。
-
-## 検査の範囲と文書
-
-`ui:check`は指定ソースの全トークン用途と未承認のAngular部品・ディレクティブを静的検査します。生成先の`check-ui.cjs`は、本体のチェックアウトや検査専用の追加依存関係なしで取り込み先から実行できます。明確な違反は失敗にし、動的な処理など、静的に確認できない箇所は警告として残します。[検査の設定・配布・判定範囲](docs/static-checks.ja.md)を参照してください。
-
-本リポジトリでは`ui:check:warnings`が全警告について、具体的な理由、警告の発生元、対象を限定した回帰試験、残る未確認範囲、再確認条件を[分類台帳](docs/ui-warning-reviews.json)と照合します。元の警告は消さず、新規・消滅・重複や根拠の変更を受入確認の失敗にします。現在の対象と検証結果は[取り込み時の記録](docs/verification/ui-static-warning-release-20261018/README.md)へ固定します。利用アプリの通常検査は、警告のみなら終了コードを0とする契約を維持します。
-
-静的検査、定義済み色ペアの数値検査、自動アクセシビリティ、実操作、意味・視覚レビューは別の確認です。有限のブラウザー試験を、任意の入力・OS・支援技術、実サービスの復元、利用者の理解や実業務での有効性の保証へ広げません。
-
-- [要件](docs/project-brief.ja.md)
-- [設定・生成・責任境界](docs/design.md)
-- [実装・検証計画](docs/implementation-plan.md)
-- [部品APIと検証範囲](docs/ui-components.md)
-- [全要求の原文と181行の対応](docs/ui-library-matrix.json)
-- [生成consumerの導入](docs/ui-library-consumer-guide.ja.md)
-- [共通フォーム・locale・RTL・profile契約](docs/ui-library-runtime-foundation-spec.ja.md)
-- [開発方針](docs/development.md)
-
-生成物もGitで追跡します。手編集や未所有ファイルとの衝突、symlink、プロジェクト外出力は拒否します。syncはdry-runも含めrootの`.ui-foundation-sync.lock`で同時実行を拒否します。通常の書き込み失敗では、書き込み済みのファイルを元に戻します。強制終了や復元失敗ではmarkerを残し、次のsyncを停止します。複数ディレクトリの原子的な更新や自動復元は保証しません。手動復旧と更新手順は[ベータの利用・更新契約](docs/npm-beta-readiness.ja.md)に従います。
-
-生成後のoutput変更は、ownership.jsonが指す旧manifestで旧生成物と固定SkillのSHAを検査して移行します。`sync --dry-run`で旧ファイルと旧manifestの削除、新ファイルと新manifestの作成、Skillと所有情報の更新を確認できます。手編集や未所有ファイルが旧・新生成先のどちらにあっても拒否し、同内容でも所有権を引き継ぎません。空の旧ディレクトリは残り、アプリが管理するインポート先などの変更はアプリ側で行います。
-
-ownership.jsonがまだない従来のv1生成物は、同じoutputで一度syncすれば通常移行を利用できます。ツール更新と同時にoutputを変更する場合は、`sync --from-output .ui/generated --dry-run`で旧生成先を明示し、確認した計画を`sync --from-output .ui/generated`で適用します。既存の所有情報が壊れている場合にこのオプションで上書きすることはできません。大文字・小文字だけの移動は異なる中間生成先を経由してください。
-
-パッケージ名は`@hiroshi.inoue/ui-foundation`、初版は`0.1.0-beta.1`、配布タグは`beta`です。公開版の有無とintegrityはnpm registryで確認し、公開・導入検証の結果は検証記録に保存します。
-
-自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[利用ガイド](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。
+自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[usageの配布資産](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。
