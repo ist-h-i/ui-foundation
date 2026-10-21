@@ -2,7 +2,7 @@
 
 確定したYAMLから検査policyとNode用の`check-ui.cjs`を生成します。取り込み先のリポジトリだけで実行でき、検査専用のnpm依存やui-foundationのcheckoutは不要です。`checker-lib/`と依存のNOTICEも使うため、生成ディレクトリ全体を取り込みます。部品をビルドするための通常の依存は別に必要です。
 
-指定ソースで確定できる違反を失敗にし、実行時の値や未知の供給元を静的に確定できない箇所を警告として残します。警告は違反の確定でも、安全性の証明でもありません。本リポジトリでは、残す全警告の理由と検証範囲を別の台帳で確認します。
+指定ソースで確定できる違反を失敗にし、実行時の値や未知の供給元を静的に確定できない箇所を警告として残します。警告は違反の確定でも、安全性の証明でもありません。利用アプリでは、残す警告の理由と再確認条件を記録してください。
 
 ## 設定と配布
 
@@ -25,14 +25,13 @@ checks:
 
 `tsconfig`、承認一覧、例外一覧は省略できます。`source_roots`は空にできず、各rootに少なくとも一つの対象ソースが必要です。生成先、`.agents`、`.git`、`node_modules`、build/dist/coverage等は対象から除きます。検査器が確認するのは指定したソースです。`checks`がない従来の設定は`NOT_CONFIGURED`と表示し、設定・生成一致検査を維持します。`init`の新規設定は`src`を対象とします。
 
-本リポジトリではfixture画面と`templates/angular/`の生成元部品を対象にし、生成済みコピーを重複検査しません。新規アプリの`init`は、本リポジトリ固有の例外や外部部品承認を引き継ぎません。
+新規アプリの`init`は、開発元固有の例外や外部部品承認を引き継ぎません。
 
 ```sh
-# 正本を編集してから生成元のCLIで同期
-npm run ui:sync
-# ui-foundation本体の設定・生成一致・ソース検査
-npm run ui:check
-npm run ui:check -- --format json
+# 利用アプリの正本を編集してから同期・検査
+./node_modules/.bin/ui-foundation sync
+./node_modules/.bin/ui-foundation check
+./node_modules/.bin/ui-foundation check --format json
 # 取り込み先のソース検査（例は既定のoutput）
 node .ui/generated/check-ui.cjs --config ui.config.yaml
 node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.yaml --format json
@@ -40,7 +39,7 @@ node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.
 
 取り込み先の`package.json`へ`"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"`を追加し、CIやbuildの前段で実行します。CLIは取り込み先のpackage.jsonを自動編集しません。outputを移行したら、このコマンドとアプリ側importも更新します。検査器はNode専用で、アプリのブラウザーbundleには含めません。
 
-同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定・生成元を修正し、`ui:sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
+同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定やパッケージ版を変更し、`./node_modules/.bin/ui-foundation sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
 
 ## 対象と結果
 
@@ -100,28 +99,6 @@ CSSカスタムプロパティは、消費側に届き得る既知の値候補�
 
 alias経由の違反の`source`には消費宣言と` :: 名前=候補値`を含めます。固定値だけの例外が、追加された上書きや別の依存値を承認しないようにします。既存例外が新しい候補にも一致すれば複数一致で失敗します。生成元の構造・データ用途例外は、その根拠ソースやhelperの変更を回帰で検出します。この根拠保全を、同梱版による任意データフローの証明とは扱いません。
 
-## 本リポジトリの警告分類と受入確認
-
-残す警告は分類台帳（開発元の参考資料: `ui-warning-reviews.json`。この生成Skillには含めない）で一対一に管理します。各項目に診断identity、警告が妥当な理由、値のproducer、確認した有限回帰、残るUnknownの境界、再確認条件、根拠ファイルのanchorとhashを記録します。理由が分かる警告を一律の例外へ変えず、静的に改善できる箇所は検査器や実装を修正します。
-
-```sh
-# 元の診断と生成一致を確認
-npm run ui:check -- --format json
-# このリポジトリの全警告と分類台帳を照合
-npm run ui:check:warnings
-npm run ui:check:warnings -- --format json
-# 台帳検証の正負回帰を含む静的検査の回帰
-npm run test:static
-```
-
-`ui:check:warnings`は本リポジトリの`checkProject`結果と台帳を照合する受入確認です。新規・未分類の警告、消滅した分類、重複、理由不足、欠損・不正な台帳、根拠のhash/anchor変更で終了1にします。元の診断は削除・変更せず、エラーを台帳で承認することもできません。通常の`npm test`からも実行します。利用アプリのYAML schemaや同梱CLIの「警告のみなら終了0」は変更しません。
-
-ソースや根拠が変わったら、通常CLIで差分を確認し、producer・影響する有限回帰・Unknownの境界を再調査して台帳を更新します。消えた警告の項目も取り除きます。hashだけを機械的に更新する全件承認コマンドは用意しません。
-
-2026-10-18の取り込み前の通常CLI基準値は警告122件、確定違反0件、理由付き例外334件です。固定した対象、全件分類、今回実行した検証と未確認事項は取り込み時の検証記録（開発元の参考資料: `verification/ui-static-warning-release-20261018/README.md`。この生成Skillには含めない）にまとめます。古い件数や過去の有限試験は当時の対象に対する記録であり、現行ソースの合格根拠へ流用しません。回帰が使う固定資料は試験fixture（開発元の参考資料: `../tests/fixtures/static-checks/README.md`。この生成Skillには含めない）で管理します。
-
 ## 検証の範囲と完成の意味
-
-`test:static`では全トークン用途の違反・許可・例外、省略形・関数・utility variant、動的式内の確定値、inline/外部ファイル、業務文字列の非対象、部品承認、alias/instanceの分離、パス・解析・例外の失敗を確認します。別の一時リポジトリへ生成物をコピーし、本体checkoutや検査用node_modulesに依存せず起動すること、違反なら終了1、未確認だけなら終了0、policy未同期なら終了1も実CLIで確認します。生成の冪等性、NOTICE/検査器の所有範囲、output移行は`test:generation`で別に検証します。
 
 静的検査の完成は、指定ソースへこれらのルールを実行し、残る警告の理由と再確認条件を追えることです。任意の実行時データフロー、未知CSS供給元、全cascade、外部描画エンジン内部、実利用での理解、視覚品質・アクセシビリティ全体の合格は別の検証です。DOM実測、画像decode、非同期更新、操作順序等の有限な実ブラウザー試験が成功しても、それだけで静的Unknownを解消しません。

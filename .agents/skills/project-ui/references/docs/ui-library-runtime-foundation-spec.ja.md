@@ -1,6 +1,6 @@
 # フォーム・locale・RTL・profileの共通契約
 
-要求 `foundation-07`〜`09` を既存入力からTree/Scheduler/表/media/specialistまで接続する。[原文](ui-library-request.ja.md)、[要求と実証](ui-library-matrix.json)、[利用手順](ui-library-consumer-guide.ja.md)、[正確な型・props・methods](ui-library-api.json)を併せて読む。
+既存入力からTree・Scheduler・表・媒体・専門部品まで共通のフォーム・言語・方向・プロファイル契約です。[利用手順](ui-library-consumer-guide.ja.md)、[正確な型・props・methods](ui-library-api.json)を併せて読んでください。
 
 ## 公開locale API
 
@@ -28,10 +28,10 @@ FileUpload/DropzoneのCVAは直近に完全受理した`readonly File[] | null`�
 
 表/Spreadsheet/Gantt等の編集は検証後のintent。構造container/FormActionsに架空の保存CVAを追加しない。通信・認可・保存結果・安全な再試行・実Undoはアプリが所有する。
 
-## プロファイルと正式検証
+## プロファイルと確認範囲
 
 YAML正本が全カテゴリの色・書体・文字・余白・寸法・形状を制御する。媒体/図viewportは表と独立したsemantic role。literal semantic参照監査・生成一致・strict AOT・実consumer操作を区別し、全ソースAST逸脱検査とは扱わない。
 
-正式suiteは`tests/ui/foundation.spec.ts/composer-reset-errors.spec.ts/sheet-locale-errors.spec.ts`と`tests/model/foundation-*.test.ts`。atomic range、reset/disable/blur、文言所有境界、locale/Dir破棄、320px/文字200%/RTL/両profile/局所別profileを扱う。他カテゴリ操作は各正式suiteで確認する。server DIのglobal参照抑止と完全SSR render/hydrationは別範囲。
+server DIのglobal参照抑止と、完全なSSR rendering/hydrationは別範囲です。採用するアプリで確認してください。
 
 ライブラリ所有の保持状態文言は `uiMessageState` の表示境界で現在の辞書を読む。条件分岐・件数・アプリ由来の値は操作時に確定し、辞書変更でWorker/取得/保存を再実行しない。明示 `set(appText)` は辞書keyと一致しても原文を保持する。`setMessage(parts)` はライブラリ文言だけを遅延評価し、動的な非翻訳部分は操作時の文字列を保持する。FileUpload拒否本文、Schedulerのprivate移動状態、Diffのvendor説明とJson表示診断も表示境界へ接続する。JSONの原文・技術的な型名/parse code/offset・純モデル診断は保持する。

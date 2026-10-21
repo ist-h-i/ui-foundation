@@ -1,23 +1,23 @@
-# 公開前ベータ候補の変更記録
+# ベータの変更記録
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`の変更記録。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持する。配布タグは`beta`。公開結果・日時・integrityはregistryと公開検証記録で確認する。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.2`の利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
 
-## この候補
+## beta.2の変更
 
-- 自作MIT本文をnpm候補・生成output・生成Skill・配布アプリへ保存し、同一バイトを検査する。
+- npmパッケージの`docs/`と、生成Skillの`references/docs/`を利用者文書に絞りました。導入、CLI、部品一覧、API、設定、静的検査、更新・復旧をパッケージだけで参照できます。
+- 開発計画、ADR、要求マトリクス、監査・検証履歴は開発元リポジトリに残し、配布しません。利用側で必要な機能の制約とライセンス・通知・対応ソースの供給条件は利用者文書に保持します。
+- READMEとusageの導入例、文書の配置・更新方法、AIへ生成Skillを読み込ませる手順を更新しました。YAMLのschema_version=1と部品APIは維持します。
 
-- checkout不要のCLI・検査器・TypeScript標準lib、依存inventoryと原通知を同梱する。
-- 生成SkillへAPI文書とADRを同梱し、配布外の保存記録を必須参照にしない。
-- syncにroot単位の排他markerと中断検出を追加する。既存markerがあるとdry-runも拒否する。強制解除・自動復元は行わない。
-- 利用アプリへ配信するAngular/RxJS等の基盤依存の原通知を追加する。
-- ベータのNode対応を実検証版24.19.0へ絞る。他の版・OSは未保証。
+## beta.1からの更新
 
-## 必要な更新作業
+更新前に旧CLI版・lockfile・YAML・生成物・Skillを一組で保存し、CLIをbeta.2へ更新してください。npmで更新しただけではコピー済みの生成物や文書は更新されません。
 
-CLIを更新し、dry-runを確認して再同期する。既存のYAML schema_version=1と部品APIは維持するが、Skill・通知・manifestが変わる。生成物だけを部分コピーしない。アプリのbuild、基本操作、workerと通知の配信を確認する。パッケージ更新だけでは生成コードは更新されない。
+`sync --dry-run`で差分を確認し、`sync`で再同期すると、Skillの利用者文書が最新版になります。beta.1のmanifestが所有する開発文書・ADR・要求マトリクス等は削除対象になります。前回所有したファイルでも手編集を検出した場合は同期が停止し、編集内容を黙って削除しません。必要な追記は生成領域の外へ保存し、所有情報とファイルの対応を確認してから再同期してください。未所有ファイルの採用や強制上書きは行いません。
 
-## 復旧点と制約
+再同期後に`check`、アプリの型検査・build・主要操作を確認します。生成物だけを部分コピーせず、YAML・生成コード・Skill・アプリの変更を一緒に管理します。第三者通知、worker、PDF source kitの配信条件は[利用ガイド](ui-library-consumer-guide.ja.md#css-と配布資産)に従います。
 
-更新前のCLI tarball、アプリのlockfile、YAML、生成物、Skillを一組で保存し、問題があれば同じ組へ戻す。markerが残る場合は[復旧手順](npm-beta-readiness.ja.md#同時実行と中断)に従う。未所有ファイルを採用・削除して復旧したことにしない。
+## 旧版への復旧と制約
 
-専門部品を含む公開入口は一つであり、25 engine等の依存解決が必要。入口分離、複数旧版の長期保守、全OS/ブラウザー、実サービスの保存/Undoや利用者理解は、このベータ候補の成功だけでは保証しない。
+問題があれば、保存した旧CLI版だけでなく、対応するlockfile・YAML・生成物・Skillも同じ復旧点へ戻し、旧CLIの`check`とアプリ検証を行います。新旧manifestを混在させたり、未所有ファイルを採用・削除して復旧したことにしません。markerが残る場合は[中断からの復旧手順](npm-beta-readiness.ja.md#同時実行と中断)に従います。
+
+専門部品を含む公開入口は一つであり、[依存関係](ui-library-consumer-guide.ja.md#依存関係)に記載したengine等の解決が必要です。複数旧版の長期保守、全OS・ブラウザー、実サービスの保存・Undoや利用者理解を保証するものではありません。

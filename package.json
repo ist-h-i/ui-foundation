@@ -1,6 +1,6 @@
 {
   "name": "@hiroshi.inoue/ui-foundation",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "private": false,
   "bin": {
     "ui-foundation": "dist/cli.js"
@@ -13,15 +13,27 @@
     "dist/CLI-NOTICE.txt",
     "dist/CHECKER-NOTICE.txt",
     "dist/CLI-DEPENDENCIES.json",
-    "templates/angular/",
+    "templates/angular/**/*.ts",
+    "templates/angular/**/*.css",
     "skills/ui-development/",
     "examples/ui.config.example.yaml",
     "assets/pdf-source/",
     "assets/third-party/",
-    "docs/*.md",
-    "docs/adr/*.md",
-    "docs/ui-library-api.json",
-    "docs/ui-library-matrix.json"
+    "docs/commands.ja.md",
+    "docs/components.ja.md",
+    "docs/design.md",
+    "docs/static-checks.ja.md",
+    "docs/ui-components.md",
+    "docs/ui-library-consumer-guide.ja.md",
+    "docs/npm-beta-readiness.ja.md",
+    "docs/npm-beta-release-notes.ja.md",
+    "docs/ui-library-tree-expansion-spec.ja.md",
+    "docs/ui-library-scheduler-expansion-spec.ja.md",
+    "docs/ui-library-table-expansion-spec.ja.md",
+    "docs/ui-library-media-expansion-spec.ja.md",
+    "docs/ui-library-specialist-expansion-spec.ja.md",
+    "docs/ui-library-runtime-foundation-spec.ja.md",
+    "docs/ui-library-api.json"
   ],
   "repository": {
     "type": "git",

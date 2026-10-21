@@ -1,6 +1,6 @@
-# 専門13要求の公開契約
+# 可視化・専門編集部品の公開契約
 
-[原文](ui-library-request.ja.md)の`specialist-01`〜`13`を実renderer/editor/計算エンジンとnative操作で扱う。[採用判断](ui-library-specialist-assessment.ja.md)、[型とmethods](ui-library-api.json)、[consumer配信](ui-library-consumer-guide.ja.md)を参照する。
+描画・編集・計算エンジンとnative操作を使う専門部品の公開APIです。[型とmethods](ui-library-api.json)、[利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
 ## 入力とイベント
 
@@ -52,7 +52,3 @@ FlowEditorはtyped graphをimmutableに検証してDagreの実座標をSVGへ反
 `layoutDiagram(model, width, height, gap, direction, rankGap)`の省略可能な`rankGap`はrank間の間隔を指定し、既定値は従来どおり`gap * 2`。ノード同士の間隔とcanvas余白は`gap`を使う。寸法・間隔はすべて有限の正数を要求する。
 
 MessageComposer/ChatのCVAは編集中text。current送信IDのcompleteSend/failSend/markSendUnknownで結果を受けunknown中は二重送信を止める。reset/destroyで旧ack失効。MessageListの追加取得はcursor/current IDのcompleteLoad/failLoadへ接続する。添付/再送可否/実backend成功はアプリの責任。
-
-## 正式検証
-
-specialist-catalog/accessibility/recovery/workers/sheet-startup/rich-boundary/chart-explorerの各specとmodel specialist-*.test.tsで実針/heatmap cell/canvas・language候補・schema/URL拒否・worker冷開始/終了・CSV/JSON raw値・clipboard/failed/unknown復旧・320px/文字200%/RTL/両profileを扱う。全回帰/独立consumer/source review/axe/実画像はmatrixで別に記録する。

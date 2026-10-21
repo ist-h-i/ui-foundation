@@ -2,7 +2,7 @@
 
 生成した Angular の公開入口を利用アプリへ組み込み、必要な画面だけで部品を使うためのガイドです。要求カタログの全部品を一つの業務画面に配置する必要はありません。ツリーの選択、予定、一覧編集、添付、専門エディターなどを用途ごとの画面に分け、利用者の目的、欠損の影響、失敗時に保持する入力、復旧経路を先に決めます。
 
-設定項目の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。利用アプリでは、そのアプリの `ui.config.yaml` を正本として管理します。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[開発手順](development.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定や生成元を変更してCLIで同期・検査します。
+設定項目の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。利用アプリでは、そのアプリの `ui.config.yaml` を正本として管理します。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[CLIコマンド](commands.ja.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定やパッケージ版を変更してCLIで同期・検査します。
 
 ## 導入から画面を作るまで
 
@@ -19,12 +19,14 @@
 既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。ui-foundationはAngularアプリ自体を作成するscaffoldではありません。
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init
 ```
 
 Node.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 公開入口は専門部品も参照するため、小さな画面でも[依存関係](#依存関係)のパッケージを型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
+
+npm install後は`node_modules/@hiroshi.inoue/ui-foundation/docs/`で、導入した版の利用者文書を読めます。`sync`すると同じ文書が`.agents/skills/project-ui/references/docs/`へコピーされ、アプリ用のSkillと`project-context.md`も生成されます。開発元の計画・ADR・要求マトリクス・監査・検証履歴は配布せず、導入時の必須入力にはしません。
 
 `init`は`ui.config.yaml`のひな形だけを作ります。既存設定は上書きしないので、導入済みなら`init`を繰り返さず既存YAMLを編集します。以下のCLIコマンドはすべてアプリのルートから実行します。
 
@@ -78,7 +80,7 @@ checks:
 
 `output` の既定値は `.ui/generated/` です。`check-ui.cjs` だけを抜き出さず、`checker-lib/`・`policy.json`・`CHECKER-NOTICE.txt` 等を含む生成ディレクトリ全体と、`.agents/skills/project-ui/` を管理します。生成物とSkillはGitで追跡します。所有範囲や移行は[生成契約](design.md#生成と利用)に従います。
 
-生成後のソース検査は、利用アプリのNode.jsから実行できます。Node.jsの対応版はui-foundationの `package.json`（開発元の参考資料: `../package.json`。この生成Skillには含めない） の `engines` に従います。本体のチェックアウトや検査専用の追加npm依存は不要ですが、部品のビルド・実行に必要なAngular等の依存は別途導入します。同梱検査器をアプリのブラウザーバンドルへ含めません。
+生成後のソース検査は、利用アプリのNode.jsから実行できます。Node.jsの対応版はインストール済みパッケージの`package.json`の`engines`に従います。本体のチェックアウトや検査専用の追加npm依存は不要ですが、部品のビルド・実行に必要なAngular等の依存は別途導入します。同梱検査器をアプリのブラウザーバンドルへ含めません。
 
 ```sh
 node .ui/generated/check-ui.cjs --config ui.config.yaml
@@ -95,7 +97,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 }
 ```
 
-上の`ui:check`は利用アプリで追加するスクリプトの例です。ui-foundationをインストールしても、このスクリプトや`npm run ui:sync`がアプリへ自動追加されるわけではありません。設定の同期と生成一致の確認には、上記のインストール済みCLIを利用アプリのルートから実行してください。本体CLIの `check` は設定・生成物の一致と指定ソースを検査します。同梱版は設定と生成policyの一致・指定ソースを検査し、生成物全体の一致や所有範囲の確認は代替しません。policy未同期を検出したら、生成物を手直しせず本体CLIで再同期します。
+上の`ui:check`は利用アプリで追加するスクリプトの例です。ui-foundationをインストールしても、このスクリプトがアプリへ自動追加されるわけではありません。設定の同期と生成一致の確認には、上記のインストール済みCLIを利用アプリのルートから実行してください。本体CLIの `check` は設定・生成物の一致と指定ソースを検査します。同梱版は設定と生成policyの一致・指定ソースを検査し、生成物全体の一致や所有範囲の確認は代替しません。policy未同期を検出したら、生成物を手直しせず本体CLIで再同期します。
 
 ### 判定と修正の進め方
 
@@ -104,7 +106,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 - `checks` がない既存設定は `NOT_CONFIGURED` です。ソース検査を導入する場合は対象を設定して再同期します。
 - 外部部品の承認や配置寸法等の例外には、用途に応じた理由と対象を明示します。警告を消すための全ファイル除外や一律承認は行いません。
 
-対象・除外、承認部品、理由付き例外、JSONの使い方、静的に確認できない範囲は[静的検査の設定・配布・判定範囲](static-checks.ja.md)にまとめています。本体リポジトリの `ui:check:warnings` は本体の警告分類台帳を照合する専用の受入確認であり、利用アプリの同梱版 `ui:check` とは区別します。
+対象・除外、承認部品、理由付き例外、JSONの使い方、静的に確認できない範囲は[静的検査の設定・配布・判定範囲](static-checks.ja.md)にまとめています。
 
 ## AIに読み込ませて開発する
 
@@ -276,7 +278,7 @@ export class DepartmentScreen {
 
 `TreeNodeTemplate` の `[uiTreeNodeTemplate]`、`SchedulerEventTemplate` の `[uiSchedulerEvent]`、`TableTemplate` の該当契約へ型付きの配列を渡すと、template context の型を Angular が検査できます。`TreeNode<Department>.data.amount` に `toUpperCase()` を使うと strictTemplates で失敗します。型を `any` へ広げるとこの検査を失います。
 
-独立 consumer は `include: ["consumer.ts"]` だけで公開 barrel を読み、strictTemplates/AOT を通しています。生成物の全 glob を root file に追加する必要はありません。実アプリではアプリ自身の入口と画面を `include` に指定します。
+公開barrelを読むアプリの入口を`include: ["consumer.ts"]`のように指定できます。生成物の全 glob を root file に追加する必要はありません。実アプリではアプリ自身の入口と画面を `include` に指定します。
 
 ```json
 {
@@ -298,7 +300,7 @@ export class DepartmentScreen {
 }
 ```
 
-アプリ側の Angular builder を使う場合はその標準 linker を使用します。独立 esbuild consumer では `ngc` の出力を bundle し、partial-compiled な Angular 依存を `@angular/compiler-cli/linker/babel` で link しています。ブラウザー向け ESM、code splitting、production の `ngDevMode: false` を使用しました。生成した TypeScript をリンクなしにそのまま配信する構成にはしません。
+アプリ側の Angular builder を使う場合はその標準 linker を使用します。esbuildなどで独自にビルドする場合は、`ngc`の出力をbundleし、partial-compiledなAngular依存を`@angular/compiler-cli/linker/babel`でlinkする構成が必要です。ブラウザー向けESM、code splitting、productionの`ngDevMode: false`を適切に設定してください。生成した TypeScript をリンクなしにそのまま配信する構成にはしません。
 
 ### ページ遷移はアプリ側で組み込む
 
@@ -306,7 +308,7 @@ export class DepartmentScreen {
 
 ## 依存関係
 
-今回の検証版は Angular/CDK `22.2.1`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
+ベータの検証構成は Angular/CDK `22.2.1`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
 
 追加 runtime engine は次の 25 件です。公開 barrel はそれらを参照する生成ソースへつながるため、最小 consumer の strict compile でも解決可能にしておきます。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
 
@@ -338,7 +340,7 @@ export class DepartmentScreen {
 | `jsbarcode` | `3.12.3` | Barcode |
 | `temporal-polyfill` | `1.0.5` | Scheduler の時刻・time zone |
 
-型検査には `@types/qrcode@1.5.6` も必要です。`@zxing/library@0.23.0` は fixture の独立 decoder であり、生成部品の runtime には不要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
+型検査には `@types/qrcode@1.5.6` も必要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
 
 `fast-formula-parser` の型は生成した `formula-parser.d.ts` にあります。公開 barrel の `SheetResult` export から `sheet-formula.ts` の triple-slash reference を経由して読み込まれます。この経路で最小 consumer の型付き parser 利用は検査できます。生成 barrel を読まずに parser だけを import した別の root file では型宣言が自動で現れるとは限りません。必要ならアプリの当該 worker/入口から生成型宣言を明示的に参照します。型宣言を `any` の module stub へ置き換えません。
 
@@ -346,9 +348,11 @@ export class DepartmentScreen {
 
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
+この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/`と`assets/pdf-source/`はファイルを選別せず、**全内容**を配布成果物に含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
+
 部品の inline CSS に加え、生成した `tokens.css`、`angular/styles.css`、専門部品を使う画面では `angular/specialist.css` を global CSS として取り込みます。MapView には実使用版の `maplibre-gl/dist/maplibre-gl.css` も必要です。アプリの utility CSS も用途別セマンティックトークンを使います。primitive 値の直接参照や旧 preset/density API の互換層は追加しません。
 
-次の表は独立 consumer で実際に配信した対応です。アプリの public base path に合わせ、URL とファイル配置を一緒に変更します。
+次の表は配布資産の配置例です。アプリの public base path に合わせ、URL とファイル配置を一緒に変更します。
 
 | コピー元・ビルド入口 | public 配置例 | 部品側の指定 |
 | --- | --- | --- |
@@ -360,7 +364,7 @@ export class DepartmentScreen {
 | `maplibre-gl/dist/maplibre-gl-shared.mjs` | 上記 worker と同じ directory | worker の相対 import を保持 |
 | `maplibre-gl/dist/maplibre-gl.css`、`maplibre-gl/LICENSE.txt` | `/assets/maplibre/` | CSS と原 notice |
 | 生成した `sheet-formula.worker.ts` を別 ESM entry として compile/bundle | `/assets/sheet-formula.worker.js` | `Spreadsheet.workerUrl` |
-| `assets/third-party/` | `/assets/third-party/` | `THIRD-PARTY-NOTICES.txt` の全文を保持 |
+| `assets/third-party/` | `/assets/third-party/` | `FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`を含む全内容を保持 |
 
 ```html
 <ui-pdf-viewer label="申請資料" [source]="pdfSource()"
@@ -373,11 +377,11 @@ export class DepartmentScreen {
 
 `PDFViewer.source` は `PdfSource | null`、`MapView.markers` は `readonly MapMarker[]`、`Spreadsheet.sheet` は `SheetModel` です。PDF の worker と本体は同じ exact 版にします。module worker の `.mjs` / `.js` は JavaScript MIME、Wasm は `application/wasm` で配信し、SPA の HTML fallback が worker URL を置き換えないようにします。worker の URL は実ファイルへ到達する public URL を明示し、bundle の chunk 配置から推測しません。
 
-PDF の補助資産は上記四 directory の全内容と原 notice を維持します。`standard_fonts` の Liberation TTF に対応する実 source package は `assets/pdf-source/` が正本です。URL リストだけに置き換えず、11 ファイルをそのまま配布します。版・フォント・コピー対象を変更する際は [`dependency-license-audit.ja.md`](dependency-license-audit.ja.md) と `FONT-MAPPING.json` の対応も更新します。今回の作業は byte 対応と配布資料の確認で、FontForge による再ビルドや法的判断を完了したという意味ではありません。
+PDF の補助資産は上記四 directory の全内容と原 notice を維持します。`standard_fonts` の Liberation TTF に対応する実 source package は `assets/pdf-source/` が正本です。URL リストだけに置き換えず、11 ファイルをそのまま配布します。版・フォント・コピー対象を変更する際は、同梱の`FONT-MAPPING.json`、原notice、source archive、recipeとの対応と各原ライセンスの供給条件を確認します。source kitの配布は、FontForgeによる再ビルドや法的判断の完了を示すものではありません。
 
 MapView の既定 style は外部データを持たない背景で、マーカー・領域を描画できます。地図タイルや style を必要とする業務では `baseStyle` をアプリが選び、データ取得先、利用条件、帰属、障害時の代替一覧を管理します。外部 map service の契約や認証は部品から自動で作りません。
 
-アプリの CSP は module script、worker、配信した補助資産の取得先を許可する必要があります。上記の同一 origin 配信では worker の exact URL を `worker-src` の対象にし、PDF/地図データの `connect-src` も実際の取得先へ合わせます。Angular の style/nonce とアプリの既存 CSP を含めて配布先で検証します。独立 consumer は実 worker と同一 origin assets を確認しましたが、全 CSP policy を検証したものではありません。
+アプリの CSP は module script、worker、配信した補助資産の取得先を許可する必要があります。上記の同一 origin 配信では worker の exact URL を `worker-src` の対象にし、PDF/地図データの `connect-src` も実際の取得先へ合わせます。Angular の style/nonce とアプリの既存 CSP を含めて配布先で検証します。workerの起動・資産のHTTP応答と、アプリ全体のCSP policyは別に確認してください。
 
 ## Locale、文言、RTL の責任
 
@@ -443,11 +447,11 @@ DataGrid の保存、Scheduler の移動、Kanban/Gantt/FlowEditor の変更、S
 
 ## ブラウザー境界と検証
 
-重いブラウザー engine は部品内の描画開始後に動的 import されます。アプリの bundler はその import と worker entry を保持し、遅延 chunk も配布します。独立 consumer は ECharts、PDF.js、MapLibre、CodeMirror、ProseMirror の実 chunk 取得と、PDF・Spreadsheet・MapLibre の native worker、実画像・音声・字幕を観測しています。
+重いブラウザー engine は部品内の描画開始後に動的 import されます。アプリの bundler はその import と worker entry を保持し、遅延 chunk も配布します。採用するengineのchunk取得、native workerの起動、画像・音声・字幕の実配信をアプリのHTTP環境で確認してください。
 
-SSR を使うアプリではブラウザー専用画面の import/mount を browser の処理まで defer し、server 側では目的が伝わる fallback とデータの代替表を用意します。Locale の実 directive を server DI で生成・破棄して browser globals 非参照を確認したことは、カタログ全体の SSR HTML rendering / hydration を保証しません。SSR を採用するアプリは自分の server bundle と hydration を別に検証します。
+SSR を使うアプリではブラウザー専用画面の import/mount を browser の処理まで defer し、server 側では目的が伝わる fallback とデータの代替表を用意します。Localeのserver DI対応だけでは、カタログ全体のSSR HTML rendering/hydrationを保証しません。SSR を採用するアプリは自分の server bundle と hydration を別に検証します。
 
-compile、生成一致、純モデル、native 操作、axe、視覚・意味レビューを分けて記録します。独立 consumer の strictTemplates 成功や全カテゴリの import 成功は、全 181 部品の全状態を実操作で確認したという意味ではありません。axe の incomplete は手動確認を要する観測として残します。実 screen reader、OS IME/touch、Firefox/Safari、業務 backend と利用者理解は、利用アプリの条件に合わせて確認してください。
+compile、生成一致、純モデル、native 操作、axe、視覚・意味レビューを分けて記録します。strictTemplates成功や全カテゴリのimport成功は、すべての部品・状態の実操作を確認したという意味ではありません。axe の incomplete は手動確認を要する観測として残します。実 screen reader、OS IME/touch、Firefox/Safari、業務 backend と利用者理解は、利用アプリの条件に合わせて確認してください。
 
 ## 設定変更とパッケージ更新
 
@@ -463,4 +467,4 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 
 ### パッケージの版を更新する
 
-CLIをnpmで更新しただけでは、アプリへコピー済みの部品は更新されません。旧パッケージ版・lockfile・YAML・生成物・Skillを同じ復旧点へ保存し、更新先の依存/API変更を確認してから、上と同じdry-run・sync・checkとアプリ検証を行います。版の選択、中断時のlock、生成先の移動、復旧は[ベータ利用契約](npm-beta-readiness.ja.md#更新と復旧)と[コマンド一覧](commands.ja.md)に従います。
+CLIをnpmで更新しただけでは、アプリへコピー済みの部品・Skill・利用者文書は更新されません。再同期すると、生成Skillの`references/docs/`も導入版に更新されます。beta.1からbeta.2では、旧manifestが所有する開発文書等が削除対象になるため、[リリースノート](npm-beta-release-notes.ja.md#beta1からの更新)も確認してください。旧パッケージ版・lockfile・YAML・生成物・Skillを同じ復旧点へ保存し、更新先の依存/API変更を確認してから、上と同じdry-run・sync・checkとアプリ検証を行います。版の選択、中断時のlock、生成先の移動、復旧は[ベータ利用契約](npm-beta-readiness.ja.md#更新と復旧)と[コマンド一覧](commands.ja.md)に従います。

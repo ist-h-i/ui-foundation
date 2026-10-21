@@ -1,20 +1,8 @@
 # Tree・階層選択・組織図の利用契約
 
-2026-10-06の統合候補を対象とする。公開名は生成先 `angular/index.ts` と一致する。TreeのSHA-256は `d83ad99da42101bcfbbed9f4e00fb7a75645b18e063e029686c653c42da3e82c`、public indexは `c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218`。全対象ソース・契約照合・独立試験の参照は証拠一覧（開発元の参考資料: `verification/ui-library-tree-scheduler-contract/contract-evidence.json`。この生成Skillには含めない）に保存する。
+Tree、TreeItem、TreeSelect、Cascader、OrganizationChartと型付きTreeNodeTemplateの公開APIを説明します。生成先の`angular/index.ts`から必要なstandalone部品をimportします。設定変更後は利用アプリで`sync`・`check`を行い、生成物は手編集しません。
 
-## 要求と供給範囲
-
-正本は[要求](ui-library-request.ja.md)と[matrix](ui-library-matrix.json)。matrixの状態更新と、この仕様のAPI説明は別の作業である。
-
-| matrix行 | 要求される操作 | 接続する公開部品 |
-| --- | --- | --- |
-| `forms-19`・要求67行 | 階層選択、途中階層の選択可否、遅延読込み | `Cascader` |
-| `forms-20`・要求68行 | ツリー選択、複数選択、親子の選択連動、検索 | `TreeSelect` |
-| `data-08`・要求154行 | 階層、展開、選択、チェック、遅延読込み | `Tree`、`TreeItem` |
-| `data-12`・要求158行 | 親子関係、方向、展開、ノード内容 | `OrganizationChart`、`TreeNodeTemplate` |
-| `foundation-08` / `foundation-09` | 言語・日付書式・RTL / プロファイル適用 | 共通locale/provider、CDK Directionality、意味トークン |
-
-設定・テンプレートを正本として `npm run ui:sync` → `npm run ui:check` を行い、生成先の部品と `tokens.css` を利用する。生成物は手編集しない。検証した依存はAngular/CDK `22.2.1`、RxJS `7.8.2`。利用アプリが互換依存を用意し、生成先のpublic barrelから必要なstandalone部品をimportする。Tree系の追加runtime packageはない。共通基盤を含むbarrelをビルドする際のScheduler依存は[Scheduler契約](ui-library-scheduler-expansion-spec.ja.md#依存と成熟候補の判断)も参照する。
+Tree系の追加runtime packageはありません。公開入口が参照する共通依存は[利用ガイド](ui-library-consumer-guide.ja.md#依存関係)、日程の依存は[Scheduler契約](ui-library-scheduler-expansion-spec.ja.md#依存)を参照してください。
 
 ## 共通モデル・raw ID・型付き内容
 
@@ -100,17 +88,10 @@ TreeSelect/Cascaderはnative comboboxからmanual popover内の非modal dialog�
 
 ## プロファイル・言語・検証
 
-見た目は[設計](design.md)の二段階トークンと `src/roles.ts` の役割契約に従う。YAMLの `default_profile` / `profiles` と `data-ui-profile="ID"` で全semantic対応を切り替える。font.body/code、text、leading、weight、space、size、color、border、radiusを用途ごとに接続し、プリミティブを部品へ直接書かない。共通motion.duration/easingも正本のsemantic役割であり、独自の固定animation値を追加しない。文字・余白・操作寸法をguided/denseで変え、選択・取得・投影フォーム・focusを作り直さない。popupはlogical CSSと自身のscroll領域を使い、320px/文字200%でも必須操作を残す。reduced motionではsmooth scrollを抑止する。
+見た目は[設計](design.md)の二段階トークンの役割契約に従う。YAMLの `default_profile` / `profiles` と `data-ui-profile="ID"` で全semantic対応を切り替える。font.body/code、text、leading、weight、space、size、color、border、radiusを用途ごとに接続し、プリミティブを部品へ直接書かない。共通motion.duration/easingも正本のsemantic役割であり、独自の固定animation値を追加しない。文字・余白・操作寸法をguided/denseで変え、選択・取得・投影フォーム・focusを作り直さない。popupはlogical CSSと自身のscroll領域を使い、320px/文字200%でも必須操作を残す。reduced motionではsmooth scrollを抑止する。
 
 公開 `provideUiLocale` / `[uiLocale]` (`UiLocaleScope`) はlocale、messages、directionなどをscopeへ供給する。明示component localeはproviderより優先する。既定localeは `ja-JP`、directionは未指定ならアプリのdirを継承する。UiLocaleScopeはnative lang/dirと公開CDK Directionalityを接続し、アプリの明示Dirや外部属性を尊重して自身の所有属性だけを復元する。辞書が変えるのはライブラリ文言であり、raw ID、label、description、app errorを翻訳・置換しない。
 
 公開純関数は `treeNodes`、`treeBranch`、`treeUnloaded`、`treeEntries`、`treeEntry`、`treePath`、`treeFilter`、`treeVisible`、`treeComplete`、`treeCheckState`、`treeToggleCheck`、`treeSelectionProblem`、`cascaderPathProblem`。DOM符号化・load内部状態のhelperや共有popup baseをconsumerへ公開するものではない。
 
-| 正式試験 | 対象 |
-| --- | --- |
-| tree model（開発元の参考資料: `../tests/model/tree.test.ts`。この生成Skillには含めない） | 構造、選択/チェック、lazy/cancel/stale、UTF-16 |
-| Tree browser（開発元の参考資料: `../tests/ui/tree-catalog.spec.ts`。この生成Skillには含めない） | 全部品、CVA/reset/name、検索、親子、4方向、Escape/Tab、投影native操作、320px/200%/RTL/axe |
-| Foundation browser（開発元の参考資料: `../tests/ui/foundation.spec.ts`。この生成Skillには含めない） | provider、locale検索、CDK Dir、live profileと入力/focus保持 |
-| consumer AOT（開発元の参考資料: `../tests/generation/consumer.test.ts`。この生成Skillには含めない） | 生成consumerのstrictTemplatesとnegative型検査 |
-
-独立reviewの実測はTree/Scheduler/Locale合計42/42 native、モデル16＋locale/server DI5、94 supporting TSのscoped strict AOT・positive exit0、typed contextのnegative4件は期待するTS2339/exit1。axe24 scansのviolationsは0、incompleteはaria-valid-attr-value16 nodes/color-contrast50 nodesを残す。正式試験ファイルがあることと、この独立reviewでその全suiteを実行したことは区別する。全181部品/full139 AOT、実AT、Firefox/Safari、全component SSR/hydration、業務保存/Undoを承認した報告ではない。
+実支援技術、全ブラウザー、SSR/hydration、業務保存・Undoは利用アプリの採用構成で確認してください。

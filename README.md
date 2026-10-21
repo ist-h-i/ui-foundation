@@ -25,7 +25,7 @@
 | ファイル・媒体 | ファイル選択、画像・音声・動画、PDF、QR・バーコード |
 | 可視化・編集 | チャート、地図、表計算、コード・リッチテキスト編集、フロー編集 |
 
-部品の公開名、機能、制約、サンプルの案内は[コンポーネント一覧](docs/components.ja.md)を参照してください。
+部品の公開名、機能、制約は[コンポーネント一覧](docs/components.ja.md)を参照してください。
 
 ## 設定で変えられること
 
@@ -57,7 +57,7 @@ npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScr
 ## 使い始める
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
 ```
 
 ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。
@@ -70,47 +70,6 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.1
 | prop・イベントなどの詳細を調べる | [部品API](docs/ui-components.md) |
 | 設定の構造と生成の契約を調べる | [設計](docs/design.md) |
 | 静的検査の対象と限界を調べる | [静的検査](docs/static-checks.ja.md) |
-
-## 開発元のサンプルと検証
-
-次はこのリポジトリのcheckoutで使う既存の手順です。npmパッケージをインストールした利用先アプリの手順は[usage](docs/ui-library-consumer-guide.ja.md)を参照してください。
-
-<details>
-<summary>開発元の検証アプリとnpmスクリプト</summary>
-
-Node.js 24.19.0で検証します。依存関係はロックファイルで固定します。
-
-```sh
-npm ci
-npm exec playwright -- install chromium --no-shell
-npm run ui:sync
-npm test
-npm start
-```
-
-http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替えると、`guided`と`dense`の違いを比較できます。入力や取得・実行状態を保持したまま同じ部品の見た目を変更します。Tailwindのユーティリティも部品のCSSも同じ意味トークンを参照します。
-
-| コマンド | 実際に確認・実行する内容 |
-| --- | --- |
-| `npm run ui:sync -- --dry-run` | 生成予定の差分を表示。書き込みなし。 |
-| `npm run ui:sync` | 設定検証、全プロファイルの解決、生成・同期。 |
-| `npm run ui:check` | 設定・生成一致と、設定したソースの静的逸脱検査。違反で失敗、動的な処理など、静的に確認できない箇所は警告。 |
-| `npm run ui:check:warnings` | 本リポジトリの全警告と分類台帳を照合。未分類・消滅・重複・根拠変更で失敗する。 |
-| `npm run typecheck` | 設定/CLIのTypeScript、生成Angular部品のstrictTemplates、下記のMedia/Tree/Diagram回帰の型検査。 |
-| `npm run test:config` | 型、参照、必須役割、プロファイル、色ペアの検査。 |
-| `npm run test:generation` | 冪等性、dry-run、衝突、パス境界、CLIの失敗状態。 |
-| `npm run test:static` | 全トークン用途、部品承認、例外、未確認警告、取り込み先での同梱検査器の実行。 |
-| `npm run typecheck:ui:media` | Mediaの3件のspecと、それらが直接使うヘルパーのstrict型検査。通常のtypecheckにも含める。UIの全specをstrict検査するものではない。 |
-| `npm run typecheck:ui:runtime` | Tree/Diagram/Menuの4件のspecと、それらが直接使うヘルパー・利用アプリのstrict型検査。通常のtypecheckにも含める。 |
-| `npm run test:ui` | 実ブラウザーの操作・表示・自動アクセシビリティ。 |
-| `npm run test:svg-paint` | 新規の公開API利用アプリの生成・AOTと34ケースのSVG実描画検査。通常のtestにも含める。 |
-| `npm run test:cross-browser` | 2プロファイル×重点6操作×Chromium/Firefox/WebKitの36件。追加実行の詳細は[検証ガイド](docs/cross-browser-runtime-verification.ja.md)。 |
-
-ビルド時には`ui:check`を実行し、未同期の生成物を黙って使いません。設定変更後は`ui:sync`を実行してください。通常の`npm test`は警告の分類確認も行います。
-
-</details>
-
-開発元の[要件](docs/project-brief.ja.md)、[実装・検証計画](docs/implementation-plan.md)、[開発方針](docs/development.md)も参照できます。
 
 ## ライセンス
 

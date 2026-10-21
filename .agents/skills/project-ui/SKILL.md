@@ -7,7 +7,7 @@ description: Design and implement UI for this project using its persona profiles
 
 ## 最初に読む
 
-生成先では隣の`project-context.md`を読み、利用者の目的・利用状況・制約、`default_profile`、各プロファイルの`guidance`とトークンの対応を確認する。このスキルの生成元を変更する場合は、`examples/ui.config.example.yaml`と`docs/design.md`を読む。説明文は設計の判断材料として使い、文章だけを根拠に設定値を確定しない。
+生成先では隣の`project-context.md`を読み、利用者の目的・利用状況・制約、`default_profile`、各プロファイルの`guidance`とトークンの対応を確認する。利用アプリの正本YAMLと、同梱の`references/docs/design.md`を読む。説明文は設計の判断材料として使い、文章だけを根拠に設定値を確定しない。
 
 ## 設計と設定
 
@@ -29,15 +29,15 @@ output内のtailwind.cssで生成したテーマを確認する。色はbg-color
 
 プロファイルは有効なIDを選びdata-ui-profileで適用する。切替時にフォームや取得・実行状態を作り直さない。部品はnativeの意味、見えるfocus、処理中の再操作防止、入力保持、失敗と復旧を保つ。HTTP、業務上の安全範囲、実データUndo、更新重複防止は利用アプリが所有する。
 
-一覧の検索・ソート・ページ・列配置はDataTableViewのTableStateで保持する。server処理ではアプリが状態からデータを取得し、部品は受信行を再処理しない。入力は生成されたCVA部品とReactive Formsを接続し、無効化・reset・離脱時更新・未確定の候補を検証する。非同期候補はqueryとrequestIdで古い応答を除外する。日付はcivil ISO日付、日時は明示タイムゾーン付きのローカル時刻契約として扱い、DST解釈とInstantへの変換はアプリが行う。GridListは実コンテナ幅とsize.grid-itemを使う。Iconは@lucide/angularをインストールしprovideUiIconsで必要なアイコンを登録する。APIの詳細はリポジトリのreferences/docs/ui-components.md、全要求と残件はreferences/docs/ui-library-matrix.jsonを参照する。
+一覧の検索・ソート・ページ・列配置はDataTableViewのTableStateで保持する。server処理ではアプリが状態からデータを取得し、部品は受信行を再処理しない。入力は生成されたCVA部品とReactive Formsを接続し、無効化・reset・離脱時更新・未確定の候補を検証する。非同期候補はqueryとrequestIdで古い応答を除外する。日付はcivil ISO日付、日時は明示タイムゾーン付きのローカル時刻契約として扱い、DST解釈とInstantへの変換はアプリが行う。GridListは実コンテナ幅とsize.grid-itemを使う。Iconは@lucide/angularをインストールしprovideUiIconsで必要なアイコンを登録する。APIの詳細は同梱の`references/docs/ui-components.md`と`references/docs/ui-library-api.json`を参照する。
 
 Cardは各領域のテンプレート／投影とshow/collapseを接続し、hiddenで入力を保持する。Menuは再帰itemsを使い、親へのfocus復帰とTab退出を保つ。Dialogはnative modal/nonmodalを使い、アプリの終了保留はcloseRequested.preventDefault()で接続する。busyでUI終了を抑止し、完了後はcompleteまたは明示open=falseを使う。通知はautoDismiss=trueなら正のdurationSeconds、falseなら保持。共通NotificationHostでFIFO・同時表示数・重複を選ぶ。modal内の操作付き通知はuiNotificationScopeとその内側のhostを用い、native modalの背景抑止を維持する。確認結果はUIの意思表示であり、保存成功・実Undo・未保存判断はアプリが所有する。
 
 ## 検証
 
-公開ベータの導入・更新・中断復旧は、同梱の[ベータ利用契約](references/docs/npm-beta-readiness.ja.md)を読む。API文書・ADRはこのSkillの`references/docs/`にある。利用アプリのルートに開発元のdocsが存在するとは仮定しない。
+公開ベータの導入・更新・中断復旧は、同梱の[ベータ利用契約](references/docs/npm-beta-readiness.ja.md)を読む。API・設計・導入・更新の利用者文書はこのSkillの`references/docs/`にある。利用アプリのルートに開発元のdocsが存在するとは仮定しない。
 
-checkで設定と生成物を照合し、型検査/ビルド/対象操作試験を実行する。リポジトリではnpm run ui:sync / ui:check / typecheck / test:model / test:uiを使う。利用アプリでは保存されたプロジェクトコマンド、またはアプリのルートから`./node_modules/.bin/ui-foundation`を実行する。チェックアウトは不要。checkはYAMLのchecksで指定したAngular/CSS/SCSSソースの逸脱を検査する。動的な式などの未確認は警告として残し、UX全体の合格と扱わない。取り込み先ではoutput内のcheck-ui.cjsをNodeで実行する。検査器とpolicyは手編集せず再同期する。
+checkで設定と生成物を照合し、型検査/ビルド/対象操作試験を実行する。利用アプリでは保存されたプロジェクトコマンド、またはアプリのルートから`./node_modules/.bin/ui-foundation`を実行する。チェックアウトは不要。checkはYAMLのchecksで指定したAngular/CSS/SCSSソースの逸脱を検査する。動的な式などの未確認は警告として残し、UX全体の合格と扱わない。取り込み先ではoutput内のcheck-ui.cjsをNodeで実行する。検査器とpolicyは手編集せず再同期する。
 
 各採用profileで狭い画面、文字拡大、キーボード、動きの低減、正常/処理中/エラー/欠損/復旧を確認する。描画・操作・自動アクセシビリティ・意味レビュー・利用者確認を分けて報告する。未実行を合格扱いしない。詳細な判断例は必要時に[参照](references/token-design.md)を読む。
 
@@ -80,7 +80,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 - Tooltipはmessage/role=tooltip/aria-describedbyだけで操作を入れない。遅延、Escape前後、hover/focus保持、説明参照の所有範囲とtimer破棄を確認する。HoverCardの補助操作へkeyboard/明示clickでも入れるようにし、必須情報をhoverだけへ隠さない。
 - Popoverのheader/body/actionsにはtyped uiPopupTemplateを使う。終了理由/同期保留/busyをアプリへ返し、scope喪失/hidden/破棄で終了保留を延命しない。連続Escape、外部focus、対象変更、狭幅/RTL、入力保持を検証する。
 - ConfirmPopoverのconfirmRequestedは意思表示。要求直後からbusy反映までの終了抑止と、busyを立てない場合の次描画後の取消を分けて検証する。busy/error/retryを接続し、結果後にcompleteまたは明示open=falseを行う。保存/Undoを先取りしない。全propと責任範囲はreferences/docs/ui-components.mdの端の領域と浮動表示を参照する。
-- 共通Escapeと表示待ちの取消は子のキー処理後に行い、defaultPrevented/IME変換中は処理しない。連続Escapeのbusy/終了保留、非modalの外部focus、hiddenのDrawer/Sheetでmodalが解放されることを確認する。documentElementを含む根スコープのdir/profile/style/inert変更でも再配置と後始末を確かめる。キー以外のnative終了要求の保留は保証しない。判断はreferences/docs/adr/0001-overlay-escape.mdを参照する。
+- 共通Escapeと表示待ちの取消は子のキー処理後に行い、defaultPrevented/IME変換中は処理しない。連続Escapeのbusy/終了保留、非modalの外部focus、hiddenのDrawer/Sheetでmodalが解放されることを確認する。documentElementを含む根スコープのdir/profile/style/inert変更でも再配置と後始末を確かめる。キー以外のnative終了要求の保留は保証しない。最上位が終了保留の場合もEscapeを消費し、下位のDialogを閉じない。詳細は`references/docs/ui-components.md`の浮動表示の契約を参照する。
 
 ## ナビゲーションとコマンド
 
@@ -102,7 +102,7 @@ checkで設定と生成物を照合し、型検査/ビルド/対象操作試験�
 
 ## 一覧・選択・仮想化・移動
 
-- 生成consumerはAngularとRxJSに加え`@angular/cdk`の互換版を導入する。公開scrolling/drag-drop APIを用い、private内部や別Overlayをpatchしない。size.collection-item/collection-viewportをYAML正本のprofileへ対応付ける。CDK採用・更新条件はreferences/docs/adr/0002-collections-cdk.mdを参照する。
+- 生成consumerはAngularとRxJSに加え`@angular/cdk`の互換版を導入する。公開scrolling/drag-drop APIを用い、private内部や別Overlayをpatchしない。size.collection-item/collection-viewportをYAML正本のprofileへ対応付ける。CDKの依存と利用条件は`references/docs/ui-library-consumer-guide.ja.md`と`references/docs/ui-components.md`を参照する。
 - List/Masonry/DataViewは安定keyとtyped uiCollectionItemOfを使う。template indexはfiltered絶対位置、pageIndexはページ内位置。行操作はnative操作にする。DataViewの機能OFF、範囲外pageのstate補正、list/gridで同じeditor、異なる高さのMasonryとDOM順を検証する。
 - Listbox/SelectionListのoption templateは表示用とし、内部へ独立button/linkを置かない。CVA不正値はエラーとして保持し、明示app resetで修復する。検索のhidden/disabled選択を勝手に解除しない。既定の仮想行は意味tokenを下限にグループ名とラベルの文字行を測り、拡大時も両行を欠かさない。明示itemHeight/投影内容の固定行高と局所scrollはアプリが確認する。仮想groupは描画済optionだけをaria-ownsで接続し、Chrome AX treeでgroup/option/active参照を観測する。
 - VirtualListは固定行高を契約とし、1000行の実DOM数、終端/scroll position/先読み、profileと文字拡大の再測定、破棄、行内focus退避を確認する。仮想DOMの外へ消えるeditor値はアプリがkeyへ保存する。VirtualList/Listboxの自前仮想行幅は公開viewportのclientWidthに従う。長ラベルのellipsis/水平scroll、LTR/RTL/200%と親幅/profile変更、投影editorの幅・DOM・値保持を確認する。CDK内部wrapperはpatchしない。
@@ -117,7 +117,7 @@ Calendarは狭幅・文字拡大・LTR/RTLで、初期focus・矢印移動・月
 
 Kanbanの移動先selectは所在列・モデルと一致し、移動後の再作成でも一致することを確認する。列移動と先頭／末尾への順序移動後は、focusしたカード名とfocus枠が局所scroll領域内で読めること、Tabで続けられることを確認する。FlowEditorはSVG接続端と実nodeの位置・中心を照合し、長文・文字拡大・zoom・自動配置で実高に追随することを確認する。接続ラベルの全文と接続との対応、node/edge削除後の自前focusと外部focusの保持も確認する。Filterの固定演算子は入れ子・狭幅・文字拡大でも全文を読める既定表示を使い、語尾の省略で肯定／否定を曖昧にしない。
 
-フォーム・locale/日付書式・RTL/CDK Directionality・全カテゴリのプロファイル接続、Tree/Scheduler/編集表、媒体と専門部品を使う場合は、生成Skillに同梱する[利用契約](references/ui-library-runtime.md)を読む。部品は必要な画面だけで使用する。このSkillに同梱した`references/docs/ui-library-consumer-guide.ja.md`で正規依存とworker/asset/NOTICEの配信手順、`references/docs/ui-components.md`でカテゴリ別APIを確認する。同梱の`references/docs/ui-library-matrix.json`は開発元の要求追跡であり、利用アプリの検証成功を証明しない。配布外の過去ログを必須入力にせず、導入先で行った検証を記録する。実送信・保存・取消・Undoの成功をUIだけで確定しない。
+フォーム・locale/日付書式・RTL/CDK Directionality・全カテゴリのプロファイル接続、Tree/Scheduler/編集表、媒体と専門部品を使う場合は、生成Skillに同梱する[利用契約](references/ui-library-runtime.md)を読む。部品は必要な画面だけで使用する。このSkillに同梱した`references/docs/ui-library-consumer-guide.ja.md`で正規依存とworker/asset/NOTICEの配信手順、`references/docs/ui-components.md`でカテゴリ別APIを確認する。API目録は利用アプリの検証成功を証明しない。配布外の過去ログを必須入力にせず、導入先で行った検証を記録する。実送信・保存・取消・Undoの成功をUIだけで確定しない。
 
 TransferList/PickListのCVA値は安定キー配列またはnull。左右のnative checkboxは現在検索scopeの一時選択で、disabled/hidden/検索外の値を削除しない。追加上限はbatch全体で判定し、削除で上限超過を修復できる。未知・重複・不正モデルはValidatorで説明し値を保持する。callbackは同期・純粋で指定時trueのみ許可、例外は拒否する。pointer/draftは同じsnapshotとcanonicalキーを使い、同一turnのapp更新前にinvalidatePendingで古い操作を明示失効できる。
 Timeline/ActivityLogはoffset付きinstant、明示timeZoneとIntlで日時を表示し、missingとinvalid日時/種別を分ける。native detailsは投影DOMと編集を保持する。追加取得は同じTimeline/InfiniteScroll hostの未完了idにcompleteLoad/failLoadでackし、受理を確認してappがデータを追加する。IDは恒久・別bundle間一意を保証しない。reset/query更新前にはinvalidatePending、loader再作成・破棄後の古い結果は拒否する。実I/O/保存/Undo/業務認可はappが所有する。

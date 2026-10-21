@@ -4,7 +4,7 @@
 
 下表の名前は、生成先の `angular/index.ts` から import する公開名です。npm パッケージ本体から Angular 部品を直接 import する使い方ではありません。生成先の既定値は `.ui/generated/` です。必要な standalone 部品と、使う投影用 directive を利用画面の `imports` に追加します。
 
-一覧では用途の近い部品を同じ行にまとめています。[要求マトリクス](ui-library-matrix.json)の181行は機能や基盤の要求数であり、部品数ではありません。型・純関数・サービスを含む公開 API 全体は [API 目録](ui-library-api.json)、入力・イベント・復旧の詳細は各行のリンクを参照してください。
+一覧では用途の近い部品を同じ行にまとめています。型・純関数・サービスを含む公開 API 全体は [API 目録](ui-library-api.json)、入力・イベント・復旧の詳細は各行のリンクを参照してください。
 
 ## 配置・コンテナ
 
@@ -183,7 +183,7 @@ Descriptions の値の差替えには `DescriptionTemplate` を使います。Ic
 
 以下は **ui-foundation の開発用 fixture** です。公開 Web サンプルの URL ではありません。npm を導入した利用アプリにこれらのファイルや経路が作られることもありません。実装例を読む場合は開発元リポジトリのソースを参照してください。以下のGitHubリンクの閲覧には、開発元リポジトリへのアクセス権が必要です。
 
-[fixture の入口](https://github.com/ist-h-i/ui-foundation/blob/main/tests/fixture-app/main.ts)は、URL の pathname に応じて次のカタログを起動します。開発元での起動方法は [開発元のサンプルと検証](../README.md#開発元のサンプルと検証)を参照してください。
+[fixture の入口](https://github.com/ist-h-i/ui-foundation/blob/main/tests/fixture-app/main.ts)は、URL の pathname に応じて次のカタログを起動します。開発元のソースは任意の実装例であり、導入や利用の必須入力ではありません。
 
 | fixture 内の pathname | ソースと対象 |
 | --- | --- |

@@ -1,6 +1,6 @@
-# 媒体11要求の公開契約
+# ファイル・画像・音声・動画の公開契約
 
-[原文](ui-library-request.ja.md)の`media-01`〜`11`を扱う。export aliasは`Dropzone/AttachmentList/FilePreview/Lightbox/Carousel/AudioPlayer/VideoPlayer`も公開。[型とmethods](ui-library-api.json)、[consumer配信](ui-library-consumer-guide.ja.md)、[依存条件](dependency-license-audit.ja.md)を参照する。
+ファイル・画像・音声・動画・PDF・コード描画の公開APIです。export aliasは`Dropzone/AttachmentList/FilePreview/Lightbox/Carousel/AudioPlayer/VideoPlayer`も公開します。[型とmethods](ui-library-api.json)、[利用ガイドの配布資産](ui-library-consumer-guide.ja.md#css-と配布資産)を参照してください。
 
 ## 入力とイベント
 
@@ -34,11 +34,11 @@ Media停止はpause+time0。source替え/hidden/disabled/destroyは現owner再�
 
 画像/QRの符号化画素はデータ。外側の文言/surface/focus/寸法をsemantic/profileに接続し、quiet zoneや白黒をテーマで変更しない。Barcode型はCODE128/CODE39/EAN13/EAN8/UPC/ITF/ITF14/MSI/pharmacode/codabar。内容/必要幅不足は診断する。
 
-## 採用と正式検証
+## 依存と利用上の制約
 
 PDF.js6.4.299、qrcode1.5.4、JsBarcode3.12.3の公開JS APIとnative File/Bitmap/Canvas/mediaを利用する。追加storage/mediaサービスやaccountは前提にしない。一次資料: [PDF.js](https://mozilla.github.io/pdf.js/getting_started/)、[qrcode](https://github.com/soldair/node-qrcode)、[JsBarcode](https://github.com/lindell/JsBarcode)、[WHATWG media](https://html.spec.whatwg.org/multipage/media.html)、[APG Carousel](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/)。
 
-正式`media.spec.ts/media-regressions.spec.ts/media-lifetime.spec.ts`で選択/drop・受付復旧・実PDFページ・PNG pixels・画像回転bounds・timer・再生source epoch・字幕cue・QR/Code128独立decodeを扱う。exact sourceと実結果はmatrixへ記録し、実uploadサービスや他browserの成功と混同しない。
+実uploadサービス、ブラウザー差、支援技術は利用アプリで確認してください。
 
 ImageCompare の比較座標は画像の物理的な左端／上端を0、右端／下端を100とします。周囲のRTLや言語変更でもこの座標は変えず、native rangeはLTR方向で境界線とつまみを一致させます。ラベルと説明文は周囲の言語・方向へ追随します。
 
