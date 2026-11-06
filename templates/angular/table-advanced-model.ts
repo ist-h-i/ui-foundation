@@ -1,3 +1,4 @@
+import type {UiMessages} from './locale-model';
 import { tableText, tableValue, type TableColumn, type TableKey, type TableState } from './table-model';
 /** Preserve accepted UTF-16 identities; the %u namespace cannot occur in URI encoding. */
 export function tableDomIdToken(id: string): string {
@@ -37,6 +38,7 @@ export type TableDraftResult = {
 } | {
     valid: false;
     message: string;
+    messageText?: () => string;
 };
 export function tableDraft(value: unknown): string {
     return value === null || value === undefined ? '' : value instanceof Date ? Number.isFinite(value.getTime()) ? value.toISOString().slice(0, 10) : '' : String(value);
@@ -50,9 +52,10 @@ function validCivil(value: string): boolean {
     return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }
 /** Blank nullable values and incomplete/invalid drafts remain distinct. */
-export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T): TableDraftResult {
+export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TableDraftResult {
+    const invalid=(source:string):TableDraftResult=>text?{valid:false,message:text(source),messageText:()=>text(source)}:{valid:false,message:source};
     if (column.required && !raw.trim())
-        return { valid: false, message: '入力してください。' };
+        return invalid('入力してください。');
     let value: unknown;
     try {
         if (column.parseDraft)
@@ -61,37 +64,37 @@ export function parseTableDraft<T extends object>(raw: string, column: TableEdit
             value = null;
         else if (column.type === 'number') {
             if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw) || !Number.isFinite(Number(raw)))
-                return { valid: false, message: '有限の数値を入力してください。' };
+                return invalid('有限の数値を入力してください。');
             value = Number(raw);
         }
         else if (column.type === 'boolean') {
             if (!['true', 'false'].includes(raw))
-                return { valid: false, message: 'はい、またはいいえを選択してください。' };
+                return invalid('はい、またはいいえを選択してください。');
             value = raw === 'true';
         }
         else if (column.type === 'date') {
             if (!validCivil(raw))
-                return { valid: false, message: '実在する日付を入力してください。' };
+                return invalid('実在する日付を入力してください。');
             value = raw;
         }
         else
             value = raw;
     }
     catch {
-        return { valid: false, message: '入力値を解釈できませんでした。' };
+        return invalid('入力値を解釈できませんでした。');
     }
     if (column.required && (value === null || value === undefined || typeof value === 'string' && !value.trim()))
-        return { valid: false, message: '入力してください。' };
+        return invalid('入力してください。');
     if (column.type === 'number' && value !== null && (typeof value !== 'number' || !Number.isFinite(value)))
-        return { valid: false, message: '有限の数値を入力してください。' };
+        return invalid('有限の数値を入力してください。');
     if (column.type === 'boolean' && value !== null && typeof value !== 'boolean')
-        return { valid: false, message: 'はい、またはいいえを選択してください。' };
+        return invalid('はい、またはいいえを選択してください。');
     if (column.type === 'date' && value !== null && (typeof value !== 'string' || !validCivil(value)))
-        return { valid: false, message: '実在する日付を入力してください。' };
+        return invalid('実在する日付を入力してください。');
     if (column.options && value !== null && !column.options.some(option => option.value === String(value)))
-        return { valid: false, message: '選択肢から選択してください。' };
+        return invalid('選択肢から選択してください。');
     if (typeof value === 'number' && (column.minimum !== undefined && value < column.minimum || column.maximum !== undefined && value > column.maximum))
-        return { valid: false, message: '入力値が範囲外です。' };
+        return invalid('入力値が範囲外です。');
     return { valid: true, value };
 }
 export function tableEditProblem<T extends object>(columns: readonly TableEditableColumn<T>[], keyField?: keyof T & string): string | null {
@@ -103,22 +106,24 @@ export function tableEditProblem<T extends object>(columns: readonly TableEditab
         return '安定した行キーは編集できません。';
     return null;
 }
-export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string): {
+export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): {
+    errorText?: Readonly<Record<string,()=>string>>;
     value: T;
     changes: readonly TableEditChange[];
     errors: Readonly<Record<string, string>>;
 } {
+    const errorText:Record<string,()=>string>=Object.create(null);
     const changes: TableEditChange[] = [], errors: Record<string, string> = Object.create(null), value = { ...row };
     for (const column of columns) {
         if (column.editable === false || column.field === keyField || !Object.hasOwn(raw, column.id))
             continue;
         if (!Object.hasOwn(row, column.field)) {
-            errors[column.id] = '元の項目がありません。';
+            errors[column.id] = text?text('元の項目がありません。'):'元の項目がありません。';errorText[column.id]=()=>text?text('元の項目がありません。'):'元の項目がありません。';
             continue;
         }
-        const result = parseTableDraft(raw[column.id], column, row);
+        const result = parseTableDraft(raw[column.id], column, row, text);
         if (!result.valid) {
-            errors[column.id] = result.message;
+            errors[column.id] = result.message;errorText[column.id]=result.messageText??(()=>result.message);
             continue;
         }
         (value as Record<string, unknown>)[column.field] = result.value;
@@ -130,13 +135,13 @@ export function validateTableRowDraft<T extends object>(row: T, columns: readonl
         try {
             const error = column.validateValue((value as Record<string, unknown>)[column.field], value, row);
             if (error)
-                errors[column.id] = error;
+                {errors[column.id] = error;errorText[column.id]=()=>error;}
         }
         catch {
-            errors[column.id] = '入力内容の検証を完了できませんでした。';
+            errors[column.id] = text?text('入力内容の検証を完了できませんでした。'):'入力内容の検証を完了できませんでした。';errorText[column.id]=()=>text?text('入力内容の検証を完了できませんでした。'):'入力内容の検証を完了できませんでした。';
         }
     }
-    return { value, changes, errors };
+    return { value, changes, errors, ...(text?{errorText}:{}) };
 }
 export function tableEditStillCurrent<T extends object>(request: TableEditRequest<T>, row: T, keyField: keyof T & string): boolean {
     return row[keyField] === request.key && request.changes.every(change => Object.hasOwn(row, change.field) && Object.is((row as Record<string, unknown>)[change.field], change.previousValue));
@@ -278,7 +283,7 @@ export type TableGroupEntry<T extends object> = {
     row: T;
     hidden: boolean;
 };
-export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得'): readonly TableRowGroup<T>[] {
+export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, messages:UiMessages={}): readonly TableRowGroup<T>[] {
     if (new Set(by).size !== by.length || by.some(id => !columns.some(column => column.id === id)))
         throw new Error('グループ列を一意な列IDにしてください。');
     const walk = (items: readonly T[], level: number, path: readonly string[]): readonly TableRowGroup<T>[] => {
@@ -294,7 +299,7 @@ export function groupTable<T extends object>(rows: readonly T[], columns: readon
             const identity = JSON.stringify([value === null ? 'missing' : column.type ?? 'text', value]);
             let bucket = buckets.get(identity);
             if (!bucket) {
-                bucket = { label: tableText(row, column, locale, missing), rows: [] };
+                bucket = { label: tableText(row, column, locale, missing,numberOptions,messages), rows: [] };
                 buckets.set(identity, bucket);
             }
             bucket.rows.push(row);
@@ -423,25 +428,28 @@ export function parseTableMatrix(text: string, delimiter: '\t' | ',' = '\t'): re
 export interface TablePasteResult<T extends object> {
     requests: readonly Omit<TableEditRequest<T>, 'requestId'>[];
     errors: readonly string[];
+    errorText?: readonly (()=>string)[];
 }
-export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[]): TablePasteResult<T> {
+export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[], text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TablePasteResult<T> {
+    const errorText:(()=>string)[]=[];
+    const add=(source:string,parameters:Readonly<Record<string,string|number>>={},detail?:()=>string)=>{const format=()=>text?text(source,{...parameters,...(detail?{message:detail()}:{})}):source.replace(/\{(\w+)\}/g,(match,key)=>String(parameters[key]??match));errorText.push(format);return format();};
     const requests: Omit<TableEditRequest<T>, 'requestId'>[] = [], errors: string[] = [];
     if (!Number.isSafeInteger(start.row) || !Number.isSafeInteger(start.column) || start.row < 0 || start.column < 0 || !matrix.length || matrix.some(item => item.length !== matrix[0].length) || start.row + matrix.length > rows.length || start.column + matrix[0].length > columns.length)
-        return { requests: [], errors: ['貼付け範囲が表の範囲外です。'] };
+        return { requests: [], errors: [add('貼付け範囲が表の範囲外です。')], ...(text?{errorText}:{}) };
     matrix.forEach((line, index) => {
         const row = rows[start.row + index], raw: Record<string, string> = Object.create(null);
         line.forEach((value, offset) => {
             const column = columns[start.column + offset];
             if (column.field === keyField || column.editable === false)
-                errors.push(`${start.row + index + 1}行目・${column.header}は編集できません。`);
+                errors.push(add('{row}行目・{column}は編集できません。',{row:start.row+index+1,column:column.header}));
             else
                 raw[column.id] = value;
         });
-        const result = validateTableRowDraft(row, columns, raw, keyField);
+        const result = validateTableRowDraft(row, columns, raw, keyField, text);
         for (const [id, message] of Object.entries(result.errors))
-            errors.push(`${start.row + index + 1}行目・${columns.find(column => column.id === id)?.header}: ${message}`);
+            errors.push(add('{row}行目・{column}: {message}',{row:start.row+index+1,column:String(columns.find(column=>column.id===id)?.header),message},result.errorText?.[id]));
         requests.push({ key: row[keyField] as TableKey, row, value: result.value, changes: result.changes });
     });
-    return { requests: errors.length ? [] : requests, errors };
+    return { requests: errors.length ? [] : requests, errors, ...(text?{errorText}:{}) };
 }
 export function cloneTableState(state: TableState): TableState { return { ...state, sort: state.sort.map(item => ({ ...item })), filters: state.filters.map(filter => ({ ...filter, constraints: filter.constraints.map(rule => ({ ...rule })) })), columnOrder: [...state.columnOrder], hiddenColumns: [...state.hiddenColumns], columnWidths: { ...state.columnWidths }, pinnedColumns: { ...state.pinnedColumns } }; }

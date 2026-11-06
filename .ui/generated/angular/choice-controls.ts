@@ -34,7 +34,7 @@ export abstract class NumericFieldControl<T> extends ValueControl<T> implements 
     }
     return null;
   });
-  protected readonly problem = computed(() => this.configurationError() ?? this.valueProblem(this.current()));
+  protected readonly problem = computed(() => this.configurationError() ?? this.valueProblem(this.current(), this.uiRuntimeText_NumericFieldControl));
   protected readonly nativeMin = computed(() => this.domain()?.min ?? 0);
   protected readonly nativeMax = computed(() => this.domain()?.max ?? 1);
   protected readonly nativeStep = computed(() => this.domain()?.step ?? 1);
@@ -47,7 +47,7 @@ export abstract class NumericFieldControl<T> extends ValueControl<T> implements 
     super();
     effect(() => { this.min(); this.max(); this.step(); this.ticks(); this.required(); this.validatorChanged(); });
   }
-  protected abstract valueProblem(value: unknown): string | null;
+  protected abstract valueProblem(value: unknown, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): string | null;
   protected numberText(value: number): string { return Number.isFinite(value) ? value + (this.unit() ? ' ' + this.unit() : '') : this.uiRuntimeText_NumericFieldControl('値を確認してください。'); }
   protected snap(value: number): number { return this.domain() ? snapNumber(value, this.domain()!) : value; }
   registerOnValidatorChange(callback: () => void): void { this.validatorChanged = callback; }
@@ -65,7 +65,7 @@ export class Slider extends NumericFieldControl<number> {
   readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');
   protected get emptyValue(): number { return this.min(); }
   protected coerce(value: unknown): number { return typeof value === 'number' ? value : NaN; }
-  protected valueProblem(value: unknown): string | null { return this.domain() ? numericValueError(value, this.domain()!) : null; }
+  protected valueProblem(value: unknown, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): string | null { return this.domain() ? numericValueError(value, this.domain()!, text) : null; }
   protected changed(event: Event): void { if (this.unavailable()) return; this.commit(this.snap(Number(this.text(event)))); }
 }
 
@@ -85,7 +85,7 @@ export class RangeSlider extends NumericFieldControl<NumericRange> {
     const candidate = value as Partial<NumericRange> | null;
     return { start: typeof candidate?.start === 'number' ? candidate.start : NaN, end: typeof candidate?.end === 'number' ? candidate.end : NaN };
   }
-  protected valueProblem(value: unknown): string | null { return this.domain() ? numericRangeError(value, this.domain()!) : null; }
+  protected valueProblem(value: unknown, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): string | null { return this.domain() ? numericRangeError(value, this.domain()!, text) : null; }
   protected changed(event: Event, endpoint: 'start' | 'end'): void {
     if (this.unavailable()) return;
     const next = this.snap(Number(this.text(event))), range = this.valueProblem(this.current()) ? this.emptyValue : this.current();
@@ -105,7 +105,7 @@ export class Knob extends NumericFieldControl<number> {
   private pointer: number | null = null;
   protected readonly fraction = computed(() => this.domain() && Number.isFinite(this.current()) ? Math.max(0, Math.min(1, (this.current() - this.min()) / (this.max() - this.min()))) : 0);
   protected coerce(value: unknown): number { return typeof value === 'number' ? value : NaN; }
-  protected valueProblem(value: unknown): string | null { return this.domain() ? numericValueError(value, this.domain()!) : null; }
+  protected valueProblem(value: unknown, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): string | null { return this.domain() ? numericValueError(value, this.domain()!, text) : null; }
   protected changed(event: Event): void { if (this.unavailable()) return; this.commit(this.snap(Number(this.text(event)))); }
   protected adjust(direction: number): void { if (this.unavailable()) return; this.commit(this.snap((Number.isFinite(this.current()) ? this.current() : this.min()) + direction * this.step())); }
   protected begin(event: PointerEvent): void {
@@ -144,15 +144,15 @@ export class Rating extends ValueControl<number> implements Validator {
   protected readonly configurationError = computed(() => Number.isSafeInteger(this.stars()) && this.stars() > 0 && this.stars() <= 20 && this.uiEffective_clearLabel().trim() ? null : this.uiRuntimeText_Rating('評価数は1から20の整数とし、解除操作の説明を指定してください。'));
   protected readonly ratingText = computed(() => Number.isFinite(this.current()) ? this.current() === 0 ? this.uiRuntimeText_Rating('未評価') : this.current() + ' / ' + this.stars() : this.uiRuntimeText_Rating('評価を確認してください。'));
   protected readonly choices = computed(() => this.configurationError() ? [] : Array.from({ length: this.stars() * (this.halfSteps() ? 2 : 1) }, (_, index) => (index + 1) / (this.halfSteps() ? 2 : 1)));
-  protected readonly problem = computed(() => this.configurationError() ?? this.valueProblem(this.current()));
+  protected readonly problem = computed(() => this.configurationError() ?? this.valueProblem(this.current(), this.uiRuntimeText_Rating));
   protected override readonly descriptionIds = computed(() => [this.hint() ? this.controlId()+'-hint' : '', this.error()||this.problem() ? this.controlId()+'-error' : ''].filter(Boolean).join(' ') || null);
   private validatorChanged: () => void = () => {};
   constructor() { super(); effect(() => { this.stars(); this.halfSteps(); this.required(); this.uiEffective_clearLabel(); this.validatorChanged(); }); }
   protected coerce(value: unknown): number { return typeof value === 'number' ? value : NaN; }
-  private valueProblem(value: unknown): string | null {
+  private valueProblem(value: unknown, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): string | null {
     if (this.configurationError()) return null;
     if (this.required() && value === 0) return this.uiRuntimeText_Rating('評価を選んでください。');
-    return numericValueError(value, { min: 0, max: this.stars(), step: this.halfSteps() ? .5 : 1 });
+    return numericValueError(value, { min: 0, max: this.stars(), step: this.halfSteps() ? .5 : 1 }, text);
   }
   registerOnValidatorChange(callback: () => void): void { this.validatorChanged = callback; }
   validate(control: AbstractControl): ValidationErrors | null { const error = this.configurationError() ?? this.valueProblem(control.value); return error ? { rating: error } : null; }

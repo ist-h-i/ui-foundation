@@ -402,3 +402,10 @@ test('source check config rejects invalid roots, approvals, and exceptions', () 
     assert.throws(() => resolveConfig({ ...config, checks } as never), ConfigValidationError);
   }
 });
+
+
+test('default_language is optional for existing YAML and accepts only explicit English or Japanese',()=>{
+ assert.equal(resolve().default_language,undefined);
+ for(const language of ['en','ja'] as const)assert.equal(resolve(edited(config=>{config.default_language=language;})).default_language,language);
+ for(const language of ['fr','en-US','',null,1,{}])rejects(edited(config=>{config.default_language=language;}),/default_language|language/);
+});

@@ -27,6 +27,7 @@ export class SyncConflictError extends Error {
 }
 
 export interface ProjectOptions { root: string; configPath?: string }
+export interface InitOptions extends ProjectOptions { language?: 'en' | 'ja' }
 export interface SyncOptions extends ProjectOptions { dryRun?: boolean; fromOutput?: string }
 export interface Change { path: string; kind: 'create' | 'update' | 'delete' }
 interface Manifest {
@@ -90,8 +91,8 @@ async function sourceFiles(directory: string): Promise<Map<string, string>> {
 }
 
 function projectContext(config: ResolvedConfig): string {
-  return '# プロジェクトのUI設定\n\n画面設計の参考として、YAMLの設定内容をまとめたものです。設定を変更する場合は、正本のYAMLを編集してください。CLIは利用者の状況に関する説明から見た目を推測しません。\n\n'
-    + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, output: config.output, profiles: config.profiles }) + '```\n';
+  return '# Project UI configuration / プロジェクトのUI設定\n\nResolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose.\n\n画面設計用の設定概要です。変更は正本のYAMLで行います。CLIは説明文から見た目を推測しません。\n\n'
+    + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, default_language: config.default_language ?? 'ja', output: config.output, profiles: config.profiles }) + '```\n';
 }
 
 export async function generatedFiles(config: ResolvedConfig): Promise<Map<string, string>> {
@@ -110,6 +111,7 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     [ownershipPath, stableJSON(ownership(config.output))],
   ]);
   for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) files.set(`${config.output}/angular/${path}`, content);
+  files.set(`${config.output}/angular/locale-defaults.ts`, '/** Generated from default_language; omitted settings retain Japanese for existing apps. */\nexport const uiDefaultLanguage: \'en\' | \'ja\' = ' + JSON.stringify(config.default_language ?? 'ja') + ';\n');
   files.set(`${config.output}/check-ui.cjs`, await renderCheckerBundle());
   files.set(`${config.output}/CHECKER-NOTICE.txt`, await renderCheckerNotice());
   for (const [name, text] of await renderCheckerLibraries()) files.set(`${config.output}/checker-lib/${name}`, text);
@@ -119,7 +121,10 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     not_checked: [...(!config.checks ? ['application-source-deviations'] : []), 'runtime-data-flow', 'business-correctness', 'user-understanding', 'overall-visual-quality'] }));
   const skill = await sourceFiles(resolve(toolRoot, 'skills/ui-development'));
   if (!skill.has('SKILL.md')) throw new Error('The UI development Skill source is missing.');
-  for (const [path, content] of skill) files.set(`${skillDirectory}/${path}`, content);
+  for (const [path, content] of skill) {
+    // The installed English Skill links to package docs. Sync copies them beside the Skill.
+    files.set(`${skillDirectory}/${path}`, content.replaceAll('](../../docs/', '](references/docs/'));
+  }
   for (const [path, content] of await renderSkillDocumentation()) files.set(`${skillDirectory}/references/${path}`, content);
   const manifest: Manifest = { version: 1, tool_version: version, configuration_hash: digest(stableJSON(config)),
     files: Object.fromEntries([...files].map(([path, content]) => [path, { sha256: digest(content) }])) };
@@ -321,14 +326,17 @@ export async function checkProject(options: ProjectOptions): Promise<{ valid: bo
   return { valid: differences.length === 0 && source.valid, differences: differences.sort(), source };
 }
 
-export async function initProject(options: ProjectOptions): Promise<string> {
+export async function initProject(options: InitOptions): Promise<string> {
   const root = resolve(options.root);
   const name = options.configPath ?? 'ui.config.yaml';
   const path = containedPath(root, name);
   await rejectSymlinks(root, path);
-  const example = await readFile(resolve(toolRoot, 'examples/ui.config.example.yaml'), 'utf8');
+  const language = options.language ?? 'en';
+  if (language !== 'en' && language !== 'ja') throw new Error('Unsupported configuration language: use en or ja.');
+  const example = await readFile(resolve(toolRoot, language === 'en' ? 'examples/ui.config.example.en.yaml' : 'examples/ui.config.example.yaml'), 'utf8');
   // Repository fixture roots are not valid application defaults.
   const initialConfig = parseConfig(example);
+  initialConfig.default_language = language;
   initialConfig.checks = { source_roots: ['src'], approved_components: [], exceptions: [] };
   const initial = stringify(initialConfig);
   await mkdir(dirname(path), { recursive: true });

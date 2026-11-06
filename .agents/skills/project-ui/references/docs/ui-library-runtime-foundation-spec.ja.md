@@ -6,9 +6,9 @@
 
 `provideUiLocale(options | Signal<UiLocaleOptions>)`は`UI_LOCALE: Signal<UiLocaleResolved>`を提供する。局所`UiLocaleScope`は`[uiLocale]`で親の値を継承する。部品は`injectUiLocale()`と`injectUiText()`、`UiMessagePipe`を読む。純関数`resolveUiLocale/uiMessage`も公開する。`UiText`という公開型はない。
 
-optionsは`locale/direction/timeZone/dateInputFormat/civilDateOptions/dateTimeOptions/numberOptions/messages`。既定は`ja-JP`、方向/timezoneは未指定、日付入力は`native`、civil表示は`dateStyle:full`、日時は`dateStyle:medium,timeStyle:short`。明示した部品propを共通値より優先する。不正なIntl設定や辞書shapeを診断し、hostの言語/timezoneへ黙って変更しない。runtime APIからYAML/profileを変更しない。
+optionsは`locale/direction/timeZone/dateInputFormat/civilDateOptions/dateTimeOptions/numberOptions/messages`。YAMLの`default_language: en`で生成した場合は`en-US`と英語辞書、`ja`または項目のない既存設定は`ja-JP`と日本語fallbackが既定。方向/timezoneは未指定、日付入力は`native`、civil表示は`dateStyle:full`、日時は`dateStyle:medium,timeStyle:short`。明示した部品propを共通値より優先する。不正なIntl設定や辞書shapeを診断し、hostの言語/timezoneへ黙って変更しない。runtime APIからYAML/profileを変更しない。
 
-辞書はライブラリ所有の既定文言をキーにし、未指定は元の文言を表示する。翻訳辞書一式の同梱ではない。静的説明・操作・状態・構造診断の表示へ適用し、アプリのラベル・候補名称・本文・backend失敗本文は原文を保つ。純モデルのpublic diagnosticとValidator errorは変更せず、UI表示境界だけで翻訳する。辞書/パラメータはown propertyを読み、Angular text interpolationがHTMLをescapeする。
+辞書はライブラリ所有の既定文言をキーにし、未指定は元の文言を表示する。同梱の英語辞書は、生成済みの公開入口から `uiEnglishMessages` を import し、`provideUiLocale` の `messages` に指定して選択する。静的説明・操作・状態・構造診断の表示へ適用し、アプリのラベル・候補名称・本文・backend失敗本文は原文を保つ。純モデルが返す診断は既定の文言を維持し、通常はUIの表示時に翻訳する。FilterBuilderの必須条件が空の場合は、Validatorが返すメッセージにも辞書が適用される。辞書/パラメータはown propertyを読み、Angular text interpolationがHTMLをescapeする。
 
 ## 日付・数値・方向
 

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.example.yaml": "5c2787ea3bcf30f57d1b3e1db585eb286e7ae5517374725cb69cde2e178ceea0",
-    "package.json": "11e8c6c49bd7aa559d5e3954474b76b8f884c69f92d5c9ac69d5171a14450183",
-    "package-lock.json": "5362ead56aa9ab15213319f7400b4f110a93719686f3e52fc1740f12e8a7e139",
-    "src/config.ts": "4ee775d0d64700f4d1b5af43d21ac4192fa29ded363f0701e7c9b47117ac94b5",
+    "examples/ui.config.example.yaml": "2fbbfaf60849d2ee2d571a7589dcd95ba89af0e6eea7dd3e3b59a11d12c411b5",
+    "package.json": "fe7c513d08c1e1330235b45a45ae568d31db250d5bf880fb3a8bd1149243e5e4",
+    "package-lock.json": "56f52df581fb5d138a73fc9befc6ed1278c496d997cf7e4c44ee7780359ac9c9",
+    "src/config.ts": "4fee845dce66c947046233e3ac6836679340e1c67dbf83c69b2ae882516fb441",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
-    "src/sync.ts": "6225ba00f604cad2221d8e8b29945f679cf9a2cb1afd69744ab509c5e51e3d3b",
+    "src/sync.ts": "e7ac21d8c13402f75cefdcf79ff56ca7d665867685fed2297e35099e598c157a",
     "src/check/bounded-search.ts": "007557dd0be3e13506c23b0eca87909a396d571c260df609b90a895af0b90f8f",
     "src/check/bundle.ts": "bcff52e444c63faeb7a2c875a9a3e94211b5603b37b77b6ac539b5e14b0c00b6",
     "src/check/canonical.ts": "6645f7e87893e28c67433615add9c841922fce1fd81ae40cb161ba670c417dd7",
@@ -24,7 +24,7 @@
     "tests/static/write-sinks.test.ts": "8ec17aad28c151b6e22522fad1aabfc2a551ef7000a93df4e548af57c4bfd610",
     "tests/static/write-sinks-portable.test.ts": "bb61341b61775c05d834fe318ef66f162cca3b759c0e91f7c6cf1855b2dcfb57",
     "src/sync-lock.ts": "6145864d21dc441d7477284c46d69b944679382fe04e1fec10d65882a885b3f0",
-    "src/skill-docs.ts": "e55776b8e2a414f67d14484ab5dae800412ef45969660f83a4783adec33dafc3",
+    "src/skill-docs.ts": "30adddf4583465119a6cdda1ce380a89761afda2eede333b6254a7eaf6e69433",
     "scripts/build-package.ts": "f6cb5ee465e4b797c40dbb4b4078bc5b66b773c14ae61a153d39dd150ab3a13a"
   },
   "reviews": [
@@ -43,7 +43,7 @@
       "category": "callable-replacement",
       "detail": "open-callable-replacement",
       "disposition": "retained-warning",
-      "source_sha256": "79c3cd9887da671dfc7625fb6da5ef161bdeca1ce8a830096eaa4e6fc6b5d644",
+      "source_sha256": "b25549a24c2ec80d03879304409394f6342751eec59fb964fead5d8574d16392",
       "producer": "DataGrid.indent(level) validates typeof number, Number.isSafeInteger and 1..100 before returning calc(var(--ui-space-control-x) * (level - 1)); the Angular component class/instance remains exposed.",
       "reason": "通常のindent本文はguard付きの無次元0..99係数と意味トークンだけを返す。一方、exportされたAngular componentのprotected methodは実行時の書換え禁止ではない。未知receiver/factory、外部callback、live binding、module cycle、組込みguardの変更を含む交換候補すべてのreturnと実際の呼出し時刻は閉じない。既知の交換値を検査しても未知の交換域をpassにはできないため、現在の未確認警告は妥当。通常本文に確定したトークン違反はない。",
       "remaining_scope": "未知のinstance取得元・間接factory・getter/spread・async/generator、任意のmethod交換とnative guard変更、循環module評価と未対応呼出しタイミング、実行時の任意depth/操作順序。",
@@ -57,7 +57,7 @@
         {
           "file": "templates/angular/data-grid.ts",
           "anchor": "protected indent(level: number): string {",
-          "sha256": "79c3cd9887da671dfc7625fb6da5ef161bdeca1ce8a830096eaa4e6fc6b5d644",
+          "sha256": "b25549a24c2ec80d03879304409394f6342751eec59fb964fead5d8574d16392",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -874,7 +874,7 @@
       "category": "layout-measurement",
       "detail": "native-table-bounded-viewport",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "minimum probe と thead/tfoot/fixed/body の DOM 実測 → startStack/endStack/maximumBodyHeight/semanticControlHeight → boundedViewportSize() → max-block-size。",
       "reason": "semantic 最小 viewport と実測 px を max() で合成する宣言。semantic token を含むだけでは実測項全体の token 準拠・最新性を証明できない。固定 stack を含む本文操作領域の確保が目的であり、通常の余白値へ誤って正規化しない。",
       "remaining_scope": "任意の projected 内容、全 CSS writer、非同期 resource の全順序、巨大寸法・行数での到達可能性は静的にも今回実行としても未確認。",
@@ -888,25 +888,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.max-block-size]=\"stickyHeader()?boundedViewportSize():null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly boundedViewportSize",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const measure = () =>",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "inject(DestroyRef).onDestroy(() => { observer",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -934,7 +934,7 @@
       "category": "layout-measurement",
       "detail": "native-table-sticky-stack",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "thead/tfoot と current table fixed-row の getBoundingClientRect().height → keyed fixedHeights → startStack()/endStack() → viewport scroll-padding-block-start/end.px。",
       "reason": "sticky header/footer と固定行が覆う実測 stack を scroll padding に変換する。測定欠損時の 0 fallback は実高との一致を保証せず、任意 CSS/非同期描画下で正しい値と確定できない。",
       "remaining_scope": "任意の key 配置、測定前/hidden 中の中間状態、全 CSS 上書き・更新順序での stack 完全性は未証明。",
@@ -948,25 +948,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.scroll-padding-block-start.px]=\"startStack()\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly startStack",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly endStack",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const head = table?.querySelector",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -994,7 +994,7 @@
       "category": "layout-measurement",
       "detail": "native-table-sticky-stack",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "thead/tfoot と current table fixed-row の getBoundingClientRect().height → keyed fixedHeights → startStack()/endStack() → viewport scroll-padding-block-start/end.px。",
       "reason": "sticky header/footer と固定行が覆う実測 stack を scroll padding に変換する。測定欠損時の 0 fallback は実高との一致を保証せず、任意 CSS/非同期描画下で正しい値と確定できない。",
       "remaining_scope": "任意の key 配置、測定前/hidden 中の中間状態、全 CSS 上書き・更新順序での stack 完全性は未証明。",
@@ -1008,25 +1008,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.scroll-padding-block-end.px]=\"endStack()\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly startStack",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly endStack",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const head = table?.querySelector",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1054,7 +1054,7 @@
       "category": "layout-measurement",
       "detail": "native-table-column-fit",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "column/state の width と min/max、viewport.clientWidth、semantic minimum probe、content clone の自然幅 → fitTableColumns → resolvedWidths() → col.width.px、総和+utility 幅 → tableWidth()。",
       "reason": "境界箱の実測 px と入力の任意 px が混じる。fit/clamp は有効な列幅への制限であり、閉じた semantic 値への変換ではない。幅決定全体を一括例外化すると内容・保存値・CSS の影響を見失う。",
       "remaining_scope": "任意 content・列数・CSS track/border 変更、全入力の加算 overflow、測定と state 更新の任意順序は未証明。",
@@ -1068,25 +1068,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inline-size.px]=\"tableWidth()\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly resolvedWidths",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly tableWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const clone = table.cloneNode",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1132,7 +1132,7 @@
       "category": "layout-measurement",
       "detail": "native-table-utility-probe",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "var(--ui-size-table-column-min) の minimumProbe DOM 実幅 → minimumColumnWidth signal（初期 1、truthy の実測幅で更新）→ selection/detail/action/row-edit の各 col.width.px。",
       "reason": "probe が semantic token を使っていても DOM 実幅は cascade・hidden・測定 timing に依存する。初期 1 と truthy guard を含めて token 同一性を静的に確定できず、四つの別 binding を一つの証拠で消さない。",
       "remaining_scope": "任意 CSS による probe 上書き、初回/hidden 中の全経過・任意 column 構成での semantic 幅一致は未証明。",
@@ -1146,25 +1146,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.width.px]=\"minimumColumnWidth()\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly minimumColumnWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "if (min && min !==",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly utilityCount",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1192,7 +1192,7 @@
       "category": "layout-measurement",
       "detail": "native-table-utility-probe",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "var(--ui-size-table-column-min) の minimumProbe DOM 実幅 → minimumColumnWidth signal（初期 1、truthy の実測幅で更新）→ selection/detail/action/row-edit の各 col.width.px。",
       "reason": "probe が semantic token を使っていても DOM 実幅は cascade・hidden・測定 timing に依存する。初期 1 と truthy guard を含めて token 同一性を静的に確定できず、四つの別 binding を一つの証拠で消さない。",
       "remaining_scope": "任意 CSS による probe 上書き、初回/hidden 中の全経過・任意 column 構成での semantic 幅一致は未証明。",
@@ -1206,25 +1206,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.width.px]=\"minimumColumnWidth()\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly minimumColumnWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "if (min && min !==",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly utilityCount",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1252,7 +1252,7 @@
       "category": "layout-measurement",
       "detail": "native-table-column-fit",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "column/state の width と min/max、viewport.clientWidth、semantic minimum probe、content clone の自然幅 → fitTableColumns → resolvedWidths() → col.width.px、総和+utility 幅 → tableWidth()。",
       "reason": "境界箱の実測 px と入力の任意 px が混じる。fit/clamp は有効な列幅への制限であり、閉じた semantic 値への変換ではない。幅決定全体を一括例外化すると内容・保存値・CSS の影響を見失う。",
       "remaining_scope": "任意 content・列数・CSS track/border 変更、全入力の加算 overflow、測定と state 更新の任意順序は未証明。",
@@ -1266,25 +1266,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.width.px]=\"resolvedWidths()[column.id]\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly resolvedWidths",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly tableWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const clone = table.cloneNode",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1330,7 +1330,7 @@
       "category": "layout-measurement",
       "detail": "native-table-utility-probe",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "var(--ui-size-table-column-min) の minimumProbe DOM 実幅 → minimumColumnWidth signal（初期 1、truthy の実測幅で更新）→ selection/detail/action/row-edit の各 col.width.px。",
       "reason": "probe が semantic token を使っていても DOM 実幅は cascade・hidden・測定 timing に依存する。初期 1 と truthy guard を含めて token 同一性を静的に確定できず、四つの別 binding を一つの証拠で消さない。",
       "remaining_scope": "任意 CSS による probe 上書き、初回/hidden 中の全経過・任意 column 構成での semantic 幅一致は未証明。",
@@ -1344,25 +1344,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "@if (rowActions().length) { <col [style.width.px]=\"minimumColumnWidth()\">",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly minimumColumnWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "if (min && min !==",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly utilityCount",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1390,7 +1390,7 @@
       "category": "layout-measurement",
       "detail": "native-table-utility-probe",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "var(--ui-size-table-column-min) の minimumProbe DOM 実幅 → minimumColumnWidth signal（初期 1、truthy の実測幅で更新）→ selection/detail/action/row-edit の各 col.width.px。",
       "reason": "probe が semantic token を使っていても DOM 実幅は cascade・hidden・測定 timing に依存する。初期 1 と truthy guard を含めて token 同一性を静的に確定できず、四つの別 binding を一つの証拠で消さない。",
       "remaining_scope": "任意 CSS による probe 上書き、初回/hidden 中の全経過・任意 column 構成での semantic 幅一致は未証明。",
@@ -1404,25 +1404,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "@if(editMode()==='row'){<col [style.width.px]=\"minimumColumnWidth()\">",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly minimumColumnWidth",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "if (min && min !==",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected readonly utilityCount",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1450,7 +1450,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1464,25 +1464,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-start.px]=\"pin(column)==='start'?pinOffset(column,'start'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1522,7 +1522,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1536,25 +1536,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-end.px]=\"pin(column)==='end'?pinOffset(column,'end'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1594,7 +1594,7 @@
       "category": "layout-measurement",
       "detail": "native-table-fixed-row-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "current page の fixedStartKeys/fixedEndKeys の順序 + keyed fixedHeights、sticky head/foot 高 → fixedOffset(row,start/end) → tr.inset-block-start/end.px。",
       "reason": "同側の他行の実高を積む offset。固定キー・表示順・footer 集計・実測の一致が前提で、未測定の 0 fallback と任意 projected 内容を静的な token 準拠や完全な配置保証に置き換えられない。",
       "remaining_scope": "任意の row/key/内容変化と全測定順序、全 CSS override 下の終端到達性は未証明。",
@@ -1608,19 +1608,19 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-block-start.px]=\"rowSide(row)==='start'?fixedOffset(row,'start'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected fixedOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const heights: Record<string, number>",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1654,7 +1654,7 @@
       "category": "layout-measurement",
       "detail": "native-table-fixed-row-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "current page の fixedStartKeys/fixedEndKeys の順序 + keyed fixedHeights、sticky head/foot 高 → fixedOffset(row,start/end) → tr.inset-block-start/end.px。",
       "reason": "同側の他行の実高を積む offset。固定キー・表示順・footer 集計・実測の一致が前提で、未測定の 0 fallback と任意 projected 内容を静的な token 準拠や完全な配置保証に置き換えられない。",
       "remaining_scope": "任意の row/key/内容変化と全測定順序、全 CSS override 下の終端到達性は未証明。",
@@ -1668,19 +1668,19 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-block-end.px]=\"rowSide(row)==='end'?fixedOffset(row,'end'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected fixedOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "const heights: Record<string, number>",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1714,7 +1714,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1728,25 +1728,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-start.px]=\"pin(column) === 'start' ? pinOffset(column, 'start') : null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1786,7 +1786,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1800,25 +1800,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-end.px]=\"pin(column) === 'end' ? pinOffset(column, 'end') : null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1858,7 +1858,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1872,25 +1872,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-start.px]=\"pin(column)==='start'?pinOffset(column,'start'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -1930,7 +1930,7 @@
       "category": "layout-measurement",
       "detail": "native-table-pinned-column-offset",
       "disposition": "retained-warning",
-      "source_sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+      "source_sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "producer": "同側の先行/後続 visible column の measuredWidth ?? width ?? semantic-probe 幅を加算 → pinOffset(column,start/end) → header/body/footer の論理 inset。",
       "reason": "固定列 offset は実際の列幅から求める構造値である。表示列順・pin 側・DOM 実測・入力 fallback の一致が前提であり、数値和や 0 branch だけでは全 cascade での重なり回避を証明できない。",
       "remaining_scope": "任意の pin/hidden/order の組合せ、外部 CSS の width/position、任意更新中の全中間 frame と全コンテンツでの非重複は未確認。",
@@ -1944,25 +1944,25 @@
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "[style.inset-inline-end.px]=\"pin(column)==='end'?pinOffset(column,'end'):null\"",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected pinOffset(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected measuredWidth(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/data-table-view.ts",
           "anchor": "protected resizeColumn(",
-          "sha256": "b4a64fd8b488f6ec3de4209a89202b1b7043c0eb44677955ebd6f2fb521eb899",
+          "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4631,7 +4631,7 @@
       "category": "runtime-input",
       "detail": "listbox-public-viewport-height",
       "disposition": "retained-warning",
-      "source_sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "source_sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "producer": "height input → configurationProblem の finite positive/null 検査 → virtual CDK または nonvirtual native listbox の block-size.px。null は CSS semantic collection-viewport を使う。",
       "reason": "public viewport の任意正数は semantic token 準拠ではなく、通常 UI の表示寸法。virtual/nonvirtual 切替で consumer 自体も変わるので、片側だけの成功や numeric guard で一括例外にできない。",
       "remaining_scope": "任意高さと任意 projected choice/全 option 数、すべての CDK/非同期 input・range・DOM 更新順序、全 CSS override での内容到達性は未確認。",
@@ -4645,19 +4645,19 @@
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "[style.block-size.px]=\"height()\"",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "protected readonly configurationProblem",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "this.destroy.onDestroy(()=>{if(this.domFrame",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4697,7 +4697,7 @@
       "category": "virtual-scroll",
       "detail": "listbox-fixed-row-geometry",
       "disposition": "retained-warning",
-      "source_sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "source_sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "producer": "public itemHeight または semantic measure span の正の getBoundingClientRect().height → rowSize() → CDK itemSize と row block-size/option min-block-size。",
       "reason": "行高は計測値か任意入力。明示値の finite/positive validation と rowSize>0 描画条件は、内容/CSS 実高と engine 固定高の一致や semantic token 準拠を全状態で証明しない。",
       "remaining_scope": "任意 choice template の高さ、variable-height 内容、すべての CSS/cascade・測定と CDK range の競合順序は未証明。",
@@ -4711,19 +4711,19 @@
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "[style.block-size.px]=\"rowSize()\"",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "protected readonly rowSize=",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "afterRenderEffect(onCleanup=>{const measure=",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4769,7 +4769,7 @@
       "category": "virtual-scroll",
       "detail": "listbox-measured-row-inline-size",
       "disposition": "retained-warning",
-      "source_sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "source_sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "producer": "CDK viewport.elementRef.nativeElement.clientWidth の正値 → viewportInline signal → rendered wrapper inline-size.px。",
       "reason": "scrollbar を除く DOM 幅の複製。幅>0 guard と ResizeObserver はあるが、hidden 中の stale 値や任意 CSS border/box/overflow と行内容実幅との一致は実行時依存で token 同一性ではない。",
       "remaining_scope": "任意 scrollbar/box-sizing/外部 CSS と viewport 再作成 timing 全域での幅一致は未確認。",
@@ -4783,19 +4783,19 @@
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "[style.inline-size.px]=\"viewportInline()\"",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "protected readonly viewportInline=",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "const width=viewport.elementRef.nativeElement.clientWidth",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4829,7 +4829,7 @@
       "category": "runtime-input",
       "detail": "listbox-public-viewport-height",
       "disposition": "retained-warning",
-      "source_sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "source_sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "producer": "height input → configurationProblem の finite positive/null 検査 → virtual CDK または nonvirtual native listbox の block-size.px。null は CSS semantic collection-viewport を使う。",
       "reason": "public viewport の任意正数は semantic token 準拠ではなく、通常 UI の表示寸法。virtual/nonvirtual 切替で consumer 自体も変わるので、片側だけの成功や numeric guard で一括例外にできない。",
       "remaining_scope": "任意高さと任意 projected choice/全 option 数、すべての CDK/非同期 input・range・DOM 更新順序、全 CSS override での内容到達性は未確認。",
@@ -4843,19 +4843,19 @@
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "[style.block-size.px]=\"height()\"",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "protected readonly configurationProblem",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "this.destroy.onDestroy(()=>{if(this.domFrame",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4895,7 +4895,7 @@
       "category": "virtual-scroll",
       "detail": "listbox-fixed-row-geometry",
       "disposition": "retained-warning",
-      "source_sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "source_sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "producer": "public itemHeight または semantic measure span の正の getBoundingClientRect().height → rowSize() → CDK itemSize と row block-size/option min-block-size。",
       "reason": "行高は計測値か任意入力。明示値の finite/positive validation と rowSize>0 描画条件は、内容/CSS 実高と engine 固定高の一致や semantic token 準拠を全状態で証明しない。",
       "remaining_scope": "任意 choice template の高さ、variable-height 内容、すべての CSS/cascade・測定と CDK range の競合順序は未証明。",
@@ -4909,19 +4909,19 @@
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "[style.min-block-size.px]=\"virtual()?rowSize():null\"",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "protected readonly rowSize=",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/listbox.ts",
           "anchor": "afterRenderEffect(onCleanup=>{const measure=",
-          "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+          "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6795,7 +6795,7 @@
       "category": "runtime-input",
       "detail": "virtual-table-public-viewport-height",
       "disposition": "retained-warning",
-      "source_sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "source_sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "producer": "height input → problem() finite positive/null 検査 → virtual table CDK viewport block-size.px。null は semantic table-viewport CSS。",
       "reason": "隣の minimumInline() semantic 式は別 binding であり、この任意 px 高さを解決しない。通常 UI 表示領域の正数を理由だけで data/geometry 例外にできない。",
       "remaining_scope": "任意領域高/行内容、全 CSS/media と CDK/input/range 再描画順序の完全性は未確認。",
@@ -6809,25 +6809,25 @@
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "[style.block-size.px]=\"height()\"",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "readonly height =",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "protected readonly problem",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "onCleanup(() => { range.unsubscribe()",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6855,7 +6855,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-leading-window-offset",
       "disposition": "retained-warning",
-      "source_sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "source_sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "producer": "CDK getRenderedRange/getDataLength/measureScrollOffset と keyboard保持 index → sorted indices → first index*itemSize → VirtualScroll.offset signal → wrapper padding-block-start.px（未準備0）。",
       "reason": "offset は実行時 render window の構造位置で、semantic余白ではない。一方、CDK range と保持行・実DOM行高の同期、multiplication と lifetime が前提であり、単なる finite 入力や最初の0から全producerを証明できない。",
       "remaining_scope": "任意 itemSize/count/key/projection と全 CDK/radio/keyboard更新順序、数値overflowを含む全入力の geometry は未証明。",
@@ -6869,7 +6869,7 @@
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "[style.padding-block-start.px]=\"scroller()?.offset()??0\"",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6933,7 +6933,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-retained-gap-offset",
       "disposition": "retained-warning",
-      "source_sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "source_sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "producer": "VirtualScroll.sorted indices → VirtualRows previous/current index 差-1 × itemSize → row context gap → each sparse slot padding-block-start.px。",
       "reason": "保持 focus/radio 行の間の省略データ行を表す構造 gap。index が昇順で current count に対応し、実 row 高が同じ itemSize である前提を AST 評価だけでは全場合に証明できない。geometry 目的だけで一括例外化しない。",
       "remaining_scope": "任意 count/track key/itemSize/CSS と data 差替え・CDK render の全順序、全数値範囲での gap と実配置の一致は未証明。",
@@ -6947,7 +6947,7 @@
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "[style.padding-block-start.px]=\"gap\"",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6999,7 +6999,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-table-fixed-row-height",
       "disposition": "retained-warning",
-      "source_sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "source_sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "producer": "public itemHeight または semantic rowProbe の正の DOMRect.height → rowSize() → row block-size.px と uiVirtualScroll.itemSize。",
       "reason": "固定高の engine と実 row 高を一致させる runtime geometry。input の finite positive 検査と正値測定では任意 template/文字/CSS での一致・semantic token 準拠を証明しない。",
       "remaining_scope": "任意 projected cell 内容・全 CSS line wrapping、計測と CDK 再描画の全競合、巨大 row count/size は未証明。",
@@ -7013,25 +7013,25 @@
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "[style.block-size.px]=\"rowSize()\"",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "protected readonly rowSize",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "const value = probe.getBoundingClientRect().height",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-data-table.ts",
           "anchor": "const index = this.priorRowSize",
-          "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+          "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {

@@ -1,5 +1,7 @@
 # 部品一覧
 
+[English component overview](components.en.md)
+
 画面で実現したい操作から、生成される Angular 部品を探すための一覧です。導入と生成は [CLI コマンド](commands.ja.md)、アプリへの組込み・依存関係・CSS・worker の配置は [生成 UI の利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
 下表の名前は、生成先の `angular/index.ts` から import する公開名です。npm パッケージ本体から Angular 部品を直接 import する使い方ではありません。生成先の既定値は `.ui/generated/` です。必要な standalone 部品と、使う投影用 directive を利用画面の `imports` に追加します。

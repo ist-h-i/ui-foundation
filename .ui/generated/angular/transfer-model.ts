@@ -8,6 +8,14 @@ export interface TransferOptions<T>{items:readonly T[];key:(item:T)=>CollectionK
 export interface TransferChange<T>{items:readonly T[];keys:readonly CollectionKey[];from:TransferSide;to:TransferSide;previousValue:TransferValue;value:readonly CollectionKey[];reason:TransferReason;}
 export interface TransferReorder<T>{items:readonly T[];item:T;key:CollectionKey;fromIndex:number;toIndex:number;previousValue:readonly CollectionKey[];value:readonly CollectionKey[];reason:TransferReason;}
 export interface TransferResult{value:TransferValue;problem:string|null;}
+export const transferLimitMessages={
+ selection:'{limit}件まで選択してください。現在の選択は保持しています。削除して修復できます。',
+ addition:'{limit}件まで選択できます。今回の追加は行っていません。',
+} as const;
+
+export function transferLimitText(source:string,limit:number):string{
+ return source.replace('{limit}',String(limit));
+}
 
 export function transferConfigurationProblem<T>(options:TransferOptions<T>,maxSelected:number|null=null):string|null{
  const problem=collectionProblem(options.items,options.key,options.label);if(problem)return problem;
@@ -27,7 +35,7 @@ export function transferSelectionProblem<T>(options:TransferOptions<T>,value:unk
  const structure=transferStructureProblem(options,value);if(structure)return structure;
  const selected=(value??[]) as readonly CollectionKey[];
  if(required&&!selected.length)return '項目を選択してください。';
- return maxSelected!==null&&selected.length>maxSelected?`${maxSelected}件まで選択してください。現在の選択は保持しています。削除して修復できます。`:null;
+ return maxSelected!==null&&selected.length>maxSelected?transferLimitText(transferLimitMessages.selection,maxSelected):null;
 }
 /** Add/remove the exact requested visible scope, all-or-nothing. No sanitization. */
 export function transferBatch<T>(options:TransferOptions<T>,value:TransferValue,keys:readonly CollectionKey[],to:TransferSide,maxSelected:number|null=null,canTransfer:((change:TransferChange<T>)=>boolean)|null=null,reason:TransferReason='button',beforeKey:CollectionKey|null=null):TransferResult{
@@ -38,7 +46,7 @@ export function transferBatch<T>(options:TransferOptions<T>,value:TransferValue,
  let next:CollectionKey[];
  if(to==='source')next=selected.filter(key=>!keys.includes(key));
  else{const insertion=beforeKey===null?selected.length:selected.indexOf(beforeKey);if(insertion<0)return {value,problem:'移動先が更新されています。もう一度位置を選んでください。'};next=[...selected];next.splice(insertion,0,...keys);}
- if(to==='target'&&maxSelected!==null&&next.length>maxSelected)return {value,problem:`${maxSelected}件まで選択できます。今回の追加は行っていません。`};
+ if(to==='target'&&maxSelected!==null&&next.length>maxSelected)return {value,problem:transferLimitText(transferLimitMessages.addition,maxSelected)};
  const change:TransferChange<T>={items:options.items,keys:[...keys],from:to==='target'?'source':'target',to,previousValue:value,value:next,reason};
  try{if(canTransfer&&canTransfer(change)!==true)return {value,problem:'この移動は許可されていません。'};}catch{return {value,problem:'移動可否を確認できないため、移動していません。'};}
  return {value:next,problem:null};

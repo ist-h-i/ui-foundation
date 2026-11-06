@@ -1,5 +1,7 @@
 # CLIコマンドリファレンス
 
+[English](commands.en.md)
+
 公開npmパッケージ`@hiroshi.inoue/ui-foundation`のCLIを、利用アプリのルートから実行するためのリファレンスです。導入・Angularへの組込み・CSSと配布資産は[生成UIの利用ガイド](ui-library-consumer-guide.ja.md)、部品の選び方は[部品一覧](components.ja.md)を参照してください。対応環境と更新・復旧の契約は[公開ベータの利用・更新契約](npm-beta-readiness.ja.md)にまとめています。
 
 以下はパッケージを導入済みのアプリで実行します。アプリのルートとは、アプリ自身の`ui.config.yaml`や`src/`を管理するディレクトリです。CLIは現在のディレクトリをrootにし、親ディレクトリの設定を自動探索しません。
@@ -11,7 +13,7 @@
 ## 構文とオプション
 
 ```text
-ui-foundation init [--config ui.config.yaml]
+ui-foundation init [--config ui.config.yaml] [--language en|ja]
 ui-foundation sync [--config ui.config.yaml] [--dry-run] [--from-output previous/path]
 ui-foundation check [--config ui.config.yaml] [--format text|json]
 ui-foundation --help
@@ -23,6 +25,7 @@ ui-foundation -h
 | オプション | 対象 | 意味・既定値 |
 | --- | --- | --- |
 | `--config PATH` | `init` / `sync` / `check` | アプリrootからの相対パス。既定は`ui.config.yaml`。`init`では作成先、それ以外では読込み元 |
+| `--language en\|ja` | `init`のみ | ひな形の説明文と生成部品の既定言語。既定は英語。日本語は`ja`。YAMLへ`default_language`を保存する |
 | `--dry-run` | `sync`のみ | 同期予定を検査・表示し、生成物とSkillを変更しない。排他lockは取得する |
 | `--from-output PATH` | `sync`のみ | 従来v1の生成先を明示する移行用指定。[限定条件](#生成先の変更と--from-output)を参照 |
 | `--format text` | `check`のみ | 人が読むテキスト。省略時もこの形式 |
@@ -38,7 +41,7 @@ ui-foundation -h
 ## `init`：設定のひな形を作成する
 
 ```sh
-./node_modules/.bin/ui-foundation init
+./node_modules/.bin/ui-foundation init --language ja
 # 別名で作成する場合
 ./node_modules/.bin/ui-foundation init --config config/ui.config.yaml
 ```

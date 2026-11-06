@@ -1,3 +1,5 @@
+import {uiDefaultLanguage} from './locale-defaults';
+import {uiEnglishMessages} from './locale-en';
 import type {DateInputFormat} from './date-model';
 
 export type UiDirection='ltr'|'rtl';
@@ -23,7 +25,7 @@ export interface UiLocaleResolved{
  readonly numberOptions:Readonly<Intl.NumberFormatOptions>;
  readonly messages:UiMessages;
 }
-export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:Object.freeze({})});
+export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:uiDefaultLanguage==='en'?'en-US':'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:uiDefaultLanguage==='en'?uiEnglishMessages:Object.freeze({})});
 const formats:readonly DateInputFormat[]=['native','yyyy-MM-dd','yyyy/MM/dd','dd/MM/yyyy','MM/dd/yyyy'];
 /** Validate an explicit runtime choice. No browser language/timezone or YAML inference. */
 export function resolveUiLocale(options:UiLocaleOptions,parent:UiLocaleResolved=defaultUiLocale):UiLocaleResolved{

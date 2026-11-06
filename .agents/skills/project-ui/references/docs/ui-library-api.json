@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 139,
+  "source_count": 146,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "3a0fd23161523be2014f21743281e9139ce6f5e1d2619781a265a5a92490582f",
+      "sha256": "5e0a6ee3e546bbf03c7d45372499db3357152470a47e460de938f7a145cabfff",
       "declarations": [
         {
           "name": "IconButton",
@@ -750,7 +750,7 @@
     },
     {
       "path": "templates/angular/anchor-navigation.ts",
-      "sha256": "2fc97548e28964af18813e8e7c07a8d4ae799f18829ee174a3e6c93ae96637c8",
+      "sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
       "declarations": [
         {
           "names": [
@@ -997,7 +997,7 @@
     },
     {
       "path": "templates/angular/calendar.ts",
-      "sha256": "eed5e98b28f50bf1d34b7782dff828bb67ea85cbd47277fe47a9cafbe9a7186e",
+      "sha256": "33a4c37f464c135d62e1e270548af5b464ad5d26eb5df4fe48350f01ac36698d",
       "declarations": [
         {
           "names": [
@@ -1132,7 +1132,7 @@
     },
     {
       "path": "templates/angular/card.ts",
-      "sha256": "916a650260fa1ca1269a48d95569813f215ced09ff8e81761bc2288f87fd5eb8",
+      "sha256": "641e2cbf941854fecae2503f721b9b84b7556e9c0ba9a73ee3dc590b180b5c9b",
       "declarations": [
         {
           "names": [
@@ -1455,7 +1455,7 @@
     },
     {
       "path": "templates/angular/chart-options.ts",
-      "sha256": "0f67298310c65341c9db2886cf43ab8bd7d399f9aec7a885706db30dd7a7bd2b",
+      "sha256": "53c8f4bfaa871bff1fee7970eb794179a28166b97ed8583b6b1ed83138e50a73",
       "declarations": [
         {
           "names": [
@@ -1517,7 +1517,7 @@
     },
     {
       "path": "templates/angular/chart.ts",
-      "sha256": "40ca8ef93a2a0b3e944c6b56eceb03d91420c64666bbeb7411ea6c67b8fcb179",
+      "sha256": "f7aca5bc1e58d7b50fe30c28482ddffdeb99289efedeb451d1e654f706d9dba4",
       "declarations": [
         {
           "name": "Chart",
@@ -1753,7 +1753,7 @@
     },
     {
       "path": "templates/angular/chat.ts",
-      "sha256": "e2dc44531a698721ca72794fcb49af200fff7414359e677dfe47366fb79b34d1",
+      "sha256": "7db46c3e5080b2bd1cace97adb61005df7479b32473d1ee537c88b9effdbedbe",
       "declarations": [
         {
           "names": [
@@ -2236,7 +2236,7 @@
     },
     {
       "path": "templates/angular/choice-controls.ts",
-      "sha256": "4a7fbdbdab4bbf71eb7ce60067e7fee883d5f7330f2bfe17592aba0abc0a726a",
+      "sha256": "07fd68b2b731d379808e0b69ee667e68958cc1561192c0a0fd6214d03aef951f",
       "declarations": [
         {
           "names": [
@@ -2504,7 +2504,7 @@
     },
     {
       "path": "templates/angular/choice-model.ts",
-      "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+      "sha256": "f592a4946de4bf4faabfd21c685b0ee245e2726c447ff9ad7f5b67be9c21a48f",
       "declarations": [
         {
           "names": [
@@ -2553,14 +2553,14 @@
             "numericValueError"
           ],
           "kind": "function",
-          "declaration": "export function numericValueError(value: unknown, domain: NumberDomain): string | null"
+          "declaration": "export function numericValueError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null"
         },
         {
           "names": [
             "numericRangeError"
           ],
           "kind": "function",
-          "declaration": "export function numericRangeError(value: unknown, domain: NumberDomain): string | null"
+          "declaration": "export function numericRangeError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null"
         },
         {
           "names": [
@@ -2586,8 +2586,21 @@
       ]
     },
     {
+      "path": "templates/angular/code-editor-input.ts",
+      "sha256": "4828604e93fb259a4fb941de312ae568035ecd20454ad4ecf200461945e95738",
+      "declarations": [
+        {
+          "names": [
+            "codeInputSelectionGuard"
+          ],
+          "kind": "function",
+          "declaration": "export function codeInputSelectionGuard(state:typeof import('@codemirror/state'))"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/code-editor.ts",
-      "sha256": "d018dbc10afe7d1ab54bc7f383bd220f1ca4dfc8ac6577e9d8a3ced1f4af81c2",
+      "sha256": "6d68a16ce99b28ebd46a2c8da25cb58da619ee26aecb9f36a5d8b75abe459e2e",
       "declarations": [
         {
           "name": "CodeEditor",
@@ -2638,7 +2651,7 @@
     },
     {
       "path": "templates/angular/collection-model.ts",
-      "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+      "sha256": "c2ea3578ef375d09440dd04662e74225d5b97b79be30c21d43d4742da0eda7ab",
       "declarations": [
         {
           "names": [
@@ -2715,7 +2728,7 @@
             "listSelectionProblem"
           ],
           "kind": "function",
-          "declaration": "export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null):string|null"
+          "declaration": "export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null,text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)):string|null"
         },
         {
           "names": [
@@ -2766,7 +2779,7 @@
     },
     {
       "path": "templates/angular/collection-views.ts",
-      "sha256": "fb76e6dc2f3692d2e35dee320d86a1834df4cb52b1faca21a73707c4699a3812",
+      "sha256": "42c04be6bd8abd34897c25cc7e5a01ec9752b83c0b121f019f9f96be7387f601",
       "declarations": [
         {
           "names": [
@@ -3011,7 +3024,7 @@
     },
     {
       "path": "templates/angular/command-palette.ts",
-      "sha256": "789e3d1ac65ab603c6a8ed23720cd768c37dd986dada4318596b2bb90cf80889",
+      "sha256": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
       "declarations": [
         {
           "name": "CommandPalette",
@@ -3207,7 +3220,7 @@
     },
     {
       "path": "templates/angular/crop-adapter.ts",
-      "sha256": "1236a39e9b2aed41ebd8593adcf5d060ef8ca4cdd08fb84f07033e65688da4da",
+      "sha256": "11895d81f937bdcc91e402635dbfc8291606a696abc1bf218f1ad1fd3d636171",
       "declarations": [
         {
           "name": "CropSession",
@@ -3246,14 +3259,14 @@
     },
     {
       "path": "templates/angular/data-grid.ts",
-      "sha256": "3f83e0ed98eb67e9a198b8d61530a3b0d9e95f71d5520803302ad8d52d122bd9",
+      "sha256": "b25549a24c2ec80d03879304409394f6342751eec59fb964fead5d8574d16392",
       "declarations": [
         {
           "names": [
             "GridTreeRow"
           ],
           "kind": "interface",
-          "declaration": "export interface GridTreeRow {\n    id: string;\n    parentId: string | null;\n    level: number;\n    position: number;\n    setSize: number;\n    branch: boolean;\n    expanded: boolean;\n    loading?: boolean;\n    disabled?: boolean;\n    selectable?: boolean;\n}"
+          "declaration": "export interface GridTreeRow {\n    id: string;\n    parentId: string | null;\n    /** Matches the Tree/TreeGrid supported depth: 1 through 100. */ level: number;\n    position: number;\n    setSize: number;\n    branch: boolean;\n    expanded: boolean;\n    loading?: boolean;\n    disabled?: boolean;\n    selectable?: boolean;\n}"
         },
         {
           "names": [
@@ -3468,7 +3481,7 @@
     },
     {
       "path": "templates/angular/data-table-view.ts",
-      "sha256": "9cf00313a9224c5bbbe133395c262b629dfed4f2f6aa6b057c8bcc214f0f26ec",
+      "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "declarations": [
         {
           "names": [
@@ -3875,10 +3888,28 @@
               "initializer": "input<'none' | 'single' | 'multiple'>('none')"
             },
             {
-              "name": "selectedKeys",
+              "name": "selectedKeysSource",
               "kind": "input",
-              "declaration": "readonly selectedKeys = input<readonly TableKey[]>([]);",
-              "initializer": "input<readonly TableKey[]>([])"
+              "declaration": "readonly selectedKeysSource = input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'});",
+              "initializer": "input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'})"
+            },
+            {
+              "name": "selectedKeys",
+              "kind": "property",
+              "declaration": "readonly selectedKeys = computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;});",
+              "initializer": "computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;})"
+            },
+            {
+              "name": "virtualRadioGroupsSource",
+              "kind": "input",
+              "declaration": "readonly virtualRadioGroupsSource = input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'virtualRadioGroups'});",
+              "initializer": "input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'virtualRadioGroups'})"
+            },
+            {
+              "name": "virtualRadioGroups",
+              "kind": "property",
+              "declaration": "readonly virtualRadioGroups = computed(()=>{const source=this.virtualRadioGroupsSource();return isSignal(source)?source():source;});",
+              "initializer": "computed(()=>{const source=this.virtualRadioGroupsSource();return isSignal(source)?source():source;})"
             },
             {
               "name": "selectedKeysChange",
@@ -4035,7 +4066,7 @@
     },
     {
       "path": "templates/angular/data-table.ts",
-      "sha256": "c57fb2a321510cc5200d50cd281137e7834faa78a0cd5b2b1ef58c2fd5d58255",
+      "sha256": "5122c64e9379e05b49bfde55e7c9c9f1b06cf8fbbbeb662fdafc5953dfb9a7bc",
       "declarations": [
         {
           "name": "TableContainer",
@@ -4127,7 +4158,7 @@
     },
     {
       "path": "templates/angular/date-input.ts",
-      "sha256": "f162b85c9367569c79f403a3fd21773e37f57672f30a600e3f50b82e73e99829",
+      "sha256": "7a83488a4efda396276a1857980145b7d30d7c770d543272aa3d47fe257ebe48",
       "declarations": [
         {
           "name": "DatePicker",
@@ -4503,20 +4534,55 @@
     },
     {
       "path": "templates/angular/diagram-layout.ts",
-      "sha256": "7ba9c152570f45b1741b360e4909f62f6076cc363a6bac0a01ad44b15c28a26e",
+      "sha256": "a4aa79fb92ee80901fc9caf5e99b75f091ada1d084b9d2add693ef38f5ebcfc3",
       "declarations": [
         {
           "names": [
             "layoutDiagram"
           ],
           "kind": "function",
-          "declaration": "export function layoutDiagram(model:DiagramModel,width:number,height:number,gap:number,direction:'LR'|'TB'='LR'):DiagramModel"
+          "declaration": "export function layoutDiagram(model:DiagramModel,width:number,height:number,gap:number,direction:'LR'|'TB'='LR',rankGap=gap*2):DiagramModel"
+        },
+        {
+          "names": [
+            "DiagramLabelBounds"
+          ],
+          "kind": "interface",
+          "declaration": "export interface DiagramLabelBounds {readonly x:number;readonly y:number;readonly width:number;readonly height:number;}"
+        },
+        {
+          "names": [
+            "DiagramConnectionPoint"
+          ],
+          "kind": "interface",
+          "declaration": "export interface DiagramConnectionPoint {readonly x:number;readonly y:number;}"
+        },
+        {
+          "names": [
+            "DiagramConnectionGeometry"
+          ],
+          "kind": "interface",
+          "declaration": "export interface DiagramConnectionGeometry {\n readonly points:readonly DiagramConnectionPoint[];readonly path:string;readonly arrow:string;\n readonly middle:DiagramConnectionPoint;readonly bounds:DiagramLabelBounds;\n}"
+        },
+        {
+          "names": [
+            "diagramConnection"
+          ],
+          "kind": "function",
+          "declaration": "export function diagramConnection(from:DiagramLabelBounds,to:DiagramLabelBounds,gap:number,direction:'LR'|'TB'='LR',self=false):DiagramConnectionGeometry"
+        },
+        {
+          "names": [
+            "placeDiagramLabels"
+          ],
+          "kind": "function",
+          "declaration": "export function placeDiagramLabels(nodes:readonly DiagramLabelBounds[],labels:readonly (DiagramLabelBounds&{readonly id:string})[],gap:number):ReadonlyMap<string,DiagramLabelBounds>"
         }
       ]
     },
     {
       "path": "templates/angular/diagram.ts",
-      "sha256": "02fc3d73698b60a5c822a236a5e3ee40361e13d5fcb4b53e2b7f1040aa585aac",
+      "sha256": "0a2cfdabd95e246afc730b732390a4f4e67e97c5ae9c02516b9ca8f4d5dbb9af",
       "declarations": [
         {
           "name": "FlowEditor",
@@ -4529,6 +4595,24 @@
           ],
           "extends": [],
           "members": [
+            {
+              "name": "validationId",
+              "kind": "property",
+              "declaration": "readonly validationId='ui-diagram-validation-'+nextDiagramValidationId++;",
+              "initializer": "'ui-diagram-validation-'+nextDiagramValidationId++"
+            },
+            {
+              "name": "editProblem",
+              "kind": "property",
+              "declaration": "readonly editProblem=computed(()=>this.activeEditErrors().map(error=>this.nodeLabel(error.id)+' '+this.uiRuntimeText_FlowEditor(error.field==='label'?'ラベル':error.field==='x'?'横位置':'縦位置')+': '+this.uiRuntimeText_FlowEditor(error.message)).join(' ')||null);",
+              "initializer": "computed(()=>this.activeEditErrors().map(error=>this.nodeLabel(error.id)+' '+this.uiRuntimeText_FlowEditor(error.field==='label'?'ラベル':error.field==='x'?'横位置':'縦位置')+': '+this.uiRuntimeText_FlowEditor(error.message)).join(' ')||null)"
+            },
+            {
+              "name": "displayModel",
+              "kind": "property",
+              "declaration": "readonly displayModel=computed(()=>this.problem()?{nodes:[],edges:[]}:this.model());",
+              "initializer": "computed(()=>this.problem()?{nodes:[],edges:[]}:this.model())"
+            },
             {
               "name": "label",
               "kind": "input",
@@ -4652,14 +4736,29 @@
             {
               "name": "width",
               "kind": "property",
-              "declaration": "readonly width=computed(()=>Math.max(this.nodeWidth()*2,...this.model().nodes.map(n=>n.x+this.nodeWidth()+this.gap())));",
-              "initializer": "computed(()=>Math.max(this.nodeWidth()*2,...this.model().nodes.map(n=>n.x+this.nodeWidth()+this.gap())))"
+              "declaration": "readonly width=computed(()=>Math.max(this.nodeWidth()*2,...this.model().nodes.map(n=>n.x+this.nodeWidth()+this.gap()),...this.displayModel().edges.map(edge=>{const box=this.connection(edge).bounds;return box.x+box.width+this.gap();}),...[...this.labelBounds().values()].map(box=>box.x+box.width+this.gap())));",
+              "initializer": "computed(()=>Math.max(this.nodeWidth()*2,...this.model().nodes.map(n=>n.x+this.nodeWidth()+this.gap()),...this.displayModel().edges.map(edge=>{const box=this.connection(edge).bounds;return box.x+box.width+this.gap();}),...[...this.labelBounds().values()].map(box=>box.x+box.width+this.gap())))"
             },
             {
               "name": "height",
               "kind": "property",
-              "declaration": "readonly height=computed(()=>Math.max(this.nodeHeight()*4,...this.model().nodes.map(n=>n.y+this.nodeHeight()+this.gap())));",
-              "initializer": "computed(()=>Math.max(this.nodeHeight()*4,...this.model().nodes.map(n=>n.y+this.nodeHeight()+this.gap())))"
+              "declaration": "readonly height=computed(()=>Math.max(this.nodeHeight()*4,...this.model().nodes.map(n=>n.y+this.heightOf(n.id)+this.gap()),...this.displayModel().edges.map(edge=>{const box=this.connection(edge).bounds;return box.y+box.height+this.gap();}),...[...this.labelBounds().values()].map(box=>box.y+box.height+this.gap())));",
+              "initializer": "computed(()=>Math.max(this.nodeHeight()*4,...this.model().nodes.map(n=>n.y+this.heightOf(n.id)+this.gap()),...this.displayModel().edges.map(edge=>{const box=this.connection(edge).bounds;return box.y+box.height+this.gap();}),...[...this.labelBounds().values()].map(box=>box.y+box.height+this.gap())))"
+            },
+            {
+              "name": "labelPosition",
+              "kind": "method",
+              "declaration": "labelPosition(edge:DiagramEdge):{x:number;y:number;box:DiagramLabelBounds|null;guide:{x:number;y:number}|null}"
+            },
+            {
+              "name": "removeNode",
+              "kind": "method",
+              "declaration": "removeNode(node:DiagramNode,event:Event):void"
+            },
+            {
+              "name": "removeEdge",
+              "kind": "method",
+              "declaration": "removeEdge(edge:DiagramEdge,event:Event):void"
             },
             {
               "name": "nodeLabel",
@@ -4672,6 +4771,11 @@
               "declaration": "edgePath(edge:DiagramEdge):string"
             },
             {
+              "name": "edgeArrow",
+              "kind": "method",
+              "declaration": "edgeArrow(edge:DiagramEdge):string"
+            },
+            {
               "name": "edgeMid",
               "kind": "method",
               "declaration": "edgeMid(edge:DiagramEdge):{x:number;y:number}"
@@ -4680,6 +4784,11 @@
               "name": "arrange",
               "kind": "method",
               "declaration": "arrange():void"
+            },
+            {
+              "name": "invalidEdit",
+              "kind": "method",
+              "declaration": "invalidEdit(node:DiagramNode,field:DiagramEditField):boolean"
             },
             {
               "name": "rename",
@@ -4717,7 +4826,7 @@
     },
     {
       "path": "templates/angular/dialog-variants.ts",
-      "sha256": "8c1d83d4f0d042a995fc6a76864da7311ab40b874643e95be772fa0801cc16a2",
+      "sha256": "e51d7b7529ce7ee2cfa6c26ff681200bbe60d7b86a83dad2b3e1160af0fde267",
       "declarations": [
         {
           "name": "ConfirmDialog",
@@ -5053,7 +5162,7 @@
     },
     {
       "path": "templates/angular/dialog.ts",
-      "sha256": "07ba28bf82f7394ddd50d30bce061146bf5e0a166db02b3b68c5706ad677d6c2",
+      "sha256": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
       "declarations": [
         {
           "names": [
@@ -5133,17 +5242,38 @@
         },
         {
           "names": [
+            "DIALOG_HEADER_TEMPLATE"
+          ],
+          "kind": "variable",
+          "declaration": "export const DIALOG_HEADER_TEMPLATE = `\n    <header [hidden]=\"!showHeader()\" class=\"ui-dialog__header\">\n      <div class=\"ui-dialog__title\">\n        @if (template('header'); as header) { <ng-container [ngTemplateOutlet]=\"header.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n        @else { <ng-content select=\"[uiDialogHeader]\" /><h2>{{ title() || label() }}</h2> }\n      </div>\n      <div class=\"ui-dialog__handles\">\n        @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n        @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n        @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'ダイアログを閉じる' | uiMessage\">{{'閉じる' | uiMessage}}</button> }\n      </div>\n    </header>\n    @if (!showHeader() && (draggable() || maximizable() || closable())) { <div class=\"ui-dialog__handles ui-dialog__standalone-handles\">\n      @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n      @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n      @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'ダイアログを閉じる' | uiMessage\">{{'閉じる' | uiMessage}}</button> }\n    </div> }\n  `;"
+        },
+        {
+          "names": [
+            "DIALOG_BODY_TEMPLATE"
+          ],
+          "kind": "variable",
+          "declaration": "export const DIALOG_BODY_TEMPLATE = `\n    <div class=\"ui-dialog__body\">\n      @if (template('body'); as body) { <ng-container [ngTemplateOutlet]=\"body.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content /> }\n    </div>\n  `;"
+        },
+        {
+          "names": [
+            "DIALOG_FOOTER_TEMPLATE"
+          ],
+          "kind": "variable",
+          "declaration": "export const DIALOG_FOOTER_TEMPLATE = `\n    <footer [hidden]=\"!showFooter()\" class=\"ui-dialog__footer\">\n      @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]=\"footer.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content select=\"[uiDialogFooter]\" /> }\n    </footer>\n    @if (resizable()) { <div class=\"ui-dialog__handles\"><button uiAction uiResizeHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログのサイズを変更' | uiMessage\" [attr.title]=\"'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage\">{{'サイズ変更' | uiMessage}}</button></div> }\n    <p role=\"status\" aria-atomic=\"true\" class=\"ui-dialog__status\">{{ busy() ? uiEffective_busyLabel() : '' }}</p>\n  `;"
+        },
+        {
+          "names": [
             "DIALOG_TEMPLATE"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_TEMPLATE = `\n    <header [hidden]=\"!showHeader()\" class=\"ui-dialog__header\">\n      <div class=\"ui-dialog__title\">\n        @if (template('header'); as header) { <ng-container [ngTemplateOutlet]=\"header.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n        @else { <ng-content select=\"[uiDialogHeader]\" /><h2>{{ title() || label() }}</h2> }\n      </div>\n      <div class=\"ui-dialog__handles\">\n        @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n        @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n        @if (closable()) { <button uiAction [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'ダイアログを閉じる' | uiMessage\">{{'閉じる' | uiMessage}}</button> }\n      </div>\n    </header>\n    @if (!showHeader()) { <div class=\"ui-dialog__handles\">\n      @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n      @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n    </div> }\n    <div class=\"ui-dialog__body\">\n      @if (template('body'); as body) { <ng-container [ngTemplateOutlet]=\"body.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content /> }\n    </div>\n    <footer [hidden]=\"!showFooter()\" class=\"ui-dialog__footer\">\n      @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]=\"footer.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content select=\"[uiDialogFooter]\" /> }\n    </footer>\n    @if (resizable()) { <div class=\"ui-dialog__handles\"><button uiAction uiResizeHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログのサイズを変更' | uiMessage\" [attr.title]=\"'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage\">{{'サイズ変更' | uiMessage}}</button></div> }\n    <p role=\"status\" aria-atomic=\"true\" class=\"ui-dialog__status\">{{ busy() ? uiEffective_busyLabel() : '' }}</p>\n  `;"
+          "declaration": "export const DIALOG_TEMPLATE = DIALOG_HEADER_TEMPLATE + DIALOG_BODY_TEMPLATE + DIALOG_FOOTER_TEMPLATE;"
         },
         {
           "names": [
             "DIALOG_STYLES"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
+          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host:not(:modal) { z-index:1; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); text-wrap:balance; }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
         },
         {
           "name": "Dialog",
@@ -5303,7 +5433,7 @@
     },
     {
       "path": "templates/angular/diff-json.ts",
-      "sha256": "21e4a52527aa169e007e8fa07643b4a0b2e00bbe96518f26c1de52ecc34c8d66",
+      "sha256": "e414bac111632d00e4952a3d8b9fe98a70d7f1efb85130404df16726daeececc",
       "declarations": [
         {
           "name": "DiffViewer",
@@ -5568,7 +5698,7 @@
     },
     {
       "path": "templates/angular/display-content.ts",
-      "sha256": "37f486da113bf04ea6b2aa17c9cd7d133ab637571e7a182547b7205873a5f03f",
+      "sha256": "fbf2693cfbd4d96d6f89b34602b4b607e908a4dccd42a8d85a91d7034b96b4f5",
       "declarations": [
         {
           "name": "ReadMore",
@@ -5910,7 +6040,7 @@
     },
     {
       "path": "templates/angular/display.ts",
-      "sha256": "0a7c64d241c0663d3c615eae3bb1f5ff2bf0e2c3921b4cddae354dcb9c273444",
+      "sha256": "c199817791fdec0f7ccfbb3fb55bea2339d6cd8b58b866819f814b487787dd96",
       "declarations": [
         {
           "name": "Typography",
@@ -6572,7 +6702,7 @@
     },
     {
       "path": "templates/angular/drawer.ts",
-      "sha256": "829b322c31cdb5101c29445a4a49d6a2f33dadb71e9814b0f1b6d627463d9d35",
+      "sha256": "d1201dd15048d0d2aca1004de0c25d01dd8197523e1210b499b63e011e8b2f41",
       "declarations": [
         {
           "name": "Drawer",
@@ -7292,7 +7422,7 @@
     },
     {
       "path": "templates/angular/file-explorer.ts",
-      "sha256": "fc1a4143eae0871b4f11d3500934835f889bcbd76ef4a826c818b0b868548e71",
+      "sha256": "741c54ffaedce3a4f279ec3b83c63a07587de390d43a7e378279c0a3f23c558b",
       "declarations": [
         {
           "name": "FileExplorer",
@@ -7493,7 +7623,7 @@
     },
     {
       "path": "templates/angular/file-upload.ts",
-      "sha256": "3a7e6a3c22d88081cc1d07dfca62d0644a4c5ba94f4ceb96a1f59383b138368b",
+      "sha256": "44b7a220c43eaf3340c35de56466c78de4f52aae8d1373cb59b39435d223a42f",
       "declarations": [
         {
           "name": "UploadList",
@@ -7743,7 +7873,7 @@
     },
     {
       "path": "templates/angular/filter-builder.ts",
-      "sha256": "e009c7b4ef04404c1021317add8228cd14facc6976895cedf2a69241f89efeb9",
+      "sha256": "f87c2fd485ad12163641d8a7ecbca39e04ddf02c981820da6ecb17ee01fc118a",
       "declarations": [
         {
           "names": [
@@ -8081,7 +8211,7 @@
     },
     {
       "path": "templates/angular/floating-panel.ts",
-      "sha256": "93e3f59e310c9112043c8c12eeadddec7b9eea1d987105ce0ac73cc8b1985b86",
+      "sha256": "0f0107f63fa12e24e9064093b12a453027a2473df39fd6785695efe556df7f55",
       "declarations": [
         {
           "names": [
@@ -8460,6 +8590,11 @@
               "kind": "output",
               "declaration": "readonly confirmRequested=output<void>();",
               "initializer": "output<void>()"
+            },
+            {
+              "name": "close",
+              "kind": "method",
+              "declaration": "override close(reason:PopupCloseReason='programmatic',value:unknown=undefined,force=false):boolean"
             }
           ]
         }
@@ -8618,7 +8753,7 @@
     },
     {
       "path": "templates/angular/form-layout.ts",
-      "sha256": "3613c32d1f9cc447444d5ac8d4cc12122894900bab9f04d4ed1d8a9a78fd66d1",
+      "sha256": "1d8a05d9d022bb8c23330eb409d2d289b4429d1c30e6d53cc035484357ba3783",
       "declarations": [
         {
           "name": "FormLayout",
@@ -8893,7 +9028,7 @@
     },
     {
       "path": "templates/angular/gantt.ts",
-      "sha256": "f23d7fd495fa5a69813310b2fa9162e0de7b11d622461a72343c6269d6798941",
+      "sha256": "c76089bdd7ec430c368b222b23e81565f3298ee6b7df27d53378022de8a8e5f8",
       "declarations": [
         {
           "names": [
@@ -9018,7 +9153,7 @@
     },
     {
       "path": "templates/angular/grid-list.ts",
-      "sha256": "cad0fd7b683fdbcac377042bcff97535dbaf338332f76aa2be0417a316670593",
+      "sha256": "1ba988ca8bf3efd520ea9fa067a1b6ca43b2bcd481158d4dec1ba4ff1e596543",
       "declarations": [
         {
           "names": [
@@ -9251,7 +9386,7 @@
     },
     {
       "path": "templates/angular/image-cropper.ts",
-      "sha256": "caa7628d644457176030d99cb8d738ec5609d9acda82a0bdfc0a6c97e60edc0f",
+      "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
       "declarations": [
         {
           "names": [
@@ -9354,7 +9489,7 @@
     },
     {
       "path": "templates/angular/image-media.ts",
-      "sha256": "7ef49ad34d15b3022271086cdd8a6e9a784688183549b20d9daf917db2d4971c",
+      "sha256": "88fa4a112e71352e642bdf97db38ec12522d32e87b7f95e8a36a9e01a15a42c2",
       "declarations": [
         {
           "name": "Image",
@@ -9622,7 +9757,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "c06b42cf58885d81a0a5fd44e2fa99213efb3c7946679d2f82d46464fa3fb218",
+      "sha256": "d1a3d8fb03e218b28c4dffefb3240892c11ee4b87f7c5e246ed2f5fbfaf779b5",
       "declarations": [
         {
           "kind": "export",
@@ -10078,6 +10213,14 @@
         },
         {
           "kind": "export",
+          "declaration": "export {uiEnglishMessages} from './locale-en';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export {uiJapaneseMessages} from './locale-ja';"
+        },
+        {
+          "kind": "export",
           "declaration": "export type {UiDirection,UiMessages,UiLocaleOptions,UiLocaleResolved} from './locale-model';"
         }
       ]
@@ -10362,7 +10505,7 @@
     },
     {
       "path": "templates/angular/kanban.ts",
-      "sha256": "2ddf9c9cf93352a9d57841d2d7941f578b7b0489a375768164b93dcc2579a705",
+      "sha256": "e168f075d2b87cfd9d6ddf11a50c43ac88d3488623d08f9ca9433e59e3f12538",
       "declarations": [
         {
           "name": "Kanban",
@@ -10461,7 +10604,7 @@
     },
     {
       "path": "templates/angular/layout-model.ts",
-      "sha256": "df57675c680f0b0b636d64307d2c39792d539e1eb123a9afeaf3780f71bd4b25",
+      "sha256": "c9030e7bfee3c83234d1524c5b006628f411bb7964cf1cbc44474e5537660e3d",
       "declarations": [
         {
           "names": [
@@ -10475,7 +10618,14 @@
             "layoutSpace"
           ],
           "kind": "variable",
-          "declaration": "export const layoutSpace = (value: LayoutSpace): string => ({none:'0',compact:'var(--ui-space-control-gap)',normal:'var(--ui-space-field)',wide:'var(--ui-space-section)'}[value]);"
+          "declaration": "export const layoutSpace = (value: LayoutSpace): string => {\n if(typeof value!=='string'||!Object.hasOwn(layoutSpaces,value))throw new Error('Layout spacing must be none, compact, normal or wide.');\n return layoutSpaces[value];\n};"
+        },
+        {
+          "names": [
+            "layoutKeyword"
+          ],
+          "kind": "function",
+          "declaration": "export function layoutKeyword<T extends string>(value: unknown, allowed: readonly T[], label: string): T"
         },
         {
           "names": [
@@ -10516,7 +10666,7 @@
     },
     {
       "path": "templates/angular/layout.ts",
-      "sha256": "5a6c495a905f543f4a8e4064df72bec4ffa4a15101eb740bea32c5a866a59571",
+      "sha256": "581a9b65f23c7cc516f720fe7027039c7238589a895448e08a4366c404567d75",
       "declarations": [
         {
           "names": [
@@ -10924,7 +11074,7 @@
     },
     {
       "path": "templates/angular/listbox.ts",
-      "sha256": "9ae500658557583d117738779a6f1a26341cf4ece9ad3448f84ad3a437ee85c1",
+      "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "declarations": [
         {
           "names": [
@@ -11058,8 +11208,47 @@
       ]
     },
     {
+      "path": "templates/angular/locale-defaults.ts",
+      "sha256": "244da58fb62a9ca1e905d178a9e093651e8ec49530462208bb2f76e84d57cd54",
+      "declarations": [
+        {
+          "names": [
+            "uiDefaultLanguage"
+          ],
+          "kind": "variable",
+          "declaration": "export const uiDefaultLanguage: 'en' | 'ja' = \"ja\";"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/locale-en.ts",
+      "sha256": "46e6f2dff79ee1a846f97e6250651898a3a5a6fa6523e75b76fd158c87340ab5",
+      "declarations": [
+        {
+          "names": [
+            "uiEnglishMessages"
+          ],
+          "kind": "variable",
+          "declaration": "export const uiEnglishMessages: UiMessages = Object.freeze(englishMessages);"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/locale-ja.ts",
+      "sha256": "a4cc65c2690f99891dc15d05772056ad681e887967b3f1648355371a3ebb192a",
+      "declarations": [
+        {
+          "names": [
+            "uiJapaneseMessages"
+          ],
+          "kind": "variable",
+          "declaration": "export const uiJapaneseMessages:UiMessages=Object.freeze(Object.fromEntries(Object.keys(uiEnglishMessages).map(source=>[source,source])));"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/locale-model.ts",
-      "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+      "sha256": "0faab58b00b0511443bc42049509741d2ce0cfbb0e162bd53c13bba07cbd3684",
       "declarations": [
         {
           "names": [
@@ -11094,7 +11283,7 @@
             "defaultUiLocale"
           ],
           "kind": "variable",
-          "declaration": "export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:Object.freeze({})});"
+          "declaration": "export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:uiDefaultLanguage==='en'?'en-US':'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:uiDefaultLanguage==='en'?uiEnglishMessages:Object.freeze({})});"
         },
         {
           "names": [
@@ -11114,7 +11303,7 @@
     },
     {
       "path": "templates/angular/locale.ts",
-      "sha256": "ce19b9f65c10c5d726cd7c22ec72fc0d8259ae966e3729ff94af9dbdd8048843",
+      "sha256": "1c9af4c24cfc94e38ebdc138f7c8ecc6f81318c680caa40ee246d4eb52da2f3e",
       "declarations": [
         {
           "names": [
@@ -11142,7 +11331,7 @@
             "injectUiText"
           ],
           "kind": "function",
-          "declaration": "export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>)=>string"
+          "declaration": "export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>,fallback?:()=>string)=>string"
         },
         {
           "names": [
@@ -11212,7 +11401,7 @@
     },
     {
       "path": "templates/angular/map.ts",
-      "sha256": "ac9557755f31fae0c585a572317ba72979bc2833848678c2c5e38696938c13bf",
+      "sha256": "c54b475e571e39740560a520edd7be995c035a659196bb256a768f02f6e2c9ff",
       "declarations": [
         {
           "name": "MapView",
@@ -11429,7 +11618,7 @@
     },
     {
       "path": "templates/angular/media-model.ts",
-      "sha256": "89706f2bc1f77d3808501e5e0031328c6535496fdbdebaa5022798d628fcf984",
+      "sha256": "ad52962e5c11b08c1627bc20d7af9d42f3fbca2969306c7cf1a646a5221bf982",
       "declarations": [
         {
           "names": [
@@ -11575,7 +11764,7 @@
     },
     {
       "path": "templates/angular/media-player.ts",
-      "sha256": "c0da50526d336d8708f1726901c3546f6b11d7b29c6740ecfb01e7ec8e1712d6",
+      "sha256": "86a0923aff5b3ebe6328937cea8c83ae23e8019c7a573818c7709d01132e7c9e",
       "declarations": [
         {
           "names": [
@@ -11726,7 +11915,7 @@
     },
     {
       "path": "templates/angular/mega-menu.ts",
-      "sha256": "8697e9b6eb2fd04b9584c4fdafa4889388d59f2ac1df0c1c4f6806d0adb475f9",
+      "sha256": "ede568dc4114ed733f1d0ad473f9909ce32912b991ee84fcba531135b2d23cee",
       "declarations": [
         {
           "name": "MegaMenu",
@@ -11844,7 +12033,7 @@
     },
     {
       "path": "templates/angular/menu.ts",
-      "sha256": "15b4978aef2624ae3491da193d1cb3b18d27b7b12cbdab7d9366d913e843446f",
+      "sha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
       "declarations": [
         {
           "kind": "export",
@@ -12178,7 +12367,7 @@
     },
     {
       "path": "templates/angular/navigation-tree.ts",
-      "sha256": "ef8645a743b0948d794a3eeb82c65b7bb3726f93611ef6e2f19ae5f945f15571",
+      "sha256": "c5bedfe252bb42b3f604750e7add323eb3dd759f8e571b87910b0ac6884acc0e",
       "declarations": [
         {
           "name": "SideNav",
@@ -12417,7 +12606,7 @@
     },
     {
       "path": "templates/angular/notification-center.ts",
-      "sha256": "88da4b3143f2b2b35884674a3b6d13177b5b66008e28dcef7f6a3ed532764d96",
+      "sha256": "c7abb1b2abf4a4a546b1ac336ad488443347366d6f0258c3088ae247acb3814a",
       "declarations": [
         {
           "names": [
@@ -13122,7 +13311,7 @@
     },
     {
       "path": "templates/angular/pagination.ts",
-      "sha256": "050e089842c5d449bb7bb163a832d7177790afe7f48937ff39864cab4b0c43c5",
+      "sha256": "200c19a8fe2699f01666b4e7d8c81594a610195c2bdc0956a23bbe97a61a18d6",
       "declarations": [
         {
           "name": "Pagination",
@@ -13523,7 +13712,7 @@
     },
     {
       "path": "templates/angular/pdf-viewer.ts",
-      "sha256": "bbe86de36a96d47ee4c533aaaf61eb2eaff0799046bd06bc94b42feb5996d6ea",
+      "sha256": "3c3b65826b98b0ab0f8154649c10a037da171838d989a9f8aa9e5ac8896df85f",
       "declarations": [
         {
           "name": "PDFViewer",
@@ -13856,7 +14045,7 @@
     },
     {
       "path": "templates/angular/scheduler-controller.ts",
-      "sha256": "238581d46425796e32f941fd486936348d9aa82b1da1c3f13f4b3afb68be7931",
+      "sha256": "052aa8edd8cdde5ae90c19d39c01833d1ac5a1c44115640884242adfe270a6cd",
       "declarations": [
         {
           "name": "SchedulerController",
@@ -14044,7 +14233,7 @@
     },
     {
       "path": "templates/angular/scheduler-model.ts",
-      "sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+      "sha256": "c00031428c5d4dddbd33aa055219de75f726710168d5bfa4a59556dd0ebc5644",
       "declarations": [
         {
           "names": [
@@ -14191,7 +14380,7 @@
             "schedulerLayout"
           ],
           "kind": "function",
-          "declaration": "export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null}"
+          "declaration": "export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration,textFor:(source:string)=>string=source=>source):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null}"
         }
       ]
     },
@@ -14253,21 +14442,21 @@
     },
     {
       "path": "templates/angular/scheduler-view.ts",
-      "sha256": "28e1f422e1c94455e9b7df66ec2b67d48e0c21fd082cd1bae455e95f000dd0ba",
+      "sha256": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742",
       "declarations": [
         {
           "names": [
             "schedulerTemplate"
           ],
           "kind": "variable",
-          "declaration": "export const schedulerTemplate=`<section class=\"ui-scheduler\" [attr.aria-label]=\"label()\" [attr.aria-busy]=\"busy()?'true':null\">\n <header class=\"ui-scheduler-toolbar\"><h2>{{label()}}</h2><label [for]=\"schedulerId()+'-date'\">{{'表示日' | uiMessage}}</label><input type=\"date\" [id]=\"schedulerId()+'-date'\" [value]=\"shownDate()\" [disabled]=\"blocked()\" (change)=\"changeDate($event)\">\n @if(allowsViewSwitch){<label [for]=\"schedulerId()+'-view'\">{{'予定の表示' | uiMessage}}</label><select [id]=\"schedulerId()+'-view'\" [value]=\"shownView()\" [disabled]=\"blocked()\" (change)=\"changeView($event)\"><option value=\"day\">{{'日' | uiMessage}}</option><option value=\"week\">{{'週' | uiMessage}}</option><option value=\"month\">{{'月' | uiMessage}}</option><option value=\"list\">{{'一覧' | uiMessage}}</option></select>}\n <button type=\"button\" [disabled]=\"blocked()\" (click)=\"navigate(-1)\">{{'前の期間' | uiMessage}}</button><button type=\"button\" [disabled]=\"blocked()\" (click)=\"navigate(1)\">{{'次の期間' | uiMessage}}</button></header>\n <p class=\"ui-scheduler-caption\">{{'表示タイムゾーン:' | uiMessage}} <bdi>{{effectiveTimeZone()}}</bdi>  {{'· 時間帯:' | uiMessage}} <bdi>{{dayStart()}}–{{dayEnd()}}</bdi> · {{layout().days[0]?.date}}–{{layout().days.at(-1)?.date}} · {{visibleCount()}} {{'件' | uiMessage}}</p>\n <fieldset class=\"ui-scheduler-resources\" [disabled]=\"blocked()\"><legend>{{'表示するリソース' | uiMessage}}</legend>@for(resource of resources();track resource.id){<label><input type=\"checkbox\" [checked]=\"resourceChecked(resource.id)\" (change)=\"filterResource(resource.id,$event)\">{{resource.label}}</label>}<button type=\"button\" (click)=\"showAllResources()\">{{'全リソースを表示' | uiMessage}}</button><span>{{showUnassigned()?('未割当の予定も表示します。' | uiMessage):('未割当の予定は表示対象外です。' | uiMessage)}}</span></fieldset>\n <p data-scheduler-status class=\"ui-scheduler-status\" tabindex=\"-1\" role=\"status\">{{busy()?('処理中です。移動入力は保持しています。' | uiMessage):disabled()?('予定の操作は無効です。' | uiMessage):message()|| (readonly()?('予定は読み取り専用です。表示方式と期間は変更できます。' | uiMessage):('予定移動は各予定の「移動先を編集」から開始できます。' | uiMessage))}}</p>\n @if(layout().problem;as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem | uiMessage}}</p>}\n <div class=\"ui-scheduler-viewport\" role=\"region\" tabindex=\"0\" [attr.aria-label]=\"label()+('の予定表示' | uiMessage)\"><ol class=\"ui-scheduler-plane\" [attr.data-scheduler-view]=\"shownView()\" [style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\">\n @for(day of layout().days;track day.date){<li class=\"ui-scheduler-day\" [hidden]=\"shownView()==='list'\" [style.gridColumn]=\"day.column\" [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\"><h3>{{day.label}}</h3><p>{{day.count}} {{'件' | uiMessage}}</p>@for(title of day.continuing;track $index){<p>{{'継続中:' | uiMessage}} {{title}}</p>}</li>}\n @for(entry of layout().entries;track entry.event.id){<li class=\"ui-scheduler-event\" [hidden]=\"!entry.visible\" [style.gridColumn]=\"entry.problem?'1 / -1':entry.column\" [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\">\n  <h3>{{entry.event.title}}</h3><p class=\"ui-scheduler-time\"><time [attr.datetime]=\"entry.event.start\"><bdi>{{entry.startText}}</bdi></time> ～ <time [attr.datetime]=\"entry.event.end\"><bdi>{{entry.endText}}</bdi></time></p><p>{{entry.resourceText}}</p>\n  @if(entry.days.length>1){<p>{{entry.days[0]}}–{{entry.days.at(-1)}} {{'にわたる予定' | uiMessage}}</p>}@if(entry.offsetChange){<p>{{'UTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。' | uiMessage}}</p>}\n  @if(entry.problem;as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem | uiMessage}}</p>}\n  @if(eventTemplate();as custom){<ng-container [ngTemplateOutlet]=\"custom.template\" [ngTemplateOutletContext]=\"eventContext(entry)\" />}\n  <button type=\"button\" data-move-editor [disabled]=\"moveBlocked(entry)\" [attr.aria-label]=\"entry.event.title+('の移動先を編集' | uiMessage)\" [attr.aria-expanded]=\"editing().includes(entry.event.id)\" [attr.aria-controls]=\"schedulerId()+'-move-'+encode(entry.event.id)\" (click)=\"beginEdit(entry)\">{{'移動先を編集' | uiMessage}}</button>\n  <section class=\"ui-scheduler-move\" [id]=\"schedulerId()+'-move-'+encode(entry.event.id)\" [hidden]=\"!editing().includes(entry.event.id)\" [attr.aria-label]=\"entry.event.title+('の移動入力' | uiMessage)\" (keydown)=\"editKey($event,entry.event.id)\">\n   @if(drafts()[entry.event.id];as draft){<fieldset [disabled]=\"blocked()||readonly()||pendingId()!==null\"><legend>{{entry.event.title}}{{'の移動先' | uiMessage}}</legend>\n    <label [for]=\"schedulerId()+'-start-'+encode(entry.event.id)\">{{'開始の現地日時' | uiMessage}}</label><input type=\"datetime-local\" step=\"1\" required [id]=\"schedulerId()+'-start-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-start-preview-'+encode(entry.event.id)\" [value]=\"draft.localStart\" (input)=\"changedDate(entry.event.id,'localStart',$event)\"><p [id]=\"schedulerId()+'-start-preview-'+encode(entry.event.id)\">{{'移動先の開始:' | uiMessage}} <bdi dir=\"ltr\" class=\"ui-scheduler-target-time\">{{draft.badStart?('入力途中' | uiMessage):draft.localStart?draft.localStart.replace('T',' '):('未入力' | uiMessage)}}</bdi></p>\n    <label [for]=\"schedulerId()+'-end-'+encode(entry.event.id)\">{{'終了の現地日時' | uiMessage}}</label><input type=\"datetime-local\" step=\"1\" required [id]=\"schedulerId()+'-end-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-end-preview-'+encode(entry.event.id)\" [value]=\"draft.localEnd\" (input)=\"changedDate(entry.event.id,'localEnd',$event)\"><p [id]=\"schedulerId()+'-end-preview-'+encode(entry.event.id)\">{{'移動先の終了:' | uiMessage}} <bdi dir=\"ltr\" class=\"ui-scheduler-target-time\">{{draft.badEnd?('入力途中' | uiMessage):draft.localEnd?draft.localEnd.replace('T',' '):('未入力' | uiMessage)}}</bdi></p>\n    <label [for]=\"schedulerId()+'-zone-'+encode(entry.event.id)\">{{'移動先タイムゾーン' | uiMessage}}</label><input type=\"text\" required [id]=\"schedulerId()+'-zone-'+encode(entry.event.id)\" [value]=\"draft.timeZone\" (input)=\"changeDraft(entry.event.id,'timeZone',$event)\">\n    <label [for]=\"schedulerId()+'-start-fold-'+encode(entry.event.id)\">{{'開始の重複時刻' | uiMessage}}</label><select [id]=\"schedulerId()+'-start-fold-'+encode(entry.event.id)\" [value]=\"draft.startDisambiguation\" (change)=\"changeDraft(entry.event.id,'startDisambiguation',$event)\"><option value=\"reject\">{{'重複時は確認を求める' | uiMessage}}</option><option value=\"earlier\">{{'先に発生する時刻' | uiMessage}}</option><option value=\"later\">{{'後に発生する時刻' | uiMessage}}</option></select>\n    <label [for]=\"schedulerId()+'-end-fold-'+encode(entry.event.id)\">{{'終了の重複時刻' | uiMessage}}</label><select [id]=\"schedulerId()+'-end-fold-'+encode(entry.event.id)\" [value]=\"draft.endDisambiguation\" (change)=\"changeDraft(entry.event.id,'endDisambiguation',$event)\"><option value=\"reject\">{{'重複時は確認を求める' | uiMessage}}</option><option value=\"earlier\">{{'先に発生する時刻' | uiMessage}}</option><option value=\"later\">{{'後に発生する時刻' | uiMessage}}</option></select>\n    <fieldset><legend>{{'移動先のリソース' | uiMessage}}</legend>@for(resource of resources();track resource.id){<label><input type=\"checkbox\" [disabled]=\"resource.disabled===true\" [checked]=\"draft.resourceIds.includes(resource.id)\" (change)=\"moveResource(entry.event.id,resource.id,$event)\">{{resource.label}}{{resource.disabled?('（移動先として無効）' | uiMessage):''}}</label>}</fieldset>\n   </fieldset><p>{{'入力した現地日時を保持して要求します。DSTの欠落・重複時刻、開始と終了の順序、業務上の移動許可はアプリが確認します。' | uiMessage}}</p>\n   @if(draftProblem(entry,draft);as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem}}</p>}<p role=\"status\">{{draftMessage(draft)}}</p>\n   <div class=\"ui-scheduler-actions\"><button type=\"button\" [disabled]=\"moveBlocked(entry)\" (click)=\"requestMove(entry)\">{{'移動を要求' | uiMessage}}</button><button type=\"button\" [disabled]=\"blocked()||readonly()||pendingId()!==null\" (click)=\"resetDraft(entry.event.id)\">{{'現在の予定で入力を戻す' | uiMessage}}</button><button type=\"button\" [disabled]=\"pendingId()===entry.event.id\" (click)=\"closeEdit(entry.event.id)\">{{'移動入力を閉じる' | uiMessage}}</button></div>\n   }\n  </section>\n </li>}\n </ol></div>@if(!layout().problem&&!visibleCount()){<p>{{'この期間・リソース・時間帯に表示できる予定はありません。表示条件を変更できます。' | uiMessage}}</p>}\n</section>`;"
+          "declaration": "export const schedulerTemplate=`<section class=\"ui-scheduler\" [attr.aria-label]=\"label()\" [attr.aria-busy]=\"busy()?'true':null\">\n <header class=\"ui-scheduler-toolbar\"><h2>{{label()}}</h2><label [for]=\"schedulerId()+'-date'\">{{'表示日' | uiMessage}}</label><input type=\"date\" [id]=\"schedulerId()+'-date'\" [value]=\"shownDate()\" [disabled]=\"blocked()\" (change)=\"changeDate($event)\">\n @if(allowsViewSwitch){<label [for]=\"schedulerId()+'-view'\">{{'予定の表示' | uiMessage}}</label><span class=\"ui-select-control\"><select class=\"ui-field-control\" [id]=\"schedulerId()+'-view'\" [value]=\"shownView()\" [disabled]=\"blocked()\" (change)=\"changeView($event)\"><option value=\"day\">{{'日' | uiMessage}}</option><option value=\"week\">{{'週' | uiMessage}}</option><option value=\"month\">{{'月' | uiMessage}}</option><option value=\"list\">{{'一覧' | uiMessage}}</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span>}\n <button type=\"button\" [disabled]=\"blocked()\" (click)=\"navigate(-1)\">{{'前の期間' | uiMessage}}</button><button type=\"button\" [disabled]=\"blocked()\" (click)=\"navigate(1)\">{{'次の期間' | uiMessage}}</button>@if(shownView()!=='list'){<button type=\"button\" [disabled]=\"blocked()||!!layout().problem\" (click)=\"showDisplayedDay()\">{{'表示日へ移動' | uiMessage}}</button>}</header>\n <p class=\"ui-scheduler-caption\">{{'表示タイムゾーン:' | uiMessage}} <bdi>{{effectiveTimeZone()}}</bdi>  {{'· 時間帯:' | uiMessage}} <bdi>{{dayStart()}}–{{dayEnd()}}</bdi> · {{layout().days[0]?.date}}–{{layout().days.at(-1)?.date}} · {{visibleCount()}} {{'件' | uiMessage}}</p>\n <fieldset class=\"ui-scheduler-resources\" [disabled]=\"blocked()\"><legend>{{'表示するリソース' | uiMessage}}</legend>@for(resource of resources();track resource.id){<label><input type=\"checkbox\" [checked]=\"resourceChecked(resource.id)\" (change)=\"filterResource(resource.id,$event)\">{{resource.label}}</label>}<button type=\"button\" (click)=\"showAllResources()\">{{'全リソースを表示' | uiMessage}}</button><span>{{showUnassigned()?('未割当の予定も表示します。' | uiMessage):('未割当の予定は表示対象外です。' | uiMessage)}}</span></fieldset>\n <p data-scheduler-status class=\"ui-scheduler-status\" tabindex=\"-1\" role=\"status\">{{busy()?('処理中です。移動入力は保持しています。' | uiMessage):disabled()?('予定の操作は無効です。' | uiMessage):message()|| (readonly()?('予定は読み取り専用です。表示方式と期間は変更できます。' | uiMessage):('予定移動は各予定の「移動先を編集」から開始できます。' | uiMessage))}}</p>\n @if(layout().problem;as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem | uiMessage}}</p>}\n <div class=\"ui-scheduler-viewport\" role=\"region\" tabindex=\"0\" [attr.aria-label]=\"label()+('の予定表示' | uiMessage)\"><ol class=\"ui-scheduler-plane\" [attr.data-scheduler-view]=\"shownView()\" [style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\">\n @for(day of layout().days;track day.date){<li class=\"ui-scheduler-day\" [hidden]=\"shownView()==='list'\" [style.gridColumn]=\"day.column\" [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\" [attr.aria-current]=\"day.date===shownDate()?'date':null\"><h3>{{day.label}}</h3><p>{{day.count}} {{'件' | uiMessage}}</p>@for(title of day.continuing;track $index){<p>{{'継続中:' | uiMessage}} {{title}}</p>}</li>}\n @for(entry of layout().entries;track entry.event.id){<li class=\"ui-scheduler-event\" [hidden]=\"!entry.visible\" [style.gridColumn]=\"entry.problem?'1 / -1':entry.column\" [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\">\n  <h3>{{entry.event.title}}</h3><p class=\"ui-scheduler-time\"><time [attr.datetime]=\"entry.event.start\"><bdi>{{entry.startText}}</bdi></time> ～ <time [attr.datetime]=\"entry.event.end\"><bdi>{{entry.endText}}</bdi></time></p><p>{{entry.resourceText}}</p>\n  @if(entry.days.length>1){<p>{{entry.days[0]}}–{{entry.days.at(-1)}} {{'にわたる予定' | uiMessage}}</p>}@if(entry.offsetChange){<p>{{'UTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。' | uiMessage}}</p>}\n  @if(entry.problem;as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem | uiMessage}}</p>}\n  @if(eventTemplate();as custom){<ng-container [ngTemplateOutlet]=\"custom.template\" [ngTemplateOutletContext]=\"eventContext(entry)\" />}\n  <button type=\"button\" data-move-editor [disabled]=\"moveBlocked(entry)\" [attr.aria-label]=\"entry.event.title+('の移動先を編集' | uiMessage)\" [attr.aria-expanded]=\"editing().includes(entry.event.id)\" [attr.aria-controls]=\"schedulerId()+'-move-'+encode(entry.event.id)\" (click)=\"beginEdit(entry)\">{{'移動先を編集' | uiMessage}}</button>\n  <section class=\"ui-scheduler-move\" [id]=\"schedulerId()+'-move-'+encode(entry.event.id)\" [hidden]=\"!editing().includes(entry.event.id)\" [attr.aria-label]=\"entry.event.title+('の移動入力' | uiMessage)\" (keydown)=\"editKey($event,entry.event.id)\">\n   @if(drafts()[entry.event.id];as draft){<fieldset [disabled]=\"blocked()||readonly()||pendingId()!==null\"><legend>{{entry.event.title}}{{'の移動先' | uiMessage}}</legend>\n    <label [for]=\"schedulerId()+'-start-'+encode(entry.event.id)\">{{'開始の現地日時' | uiMessage}}</label><input type=\"datetime-local\" step=\"1\" required [id]=\"schedulerId()+'-start-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-start-preview-'+encode(entry.event.id)\" [value]=\"draft.localStart\" (input)=\"changedDate(entry.event.id,'localStart',$event)\"><p [id]=\"schedulerId()+'-start-preview-'+encode(entry.event.id)\">{{'移動先の開始:' | uiMessage}} <bdi dir=\"ltr\" class=\"ui-scheduler-target-time\">{{draft.badStart?('入力途中' | uiMessage):draft.localStart?draft.localStart.replace('T',' '):('未入力' | uiMessage)}}</bdi></p>\n    <label [for]=\"schedulerId()+'-end-'+encode(entry.event.id)\">{{'終了の現地日時' | uiMessage}}</label><input type=\"datetime-local\" step=\"1\" required [id]=\"schedulerId()+'-end-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-end-preview-'+encode(entry.event.id)\" [value]=\"draft.localEnd\" (input)=\"changedDate(entry.event.id,'localEnd',$event)\"><p [id]=\"schedulerId()+'-end-preview-'+encode(entry.event.id)\">{{'移動先の終了:' | uiMessage}} <bdi dir=\"ltr\" class=\"ui-scheduler-target-time\">{{draft.badEnd?('入力途中' | uiMessage):draft.localEnd?draft.localEnd.replace('T',' '):('未入力' | uiMessage)}}</bdi></p>\n    <label [for]=\"schedulerId()+'-zone-'+encode(entry.event.id)\">{{'移動先タイムゾーン' | uiMessage}}</label><input type=\"text\" required [id]=\"schedulerId()+'-zone-'+encode(entry.event.id)\" [value]=\"draft.timeZone\" (input)=\"changeDraft(entry.event.id,'timeZone',$event)\">\n    <label [for]=\"schedulerId()+'-start-fold-'+encode(entry.event.id)\">{{'開始の重複時刻' | uiMessage}}</label><span class=\"ui-select-control\"><select class=\"ui-field-control\" [id]=\"schedulerId()+'-start-fold-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-fold-help-'+encode(entry.event.id)\" [value]=\"draft.startDisambiguation\" (change)=\"changeDraft(entry.event.id,'startDisambiguation',$event)\"><option value=\"reject\">{{'要確認' | uiMessage}}</option><option value=\"earlier\">{{'早い方' | uiMessage}}</option><option value=\"later\">{{'遅い方' | uiMessage}}</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span>\n    <label [for]=\"schedulerId()+'-end-fold-'+encode(entry.event.id)\">{{'終了の重複時刻' | uiMessage}}</label><span class=\"ui-select-control\"><select class=\"ui-field-control\" [id]=\"schedulerId()+'-end-fold-'+encode(entry.event.id)\" [attr.aria-describedby]=\"schedulerId()+'-fold-help-'+encode(entry.event.id)\" [value]=\"draft.endDisambiguation\" (change)=\"changeDraft(entry.event.id,'endDisambiguation',$event)\"><option value=\"reject\">{{'要確認' | uiMessage}}</option><option value=\"earlier\">{{'早い方' | uiMessage}}</option><option value=\"later\">{{'遅い方' | uiMessage}}</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span>\n    <p [id]=\"schedulerId()+'-fold-help-'+encode(entry.event.id)\">{{'同じ現地日時が二度現れる場合の扱いです。' | uiMessage}}</p>\n    <fieldset><legend>{{'移動先のリソース' | uiMessage}}</legend>@for(resource of resources();track resource.id){<label><input type=\"checkbox\" [disabled]=\"resource.disabled===true\" [checked]=\"draft.resourceIds.includes(resource.id)\" (change)=\"moveResource(entry.event.id,resource.id,$event)\">{{resource.label}}{{resource.disabled?('（移動先として無効）' | uiMessage):''}}</label>}</fieldset>\n   </fieldset><p>{{'入力した現地日時を保持して要求します。DSTの欠落・重複時刻、開始と終了の順序、業務上の移動許可はアプリが確認します。' | uiMessage}}</p>\n   @if(draftProblem(entry,draft);as problem){<p class=\"ui-scheduler-error\" role=\"alert\">{{problem}}</p>}<p role=\"status\">{{draftMessage(draft)}}</p>\n   <div class=\"ui-scheduler-actions\"><button type=\"button\" [disabled]=\"moveBlocked(entry)\" (click)=\"requestMove(entry)\">{{'移動を要求' | uiMessage}}</button><button type=\"button\" [disabled]=\"blocked()||readonly()||pendingId()!==null\" (click)=\"resetDraft(entry.event.id)\">{{'現在の予定で入力を戻す' | uiMessage}}</button><button type=\"button\" [disabled]=\"pendingId()===entry.event.id\" (click)=\"closeEdit(entry.event.id)\">{{'移動入力を閉じる' | uiMessage}}</button></div>\n   }\n  </section>\n </li>}\n </ol></div>@if(!layout().problem&&!visibleCount()){<p>{{'この期間・リソース・時間帯に表示できる予定はありません。表示条件を変更できます。' | uiMessage}}</p>}\n</section>`;"
         },
         {
           "names": [
             "schedulerStyles"
           ],
           "kind": "variable",
-          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-heading);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
+          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-heading);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[aria-current=date]{border-color:var(--ui-color-action);color:var(--ui-color-text)}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
         }
       ]
     },
@@ -14300,7 +14489,7 @@
     },
     {
       "path": "templates/angular/selection-input.ts",
-      "sha256": "436be33e536d75abf7f180ad71e74949d83242bc5e0ef36fe3920ef0716c5f0a",
+      "sha256": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
       "declarations": [
         {
           "names": [
@@ -14730,14 +14919,14 @@
     },
     {
       "path": "templates/angular/specialist-browser.ts",
-      "sha256": "2a65eb6c7882edf8cbb753ce834bae3c09f5639b668e2ac9241c72fcb27ee02e",
+      "sha256": "c506e0677ed9df61d91bed5b5a48e3d09c870b84b7e1d1a480f838c885c1de79",
       "declarations": [
         {
           "names": [
             "SpecialistTheme"
           ],
           "kind": "interface",
-          "declaration": "export interface SpecialistTheme {text:string;muted:string;surface:string;background:string;border:string;action:string;onAction:string;success:string;danger:string;focus:string;font:string;codeFont:string;fontSize:number;controlSize:number;gap:number;radius:number;reducedMotion:boolean;}"
+          "declaration": "export interface SpecialistTheme {text:string;muted:string;surface:string;background:string;border:string;action:string;onAction:string;success:string;danger:string;focus:string;font:string;codeFont:string;fontSize:number;controlSize:number;gap:number;radius:number;borderWidth:number;mapRegionOpacity:number;reducedMotion:boolean;}"
         },
         {
           "names": [
@@ -14771,7 +14960,7 @@
     },
     {
       "path": "templates/angular/specialist-model.ts",
-      "sha256": "9311f96bbaf2e27d5cc78eeaae658199d15024d31e45251de11a61495abb4e5f",
+      "sha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd",
       "declarations": [
         {
           "names": [
@@ -15197,20 +15386,20 @@
     },
     {
       "path": "templates/angular/specialist-style.ts",
-      "sha256": "111363357548e2b7f9d0d098b5df70888bc02b05c86a08760e7455bfeef76d20",
+      "sha256": "5d9518db346d21e566e8f67fbfd11383f044419003e90034a127564a9d2d30c1",
       "declarations": [
         {
           "names": [
             "specialistStyles"
           ],
           "kind": "variable",
-          "declaration": "export const specialistStyles=`\n:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body)}:host([hidden]){display:none}\n*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit;color:inherit;max-inline-size:100%}button,input,select{min-block-size:var(--ui-size-control)}button{min-inline-size:0;white-space:normal;overflow-wrap:anywhere;padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);cursor:pointer}button:disabled{cursor:default;background:var(--ui-color-disabled-surface)}button[aria-pressed=true]{background:var(--ui-color-action);color:var(--ui-color-on-action)}input,select,textarea{border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);padding:var(--ui-space-control-y) var(--ui-space-control-x)}textarea{inline-size:100%;min-block-size:calc(var(--ui-size-control)*2)}:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset)}label{display:block;overflow-wrap:anywhere}fieldset{border:0;min-inline-size:0;margin:0;padding:0}legend{font-weight:var(--ui-weight-control)}h2,h3,p{overflow-wrap:anywhere}p{margin-block:var(--ui-space-control-gap)}.ui-specialist-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;margin-block:var(--ui-space-control-gap)}.ui-specialist-scroll{overflow:auto;max-inline-size:100%;max-block-size:var(--ui-size-table-viewport);overscroll-behavior:contain}.ui-specialist-plot-scroll{overflow:auto;max-inline-size:100%;overscroll-behavior:contain}.ui-specialist-surface{inline-size:100%;min-block-size:calc(var(--ui-size-control)*5);block-size:var(--ui-size-visualization-viewport);position:relative}.ui-specialist-error{color:var(--ui-color-danger);background:var(--ui-color-error-surface);padding:var(--ui-space-control-y)}.ui-specialist-hint{font-size:var(--ui-text-small);color:var(--ui-color-muted)}table{border-collapse:separate;border-spacing:0;inline-size:100%;background:var(--ui-color-surface)}td,th{padding:var(--ui-space-table-y) var(--ui-space-table-x);text-align:start;vertical-align:top;border-block-end:var(--ui-border-control) solid var(--ui-color-border);overflow-wrap:anywhere}caption{text-align:start;font-weight:var(--ui-weight-heading)}code,pre{font-family:var(--ui-font-code)}pre{white-space:pre-wrap;overflow-wrap:anywhere}ul,ol{padding-inline-start:max(var(--ui-space-section),2em)}li{overflow-wrap:anywhere}svg{max-inline-size:100%}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}\n`;"
+          "declaration": "export const specialistStyles=`\n:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body)}:host([hidden]){display:none}\n*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit;color:inherit;max-inline-size:100%}button,input,select{min-block-size:var(--ui-size-control)}button{min-inline-size:0;white-space:normal;overflow-wrap:anywhere;padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);cursor:pointer}button:disabled{cursor:default;background:var(--ui-color-disabled-surface)}button[aria-pressed=true]{background:var(--ui-color-action);color:var(--ui-color-on-action)}button.ui-specialist-primary{background:var(--ui-color-action);color:var(--ui-color-on-action);border-color:var(--ui-color-action)}button.ui-specialist-primary:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);border-color:var(--ui-color-border)}input,select,textarea{border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);background:var(--ui-color-surface);padding:var(--ui-space-control-y) var(--ui-space-control-x)}.ui-select-control{display:block;position:relative;min-inline-size:0;max-inline-size:100%}.ui-select-control>select{appearance:none;inline-size:100%;padding-inline-end:calc(var(--ui-space-control-x) + var(--ui-size-icon) + var(--ui-space-control-gap))}.ui-select-control__chevron{position:absolute;inset-inline-end:var(--ui-space-control-x);inset-block-start:50%;transform:translateY(-50%);inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);pointer-events:none;color:var(--ui-color-muted)}@media(forced-colors:active){.ui-select-control>select{appearance:auto}.ui-select-control__chevron{display:none}}textarea{inline-size:100%;min-block-size:calc(var(--ui-size-control)*2)}:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset)}label{display:block;min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}fieldset{border:0;min-inline-size:0;margin:0;padding:0}legend{font-weight:var(--ui-weight-control)}h2,h3,p{overflow-wrap:anywhere}p{margin-block:var(--ui-space-control-gap)}.ui-specialist-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;margin-block:var(--ui-space-control-gap)}.ui-specialist-actions>*{min-inline-size:0;max-inline-size:100%}.ui-specialist-scroll{scroll-margin:calc(var(--ui-border-focus) + var(--ui-border-focus-offset));overflow:auto;max-inline-size:100%;max-block-size:var(--ui-size-table-viewport);overscroll-behavior:contain}.ui-specialist-plot-scroll{overflow:auto;max-inline-size:100%;overscroll-behavior:contain}.ui-specialist-surface{inline-size:100%;min-block-size:calc(var(--ui-size-control)*5);block-size:var(--ui-size-visualization-viewport);position:relative}.ui-message-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--ui-space-control-gap);font-size:var(--ui-text-small);color:var(--ui-color-muted)}.ui-message-meta>*{min-inline-size:0;overflow-wrap:anywhere}.ui-message-meta strong{color:var(--ui-color-text)}.ui-sparkline-legend{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);list-style:none;margin-block:var(--ui-space-control-gap);padding:0}.ui-sparkline-legend li{display:flex;align-items:center;gap:var(--ui-space-control-gap)}.ui-sparkline-swatch{display:inline-block;flex:none;inline-size:var(--ui-size-icon);border-block-start:var(--ui-border-focus) solid var(--ui-color-action)}.ui-sparkline-swatch[data-tone=\"1\"]{border-color:var(--ui-color-success)}.ui-sparkline-swatch[data-tone=\"2\"]{border-color:var(--ui-color-danger)}.ui-sparkline-swatch[data-tone=\"3\"]{border-color:var(--ui-color-muted)}.ui-specialist-error{color:var(--ui-color-danger);background:var(--ui-color-error-surface);padding:var(--ui-space-control-y)}.ui-specialist-hint{font-size:var(--ui-text-small);color:var(--ui-color-muted)}table{border-collapse:separate;border-spacing:0;inline-size:100%;background:var(--ui-color-surface)}.ui-specialist-data-table{table-layout:fixed;min-inline-size:calc(var(--ui-specialist-columns) * max(var(--ui-size-table-column-min),calc(8em + var(--ui-space-table-x) * 2)))}td,th{padding:var(--ui-space-table-y) var(--ui-space-table-x);text-align:start;vertical-align:top;border-block-end:var(--ui-border-control) solid var(--ui-color-border);overflow-wrap:anywhere}caption{text-align:start;font-weight:var(--ui-weight-heading)}code,pre{font-family:var(--ui-font-code)}pre{white-space:pre-wrap;overflow-wrap:anywhere}ul,ol{padding-inline-start:max(var(--ui-space-section),2em)}li{overflow-wrap:anywhere}svg{max-inline-size:100%}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}\n`;"
         }
       ]
     },
     {
       "path": "templates/angular/splitter.ts",
-      "sha256": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+      "sha256": "c92fce6e639c24d29771fd96f0f2c1ce843199225c528945dbf5a7ee6b2c1fc4",
       "declarations": [
         {
           "name": "Splitter",
@@ -15325,7 +15514,7 @@
     },
     {
       "path": "templates/angular/spreadsheet.ts",
-      "sha256": "c2559d87ae641d559bcfacf8ed69cb5eb38baef0e599ed299da95cc475b3f3ab",
+      "sha256": "2bd8b9b9c7c735b2cc379c9e622e33315cb72e9236f4f4fe084b3be8e3a05769",
       "declarations": [
         {
           "names": [
@@ -15811,7 +16000,7 @@
     },
     {
       "path": "templates/angular/table-advanced-model.ts",
-      "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+      "sha256": "0d70d16cacfb5cf17920e6ce460e0fae581f71bb653fb90e17f1337f93e63394",
       "declarations": [
         {
           "names": [
@@ -15853,7 +16042,7 @@
             "TableDraftResult"
           ],
           "kind": "type",
-          "declaration": "export type TableDraftResult = {\n    valid: true;\n    value: unknown;\n} | {\n    valid: false;\n    message: string;\n};"
+          "declaration": "export type TableDraftResult = {\n    valid: true;\n    value: unknown;\n} | {\n    valid: false;\n    message: string;\n    messageText?: () => string;\n};"
         },
         {
           "names": [
@@ -15867,7 +16056,7 @@
             "parseTableDraft"
           ],
           "kind": "function",
-          "declaration": "export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T): TableDraftResult"
+          "declaration": "export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TableDraftResult"
         },
         {
           "names": [
@@ -15881,7 +16070,7 @@
             "validateTableRowDraft"
           ],
           "kind": "function",
-          "declaration": "export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string): {\n    value: T;\n    changes: readonly TableEditChange[];\n    errors: Readonly<Record<string, string>>;\n}"
+          "declaration": "export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): {\n    errorText?: Readonly<Record<string,()=>string>>;\n    value: T;\n    changes: readonly TableEditChange[];\n    errors: Readonly<Record<string, string>>;\n}"
         },
         {
           "names": [
@@ -15972,7 +16161,7 @@
             "groupTable"
           ],
           "kind": "function",
-          "declaration": "export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得'): readonly TableRowGroup<T>[]"
+          "declaration": "export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, messages:UiMessages={}): readonly TableRowGroup<T>[]"
         },
         {
           "names": [
@@ -16056,14 +16245,14 @@
             "TablePasteResult"
           ],
           "kind": "interface",
-          "declaration": "export interface TablePasteResult<T extends object> {\n    requests: readonly Omit<TableEditRequest<T>, 'requestId'>[];\n    errors: readonly string[];\n}"
+          "declaration": "export interface TablePasteResult<T extends object> {\n    requests: readonly Omit<TableEditRequest<T>, 'requestId'>[];\n    errors: readonly string[];\n    errorText?: readonly (()=>string)[];\n}"
         },
         {
           "names": [
             "prepareTablePaste"
           ],
           "kind": "function",
-          "declaration": "export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[]): TablePasteResult<T>"
+          "declaration": "export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[], text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TablePasteResult<T>"
         },
         {
           "names": [
@@ -16137,7 +16326,7 @@
     },
     {
       "path": "templates/angular/table-controls.ts",
-      "sha256": "ea6469111995953ac6f791fa2e30f5f6b45ffbebe8cd483f288dd99c41732c74",
+      "sha256": "de6f9bf96841d851c893a7ce53be72b9336d5a53e428c98c84f8ad6a08da3dd4",
       "declarations": [
         {
           "names": [
@@ -16441,12 +16630,19 @@
               "initializer": "output<TableOutputIntent>()"
             }
           ]
+        },
+        {
+          "names": [
+            "injectTableColumnMoveText"
+          ],
+          "kind": "function",
+          "declaration": "export function injectTableColumnMoveText()"
         }
       ]
     },
     {
       "path": "templates/angular/table-editors.ts",
-      "sha256": "77c7b5a884ad428eff5edc9a5e2e1bf5e7e07e8b8b46cbd1c39348a70f749112",
+      "sha256": "c6275084808fb060e8d9ace113f03a7943824134ee0af580a5dfa563a4a71b67",
       "declarations": [
         {
           "name": "TableEditorSession",
@@ -16749,7 +16945,7 @@
     },
     {
       "path": "templates/angular/table-output.ts",
-      "sha256": "513a96c7e864c4fb0cffbae0fbe5a6d68ecf4ca70c37bc702ac0558f3b28a3ea",
+      "sha256": "42b3b26b822928318cdfaab2438f77cc0318f655f265c72c34d2bd8e3fc67477",
       "declarations": [
         {
           "names": [
@@ -16935,7 +17131,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "243d5d94a7c56ed91e345f52f132fc27407aebb715e6a38d040ebd5ec4342c35",
+      "sha256": "6f0e334c7718abf75604a2166b820304d53cb3dab3611313b213390a290fa7d9",
       "declarations": [
         {
           "name": "TextInput",
@@ -17655,7 +17851,7 @@
     },
     {
       "path": "templates/angular/transfer-list.ts",
-      "sha256": "5d6b2f457fc71a5ff6d307d6fb299fa56a1276d26b991ec97bf6af840cd179a6",
+      "sha256": "2a4720f7d75c7be236b458d35a6fa5d92f46b4e8ad2f652f676bbf47b39e3c9b",
       "declarations": [
         {
           "names": [
@@ -17836,7 +18032,7 @@
     },
     {
       "path": "templates/angular/transfer-model.ts",
-      "sha256": "50d2b9e338016f43c4ff7548d3ba54034e8d8c129f229af5e6543c2874897f10",
+      "sha256": "ae3f26c2e8f7584facb4ab1dd3ee1817ca423d3afae186324c53830352b64ed9",
       "declarations": [
         {
           "names": [
@@ -17886,6 +18082,20 @@
           ],
           "kind": "interface",
           "declaration": "export interface TransferResult{value:TransferValue;problem:string|null;}"
+        },
+        {
+          "names": [
+            "transferLimitMessages"
+          ],
+          "kind": "variable",
+          "declaration": "export const transferLimitMessages={\n selection:'{limit}件まで選択してください。現在の選択は保持しています。削除して修復できます。',\n addition:'{limit}件まで選択できます。今回の追加は行っていません。',\n} as const;"
+        },
+        {
+          "names": [
+            "transferLimitText"
+          ],
+          "kind": "function",
+          "declaration": "export function transferLimitText(source:string,limit:number):string"
         },
         {
           "names": [
@@ -18411,7 +18621,7 @@
     },
     {
       "path": "templates/angular/tree-popup-control.ts",
-      "sha256": "820dad760c30fb5f88bd8b8b68e52ede2140514607a1a1e8b561770935bc9aaf",
+      "sha256": "392c4ae2c31aacb1fbd8db9ef161ba4f2934b730f5364ec94c2f8dc5a876d181",
       "declarations": [
         {
           "name": "TreePopupControl",
@@ -18455,7 +18665,7 @@
     },
     {
       "path": "templates/angular/tree-select.ts",
-      "sha256": "cdf037b71a7cc4c3aace37afbe9efa125cf1fe18d86ab3bf4ac68cca8035d118",
+      "sha256": "840bb7134996cb8623a3eb74c6fcafcd55da74eb6a64180d5f1cf2ccd1aa36ca",
       "declarations": [
         {
           "name": "TreeSelect",
@@ -18878,8 +19088,12 @@
     },
     {
       "path": "templates/angular/virtual-data-table.ts",
-      "sha256": "16cd9c864c5c9672b5aeebb86d70135a3271a1e65dcd295f10b7b5de1421bfd8",
+      "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type {VirtualRadioGroup,VirtualRadioMember} from './virtual-radio';"
+        },
         {
           "name": "VirtualDataTable",
           "kind": "class",
@@ -18958,6 +19172,18 @@
               "initializer": "input(3)"
             },
             {
+              "name": "radioGroupsSource",
+              "kind": "input",
+              "declaration": "readonly radioGroupsSource=input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'radioGroups'});",
+              "initializer": "input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'radioGroups'})"
+            },
+            {
+              "name": "radioGroups",
+              "kind": "property",
+              "declaration": "readonly radioGroups=computed(()=>{const source=this.radioGroupsSource();return isSignal(source)?source():source;});",
+              "initializer": "computed(()=>{const source=this.radioGroupsSource();return isSignal(source)?source():source;})"
+            },
+            {
               "name": "locale",
               "kind": "input",
               "declaration": "readonly locale = input('ja-JP');",
@@ -18988,10 +19214,16 @@
               "initializer": "input<'none' | 'single' | 'multiple'>('none')"
             },
             {
-              "name": "selectedKeys",
+              "name": "selectedKeysSource",
               "kind": "input",
-              "declaration": "readonly selectedKeys = input<readonly TableKey[]>([]);",
-              "initializer": "input<readonly TableKey[]>([])"
+              "declaration": "readonly selectedKeysSource=input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'});",
+              "initializer": "input<readonly TableKey[]|Signal<readonly TableKey[]>>([],{alias:'selectedKeys'})"
+            },
+            {
+              "name": "selectedKeys",
+              "kind": "property",
+              "declaration": "readonly selectedKeys=computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;});",
+              "initializer": "computed(()=>{const source=this.selectedKeysSource();return isSignal(source)?source():source;})"
             },
             {
               "name": "selectedKeysChange",
@@ -19030,6 +19262,12 @@
               "initializer": "output<{\n        offset: number;\n        index: number;\n    }>()"
             },
             {
+              "name": "refreshWindow",
+              "kind": "property",
+              "declaration": "readonly refreshWindow=()=>this.changeDetector.detectChanges();",
+              "initializer": "()=>this.changeDetector.detectChanges()"
+            },
+            {
               "name": "track",
               "kind": "property",
               "declaration": "readonly track = (_index: number, row: T): TableKey => this.rowKey(row);",
@@ -19051,8 +19289,12 @@
     },
     {
       "path": "templates/angular/virtual-list.ts",
-      "sha256": "0aed4ccb888700f3e7476a1a65bfea55c4913e30e60bf2899f4636c74c675bb7",
+      "sha256": "25098fbd360d94ef17eaa6e4bcafd7cec87fe0196403456d282946281f8b96de",
       "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type {VirtualRadioGroup,VirtualRadioMember} from './virtual-radio';"
+        },
         {
           "names": [
             "VirtualItemContext"
@@ -19102,6 +19344,12 @@
           "extends": [],
           "members": [
             {
+              "name": "refreshWindow",
+              "kind": "property",
+              "declaration": "readonly refreshWindow=()=>this.changeDetector.detectChanges();",
+              "initializer": "()=>this.changeDetector.detectChanges()"
+            },
+            {
               "name": "items",
               "kind": "input",
               "declaration": "readonly items=input.required<readonly T[]>();",
@@ -19144,6 +19392,18 @@
               "initializer": "input(3)"
             },
             {
+              "name": "radioGroupsSource",
+              "kind": "input",
+              "declaration": "readonly radioGroupsSource=input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'radioGroups'});",
+              "initializer": "input<readonly VirtualRadioGroup[]|Signal<readonly VirtualRadioGroup[]>>([],{alias:'radioGroups'})"
+            },
+            {
+              "name": "radioGroups",
+              "kind": "property",
+              "declaration": "readonly radioGroups=computed(()=>{const source=this.radioGroupsSource();return isSignal(source)?source():source;});",
+              "initializer": "computed(()=>{const source=this.radioGroupsSource();return isSignal(source)?source():source;})"
+            },
+            {
               "name": "emptyLabel",
               "kind": "input",
               "declaration": "readonly emptyLabel=input<string>();",
@@ -19176,6 +19436,303 @@
               "name": "scrollToOffset",
               "kind": "method",
               "declaration": "scrollToOffset(offset:number):boolean"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/virtual-radio.ts",
+      "sha256": "342ea97bd8ed490ff992f7c2227213cb794c302d9fa27748bd0d58df8ee7405a",
+      "declarations": [
+        {
+          "names": [
+            "VirtualRadioMember"
+          ],
+          "kind": "interface",
+          "declaration": "export interface VirtualRadioMember {key:CollectionKey;value:string;disabled?:boolean;hidden?:boolean;}"
+        },
+        {
+          "names": [
+            "VirtualRadioGroup"
+          ],
+          "kind": "interface",
+          "declaration": "export interface VirtualRadioGroup {name:string;form?:string;value:string|null;members:readonly VirtualRadioMember[];}"
+        },
+        {
+          "names": [
+            "virtualRadioProblem"
+          ],
+          "kind": "function",
+          "declaration": "export function virtualRadioProblem(groups:readonly VirtualRadioGroup[],keys:readonly CollectionKey[],inheritedForm:string|null=null):string|null"
+        },
+        {
+          "names": [
+            "NativeRadioTabProfile"
+          ],
+          "kind": "type",
+          "declaration": "export type NativeRadioTabProfile='chromium'|'firefox'|'webkit';"
+        },
+        {
+          "names": [
+            "nativeRadioTabProfile"
+          ],
+          "kind": "function",
+          "declaration": "export function nativeRadioTabProfile(userAgent:string):NativeRadioTabProfile"
+        },
+        {
+          "names": [
+            "nativeRadioTabCandidate"
+          ],
+          "kind": "function",
+          "declaration": "export function nativeRadioTabCandidate(control:HTMLInputElement,candidates:readonly HTMLElement[],active:HTMLElement,backwards:boolean,profile:NativeRadioTabProfile):boolean"
+        },
+        {
+          "name": "VirtualRadios",
+          "kind": "class",
+          "decorators": [],
+          "extends": [],
+          "members": [
+            {
+              "name": "setGroups",
+              "kind": "method",
+              "declaration": "setGroups(groups:readonly VirtualRadioGroup[]):void"
+            },
+            {
+              "name": "setKeys",
+              "kind": "method",
+              "declaration": "setKeys(keys:readonly CollectionKey[]):void"
+            },
+            {
+              "name": "sync",
+              "kind": "method",
+              "declaration": "sync(element:HTMLElement,backwards=false,arrows=false):void"
+            },
+            {
+              "name": "neighbours",
+              "kind": "method",
+              "declaration": "neighbours(radio:HTMLInputElement):readonly number[]|null"
+            },
+            {
+              "name": "isManaged",
+              "kind": "method",
+              "declaration": "isManaged(radio:HTMLInputElement):boolean"
+            },
+            {
+              "name": "isTabStop",
+              "kind": "method",
+              "declaration": "isTabStop(radio:HTMLInputElement,backwards:boolean):boolean"
+            },
+            {
+              "name": "destroy",
+              "kind": "method",
+              "declaration": "destroy():void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/virtual-rows.ts",
+      "sha256": "1336cf776a0952ae3c0c3bd5c81ca7e8c872d3ee2be6bea2fa9f07e1f2c240ee",
+      "declarations": [
+        {
+          "name": "VirtualRows",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Directive",
+              "selector": "'[uiVirtualRows][uiVirtualRowsOf]'"
+            }
+          ],
+          "extends": [
+            "implements CdkVirtualScrollRepeater<T>"
+          ],
+          "members": [
+            {
+              "name": "dataStream",
+              "kind": "property",
+              "declaration": "readonly dataStream=this.data.asObservable();",
+              "initializer": "this.data.asObservable()"
+            },
+            {
+              "name": "uiVirtualRowsOf",
+              "kind": "property",
+              "declaration": "@Input() set uiVirtualRowsOf(items:readonly T[])"
+            },
+            {
+              "name": "uiVirtualRowsTrackBy",
+              "kind": "property",
+              "declaration": "@Input() uiVirtualRowsTrackBy:TrackByFunction<T>=(_index,item)=>item;",
+              "initializer": "(_index,item)=>item"
+            },
+            {
+              "name": "ngDoCheck",
+              "kind": "method",
+              "declaration": "ngDoCheck():void"
+            },
+            {
+              "name": "measureRangeSize",
+              "kind": "method",
+              "declaration": "measureRangeSize(range:{start:number;end:number},orientation:'horizontal'|'vertical'):number"
+            },
+            {
+              "name": "ngOnDestroy",
+              "kind": "method",
+              "declaration": "ngOnDestroy():void"
+            },
+            {
+              "name": "ngTemplateContextGuard",
+              "kind": "method",
+              "declaration": "static ngTemplateContextGuard<T>(_directive:VirtualRows<T>,_context:unknown):_context is RowContext<T>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/virtual-scroll.ts",
+      "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
+      "declarations": [
+        {
+          "name": "VirtualScroll",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Directive",
+              "selector": "'cdk-virtual-scroll-viewport[uiVirtualScroll]'"
+            }
+          ],
+          "extends": [
+            "implements VirtualScrollStrategy"
+          ],
+          "members": [
+            {
+              "name": "itemSize",
+              "kind": "input",
+              "declaration": "readonly itemSize=input.required<number>({alias:'uiVirtualScroll'});",
+              "initializer": "input.required<number>({alias:'uiVirtualScroll'})"
+            },
+            {
+              "name": "overscan",
+              "kind": "input",
+              "declaration": "readonly overscan=input(3,{alias:'uiVirtualOverscan'});",
+              "initializer": "input(3,{alias:'uiVirtualOverscan'})"
+            },
+            {
+              "name": "radioGroups",
+              "kind": "input",
+              "declaration": "readonly radioGroups=input<readonly VirtualRadioGroup[]>([],{alias:'uiVirtualRadioGroups'});",
+              "initializer": "input<readonly VirtualRadioGroup[]>([],{alias:'uiVirtualRadioGroups'})"
+            },
+            {
+              "name": "renderRows",
+              "kind": "input",
+              "declaration": "readonly renderRows=input<(()=>void)|null>(null,{alias:'uiVirtualRender'});",
+              "initializer": "input<(()=>void)|null>(null,{alias:'uiVirtualRender'})"
+            },
+            {
+              "name": "setRowKeys",
+              "kind": "method",
+              "declaration": "setRowKeys(keys:readonly CollectionKey[]):void"
+            },
+            {
+              "name": "offset",
+              "kind": "property",
+              "declaration": "readonly offset=signal(0);",
+              "initializer": "signal(0)"
+            },
+            {
+              "name": "indices",
+              "kind": "property",
+              "declaration": "readonly indices=signal<readonly number[]>([]);",
+              "initializer": "signal<readonly number[]>([])"
+            },
+            {
+              "name": "scrolledIndexChange",
+              "kind": "property",
+              "declaration": "readonly scrolledIndexChange=this.index.pipe(distinctUntilChanged());",
+              "initializer": "this.index.pipe(distinctUntilChanged())"
+            },
+            {
+              "name": "attach",
+              "kind": "method",
+              "declaration": "attach(viewport:CdkVirtualScrollViewport):void"
+            },
+            {
+              "name": "detach",
+              "kind": "method",
+              "declaration": "detach():void"
+            },
+            {
+              "name": "ngOnDestroy",
+              "kind": "method",
+              "declaration": "ngOnDestroy():void"
+            },
+            {
+              "name": "ngOnChanges",
+              "kind": "method",
+              "declaration": "ngOnChanges():void"
+            },
+            {
+              "name": "onContentScrolled",
+              "kind": "method",
+              "declaration": "onContentScrolled():void"
+            },
+            {
+              "name": "onDataLengthChanged",
+              "kind": "method",
+              "declaration": "onDataLengthChanged():void"
+            },
+            {
+              "name": "onContentRendered",
+              "kind": "method",
+              "declaration": "onContentRendered():void"
+            },
+            {
+              "name": "onRenderedOffsetChanged",
+              "kind": "method",
+              "declaration": "onRenderedOffsetChanged():void"
+            },
+            {
+              "name": "scrollToIndex",
+              "kind": "method",
+              "declaration": "scrollToIndex(index:number,behavior:ScrollBehavior):void"
+            },
+            {
+              "name": "releaseKeyboard",
+              "kind": "method",
+              "declaration": "releaseKeyboard():void"
+            },
+            {
+              "name": "point",
+              "kind": "method",
+              "declaration": "point(event:PointerEvent):void"
+            },
+            {
+              "name": "focused",
+              "kind": "method",
+              "declaration": "focused(event:FocusEvent):void"
+            },
+            {
+              "name": "dataChanged",
+              "kind": "method",
+              "declaration": "dataChanged():void"
+            },
+            {
+              "name": "leave",
+              "kind": "method",
+              "declaration": "leave(event:FocusEvent):void"
+            },
+            {
+              "name": "prepareTab",
+              "kind": "method",
+              "declaration": "prepareTab(event:KeyboardEvent,refresh:()=>void):boolean"
+            },
+            {
+              "name": "prepareRadioArrow",
+              "kind": "method",
+              "declaration": "prepareRadioArrow(event:KeyboardEvent,refresh:()=>void):boolean"
             }
           ]
         }

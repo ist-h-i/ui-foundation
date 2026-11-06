@@ -88,7 +88,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.2');
+  assert.equal(manifest.version, '0.1.0-beta.3');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
@@ -111,7 +111,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   candidate = candidateDetails.tarball;
   tarballDigest = candidateDetails.sha256;
   const allowedDocs = candidateDetails.manifest.files.filter(path => path.startsWith('docs/')).sort();
-  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.ja)?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
+  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.(?:ja|en))?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
   assert.deepEqual(candidateDetails.paths.filter(path => path.startsWith('docs/')).sort(), allowedDocs, 'the isolated tarball must contain exactly the allowlisted documentation');
   assert.ok(!allowedDocs.some(path => /(?:adr|verification|development|implementation-plan|release-plan|matrix)/.test(path)), 'developer documentation must not be distributed');
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
@@ -212,7 +212,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   await isolated(process.execPath, [resolve(consumer, 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js'), '-p', 'tsconfig.json'], 180_000);
   const smoke = JSON.parse(await isolated(process.execPath, ['consumer-smoke.mjs', manifest.name], 180_000));
   assert.deepEqual(await readFile(resolve(consumer, 'public/ui-foundation/LICENSE.txt')), ownLicense);
-  assert.equal(smoke.strictAot, true); assert.equal(smoke.inputAndProfileRetention, true);
+  assert.equal(smoke.strictAot, true); assert.equal(smoke.englishWithoutLocaleProvider, true); assert.equal(smoke.inputAndProfileRetention, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
   assert.ok(smoke.servedAssetHashes > 20);
   const metafileBytes = await readFile(resolve(consumer, 'bundle-metafile.json'));

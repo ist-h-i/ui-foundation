@@ -45,7 +45,7 @@ test('own MIT license is byte-identical, owned and protected in generated output
   }
 });
 
-const consumerDocuments = ['docs/components.ja.md', 'docs/ui-library-consumer-guide.ja.md', 'docs/npm-beta-readiness.ja.md', 'docs/npm-beta-release-notes.ja.md', 'docs/commands.ja.md'];
+const consumerDocuments = ['docs/components.ja.md', 'docs/ui-library-consumer-guide.ja.md', 'docs/ui-library-consumer-guide.en.md', 'docs/npm-beta-readiness.ja.md', 'docs/npm-beta-release-notes.ja.md', 'docs/commands.ja.md'];
 
 async function documentationFixture(t: TestContext) {
   const fixture = await mkdtemp(resolve(tmpdir(), 'ui-foundation-skill-docs-'));
@@ -94,8 +94,8 @@ test('generated Skill consumer documents and links resolve without checkout or n
   const docs = await renderSkillDocumentation();
   const metadata = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
   const allowed = metadata.files.filter((path: string) => path.startsWith('docs/'));
-  assert.ok(allowed.every((path: string) => /^docs\/[a-z0-9-]+(?:\.ja)?\.(?:md|json)$/.test(path)), 'documentation paths must be explicit files');
-  assert.deepEqual([...docs.keys()].sort(), [...allowed, 'examples/ui.config.example.yaml'].sort());
+  assert.ok(allowed.every((path: string) => /^docs\/[a-z0-9-]+(?:\.(?:ja|en))?\.(?:md|json)$/.test(path)), 'documentation paths must be explicit files');
+  assert.deepEqual([...docs.keys()].sort(), [...allowed, 'examples/ui.config.example.yaml', 'examples/ui.config.example.en.yaml'].sort());
   for (const path of [...consumerDocuments, 'docs/ui-components.md', 'docs/design.md', 'docs/ui-library-api.json']) assert.ok(docs.has(path), `missing ${path}`);
   assert.ok(![...docs.keys()].some(path => /(?:development|implementation-plan|release-plan|matrix|verification|^docs\/adr\/)/.test(path)));
   for (const [path, text] of docs) if (path.endsWith('.md')) {

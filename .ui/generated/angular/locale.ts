@@ -8,8 +8,18 @@ export function provideUiLocale(options:UiLocaleOptions|Signal<UiLocaleOptions>)
  return [{provide:UI_LOCALE,useFactory:()=>computed(()=>resolveUiLocale(isSignal(options)?options():options))}];
 }
 export function injectUiLocale():Signal<UiLocaleResolved>{return inject(UI_LOCALE);}
-export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>)=>string{
- const locale=injectUiLocale();return (source,parameters)=>uiMessage(source,locale().messages,parameters);
+export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>,fallback?:()=>string)=>string{
+ const locale=injectUiLocale();
+ return (source,parameters,fallback)=>{
+  const messages=locale().messages;
+  // Prefer the parameterized key, then honor dictionaries written for the
+  // earlier, fully composed Japanese message before using a fragment fallback.
+  if(!Object.hasOwn(messages,source)&&parameters){
+   const composed=uiMessage(source,{},parameters);
+   if(Object.hasOwn(messages,composed))return uiMessage(composed,messages);
+  }
+  return fallback&&!Object.hasOwn(messages,source)?fallback():uiMessage(source,messages,parameters);
+ };
 }
 export type UiMessagePart=string|(()=>string);
 export interface UiMessageState<T extends string|null|undefined> extends Signal<T>{

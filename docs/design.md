@@ -14,9 +14,12 @@
 - `context`：product、goals、constraints。AIが読む判断材料。
 - `output`：プロジェクト内の生成専用ディレクトリ。
 - `default_profile`：既定のプロファイルID。
+- `default_language`：任意の `en` / `ja`。生成部品の初期文言とIntl localeを選ぶ。`init` は `en`、`init --language ja` は `ja` を保存する。項目のない既存設定は日本語を維持する。time zone・native日付入力書式・業務データ・見た目のトークンは変更しない。
 - `primitives`：名前から`{ type, value }`への対応。具体値を置く唯一の層。
 - `semantic`：役割名からプリミティブ名への参照。全プロファイルの基となる対応。
 - `profiles`：IDからlabel、context（audience、usage、goals、constraints）、guidance、semantic上書きへの対応。
+
+生成した `angular/locale-defaults.ts` は同期の所有範囲とし、言語はYAMLで変更する。runtime provider・scope・明示propの優先関係は維持する。旧CLIへ戻す場合は新項目を含まない保存済みYAMLと、対応するパッケージ・生成物を合わせて復元する。
 
 context/guidanceの文章からCLIが見た目を推測しない。プロファイルは年齢や役割から自動選択しない。利用アプリが初期設定または明示的な選択で適用する。新しい配色や尺度もAIが提案でき、特定の美学や固定パレットを強制しない。
 

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const example = 'examples/ui.config.example.yaml';
+const englishExample = 'examples/ui.config.example.en.yaml';
 
 /** Share the npm files allowlist instead of discovering repository documents. */
 export async function renderSkillDocumentation(resourceRoot: string = root): Promise<Map<string, string>> {
@@ -29,7 +30,7 @@ export async function renderSkillDocumentation(resourceRoot: string = root): Pro
     throw new Error('Documentation allowlist must name explicit files without globs or traversal.');
   }
   if (!files.includes(example)) throw new Error(`Package files must include the Skill example: ${example}`);
-  const sources = new Map([...documents, example].sort().map(path => [resolve(base, path), path]));
+  const sources = new Map([...documents, example, ...(files.includes(englishExample) ? [englishExample] : [])].sort().map(path => [resolve(base, path), path]));
   const result = new Map<string, string>();
   for (const [source, destination] of sources) {
     let text = await readResource(destination);

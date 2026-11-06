@@ -1,0 +1,236 @@
+# Source of truth for values and mappings adopted by people and AI.
+# Context/guidance informs screen design; the CLI never infers token values from prose.
+schema_version: 1
+default_language: en
+context:
+  product: Application management
+  goals:
+    - Review the required information to submit, approve or return an application
+  constraints:
+    - Do not present unavailable information as verified
+    - Keep user input during partial failures
+output: .ui/generated
+default_profile: guided
+
+primitives:
+  ink: { type: color, value: '#1c293d' }
+  muted: { type: color, value: '#526075' }
+  white: { type: color, value: '#ffffff' }
+  canvas: { type: color, value: '#f5f7fa' }
+  outline: { type: color, value: '#778496' }
+  blue: { type: color, value: '#1856a6' }
+  blue-hover: { type: color, value: '#10427f' }
+  green: { type: color, value: '#175c3a' }
+  green-hover: { type: color, value: '#0f462c' }
+  red: { type: color, value: '#a32121' }
+  red-hover: { type: color, value: '#801919' }
+  success-wash: { type: color, value: '#eaf6ef' }
+  warning-ink: { type: color, value: '#694700' }
+  warning-wash: { type: color, value: '#fff4d6' }
+  error-wash: { type: color, value: '#fff0ef' }
+  disabled-wash: { type: color, value: '#e7ebf0' }
+  backdrop: { type: color, value: '#172033' }
+  system-font:
+    type: fontFamily
+    value: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+  code-font:
+    {
+      type: fontFamily,
+      value: 'ui-monospace, "SFMono-Regular", Consolas, monospace'
+    }
+  avatar-guided: { type: length, value: 64px }
+  avatar-dense: { type: length, value: 48px }
+  map-region-opacity: { type: number, value: 0.25 }
+  watermark-opacity: { type: number, value: 0.12 }
+  text-guided: { type: length, value: 1.125rem }
+  text-dense: { type: length, value: 1rem }
+  small-guided: { type: length, value: 1rem }
+  small-dense: { type: length, value: 0.875rem }
+  heading-guided: { type: length, value: 1.75rem }
+  heading-dense: { type: length, value: 1.5rem }
+  leading-body: { type: number, value: 1.6 }
+  leading-heading: { type: number, value: 1.35 }
+  leading-control: { type: number, value: 1.5 }
+  regular: { type: number, value: 400 }
+  semibold: { type: number, value: 600 }
+  bold: { type: number, value: 700 }
+  space-8: { type: length, value: 8px }
+  space-12: { type: length, value: 12px }
+  space-16: { type: length, value: 16px }
+  space-24: { type: length, value: 24px }
+  space-32: { type: length, value: 32px }
+  round-guided: { type: length, value: 12px }
+  round-dense: { type: length, value: 4px }
+  surface-guided: { type: length, value: 16px }
+  surface-dense: { type: length, value: 6px }
+  control-minimum: { type: length, value: 44px }
+  icon: { type: length, value: 20px }
+  dialog: { type: length, value: 640px }
+  content: { type: length, value: 1120px }
+  table-column-min: { type: length, value: 128px }
+  table-viewport: { type: length, value: 480px }
+  input-max-height: { type: length, value: 320px }
+  form-label-guided: { type: length, value: 12rem }
+  form-label-dense: { type: length, value: 9rem }
+  grid-item: { type: length, value: 256px }
+  sidebar: { type: length, value: 256px }
+  navigation-rail-guided: { type: length, value: 72px }
+  navigation-rail-dense: { type: length, value: 64px }
+  mega-menu-guided: { type: length, value: 960px }
+  mega-menu-dense: { type: length, value: 768px }
+  navigation-column-guided: { type: length, value: 192px }
+  navigation-column-dense: { type: length, value: 160px }
+  knob-guided: { type: length, value: 160px }
+  knob-dense: { type: length, value: 128px }
+  collection-item-guided: { type: length, value: 5rem }
+  collection-item-dense: { type: length, value: 4rem }
+  collection-viewport-guided: { type: length, value: 20rem }
+  collection-viewport-dense: { type: length, value: 16rem }
+  elevation-blur: { type: length, value: 12px }
+  overlay-min: { type: length, value: 192px }
+  dialog-min: { type: length, value: 280px }
+  drawer-inline-guided: { type: length, value: 384px }
+  drawer-inline-dense: { type: length, value: 320px }
+  drawer-block-guided: { type: length, value: 480px }
+  drawer-block-dense: { type: length, value: 400px }
+  border-thin: { type: length, value: 1px }
+  focus-width: { type: length, value: 3px }
+  focus-offset: { type: length, value: 3px }
+  duration: { type: duration, value: 180ms }
+  easing: { type: easing, value: ease-out }
+
+semantic:
+  color.text: ink
+  color.muted: muted
+  color.surface: white
+  color.background: canvas
+  color.border: outline
+  color.action: blue
+  color.action-hover: blue-hover
+  color.on-action: white
+  color.link: blue
+  color.tab-selected: blue
+  color.danger: red
+  color.danger-hover: red-hover
+  color.on-danger: white
+  color.success: green
+  color.success-surface: success-wash
+  color.warning: warning-ink
+  color.warning-surface: warning-wash
+  color.error-surface: error-wash
+  color.focus: blue
+  color.disabled-surface: disabled-wash
+  color.backdrop: backdrop
+  color.shadow: outline
+  font.body: system-font
+  font.code: code-font
+  size.avatar: avatar-guided
+  text.avatar: avatar-guided
+  opacity.map-region: map-region-opacity
+  opacity.watermark: watermark-opacity
+  text.body: text-guided
+  text.small: small-guided
+  text.heading: heading-guided
+  leading.body: leading-body
+  leading.heading: leading-heading
+  leading.control: leading-control
+  weight.body: regular
+  weight.heading: bold
+  weight.control: semibold
+  space.page: space-32
+  space.section: space-24
+  space.field: space-24
+  space.control-x: space-24
+  space.control-y: space-12
+  space.control-gap: space-12
+  space.table-x: space-16
+  space.table-y: space-12
+  radius.control: round-guided
+  radius.surface: surface-guided
+  size.control: control-minimum
+  size.icon: icon
+  size.dialog: dialog
+  size.content: content
+  size.table-column-min: table-column-min
+  size.table-viewport: table-viewport
+  size.media-viewport: table-viewport
+  size.visualization-viewport: table-viewport
+  size.input-max-height: input-max-height
+  size.form-label: form-label-guided
+  size.grid-item: grid-item
+  size.sidebar: sidebar
+  size.navigation-rail: navigation-rail-guided
+  size.mega-menu: mega-menu-guided
+  size.navigation-column: navigation-column-guided
+  size.knob: knob-guided
+  size.collection-item: collection-item-guided
+  size.collection-viewport: collection-viewport-guided
+  size.elevation-blur: elevation-blur
+  size.overlay-min: overlay-min
+  size.dialog-min: dialog-min
+  size.drawer-inline: drawer-inline-guided
+  size.drawer-block: drawer-block-guided
+  border.control: border-thin
+  border.focus: focus-width
+  border.focus-offset: focus-offset
+  motion.duration: duration
+  motion.easing: easing
+
+profiles:
+  guided:
+    label: Guided use
+    context:
+      audience:
+        - Occasional users who need to check the application procedure
+      usage: Submit applications one at a time while reading the relevant guidance
+      goals:
+        - Understand required fields and what to review before submission
+      constraints:
+        - Keep the primary action easy to find as explanations are added
+    guidance: >-
+      Show the goal, required fields and results in order. Place guidance near the relevant input. Choose steps to match the workflow and retain information needed for comparison.
+    semantic: {}
+  dense:
+    label: Repeated list and input use
+    context:
+      audience:
+        - Experienced users comparing and processing multiple applications
+      usage: Repeatedly compare lists and enter data during daily work
+      goals:
+        - Keep necessary comparison information and process the selected applications efficiently
+      constraints:
+        - Keep action targets and results explicit
+        - Retain input methods and primary action targets of at least 44px
+    guidance: >-
+      Align comparison fields and place repeated actions near their targets. Collapse details only when appropriate. Keep missing information and recovery paths visible.
+    semantic:
+      size.avatar: avatar-dense
+      text.avatar: avatar-dense
+      size.form-label: form-label-dense
+      size.drawer-inline: drawer-inline-dense
+      size.drawer-block: drawer-block-dense
+      size.navigation-rail: navigation-rail-dense
+      size.mega-menu: mega-menu-dense
+      size.navigation-column: navigation-column-dense
+      size.knob: knob-dense
+      size.collection-item: collection-item-dense
+      size.collection-viewport: collection-viewport-dense
+      color.action: green
+      color.action-hover: green-hover
+      color.link: green
+      color.tab-selected: green
+      color.focus: green
+      text.body: text-dense
+      text.small: small-dense
+      text.heading: heading-dense
+      space.page: space-16
+      space.section: space-16
+      space.field: space-16
+      space.control-x: space-16
+      space.control-y: space-8
+      space.control-gap: space-8
+      space.table-x: space-12
+      space.table-y: space-8
+      radius.control: round-dense
+      radius.surface: surface-dense
+

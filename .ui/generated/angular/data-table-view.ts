@@ -9,7 +9,7 @@ import { ActionControl } from './action-control';
 import { Pagination } from './pagination';
 import { DataTable } from './data-table';
 import { VirtualDataTable } from './virtual-data-table';import type {VirtualRadioGroup} from './virtual-radio';
-import { ColumnFilter, TableToolbar, type TableBulkAction, type TableOutputIntent } from './table-controls';
+import { ColumnFilter, TableToolbar, injectTableColumnMoveText, type TableBulkAction, type TableOutputIntent } from './table-controls';
 import { TableColumnResize } from './table-column-resize';
 import { CellEditor, RowEditor } from './table-editors';
 import { InfiniteScroll, type CollectionLoadRequest } from './infinite-scroll';
@@ -57,8 +57,8 @@ export class TableTemplate<T extends object> {
           @for (column of columns(); track column.id) {
             <div class="ui-data-table__column-setting">
               <label><input data-table-owned-control type="checkbox" [checked]="!state().hiddenColumns.includes(column.id)" [disabled]="blocked() || lastVisible(column.id)" (change)="toggleColumn(column.id)">{{ column.header }}</label>
-              <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を前へ' | uiMessage)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{'前へ' | uiMessage}}</button>
-              <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を後へ' | uiMessage)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{'後へ' | uiMessage}}</button>
+              <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(-1, column.header)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{columnMoveText(-1)}}</button>
+              <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(1, column.header)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{columnMoveText(1)}}</button>
               <div><label [for]="tableId() + '-pin-' + column.id">{{'固定:' | uiMessage}} {{ column.header }}</label>
                 <div class="ui-select-control"><select data-table-owned-control [id]="tableId() + '-pin-' + column.id" class="ui-field-control" [value]="pin(column) || 'none'" [disabled]="blocked()" (change)="setPin(column.id, value($event))">
                   <option value="none">{{'固定しない' | uiMessage}}</option><option value="start">{{'先頭側' | uiMessage}}</option><option value="end">{{'末尾側' | uiMessage}}</option>
@@ -237,7 +237,7 @@ export class DataTableView<T extends object> {
 
  private readonly uiRuntimeText_DataTableView=injectUiRuntimeText();
 
- protected readonly uiText_DataTableView=injectUiText();
+ protected readonly uiText_DataTableView=injectUiText(); protected readonly columnMoveText=injectTableColumnMoveText();
     readonly caption = input.required<string>();
     readonly tableId = input.required<string>();
     readonly rows = input.required<readonly T[]>();
@@ -398,7 +398,7 @@ export class DataTableView<T extends object> {
         if (this.configurationError())
             return [];
         const rows = this.pageRows(), start = rows.filter(row => this.fixedStartKeys().includes(this.key(row))), end = rows.filter(row => this.fixedEndKeys().includes(this.key(row))), normal = rows.filter(row => !this.fixedStartKeys().includes(this.key(row)) && !this.fixedEndKeys().includes(this.key(row)));
-        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel()), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
+        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
         return [...start.map(row => ({ kind: 'row' as const, row, hidden: false })), ...entries, ...end.map(row => ({ kind: 'row' as const, row, hidden: false }))];
     });
     private readonly footerValues = computed(() => this.configurationError() ? [] : aggregateTable(this.aggregateScope() === 'page' ? this.pageRows() : this.aggregateScope() === 'supplied' ? this.rows() : this.filteredRows(), this.columns(), this.aggregates()));
