@@ -11,13 +11,7 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 Install the published package in an existing Angular app:
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation
-```
-
-This source change has not been published to npm. To use the bilingual features described here before a release, install the tarball produced from this checkout with `npm pack`:
-
-```sh
-npm install --save-dev --save-exact /absolute/path/to/ui-foundation.tgz
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -73,6 +67,12 @@ Edit YAML, preview `sync --dry-run`, run `sync`, then `check`. Keep generated fi
 - [Detailed component contracts — Japanese](docs/ui-components.md)
 - [Static-check scope and limits — Japanese](docs/static-checks.ja.md)
 - [Beta compatibility and recovery — Japanese](docs/npm-beta-readiness.ja.md)
+
+## 日本語の概要
+
+一つのYAMLから、AngularのUI部品、デザイントークン、Tailwindテーマ、AI向けの開発指針と検査器を生成します。標準の文書と新規アプリの部品文言は英語です。`ui-foundation init --language ja` で日本語の設定と部品の既定値を選べます。言語項目のない既存設定は、更新・再同期しても日本語を維持します。
+
+npmから導入したパッケージには、全文の `README.ja.md` と日本語の導入ガイドを同梱しています。利用アプリで依存関係・CSS・workerや資産を組み込み、生成後に実際の操作を検証してください。詳細は[日本語README](README.ja.md)と[日本語の導入ガイド](docs/ui-library-consumer-guide.ja.md)を参照できます。
 
 ## License
 

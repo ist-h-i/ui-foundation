@@ -1,6 +1,22 @@
 # ベータの変更記録
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.2`の利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.3`までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
+
+## beta.3: English-first UI with Japanese support
+
+English is the primary README, CLI/component guidance and project Skill language. Japanese documentation and the Japanese Skill remain bundled. New `init` configurations select English built-in text and `en-US` formatting without a locale provider; `init --language ja` selects Japanese. Existing YAML that omits `default_language` keeps Japanese defaults after sync.
+
+Both dictionaries are available from the generated entry point. Language switches preserve inputs and retained feedback; app-owned labels, data and backend errors stay under the app's translation system. In English dictionaries, override dynamic messages by their parameterized key (such as `{limit}件まで選択してください。`), not just a completed instance. Detailed specialist references still include Japanese prose.
+
+Upgrade the package and lockfile, review `sync --dry-run`, sync, check, then build and test the app. To opt an existing app into English defaults, explicitly set `default_language: en` and verify app-owned translations plus date/number presentation. Time zone, native input format and tokens are unchanged. Older CLIs reject the new field; rollback restores the matching saved package, YAML, generated files and Skill together.
+
+### 日本語の変更内容と更新手順
+
+- README・CLIや部品の案内・標準Skillを英語中心にし、日本語版も同梱しました。
+- 新規の `init` は `default_language: en`、`init --language ja` は `ja` を保存します。言語項目のない既存設定は、再同期後も日本語を維持します。
+- 部品の文言・状態説明・エラー表示を英日辞書へ接続しました。アプリ所有のラベル・データ・backendエラー本文は翻訳しません。英語の動的文言を上書きする場合は、完成文ではなく差し込みキーを指定します。
+- 更新前にパッケージ・lockfile・YAML・生成物・Skillを保存し、更新後にdry-run・sync・checkとアプリの検証を行います。既存アプリの英語化は `default_language: en` の明示的な追加で選びます。旧CLIへ戻す場合は新項目のない保存済みYAMLも一緒に復元します。
+- 専門的な参照文書には日本語が残ります。未検証のOS・ブラウザー・業務フローを確認済みとは扱いません。
 
 ## beta.2の変更
 

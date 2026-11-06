@@ -6,10 +6,10 @@ UI Foundation generates Angular components, design tokens, a Tailwind theme, a p
 
 ## Install and generate
 
-Run these commands from the app root, where its `package.json` lives. Once the beta tag points to a release that contains this guide, install it with the beta tag.
+Run these commands from the app root, where its `package.json` lives. Pin the version for a reproducible installation.
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@beta
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
 ```
 
 To use a local build, install the tarball produced by `npm pack`.

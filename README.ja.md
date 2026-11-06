@@ -62,12 +62,10 @@ npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScr
 
 部品は `provideUiLocale` と同梱の `uiEnglishMessages` / `uiJapaneseMessages` で表示言語を選びます。日付・数値の `locale` と文言の `messages` を併せて更新します。[利用手順](docs/ui-library-consumer-guide.ja.md)を参照してください。
 
-この変更はnpmへ未公開です。新しい英日対応を利用するには、このcheckoutから作成したtgzを導入します。
-
 ## 使い始める
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
 ```
 
 ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。

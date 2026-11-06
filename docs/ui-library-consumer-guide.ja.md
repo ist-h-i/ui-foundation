@@ -21,7 +21,7 @@
 既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。ui-foundationはAngularアプリ自体を作成するscaffoldではありません。
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init --language ja
 ```

@@ -21,7 +21,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.2');
+  assert.equal(manifest.version, '0.1.0-beta.3');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
   for (const name of ['README.md', 'README.ja.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
@@ -57,6 +57,8 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const cli = (...args) => run(bin, args, consumer);
   assert.match(cli('--help'), /Usage: ui-foundation/);
   assert.match(await readFile(resolve(installed, 'README.md'), 'utf8'), /Angular UI components/);
+  assert.match(await readFile(resolve(installed, 'README.md'), 'utf8'), /日本語の概要/);
+  assert.doesNotMatch(await readFile(resolve(installed, 'README.md'), 'utf8'), /has not been published/);
   assert.match(installedMetadata.description, /English and Japanese/);
   cli('init');
   assert.equal(parse(await readFile(resolve(consumer, 'ui.config.yaml'), 'utf8')).context.product, 'Application management');

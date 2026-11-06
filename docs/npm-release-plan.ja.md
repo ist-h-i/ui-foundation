@@ -1,6 +1,6 @@
 # npm公開の手順と記録
 
-現在の公開対象は`@hiroshi.inoue/ui-foundation@0.1.0-beta.2`、配布タグは`beta`、accessは`public`です。2026/10/21の本人の明示依頼により、利用者文書だけの配布への整理、独立レビュー、PRの通常merge、新版のnpm公開と公開版の導入確認を実施します。旧版の公開認可ではなく、この依頼を今回版の認可とします。認証状態は公開前に確認し、認証情報は記録へ含めません。既存versionは上書きしません。通常インストール向けの公開では、公開版の導入検証後に`latest`も対象versionへ更新します。`beta`等の補助タグだけが新版を指す状態で公開完了にしません。
+現在の公開対象は`@hiroshi.inoue/ui-foundation@0.1.0-beta.3`、配布タグは`beta`、accessは`public`です。2026/11/06の本人の明示依頼により、英語主・日本語副の配布と新規アプリの英語既定値を検証し、必要なPRの通常merge、新版のnpm公開、公開版の導入確認を進めます。認証状態は公開前に確認し、認証情報は記録へ含めません。既存versionは上書きしません。公開版の導入検証後に`latest`も対象版へ更新し、新規プロジェクト・新規cacheで版指定なしの導入を確認します。
 
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。第三者資産の既存条件を保持し、候補と公開版を同じdigestへ結び付けます。CLI exitだけでは公開成功とせず、registryのstatus・version・tag・integrityと新規取得物の導入結果を確認します。過去のbeta.1検証記録は履歴として保持します。
 
@@ -34,7 +34,7 @@ npm run test:package
 通常の`npm pack`のprepackはパッケージ用ビルドを行います。固定公開工程では先に`package:build`し、`--ignore-scripts`で一回packします。fixtureアプリ用`npm run build`とは別工程です。次は利用アプリのルートで実行する。`init`後にアプリ用YAMLと、`checks.source_roots`が指す実際の対象ファイルを用意する。
 
 ```sh
-npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.2.tgz
+npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.3.tgz
 ./node_modules/.bin/ui-foundation init
 # ui.config.yamlとchecks.source_rootsをアプリに合わせて編集
 ./node_modules/.bin/ui-foundation sync --dry-run
