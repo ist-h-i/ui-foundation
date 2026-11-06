@@ -128,20 +128,20 @@ Consumers using input components install @angular/forms matching their app; Icon
 
 ### DataTableView and Pagination
 
-ColumnFilters=true shows an initially collapsed column-filter area. Active column counts remain visible; opening/closing retains constraints/incomplete input. Hidden-column conditions can be cleared there too. Keep filters out of sticky headers to prevent overlap with rows.
+`columnFilters=true` shows an initially collapsed column-filter area. Active column counts remain visible; opening/closing retains constraints/incomplete input. Hidden-column conditions can be cleared there too. Keep filters out of sticky headers to prevent overlap with rows.
 
 Alongside native table[uiTable], ui-data-table accepts required rows/columns/keyField/tableId/caption. Row keys are unique strings/finite numbers; column IDs unique nonempty strings. Distinguish missing/invalid number-date/zero/false. Missing sorts last in both directions.
 
 TableColumn<T> has id/field/header/type/format/sortable/filterable/options/width/minWidth/maxWidth/pinned. TableState has page/pageSize/search/sort/filters/columnOrder/hiddenColumns/columnWidths/pinnedColumns; initialize with createTableState(). App state/stateChange owns persistence/restoration; components do not write HTTP/localStorage.
 
-- Sortable/sortMode selects off/single/multiple and cycles ascending→descending→removed.
-- ColumnFilters/globalSearch/searchColumns cover typed text/number/date/option conditions and selected-column global search. TableFilter represents AND/OR and multiple constraints. Empty comparisons are inactive but retain chosen operators. The current ColumnFilter UI can add/remove multiple constraints; see the [full table contract](ui-library-table-expansion-spec.en.md).
-- Pagination/pageSizeOptions control pages/counts. Client filtering clamps a reduced page range and emits state. Server mode does not locally search/sort/page supplied rows; app supplies totalItems and adopts state.
-- AutoWidth/autoFit:content|available uses measured content/available width, clamped to bounds, with table-local overflow. Resizable-column sliders support pointer/keyboard.
-- StickyHeader/columnControls cover headers/visibility/order/logical pinning/width/reset. RTL pinning follows logical directions; the final visible column cannot be hidden.
-- SelectionMode/selectedKeys/selectedKeysChange/rowSelectable/selectAllScope use native checkboxes/radios, exclude ineligible rows and retain other-page selection. Server select-all covers the supplied page.
-- ExpandedKeys/expandedKeysChange/rowActions/rowAction provide details/actions. Hidden detail DOM retains drafts while on the page; the app owns retention after moving rows to another page.
-- Striped/borders/hover/rowSpacing/wrap/ellipsis and dataState/retryAvailable/retry control display/fetch-update-failure-partial states. Busy suppresses query/selection and retains old content; app decides safe business actions with partial data.
+- `sortable`/`sortMode` selects off/single/multiple and cycles ascending→descending→removed.
+- `columnFilters`/`globalSearch`/`searchColumns` cover typed text/number/date/option conditions and selected-column global search. TableFilter represents AND/OR and multiple constraints. Empty comparisons are inactive but retain chosen operators. The current ColumnFilter UI can add/remove multiple constraints; see the [full table contract](ui-library-table-expansion-spec.en.md).
+- `pagination`/`pageSizeOptions` control pages/counts. Client filtering clamps a reduced page range and emits state. Server mode does not locally search/sort/page supplied rows; app supplies totalItems and adopts state.
+- `autoWidth`/`autoFit: content | available` uses measured content/available width, clamped to bounds, with table-local overflow. Resizable-column sliders support pointer/keyboard.
+- `stickyHeader`/`columnControls` cover headers/visibility/order/logical pinning/width/reset. RTL pinning follows logical directions; the final visible column cannot be hidden.
+- `selectionMode`/`selectedKeys`/`selectedKeysChange`/`rowSelectable`/`selectAllScope` use native checkboxes/radios, exclude ineligible rows and retain other-page selection. Server select-all covers the supplied page.
+- `expandedKeys`/`expandedKeysChange`/`rowActions`/`rowAction` provide details/actions. Hidden detail DOM retains drafts while on the page; the app owns retention after moving rows to another page.
+- `striped`/`borders`/`hover`/`rowSpacing`/`wrap`/`ellipsis` and dataState/retryAvailable/retry control display/fetch-update-failure-partial states. Busy suppresses query/selection and retains old content; app decides safe business actions with partial data.
 
 Replace cells through `<ng-template uiTableCell="amount" [uiTableTemplateOf]="rows" let-row let-value="value">` and details with uiTableDetail. Import TableTemplate; uiTableTemplateOf supplies context inference.
 
