@@ -143,7 +143,7 @@ Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`�
 - `stickyHeader/columnControls`は固定見出し、表示・順序・左右固定・幅・リセットの設定。左右固定はRTLにも論理方向で適用します。最後の一列はUIから隠せません。
 - `selectionMode/selectedKeys/selectedKeysChange/rowSelectable/selectAllScope`はnative checkbox/radioで選択します。選択不可行を除外し、他ページの選択を保持します。serverの全選択対象は供給されたページです。
 - `expandedKeys/expandedKeysChange/rowActions/rowAction`は詳細表示と操作。詳細は同じDOMをhiddenにし、そのページに留まる間の入力を保持します。アプリが別ページへ移した行の入力保持はアプリが所有します。
-- `striped/borders/hover/rowSpacing/wrap/ellipsis`と`dataState/retryAvailable/retry`は表示と取得・更新・失敗・部分欠損。busyはqueryと選択を抑止し、前回の内容を残します。部分欠損で安全に実行できる業務操作はアプリが決めます。
+- `striped/borders/hoverRows/rowSpacing/wrapCells/ellipsis`と`dataState/retryAvailable/retry`は表示と取得・更新・失敗・部分欠損。busyはqueryと選択を抑止し、前回の内容を残します。部分欠損で安全に実行できる業務操作はアプリが決めます。
 
 セルは`<ng-template uiTableCell="amount" [uiTableTemplateOf]="rows" let-row let-value="value">`、詳細は`uiTableDetail`で差し替えます。`uiTableTemplateOf`はtemplate contextの型推論に使います。アプリはTableTemplateもimportします。
 

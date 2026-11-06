@@ -141,7 +141,7 @@ TableColumn<T> has id/field/header/type/format/sortable/filterable/options/width
 - `stickyHeader`/`columnControls` cover headers/visibility/order/logical pinning/width/reset. RTL pinning follows logical directions; the final visible column cannot be hidden.
 - `selectionMode`/`selectedKeys`/`selectedKeysChange`/`rowSelectable`/`selectAllScope` use native checkboxes/radios, exclude ineligible rows and retain other-page selection. Server select-all covers the supplied page.
 - `expandedKeys`/`expandedKeysChange`/`rowActions`/`rowAction` provide details/actions. Hidden detail DOM retains drafts while on the page; the app owns retention after moving rows to another page.
-- `striped`/`borders`/`hover`/`rowSpacing`/`wrap`/`ellipsis` and dataState/retryAvailable/retry control display/fetch-update-failure-partial states. Busy suppresses query/selection and retains old content; app decides safe business actions with partial data.
+- `striped`/`borders`/`hoverRows`/`rowSpacing`/`wrapCells`/`ellipsis` and dataState/retryAvailable/retry control display/fetch-update-failure-partial states. Busy suppresses query/selection and retains old content; app decides safe business actions with partial data.
 
 Replace cells through `<ng-template uiTableCell="amount" [uiTableTemplateOf]="rows" let-row let-value="value">` and details with uiTableDetail. Import TableTemplate; uiTableTemplateOf supplies context inference.
 
