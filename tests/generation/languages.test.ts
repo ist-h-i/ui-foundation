@@ -25,6 +25,9 @@ test('init defaults to English and explicitly supports Japanese without changing
   assert.match(skill,/# Project UI development/);assert.match(skill,/SKILL.ja.md/);
   assert.match(await readFile(resolve(root,'.agents/skills/project-ui/SKILL.ja.md'),'utf8'),/# プロジェクトのUI開発/);
   assert.match(await readFile(resolve(root,'.agents/skills/project-ui/project-context.md'),'utf8'),/# Project UI configuration/);
+  const context=await readFile(resolve(root,'.agents/skills/project-ui/project-context.md'),'utf8');
+  assert.doesNotMatch(context.split('```json')[0], /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u, 'AI instruction prose is English; app context in JSON keeps its own language');
+  assert.ok(context.includes(config.context.product), 'app-authored context is preserved');
  }
  assert.deepEqual(configs[0].primitives,configs[1].primitives);
  assert.deepEqual(configs[0].semantic,configs[1].semantic);

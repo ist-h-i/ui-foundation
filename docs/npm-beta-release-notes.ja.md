@@ -1,6 +1,14 @@
 # ベータの変更記録
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.3`までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
+[English](npm-beta-release-notes.en.md)
+
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.4`までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
+
+## beta.4: AI参照の英語化と人間向け文書の日英対応
+
+標準AI Skill、runtime・token参照手順、生成contextの説明、配布外資料への案内を英語に揃えました。既存の日本語Skill入口は互換性のため残し、アプリが記述した文脈やラベルは原文を保ちます。人間向けの設計、詳細API、静的検査、ベータ更新・復旧、Tree・Scheduler・表・媒体・専門部品・共通runtime資料は日英で提供し、標準AI導線は同期後も英語版を選びます。部品runtime APIや言語選択の動作は変更しません。
+
+パッケージ更新後にsync --dry-runで差分を確認し、再同期してコピー済み手順・資料を更新してください。手編集・未所有ファイルの保護は維持します。checkとアプリ検証を行い、復旧時は保存したpackage・lockfile・YAML・生成物・Skillを一組で戻します。第三者の法的原文と対応ソースアーカイブは保持し、PDF source案内には日本語版を追加しました。
 
 ## beta.3: English-first UI with Japanese support
 

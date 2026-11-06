@@ -1,5 +1,7 @@
 # 可視化・専門編集部品の公開契約
 
+[English](ui-library-specialist-expansion-spec.en.md)
+
 描画・編集・計算エンジンとnative操作を使う専門部品の公開APIです。[型とmethods](ui-library-api.json)、[利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
 ## 入力とイベント

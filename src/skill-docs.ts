@@ -41,7 +41,9 @@ export async function renderSkillDocumentation(resourceRoot: string = root): Pro
         if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) return link;
         const path = target.split('#')[0];
         if (sources.has(resolve(dirname(source), path))) return link;
-        return `${label}（開発元の参考資料: \`${target}\`。この生成Skillには含めない）`;
+        const japanese = destination.endsWith('.ja.md') || ['docs/design.md', 'docs/ui-components.md'].includes(destination);
+        return japanese ? `${label}（開発元の参考資料: \`${target}\`。この生成Skillには含めない）`
+          : `${label} (authoring reference: \`${target}\`; not included in this generated Skill)`;
       });
     }
     result.set(destination, text);

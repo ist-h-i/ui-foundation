@@ -1,5 +1,7 @@
 # Scheduler / Agendaの利用契約
 
+[English](ui-library-scheduler-expansion-spec.en.md)
+
 公開部品は`Scheduler` / `Agenda`です。内部Controllerを直接importせず、生成先の`angular/index.ts`を使います。
 
 ## 要求と表示
@@ -91,7 +93,7 @@ editorのEscape/閉じる/完了は、自身が所有しているfocusだけを�
 
 見た目は[設計](design.md)の役割契約に従い、YAML `default_profile` / `profiles` と `data-ui-profile="ID"` で切り替える。font.body/code、text/leading/weight、space/size、color/border/radiusをsemantic経由で使う。共通motion.duration/easingも正本のsemantic役割であり、独自の固定animation値を追加しない。guided/dense変更で未確定日時・error・保留要求・投影CVA入力を保持する。logical CSSと自身のscroll領域を使い、320px/文字200%では日時native editorの内部scrollに加えて全文previewを残す。技術的な日時値のeditor/previewは局所LTR、周囲の説明・button/resourceはscopeのRTLに従う。reduced motionでsmooth scrollを抑止する。
 
-公開 `provideUiLocale` / `[uiLocale]` (`UiLocaleScope`) はlocale、messages、timeZone、date options、directionを供給する。明示component propが優先する。既定localeはja-JP、timeZoneは未指定、directionはアプリのdirを継承する。UiLocaleScopeはnative lang/dirと公開CDK Directionalityへ接続し、明示Dir・外部属性を尊重する。辞書はライブラリ文言だけを変え、event.title/data/raw IDsとapp errorは変えない。
+公開 `provideUiLocale` / `[uiLocale]` (`UiLocaleScope`) はlocale、messages、timeZone、date options、directionを供給する。明示component propが優先する。既定localeは生成時の `default_language` に従い、英語はen-US、日本語と項目のない既存YAMLはja-JP。timeZoneは未指定、directionはアプリのdirを継承する。UiLocaleScopeはnative lang/dirと公開CDK Directionalityへ接続し、明示Dir・外部属性を尊重する。辞書はライブラリ文言だけを変え、event.title/data/raw IDsとapp errorは変えない。
 
 ## 依存
 

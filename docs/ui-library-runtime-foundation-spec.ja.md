@@ -1,5 +1,7 @@
 # フォーム・locale・RTL・profileの共通契約
 
+[English](ui-library-runtime-foundation-spec.en.md)
+
 既存入力からTree・Scheduler・表・媒体・専門部品まで共通のフォーム・言語・方向・プロファイル契約です。[利用手順](ui-library-consumer-guide.ja.md)、[正確な型・props・methods](ui-library-api.json)を併せて読んでください。
 
 ## 公開locale API

@@ -1,5 +1,7 @@
 # ファイル・画像・音声・動画の公開契約
 
+[English](ui-library-media-expansion-spec.en.md)
+
 ファイル・画像・音声・動画・PDF・コード描画の公開APIです。export aliasは`Dropzone/AttachmentList/FilePreview/Lightbox/Carousel/AudioPlayer/VideoPlayer`も公開します。[型とmethods](ui-library-api.json)、[利用ガイドの配布資産](ui-library-consumer-guide.ja.md#css-と配布資産)を参照してください。
 
 ## 入力とイベント

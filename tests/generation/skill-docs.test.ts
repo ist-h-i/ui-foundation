@@ -73,6 +73,8 @@ test('generated Skill selects only explicit package documentation, excluding new
   assert.match(commands, /\[example\]\(\.\.\/examples\/ui\.config\.example\.yaml\)/);
   assert.match(commands, /\[external\]\(https:\/\/example\.com\/\)/);
   assert.doesNotMatch(commands, /\[authoring\]\(development\.md\)/);
+  assert.match(commands, /authoring reference/);
+  assert.doesNotMatch(commands, /開発元の参考資料/);
   await writeFile(resolve(fixture, 'docs/new-maintainer-playbook.md'), 'Future internal work.\n');
   assert.deepEqual(await renderSkillDocumentation(fixture), docs, 'a new unlisted document must not change generated references');
 });

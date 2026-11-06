@@ -1,5 +1,7 @@
-# プロジェクト用UI開発Skill
+# Project UI development Skill
 
-`sync`は`SKILL.md`と`references/`を利用アプリの`.agents/skills/project-ui/`へコピーし、正本YAMLから`project-context.md`を生成します。利用者文書は`references/docs/`に収録されます。
+[Japanese](README.ja.md)
 
-UI変更前にSkillと必要な文脈・APIを読みます。配置だけでAIツールの自動選択や読み込みが成立したとは扱いません。設定やパッケージ版を更新したら、dry-runで差分を確認して再同期します。
+`sync` copies `SKILL.md` and `references/` into the app's `.agents/skills/project-ui/`, then generates adjacent `project-context.md` from the source YAML. Consumer documentation is copied into `references/docs/`.
+
+Read the Skill and the relevant context/API before UI changes. Placement alone does not establish an AI tool's automatic selection or loading. After configuration or package updates, review the dry run and synchronize again. The standard Skill and operational references are English; `SKILL.ja.md` and Japanese reference variants remain available.

@@ -5,17 +5,17 @@ description: Design and implement UI for this project using its persona profiles
 
 # Project UI development
 
-[日本語の開発手順](SKILL.ja.md)
+[Legacy Japanese workflow](SKILL.ja.md)
 
-Use these instructions for UI design, implementation, and configuration in an app that uses UI Foundation.
+Use these English instructions and English references for AI-assisted UI design, implementation, and configuration. The legacy Japanese Skill entry remains for existing consumers; human-facing guides provide English and Japanese editions.
 
 ## Read the app context
 
 After sync, read the generated Skill's adjacent `project-context.md` and the app's source YAML. Identify the user goal, usage constraints, active profile, and generated output path. Use the profile's `guidance` as design context. Make concrete token changes in the app's YAML.
 
 - Follow the integration steps for dependencies, assets, English messages, and updates. [English consumer guide](../../docs/ui-library-consumer-guide.en.md)
-- Check token roles and generated-file ownership before changing configuration. [Design contract](../../docs/design.md)
-- Confirm inputs, outputs, and interaction behavior for the components you use. [Component contracts](../../docs/ui-components.md) · [Public API catalog](../../docs/ui-library-api.json)
+- Check token roles and generated-file ownership before changing configuration. [Design contract](../../docs/design.en.md)
+- Confirm inputs, outputs, and interaction behavior for the components you use. [Component contracts](../../docs/ui-components.en.md) · [Public API catalog](../../docs/ui-library-api.json)
 - For advanced forms, locale scopes, RTL, and specialist components, check the runtime contracts. [Runtime integration contracts](references/ui-library-runtime.md)
 - Check CLI flags and recovery procedures when changing the output location. [CLI reference](../../docs/commands.en.md)
 

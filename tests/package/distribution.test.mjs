@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parse, stringify } from 'yaml';
 import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-verification/candidate.mjs';
+import { verifyEnglishDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
@@ -21,7 +22,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.3');
+  assert.equal(manifest.version, '0.1.0-beta.4');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
   for (const name of ['README.md', 'README.ja.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
@@ -73,6 +74,8 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   await assert.rejects(readFile(resolve(consumer, '.ui/generated/manifest.json')), { code: 'ENOENT' });
   cli('sync');
   assert.match(cli('sync'), /current/);
+  const documentation = await verifyEnglishDocumentation(installed, resolve(consumer, '.agents/skills/project-ui'));
+  t.diagnostic(`Installed and synced English documentation closure: ${JSON.stringify(documentation)}`);
   assert.match(await readFile(resolve(consumer, '.ui/generated/angular/locale-defaults.ts'), 'utf8'), /"en"/);
   const skillDocs = resolve(consumer, '.agents/skills/project-ui/references/docs');
   const generatedDocs = [];

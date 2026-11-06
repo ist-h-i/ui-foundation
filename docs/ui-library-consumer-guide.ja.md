@@ -21,7 +21,7 @@
 既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。ui-foundationはAngularアプリ自体を作成するscaffoldではありません。
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init --language ja
 ```
@@ -112,6 +112,8 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 ## AIに読み込ませて開発する
 
+標準のAI向けSkill・参照手順・生成contextの説明は英語です。人間向けのこのガイドやAPI・設計資料には日英版を用意し、標準Skillは英語版を参照します。既存のSKILL.ja.mdは互換性のため残します。アプリがYAMLに記述した文脈やラベルは原文を保持します。
+
 ファイルを参照できる開発AIに、生成したSkillと設定を読み込ませて画面の作成・修正を依頼できます。ui-foundationは、AIが提供部品と採用したデザイン設定を使うための開発指針を生成します。AIモデルの起動・選択やAPIへの接続は行いません。
 
 ### 1. 初回のsyncを終えて、参照するファイルを確認する
@@ -139,7 +141,7 @@ AIツールのファイル参照・添付機能、またはローカルファイ
 - .agents/skills/project-ui/project-context.md
 - ui.config.yaml
 
-使う部品のAPIと依存条件は、Skillが参照するreferences/docs/から確認してください。
+使う部品のAPIと依存条件は、Skillが参照するreferences/docs/の英語版から確認してください。
 読めたファイル、採用するプロファイル、生成先を簡潔に示してください。
 不足するファイルや参照できない資料がある場合は、その箇所を報告してください。
 ```
