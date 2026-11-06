@@ -130,6 +130,9 @@ try {
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   page.on('worker', worker => workers.push(new URL(worker.url()).pathname));
   await page.goto(origin);
+  await expect(page.getByTestId('default-locale')).toHaveText('en-US');
+  await expect(page.getByTestId('default-message')).toHaveText('Close');
+  await expect(page.locator('ui-text-input')).toContainText('Optional');
   const input = page.getByRole('textbox', { name: /^Draft/ });
   await input.fill('package draft');
   const editor = await input.elementHandle();
@@ -151,7 +154,7 @@ try {
   await expect(page.locator('ui-map canvas')).toBeVisible();
   for (const expected of ['/assets/sheet-formula.worker.js', '/assets/pdf/pdf.worker.mjs', '/assets/maplibre/maplibre-gl-worker.mjs']) assert.ok(workers.includes(expected), `worker not started: ${expected}`);
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ strictAot: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
+  console.log(JSON.stringify({ strictAot: true, englishWithoutLocaleProvider: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
 } finally {
   await browser?.close();
   server.closeAllConnections();

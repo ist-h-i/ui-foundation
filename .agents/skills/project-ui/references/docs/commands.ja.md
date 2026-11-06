@@ -25,7 +25,7 @@ ui-foundation -h
 | オプション | 対象 | 意味・既定値 |
 | --- | --- | --- |
 | `--config PATH` | `init` / `sync` / `check` | アプリrootからの相対パス。既定は`ui.config.yaml`。`init`では作成先、それ以外では読込み元 |
-| `--language en\|ja` | `init`のみ | ひな形の説明文の言語。既定は英語。日本語は`ja`。部品のruntime言語は変更しない |
+| `--language en\|ja` | `init`のみ | ひな形の説明文と生成部品の既定言語。既定は英語。日本語は`ja`。YAMLへ`default_language`を保存する |
 | `--dry-run` | `sync`のみ | 同期予定を検査・表示し、生成物とSkillを変更しない。排他lockは取得する |
 | `--from-output PATH` | `sync`のみ | 従来v1の生成先を明示する移行用指定。[限定条件](#生成先の変更と--from-output)を参照 |
 | `--format text` | `check`のみ | 人が読むテキスト。省略時もこの形式 |

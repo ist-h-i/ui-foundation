@@ -60,8 +60,10 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.match(installedMetadata.description, /English and Japanese/);
   cli('init');
   assert.equal(parse(await readFile(resolve(consumer, 'ui.config.yaml'), 'utf8')).context.product, 'Application management');
+  assert.equal(parse(await readFile(resolve(consumer, 'ui.config.yaml'), 'utf8')).default_language, 'en');
   cli('init', '--language', 'ja', '--config', 'japanese.yaml');
   assert.equal(parse(await readFile(resolve(consumer, 'japanese.yaml'), 'utf8')).context.product, '申請管理');
+  assert.equal(parse(await readFile(resolve(consumer, 'japanese.yaml'), 'utf8')).default_language, 'ja');
   await assert.rejects(async () => cli('init'), /already exists/i);
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/app.ts'), 'export const title: string = "Example";\n');
@@ -69,6 +71,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   await assert.rejects(readFile(resolve(consumer, '.ui/generated/manifest.json')), { code: 'ENOENT' });
   cli('sync');
   assert.match(cli('sync'), /current/);
+  assert.match(await readFile(resolve(consumer, '.ui/generated/angular/locale-defaults.ts'), 'utf8'), /"en"/);
   const skillDocs = resolve(consumer, '.agents/skills/project-ui/references/docs');
   const generatedDocs = [];
   async function visitSkillDocs(directory, prefix = 'docs') {

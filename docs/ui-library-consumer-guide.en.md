@@ -27,7 +27,7 @@ After either installation, run the CLI from the app root.
 
 The package's `engines` field specifies the Node.js version. The beta was tested with Node.js 24.19.0, Angular and CDK 22.2.1, and TypeScript 6.0.3. Install the required dependencies before compiling the generated Angular code. [Application dependencies](#application-dependencies)
 
-`init` creates `ui.config.yaml` and refuses to overwrite an existing configuration. Edit the YAML before generating. English is the default configuration language. Use `init --language ja` for Japanese. This affects starter prose, not runtime locale settings. Existing YAML remains unchanged by sync. Use the bundled examples as schema references. [English example](../examples/ui.config.example.en.yaml) · [日本語の例](../examples/ui.config.example.yaml)
+`init` creates `ui.config.yaml` and refuses to overwrite an existing configuration. Edit the YAML before generating. English is the default configuration language. Use `init --language ja` for Japanese. `init` stores `default_language: en` (or `ja` with `--language ja`), selecting both starter prose and the generated built-in language/Intl defaults. New English apps need no locale provider for English built-in text. Existing YAML remains unchanged by sync; if it omits this setting, generated defaults stay Japanese. Use the bundled examples as schema references. [English example](../examples/ui.config.example.en.yaml) · [日本語の例](../examples/ui.config.example.yaml)
 
 | Field | What the app defines |
 | --- | --- |
@@ -36,6 +36,7 @@ The package's `engines` field specifies the Node.js version. The beta was tested
 | `semantic` | References from roles such as body text, primary action, or page padding to primitive values |
 | `profiles` | Named groups of overrides and design guidance for different contexts |
 | `default_profile` | Profile ID applied by default |
+| `default_language` | `en` or `ja` for generated built-in text and locale defaults; absent in older YAML means Japanese |
 | `output` | Managed output directory, initially `.ui/generated` |
 | `checks` | App source roots and any scoped, documented exceptions for static checking |
 
@@ -118,7 +119,7 @@ Keep `strictTemplates` and `strictInjectionParameters` enabled. The Angular buil
 
 ## Select English component messages
 
-Import `uiEnglishMessages` from the generated public entry point and provide it in the app's locale options. In this example, `src/main.ts` bootstraps the standalone root from the previous section.
+The English starter config selects English automatically through `default_language: en`; `default_language: ja` selects Japanese. Existing configs without this field preserve Japanese across upgrades. Changing the YAML default requires sync. To switch at runtime or override that default, import `uiEnglishMessages` from the generated public entry point and provide it in the app's locale options. In this example, `src/main.ts` bootstraps the standalone root from the previous section.
 
 ```ts
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -136,7 +137,7 @@ bootstrapApplication(App, {
 });
 ```
 
-`locale` configures `Intl` formatting. `messages` selects the dictionary for library-owned text such as built-in actions, status announcements, and diagnostics. The default locale is `ja-JP`, and an unmapped message uses its Japanese fallback. To override an English entry, pass a new dictionary such as `{ ...uiEnglishMessages, '検索': 'Find' }`. Keep placeholder names such as `{count}` in custom translations. The app supplies its own field labels, content, and backend errors.
+`locale` configures `Intl` formatting. `messages` selects the dictionary for library-owned text such as built-in actions, status announcements, and diagnostics. The generated default locale is `en-US` with the English dictionary when `default_language: en`; it is `ja-JP` with Japanese fallbacks when the setting is `ja` or absent. An unmapped message uses its Japanese source fallback. To override an English entry, pass a new dictionary such as `{ ...uiEnglishMessages, '検索': 'Find' }`. Keep placeholder names such as `{count}` in custom translations. The app supplies its own field labels, content, and backend errors.
 
 For an app-wide English/Japanese switch, keep one options signal and pass it to `provideUiLocale` at bootstrap:
 
@@ -246,5 +247,7 @@ The generated checker runs with Node and checks the generated policy against the
 Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions in Japanese](static-checks.ja.md)
 
 Build the app and exercise the actual tasks in the browser after synchronization. Check supported profiles and languages with narrow layouts, longer translated labels, text zoom, and keyboard focus. Exercise pending, failure, partial-data, and retry paths and verify that a language change retains the current draft or request. For media and specialist components, verify worker startup and real asset responses. Track compile results, automated accessibility findings, observed behavior, and visual review separately.
+
+To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
 When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery in Japanese](npm-beta-readiness.ja.md) · [Release notes in Japanese](npm-beta-release-notes.ja.md)

@@ -18,6 +18,7 @@ export interface FoundationConfig {
   context: ProjectContext;
   output: string;
   default_profile: string;
+  default_language?: 'en' | 'ja';
   primitives: Record<string, Primitive>;
   semantic: Record<string, string>;
   profiles: Record<string, Profile>;
@@ -120,8 +121,9 @@ function validValue(type: PrimitiveType, value: unknown): boolean {
 
 function validateConfig(input: unknown, source: SourceLocations): FoundationConfig {
   const validator = new Validator(source);
-  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles', 'checks'], ['checks']);
+  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles', 'checks', 'default_language'], ['checks', 'default_language']);
   if (root.schema_version !== 1) validator.issue('schema_version', 'Only schema_version: 1 is supported');
+  if (own(root, 'default_language') && root.default_language !== 'en' && root.default_language !== 'ja') validator.issue('default_language', 'Default language must be en or ja');
   const context = validator.object(root.context, 'context', ['product', 'goals', 'constraints']);
   const output = validator.text(root.output, 'output');
   if (output !== output.trim() || !output || output.startsWith('/') || /[\\\u0000-\u001f<>:"|?*]/.test(output)
@@ -172,6 +174,7 @@ function validateConfig(input: unknown, source: SourceLocations): FoundationConf
     },
     output,
     default_profile: defaultProfile,
+    ...(own(root, 'default_language') ? { default_language: root.default_language as 'en' | 'ja' } : {}),
     primitives,
     semantic: validator.semantics(root.semantic, 'semantic'),
     profiles,
@@ -364,6 +367,7 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
     context: config.context,
     output: config.output,
     default_profile: config.default_profile,
+    ...(config.default_language ? { default_language: config.default_language } : {}),
     primitives: config.primitives,
     profiles,
     ...(config.checks ? { checks: config.checks } : {}),

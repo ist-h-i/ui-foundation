@@ -9,6 +9,8 @@ description: Design and implement UI for this project using its persona profiles
 
 この手順の `project-context.md` と `references/docs/` は、`sync` 後の `.agents/skills/project-ui/` を基準とするパスです。インストール直後は[日本語の導入ガイド](../../docs/ui-library-consumer-guide.ja.md)を読み、同期してから生成Skillを利用してください。
 
+新規設定の `default_language: en` は生成部品の英語既定値を選びます。`init --language ja` は `ja` を保存し、項目のない既存YAMLは日本語を維持します。既存アプリを無断で英語化せず、明示した言語変更は再同期後にアプリ所有の翻訳と書式も検証してください。
+
 ## 最初に読む
 
 生成先では隣の`project-context.md`を読み、利用者の目的・利用状況・制約、`default_profile`、各プロファイルの`guidance`とトークンの対応を確認する。利用アプリの正本YAMLと、同梱の`references/docs/design.md`を読む。説明文は設計の判断材料として使い、文章だけを根拠に設定値を確定しない。

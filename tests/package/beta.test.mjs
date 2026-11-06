@@ -122,7 +122,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   const installedManifest = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.deepEqual(installedManifest, candidateDetails.manifest, 'npm must preserve the candidate metadata');
   const cli = (...args) => isolated(process.execPath, [resolve(installed, 'dist/cli.js'), ...args]);
-  await cli('init', '--language', 'ja');
+  await cli('init');
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/application.ts'), 'export const consumerApplication = true;\n');
   await cli('sync');
@@ -212,7 +212,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   await isolated(process.execPath, [resolve(consumer, 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js'), '-p', 'tsconfig.json'], 180_000);
   const smoke = JSON.parse(await isolated(process.execPath, ['consumer-smoke.mjs', manifest.name], 180_000));
   assert.deepEqual(await readFile(resolve(consumer, 'public/ui-foundation/LICENSE.txt')), ownLicense);
-  assert.equal(smoke.strictAot, true); assert.equal(smoke.inputAndProfileRetention, true);
+  assert.equal(smoke.strictAot, true); assert.equal(smoke.englishWithoutLocaleProvider, true); assert.equal(smoke.inputAndProfileRetention, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
   assert.ok(smoke.servedAssetHashes > 20);
   const metafileBytes = await readFile(resolve(consumer, 'bundle-metafile.json'));

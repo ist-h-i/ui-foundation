@@ -16,6 +16,7 @@ Resolved YAML settings for screen design. Edit the source YAML to change configu
     ],
     "product": "申請管理"
   },
+  "default_language": "ja",
   "default_profile": "guided",
   "output": ".ui/generated",
   "profiles": {

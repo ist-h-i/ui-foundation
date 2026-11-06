@@ -413,7 +413,7 @@ export class LocaleProbe {
 
 `UiLocaleOptions` の `civilDateOptions`、`dateTimeOptions`、`numberOptions` は Intl の表示 option、`messages` は部品所有の日本語 fallback 文言を key にする辞書です。civil date は日付の意味を維持し、time zone を跨いで別日へ変換しません。date-time の zone は `timeZone` に指定し、`dateTimeOptions.timeZone` へ重ねて指定しません。NumberInput などの明示 input は DI defaults より優先します。NumberInput の表示 locale と、native 数値 editor の入力契約は別です。
 
-新規設定の説明文は英語が既定です。日本語で作成する場合は `init --language ja` を使います。標準Skillは `SKILL.md`、日本語の全文は `SKILL.ja.md` です。既存設定の説明文や部品の日本語既定値は変更しません。
+新規設定の説明文は英語が既定です。日本語で作成する場合は `init --language ja` を使います。標準Skillは `SKILL.md`、日本語の全文は `SKILL.ja.md` です。`init` は `default_language: en`、`init --language ja` は `default_language: ja` を保存し、生成部品の初期言語・Intl localeを選びます。項目のない既存設定は日本語を維持します。設定変更後は再同期してください。既存アプリを英語に移す場合は、アプリ所有の翻訳と数値・日付の表示も検証します。time zoneやnative入力書式、業務データは変更しません。旧CLIは新項目を拒否するため、rollbackでは保存したYAML・パッケージ・生成物を一緒に戻します。
 
 部品の文言を英語にするには、生成済みの公開入口から `uiEnglishMessages` を import し、`provideUiLocale({locale: 'en-US', messages: uiEnglishMessages})` を渡します。文言を調整する場合は `{...uiEnglishMessages, '検索': 'Find'}` のように辞書を上書きできます。`locale` は日付・数値などの書式を選び、`messages` は部品の文言を選びます。英語の親scope内で日本語へ戻す場合は、同じ公開入口の `uiJapaneseMessages` を `messages` に指定します。空辞書は親の翻訳を継承するため、日本語への切り替えにはなりません。
 

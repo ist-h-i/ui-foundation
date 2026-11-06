@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 145,
+  "source_count": 146,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -11208,6 +11208,19 @@
       ]
     },
     {
+      "path": "templates/angular/locale-defaults.ts",
+      "sha256": "244da58fb62a9ca1e905d178a9e093651e8ec49530462208bb2f76e84d57cd54",
+      "declarations": [
+        {
+          "names": [
+            "uiDefaultLanguage"
+          ],
+          "kind": "variable",
+          "declaration": "export const uiDefaultLanguage: 'en' | 'ja' = \"ja\";"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/locale-en.ts",
       "sha256": "46e6f2dff79ee1a846f97e6250651898a3a5a6fa6523e75b76fd158c87340ab5",
       "declarations": [
@@ -11235,7 +11248,7 @@
     },
     {
       "path": "templates/angular/locale-model.ts",
-      "sha256": "4a1bf31d5981d558d9fec8013ecf7bc7a5d02d2bdc93d9cc3ef0ed8b461f0a29",
+      "sha256": "0faab58b00b0511443bc42049509741d2ce0cfbb0e162bd53c13bba07cbd3684",
       "declarations": [
         {
           "names": [
@@ -11270,7 +11283,7 @@
             "defaultUiLocale"
           ],
           "kind": "variable",
-          "declaration": "export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:Object.freeze({})});"
+          "declaration": "export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:uiDefaultLanguage==='en'?'en-US':'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:uiDefaultLanguage==='en'?uiEnglishMessages:Object.freeze({})});"
         },
         {
           "names": [

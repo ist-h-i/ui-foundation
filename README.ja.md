@@ -58,7 +58,7 @@ npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScr
 
 ## 言語の選択
 
-標準READMEとSkillは英語です。日本語の開発指針は、同期後の `.agents/skills/project-ui/SKILL.ja.md` にあります。新規設定は `ui-foundation init --language ja` で日本語にできます。既存設定と部品の日本語既定値は維持します。
+標準READMEとSkillは英語です。日本語の開発指針は、同期後の `.agents/skills/project-ui/SKILL.ja.md` にあります。新規設定は `init` が `default_language: en` を保存し、部品も明示providerなしで英語を既定にします。`ui-foundation init --language ja` は `default_language: ja` と日本語の説明文を保存します。`default_language` のない既存設定は、再同期しても部品の日本語既定値を維持します。既存アプリを英語へ移す場合だけ `default_language: en` を追記し、文言・日付や数値の書式・業務フローを検証します。
 
 部品は `provideUiLocale` と同梱の `uiEnglishMessages` / `uiJapaneseMessages` で表示言語を選びます。日付・数値の `locale` と文言の `messages` を併せて更新します。[利用手順](docs/ui-library-consumer-guide.ja.md)を参照してください。
 

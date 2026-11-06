@@ -17,7 +17,7 @@ Use `./node_modules/.bin/ui-foundation` to select the installed version. With no
 | Option | Commands | Meaning |
 | --- | --- | --- |
 | `--config PATH` | All | Project-relative YAML path; defaults to `ui.config.yaml` |
-| `--language en\|ja` | `init` | Configuration prose language; defaults to English. Does not select runtime component messages |
+| `--language en\|ja` | `init` | Starter prose and generated default language; defaults to English. Writes YAML `default_language` |
 | `--dry-run` | `sync` | Validate and print planned changes without writing generated files; still acquires the sync lock |
 | `--from-output PATH` | `sync` | Explicit previous output for legacy v1 migration without an ownership registry |
 | `--format text\|json` | `check` | Output format; defaults to text |
@@ -33,7 +33,7 @@ Place options after the command and separate their values with spaces. Duplicate
 ./node_modules/.bin/ui-foundation init --language ja --config config/ui.config.yaml
 ```
 
-Creates a configuration from the bundled English or Japanese example, replacing repository-specific checks with `source_roots: [src]`, no approved external components and no exceptions. It refuses to overwrite an existing file. Edit context, profiles, tokens and check roots for your app before sync. Existing YAML prose is preserved during sync; it is not machine-translated.
+Creates a configuration from the bundled English or Japanese example, recording `default_language: en` or `ja`, replacing repository-specific checks with `source_roots: [src]`, no approved external components and no exceptions. It refuses to overwrite an existing file. Edit context, profiles, tokens and check roots for your app before sync. Existing YAML prose is preserved during sync; it is not machine-translated. Older configurations without `default_language` retain Japanese component defaults. Set the field explicitly and resync to migrate; app-owned translations and formatting still need verification.
 
 ## Synchronize
 

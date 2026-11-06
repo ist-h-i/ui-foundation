@@ -92,7 +92,7 @@ async function sourceFiles(directory: string): Promise<Map<string, string>> {
 
 function projectContext(config: ResolvedConfig): string {
   return '# Project UI configuration / プロジェクトのUI設定\n\nResolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose.\n\n画面設計用の設定概要です。変更は正本のYAMLで行います。CLIは説明文から見た目を推測しません。\n\n'
-    + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, output: config.output, profiles: config.profiles }) + '```\n';
+    + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, default_language: config.default_language ?? 'ja', output: config.output, profiles: config.profiles }) + '```\n';
 }
 
 export async function generatedFiles(config: ResolvedConfig): Promise<Map<string, string>> {
@@ -111,6 +111,7 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     [ownershipPath, stableJSON(ownership(config.output))],
   ]);
   for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) files.set(`${config.output}/angular/${path}`, content);
+  files.set(`${config.output}/angular/locale-defaults.ts`, '/** Generated from default_language; omitted settings retain Japanese for existing apps. */\nexport const uiDefaultLanguage: \'en\' | \'ja\' = ' + JSON.stringify(config.default_language ?? 'ja') + ';\n');
   files.set(`${config.output}/check-ui.cjs`, await renderCheckerBundle());
   files.set(`${config.output}/CHECKER-NOTICE.txt`, await renderCheckerNotice());
   for (const [name, text] of await renderCheckerLibraries()) files.set(`${config.output}/checker-lib/${name}`, text);
@@ -335,6 +336,7 @@ export async function initProject(options: InitOptions): Promise<string> {
   const example = await readFile(resolve(toolRoot, language === 'en' ? 'examples/ui.config.example.en.yaml' : 'examples/ui.config.example.yaml'), 'utf8');
   // Repository fixture roots are not valid application defaults.
   const initialConfig = parseConfig(example);
+  initialConfig.default_language = language;
   initialConfig.checks = { source_roots: ['src'], approved_components: [], exceptions: [] };
   const initial = stringify(initialConfig);
   await mkdir(dirname(path), { recursive: true });
