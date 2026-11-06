@@ -5,6 +5,7 @@ import {test} from 'node:test';
 import {injectUiLocale,injectUiText,provideUiLocale,UI_LOCALE} from '../../.ui/generated/angular/locale';
 import type {UiLocaleOptions} from '../../.ui/generated/angular/locale-model';
 import {uiEnglishMessages} from '../../.ui/generated/angular/locale-en';
+import {listSelectionProblem} from '../../.ui/generated/angular/collection-model';
 import {injectTableColumnMoveText} from '../../.ui/generated/angular/table-controls';
 test('provider and message service run in a server DI context without reading browser globals',()=>{
  const oldDocument=Object.getOwnPropertyDescriptor(globalThis,'document'),oldWindow=Object.getOwnPropertyDescriptor(globalThis,'window');
@@ -22,7 +23,14 @@ test('provider and message service run in a server DI context without reading br
   assert.equal(columnMoveText(-1),'Move earlier');
   assert.equal(columnMoveText(-1,'Status'),'Move earlier: Status');
   assert.equal(columnMoveText(1,'Status'),'Move later: Status');
+  options.set({locale:'en-US',messages:{'1件まで選択してください。':'Choose just one.'}});
+  assert.equal(listSelectionProblem([{value:'a',label:'A'},{value:'b',label:'B'}],['a','b'],true,false,1,text),'Choose just one.');
+  assert.equal(text('{limit}件まで選択してください。',{limit:1},()=> 'fragment fallback'),'Choose just one.');
+  options.set({locale:'en-US',messages:{'1件まで選択してください。':'Legacy','{limit}件まで選択してください。':'At most {limit}.'}});
+  assert.equal(text('{limit}件まで選択してください。',{limit:1}),'At most 1.');
   options.set({locale:'en-US'});
+  assert.equal(text('{limit}件まで選択してください。',{limit:1},()=> 'fragment fallback'),'fragment fallback');
+
   assert.equal(text('閉じる'),'閉じる');
   assert.equal(columnMoveText(-1),'前へ');
   assert.equal(columnMoveText(-1,'Status'),'Status列を前へ');

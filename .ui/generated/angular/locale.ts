@@ -12,6 +12,12 @@ export function injectUiText():(source:string,parameters?:Readonly<Record<string
  const locale=injectUiLocale();
  return (source,parameters,fallback)=>{
   const messages=locale().messages;
+  // Prefer the parameterized key, then honor dictionaries written for the
+  // earlier, fully composed Japanese message before using a fragment fallback.
+  if(!Object.hasOwn(messages,source)&&parameters){
+   const composed=uiMessage(source,{},parameters);
+   if(Object.hasOwn(messages,composed))return uiMessage(composed,messages);
+  }
   return fallback&&!Object.hasOwn(messages,source)?fallback():uiMessage(source,messages,parameters);
  };
 }
