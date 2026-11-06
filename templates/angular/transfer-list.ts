@@ -13,7 +13,7 @@ import {ValueControl} from './value-control';
 import {OverlayRegistry} from './overlay';
 import {installCollectionFocus} from './collection-runtime';
 import type {CollectionKey} from './collection-model';
-import {reorderTransfer,transferBatch,transferConfigurationProblem,transferSelectionProblem,transferStructureProblem,type TransferChange,type TransferOptions,type TransferReason,type TransferReorder,type TransferSide,type TransferValue} from './transfer-model';
+import {reorderTransfer,transferBatch,transferConfigurationProblem,transferLimitMessages,transferLimitText,transferSelectionProblem,transferStructureProblem,type TransferChange,type TransferOptions,type TransferReason,type TransferReorder,type TransferSide,type TransferValue} from './transfer-model';
 
 export interface TransferItemContext<T>{$implicit:T;key:CollectionKey;label:string;side:TransferSide;index:number;pageIndex:number;count:number;checked:boolean;selected:boolean;}
 @Directive({selector:'ng-template[uiTransferItem]',standalone:true})
@@ -94,7 +94,16 @@ export class TransferList<T extends object> extends ValueControl<TransferValue> 
  private readonly options=computed<TransferOptions<T>>(()=>({items:this.items(),key:item=>this.key(item),label:item=>this.itemLabel(item),disabled:item=>this.itemDisabled(item),hidden:item=>this.itemHidden(item)}));
  protected readonly configurationProblem=computed(()=>{if(!this.controlId().trim()||!this.label().trim()||!this.uiEffective_sourceLabel().trim()||!this.uiEffective_targetLabel().trim())return this.uiRuntimeText_TransferList('移動欄の識別子と説明を指定してください。');try{new Intl.Collator(this.effectiveLocale());}catch{return this.uiRuntimeText_TransferList('検索の言語を確認してください。');}return this.uiDiagnostic_TransferList(transferConfigurationProblem(this.options(),this.maxSelected()));});
  protected readonly structureProblem=computed(()=>this.configurationProblem()?null:this.uiDiagnostic_TransferList(transferStructureProblem(this.options(),this.current())));
- protected readonly valueProblem=computed(()=>this.configurationProblem()??this.uiDiagnostic_TransferList(transferSelectionProblem(this.options(),this.current(),this.required(),this.maxSelected())));
+ protected readonly valueProblem=computed(()=>{
+  const configuration=this.configurationProblem();
+  if(configuration)return configuration;
+  const limit=this.maxSelected(),problem=transferSelectionProblem(this.options(),this.current(),this.required(),limit);
+  return problem===null?null:this.localizeLimitProblem(problem,transferLimitMessages.selection,limit);
+ });
+ private localizeLimitProblem(problem:string,source:string,limit:number|null):string{
+  const text=this.uiRuntimeText_TransferList;
+  return limit!==null&&problem===transferLimitText(source,limit)?text(source,{limit},()=>text(problem)):text(problem);
+ }
  protected readonly editsBlocked=computed(()=>this.blocked()||this.readonly()||!!this.configurationProblem()||!!this.structureProblem());
  protected readonly selectedKeys=computed<readonly CollectionKey[]>(()=>Array.isArray(this.current())?this.current() as readonly CollectionKey[]:[]);
  protected readonly source=computed(()=>this.configurationProblem()?[]:this.items().filter(item=>!this.selectedKeys().includes(this.key(item))&&!this.itemHidden(item)&&this.matches(item,this.sourceQuery())));
@@ -125,16 +134,19 @@ export class TransferList<T extends object> extends ValueControl<TransferValue> 
  protected moveScope(side:TransferSide):void{this.moveKeys(this.scope(side),side==='source'?'target':'source','button');}
  protected moveKeys(keys:readonly CollectionKey[],to:TransferSide,reason:TransferReason,beforeKey:CollectionKey|null=null):boolean{
   if(this.destroy.destroyed||this.editsBlocked())return false;
-  const snapshot=this.snapshot(),previousValue=this.current(),result=transferBatch(this.options(),previousValue,keys,to,this.maxSelected(),this.canTransfer(),reason,beforeKey);
+  const snapshot=this.snapshot(),limit=snapshot.maximum,previousValue=this.current(),result=transferBatch(this.options(),previousValue,keys,to,limit,this.canTransfer(),reason,beforeKey);
   if(!this.matchesSnapshot(snapshot)){this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、移動していません。')]);return false;}
-  if(result.problem){this.feedback.set(result.problem);return false;}if(result.value===previousValue)return false;
-  this.commit(result.value);const moved=new Set(keys);this.sourceMarked.update(values=>values.filter(key=>!moved.has(key)));this.targetMarked.update(values=>values.filter(key=>!moved.has(key)));this.touch();this.transferred.emit({items:snapshot.items,keys:[...keys],from:to==='target'?'source':'target',to,previousValue,value:result.value!,reason});this.feedback.setMessage([String(keys.length), () => this.uiRuntimeText_TransferList('件を'), ...to === 'target' ? [() => this.uiRuntimeText_TransferList('追加')] : [() => this.uiRuntimeText_TransferList('削除')], () => this.uiRuntimeText_TransferList('しました。')]);return true;
+  if(result.problem){const problem=result.problem;this.feedback.setMessage([() => this.localizeLimitProblem(problem,transferLimitMessages.addition,limit)]);return false;}if(result.value===previousValue)return false;
+  this.commit(result.value);const moved=new Set(keys);this.sourceMarked.update(values=>values.filter(key=>!moved.has(key)));this.targetMarked.update(values=>values.filter(key=>!moved.has(key)));this.touch();this.transferred.emit({items:snapshot.items,keys:[...keys],from:to==='target'?'source':'target',to,previousValue,value:result.value!,reason});const count=moved.size,added=to==='target';
+  this.feedback.setMessage([()=>this.uiRuntimeText_TransferList(added?'{count}件を追加しました。':'{count}件を削除しました。',{count},
+   ()=>count+this.uiRuntimeText_TransferList('件を')+this.uiRuntimeText_TransferList(added?'追加':'削除')+this.uiRuntimeText_TransferList('しました。'))]);return true;
  }
  protected moveRelative(item:T,offset:number):void{const index=this.target().findIndex(row=>this.key(row)===this.key(item)),other=this.target()[index+offset];if(other)this.moveOrder(this.key(item),this.key(other),'button');}
  private moveOrder(key:CollectionKey,targetKey:CollectionKey,reason:TransferReason):boolean{
   if(this.destroy.destroyed||this.editsBlocked()||!this.reorderable())return false;const snapshot=this.snapshot(),previousValue=this.current(),result=reorderTransfer(this.options(),previousValue,key,targetKey,this.canReorder(),reason);
-  if(!this.matchesSnapshot(snapshot)){this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、順序を変更していません。')]);return false;}if(result.problem){this.feedback.set(result.problem);return false;}if(result.value===previousValue)return false;
-  const item=this.items().find(item=>this.key(item)===key)!;this.commit(result.value);this.touch();this.reordered.emit({items:snapshot.items,item,key,fromIndex:snapshot.keys.indexOf(key),toIndex:result.value!.indexOf(key),previousValue:previousValue!,value:result.value!,reason});this.feedback.setMessage([String(this.itemLabel(item)), () => this.uiRuntimeText_TransferList('を'), String(result.value!.indexOf(key) + 1), () => this.uiRuntimeText_TransferList('番目へ移動しました。')]);return true;
+  if(!this.matchesSnapshot(snapshot)){this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、順序を変更していません。')]);return false;}if(result.problem){const problem=result.problem;this.feedback.setMessage([() => this.uiRuntimeText_TransferList(problem)]);return false;}if(result.value===previousValue)return false;
+  const item=this.items().find(item=>this.key(item)===key)!;this.commit(result.value);this.touch();this.reordered.emit({items:snapshot.items,item,key,fromIndex:snapshot.keys.indexOf(key),toIndex:result.value!.indexOf(key),previousValue:previousValue!,value:result.value!,reason});const position=result.value!.indexOf(key)+1,label=String(this.itemLabel(item));this.feedback.setMessage([() => this.uiRuntimeText_TransferList('{label}を{position}番目へ移動しました。', {label,position},
+   ()=>label+this.uiRuntimeText_TransferList('を')+position+this.uiRuntimeText_TransferList('番目へ移動しました。'))]);return true;
  }
  private snapshot():TransferSnapshot<T>{return {items:this.items(),value:this.current(),keys:[...this.selectedKeys()],rows:this.items().map(item=>({item,key:this.key(item),label:this.itemLabel(item),disabled:this.itemDisabled(item),hidden:this.itemHidden(item)})),source:[...this.sourceZone().keys],target:[...this.targetZone().keys],maximum:this.maxSelected(),canTransfer:this.canTransfer(),canReorder:this.canReorder(),reorderable:this.reorderable(),direction:this.direction()};}
  private matchesSnapshot(snapshot:TransferSnapshot<T>):boolean{
@@ -166,7 +178,12 @@ export class TransferList<T extends object> extends ValueControl<TransferValue> 
   if(event.key==='Tab'){this.invalidatePending();return;}if(event.key==='Enter'||event.key===' '){event.preventDefault();this.finishKeyboard();return;}
   let next={...draft};if(event.key==='ArrowLeft'||event.key==='ArrowRight'){next.to=event.key===(this.direction()==='rtl'?'ArrowLeft':'ArrowRight')?'target':'source';next.targetKey=next.to==='target'?(draft.from==='target'?draft.key:null):null;}
   else if(next.to==='target'&&(event.key==='ArrowUp'||event.key==='ArrowDown'||event.key==='Home'||event.key==='End')){const keys=draft.snapshot.target,index=next.targetKey===null?keys.length:keys.indexOf(next.targetKey);const position=event.key==='Home'?0:event.key==='End'?keys.length-1:Math.max(0,Math.min(keys.length-(draft.from==='target'?1:0),index+(event.key==='ArrowUp'?-1:1)));next.targetKey=keys[position]??null;}
-  else return;event.preventDefault();if(!this.matchesSnapshot(draft.snapshot)){this.invalidatePending();this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、移動を取り消しました。')]);return;}this.keyboard.set(next);const position=next.targetKey===null?this.selectedKeys().length+1:this.selectedKeys().indexOf(next.targetKey)+1;this.feedback.setMessage([() => this.uiRuntimeText_TransferList('仮の移動先：'), ...next.to === 'source' ? [String(this.uiEffective_sourceLabel())] : [String(this.uiEffective_targetLabel()), () => this.uiRuntimeText_TransferList('の'), String(position), () => this.uiRuntimeText_TransferList('番目')], () => this.uiRuntimeText_TransferList('。Enterで確定します。')]);
+  else return;event.preventDefault();if(!this.matchesSnapshot(draft.snapshot)){this.invalidatePending();this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、移動を取り消しました。')]);return;}this.keyboard.set(next);const position=next.targetKey===null?this.selectedKeys().length+1:this.selectedKeys().indexOf(next.targetKey)+1;const toSource=next.to==='source',appLabel=toSource?this.sourceLabel():this.targetLabel();
+  this.feedback.setMessage([()=>{
+   const text=this.uiRuntimeText_TransferList,label=appLabel??text(toSource?'候補':'選択済み');
+   return text(toSource?'仮の移動先：{label}。Enterで確定します。':'仮の移動先：{label}の{position}番目。Enterで確定します。',{label,position},
+    ()=>text('仮の移動先：')+label+(toSource?'':text('の')+position+text('番目'))+text('。Enterで確定します。'));
+  }]);
  }
  private finishKeyboard():void{const draft=this.keyboard();if(!draft)return;this.keyboard.set(null);this.stopOperation();if(!this.matchesSnapshot(draft.snapshot)){this.feedback.setMessage([() => this.uiRuntimeText_TransferList('候補が更新されたため、移動を取り消しました。')]);return;}if(draft.from!==draft.to)this.moveKeys([draft.key],draft.to,'keyboard',draft.to==='target'?draft.targetKey:null);else if(draft.to==='target'&&draft.targetKey!==null)this.moveOrder(draft.key,draft.targetKey,'keyboard');else this.feedback.setMessage([() => this.uiRuntimeText_TransferList('位置は変わりませんでした。')]);}
  constructor(){super();installCollectionFocus();this.destroy.onDestroy(()=>{this.pointerEpoch++;this.pointer=null;this.keyboard.set(null);this.stopOperation();});

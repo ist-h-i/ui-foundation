@@ -63,7 +63,7 @@ export class FilterBuilder extends ValueControl<FilterGroup> implements Validato
  readonly savedCleared = output<void>();
  protected readonly root = computed(() => this.uiDiagnostic_FilterBuilder(filterStructureError(this.current())) ? this.emptyValue : this.current());
  protected readonly problems = computed(() => this.issues(this.current()));
- protected readonly problemMap = computed(() => new Map(this.problems().map(problem => [problem.nodeId, problem.message])));
+ protected readonly problemMap = computed(() => new Map(this.problems().map(problem => [problem.nodeId, this.uiText_FilterBuilder(problem.message)])));
  private readonly saveError = signal('');
  protected readonly rootProblem = computed(() => this.saveError() || this.problemMap().get(this.root().id) || this.problemMap().get('root') || '');
  protected readonly pending = signal<FilterSaveRequest | null>(null);
@@ -113,13 +113,13 @@ export class FilterBuilder extends ValueControl<FilterGroup> implements Validato
  /** Invalidate UI acknowledgement before an unapplied parent change. The app owns any I/O cancellation. */
  invalidatePending():void {if(this.destroy.destroyed)return;this.saveFocusRequest=null;this.pending.set(null);this.saveError.set('');this.resultMessage.set('');}
  private invalidateChangedRequest():boolean {if(this.problems().length||this.fieldsKey()!==this.pendingFieldsKey||this.key()!==this.pendingKey){this.saveFocusRequest=null;this.pending.set(null);this.saveError.set('');this.resultMessage.setMessage([() => this.uiRuntimeText_FilterBuilder('条件が変更されたため、前の保存結果は現在の編集へ適用しません。')]);return true;}return false;}
- private issues(value:unknown) {const errors=filterProblems(value,this.fields());if(errors.length||!this.required())return errors;const count=(node:FilterNode):number=>node.type==='rule'?1:node.children.reduce((sum,child)=>sum+count(child),0);return count(value as FilterGroup)?[]:[{nodeId:(value as FilterGroup).id,message:this.uiRuntimeText_FilterBuilder('条件を追加してください。')}];}
+ private issues(value:unknown,textForRequired:(source:string)=>string=source=>source) {const errors=filterProblems(value,this.fields());if(errors.length||!this.required())return errors;const count=(node:FilterNode):number=>node.type==='rule'?1:node.children.reduce((sum,child)=>sum+count(child),0);return count(value as FilterGroup)?[]:[{nodeId:(value as FilterGroup).id,message:textForRequired('条件を追加してください。')}];}
  protected coerce(value: unknown): FilterGroup { return value === null || value === undefined ? emptyFilter() : value as FilterGroup; }
  protected domId(id: string): string { return this.controlId()+'-'+encodeURIComponent(id); }
  protected field(node: FilterNode): FilterField | undefined { return node.type==='rule'?this.definitions().find(field=>field.id===node.field):undefined; }
  protected knownChoice(node: FilterRule): boolean { return !!this.field(node)?.options?.some(option=>option.value===node.value); }
  protected operators(node: FilterRule): readonly FilterOperator[] { return filterOperators(this.field(node)?.type??'text'); }
- protected operatorText(operator: FilterOperator): string { return operatorLabels[operator]; }
+ protected operatorText(operator: FilterOperator): string { return this.uiText_FilterBuilder(operatorLabels[operator]); }
  protected valueText(value: unknown): string { return value===undefined||value===null?'':String(value); }
  protected describedBy(id: string): string | null { return [this.hint() ? this.controlId()+'-hint' : '', this.problemFor(id) ? this.domId(id)+'-error' : ''].filter(Boolean).join(' ') || null; }
  protected problemFor(id: string): string { return this.problemMap().get(id)??''; }
@@ -142,5 +142,5 @@ export class FilterBuilder extends ValueControl<FilterGroup> implements Validato
  completeSave(requestId:number,message=this.uiRuntimeText_FilterBuilder('条件を保存しました。')):boolean {const request=this.pending();if(this.destroy.destroyed||!request||request.requestId!==requestId||!message.trim()||this.invalidateChangedRequest())return false;this.savedSnapshot.set(cloneFilter(request.value));this.pending.set(null);this.saveError.set('');this.resultMessage.set(message);return true;}
  failSave(requestId:number,message:string):boolean {if(this.destroy.destroyed||this.pending()?.requestId!==requestId||!message.trim()||this.invalidateChangedRequest())return false;this.pending.set(null);this.resultMessage.set('');this.saveError.set(message);return true;}
  registerOnValidatorChange(callback:()=>void):void {this.validatorChanged=callback;}
- validate(control:AbstractControl):ValidationErrors|null {const errors=this.issues(this.coerce(control.value));return errors.length?{filterBuilder:errors}:null;}
+ validate(control:AbstractControl):ValidationErrors|null {const errors=this.issues(this.coerce(control.value),this.uiRuntimeText_FilterBuilder);return errors.length?{filterBuilder:errors}:null;}
 }

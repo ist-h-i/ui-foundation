@@ -1,76 +1,79 @@
 # ui-foundation
 
-動作を実装したAngularのUI部品と、設定ファイルで見た目を調整できる仕組みを提供するnpmパッケージです。フォーム、表、ナビゲーション、ダイアログなどの部品を組み合わせて、アプリの画面を作れます。
+[English](README.md) · [日本語](README.ja.md)
 
-色・文字・余白・寸法・角丸などを一つのYAMLで定義し、UI部品、Tailwindテーマ、AIの開発指針、検査設定へまとめて反映できます。
+Angular UI components and a configurable design foundation, generated from one YAML file. Build forms, tables, navigation, dialogs, schedules, media viewers and editors with working interactions, state and events.
 
-## できること
+Define colors, typography, spacing, dimensions and shapes once. Generate Angular source, two-layer design tokens, a Tailwind theme, AI development guidance and a source checker together.
 
-- **部品を組み合わせて画面を作る**：入力、選択、開閉、キーボード操作、処理中・エラーなどの表示や操作を備えたAngular部品を使えます。表示だけのモックではなく、アプリの状態やイベントにつないで利用する部品です。
-- **アプリに合う見た目へ調整する**：色だけでなく文字、余白、形状、部品の寸法などを設定できます。Angular部品とTailwindのユーティリティが同じ設定を参照します。
-- **生成と更新をまとめて行う**：CLIの`init`で設定のひな形を作り、`sync`で部品・スタイル・プロジェクト用Skill・検査器を一括生成します。変更前には`sync --dry-run`で差分を確認できます。
-- **設計と実装のずれを確認する**：`check`で設定と生成物の不一致を調べ、指定したアプリソースのデザインルール逸脱を静的に検査できます。
-- **AIにも設計の意図を渡す**：利用目的、制約、画面設計の指針、採用した設定をプロジェクト用Skillへ反映し、AIが画面を実装するときの判断材料にできます。
+## Get started
 
-## 使える部品
-
-| 用途 | 代表的な部品 |
-| --- | --- |
-| 入力・フォーム | テキスト入力、選択、日付・期間入力、段階的入力、条件編集 |
-| 表・一覧 | データテーブル、編集表、仮想一覧、ツリー、項目の移動 |
-| ナビゲーション | メニュー、サイドナビゲーション、タブ、パンくず |
-| 操作・通知 | ボタン、ダイアログ、ポップオーバー、通知、進捗表示 |
-| レイアウト・表示 | ページ枠、カード、グリッド、ドロワー、アバター、統計値 |
-| 日程・業務画面 | カレンダー、予定表、ガント、カンバン |
-| ファイル・媒体 | ファイル選択、画像・音声・動画、PDF、QR・バーコード |
-| 可視化・編集 | チャート、地図、表計算、コード・リッチテキスト編集、フロー編集 |
-
-部品の公開名、機能、制約は[コンポーネント一覧](docs/components.ja.md)を参照してください。
-
-## 設定で変えられること
-
-具体値を定義する「プリミティブ」と、その値をどこで使うかを定義する「セマンティック」を分けています。「プロファイル」は、この対応関係を名前付きでまとめた設定集です。独自の値とプロファイルを定義でき、決まったテーマから選ぶ方式には限定されません。
-
-設定例の`guided`と`dense`は、同じ画面・部品へ異なる設定を適用するためのサンプルです。機能が組み込まれた特別な名前ではありません。
-
-| 設定例の違い | `guided` | `dense` |
-| --- | --- | --- |
-| 主操作色 | 青 | 緑 |
-| 本文サイズ | 1.125rem | 1rem |
-| ページ余白 | 32px | 16px |
-| 操作部品の角丸 | 12px | 4px |
-
-`guided`を選ぶだけで画面が手順型になる、といった自動変換は行いません。画面構成や操作経路は、開発者やAIがアプリの目的に合わせて実装します。サンプル画面の「表示設定」は生成済みの設定を比較するもので、選択をYAMLへ保存する機能ではありません。実際のアプリでは一つのプロファイルに固定することもできます。
-
-## 提供範囲
-
-npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScriptソース、CSS、プロジェクト用Skill、検査器を生成します。コンパイル済みのAngularライブラリを直接importする方式ではなく、生成した部品を利用アプリでビルドします。Angularや描画エンジンなどの依存は[usageの依存関係](docs/ui-library-consumer-guide.ja.md#依存関係)に従って導入します。
-
-| ui-foundationが提供するもの | 利用アプリが組み込むもの |
-| --- | --- |
-| UI部品の表示・操作・状態とイベント | 画面構成、業務ロジック、HTTP通信、保存・送信・Undo |
-| ナビゲーションやリンクのUI | Angular Routerのルート定義・画面切替・遷移制御。既存部品とのRouter合成は未検証 |
-| 設定からの生成と静的検査 | アプリのビルド、実操作・アクセシビリティ・見た目・使いやすさの確認 |
-
-実行時のLLM API、サーバー、DBは提供しません。専門部品のworker、補助資産、外部サービスの認証や配信設定は利用アプリが用意します。静的検査の成功を、UX全体や任意の実行時挙動の保証とは扱いません。
-
-## 使い始める
+Install the published package in an existing Angular app:
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation
 ```
 
-ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。
+This source change has not been published to npm. To use the bilingual features described here before a release, install the tarball produced from this checkout with `npm pack`:
 
-| 知りたいこと | ドキュメント |
+```sh
+npm install --save-dev --save-exact /absolute/path/to/ui-foundation.tgz
+./node_modules/.bin/ui-foundation init
+./node_modules/.bin/ui-foundation sync --dry-run
+./node_modules/.bin/ui-foundation sync
+```
+
+`init` creates an English configuration. Use `init --language ja` for a Japanese configuration. Edit the configuration and point `checks.source_roots` at your app's actual source before checking it. The CLI runs from the current app root and preserves existing configuration and manually edited generated files.
+
+Follow the [English installation and integration guide](docs/ui-library-consumer-guide.en.md) for Angular dependencies, styles, workers, assets, updates and recovery. [日本語の導入ガイド](docs/ui-library-consumer-guide.ja.md)
+
+The beta verification environment is Node.js 24.19.0, Angular/CDK 22.2.1 and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
+
+## Build with components
+
+| Area | Examples |
 | --- | --- |
-| 使える部品と機能を探す | [コンポーネント一覧](docs/components.ja.md) |
-| 導入・設定・生成・組み込み・更新を進める | [usage](docs/ui-library-consumer-guide.ja.md) |
-| コマンド、引数、結果、エラー対処を調べる | [CLIコマンド一覧](docs/commands.ja.md) |
-| prop・イベントなどの詳細を調べる | [部品API](docs/ui-components.md) |
-| 設定の構造と生成の契約を調べる | [設計](docs/design.md) |
-| 静的検査の対象と限界を調べる | [静的検査](docs/static-checks.ja.md) |
+| Forms | Text, number and date inputs, selections, structured input, wizard, filter builder |
+| Lists and tables | Data tables, editable tables, virtual lists, trees, transfer lists |
+| Navigation | Menus, side navigation, tabs, breadcrumbs, command palette |
+| Actions and feedback | Buttons, dialogs, popovers, notifications, progress |
+| Layout and display | Page shell, cards, grids, drawers, avatars, statistics |
+| Scheduling | Calendar, scheduler, agenda, Gantt, Kanban |
+| Files and media | Upload, image/audio/video/PDF viewers, QR and barcode |
+| Visualization and editing | Charts, maps, spreadsheets, code and rich-text editors, flow editor |
 
-## ライセンス
+See the [English component overview](docs/components.en.md), [日本語の部品一覧](docs/components.ja.md) and [public API catalog](docs/ui-library-api.json). The app owns screen composition, business logic, routing, HTTP requests, persistence and undo.
 
-自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[usageの配布資産](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。
+## English and Japanese
+
+Documentation and the standard project Skill start in English; Japanese guides and the full Japanese Skill remain available. After sync, read `.agents/skills/project-ui/SKILL.md` or `SKILL.ja.md` together with the adjacent `project-context.md` and your source YAML.
+
+Components use the existing runtime locale provider. To display built-in text in English:
+
+```ts
+import { provideUiLocale, uiEnglishMessages } from './.ui/generated/angular/index';
+
+// Add these providers to the app's bootstrap configuration.
+const providers = provideUiLocale({ locale: 'en-US', messages: uiEnglishMessages });
+```
+
+For Japanese, use `locale: 'ja-JP', messages: uiJapaneseMessages` from the same public entry point. Pass an app-owned signal to switch languages while retaining input and component state. Keep the app's own labels, content and backend errors in its translation system. [Language switching and scopes](docs/ui-library-consumer-guide.en.md#select-english-component-messages)
+
+Existing apps retain Japanese runtime defaults. `locale` selects formatting; `messages` selects built-in text. A locale change alone does not translate messages. Date-time components still need an explicit business time zone. Advanced API contracts and specialist references currently retain Japanese prose, with public identifiers and types available in the API catalog.
+
+## Configure and verify
+
+Primitives hold concrete values. Semantic tokens describe their uses. Named profiles assign values and design guidance for different contexts. The bundled `guided` and `dense` profiles are editable examples; they do not automatically restructure screens.
+
+Edit YAML, preview `sync --dry-run`, run `sync`, then `check`. Keep generated files under generator ownership and place application code outside managed directories. Static checks detect generation mismatches and supported source deviations; verify interactions, accessibility, layout and recovery in the app as well.
+
+- [English CLI reference](docs/commands.en.md) · [日本語CLI](docs/commands.ja.md)
+- [English usage](docs/ui-library-consumer-guide.en.md) · [日本語usage](docs/ui-library-consumer-guide.ja.md)
+- [Token and generation contracts — Japanese](docs/design.md)
+- [Detailed component contracts — Japanese](docs/ui-components.md)
+- [Static-check scope and limits — Japanese](docs/static-checks.ja.md)
+- [Beta compatibility and recovery — Japanese](docs/npm-beta-readiness.ja.md)
+
+## License
+
+The original CLI, templates, Skill and generated code use the [MIT License](LICENSE), Copyright © 2026 Hiroshi Inoue. Retain generated `UI-FOUNDATION-LICENSE.txt` files and include the license as `ui-foundation/LICENSE.txt` in distributed app assets. Preserve third-party notices and corresponding sources as described in the [asset guide](docs/ui-library-consumer-guide.en.md#css-and-distribution-assets). Application code and third-party assets retain their respective licenses.

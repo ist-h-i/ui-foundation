@@ -111,7 +111,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   candidate = candidateDetails.tarball;
   tarballDigest = candidateDetails.sha256;
   const allowedDocs = candidateDetails.manifest.files.filter(path => path.startsWith('docs/')).sort();
-  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.ja)?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
+  assert.ok(allowedDocs.every(path => /^docs\/[a-z0-9-]+(?:\.(?:ja|en))?\.(?:md|json)$/.test(path)), 'package documentation must use explicit filenames');
   assert.deepEqual(candidateDetails.paths.filter(path => path.startsWith('docs/')).sort(), allowedDocs, 'the isolated tarball must contain exactly the allowlisted documentation');
   assert.ok(!allowedDocs.some(path => /(?:adr|verification|development|implementation-plan|release-plan|matrix)/.test(path)), 'developer documentation must not be distributed');
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
@@ -122,7 +122,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   const installedManifest = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.deepEqual(installedManifest, candidateDetails.manifest, 'npm must preserve the candidate metadata');
   const cli = (...args) => isolated(process.execPath, [resolve(installed, 'dist/cli.js'), ...args]);
-  await cli('init');
+  await cli('init', '--language', 'ja');
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/application.ts'), 'export const consumerApplication = true;\n');
   await cli('sync');

@@ -9,7 +9,7 @@ import { ActionControl } from './action-control';
 import { Pagination } from './pagination';
 import { DataTable } from './data-table';
 import { VirtualDataTable } from './virtual-data-table';import type {VirtualRadioGroup} from './virtual-radio';
-import { ColumnFilter, TableToolbar, type TableBulkAction, type TableOutputIntent } from './table-controls';
+import { ColumnFilter, TableToolbar, injectTableColumnMoveText, type TableBulkAction, type TableOutputIntent } from './table-controls';
 import { TableColumnResize } from './table-column-resize';
 import { CellEditor, RowEditor } from './table-editors';
 import { InfiniteScroll, type CollectionLoadRequest } from './infinite-scroll';
@@ -57,8 +57,8 @@ export class TableTemplate<T extends object> {
           @for (column of columns(); track column.id) {
             <div class="ui-data-table__column-setting">
               <label><input data-table-owned-control type="checkbox" [checked]="!state().hiddenColumns.includes(column.id)" [disabled]="blocked() || lastVisible(column.id)" (change)="toggleColumn(column.id)">{{ column.header }}</label>
-              <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を前へ' | uiMessage)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{'前へ' | uiMessage}}</button>
-              <button uiAction data-table-owned-control [attr.aria-label]="column.header + ('列を後へ' | uiMessage)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{'後へ' | uiMessage}}</button>
+              <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(-1, column.header)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{columnMoveText(-1)}}</button>
+              <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(1, column.header)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{columnMoveText(1)}}</button>
               <div><label [for]="tableId() + '-pin-' + column.id">{{'固定:' | uiMessage}} {{ column.header }}</label>
                 <div class="ui-select-control"><select data-table-owned-control [id]="tableId() + '-pin-' + column.id" class="ui-field-control" [value]="pin(column) || 'none'" [disabled]="blocked()" (change)="setPin(column.id, value($event))">
                   <option value="none">{{'固定しない' | uiMessage}}</option><option value="start">{{'先頭側' | uiMessage}}</option><option value="end">{{'末尾側' | uiMessage}}</option>
@@ -237,7 +237,7 @@ export class DataTableView<T extends object> {
 
  private readonly uiRuntimeText_DataTableView=injectUiRuntimeText();
 
- protected readonly uiText_DataTableView=injectUiText();
+ protected readonly uiText_DataTableView=injectUiText(); protected readonly columnMoveText=injectTableColumnMoveText();
     readonly caption = input.required<string>();
     readonly tableId = input.required<string>();
     readonly rows = input.required<readonly T[]>();

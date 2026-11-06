@@ -10,6 +10,52 @@ test('provider and scope reach existing Intl controls while explicit props and a
  await expect(page.locator('#scope')).toHaveAttribute('lang','de-DE');await expect(page.locator('#scope')).toHaveAttribute('dir','rtl');await expect(page.locator('#external-scope')).toHaveAttribute('dir','ltr');await expect(page.locator('#external-scope')).toHaveAttribute('lang','fr');await expect(page.locator('#scope-message')).toHaveText('Find scoped');
  await expect(page.locator('#root-locale .ui-input-format')).toContainText('1,234.5');await expect(page.locator('#scope .ui-input-format').nth(0)).toContainText('1.234,5');await expect(page.locator('#scope .ui-input-format').nth(1)).toContainText('1,234.5');
 });
+test('bundled English messages update existing controls and file feedback',async({page})=>{
+ const upload=page.locator('#upload-case');
+ const picker=upload.getByLabel('申請の添付', {exact:true});
+ const status=upload.getByText('1件を受け付けました。1件は受け付けできません。',{exact:true});
+ await picker.setInputFiles([
+  {name:'ok.txt',mimeType:'text/plain',buffer:Buffer.from('ok')},
+  {name:'bad.txt',mimeType:'text/plain',buffer:Buffer.from('12345')},
+ ]);
+ await expect(status).toBeVisible();
+ await page.evaluate(()=>{
+  const app=(window as any).__stage;
+  app.rootLocale.update((options:any)=>({...options,locale:'en-US',messages:app.englishMessages}));
+ });
+ await expect(picker).toBeVisible();
+ await expect(upload.getByText('Files accepted: 1. Files rejected: 1.',{exact:true})).toBeVisible();
+ await expect(upload.getByText('The file exceeds the size limit.',{exact:false})).toBeVisible();
+ await expect(page.locator('#scope-message')).toHaveText('Find scoped');
+ await page.evaluate(()=>{
+  const app=(window as any).__stage;
+  app.rootLocale.update((options:any)=>({...options,messages:{
+   '件を受け付けました。':' accepted. ',
+   '件は受け付けできません。':' rejected.',
+  }}));
+ });
+ await expect(upload.getByText('1 accepted. 1 rejected.',{exact:true})).toBeVisible();
+ await page.evaluate(()=>{
+  const app=(window as any).__stage;
+  app.rootLocale.update((options:any)=>({...options,locale:'ja-JP',messages:undefined}));
+ });
+ await expect(status).toBeVisible();
+});
+for(const profile of ['guided','dense'] as const)test(`Japanese child scope and draft preservation at 320px/200%: ${profile}`,async({page})=>{
+ await page.setViewportSize({width:320,height:800});await page.addStyleTag({content:'html{font-size:200%}'});await page.evaluate(profile=>(window as any).__stage.profile.set(profile),profile);
+ const input=page.locator('#range-case input').first();
+ await input.fill('31/02/2026');await input.focus();await input.evaluate(element=>(window as any).__languageDraft=element);
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US',messages:app.englishMessages}));app.scope.set({locale:'ja-JP',messages:app.japaneseMessages});});
+ await expect(page.locator('#scope-message')).toHaveText('検索');
+ await expect(page.locator('#scope')).toHaveAttribute('lang','ja-JP');
+ await expect(page.locator('#composer-case button[type=submit]')).toHaveText('Send');
+ await expect(input).toBeFocused();await expect(input).toHaveValue('31/02/2026');
+ expect(await input.evaluate(element=>element===(window as any).__languageDraft)).toBe(true);
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP',messages:app.japaneseMessages}));app.scope.set({locale:'en-US',messages:app.englishMessages});});
+ await expect(page.locator('#scope-message')).toHaveText('Search');
+ await expect(page.locator('#composer-case button[type=submit]')).toHaveText('送信');
+ await expect(input).toBeFocused();await expect(input).toHaveValue('31/02/2026');
+});
 test('DateRange same-value reset repairs raw input, blur controls confirmation, and locale/profile retain drafts',async({page})=>{
  const start=page.locator('#range-case input').nth(0),end=page.locator('#range-case input').nth(1);
  await start.fill('31/02/2026');await start.evaluate(element=>{(window as any).__dateInput=element;});await start.focus();await start.evaluate(element=>(element as HTMLInputElement).setSelectionRange(2,5));

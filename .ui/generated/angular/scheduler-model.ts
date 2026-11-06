@@ -71,13 +71,13 @@ function schedulerTimeBand(date:string,timeZone:string,startSeconds:number,endSe
  return intervals;
 }
 /** Date/time formatting is for known instants only; no conversion of local move proposals. */
-export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null} {
+export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration,textFor:(source:string)=>string=source=>source):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null} {
  schedulerIdentity(events,resources);const problem=schedulerConfigurationProblem(configuration),dates=schedulerDays(configuration),columns=configuration.view==='day'||configuration.view==='list'?1:7;
  const startSeconds=timeSeconds(configuration.dayStart)??0,endSeconds=configuration.dayEnd==='24:00'?86400:timeSeconds(configuration.dayEnd)??86400;
  const bands=dates.map(date=>({date,intervals:schedulerTimeBand(date,configuration.timeZone,startSeconds,endSeconds)}));
  const sorted=[...events].sort((a,b)=>(schedulerInstant(a.start)??Infinity)-(schedulerInstant(b.start)??Infinity));
  const entries:SchedulerEntry<T>[]=sorted.map(event=>{const issue=schedulerEventProblem(event,resources),start=schedulerInstant(event.start),end=schedulerInstant(event.end),startLocal=!problem&&start!==null?schedulerLocal(start,configuration.timeZone):null,endLocal=!problem&&end!==null?schedulerLocal(end,configuration.timeZone):null,lastLocal=!problem&&end!==null?schedulerLocal(end-1,configuration.timeZone):null;
-  const offsetChange=!!(startLocal&&lastLocal&&startLocal.offsetSeconds!==lastLocal.offsetSeconds),ids=event.resourceIds??[],resourceText=ids.length?ids.map(id=>resources.find(resource=>resource.id===id)?.label??'未取得: '+id).join('、'):'リソース未割当';
+  const offsetChange=!!(startLocal&&lastLocal&&startLocal.offsetSeconds!==lastLocal.offsetSeconds),ids=event.resourceIds??[],resourceText=ids.length?ids.map(id=>resources.find(resource=>resource.id===id)?.label??textFor('未取得: ')+id).join(textFor('、')):textFor('リソース未割当');
   const filtered=configuration.resourceFilter===null||ids.length===0?ids.length!==0||configuration.showUnassigned:ids.some(id=>configuration.resourceFilter!.includes(id));
   const days=start!==null&&end!==null?bands.filter(band=>band.intervals.some(([from,to])=>Math.max(start,from)<Math.min(end,to))).map(band=>band.date):[];
   const visible=!problem&&(!!issue||filtered&&days.length>0),text=(instant:number|null,raw:string)=>!problem&&instant!==null?new Intl.DateTimeFormat(configuration.locale,{...(configuration.dateTimeOptions??{dateStyle:'medium',timeStyle:'long'}),timeZone:configuration.timeZone}).format(instant):raw;

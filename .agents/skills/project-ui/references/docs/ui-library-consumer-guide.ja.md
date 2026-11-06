@@ -1,5 +1,7 @@
 # usage：npmパッケージからアプリへ組み込む
 
+[English consumer guide](ui-library-consumer-guide.en.md)
+
 生成した Angular の公開入口を利用アプリへ組み込み、必要な画面だけで部品を使うためのガイドです。要求カタログの全部品を一つの業務画面に配置する必要はありません。ツリーの選択、予定、一覧編集、添付、専門エディターなどを用途ごとの画面に分け、利用者の目的、欠損の影響、失敗時に保持する入力、復旧経路を先に決めます。
 
 設定項目の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。利用アプリでは、そのアプリの `ui.config.yaml` を正本として管理します。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[CLIコマンド](commands.ja.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定やパッケージ版を変更してCLIで同期・検査します。
@@ -21,7 +23,7 @@
 ```sh
 npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.2
 ./node_modules/.bin/ui-foundation --help
-./node_modules/.bin/ui-foundation init
+./node_modules/.bin/ui-foundation init --language ja
 ```
 
 Node.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 公開入口は専門部品も参照するため、小さな画面でも[依存関係](#依存関係)のパッケージを型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
@@ -410,6 +412,10 @@ export class LocaleProbe {
 `App` は利用アプリの standalone root です。アプリが source signal を所有し、`locale.set(...)` で表示設定を変更できます。既定は `locale: 'ja-JP'`、`direction: null`、`timeZone: null`、`dateInputFormat: 'native'` です。ブラウザー言語・time zone・生成 context の文章から設定を推測しません。Scheduler など time zone が必要な用途にはアプリが明示します。
 
 `UiLocaleOptions` の `civilDateOptions`、`dateTimeOptions`、`numberOptions` は Intl の表示 option、`messages` は部品所有の日本語 fallback 文言を key にする辞書です。civil date は日付の意味を維持し、time zone を跨いで別日へ変換しません。date-time の zone は `timeZone` に指定し、`dateTimeOptions.timeZone` へ重ねて指定しません。NumberInput などの明示 input は DI defaults より優先します。NumberInput の表示 locale と、native 数値 editor の入力契約は別です。
+
+新規設定の説明文は英語が既定です。日本語で作成する場合は `init --language ja` を使います。標準Skillは `SKILL.md`、日本語の全文は `SKILL.ja.md` です。既存設定の説明文や部品の日本語既定値は変更しません。
+
+部品の文言を英語にするには、生成済みの公開入口から `uiEnglishMessages` を import し、`provideUiLocale({locale: 'en-US', messages: uiEnglishMessages})` を渡します。文言を調整する場合は `{...uiEnglishMessages, '検索': 'Find'}` のように辞書を上書きできます。`locale` は日付・数値などの書式を選び、`messages` は部品の文言を選びます。英語の親scope内で日本語へ戻す場合は、同じ公開入口の `uiJapaneseMessages` を `messages` に指定します。空辞書は親の翻訳を継承するため、日本語への切り替えにはなりません。
 
 ```html
 <section [uiLocale]="{locale: 'de-DE', direction: 'rtl', messages: {'検索': 'Suchen'}}">

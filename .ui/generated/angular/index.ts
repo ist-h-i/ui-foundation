@@ -137,4 +137,6 @@ export {tableDraft,parseTableDraft,tableEditProblem,validateTableRowDraft,tableE
 
 export {UI_LOCALE,UiLocaleScope,UiMessagePipe,provideUiLocale,injectUiLocale,injectUiText} from './locale';
 export {defaultUiLocale,resolveUiLocale,uiMessage} from './locale-model';
+export {uiEnglishMessages} from './locale-en';
+export {uiJapaneseMessages} from './locale-ja';
 export type {UiDirection,UiMessages,UiLocaleOptions,UiLocaleResolved} from './locale-model';

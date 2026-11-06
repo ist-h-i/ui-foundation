@@ -1,13 +1,14 @@
 import { checkProject, initProject, syncProject } from './sync.ts';
 import { formatSourceReport } from './check/report.ts';
 
-const usage = 'Usage: ui-foundation <init|sync|check> [--config ui.config.yaml] [--dry-run (sync only)] [--from-output previous/path (sync only)] [--format text|json (check only)]';
+const usage = 'Usage: ui-foundation <init|sync|check> [--config ui.config.yaml] [--language en|ja (init only)] [--dry-run (sync only)] [--from-output previous/path (sync only)] [--format text|json (check only)]';
 async function main(args: string[]): Promise<void> {
   if (args.length === 0 || (args.length === 1 && ['--help', '-h'].includes(args[0]))) { console.log(usage); return; }
   const command = args.shift();
   if (!['init', 'sync', 'check'].includes(command ?? '')) throw new Error(usage);
   let configPath = 'ui.config.yaml';
   let dryRun = false;
+  let language: 'en' | 'ja' = 'en';
   let fromOutput: string | undefined;
   let json = false;
   const seen = new Set<string>();
@@ -19,6 +20,10 @@ async function main(args: string[]): Promise<void> {
       const value = args.shift();
       if (!value || value.startsWith('--')) throw new Error('--config requires a project-relative YAML path.');
       configPath = value;
+    } else if (flag === '--language' && command === 'init') {
+      const value = args.shift();
+      if (value !== 'en' && value !== 'ja') throw new Error('--language requires en or ja.');
+      language = value;
     } else if (flag === '--from-output' && command === 'sync') {
       const value = args.shift();
       if (!value || value.startsWith('--')) throw new Error('--from-output requires a project-relative previous output path.');
@@ -31,7 +36,7 @@ async function main(args: string[]): Promise<void> {
     else throw new Error(`Unknown option: ${flag}\n${usage}`);
   }
   const options = { root: process.cwd(), configPath };
-  if (command === 'init') console.log(`Created ${await initProject(options)}`);
+  if (command === 'init') console.log(`Created ${await initProject({ ...options, language })}`);
   else if (command === 'sync') {
     const report = await syncProject({ ...options, dryRun, fromOutput });
     for (const change of report.changes) console.log(`${change.kind}: ${change.path}`);
