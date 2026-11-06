@@ -11,7 +11,7 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 Install the published package in an existing Angular app:
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -40,7 +40,7 @@ See the [English component overview](docs/components.en.md), [日本語の部品
 
 ## English and Japanese
 
-Documentation and the standard project Skill start in English; Japanese guides and the full Japanese Skill remain available. After sync, read `.agents/skills/project-ui/SKILL.md` or `SKILL.ja.md` together with the adjacent `project-context.md` and your source YAML.
+Human-facing documentation is English-primary with Japanese editions. Standard AI instructions and references use English; the legacy Japanese Skill remains for compatibility. After sync, read `.agents/skills/project-ui/SKILL.md` with adjacent `project-context.md` and the source YAML.
 
 New English configurations select English built-in text automatically. Use the existing runtime locale provider to override generated defaults or implement a live language switch:
 
@@ -53,7 +53,7 @@ const providers = provideUiLocale({ locale: 'en-US', messages: uiEnglishMessages
 
 For Japanese, use `locale: 'ja-JP', messages: uiJapaneseMessages` from the same public entry point. Pass an app-owned signal to switch languages while retaining input and component state. Keep the app's own labels, content and backend errors in its translation system. [Language switching and scopes](docs/ui-library-consumer-guide.en.md#select-english-component-messages)
 
-Existing configurations that omit `default_language` retain Japanese runtime defaults after sync. To migrate one deliberately, add `default_language: en`, review the sync diff, regenerate and verify the app's labels, date/number presentation and workflows. The setting does not translate app-owned text or choose a time zone. It is independent of token profiles. `locale` selects formatting; `messages` selects built-in text. A locale change alone does not translate messages. Date-time components still need an explicit business time zone. Advanced API contracts and specialist references currently retain Japanese prose, with public identifiers and types available in the API catalog.
+Existing configurations that omit `default_language` retain Japanese runtime defaults after sync. To migrate one deliberately, add `default_language: en`, review the sync diff, regenerate and verify the app's labels, date/number presentation and workflows. The setting does not translate app-owned text or choose a time zone. It is independent of token profiles. `locale` selects formatting; `messages` selects built-in text. A locale change alone does not translate messages. Date-time components still need an explicit business time zone. Detailed design, API, runtime, specialist and recovery contracts are available in English and Japanese; the standard AI workflow selects the English references.
 
 ## Configure and verify
 
@@ -63,10 +63,10 @@ Edit YAML, preview `sync --dry-run`, run `sync`, then `check`. Keep generated fi
 
 - [English CLI reference](docs/commands.en.md) · [日本語CLI](docs/commands.ja.md)
 - [English usage](docs/ui-library-consumer-guide.en.md) · [日本語usage](docs/ui-library-consumer-guide.ja.md)
-- [Token and generation contracts — Japanese](docs/design.md)
-- [Detailed component contracts — Japanese](docs/ui-components.md)
-- [Static-check scope and limits — Japanese](docs/static-checks.ja.md)
-- [Beta compatibility and recovery — Japanese](docs/npm-beta-readiness.ja.md)
+- [Token and generation contracts](docs/design.en.md)
+- [Detailed component contracts](docs/ui-components.en.md)
+- [Static-check scope and limits](docs/static-checks.en.md)
+- [Beta compatibility and recovery](docs/npm-beta-readiness.en.md)
 
 ## 日本語の概要
 

@@ -58,14 +58,14 @@ npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScr
 
 ## 言語の選択
 
-標準READMEとSkillは英語です。日本語の開発指針は、同期後の `.agents/skills/project-ui/SKILL.ja.md` にあります。新規設定は `init` が `default_language: en` を保存し、部品も明示providerなしで英語を既定にします。`ui-foundation init --language ja` は `default_language: ja` と日本語の説明文を保存します。`default_language` のない既存設定は、再同期しても部品の日本語既定値を維持します。既存アプリを英語へ移す場合だけ `default_language: en` を追記し、文言・日付や数値の書式・業務フローを検証します。
+人間向けのREADME・利用ガイド・設計・詳細APIは英語主・日本語副で用意します。AI向けの標準Skill・参照手順・生成contextの説明は英語です。既存の `.agents/skills/project-ui/SKILL.ja.md` は互換性のため残し、通常は `SKILL.md` を読み込みます。新規設定は `init` が `default_language: en` を保存し、部品も明示providerなしで英語を既定にします。`ui-foundation init --language ja` は `default_language: ja` と日本語の説明文を保存します。`default_language` のない既存設定は、再同期しても部品の日本語既定値を維持します。既存アプリを英語へ移す場合だけ `default_language: en` を追記し、文言・日付や数値の書式・業務フローを検証します。
 
 部品は `provideUiLocale` と同梱の `uiEnglishMessages` / `uiJapaneseMessages` で表示言語を選びます。日付・数値の `locale` と文言の `messages` を併せて更新します。[利用手順](docs/ui-library-consumer-guide.ja.md)を参照してください。
 
 ## 使い始める
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
 ```
 
 ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。

@@ -1,5 +1,7 @@
 # 表・グリッドの利用契約
 
+[English](ui-library-table-expansion-spec.en.md)
+
 生成した`angular/index.ts`から公開部品をimportします。設定変更後は利用アプリで同期・検査し、生成物は直接編集しません。
 
 ## 公開部品と型

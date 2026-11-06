@@ -2,7 +2,7 @@
 
 [English](components.en.md) · [日本語](components.ja.md)
 
-Import components from your generated `angular/index.ts`. These are Angular source components with interactions and state/events; the consuming app compiles them and owns business operations. Follow the [integration guide](ui-library-consumer-guide.en.md) for dependencies, CSS, workers and assets. Public selectors, inputs, outputs, types and defaults are listed in the [API catalog](ui-library-api.json). [Detailed component contracts — Japanese](ui-components.md)
+Import components from your generated `angular/index.ts`. These are Angular source components with interactions and state/events; the consuming app compiles them and owns business operations. Follow the [integration guide](ui-library-consumer-guide.en.md) for dependencies, CSS, workers and assets. Public selectors, inputs, outputs, types and defaults are listed in the [API catalog](ui-library-api.json). [Detailed component contracts](ui-components.en.md)
 
 | Area | Public components and capabilities |
 | --- | --- |

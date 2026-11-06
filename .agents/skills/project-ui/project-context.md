@@ -1,8 +1,6 @@
-# Project UI configuration / プロジェクトのUI設定
+# Project UI configuration
 
-Resolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose.
-
-画面設計用の設定概要です。変更は正本のYAMLで行います。CLIは説明文から見た目を推測しません。
+Resolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose. App-authored context and labels below are preserved in their original language.
 
 ```json
 {

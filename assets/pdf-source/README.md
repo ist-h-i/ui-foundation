@@ -1,5 +1,7 @@
 # Liberation Sans source accompanying PDF.js standard fonts
 
+[Japanese](README.ja.md)
+
 The four `assets/pdf/standard_fonts/LiberationSans-*.ttf` files used with `pdfjs-dist@6.4.299` are byte-identical to the official Debian `fonts-liberation` binary package version `1:1.07.4-11`. `FONT-MAPPING.json` records each binary SHA256, editable SFD source SHA256, source archive URL and acquisition time.
 
 The corresponding Debian source package is provided here as actual files:
@@ -13,7 +15,7 @@ The corresponding Debian source package is provided here as actual files:
 
 ## Source/build recipe
 
-Use an existing environment with the build dependencies recorded in `fonts-liberation_1.07.4-11_all.buildinfo`. The original build records FontForge `1:20190801~dfsg-2`, fonttools `4.2.4-1`, make `4.2.1-1.2`, debhelper `12.9`, and `SOURCE_DATE_EPOCH=1582410033`. No installation or font activation is performed by this website.
+Use an existing environment with the build dependencies recorded in `fonts-liberation_1.07.4-11_all.buildinfo`. The original build records FontForge `1:20190801~dfsg-2`, fonttools `4.2.4-1`, make `4.2.1-1.2`, debhelper `12.9`, and `SOURCE_DATE_EPOCH=1582410033`. These instructions do not automatically install or activate fonts.
 
 The standard Debian source-package command unpacks the source and applies the declared quilt patches:
 

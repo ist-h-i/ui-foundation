@@ -1,5 +1,7 @@
 # UI部品の公開API
 
+[English](ui-components.en.md)
+
 生成したAngularソースの入力・イベント・操作と、利用アプリが所有する状態・処理の契約を説明します。全体の選び方は[コンポーネント一覧](components.ja.md)、導入と依存関係は[利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
 利用アプリはCLIで同期した`<output>/angular/index.ts`から各standalone部品をimportします。共通CSSは生成した`tokens.css`、`angular/styles.css`と、Tailwindを使う場合は`tailwind.css`を読み込みます。HTTP、データの復元、業務判断、保存・送信・Undoはアプリが所有します。型検査・build・実操作・自動アクセシビリティ・表示や意味の確認は区別し、利用者の理解や実業務の有効性を自動検査だけで保証しません。
@@ -135,7 +137,7 @@ Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`�
 `TableColumn<T>`は`id/field/header/type/format/sortable/filterable/options/width/minWidth/maxWidth/pinned`。`TableState`は`page/pageSize/search/sort/filters/columnOrder/hiddenColumns/columnWidths/pinnedColumns`を持ち、`createTableState()`で初期化します。状態は`state` inputと`stateChange` outputでアプリが保持し、永続化／復元へ接続します。部品はHTTPやlocalStorageへ書き込みません。
 
 - `sortable/sortMode`はOFF／単一／複数ソート。昇順→降順→解除の順で循環します。
-- `columnFilters/globalSearch/searchColumns`は列の文字・数値・日付・選択肢条件と対象列を指定した全体検索。`TableFilter`はAND/ORと複数条件を表現します。未入力の比較は条件として実行せず、選んだ演算子を保持します。現UIは各列の先頭条件を編集し、複数条件エディターは後続要求です。
+- `columnFilters/globalSearch/searchColumns`は列の文字・数値・日付・選択肢条件と対象列を指定した全体検索。`TableFilter`はAND/ORと複数条件を表現します。未入力の比較は条件として実行せず、選んだ演算子を保持します。現UIでは列条件を追加・削除し、複数条件をAND/ORで編集できます。
 - `pagination/pageSizeOptions`はページ操作と件数。clientの絞込みでページ数が減れば有効なページへ補正して状態を返します。`mode='server'`では供給された行へローカル検索／ソート／ページ分割をせず、状態を返します。totalItemsはアプリが供給します。
 - `autoWidth/autoFit='content'|'available'`は内容／領域に合わせた幅。DOMで測った幅を上下限へ収め、収まり切らないときは表領域内でスクロールします。`resizableColumns`のスライダーはpointerとキーボードで操作できます。
 - `stickyHeader/columnControls`は固定見出し、表示・順序・左右固定・幅・リセットの設定。左右固定はRTLにも論理方向で適用します。最後の一列はUIから隠せません。
@@ -183,7 +185,7 @@ Calendarの`today`とDateRangePickerの`initialMonth`を省略した場合は、
 
 Calendarの日付は一つのタブ停止を持つgrid。左右／上下、Home/End、PageUp/PageDown、Shift+PageUp/PageDownで日・週・月・年を移動します。選択不可日はfocusで確認でき、確定はできません。狭幅・文字拡大時は日付一覧の名前付き領域で横スクロールし、数字を分割しません。初期focus・キー移動の後は対象日を表示領域へ収め、RTLでも確定前に日付を確認できます。前月・次月・年の月ボタンで切り替える際は、そのボタンのfocusを保ちながら新しい日付のtab-entryを表示領域へ収めます。追加の日セル情報は`dayDescription(date)`でも伝え、日付ボタンの名前に含めます。DatePickerのnative dialogを開くと選択日へfocusを置き、Escapeまたは確定後に起動ボタンへ戻します。ネイティブdialogは同じプロファイル／RTLスコープ内に残します。
 
-DatePicker/DateRangePickerの`inputFormat`を変更すると最後に確定した値を新しい書式で表示し、未確定の文字とそのエラーを解除します。期間入力は内部の両端のvalidatorを親フォームへ伝え、部分入力がある間は確定済みの期間を保持して親をinvalidにします。preset/clear/reset/カレンダー選択で修復できます。日時の刻みはmin（未指定時はcivil epoch）を起点に日付と時刻の両方で計算します。
+DatePicker/DateRangePickerの`inputFormat`変更時に未確定の不正入力がある場合は、その入力と表示中の書式を保持します。有効な修復入力、明示reset/clear、カレンダー選択で新書式へ移り、書式変更だけでinvalidを解除しません。期間入力は内部の両端のvalidatorを親フォームへ伝え、部分入力がある間は確定済みの期間を保持して親をinvalidにします。preset/clear/reset/カレンダー選択で修復できます。日時の刻みはmin（未指定時はcivil epoch）を起点に日付と時刻の両方で計算します。
 
 DatePickerの`inputFormat`はnative、yyyy-MM-dd、yyyy/MM/dd、dd/MM/yyyy、MM/dd/yyyy。手動書式は明示して解析し、地域から曖昧な順序を推測しません。無効ドラフトは表示を残してvalidatorをinvalidにし、clear/resetで復旧できます。`format`は補助表示のlocale/iso。TimePickerはseconds/stepSeconds/hourFormat=12|24/timeAllowedを持ち、刻みと時間範囲を検証します。DateTimePickerはtimeZoneを明示し、native datetime-local文字列を保持します。Instantへの変換、DSTの重複／欠落時刻の業務上の扱いはアプリが所有し、部品は暗黙変換しません。MonthPicker/YearPickerはmin/maxとclearを持ちます。日付・時刻の補助説明が空のときは説明要素を描画せず、入力の間隔だけを保ちます。
 

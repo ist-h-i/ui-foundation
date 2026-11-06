@@ -2,14 +2,14 @@
 
 [English](ui-library-consumer-guide.en.md) · [日本語](ui-library-consumer-guide.ja.md)
 
-UI Foundation generates Angular components, design tokens, a Tailwind theme, a project Skill, and a source checker from one YAML configuration. Start in an existing Angular app and choose components for the tasks people need to complete. [Component contracts](ui-components.md) · [Public API catalog](ui-library-api.json)
+UI Foundation generates Angular components, design tokens, a Tailwind theme, a project Skill, and a source checker from one YAML configuration. Start in an existing Angular app and choose components for the tasks people need to complete. [Component contracts](ui-components.en.md) · [Public API catalog](ui-library-api.json)
 
 ## Install and generate
 
 Run these commands from the app root, where its `package.json` lives. Pin the version for a reproducible installation.
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.3
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
 ```
 
 To use a local build, install the tarball produced by `npm pack`.
@@ -40,7 +40,7 @@ The package's `engines` field specifies the Node.js version. The beta was tested
 | `output` | Managed output directory, initially `.ui/generated` |
 | `checks` | App source roots and any scoped, documented exceptions for static checking |
 
-The `guided` and `dense` IDs in the example are editable profile names. The CLI resolves explicit token references and profile overrides. Developers use the prose in `context` and `guidance` to make layout and interaction decisions. Use the app's YAML as the source of truth for configuration changes. [Token and generation design](design.md)
+The `guided` and `dense` IDs in the example are editable profile names. The CLI resolves explicit token references and profile overrides. Developers use the prose in `context` and `guidance` to make layout and interaction decisions. Use the app's YAML as the source of truth for configuration changes. [Token and generation design](design.en.md)
 
 ```sh
 ./node_modules/.bin/ui-foundation sync --dry-run --config ui.config.yaml
@@ -54,11 +54,56 @@ Track the configuration, full output directory, and `.agents/skills/project-ui/`
 
 The installed package contains this guide under `node_modules/@hiroshi.inoue/ui-foundation/docs/` and the English Skill instructions under `node_modules/@hiroshi.inoue/ui-foundation/skills/ui-development/SKILL.md`. After `sync`, ask the AI tool to open the app root and read these files explicitly.
 
-- `.agents/skills/project-ui/SKILL.md` for the English UI workflow (`SKILL.en.md` is also available); `SKILL.ja.md` contains the full Japanese instructions.
+- `.agents/skills/project-ui/SKILL.md` for the English UI workflow (`SKILL.en.md` is also available); the legacy `SKILL.ja.md` remains for compatibility. Use English instructions and references for the standard AI workflow.
 - `.agents/skills/project-ui/project-context.md` for the resolved profiles and app context.
 - `ui.config.yaml` or the actual configuration path for the source settings.
 
 The generated Skill directory stays fixed when `output` changes. The Skill's `references/docs/` directory contains the documentation shipped with the installed package, including this guide. The AI tool controls automatic discovery. Ask it to confirm which files it read, the profile it selected, and the output path before it edits the app. Have it read the generated files again after an upgrade or sync changes them.
+
+### Ask the AI to read the files
+
+Use the AI tool's file/attachment or local-read capability. Automatic discovery depends on that tool; install/sync success does not prove it read anything. Start with this prompt, adjusting the actual YAML path:
+
+```text
+Before implementing UI in this app, read:
+- .agents/skills/project-ui/SKILL.md
+- .agents/skills/project-ui/project-context.md
+- ui.config.yaml
+
+Use the English references selected by the Skill for component contracts and dependencies.
+Briefly report the files you read, the selected profile and the generated output path.
+Report missing or inaccessible files instead of assuming their contents.
+```
+
+Check the returned paths/profile IDs/output against your app. If the AI cannot access files, provide the required material through a capability it supports; verify its account of what it read.
+
+### Ask for a screen or configuration change
+
+Explain the task, data, existing operations and interactions to verify. For an app that already fetches and saves requests:
+
+```text
+Follow the project-ui workflow to implement a request list and editing screen.
+Use default_profile from ui.config.yaml, the existing fetch/save operations and generated public components.
+Support searching, selecting, editing and checking persistence outcomes.
+Handle pending, error and partial-information states while preserving drafts.
+Report changed app files, reused components, checks run and anything unverified.
+```
+
+Configuration changes belong in source YAML; regenerate instead of editing managed output. Do not require a profile-switch UI if the app uses one fixed profile.
+
+### Provide real diagnostics and verify the result
+
+Run the app's installed check and pass its actual diagnostic output to the AI:
+
+```text
+Read this actual ui-foundation check result and explain each relevant file/rule/reason.
+Fix confirmed app-source/configuration errors, synchronize if needed, and rerun the check.
+Retain unsupported static cases as warnings with reasons and recheck conditions.
+Do not infer interaction, accessibility or business correctness from exit code 0.
+Report exact checks and the scope left unverified.
+```
+
+Review the actual generated/app diff and the new check result. AI proposals, static checks, builds, interaction tests and human UX review establish different things.
 
 ## Load the theme
 
@@ -162,7 +207,7 @@ Add `...localeProviders` to the app bootstrap providers. Update the app's own tr
 
 For a Japanese child of an English region, supply `{ locale: 'ja-JP', messages: uiJapaneseMessages }` to `[uiLocale]`. An empty child dictionary inherits its parent's translations, so `{}` alone does not restore Japanese. The Japanese dictionary restores the built-in keys; app-specific extra keys need their own scoped overrides.
 
-To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `provideUiLocale` and update both `locale` and `messages` together. For one region, import the standalone `UiLocaleScope` directive and bind `[uiLocale]` to the regional options. A scope inherits parent messages and overrides the keys it supplies. Set the app document's `lang` and direction to match its content. For date and time formatting, set `timeZone` explicitly wherever the component needs one. Civil dates retain their calendar date independently of the time zone. An explicit component input takes precedence over the corresponding provider setting. [Locale and component contracts](ui-components.md)
+To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `provideUiLocale` and update both `locale` and `messages` together. For one region, import the standalone `UiLocaleScope` directive and bind `[uiLocale]` to the regional options. A scope inherits parent messages and overrides the keys it supplies. Set the app document's `lang` and direction to match its content. For date and time formatting, set `timeZone` explicitly wherever the component needs one. Civil dates retain their calendar date independently of the time zone. An explicit component input takes precedence over the corresponding provider setting. [Locale and component contracts](ui-components.en.md)
 
 ## Application dependencies
 
@@ -244,10 +289,10 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 The generated checker runs with Node and checks the generated policy against the configuration and selected app sources. Keep it with its sibling `checker-lib/`, `policy.json`, and `CHECKER-NOTICE.txt` files. Use the full CLI for generated-file consistency and ownership checks. Keep the checker out of the browser bundle.
 
-Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions in Japanese](static-checks.ja.md)
+Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions](static-checks.en.md)
 
 Build the app and exercise the actual tasks in the browser after synchronization. Check supported profiles and languages with narrow layouts, longer translated labels, text zoom, and keyboard focus. Exercise pending, failure, partial-data, and retry paths and verify that a language change retains the current draft or request. For media and specialist components, verify worker startup and real asset responses. Track compile results, automated accessibility findings, observed behavior, and visual review separately.
 
 To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
-When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery in Japanese](npm-beta-readiness.ja.md) · [Release notes in Japanese](npm-beta-release-notes.ja.md)
+When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Release notes](npm-beta-release-notes.en.md)

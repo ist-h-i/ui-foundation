@@ -1,41 +1,41 @@
-# 共通UIの利用契約
+# Shared UI runtime contracts
 
-生成部品を使う画面では、利用者の目的に必要な部品だけを構成する。カタログ全体を一画面へ配置しない。共通基盤の正本はYAMLのセマンティックとプロファイルで、runtime localeや業務状態から機械設定を推測しない。
+Compose only the components needed for the user's task; do not place the entire catalog on one screen. YAML semantic tokens and profiles are the source of truth for the design foundation. Do not infer machine configuration from runtime locale or business state.
 
-## フォーム・言語・方向
+## Forms, language and direction
 
-`provideUiLocale(options | Signal<UiLocaleOptions>)`と局所`UiLocaleScope`の`[uiLocale]`は、言語、入力日付書式、Intlの表示オプション、明示タイムゾーン、方向、構造文言辞書を共有する。個別部品の明示propを優先する。`UI_LOCALE`、`injectUiLocale()`、`injectUiText()`、`UiMessagePipe`、`uiMessage`が公開API。辞書はライブラリの既定文言をキーにし、未指定キーは既定表示を残す。アプリのラベル・本文・backendエラーを勝手に翻訳しない。
+`provideUiLocale(options | Signal<UiLocaleOptions>)` and a local `UiLocaleScope` with `[uiLocale]` share locale, date-input format, Intl display options, an explicit time zone, direction and built-in message dictionaries. Explicit component props take precedence. Public APIs include `UI_LOCALE`, `injectUiLocale()`, `injectUiText()`, `UiMessagePipe` and `uiMessage`. Dictionary keys are the library's original default messages; missing keys retain their default text. Do not automatically translate application labels, body content or backend errors. English and Japanese dictionaries and the generated default-language behavior are documented in the [integration guide](../../../docs/ui-library-consumer-guide.en.md#select-english-component-messages).
 
-date入力はcivil ISO値、数値は数値、選択はraw keyを保つ。DateRangeは両端のraw draftを保ち、片側が不正な間は完全rangeをpublishしない。provider/readonly/disabled/profile切替で入力DOMや未確定draftを作り直さない。nullable reset、`updateOn:'blur'`、zoneless OnPushの値表示を実consumerで検証する。CVAというだけでAngularのFormControlのgeneric型が全templateで一致する保証はない。
+Date inputs retain civil ISO values, numbers retain numeric values and selections retain raw keys. `DateRange` retains both raw endpoint drafts and does not publish a complete range while one endpoint is invalid. Provider, read-only, disabled and profile changes must not recreate input DOM or incomplete drafts. Verify nullable reset, `updateOn:'blur'` and zoneless OnPush value display in the actual consumer. Implementing CVA does not guarantee that a `FormControl` generic agrees with every template binding.
 
-UiLocaleScopeはnative lang/dirと公開CDK Directionalityを接続する。アプリの明示Dirと外部属性変更を尊重し、自身が所有する属性だけを破棄時に復元する。Chartの物理的な座標rendererやコード・識別子は局所LTRを使えるが、周囲の説明と操作はscopeのRTLを保つ。
+`UiLocaleScope` connects native `lang`/`dir` and the public CDK `Directionality`. It respects explicit app `Dir` and external attribute changes, and restores only attributes it still owns when destroyed. A physical-coordinate chart renderer, code or identifiers may use local LTR, while surrounding descriptions and controls retain the scope's RTL direction.
 
-## 階層・表・日程
+## Hierarchies, tables and scheduling
 
-Tree/TreeSelect/Cascader/OrganizationChartはraw IDと安全なDOM IDを分ける。`children:undefined`の未取得、`children:[]`の取得済み空、disabled/unknownを混同しない。遅延取得はrequest identityで旧応答を除外する。Escape・親への移動・popup終了はAPGに沿って所有focusを戻し、外部focusを奪わない。
+`Tree`, `TreeSelect`, `Cascader` and `OrganizationChart` distinguish raw IDs from safe DOM IDs. Unfetched means `children === undefined && hasChildren === true`; `children: []` means fetched and empty. Keep unfetched, empty, disabled and unknown states distinct. Request identity excludes stale lazy-load responses. Escape, parent navigation and popup closure restore owned focus according to the APG pattern without taking focus from an external owner.
 
-Tableの列IDも任意文字列。列幅・pin・template・検証・pasteのrecordはown entriesだけを扱い、`__proto__`や`constructor`を特殊な業務キーに変換しない。セル/行のraw draft、選択、列配置、検索/複数条件、client/serverの責任を分離する。編集と貼付けは完全な検証後のintentを返し、アプリのack後に確定する。部分的に不正なrectangleを成功扱いしない。serverで未取得の行を出力へ捏造しない。
+Table column IDs can be arbitrary strings. Column-width, pin, template, validation and paste records use own entries only; `__proto__` and `constructor` must not acquire special business-key semantics. Separate raw cell/row drafts, selection, column arrangement, search/multiple conditions and client/server ownership. Editing and paste return intents only after complete validation and commit after the app acknowledges them. Do not treat a partially invalid rectangle as successful, or invent unfetched server rows in output.
 
-Schedulerは日/週/月/agenda、resource、時間帯、予定編集を持つ。明示timeZone、Instantのstart/end、local編集draftとDSTの曖昧/不存在を区別する。移動はrequest/cancelと現在request IDのackに接続する。backend更新と安全な再試行はアプリが判断する。
+`Scheduler` supports day/week/month/list views; `Agenda` is a separate list-only component. Resources and time-band filters affect browsing, and the native movement editor emits move requests rather than performing general event persistence. Distinguish explicit `timeZone`, Instant `start`/`end`, local editing drafts and ambiguous/nonexistent DST times. Movement uses request/cancel and acknowledgments for the current request ID. Backend updates and safe retry are app responsibilities.
 
-## 媒体・専門部品
+## Media and specialist components
 
-FileUpload/DropzoneのCVAは直近に完全受理したFile batchで、アップロード完了ではない。rejectionで親のbatchを保持し、resetで修復する。id/requestIdを照合して古い進捗・再試行応答を拒否する。実送信・削除・認可・Undoはアプリが行う。
+The CVA value of `FileUpload`/`Dropzone` is the last completely accepted `File` batch, not completed upload. Rejection retains the parent's batch; reset repairs it. Match IDs/request IDs to reject stale progress or retry responses. The app performs transport, deletion, authorization and undo.
 
-PDF、画像decode/crop、media再生、Spreadsheet計算はsource/request epochで古い結果を失効させ、所有worker/bitmap/timerを破棄する。回転画像は全領域へスクロールで到達させる。Galleryの明示停止やfocus停止を設定変更で勝手に解除しない。字幕source/順序変更ではcueと選択を更新する。
+PDF, image decode/crop, media playback and spreadsheet calculation invalidate old results through source/request epochs and dispose owned workers, bitmaps and timers. Every part of a rotated image remains reachable by scrolling. Configuration changes must not undo explicit or focus-triggered gallery pauses. Subtitle source/order changes update cues and selection.
 
-Chartは実ECharts renderer、Mapは実MapLibre、editorはCodeMirror/ProseMirror、Spreadsheetは実formula worker、FlowEditorはDagreの配置を使う。全文の値表・native選択・keyboard移動など、canvas/pointerだけに依存しない操作経路を残す。数値の0/欠損/不正や計算エラーを捏造した値へ変えない。小数目盛り・軸名・凡例・長いラベルを狭幅/文字拡大で確認する。
+`Chart` uses an actual ECharts renderer; maps use MapLibre; editors use CodeMirror/ProseMirror; spreadsheets use a formula worker; `FlowEditor` uses Dagre layout. Retain full value tables, native selection and keyboard navigation so tasks do not depend solely on canvas or pointer input. Do not replace zero, missing/invalid numbers or calculation errors with invented values. Inspect fractional ticks, axis names, legends and long labels at narrow widths and enlarged text sizes.
 
-FlowEditor のノード名は空・空白だけを拒否し、その他のアプリ文字列をそのまま保持する。座標は有限の0〜1000000、keyboard移動は同じ境界で止まる。不正な欄は理由とaria-invalidを示し、親の図とその欄のraw入力を保持して修正を待つ。profile/辞書変更では入力DOMを作り直さない。同じ欄の値がアプリから変更された場合は新しい値へ同期し、古い検証状態を除く。外部の不正モデルは表と診断を保持し、canvasへ描画せず、アプリによる修復を待つ。
+`FlowEditor` rejects empty/whitespace-only node names and otherwise preserves app strings. Coordinates must be finite and within 0–1000000; keyboard movement stops at the same boundaries. Invalid fields explain the error, expose `aria-invalid`, and retain both the parent graph and the field's raw input for correction. Profile/dictionary changes do not recreate the input DOM. An external change to the same field synchronizes its new value and clears stale validation. Invalid external models retain the table and diagnostics, do not render to canvas, and wait for app repair.
 
-Code/Rich/MarkdownのCVAは編集内容。RichのJSON schema/URLを表示前に検証し、MarkdownのHTMLはAngular sanitizerへ渡す。`bypassSecurityTrust`で入力を無条件に許可しない。Chat/MessageComposerのCVAは入力中textで、送信intentのcurrent IDをアプリがcomplete/fail/unknownへ応答する。resetは旧ackを失効させ、明示リセット前の失敗と未確定draftを保持する。
+Code/Rich/Markdown CVA values represent editing content. Validate Rich JSON schema/URLs before display; send Markdown HTML through Angular's sanitizer. Do not unconditionally trust input with `bypassSecurityTrust`. `Chat`/`MessageComposer` CVA values represent the current text draft; the app answers the current send-intent ID with complete/fail/unknown. Reset invalidates old acknowledgments. Failure and unknown drafts remain until explicitly reset.
 
-## 配信と確認
+## Delivery and verification
 
-生成consumerにはAngular/RxJS/CDKに加え、採用部品の正規runtime依存が必要。PDF/MapLibre/Sheet worker、MapLibre CSS、PDF fonts/cmaps/wasm/iccsは利用アプリのビルドで配信する。worker URLは利用アプリで明示し、CSPやbundler対応を実HTTPで確認する。第三者NOTICEとPDF fontsの原license/source kitを配布物へ含める。このSkillの`references/docs/ui-library-consumer-guide.ja.md`の「CSSと配布資産」で、基盤・第三者通知、worker原LICENSE、PDF source kit、MIT本文の保持条件を確認する。原資産はインストールしたnpmパッケージの`node_modules/<パッケージ名>/assets/pdf-source/`と`node_modules/<パッケージ名>/assets/third-party/`から取得する。Skill自体はこれらのバイナリー資産を含まない。両assetsディレクトリの全内容を配布成果物へ含め、`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`を省略しない。
+The single public barrel references specialist components too: generated consumers must resolve Angular/RxJS/CDK and the complete [public-barrel dependency set](../../../docs/ui-library-consumer-guide.en.md#application-dependencies), even for a minimal screen. Dependencies are not optional merely because that screen selects fewer components. The app's build serves PDF/MapLibre/Sheet workers, MapLibre CSS and PDF fonts/cmaps/wasm/iccs. Configure worker URLs explicitly and verify CSP/bundler integration over actual HTTP. Include third-party notices and original PDF-font licenses/source kit in the app's distributed output. The [CSS and asset guide](../../../docs/ui-library-consumer-guide.en.md#css-and-distribution-assets) specifies foundation/third-party notices, original worker licenses, the PDF source kit and MIT text. Obtain originals from the installed package's `node_modules/<package-name>/assets/pdf-source/` and `assets/third-party/`. This Skill does not contain those binary assets. Include both complete asset directories and retain `FOUNDATION-NOTICES.txt` and `THIRD-PARTY-NOTICES.txt`.
 
-同期・一致検査とstrict AOT、生成後の独立consumer、実操作、axe、意味/視覚レビューは別の証拠。全ソースAST逸脱検査や実AT/Safari/SSR hydrationを実施したと推測しない。個別の業務保存・Undo・安全な継続の保証はアプリの責任。
+Generation/consistency checks, strict AOT, an independent generated consumer, actual interactions, axe and semantic/visual review provide distinct evidence. Do not infer full-source AST checks, actual assistive-technology/Safari testing or SSR hydration from narrower results. Business persistence, undo and safe continuation remain app responsibilities.
 
-日付書式のruntime切替では不正な未確定入力と現在表示中の書式を保持する。provider/prop変更だけでVALIDへ戻さず、入力の修復、明示reset/clear、calendar選択で新書式へ移す。数式workerのライブラリ所有の構造診断は辞書変更で再翻訳し、app提供workerの失敗本文は保持する。
+Date-format runtime changes retain invalid incomplete input and the format currently displayed. Provider/prop changes alone must not reset validity to VALID. Repair, explicit reset/clear or a calendar selection adopts the new format. Library-owned formula-worker structural diagnostics are retranslated when dictionaries change; failure text supplied by an app-owned worker is retained.
 
-ライブラリ所有の保持状態文言は `uiMessageState` の表示境界で現在の辞書を読む。条件分岐・件数・アプリ由来の値は操作時に確定し、辞書変更でWorker/取得/保存を再実行しない。明示 `set(appText)` は辞書keyと一致しても原文を保持する。`setMessage(parts)` はライブラリ文言だけを遅延評価し、動的な非翻訳部分は操作時の文字列を保持する。FileUpload拒否本文、Schedulerのprivate移動状態、Diffのvendor説明とJson表示診断も表示境界へ接続する。JSONの原文・技術的な型名/parse code/offset・純モデル診断は保持する。
+Retained library messages read the current dictionary at the `uiMessageState` display boundary. Conditions, counts and app values are captured when the operation occurs. Dictionary changes do not rerun workers, fetches or saves. Explicit `set(appText)` retains original text even if it equals a dictionary key. `setMessage(parts)` delays only library text; dynamic untranslated parts retain their operation-time strings. This also covers FileUpload rejection text, private Scheduler movement state, vendor Diff descriptions and displayed JSON diagnostics. Preserve original JSON, technical type names/parse codes/offsets and pure-model diagnostics. See the [detailed public contracts](../../../docs/ui-components.en.md) and [runtime foundation](../../../docs/ui-library-runtime-foundation-spec.en.md).

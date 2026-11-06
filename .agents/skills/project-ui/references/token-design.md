@@ -1,9 +1,9 @@
-# トークン設計と比較
+# Token design and comparison
 
-プリミティブには具体的な値を、セマンティックトークンには用途を定義する。たとえば`blue-700`と`green-700`を用意し、`color.action`から参照する。プロファイルを変えると、同じ役割に別の値を割り当てられる。フォーカス、選択、警告、重大な操作は主操作と意味が異なるため、見た目の都合で一つにまとめない。
+Define concrete values in primitives and purposes in semantic tokens. For example, define `blue-700` and `green-700`, then reference one from `color.action`. Different profiles can assign different values to the same role. Focus, selection, warnings and destructive actions have different meanings from the primary action; keep their roles separate even when a visual design uses similar colors.
 
-color.actionは操作背景、color.linkはナビゲーション／パンくずのリンク文字、color.tab-selectedは選択中タブの文字と下線。同じ具体色でも役割を分け、同じプリミティブへの参照で揃える。リンクはsurface／background、選択タブはsurfaceとの色ペアを確認する。明るい操作背景の案をリンク文字へそのまま流用しない。長い項目名は部品で折り返し、狭幅や文字拡大のために文言を省略したり隠したりしない。
+`color.action` is an action background; `color.link` is navigation and breadcrumb link text; `color.tab-selected` is selected-tab text and its underline. Keep distinct roles even when they reference the same primitive. Check links against both surface/background and selected tabs against surface. Do not reuse a bright action background as link text without verifying the text/background pair. Wrap long item names within components and retain their text at narrow widths and enlarged text sizes.
 
-案内を読みながら操作する場合と、同じ一覧を日常的に比較する場合では、文字・余白だけでなく情報の優先順位も異なることがある。利用者の属性だけで違いを決めず、どちらの案でも同じ課題を達成できるか確認する。表示をコンパクトにするために、判断材料、操作領域、エラーの説明、復旧方法を削らない。
+A guided task and daily comparison of the same list may need different information priorities as well as different typography and spacing. Base that decision on the task and context, rather than user demographics alone. Verify that both designs support the same task. Compact layouts must retain decision information, usable targets, error explanations and recovery methods.
 
-生成後は、意味トークンの値がブラウザーの計算済みスタイルに反映されているか確認する。外側と内側で異なるプロファイルを使う場合、ホバー時・フォーカス時・処理中・エラー時・情報欠損時の表示、文字拡大時の表示を確認する。色ペアの計算で確認できるのは、対象となる色の組み合わせだけである。利用者の理解、業務上の正しさ、アクセシビリティ全体を保証するものではない。
+After generation, inspect the browser's computed styles to confirm semantic values are applied. With nested profiles, inspect hover, focus, pending, error, missing-information and enlarged-text states in both scopes. A color-pair calculation establishes only the tested color relationship; it does not establish user understanding, business correctness or accessibility as a whole. See the [full design contract](docs/design.en.md).

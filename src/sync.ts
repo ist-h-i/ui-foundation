@@ -81,7 +81,7 @@ async function sourceFiles(directory: string): Promise<Map<string, string>> {
       const child = resolve(path, entry.name);
       if (entry.isSymbolicLink()) throw new SyncConflictError([`Template symlink is unsupported: ${child}`]);
       if (entry.isDirectory()) await visit(child);
-      else if (entry.isFile() && /\.(ts|css|md)$/.test(entry.name) && entry.name !== 'README.md') {
+      else if (entry.isFile() && /\.(ts|css|md)$/.test(entry.name) && !/^README(?:\.[a-z]+)?\.md$/.test(entry.name)) {
         files.set(relative(directory, child).split(sep).join('/'), await readFile(child, 'utf8'));
       }
     }
@@ -91,7 +91,7 @@ async function sourceFiles(directory: string): Promise<Map<string, string>> {
 }
 
 function projectContext(config: ResolvedConfig): string {
-  return '# Project UI configuration / プロジェクトのUI設定\n\nResolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose.\n\n画面設計用の設定概要です。変更は正本のYAMLで行います。CLIは説明文から見た目を推測しません。\n\n'
+  return '# Project UI configuration\n\nResolved YAML settings for screen design. Edit the source YAML to change configuration. The CLI does not infer visual values from context prose. App-authored context and labels below are preserved in their original language.\n\n'
     + '```json\n' + stableJSON({ context: config.context, default_profile: config.default_profile, default_language: config.default_language ?? 'ja', output: config.output, profiles: config.profiles }) + '```\n';
 }
 
@@ -123,7 +123,7 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
   if (!skill.has('SKILL.md')) throw new Error('The UI development Skill source is missing.');
   for (const [path, content] of skill) {
     // The installed English Skill links to package docs. Sync copies them beside the Skill.
-    files.set(`${skillDirectory}/${path}`, content.replaceAll('](../../docs/', '](references/docs/'));
+    files.set(`${skillDirectory}/${path}`, content.replaceAll('](../../docs/', '](references/docs/').replaceAll('](../../../docs/', '](docs/'));
   }
   for (const [path, content] of await renderSkillDocumentation()) files.set(`${skillDirectory}/references/${path}`, content);
   const manifest: Manifest = { version: 1, tool_version: version, configuration_hash: digest(stableJSON(config)),

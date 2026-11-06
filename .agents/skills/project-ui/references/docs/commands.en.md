@@ -54,7 +54,7 @@ Paths must remain inside the app. Absolute paths, `.`/`..` segments, backslashes
 
 Run only one sync or dry run in an app root at a time. An existing `.ui-foundation-sync.lock` blocks another run before configuration/output changes. Normal completion and successful rollback remove only the current run's lock. Force termination or failed recovery may leave it behind.
 
-The lock records intended paths and before/after hashes, not file backups. Confirm the writer stopped, verify lock identity and compare files with a saved Git/backup state. Restore matching YAML, output, Skill and manifest together before explicitly moving the lock aside. Do not remove a lock based only on its age or PID. Multi-file updates are not atomic across forced process termination. [Detailed recovery contract — Japanese](npm-beta-readiness.ja.md)
+The lock records intended paths and before/after hashes, not file backups. Confirm the writer stopped, verify lock identity and compare files with a saved Git/backup state. Restore matching YAML, output, Skill and manifest together before explicitly moving the lock aside. Do not remove a lock based only on its age or PID. Multi-file updates are not atomic across forced process termination. [Detailed recovery contract](npm-beta-readiness.en.md)
 
 ## Check
 
@@ -85,7 +85,7 @@ Diagnostics include location, rule, severity, message, suggestion and source. Ar
 | Generation mismatch, source errors, invalid config, missing sources or parse/read failure | 1 |
 | Invalid command/options or another exception | 1 |
 
-`NOT_CONFIGURED` means source checking was not performed. Empty or nonexistent configured roots fail. Warnings need investigation, not blanket suppression. Static success does not certify runtime behavior, business correctness, visual quality, accessibility as a whole or user understanding. [Detailed check contract — Japanese](static-checks.ja.md)
+`NOT_CONFIGURED` means source checking was not performed. Empty or nonexistent configured roots fail. Warnings need investigation, not blanket suppression. Static success does not certify runtime behavior, business correctness, visual quality, accessibility as a whole or user understanding. [Detailed check contract](static-checks.en.md)
 
 ## Standalone generated checker
 
