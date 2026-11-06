@@ -43,7 +43,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.equal(installedMetadata.license, manifest.license);
   assert.equal(installedMetadata.version, manifest.version);
-  for (const path of ['README.md', 'docs/components.ja.md', 'docs/ui-library-consumer-guide.ja.md', 'docs/ui-library-consumer-guide.en.md', 'docs/commands.ja.md', 'skills/ui-development/SKILL.en.md']) {
+  for (const path of ['README.md', 'README.ja.md', ...allowedDocs, 'skills/ui-development/SKILL.md', 'skills/ui-development/SKILL.en.md', 'skills/ui-development/SKILL.ja.md']) {
     assert.deepEqual(await readFile(resolve(installed, path)), await readFile(resolve(repository, path)), `consumer documentation must be current: ${path}`);
   }
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
@@ -86,9 +86,11 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.ok(!valid.source.diagnostics.some(item => /standard libraries are unavailable/.test(item.message)));
   const generated = resolve(consumer, '.ui/generated');
   for (const directory of [resolve(installed, 'skills/ui-development'), resolve(consumer, '.agents/skills/project-ui')]) {
-    const skill = await readFile(resolve(directory, 'SKILL.en.md'), 'utf8');
-    assert.match(skill, /English consumer guide/);
-    for (const [, target] of skill.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) await readFile(resolve(directory, target.split('#')[0]));
+    for (const name of ['SKILL.md', 'SKILL.en.md', 'SKILL.ja.md']) {
+      const skill = await readFile(resolve(directory, name), 'utf8');
+      assert.match(skill, name === 'SKILL.ja.md' ? /プロジェクトのUI開発/ : /English consumer guide/);
+      for (const [, target] of skill.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) await readFile(resolve(directory, target.split('#')[0]));
+    }
   }
   assert.deepEqual(await readFile(resolve(generated, 'angular/locale-en.ts')), await readFile(resolve(installed, 'templates/angular/locale-en.ts')));
   for (const path of ['.ui/generated/UI-FOUNDATION-LICENSE.txt', '.agents/skills/project-ui/UI-FOUNDATION-LICENSE.txt']) {

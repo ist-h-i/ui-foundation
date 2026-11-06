@@ -2236,7 +2236,7 @@
     },
     {
       "path": "templates/angular/choice-controls.ts",
-      "sha256": "db4a7c4f907e119d261c14a39fe05f37592b78baed092f07fed1154e4cea03c1",
+      "sha256": "07fd68b2b731d379808e0b69ee667e68958cc1561192c0a0fd6214d03aef951f",
       "declarations": [
         {
           "names": [
@@ -2504,7 +2504,7 @@
     },
     {
       "path": "templates/angular/choice-model.ts",
-      "sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+      "sha256": "f592a4946de4bf4faabfd21c685b0ee245e2726c447ff9ad7f5b67be9c21a48f",
       "declarations": [
         {
           "names": [
@@ -2553,14 +2553,14 @@
             "numericValueError"
           ],
           "kind": "function",
-          "declaration": "export function numericValueError(value: unknown, domain: NumberDomain): string | null"
+          "declaration": "export function numericValueError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null"
         },
         {
           "names": [
             "numericRangeError"
           ],
           "kind": "function",
-          "declaration": "export function numericRangeError(value: unknown, domain: NumberDomain): string | null"
+          "declaration": "export function numericRangeError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null"
         },
         {
           "names": [
@@ -2651,7 +2651,7 @@
     },
     {
       "path": "templates/angular/collection-model.ts",
-      "sha256": "357816b840d0337710c84d9204fdc165a15325d2b074a88d1373360cd7c71863",
+      "sha256": "c2ea3578ef375d09440dd04662e74225d5b97b79be30c21d43d4742da0eda7ab",
       "declarations": [
         {
           "names": [
@@ -2728,7 +2728,7 @@
             "listSelectionProblem"
           ],
           "kind": "function",
-          "declaration": "export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null):string|null"
+          "declaration": "export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null,text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)):string|null"
         },
         {
           "names": [
@@ -3259,7 +3259,7 @@
     },
     {
       "path": "templates/angular/data-grid.ts",
-      "sha256": "79c3cd9887da671dfc7625fb6da5ef161bdeca1ce8a830096eaa4e6fc6b5d644",
+      "sha256": "b25549a24c2ec80d03879304409394f6342751eec59fb964fead5d8574d16392",
       "declarations": [
         {
           "names": [
@@ -3481,7 +3481,7 @@
     },
     {
       "path": "templates/angular/data-table-view.ts",
-      "sha256": "782e46b8f67347f8366bcc8bbd387338321aaba8ad2fe9c858e168c41d8e1941",
+      "sha256": "1cebbdc59d0c1a19f38cb68f7e32a322ef1cbf28687a538a2a36a0c8048e6081",
       "declarations": [
         {
           "names": [
@@ -11074,7 +11074,7 @@
     },
     {
       "path": "templates/angular/listbox.ts",
-      "sha256": "479fac3d7148637162e1dcbb3a38cbd1cc947e497a600d03958644f8d742d978",
+      "sha256": "d91c4f35cfb48620b6e93a035ddc9384ea6951da3f0a359b3dac27091a46b528",
       "declarations": [
         {
           "names": [
@@ -11209,7 +11209,7 @@
     },
     {
       "path": "templates/angular/locale-en.ts",
-      "sha256": "93c719e12f54f026639005ef91dc78f468c50936135bf54da9e187310b1ff44a",
+      "sha256": "46e6f2dff79ee1a846f97e6250651898a3a5a6fa6523e75b76fd158c87340ab5",
       "declarations": [
         {
           "names": [
@@ -15987,7 +15987,7 @@
     },
     {
       "path": "templates/angular/table-advanced-model.ts",
-      "sha256": "3cb5cbd9e01e6c134a81a9b20393de27c49dca2dd17e0443965cc764b4f790b6",
+      "sha256": "0d70d16cacfb5cf17920e6ce460e0fae581f71bb653fb90e17f1337f93e63394",
       "declarations": [
         {
           "names": [
@@ -16029,7 +16029,7 @@
             "TableDraftResult"
           ],
           "kind": "type",
-          "declaration": "export type TableDraftResult = {\n    valid: true;\n    value: unknown;\n} | {\n    valid: false;\n    message: string;\n};"
+          "declaration": "export type TableDraftResult = {\n    valid: true;\n    value: unknown;\n} | {\n    valid: false;\n    message: string;\n    messageText?: () => string;\n};"
         },
         {
           "names": [
@@ -16043,7 +16043,7 @@
             "parseTableDraft"
           ],
           "kind": "function",
-          "declaration": "export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T): TableDraftResult"
+          "declaration": "export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TableDraftResult"
         },
         {
           "names": [
@@ -16057,7 +16057,7 @@
             "validateTableRowDraft"
           ],
           "kind": "function",
-          "declaration": "export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string): {\n    value: T;\n    changes: readonly TableEditChange[];\n    errors: Readonly<Record<string, string>>;\n}"
+          "declaration": "export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string, text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): {\n    errorText?: Readonly<Record<string,()=>string>>;\n    value: T;\n    changes: readonly TableEditChange[];\n    errors: Readonly<Record<string, string>>;\n}"
         },
         {
           "names": [
@@ -16148,7 +16148,7 @@
             "groupTable"
           ],
           "kind": "function",
-          "declaration": "export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得'): readonly TableRowGroup<T>[]"
+          "declaration": "export function groupTable<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], by: readonly string[], aggregates: readonly TableAggregate[] = [], locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, messages:UiMessages={}): readonly TableRowGroup<T>[]"
         },
         {
           "names": [
@@ -16232,14 +16232,14 @@
             "TablePasteResult"
           ],
           "kind": "interface",
-          "declaration": "export interface TablePasteResult<T extends object> {\n    requests: readonly Omit<TableEditRequest<T>, 'requestId'>[];\n    errors: readonly string[];\n}"
+          "declaration": "export interface TablePasteResult<T extends object> {\n    requests: readonly Omit<TableEditRequest<T>, 'requestId'>[];\n    errors: readonly string[];\n    errorText?: readonly (()=>string)[];\n}"
         },
         {
           "names": [
             "prepareTablePaste"
           ],
           "kind": "function",
-          "declaration": "export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[]): TablePasteResult<T>"
+          "declaration": "export function prepareTablePaste<T extends object>(rows: readonly T[], columns: readonly TableEditableColumn<T>[], keyField: keyof T & string, start: GridCell, matrix: readonly (readonly string[])[], text?: (source:string,parameters?:Readonly<Record<string,string|number>>)=>string): TablePasteResult<T>"
         },
         {
           "names": [
@@ -16629,7 +16629,7 @@
     },
     {
       "path": "templates/angular/table-editors.ts",
-      "sha256": "139677016e617ab7e3f5c83f0a972c67fa0605019f3f5f66fc6f5b8eebfc8eda",
+      "sha256": "c6275084808fb060e8d9ace113f03a7943824134ee0af580a5dfa563a4a71b67",
       "declarations": [
         {
           "name": "TableEditorSession",
@@ -19075,7 +19075,7 @@
     },
     {
       "path": "templates/angular/virtual-data-table.ts",
-      "sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "sha256": "c8c17ce17a165b029a9bee968db562e90196f8c7cb717a9d5b147105e39aa1d0",
       "declarations": [
         {
           "kind": "export",

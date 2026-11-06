@@ -1,6 +1,11 @@
 import type {UiMessages} from './locale-model';
 
 const englishMessages: UiMessages = {
+  "{min} から {max} の範囲で指定してください。": "Enter a value from {min} to {max}.",
+  "{step} 刻みで指定してください。": "Enter a value in increments of {step}.",
+  "{limit}件まで選択してください。": "Select up to {limit} items.",
+  "{row}行目・{column}は編集できません。": "Row {row}, {column} cannot be edited.",
+  "{row}行目・{column}: {message}": "Row {row}, {column}: {message}",
   "件は受け付けできません。": " rejected.",
   "件を受け付けました。": " accepted. ",
   "件を": " items ",

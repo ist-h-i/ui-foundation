@@ -347,9 +347,9 @@ export class DataGrid<T extends object> {
             this.status.setMessage([() => this.uiRuntimeText_DataGrid('貼付け内容の行、列、引用符を確認してください。')]);
             return false;
         }
-        const result = prepareTablePaste(this.rows(), this.columns(), this.keyField(), this.active(), matrix);
+        const result = prepareTablePaste(this.rows(), this.columns(), this.keyField(), this.active(), matrix,this.uiRuntimeText_DataGrid);
         if (result.errors.length) {
-            this.status.set(result.errors.join(' '));
+            this.status.setMessage([()=>result.errorText!.map(format=>format()).join(' ')]);
             return false;
         }
         if (result.requests.some(request => { const index = this.rows().findIndex(row => this.rowKey(row) === request.key); return this.treeRows()?.[index]?.disabled; })) {

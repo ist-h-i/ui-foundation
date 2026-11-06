@@ -7,6 +7,8 @@ description: Design and implement UI for this project using its persona profiles
 
 [English / 標準の英語版](SKILL.md)
 
+この手順の `project-context.md` と `references/docs/` は、`sync` 後の `.agents/skills/project-ui/` を基準とするパスです。インストール直後は[日本語の導入ガイド](references/docs/ui-library-consumer-guide.ja.md)を読み、同期してから生成Skillを利用してください。
+
 ## 最初に読む
 
 生成先では隣の`project-context.md`を読み、利用者の目的・利用状況・制約、`default_profile`、各プロファイルの`guidance`とトークンの対応を確認する。利用アプリの正本YAMLと、同梱の`references/docs/design.md`を読む。説明文は設計の判断材料として使い、文章だけを根拠に設定値を確定しない。

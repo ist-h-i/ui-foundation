@@ -53,7 +53,7 @@ export abstract class TableEditorSession<T extends object> {
     protected readonly editableColumns = computed(() => this.editColumns().filter(column => column.editable !== false && column.field !== this.keyField()));
     protected readonly blocked = computed(() => this.disabled() || this.busy());
     protected readonly problem = computed(() => this.uiDiagnostic_TableEditorSession(tableEditProblem(this.editColumns(), this.keyField())) || ![this.controlId(), this.label(), this.uiEffective_editLabel()].every(value => value.trim()) ? this.uiRuntimeText_TableEditorSession('編集欄のID、説明、列設定を確認してください。') : !this.editableColumns().length ? this.uiRuntimeText_TableEditorSession('編集できる列がありません。') : null);
-    protected readonly validation = computed(() => validateTableRowDraft(this.row(), this.editableColumns(), this.raw(), this.keyField()));
+    protected readonly validation = computed(() => validateTableRowDraft(this.row(), this.editableColumns(), this.raw(), this.keyField(),this.uiRuntimeText_TableEditorSession));
     protected readonly hasErrors = computed(() => Object.keys(this.validation().errors).length > 0);
     protected readonly displayText = computed(() => this.editColumns().map(column => tableText(this.row(), column, this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages)).join(' / '));
     protected value(event: Event): string { return (event.target as HTMLInputElement).value; }

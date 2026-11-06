@@ -398,7 +398,7 @@ export class DataTableView<T extends object> {
         if (this.configurationError())
             return [];
         const rows = this.pageRows(), start = rows.filter(row => this.fixedStartKeys().includes(this.key(row))), end = rows.filter(row => this.fixedEndKeys().includes(this.key(row))), normal = rows.filter(row => !this.fixedStartKeys().includes(this.key(row)) && !this.fixedEndKeys().includes(this.key(row)));
-        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel()), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
+        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
         return [...start.map(row => ({ kind: 'row' as const, row, hidden: false })), ...entries, ...end.map(row => ({ kind: 'row' as const, row, hidden: false }))];
     });
     private readonly footerValues = computed(() => this.configurationError() ? [] : aggregateTable(this.aggregateScope() === 'page' ? this.pageRows() : this.aggregateScope() === 'supplied' ? this.rows() : this.filteredRows(), this.columns(), this.aggregates()));

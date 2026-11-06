@@ -56,6 +56,25 @@ for(const profile of ['guided','dense'] as const)test(`Japanese child scope and 
  await expect(page.locator('#composer-case button[type=submit]')).toHaveText('送信');
  await expect(input).toBeFocused();await expect(input).toHaveValue('31/02/2026');
 });
+test('numeric, selection, editor and retained paste diagnostics translate without changing app labels or drafts',async({page})=>{
+ const probe=page.locator('#locale-validation');
+ const cell=probe.locator('[data-grid-cell]').first();await cell.focus();
+ await cell.evaluate(element=>{const clipboard=new DataTransfer();clipboard.setData('text/plain','oops');element.dispatchEvent(new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData:clipboard}));});
+ await expect(probe).toContainText('1行目・App quantity: 有限の数値を入力してください。');
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US',messages:app.englishMessages}));});
+ await expect(probe.locator('ui-slider')).toContainText('Enter a value from 0 to 100.');
+ await expect(probe.locator('ui-range-slider')).toContainText('The start value must be less than or equal to the end value.');
+ await expect(probe.locator('ui-knob')).toContainText('Enter a value from 0 to 100.');
+ await expect(probe.locator('ui-rating')).toContainText('Enter a value from 0 to 5.');
+ await expect(probe.locator('ui-listbox')).toContainText('Select up to 1 items.');
+ await expect(probe).toContainText('Row 1, App quantity: Enter a finite number.');
+ await cell.getByRole('button').click();const editor=probe.locator('[data-table-editor]');await editor.fill('');
+ await expect(probe.locator('ui-cell-editor')).toContainText('Enter a value.');
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP',messages:app.japaneseMessages}));});
+ await expect(probe.locator('ui-cell-editor')).toContainText('入力してください。');
+ await expect(editor).toHaveValue('');await expect(editor).toBeFocused();
+ await expect(probe).toContainText('App quantity');
+});
 test('DateRange same-value reset repairs raw input, blur controls confirmation, and locale/profile retain drafts',async({page})=>{
  const start=page.locator('#range-case input').nth(0),end=page.locator('#range-case input').nth(1);
  await start.fill('31/02/2026');await start.evaluate(element=>{(window as any).__dateInput=element;});await start.focus();await start.evaluate(element=>(element as HTMLInputElement).setSelectionRange(2,5));
