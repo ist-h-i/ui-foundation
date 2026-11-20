@@ -135,7 +135,22 @@ The generated TypeScript contains inline templates, so include it in Tailwind's 
 
 ## Import generated components
 
-Import from the generated `angular/index.ts` public entry point. This standalone component belongs in `src/app.ts` when the app uses the default output path.
+Choose the generated public entry point for your app.
+
+| Entry point | When to use it |
+| --- | --- |
+| `angular/core.ts` | Only actions, cards, native form fields, and their icons and locale APIs. |
+| `angular/index.ts` | Any other components or the complete Angular API. |
+
+Use `core` after installing and syncing a version that provides this entry point. For example, with the default output path:
+
+```ts
+import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/angular/core';
+```
+
+The core entry resolves Angular core, common, CDK and its Angular Forms peer, RxJS, and Lucide. The app still supplies its normal Angular build and bootstrap packages. Use app-owned source files as TypeScript roots and let imports select the generated code. A glob that adds every generated TypeScript file makes the compiler resolve specialist sources too. Load the shared tokens and component styles described above. The core entry requires no app-side `sideEffects` override or specialist CSS and worker assets. The full entry remains available to existing users.
+
+The following standalone component uses the full entry and belongs in `src/app.ts` when the app uses the default output path.
 
 ```ts
 import { Component } from '@angular/core';
@@ -213,7 +228,7 @@ To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `pro
 
 The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.2.1`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
 
-The public entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component. Several engines load on demand at runtime.
+The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
 
 | Package | Tested version | Used for |
 | --- | --- | --- |

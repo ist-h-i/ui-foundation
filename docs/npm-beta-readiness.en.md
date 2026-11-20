@@ -15,7 +15,7 @@ This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-f
 | API | YAML `schema_version=1`, CLI init/sync/check and existing flags, explicit exports from the public Angular barrel and generated structure. Manifest/policy/ownership/lock are tool-managed, not app-editable APIs. |
 | Check results | CLI check combines generation consistency and source checks; generated check-ui.cjs checks policy/source. Existing JSON fields and error/warning/not-configured meanings are retained. |
 
-The public barrel references specialist components too, so even a minimal screen must resolve the25 engines and other dependencies listed in the guide. Separate per-use entry points are a future improvement, not optional beta dependencies. Verify additional configurations in the consumer.
+The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. When the installed version provides `angular/core.ts`, apps using only its exports can resolve the smaller dependency set described in the consumer guide. Verify additional configurations in the consumer.
 
 ## Installation and documentation
 

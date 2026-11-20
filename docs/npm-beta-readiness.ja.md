@@ -15,7 +15,7 @@
 | API | YAML schema_version=1、CLIのinit/sync/checkと既存flags、公開Angular barrelの明示export、生成先の構造。manifest/policy/ownership/lockはツールが管理し、アプリが手編集するAPIにしない |
 | 検査結果 | CLIのcheckは生成一致＋ソース検査。生成check-ui.cjsはpolicyとソース検査。JSONの既存フィールドとエラー/警告/未設定の意味を維持する |
 
-公開barrelは専門部品まで参照するため、最小画面でもガイド記載の25 engine等を型解決できる必要がある。用途別入口の分離は正式版に向けた改善とし、ベータで依存が任意になったとは説明しない。未検証の追加構成は利用アプリで確認する。
+全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の25エンジンなどを型解決できる必要があります。`angular/core.ts` を提供する版でその公開 API だけを使う場合は、利用ガイドに記載の基本部品の依存で型解決できます。未検証の追加構成は利用アプリで確認します。
 
 ## 導入と文書
 
