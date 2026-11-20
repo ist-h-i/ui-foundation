@@ -977,3 +977,45 @@ test('generated internal imports follow TypeScript aliases and recommend the pub
   assert.match(findings[0].suggestion, /\.ui\/generated\/angular\/index/);
   assert.doesNotMatch(findings[1].suggestion, /\.ui\/generated\/angular\/index/);
 });
+
+test('baseline reports a violation moved to a different structural site', async t => {
+  const cases = [
+    ['app/site.css',
+      '@media (orientation: portrait) { .one { color: red } }\n@media (orientation: landscape) { .one { color: var(--ui-color-text) } }',
+      '@media (orientation: portrait) { .one { color: var(--ui-color-text) } }\n@media (orientation: landscape) { .one { color: red } }'],
+    ['app/site.html',
+      '<aside><span style="color: red"></span></aside><main><span style="color: var(--ui-color-text)"></span></main>',
+      '<aside><span style="color: var(--ui-color-text)"></span></aside><main><span style="color: red"></span></main>'],
+    ['app/site.ts',
+      "declare const a: HTMLElement, b: HTMLElement;\na.style.color = 'red';\nb.style.color = 'var(--ui-color-text)';",
+      "declare const a: HTMLElement, b: HTMLElement;\na.style.color = 'var(--ui-color-text)';\nb.style.color = 'red';"],
+  ] as const;
+  for (const [file, before, after] of cases) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, file);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    const compare = () => checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    await writeFile(resolve(root, file), '\n' + before);
+    const shifted = await compare();
+    assert.equal(shifted.valid, true, file);
+    assert.equal(shifted.existing_diagnostics?.length, 1, file);
+    await writeFile(resolve(root, file), after);
+    const moved = await compare();
+    assert.equal(moved.valid, false, file);
+    assert.equal(moved.existing_diagnostics?.length, 0, file);
+    assert.equal(errors(moved).length, 1, file);
+  }
+});
+
+test('application declaration files warn on imports of private generated types', async t => {
+  const { scan } = await fixture(t, {
+    'app/types.d.ts': "export type Model = import('../.ui/generated/angular/internal').Model;",
+    '.ui/generated/angular/internal.ts': 'export interface Model { label: string }',
+  });
+  const report = await scan();
+  assert.equal(report.valid, true);
+  const findings = warnings(report).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].file, 'app/types.d.ts');
+});

@@ -7,7 +7,7 @@
     "src/config.ts": "2d594b7a57360d2d2fca189d52d161191d6bbf9a1c671c64aab1a2a9a1dae8e1",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
     "src/sync.ts": "31065689fc6169b46bc11347c0ca4e2d6542e313116282ef5e81d26bbd2747bc",
-    "src/check/application.ts": "009a31d09245908aad8425614740cc831a37aebdf86db13f4884183d7331c314",
+    "src/check/application.ts": "7599b5e8e8c31600d9e306b02c93d6f0e450cb7787c725ff1f4b13cf292a04f0",
     "src/check/bounded-search.ts": "007557dd0be3e13506c23b0eca87909a396d571c260df609b90a895af0b90f8f",
     "src/check/bundle.ts": "bcff52e444c63faeb7a2c875a9a3e94211b5603b37b77b6ac539b5e14b0c00b6",
     "src/check/canonical.ts": "6645f7e87893e28c67433615add9c841922fce1fd81ae40cb161ba670c417dd7",
@@ -15,10 +15,10 @@
     "src/check/entry.ts": "8cc7cedd8c5c8478635afe9e01c4feb04d30b6c17f0594d07cc82396913f3299",
     "src/check/policy.ts": "7657b3050d8a63e5be226fbedf91211d783d01058ad2dea91679deb70925be42",
     "src/check/report.ts": "c0b262dabfecb9a7febbff5a57e7517777cf77a6117af85e93cd6569be3b3468",
-    "src/check/scanner.ts": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
-    "src/check/styles.ts": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+    "src/check/scanner.ts": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
+    "src/check/styles.ts": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
-    "src/check/types.ts": "3d9787fb35fd460f4f7439bbd05fc039870c3efb1827abdbeeafb9d8a02faa65",
+    "src/check/types.ts": "c821eb2135f04160e3db186fb45fd675d30a7687b5b72de6c11530f162668b6d",
     "src/warning-review.ts": "b91a4e326f6b9b8633bc48714bf338d5fe4ecbafeecd80b4d10e2d329c9291e8",
     "src/warning-review-cli.ts": "9751597d24dadd07f0db8a59dad2421044f1ab345794e00b271ddf32ee7a24a5",
     "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34",
@@ -160,13 +160,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -274,13 +274,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -406,13 +406,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8168,13 +8168,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8270,13 +8270,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8372,13 +8372,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8486,13 +8486,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8600,13 +8600,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8708,13 +8708,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8792,13 +8792,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8888,13 +8888,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8984,13 +8984,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9080,13 +9080,13 @@
         {
           "file": "src/check/styles.ts",
           "anchor": "let complete = !scss && scopes.every(scope => scope.controlled) && writesKnown && !registered.has(name);",
-          "sha256": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
+          "sha256": "710b84be4edb8fd5c0f6d02daaf9fcb8702cb152646e9106590927e1815eb11e",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
+          "sha256": "cba0afc65f5a3dada3597a468e3059cf4e59290bf442dc5abcf0593370772f96",
           "scope": "Read source at audited snapshot."
         },
         {

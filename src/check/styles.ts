@@ -2,6 +2,7 @@ import postcss from 'postcss';
 import scssParser from 'postcss-scss';
 import valueParser from 'postcss-value-parser';
 import selectorParser from 'postcss-selector-parser';
+import { withBaselineContext } from './application.ts';
 import type { CustomPropertyOrigin, CustomPropertyResolver, SourceDiagnostic, SourceLocation, StyleContext } from './types.ts';
 
 type RuleSpec = { categories: string[]; keywords?: string[]; full?: boolean; identity?: boolean };
@@ -583,6 +584,18 @@ export function customPropertyResolver(context: StyleContext, origin: CustomProp
   return stylesheetAliases(postcss.root(), context, false, origin, layer)(scopes);
 }
 
+function stylesheetBaselineContext(node: postcss.Node): string[] {
+  const context: string[] = [];
+  for (let owner = node.parent; owner; owner = owner.parent) {
+    if (owner.type === 'rule') context.push(JSON.stringify(['selector', (owner as postcss.Rule).selector]));
+    if (owner.type === 'atrule') {
+      const rule = owner as postcss.AtRule;
+      context.push(JSON.stringify(['at-rule', rule.name, rule.params]));
+    }
+  }
+  return ['Stylesheet', ...context.reverse()];
+}
+
 export function checkCSS(css: string, location: SourceLocation, context: StyleContext, scss = false): void {
   try {
     const root = scss ? scssParser.parse(css) : postcss.parse(css);
@@ -592,7 +605,7 @@ export function checkCSS(css: string, location: SourceLocation, context: StyleCo
         const source = `@${node.name} ${node.params}`;
         const atLocation = { ...location, offset: location.offset + (node.source?.start?.offset ?? 0) };
         if (/\$|#\{/.test(node.params)) context.emit(diagnostic(atLocation, 'unresolved', 'warning', 'Dynamic query threshold cannot be resolved without Sass expansion.', 'Review compiled queries separately.', source));
-        else if (/[+-]?(?:\d*\.)?\d+(?:px|em|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc)\b/i.test(node.params)) context.emit(diagnostic(atLocation, 'literal-token', 'error', 'Fixed query dimensions need an explicit geometry exception.', 'Record a narrow exception explaining the responsive threshold.', source));
+        else if (/[+-]?(?:\d*\.)?\d+(?:px|em|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc)\b/i.test(node.params)) context.emit(withBaselineContext(diagnostic(atLocation, 'literal-token', 'error', 'Fixed query dimensions need an explicit geometry exception.', 'Record a narrow exception explaining the responsive threshold.', source), ...stylesheetBaselineContext(node)));
       }
       if (/^(mixin|include|extend|function|if|else|for|each|while|use|forward|import)$/.test(node.name) && (scss || /\$|#\{/.test(node.params))) {
         const offset = node.source?.start?.offset ?? 0;
@@ -608,7 +621,7 @@ export function checkCSS(css: string, location: SourceLocation, context: StyleCo
       const selector = node.parent?.type === 'rule' ? (node.parent as postcss.Rule).selector : undefined;
       const original = selector ? `${selector}{${node.toString()}}` : node.toString();
       const prefix = `${node.prop}:${node.value} :: `;
-      const innerContext: StyleContext = { ...context, emit: (issue) => context.emit({ ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') }) };
+      const innerContext: StyleContext = { ...context, emit: (issue) => context.emit(withBaselineContext({ ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') }, ...stylesheetBaselineContext(node))) };
       checkStyle(node.prop, node.value, { ...location, offset: location.offset + offset }, innerContext, aliases(selectorScopes(node.parent?.type === 'rule' ? node.parent as postcss.Rule : undefined)));
     });
   } catch (error) {
