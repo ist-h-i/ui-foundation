@@ -762,7 +762,7 @@
         "source": "[data-direction='left-right'] .ui-org-children>.ui-org-item:last-child::after,[data-direction='right-left'] .ui-org-children>.ui-org-item:last-child::after{block-size:calc(50% + var(--ui-space-field) / 2)}"
       },
       {
-        "file": "templates/angular/page-frame.ts",
+        "file": "templates/angular/page-frame.css",
         "reason": "レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。",
         "rule": "literal-token",
         "source": "@media (max-width:40rem)"
@@ -882,7 +882,7 @@
         "source": ".ui-sr-only{clip-path: inset(50%)}"
       },
       {
-        "file": "templates/angular/styles.css",
+        "file": "templates/angular/page-frame.css",
         "reason": "PageFrame見出しと補助操作の折返しを決めるflex配置の基準幅。見出しの書体・文字サイズ・領域余白は意味トークンへ接続する。",
         "rule": "literal-token",
         "source": ".ui-page-frame__heading{flex: 1 1 16rem}"

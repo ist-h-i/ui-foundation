@@ -811,7 +811,7 @@ checks:
         .ui-org-children>.ui-org-item:last-child::after{block-size:calc(50% +
         var(--ui-space-field) / 2)}"
       reason: 階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。
-    - file: templates/angular/page-frame.ts
+    - file: templates/angular/page-frame.css
       rule: literal-token
       source: "@media (max-width:40rem)"
       reason: レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。
@@ -897,7 +897,7 @@ checks:
       rule: literal-token
       source: ".ui-sr-only{clip-path: inset(50%)}"
       reason: 読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。
-    - file: templates/angular/styles.css
+    - file: templates/angular/page-frame.css
       rule: literal-token
       source: ".ui-page-frame__heading{flex: 1 1 16rem}"
       reason: PageFrame見出しと補助操作の折返しを決めるflex配置の基準幅。見出しの書体・文字サイズ・領域余白は意味トークンへ接続する。
