@@ -56,7 +56,7 @@ checks:
         complete: true
 ```
 
-Register the function and pipe names your app actually uses. Functions receive the ID and optional named argument object, as in `t('order.count', {count: 3})`. Pipes receive the ID on the left and an optional named object after the colon. Set `display_bindings: [toastMessage]` to include a custom display input.
+Register the function and pipe names your app actually uses. Functions receive the ID and optional named argument object, as in `t('order.count', {count: 3})`. Pipes receive the ID on the left and an optional named object after the colon. Set `display_bindings: [toastMessage]` to include a custom display input. Set up a generated `injectUiMessageText()` or `injectUiMessage()` field on the Angular component to have its direct calls checked in templates and host bindings. The checker reads only statically supported IDs and named argument shapes. When a template-local name hides the field, use `this` to refer to the component field explicitly.
 
 Use a flat JSON file for app-owned message IDs. A string can declare required names with `{name}` placeholders. Use a `parameters` object for explicit types. Supported types are `string`, `number`, `boolean`, and `null`. The checker resolves the library's own IDs and types from the shipped contract. Selected app files form one dictionary scope, so an ID found in any selected file is present. To detect a missing ID for a particular language, check that language’s complete catalog without selecting other languages’ copies.
 
