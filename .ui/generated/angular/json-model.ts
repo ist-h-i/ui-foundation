@@ -8,7 +8,9 @@ function invalid(request:JsonDiagnostic):JsonModel {
 export interface JsonModel {rows:readonly JsonRow[];error:string|null;request?:JsonDiagnostic;}
 /** Offset-based nodes preserve duplicate properties and exact numeric/string source tokens. */
 export function jsonRows(source:string):JsonModel {
- if(source.length>1_000_000)return invalid({id:'uiFoundation.jsonViewer.sourceTooLarge'});const errors:ParseError[]=[];
+ if(source.length>1_000_000)return invalid({id:'uiFoundation.jsonViewer.sourceTooLarge'});
+ if(/^[\t\r\n ]*$/.test(source))return invalid({id:'uiFoundation.jsonViewer.emptySource'});
+ const errors:ParseError[]=[];
  let root: Node | undefined;
  try { root=parseTree(source,errors,{allowTrailingComma:false,disallowComments:true}); }
  catch (error) { if (!(error instanceof RangeError)) throw error; return invalid({id:'uiFoundation.jsonViewer.treeLimit'}); }

@@ -82,6 +82,7 @@ test('RowEditor diagnostics render in the active locale without rerunning applic
 test('JSON hierarchy diagnostics are stable and the visible localized root is searchable', async () => {
  const {jsonRows,visibleJsonRows}=await import('../../templates/angular/json-model.ts');
  const model=jsonRows('{"item": true}');
+ assert.equal(jsonRows(' \r\n').request?.id,'uiFoundation.jsonViewer.emptySource');
  const visible=visibleJsonRows(model,new Set<string>(), 'ルート', 'ja-JP', row => row.parentId === null ? 'ルート' : row.label);
  assert.equal(visible[0]?.parentId,null);
  assert.equal(jsonRows('['.repeat(10_000)+'0'+']'.repeat(10_000)).request?.id,'uiFoundation.jsonViewer.treeLimit');
