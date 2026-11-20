@@ -4,7 +4,7 @@
 
 生成したAngularソースの入力・イベント・操作と、利用アプリが所有する状態・処理の契約を説明します。全体の選び方は[コンポーネント一覧](components.ja.md)、導入と依存関係は[利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
-利用アプリはCLIで同期した`<output>/angular/index.ts`から各standalone部品をimportします。共通CSSは生成した`tokens.css`、`angular/styles.css`と、Tailwindを使う場合は`tailwind.css`を読み込みます。HTTP、データの復元、業務判断、保存・送信・Undoはアプリが所有します。型検査・build・実操作・自動アクセシビリティ・表示や意味の確認は区別し、利用者の理解や実業務の有効性を自動検査だけで保証しません。
+利用アプリは、使用する standalone 部品に合わせて[同期後の公開入口](ui-library-consumer-guide.ja.md#依存関係)を選びます。共通CSSは生成した`tokens.css`、`angular/styles.css`と、Tailwindを使う場合は`tailwind.css`を読み込みます。HTTP、データの復元、業務判断、保存・送信・Undoはアプリが所有します。型検査・build・実操作・自動アクセシビリティ・表示や意味の確認は区別し、利用者の理解や実業務の有効性を自動検査だけで保証しません。
 
 ## トークンとプロファイル
 
