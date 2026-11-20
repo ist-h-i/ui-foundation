@@ -186,7 +186,33 @@
         "parameters": {}
       }
     ],
-    "/ 値": [],
+    "/ 値": [
+      {
+        "id": "uiFoundation.spreadsheet.selectionSummary",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
+      }
+    ],
     "/ 外部更新と編集内容が競合しています。編集を確定する前に確認してください。": [
       {
         "id": "uiFoundation.spreadsheet.anExternalUpdateConflictsWithYourEditsReviewTheChangesBeforeConfirming",
@@ -194,7 +220,22 @@
       }
     ],
     "/ 未取得": [],
-    "/ 未確定の入力": [],
+    "/ 未確定の入力": [
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
+      }
+    ],
     "0.5倍": [
       {
         "id": "uiFoundation.mediaPlayer.halfSpeed",
@@ -2613,7 +2654,12 @@
         "parameters": {}
       }
     ],
-    "中程度": [],
+    "中程度": [
+      {
+        "id": "uiFoundation.passwordInput.strengthMedium",
+        "parameters": {}
+      }
+    ],
     "予定が外部で変更されています。入力を保持しています。現在の予定で入力を戻すか、変更内容を確認してください。": [
       {
         "id": "uiFoundation.schedulerController.theEventChangedElsewhereYourInputHasBeenKeptRestoreTheCurrentEventDetailsOrReviewYourC",
@@ -4127,8 +4173,26 @@
         "parameters": {}
       }
     ],
-    "子の行を再取得:": [],
-    "子の行を取得しています。": [],
+    "子の行を再取得:": [
+      {
+        "id": "uiFoundation.treeGrid.retryBranch",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "子の行を取得しています。": [
+      {
+        "id": "uiFoundation.treeGrid.loadingBranch",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "子組織の情報は未取得です。取得した階層をアプリから接続してください。": [
       {
         "id": "uiFoundation.organizationChart.childOrganizationsHaveNotBeenLoadedPassTheLoadedHierarchyFromTheApp",
@@ -4368,8 +4432,18 @@
         "parameters": {}
       }
     ],
-    "弱い": [],
-    "強い": [],
+    "弱い": [
+      {
+        "id": "uiFoundation.passwordInput.strengthWeak",
+        "parameters": {}
+      }
+    ],
+    "強い": [
+      {
+        "id": "uiFoundation.passwordInput.strengthStrong",
+        "parameters": {}
+      }
+    ],
     "強度:": [
       {
         "id": "uiFoundation.passwordInput.strengthMedium",
@@ -4509,6 +4583,14 @@
       {
         "id": "uiFoundation.imageViewer.zoom",
         "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mapView.zoomValue",
+        "parameters": {
+          "zoom": [
+            "number"
+          ]
+        }
       },
       {
         "id": "uiFoundation.pDFViewer.zoom",
@@ -6425,6 +6507,25 @@
       }
     ],
     "表示:": [
+      {
+        "id": "uiFoundation.numberInput.formattedNumber",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.numberInput.formattedNumberWithUnit",
+        "parameters": {
+          "value": [
+            "string"
+          ],
+          "unit": [
+            "string"
+          ]
+        }
+      },
       {
         "id": "uiFoundation.passwordInput.show",
         "parameters": {}

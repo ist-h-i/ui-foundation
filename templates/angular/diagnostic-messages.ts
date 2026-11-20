@@ -1297,7 +1297,7 @@ export const diagnosticMessages = {
     }
   },
   "uiFoundation.mapView.zoomValue": {
-    "ja": "ズーム {zoom}",
+    "ja": "拡大率 {zoom}",
     "en": "Zoom: {zoom}",
     "parameters": {
       "zoom": "number"
