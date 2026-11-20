@@ -898,3 +898,82 @@ test('foreign static class selectors match Angular compiler conditions, not runt
   await writeFile(resolve(root, 'app/app.ts'), `import {Component} from '@angular/core'; import {Mark} from 'foreign-ui'; @Component({selector:'app-test',imports:[Mark],template:'<p [class.foreign]="true"></p>'}) export class App {}`);
   assert.equal((await scan()).valid, true);
 });
+
+test('Angular workspace reports uncovered and intentionally excluded projects without scanning them', async t => {
+  const input = await fixture(t, {
+    'angular.json': JSON.stringify({ projects: {
+      app: { root: '', sourceRoot: 'app' },
+      admin: { root: 'projects/admin', sourceRoot: 'projects/admin/src' },
+      library: { root: 'projects/library', sourceRoot: 'projects/library/src' },
+    } }),
+    'app/main.ts': 'export const marker = true;',
+    'projects/admin/src/main.html': '<div style="color:red"></div>',
+  }, { ...checks(), excluded_projects: [{ name: 'library', reason: 'Validated by the library pipeline' }] });
+  const report = await input.scan();
+  assert.equal(report.valid, true);
+  assert.equal(report.files, 1);
+  assert.equal(report.diagnostics.length, 1);
+  assert.equal(report.diagnostics[0].rule, 'uncovered-project');
+  assert.match(report.diagnostics[0].message, /admin.*projects\/admin\/src/);
+  assert.deepEqual(report.excluded_projects, [{ name: 'library', source_root: 'projects/library/src', reason: 'Validated by the library pipeline' }]);
+});
+
+test('a required source check keeps NOT_CONFIGURED distinguishable from a completed scan', async t => {
+  const { config, root } = await fixture(t, {});
+  const unconfigured = { ...config, checks: undefined };
+  const report = await checkSources({ root, config: unconfigured, policy: createSourcePolicy(unconfigured), requireSourceChecks: true });
+  assert.equal(report.status, 'not_configured');
+  assert.equal(report.valid, false);
+});
+
+test('baseline comparison handles line shifts, replacements, duplicate findings and source failures', async t => {
+  const { config, root, scan } = await fixture(t, { 'app/style.css': '.one { color:red }\n' });
+  const previous = await scan();
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify({ source: previous }));
+  const compare = () => checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+
+  await writeFile(resolve(root, 'app/style.css'), '\n.one { color:red }\n');
+  const shifted = await compare();
+  assert.equal(shifted.valid, true);
+  assert.equal(shifted.existing_diagnostics?.length, 1);
+
+  await writeFile(resolve(root, 'app/style.css'), '\n.one { color:blue }\n');
+  assert.equal((await compare()).valid, false);
+
+  await writeFile(resolve(root, 'app/style.css'), '.two { color:red }\n');
+  assert.equal((await compare()).valid, false);
+
+  await writeFile(resolve(root, 'app/style.css'), '.one { color:red }\n.one { color:red }\n');
+  const repeated = await compare();
+  assert.equal(repeated.existing_diagnostics?.length, 1);
+  assert.equal(errors(repeated).length, 1);
+
+  await writeFile(resolve(root, 'app/style.css'), '.one { color:');
+  const unparseable = await scan();
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify(unparseable));
+  assert.equal((await compare()).valid, false);
+});
+
+test('generated internal imports follow TypeScript aliases and recommend the public export', async t => {
+  const { scan } = await fixture(t, {
+    'app/main.ts': [
+      "import { Control } from '@internal';",
+      "import { PublicControl } from './local';",
+      "export { Hidden } from '../.ui/generated/angular/hidden';",
+      'export const controls = [Control, PublicControl];',
+    ].join('\n'),
+    'app/local.ts': "export { Control as PublicControl } from '../.ui/generated/angular/index';",
+    '.ui/generated/angular/control.ts': 'export class Control {}',
+    '.ui/generated/angular/hidden.ts': 'export class Hidden {}',
+    '.ui/generated/angular/index.ts': "export { Control } from './control';",
+    'tsconfig.json': JSON.stringify({ compilerOptions: {
+      module: 'ESNext', moduleResolution: 'Bundler', paths: { '@internal': ['./.ui/generated/angular/control.ts'] },
+    } }),
+  }, { ...checks(), tsconfig: 'tsconfig.json' });
+  const report = await scan();
+  assert.equal(report.valid, true);
+  const findings = warnings(report).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 2);
+  assert.match(findings[0].suggestion, /\.ui\/generated\/angular\/index/);
+  assert.doesNotMatch(findings[1].suggestion, /\.ui\/generated\/angular\/index/);
+});

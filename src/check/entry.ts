@@ -5,7 +5,7 @@ import { stableJSON, configurationHash } from './canonical.ts';
 import { createSourcePolicy } from './policy.ts';
 import { checkSources } from './scanner.ts';
 import { formatSourceReport } from './report.ts';
-import type { SourcePolicy } from './types.ts';
+import type { SourceCheckMode, SourcePolicy } from './types.ts';
 
 async function safePath(root: string, name: string): Promise<string> {
   if (!name || isAbsolute(name) || /[\\\u0000-\u001f]/.test(name) || name.split('/').some(part => !part || part === '.' || part === '..' || ['.git', 'node_modules'].includes(part.toLowerCase()))) throw new Error(`Unsafe project-relative path: ${name}`);
@@ -21,15 +21,18 @@ async function safePath(root: string, name: string): Promise<string> {
 async function main(args: string[]): Promise<void> {
   let root = process.cwd(), configPath = 'ui.config.yaml', json = false;
   const seen = new Set<string>();
+  const sourceMode: SourceCheckMode = {};
   for (let index = 0; index < args.length; index++) {
     const flag = args[index];
     if (seen.has(flag)) throw new Error(`Duplicate option: ${flag}`);
     seen.add(flag);
-    if (flag === '--help' || flag === '-h') { console.log('Usage: node <output>/check-ui.cjs [--root project] [--config ui.config.yaml] [--format text|json]'); return; }
+    if (flag === '--help' || flag === '-h') { console.log('Usage: node <output>/check-ui.cjs [--root project] [--config ui.config.yaml] [--format text|json] [--require-source-checks] [--baseline path]'); return; }
+    if (flag === '--require-source-checks') { sourceMode.requireSourceChecks = true; continue; }
     const value = args[++index];
     if (!value || value.startsWith('--')) throw new Error(`${flag} requires a value`);
     if (flag === '--root') root = resolve(value);
     else if (flag === '--config') configPath = value;
+    else if (flag === '--baseline') sourceMode.baselinePath = value;
     else if (flag === '--format' && ['json', 'text'].includes(value)) json = value === 'json';
     else throw new Error(`Unknown option or format: ${flag} ${value}`);
   }
@@ -43,7 +46,7 @@ async function main(args: string[]): Promise<void> {
       || !Array.isArray(policy.generated_components) || policy.generated_components.some(item => !item || typeof item.file !== 'string' || !item.file.startsWith(`${config.output}/angular/`) || typeof item.name !== 'string' || typeof item.selector !== 'string' || !['component', 'directive'].includes(item.kind))) {
     throw new Error('The source check policy is missing, invalid, or out of sync with the YAML. Run ui:sync using the owning ui-foundation version.');
   }
-  const report = await checkSources({ root, config, policy });
+  const report = await checkSources({ root, config, policy, ...sourceMode });
   if (json) console.log(JSON.stringify(report));
   else for (const line of formatSourceReport(report)) console.log(line);
   if (!report.valid) process.exitCode = 1;

@@ -11,7 +11,7 @@ import { createSourcePolicy } from './check/policy.ts';
 import { checkSources } from './check/scanner.ts';
 import { acquireSyncLock, syncLockName } from './sync-lock.ts';
 import { renderSkillDocumentation } from './skill-docs.ts';
-import type { SourceReport } from './check/types.ts';
+import type { SourceCheckMode, SourceReport } from './check/types.ts';
 export { stableJSON } from './check/canonical.ts';
 
 const toolRoot = fileURLToPath(new URL('../', import.meta.url));
@@ -312,7 +312,7 @@ async function syncWithLock(options: SyncOptions, lock: Awaited<ReturnType<typeo
   return { changes, written: true };
 }
 
-export async function checkProject(options: ProjectOptions): Promise<{ valid: boolean; differences: string[]; source: SourceReport }> {
+export async function checkProject(options: ProjectOptions & SourceCheckMode): Promise<{ valid: boolean; differences: string[]; source: SourceReport }> {
   const { root, config, files } = await loadProject(options);
   const present = [...await managedFiles(root, config.output), ...await managedFiles(root, skillDirectory)];
   const differences: string[] = [];
@@ -322,7 +322,8 @@ export async function checkProject(options: ProjectOptions): Promise<{ valid: bo
     if (actual !== expected) differences.push(`${actual === undefined ? 'Missing' : 'Changed'}: ${path}`);
   }
   for (const path of present) if (!files.has(path)) differences.push(`Unowned: ${path}`);
-  const source = await checkSources({ root, config, policy: createSourcePolicy(config, files) });
+  const source = await checkSources({ root, config, policy: createSourcePolicy(config, files),
+    requireSourceChecks: options.requireSourceChecks, baselinePath: options.baselinePath });
   return { valid: differences.length === 0 && source.valid, differences: differences.sort(), source };
 }
 

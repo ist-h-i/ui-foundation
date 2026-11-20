@@ -1,24 +1,25 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.example.yaml": "2fbbfaf60849d2ee2d571a7589dcd95ba89af0e6eea7dd3e3b59a11d12c411b5",
+    "examples/ui.config.example.yaml": "0a8b724ff2f8222ef43498a999b4468c172999801ba1abd96d0786afb9037ff6",
     "package.json": "249690c13b0243970fdade4f1ff56bc25e9730bac628fbe649104dfd545067ae",
     "package-lock.json": "2ec80d17a924f1414f0425db5cafe9464f4929a8ba2f87d7947d1af8589cadf3",
-    "src/config.ts": "4fee845dce66c947046233e3ac6836679340e1c67dbf83c69b2ae882516fb441",
+    "src/config.ts": "2d594b7a57360d2d2fca189d52d161191d6bbf9a1c671c64aab1a2a9a1dae8e1",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
-    "src/sync.ts": "dc06951942729766560a40dda18ef6ede1ce95bd5edf8f737b851e44b5913b92",
+    "src/sync.ts": "31065689fc6169b46bc11347c0ca4e2d6542e313116282ef5e81d26bbd2747bc",
+    "src/check/application.ts": "009a31d09245908aad8425614740cc831a37aebdf86db13f4884183d7331c314",
     "src/check/bounded-search.ts": "007557dd0be3e13506c23b0eca87909a396d571c260df609b90a895af0b90f8f",
     "src/check/bundle.ts": "bcff52e444c63faeb7a2c875a9a3e94211b5603b37b77b6ac539b5e14b0c00b6",
     "src/check/canonical.ts": "6645f7e87893e28c67433615add9c841922fce1fd81ae40cb161ba670c417dd7",
     "src/check/class-domain.ts": "6f000245b23ad5f660d6a39719dc14cf5f9f4d10d6dc046ea607db2dca954e63",
-    "src/check/entry.ts": "749de4d133b176b00956a282cdf3bd38522b5a33c4e9db792d8cf69b005b9bd7",
+    "src/check/entry.ts": "8cc7cedd8c5c8478635afe9e01c4feb04d30b6c17f0594d07cc82396913f3299",
     "src/check/policy.ts": "7657b3050d8a63e5be226fbedf91211d783d01058ad2dea91679deb70925be42",
-    "src/check/report.ts": "9b689ad19b504e02c29d4cb816e4d07b934b7cd4c86949a14f467b7650db1972",
-    "src/check/scanner.ts": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+    "src/check/report.ts": "c0b262dabfecb9a7febbff5a57e7517777cf77a6117af85e93cd6569be3b3468",
+    "src/check/scanner.ts": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
     "src/check/styles.ts": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
-    "src/check/types.ts": "55856842ab45bcd19ede3963c6849adaa213535078d167891d6c6e2ca14f5ad6",
-    "src/warning-review.ts": "817d44333f9d651d380ce40fb637e7b077f6dcc516a03add84e80a82525359d5",
+    "src/check/types.ts": "3d9787fb35fd460f4f7439bbd05fc039870c3efb1827abdbeeafb9d8a02faa65",
+    "src/warning-review.ts": "e524711d3bb256f039ce8abf4245146e2a59465cab981ae653a888d948767278",
     "src/warning-review-cli.ts": "30f58fe92ad04eabba6c0e010ca49f88dc74ea4c64b28136548bb1afc7edcf47",
     "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34",
     "tests/static/write-sinks.test.ts": "8ec17aad28c151b6e22522fad1aabfc2a551ef7000a93df4e548af57c4bfd610",
@@ -165,7 +166,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -279,7 +280,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -411,7 +412,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8173,7 +8174,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8275,7 +8276,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8377,7 +8378,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8491,7 +8492,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8605,7 +8606,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8713,7 +8714,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8797,7 +8798,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8893,7 +8894,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8989,7 +8990,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9085,7 +9086,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "bc9abdaed9c23f937113ab0755e7657a5fa07e495e4b768a1fbacbf1ecae0426",
+          "sha256": "daddc7e8b0343640bdc0b956a27ed1f15ad0efa0dfcd05eddae226d43376d776",
           "scope": "Read source at audited snapshot."
         },
         {

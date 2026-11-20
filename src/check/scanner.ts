@@ -9,6 +9,7 @@ import { checkCSS, checkClasses, checkStyle, collectLocalClasses, customProperty
 import { createUtilityResolver } from './tailwind.ts';
 import { proveClassDomain } from './class-domain.ts';
 import { boundedSearch } from './bounded-search.ts';
+import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, workspaceSourceRoots } from './application.ts';
 import type { AngularDeclaration, CheckSourcesOptions, SourceDiagnostic, SourceLocation, SourceReport, StyleContext, ScopedCustomProperty, CustomPropertyOrigin, CustomPropertyResolver } from './types.ts';
 
 const forbidden = new Set(['node_modules', '.git', '.agents', 'dist', 'build', 'coverage', 'artifacts']);
@@ -1029,7 +1030,7 @@ export function angularDeclarations(files: Map<string, string>): AngularDeclarat
 
 export async function checkSources(options: CheckSourcesOptions): Promise<SourceReport> {
   const checks = options.policy.checks;
-  if (!checks) return { status: 'not_configured', valid: true, files: 0, checked: 0, diagnostics: [], exceptions: [] };
+  if (!checks) return { status: 'not_configured', valid: !options.requireSourceChecks && options.baselinePath === undefined, files: 0, checked: 0, diagnostics: [], exceptions: [] };
   const root = path.resolve(options.root), output = path.resolve(root, options.config.output);
   const all = new Map<string, string>(), diagnostics: SourceDiagnostic[] = [], exceptions: SourceDiagnostic[] = []; let checked = 0;
   const diagnosticIdentities = new Set<string>();
@@ -1049,6 +1050,36 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       return await fs.readFile(file, 'utf8');
     } catch (error) { problem(file, 'source-error', `Cannot read source: ${(error as Error).message}`); return; }
   }
+  const excludedProjects: NonNullable<SourceReport['excluded_projects']> = [];
+  const workspace = path.join(root, 'angular.json');
+  let hasWorkspace = false;
+  try { await fs.lstat(workspace); hasWorkspace = true; }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') problem(workspace, 'source-error', `Cannot inspect Angular workspace: ${(error as Error).message}`);
+  }
+  if (hasWorkspace) {
+    const text = await safeFile(workspace);
+    if (text !== undefined) {
+      try {
+        for (const { name, sourceRoot } of workspaceSourceRoots(workspace, text)) {
+          const target = path.resolve(root, sourceRoot);
+          const canInspect = !within(output, target) && !path.relative(root, target).split(path.sep).some(part => forbidden.has(part));
+          if (canInspect && checks.source_roots.some(configured => within(path.resolve(root, configured), target))) continue;
+          const excluded = checks.excluded_projects?.find(item => item.name === name);
+          if (excluded) excludedProjects.push({ name, source_root: sourceRoot, reason: excluded.reason });
+          else {
+            const remedy = canInspect && sourceRoot !== '.'
+              ? `Add ${JSON.stringify(sourceRoot)} to checks.source_roots.`
+              : 'Declare an inspectable application sourceRoot and add it to checks.source_roots.';
+            emit(diagnostic(loc(workspace, text), 'uncovered-project', 'warning',
+              `Angular project ${name} is outside the inspected source roots: ${sourceRoot}.`,
+              `${remedy} For an intentional exclusion, record ${JSON.stringify(name)} with a reason in checks.excluded_projects.`, name));
+          }
+        }
+      } catch (error) { problem(workspace, 'parse-error', (error as Error).message, text); }
+    }
+  }
+
   async function enumerate(file: string): Promise<number> {
     if (!within(root, file)) { problem(file, 'source-error', 'Source root escapes the project root.'); return 0; }
     if (within(output, file) || path.relative(root, file).split(path.sep).some(part => forbidden.has(part))) return 0;
@@ -1176,6 +1207,80 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   compilerHost.getCurrentDirectory = () => root;
   if (libraryRoot) for (const library of compilerOptions.lib ?? []) if (!fileAllowed(path.join(libraryRoot, library))) problem(path.join(libraryRoot, library), 'source-error', 'Requested TypeScript standard library is unavailable; DOM type coverage cannot be established.');
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
+  const angularOutput = path.join(output, 'angular');
+  const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
+  const resolutionCache = ts.createModuleResolutionCache(root, compilerHost.getCanonicalFileName, compilerOptions);
+  function resolveImport(module: ts.StringLiteralLike, source: ts.SourceFile) {
+    return ts.resolveModuleName(module.text, source.fileName, compilerOptions, compilerHost, resolutionCache, undefined,
+      program.getModeForUsageLocation(source, module)).resolvedModule?.resolvedFileName;
+  }
+  // Read only the entry points required to recommend a replacement. Adding the
+  // entire barrel to the compiler program would also resolve specialist engines.
+  let publicExports: Map<string, Map<string, Set<string>>> | undefined;
+  function exportsByEntry() {
+    if (publicExports) return publicExports;
+    publicExports = new Map();
+    for (const entry of entryFiles) {
+      if (!fileAllowed(entry)) continue;
+      const text = readAllowed(entry);
+      if (text === undefined) continue;
+      const source = ts.createSourceFile(entry, text, ts.ScriptTarget.Latest);
+      const exportsForFile = new Map<string, Set<string>>();
+      for (const statement of source.statements) {
+        if (!ts.isExportDeclaration(statement) || !statement.moduleSpecifier || !ts.isStringLiteralLike(statement.moduleSpecifier)
+          || !statement.exportClause || !ts.isNamedExports(statement.exportClause)) continue;
+        const target = ts.resolveModuleName(statement.moduleSpecifier.text, entry, compilerOptions, compilerHost, resolutionCache).resolvedModule?.resolvedFileName;
+        if (!target) continue;
+        let names = exportsForFile.get(target);
+        if (!names) { names = new Set(); exportsForFile.set(target, names); }
+        for (const element of statement.exportClause.elements) {
+          if (!element.propertyName || element.propertyName.text === element.name.text) names.add(element.name.text);
+        }
+      }
+      publicExports.set(entry, exportsForFile);
+    }
+    return publicExports;
+  }
+  function inspectGeneratedReferences(source: ts.SourceFile) {
+    function inspectReference(module: ts.StringLiteralLike, names: readonly string[] = []) {
+      const resolved = resolveImport(module, source);
+      if (!resolved || !within(angularOutput, resolved) || entryFiles.includes(resolved)) return;
+      const preferred = names.length ? [...exportsByEntry()].find(([, files]) => names.every(name => files.get(resolved)?.has(name))) : undefined;
+      let suggestion = 'Use a public API where available, or request a public export for this dependency.';
+      if (preferred) {
+        const specifier = relative(path.dirname(source.fileName), preferred[0]).replace(/\.ts$/, '');
+        suggestion = `Import the same names from '${specifier.startsWith('.') ? specifier : './' + specifier}' instead.`;
+      }
+      emit(diagnostic(loc(source.fileName, source.text, module.getStart(source)), 'generated-internal-import', 'warning',
+        `Import resolves to internal generated file ${relative(root, resolved)}.`, suggestion, module.getText(source)));
+    }
+    function visit(node: ts.Node): void {
+      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier)) {
+        const bindings = node.importClause?.namedBindings;
+        inspectReference(node.moduleSpecifier, bindings && ts.isNamedImports(bindings) && !node.importClause?.name
+          ? bindings.elements.map(element => (element.propertyName ?? element.name).text) : []);
+      }
+      if (ts.isExportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteralLike(node.moduleSpecifier)) {
+        const clause = node.exportClause;
+        inspectReference(node.moduleSpecifier, clause && ts.isNamedExports(clause) ? clause.elements.map(element => (element.propertyName ?? element.name).text) : []);
+      }
+      if (ts.isImportTypeNode(node) && ts.isLiteralTypeNode(node.argument) && ts.isStringLiteralLike(node.argument.literal)) {
+        inspectReference(node.argument.literal);
+      }
+      if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword && node.arguments[0] && ts.isStringLiteralLike(node.arguments[0])) {
+        inspectReference(node.arguments[0]);
+      }
+      if (ts.isImportEqualsDeclaration(node) && ts.isExternalModuleReference(node.moduleReference)
+          && node.moduleReference.expression && ts.isStringLiteralLike(node.moduleReference.expression)) {
+        inspectReference(node.moduleReference.expression);
+      }
+      ts.forEachChild(node, visit);
+    }
+    visit(source);
+  }
+  for (const source of program.getSourceFiles()) {
+    if (all.has(source.fileName) && !source.isDeclarationFile) inspectGeneratedReferences(source);
+  }
   function assignedValue(node: ts.BinaryExpression): Evaluated {
     const right = evaluator.evaluate(node.right);
     if ([ts.SyntaxKind.EqualsToken, ts.SyntaxKind.BarBarEqualsToken, ts.SyntaxKind.AmpersandAmpersandEqualsToken, ts.SyntaxKind.QuestionQuestionEqualsToken].includes(node.operatorToken.kind)) return right;
@@ -2497,16 +2602,40 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     if (/\.(css|scss)$/.test(file)) checkCSS(text, loc(file, text), stylesheetContext(text), file.endsWith('.scss'));
   }
   // Exceptions are precise, auditable, and cannot suppress source/parse failures.
-  const suppressible = new Set(['literal-token', 'primitive-reference', 'unknown-token', 'token-category', 'unapproved-component', 'unresolved']);
   const suppressed = new Set<SourceDiagnostic>();
   for (const exception of checks.exceptions) {
     const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule && d.source.includes(exception.source) && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
-    if (!suppressible.has(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
+    if (!isExceptableRule(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
     else { const match = matches[0]!; suppressed.add(match); exceptions.push({ ...match, exception: exception.reason }); }
   }
-  const active = diagnostics.filter(d => !suppressed.has(d));
+  let baseline: Map<string, number> | undefined;
+  if (options.baselinePath !== undefined) {
+    const file = path.resolve(root, options.baselinePath);
+    if (path.isAbsolute(options.baselinePath) || options.baselinePath.split('/').some(part => !part || part === '.' || part === '..' || forbidden.has(part))
+        || /[\\\u0000-\u001f<>:"|?*]/.test(options.baselinePath)) {
+      problem(file, 'baseline-error', 'Use a normalized project-relative path for the diagnostic baseline.');
+    } else {
+      const text = await safeFile(file);
+      if (text !== undefined) {
+        try { baseline = readBaseline(text); }
+        catch (error) { problem(file, 'baseline-error', `Cannot use source baseline: ${(error as Error).message}`); }
+      }
+    }
+  }
+  const existing: SourceDiagnostic[] = [];
+  const active = diagnostics.filter(item => {
+    if (suppressed.has(item)) return false;
+    if (!baseline || item.severity !== 'error' || !isExceptableRule(item.rule)) return true;
+    const key = fingerprint(item), count = baseline.get(key) ?? 0;
+    if (count === 0) return true;
+    baseline.set(key, count - 1);
+    existing.push(item);
+    return false;
+  });
   const sort = (a: SourceDiagnostic, b: SourceDiagnostic) => a.file.localeCompare(b.file) || a.line - b.line || a.column - b.column || a.rule.localeCompare(b.rule) || a.message.localeCompare(b.message);
-  active.sort(sort); exceptions.sort(sort);
+  active.sort(sort); exceptions.sort(sort); existing.sort(sort);
   const valid = !active.some(d => d.severity === 'error');
-  return { status: valid ? active.length ? 'warnings' : 'passed' : 'failed', valid, files: all.size + [...consumed].filter(f => !all.has(f)).length, checked, diagnostics: active, exceptions };
+  return { status: valid ? active.length ? 'warnings' : 'passed' : 'failed', valid, files: all.size + [...consumed].filter(f => !all.has(f)).length, checked, diagnostics: active, exceptions, source_roots: checks.source_roots,
+    ...(baseline ? { existing_diagnostics: existing } : {}),
+    ...(excludedProjects.length ? { excluded_projects: excludedProjects } : {}) };
 }

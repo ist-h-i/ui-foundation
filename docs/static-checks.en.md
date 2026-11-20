@@ -41,6 +41,24 @@ Add `"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"` to t
 
 The standalone checker validates YAML, compares it with generated policy and scans source. Reconstructing generated output and detecting unowned files are responsibilities of the full CLI. Standalone success does not establish generation consistency. Update configuration/package version and run `./node_modules/.bin/ui-foundation sync`; generation, ownership, idempotence and migration follow the [design contract](design.en.md).
 
+## Workspace coverage and existing findings
+
+When the project root contains `angular.json`, the checker compares each project's `sourceRoot` (or `root` when omitted) with `checks.source_roots`. A project outside those roots yields an `uncovered-project` warning with its name and path. The scan still uses only the configured roots. To document an intentionally excluded project, add its name and reason under `checks.excluded_projects`:
+
+```yaml
+checks:
+  source_roots: [src, projects/admin/src]
+  excluded_projects:
+    - name: playground
+      reason: The playground is validated by its own CI job
+```
+
+Use `--require-source-checks` to make `NOT_CONFIGURED` exit 1. Both the full CLI's `check` and the standalone checker accept this flag and `--baseline <project-relative-json-path>`.
+
+An existing app can capture a reviewed baseline with a full `check --format json` run and save that output as a project-owned file. A full run with existing violations exits 1, so check that the JSON contains the source report you intend to adopt. Run `check --baseline ui-check-baseline.json` to fail on new violations and inspection failures. Matching errors are listed in `source.existing_diagnostics` (top-level `existing_diagnostics` in the standalone output). Matching uses file, rule, message and source text with occurrence counts, so unrelated line shifts do not turn a finding into a new violation. Source warnings, read/parse failures and invalid exceptions remain active; the CLI still checks generated files. Omit the flag for full enforcement. Review baseline changes explicitly.
+
+The `generated-internal-import` warning checks where a TypeScript import or re-export resolves, including aliases in the configured tsconfig. Use the documented public entry point when it exposes the requested names. App-owned imports and wrappers using a public entry point remain valid. If a dependency must remain internal, add a narrow exception with a reason and when to review it again.
+
 ## Inputs and results
 
 The checker parses TypeScript/Angular syntax: inline/external templates and styles, host metadata, `HostBinding`, class/style/ngClass/ngStyle and statically identifiable DOM style writes. It does not search comments or ordinary business strings as CSS, or execute app code.

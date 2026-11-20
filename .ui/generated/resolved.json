@@ -2418,6 +2418,558 @@
         "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
         "rule": "literal-token",
         "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
+      },
+      {
+        "column": 36,
+        "file": "tests/fixture-app/foundation-catalog.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/locale-model'"
+      },
+      {
+        "column": 46,
+        "file": "tests/fixture-app/foundation-catalog.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/date-range-picker'"
+      },
+      {
+        "column": 37,
+        "file": "tests/fixture-app/foundation-catalog.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/text-input'"
+      },
+      {
+        "column": 72,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/text-input'"
+      },
+      {
+        "column": 59,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/selection-input'"
+      },
+      {
+        "column": 45,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/structured-input'"
+      },
+      {
+        "column": 58,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/choice-controls'"
+      },
+      {
+        "column": 75,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 8,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/date-input'"
+      },
+      {
+        "column": 24,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 9,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/calendar'"
+      },
+      {
+        "column": 100,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 9,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/radio-group'"
+      },
+      {
+        "column": 32,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 10,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/actions'"
+      },
+      {
+        "column": 95,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 10,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/inline-edit'"
+      },
+      {
+        "column": 29,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 11,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/filter-builder'"
+      },
+      {
+        "column": 96,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 11,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/listbox'"
+      },
+      {
+        "column": 161,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 11,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/transfer-list'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 12,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tree-select'"
+      },
+      {
+        "column": 91,
+        "file": "tests/fixture-app/foundation-cva-specimens.ts",
+        "line": 12,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/cascader'"
+      },
+      {
+        "column": 36,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/chat'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/file-upload'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/code-editor'"
+      },
+      {
+        "column": 30,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/rich-text-editor'"
+      },
+      {
+        "column": 30,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 8,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/markdown-editor'"
+      },
+      {
+        "column": 36,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 9,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/specialist-model'"
+      },
+      {
+        "column": 62,
+        "file": "tests/fixture-app/foundation-new-forms.ts",
+        "line": 10,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/media-model'"
+      },
+      {
+        "column": 31,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 2,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/action-control'"
+      },
+      {
+        "column": 27,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 3,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/page-frame'"
+      },
+      {
+        "column": 22,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/card'"
+      },
+      {
+        "column": 32,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tabs'"
+      },
+      {
+        "column": 28,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/navigation'"
+      },
+      {
+        "column": 23,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/feedback'"
+      },
+      {
+        "column": 34,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 8,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/display'"
+      },
+      {
+        "column": 32,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 9,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/table-model'"
+      },
+      {
+        "column": 31,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 10,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/data-table-view'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 11,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/timeline'"
+      },
+      {
+        "column": 27,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 12,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/scheduler'"
+      },
+      {
+        "column": 21,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 13,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/gantt'"
+      },
+      {
+        "column": 40,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 14,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/specialist-model'"
+      },
+      {
+        "column": 23,
+        "file": "tests/fixture-app/foundation-profile-specimens.ts",
+        "line": 15,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/chart'"
+      },
+      {
+        "column": 31,
+        "file": "tests/fixture-app/foundation-raw-forms.ts",
+        "line": 3,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/chat'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-raw-forms.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/code-editor'"
+      },
+      {
+        "column": 30,
+        "file": "tests/fixture-app/foundation-raw-forms.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/rich-text-editor'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/foundation-raw-forms.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/file-upload'"
+      },
+      {
+        "column": 36,
+        "file": "tests/fixture-app/foundation-raw-forms.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/specialist-model'"
+      },
+      {
+        "column": 104,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/action-control'"
+      },
+      {
+        "column": 185,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/file-upload'"
+      },
+      {
+        "column": 280,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/image-media'"
+      },
+      {
+        "column": 370,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/image-cropper'"
+      },
+      {
+        "column": 438,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/pdf-viewer'"
+      },
+      {
+        "column": 508,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/barcode'"
+      },
+      {
+        "column": 590,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/media-player'"
+      },
+      {
+        "column": 717,
+        "file": "tests/fixture-app/media-catalog.ts",
+        "line": 1,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/media-model'"
+      },
+      {
+        "column": 21,
+        "file": "tests/fixture-app/runtime-residual-engines.ts",
+        "line": 2,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/chart'"
+      },
+      {
+        "column": 57,
+        "file": "tests/fixture-app/runtime-residual-engines.ts",
+        "line": 3,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/specialist-model'"
+      },
+      {
+        "column": 25,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/scheduler'"
+      },
+      {
+        "column": 22,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/agenda'"
+      },
+      {
+        "column": 38,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/scheduler-template'"
+      },
+      {
+        "column": 82,
+        "file": "tests/fixture-app/scheduler-catalog.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/scheduler-model'"
+      },
+      {
+        "column": 59,
+        "file": "tests/fixture-app/table-catalog.ts",
+        "line": 12,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/table-model'"
+      },
+      {
+        "column": 41,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 4,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/transfer-list'"
+      },
+      {
+        "column": 37,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 5,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/timeline'"
+      },
+      {
+        "column": 31,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/overlay'"
+      },
+      {
+        "column": 65,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/transfer-model'"
+      },
+      {
+        "column": 42,
+        "file": "tests/fixture-app/transfer-timeline-catalog.ts",
+        "line": 8,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/infinite-scroll'"
+      },
+      {
+        "column": 20,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 6,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tree'"
+      },
+      {
+        "column": 26,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 7,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tree-select'"
+      },
+      {
+        "column": 24,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 8,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/cascader'"
+      },
+      {
+        "column": 60,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 9,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/organization-chart'"
+      },
+      {
+        "column": 32,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 10,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tree-node-template'"
+      },
+      {
+        "column": 66,
+        "file": "tests/fixture-app/tree-catalog.ts",
+        "line": 11,
+        "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。",
+        "rule": "generated-internal-import",
+        "source": "'../../.ui/generated/angular/tree-model'"
       }
     ],
     "source_roots": [
