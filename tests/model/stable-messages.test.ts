@@ -63,6 +63,7 @@ test('a single required legend includes the app-owned label as an argument', () 
 test('notification status and dismiss requests translate complete messages', () => {
   const status = { id: 'uiFoundation.notificationCenter.status', parameters: { visible: 1, unread: 0, loading: 'App loading message' } } as const;
   assert.equal(resolveUiMessage(status, 'en-US'), '1 notification shown. 0 unread. App loading message');
+  assert.equal(resolveUiMessage({ ...status, parameters: { visible: 21, unread: 0, loading: null } }, 'ru-RU'), '21 notifications shown. 0 unread.');
   assert.equal(resolveUiMessage({ ...status, parameters: { visible: 0, unread: 2, loading: null } }, 'ja-JP'), '0件表示、未読 2件');
   const dismiss = { id: 'uiFoundation.snackbar.dismissLabel', parameters: { message: 'App notification' } } as const;
   assert.equal(resolveUiMessage(dismiss, 'en-US', request => {
@@ -75,4 +76,5 @@ test('progress values and percentages use the active locale as one message', () 
   const request = { id: 'uiFoundation.progressBar.description', parameters: { value: 0, total: 1000, percent: 0 } } as const;
   assert.equal(resolveUiMessage(request, 'en-US'), '0 / 1,000 (0%)');
   assert.equal(resolveUiMessage(request, 'de-DE'), '0 / 1.000 (0 %)');
+  assert.equal(resolveUiMessage({ ...request, parameters: { value: 1e-13, total: 2e-13, percent: 50 } }, 'en-US'), '0.0000000000001 / 0.0000000000002 (50%)');
 });

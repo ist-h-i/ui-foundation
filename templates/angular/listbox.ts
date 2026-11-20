@@ -60,9 +60,11 @@ export class Listbox extends ValueControl<ListboxValue> implements Validator{
   const request=this.configurationDiagnostic();
   return request===null?null:this.uiRuntimeText_Listbox(request);
  });
+ private readonly valueDiagnostic=computed(()=>this.configurationDiagnostic()
+  ? null
+  : listSelectionDiagnostic(this.options(),this.current(),this.multiple(),this.required(),this.maxSelected()));
  protected readonly valueProblem=computed(()=>{
-  if(this.configurationDiagnostic())return null;
-  const request=listSelectionDiagnostic(this.options(),this.current(),this.multiple(),this.required(),this.maxSelected());
+  const request=this.valueDiagnostic();
   return request===null?null:this.uiRuntimeText_Listbox(request);
  });
  protected readonly described=computed(()=>[this.descriptionIds(),this.valueProblem()?this.controlId()+'-problem':null].filter(Boolean).join(' ')||null);

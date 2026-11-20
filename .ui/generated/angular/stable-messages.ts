@@ -91,7 +91,7 @@ type Dictionary = {
 };
 
 function progressDescription({ parameters }: UiMessageRequest<'uiFoundation.progressBar.description'>, locale: string): string {
-  const numbers = new Intl.NumberFormat(locale, { maximumFractionDigits: 12 });
+  const numbers = new Intl.NumberFormat(locale, { maximumSignificantDigits: 17 });
   const percent = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 });
   return `${numbers.format(parameters.value)} / ${numbers.format(parameters.total)} (${percent.format(parameters.percent / 100)})`;
 }
@@ -202,9 +202,8 @@ const english: Dictionary = {
   'uiFoundation.snackbar.dismissLabel': ({ parameters }) => `Close notification: ${parameters.message}`,
   'uiFoundation.notificationCenter.status': ({ parameters }, locale) => {
     const numbers = new Intl.NumberFormat(locale);
-    const plurals = new Intl.PluralRules(locale);
     const { visible, unread, loading } = parameters;
-    const noun = plurals.select(visible) === 'one' ? 'notification' : 'notifications';
+    const noun = visible === 1 ? 'notification' : 'notifications';
     return loading
       ? `${numbers.format(visible)} ${noun} shown. ${numbers.format(unread)} unread. ${loading}`
       : `${numbers.format(visible)} ${noun} shown. ${numbers.format(unread)} unread.`;
