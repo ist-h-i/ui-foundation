@@ -33,6 +33,6 @@ export async function verifyRegistrationRetry(page: Page, screen = '/catalog/dia
   await save.press('Enter');
 
   await expect(dialog).toBeHidden();
-  await expect(opener).toBeFocused();
+  await expect(opener, 'Focus returns to the opener after successful save').toBeFocused();
   expect(submissions).toEqual([{ name: draft }, { name: draft }]);
 }

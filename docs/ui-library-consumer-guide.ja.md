@@ -479,6 +479,6 @@ CLIをnpmで更新しただけでは、アプリへコピー済みの部品・Sk
 
 ## 保存の再試行を確認する任意のブラウザーテスト
 
-インストールした npm パッケージの `skills/ui-development/references/examples/dialog-retry.ts`、または同期済み Skill の `references/examples/dialog-retry.ts` をコピーします。既存の Playwright テストから `verifyRegistrationRetry` を import し、`page` fixture を渡します。利用アプリの Playwright コマンドでそのテストを実行します。
+インストールした npm パッケージの `skills/ui-development/references/examples/dialog-retry.ts`、または同期済み Skill の `references/examples/dialog-retry.ts` をコピーします。既存の Playwright テストから `verifyRegistrationRetry` を import し、`page` fixture を渡します。利用アプリの Playwright コマンドでそのテストを実行します。 `baseURL` を設定して画面の相対パスを使うか、画面の URL 全体を渡します。最初の Tab 操作は画面のフォーカス順に合わせます。
 
 画面の URL、操作対象のアクセシブルな名前、表示するエラーを利用アプリに合わせて変更します。保存先の POST パス、リクエスト本文、失敗・成功時の模擬応答も合わせてください。この例は保存失敗後の入力保持、キーボードからの再試行、保存成功後のフォーカス復帰を確認します。

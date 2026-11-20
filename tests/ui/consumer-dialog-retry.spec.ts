@@ -12,5 +12,5 @@ test('the example catches a draft discarded after failure', async ({ page }) => 
 
 test('the example catches missing focus restoration after a successful retry', async ({ page }) => {
   await expect(verifyRegistrationRetry(page, '/catalog/dialog-retry?regression=focus'))
-    .rejects.toThrow(/getByRole\('button', \{ name: 'New registration'.*toBeFocused/s);
+    .rejects.toThrow(/Focus returns to the opener after successful save/);
 });
