@@ -24,7 +24,6 @@ test('provider and message service run in a server DI context without reading br
   assert.equal(columnMoveText(-1,'Status'),'Move earlier: Status');
   assert.equal(columnMoveText(1,'Status'),'Move later: Status');
   options.set({locale:'en-US',messages:{'1件まで選択してください。':'Choose just one.'}});
-  assert.equal(listSelectionProblem([{value:'a',label:'A'},{value:'b',label:'B'}],['a','b'],true,false,1,text),'Choose just one.');
   assert.equal(text('{limit}件まで選択してください。',{limit:1},()=> 'fragment fallback'),'Choose just one.');
   options.set({locale:'en-US',messages:{'1件まで選択してください。':'Legacy','{limit}件まで選択してください。':'At most {limit}.'}});
   assert.equal(text('{limit}件まで選択してください。',{limit:1}),'At most 1.');
@@ -54,5 +53,24 @@ test('the stable-message provider reads the current locale and asynchronously lo
   assert.equal(text(request),'閉じて戻る');
   options.update(value=>({...value,locale:'en-US'}));
   assert.equal(text(request),'Close dialog');
+ } finally { injector.destroy(); }
+});
+
+test('list selection diagnostics use the current stable catalog without modifying the selection', () => {
+ const options = signal<UiLocaleOptions>({locale:'ja-JP'});
+ const injector=createEnvironmentInjector(provideUiLocale(options),null as unknown as EnvironmentInjector);
+ const choices=[{value:'a',label:'選択A'},{value:'b',label:'選択B'}];
+ const value=Object.freeze(['a','b']);
+ try {
+  const text=runInInjectionContext(injector,injectUiMessage);
+  const tell=()=>listSelectionProblem(choices,value,true,false,1,text);
+  assert.equal(tell(),'1件まで選択してください。');
+  options.set({locale:'en-US'});
+  assert.equal(tell(),'Select up to 1 item.');
+  options.set({locale:'en-US',translate:request=>request.id==='uiFoundation.collection.selectionLimit'
+    ? `Use at most ${request.parameters.limit} choice.` : undefined});
+  assert.equal(tell(),'Use at most 1 choice.');
+  assert.deepEqual(value,['a','b']);
+  assert.deepEqual(choices.map(choice=>choice.label),['選択A','選択B']);
  } finally { injector.destroy(); }
 });

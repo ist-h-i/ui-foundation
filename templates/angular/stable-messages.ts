@@ -24,6 +24,22 @@ export type UiMessageParameters = {
   'uiFoundation.dialog.resizeLabel': undefined;
   'uiFoundation.dialog.restoreSize': undefined;
   'uiFoundation.floatingActionButton.menuLabel': undefined;
+  'uiFoundation.listbox.clearVisible': undefined;
+  'uiFoundation.listbox.invalidControlIdentity': undefined;
+  'uiFoundation.listbox.invalidOptions': undefined;
+  'uiFoundation.listbox.invalidSearchLocale': undefined;
+  'uiFoundation.listbox.invalidSelection': undefined;
+  'uiFoundation.listbox.invalidSelectionLimit': undefined;
+  'uiFoundation.listbox.invalidVirtualConfiguration': undefined;
+  'uiFoundation.listbox.multipleValueRequired': undefined;
+  'uiFoundation.listbox.noOptions': undefined;
+  'uiFoundation.listbox.noSearchResults': undefined;
+  'uiFoundation.listbox.searchLabel': undefined;
+  'uiFoundation.listbox.selectVisible': undefined;
+  'uiFoundation.listbox.selectionRequired': undefined;
+  'uiFoundation.listbox.singleValueRequired': undefined;
+  'uiFoundation.listbox.selectedCount': { readonly count: number };
+  'uiFoundation.listbox.selectedCountWithInvalidSelection': { readonly count: number };
   'uiFoundation.pageFrame.sidebarLabel': undefined;
   'uiFoundation.segmentedControl.requiredMarker': undefined;
   'uiFoundation.splitButton.menuLabel': undefined;
@@ -76,6 +92,24 @@ const japanese: Dictionary = {
   'uiFoundation.dialog.resizeLabel': () => "ダイアログのサイズを変更",
   'uiFoundation.dialog.restoreSize': () => "元の大きさに戻す",
   'uiFoundation.floatingActionButton.menuLabel': () => "補助操作",
+  'uiFoundation.listbox.clearVisible': () => "表示中の選択を解除",
+  'uiFoundation.listbox.invalidControlIdentity': () => "選択欄の識別子と説明を指定してください。",
+  'uiFoundation.listbox.invalidOptions': () => "選択肢の値と説明・グループを確認してください。",
+  'uiFoundation.listbox.invalidSearchLocale': () => "候補検索の言語を確認してください。",
+  'uiFoundation.listbox.invalidSelection': () => "現在の選択と選択肢を確認してください。",
+  'uiFoundation.listbox.invalidSelectionLimit': () => "選択上限には正の整数を指定してください。",
+  'uiFoundation.listbox.invalidVirtualConfiguration': () => "候補の高さと先読み件数を確認してください。",
+  'uiFoundation.listbox.multipleValueRequired': () => "複数選択には値の配列を指定してください。",
+  'uiFoundation.listbox.noOptions': () => "選択肢はありません。",
+  'uiFoundation.listbox.noSearchResults': () => "条件に一致する候補はありません。",
+  'uiFoundation.listbox.searchLabel': () => "候補を検索",
+  'uiFoundation.listbox.selectVisible': () => "表示中をすべて選択",
+  'uiFoundation.listbox.selectionRequired': () => "選択してください。",
+  'uiFoundation.listbox.singleValueRequired': () => "単一選択には一つの値を指定してください。",
+  'uiFoundation.listbox.selectedCount': ({ parameters }, locale) =>
+    `${new Intl.NumberFormat(locale).format(parameters.count)}件選択`,
+  'uiFoundation.listbox.selectedCountWithInvalidSelection': ({ parameters }, locale) =>
+    `${new Intl.NumberFormat(locale).format(parameters.count)}件選択 · 選択上限または現在の値を確認してください。`,
   'uiFoundation.pageFrame.sidebarLabel': () => "サイドバー",
   'uiFoundation.segmentedControl.requiredMarker': () => " (必須)",
   'uiFoundation.splitButton.menuLabel': () => "その他の操作",
@@ -110,6 +144,24 @@ const english: Dictionary = {
   'uiFoundation.dialog.resizeLabel': () => "Resize dialog",
   'uiFoundation.dialog.restoreSize': () => "Restore original size",
   'uiFoundation.floatingActionButton.menuLabel': () => "More actions",
+  'uiFoundation.listbox.clearVisible': () => "Clear visible selections",
+  'uiFoundation.listbox.invalidControlIdentity': () => "Provide an ID and a description for the selection field.",
+  'uiFoundation.listbox.invalidOptions': () => "Check the option values, descriptions, and groups.",
+  'uiFoundation.listbox.invalidSearchLocale': () => "Check the language used to search options.",
+  'uiFoundation.listbox.invalidSelection': () => "Check the current selection and options.",
+  'uiFoundation.listbox.invalidSelectionLimit': () => "Use a positive integer for the selection limit.",
+  'uiFoundation.listbox.invalidVirtualConfiguration': () => "Check the option height and overscan count.",
+  'uiFoundation.listbox.multipleValueRequired': () => "Provide an array of values for multiple selection.",
+  'uiFoundation.listbox.noOptions': () => "There are no options.",
+  'uiFoundation.listbox.noSearchResults': () => "No matching options.",
+  'uiFoundation.listbox.searchLabel': () => "Search options",
+  'uiFoundation.listbox.selectVisible': () => "Select all shown",
+  'uiFoundation.listbox.selectionRequired': () => "Choose an option.",
+  'uiFoundation.listbox.singleValueRequired': () => "Provide a single value for single selection.",
+  'uiFoundation.listbox.selectedCount': ({ parameters }, locale) =>
+    `${new Intl.NumberFormat(locale).format(parameters.count)} selected`,
+  'uiFoundation.listbox.selectedCountWithInvalidSelection': ({ parameters }, locale) =>
+    `${new Intl.NumberFormat(locale).format(parameters.count)} selected · Check the selection limit or the current value.`,
   'uiFoundation.pageFrame.sidebarLabel': () => "Sidebar",
   'uiFoundation.segmentedControl.requiredMarker': () => " (required)",
   'uiFoundation.splitButton.menuLabel': () => "More actions",

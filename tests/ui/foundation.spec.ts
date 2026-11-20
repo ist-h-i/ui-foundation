@@ -66,7 +66,16 @@ test('numeric, selection, editor and retained paste diagnostics translate withou
  await expect(probe.locator('ui-range-slider')).toContainText('The start value must be less than or equal to the end value.');
  await expect(probe.locator('ui-knob')).toContainText('Enter a value from 0 to 100.');
  await expect(probe.locator('ui-rating')).toContainText('Enter a value from 0 to 5.');
- await expect(probe.locator('ui-listbox')).toContainText('Select up to 1 items.');
+ const list=probe.locator('ui-listbox');
+ await expect(list).toContainText('Select up to 1 item.');
+ await expect(list.getByRole('option',{selected:true})).toHaveCount(2);
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({
+  ...current,translate:(request:{id:string;parameters:{limit:number}})=>request.id==='uiFoundation.collection.selectionLimit'
+   ? `Use at most ${request.parameters.limit} choice.` : undefined,
+ }));});
+ await expect(list).toContainText('Use at most 1 choice.');
+ await expect(list.getByRole('listbox',{name:'App list'})).toBeVisible();
+ await expect(list.getByRole('option',{selected:true})).toHaveCount(2);
  await expect(probe).toContainText('Row 1, App quantity: Enter a finite number.');
  await cell.getByRole('button').click();const editor=probe.locator('[data-table-editor]');await editor.fill('');
  await expect(probe.locator('ui-cell-editor')).toContainText('Enter a value.');

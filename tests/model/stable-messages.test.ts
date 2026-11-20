@@ -38,3 +38,10 @@ function verifyRequestTypesOnly() {
   resolveUiMessage({ id: 'サイドバー' }, 'en-US');
 }
 void verifyRequestTypesOnly;
+
+test('the retained listbox rejection is a complete, locale-formatted announcement', () => {
+  const request = { id: 'uiFoundation.listbox.selectedCountWithInvalidSelection', parameters: { count: 1200 } } as const;
+  assert.equal(resolveUiMessage(request, 'ja-JP'), '1,200件選択 · 選択上限または現在の値を確認してください。');
+  assert.equal(resolveUiMessage(request, 'en-US'), '1,200 selected · Check the selection limit or the current value.');
+  assert.equal(resolveUiMessage(request, 'de-DE'), '1.200 selected · Check the selection limit or the current value.');
+});

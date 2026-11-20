@@ -4,6 +4,7 @@ import {test} from 'node:test';
 import ts from 'typescript';
 import {uiEnglishMessages} from '../../templates/angular/locale-en.ts';
 import {uiJapaneseMessages} from '../../templates/angular/locale-ja.ts';
+import {resolveUiMessage} from '../../templates/angular/stable-messages.ts';
 import {resolveUiLocale,uiMessage} from '../../templates/angular/locale-model.ts';
 const parameters=(value:string)=>[...value.matchAll(/\{(\w+)\}/g)].map(match=>match[1]).sort();
 test('English and Japanese dictionaries retain all interpolation parameters and Japanese child scopes restore defaults',()=>{
@@ -46,7 +47,7 @@ test('parameterized numeric/selection diagnostics and retained paste feedback fo
  assert.equal(numericValueError(101,domain,text),'Enter a value from 0 to 100.');
  assert.equal(numericValueError(1,domain,text),'Enter a value in increments of 2.');
  assert.equal(numericRangeError({start:50,end:10},domain,text),'The start value must be less than or equal to the end value.');
- assert.equal(listSelectionProblem([{value:'a',label:'A'},{value:'b',label:'B'}],['a','b'],true,false,1,text),'Select up to 1 items.');
+ assert.equal(listSelectionProblem([{value:'a',label:'A'},{value:'b',label:'B'}],['a','b'],true,false,1,message=>resolveUiMessage(message,'en-US')),'Select up to 1 item.');
  const rows=[{id:1,quantity:1,enabled:true}],columns=[{id:'quantity',field:'quantity' as const,header:'App quantity',type:'number' as const,required:true}];
  const validation=validateTableRowDraft(rows[0],columns,{quantity:''},'id',text);
  assert.equal(validation.errors.quantity,'Enter a value.');

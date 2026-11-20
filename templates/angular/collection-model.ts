@@ -1,4 +1,4 @@
-import {uiMessage} from './locale-model';
+import {resolveUiMessage,type UiMessageRequest} from './stable-messages';
 /** Collection presentation data only. I/O, persistence and undo belong to the app. */
 export type CollectionKey = string | number;
 export interface CollectionViewState { query: string; sort: 'none' | 'asc' | 'desc'; page: number; pageSize: number; layout: 'list' | 'grid'; }
@@ -25,12 +25,12 @@ export function moveCollection<T>(items:readonly T[],fromIndex:number,toIndex:nu
 export interface ListChoice {value:string;label:string;disabled?:boolean;group?:string}
 export type ListboxValue=string|readonly string[]|null;
 export function selectedListValues(value:unknown):readonly string[]{return typeof value==='string'?[value]:Array.isArray(value)?value.filter((item):item is string=>typeof item==='string'):[];}
-export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null,text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)):string|null{
- const known=new Set<string>();for(const option of options){if(!option||typeof option.value!=='string'||!option.value.trim()||typeof option.label!=='string'||!option.label.trim()||known.has(option.value)||option.group!==undefined&&(typeof option.group!=='string'||!option.group.trim()))return text('選択肢の値と説明・グループを確認してください。');known.add(option.value);}
- if(maxSelected!==null&&(!Number.isSafeInteger(maxSelected)||maxSelected<1))return text('選択上限には正の整数を指定してください。');
- if(value!==null&&(multiple?!Array.isArray(value):typeof value!=='string'))return multiple?text('複数選択には値の配列を指定してください。'):text('単一選択には一つの値を指定してください。');
- const values=selectedListValues(value);if(Array.isArray(value)&&values.length!==value.length||new Set(values).size!==values.length||values.some(item=>!known.has(item)))return text('現在の選択と選択肢を確認してください。');
- if(required&&!values.length)return text('選択してください。');if(maxSelected!==null&&values.length>maxSelected)return text('{limit}件まで選択してください。',{limit:maxSelected});return null;
+export function listSelectionProblem(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null,text:(message:UiMessageRequest)=>string=message=>resolveUiMessage(message,'ja-JP')):string|null{
+ const known=new Set<string>();for(const option of options){if(!option||typeof option.value!=='string'||!option.value.trim()||typeof option.label!=='string'||!option.label.trim()||known.has(option.value)||option.group!==undefined&&(typeof option.group!=='string'||!option.group.trim()))return text({id:'uiFoundation.listbox.invalidOptions'});known.add(option.value);}
+ if(maxSelected!==null&&(!Number.isSafeInteger(maxSelected)||maxSelected<1))return text({id:'uiFoundation.listbox.invalidSelectionLimit'});
+ if(value!==null&&(multiple?!Array.isArray(value):typeof value!=='string'))return multiple?text({id:'uiFoundation.listbox.multipleValueRequired'}):text({id:'uiFoundation.listbox.singleValueRequired'});
+ const values=selectedListValues(value);if(Array.isArray(value)&&values.length!==value.length||new Set(values).size!==values.length||values.some(item=>!known.has(item)))return text({id:'uiFoundation.listbox.invalidSelection'});
+ if(required&&!values.length)return text({id:'uiFoundation.listbox.selectionRequired'});if(maxSelected!==null&&values.length>maxSelected)return text({id:'uiFoundation.collection.selectionLimit',parameters:{limit:maxSelected}});return null;
 }
 export function changeListSelection(options:readonly ListChoice[],value:ListboxValue,key:string,multiple:boolean,maxSelected:number|null,clearable=true):ListboxValue{
  if(value!==null&&(multiple?!Array.isArray(value):typeof value!=='string')||Array.isArray(value)&&value.some(item=>typeof item!=='string'))return value;
