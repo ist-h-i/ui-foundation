@@ -5,7 +5,7 @@ import { parse, stringify } from 'yaml';
 import { ConfigValidationError, parseConfig, resolveConfig } from '../../src/config.ts';
 import { renderTailwind, renderTokens } from '../../src/tokens.ts';
 
-const example = readFileSync(new URL('../../examples/ui.config.example.yaml', import.meta.url), 'utf8');
+const example = readFileSync(new URL('../../examples/ui.config.repository.yaml', import.meta.url), 'utf8');
 const edited = (change: (config: any) => void): string => {
   const config = parse(example);
   change(config);

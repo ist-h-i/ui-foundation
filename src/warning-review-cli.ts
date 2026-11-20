@@ -18,7 +18,7 @@ try {
       format = value;
     }
     const root = fileURLToPath(new URL('../', import.meta.url));
-    const project = await checkProject({ root, configPath: 'examples/ui.config.example.yaml' });
+    const project = await checkProject({ root, configPath: 'examples/ui.config.repository.yaml' });
     const review = await checkWarningReviews(root, project.source);
     const valid = project.valid && review.valid;
     if (format === 'json') console.log(JSON.stringify({ valid, project, review }));

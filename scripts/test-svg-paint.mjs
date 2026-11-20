@@ -26,12 +26,12 @@ async function run(name,args,env={}){
 }
 let server,serverExit;
 try{
- await run('canonical-sync',['--import','tsx','src/cli.ts','sync','--config','examples/ui.config.example.yaml']);
+ await run('canonical-sync',['--import','tsx','src/cli.ts','sync','--config','examples/ui.config.repository.yaml']);
  const manifestBefore=digest(await readFile(join(work,'.ui/generated/manifest.json')));
  const managed=JSON.parse(await readFile(join(work,'.ui/generated/manifest.json'),'utf8')),managedHashes={};for(const path of Object.keys(managed.files))managedHashes[path]=digest(await readFile(join(work,path)));
- await run('canonical-check',['--import','tsx','src/cli.ts','check','--config','examples/ui.config.example.yaml']);
- await run('canonical-idempotent',['--import','tsx','src/cli.ts','sync','--config','examples/ui.config.example.yaml']);
- await run('canonical-dry-run',['--import','tsx','src/cli.ts','sync','--dry-run','--config','examples/ui.config.example.yaml']);
+ await run('canonical-check',['--import','tsx','src/cli.ts','check','--config','examples/ui.config.repository.yaml']);
+ await run('canonical-idempotent',['--import','tsx','src/cli.ts','sync','--config','examples/ui.config.repository.yaml']);
+ await run('canonical-dry-run',['--import','tsx','src/cli.ts','sync','--dry-run','--config','examples/ui.config.repository.yaml']);
  assert.equal(digest(await readFile(join(work,'.ui/generated/manifest.json'))),manifestBefore,'CLI manifest idempotency');for(const [path,sha] of Object.entries(managedHashes))assert.equal(digest(await readFile(join(work,path))),sha,'Owned output idempotency '+path);
  await run('public-consumer-production-build',['build-consumer.mjs']);
  server=spawn(process.execPath,['serve-consumer.mjs'],{cwd:work,env:{...childEnvironment,SVG_PORT:'0'},stdio:['ignore','pipe','pipe']});serverExit=new Promise(resolve=>server.once('exit',(code,signal)=>resolve({code,signal})));let serverLog='';server.stderr.on('data',data=>{serverLog+=data;});

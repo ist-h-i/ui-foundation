@@ -40,8 +40,11 @@ Names use `category.kebab-case-role`. Additional roles are supported. Foundation
 | radius | control, surface | length |
 | size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min, drawer-inline, drawer-block, navigation-rail, mega-menu, navigation-column, knob, collection-item, collection-viewport, media-viewport, visualization-viewport | length |
 | border | control, focus, focus-offset | length |
-| motion | duration, easing | duration / easing |
-| opacity | watermark, map-region | number (0–1) |
+| motion | duration | duration |
+| motion | easing | easing |
+| opacity | watermark, map-region | number |
+
+Opacity values range from 0 to 1.
 
 Avatar text uses `text.avatar`; map-region opacity uses `opacity.map-region`. Add these roles to older configurations before resync. The example maps avatar text to its existing avatar-dimension primitive and opacity to0.25, preserving both profiles' earlier appearance.
 
