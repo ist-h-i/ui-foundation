@@ -54,6 +54,14 @@ export class FieldControl {
     '[style.--ui-field-label-layout]': 'labelPosition() === "inherit" ? null : labelPosition() === "inline" ? "grid" : "block"',
     '[style.--ui-field-label-columns]': 'labelPosition() === "inline" ? "min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)" : null',
   },
+  styles: `
+    .ui-form-field-requirement {
+      margin-inline-start: var(--ui-space-control-gap);
+      font-size: var(--ui-text-small);
+      font-weight: var(--ui-weight-body);
+      color: var(--ui-color-muted);
+    }
+  `,
 })
 export class FormField implements AfterContentChecked {
   readonly controlId = input.required<string>();

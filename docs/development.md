@@ -8,6 +8,30 @@ YAMLのプリミティブが具体値の正本、セマンティックが用途�
 
 ## 依存とスタイル
 
+次の表は状態表示の所有範囲を示す。
+
+| 規則 | 管理元と理由 |
+| --- | --- |
+| `AsyncRegion` の通知領域の下余白 | `async-region.ts`。取得内容の領域との間隔をこの部品が決める。 |
+| `ActionFeedback` の成功色 | `action-feedback.ts`。操作結果の成功状態をこの部品が表示する。 |
+| 通知と結果の基本面、本文の余白、警告色とエラー色 | `styles.css`。両部品で同じ組み合わせを共有する。 |
+| 両部品のホストの表示と書体、`[hidden]`、読み上げ専用の本文 | `styles.css`。他の標準部品との共有に加え、投影コンテンツにも `[hidden]` を適用する。 |
+
+フォームと操作グループでは、投影される要素と部品自身の要素で、規則の管理元が異なる。
+
+| 規則 | 管理元と理由 |
+| --- | --- |
+| `FormField` の必須・任意ラベル | `form-field.ts`。文言の隣に表示する部品内の要素だけを装飾する。 |
+| `FormLayout`、`FormField` の入力とラベルの配置 | `styles.css`。`FormLayout` はディレクティブで、入力はアプリから投影される。横配置、checkbox、狭幅の規則は実際の入力とラベルの関係に適用する。 |
+| 入力、ヒント・エラー、選択欄とラジオの公開クラス | `styles.css`。ネイティブ要素・フォーム部品・アプリのマークアップが共有する。選択欄の強制色ではネイティブのインジケーターを表示する。 |
+| `ButtonGroup` のホストのレイアウト、方向、折り返し、非表示 | `actions.ts`。ホスト自身に適用する。 |
+| `ButtonGroup` のサイズ継承、連結時の伸縮・境界線・角丸 | `styles.css`。グループに投影される `.ui-action` に、方向と並び順に応じて適用する。 |
+| ボタン・リンクの基本形とラベル・フォーカス・状態 | `styles.css`。通常のアクション、リンク、アイコン・トグル操作が共有する。アイコン操作単体の形状所有は別途照合する。 |
+
+一つの標準部品だけが使うレイアウトや状態のスタイルは、`templates/angular/` の部品の近くに置く。例えば `PageFrame` の見出し・本文・固定領域は `page-frame.css` で管理する。色や余白は用途別のセマンティックトークンを参照する。
+
+複数部品に共通するスタイルは共通 CSS に置く。投影コンテンツや外部描画エンジンの要素に部品内のスタイルが届かない場合は、対象部品のホストで絞ったグローバル CSS を使う。変更は生成元で行い、同期後にアプリのビルドと該当する表示・操作を確認する。
+
 Angular/TypeScriptの既存standalone、signal、OnPush、native HTMLを使う。Tailwind v4のテーマは生成された意味トークンに接続する。構造CSSとユーティリティが同じ変数を使い、特定の美学や外部フォントを強制しない。依存関係は保守性と互換性を確認し、固定バージョンとロックファイルを記録する。
 
 生成先のTypeScript/CSS/Skillを直接編集しない。設定・templates/angular・skills/ui-developmentを直し、sync/checkを実行する。生成物はGitで追跡する。未同期を合格にしたり、checkを成功するダミーへ置き換えたりしない。
@@ -23,6 +47,9 @@ Angular/TypeScriptの既存standalone、signal、OnPush、native HTMLを使う�
 2026/10/20の本人の明示指示により、`@hiroshi.inoue/ui-foundation@0.1.0-beta.1`の最終検証、`beta`タグ・public accessでのnpm公開、registry取得版の導入確認まで実施する。`private: false`はこの公開工程のための設定。最終候補のSHA・integrityを固定し、同一tgzを検証・監査・公開へ使う。公開用の変更はcommitと独立レビューで確認し、今回認可された公開工程としてmainへ通常mergeする。別versionや別パッケージの公開、権限変更をこの指示から推定しない。自作部分はMIT（Hiroshi Inoue）、第三者の既存条件は保持し、認証情報をリポジトリ・検証記録に保存しない。詳細は[npm公開計画](npm-release-plan.ja.md)を参照する。
 
 ## 開発元のサンプルと検証
+
+開発元の設定は `examples/ui.config.repository.yaml` です。ここでトークンとプロファイルの対応を編集し、英語の説明は `examples/ui.config.example.en-text.yaml` で管理します。`npm run config:examples` で配布用の日英ひな形を再生成します。開発元の検査パス・承認・例外は開発用の設定に置きます。必須トークンを変更した場合は `npm run docs:tokens` で日英の設計資料の表を更新します。
+
 
 次はこのリポジトリのcheckoutで使う既存の手順です。npmパッケージをインストールした利用先アプリの手順は[usage](ui-library-consumer-guide.ja.md)を参照してください。
 

@@ -1,6 +1,7 @@
 import { isAlias, isMap, isScalar, isSeq, LineCounter, parseDocument } from 'yaml';
 import { CATEGORY_TYPES, CONTRAST_PAIRS, CORE_ROLES, semanticVariable, tailwindVariable } from './roles.ts';
 import type { PrimitiveType } from './roles.ts';
+import { isExceptableRule } from './check/application.ts';
 import type { ChecksConfig } from './check/types.ts';
 
 export type { PrimitiveType } from './roles.ts';
@@ -185,7 +186,7 @@ function validateConfig(input: unknown, source: SourceLocations): FoundationConf
 }
 
 function validateChecks(input: unknown, validator: Validator): ChecksConfig {
-  const checks = validator.object(input, 'checks', ['source_roots', 'tsconfig', 'approved_components', 'exceptions'], ['tsconfig', 'approved_components', 'exceptions']);
+  const checks = validator.object(input, 'checks', ['source_roots', 'tsconfig', 'approved_components', 'exceptions', 'excluded_projects'], ['tsconfig', 'approved_components', 'exceptions', 'excluded_projects']);
   const path = (value: unknown, at: string): string => {
     const text = validator.text(value, at);
     if (text !== text.trim() || /[\\\u0000-\u001f<>:"|?*]/.test(text) || text.startsWith('/')
@@ -213,12 +214,11 @@ function validateChecks(input: unknown, validator: Validator): ChecksConfig {
   });
   const approvalKeys = approved_components.map(item => `${item.module}:${item.export}`);
   if (new Set(approvalKeys).size !== approvalKeys.length) validator.issue('checks.approved_components', 'Duplicate component approvals');
-  const exceptionRules = new Set(['literal-token', 'primitive-reference', 'unknown-token', 'token-category', 'unapproved-component', 'unresolved']);
   const exceptions = array('exceptions').map((item, index) => {
     const at = `checks.exceptions.${index}`;
     const exception = validator.object(item, at, ['file', 'rule', 'source', 'reason', 'line', 'column'], ['line', 'column']);
     const rule = validator.text(exception.rule, `${at}.rule`);
-    if (!exceptionRules.has(rule)) validator.issue(`${at}.rule`, 'Unknown or non-exemptible check rule');
+    if (!isExceptableRule(rule)) validator.issue(`${at}.rule`, 'Unknown or non-exemptible check rule');
     const coordinates: { line?: number; column?: number } = {};
     for (const coordinate of ['line', 'column'] as const) if (own(exception, coordinate)) {
       if (!Number.isSafeInteger(exception[coordinate]) || Number(exception[coordinate]) < 1) validator.issue(`${at}.${coordinate}`, 'Expected a positive integer source coordinate');
@@ -227,7 +227,13 @@ function validateChecks(input: unknown, validator: Validator): ChecksConfig {
     return { file: path(exception.file, `${at}.file`), rule,
       source: validator.text(exception.source, `${at}.source`), reason: validator.text(exception.reason, `${at}.reason`), ...coordinates };
   });
-  return { source_roots, ...(own(checks, 'tsconfig') ? { tsconfig: path(checks.tsconfig, 'checks.tsconfig') } : {}), approved_components, exceptions };
+  const excluded_projects = array('excluded_projects').map((value, index) => {
+    const at = `checks.excluded_projects.${index}`;
+    const item = validator.object(value, at, ['name', 'reason']);
+    return { name: validator.text(item.name, `${at}.name`), reason: validator.text(item.reason, `${at}.reason`) };
+  });
+  if (new Set(excluded_projects.map(item => item.name)).size !== excluded_projects.length) validator.issue('checks.excluded_projects', 'Duplicate excluded projects');
+  return { source_roots, ...(own(checks, 'excluded_projects') ? { excluded_projects } : {}), ...(own(checks, 'tsconfig') ? { tsconfig: path(checks.tsconfig, 'checks.tsconfig') } : {}), approved_components, exceptions };
 }
 
 /** Parse only literal YAML values; diagnostics retain the original key/value locations. */

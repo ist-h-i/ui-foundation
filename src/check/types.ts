@@ -5,6 +5,7 @@ export interface CheckException { file: string; rule: string; source: string; re
 export interface ChecksConfig {
   source_roots: string[];
   tsconfig?: string;
+  excluded_projects?: { name: string; reason: string }[];
   approved_components: ComponentApproval[];
   exceptions: CheckException[];
 }
@@ -18,6 +19,8 @@ export interface SourceDiagnostic {
   suggestion: string;
   source: string;
   exception?: string;
+  baseline_context?: string[] | null;
+  baseline_subject?: string;
 }
 export interface SourceReport {
   status: 'not_configured' | 'passed' | 'warnings' | 'failed';
@@ -25,6 +28,9 @@ export interface SourceReport {
   files: number;
   checked: number;
   diagnostics: SourceDiagnostic[];
+  source_roots?: string[];
+  existing_diagnostics?: SourceDiagnostic[];
+  excluded_projects?: { name: string; source_root: string; reason: string }[];
   exceptions: SourceDiagnostic[];
 }
 export interface AngularDeclaration {
@@ -143,4 +149,8 @@ export interface StyleContext {
    * they never establish closed coverage or select a cascade winner. */
   siblingStyles?: readonly { css: string; scss: boolean }[];
 }
-export interface CheckSourcesOptions { root: string; config: ResolvedConfig; policy: SourcePolicy }
+export interface SourceCheckMode {
+  requireSourceChecks?: boolean;
+  baselinePath?: string;
+}
+export interface CheckSourcesOptions extends SourceCheckMode { root: string; config: ResolvedConfig; policy: SourcePolicy }

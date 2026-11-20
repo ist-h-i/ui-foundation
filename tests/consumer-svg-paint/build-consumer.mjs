@@ -8,7 +8,7 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 await mkdir('evidence',{recursive:true});
 const results=[];
-for(const [name,command,args] of [['check','node',['--import','tsx','src/cli.ts','check','--config','examples/ui.config.example.yaml']],['aot','node',['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js','-p','tsconfig.consumer.json']]]){
+for(const [name,command,args] of [['check','node',['--import','tsx','src/cli.ts','check','--config','examples/ui.config.repository.yaml']],['aot','node',['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js','-p','tsconfig.consumer.json']]]){
  const result=spawnSync(command,args,{encoding:'utf8'});await writeFile('evidence/'+name+'.log',result.stdout+result.stderr);results.push({name,command:[command,...args],exit:result.status});assert.equal(result.status,0,name);
 }
 await rm('dist',{recursive:true,force:true});await mkdir('dist');

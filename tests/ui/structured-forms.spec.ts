@@ -6,6 +6,30 @@ async function expectValues(page:Page,expected:Record<string,unknown>){await exp
 async function addTag(page:Page,value:string){await page.locator('#structured-tags').fill(value);await page.locator('ui-tag-input').getByRole('button',{name:'追加',exact:true}).click();}
 for(const profile of ['guided','dense'])test.describe(`structured forms ${profile}`,()=>{
  test.beforeEach(async({page})=>{await page.goto('/catalog/forms');await page.getByLabel('表示設定',{exact:true}).selectOption(profile);});
+ test('FormField keeps its requirement token and its projected input across narrow reflow',async({page})=>{
+  const input=page.locator('#native-field');
+  const field=page.locator('ui-form-field').filter({has:input});
+  const label=field.locator('.ui-form-field-label');
+  const requirement=label.locator('.ui-form-field-requirement');
+  await expect(requirement).toHaveText('任意');
+  const gap=await requirement.evaluate(node=>{
+   const probe=document.createElement('span');
+   probe.style.marginInlineStart='var(--ui-space-control-gap)';
+   node.append(probe);
+   const value=getComputedStyle(probe).marginInlineStart;
+   probe.remove();
+   return value;
+  });
+  expect(parseFloat(gap)).toBeGreaterThan(0);
+  await expect(requirement).toHaveCSS('margin-inline-start',gap);
+  await expect(field).toHaveCSS('display','grid');
+  await input.fill('配置切替前の入力');
+  await page.setViewportSize({width:320,height:800});
+  await expect(field).toHaveCSS('display','block');
+  await label.click();
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue('配置切替前の入力');
+ });
  test('mask inserts its fixed separator while retaining leading zeros in the form value',async({page})=>{
   const editor=page.locator('#structured-mask');await editor.pressSequentially('00123');await expect(editor).toHaveValue('001-23');await expectValues(page,{mask:'00123'});await expect(editor).not.toHaveAttribute('aria-invalid');await expect(page.locator('ui-masked-input').first()).toContainText('___-__');
  });

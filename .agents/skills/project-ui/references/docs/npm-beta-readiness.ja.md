@@ -15,7 +15,7 @@
 | API | YAML schema_version=1、CLIのinit/sync/checkと既存flags、公開Angular barrelの明示export、生成先の構造。manifest/policy/ownership/lockはツールが管理し、アプリが手編集するAPIにしない |
 | 検査結果 | CLIのcheckは生成一致＋ソース検査。生成check-ui.cjsはpolicyとソース検査。JSONの既存フィールドとエラー/警告/未設定の意味を維持する |
 
-公開barrelは専門部品まで参照するため、最小画面でもガイド記載の25 engine等を型解決できる必要がある。用途別入口の分離は正式版に向けた改善とし、ベータで依存が任意になったとは説明しない。未検証の追加構成は利用アプリで確認する。
+全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の25エンジンなどを型解決できる必要があります。`angular/core.ts` を提供する版でその公開 API だけを使う場合は、利用ガイドに記載の基本部品の依存で型解決できます。未検証の追加構成は利用アプリで確認します。
 
 ## 導入と文書
 
@@ -25,7 +25,7 @@ npm内の`docs/`と生成Skillの`references/docs/`へ、API・設計・導入�
 
 自作部分のMIT本文は生成outputと生成Skillの`UI-FOUNDATION-LICENSE.txt`に同梱する。利用アプリのroot LICENSEを上書きせず、配布成果物には`ui-foundation/LICENSE.txt`として保存する。この許諾で利用アプリ自身や第三者コードの条件を変更しない。
 
-第三者通知とPDF source kitはnpm内の`assets/third-party/`・`assets/pdf-source/`を**全内容**配信成果物へコピーする。生成checkerのCHECKER-NOTICE.txtとCLIのCLI-NOTICE.txtは対象が別。生成アプリの基盤依存にはFOUNDATION-NOTICES.txtも必要。[資産配信](ui-library-consumer-guide.ja.md#css-と配布資産)を参照する。最終HTTP応答のバイト列とworker実行を、単なるファイル存在とは分けて確認する。
+npm 内の `assets/third-party/` は全内容を配信成果物に含める。PDF 資産を配信する場合は `assets/pdf-source/` の全内容も含める。生成checkerのCHECKER-NOTICE.txtとCLIのCLI-NOTICE.txtは対象が別。生成アプリの基盤依存にはFOUNDATION-NOTICES.txtも必要。[資産配信](ui-library-consumer-guide.ja.md#css-と配布資産)を参照する。最終HTTP応答のバイト列とworker実行を、単なるファイル存在とは分けて確認する。
 
 ## 更新と復旧
 

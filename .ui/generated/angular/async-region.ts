@@ -26,6 +26,9 @@ export type AsyncRegionState = {
       <ng-content />
     </div>
   `,
+    styles: `
+    .ui-async-region__notice { margin-block-end: var(--ui-space-field); }
+  `,
 })
 export class AsyncRegion {
  protected readonly uiText_AsyncRegion=injectUiMessage();

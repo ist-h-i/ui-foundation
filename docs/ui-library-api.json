@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 147,
+  "source_count": 148,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -172,7 +172,7 @@
     },
     {
       "path": "templates/angular/action-feedback.ts",
-      "sha256": "7916f155ef639b315e07542af3483123bc3d529896c9e22eb4a4f7723ef55e08",
+      "sha256": "f69f79ffac7ccbffbc9250e888131f8758637e1fd69c86e9c956ee7352d02bc2",
       "declarations": [
         {
           "names": [
@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "aca459f3eaf8d4f91e71540eb4c5ebf17868665fb88b082a3c1ec5f09898ac62",
+      "sha256": "066c7beb8c2e5ed3710f70b761d6bec013cc46d1f075640db66259bb628f9f65",
       "declarations": [
         {
           "name": "IconButton",
@@ -830,7 +830,7 @@
     },
     {
       "path": "templates/angular/async-region.ts",
-      "sha256": "e3ad5f0e2fbf86e9d19ea6d6345538ada6a07069dfc8a3e334d76686112308f9",
+      "sha256": "dee0258d83a35c151399825a9975eba9c7f41b09f49dde81c35fad594a9e57ab",
       "declarations": [
         {
           "names": [
@@ -3222,6 +3222,52 @@
               "declaration": "complete(value: unknown = undefined): boolean"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/core.ts",
+      "sha256": "2923a3357bea4b3b758ad43bd0f29f8bbac0cdbd0d75d354e6d90b3e4976dfaf",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { Card, CardHeader, CardBody, CardFooter, CardMedia, CardActions, CardTemplate, type CardArea, type CardContext } from './card';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { FormField, FieldControl } from './form-field';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { Icon, provideUiIcons } from './icon';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { UI_LOCALE, UiLocaleScope, UiMessagePipe, provideUiLocale, injectUiLocale, injectUiText } from './locale';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { defaultUiLocale, resolveUiLocale, uiMessage } from './locale-model';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { uiEnglishMessages } from './locale-en';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { uiJapaneseMessages } from './locale-ja';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export type { UiDirection, UiMessages, UiLocaleOptions, UiLocaleResolved } from './locale-model';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export type { UiMessageId, UiMessageParameters, UiMessageRequest, UiMessageTranslator } from './stable-messages';"
         }
       ]
     },
@@ -8643,7 +8689,7 @@
     },
     {
       "path": "templates/angular/form-field.ts",
-      "sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+      "sha256": "0a01bccc462038005d8490e6e4a6d9d9e3c4e45e4c419b16587af0231cf034c9",
       "declarations": [
         {
           "name": "FieldControl",
@@ -13263,7 +13309,7 @@
     },
     {
       "path": "templates/angular/page-frame.ts",
-      "sha256": "990d0c4b507dfc2b8de5c1e082c1eaadcd4ae78e2a4d4b342bfb9f1ed48f4c90",
+      "sha256": "8ffbd40ed0a12d22cba435e1b47b09419fe73485910516d5cb63cdef4afaa16c",
       "declarations": [
         {
           "name": "PageFrame",

@@ -31,7 +31,11 @@ After sync, the generated Skill and its references are available under `.agents/
 
 ## Implement the interaction
 
-Import components from the generated `angular/index.ts` and load the global styles described in the consumer guide. For icons, install the compatible `@lucide/angular` version and register the icons the app uses with `provideUiIcons`.
+Before adding a screen or shared component, compare its path with `checks.source_roots` in the app YAML. Use the generated public entry points and app-owned components or wrappers. [Source coverage and import diagnostics](../../docs/static-checks.en.md)
+
+Check the standard component’s public API for variants, state, and appearance. Set page layout and custom component styles in app-owned files using semantic tokens. [Consumer styling example](../../docs/ui-library-consumer-guide.en.md#css-and-distribution-assets)
+
+Use the generated `angular/core.ts` entry for the action, card, and native form-field APIs it exports. Use `angular/index.ts` for other components. Load the global styles described in the consumer guide. For icons, install the compatible `@lucide/angular` version and register the icons the app uses with `provideUiIcons`.
 
 New configurations use `default_language: en`, so built-in text defaults to English without a provider. Japanese starters use `ja`; existing YAML without this field stays Japanese after sync. Do not change an existing app's language implicitly. For a runtime English override, pass `{ locale: 'en-US', messages: uiEnglishMessages }` to `provideUiLocale`, with both exports imported from the generated public entry point. Use the app's own translation system for labels, content, and business errors. Keep an app-controlled locale and update the dictionary alongside it when switching languages. A scope can override parent settings through `UiLocaleScope`. For Japanese text, use `{ locale: 'ja-JP', messages: uiJapaneseMessages }` from the same entry point. Supply the Japanese dictionary explicitly in a Japanese child of an English scope; an empty dictionary inherits the parent translations.
 
@@ -50,6 +54,10 @@ Use the relevant component contracts to guide implementation and choose the chec
 
 ## Verify and report
 
+When changing save, retry, or dialog focus, adapt the [optional registration retry test](../../docs/ui-library-consumer-guide.en.md#optional-browser-test-for-retrying-a-save) to the app.
+
 Run the installed CLI's `check`, app type checks and build, and focused browser tests of the changed tasks. Where configured, the source checker scans the selected Angular, CSS, and SCSS files. Record warnings and skipped checks with the scope they leave open. Fix generation mismatches by updating the source configuration and rerunning sync.
+
+Read `NOT_CONFIGURED` as an unperformed source check. Review uncovered Angular projects and expand the configured roots when those projects belong in scope. Correct definite violations, and review warnings individually before changing the app. When a reviewed baseline is enabled, fix new violations and track existing findings. Keep baseline changes explicit, and record a reason and review trigger for each intentional exception. [Check results and scoped exceptions](../../docs/static-checks.en.md)
 
 For each relevant profile and language, inspect the layout at narrow widths and enlarged text. Verify keyboard focus, reduced motion, visible and accessible labels, and what happens when the user changes settings during editing or a request. Check success, pending, failure, missing data, and recovery with the app's actual inputs. Distinguish build and static-check results, observed interactions, automated accessibility results, and visual or user review.

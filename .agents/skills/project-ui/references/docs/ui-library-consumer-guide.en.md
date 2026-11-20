@@ -135,7 +135,22 @@ The generated TypeScript contains inline templates, so include it in Tailwind's 
 
 ## Import generated components
 
-Import from the generated `angular/index.ts` public entry point. This standalone component belongs in `src/app.ts` when the app uses the default output path.
+Choose the generated public entry point for your app.
+
+| Entry point | When to use it |
+| --- | --- |
+| `angular/core.ts` | Only actions, cards, native form fields, and their icons and locale APIs. |
+| `angular/index.ts` | Any other components or the complete Angular API. |
+
+Use `core` after installing and syncing a version that provides this entry point. For example, with the default output path:
+
+```ts
+import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/angular/core';
+```
+
+The core entry resolves Angular core, common, CDK and its Angular Forms peer, RxJS, and Lucide. The app still supplies its normal Angular build and bootstrap packages. Use app-owned source files as TypeScript roots and let imports select the generated code. A glob that adds every generated TypeScript file makes the compiler resolve specialist sources too. Load the shared tokens and component styles described above. The core entry requires no app-side `sideEffects` override or specialist CSS and worker assets. The full entry remains available to existing users.
+
+The following standalone component uses the full entry and belongs in `src/app.ts` when the app uses the default output path.
 
 ```ts
 import { Component } from '@angular/core';
@@ -213,7 +228,7 @@ To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `pro
 
 The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.2.1`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
 
-The public entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component. Several engines load on demand at runtime.
+For a core-only app, use the [core entry and its dependency set](#import-generated-components). The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
 
 | Package | Tested version | Used for |
 | --- | --- | --- |
@@ -243,15 +258,27 @@ The public entry point references components in all categories, so the applicati
 | `jsbarcode` | `3.12.3` | Barcodes |
 | `temporal-polyfill` | `1.0.5` | Scheduler time and time zones |
 
-Install `@types/qrcode@1.5.6` for type checking. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
+For the full entry, install the type dependencies in the app with `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16`. The public `angular/index.ts` entry point references the map component and its GeoJSON types, even when the app uses only basic components. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
 
 ## CSS and distribution assets
+
+Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-section` uses the same spacing token.
+
+```html
+<section class="app-actions">
+  <button uiAction variant="primary">Save</button>
+</section>
+```
+
+```css
+.app-actions { padding: var(--ui-space-section); }
+```
 
 Load the generated `angular/specialist.css` globally for screens using specialist components. MapView also needs the CSS from the installed MapLibre version.
 
 The CLI, templates, Skill, and generated code carry the MIT license. Retain the package's `LICENSE` and the generated `UI-FOUNDATION-LICENSE.txt` files. Copy the generated license text into the distributable as `ui-foundation/LICENSE.txt`. Preserve third-party notices and corresponding sources alongside their assets. The CLI and checker notices cover their respective tools.
 
-In this table, `assets/` refers to the installed UI Foundation package's assets. Copy both asset trees in full, including original notices, PDF font source archives, build recipes, and font mapping. Keep the deployment paths and component URLs in sync.
+In this table, `assets/` refers to the installed UI Foundation package's assets. Copy the third-party notice tree in full. When distributing PDF assets, also copy the complete PDF source tree, including original notices, font source archives, build recipes, and font mapping. Keep the deployment paths and component URLs in sync.
 
 | Source | Example public location | Component setting |
 | --- | --- | --- |
@@ -289,6 +316,8 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 The generated checker runs with Node and checks the generated policy against the configuration and selected app sources. Keep it with its sibling `checker-lib/`, `policy.json`, and `CHECKER-NOTICE.txt` files. Use the full CLI for generated-file consistency and ownership checks. Keep the checker out of the browser bundle.
 
+For CI that requires source coverage, run `ui-foundation check --require-source-checks` for generated consistency and source checks, or `node .ui/generated/check-ui.cjs --require-source-checks` for the standalone source check. If `angular.json` lists a project outside `checks.source_roots`, review the reported source root and add coverage or document the deliberate exclusion. To adopt checks in stages, pass a reviewed full JSON report with `--baseline ui-check-baseline.json`. See the linked check contract for output fields and scoped exceptions.
+
 Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions](static-checks.en.md)
 
 Build the app and exercise the actual tasks in the browser after synchronization. Check supported profiles and languages with narrow layouts, longer translated labels, text zoom, and keyboard focus. Exercise pending, failure, partial-data, and retry paths and verify that a language change retains the current draft or request. For media and specialist components, verify worker startup and real asset responses. Track compile results, automated accessibility findings, observed behavior, and visual review separately.
@@ -296,3 +325,9 @@ Build the app and exercise the actual tasks in the browser after synchronization
 To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
 When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Release notes](npm-beta-release-notes.en.md)
+
+## Optional browser test for retrying a save
+
+Copy `skills/ui-development/references/examples/dialog-retry.ts` from the installed npm package, or `references/examples/dialog-retry.ts` from the synchronized Skill. In your existing Playwright suite, import `verifyRegistrationRetry` and call it in a test that receives the `page` fixture. Run that spec with your project's Playwright command. Use Playwright's `baseURL` for a relative screen path, or pass the full URL. Adapt the Tab order and focus assertions to the screen, including where focus lands after a failed save.
+
+Set the page URL, accessible names and expected error to match your registration screen. Adjust the intercepted POST route, request body and the two fixture responses to match your API. The example checks the draft after a failed save, retries through the keyboard, and checks focus after the successful retry.
