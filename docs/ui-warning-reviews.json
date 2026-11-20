@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.example.yaml": "2fbbfaf60849d2ee2d571a7589dcd95ba89af0e6eea7dd3e3b59a11d12c411b5",
-    "package.json": "249690c13b0243970fdade4f1ff56bc25e9730bac628fbe649104dfd545067ae",
+    "examples/ui.config.repository.yaml": "2fbbfaf60849d2ee2d571a7589dcd95ba89af0e6eea7dd3e3b59a11d12c411b5",
+    "package.json": "5f08ccbc175ab68592cef02bf66d267431a703a7353c41c82047115d99e09d61",
     "package-lock.json": "2ec80d17a924f1414f0425db5cafe9464f4929a8ba2f87d7947d1af8589cadf3",
     "src/config.ts": "4fee845dce66c947046233e3ac6836679340e1c67dbf83c69b2ae882516fb441",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
@@ -18,8 +18,8 @@
     "src/check/styles.ts": "89a924e373e27c080f8a7c9095f7f11fb05f2520b1076c0b2d170e340e15f890",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
     "src/check/types.ts": "55856842ab45bcd19ede3963c6849adaa213535078d167891d6c6e2ca14f5ad6",
-    "src/warning-review.ts": "817d44333f9d651d380ce40fb637e7b077f6dcc516a03add84e80a82525359d5",
-    "src/warning-review-cli.ts": "30f58fe92ad04eabba6c0e010ca49f88dc74ea4c64b28136548bb1afc7edcf47",
+    "src/warning-review.ts": "4175fe5c7610140d170b04a70c55647cbe5ad97480497785b5d8b11bc5f0bcc6",
+    "src/warning-review-cli.ts": "9751597d24dadd07f0db8a59dad2421044f1ab345794e00b271ddf32ee7a24a5",
     "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34",
     "tests/static/write-sinks.test.ts": "8ec17aad28c151b6e22522fad1aabfc2a551ef7000a93df4e548af57c4bfd610",
     "tests/static/write-sinks-portable.test.ts": "bb61341b61775c05d834fe318ef66f162cca3b759c0e91f7c6cf1855b2dcfb57",
@@ -183,7 +183,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -297,7 +297,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -429,7 +429,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8191,7 +8191,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8293,7 +8293,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8395,7 +8395,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8509,7 +8509,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8623,7 +8623,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "44bac9f084ab06a61bd0eeedbd54e6f88a762a4994c1a7f8c8473c0fc788e566",
+          "sha256": "4b2d21bd42ce4989cc6d31e07c0f2d33fd03597b9580d5c5715cfff9211c6e4c",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {

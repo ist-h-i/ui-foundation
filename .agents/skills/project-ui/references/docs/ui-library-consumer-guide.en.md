@@ -258,7 +258,7 @@ The full `angular/index.ts` entry point references components in all categories,
 | `jsbarcode` | `3.12.3` | Barcodes |
 | `temporal-polyfill` | `1.0.5` | Scheduler time and time zones |
 
-Install `@types/qrcode@1.5.6` for type checking. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
+Install the type dependencies in the app with `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16`. The public `angular/index.ts` entry point references the map component and its GeoJSON types, even when the app uses only basic components. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
 
 ## CSS and distribution assets
 

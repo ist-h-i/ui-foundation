@@ -16,7 +16,7 @@ type Exception={file:string;rule:'unresolved';source:string;line:number;column:n
 type Approval={id:string;reason_ja:string;exception:Exception;diagnostic:Diagnostic;proof_sha256:Record<string,string>;static_value_status:string;universal_runtime_status:string};
 const audit=JSON.parse(await readFile(resolve(directory,'geometry-audit.json'),'utf8'));
 const approvals:Approval[]=audit.eligible;
-const example=await readFile(resolve(root,'examples/ui.config.example.yaml'),'utf8');
+const example=await readFile(resolve(root,'examples/ui.config.repository.yaml'),'utf8');
 const digest=(data:Uint8Array)=>createHash('sha256').update(data).digest('hex');
 const dependencies=new Map<string,string>();
 for(const item of approvals)for(const[file,hash]of Object.entries(item.proof_sha256)){assert.ok(!dependencies.has(file)||dependencies.get(file)===hash);dependencies.set(file,hash);}

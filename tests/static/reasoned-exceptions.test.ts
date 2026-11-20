@@ -20,7 +20,7 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const historicalEvidence = resolve(root, 'tests/fixtures/static-checks/warning-disposition');
 const evidence = resolve(root, 'tests/fixtures/static-checks/warning-implementation/newphase');
 const currentEvidence = resolve(root, 'tests/fixtures/static-checks/seven-candidates/purpose');
-const example = await readFile(resolve(root, 'examples/ui.config.example.yaml'), 'utf8');
+const example = await readFile(resolve(root, 'examples/ui.config.repository.yaml'), 'utf8');
 interface Diagnostic {file:string;line:number;column:number;rule:string;source:string;severity:string}
 interface Approval {id:string;origin:'legacy'|'candidate';exception:{file:string;line:number;column:number;rule:string;source:string;reason:string};proof_sha256:Record<string,string>}
 const proof = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-proof-current.json'), 'utf8'));
