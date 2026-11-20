@@ -5,7 +5,7 @@ import { ActionControl, Dialog } from '../../.ui/generated/angular/index';
   selector: 'fixture-retry-input',
   template: `<label>Item name <input [value]="value()" (input)="value.set($any($event.target).value)"></label>`,
 })
-class RegistrationInput {
+export class RegistrationInput {
   readonly value = model('');
 }
 
