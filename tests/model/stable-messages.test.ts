@@ -59,3 +59,14 @@ test('a single required legend includes the app-owned label as an argument', () 
   assert.equal(resolveUiMessage(request,'en-US',current=>current.id===request.id
     ? `Required selection: ${current.parameters.label}` : undefined),'Required selection: App choices');
 });
+
+test('notification status and dismiss requests translate complete messages', () => {
+  const status = { id: 'uiFoundation.notificationCenter.status', parameters: { visible: 1, unread: 0, loading: 'App loading message' } } as const;
+  assert.equal(resolveUiMessage(status, 'en-US'), '1 notification shown. 0 unread. App loading message');
+  assert.equal(resolveUiMessage({ ...status, parameters: { visible: 0, unread: 2, loading: null } }, 'ja-JP'), '0件表示、未読 2件');
+  const dismiss = { id: 'uiFoundation.snackbar.dismissLabel', parameters: { message: 'App notification' } } as const;
+  assert.equal(resolveUiMessage(dismiss, 'en-US', request => {
+    assert.deepEqual(request, dismiss);
+    return 'App notification, dismiss';
+  }), 'App notification, dismiss');
+});

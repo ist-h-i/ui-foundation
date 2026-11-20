@@ -1,5 +1,24 @@
 /** Stable, library-owned message IDs and their named parameters. */
 export type UiMessageParameters = {
+  'uiFoundation.notificationCenter.statusFilter': undefined;
+  'uiFoundation.notificationCenter.categoryFilter': undefined;
+  'uiFoundation.notificationCenter.allStatuses': undefined;
+  'uiFoundation.notificationCenter.allCategories': undefined;
+  'uiFoundation.notificationCenter.unread': undefined;
+  'uiFoundation.notificationCenter.read': undefined;
+  'uiFoundation.notificationCenter.markUnread': undefined;
+  'uiFoundation.notificationCenter.markRead': undefined;
+  'uiFoundation.notificationCenter.delete': undefined;
+  'uiFoundation.notificationCenter.empty': undefined;
+  'uiFoundation.notificationCenter.loadMore': undefined;
+  'uiFoundation.notificationCenter.loading': undefined;
+  'uiFoundation.notificationCenter.retry': undefined;
+  'uiFoundation.snackbar.dismiss': undefined;
+  'uiFoundation.notificationCenter.markUnreadLabel': { readonly title: string };
+  'uiFoundation.notificationCenter.markReadLabel': { readonly title: string };
+  'uiFoundation.notificationCenter.deleteLabel': { readonly title: string };
+  'uiFoundation.snackbar.dismissLabel': { readonly message: string };
+  'uiFoundation.notificationCenter.status': { readonly visible: number; readonly unread: number; readonly loading: string | null };
   'uiFoundation.actionButton.busy': undefined;
   'uiFoundation.actionControl.busy': undefined;
   'uiFoundation.actionFeedback.busy': undefined;
@@ -68,6 +87,31 @@ type Dictionary = {
 };
 
 const japanese: Dictionary = {
+  'uiFoundation.notificationCenter.statusFilter': () => "通知の状態",
+  'uiFoundation.notificationCenter.categoryFilter': () => "通知の分類",
+  'uiFoundation.notificationCenter.allStatuses': () => "すべて",
+  'uiFoundation.notificationCenter.allCategories': () => "すべて",
+  'uiFoundation.notificationCenter.unread': () => "未読",
+  'uiFoundation.notificationCenter.read': () => "既読",
+  'uiFoundation.notificationCenter.markUnread': () => "未読に戻す",
+  'uiFoundation.notificationCenter.markRead': () => "既読にする",
+  'uiFoundation.notificationCenter.delete': () => "削除",
+  'uiFoundation.notificationCenter.empty': () => "条件に合う通知はありません。",
+  'uiFoundation.notificationCenter.loadMore': () => "通知を追加取得",
+  'uiFoundation.notificationCenter.loading': () => "通知を取得しています。",
+  'uiFoundation.notificationCenter.retry': () => "通知の取得を再試行",
+  'uiFoundation.snackbar.dismiss': () => "閉じる",
+  'uiFoundation.notificationCenter.markUnreadLabel': ({ parameters }) => `未読に戻す: ${parameters.title}`,
+  'uiFoundation.notificationCenter.markReadLabel': ({ parameters }) => `既読にする: ${parameters.title}`,
+  'uiFoundation.notificationCenter.deleteLabel': ({ parameters }) => `削除: ${parameters.title}`,
+  'uiFoundation.snackbar.dismissLabel': ({ parameters }) => `通知を閉じる: ${parameters.message}`,
+  'uiFoundation.notificationCenter.status': ({ parameters }, locale) => {
+    const numbers = new Intl.NumberFormat(locale);
+    const { visible, unread, loading } = parameters;
+    return loading
+      ? `${numbers.format(visible)}件表示、未読 ${numbers.format(unread)}件、${loading}`
+      : `${numbers.format(visible)}件表示、未読 ${numbers.format(unread)}件`;
+  },
   'uiFoundation.actionButton.busy': () => "処理中",
   'uiFoundation.actionControl.busy': () => "処理中",
   'uiFoundation.actionFeedback.busy': () => "処理しています。",
@@ -120,6 +164,33 @@ const japanese: Dictionary = {
 };
 
 const english: Dictionary = {
+  'uiFoundation.notificationCenter.statusFilter': () => "Notification status",
+  'uiFoundation.notificationCenter.categoryFilter': () => "Notification category",
+  'uiFoundation.notificationCenter.allStatuses': () => "All",
+  'uiFoundation.notificationCenter.allCategories': () => "All",
+  'uiFoundation.notificationCenter.unread': () => "Unread",
+  'uiFoundation.notificationCenter.read': () => "Read",
+  'uiFoundation.notificationCenter.markUnread': () => "Mark unread",
+  'uiFoundation.notificationCenter.markRead': () => "Mark read",
+  'uiFoundation.notificationCenter.delete': () => "Delete",
+  'uiFoundation.notificationCenter.empty': () => "No notifications match these filters.",
+  'uiFoundation.notificationCenter.loadMore': () => "Load more notifications",
+  'uiFoundation.notificationCenter.loading': () => "Loading notifications…",
+  'uiFoundation.notificationCenter.retry': () => "Retry loading notifications",
+  'uiFoundation.snackbar.dismiss': () => "Close",
+  'uiFoundation.notificationCenter.markUnreadLabel': ({ parameters }) => `Mark unread: ${parameters.title}`,
+  'uiFoundation.notificationCenter.markReadLabel': ({ parameters }) => `Mark read: ${parameters.title}`,
+  'uiFoundation.notificationCenter.deleteLabel': ({ parameters }) => `Delete: ${parameters.title}`,
+  'uiFoundation.snackbar.dismissLabel': ({ parameters }) => `Close notification: ${parameters.message}`,
+  'uiFoundation.notificationCenter.status': ({ parameters }, locale) => {
+    const numbers = new Intl.NumberFormat(locale);
+    const plurals = new Intl.PluralRules(locale);
+    const { visible, unread, loading } = parameters;
+    const noun = plurals.select(visible) === 'one' ? 'notification' : 'notifications';
+    return loading
+      ? `${numbers.format(visible)} ${noun} shown. ${numbers.format(unread)} unread. ${loading}`
+      : `${numbers.format(visible)} ${noun} shown. ${numbers.format(unread)} unread.`;
+  },
   'uiFoundation.actionButton.busy': () => "Working",
   'uiFoundation.actionControl.busy': () => "Working",
   'uiFoundation.actionFeedback.busy': () => "Working…",
