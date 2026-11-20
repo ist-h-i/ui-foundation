@@ -4,6 +4,39 @@ for(const profile of ['guided','dense'])test.describe('状態表示 '+profile,()
  test.beforeEach(async({page})=>{await page.goto('/catalog/feedback');await page.getByLabel('表示設定',{exact:true}).selectOption(profile);});
  test('ActionFeedbackは結果不明・成功・失敗・処理中を区別し、下書きとfocusを保持',async({page})=>{const feedback=page.locator('ui-action-feedback'),draft=feedback.getByRole('textbox',{name:'復旧中の下書き'});await draft.fill('確認する下書き');await expect(feedback).toHaveAttribute('data-state','unknown');await feedback.getByRole('button',{name:'状態を確認する',exact:true}).click();await expect(feedback.getByRole('status')).toHaveText('処理しています。');await expect(feedback.getByRole('button',{name:/^状態を確認する/})).toBeDisabled();await expect(feedback.locator('.ui-action-feedback__message')).toBeFocused();await feedback.getByRole('button',{name:/^状態を確認する/}).dispatchEvent('click');await expect(page.getByTestId('feedback-count')).toHaveText('復旧 1');await page.getByRole('button',{name:'復旧結果を返す',exact:true}).click();await expect(feedback).toHaveAttribute('data-state','success');for(const state of ['error','warning','unknown']){await page.getByLabel('操作の結果',{exact:true}).selectOption(state);await expect(feedback).toHaveAttribute('data-state',state);await expect(draft).toHaveValue('確認する下書き');}await draft.focus();await page.getByLabel('操作の結果',{exact:true}).evaluate(el=>{(el as HTMLSelectElement).value='idle';el.dispatchEvent(new Event('change',{bubbles:true}));});await expect(draft).toBeHidden();await expect(page.getByRole('button',{name:'復旧結果を返す',exact:true})).toBeFocused();});
  test('AsyncRegionは更新/欠損では内容を表示し、loading/empty/errorでも値を保持する',async({page})=>{const async=page.locator('ui-async-region'),draft=async.getByRole('textbox',{name:'取得領域の下書き'});await draft.fill('復元する入力');const original=await draft.elementHandle();for(const kind of ['refreshing','partial','stale']){await page.getByLabel('取得の状態',{exact:true}).selectOption(kind);await expect(draft).toBeVisible();await expect(draft).toHaveValue('復元する入力');}await draft.focus();await page.getByLabel('取得の状態',{exact:true}).evaluate(el=>{(el as HTMLSelectElement).value='loading';el.dispatchEvent(new Event('change',{bubbles:true}));});await expect(draft).toBeHidden();await expect(page.getByRole('button',{name:'再取得結果を返す',exact:true})).toBeFocused();for(const kind of ['empty','error']){await page.getByLabel('取得の状態',{exact:true}).selectOption(kind);await expect(draft).toBeHidden();}await async.getByRole('button',{name:'再試行',exact:true}).click();await expect(async).toHaveAttribute('data-state','loading');await expect(async.locator('.ui-async-region__message')).toBeFocused();await expect(page.getByTestId('async-count')).toHaveText('再試行 1');await page.getByRole('button',{name:'再取得結果を返す',exact:true}).click();await expect(draft).toHaveValue('復元する入力');expect(await draft.evaluate((el,original)=>el===original,original)).toBe(true);});
+ test('状態表示の部品固有スタイルが狭幅でもトークンに追随する',async({page})=>{
+  await page.setViewportSize({width:320,height:800});
+  const feedback=page.locator('ui-action-feedback');
+  await page.getByLabel('操作の結果',{exact:true}).selectOption('success');
+  const panel=feedback.locator('.ui-action-feedback__panel');
+  await expect(panel).toBeVisible();
+  const colors=await panel.evaluate(node=>{
+   const probe=document.createElement('span');
+   probe.style.color='var(--ui-color-success)';
+   probe.style.backgroundColor='var(--ui-color-success-surface)';
+   node.append(probe);
+   const styles=getComputedStyle(probe);
+   const result={color:styles.color,background:styles.backgroundColor};
+   probe.remove();
+   return result;
+  });
+  await expect(panel).toHaveCSS('color',colors.color);
+  await expect(panel).toHaveCSS('background-color',colors.background);
+
+  await page.getByLabel('取得の状態',{exact:true}).selectOption('partial');
+  const notice=page.locator('ui-async-region .ui-async-region__notice');
+  await expect(notice).toBeVisible();
+  const spacing=await notice.evaluate(node=>{
+   const probe=document.createElement('span');
+   probe.style.marginBlockEnd='var(--ui-space-field)';
+   node.append(probe);
+   const value=getComputedStyle(probe).marginBlockEnd;
+   probe.remove();
+   return value;
+  });
+  expect(parseFloat(spacing)).toBeGreaterThan(0);
+  await expect(notice).toHaveCSS('margin-block-end',spacing);
+ });
  test('Alertは意味/本文/投影操作を持ちbusyで終了を抑止して閉じ戻る',async({page})=>{const alert=page.locator('ui-alert');await expect(alert).toHaveAttribute('data-severity','warning');await expect(alert.getByRole('alert')).toContainText('未取得の項目');await alert.getByRole('textbox',{name:'通知の補助メモ'}).fill('残すメモ');await alert.getByRole('button',{name:'内容を確認',exact:true}).click();await alert.getByRole('button',{name:'補助情報',exact:true}).click();await page.getByLabel('通知の処理中',{exact:true}).check();await expect(alert.getByRole('button',{name:'通知を閉じる',exact:true})).toBeDisabled();await alert.getByRole('button',{name:'通知を閉じる',exact:true}).dispatchEvent('click');await expect(alert).toBeVisible();await page.getByLabel('通知の処理中',{exact:true}).uncheck();await alert.getByRole('button',{name:'通知を閉じる',exact:true}).click();await expect(alert).toBeHidden();await expect(page.getByRole('button',{name:'通知を再表示',exact:true})).toBeFocused();await page.getByRole('button',{name:'通知を再表示',exact:true}).click();await expect(alert.getByRole('textbox',{name:'通知の補助メモ'})).toHaveValue('残すメモ');await expect(page.getByTestId('alert-count')).toHaveText('操作 2 / 閉じる 1');});
  test('Alertの外部更新で消える組込み操作のfocusだけを本文へ移す',async({page})=>{
   const alert=page.locator('ui-alert'),message=alert.locator('.ui-feedback-message');

@@ -31,6 +31,8 @@ After sync, the generated Skill and its references are available under `.agents/
 
 ## Implement the interaction
 
+Check the standard component’s public API for variants, state, and appearance. Set page layout and custom component styles in app-owned files using semantic tokens. [Consumer styling example](references/docs/ui-library-consumer-guide.en.md#css-and-distribution-assets)
+
 Use the generated `angular/core.ts` entry for the action, card, and native form-field APIs it exports. Use `angular/index.ts` for other components. Load the global styles described in the consumer guide. For icons, install the compatible `@lucide/angular` version and register the icons the app uses with `provideUiIcons`.
 
 New configurations use `default_language: en`, so built-in text defaults to English without a provider. Japanese starters use `ja`; existing YAML without this field stays Japanese after sync. Do not change an existing app's language implicitly. For a runtime English override, pass `{ locale: 'en-US', messages: uiEnglishMessages }` to `provideUiLocale`, with both exports imported from the generated public entry point. Use the app's own translation system for labels, content, and business errors. Keep an app-controlled locale and update the dictionary alongside it when switching languages. A scope can override parent settings through `UiLocaleScope`. For Japanese text, use `{ locale: 'ja-JP', messages: uiJapaneseMessages }` from the same entry point. Supply the Japanese dictionary explicitly in a Japanese child of an English scope; an empty dictionary inherits the parent translations.
