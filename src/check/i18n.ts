@@ -231,8 +231,13 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     const root = implicitName(receiver);
     return root && locals.has(root) ? undefined : referenceName(receiver);
   }
-  function angularTranslation(value: AST, wrapper: TemplateWrapper, locals: ViewLocals): boolean {
-    if (value instanceof ASTWithSource) return angularTranslation(value.ast, wrapper, locals);
+  function angularTranslation(value: AST, wrapper: TemplateWrapper, locals: ViewLocals, depth = 0): boolean {
+    if (value instanceof ASTWithSource) return angularTranslation(value.ast, wrapper, locals, depth);
+    if (value instanceof NonNullAssert) return angularTranslation(value.expression, wrapper, locals, depth);
+    if (value instanceof PropertyRead && value.receiver instanceof ImplicitReceiver && depth < maxAliasDepth) {
+      const alias = locals.get(value.name);
+      return !!alias && angularTranslation(alias.initializer, wrapper, alias.scope, depth + 1);
+    }
     if (value instanceof BindingPipe) return value.name === 'uiStableMessage' || configuredPipe.has(value.name);
     if (value instanceof Call || value instanceof SafeCall) {
       const name = componentName(value.receiver, locals);
@@ -304,7 +309,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       const owner = componentName(value.receiver, locals);
       const initializer = owner && members.get(owner);
       if (initializer) {
-        const key = value.key instanceof LiteralPrimitive && typeof value.key.value === 'string' ? value.key.value : undefined;
+        const key = knownAngularId(value.key, locals);
         inspectMapValue(initializer, key, value.sourceSpan, emit, members, new Set());
       }
     }
