@@ -83,6 +83,10 @@ export function typescriptBaselineContext(source: ts.SourceFile, line: number, c
       else if (node.catchClause && contains(node.catchClause)) context.push('catch body');
       else if (node.finallyBlock && contains(node.finallyBlock)) context.push('finally body');
     }
+    if (ts.isArrayLiteralExpression(node)) {
+      const slot = node.elements.findIndex(contains);
+      if (slot >= 0) context.push(JSON.stringify(['array element', slot]));
+    }
     if (ts.isCallExpression(node)) {
       const argument = node.arguments.findIndex(contains);
       if (argument >= 0) {

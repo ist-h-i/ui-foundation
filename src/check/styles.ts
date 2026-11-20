@@ -597,6 +597,17 @@ export function customPropertyResolver(context: StyleContext, origin: CustomProp
 function canonicalCSSValue(value: string): string {
   return valueParser(value).walk(token => {
     if (token.type === 'function' && token.value.toLowerCase() === 'selector') return false;
+    if (token.type === 'function' && token.value.toLowerCase() === 'style') {
+      token.before = '';
+      token.after = '';
+      const separator = token.nodes.find(item => item.type === 'div' && item.value === ':');
+      if (separator?.type === 'div') {
+        separator.before = '';
+        separator.after = '';
+      }
+      // Preserve the custom property's token stream after its name/value separator.
+      return false;
+    }
     if (token.type === 'space') token.value = ' ';
     if (token.type === 'function' || token.type === 'div') {
       token.before = '';

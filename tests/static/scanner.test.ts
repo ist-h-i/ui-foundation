@@ -1141,3 +1141,25 @@ test('baseline preserves selector combinators in CSS scope conditions', async t 
   assert.equal(moved.existing_diagnostics?.length, 0);
   assert.equal(errors(moved).length, 1);
 });
+
+test('baseline distinguishes callbacks in separate array slots and custom property query token streams', async t => {
+  const scenarios = [
+    ['app/context.ts',
+      "const callbacks = [() => { document.body.style.color = 'red'; }, () => { document.body.style.color = 'var(--ui-color-text)'; }]; callbacks[0](); callbacks[1]();",
+      "const callbacks = [() => { document.body.style.color = 'var(--ui-color-text)'; }, () => { document.body.style.color = 'red'; }]; callbacks[0](); callbacks[1]();"],
+    ['app/context.css',
+      '@container style(--foo: a :b) { .one{color:red} } @container style(--foo: a:b) { .one{color:var(--ui-color-text)} }',
+      '@container style(--foo: a :b) { .one{color:var(--ui-color-text)} } @container style(--foo: a:b) { .one{color:red} }'],
+  ] as const;
+  for (const [file, before, after] of scenarios) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, false, after);
+    assert.deepEqual(checked.existing_diagnostics, [], after);
+    assert.equal(errors(checked).length, 1, after);
+  }
+});
