@@ -318,13 +318,13 @@ checks:
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 58
-      column: 995
+      column: 1204
     - file: templates/angular/collection-views.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 59
-      column: 1701
+      column: 1986
     - file: templates/angular/collection-views.ts
       rule: literal-token
       source: ul[data-layout="grid"]{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}
@@ -376,14 +376,14 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 21
-      column: 504
+      line: 22
+      column: 607
     - file: templates/angular/diagram.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 21
-      column: 1050
+      line: 22
+      column: 1266
     - file: templates/angular/dialog.ts
       rule: literal-token
       source: :host{inline-size:min(var(--ui-size-dialog),calc(100vw - 2 *
@@ -524,32 +524,32 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 22
-      column: 761
+      line: 23
+      column: 889
     - file: templates/angular/filter-builder.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 22
-      column: 1759
+      line: 23
+      column: 1927
     - file: templates/angular/filter-builder.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 22
-      column: 2598
+      line: 23
+      column: 2809
     - file: templates/angular/filter-builder.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 22
-      column: 3585
+      line: 23
+      column: 3903
     - file: templates/angular/filter-builder.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 22
-      column: 4369
+      line: 23
+      column: 4728
     - file: templates/angular/floating-panel.ts
       rule: literal-token
       source: :host{max-inline-size:calc(100vw - 2 * var(--ui-space-control-gap))}
@@ -604,18 +604,18 @@ checks:
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 10
-      column: 1872
+      column: 2203
     - file: templates/angular/media-player.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 10
-      column: 2411
+      column: 2816
     - file: templates/angular/media-player.ts
       rule: literal-token
       source: "@media (max-width:40rem)"
       reason: レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。
-    - file: templates/angular/media-style.ts
+    - file: templates/angular/image-cropper.ts
       rule: literal-token
       source: .ui-media-fields{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}
       reason: 実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。
@@ -699,13 +699,13 @@ checks:
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 21
-      column: 616
+      column: 789
     - file: templates/angular/notification-center.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 21
-      column: 1258
+      column: 1526
     - file: templates/angular/notifications.ts
       rule: literal-token
       source: '[data-position$="center"]{left:50%}'
@@ -828,19 +828,19 @@ checks:
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 3
-      column: 561
+      column: 716
     - file: templates/angular/scheduler-view.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 22
-      column: 672
+      column: 820
     - file: templates/angular/scheduler-view.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 23
-      column: 664
+      column: 810
     - file: templates/angular/selection-input.ts
       rule: literal-token
       source: "@media (max-width:40rem)"
@@ -859,14 +859,6 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-    - file: templates/angular/specialist-style.ts
-      rule: literal-token
-      source: .ui-select-control__chevron{inset-block-start:50%}
-      reason: 対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。
-    - file: templates/angular/specialist-style.ts
-      rule: literal-token
-      source: .ui-select-control__chevron{transform:translateY(-50%)}
-      reason: 対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。
     - file: templates/angular/specialist-style.ts
       rule: literal-token
       source: .ui-specialist-data-table{min-inline-size:calc(var(--ui-specialist-columns)
@@ -933,34 +925,34 @@ checks:
       source: ".ui-action:disabled, .ui-action--disabled,
         .ui-action--busy{border-color: GrayText}"
       reason: forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。
-    - file: templates/angular/styles.css
+    - file: templates/angular/actions.ts
       rule: literal-token
-      source: .ui-icon-button[data-shape="round"]{border-radius:50%}
+      source: :host([data-shape="round"]){border-radius:50%}
       reason: 円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 16
-      column: 544
+      line: 30
+      column: 718
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 17
-      column: 605
+      line: 31
+      column: 593
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 19
-      column: 520
+      line: 33
+      column: 558
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 20
-      column: 527
+      line: 34
+      column: 629
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: .ui-table-controls__row>label{flex:1 1
@@ -971,20 +963,20 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 158
-      column: 1519
+      line: 175
+      column: 1798
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 270
-      column: 1547
+      line: 292
+      column: 1829
     - file: templates/angular/table-controls.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 316
-      column: 1647
+      line: 338
+      column: 2033
     - file: templates/angular/table-editors.ts
       rule: literal-token
       source: stroke-width:2
@@ -1568,7 +1560,7 @@ checks:
       rule: unresolved
       source: "[style.padding-inline-start]=\"indent(row.depth)\""
       line: 18
-      column: 601
+      column: 845
       reason: "[R009]
         Chartの階層行の字下げ。depthは外部CSS値ではなくchartPointRowsが0から増分生成し、rows()はchartProbl\
         emの深さ32・循環検証に合格した系列だけを渡す。意味トークンに非負整数係数を掛ける用途に限定できる。
@@ -1578,7 +1570,7 @@ checks:
       source: "[style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min),
         calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 *
         var(--ui-space-table-x))) * '+columns().length+')'\""
-      line: 39
+      line: 38
       column: 68
       reason: "[R018]
         表の最小幅は列数を係数にしてtable-column-min/control/table-xの意味トークンと文字幅を組み合わせる。係数は配列l\
@@ -1587,8 +1579,8 @@ checks:
     - file: templates/angular/diagram.ts
       rule: unresolved
       source: "[style.left.px]=\"node.x*zoom()\""
-      line: 19
-      column: 1260
+      line: 20
+      column: 1311
       reason: "[R043]
         Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し\
         、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配\
@@ -1596,8 +1588,8 @@ checks:
     - file: templates/angular/diagram.ts
       rule: unresolved
       source: "[style.top.px]=\"node.y*zoom()\""
-      line: 19
-      column: 1292
+      line: 20
+      column: 1343
       reason: "[R044]
         Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し\
         、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配\
@@ -1605,8 +1597,8 @@ checks:
     - file: templates/angular/diagram.ts
       rule: unresolved
       source: "[style.transform]=\"'scale('+zoom()+')'\""
-      line: 19
-      column: 1401
+      line: 20
+      column: 1452
       reason: "[R047]
         Diagramのscale()は有限0.25〜4に検証されたzoomだけで生成するデータ表示倍率。異常zoomでdisplayModel.no\
         desは空となりnode transform bindingは生成されない。DOM実測のノード寸法診断へは広げない。
@@ -1615,7 +1607,7 @@ checks:
       rule: unresolved
       source: "[style.padding-inline-start]=\"indent(row)\""
       line: 27
-      column: 1006
+      column: 1236
       reason: "[R048]
         JSON階層の字下げはjsonRowsが0から生成するdepth（最大64）の係数をcontrol-x/control-gapに掛ける。任意外\
         部CSSやDOM計測ではなく、検証された構文木の階層表現に限定される。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
@@ -1631,7 +1623,7 @@ checks:
       rule: unresolved
       source: "[style.--ui-code-number-digits]=\"numberDigits()\""
       line: 31
-      column: 580
+      column: 644
       reason: "[R052]
         コード行番号欄の桁数は原文分割後の配列lengthをString化した文字数。外部CSS文字列や意匠値を返さず、正の整数のデータ係数になる。
         用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
@@ -1648,7 +1640,7 @@ checks:
       rule: unresolved
       source: "[style.inline-size.%]=\"item.value/maximum()*100\""
       line: 137
-      column: 418
+      column: 491
       reason: "[R068]
         MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaxim\
         umは正finite、各値は0〜maximum、合計超過を拒否しnullは幅要素を生成しない。意味色を使う区分のデータ長に限定できる。
@@ -1657,7 +1649,7 @@ checks:
       rule: unresolved
       source: "[style.padding-inline-start]=\"indent(row)\""
       line: 11
-      column: 887
+      column: 937
       reason: "[R083]
         FileExplorer階層の字下げ。explorerRowsがdepthを0から生成し>64、重複ID/循環を拒否、problem時rows\
         は空。tree表示では意味space tokenの整数係数、他viewは意味tokenそのもの。
@@ -1673,7 +1665,7 @@ checks:
     - file: templates/angular/image-media.ts
       rule: unresolved
       source: "[style.aspect-ratio]=\"ratioValue()\""
-      line: 6
+      line: 7
       column: 34
       reason: "[R100] Image
         aspect-ratioはpositiveMediaNumberを経由するfinite正数またはnullのみ。任意CSSstringではなく画\
@@ -1681,7 +1673,7 @@ checks:
     - file: templates/angular/image-media.ts
       rule: unresolved
       source: "[style.aspect-ratio]=\"ratioValue()\""
-      line: 46
+      line: 47
       column: 56
       reason: "[R107] ImageCompare
         aspect-ratioはpositiveMediaNumberで検証済みfinite正数。画像比較frameの縦横比を表すデータ値で、任意C\
@@ -1689,8 +1681,8 @@ checks:
     - file: templates/angular/image-media.ts
       rule: unresolved
       source: "[style.clip-path]=\"clip()\""
-      line: 46
-      column: 223
+      line: 47
+      column: 250
       reason: "[R108]
         画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定\
         inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。
@@ -1698,8 +1690,8 @@ checks:
     - file: templates/angular/image-media.ts
       rule: unresolved
       source: "[style.left.%]=\"direction()==='horizontal'?positionValue():null\""
-      line: 46
-      column: 360
+      line: 47
+      column: 413
       reason: "[R109]
         画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定\
         inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。
@@ -1707,8 +1699,8 @@ checks:
     - file: templates/angular/image-media.ts
       rule: unresolved
       source: "[style.top.%]=\"direction()==='vertical'?positionValue():null\""
-      line: 46
-      column: 425
+      line: 47
+      column: 478
       reason: "[R110]
         画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定\
         inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。
@@ -1760,7 +1752,7 @@ checks:
       source: "[style.gridTemplateColumns]=\"'repeat('+layout().columns+',
         minmax(var(--ui-size-grid-item), 1fr))'\""
       line: 9
-      column: 186
+      column: 243
       reason: "[R153]
         予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用し\
         ない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
@@ -1800,7 +1792,7 @@ checks:
       rule: unresolved
       source: "[style.--ui-option-columns]=\"checkedColumns()\""
       line: 85
-      column: 196
+      column: 231
       reason: "[R159] CheckboxGroup列数はoptionの構造count。checkedColumns computedがsafe
         integer>=1を検査してから返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
     - file: templates/angular/splitter.ts
@@ -1823,7 +1815,7 @@ checks:
     - file: templates/angular/virtual-data-table.ts
       rule: unresolved
       source: "[style.min-inline-size]=\"minimumInline()\""
-      line: 17
+      line: 16
       column: 158
       reason: "[R184] min-inline-sizeは固定semantic table-column-min × (実列配列length +
         boolean由来utilityCount)だけ。非空列をconfigurationで検査してproblem時はsinkを描画しない。実データ\
@@ -1832,8 +1824,8 @@ checks:
     - file: templates/angular/virtual-data-table.ts
       rule: unresolved
       source: "[style.min-inline-size]=\"minimumInline()\""
-      line: 18
-      column: 195
+      line: 17
+      column: 258
       reason: "[R186] headerと同じminimumInlineを仮想viewportへ用いる。固定semantic
         table-column-min × (非空実列配列length +
         boolean由来utilityCount)による構造列数の用途例外であり、row高/px列幅の実測値を含まない。
@@ -1874,8 +1866,8 @@ checks:
     - file: templates/angular/choice-controls.ts
       rule: unresolved
       source: '[style.background-color]="choice.value"'
-      line: 163
-      column: 1725
+      line: 164
+      column: 1760
       reason: "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI
         theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで\
         検証、alpha禁止・ラベル・重複も拒否するため、データ色として狭い理由付き例外の候補。
@@ -1995,7 +1987,7 @@ checks:
       rule: unresolved
       source: '[style.left.%]="100*range.x1/dimensions().width"'
       line: 10
-      column: 513
+      column: 580
       reason: "[D083] crop
         selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsession\
         がありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域とい\
@@ -2004,7 +1996,7 @@ checks:
       rule: unresolved
       source: '[style.top.%]="100*range.y1/dimensions().height"'
       line: 10
-      column: 562
+      column: 629
       reason: "[D084] crop
         selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsession\
         がありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域とい\
@@ -2013,7 +2005,7 @@ checks:
       rule: unresolved
       source: '[style.width.%]="100*(range.x2-range.x1)/dimensions().width"'
       line: 10
-      column: 611
+      column: 678
       reason: "[D085] crop
         selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsession\
         がありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域とい\
@@ -2022,7 +2014,7 @@ checks:
       rule: unresolved
       source: '[style.height.%]="100*(range.y2-range.y1)/dimensions().height"'
       line: 10
-      column: 672
+      column: 739
       reason: "[D086] crop
         selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsession\
         がありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域とい\
@@ -2104,7 +2096,7 @@ checks:
     - file: templates/angular/virtual-data-table.ts
       rule: unresolved
       source: '[style.grid-template-columns]="gridColumns()"'
-      line: 17
+      line: 16
       column: 112
       reason: "[D153]
         gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。\
@@ -2114,7 +2106,7 @@ checks:
     - file: templates/angular/virtual-data-table.ts
       rule: unresolved
       source: '[style.grid-template-columns]="gridColumns()"'
-      line: 19
+      line: 18
       column: 339
       reason: "[D158]
         gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。\
@@ -2235,7 +2227,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 100
+      line: 99
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。

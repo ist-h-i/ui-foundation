@@ -1,6 +1,6 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {computed as localeComputed} from '@angular/core';
-import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
+import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChild, DestroyRef, Directive, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, signal, TemplateRef, viewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
@@ -69,24 +69,24 @@ export class Switch extends FieldValueControl<boolean>{protected readonly emptyV
   </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></div>
  </ui-form-field>`,styles:selectionStyles})
 export class Select extends FieldValueControl<string|null>{
- protected readonly uiText_Select=injectUiText();
+ protected readonly uiText_Select=injectUiMessageText();
  protected readonly emptyValue=null;readonly options=input.required<readonly SelectOption[]>();readonly clearable=input(false,{transform:booleanAttribute});readonly placeholder=input<string>();
- protected readonly uiEffective_placeholder=uiLocaleComputed(()=>this.placeholder()??this.uiText_Select('未選択'));
+ protected readonly uiEffective_placeholder=uiLocaleComputed(()=>this.placeholder()??this.uiText_Select("uiFoundation.select.noSelection"));
  protected readonly groups=computed(()=>grouped(this.options()));protected coerce(value:unknown):string|null{return typeof value==='string'&&value?value:null;}
  protected choose(value:string):void{if(!value){if(this.clearable())this.commit(null);}else if(this.options().some(o=>o.value===value&&!o.disabled))this.commit(value);}
 }
-@Component({selector:'ui-multi-select,ui-checkbox-group',standalone:true,imports:[ActionControl,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'ui-multi-select,ui-checkbox-group',standalone:true,imports:[ActionControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>MultiSelect),multi:true}],
  template:`<fieldset class="ui-selection" [id]="controlId()" tabindex="-1" [disabled]="blocked() || readonly()" [attr.aria-describedby]="descriptionIds()" [attr.aria-invalid]="error() ? 'true' : null" (focusout)="leftGroup($event)">
-  <legend>{{label()}}{{required()?(' (必須)' | uiMessage):''}}</legend>
-  @if(searchable()){<div class="ui-selection__search"><label [for]="controlId()+'-search'">{{label()}}{{'の候補を検索' | uiMessage}}</label><input class="ui-field-control" [id]="controlId()+'-search'" type="search" [value]="query()" (input)="query.set(text($event))"></div>}
-  @if(showSelectAll()){<div class="ui-selection__actions"><button uiAction [disabled]="!canSelectAll()" (click)="selectAll()">{{'表示中をすべて選択' | uiMessage}}</button><button uiAction [disabled]="!current().length" (click)="commit([])">{{'選択を解除' | uiMessage}}</button></div>}
-  @if(current().length){<div class="ui-selection-values">@for(value of current();track value){<button uiAction [attr.aria-label]="optionLabel(value)+('の選択を解除' | uiMessage)" (click)="remove(value)">{{optionLabel(value)}} ×</button>}</div>}
-  @for(group of groups();track group.label){<fieldset class="ui-selection__group"><legend>{{group.label||('選択肢' | uiMessage)}}</legend><div class="ui-options" [attr.data-direction]="direction()" [style.--ui-option-columns]="checkedColumns()">@for(option of group.options;track option.value){
+  <legend>{{label()}}{{required()?('uiFoundation.multiSelect.required' | uiStableMessage):''}}</legend>
+  @if(searchable()){<div class="ui-selection__search"><label [for]="controlId()+'-search'">{{'uiFoundation.multiSelect.searchSuggestionsForLabel' | uiStableMessage:{label:label()} }}</label><input class="ui-field-control" [id]="controlId()+'-search'" type="search" [value]="query()" (input)="query.set(text($event))"></div>}
+  @if(showSelectAll()){<div class="ui-selection__actions"><button uiAction [disabled]="!canSelectAll()" (click)="selectAll()">{{'uiFoundation.multiSelect.selectAllShown' | uiStableMessage}}</button><button uiAction [disabled]="!current().length" (click)="commit([])">{{'uiFoundation.multiSelect.clearSelection' | uiStableMessage}}</button></div>}
+  @if(current().length){<div class="ui-selection-values">@for(value of current();track value){<button uiAction [attr.aria-label]="('uiFoundation.multiSelect.deselectForLabel' | uiStableMessage:{label:optionLabel(value)})" (click)="remove(value)">{{optionLabel(value)}} ×</button>}</div>}
+  @for(group of groups();track group.label){<fieldset class="ui-selection__group"><legend>{{group.label||('uiFoundation.multiSelect.options' | uiStableMessage)}}</legend><div class="ui-options" [attr.data-direction]="direction()" [style.--ui-option-columns]="checkedColumns()">@for(option of group.options;track option.value){
    <label class="ui-option"><input type="checkbox" [checked]="current().includes(option.value)" [disabled]="!!option.disabled || atLimit() && !current().includes(option.value)" (change)="toggle(option.value,checked($event))">{{option.label}}</label>
   }</div></fieldset>}
-  @if(!filtered().length){<p>{{'一致する候補はありません。' | uiMessage}}</p>}
-  <p class="ui-selection__status" role="status" aria-atomic="true">{{current().length}} {{'件選択' | uiMessage}}{{maxSelected()!==null?(' / 最大 ' | uiMessage)+maxSelected()+(' 件' | uiMessage):''}}</p>
+  @if(!filtered().length){<p>{{'uiFoundation.multiSelect.noMatchingSuggestions' | uiStableMessage}}</p>}
+  <p class="ui-selection__status" role="status" aria-atomic="true">{{maxSelected()===null?('uiFoundation.multiSelect.selectedCount' | uiStableMessage:{count:current().length}):('uiFoundation.multiSelect.selectedCountWithLimit' | uiStableMessage:{count:current().length,limit:maxSelected()!})}}</p>
   @if(hint()){<p class="ui-selection__hint" [id]="controlId()+'-hint'">{{hint()}}</p>}@if(error()){<p class="ui-selection-error" [id]="controlId()+'-error'" role="alert">{{error()}}</p>}
  </fieldset>`,styles:selectionStyles})
 export class MultiSelect extends ValueControl<readonly string[]>{
@@ -104,23 +104,23 @@ export class MultiSelect extends ValueControl<readonly string[]>{
  protected canSelectAll():boolean{const values=new Set([...this.current(),...this.filtered().filter(o=>!o.disabled).map(o=>o.value)]);return values.size>this.current().length&&(this.maxSelected()===null||values.size<=this.maxSelected()!);}
  protected selectAll():void{if(this.canSelectAll())this.commit([...new Set([...this.current(),...this.filtered().filter(o=>!o.disabled).map(o=>o.value)])]);}
 }
-@Component({selector:'ui-combobox',standalone:true,imports:[FormField,FieldControl,ActionControl,NgTemplateOutlet,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'ui-combobox',standalone:true,imports:[FormField,FieldControl,ActionControl,NgTemplateOutlet,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Combobox),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>Combobox),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-combobox-row"><div class="ui-combobox"><input #editor uiFieldControl role="combobox" type="text" autocomplete="off" [name]="name()" [value]="query()" [placeholder]="placeholder()"
    aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="open()" [attr.aria-controls]="controlId()+'-list'" [attr.aria-activedescendant]="activeId()"
    [disabled]="blocked()" [readOnly]="readonly()" (input)="changed($event)" (keydown)="key($event)" (focus)="show()" (blur)="leave()">
-   <div #popup class="ui-combobox__popup" popover="manual" [hidden]="!open()" [id]="controlId()+'-list'" role="listbox" [attr.aria-label]="label()+('の候補' | uiMessage)" [attr.aria-busy]="loading() ? 'true' : null">
-    @for(group of groups();track group.label){<div role="group" [attr.aria-label]="group.label||label()+('の選択肢' | uiMessage)">@if(group.label){<div class="ui-combobox__group" role="presentation">{{group.label}}</div>}
+   <div #popup class="ui-combobox__popup" popover="manual" [hidden]="!open()" [id]="controlId()+'-list'" role="listbox" [attr.aria-label]="('uiFoundation.combobox.suggestionsForLabel' | uiStableMessage:{label:label()})" [attr.aria-busy]="loading() ? 'true' : null">
+    @for(group of groups();track group.label){<div role="group" [attr.aria-label]="group.label||('uiFoundation.combobox.optionsForLabel' | uiStableMessage:{label:label()})">@if(group.label){<div class="ui-combobox__group" role="presentation">{{group.label}}</div>}
      @for(option of group.options;track option.value){<div class="ui-combobox__option" role="option" [id]="optionId(option.value)" [attr.aria-selected]="current()===option.value" [attr.aria-disabled]="!!option.disabled"
       [class.ui-combobox__option--active]="active()===option.value" (pointerdown)="$event.preventDefault()" (click)="choose(option)">@if(optionTemplate();as custom){<ng-container [ngTemplateOutlet]="custom.template" [ngTemplateOutletContext]="{$implicit:option,active:active()===option.value,selected:current()===option.value}" />}@else{ {{option.label}} }</div>}
     </div>}
    </div>
   </div>
-  <button uiAction [disabled]="blocked() || readonly() || current()===null && !query()" [attr.aria-label]="label()+('をクリア' | uiMessage)" (click)="clear()">{{'クリア' | uiMessage}}</button></div>
-  <p class="ui-combobox-help">{{freeInput()?('自由に入力できます。' | uiMessage):('候補から選択してください。' | uiMessage)}}</p>
-  @if(!freeInput() && query() && current()===null){<p class="ui-combobox-help" role="status">{{'候補を選択するまで入力は確定されません。' | uiMessage}}</p>}
-  <p class="ui-combobox-help" role="status" aria-atomic="true">{{loading()?('候補を取得しています。' | uiMessage):open() ? filtered().length+(' 件の候補' | uiMessage) : ''}}</p>
+  <button uiAction [disabled]="blocked() || readonly() || current()===null && !query()" [attr.aria-label]="('uiFoundation.combobox.clearForLabel' | uiStableMessage:{label:label()})" (click)="clear()">{{'uiFoundation.combobox.clearForSelectionInput' | uiStableMessage}}</button></div>
+  <p class="ui-combobox-help">{{freeInput()?('uiFoundation.combobox.youCanEnterYourOwnValue' | uiStableMessage):('uiFoundation.combobox.chooseFromTheSuggestions' | uiStableMessage)}}</p>
+  @if(!freeInput() && query() && current()===null){<p class="ui-combobox-help" role="status">{{'uiFoundation.combobox.chooseASuggestionToConfirmYourEntry' | uiStableMessage}}</p>}
+  <p class="ui-combobox-help" role="status" aria-atomic="true">{{loading()?('uiFoundation.combobox.loadingSuggestions' | uiStableMessage):open() ? ('uiFoundation.combobox.suggestionsForSelectionInputCount' | uiStableMessage:{count:filtered().length}) : ''}}</p>
  </ui-form-field>`,styles:selectionStyles})
 export class Combobox extends FieldValueControl<string|null> implements Validator{
  protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=localeComputed(()=>this.locale()??this.uiLocaleDefaults().locale);

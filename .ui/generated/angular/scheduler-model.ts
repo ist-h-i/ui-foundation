@@ -1,3 +1,6 @@
+import { uiMessageText, type UiMessageText } from './stable-messages';
+
+const japaneseText = uiMessageText(() => 'ja-JP');
 import {addCivilDays,calendarDays,civilDate,civilLabel,localDateTimeSeconds,shiftCivilMonth,timeSeconds} from './date-model';
 import {timelineDateTime} from './timeline-model';
 import {Temporal} from 'temporal-polyfill';
@@ -22,11 +25,11 @@ export function schedulerInstant(value:string):number|null {if(typeof value!=='s
 export function schedulerLocal(timestamp:number,timeZone:string):SchedulerLocal|null {
  try{const parts=new Intl.DateTimeFormat('en-GB-u-ca-iso8601-nu-latn',{timeZone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(timestamp);const take=(type:string)=>parts.find(part=>part.type===type)?.value??'';const date=take('year').padStart(4,'0')+'-'+take('month')+'-'+take('day'),time=take('hour')+':'+take('minute')+':'+take('second'),dateTime=date+'T'+time;const local=localDateTimeSeconds(dateTime);return local===null?null:{date,time,dateTime,offsetSeconds:local-Math.floor(timestamp/1000)};}catch{return null;}
 }
-export function schedulerConfigurationProblem(configuration:SchedulerConfiguration):string|null {
+export function schedulerConfigurationProblem(configuration:SchedulerConfiguration,text:UiMessageText=japaneseText):string|null {
  const {date,view,weekStartsOn,listDays,locale,timeZone,dayStart,dayEnd}=configuration;
- if(!civilDate(date)||!['day','week','month','list'].includes(view)||!Number.isInteger(weekStartsOn)||weekStartsOn<0||weekStartsOn>6||!Number.isInteger(listDays)||listDays<1||listDays>366)return '表示日・表示方式・週の開始日・一覧の日数を確認してください。';
- try{if(!timeZone.trim()||!locale.trim())return '表示言語とタイムゾーンを明示してください。';new Intl.DateTimeFormat(locale,{timeZone}).format(0);Temporal.Instant.fromEpochMilliseconds(0).toZonedDateTimeISO(timeZone);}catch{return '表示言語またはタイムゾーンを確認してください。';}
- const start=timeSeconds(dayStart),end=dayEnd==='24:00'?86400:timeSeconds(dayEnd);if(start===null||end===null||start>=end)return '表示する時間帯は同じ日の開始時刻より後に終了時刻を指定してください。';
+ if(!civilDate(date)||!['day','week','month','list'].includes(view)||!Number.isInteger(weekStartsOn)||weekStartsOn<0||weekStartsOn>6||!Number.isInteger(listDays)||listDays<1||listDays>366)return text('uiFoundation.scheduler.invalidViewSettings');
+ try{if(!timeZone.trim()||!locale.trim())return text('uiFoundation.scheduler.localeAndZoneRequired');new Intl.DateTimeFormat(locale,{timeZone}).format(0);Temporal.Instant.fromEpochMilliseconds(0).toZonedDateTimeISO(timeZone);}catch{return text('uiFoundation.scheduler.invalidLocaleOrZone');}
+ const start=timeSeconds(dayStart),end=dayEnd==='24:00'?86400:timeSeconds(dayEnd);if(start===null||end===null||start>=end)return text('uiFoundation.scheduler.invalidTimeBand');
  return null;
 }
 export function schedulerDays(configuration:SchedulerConfiguration):readonly string[] {
@@ -36,16 +39,16 @@ export function schedulerDays(configuration:SchedulerConfiguration):readonly str
  return [...new Set(Array.from({length:count},(_,index)=>addCivilDays(start,index)))];
 }
 export function schedulerNavigate(date:string,view:SchedulerView,direction:-1|1,listDays:number):string {return view==='month'?shiftCivilMonth(date,direction):addCivilDays(date,direction*(view==='week'?7:view==='list'?listDays:1));}
-export function schedulerEventProblem<T>(event:SchedulerEvent<T>,resources:readonly SchedulerResource[]):string|null {
- const start=schedulerInstant(event.start),end=schedulerInstant(event.end);if(start===null||end===null)return '予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。';
- if(end<=start)return '予定の終了日時は開始より後にしてください。元の予定を保持しています。';
- const ids=event.resourceIds??[];if(new Set(ids).size!==ids.length||ids.some(id=>typeof id!=='string'||!resources.some(resource=>resource.id===id)))return '予定に未取得または重複したリソースがあります。元の予定を保持しています。';return null;
+export function schedulerEventProblem<T>(event:SchedulerEvent<T>,resources:readonly SchedulerResource[],text:UiMessageText=japaneseText):string|null {
+ const start=schedulerInstant(event.start),end=schedulerInstant(event.end);if(start===null||end===null)return text('uiFoundation.scheduler.invalidEventTimestamp');
+ if(end<=start)return text('uiFoundation.scheduler.invalidEventOrder');
+ const ids=event.resourceIds??[];if(new Set(ids).size!==ids.length||ids.some(id=>typeof id!=='string'||!resources.some(resource=>resource.id===id)))return text('uiFoundation.scheduler.invalidEventResources');return null;
 }
-export function schedulerMoveProblem<T>(event:SchedulerEvent<T>,draft:SchedulerMoveDraft,resources:readonly SchedulerResource[]):string|null {
- if(event.disabled)return 'この予定は移動できません。';const start=localDateTimeSeconds(draft.localStart),end=localDateTimeSeconds(draft.localEnd);if(start===null||end===null)return '移動先の開始・終了の現地日時を確認してください。';
- try{if(!draft.timeZone.trim())return '移動先のタイムゾーンを明示してください。';new Intl.DateTimeFormat('en',{timeZone:draft.timeZone}).format(0);}catch{return '移動先のタイムゾーンを確認してください。';}
- if(!['reject','earlier','later'].includes(draft.startDisambiguation)||!['reject','earlier','later'].includes(draft.endDisambiguation))return '開始と終了のDST重複時刻の確認方法を指定してください。';
- if(new Set(draft.resourceIds).size!==draft.resourceIds.length||draft.resourceIds.some(id=>!resources.some(resource=>resource.id===id&&!resource.disabled)))return '移動先のリソースを確認してください。';
+export function schedulerMoveProblem<T>(event:SchedulerEvent<T>,draft:SchedulerMoveDraft,resources:readonly SchedulerResource[],text:UiMessageText=japaneseText):string|null {
+ if(event.disabled)return text('uiFoundation.scheduler.eventLocked');const start=localDateTimeSeconds(draft.localStart),end=localDateTimeSeconds(draft.localEnd);if(start===null||end===null)return text('uiFoundation.scheduler.invalidMoveTimestamps');
+ try{if(!draft.timeZone.trim())return text('uiFoundation.scheduler.moveZoneRequired');new Intl.DateTimeFormat('en',{timeZone:draft.timeZone}).format(0);}catch{return text('uiFoundation.scheduler.invalidMoveZone');}
+ if(!['reject','earlier','later'].includes(draft.startDisambiguation)||!['reject','earlier','later'].includes(draft.endDisambiguation))return text('uiFoundation.scheduler.invalidMoveDisambiguation');
+ if(new Set(draft.resourceIds).size!==draft.resourceIds.length||draft.resourceIds.some(id=>!resources.some(resource=>resource.id===id&&!resource.disabled)))return text('uiFoundation.scheduler.invalidMoveResources');
  return null;
 }
 export function schedulerSnapshot<T>(event:SchedulerEvent<T>):string {return JSON.stringify([event.id,event.title,event.start,event.end,event.resourceIds??[],event.disabled??false]);}
@@ -71,13 +74,13 @@ function schedulerTimeBand(date:string,timeZone:string,startSeconds:number,endSe
  return intervals;
 }
 /** Date/time formatting is for known instants only; no conversion of local move proposals. */
-export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration,textFor:(source:string)=>string=source=>source):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null} {
- schedulerIdentity(events,resources);const problem=schedulerConfigurationProblem(configuration),dates=schedulerDays(configuration),columns=configuration.view==='day'||configuration.view==='list'?1:7;
+export function schedulerLayout<T>(events:readonly SchedulerEvent<T>[],resources:readonly SchedulerResource[],configuration:SchedulerConfiguration,translate:UiMessageText=uiMessageText(()=>configuration.locale)):{days:readonly SchedulerDay[];entries:readonly SchedulerEntry<T>[];columns:number;problem:string|null} {
+ schedulerIdentity(events,resources);const problem=schedulerConfigurationProblem(configuration,translate),dates=schedulerDays(configuration),columns=configuration.view==='day'||configuration.view==='list'?1:7;
  const startSeconds=timeSeconds(configuration.dayStart)??0,endSeconds=configuration.dayEnd==='24:00'?86400:timeSeconds(configuration.dayEnd)??86400;
  const bands=dates.map(date=>({date,intervals:schedulerTimeBand(date,configuration.timeZone,startSeconds,endSeconds)}));
  const sorted=[...events].sort((a,b)=>(schedulerInstant(a.start)??Infinity)-(schedulerInstant(b.start)??Infinity));
- const entries:SchedulerEntry<T>[]=sorted.map(event=>{const issue=schedulerEventProblem(event,resources),start=schedulerInstant(event.start),end=schedulerInstant(event.end),startLocal=!problem&&start!==null?schedulerLocal(start,configuration.timeZone):null,endLocal=!problem&&end!==null?schedulerLocal(end,configuration.timeZone):null,lastLocal=!problem&&end!==null?schedulerLocal(end-1,configuration.timeZone):null;
-  const offsetChange=!!(startLocal&&lastLocal&&startLocal.offsetSeconds!==lastLocal.offsetSeconds),ids=event.resourceIds??[],resourceText=ids.length?ids.map(id=>resources.find(resource=>resource.id===id)?.label??textFor('未取得: ')+id).join(textFor('、')):textFor('リソース未割当');
+ const entries:SchedulerEntry<T>[]=sorted.map(event=>{const issue=schedulerEventProblem(event,resources,translate),start=schedulerInstant(event.start),end=schedulerInstant(event.end),startLocal=!problem&&start!==null?schedulerLocal(start,configuration.timeZone):null,endLocal=!problem&&end!==null?schedulerLocal(end,configuration.timeZone):null,lastLocal=!problem&&end!==null?schedulerLocal(end-1,configuration.timeZone):null;
+  const offsetChange=!!(startLocal&&lastLocal&&startLocal.offsetSeconds!==lastLocal.offsetSeconds),ids=event.resourceIds??[],resourceText=ids.length?new Intl.ListFormat(problem ? 'ja-JP' : configuration.locale).format(ids.map(id=>resources.find(resource=>resource.id===id)?.label??translate('uiFoundation.scheduler.unknownResource',{id}))):translate('uiFoundation.scheduler.unassigned');
   const filtered=configuration.resourceFilter===null||ids.length===0?ids.length!==0||configuration.showUnassigned:ids.some(id=>configuration.resourceFilter!.includes(id));
   const days=start!==null&&end!==null?bands.filter(band=>band.intervals.some(([from,to])=>Math.max(start,from)<Math.min(end,to))).map(band=>band.date):[];
   const visible=!problem&&(!!issue||filtered&&days.length>0),text=(instant:number|null,raw:string)=>!problem&&instant!==null?new Intl.DateTimeFormat(configuration.locale,{...(configuration.dateTimeOptions??{dateStyle:'medium',timeStyle:'long'}),timeZone:configuration.timeZone}).format(instant):raw;

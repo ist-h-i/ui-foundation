@@ -1,3 +1,5 @@
+import {uiMessageText as createUiMessageText, type UiMessageText} from './stable-messages';
+const japaneseText = createUiMessageText(() => 'ja-JP');
 import type {CollectionKey} from './collection-model';
 import {canFocus} from './focus';
 
@@ -10,15 +12,15 @@ export interface VirtualRadioMember {key:CollectionKey;value:string;disabled?:bo
  * consumer value, including application-owned form reset and rejected changes. */
 export interface VirtualRadioGroup {name:string;form?:string;value:string|null;members:readonly VirtualRadioMember[];}
 const encoded=(key:CollectionKey)=>typeof key+':'+String(key);
-export function virtualRadioProblem(groups:readonly VirtualRadioGroup[],keys:readonly CollectionKey[],inheritedForm:string|null=null):string|null{
- if(!Array.isArray(groups))return '仮想radio groupのメンバーを確認してください。';
+export function virtualRadioProblem(groups:readonly VirtualRadioGroup[],keys:readonly CollectionKey[],inheritedForm:string|null=null, text: UiMessageText = japaneseText):string|null{
+ if(!Array.isArray(groups))return text("uiFoundation.virtualRadio.checkTheVirtualRadioGroupMembers");
  const rows=new Set(keys),names=new Set<string>();
  for(const group of groups){
-  if(!group||typeof group.name!=='string'||!group.name.trim()||group.form!==undefined&&(typeof group.form!=='string'||!group.form.trim())||!Array.isArray(group.members))return '仮想radio groupの名前、form、メンバーを確認してください。';
-  const name=JSON.stringify([group.form??inheritedForm,group.name]);if(names.has(name))return '仮想radio groupには重複しないformと名前を指定してください。';names.add(name);
+  if(!group||typeof group.name!=='string'||!group.name.trim()||group.form!==undefined&&(typeof group.form!=='string'||!group.form.trim())||!Array.isArray(group.members))return text("uiFoundation.virtualRadio.checkTheVirtualRadioGroupNameFormAnd");
+  const name=JSON.stringify([group.form??inheritedForm,group.name]);if(names.has(name))return text("uiFoundation.virtualRadio.useAUniqueFormAndNameCombinationFor");names.add(name);
   const values=new Set<string>();
-  for(const member of group.members){if(!member||!rows.has(member.key)||typeof member.value!=='string'||values.has(member.value)||member.disabled!==undefined&&typeof member.disabled!=='boolean'||member.hidden!==undefined&&typeof member.hidden!=='boolean')return '仮想radio groupのメンバーと行キーを確認してください。';values.add(member.value);}
-  if(group.value!==null&&!values.has(group.value))return '仮想radio groupの選択値を確認してください。';
+  for(const member of group.members){if(!member||!rows.has(member.key)||typeof member.value!=='string'||values.has(member.value)||member.disabled!==undefined&&typeof member.disabled!=='boolean'||member.hidden!==undefined&&typeof member.hidden!=='boolean')return text("uiFoundation.virtualRadio.checkTheVirtualRadioGroupMembersAndRow");values.add(member.value);}
+  if(group.value!==null&&!values.has(group.value))return text("uiFoundation.virtualRadio.checkTheSelectedValueInTheVirtualRadio");
  }
  return null;
 }

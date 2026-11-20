@@ -6,10 +6,10 @@ UI Foundation generates Angular components, design tokens, a Tailwind theme, a p
 
 ## Install and generate
 
-Run these commands from the app root, where its `package.json` lives. Pin the version for a reproducible installation.
+Run these commands from the app root, where its `package.json` lives. Pin the version for a reproducible installation. Use the tarball command below while the candidate is unpublished.
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
 ```
 
 To use a local build, install the tarball produced by `npm pack`.
@@ -54,7 +54,7 @@ Track the configuration, full output directory, and `.agents/skills/project-ui/`
 
 The installed package contains this guide under `node_modules/@hiroshi.inoue/ui-foundation/docs/` and the English Skill instructions under `node_modules/@hiroshi.inoue/ui-foundation/skills/ui-development/SKILL.md`. After `sync`, ask the AI tool to open the app root and read these files explicitly.
 
-- `.agents/skills/project-ui/SKILL.md` for the English UI workflow (`SKILL.en.md` is also available); the legacy `SKILL.ja.md` remains for compatibility. Use English instructions and references for the standard AI workflow.
+- `.agents/skills/project-ui/SKILL.md` for the English UI workflow, with the adjacent project context and English references.
 - `.agents/skills/project-ui/project-context.md` for the resolved profiles and app context.
 - `ui.config.yaml` or the actual configuration path for the source settings.
 
@@ -179,50 +179,15 @@ Keep `strictTemplates` and `strictInjectionParameters` enabled. The Angular buil
 
 ## Select English component messages
 
-The English starter config selects English automatically through `default_language: en`; `default_language: ja` selects Japanese. Existing configs without this field preserve Japanese across upgrades. Changing the YAML default requires sync. To switch at runtime or override that default, import `uiEnglishMessages` from the generated public entry point and provide it in the app's locale options. In this example, `src/main.ts` bootstraps the standalone root from the previous section.
+The English starter config sets `default_language: en`. `default_language: ja` sets Japanese, and existing configs that omit the field keep Japanese. Sync after changing the YAML. At runtime the resolved `locale` selects the built-in text and Intl formatting. Locales whose language is Japanese use Japanese text and other locales use English text. There is no browser-language inference. Keep the business time zone and native date input format explicit where a feature needs them.
 
-```ts
-import { bootstrapApplication } from '@angular/platform-browser';
-import {
-  provideUiLocale,
-  uiEnglishMessages,
-} from '../.ui/generated/angular/index';
-import { App } from './app';
+UI Foundation passes `UiMessageRequest` with a stable ID and typed named parameters to the app's optional `translate(request, locale)` callback. Use it for library-owned actions, status, instructions and diagnostics. The app continues to supply translated business labels, content and backend errors. The built-in text is visible while an external dictionary loads, when an entry is missing or blank, or when the adapter echoes the requested ID.
 
-bootstrapApplication(App, {
-  providers: [...provideUiLocale({
-    locale: 'en-US',
-    messages: uiEnglishMessages,
-  })],
-});
-```
+Copy the [working lazy dictionary adapter](../examples/locale-adapter.ts) to the app root, next to `.ui/`. Adjust its generated import and resource URL if your app uses different paths. Pass its `options` signal to `provideUiLocale` at app bootstrap, or bind `options()` to `[uiLocale]` after importing `UiLocaleScope` for a region. Connect the app language control to `switchLanguage` and serve the app's locale JSON at the requested URL. The same adapter is compiled and exercised against the packed npm consumer.
 
-`locale` configures `Intl` formatting. `messages` selects the dictionary for library-owned text such as built-in actions, status announcements, and diagnostics. The generated default locale is `en-US` with the English dictionary when `default_language: en`; it is `ja-JP` with Japanese fallbacks when the setting is `ja` or absent. An unmapped message uses its Japanese source fallback. To override an English entry, pass a new dictionary such as `{ ...uiEnglishMessages, '検索': 'Find' }`. Keep placeholder names such as `{count}` in custom translations. The app supplies its own field labels, content, and backend errors.
+A dictionary can map `uiFoundation.dialog.closeAction` to a translated string, or `uiFoundation.card.expand` to `Show details: {title}`. Keep parameter names from `UiMessageRequest` and translate the whole sentence, including singular/plural or other grammatical cases, in the app's i18n system. After a language switch, the selected locale and direction take effect while the request is pending. A late dictionary response populates its own locale cache. Existing controls and user data stay in place.
 
-For an app-wide English/Japanese switch, keep one options signal and pass it to `provideUiLocale` at bootstrap:
-
-```ts
-import { signal } from '@angular/core';
-import { provideUiLocale, uiEnglishMessages, uiJapaneseMessages,
-  type UiLocaleOptions } from '../.ui/generated/angular/index';
-
-export const appLocale = signal<UiLocaleOptions>({
-  locale: 'en-US', messages: uiEnglishMessages, timeZone: 'Asia/Tokyo',
-});
-export const localeProviders = provideUiLocale(appLocale);
-export function selectLanguage(language: 'en' | 'ja'): void {
-  appLocale.update(current => ({ ...current,
-    locale: language === 'en' ? 'en-US' : 'ja-JP',
-    messages: language === 'en' ? uiEnglishMessages : uiJapaneseMessages,
-  }));
-}
-```
-
-Add `...localeProviders` to the app bootstrap providers. Update the app's own translations and document `lang` with the same language selection. Keep business time zone and date input format explicit and independent of language.
-
-For a Japanese child of an English region, supply `{ locale: 'ja-JP', messages: uiJapaneseMessages }` to `[uiLocale]`. An empty child dictionary inherits its parent's translations, so `{}` alone does not restore Japanese. The Japanese dictionary restores the built-in keys; app-specific extra keys need their own scoped overrides.
-
-To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `provideUiLocale` and update both `locale` and `messages` together. For one region, import the standalone `UiLocaleScope` directive and bind `[uiLocale]` to the regional options. A scope inherits parent messages and overrides the keys it supplies. Set the app document's `lang` and direction to match its content. For date and time formatting, set `timeZone` explicitly wherever the component needs one. Civil dates retain their calendar date independently of the time zone. An explicit component input takes precedence over the corresponding provider setting. [Locale and component contracts](ui-components.en.md)
+A child scope inherits its parent's translator unless it supplies one or uses `translate: null` to select built-in texts. A regional scope wires up native `lang` and `dir`, and respects app-owned attributes. For an app-wide switch, update the document's attributes in your app as well. [Runtime contract](ui-library-runtime-foundation-spec.en.md) · [Upgrade from Japanese keys](ui-message-migration.en.md)
 
 ## Application dependencies
 
@@ -319,6 +284,8 @@ The generated checker runs with Node and checks the generated policy against the
 For CI that requires source coverage, run `ui-foundation check --require-source-checks` for generated consistency and source checks, or `node .ui/generated/check-ui.cjs --require-source-checks` for the standalone source check. If `angular.json` lists a project outside `checks.source_roots`, review the reported source root and add coverage or document the deliberate exclusion. To adopt checks in stages, pass a reviewed full JSON report with `--baseline ui-check-baseline.json`. See the linked check contract for output fields and scoped exceptions.
 
 Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions](static-checks.en.md)
+
+Enable the translation checks for apps using stable message IDs. The checks cover displayed and accessible copy, message IDs, and named arguments. [Configure translation checks](static-checks.en.md#translation-checks)
 
 Build the app and exercise the actual tasks in the browser after synchronization. Check supported profiles and languages with narrow layouts, longer translated labels, text zoom, and keyboard focus. Exercise pending, failure, partial-data, and retry paths and verify that a language change retains the current draft or request. For media and specialist components, verify worker startup and real asset responses. Track compile results, automated accessibility findings, observed behavior, and visual review separately.
 

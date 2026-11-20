@@ -1,3 +1,4 @@
+import { uiMessageText } from "../../templates/angular/stable-messages.ts";
 import {tableConfigurationError,fitTableColumns} from '../../templates/angular/table-model.ts';
 import {tableDomIdPair,tableDomIdToken} from '../../templates/angular/table-advanced-model.ts';
 import assert from 'node:assert/strict';
@@ -133,4 +134,26 @@ test('compound header and editor identities keep tuple boundaries for accepted h
  assert.equal(tableHeaderProblem(cols,groups),null);const headers=tableHeaderRows(cols,groups,cols,'proof'),all=headers.flat();assert.equal(all.length,4);assert.equal(new Set(all.map(cell=>cell.id)).size,4);
  const labels=(column:string)=>tableCellHeaders(headers,column).split(' ').map(id=>all.find(cell=>cell.id===id)?.label);assert.deepEqual(labels('c'),['第一','左']);assert.deepEqual(labels('b-c'),['第二','右']);
  assert.deepEqual(groups.map(group=>group.id),['a-b','a']);assert.deepEqual(cols.map(column=>column.id),['c','b-c']);
+});
+
+test('table paste formats retained diagnostics with stable IDs without translating app validation text', () => {
+ const sourceError = '有限の数値を入力してください。';
+ const column = { ...columns[1], header: '金額 {row}', validateValue: () => sourceError };
+ let locale = 'ja-JP';
+ const text = uiMessageText(() => locale, () => request => {
+  if (request.id === 'uiFoundation.tablePaste.invalidCell' && locale === 'en-US') {
+   const { row, column, message } = request.parameters;
+   return `${column} [row ${row}] ${message}`;
+  }
+  return undefined;
+ });
+ const result = prepareTablePaste(rows, [column], 'id', { row: 0, column: 0 }, [['5'], ['bad']], text);
+ assert.equal(result.requests.length, 0);
+ assert.deepEqual(result.errors, ['1行目・金額 {row}: ' + sourceError, '2行目・金額 {row}: ' + sourceError]);
+
+ locale = 'en-US';
+ assert.deepEqual(result.errorText?.map(render => render()), [
+  '金額 {row} [row 1] ' + sourceError,
+  '金額 {row} [row 2] Enter a finite number.',
+ ]);
 });

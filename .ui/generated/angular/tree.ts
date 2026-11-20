@@ -1,8 +1,8 @@
 import {uiMessageState} from './locale';
-import {injectUiText as injectUiRuntimeText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
 import {computed as localeComputed} from '@angular/core';
-import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
+import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import {NgTemplateOutlet} from '@angular/common';
 import {afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChild, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, signal, untracked} from '@angular/core';
 import {canFocus} from './focus';
@@ -37,26 +37,26 @@ export const treeStyles = `
  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
 `;
 
-@Component({selector:'ui-tree',standalone:true,imports:[NgTemplateOutlet,TreeItem,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
- template:`<p class="ui-tree-help" [id]="treeId()+'-help'">{{'上下で移動、左右で展開・親へ戻る。' | uiMessage}}{{checkable()?('Spaceで' | uiMessage)+uiEffective_checkLabel()+('を変更。' | uiMessage):''}}{{selectionMode()!=='none'?('Enterで' | uiMessage)+uiEffective_selectionLabel()+('を選択。' | uiMessage):''}}</p>
- @if(query().trim() && incomplete()){<p class="ui-tree-help">{{'未取得の子項目は検索に含まれません。' | uiMessage}}</p>}
+@Component({selector:'ui-tree',standalone:true,imports:[NgTemplateOutlet,TreeItem,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ template:`<p class="ui-tree-help" [id]="treeId()+'-help'">{{'uiFoundation.tree.useUpAndDownToMoveUseRightToExpandOrLeftToReturnToTheParent' | uiStableMessage}}{{checkable()?('uiFoundation.tree.toggleKeyboardHint' | uiStableMessage:{label:uiEffective_checkLabel()}):''}}{{selectionMode()!=='none'?('uiFoundation.tree.selectKeyboardHint' | uiStableMessage:{label:uiEffective_selectionLabel()}):''}}</p>
+ @if(query().trim() && incomplete()){<p class="ui-tree-help">{{'uiFoundation.tree.childrenThatHaveYetToLoadAreExcludedFromSearch' | uiStableMessage}}</p>}
  <ul role="tree" [attr.data-link-checks]="linkChecks()" [id]="treeId()" [attr.aria-label]="label()" [attr.aria-describedby]="treeId()+'-help'" [attr.aria-multiselectable]="selectionMode()==='multiple'||checkable()?'true':null" [attr.aria-busy]="busy()?'true':null" [attr.aria-disabled]="disabled()?'true':null" [attr.tabindex]="rows().length?null:0" (focusout)="left($event)">
   <ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:filtered()}" />
  </ul>
- @if(!rows().length){<p class="ui-tree-status">{{query().trim()?('一致する項目はありません。' | uiMessage):('項目はありません。' | uiMessage)}}</p>}
+ @if(!rows().length){<p class="ui-tree-status">{{query().trim()?('uiFoundation.tree.noMatchingItems' | uiStableMessage):('uiFoundation.tree.noItems' | uiStableMessage)}}</p>}
  @if(problem()){<p class="ui-tree-status ui-tree-error" role="status">{{problem()}}</p>}
  <ng-template #entries let-nodes="nodes">@for(node of nodes;track node.id){@let row = rowFor(node.id);
   <li [uiTreeItem]="row" [id]="itemId(node.id)" [itemExpanded]="branch(node)?expanded(node.id):null" [itemDisabled]="disabled()||row.disabled" [itemSelected]="selectionMode()==='none'||node.selectable===false?null:selected().includes(node.id)" [itemChecked]="checkable()&&node.checkable!==false?checkState(node.id):null" [itemBusy]="loads()[node.id]?.status==='loading'" [itemTabIndex]="activeId()===node.id?0:-1" (focus)="focused(node.id)" (keydown)="key($event,node)" (click)="clicked($event,node)">
    <div class="ui-tree-row" [attr.data-disabled]="disabled()||row.disabled">
-    @if(branch(node)){<button type="button" tabindex="-1" [disabled]="disabled()||busy()||row.disabled" [attr.aria-label]="node.label+(expanded(node.id)?('を折り畳む' | uiMessage):('を展開' | uiMessage))" (click)="toggleFromPointer($event,node)">{{expanded(node.id)?'−':'＋'}}</button>}@else{<span class="ui-tree-marker" aria-hidden="true">・</span>}
+    @if(branch(node)){<button type="button" tabindex="-1" [disabled]="disabled()||busy()||row.disabled" [attr.aria-label]="expanded(node.id)?('uiFoundation.tree.collapseLabel' | uiStableMessage:{label:node.label}):('uiFoundation.tree.expandLabel' | uiStableMessage:{label:node.label})" (click)="toggleFromPointer($event,node)">{{expanded(node.id)?'−':'＋'}}</button>}@else{<span class="ui-tree-marker" aria-hidden="true">・</span>}
     @if(checkable()&&node.checkable!==false){<span class="ui-tree-check" aria-hidden="true" (click)="checkFromPointer($event,node)">{{checkState(node.id)==='true'?'☑':checkState(node.id)==='mixed'?'▣':'☐'}}</span>}
     <span class="ui-tree-label">@if(nodeTemplate();as custom){<ng-container [ngTemplateOutlet]="custom.template" [ngTemplateOutletContext]="context(node.id)" />}@else{ {{node.label}} @if(node.description){<small>{{node.description}}</small>} }
     @if(checkable()&&selectionMode()!=='none'&&selected().includes(node.id)){<small>{{uiEffective_selectionLabel()}}</small>}
     </span>
    </div>
    @if(expanded(node.id)){
-    @if(loads()[node.id]?.status==='loading'){<p class="ui-tree-status" role="status">{{node.label}}{{'の子項目を取得しています。' | uiMessage}}</p>}
-    @if(loads()[node.id]?.status==='error'){<div class="ui-tree-status ui-tree-error"><span role="status">{{loads()[node.id]?.message}}</span><button type="button" [disabled]="disabled()||busy()||row.disabled" (click)="retry($event,node.id)">{{node.label}}{{'を再試行' | uiMessage}}</button></div>}
+    @if(loads()[node.id]?.status==='loading'){<p class="ui-tree-status" role="status">{{'uiFoundation.tree.loadingChildItemsForLabel' | uiStableMessage:{label:node.label} }}</p>}
+    @if(loads()[node.id]?.status==='error'){<div class="ui-tree-status ui-tree-error"><span role="status">{{loads()[node.id]?.message}}</span><button type="button" [disabled]="disabled()||busy()||row.disabled" (click)="retry($event,node.id)">{{'uiFoundation.tree.retryForLabel' | uiStableMessage:{label:node.label} }}</button></div>}
     @if(branch(node)){<ul role="group" [attr.aria-busy]="loads()[node.id]?.status==='loading'?'true':null"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:node.children??[]}" /></ul>}
    }
   </li>
@@ -64,7 +64,7 @@ export const treeStyles = `
 export class Tree<T = unknown> {
  private readonly uiRuntimeText_Tree=injectUiRuntimeText();
 
- protected readonly uiText_Tree=injectUiText();
+ protected readonly uiText_Tree=injectUiMessageText();
  protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=localeComputed(()=>this.locale()??this.uiLocaleDefaults().locale);
 
  readonly treeId=input.required<string>();readonly label=input.required<string>();readonly nodes=input<readonly TreeNode<T>[]>([]);
@@ -73,8 +73,8 @@ export class Tree<T = unknown> {
  readonly checkedIds=input<readonly string[]>([]);readonly checkedIdsChange=output<readonly string[]>();
  readonly selectionMode=input<TreeSelectionMode>('single');readonly checkable=input(false,{transform:booleanAttribute});readonly linkChecks=input(true,{transform:booleanAttribute});
  readonly selectionLabel=input<string>();
- protected readonly uiEffective_selectionLabel=uiLocaleComputed(()=>this.selectionLabel()??this.uiText_Tree('選択対象'));readonly checkLabel=input<string>();
- protected readonly uiEffective_checkLabel=uiLocaleComputed(()=>this.checkLabel()??this.uiText_Tree('チェック対象'));readonly disabled=input(false,{transform:booleanAttribute});readonly busy=input(false,{transform:booleanAttribute});readonly readonly=input(false,{transform:booleanAttribute});readonly query=input('');
+ protected readonly uiEffective_selectionLabel=uiLocaleComputed(()=>this.selectionLabel()??this.uiText_Tree("uiFoundation.tree.itemsToSelect"));readonly checkLabel=input<string>();
+ protected readonly uiEffective_checkLabel=uiLocaleComputed(()=>this.checkLabel()??this.uiText_Tree("uiFoundation.tree.itemsToCheck"));readonly disabled=input(false,{transform:booleanAttribute});readonly busy=input(false,{transform:booleanAttribute});readonly readonly=input(false,{transform:booleanAttribute});readonly query=input('');
  readonly activated=output<TreeNode<T>>();readonly loadRequested=output<TreeLoadRequest>();readonly loadCancelled=output<TreeLoadCancellation>();readonly focusLeft=output<void>();
  protected readonly branch=treeBranch;protected readonly open=linkedSignal(()=>this.expandedIds());protected readonly selected=linkedSignal(()=>this.selectedIds());protected readonly checked=linkedSignal(()=>this.checkedIds());
  protected readonly loads=signal<TreeLoads<T>>({});readonly resolvedNodes=computed(()=>treeWithLoads(treeNodes(this.nodes()),this.loads()));
@@ -109,7 +109,7 @@ export class Tree<T = unknown> {
  private setExpanded(ids:readonly string[]):void{this.open.set(ids);this.expandedIdsChange.emit(ids);}
  private toggle(node:TreeNode<T>,force?:boolean):void{if(this.blocked(node)||!treeBranch(node))return;const next=force??!this.expanded(node.id);if(next){this.setExpanded([...new Set([...this.open(),node.id])]);if(treeUnloaded(node))this.requestLoad(node.id);}else{if(this.host.contains(this.host.ownerDocument.activeElement))this.focusItem(node.id);this.setExpanded(this.open().filter(id=>id!==node.id));const path=treeEntry(this.resolvedNodes(),node.id)!.path;const pending=Object.values(this.loads()).filter(record=>record.path.slice(0,path.length).every((id,index)=>id===path[index])).map(record=>record.nodeId);this.invalidateIds(pending,'collapse');}}
  private select(node:TreeNode<T>):void{if(this.blocked(node,true)||node.selectable===false||this.selectionMode()==='none')return;const next=this.selectionMode()==='single'?[node.id]:this.selected().includes(node.id)?this.selected().filter(id=>id!==node.id):[...this.selected(),node.id];this.selected.set(next);this.selectedIdsChange.emit(next);this.activated.emit(node);}
- private changeCheck(node:TreeNode<T>):void{if(!this.checkable()||this.blocked(node,true)||node.checkable===false)return;if(this.linkChecks()&&!treeComplete(node)){this.problem.setMessage([() => this.uiRuntimeText_Tree('未取得の子項目があるため、親子連動のチェックは確定できません。展開して確認してください。')]);if(treeUnloaded(node))this.toggle(node,true);return;}this.problem.set('');const next=treeToggleCheck(this.resolvedNodes(),this.checked(),node.id,this.checkState(node.id)!=='true',this.linkChecks());this.checked.set(next);this.checkedIdsChange.emit(next);}
+ private changeCheck(node:TreeNode<T>):void{if(!this.checkable()||this.blocked(node,true)||node.checkable===false)return;if(this.linkChecks()&&!treeComplete(node)){this.problem.setMessage([() => this.uiRuntimeText_Tree("uiFoundation.tree.someChildrenHaveYetToLoadSoTheirSharedCheckboxStateCannotBeConfirmedExpandTheItemToCh")]);if(treeUnloaded(node))this.toggle(node,true);return;}this.problem.set('');const next=treeToggleCheck(this.resolvedNodes(),this.checked(),node.id,this.checkState(node.id)!=='true',this.linkChecks());this.checked.set(next);this.checkedIdsChange.emit(next);}
  protected retry(event:Event,id:string):void{event.stopPropagation();this.requestLoad(id);}
  private requestLoad(id:string):void{if(this.disabled()||this.busy())return;const next=treeBeginLoad(this.nodes(),this.loads(),id,nextTreeRequestId());if(next.request){this.loads.set(next.loads);this.loadRequested.emit(next.request);}}
  resolveLoad(requestId:number,children:readonly TreeNode<T>[]):boolean{const next=treeResolveLoad(this.nodes(),this.loads(),requestId,children);if(!next)return false;this.loads.set(next);return true;}

@@ -1,7 +1,6 @@
-import {injectUiText as injectUiDiagnosticText} from './locale';
-import {injectUiText as injectUiRuntimeText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
+import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, Directive, ElementRef, inject, input, isSignal, output, signal, type Signal, TemplateRef, viewChild, viewChildren, untracked, } from '@angular/core';
 import { canFocus } from './focus';
@@ -42,44 +41,44 @@ export class TableTemplate<T extends object> {
 /** Controlled query, selection and column state. The application owns requests and persistence. */
 @Component({
     selector: 'ui-data-table', standalone: true,
-    imports: [NgTemplateOutlet, ActionControl, Pagination, DataTable, VirtualDataTable, ColumnFilter, TableToolbar, TableColumnResize, CellEditor, RowEditor, InfiniteScroll,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgTemplateOutlet, ActionControl, Pagination, DataTable, VirtualDataTable, ColumnFilter, TableToolbar, TableColumnResize, CellEditor, RowEditor, InfiniteScroll,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     host: { class: 'ui-data-table', 'data-table-owner': '', tabindex: '-1', '[attr.aria-label]': 'caption()', '(focusin)': 'ownFocus($event)', '(focusout)': 'leaveFocus($event)', '[attr.aria-busy]': 'busy() ? "true" : null' },
     template: `
     <div class="ui-data-table__toolbar">
       @if (globalSearch()) {
-        <label>{{'全体検索' | uiMessage}}
+        <label>{{'uiFoundation.dataTableView.searchAllColumns' | uiStableMessage}}
           <input data-table-owned-control class="ui-field-control" type="search" [value]="state().search" [disabled]="blocked()" (input)="search(value($event))">
         </label>
-        <button uiAction data-table-owned-control [disabled]="blocked() || !state().search" (click)="search('')">{{'検索を解除' | uiMessage}}</button>
+        <button uiAction data-table-owned-control [disabled]="blocked() || !state().search" (click)="search('')">{{'uiFoundation.dataTableView.clearSearch' | uiStableMessage}}</button>
       }
       @if (columnControls()) {
-        <details class="ui-data-table__columns"><summary data-table-owned-control>{{'列の設定' | uiMessage}}</summary>
+        <details class="ui-data-table__columns"><summary data-table-owned-control>{{'uiFoundation.dataTableView.columnSettings' | uiStableMessage}}</summary>
           @for (column of columns(); track column.id) {
             <div class="ui-data-table__column-setting">
               <label><input data-table-owned-control type="checkbox" [checked]="!state().hiddenColumns.includes(column.id)" [disabled]="blocked() || lastVisible(column.id)" (change)="toggleColumn(column.id)">{{ column.header }}</label>
               <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(-1, column.header)" [disabled]="blocked() || orderedColumns()[0]?.id === column.id" (click)="moveColumn(column.id, -1)">{{columnMoveText(-1)}}</button>
               <button uiAction data-table-owned-control [attr.aria-label]="columnMoveText(1, column.header)" [disabled]="blocked() || orderedColumns().at(-1)?.id === column.id" (click)="moveColumn(column.id, 1)">{{columnMoveText(1)}}</button>
-              <div><label [for]="tableId() + '-pin-' + column.id">{{'固定:' | uiMessage}} {{ column.header }}</label>
+              <div><label [for]="tableId() + '-pin-' + column.id">{{uiRuntimeText_DataTableView('uiFoundation.dataTableView.pinColumnLabel', {column: column.header})}}</label>
                 <div class="ui-select-control"><select data-table-owned-control [id]="tableId() + '-pin-' + column.id" class="ui-field-control" [value]="pin(column) || 'none'" [disabled]="blocked()" (change)="setPin(column.id, value($event))">
-                  <option value="none">{{'固定しない' | uiMessage}}</option><option value="start">{{'先頭側' | uiMessage}}</option><option value="end">{{'末尾側' | uiMessage}}</option>
+                  <option value="none">{{'uiFoundation.dataTableView.unpinned' | uiStableMessage}}</option><option value="start">{{'uiFoundation.dataTableView.leadingSide' | uiStableMessage}}</option><option value="end">{{'uiFoundation.dataTableView.trailingSide' | uiStableMessage}}</option>
                 </select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></div>
               </div>
               @if (resizableColumns()) {
-                <label>{{'列幅:' | uiMessage}} {{ column.header }} ({{ width(column) || measuredWidth(column) || minimumColumnWidth() }}px)
+                <label>{{uiRuntimeText_DataTableView('uiFoundation.dataTableView.columnWidthLabel', {column: column.header, width: width(column) || measuredWidth(column) || minimumColumnWidth()})}}
                   <input data-table-owned-control type="range" [min]="minimumWidth(column)" [max]="maximumWidth(column)" [value]="width(column) || measuredWidth(column) || minimumColumnWidth()"
                     [disabled]="blocked()" (input)="resizeColumn(column, number($event))">
                 </label>
               }
             </div>
           }
-          <button uiAction data-table-owned-control [disabled]="blocked()" (click)="resetColumns()">{{'列の設定を戻す' | uiMessage}}</button>
+          <button uiAction data-table-owned-control [disabled]="blocked()" (click)="resetColumns()">{{'uiFoundation.dataTableView.resetColumnSettings' | uiStableMessage}}</button>
         </details>
       }
       <ng-content select="[uiTableToolbar]" />
     </div>
     @if (columnFilters()) {
       <details class="ui-data-table__filters">
-        <summary data-table-owned-control>{{'列で絞り込む' | uiMessage}} <span>({{'適用中' | uiMessage}} {{activeFilterCount()}} {{'列' | uiMessage}})</span></summary>
+        <summary data-table-owned-control>{{'uiFoundation.dataTableView.filterByColumn' | uiStableMessage}} <span>({{uiRuntimeText_DataTableView('uiFoundation.dataTableView.activeFilterCount', {count: activeFilterCount()})}})</span></summary>
         <div class="ui-data-table__filter-fields">
           @for (column of orderedColumns(); track column.id) {
             @if (column.filterable !== false) {
@@ -91,13 +90,13 @@ export class TableTemplate<T extends object> {
     }
     <span #minimumProbe class="ui-data-table__minimum-probe" aria-hidden="true"></span>
     <div class="ui-sr-only" role="status" aria-atomic="true">{{ statusMessage() }}</div>
-    @if(displayStateDeferred()){<p role="status" class="ui-data-table__view-status">{{'編集中または保存待機中の行・列があります。検索・列表示・ページの変更は、先に編集を保存するか取り消すまで保留しています。' | uiMessage}}</p>}
-    @if (configurationError()) { <p role="alert">{{'表の設定を確認してください。' | uiMessage}}{{ configurationError() }}</p>@if(virtualUnsupported()&&nativeViewAvailable()){<button uiAction data-table-owned-control type="button" [disabled]="disabled()||busy()" (click)="requestNativeView()">{{'通常表へ切り替える' | uiMessage}}</button>} }
+    @if(displayStateDeferred()){<p role="status" class="ui-data-table__view-status">{{'uiFoundation.dataTableView.someRowsOrColumnsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToChangeTheSear' | uiStableMessage}}</p>}
+    @if (configurationError()) { <p role="alert">{{uiRuntimeText_DataTableView('uiFoundation.dataTableView.configurationErrorDetails', {message: configurationError() ?? ''})}}</p>@if(virtualUnsupported()&&nativeViewAvailable()){<button uiAction data-table-owned-control type="button" [disabled]="disabled()||busy()" (click)="requestNativeView()">{{'uiFoundation.dataTableView.switchToStandardTable' | uiStableMessage}}</button>} }
     @if (dataState().kind !== 'ready') { <p class="ui-data-table__message">{{ statusMessage() }}</p> }
     @if (dataState().kind === 'error' || dataState().kind === 'partial') {
-      @if (retryAvailable()) { <button uiAction [busy]="busy()" (click)="retry.emit()">{{'一覧を再取得' | uiMessage}}</button> }
+      @if (retryAvailable()) { <button uiAction [busy]="busy()" (click)="retry.emit()">{{'uiFoundation.dataTableView.reloadList' | uiStableMessage}}</button> }
     }
-    @if(!virtualize()){<div #viewport class="ui-data-table__viewport" role="region" [attr.aria-label]="caption() + ('の表領域' | uiMessage)" tabindex="0"
+    @if(!virtualize()){<div #viewport class="ui-data-table__viewport" role="region" [attr.aria-label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.tableRegionLabel', {caption: caption()})" tabindex="0"
       [hidden]="!!configurationError()" [class.ui-data-table__viewport--bounded]="stickyHeader()" [style.max-block-size]="stickyHeader()?boundedViewportSize():null" [style.scroll-padding-block-start.px]="startStack()" [style.scroll-padding-block-end.px]="endStack()">
       <table uiTable [caption]="caption()" class="ui-table" [class.ui-data-table__table--content]="autoWidth() && autoFit() === 'content'"
         [class.ui-data-table__table--fixed]="true" [style.inline-size.px]="tableWidth()" [style.min-inline-size.px]="0"
@@ -114,31 +113,31 @@ export class TableTemplate<T extends object> {
         <thead [class.ui-data-table__head--sticky]="stickyHeader()">
           @for(headerRow of headerRows();track $index;let hi=$index){<tr>
             @if(hi===0){
-              @if(selectionMode()!=='none'){<th scope="col" [attr.rowspan]="headerRows().length">@if(selectionMode()==='multiple'){<input data-table-control data-table-owned-control type="checkbox" [attr.aria-label]="selectAllScope()==='filtered'&&mode()==='client'?('検索結果をすべて選択' | uiMessage):('このページをすべて選択' | uiMessage)" [checked]="allSelected()" [indeterminate]="someSelected()&&!allSelected()" [disabled]="blocked()||!selectionRows().length" (change)="selectAll($event)">}@else{{{'選択' | uiMessage}}}</th>}
-              @if(detailTemplate()){<th scope="col" [attr.rowspan]="headerRows().length">{{'詳細' | uiMessage}}</th>}
+              @if(selectionMode()!=='none'){<th scope="col" [attr.rowspan]="headerRows().length">@if(selectionMode()==='multiple'){<input data-table-control data-table-owned-control type="checkbox" [attr.aria-label]="selectAllScope()==='filtered'&&mode()==='client'?('uiFoundation.dataTableView.selectAllSearchResults' | uiStableMessage):('uiFoundation.dataTableView.selectAllOnThisPage' | uiStableMessage)" [checked]="allSelected()" [indeterminate]="someSelected()&&!allSelected()" [disabled]="blocked()||!selectionRows().length" (change)="selectAll($event)">}@else{{{'uiFoundation.dataTableView.selection' | uiStableMessage}}}</th>}
+              @if(detailTemplate()){<th scope="col" [attr.rowspan]="headerRows().length">{{'uiFoundation.dataTableView.details' | uiStableMessage}}</th>}
             }
             @for(header of headerRow;track header.id){
               @if(header.kind==='group'){<th scope="colgroup" [id]="header.id" [attr.colspan]="header.colSpan" [attr.rowspan]="header.rowSpan">{{header.label}}</th>}
               @else{@let column=columnById(header.columnId!);<th scope="col" class="ui-data-table__header-cell" [id]="header.id" [attr.rowspan]="header.rowSpan" [attr.data-column-id]="column.id" [attr.aria-sort]="ariaSort(column.id)" [class.ui-data-table__pinned]="!!pin(column)" [style.inset-inline-start.px]="pin(column)==='start'?pinOffset(column,'start'):null" [style.inset-inline-end.px]="pin(column)==='end'?pinOffset(column,'end'):null">
                 @if(sortable()&&column.sortable!==false){<button uiAction class="ui-data-table__sort" data-table-control data-table-owned-control [disabled]="blocked()" [attr.aria-label]="sortLabel(column)" (click)="sort(column.id)">{{column.header}} {{sortMarker(column.id)}}</button>}@else{ {{column.header}} }
-                @if(resizableColumns()){<button type="button" data-table-control data-table-owned-control class="ui-data-table__resize" uiTableColumnResize [label]="column.header+('の列境界' | uiMessage)" [value]="resolvedWidths()[column.id]" [minimum]="minimumWidth(column)" [maximum]="maximumWidth(column)" [disabled]="blocked()" (resizeChange)="resizeColumn(column,$event)"></button>}
+                @if(resizableColumns()){<button type="button" data-table-control data-table-owned-control class="ui-data-table__resize" uiTableColumnResize [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.columnBoundaryLabel', {column: column.header})" [value]="resolvedWidths()[column.id]" [minimum]="minimumWidth(column)" [maximum]="maximumWidth(column)" [disabled]="blocked()" (resizeChange)="resizeColumn(column,$event)"></button>}
               </th>}
             }
-            @if(hi===0){@if(rowActions().length){<th scope="col" [attr.rowspan]="headerRows().length">{{'操作' | uiMessage}}</th>}@if(editMode()==='row'){<th scope="col" [attr.rowspan]="headerRows().length">{{'行編集' | uiMessage}}</th>}}
+            @if(hi===0){@if(rowActions().length){<th scope="col" [attr.rowspan]="headerRows().length">{{'uiFoundation.dataTableView.actions' | uiStableMessage}}</th>}@if(editMode()==='row'){<th scope="col" [attr.rowspan]="headerRows().length">{{'uiFoundation.dataTableView.rowEditing' | uiStableMessage}}</th>}}
           </tr>}
         </thead>
         <tbody>
           @for(entry of bodyEntries();track entryId(entry)){
-            @if(entry.kind==='group'){<tr [hidden]="entry.hidden" class="ui-data-table__group"><th scope="rowgroup" [attr.colspan]="columnCount()"><button uiAction data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-expanded]="!collapsedGroupIds().includes(entry.group.id)" (click)="toggleGroup(entry.group.id)">{{entry.group.label}} ({{entry.group.rows.length}}{{'件)' | uiMessage}} {{collapsedGroupIds().includes(entry.group.id)?('展開' | uiMessage):('閉じる' | uiMessage)}}</button>@for(value of entry.group.aggregates;track $index){<span class="ui-data-table__aggregate">{{aggregateText(value)}}</span>}</th></tr>}
+            @if(entry.kind==='group'){<tr [hidden]="entry.hidden" class="ui-data-table__group"><th scope="rowgroup" [attr.colspan]="columnCount()"><button uiAction data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-expanded]="!collapsedGroupIds().includes(entry.group.id)" (click)="toggleGroup(entry.group.id)">{{uiRuntimeText_DataTableView('uiFoundation.dataTableView.rowGroupCount', {label: entry.group.label, count: entry.group.rows.length})}} {{collapsedGroupIds().includes(entry.group.id)?('uiFoundation.dataTableView.expand' | uiStableMessage):('uiFoundation.dataTableView.close' | uiStableMessage)}}</button>@for(value of entry.group.aggregates;track $index){<span class="ui-data-table__aggregate">{{aggregateText(value)}}</span>}</th></tr>}
             @else{@let row=entry.row;
             <tr [hidden]="entry.hidden" [attr.data-table-key]="encodedKey(row)" [attr.data-fixed-row]="rowSide(row)" [class.ui-data-table__fixed-row]="!!rowSide(row)" [style.inset-block-start.px]="rowSide(row)==='start'?fixedOffset(row,'start'):null" [style.inset-block-end.px]="rowSide(row)==='end'?fixedOffset(row,'end'):null" [attr.data-row-key]="key(row)" [class.ui-data-table__row--selected]="selectedKeys().includes(key(row))">
               @if (selectionMode() !== 'none') {
                 <td><input data-table-control data-table-owned-control [type]="selectionMode() === 'single' ? 'radio' : 'checkbox'" [name]="tableId() + '-selection'"
-                  [attr.aria-label]="('行を選択: ' | uiMessage) + rowLabel(row)" [checked]="selectedKeys().includes(key(row))"
+                  [attr.aria-label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.selectRowLabel', {row: rowLabel(row)})" [checked]="selectedKeys().includes(key(row))"
                   [disabled]="blocked() || !selectable(row)" (change)="select(row, $event)"></td>
               }
               @if (detailTemplate()) {
-                <td><button uiAction data-table-control data-table-owned-control [disabled]="blocked()" [attr.aria-label]="('詳細: ' | uiMessage) + rowLabel(row)" [attr.aria-expanded]="expandedKeys().includes(key(row))" (click)="toggleDetail(row)">{{ expandedKeys().includes(key(row)) ? ('閉じる' | uiMessage) : ('開く' | uiMessage) }}</button></td>
+                <td><button uiAction data-table-control data-table-owned-control [disabled]="blocked()" [attr.aria-label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.rowDetailsLabel', {row: rowLabel(row)})" [attr.aria-expanded]="expandedKeys().includes(key(row))" (click)="toggleDetail(row)">{{ expandedKeys().includes(key(row)) ? ('uiFoundation.dataTableView.close' | uiStableMessage) : ('uiFoundation.dataTableView.open' | uiStableMessage) }}</button></td>
               }
               @for (column of visibleColumns(); track column.id) {
                 <td [attr.headers]="cellHeaders(column.id)" [class.ui-data-table__pinned]="!!pin(column)" [class.ui-data-table__cell--nowrap]="!wrapCells()" [class.ui-data-table__cell--ellipsis]="ellipsis()"
@@ -155,9 +154,9 @@ export class TableTemplate<T extends object> {
                   @for (action of rowActions(); track action.id) { <button uiAction data-table-owned-control [disabled]="blocked() || !!action.disabled?.(row)" (click)="activate(action.id, row)">{{ action.label }}</button> }
                 </div></td>
               }
-              @if(editMode()==='row'){<td><button uiAction class="ui-data-table__edit-start" data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-label]="('編集: ' | uiMessage)+rowLabel(row)" data-table-row-edit-start (click)="beginRow(row)">{{'行を編集' | uiMessage}}</button></td>}
+              @if(editMode()==='row'){<td><button uiAction class="ui-data-table__edit-start" data-table-control data-table-owned-control type="button" [disabled]="blocked()" [attr.aria-label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.editRowLabel', {row: rowLabel(row)})" data-table-row-edit-start (click)="beginRow(row)">{{'uiFoundation.dataTableView.editRow' | uiStableMessage}}</button></td>}
             </tr>
-            @if(editMode()==='row'){<tr [hidden]="entry.hidden||!rowEditor.isEditing()" [attr.data-table-editor-key]="encodedKey(row)"><td [attr.colspan]="columnCount()"><ui-row-editor data-table-managed-editor #rowEditor [row]="row" [keyField]="keyField()" [columns]="columns()" [controlId]="tableId()+'-row-edit-'+encodedKey(row)" [label]="rowLabel(row)+('の行編集' | uiMessage)" [disabled]="disabled()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="rowEditingChanged(row,$event)"/></td></tr>}
+            @if(editMode()==='row'){<tr [hidden]="entry.hidden||!rowEditor.isEditing()" [attr.data-table-editor-key]="encodedKey(row)"><td [attr.colspan]="columnCount()"><ui-row-editor data-table-managed-editor #rowEditor [row]="row" [keyField]="keyField()" [columns]="columns()" [controlId]="tableId()+'-row-edit-'+encodedKey(row)" [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.rowEditorLabel', {row: rowLabel(row)})" [disabled]="disabled()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="rowEditingChanged(row,$event)"/></td></tr>}
             @if (detailTemplate(); as detail) {
               <tr [hidden]="entry.hidden||!expandedKeys().includes(key(row))"><td [attr.colspan]="columnCount()"><ng-container [ngTemplateOutlet]="detail" [ngTemplateOutletContext]="{ $implicit: row, value: null, column: null }" /></td></tr>
             }
@@ -168,16 +167,16 @@ export class TableTemplate<T extends object> {
         </tbody>
         @if(aggregates().length){<tfoot [class.ui-data-table__footer--sticky]="stickyFooter()"><tr><th scope="row" [attr.colspan]="columnCount()">{{aggregateLabel()}}</th></tr><tr>@if(selectionMode()!=='none'){<td></td>}@if(detailTemplate()){<td></td>}@for(column of visibleColumns();track column.id){<td [attr.headers]="cellHeaders(column.id)" [class.ui-data-table__pinned]="!!pin(column)" [style.inset-inline-start.px]="pin(column)==='start'?pinOffset(column,'start'):null" [style.inset-inline-end.px]="pin(column)==='end'?pinOffset(column,'end'):null">@for(value of aggregatesFor(column.id);track $index){<span class="ui-data-table__aggregate">{{aggregateText(value)}}</span>}</td>}@if(rowActions().length){<td></td>}@if(editMode()==='row'){<td></td>}</tr></tfoot>}
       </table>
-      @if(moreAvailable()){<ui-infinite-scroll #more [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="autoLoadMore()" [observerRoot]="stickyHeader()?viewport:null" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
+      @if(moreAvailable()){<ui-infinite-scroll #more [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.loadMoreLabel', {caption: caption()})" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="autoLoadMore()" [observerRoot]="stickyHeader()?viewport:null" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     </div>
     }@else{
       @if(!configurationError()){<ui-virtual-data-table [caption]="caption()" [tableId]="tableId()" [rows]="pageRows()" [columns]="visibleColumns()" [keyField]="keyField()" [state]="state()" [busy]="busy()" [disabled]="disabled()" [height]="virtualHeight()" [itemHeight]="virtualRowHeight()" [overscan]="virtualOverscan()" [sortable]="sortable()" [selectionMode]="selectionMode()" [selectedKeys]="selectedKeys" [radioGroups]="virtualRadioGroups" [rowSelectable]="rowSelectable()" [cellTemplates]="virtualTemplates()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (columnWidthsChange)="virtualWidths($event)" (sortRequested)="sort($event)" (selectedKeysChange)="selectedKeysChange.emit($event)" (rangeChange)="virtualRangeChange.emit($event)" (positionChange)="virtualPositionChange.emit($event)"/>}
-      @if(moreAvailable()){<ui-infinite-scroll [label]="caption()+('の追加取得' | uiMessage)" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="false" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
+      @if(moreAvailable()){<ui-infinite-scroll [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.loadMoreLabel', {caption: caption()})" [loading]="loadingMore()" [finished]="moreFinished()" [error]="moreError()" [disabled]="blocked()" [autoLoad]="false" [resetKey]="moreResetKey()" [contentVersion]="rows().length" (loadRequested)="loadMoreRequested.emit($event)"/>}
     }
-    @if(showOutput()||bulkActions().length){<ui-table-toolbar [label]="caption()+('の出力と一括操作' | uiMessage)" [columns]="columns()" [state]="state()" [searchable]="false" [chooseColumns]="false" [outputs]="showOutput()" [busy]="busy()" [disabled]="disabled()||!!configurationError()" [selectedKeys]="selectedKeys()" [bulkActions]="bulkActions()" (bulkRequested)="bulkRequested.emit($event)" (outputRequested)="export($event)"/>}
+    @if(showOutput()||bulkActions().length){<ui-table-toolbar [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.exportAndBulkActionsLabel', {caption: caption()})" [columns]="columns()" [state]="state()" [searchable]="false" [chooseColumns]="false" [outputs]="showOutput()" [busy]="busy()" [disabled]="disabled()||!!configurationError()" [selectedKeys]="selectedKeys()" [bulkActions]="bulkActions()" (bulkRequested)="bulkRequested.emit($event)" (outputRequested)="export($event)"/>}
     @if (pagination() && !configurationError()) {
       <ui-pagination [page]="displayPage()" [totalItems]="total()" [pageSize]="displayTableState().pageSize" [pageSizeOptions]="pageSizeOptions()"
-        [busy]="busy()" [disabled]="disabled()" [label]="caption() + ('のページ' | uiMessage)" (pageChange)="update({page: $event})" (pageSizeChange)="update({pageSize: $event, page: 1})" />
+        [busy]="busy()" [disabled]="disabled()" [label]="uiRuntimeText_DataTableView('uiFoundation.dataTableView.paginationLabel', {caption: caption()})" (pageChange)="update({page: $event})" (pageSizeChange)="update({pageSize: $event, page: 1})" />
     }
   `,
     styles: `
@@ -233,11 +232,10 @@ export class TableTemplate<T extends object> {
   `,
 })
 export class DataTableView<T extends object> {
- private readonly uiDiagnostic_DataTableView=(()=>{const text=injectUiDiagnosticText();return (value:string|null):string|null=>value===null?null:text(value);})();
 
- private readonly uiRuntimeText_DataTableView=injectUiRuntimeText();
+ protected readonly uiRuntimeText_DataTableView=injectUiRuntimeText();
 
- protected readonly uiText_DataTableView=injectUiText(); protected readonly columnMoveText=injectTableColumnMoveText();
+ protected readonly uiText_DataTableView=injectUiMessageText(); protected readonly columnMoveText=injectTableColumnMoveText();
     readonly caption = input.required<string>();
     readonly tableId = input.required<string>();
     readonly rows = input.required<readonly T[]>();
@@ -331,7 +329,7 @@ export class DataTableView<T extends object> {
     readonly ellipsis = input(false, { transform: booleanAttribute });
     protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=computed(()=>this.locale()??this.uiLocaleDefaults().locale);
     readonly missingLabel = input<string>();
- protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_DataTableView('未取得'));
+ protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_DataTableView("uiFoundation.dataTableView.unavailable"));
     readonly retryAvailable = input(false, { transform: booleanAttribute });
     readonly retry = output<void>();
     private readonly templates = contentChildren<TableTemplate<T>>(TableTemplate);
@@ -377,7 +375,7 @@ export class DataTableView<T extends object> {
     protected readonly tableWidth = computed(() => Object.values(this.resolvedWidths()).reduce((a, b) => a + b, 0) + this.utilityCount() * this.minimumColumnWidth());
     protected readonly busy = computed(() => ['loading', 'updating'].includes(this.dataState().kind));
     protected readonly virtualUnsupported = computed(() => this.virtualize() && (this.editMode() !== 'none' || this.groupBy().length > 0 || this.columnGroups().length > 0 || this.fixedStartKeys().length > 0 || this.fixedEndKeys().length > 0 || this.aggregates().length > 0 || !!this.detailTemplate() || this.rowActions().length > 0 || Object.values(this.state().pinnedColumns).some(value => value !== 'none') || this.columns().some(column => !!column.pinned)));
-    protected readonly configurationError = computed(() => this.uiDiagnostic_DataTableView(tableConfigurationError(this.rows(), this.columns(), this.keyField(), this.state())) || this.uiDiagnostic_DataTableView(tableHeaderProblem(this.columns(), this.columnGroups())) || (this.virtualUnsupported() ? this.uiRuntimeText_DataTableView('固定行・固定列・集計・階層見出し・詳細・編集・行操作は通常表を選択してください。') : null) || (new Set(this.groupBy()).size !== this.groupBy().length || this.groupBy().some(id => !this.columns().some(column => column.id === id)) ? this.uiRuntimeText_DataTableView('グループ列を確認してください。') : null) || (this.fixedStartKeys().some(key => this.fixedEndKeys().includes(key)) ? this.uiRuntimeText_DataTableView('同じ行を上下へ固定できません。') : null) || (this.aggregates().some(definition => !this.columns().some(column => column.id === definition.column) || !['sum', 'average', 'min', 'max', 'count'].includes(definition.kind)) ? this.uiRuntimeText_DataTableView('集計列と方法を確認してください。') : null) || (!this.tableId().trim() || !this.caption().trim() ? this.uiRuntimeText_DataTableView('表IDと表題が必要です。') : null));
+    protected readonly configurationError = computed(() => tableConfigurationError(this.rows(), this.columns(), this.keyField(), this.state(), this.uiRuntimeText_DataTableView) || tableHeaderProblem(this.columns(), this.columnGroups(), this.uiRuntimeText_DataTableView) || (this.virtualUnsupported() ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.useTheStandardTableForPinnedRowsOrColumnsSummariesNestedHeadersDetailsEditingOrRowAc") : null) || (new Set(this.groupBy()).size !== this.groupBy().length || this.groupBy().some(id => !this.columns().some(column => column.id === id)) ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.checkTheGroupingColumns") : null) || (this.fixedStartKeys().some(key => this.fixedEndKeys().includes(key)) ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.theSameRowCannotBePinnedAtBothTheTopAndBottom") : null) || (this.aggregates().some(definition => !this.columns().some(column => column.id === definition.column) || !['sum', 'average', 'min', 'max', 'count'].includes(definition.kind)) ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.checkTheSummaryColumnsAndCalculationMethods") : null) || (!this.tableId().trim() || !this.caption().trim() ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.aTableIDAndCaptionAreRequired") : null));
     protected readonly blocked = computed(() => this.disabled() || this.busy() || !!this.configurationError());
     protected readonly orderedColumns = computed(() => {
         const byId = new Map(this.columns().map(c => [c.id, c]));
@@ -398,11 +396,11 @@ export class DataTableView<T extends object> {
         if (this.configurationError())
             return [];
         const rows = this.pageRows(), start = rows.filter(row => this.fixedStartKeys().includes(this.key(row))), end = rows.filter(row => this.fixedEndKeys().includes(this.key(row))), normal = rows.filter(row => !this.fixedStartKeys().includes(this.key(row)) && !this.fixedEndKeys().includes(this.key(row)));
-        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
+        const entries = this.groupBy().length ? flattenTableGroups(groupTable(normal, this.columns(), this.groupBy(), this.aggregates(), this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiRuntimeText_DataTableView), this.collapsedGroupIds()) : normal.map(row => ({ kind: 'row' as const, row, hidden: false }));
         return [...start.map(row => ({ kind: 'row' as const, row, hidden: false })), ...entries, ...end.map(row => ({ kind: 'row' as const, row, hidden: false }))];
     });
     private readonly footerValues = computed(() => this.configurationError() ? [] : aggregateTable(this.aggregateScope() === 'page' ? this.pageRows() : this.aggregateScope() === 'supplied' ? this.rows() : this.filteredRows(), this.columns(), this.aggregates()));
-    protected readonly aggregateLabel = computed(() => this.mode() === 'server' ? this.uiRuntimeText_DataTableView('受け取った行の集計') : this.aggregateScope() === 'page' ? this.uiRuntimeText_DataTableView('表示ページの集計') : this.aggregateScope() === 'supplied' ? this.uiRuntimeText_DataTableView('受け取った全行の集計') : this.uiRuntimeText_DataTableView('検索結果の集計'));
+    protected readonly aggregateLabel = computed(() => this.mode() === 'server' ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.receivedRowSummary") : this.aggregateScope() === 'page' ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.summaryForThisPage") : this.aggregateScope() === 'supplied' ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.summaryOfAllReceivedRows") : this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.searchResultSummary"));
     protected readonly total = computed(() => this.mode() === 'server' ? this.totalItems() : this.filteredRows().length);
     protected readonly selectionRows = computed(() => (this.selectAllScope() === 'filtered' && this.mode() === 'client' ? this.filteredRows() : this.pageRows()).filter(row => this.selectable(row)));
     protected readonly allSelected = computed(() => this.selectionRows().length > 0 && this.selectionRows().every(row => this.selectedKeys().includes(this.key(row))));
@@ -410,8 +408,8 @@ export class DataTableView<T extends object> {
     protected readonly columnCount = computed(() => this.visibleColumns().length + Number(this.selectionMode() !== 'none') + Number(!!this.detailTemplate()) + Number(this.rowActions().length > 0) + Number(this.editMode() === 'row'));
     protected readonly activeFilterCount = computed(() => this.state().filters.filter(filter => this.columns().some(column => column.id === filter.column && column.filterable !== false) && filter.constraints.some(rule => rule.operator === 'missing' || rule.value !== undefined)).length);
     protected readonly statusMessage = computed(() => { const state = this.dataState(); return state.kind === 'ready' ? '' : state.message; });
-    protected readonly emptyMessage = computed(() => this.busy() ? this.uiRuntimeText_DataTableView('一覧を取得しています。') : this.dataState().kind === 'error' ? this.uiRuntimeText_DataTableView('一覧を取得できません。')
-        : this.globalSearch() && this.state().search.trim() || this.columnFilters() && this.state().filters.some(filter => filter.constraints.some(rule => rule.operator === 'missing' || rule.value !== undefined)) ? this.uiRuntimeText_DataTableView('条件に一致する結果はありません。') : this.uiRuntimeText_DataTableView('データはありません。'));
+    protected readonly emptyMessage = computed(() => this.busy() ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.loadingTheList") : this.dataState().kind === 'error' ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.couldNotLoadTheList")
+        : this.globalSearch() && this.state().search.trim() || this.columnFilters() && this.state().filters.some(filter => filter.constraints.some(rule => rule.operator === 'missing' || rule.value !== undefined)) ? this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.noMatchingResults") : this.uiRuntimeText_DataTableView("uiFoundation.dataTableView.noData"));
     private readonly maximumBodyHeight = signal(0);
     private readonly semanticControlHeight = signal(0);
     protected readonly startStack = computed(() => (this.stickyHeader() ? this.headHeight() : 0) + this.fixedStartKeys().reduce<number>((sum, key) => sum + (this.fixedHeights()[tableDomIdToken(typeof key + ':' + key)] ?? 0), 0));
@@ -609,7 +607,23 @@ export class DataTableView<T extends object> {
             this.collapsedGroupIdsChange.emit(this.collapsedGroupIds().includes(id) ? this.collapsedGroupIds().filter(value => value !== id) : [...this.collapsedGroupIds(), id]);
     }
     protected aggregatesFor(id: string): readonly TableAggregateValue[] { return this.footerValues().filter(value => value.column === id); }
-    protected aggregateText(value: TableAggregateValue): string { const labels = { sum: this.uiRuntimeText_DataTableView('合計'), average: this.uiRuntimeText_DataTableView('平均'), min: this.uiRuntimeText_DataTableView('最小'), max: this.uiRuntimeText_DataTableView('最大'), count: this.uiRuntimeText_DataTableView('既知の件数') }, column = this.columns().find(column => column.id === value.column); return (column?.header ?? value.column) + ' ' + (value.label ?? labels[value.kind]) + ': ' + (value.value === null ? this.uiEffective_missingLabel() : new Intl.NumberFormat(this.effectiveLocale()).format(value.value)) + (value.missing ? this.uiRuntimeText_DataTableView(' (既知 ') + value.known + this.uiRuntimeText_DataTableView('件・') + this.uiEffective_missingLabel() + ' ' + value.missing + this.uiRuntimeText_DataTableView('件)') : ''); }
+
+    protected aggregateText(value: TableAggregateValue): string {
+        const text = this.uiRuntimeText_DataTableView;
+        const labels = {
+            sum: "uiFoundation.dataTableView.total", average: "uiFoundation.dataTableView.average",
+            min: "uiFoundation.dataTableView.minimum", max: "uiFoundation.dataTableView.maximum", count: "uiFoundation.dataTableView.knownCount",
+        } as const;
+        const column = this.columns().find(column => column.id === value.column);
+        const parameters = {
+            column: column?.header ?? value.column,
+            label: value.label ?? text(labels[value.kind]),
+            value: value.value === null ? this.uiEffective_missingLabel() : new Intl.NumberFormat(this.effectiveLocale()).format(value.value),
+        };
+        return value.missing ? text('uiFoundation.dataTableView.aggregateValueWithMissing', {
+            ...parameters, known: value.known, missing: value.missing, missingLabel: this.uiEffective_missingLabel(),
+        }) : text('uiFoundation.dataTableView.aggregateValue', parameters);
+    }
     protected rowSide(row: T): 'start' | 'end' | null { return this.fixedStartKeys().includes(this.key(row)) ? 'start' : this.fixedEndKeys().includes(this.key(row)) ? 'end' : null; }
     protected fixedOffset(row: T, side: 'start' | 'end'): number { const keys = this.pageRows().filter(row => (side === 'start' ? this.fixedStartKeys() : this.fixedEndKeys()).includes(this.key(row))).map(row => this.key(row)), index = keys.indexOf(this.key(row)), prior = side === 'start' ? keys.slice(0, index) : keys.slice(index + 1); return (side === 'start' && this.stickyHeader() ? this.headHeight() : side === 'end' && this.stickyFooter() && this.aggregates().length ? this.footHeight() : 0) + prior.reduce<number>((sum, key) => sum + (this.fixedHeights()[tableDomIdToken(typeof key + ':' + key)] ?? 0), 0); }
     protected beginRow(row: T): void {
@@ -649,14 +663,14 @@ export class DataTableView<T extends object> {
     protected export(intent: TableOutputIntent): void {
         if (this.blocked())
             return;
-        const rows = tableOutputRows(intent.scope, this.rows(), this.filteredRows(), this.pageRows(), this.selectedKeys(), row => this.key(row)), columns = this.visibleColumns(), matrix = tableOutputMatrix(rows, columns, this.effectiveLocale(), this.uiEffective_missingLabel());
+        const rows = tableOutputRows(intent.scope, this.rows(), this.filteredRows(), this.pageRows(), this.selectedKeys(), row => this.key(row)), columns = this.visibleColumns(), matrix = tableOutputMatrix(rows, columns, this.effectiveLocale(), this.uiEffective_missingLabel(), true, this.uiLocaleDefaults().numberOptions, this.uiRuntimeText_DataTableView);
         this.outputRequested.emit({ ...intent, matrix, text: serializeTableMatrix(matrix, intent.format === 'csv' ? ',' : '\t'), rowCount: rows.length, columnIds: columns.map(column => column.id) });
     }
     protected value(event: Event): string { return (event.target as HTMLInputElement).value; }
     protected number(event: Event): number { return Number(this.value(event)); }
     protected key(row: T): TableKey { return row[this.keyField()] as TableKey; }
-    protected rowLabel(row: T): string { return tableText(row, this.columns()[0], this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages); }
-    protected cellText(row: T, column: TableColumn<T>): string { return tableText(row, column, this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages); }
+    protected rowLabel(row: T): string { return tableText(row, this.columns()[0], this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiRuntimeText_DataTableView); }
+    protected cellText(row: T, column: TableColumn<T>): string { return tableText(row, column, this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiRuntimeText_DataTableView); }
     protected cellValue(row: T, column: TableColumn<T>): unknown { return tableValue(row, column); }
     protected cellTemplate(id: string): TemplateRef<TableTemplateContext<T>> | null { return this.templates().find(t => !t.detail() && t.column() === id)?.template ?? null; }
     protected detailTemplate(): TemplateRef<TableTemplateContext<T>> | null { return this.templates().find(t => t.detail())?.template ?? null; }
@@ -669,7 +683,9 @@ export class DataTableView<T extends object> {
     protected sort(column: string): void { this.update({ sort: nextTableSort(this.state().sort, column, this.sortMode() === 'multiple'), page: 1 }); }
     protected ariaSort(id: string): 'ascending' | 'descending' | null { const first = this.sortable() ? this.displayTableState().sort[0] : undefined; return first?.column === id ? first.direction === 'asc' ? 'ascending' : 'descending' : null; }
     protected sortMarker(id: string): string { const index = this.displayTableState().sort.findIndex(s => s.column === id); return index < 0 ? '' : (this.displayTableState().sort[index].direction === 'asc' ? '↑' : '↓') + (this.sortMode() === 'multiple' ? String(index + 1) : ''); }
-    protected sortLabel(column: TableColumn<T>): string { return column.header + this.uiRuntimeText_DataTableView('で並べ替え') + (this.sortMarker(column.id) ? ': ' + this.sortMarker(column.id) : ''); }
+    protected sortLabel(column: TableColumn<T>): string { const marker = this.sortMarker(column.id);
+        return marker ? this.uiRuntimeText_DataTableView('uiFoundation.dataTableView.sortColumnWithOrder', { column: column.header, marker })
+            : this.uiRuntimeText_DataTableView('uiFoundation.dataTableView.sortColumnLabel', { column: column.header }); }
     protected filterValue(id: string): string { const value = this.state().filters.find(f => f.column === id)?.constraints[0]?.value; return value === undefined ? '' : String(value); }
     protected filterOperator(column: TableColumn<T>): TableOperator { return this.state().filters.find(f => f.column === column.id)?.constraints[0]?.operator ?? (column.options || column.type === 'number' || column.type === 'date' ? 'eq' : 'contains'); }
     protected filter(column: TableColumn<T>, value: string, operator = this.filterOperator(column)): void {

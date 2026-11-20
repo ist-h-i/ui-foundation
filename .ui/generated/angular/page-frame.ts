@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText} from './locale';
+import {injectUiMessage} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, signal, untracked, viewChild } from '@angular/core';
 import { focusBeforeHiding } from './layout';
 @Component({selector:'ui-page-frame,ui-app-shell',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,
@@ -12,9 +12,9 @@ import { focusBeforeHiding } from './layout';
  <footer #footer class="ui-page-frame__footer" [hidden]="!showFooter()"><ng-content select="[uiPageFooter]" /></footer><span #measure class="ui-page-frame__measure" aria-hidden="true"></span>`,
  styleUrl:'./page-frame.css'})
 export class PageFrame {
- protected readonly uiText_PageFrame=injectUiText();
+ protected readonly uiText_PageFrame=injectUiMessage();
  readonly title=input.required<string>();readonly headingLevel=input<1|2>(1);readonly showHeader=input(true,{transform:booleanAttribute});readonly showSidebar=input(false,{transform:booleanAttribute});readonly showFooter=input(true,{transform:booleanAttribute});readonly showActions=input(true,{transform:booleanAttribute});readonly fixedHeader=input(false,{transform:booleanAttribute});readonly fixedSidebar=input(false,{transform:booleanAttribute});readonly fixedFooter=input(false,{transform:booleanAttribute});readonly sidebarLabel=input<string>();
- protected readonly uiEffective_sidebarLabel=uiLocaleComputed(()=>this.sidebarLabel()??this.uiText_PageFrame('サイドバー'));readonly focusFallback=input<HTMLElement|null>(null);
+ protected readonly uiEffective_sidebarLabel=uiLocaleComputed(()=>this.sidebarLabel()??this.uiText_PageFrame({id:'uiFoundation.pageFrame.sidebarLabel'}));readonly focusFallback=input<HTMLElement|null>(null);
  protected readonly headerHeight=signal(0);protected readonly footerHeight=signal(0);protected readonly scrollHeight=signal(0);private readonly minimumHeight=signal(0);private readonly measure=viewChild<ElementRef<HTMLElement>>('measure');
  protected readonly enoughRoom=computed(()=>this.scrollHeight()>(this.fixedHeader()&&this.showHeader()?this.headerHeight():0)+(this.fixedFooter()&&this.showFooter()?this.footerHeight():0)+this.minimumHeight());protected readonly stickyHeader=computed(()=>this.fixedHeader()&&this.showHeader()&&this.enoughRoom());protected readonly stickyFooter=computed(()=>this.fixedFooter()&&this.showFooter()&&this.enoughRoom());
  private readonly header=viewChild<ElementRef<HTMLElement>>('header');private readonly actions=viewChild<ElementRef<HTMLElement>>('actions');private readonly sidebar=viewChild<ElementRef<HTMLElement>>('sidebar');private readonly footer=viewChild<ElementRef<HTMLElement>>('footer');

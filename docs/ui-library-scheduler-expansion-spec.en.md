@@ -93,7 +93,7 @@ Editor Escape/close/completion returns only owned focus to its initiating move b
 
 Follow [semantic roles](design.en.md), switching through YAML default_profile/profiles and data-ui-profile. Use font.body/code, text/leading/weight, space/size, color/border/radius and shared semantic motion.duration/easing, not new fixed animations. Guided/dense changes retain incomplete datetimes/errors/pending requests/projected CVA input. Logical CSS/local scrolling retain full previews alongside datetime editor internal scrolling at320px/200% text. Technical datetime editor/previews are locally LTR; descriptions/buttons/resources follow scope RTL. Reduced motion suppresses smooth scrolling.
 
-provideUiLocale/[uiLocale] (UiLocaleScope) supply locale/messages/timeZone/date options/direction; explicit component props win. Generated default_language selects en-US or ja-JP; older omitted YAML retains Japanese. Time zone remains unspecified and direction inherits app dir. UiLocaleScope connects native lang/dir/CDK Directionality and respects explicit Dir/external attributes. Dictionaries change only library text, not event title/data/raw IDs/app errors.
+provideUiLocale/[uiLocale] (UiLocaleScope) supply locale/translate/timeZone/date options/direction; explicit component props win. Generated default_language selects en-US or ja-JP; older omitted YAML retains Japanese. Time zone remains unspecified and direction inherits app dir. UiLocaleScope connects native lang/dir/CDK Directionality and respects explicit Dir/external attributes. Dictionaries change only library text, not event title/data/raw IDs/app errors.
 
 ## Dependencies
 

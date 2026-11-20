@@ -80,7 +80,8 @@ await copyAsset(`node_modules/${packageName}/dist/CLI-NOTICE.txt`, 'assets/CLI-N
 await copyAsset('.ui/generated/UI-FOUNDATION-LICENSE.txt', 'ui-foundation/LICENSE.txt');
 await cp('.ui/generated/tokens.css', resolve(output, 'tokens.css'));
 await cp('.ui/generated/angular/styles.css', resolve(output, 'styles.css'));
-await writeFile(resolve(output, 'index.html'), '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/assets/maplibre/maplibre-gl.css"></head><body><package-consumer></package-consumer><script type="module" src="/main.js"></script></body></html>');
+await cp('.ui/generated/angular/specialist.css', resolve(output, 'specialist.css'));
+await writeFile(resolve(output, 'index.html'), '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/specialist.css"><link rel="stylesheet" href="/assets/maplibre/maplibre-gl.css"></head><body><package-consumer></package-consumer><script type="module" src="/main.js"></script></body></html>');
 
 // A self-contained, valid PDF fixture: no source-tree media is read or copied.
 let pdf = '%PDF-1.4\n';
@@ -111,6 +112,19 @@ process.once('SIGTERM', () => {
     finally { server.closeAllConnections(); server.close(() => process.exit(143)); }
   })();
 });
+// Resolve expected semantic values in the same profile as each checked control.
+async function expectTokenStyle(locator, property, token) {
+  const expected = await locator.evaluate((element, { property, token }) => {
+    const sample = element.ownerDocument.createElement('span');
+    sample.style.setProperty(property, `var(${token})`);
+    element.parentElement.append(sample);
+    try { return getComputedStyle(sample).getPropertyValue(property); }
+    finally { sample.remove(); }
+  }, { property, token });
+  assert.ok(expected, token);
+  await expect(locator).toHaveCSS(property, expected);
+}
+
 try {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -137,15 +151,117 @@ try {
   await input.fill('package draft');
   const editor = await input.elementHandle();
   const fontSizes = [];
+  const icon = page.getByRole('button', { name: 'Open folder', exact: true });
+  const toggleIcon = page.getByRole('button', { name: 'Toggle folder availability', exact: true });
+  const external = page.locator('a[uiAction] .ui-action-external');
+  const label = page.locator('label[for="packed-option"]');
+  const option = page.getByRole('checkbox', { name: /^Packed option/ });
+  const field = page.locator('ui-form-field').filter({ has: option });
+  const textLabel = page.locator('label[for="packed-name"]');
+  const groupedField = page.locator('ui-form-field').filter({ has: textLabel });
+  const cropperGrid = page.locator('ui-image-cropper .ui-media-fields');
+  const specialistSelect = page.locator('ui-kanban .ui-select-control > select');
+  const specialistChevron = page.locator('ui-kanban .ui-select-control__chevron');
+  const richEditor = page.getByRole('textbox', { name: 'Packed rich text', exact: true });
+  await option.check();
+  await expect(richEditor).toBeEditable();
   for (const profile of ['guided', 'dense']) {
     await expect(page.locator('section[data-ui-profile]').first()).toHaveAttribute('data-ui-profile', profile);
     await expect(input).toHaveValue('package draft');
     await expect(page.getByTestId('draft')).toHaveText('package draft');
     assert.equal(await input.evaluate((element, previous) => element === previous, editor), true);
+    await expect(icon).toHaveCSS('border-top-left-radius', '50%');
+    await expectTokenStyle(icon, 'padding-inline-start', '--ui-space-control-y');
+    await expectTokenStyle(field, 'margin-block-end', '--ui-space-field');
+    await expect(groupedField).toHaveCSS('margin-block-end', '0px');
+    await expect(textLabel).toHaveCSS('display', 'block');
+    await expectTokenStyle(textLabel, 'font-weight', '--ui-weight-control');
+    await expectTokenStyle(textLabel, 'margin-block-end', '--ui-space-control-gap');
+    await expect(cropperGrid).toHaveCSS('display', 'grid');
+    await expect(specialistSelect).toHaveCSS('appearance', 'none');
+    await expect(specialistChevron).toHaveCSS('position', 'absolute');
+    await expect(specialistChevron).toBeVisible();
+    await page.emulateMedia({ forcedColors: 'active' });
+    await expect(specialistSelect).toHaveCSS('appearance', 'auto');
+    await expect(specialistChevron).toBeHidden();
+    await page.emulateMedia({ forcedColors: 'none' });
+    await expectTokenStyle(cropperGrid, 'column-gap', '--ui-space-field');
+    await toggleIcon.focus();
+    await page.keyboard.press('Tab');
+    await expect(icon).toBeFocused();
+    await expect(icon).toHaveCSS('outline-style', 'solid');
+    await toggleIcon.click();
+    await expect(icon).toBeDisabled();
+    await expect(icon).toHaveCSS('cursor', 'not-allowed');
+    await toggleIcon.click();
+    await expect(icon).toBeEnabled();
+    await expect(external).toHaveCSS('order', '3');
+    await expect(external).toHaveCSS('white-space', 'normal');
+    await expect(label).toHaveCSS('display', 'flex');
+    await expect(option).toBeChecked();
+    await richEditor.focus();
+    await expect(richEditor).toHaveCSS('outline-style', 'solid');
+    assert.ok(await richEditor.evaluate(element => Number.parseFloat(getComputedStyle(element).minBlockSize) > 0));
+    await page.setViewportSize({ width: 320, height: 720 });
+    await expect(option).toBeChecked();
+    await expect(label).toHaveCSS('display', 'flex');
+    await expect(external).toBeVisible();
+    await expect(cropperGrid).toHaveCSS('display', 'grid');
+    for (const control of [icon, external, option, cropperGrid]) {
+      const bounds = await control.boundingBox();
+      assert.ok(bounds && bounds.x >= 0 && bounds.x + bounds.width <= 320);
+    }
+    await page.setViewportSize({ width: 1280, height: 720 });
     fontSizes.push(await input.evaluate(element => getComputedStyle(element).fontSize));
     if (profile === 'guided') await page.getByRole('button', { name: 'Switch profile', exact: true }).click();
   }
   assert.notEqual(fontSizes[0], fontSizes[1]);
+  const translatedRegion = page.getByTestId('translated-region');
+  const message = page.getByTestId('scoped-message');
+  const cardToggle = translatedRegion.getByRole('button', { expanded: false });
+  const japanese = '/translations/ja-JP.json';
+  const arabic = '/translations/ar.json';
+  let releaseJapanese;
+  const japaneseResponse = new Promise(resolve => { releaseJapanese = resolve; });
+  await page.route(`**${japanese}`, async route => {
+    await japaneseResponse;
+    await route.fulfill({ json: { 'uiFoundation.dialog.closeAction': 'アプリの閉じる操作' } });
+  });
+  await page.route(`**${arabic}`, route => route.fulfill({ json: {
+    'uiFoundation.dialog.closeAction': 'uiFoundation.dialog.closeAction',
+    'uiFoundation.card.expand': '{title} — عرض التفاصيل',
+  } }));
+  try {
+    const japaneseRequested = page.waitForRequest(request => new URL(request.url()).pathname === japanese);
+    await page.getByRole('button', { name: 'Japanese', exact: true }).click();
+    await japaneseRequested;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ja-JP');
+    await expect(message).toHaveText('閉じる');
+    const arabicReceived = page.waitForResponse(response => new URL(response.url()).pathname === arabic);
+    await page.getByRole('button', { name: 'Arabic', exact: true }).click();
+    await arabicReceived;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ar');
+    await expect(translatedRegion).toHaveAttribute('dir', 'rtl');
+    await expect(message).toHaveText('Close');
+    await expect(cardToggle).toHaveText('Application card — عرض التفاصيل');
+    const japaneseReceived = page.waitForResponse(response => new URL(response.url()).pathname === japanese);
+    await input.focus();
+    releaseJapanese();
+    await japaneseReceived;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ar');
+    await expect(message).toHaveText('Close');
+    await expect(input).toBeFocused();
+    await page.getByRole('button', { name: 'Japanese', exact: true }).click();
+    await expect(message).toHaveText('アプリの閉じる操作');
+    await expect(cardToggle).toHaveText('展開: Application card');
+    await expect(translatedRegion).toHaveAttribute('dir', 'ltr');
+    await expect(translatedRegion.getByRole('heading', { name: 'Application card' })).toBeVisible();
+    await expect(input).toHaveValue('package draft');
+    assert.equal(await input.evaluate((element, previous) => element === previous, editor), true);
+    await expect(page.getByTestId('default-message')).toHaveText('Close');
+  } finally {
+    releaseJapanese();
+  }
   await expect(page.locator('ui-spreadsheet').getByRole('textbox', { name: 'C1', exact: true })).toHaveValue('5');
   await expect(page.locator('ui-pdf-viewer canvas')).toBeVisible({ timeout: 30_000 });
   await page.locator('ui-pdf-viewer summary').click();
@@ -154,7 +270,7 @@ try {
   await expect(page.locator('ui-map canvas')).toBeVisible();
   for (const expected of ['/assets/sheet-formula.worker.js', '/assets/pdf/pdf.worker.mjs', '/assets/maplibre/maplibre-gl-worker.mjs']) assert.ok(workers.includes(expected), `worker not started: ${expected}`);
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ strictAot: true, englishWithoutLocaleProvider: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
+  console.log(JSON.stringify({ strictAot: true, stylesWithoutTailwind: true, englishWithoutLocaleProvider: true, lazyLocaleAdapter: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
 } finally {
   await browser?.close();
   server.closeAllConnections();

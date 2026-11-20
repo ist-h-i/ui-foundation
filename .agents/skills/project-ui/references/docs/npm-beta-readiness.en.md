@@ -29,6 +29,8 @@ Copy all contents of npm `assets/third-party/` into delivered assets. When shipp
 
 ## Upgrade and recovery
 
+[Stable message migration from beta.4](ui-message-migration.en.md)
+
 1. Save package version, lockfile, YAML, complete generated directory and `.agents/skills/project-ui/` in one Git commit/backup. Keep business code/input data outside generated regions.
 2. Read release notes for resync requirements, YAML/dependency/API changes, app actions and recovery point before upgrading the CLI. Updating npm alone does not update copied code.
 3. Run only one operation per root. Inspect `sync --dry-run` differences, Skill, notices and manifest. Resolve edited/unowned-file conflicts rather than forcing overwrite.

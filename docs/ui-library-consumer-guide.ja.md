@@ -18,10 +18,10 @@
 
 ### パッケージを導入する
 
-既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。ui-foundationはAngularアプリ自体を作成するscaffoldではありません。
+既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。候補版の公開前は、npmの版指定の代わりに `npm install --save-dev --save-exact /path/to/ui-foundation.tgz` でtarballを導入します。
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init --language ja
 ```
@@ -123,7 +123,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 ## AIに読み込ませて開発する
 
-標準のAI向けSkill・参照手順・生成contextの説明は英語です。人間向けのこのガイドやAPI・設計資料には日英版を用意し、標準Skillは英語版を参照します。既存のSKILL.ja.mdは互換性のため残します。アプリがYAMLに記述した文脈やラベルは原文を保持します。
+標準のAI向けSkill・参照手順・生成contextの説明は英語です。人間向けのこのガイドやAPI・設計資料には日英版を用意し、標準Skillは英語版を参照します。アプリに同期される入口は `SKILL.md` です。アプリがYAMLに記述した文脈やラベルは原文を保持します。
 
 ファイルを参照できる開発AIに、生成したSkillと設定を読み込ませて画面の作成・修正を依頼できます。ui-foundationは、AIが提供部品と採用したデザイン設定を使うための開発指針を生成します。AIモデルの起動・選択やAPIへの接続は行いません。
 
@@ -427,43 +427,17 @@ MapView の既定 style は外部データを持たない背景で、マーカ�
 
 ## Locale、文言、RTL の責任
 
-公開 API は `UI_LOCALE`、`provideUiLocale`、`injectUiLocale`、`UiLocaleScope`、`injectUiText`、`UiMessagePipe`、`uiMessage` です。`UiText` という公開型・export はありません。
+`provideUiLocale` でアプリ全体にロケールを渡せます。一部の領域に適用する場合は、`UiLocaleScope` を standalone imports に追加し、`[uiLocale]` に設定を渡します。`injectUiLocale()` で現在の設定を取得できます。
 
-```ts
-import {Directive, inject, signal} from '@angular/core';
-import {bootstrapApplication} from '@angular/platform-browser';
-import {
-  UI_LOCALE, provideUiLocale, type UiLocaleOptions,
-} from './.ui/generated/angular/index';
+`init` は `default_language: en`、`init --language ja` は `default_language: ja` を保存します。この項目のない既存設定は日本語を引き継ぎます。YAMLを変えた場合は再同期します。実行時は `locale` の言語が日本語なら標準の日本語文言を表示し、それ以外の言語では標準の英語文言を表示します。ブラウザー言語から設定を推測することはありません。
 
-const locale = signal<UiLocaleOptions>({
-  locale: 'ja-JP',
-  timeZone: 'Asia/Tokyo',
-  dateInputFormat: 'dd/MM/yyyy',
-});
-bootstrapApplication(App, {providers: [...provideUiLocale(locale)]});
+外部翻訳を接続すると、ライブラリは安定IDと型付きの名前付き引数を `UiMessageRequest` に入れ、アプリの `translate(request, locale)` を呼びます。対象は部品に備わる操作・状態・診断などの文言です。業務ラベル・候補名・本文・APIエラーはアプリ側で翻訳します。辞書を読み込んでいる間、値が空のとき、または翻訳処理がIDをそのまま返したときは、部品の標準文言が表示されます。
 
-@Directive({selector: '[localeProbe]', standalone: true})
-export class LocaleProbe {
-  readonly resolvedLocale = inject(UI_LOCALE); // Signal<UiLocaleResolved>
-}
-```
+[辞書を遅延取得する接続例](../skills/ui-development/references/examples/locale-adapter.ts)を、`.ui/` と同じ階層にコピーします。アプリの生成先や配信先が異なる場合は import と辞書URLを合わせます。アプリ全体には `options` の Signal を `provideUiLocale` に渡し、画面の一部なら `options()` を `[uiLocale]` に渡します。言語切り替えの操作から `switchLanguage` を呼び、利用言語ごとのJSONを配信します。このファイルをnpm配布物から取り出し、隔離したAngularアプリでコンパイルして実操作を検証します。
 
-`App` は利用アプリの standalone root です。アプリが source signal を所有し、`locale.set(...)` で表示設定を変更できます。既定は `locale: 'ja-JP'`、`direction: null`、`timeZone: null`、`dateInputFormat: 'native'` です。ブラウザー言語・time zone・生成 context の文章から設定を推測しません。Scheduler など time zone が必要な用途にはアプリが明示します。
+辞書には、例えば `uiFoundation.dialog.closeAction` に対応する訳文を登録します。`uiFoundation.card.expand` なら `「{title}」の詳細を表示` のように引数名を使えます。語順、単数・複数形は文全体で決めます。言語と方向は辞書の取得を待たずに切り替わります。遅く届いた辞書は、その辞書の言語にだけ適用されます。入力済みの内容や編集中の部品を作り直す必要はありません。
 
-`UiLocaleOptions` の `civilDateOptions`、`dateTimeOptions`、`numberOptions` は Intl の表示 option、`messages` は部品所有の日本語 fallback 文言を key にする辞書です。civil date は日付の意味を維持し、time zone を跨いで別日へ変換しません。date-time の zone は `timeZone` に指定し、`dateTimeOptions.timeZone` へ重ねて指定しません。NumberInput などの明示 input は DI defaults より優先します。NumberInput の表示 locale と、native 数値 editor の入力契約は別です。
-
-新規設定の説明文は英語が既定です。日本語で作成する場合は `init --language ja` を使います。標準Skillは `SKILL.md`、日本語の全文は `SKILL.ja.md` です。`init` は `default_language: en`、`init --language ja` は `default_language: ja` を保存し、生成部品の初期言語・Intl localeを選びます。項目のない既存設定は日本語を維持します。設定変更後は再同期してください。既存アプリを英語に移す場合は、アプリ所有の翻訳と数値・日付の表示も検証します。time zoneやnative入力書式、業務データは変更しません。旧CLIは新項目を拒否するため、rollbackでは保存したYAML・パッケージ・生成物を一緒に戻します。
-
-部品の文言を英語にするには、生成済みの公開入口から `uiEnglishMessages` を import し、`provideUiLocale({locale: 'en-US', messages: uiEnglishMessages})` を渡します。文言を調整する場合は `{...uiEnglishMessages, '検索': 'Find'}` のように辞書を上書きできます。`locale` は日付・数値などの書式を選び、`messages` は部品の文言を選びます。英語の親scope内で日本語へ戻す場合は、同じ公開入口の `uiJapaneseMessages` を `messages` に指定します。空辞書は親の翻訳を継承するため、日本語への切り替えにはなりません。
-
-```html
-<section [uiLocale]="{locale: 'de-DE', direction: 'rtl', messages: {'検索': 'Suchen'}}">
-  <!-- この領域の部品は同じ UI_LOCALE と public CDK Directionality を使う -->
-</section>
-```
-
-`UiLocaleScope` を standalone imports に追加して使います。辞書は親の設定を継承して指定 key を上書きします。部品の構造上の説明・操作・状態・fallback は `injectUiText` / `UiMessagePipe` で扱い、利用アプリが渡す label、domain データ、保存エラーの文章はアプリが翻訳・管理します。例えば app の「この申請は承認できません」というエラーを、部品の辞書が勝手に置き換えることはありません。
+子領域は親の翻訳処理を継承します。子だけで翻訳処理を指定するか、`translate: null` で標準文言を使えます。`locale` は Intl の書式にも反映されます。業務タイムゾーンは `timeZone` で明示します。暦日はタイムゾーンで別日へ変換しません。明示した部品の入力設定は共通設定より優先されます。[ランタイム仕様](ui-library-runtime-foundation-spec.ja.md) · [日本語キーからの移行](ui-message-migration.ja.md)
 
 native のアプリ所有 `lang` / `dir`、祖先の方向、public CDK `Dir` はアプリの指定を尊重します。scope は自分が設定した属性だけを破棄時に戻し、アプリが変更した属性を保持します。子へ提供する CDK `Directionality` は `.value`、`.valueSignal()`、`.change` の公開契約を使います。RTL の意味は部品の表示だけでなく、アプリの document/画面構成・入力内容にも合わせます。
 

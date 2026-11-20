@@ -1,6 +1,6 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {computed as localeComputed} from '@angular/core';
-import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
+import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { Dialog, type DialogCloseRequest, type DialogResult } from './dialog';
@@ -8,11 +8,11 @@ import { ShortcutHint } from './display';
 import { Icon } from './icon';
 import { commandShortcut, matchesCommandShortcut, searchCommands, validNavigationId, type PaletteCommand } from './navigation-model';
 /** The palette emits invocation intent. Execution, result and persistent history belong to the app. */
-@Component({ selector: 'ui-command-palette', standalone: true, imports: [ActionControl, Dialog, ShortcutHint, Icon,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-command-palette', standalone: true, imports: [ActionControl, Dialog, ShortcutHint, Icon,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<dialog uiDialog #dialog [id]="controlId()" [label]="label()" [open]="opened()" (openChange)="setOpen($event)" [showHeader]="false" [closable]="false" [showFooter]="false" [busy]="busy()" [busyLabel]="uiEffective_busyLabel()" [size]="size()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)">
- <div #controls class="ui-palette-controls"><div class="ui-palette-search-heading"><label [for]="controlId()+'-search'">{{uiEffective_searchLabel()}}</label><button uiAction [disabled]="busy()" (click)="dismiss()" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button></div><input #search autofocus class="ui-field-control" type="search" [id]="controlId()+'-search'" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="opened()" [attr.aria-controls]="controlId()+'-results'" [attr.aria-activedescendant]="activeId()?optionId(activeId()!):null" autocomplete="off" (focus)="revealActive()" [value]="currentQuery()" (input)="searchChanged($event)" (keydown)="key($event)">
- <p class="ui-palette-summary" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():results().length+('件のコマンド' | uiMessage)}} </p></div>
- @if(error()){<div #recovery class="ui-palette-recovery"><p #errorText role="alert" aria-atomic="true" tabindex="0" class="ui-palette-error">{{error()}}</p><button #retry uiAction [disabled]="busy()||!activeCommand()||!!activeCommand()?.disabled" (click)="invoke(activeId())" [attr.aria-label]="uiEffective_retryLabel()">{{retryLabel()??('再試行' | uiMessage)}}</button></div>}
+ <div #controls class="ui-palette-controls"><div class="ui-palette-search-heading"><label [for]="controlId()+'-search'">{{uiEffective_searchLabel()}}</label><button uiAction [disabled]="busy()" (click)="dismiss()" [attr.aria-label]="'uiFoundation.commandPalette.closeDialog' | uiStableMessage">{{'uiFoundation.commandPalette.close' | uiStableMessage}}</button></div><input #search autofocus class="ui-field-control" type="search" [id]="controlId()+'-search'" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="opened()" [attr.aria-controls]="controlId()+'-results'" [attr.aria-activedescendant]="activeId()?optionId(activeId()!):null" autocomplete="off" (focus)="revealActive()" [value]="currentQuery()" (input)="searchChanged($event)" (keydown)="key($event)">
+ <p class="ui-palette-summary" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():('uiFoundation.commandPalette.commandsCount' | uiStableMessage:{count:results().length})}} </p></div>
+ @if(error()){<div #recovery class="ui-palette-recovery"><p #errorText role="alert" aria-atomic="true" tabindex="0" class="ui-palette-error">{{error()}}</p><button #retry uiAction [disabled]="busy()||!activeCommand()||!!activeCommand()?.disabled" (click)="invoke(activeId())" [attr.aria-label]="uiEffective_retryLabel()">{{retryLabel()??('uiFoundation.commandPalette.retry' | uiStableMessage)}}</button></div>}
  <div [id]="controlId()+'-results'" role="listbox" [attr.aria-label]="uiEffective_resultsLabel()" class="ui-palette-results">
  @for(group of groups();track group.name){<div role="group" [attr.aria-labelledby]="groupId(group.name)"><h3 role="presentation" aria-hidden="true" [id]="groupId(group.name)">{{group.name}}</h3>
  @for(command of group.items;track command.id){<div role="option" [id]="optionId(command.id)" [attr.data-command-id]="command.id" [attr.aria-selected]="activeId()===command.id" [attr.aria-disabled]="busy()||command.disabled?'true':null" (mousedown)="$event.preventDefault()" (click)="invoke(command.id)">@if(command.icon){<ui-icon [name]="command.icon" />}<div class="ui-palette-label"><span>{{command.label}}</span>@if(command.description){<span class="ui-palette-description">{{command.description}}</span>}</div>@if(command.shortcut){<ui-shortcut-hint [keys]="shortcutKeys(command.shortcut)" />}</div>}
@@ -22,7 +22,7 @@ import { commandShortcut, matchesCommandShortcut, searchCommands, validNavigatio
  </dialog>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}label{display:block;font-weight:var(--ui-weight-control);margin:0;min-inline-size:0;flex:1 1 calc(var(--ui-text-body) * 4);}.ui-palette-search-heading{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);margin-block-end:var(--ui-space-control-gap);}.ui-palette-controls{position:sticky;inset-block-start:0;z-index:1;display:flow-root;background:var(--ui-color-surface);margin-block-end:var(--ui-space-control-gap);}.ui-palette-summary{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}.ui-palette-recovery{position:sticky;z-index:1;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:var(--ui-space-control-gap);overflow:hidden;background:var(--ui-color-surface);margin-block-end:var(--ui-space-control-gap);}.ui-palette-recovery button:focus-visible{outline-offset:calc(-1 * var(--ui-border-focus));}.ui-palette-error{min-block-size:0;margin:0;color:var(--ui-color-danger);overflow:auto;overscroll-behavior:contain;}.ui-palette-error:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}.ui-palette-recovery[data-recovery-scroll='true']{display:block;overflow:auto;overscroll-behavior:contain;}.ui-palette-recovery[data-recovery-scroll='true'] .ui-palette-error{overflow:visible;margin-block-end:var(--ui-space-control-gap);}.ui-palette-results{max-block-size:calc(100dvh / 2);overflow:auto;overscroll-behavior:contain;}h3{font-size:var(--ui-text-small);color:var(--ui-color-muted);margin-block:var(--ui-space-control-gap);}[role='option']{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);min-block-size:var(--ui-size-control);padding:var(--ui-space-control-y) var(--ui-space-control-x);border:var(--ui-border-control) solid transparent;border-radius:var(--ui-radius-control);cursor:pointer;overflow-wrap:anywhere;}[role='option'][aria-selected='true']{border-color:var(--ui-color-focus);background:var(--ui-color-background);}[role='option'][aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}.ui-palette-label{flex:1 1 calc(var(--ui-text-body) * 4);min-inline-size:0;}.ui-palette-description{display:block;font-size:var(--ui-text-small);color:var(--ui-color-muted);}` })
 export class CommandPalette {
- protected readonly uiText_CommandPalette=injectUiText();
+ protected readonly uiText_CommandPalette=injectUiMessageText();
  protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=localeComputed(()=>this.locale()??this.uiLocaleDefaults().locale);
 
     readonly controlId = input.required<string>();
@@ -42,17 +42,17 @@ export class CommandPalette {
     readonly busy = input(false, { transform: booleanAttribute });
     readonly error = input('');
     readonly busyLabel = input<string>();
- protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_CommandPalette('コマンドを実行しています。'));
+ protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_CommandPalette("uiFoundation.commandPalette.runningTheCommand"));
     readonly searchLabel = input<string>();
- protected readonly uiEffective_searchLabel=uiLocaleComputed(()=>this.searchLabel()??this.uiText_CommandPalette('コマンドを検索'));
+ protected readonly uiEffective_searchLabel=uiLocaleComputed(()=>this.searchLabel()??this.uiText_CommandPalette("uiFoundation.commandPalette.searchCommands"));
     readonly resultsLabel = input<string>();
- protected readonly uiEffective_resultsLabel=uiLocaleComputed(()=>this.resultsLabel()??this.uiText_CommandPalette('実行できるコマンド'));
+ protected readonly uiEffective_resultsLabel=uiLocaleComputed(()=>this.resultsLabel()??this.uiText_CommandPalette("uiFoundation.commandPalette.availableCommands"));
     readonly defaultGroup = input<string>();
- protected readonly uiEffective_defaultGroup=uiLocaleComputed(()=>this.defaultGroup()??this.uiText_CommandPalette('コマンド'));
+ protected readonly uiEffective_defaultGroup=uiLocaleComputed(()=>this.defaultGroup()??this.uiText_CommandPalette("uiFoundation.commandPalette.commandsForCommandPalette"));
     readonly emptyLabel = input<string>();
- protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_CommandPalette('該当するコマンドはありません。'));
+ protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_CommandPalette("uiFoundation.commandPalette.noMatchingCommands"));
     readonly retryLabel = input<string>();
- protected readonly uiEffective_retryLabel=uiLocaleComputed(()=>this.retryLabel()??this.uiText_CommandPalette('選択中のコマンドを再試行'));
+ protected readonly uiEffective_retryLabel=uiLocaleComputed(()=>this.retryLabel()??this.uiText_CommandPalette("uiFoundation.commandPalette.retrySelectedCommand"));
     readonly size = input<'small' | 'normal' | 'large' | 'full'>('large');
     readonly commandRequested = output<PaletteCommand>();
     readonly closeRequested = output<DialogCloseRequest>();

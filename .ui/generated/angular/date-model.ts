@@ -1,3 +1,7 @@
+import { uiMessageText, type UiMessageText } from './stable-messages';
+
+const japaneseText = uiMessageText(() => 'ja-JP');
+
 /** Calendar dates use ISO civil strings, never UTC-to-local conversions. */
 export function civilDate(value:string|null|undefined):Date|null{
  if(!value||!/^\d{4}-\d{2}-\d{2}$/.test(value))return null;
@@ -31,15 +35,15 @@ export function calendarDays(month:string,weekStartsOn:number):{date:string;day:
  const offset=(first.getUTCDay()-weekStartsOn+7)%7;
  return Array.from({length:42},(_,index)=>{const date=new Date(first);date.setUTCDate(1-offset+index);if(date.getUTCFullYear()<1||date.getUTCFullYear()>9999)return {date:'',day:0,inMonth:false};const iso=civilISO(date);return {date:iso,day:date.getUTCDate(),inMonth:iso.startsWith(month+'-')};});
 }
-export function dateRangeError(range:{start:string|null;end:string|null},min:string|null,max:string|null,maxDays:number|null,disabled:((date:string)=>boolean)|null):string|null{
- if(!range.start||!range.end)return '開始日と終了日を選択してください。';
- if(!civilDate(range.start)||!civilDate(range.end))return '有効な日付を入力してください。';
- if(range.start>range.end)return '終了日は開始日以降を指定してください。';
- if(min&&range.start<min||max&&range.end>max)return '選択できる期間を確認してください。';
+export function dateRangeError(range:{start:string|null;end:string|null},min:string|null,max:string|null,maxDays:number|null,disabled:((date:string)=>boolean)|null,text:UiMessageText=japaneseText):string|null{
+ if(!range.start||!range.end)return text('uiFoundation.dateRangePicker.endpointsRequired');
+ if(!civilDate(range.start)||!civilDate(range.end))return text('uiFoundation.dateRangePicker.invalidEndpoint');
+ if(range.start>range.end)return text('uiFoundation.dateRangePicker.invalidOrder');
+ if(min&&range.start<min||max&&range.end>max)return text('uiFoundation.dateRangePicker.outOfBounds');
  const length=Math.round((civilDate(range.end)!.getTime()-civilDate(range.start)!.getTime())/86400000)+1;
- if(maxDays!==null&&(!Number.isSafeInteger(maxDays)||maxDays<=0||length>maxDays))return '選択した期間が上限を超えています。';
+ if(maxDays!==null&&(!Number.isSafeInteger(maxDays)||maxDays<=0||length>maxDays))return text('uiFoundation.dateRangePicker.overDayLimit');
  // Iterate actual civil days; disabled dates within the range cannot be silently included.
- if(disabled)for(let date=range.start;date<=range.end;){if(disabled(date))return '選択できない日が期間に含まれています。';const next=addCivilDays(date,1);if(next===date)break;date=next;}
+ if(disabled)for(let date=range.start;date<=range.end;){if(disabled(date))return text('uiFoundation.dateRangePicker.unavailableDay');const next=addCivilDays(date,1);if(next===date)break;date=next;}
  return null;
 }
 export function timeSeconds(value:string):number|null{const match=/^(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(value);if(!match)return null;const h=Number(match[1]),m=Number(match[2]),s=Number(match[3]??0);return h<24&&m<60&&s<60?h*3600+m*60+s:null;}

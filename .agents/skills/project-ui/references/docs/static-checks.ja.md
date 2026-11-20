@@ -43,6 +43,62 @@ node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.
 
 同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定やパッケージ版を変更し、`./node_modules/.bin/ui-foundation sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
 
+## 翻訳漏れの検査
+
+安定メッセージ ID を使うアプリで、`checks.i18n` を追加します。旧方式を固定しているアプリではこのキーを省略します。検査対象は `checks.source_roots` 内の Angular テンプレートと TypeScript、および指定した辞書です。
+
+```yaml
+checks:
+  source_roots: [src]
+  i18n:
+    functions: [t]
+    pipes: [translate]
+    dictionaries:
+      - file: src/orders.messages.json
+        complete: true
+```
+
+実際に使う翻訳関数と pipe を登録します。関数には `t('order.count', {count: 3})` のように ID と名前付き引数を渡します。pipe には左側に ID、コロンの後に名前付き引数を渡します。独自部品の表示用入力も検査する場合は `display_bindings: [toastMessage]` のように指定します。
+
+アプリ所有の ID は、平坦な JSON にまとめます。文字列の `{name}` は必須の引数名を表します。型まで検査する場合は `parameters` に `string`、`number`、`boolean`、`null` のいずれかを指定します。基盤の ID と引数は、配布物に含まれる定義で検査します。アプリ側の辞書は指定したファイルを合わせて一つの範囲として調べます。特定の言語の辞書に欠落がないかを調べる場合は、その言語の完全な辞書だけを指定してください。
+
+```json
+{
+  "order.save": "注文を保存",
+  "order.count": { "parameters": { "count": "number" } }
+}
+```
+
+次の例ではボタンの表示と読み上げに直書き警告が出ます。`count` には型不一致のエラーが出ます。
+
+<!-- i18n-check: before -->
+```html
+<button data-testid="save-order" aria-label="Save order">保存</button>
+<p>{{ t('order.count', {count: '3'}) }}</p>
+<p>{{ 'uiFoundation.actionControl.busy' | uiStableMessage }}</p>
+<p>{{ order.reference }}</p>
+```
+
+アプリの辞書を経由して文言を表示し、件数は数値で渡します。Angular の翻訳機能を使う箇所では、`i18n` や `i18n-aria-label` も利用できます。
+
+<!-- i18n-check: after -->
+```html
+<button data-testid="save-order" [attr.aria-label]="t('order.save')">{{ 'order.save' | translate }}</button>
+<p>{{ t('order.count', {count: 3}) }}</p>
+<p>{{ 'uiFoundation.actionControl.busy' | uiStableMessage }}</p>
+<p>{{ order.reference }}</p>
+```
+
+| 診断 | 対応 |
+| --- | --- |
+| `i18n-raw-text` 警告 | 表示や読み上げに使う固定文言を翻訳経由にします。サーバーの状態コードに対応してアプリ側で定義した固定エラー文言も対象です。テスト ID、ルート設定、受信データそのものは対象外です。 |
+| `i18n-message-reference`・`i18n-message-arguments` エラー | ID、指定した辞書、呼び出し側の引数名と型を確認します。全体を表す辞書から ID を削除すると、テンプレートが同じでも検査は失敗します。 |
+| `i18n-fragment` 警告 | 文全体を一つのメッセージとして登録し、差し込む値は名前付き引数で渡します。 |
+| `i18n-unconfirmed` 警告 | 実行時の ID、引数、読み込まれる辞書を確認します。利用できるメッセージの一部だけを検査するときは、指定する辞書に `complete: false` を設定します。 |
+| `i18n-legacy-key` エラー | 基盤の安定 ID、または登録したアプリ用の翻訳経路とアプリ所有の ID を使います。 |
+
+YAML を変更したら、インストール済みの CLI で `sync` を実行し、`check --format json` で診断を確認します。本体 CLI と生成済み検査器は同じソース検査を行います。既存エラーは確認済みの基準を使って段階的に直し、意図的に残す箇所の例外には理由と再確認条件を記録します。遅延ロードの辞書と実行中の言語切替は利用アプリで確認してください。
+
 ## ワークスペースの検査範囲と既存違反
 
 プロジェクトルートに `angular.json` があるときは、登録された各プロジェクトの `sourceRoot`（省略時は `root`）を `checks.source_roots` と照合します。範囲外のプロジェクトは名前とパスを `uncovered-project` 警告で表示します。検査範囲は設定で指定したルートです。意図的に対象外とする場合は、`checks.excluded_projects` に名前と理由を記録します。

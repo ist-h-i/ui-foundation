@@ -58,14 +58,16 @@ npmパッケージはCLIと生成元を配布し、利用先へAngularのTypeScr
 
 ## 言語の選択
 
-人間向けのREADME・利用ガイド・設計・詳細APIは英語主・日本語副で用意します。AI向けの標準Skill・参照手順・生成contextの説明は英語です。既存の `.agents/skills/project-ui/SKILL.ja.md` は互換性のため残し、通常は `SKILL.md` を読み込みます。新規設定は `init` が `default_language: en` を保存し、部品も明示providerなしで英語を既定にします。`ui-foundation init --language ja` は `default_language: ja` と日本語の説明文を保存します。`default_language` のない既存設定は、再同期しても部品の日本語既定値を維持します。既存アプリを英語へ移す場合だけ `default_language: en` を追記し、文言・日付や数値の書式・業務フローを検証します。
+README、利用ガイド、設計・API資料は日英で用意します。AI向けの入口は英語の `.agents/skills/project-ui/SKILL.md` です。同期後に、隣にある `project-context.md` と設定YAMLも参照します。
 
-部品は `provideUiLocale` と同梱の `uiEnglishMessages` / `uiJapaneseMessages` で表示言語を選びます。日付・数値の `locale` と文言の `messages` を併せて更新します。[利用手順](docs/ui-library-consumer-guide.ja.md)を参照してください。
+`init` は `default_language: en`、`init --language ja` は `default_language: ja` を保存します。この項目のない既存設定は日本語の既定値を引き継ぎます。実行中に言語を切り替えるときは、アプリの言語を `provideUiLocale` に渡します。部品の定型文言は安定IDと名前付き引数で指定し、業務ラベル・本文・APIエラーはアプリが翻訳します。[外部翻訳との接続と切り替え](docs/ui-library-consumer-guide.ja.md#locale文言rtl-の責任) · [beta.4からの移行](docs/ui-message-migration.ja.md)
 
 ## 使い始める
 
+npmに公開された版を指定します。公開前に試す場合は[候補版のtarballをインストール](docs/ui-library-consumer-guide.ja.md)します。
+
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
 ```
 
 ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。

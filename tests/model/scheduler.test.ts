@@ -1,3 +1,4 @@
+import { uiMessageText } from "../../.ui/generated/angular/stable-messages";
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {schedulerConfigurationProblem,schedulerDays,schedulerEventProblem,schedulerIdentity,schedulerInstant,schedulerLayout,schedulerLocal,schedulerMoveProblem,schedulerNavigate,type SchedulerConfiguration,type SchedulerEvent,type SchedulerMoveDraft} from '../../.ui/generated/angular/scheduler-model';
@@ -77,3 +78,16 @@ test('supported civil-year boundaries do not clamp the time band into the wrong 
 });
 test('move proposals keep spring gap and backwards fold times for app interpretation',()=>{assert.equal(schedulerMoveProblem(event,draft,resources),null);const fold={...draft,localStart:'2026-11-01T01:30:00',localEnd:'2026-11-01T01:15:00',startDisambiguation:'earlier' as const,endDisambiguation:'later' as const};assert.equal(schedulerMoveProblem(event,fold,resources),null);assert.equal(fold.localEnd,'2026-11-01T01:15:00');assert.match(schedulerMoveProblem(event,{...draft,timeZone:'Missing/Zone'},resources)??'',/タイムゾーン/);assert.match(schedulerMoveProblem(event,{...draft,resourceIds:['locked']},resources)??'',/リソース/);});
 test('malformed configuration and identities are explicit failures',()=>{assert.match(schedulerConfigurationProblem({...base,dayStart:'17:00',dayEnd:'09:00'})??'',/時間帯/);assert.deepEqual(schedulerDays({...base,timeZone:'Missing/Zone'}),[]);assert.throws(()=>schedulerIdentity([event,event],resources),/unique stable/);assert.throws(()=>schedulerIdentity([event],[resources[0]!,resources[0]!]),/unique resource/);});
+
+test('scheduler translates validation and unknown resource labels by ID while preserving application labels', () => {
+ const reference = { ...resources[0], label: 'リソース未割当' };
+ const source = { ...event, resourceIds: [reference.id, 'missing {id}'] };
+ const text = uiMessageText(() => 'en-US', () => request => {
+  if (request.id === 'uiFoundation.scheduler.unknownResource') return `ID: ${request.parameters.id}`;
+  return undefined;
+ });
+ const { entries } = schedulerLayout([source], [reference], { ...base, locale: 'en-US' }, text);
+ assert.equal(entries[0].event, source);
+ assert.match(entries[0].problem ?? '', /missing or duplicate resources/);
+ assert.equal(entries[0].resourceText, 'リソース未割当 and ID: missing {id}');
+});

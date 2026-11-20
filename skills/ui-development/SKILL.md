@@ -5,15 +5,13 @@ description: Design and implement UI for this project using its persona profiles
 
 # Project UI development
 
-[Legacy Japanese workflow](SKILL.ja.md)
-
-Use these English instructions and English references for AI-assisted UI design, implementation, and configuration. The legacy Japanese Skill entry remains for existing consumers; human-facing guides provide English and Japanese editions.
+Use these English instructions and English references for AI-assisted UI design, implementation, and configuration. Human-facing guides provide English and Japanese editions.
 
 ## Read the app context
 
 After sync, read the generated Skill's adjacent `project-context.md` and the app's source YAML. Identify the user goal, usage constraints, active profile, and generated output path. Use the profile's `guidance` as design context. Make concrete token changes in the app's YAML.
 
-- Follow the integration steps for dependencies, assets, English messages, and updates. [English consumer guide](../../docs/ui-library-consumer-guide.en.md)
+- Follow the integration steps for dependencies, assets, translations, and updates. [English consumer guide](../../docs/ui-library-consumer-guide.en.md)
 - Check token roles and generated-file ownership before changing configuration. [Design contract](../../docs/design.en.md)
 - Confirm inputs, outputs, and interaction behavior for the components you use. [Component contracts](../../docs/ui-components.en.md) · [Public API catalog](../../docs/ui-library-api.json)
 - For advanced forms, locale scopes, RTL, and specialist components, check the runtime contracts. [Runtime integration contracts](references/ui-library-runtime.md)
@@ -33,11 +31,11 @@ After sync, the generated Skill and its references are available under `.agents/
 
 Before adding a screen or shared component, compare its path with `checks.source_roots` in the app YAML. Use the generated public entry points and app-owned components or wrappers. [Source coverage and import diagnostics](../../docs/static-checks.en.md)
 
-Check the standard component’s public API for variants, state, and appearance. Set page layout and custom component styles in app-owned files using semantic tokens. [Consumer styling example](../../docs/ui-library-consumer-guide.en.md#css-and-distribution-assets)
+Check the standard component’s public API for variants, state, and appearance. Use the [component-specific verification guide](references/component-checks.md) for specialized interactions. Set page layout and custom component styles in app-owned files using semantic tokens. [Consumer styling example](../../docs/ui-library-consumer-guide.en.md#css-and-distribution-assets)
 
 Use the generated `angular/core.ts` entry for the action, card, and native form-field APIs it exports. Use `angular/index.ts` for other components. Load the global styles described in the consumer guide. For icons, install the compatible `@lucide/angular` version and register the icons the app uses with `provideUiIcons`.
 
-New configurations use `default_language: en`, so built-in text defaults to English without a provider. Japanese starters use `ja`; existing YAML without this field stays Japanese after sync. Do not change an existing app's language implicitly. For a runtime English override, pass `{ locale: 'en-US', messages: uiEnglishMessages }` to `provideUiLocale`, with both exports imported from the generated public entry point. Use the app's own translation system for labels, content, and business errors. Keep an app-controlled locale and update the dictionary alongside it when switching languages. A scope can override parent settings through `UiLocaleScope`. For Japanese text, use `{ locale: 'ja-JP', messages: uiJapaneseMessages }` from the same entry point. Supply the Japanese dictionary explicitly in a Japanese child of an English scope; an empty dictionary inherits the parent translations.
+Before choosing a translation key, identify who owns the text. Use the app's translation system for business labels, labels supplied via component inputs, data, and backend errors. For built-in controls, descriptions, and feedback, use the stable `UiMessageRequest` ID and its typed named arguments. Translate complete sentences, including count variations. Read the [working dictionary adapter](references/examples/locale-adapter.ts) and [language switch guide](../../docs/ui-library-consumer-guide.en.md#select-english-component-messages) for app-owned loading and built-in fallbacks. Leave drafts and in-flight operations in place during a language change. New configurations default to English; Japanese starters and YAML that omits `default_language` keep Japanese.
 
 Check added display and accessible copy against the app’s translation configuration. [Translation checks and fixes](references/i18n-check.md)
 

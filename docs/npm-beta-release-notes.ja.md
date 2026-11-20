@@ -2,7 +2,13 @@
 
 [English](npm-beta-release-notes.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.4`までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）。第三者の条件は保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.5` 候補版までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者の条件は保持します。
+
+## beta.5 の破壊的変更
+
+ライブラリ文言を安定IDと型付きの名前付き引数で指定します。標準の日英訳は実行時のロケールで選ばれます。アプリは外部翻訳を接続してライブラリ文言を上書きでき、業務文言は引き続きアプリが翻訳します。旧日本語キーの辞書と旧パイプを廃止し、AI向けの入口は英語の `SKILL.md` に一本化します。
+
+従来の辞書を使い続ける場合は `0.1.0-beta.4` と対応するアプリの状態を固定してください。独自辞書を移す準備ができたら、beta.5 を明示して導入・同期します。候補版の配布タグは `next` です。`latest` の扱いは、公開版を検証した後に別途判断します。[旧キーの対応表と移行・復旧手順](ui-message-migration.ja.md)
 
 ## beta.4: AI参照の英語化と人間向け文書の日英対応
 

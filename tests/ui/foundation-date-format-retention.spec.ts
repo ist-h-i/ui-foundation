@@ -25,19 +25,19 @@ for(const profile of ['guided','dense'] as const){
   await start.fill('2026-02-30');
   await page.evaluate(()=>(window as any).__stage.rootLocale.set({locale:'en-US',dateInputFormat:'native'}));
   await expect(start).toHaveValue('2026-02-30');await expect(start).toHaveAttribute('type','text');await expect(page.locator('#range-status')).toHaveText('INVALID');
-  await picker.getByRole('button',{name:'期間の開始日をクリア',exact:true}).click();
+  await picker.getByRole('button',{name:'Clear 期間 start date',exact:true}).click();
   await expect(start).toHaveValue('');await expect(start).toHaveAttribute('type','date');
   expect(await page.evaluate(()=>!!(window as any).__stage.range.errors?.dateRangeDraft)).toBe(false);
   await expect(page.locator('#range-value')).toHaveText('{"start":null,"end":"2026-02-07"}');
   // Clearing both endpoints restores an optional, empty, valid range.
-  await range.getByRole('button',{name:'期間をクリア',exact:true}).click();await expect(page.locator('#range-status')).toHaveText('VALID');
+  await range.getByRole('button',{name:'Clear date range',exact:true}).click();await expect(page.locator('#range-status')).toHaveText('VALID');
   await expect(page.locator('#range-value')).toHaveText('{"start":null,"end":null}');
   await page.evaluate(()=>{const app=(window as any).__stage;app.range.reset(app.initialRange);});
   await expect(start).toHaveValue('2026-02-01');await expect(start).toHaveAttribute('type','date');
   await page.evaluate(()=>(window as any).__stage.rootLocale.set({locale:'en-US',dateInputFormat:'dd/MM/yyyy'}));
   await start.fill('31/02/2026');
   await page.evaluate(()=>(window as any).__stage.rootLocale.set({locale:'en-US',dateInputFormat:'yyyy-MM-dd'}));
-  await picker.getByRole('button',{name:'期間の開始日のカレンダーを開く',exact:true}).click();
+  await picker.getByRole('button',{name:'Open calendar for 期間 start date',exact:true}).click();
   await page.locator('dialog:modal button[data-date="2026-02-03"]').click();
   await expect(start).toHaveValue('2026-02-03');await expect(page.locator('#range-status')).toHaveText('VALID');
   await expect(page.locator('#range-value')).toHaveText('{"start":"2026-02-03","end":"2026-02-07"}');

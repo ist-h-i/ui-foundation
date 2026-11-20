@@ -179,7 +179,7 @@ Descriptions の値の差替えには `DescriptionTemplate` を使います。Ic
 
 ## 共通の言語・方向・プロファイル
 
-`UiLocaleScope`（`[uiLocale]`）、`UiMessagePipe`、`provideUiLocale` などで、ライブラリ文言・数値や日付の表示・方向を供給します。業務ラベルや ID の自動翻訳ではありません。生成したプロファイルは `data-ui-profile` で適用し、部品と画面は用途別セマンティックトークンを使います。[共通契約](ui-library-runtime-foundation-spec.ja.md)を参照してください。
+`provideUiLocale` と `UiLocaleScope`（`[uiLocale]`）で、ライブラリ文言、数値や日付の書式、表示方向を設定します。部品の文言を上書きするときは安定IDと名前付き引数を使います。業務ラベルやデータはアプリが翻訳します。[言語の切り替えと外部翻訳の接続例](ui-library-consumer-guide.ja.md#locale文言rtl-の責任)を参照してください。生成したプロファイルは `data-ui-profile` で適用し、部品と画面は用途別セマンティックトークンを使います。
 
 ## 開発元の操作サンプル
 

@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText} from './locale';
+import {injectUiMessageText} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, effect, ElementRef, inject, input, output } from '@angular/core';
 import { ActionControl } from './action-control';
 import { layoutSpace, positiveInteger, type LayoutSpace } from './layout-model';
@@ -24,15 +24,15 @@ export class FormGroup {
  template:`@if(showSubmit()){<button data-form-action="submit" uiAction variant="primary" type="submit" [attr.form]="formId()" [busy]="busy()" [disabled]="disabled()">{{uiEffective_submitLabel()}}</button>}@if(showReset()){<button data-form-action="reset" uiAction type="reset" [attr.form]="formId()" [disabled]="disabled() || busy()">{{uiEffective_resetLabel()}}</button>}@if(showCancel()){<button data-form-action="cancel" uiAction [disabled]="disabled() || busy()" (click)="cancelled.emit()">{{uiEffective_cancelLabel()}}</button>}<ng-content />`,
  styles:`:host{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);align-items:center;min-inline-size:0;}:host([hidden]){display:none;}:host([data-direction="vertical"]){flex-direction:column;align-items:stretch;}:host([data-align="center"]){justify-content:center;}:host([data-align="end"]){justify-content:flex-end;}:host(:focus-visible){outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`})
 export class FormActions {
- protected readonly uiText_FormActions=injectUiText();
+ protected readonly uiText_FormActions=injectUiMessageText();
  readonly formId=input<string|null>(null);readonly disabled=input(false,{transform:booleanAttribute});readonly busy=input(false,{transform:booleanAttribute});
  readonly showSubmit=input(true,{transform:booleanAttribute});readonly showReset=input(true,{transform:booleanAttribute});readonly showCancel=input(true,{transform:booleanAttribute});
  readonly submitLabel=input<string>();
- protected readonly uiEffective_submitLabel=uiLocaleComputed(()=>this.submitLabel()??this.uiText_FormActions('送信'));readonly resetLabel=input<string>();
- protected readonly uiEffective_resetLabel=uiLocaleComputed(()=>this.resetLabel()??this.uiText_FormActions('入力を戻す'));readonly cancelLabel=input<string>();
- protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_FormActions('取消'));readonly direction=input<'horizontal'|'vertical'>('horizontal');readonly align=input<'start'|'center'|'end'>('end');readonly cancelled=output<void>();
+ protected readonly uiEffective_submitLabel=uiLocaleComputed(()=>this.submitLabel()??this.uiText_FormActions("uiFoundation.formActions.send"));readonly resetLabel=input<string>();
+ protected readonly uiEffective_resetLabel=uiLocaleComputed(()=>this.resetLabel()??this.uiText_FormActions("uiFoundation.formActions.resetInput"));readonly cancelLabel=input<string>();
+ protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_FormActions("uiFoundation.formActions.cancel"));readonly direction=input<'horizontal'|'vertical'>('horizontal');readonly align=input<'start'|'center'|'end'>('end');readonly cancelled=output<void>();
  readonly label=input<string>();
- protected readonly uiEffective_label=uiLocaleComputed(()=>this.label()??this.uiText_FormActions('フォームの操作'));private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private previousFocus:HTMLElement|null=null;
+ protected readonly uiEffective_label=uiLocaleComputed(()=>this.label()??this.uiText_FormActions("uiFoundation.formActions.formActions"));private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private previousFocus:HTMLElement|null=null;
  constructor(){
   effect(()=>{if(!this.uiEffective_label().trim()||this.showSubmit()&&!this.uiEffective_submitLabel().trim()||this.showReset()&&!this.uiEffective_resetLabel().trim()||this.showCancel()&&!this.uiEffective_cancelLabel().trim()||this.formId()!==null&&(!this.formId()!.trim()||/\s/.test(this.formId()!)))throw new Error('ui-form-actions requires action labels and a simple form ID.');});
   effect(()=>{const blocked=this.busy()||this.disabled(),visibility={submit:this.showSubmit(),reset:this.showReset(),cancel:this.showCancel()};const active=this.element.ownerDocument.activeElement as HTMLElement|null;if(active?.parentElement===this.element&&active.dataset['formAction']&&(blocked||!visibility[active.dataset['formAction'] as keyof typeof visibility])){this.previousFocus=active;this.element.focus();}});
@@ -50,9 +50,9 @@ export interface FormError{controlId:string;message:string;label:string}
  template:`@if(visible() && errors().length){<section role="alert" [attr.aria-label]="uiEffective_title()"><h2>{{uiEffective_title()}}</h2><ul>@for(error of errors();track error.controlId){<li><button uiAction (click)="go(error)">{{error.label}}: {{error.message}}</button></li>}</ul></section>}`,
  styles:`:host{display:block;min-inline-size:0;}section{color:var(--ui-color-danger);background:var(--ui-color-error-surface);padding:var(--ui-space-section);border-radius:var(--ui-radius-surface);}h2{font-size:var(--ui-text-body);}li+li{margin-block-start:var(--ui-space-control-gap);}:host([hidden]){display:none;}`} )
 export class FormErrorSummary{
- protected readonly uiText_FormErrorSummary=injectUiText();
+ protected readonly uiText_FormErrorSummary=injectUiMessageText();
  readonly errors=input.required<readonly FormError[]>();readonly title=input<string>();
- protected readonly uiEffective_title=uiLocaleComputed(()=>this.title()??this.uiText_FormErrorSummary('入力内容を確認してください'));readonly visible=input(true,{transform:booleanAttribute});readonly navigate=output<FormError>();
+ protected readonly uiEffective_title=uiLocaleComputed(()=>this.title()??this.uiText_FormErrorSummary("uiFoundation.formErrorSummary.checkYourInput"));readonly visible=input(true,{transform:booleanAttribute});readonly navigate=output<FormError>();
  private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
  protected go(error:FormError):void{this.navigate.emit(error);const target=this.element.ownerDocument.getElementById(error.controlId);if(target instanceof HTMLElement){target.focus();target.scrollIntoView({block:'nearest'});}}
 }

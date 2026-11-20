@@ -36,5 +36,14 @@ export class DiagramValidationCatalog {
  externalInvalidLabel():void{this.model.set({...this.model(),nodes:this.model().nodes.map(node=>node.id==='a'?{...node,label:''}:node)});}
  externalNegative():void{this.model.set({...this.model(),nodes:this.model().nodes.map(node=>node.id==='a'?{...node,x:-12}:node)});}
  removeTarget():void{this.model.set({nodes:this.model().nodes.filter(node=>node.id!=='a'),edges:this.model().edges.filter(edge=>edge.from!=='a'&&edge.to!=='a')});}
- translate():void{this.locale.set({locale:'en-US',messages:{'ノードのラベルを入力してください。':'Enter a node label.','位置は0〜1000000の範囲で入力してください。':'Enter a position from 0 to 1000000.','Node labels must not be empty':'Application diagram has an empty node label.','Node coordinates are invalid':'Application diagram has an invalid position.','ラベル':'Label','横位置':'X position','縦位置':'Y position','提出':'Do not translate application data'}});}
+ translate():void{this.locale.set({locale:'en-US',translate:request=>{
+  switch(request.id){
+   case 'uiFoundation.flowEditor.nodeLabelRequired':return 'Enter a node label.';
+   case 'uiFoundation.flowEditor.nodePositionRange':return 'Enter a position from 0 to 1000000.';
+   case 'uiFoundation.flowEditor.labelForDiagram':return 'Label';
+   case 'uiFoundation.flowEditor.horizontalPosition':return 'X position';
+   case 'uiFoundation.flowEditor.verticalPosition':return 'Y position';
+   default:return undefined;
+  }
+ }});}
 }

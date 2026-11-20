@@ -1,5 +1,5 @@
-import {injectUiText as injectUiRuntimeText} from './locale';
-import {injectUiLocale,UiMessagePipe} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
+import {injectUiLocale,UiStableMessagePipe} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, input, output, signal, viewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -17,16 +17,16 @@ const controlStyles = `
   textarea { resize: vertical; max-block-size: var(--ui-size-input-max-height); }
 `;
 @Component({
- selector: 'ui-text-input', standalone: true, imports: [...fieldImports,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+ selector: 'ui-text-input', standalone: true, imports: [...fieldImports,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
  providers: [{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>TextInput),multi:true}],
  template: `
   <ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
    <div class="ui-input-group">
     <input #editor uiFieldControl type="text" [name]="name()" [value]="current()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
       [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="commit(text($event))" (blur)="touch()">
-    @if (clearable()) { <button uiAction [attr.aria-label]="label() + ('をクリア' | uiMessage)" [disabled]="blocked() || readonly() || !current()" (click)="clear()">{{'クリア' | uiMessage}}</button> }
+    @if (clearable()) { <button uiAction [attr.aria-label]="('uiFoundation.textInput.clearForLabel' | uiStableMessage:{label:label()})" [disabled]="blocked() || readonly() || !current()" (click)="clear()">{{'uiFoundation.textInput.clearForTextInput' | uiStableMessage}}</button> }
    </div>
-   @if (showCount()) { <p class="ui-input-count">{{ current().length }}{{ maxLength() !== null ? ' / ' + maxLength() : '' }} {{'文字' | uiMessage}}</p> }
+   @if (showCount()) { <p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textInput.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textInput.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p> }
   </ui-form-field>
  `, styles: controlStyles,
 })
@@ -39,12 +39,12 @@ export class TextInput extends FieldValueControl<string> {
  protected clear():void{if(this.blocked()||this.readonly())return;this.commit('');this.editor()?.nativeElement.focus();}
 }
 @Component({
- selector:'ui-textarea',standalone:true,imports:[FormField,FieldControl,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ selector:'ui-textarea',standalone:true,imports:[FormField,FieldControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Textarea),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="current()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
    [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="commit(text($event))" (blur)="touch()"></textarea>
-  @if(showCount()){<p class="ui-input-count">{{ current().length }}{{ maxLength() !== null ? ' / ' + maxLength() : '' }} {{'文字' | uiMessage}}</p>}
+  @if(showCount()){<p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textarea.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textarea.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
 export class Textarea extends FieldValueControl<string>{
@@ -65,33 +65,33 @@ export class Textarea extends FieldValueControl<string>{
   });inject(DestroyRef).onDestroy(()=>render.destroy());}
 }
 @Component({
- selector:'ui-password-input',standalone:true,imports:[...fieldImports,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ selector:'ui-password-input',standalone:true,imports:[...fieldImports,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>PasswordInput),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-input-group"><input uiFieldControl [type]="revealed() ? 'text' : 'password'" [name]="name()" [value]="current()" [attr.autocomplete]="autocomplete()"
    [disabled]="blocked()" [readOnly]="readonly()" (input)="commit(text($event))" (blur)="touch()">
-   <button uiAction [attr.aria-label]="revealed() ? ('パスワードを隠す' | uiMessage) : ('パスワードを表示' | uiMessage)" [attr.aria-pressed]="revealed()" [disabled]="blocked()" (click)="revealed.set(!revealed())">{{revealed()?('隠す' | uiMessage):('表示' | uiMessage)}}</button></div>
-  @if(strength()!=='unknown'){<p class="ui-input-count">{{'強度:' | uiMessage}} {{strengthLabel()}}</p>}
+   <button uiAction [attr.aria-label]="revealed() ? ('uiFoundation.passwordInput.hidePassword' | uiStableMessage) : ('uiFoundation.passwordInput.showPassword' | uiStableMessage)" [attr.aria-pressed]="revealed()" [disabled]="blocked()" (click)="revealed.set(!revealed())">{{revealed()?('uiFoundation.passwordInput.hide' | uiStableMessage):('uiFoundation.passwordInput.show' | uiStableMessage)}}</button></div>
+  @if(strength()!=='unknown'){<p class="ui-input-count">{{strengthLabel()}}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
 export class PasswordInput extends FieldValueControl<string>{
  private readonly uiRuntimeText_PasswordInput=injectUiRuntimeText();
 
  protected readonly emptyValue='';readonly autocomplete=input('current-password');readonly strength=input<'weak'|'medium'|'strong'|'unknown'>('unknown');
- protected readonly revealed=signal(false);protected readonly strengthLabel=computed(()=>({weak:this.uiRuntimeText_PasswordInput('弱い'),medium:this.uiRuntimeText_PasswordInput('中程度'),strong:this.uiRuntimeText_PasswordInput('強い'),unknown:this.uiRuntimeText_PasswordInput('未評価')})[this.strength()]);
+ protected readonly revealed=signal(false);protected readonly strengthLabel=computed(()=>({weak:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthWeak"),medium:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthMedium"),strong:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthStrong"),unknown:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.unrated")})[this.strength()]);
  protected coerce(value:unknown):string{return typeof value==='string'?value:'';}
 }
 export interface SearchRequest{query:string;requestId:number}
 @Component({
- selector:'ui-search-input',standalone:true,imports:[...fieldImports,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ selector:'ui-search-input',standalone:true,imports:[...fieldImports,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>SearchInput),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-input-group"><input #editor uiFieldControl type="search" [name]="name()" [value]="current()" [placeholder]="placeholder()" [disabled]="blocked()" [readOnly]="readonly()"
    [attr.list]="hasSuggestions() ? controlId() + '-suggestions' : null" (input)="changed($event)" (blur)="touch()" (keydown.enter)="enter($event)" (compositionstart)="compositionStarted()" (compositionend)="compositionEnded($event)">
-   <button uiAction [disabled]="blocked() || readonly() || !current()" [attr.aria-label]="'検索語をクリア' | uiMessage" [attr.aria-controls]="controlId()" (click)="clear()">{{'クリア' | uiMessage}}</button>
-   <button uiAction [busy]="loading()" [disabled]="blocked() || readonly()" (click)="runSearch()">{{'検索' | uiMessage}}</button></div>
+   <button uiAction [disabled]="blocked() || readonly() || !current()" [attr.aria-label]="'uiFoundation.searchInput.clearSearchText' | uiStableMessage" [attr.aria-controls]="controlId()" (click)="clear()">{{'uiFoundation.searchInput.clear' | uiStableMessage}}</button>
+   <button uiAction [busy]="loading()" [disabled]="blocked() || readonly()" (click)="runSearch()">{{'uiFoundation.searchInput.search' | uiStableMessage}}</button></div>
   <datalist [id]="controlId()+'-suggestions'">@if(hasSuggestions()){@for(option of suggestions();track option){<option [value]="option"></option>}}</datalist>
-  <p class="ui-input-count" role="status" aria-atomic="true">{{loading()?('候補を取得しています。' | uiMessage):''}}</p>
+  <p class="ui-input-count" role="status" aria-atomic="true">{{loading()?('uiFoundation.searchInput.loadingSuggestions' | uiStableMessage):''}}</p>
  </ui-form-field>`,styles:controlStyles,
 })
 export class SearchInput extends FieldValueControl<string>{
@@ -110,12 +110,12 @@ export class SearchInput extends FieldValueControl<string>{
  protected enter(event:Event):void{const key=event as KeyboardEvent;if(key.isComposing||key.keyCode===229)return;event.preventDefault();this.runSearch();}
 }
 @Component({
- selector:'ui-number-input',standalone:true,imports:[FormField,FieldControl,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ selector:'ui-number-input',standalone:true,imports:[FormField,FieldControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>NumberInput),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>NumberInput),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-input-group"><input #editor uiFieldControl type="number" [name]="name()" [value]="current() ?? ''" [attr.min]="min()" [attr.max]="max()" [attr.step]="step()"
    [disabled]="blocked() || configurationError() !== null" [readOnly]="readonly()" (input)="changed($event)" (blur)="touch()">@if(unit()){<span>{{unit()}}</span>}</div>
-  @if(current()!==null){<p class="ui-input-format">{{'表示:' | uiMessage}} {{formatted()}} {{unit()}}</p>}
+  @if(current()!==null){<p class="ui-input-format">{{unit()?('uiFoundation.numberInput.formattedNumberWithUnit' | uiStableMessage:{value:formatted(),unit:unit()!}):('uiFoundation.numberInput.formattedNumber' | uiStableMessage:{value:formatted()})}}</p>}
   @if(configurationError()){<p class="ui-input-format" role="alert">{{configurationError()}}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
@@ -127,10 +127,10 @@ export class NumberInput extends FieldValueControl<number|null> implements Valid
  private readonly invalidDraft=signal(false);private validatorChanged:()=>void=()=>{};
  private readonly editor=viewChild<ElementRef<HTMLInputElement>>('editor');
  protected readonly configurationError=computed(()=>{
-  if(this.min()!==null&&!Number.isFinite(this.min())||this.max()!==null&&!Number.isFinite(this.max())||this.min()!==null&&this.max()!==null&&this.min()!>this.max()!)return this.uiRuntimeText_NumberInput('数値の範囲設定を確認してください。');
-  if(this.step()!=='any'&&(!Number.isFinite(this.step())||Number(this.step())<=0))return this.uiRuntimeText_NumberInput('刻み幅には正の数を指定してください。');
-  const digits=this.fractionDigits();if(digits!==null&&digits!==undefined&&(!Number.isInteger(digits)||digits<0||digits>100))return this.uiRuntimeText_NumberInput('小数桁には0から100の整数を指定してください。');
-  try{new Intl.NumberFormat(this.effectiveLocale(),this.numberFormat());}catch{return this.uiRuntimeText_NumberInput('数値の言語設定を確認してください。');}return null;
+  if(this.min()!==null&&!Number.isFinite(this.min())||this.max()!==null&&!Number.isFinite(this.max())||this.min()!==null&&this.max()!==null&&this.min()!>this.max()!)return this.uiRuntimeText_NumberInput("uiFoundation.numberInput.checkTheNumberRangeSettings");
+  if(this.step()!=='any'&&(!Number.isFinite(this.step())||Number(this.step())<=0))return this.uiRuntimeText_NumberInput("uiFoundation.numberInput.enterAPositiveStepSize");
+  const digits=this.fractionDigits();if(digits!==null&&digits!==undefined&&(!Number.isInteger(digits)||digits<0||digits>100))return this.uiRuntimeText_NumberInput("uiFoundation.numberInput.enterAWholeNumberOfDecimalPlacesFrom0To100");
+  try{new Intl.NumberFormat(this.effectiveLocale(),this.numberFormat());}catch{return this.uiRuntimeText_NumberInput("uiFoundation.numberInput.checkTheNumberLocaleSettings");}return null;
  });
  protected readonly formatted=computed(()=>this.current()===null||this.configurationError()?'':new Intl.NumberFormat(this.effectiveLocale(),this.numberFormat()).format(this.current()!));
  constructor(){super();effect(()=>{this.min();this.max();this.step();this.required();this.fractionDigits();this.effectiveLocale();this.numberFormat();this.validatorChanged();});}
