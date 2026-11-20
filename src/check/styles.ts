@@ -2,6 +2,7 @@ import postcss from 'postcss';
 import scssParser from 'postcss-scss';
 import valueParser from 'postcss-value-parser';
 import selectorParser from 'postcss-selector-parser';
+import { withBaselineContext, withBaselineSubject } from './application.ts';
 import type { CustomPropertyOrigin, CustomPropertyResolver, SourceDiagnostic, SourceLocation, StyleContext } from './types.ts';
 
 type RuleSpec = { categories: string[]; keywords?: string[]; full?: boolean; identity?: boolean };
@@ -249,7 +250,17 @@ export function checkStyle(property: string, value: string, location: SourceLoca
     }
   };
   visit(parsed.nodes);
-  for (const issue of found.values()) context.emit(diagnostic(location, issue.rule, issue.severity, issue.message, issue.rule === 'unresolved' ? 'Review this unresolved value; use an explicit semantic token where possible.' : 'Use a semantic token of the matching category, or record a narrow reasoned exception.', source + (issue.alias ? ' :: ' + issue.alias : '')));
+  for (const issue of found.values()) {
+    const finding = diagnostic(location, issue.rule, issue.severity, issue.message,
+      issue.rule === 'unresolved' ? 'Review this unresolved value; use an explicit semantic token where possible.' : 'Use a semantic token of the matching category, or record a narrow reasoned exception.',
+      source + (issue.alias ? ' :: ' + issue.alias : ''));
+    if (issue.severity !== 'error') {
+      context.emit(finding);
+      continue;
+    }
+    const detail = issue.alias ? issue.message.slice(0, -(issue.alias.length + ' Via .'.length)) : issue.message;
+    context.emit(withBaselineSubject(finding, 'CSS declaration', normalizedProperty, canonicalCSSValue(value), canonicalCSSValue(detail), canonicalCSSValue(issue.alias ?? '')));
+  }
 }
 
 type SelectorScope = { anchors: string[]; terminal: string[]; required: string[]; wildcard: boolean; excluded: string[]; selector: string; conditions: string[]; simple: boolean; controlled: boolean; subjectKnown: boolean; pseudoElement?: string };
@@ -583,6 +594,43 @@ export function customPropertyResolver(context: StyleContext, origin: CustomProp
   return stylesheetAliases(postcss.root(), context, false, origin, layer)(scopes);
 }
 
+function canonicalCSSValue(value: string): string {
+  return valueParser(value).walk(token => {
+    if (token.type === 'function' && token.value.toLowerCase() === 'selector') return false;
+    if (token.type === 'function' && token.value.toLowerCase() === 'style') {
+      token.before = '';
+      token.after = '';
+      const separator = token.nodes.find(item => item.type === 'div' && item.value === ':');
+      if (separator?.type === 'div') {
+        separator.before = '';
+        separator.after = '';
+      }
+      // Preserve the custom property's token stream after its name/value separator.
+      return false;
+    }
+    if (token.type === 'space') token.value = ' ';
+    if (token.type === 'function' || token.type === 'div') {
+      token.before = '';
+      token.after = '';
+    }
+  }).toString().trim();
+}
+
+function stylesheetBaselineContext(node: postcss.Node): string[] {
+  const context: string[] = [];
+  for (let owner = node.parent; owner; owner = owner.parent) {
+    if (owner.type === 'rule') context.push(JSON.stringify(['selector', (owner as postcss.Rule).selector]));
+    if (owner.type === 'atrule') {
+      const rule = owner as postcss.AtRule;
+      // Selector-bearing and unknown at-rules can use whitespace as a
+      // combinator. Only the supported query value grammar is normalized.
+      const params = /^(media|container)$/i.test(rule.name) ? canonicalCSSValue(rule.params) : rule.params;
+      context.push(JSON.stringify(['at-rule', rule.name, params]));
+    }
+  }
+  return ['Stylesheet', ...context.reverse()];
+}
+
 export function checkCSS(css: string, location: SourceLocation, context: StyleContext, scss = false): void {
   try {
     const root = scss ? scssParser.parse(css) : postcss.parse(css);
@@ -592,7 +640,11 @@ export function checkCSS(css: string, location: SourceLocation, context: StyleCo
         const source = `@${node.name} ${node.params}`;
         const atLocation = { ...location, offset: location.offset + (node.source?.start?.offset ?? 0) };
         if (/\$|#\{/.test(node.params)) context.emit(diagnostic(atLocation, 'unresolved', 'warning', 'Dynamic query threshold cannot be resolved without Sass expansion.', 'Review compiled queries separately.', source));
-        else if (/[+-]?(?:\d*\.)?\d+(?:px|em|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc)\b/i.test(node.params)) context.emit(diagnostic(atLocation, 'literal-token', 'error', 'Fixed query dimensions need an explicit geometry exception.', 'Record a narrow exception explaining the responsive threshold.', source));
+        else if (/[+-]?(?:\d*\.)?\d+(?:px|em|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc)\b/i.test(node.params)) {
+          const finding = diagnostic(atLocation, 'literal-token', 'error', 'Fixed query dimensions need an explicit geometry exception.', 'Record a narrow exception explaining the responsive threshold.', source);
+          const subject = withBaselineSubject(finding, 'CSS at-rule', node.name, canonicalCSSValue(node.params));
+          context.emit(withBaselineContext(subject, ...stylesheetBaselineContext(node)));
+        }
       }
       if (/^(mixin|include|extend|function|if|else|for|each|while|use|forward|import)$/.test(node.name) && (scss || /\$|#\{/.test(node.params))) {
         const offset = node.source?.start?.offset ?? 0;
@@ -608,7 +660,10 @@ export function checkCSS(css: string, location: SourceLocation, context: StyleCo
       const selector = node.parent?.type === 'rule' ? (node.parent as postcss.Rule).selector : undefined;
       const original = selector ? `${selector}{${node.toString()}}` : node.toString();
       const prefix = `${node.prop}:${node.value} :: `;
-      const innerContext: StyleContext = { ...context, emit: (issue) => context.emit({ ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') }) };
+      const innerContext: StyleContext = { ...context, emit: issue => {
+        const mapped = { ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') };
+        context.emit(issue.severity === 'error' ? withBaselineContext(mapped, ...stylesheetBaselineContext(node)) : mapped);
+      } };
       checkStyle(node.prop, node.value, { ...location, offset: location.offset + offset }, innerContext, aliases(selectorScopes(node.parent?.type === 'rule' ? node.parent as postcss.Rule : undefined)));
     });
   } catch (error) {
@@ -781,7 +836,7 @@ export function checkClasses(classes: string, location: SourceLocation, context:
     if (localClasses?.has(utility)) continue;
     const base = utilityBase(utility);
     const emitted = new Set<string>();
-    const emit = (issue: SourceDiagnostic) => { if (!emitted.has(issue.rule)) { emitted.add(issue.rule); context.emit({ ...issue, source: utility }); } };
+    const emit = (issue: SourceDiagnostic) => { if (!emitted.has(issue.rule)) { emitted.add(issue.rule); context.emit(withBaselineSubject({ ...issue, source: utility }, 'CSS utility', utility)); } };
     // Named breakpoints are adopted framework structure. Explicit arbitrary
     // media/container dimensions are authored values and need the usual inspection.
     let depth = 0, begin = 0;

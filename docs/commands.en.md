@@ -81,11 +81,11 @@ Diagnostics include location, rule, severity, message, suggestion and source. Ar
 | --- | --- |
 | Matching generation and no source errors | 0; source status may be `passed` or `warnings` |
 | Warnings only | 0; unverified behavior remains |
-| YAML has no `checks` | 0 if nothing else fails; source is `not_configured`, text includes `NOT_CONFIGURED` |
+| YAML has no `checks` | Source is `not_configured`. Exit 1 with `--require-source-checks` or `--baseline`; otherwise exit 0 if generation matches. |
 | Generation mismatch, source errors, invalid config, missing sources or parse/read failure | 1 |
 | Invalid command/options or another exception | 1 |
 
-`NOT_CONFIGURED` means source checking was not performed. Empty or nonexistent configured roots fail. Warnings need investigation, not blanket suppression. Static success does not certify runtime behavior, business correctness, visual quality, accessibility as a whole or user understanding. [Detailed check contract](static-checks.en.md)
+`NOT_CONFIGURED` means source checking was not performed. Empty or nonexistent configured roots fail. Inspect uncovered projects, internal imports and uncertain runtime findings individually. A reviewed full JSON report can be used via `--baseline <project-relative-path>` to enforce new violations while tracking existing ones. Static success does not certify runtime behavior, business correctness, visual quality, accessibility as a whole or user understanding. [Detailed check contract](static-checks.en.md)
 
 ## Standalone generated checker
 
@@ -95,7 +95,7 @@ Keep the full generated directory, including `checker-lib/`, policy and notices.
 node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 ```
 
-This checker takes no subcommand. It additionally accepts `--root PATH` (absolute or relative; defaults to the current directory), plus `--config`, `--format` and standalone `--help`/`-h`. It validates YAML/policy agreement and checks sources. It does not replace the main CLI's full output and Skill consistency check. JSON success is the source result itself; exceptions return `{valid:false,status:"failed",error}`. Resync with the corresponding installed CLI when policy is missing, invalid or stale.
+This checker takes no subcommand. It additionally accepts `--root PATH` (absolute or relative; defaults to the current directory), plus `--config`, `--format`, `--require-source-checks`, `--baseline` and standalone `--help`/`-h`. It validates YAML/policy agreement and checks sources. It does not replace the main CLI's full output and Skill consistency check. JSON success is the source result itself; exceptions return `{valid:false,status:"failed",error}`. Resync with the corresponding installed CLI when policy is missing, invalid or stale.
 
 ## Recovery
 

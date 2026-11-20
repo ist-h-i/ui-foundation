@@ -9,6 +9,7 @@ import { checkCSS, checkClasses, checkStyle, collectLocalClasses, customProperty
 import { createUtilityResolver } from './tailwind.ts';
 import { proveClassDomain } from './class-domain.ts';
 import { boundedSearch } from './bounded-search.ts';
+import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, templateOpeningContext, typescriptBaselineContext, withBaselineContext, withBaselineSubject, workspaceSourceRoots } from './application.ts';
 import type { AngularDeclaration, CheckSourcesOptions, SourceDiagnostic, SourceLocation, SourceReport, StyleContext, ScopedCustomProperty, CustomPropertyOrigin, CustomPropertyResolver } from './types.ts';
 
 const forbidden = new Set(['node_modules', '.git', '.agents', 'dist', 'build', 'coverage', 'artifacts']);
@@ -1029,7 +1030,7 @@ export function angularDeclarations(files: Map<string, string>): AngularDeclarat
 
 export async function checkSources(options: CheckSourcesOptions): Promise<SourceReport> {
   const checks = options.policy.checks;
-  if (!checks) return { status: 'not_configured', valid: true, files: 0, checked: 0, diagnostics: [], exceptions: [] };
+  if (!checks) return { status: 'not_configured', valid: !options.requireSourceChecks && options.baselinePath === undefined, files: 0, checked: 0, diagnostics: [], exceptions: [] };
   const root = path.resolve(options.root), output = path.resolve(root, options.config.output);
   const all = new Map<string, string>(), diagnostics: SourceDiagnostic[] = [], exceptions: SourceDiagnostic[] = []; let checked = 0;
   const diagnosticIdentities = new Set<string>();
@@ -1049,6 +1050,36 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       return await fs.readFile(file, 'utf8');
     } catch (error) { problem(file, 'source-error', `Cannot read source: ${(error as Error).message}`); return; }
   }
+  const excludedProjects: NonNullable<SourceReport['excluded_projects']> = [];
+  const workspace = path.join(root, 'angular.json');
+  let hasWorkspace = false;
+  try { await fs.lstat(workspace); hasWorkspace = true; }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') problem(workspace, 'source-error', `Cannot inspect Angular workspace: ${(error as Error).message}`);
+  }
+  if (hasWorkspace) {
+    const text = await safeFile(workspace);
+    if (text !== undefined) {
+      try {
+        for (const { name, sourceRoot } of workspaceSourceRoots(workspace, text)) {
+          const target = path.resolve(root, sourceRoot);
+          const canInspect = !within(output, target) && !path.relative(root, target).split(path.sep).some(part => forbidden.has(part));
+          if (canInspect && checks.source_roots.some(configured => within(path.resolve(root, configured), target))) continue;
+          const excluded = checks.excluded_projects?.find(item => item.name === name);
+          if (excluded) excludedProjects.push({ name, source_root: sourceRoot, reason: excluded.reason });
+          else {
+            const remedy = canInspect && sourceRoot !== '.'
+              ? `Add ${JSON.stringify(sourceRoot)} to checks.source_roots.`
+              : 'Declare an inspectable application sourceRoot and add it to checks.source_roots.';
+            emit(diagnostic(loc(workspace, text), 'uncovered-project', 'warning',
+              `Angular project ${name} is outside the inspected source roots: ${sourceRoot}.`,
+              `${remedy} For an intentional exclusion, record ${JSON.stringify(name)} with a reason in checks.excluded_projects.`, name));
+          }
+        }
+      } catch (error) { problem(workspace, 'parse-error', (error as Error).message, text); }
+    }
+  }
+
   async function enumerate(file: string): Promise<number> {
     if (!within(root, file)) { problem(file, 'source-error', 'Source root escapes the project root.'); return 0; }
     if (within(output, file) || path.relative(root, file).split(path.sep).some(part => forbidden.has(part))) return 0;
@@ -1176,6 +1207,91 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   compilerHost.getCurrentDirectory = () => root;
   if (libraryRoot) for (const library of compilerOptions.lib ?? []) if (!fileAllowed(path.join(libraryRoot, library))) problem(path.join(libraryRoot, library), 'source-error', 'Requested TypeScript standard library is unavailable; DOM type coverage cannot be established.');
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
+  const angularOutput = path.join(output, 'angular');
+  const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
+  const resolutionCache = ts.createModuleResolutionCache(root, compilerHost.getCanonicalFileName, compilerOptions);
+  function resolveImport(module: ts.StringLiteralLike, source: ts.SourceFile) {
+    return resolveSpecifier(module.text, source, module);
+  }
+  function resolveSpecifier(specifier: string, source: ts.SourceFile, original: ts.StringLiteralLike) {
+    return ts.resolveModuleName(specifier, source.fileName, compilerOptions, compilerHost, resolutionCache, undefined,
+      ts.getModeForUsageLocation(source, original, compilerOptions)).resolvedModule?.resolvedFileName;
+  }
+  // Read only the entry points required to recommend a replacement. Adding the
+  // entire barrel to the compiler program would also resolve specialist engines.
+  let publicExports: Map<string, Map<string, Set<string>>> | undefined;
+  function exportsByEntry() {
+    if (publicExports) return publicExports;
+    publicExports = new Map();
+    for (const entry of entryFiles) {
+      if (!fileAllowed(entry)) continue;
+      const text = readAllowed(entry);
+      if (text === undefined) continue;
+      const source = ts.createSourceFile(entry, text, {
+        languageVersion: ts.ScriptTarget.Latest,
+        impliedNodeFormat: ts.getImpliedNodeFormatForFile(entry, resolutionCache.getPackageJsonInfoCache(), compilerHost, compilerOptions),
+      }, true);
+      const exportsForFile = new Map<string, Set<string>>();
+      for (const statement of source.statements) {
+        if (!ts.isExportDeclaration(statement) || !statement.moduleSpecifier || !ts.isStringLiteralLike(statement.moduleSpecifier)
+          || !statement.exportClause || !ts.isNamedExports(statement.exportClause)) continue;
+        const target = resolveImport(statement.moduleSpecifier, source);
+        if (!target) continue;
+        let names = exportsForFile.get(target);
+        if (!names) { names = new Set(); exportsForFile.set(target, names); }
+        for (const element of statement.exportClause.elements) {
+          if (!element.propertyName || element.propertyName.text === element.name.text) names.add(element.name.text);
+        }
+      }
+      publicExports.set(entry, exportsForFile);
+    }
+    return publicExports;
+  }
+  function inspectGeneratedReferences(source: ts.SourceFile) {
+    function inspectReference(module: ts.StringLiteralLike, names: readonly string[] = []) {
+      const resolved = resolveImport(module, source);
+      if (!resolved || !within(angularOutput, resolved) || entryFiles.includes(resolved)) return;
+      const preferred = names.length ? [...exportsByEntry()].find(([, files]) => names.every(name => files.get(resolved)?.has(name))) : undefined;
+      let suggestion = 'Use a public API where available, or request a public export for this dependency.';
+      if (preferred) {
+        const candidate = relative(path.dirname(source.fileName), preferred[0]).replace(/\.ts$/, '');
+        const relativeEntry = candidate.startsWith('.') ? candidate : './' + candidate;
+        const specifiers = module.text.endsWith('.js') ? [relativeEntry + '.js', relativeEntry] : [relativeEntry, relativeEntry + '.js'];
+        const specifier = specifiers.find(value => resolveSpecifier(value, source, module) === preferred[0]);
+        if (specifier) suggestion = `Import the same names from '${specifier}' instead.`;
+      }
+      emit(diagnostic(loc(source.fileName, source.text, module.getStart(source)), 'generated-internal-import', 'warning',
+        `Import resolves to internal generated file ${relative(root, resolved)}.`, suggestion, module.getText(source)));
+    }
+    function visit(node: ts.Node): void {
+      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier)) {
+        const bindings = node.importClause?.namedBindings;
+        inspectReference(node.moduleSpecifier, bindings && ts.isNamedImports(bindings) && !node.importClause?.name
+          ? bindings.elements.map(element => (element.propertyName ?? element.name).text) : []);
+      }
+      if (ts.isExportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteralLike(node.moduleSpecifier)) {
+        const clause = node.exportClause;
+        inspectReference(node.moduleSpecifier, clause && ts.isNamedExports(clause) ? clause.elements.map(element => (element.propertyName ?? element.name).text) : []);
+      }
+      if (ts.isImportTypeNode(node) && ts.isLiteralTypeNode(node.argument) && ts.isStringLiteralLike(node.argument.literal)) {
+        let exported = node.qualifier;
+        while (exported && ts.isQualifiedName(exported)) exported = exported.left;
+        inspectReference(node.argument.literal, exported ? [exported.text] : []);
+      }
+      if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword && node.arguments[0] && ts.isStringLiteralLike(node.arguments[0])) {
+        inspectReference(node.arguments[0]);
+      }
+      if (ts.isImportEqualsDeclaration(node) && ts.isExternalModuleReference(node.moduleReference)
+          && node.moduleReference.expression && ts.isStringLiteralLike(node.moduleReference.expression)) {
+        inspectReference(node.moduleReference.expression);
+      }
+      ts.forEachChild(node, visit);
+    }
+    visit(source);
+  }
+  for (const source of program.getSourceFiles()) {
+    if (all.has(source.fileName)) inspectGeneratedReferences(source);
+  }
   function assignedValue(node: ts.BinaryExpression): Evaluated {
     const right = evaluator.evaluate(node.right);
     if ([ts.SyntaxKind.EqualsToken, ts.SyntaxKind.BarBarEqualsToken, ts.SyntaxKind.AmpersandAmpersandEqualsToken, ts.SyntaxKind.QuestionQuestionEqualsToken].includes(node.operatorToken.kind)) return right;
@@ -1439,15 +1555,21 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     const parsed = parseTemplate(template, relative(root, file), { preserveWhitespaces: false }); checked++;
     if (parsed.errors?.length) { for (const error of parsed.errors) problem(file, 'parse-error', error.msg, text, position ? position(error.span.start.offset) : offset + error.span.start.offset); return; }
     const visited = new Set<object>();
-    function visit(node: any) {
+    function visit(node: any, ancestors: string[]) {
       if (!node || typeof node !== 'object' || visited.has(node)) return; visited.add(node);
+      const opening = node.startSourceSpan;
+      const context = opening ? [...ancestors, template.slice(opening.start.offset, opening.end.offset)] : ancestors;
+      const emitAtNode = (item: SourceDiagnostic) => {
+        const finding = item.rule === 'unapproved-component' ? withBaselineSubject(item, 'Angular declaration', item.message) : item;
+        ctx.emit(finding.severity === 'error' ? withBaselineContext(finding, 'Template', ...context.map(templateOpeningContext)) : finding);
+      };
       if ((node.name || node.tagName) && node.attributes && node.inputs) {
         const elementName = node.name ?? 'ng-template';
         const renderedAttributes = node.name || node.tagName === 'ng-template' ? node.attributes : [];
         const renderedInputs = node.name || node.tagName === 'ng-template' ? node.inputs : [];
         const at = (item: any) => { const sourceOffset = item.sourceSpan?.start?.offset ?? node.sourceSpan?.start?.offset ?? 0; return loc(file, text, position ? position(sourceOffset) : offset + sourceOffset); };
         const startTag = template.slice(node.startSourceSpan?.start?.offset ?? node.sourceSpan.start.offset, node.startSourceSpan?.end?.offset ?? node.sourceSpan.end.offset);
-        const bindingContext: StyleContext = { ...ctx, emit: item => ctx.emit({ ...item, source: `${startTag} :: ${item.source}` }) };
+        const bindingContext: StyleContext = { ...ctx, emit: item => emitAtNode({ ...item, source: `${startTag} :: ${item.source}` }) };
         const selector = new CssSelector(); selector.setElement(elementName);
         for (const attribute of renderedAttributes) {
           selector.addAttribute(attribute.name, attribute.value ?? '');
@@ -1461,9 +1583,9 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
         const matching: Declaration[] = []; matcher.match(selector, (_s, declaration) => { if (!scope || all.has(declaration.file) || within(output, declaration.file) || !declaration.node || scope.has(declaration)) matching.push(declaration); });
         for (const declaration of matching) {
           checked++;
-          if (!declaration.approved) emit(diagnostic(at(node), 'unapproved-component', 'error', `Unapproved Angular ${declaration.kind} ${declaration.name} (${declaration.external?.module ?? 'unknown module'}:${declaration.external?.export ?? declaration.name}) matches ${declaration.selector}.`, 'Approve the exported identity and module with a reason, or use a generated/local component.', template.slice(node.sourceSpan.start.offset, node.sourceSpan.end.offset)));
+          if (!declaration.approved) emitAtNode(diagnostic(at(node), 'unapproved-component', 'error', `Unapproved Angular ${declaration.kind} ${declaration.name} (${declaration.external?.module ?? 'unknown module'}:${declaration.external?.export ?? declaration.name}) matches ${declaration.selector}.`, 'Approve the exported identity and module with a reason, or use a generated/local component.', template.slice(node.sourceSpan.start.offset, node.sourceSpan.end.offset)));
         }
-        if (!dom.hasElement(elementName, []) && !['ng-template', 'ng-content'].includes(elementName) && !matching.some(d => d.kind === 'component')) emit(diagnostic(at(node), 'unapproved-component', 'error', `Unknown custom element ${elementName}; its Angular identity cannot be approved.`, 'Include the declaration in inspected sources or provide resolvable imported component metadata.', template.slice(node.sourceSpan.start.offset, node.sourceSpan.end.offset)));
+        if (!dom.hasElement(elementName, []) && !['ng-template', 'ng-content'].includes(elementName) && !matching.some(d => d.kind === 'component')) emitAtNode(diagnostic(at(node), 'unapproved-component', 'error', `Unknown custom element ${elementName}; its Angular identity cannot be approved.`, 'Include the declaration in inspected sources or provide resolvable imported component metadata.', template.slice(node.sourceSpan.start.offset, node.sourceSpan.end.offset)));
         for (const input of renderedInputs) {
           if (input.type === 3) inspectValue(angularValue(input.value, members), 'style', input.name, at(input), input.unit ?? '', bindingContext, classes);
           else if (input.type === 2) { const value = angularValue(input.value, members); if (value.dynamic || value.values.some(possiblyTruthy)) inspectValue({ values: [input.name], dynamic: false }, 'class', '', at(input), '', bindingContext, classes); }
@@ -1473,10 +1595,10 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
           else if (input.type === 1 && ['fill', 'stroke', 'opacity', 'font-size', 'stroke-width'].includes(input.name)) inspectValue(angularValue(input.value, members), 'style', input.name, at(input), '', bindingContext, classes);
         }
       }
-      for (const key of ['children', 'branches', 'cases', 'nodes']) if (Array.isArray(node[key])) for (const child of node[key]) visit(child);
-      for (const key of ['empty', 'placeholder', 'loading', 'error']) if (node[key]) visit(node[key]);
+      for (const key of ['children', 'branches', 'cases', 'nodes']) if (Array.isArray(node[key])) for (const child of node[key]) visit(child, context);
+      for (const key of ['empty', 'placeholder', 'loading', 'error']) if (node[key]) visit(node[key], context);
     }
-    for (const node of parsed.nodes) visit(node);
+    for (const node of parsed.nodes) visit(node, []);
   }
   async function externalFile(owner: string, reference: string): Promise<{ file: string; text: string } | undefined> {
     const file = path.resolve(path.dirname(owner), reference);
@@ -2497,16 +2619,51 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     if (/\.(css|scss)$/.test(file)) checkCSS(text, loc(file, text), stylesheetContext(text), file.endsWith('.scss'));
   }
   // Exceptions are precise, auditable, and cannot suppress source/parse failures.
-  const suppressible = new Set(['literal-token', 'primitive-reference', 'unknown-token', 'token-category', 'unapproved-component', 'unresolved']);
   const suppressed = new Set<SourceDiagnostic>();
   for (const exception of checks.exceptions) {
     const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule && d.source.includes(exception.source) && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
-    if (!suppressible.has(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
-    else { const match = matches[0]!; suppressed.add(match); exceptions.push({ ...match, exception: exception.reason }); }
+    if (!isExceptableRule(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
+    else { const match = matches[0]!; suppressed.add(match); const { baseline_context: _context, baseline_subject: _subject, ...finding } = match; exceptions.push({ ...finding, exception: exception.reason }); }
   }
-  const active = diagnostics.filter(d => !suppressed.has(d));
+  let baseline: Map<string, number> | undefined;
+  if (options.baselinePath !== undefined) {
+    const file = path.resolve(root, options.baselinePath);
+    if (path.isAbsolute(options.baselinePath) || options.baselinePath.split('/').some(part => !part || part === '.' || part === '..' || forbidden.has(part))
+        || /[\\\u0000-\u001f<>:"|?*]/.test(options.baselinePath)) {
+      problem(file, 'baseline-error', 'Use a normalized project-relative path for the diagnostic baseline.');
+    } else {
+      const text = await safeFile(file);
+      if (text !== undefined) {
+        try { baseline = readBaseline(text); }
+        catch (error) { problem(file, 'baseline-error', `Cannot use source baseline: ${(error as Error).message}`); }
+      }
+    }
+  }
+  const existing: SourceDiagnostic[] = [];
+  const active: SourceDiagnostic[] = [];
+  for (const diagnostic of diagnostics) {
+    if (suppressed.has(diagnostic)) continue;
+    if (diagnostic.severity !== 'error' || !isExceptableRule(diagnostic.rule)) {
+      active.push(diagnostic);
+      continue;
+    }
+    const source = program.getSourceFile(path.resolve(root, diagnostic.file));
+    const context = source ? typescriptBaselineContext(source, diagnostic.line, diagnostic.column) : [];
+    const item = diagnostic.baseline_subject ? withBaselineContext(diagnostic, ...context) : { ...diagnostic, baseline_context: null };
+    if (!baseline || !item.baseline_context) {
+      active.push(item);
+      continue;
+    }
+    const key = fingerprint(item), count = baseline.get(key) ?? 0;
+    if (count > 0) {
+      baseline.set(key, count - 1);
+      existing.push(item);
+    } else active.push(item);
+  }
   const sort = (a: SourceDiagnostic, b: SourceDiagnostic) => a.file.localeCompare(b.file) || a.line - b.line || a.column - b.column || a.rule.localeCompare(b.rule) || a.message.localeCompare(b.message);
-  active.sort(sort); exceptions.sort(sort);
+  active.sort(sort); exceptions.sort(sort); existing.sort(sort);
   const valid = !active.some(d => d.severity === 'error');
-  return { status: valid ? active.length ? 'warnings' : 'passed' : 'failed', valid, files: all.size + [...consumed].filter(f => !all.has(f)).length, checked, diagnostics: active, exceptions };
+  return { status: valid ? active.length ? 'warnings' : 'passed' : 'failed', valid, files: all.size + [...consumed].filter(f => !all.has(f)).length, checked, diagnostics: active, exceptions, source_roots: checks.source_roots,
+    ...(baseline ? { existing_diagnostics: existing } : {}),
+    ...(excludedProjects.length ? { excluded_projects: excludedProjects } : {}) };
 }

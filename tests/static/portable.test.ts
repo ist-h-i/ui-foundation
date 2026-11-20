@@ -8,7 +8,7 @@ import { test, type TestContext } from 'node:test';
 import { stringify } from 'yaml';
 import { parseConfig } from '../../src/config.ts';
 import { renderCheckerBundle } from '../../src/check/bundle.ts';
-import { syncProject } from '../../src/sync.ts';
+import { checkProject, syncProject } from '../../src/sync.ts';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const example = await readFile(resolve(repository, 'examples/ui.config.example.yaml'), 'utf8');
@@ -27,7 +27,7 @@ async function consumer(t: TestContext, source: string) {
   await writeFile(resolve(producer, 'ui.config.yaml'), stringify(config));
   await syncProject({ root: producer });
   await cp(resolve(producer, 'foundation'), resolve(root, 'foundation'), { recursive: true });
-  const run = () => spawnSync(process.execPath, ['foundation/check-ui.cjs', '--config', 'ui.config.yaml', '--format', 'json'], { cwd: root, encoding: 'utf8', timeout: 60_000, env: { ...process.env, NODE_PATH: '' } });
+  const run = (...args: string[]) => spawnSync(process.execPath, ['foundation/check-ui.cjs', '--config', 'ui.config.yaml', '--format', 'json', ...args], { cwd: root, encoding: 'utf8', timeout: 60_000, env: { ...process.env, NODE_PATH: '' } });
   return { root, config, run };
 }
 
@@ -729,4 +729,43 @@ test('copied CLI follows child-host inheritance from global and None consumers w
     assert.equal(report.diagnostics.some((d: { severity: string; message: string }) => d.severity === 'error' && d.message.includes('Concrete value 19px ')), entry.bad, result.stdout);
     assert.equal(report.diagnostics.some((d: { severity: string; message: string }) => d.severity === 'error' && d.message.includes('Concrete value 17px ')), false, result.stdout);
   }
+});
+
+test('standalone and full CLI share workspace, baseline and required-check results', async t => {
+  const source = `import { ActionControl } from '../foundation/angular/action-control';
+export const action = ActionControl;`;
+  const { root, config, run } = await consumer(t, source);
+  await writeFile(resolve(root, 'angular.json'), JSON.stringify({
+    projects: { app: { sourceRoot: 'app' }, admin: { sourceRoot: 'projects/admin/src' } },
+  }));
+  await writeFile(resolve(root, 'app/style.css'), '.app{color:red}');
+  await syncProject({ root });
+
+  const baseline = await checkProject({ root });
+  assert.equal(baseline.valid, false);
+  assert.ok(baseline.source.diagnostics.some(item => item.rule === 'uncovered-project'));
+  assert.ok(baseline.source.diagnostics.some(item => item.rule === 'generated-internal-import'));
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify(baseline));
+
+  const cli = (...args: string[]) => spawnSync(process.execPath, [
+    '--import', import.meta.resolve('tsx'), resolve(repository, 'src/cli.ts'), 'check',
+    '--format', 'json', ...args,
+  ], { cwd: root, encoding: 'utf8', timeout: 60_000 });
+  const flags = ['--baseline', 'baseline.json', '--require-source-checks'];
+  const full = cli(...flags);
+  assert.equal(full.status, 0, full.stdout + full.stderr);
+  const fullReport = JSON.parse(full.stdout);
+  assert.equal(fullReport.source.existing_diagnostics.length, 1);
+  const standalone = run(...flags);
+  assert.equal(standalone.status, 0, standalone.stdout + standalone.stderr);
+  assert.deepEqual(JSON.parse(standalone.stdout), fullReport.source);
+
+  delete config.checks;
+  await writeFile(resolve(root, 'ui.config.yaml'), stringify(config));
+  await syncProject({ root });
+  const required = cli('--require-source-checks');
+  assert.equal(required.status, 1, required.stdout + required.stderr);
+  const requiredStandalone = run('--require-source-checks');
+  assert.equal(requiredStandalone.status, 1, requiredStandalone.stdout + requiredStandalone.stderr);
+  assert.deepEqual(JSON.parse(requiredStandalone.stdout), JSON.parse(required.stdout).source);
 });

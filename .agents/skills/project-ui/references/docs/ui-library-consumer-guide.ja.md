@@ -82,6 +82,15 @@ checks:
 
 `output` の既定値は `.ui/generated/` です。`check-ui.cjs` だけを抜き出さず、`checker-lib/`・`policy.json`・`CHECKER-NOTICE.txt` 等を含む生成ディレクトリ全体と、`.agents/skills/project-ui/` を管理します。生成物とSkillはGitで追跡します。所有範囲や移行は[生成契約](design.md#生成と利用)に従います。
 
+画面を追加するときは `angular.json` のソースルートと `checks.source_roots` を照合します。例えば `projects/admin/src` を追加した場合、`uncovered-project` が出たら検査対象へ加えます。アプリのCIでソース検査を必須にする実行例です。
+
+```sh
+./node_modules/.bin/ui-foundation check --require-source-checks
+node .ui/generated/check-ui.cjs --require-source-checks
+```
+
+生成一致も検査する場合は1行目、同期済みの方針でソースだけを検査する場合は2行目を使います。既存違反を段階的に直す場合は確認済みの JSON 基準を `--baseline ui-check-baseline.json` で指定します。新規違反は修正し、警告は個別に確認します。公開入口を案内する警告は、該当する import を公開入口へ変更します。意図した例外には理由と再確認条件を残します。 [検査範囲・差分判定と例外](static-checks.ja.md)
+
 生成後のソース検査は、利用アプリのNode.jsから実行できます。Node.jsの対応版はインストール済みパッケージの`package.json`の`engines`に従います。本体のチェックアウトや検査専用の追加npm依存は不要ですが、部品のビルド・実行に必要なAngular等の依存は別途導入します。同梱検査器をアプリのブラウザーバンドルへ含めません。
 
 ```sh

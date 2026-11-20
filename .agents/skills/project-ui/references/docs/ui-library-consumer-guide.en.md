@@ -316,6 +316,8 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 The generated checker runs with Node and checks the generated policy against the configuration and selected app sources. Keep it with its sibling `checker-lib/`, `policy.json`, and `CHECKER-NOTICE.txt` files. Use the full CLI for generated-file consistency and ownership checks. Keep the checker out of the browser bundle.
 
+For CI that requires source coverage, run `ui-foundation check --require-source-checks` for generated consistency and source checks, or `node .ui/generated/check-ui.cjs --require-source-checks` for the standalone source check. If `angular.json` lists a project outside `checks.source_roots`, review the reported source root and add coverage or document the deliberate exclusion. To adopt checks in stages, pass a reviewed full JSON report with `--baseline ui-check-baseline.json`. See the linked check contract for output fields and scoped exceptions.
+
 Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions](static-checks.en.md)
 
 Build the app and exercise the actual tasks in the browser after synchronization. Check supported profiles and languages with narrow layouts, longer translated labels, text zoom, and keyboard focus. Exercise pending, failure, partial-data, and retry paths and verify that a language change retains the current draft or request. For media and specialist components, verify worker startup and real asset responses. Track compile results, automated accessibility findings, observed behavior, and visual review separately.

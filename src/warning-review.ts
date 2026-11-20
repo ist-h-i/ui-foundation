@@ -8,7 +8,7 @@ export const warningReviewCategories = ['public-css-override', 'callable-replace
   'print-document', 'external-renderer', 'dom-state', 'async-resource', 'projected-template', 'fixture-input', 'runtime-input'] as const;
 export type WarningReviewCategory = typeof warningReviewCategories[number];
 export const warningReviewInputs = ['examples/ui.config.repository.yaml', 'package.json', 'package-lock.json', 'src/config.ts', 'src/roles.ts', 'src/sync.ts',
-  'src/check/bounded-search.ts', 'src/check/bundle.ts', 'src/check/canonical.ts', 'src/check/class-domain.ts', 'src/check/entry.ts',
+  'src/check/application.ts', 'src/check/bounded-search.ts', 'src/check/bundle.ts', 'src/check/canonical.ts', 'src/check/class-domain.ts', 'src/check/entry.ts',
   'src/check/policy.ts', 'src/check/report.ts', 'src/check/scanner.ts', 'src/check/styles.ts', 'src/check/tailwind.ts', 'src/check/types.ts'] as const;
 export interface WarningReview {
   id: string;

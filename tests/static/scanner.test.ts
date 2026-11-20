@@ -898,3 +898,268 @@ test('foreign static class selectors match Angular compiler conditions, not runt
   await writeFile(resolve(root, 'app/app.ts'), `import {Component} from '@angular/core'; import {Mark} from 'foreign-ui'; @Component({selector:'app-test',imports:[Mark],template:'<p [class.foreign]="true"></p>'}) export class App {}`);
   assert.equal((await scan()).valid, true);
 });
+
+test('Angular workspace reports uncovered and intentionally excluded projects without scanning them', async t => {
+  const input = await fixture(t, {
+    'angular.json': JSON.stringify({ projects: {
+      app: { root: '', sourceRoot: 'app' },
+      admin: { root: 'projects/admin', sourceRoot: 'projects/admin/src' },
+      library: { root: 'projects/library', sourceRoot: 'projects/library/src' },
+    } }),
+    'app/main.ts': 'export const marker = true;',
+    'projects/admin/src/main.html': '<div style="color:red"></div>',
+  }, { ...checks(), excluded_projects: [{ name: 'library', reason: 'Validated by the library pipeline' }] });
+  const report = await input.scan();
+  assert.equal(report.valid, true);
+  assert.equal(report.files, 1);
+  assert.equal(report.diagnostics.length, 1);
+  assert.equal(report.diagnostics[0].rule, 'uncovered-project');
+  assert.match(report.diagnostics[0].message, /admin.*projects\/admin\/src/);
+  assert.deepEqual(report.excluded_projects, [{ name: 'library', source_root: 'projects/library/src', reason: 'Validated by the library pipeline' }]);
+});
+
+test('a required source check keeps NOT_CONFIGURED distinguishable from a completed scan', async t => {
+  const { config, root } = await fixture(t, {});
+  const unconfigured = { ...config, checks: undefined };
+  const report = await checkSources({ root, config: unconfigured, policy: createSourcePolicy(unconfigured), requireSourceChecks: true });
+  assert.equal(report.status, 'not_configured');
+  assert.equal(report.valid, false);
+});
+
+test('baseline comparison handles line shifts, replacements, duplicate findings and source failures', async t => {
+  const { config, root, scan } = await fixture(t, { 'app/style.css': '.one { color:red }\n' });
+  const previous = await scan();
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify({ source: previous }));
+  const compare = () => checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+
+  await writeFile(resolve(root, 'app/style.css'), '\n.one { color:red }\n');
+  const shifted = await compare();
+  assert.equal(shifted.valid, true);
+  assert.equal(shifted.existing_diagnostics?.length, 1);
+
+  await writeFile(resolve(root, 'app/style.css'), '\n.one { color:blue }\n');
+  assert.equal((await compare()).valid, false);
+
+  await writeFile(resolve(root, 'app/style.css'), '.two { color:red }\n');
+  assert.equal((await compare()).valid, false);
+
+  await writeFile(resolve(root, 'app/style.css'), '.one { color:red }\n.one { color:red }\n');
+  const repeated = await compare();
+  assert.equal(repeated.existing_diagnostics?.length, 1);
+  assert.equal(errors(repeated).length, 1);
+
+  await writeFile(resolve(root, 'app/style.css'), '.one { color:');
+  const unparseable = await scan();
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify(unparseable));
+  assert.equal((await compare()).valid, false);
+});
+
+test('generated internal imports follow TypeScript aliases and recommend the public export', async t => {
+  const { scan } = await fixture(t, {
+    'app/main.ts': [
+      "import { Control } from '@internal';",
+      "import { PublicControl } from './local';",
+      "export { Hidden } from '../.ui/generated/angular/hidden';",
+      'export const controls = [Control, PublicControl];',
+    ].join('\n'),
+    'app/local.ts': "export { Control as PublicControl } from '../.ui/generated/angular/index';",
+    '.ui/generated/angular/control.ts': 'export class Control {}',
+    '.ui/generated/angular/hidden.ts': 'export class Hidden {}',
+    '.ui/generated/angular/index.ts': "export { Control } from './control';",
+    'tsconfig.json': JSON.stringify({ compilerOptions: {
+      module: 'ESNext', moduleResolution: 'Bundler', paths: { '@internal': ['./.ui/generated/angular/control.ts'] },
+    } }),
+  }, { ...checks(), tsconfig: 'tsconfig.json' });
+  const report = await scan();
+  assert.equal(report.valid, true);
+  const findings = warnings(report).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 2);
+  assert.match(findings[0].suggestion, /\.ui\/generated\/angular\/index/);
+  assert.doesNotMatch(findings[1].suggestion, /\.ui\/generated\/angular\/index/);
+});
+
+test('baseline reports a violation moved to a different structural site', async t => {
+  const cases = [
+    ['app/site.css',
+      '@media (orientation: portrait) { .one { color: red } }\n@media (orientation: landscape) { .one { color: var(--ui-color-text) } }',
+      '@media (orientation: portrait) { .one { color: var(--ui-color-text) } }\n@media (orientation: landscape) { .one { color: red } }'],
+    ['app/site.html',
+      '<aside><span style="color: red"></span></aside><main><span style="color: var(--ui-color-text)"></span></main>',
+      '<aside><span style="color: var(--ui-color-text)"></span></aside><main><span style="color: red"></span></main>'],
+    ['app/site.ts',
+      "declare const a: HTMLElement, b: HTMLElement;\na.style.color = 'red';\nb.style.color = 'var(--ui-color-text)';",
+      "declare const a: HTMLElement, b: HTMLElement;\na.style.color = 'var(--ui-color-text)';\nb.style.color = 'red';"],
+  ] as const;
+  for (const [file, before, after] of cases) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, file);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    const compare = () => checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    await writeFile(resolve(root, file), '\n' + before);
+    const shifted = await compare();
+    assert.equal(shifted.valid, true, file);
+    assert.equal(shifted.existing_diagnostics?.length, 1, file);
+    await writeFile(resolve(root, file), after);
+    const moved = await compare();
+    assert.equal(moved.valid, false, file);
+    assert.equal(moved.existing_diagnostics?.length, 0, file);
+    assert.equal(errors(moved).length, 1, file);
+  }
+});
+
+test('application declaration files warn on imports of private generated types', async t => {
+  const { scan } = await fixture(t, {
+    'app/types.d.ts': "export type Model = import('../.ui/generated/angular/internal').Model;",
+    '.ui/generated/angular/internal.ts': 'export interface Model { label: string }',
+  });
+  const report = await scan();
+  assert.equal(report.valid, true);
+  const findings = warnings(report).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].file, 'app/types.d.ts');
+});
+
+test('baseline treats TypeScript loop and conditional arms as distinct sites', async t => {
+  const replacementPairs = [
+    [
+      "for (const target of ['a']) document.body.style.color = 'red';\nfor (const target of ['b']) document.body.style.color = 'var(--ui-color-text)';",
+      "for (const target of ['a']) document.body.style.color = 'var(--ui-color-text)';\nfor (const target of ['b']) document.body.style.color = 'red';",
+    ],
+    [
+      "declare const flag: boolean;\nconst color = flag ? (document.body.style.color = 'red') : (document.body.style.color = 'var(--ui-color-text)');",
+      "declare const flag: boolean;\nconst color = flag ? (document.body.style.color = 'var(--ui-color-text)') : (document.body.style.color = 'red');",
+    ],
+  ];
+  for (const [before, after] of replacementPairs) {
+    const file = 'app/branches.ts';
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const moved = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(moved.valid, false, after);
+    assert.equal(moved.existing_diagnostics?.length, 0, after);
+    assert.equal(errors(moved).length, 1, after);
+  }
+});
+
+test('baseline ignores whitespace between context tokens and preserves quoted values', async t => {
+  const scenarios = [
+    ['app/style.css',
+      '@container style(--note: "a  b") { .one { color: red } }',
+      '@container style(\n\n --note:\n\n "a  b"\n) { .one { color: red } }',
+      '@container style(--note: "a b") { .one { color: red } }'],
+    ['app/view.html',
+      '<aside data-note="a  b"><span style="color: red"></span></aside>',
+      '<aside\n\n data-note = "a  b"><span style="color: red"></span></aside>',
+      '<aside data-note="a b"><span style="color: red"></span></aside>'],
+  ] as const;
+  for (const [file, before, reformatted, changed] of scenarios) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, file);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    const compare = () => checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    await writeFile(resolve(root, file), reformatted);
+    assert.equal((await compare()).valid, true, reformatted);
+    await writeFile(resolve(root, file), changed);
+    assert.equal((await compare()).valid, false, changed);
+  }
+});
+
+test('internal import type advice uses a resolvable public specifier in a NodeNext project', async t => {
+  const { scan } = await fixture(t, {
+    'package.json': '{ "type": "module" }',
+    'tsconfig.json': '{ "compilerOptions": { "module": "NodeNext", "moduleResolution": "NodeNext" } }',
+    'app/types.d.ts': "export type Model = import('../.ui/generated/angular/internal.js').Model;",
+    '.ui/generated/angular/internal.ts': 'export interface Model { label: string }',
+    '.ui/generated/angular/index.ts': "export type { Model } from './internal.js';",
+  }, { ...checks(), tsconfig: 'tsconfig.json' });
+  const report = await scan();
+  assert.equal(report.valid, true);
+  const findings = warnings(report).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 1);
+  assert.match(findings[0].suggestion, /index\.js'/);
+});
+
+test('baseline distinguishes try arms and tolerates unrelated edits in callback bodies', async t => {
+  const subjects = [
+    ["try { document.body.style.color = 'red'; } catch { document.body.style.color = 'var(--ui-color-text)'; }",
+      "try { document.body.style.color = 'var(--ui-color-text)'; } catch { document.body.style.color = 'red'; }", false],
+    ["const run = (task: () => void) => task();\nrun(() => { document.body.style.color = 'red'; });",
+      "const run = (task: () => void) => task();\nrun(() => { const note = 'independent'; document.body.style.color = 'red'; });", true],
+    ["declare function run(name: string, task: () => void): void;\nrun('a', () => { document.body.style.color = 'red'; });\nrun('b', () => { document.body.style.color = 'var(--ui-color-text)'; });",
+      "declare function run(name: string, task: () => void): void;\nrun('a', () => { document.body.style.color = 'var(--ui-color-text)'; });\nrun('b', () => { document.body.style.color = 'red'; });", false],
+  ] as const;
+  for (const [before, after, valid] of subjects) {
+    const file = 'app/context.ts';
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, valid, after);
+    assert.equal(checked.existing_diagnostics?.length, valid ? 1 : 0, after);
+  }
+});
+
+test('baseline uses parsed subject identity instead of the raw CSS and HTML diagnostic evidence', async t => {
+  const sources = [
+    ['app/context.css', '.one { color: red }', '.one { color:\n\n red }'],
+    ['app/context.html', '<main><span style="color: red"></span></main>',
+      '<main><span\n\n style = "color:\n\n red"></span></main>'],
+    ['app/context.ts', "document.body.style.cssText = 'color: red';",
+      "document.body.style.cssText = 'color:\\n\\n red';"],
+  ] as const;
+  for (const [file, before, after] of sources) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, true, after);
+    assert.equal(checked.existing_diagnostics?.length, 1, after);
+    assert.notEqual(previous.diagnostics[0].source, checked.existing_diagnostics?.[0].source, file);
+  }
+});
+
+test('baseline preserves selector combinators in CSS scope conditions', async t => {
+  const file = 'app/scope.css';
+  const { config, root, scan } = await fixture(t, {
+    [file]: '@scope (.a :hover) { .one { color: red } }\n@scope (.a:hover) { .one { color: var(--ui-color-text) } }',
+  });
+  const previous = await scan();
+  assert.equal(errors(previous).length, 1);
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+  await writeFile(resolve(root, file), '@scope (.a :hover) { .one { color: var(--ui-color-text) } }\n@scope (.a:hover) { .one { color: red } }');
+  const moved = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+  assert.equal(moved.valid, false);
+  assert.equal(moved.existing_diagnostics?.length, 0);
+  assert.equal(errors(moved).length, 1);
+});
+
+test('baseline distinguishes callbacks in separate array slots and custom property query token streams', async t => {
+  const scenarios = [
+    ['app/context.ts',
+      "const callbacks = [() => { document.body.style.color = 'red'; }, () => { document.body.style.color = 'var(--ui-color-text)'; }]; callbacks[0](); callbacks[1]();",
+      "const callbacks = [() => { document.body.style.color = 'var(--ui-color-text)'; }, () => { document.body.style.color = 'red'; }]; callbacks[0](); callbacks[1]();"],
+    ['app/context.css',
+      '@container style(--foo: a :b) { .one{color:red} } @container style(--foo: a:b) { .one{color:var(--ui-color-text)} }',
+      '@container style(--foo: a :b) { .one{color:var(--ui-color-text)} } @container style(--foo: a:b) { .one{color:red} }'],
+  ] as const;
+  for (const [file, before, after] of scenarios) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, false, after);
+    assert.deepEqual(checked.existing_diagnostics, [], after);
+    assert.equal(errors(checked).length, 1, after);
+  }
+});

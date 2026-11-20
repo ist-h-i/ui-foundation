@@ -130,13 +130,13 @@ lockは予定パスと前後hashを持ち、ファイルのバックアップは
 | --- | --- |
 | 生成一致かつソース検査に確定エラーなし | 0。ソースの`status`は`passed`または`warnings` |
 | 警告のみ | ほかに失敗がなければ0。`status: "warnings"`。未確認箇所が残る |
-| YAMLに`checks`がない | ソースは`status: "not_configured"`、テキストは`NOT_CONFIGURED`。ほかに失敗がなければ0。ソース検査は未実施 |
+| YAMLに`checks`がない | ソースは`status: "not_configured"`、テキストは`NOT_CONFIGURED`。`--require-source-checks` または `--baseline` を指定すると1。指定がなく生成一致が通れば0。 |
 | 生成差分、確定違反、検査設定不備、対象欠損、読取り・解析失敗 | 1。生成差分とソース診断の両方を確認する |
 | 不明なコマンド・オプション、必須値不足、その他の例外 | 1。エラーメッセージを確認する |
 
 `NOT_CONFIGURED`はソース検査の合格ではありません。導入する場合は`checks.source_roots`に実在する対象を設定し、syncしてからcheckします。`init`が設定する`src`にも対象ソースが必要です。空ディレクトリや存在しないrootでは検査に失敗します。
 
-警告は、動的な値や未知のCSS供給元などを静的に確定できなかったことを示します。警告を消すために一律承認せず、発生元と実行時の挙動を確認してください。検査対象・除外・承認・例外・未確認範囲は[静的検査の契約](static-checks.ja.md)を参照してください。終了0は実行時動作、業務上の正しさ、視覚品質、アクセシビリティ全体、利用者の理解を保証しません。
+警告には、未検査のプロジェクト、生成内部への参照、動的な値などが含まれます。指摘ごとに検査範囲・修正方法・確認手順を確認します。既存アプリで新規違反から修正する場合は、確認済みの全件検査結果を `--baseline <プロジェクト相対パス>` で指定します。検査対象・除外・承認・例外・未確認範囲は[静的検査の契約](static-checks.ja.md)を参照してください。終了0は実行時動作、業務上の正しさ、視覚品質、アクセシビリティ全体、利用者の理解を保証しません。
 
 ## 生成済み`check-ui.cjs`を実行する
 
@@ -166,7 +166,7 @@ node .ui/generated/check-ui.cjs --help
 | JSONの通常結果 | `{valid, differences, source}` | ソース結果そのもの：`{status, valid, files, checked, diagnostics, exceptions}` |
 | JSONの例外結果 | `{valid: false, error}` | `{valid: false, status: "failed", error}` |
 
-生成済み検査器も警告のみ・`NOT_CONFIGURED`ならほかに失敗がなければ終了0、確定違反・設定不備・対象欠損・読取りや解析の失敗なら終了1です。policy未同期のエラーが出たら、対応するパッケージ版で本体CLIのsyncとcheckを実行します。エラー文中の`Run ui:sync`は同期の案内であり、利用アプリに同名のnpm scriptが存在することを前提にしません。
+生成済み検査器も `--require-source-checks` と `--baseline` を受け付けます。ソース検査の終了条件は本体 CLI のソース検査と共通です。policy未同期のエラーが出たら、対応するパッケージ版で本体CLIのsyncとcheckを実行します。エラー文中の`Run ui:sync`は同期の案内であり、利用アプリに同名のnpm scriptが存在することを前提にしません。
 
 ## よくある停止理由と対処
 

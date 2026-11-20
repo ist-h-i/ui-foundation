@@ -43,6 +43,24 @@ node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.
 
 同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定やパッケージ版を変更し、`./node_modules/.bin/ui-foundation sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
 
+## ワークスペースの検査範囲と既存違反
+
+プロジェクトルートに `angular.json` があるときは、登録された各プロジェクトの `sourceRoot`（省略時は `root`）を `checks.source_roots` と照合します。範囲外のプロジェクトは名前とパスを `uncovered-project` 警告で表示します。検査範囲は設定で指定したルートです。意図的に対象外とする場合は、`checks.excluded_projects` に名前と理由を記録します。
+
+```yaml
+checks:
+  source_roots: [src, projects/admin/src]
+  excluded_projects:
+    - name: playground
+      reason: 専用のCIジョブで検査するため
+```
+
+ソース検査を必須にする場合は `--require-source-checks` を指定します。`NOT_CONFIGURED` のときは終了コードが1になります。この指定と `--baseline <プロジェクト相対のJSONパス>` は、本体 CLI の `check` と生成済み検査器で使えます。
+
+既存アプリで新規違反から修正するときは、まず `check --format json` の全件結果を確認し、基準として保存します。既存違反がある全件検査は終了コード1です。JSON に保存するソース検査結果が含まれていることを確認してください。`check --baseline ui-check-baseline.json` は新規違反と検査の失敗を終了コード1にします。既存違反は `source.existing_diagnostics`（生成済み検査器では直下の `existing_diagnostics`）に表示します。照合にはファイル・ルール・構文から特定した違反内容と位置、それぞれの出現件数を使います。CSS の条件、テンプレートの親要素、TypeScript の操作対象や分岐が異なれば新規違反です。無関係な行の挿入や、対応する CSS の値や HTML 開始タグ内の意味を変えない改行で、新規扱いにはなりません。診断には元のソース断片も表示します。違反内容や位置を特定できない診断は、基準を使う場合も確定違反として扱います。照合に必要な情報を記録していない旧形式の基準は、全件検査で取り直してください。警告・読み取りや解析の失敗・不正な例外は引き続き報告し、本体 CLI は生成一致も検査します。全件を判定する場合は指定を外します。基準の変更は差分を確認して明示的に行います。
+
+`generated-internal-import` は、設定した tsconfig のパスエイリアスも含めて、import や再エクスポートの解決先が生成内部ファイルなら警告します。警告に公開入口が示されている場合は、その入口へ変更します。アプリ独自の部品や公開入口を経由するラッパーも使えます。必要な内部参照を残すときは、範囲を絞った例外に理由と再確認条件を記録します。
+
 ## 対象と結果
 
 TypeScriptとAngularの構文を読み、inline/外部template・styles、host metadata、`HostBinding`、class/style/ngClass/ngStyle、静的に識別できるDOM style操作を検査します。コメントや通常の業務文字列をCSSとして検索せず、アプリのコードを実行しません。
