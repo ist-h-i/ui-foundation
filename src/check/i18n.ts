@@ -13,6 +13,8 @@ type Argument = { kinds?: readonly string[]; start: number; end: number };
 type Wrapper = 'request' | 'positional';
 type LibraryImport = (specifier: ts.StringLiteralLike) => boolean;
 type Span = { start: number; end: number };
+type ViewLocals = Map<string, { initializer: AST; scope: ViewLocals } | undefined>;
+const maxAliasDepth = 12;
 
 const idSyntax = /^[A-Za-z][A-Za-z0-9_-]*(?:[.:/][A-Za-z0-9_-]+)*$/;
 const parameterSyntax = /^[A-Za-z_$][\w$]*$/;
@@ -23,14 +25,19 @@ const bindingNames = new Set([
 ]);
 const legacyFunctions = new Set(['uiMessage', 'injectUiText']);
 const bindingParser = new Parser(new Lexer());
-function knownAngularId(value: AST | undefined): string | undefined {
+function knownAngularId(value: AST | undefined, locals: ViewLocals, aliasDepth = 0): string | undefined {
   if (value instanceof LiteralPrimitive && typeof value.value === 'string') return value.value;
   if (value instanceof Binary && value.operation === '+') {
-    const left = knownAngularId(value.left);
-    const right = knownAngularId(value.right);
+    const left = knownAngularId(value.left, locals, aliasDepth);
+    const right = knownAngularId(value.right, locals, aliasDepth);
     if (left !== undefined && right !== undefined) return left + right;
   }
-  if (value instanceof NonNullAssert) return knownAngularId(value.expression);
+  if (value instanceof ASTWithSource) return knownAngularId(value.ast, locals, aliasDepth);
+  if (value instanceof NonNullAssert) return knownAngularId(value.expression, locals, aliasDepth);
+  if (value instanceof PropertyRead && value.receiver instanceof ImplicitReceiver && aliasDepth < maxAliasDepth) {
+    const alias = locals.get(value.name);
+    if (alias) return knownAngularId(alias.initializer, alias.scope, aliasDepth + 1);
+  }
 }
 const displayInstruction = "Wrap display text in Angular i18n or call a configured function such as t('feature.message').";
 
@@ -69,6 +76,7 @@ interface TemplateNode {
   children?: TemplateNode[];
   branches?: TemplateNode[];
   cases?: TemplateNode[];
+  groups?: TemplateNode[];
   placeholder?: TemplateNode;
   empty?: TemplateNode;
   loading?: TemplateNode;
@@ -194,7 +202,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       'Use uiStableMessage with a library ID, or a configured app translator with an app-owned ID.', span.start, span.end);
   }
 
-  function angularArguments(value: AST | undefined): Record<string, Argument> | undefined {
+  function angularArguments(value: AST | undefined, locals: ViewLocals): Record<string, Argument> | undefined {
     if (!value) return {};
     if (!(value instanceof LiteralMap)) return;
     if (value.keys.some(key => !('key' in key))) return;
@@ -202,7 +210,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       if (!('key' in key)) return [];
       const expression = value.values[index];
       const kind = expression instanceof LiteralPrimitive ? literalKind(expression.value)
-        : knownAngularId(expression) !== undefined ? 'string'
+        : knownAngularId(expression, locals) !== undefined ? 'string'
         : expression instanceof LiteralArray ? 'array' : expression instanceof LiteralMap ? 'object' : undefined;
       return [[key.key, { ...expression.sourceSpan, kinds: kind ? [kind] : undefined }]];
     }));
@@ -214,7 +222,6 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
   }
   type TemplateWrapper = (receiver: AST) => Wrapper | undefined;
-  type ViewLocals = Map<string, string | undefined>;
   const implicitName = (receiver: AST): string | undefined => {
     if (receiver instanceof PropertyRead || receiver instanceof SafePropertyRead) {
       return receiver.receiver instanceof ImplicitReceiver ? receiver.name : implicitName(receiver.receiver);
@@ -233,20 +240,24 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
     return false;
   }
-  function inspectAngular(value: AST, shown: boolean, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, wrapper: TemplateWrapper, locals: ViewLocals) {
-    if (value instanceof ASTWithSource) return inspectAngular(value.ast, shown, emit, members, wrapper, locals);
+  function inspectAngular(value: AST, shown: boolean, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, wrapper: TemplateWrapper, locals: ViewLocals, aliasDepth = 0) {
+    if (value instanceof ASTWithSource) return inspectAngular(value.ast, shown, emit, members, wrapper, locals, aliasDepth);
     if (value instanceof Chain) {
-      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals);
+      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals, aliasDepth);
       return;
     }
-    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members, wrapper, locals);
+    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members, wrapper, locals, aliasDepth);
     if (value instanceof BindingPipe) {
-      if (value.name === 'uiMessage' && !configuredPipe.has(value.name)) { legacy(value.name, value.sourceSpan, emit); return; }
-      if (angularTranslation(value, wrapper, locals)) {
-        checkReference(value.name, knownAngularId(value.exp), angularArguments(value.args[0]), value.sourceSpan, emit, value.name === 'uiStableMessage' && !configuredPipe.has(value.name));
+      if (value.name === 'uiMessage' && !configuredPipe.has(value.name)) {
+        if (!aliasDepth) legacy(value.name, value.sourceSpan, emit);
         return;
       }
-      inspectAngular(value.exp, shown, emit, members, wrapper, locals);
+      if (angularTranslation(value, wrapper, locals)) {
+        if (!aliasDepth) checkReference(value.name, knownAngularId(value.exp, locals), angularArguments(value.args[0], locals),
+          value.sourceSpan, emit, value.name === 'uiStableMessage' && !configuredPipe.has(value.name));
+        return;
+      }
+      inspectAngular(value.exp, shown, emit, members, wrapper, locals, aliasDepth);
       return;
     }
     if (value instanceof Call || value instanceof SafeCall) {
@@ -256,35 +267,36 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
         if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit, members);
       }
       const kind = name && wrapper(value.receiver);
+      if (aliasDepth && angularTranslation(value, wrapper, locals)) return;
       if (name && kind === 'request') {
         const request = value.args[0];
         const object = request instanceof LiteralMap && request.keys.every(key => 'key' in key) ? request : undefined;
-        checkReference(name, object && knownAngularId(angularField(object, 'id')),
-          object ? angularArguments(angularField(object, 'parameters')) : undefined, value.sourceSpan, emit, true);
+        checkReference(name, object && knownAngularId(angularField(object, 'id'), locals),
+          object ? angularArguments(angularField(object, 'parameters'), locals) : undefined, value.sourceSpan, emit, true);
       } else if (name && (kind === 'positional' || configuredFunction.has(name))) {
-        checkReference(name, knownAngularId(value.args[0]), angularArguments(value.args[1]), value.sourceSpan, emit, !!kind);
+        checkReference(name, knownAngularId(value.args[0], locals), angularArguments(value.args[1], locals), value.sourceSpan, emit, !!kind);
       }
-      else for (const argument of value.args) inspectAngular(argument, false, emit, members, wrapper, locals);
+      else for (const argument of value.args) inspectAngular(argument, false, emit, members, wrapper, locals, aliasDepth);
       return;
     }
     if (value instanceof Conditional) {
-      inspectAngular(value.trueExp, shown, emit, members, wrapper, locals);
-      inspectAngular(value.falseExp, shown, emit, members, wrapper, locals);
+      inspectAngular(value.trueExp, shown, emit, members, wrapper, locals, aliasDepth);
+      inspectAngular(value.falseExp, shown, emit, members, wrapper, locals, aliasDepth);
       return;
     }
     if (value instanceof Interpolation) {
       if (shown && value.strings.some(applicationText)) {
-        if (value.expressions.some(expression => angularTranslation(expression, wrapper, locals))) fragment(value.sourceSpan, emit);
+        if (!aliasDepth && value.expressions.some(expression => angularTranslation(expression, wrapper, locals))) fragment(value.sourceSpan, emit);
         raw(value.strings.join(''), value.sourceSpan, emit);
       }
-      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals);
+      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals, aliasDepth);
       return;
     }
     if (value instanceof Binary) {
-      if (value.operation === '+' && (angularTranslation(value.left, wrapper, locals) || angularTranslation(value.right, wrapper, locals))) fragment(value.sourceSpan, emit);
+      if (!aliasDepth && value.operation === '+' && (angularTranslation(value.left, wrapper, locals) || angularTranslation(value.right, wrapper, locals))) fragment(value.sourceSpan, emit);
       if (['+', '||', '??'].includes(value.operation)) {
-        inspectAngular(value.left, shown, emit, members, wrapper, locals);
-        inspectAngular(value.right, shown, emit, members, wrapper, locals);
+        inspectAngular(value.left, shown, emit, members, wrapper, locals, aliasDepth);
+        inspectAngular(value.right, shown, emit, members, wrapper, locals, aliasDepth);
       }
       return;
     }
@@ -299,7 +311,12 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     if (shown && value instanceof LiteralPrimitive) raw(value.value, value.sourceSpan, emit);
     if (shown && (value instanceof PropertyRead || value instanceof SafePropertyRead)) {
       if (value.receiver instanceof ImplicitReceiver && locals.has(value.name)) {
-        raw(locals.get(value.name), value.sourceSpan, emit);
+        const alias = locals.get(value.name);
+        if (alias && aliasDepth < maxAliasDepth) {
+          const atUse: I18nFinding = (rule, severity, message, suggestion) =>
+            emit(rule, severity, message, suggestion, value.sourceSpan.start, value.sourceSpan.end);
+          inspectAngular(alias.initializer, true, atUse, members, wrapper, alias.scope, aliasDepth + 1);
+        }
         return;
       }
       const name = componentName(value, locals);
@@ -413,10 +430,9 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
         inspectAngular(node.value, !(node instanceof TmplAstLetDeclaration) && !angularI18n && !hidden, local, members, wrapper, locals);
       }
       if (node instanceof TmplAstLetDeclaration) {
-        const reference = node.value instanceof ASTWithSource ? node.value.ast : node.value;
-        const copy = knownAngularId(reference) ?? (reference instanceof PropertyRead && reference.receiver instanceof ImplicitReceiver
-          ? locals.get(reference.name) : undefined);
-        locals.set(node.name, copy);
+        // Copy the visible bindings before registering the alias, so later shadowing cannot
+        // reinterpret its initializer when we encounter a display use.
+        locals.set(node.name, { initializer: node.value, scope: new Map(locals) });
       }
       if (node.children?.length) {
         const variables = [...node.variables ?? [], ...node.contextVariables ?? []];
@@ -425,7 +441,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
         const childLocals = node instanceof TmplAstElement ? locals : view(node.children, locals, variables);
         for (const child of node.children) walk(child, childLocals, angularI18n, hidden, site);
       }
-      for (const list of [node.branches, node.cases]) {
+      for (const list of [node.branches, node.groups, node.cases]) {
         for (const child of list ?? []) walk(child, locals, angularI18n, hidden, site);
       }
       for (const child of [node.placeholder, node.empty, node.loading, node.error]) {

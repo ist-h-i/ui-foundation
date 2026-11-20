@@ -361,3 +361,39 @@ export class Order {
   const findings = i18nOnly((await fixture.check()).diagnostics);
   assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-message-arguments']]);
 });
+
+test('classifies consumed aliases in their defining view and scans Angular switch case groups', async t => {
+  const fixture = await consumer(t, `@let controlState = 'OPEN';
+@if (status === controlState) { <p i18n>Notice</p> }
+@let message = errorByCode[status];
+<p>{{ message }}</p>
+@let branchLabel = status ? 'Fixed condition A' : 'Fixed condition B';
+<button [attr.aria-label]="branchLabel"></button>
+@let label = this.label;
+<p>{{ label }}</p>
+@let id = 'uiFoundation.noSuch';
+<p>{{ text(id) }}</p>
+@switch (status) { @case ('OPEN') { <button>Open order</button><p>{{ text('uiFoundation.noSuchInCase') }}</p> } }
+@for (errorByCode of api.catalogs; track errorByCode) { <p>{{ message }}</p><p>{{ errorByCode[status] }}</p> }
+@let translated = text('uiFoundation.noSuchAtDeclaration');
+<p>{{ translated }}</p>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import {injectUiMessageText} from '../.ui/generated/angular/core';
+@Component({selector: 'app-order', templateUrl: './order.html'})
+export class Order {
+  readonly label = 'Fixed component label';
+  readonly status = 'OPEN';
+  readonly errorByCode: Record<string, string> = { OPEN: 'Please reopen the order' };
+  readonly text = injectUiMessageText();
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [4, 'i18n-raw-text'], [6, 'i18n-raw-text'], [8, 'i18n-raw-text'],
+    [10, 'i18n-message-reference'],
+    [11, 'i18n-raw-text'], [11, 'i18n-message-reference'],
+    [12, 'i18n-raw-text'], [13, 'i18n-message-reference'],
+  ]);
+  assert.deepEqual(findings.filter(item => item.rule === 'i18n-message-reference').map(item => item.message.match(/uiFoundation\.\w+/)?.[0]),
+    ['uiFoundation.noSuch', 'uiFoundation.noSuchInCase', 'uiFoundation.noSuchAtDeclaration']);
+});
