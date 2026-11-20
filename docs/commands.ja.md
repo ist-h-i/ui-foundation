@@ -15,7 +15,7 @@
 ```text
 ui-foundation init [--config ui.config.yaml] [--language en|ja]
 ui-foundation sync [--config ui.config.yaml] [--dry-run] [--from-output previous/path]
-ui-foundation check [--config ui.config.yaml] [--format text|json]
+ui-foundation check [--config ui.config.yaml] [--format text|json] [--require-source-checks] [--baseline PATH]
 ui-foundation --help
 ui-foundation -h
 ```
@@ -30,6 +30,8 @@ ui-foundation -h
 | `--from-output PATH` | `sync`のみ | 従来v1の生成先を明示する移行用指定。[限定条件](#生成先の変更と--from-output)を参照 |
 | `--format text` | `check`のみ | 人が読むテキスト。省略時もこの形式 |
 | `--format json` | `check`のみ | JSONを標準出力へ出す |
+| `--require-source-checks` | `check`のみ | ソース検査が設定されていなければエラーにする |
+| `--baseline PATH` | `check`のみ | 確認済みのソース検査結果と比較する。JSONはアプリルートからの相対パスで指定する |
 | `--help` / `-h` | 単独指定のみ | usageを表示する。無引数でも同じ表示 |
 
 `help`というサブコマンドや`sync --help`には対応しません。本体CLIには`--root`、`--force`、`--version`もありません。別rootを対象にする場合は、そのアプリのルートへ移動して実行してください。

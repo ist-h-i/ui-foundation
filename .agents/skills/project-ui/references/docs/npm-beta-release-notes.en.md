@@ -12,7 +12,7 @@ The candidate targets Angular and CDK 22.3.0. The new `angular/forms` entry prov
 
 Library messages use stable IDs and typed named arguments. The runtime locale selects built-in English or Japanese. Apps can supply an external translator to override those messages and keep their own text under app ownership. The old Japanese-key dictionaries and message pipe are removed. The English `SKILL.md` is the single AI entry point.
 
-Keep `0.1.0-beta.4` and its matching app checkpoint to continue using Japanese keys. Choose beta.5 explicitly when ready to convert the app's overrides and synchronize. The candidate targets the `next` tag, with any `latest` change decided separately after verification of the published version. [Key mapping, upgrade and rollback](ui-message-migration.en.md)
+Keep `0.1.0-beta.4` and its matching app checkpoint to continue using Japanese keys. Choose beta.5 explicitly when ready to convert the app's overrides and synchronize. Beta.5 was published under `next`. [Key mapping, upgrade and rollback](ui-message-migration.en.md)
 
 ## beta.4: English AI references and bilingual human contracts
 

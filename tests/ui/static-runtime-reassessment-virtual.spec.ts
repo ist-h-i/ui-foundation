@@ -267,6 +267,39 @@ for (const kind of ['list', 'table'] as const) {
 
 }
 
+test('virtual list restores owned focus when an in-place replacement removes the focused row', async ({page}) => {
+ await runtimeReady(page, contexts[0]);
+ const id = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(1, 3), editors: true, height: 240, itemHeight: 48, overscan: 0,
+ });
+ const editor = host(page, id).getByRole('textbox', {name: '再検証入力 1', exact: true});
+ await editor.focus();
+ const result = await editor.evaluate((input, id) => {
+  const runtime = (window as any).__runtime;
+  const fixture = runtime.instance(id);
+  const rows = fixture.rows();
+  const viewport = input.closest('cdk-virtual-scroll-viewport')!;
+  const previousRange = fixture.range();
+  rows[0] = {...rows[0], id: 3};
+  runtime.update(id, {height: 241});
+  const focusRestored = !input.isConnected && document.activeElement === viewport;
+  const rangeRetained = fixture.range() === previousRange;
+  const outside = document.createElement('button');
+  document.body.append(outside);
+  try {
+   outside.focus();
+   rows[0] = {...rows[0], id: 4};
+   runtime.update(id, {height: 242});
+   return {focusRestored, rangeRetained, outsideFocused: document.activeElement === outside};
+  } finally {
+   outside.remove();
+  }
+ }, id);
+ expect(result).toEqual({focusRestored: true, rangeRetained: true, outsideFocused: true});
+ await expect(host(page, id).getByRole('textbox', {name: '再検証入力 4', exact: true})).toBeVisible();
+ await destroy(page, id);
+});
+
 test('virtual table reuses tracked rows and updates focused, empty and refilled windows in the same render', async ({page}) => {
  await runtimeReady(page, contexts[0]);
  const initial = [{id: 1, code: 'a', name: 'First'}, {id: 2, code: 'b', name: 'Second'}];

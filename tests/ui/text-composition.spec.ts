@@ -77,6 +77,45 @@ for (const field of fields) {
     await checkComposition(page, field, '&buffer=off', false);
   });
 
+  test(`${field} discards native completion after a form reset without losing subsequent input`, async ({ page }) => {
+    await page.goto(`/catalog/text-composition?field=${field}`);
+    const editor = page.locator('#reactive');
+    await editor.focus();
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send('Input.imeSetComposition', { text: 'とう', selectionStart: 2, selectionEnd: 2 });
+      await expect(editor).toHaveValue('とう');
+      await page.getByRole('button', { name: '初期化' }).dispatchEvent('click');
+      await expectChanges(page, [null], []);
+      await session.send('Input.insertText', { text: '東京' });
+      await expect(editor).toHaveValue('');
+      await expectChanges(page, [null], []);
+      await session.send('Input.insertText', { text: '京都' });
+      await expect(editor).toHaveValue('京都');
+      await expectChanges(page, [null, '京都'], ['京都']);
+    } finally {
+      await session.detach();
+    }
+  });
+
+  test(`${field} keeps an external update when native composition completes`, async ({ page }) => {
+    await page.goto(`/catalog/text-composition?field=${field}`);
+    const editor = page.locator('#controlled');
+    await editor.focus();
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send('Input.imeSetComposition', { text: 'とう', selectionStart: 2, selectionEnd: 2 });
+      await expect(editor).toHaveValue(/とう/);
+      await page.getByRole('button', { name: '別の欄を更新' }).dispatchEvent('click');
+      await expect(page.locator('#controlled-value')).toHaveText('外部の更新');
+      await session.send('Input.insertText', { text: '東京' });
+      await expect(editor).toHaveValue('外部の更新');
+      await expect(page.locator('#controlled-changes')).toHaveText('[]');
+    } finally {
+      await session.detach();
+    }
+  });
+
   test(`${field} respects nullable reset, readonly and disabled during a composition`, async ({ page }) => {
     await page.goto(`/catalog/text-composition?field=${field}`);
     const editor = page.locator('#reactive');

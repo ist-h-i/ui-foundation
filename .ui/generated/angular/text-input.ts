@@ -1,6 +1,6 @@
 import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {injectUiLocale,UiStableMessagePipe} from './locale';
-import { afterNextRender, afterRenderEffect, type AfterRenderRef, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, DOCUMENT, effect, ElementRef, forwardRef, inject, Injector, input, linkedSignal, output, signal, viewChild } from '@angular/core';
+import { afterNextRender, afterRenderEffect, type AfterRenderRef, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, DOCUMENT, effect, ElementRef, forwardRef, inject, Injector, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { COMPOSITION_BUFFER_MODE, NG_VALUE_ACCESSOR, NG_VALIDATORS, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounce, of, Subject, timer } from 'rxjs';
@@ -17,6 +17,11 @@ const controlStyles = `
   textarea { resize: vertical; max-block-size: var(--ui-size-input-max-height); }
 `;
 
+interface TextComposition {
+  readonly text: string;
+  readonly discarded: boolean;
+}
+
 @Directive()
 abstract class ComposingTextControl extends FieldValueControl<string> {
   protected readonly emptyValue = '';
@@ -25,11 +30,11 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
   private readonly bufferComposition = inject(COMPOSITION_BUFFER_MODE, { optional: true })
     ?? !/android \d+/i.test(inject(DOCUMENT).defaultView?.navigator.userAgent ?? '');
   private readonly editable = computed(() => !this.blocked() && !this.readonly());
-  private readonly draft = linkedSignal({
+  private readonly composition = linkedSignal({
     source: () => ({ externalValue: this.value(), editable: this.editable() }),
-    computation: (): string | null => null,
+    computation: (_source, previous): TextComposition | null => this.discardComposition(previous?.value ?? null),
   });
-  protected readonly displayedText = computed(() => this.draft() ?? this.current());
+  protected readonly displayedText = computed(() => this.composition()?.text ?? this.current());
   private readonly injector = inject(Injector);
   private lastComposition: string | null = null;
   private pendingReconciliation?: AfterRenderRef;
@@ -40,13 +45,15 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
 
   override writeValue(value: unknown): void {
     super.writeValue(value);
-    this.draft.set(null);
+    this.composition.update(composition => this.discardComposition(composition));
     this.restoreEditor();
   }
 
   protected beginComposition(event: Event): void {
     this.lastComposition = null;
-    if (this.bufferComposition && this.editable()) this.draft.set(this.text(event));
+    if (this.bufferComposition && this.editable()) {
+      this.composition.set({ text: this.text(event), discarded: false });
+    }
   }
 
   protected edit(event: Event): void {
@@ -55,8 +62,9 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
       this.restoreEditor();
       return;
     }
-    if (this.draft() !== null) {
-      this.draft.set(value);
+    const composition = this.composition();
+    if (composition) {
+      this.composition.set({ ...composition, text: value });
       return;
     }
     const input = event as InputEvent;
@@ -79,20 +87,29 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
     if (!this.bufferComposition) return;
     const value = this.text(event);
     this.lastComposition = value;
-    if (this.draft() === null) {
+    const composition = this.composition();
+    this.composition.set(null);
+    if (!composition || composition.discarded || !this.editable()) {
       this.restoreEditor();
       return;
     }
-    this.draft.set(null);
     this.commit(value);
   }
 
   protected clear(): void {
     if (!this.editable()) return;
-    this.draft.set(null);
+    this.composition.update(composition => this.discardComposition(composition));
     this.commit('');
     this.restoreEditor();
     this.editor()?.nativeElement.focus();
+  }
+
+  protected blur(): void {
+    if (this.composition()?.discarded) {
+      this.composition.set(null);
+      this.restoreEditor();
+    }
+    this.touch();
   }
 
   protected override commit(value: string): void {
@@ -108,7 +125,18 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
     }, { injector: this.injector });
   }
 
+  private discardComposition(composition: TextComposition | null): TextComposition | null {
+    if (!composition) return null;
+    const editor = untracked(this.editor)?.nativeElement;
+    // Writing the DOM value during native composition can turn its pending
+    // completion into ordinary input. Leave the buffer until it ends or blurs.
+    return editor && editor.ownerDocument.activeElement === editor
+      ? { ...composition, discarded: true }
+      : null;
+  }
+
   private restoreEditor(): void {
+    if (this.composition()) return;
     const editor = this.editor()?.nativeElement;
     const value = this.displayedText();
     if (editor && editor.value !== value) editor.value = value;
@@ -123,7 +151,7 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
    <div class="ui-input-group">
     <input #editor uiFieldControl type="text" [name]="name()" [value]="displayedText()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
       [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="edit($event)"
-      (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="touch()">
+      (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="blur()">
     @if (clearable()) { <button uiAction [attr.aria-label]="('uiFoundation.textInput.clearForLabel' | uiStableMessage:{label:label()})" [disabled]="blocked() || readonly() || !displayedText()" (click)="clear()">{{'uiFoundation.textInput.clearForTextInput' | uiStableMessage}}</button> }
    </div>
    @if (showCount()) { <p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textInput.characterCount' | uiStableMessage:{count:displayedText().length}):('uiFoundation.textInput.characterCountWithLimit' | uiStableMessage:{count:displayedText().length,limit:maxLength()!}) }}</p> }
@@ -140,7 +168,7 @@ export class TextInput extends ComposingTextControl {
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="displayedText()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
    [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="edit($event)"
-   (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="touch()"></textarea>
+   (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="blur()"></textarea>
   @if(showCount()){<p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textarea.characterCount' | uiStableMessage:{count:displayedText().length}):('uiFoundation.textarea.characterCountWithLimit' | uiStableMessage:{count:displayedText().length,limit:maxLength()!}) }}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
