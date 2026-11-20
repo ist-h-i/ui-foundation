@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "6f02ae784de30c8d84d6b2f58af6c720cf35b94af7a1b0cbc24d68a9ea269e45",
+      "sha256": "aca459f3eaf8d4f91e71540eb4c5ebf17868665fb88b082a3c1ec5f09898ac62",
       "declarations": [
         {
           "name": "IconButton",
@@ -2651,7 +2651,7 @@
     },
     {
       "path": "templates/angular/collection-model.ts",
-      "sha256": "1a6d73769a9058c1b5aaeb27dd76879f3ba5e5485650a4c1f19e96bb82b5ead0",
+      "sha256": "fc094c6a7a21b54c0e38554fe0b7facc60d7b6ece8212a43225b3f6be9299cd3",
       "declarations": [
         {
           "names": [
@@ -2722,6 +2722,13 @@
           ],
           "kind": "function",
           "declaration": "export function selectedListValues(value:unknown):readonly string[]"
+        },
+        {
+          "names": [
+            "listSelectionDiagnostic"
+          ],
+          "kind": "function",
+          "declaration": "export function listSelectionDiagnostic(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null):UiMessageRequest|null"
         },
         {
           "names": [
@@ -11078,7 +11085,7 @@
     },
     {
       "path": "templates/angular/listbox.ts",
-      "sha256": "0f97f10874306e8effaa25dd612aa60ae793a7e18168019bf7e7fe487e930136",
+      "sha256": "d295fa12125d0c5f5eeb662e2b447c6de7b5f8d600b4582bdb0377ccbf003e84",
       "declarations": [
         {
           "names": [
@@ -15797,14 +15804,14 @@
     },
     {
       "path": "templates/angular/stable-messages.ts",
-      "sha256": "09dd6d4ee45efcbb6ff700aed6a6d3faf7e51537bf5ca5623c6b4a6ac0c251a4",
+      "sha256": "d7fa344e2d81d3e970e3f3c6ea101815e0c8b8ed93600b6369bd29eb91b321ca",
       "declarations": [
         {
           "names": [
             "UiMessageParameters"
           ],
           "kind": "type",
-          "declaration": "export type UiMessageParameters = {\n  'uiFoundation.actionButton.busy': undefined;\n  'uiFoundation.actionControl.busy': undefined;\n  'uiFoundation.actionFeedback.busy': undefined;\n  'uiFoundation.actionLink.external': undefined;\n  'uiFoundation.asyncRegion.retryAction': undefined;\n  'uiFoundation.bottomSheet.decreaseHeight': undefined;\n  'uiFoundation.bottomSheet.heightLabel': undefined;\n  'uiFoundation.bottomSheet.increaseHeight': undefined;\n  'uiFoundation.card.loading': undefined;\n  'uiFoundation.copyButton.action': undefined;\n  'uiFoundation.copyButton.failure': undefined;\n  'uiFoundation.copyButton.success': undefined;\n  'uiFoundation.dialog.busy': undefined;\n  'uiFoundation.dialog.closeAction': undefined;\n  'uiFoundation.dialog.closeLabel': undefined;\n  'uiFoundation.dialog.maximize': undefined;\n  'uiFoundation.dialog.moveAction': undefined;\n  'uiFoundation.dialog.moveInstructions': undefined;\n  'uiFoundation.dialog.moveLabel': undefined;\n  'uiFoundation.dialog.resizeAction': undefined;\n  'uiFoundation.dialog.resizeInstructions': undefined;\n  'uiFoundation.dialog.resizeLabel': undefined;\n  'uiFoundation.dialog.restoreSize': undefined;\n  'uiFoundation.floatingActionButton.menuLabel': undefined;\n  'uiFoundation.listbox.clearVisible': undefined;\n  'uiFoundation.listbox.invalidControlIdentity': undefined;\n  'uiFoundation.listbox.invalidOptions': undefined;\n  'uiFoundation.listbox.invalidSearchLocale': undefined;\n  'uiFoundation.listbox.invalidSelection': undefined;\n  'uiFoundation.listbox.invalidSelectionLimit': undefined;\n  'uiFoundation.listbox.invalidVirtualConfiguration': undefined;\n  'uiFoundation.listbox.multipleValueRequired': undefined;\n  'uiFoundation.listbox.noOptions': undefined;\n  'uiFoundation.listbox.noSearchResults': undefined;\n  'uiFoundation.listbox.searchLabel': undefined;\n  'uiFoundation.listbox.selectVisible': undefined;\n  'uiFoundation.listbox.selectionRequired': undefined;\n  'uiFoundation.listbox.singleValueRequired': undefined;\n  'uiFoundation.listbox.selectedCount': { readonly count: number };\n  'uiFoundation.listbox.selectedCountWithInvalidSelection': { readonly count: number };\n  'uiFoundation.pageFrame.sidebarLabel': undefined;\n  'uiFoundation.segmentedControl.requiredMarker': undefined;\n  'uiFoundation.splitButton.menuLabel': undefined;\n  'uiFoundation.card.collapse': { readonly title: string };\n  'uiFoundation.card.expand': { readonly title: string };\n  'uiFoundation.collection.selectionLimit': { readonly limit: number };\n};"
+          "declaration": "export type UiMessageParameters = {\n  'uiFoundation.actionButton.busy': undefined;\n  'uiFoundation.actionControl.busy': undefined;\n  'uiFoundation.actionFeedback.busy': undefined;\n  'uiFoundation.actionLink.external': undefined;\n  'uiFoundation.asyncRegion.retryAction': undefined;\n  'uiFoundation.bottomSheet.decreaseHeight': undefined;\n  'uiFoundation.bottomSheet.heightLabel': undefined;\n  'uiFoundation.bottomSheet.increaseHeight': undefined;\n  'uiFoundation.card.loading': undefined;\n  'uiFoundation.copyButton.action': undefined;\n  'uiFoundation.copyButton.failure': undefined;\n  'uiFoundation.copyButton.success': undefined;\n  'uiFoundation.dialog.busy': undefined;\n  'uiFoundation.dialog.closeAction': undefined;\n  'uiFoundation.dialog.closeLabel': undefined;\n  'uiFoundation.dialog.maximize': undefined;\n  'uiFoundation.dialog.moveAction': undefined;\n  'uiFoundation.dialog.moveInstructions': undefined;\n  'uiFoundation.dialog.moveLabel': undefined;\n  'uiFoundation.dialog.resizeAction': undefined;\n  'uiFoundation.dialog.resizeInstructions': undefined;\n  'uiFoundation.dialog.resizeLabel': undefined;\n  'uiFoundation.dialog.restoreSize': undefined;\n  'uiFoundation.floatingActionButton.menuLabel': undefined;\n  'uiFoundation.listbox.clearVisible': undefined;\n  'uiFoundation.listbox.invalidControlIdentity': undefined;\n  'uiFoundation.listbox.invalidOptions': undefined;\n  'uiFoundation.listbox.invalidSearchLocale': undefined;\n  'uiFoundation.listbox.invalidSelection': undefined;\n  'uiFoundation.listbox.invalidSelectionLimit': undefined;\n  'uiFoundation.listbox.invalidVirtualConfiguration': undefined;\n  'uiFoundation.listbox.multipleValueRequired': undefined;\n  'uiFoundation.listbox.noOptions': undefined;\n  'uiFoundation.listbox.noSearchResults': undefined;\n  'uiFoundation.listbox.searchLabel': undefined;\n  'uiFoundation.listbox.selectVisible': undefined;\n  'uiFoundation.listbox.selectionRequired': undefined;\n  'uiFoundation.listbox.singleValueRequired': undefined;\n  'uiFoundation.listbox.selectedCount': { readonly count: number };\n  'uiFoundation.listbox.selectedCountWithInvalidSelection': { readonly count: number };\n  'uiFoundation.pageFrame.sidebarLabel': undefined;\n  'uiFoundation.segmentedControl.requiredLegend': { readonly label: string };\n  'uiFoundation.splitButton.menuLabel': undefined;\n  'uiFoundation.card.collapse': { readonly title: string };\n  'uiFoundation.card.expand': { readonly title: string };\n  'uiFoundation.collection.selectionLimit': { readonly limit: number };\n};"
         },
         {
           "names": [

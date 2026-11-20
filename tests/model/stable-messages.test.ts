@@ -45,3 +45,17 @@ test('the retained listbox rejection is a complete, locale-formatted announcemen
   assert.equal(resolveUiMessage(request, 'en-US'), '1,200 selected · Check the selection limit or the current value.');
   assert.equal(resolveUiMessage(request, 'de-DE'), '1.200 selected · Check the selection limit or the current value.');
 });
+
+test('a key-echoing adapter uses the standard dictionary while its resource is unavailable', () => {
+  const request = { id: 'uiFoundation.dialog.closeLabel' } as const;
+  assert.equal(resolveUiMessage(request, 'en-US', current => current.id), 'Close dialog');
+  assert.equal(resolveUiMessage(request, 'ja-JP', current => current.id), 'ダイアログを閉じる');
+});
+
+test('a single required legend includes the app-owned label as an argument', () => {
+  const request={id:'uiFoundation.segmentedControl.requiredLegend',parameters:{label:'App choices'}} as const;
+  assert.equal(resolveUiMessage(request,'en-US'),'App choices (required)');
+  assert.equal(resolveUiMessage(request,'ja-JP'),'App choices (必須)');
+  assert.equal(resolveUiMessage(request,'en-US',current=>current.id===request.id
+    ? `Required selection: ${current.parameters.label}` : undefined),'Required selection: App choices');
+});

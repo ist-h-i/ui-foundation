@@ -41,7 +41,7 @@ export type UiMessageParameters = {
   'uiFoundation.listbox.selectedCount': { readonly count: number };
   'uiFoundation.listbox.selectedCountWithInvalidSelection': { readonly count: number };
   'uiFoundation.pageFrame.sidebarLabel': undefined;
-  'uiFoundation.segmentedControl.requiredMarker': undefined;
+  'uiFoundation.segmentedControl.requiredLegend': { readonly label: string };
   'uiFoundation.splitButton.menuLabel': undefined;
   'uiFoundation.card.collapse': { readonly title: string };
   'uiFoundation.card.expand': { readonly title: string };
@@ -111,7 +111,7 @@ const japanese: Dictionary = {
   'uiFoundation.listbox.selectedCountWithInvalidSelection': ({ parameters }, locale) =>
     `${new Intl.NumberFormat(locale).format(parameters.count)}件選択 · 選択上限または現在の値を確認してください。`,
   'uiFoundation.pageFrame.sidebarLabel': () => "サイドバー",
-  'uiFoundation.segmentedControl.requiredMarker': () => " (必須)",
+  'uiFoundation.segmentedControl.requiredLegend': ({ parameters }) => `${parameters.label} (必須)`,
   'uiFoundation.splitButton.menuLabel': () => "その他の操作",
   'uiFoundation.card.collapse': ({ parameters }) => `折り畳む: ${parameters.title}`,
   'uiFoundation.card.expand': ({ parameters }) => `展開: ${parameters.title}`,
@@ -163,7 +163,7 @@ const english: Dictionary = {
   'uiFoundation.listbox.selectedCountWithInvalidSelection': ({ parameters }, locale) =>
     `${new Intl.NumberFormat(locale).format(parameters.count)} selected · Check the selection limit or the current value.`,
   'uiFoundation.pageFrame.sidebarLabel': () => "Sidebar",
-  'uiFoundation.segmentedControl.requiredMarker': () => " (required)",
+  'uiFoundation.segmentedControl.requiredLegend': ({ parameters }) => `${parameters.label} (required)`,
   'uiFoundation.splitButton.menuLabel': () => "More actions",
   'uiFoundation.card.collapse': ({ parameters }) => `Collapse: ${parameters.title}`,
   'uiFoundation.card.expand': ({ parameters }) => `Expand: ${parameters.title}`,
@@ -178,7 +178,8 @@ const english: Dictionary = {
 /** An external provider can return undefined while loading or for an absent translation. */
 export function resolveUiMessage<Id extends UiMessageId>(request: UiMessageRequest<Id> & UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string {
   const translated = translate?.(request, locale);
-  if (translated?.trim()) return translated;
+  // Some adapters return the lookup key when their dictionary is unavailable.
+  if (translated?.trim() && translated.trim() !== request.id) return translated;
 
   const dictionary = /^ja(?:-|$)/i.test(locale) ? japanese : english;
   return dictionary[request.id](request, locale);

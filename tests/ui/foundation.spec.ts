@@ -69,12 +69,21 @@ test('numeric, selection, editor and retained paste diagnostics translate withou
  const list=probe.locator('ui-listbox');
  await expect(list).toContainText('Select up to 1 item.');
  await expect(list.getByRole('option',{selected:true})).toHaveCount(2);
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({
-  ...current,translate:(request:{id:string;parameters:{limit:number}})=>request.id==='uiFoundation.collection.selectionLimit'
-   ? `Use at most ${request.parameters.limit} choice.` : undefined,
- }));});
+ await page.evaluate(()=>{
+  const app=(window as any).__stage;
+  (window as any).__listEvents=0;
+  app.localeList.valueChanges.subscribe(()=>(window as any).__listEvents++);
+  app.rootLocale.update((current:any)=>({
+   ...current,translate:(request:{id:string;parameters:{limit:number}})=>request.id==='uiFoundation.collection.selectionLimit'
+    ? `Use at most ${request.parameters.limit} choice.` : undefined,
+  }));
+ });
  await expect(list).toContainText('Use at most 1 choice.');
  await expect(list.getByRole('listbox',{name:'App list'})).toBeVisible();
+ expect(await page.evaluate(()=>(window as any).__listEvents)).toBe(0);
+ expect(await page.evaluate(()=>(window as any).__stage.localeList.errors)).toEqual({
+  listbox:{id:'uiFoundation.collection.selectionLimit',parameters:{limit:1}},
+ });
  await expect(list.getByRole('option',{selected:true})).toHaveCount(2);
  await expect(probe).toContainText('Row 1, App quantity: Enter a finite number.');
  await cell.getByRole('button').click();const editor=probe.locator('[data-table-editor]');await editor.fill('');
