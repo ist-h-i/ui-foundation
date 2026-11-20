@@ -344,7 +344,7 @@ export class DepartmentScreen {
 | `jsbarcode` | `3.12.3` | Barcode |
 | `temporal-polyfill` | `1.0.5` | Scheduler の時刻・time zone |
 
-型検査には `@types/qrcode@1.5.6` も必要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
+利用アプリの型検査用に `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16` を実行します。公開入口の `angular/index.ts` は地図部品も参照するため、基本部品だけを使う場合も GeoJSON の型が必要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
 
 `fast-formula-parser` の型は生成した `formula-parser.d.ts` にあります。公開 barrel の `SheetResult` export から `sheet-formula.ts` の triple-slash reference を経由して読み込まれます。この経路で最小 consumer の型付き parser 利用は検査できます。生成 barrel を読まずに parser だけを import した別の root file では型宣言が自動で現れるとは限りません。必要ならアプリの当該 worker/入口から生成型宣言を明示的に参照します。型宣言を `any` の module stub へ置き換えません。
 
