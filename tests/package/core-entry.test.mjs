@@ -48,7 +48,7 @@ import { ActionControl, Card, provideUiIcons } from '../.ui/generated/angular/co
 @Component({
   selector: 'app-root',
   imports: [ActionControl, Card],
-  template: '<ui-card title="Example"><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
+  template: '<ui-card cardId="example" title="Example"><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
 })
 export class App {
   async openForm() {
