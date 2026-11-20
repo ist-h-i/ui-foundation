@@ -39,6 +39,8 @@ Use the generated `angular/core.ts` entry for the action, card, and native form-
 
 New configurations use `default_language: en`, so built-in text defaults to English without a provider. Japanese starters use `ja`; existing YAML without this field stays Japanese after sync. Do not change an existing app's language implicitly. For a runtime English override, pass `{ locale: 'en-US', messages: uiEnglishMessages }` to `provideUiLocale`, with both exports imported from the generated public entry point. Use the app's own translation system for labels, content, and business errors. Keep an app-controlled locale and update the dictionary alongside it when switching languages. A scope can override parent settings through `UiLocaleScope`. For Japanese text, use `{ locale: 'ja-JP', messages: uiJapaneseMessages }` from the same entry point. Supply the Japanese dictionary explicitly in a Japanese child of an English scope; an empty dictionary inherits the parent translations.
 
+Check added display and accessible copy against the app’s translation configuration. [Translation checks and fixes](references/i18n-check.md)
+
 Treat pending, failed, partially available, stale, and unknown results as distinct states. Keep the draft and the information the user can still act on. Connect a component's request events and public completion methods to the app's actual operations. The app owns I/O, permissions, deduplication, and confirmation that persistence, cancellation, or undo succeeded. Correlate responses with request IDs where the public contract supplies them.
 
 Use the relevant component contracts to guide implementation and choose the checks for the screen.

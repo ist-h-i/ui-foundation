@@ -8,6 +8,7 @@ export const publicAngularEntries = ['core.ts', 'index.ts'] as const;
 export const exceptableRules = [
   'literal-token', 'primitive-reference', 'unknown-token', 'token-category',
   'unapproved-component', 'unresolved', 'generated-internal-import',
+  'i18n-raw-text', 'i18n-message-reference', 'i18n-message-arguments', 'i18n-fragment', 'i18n-unconfirmed', 'i18n-legacy-key',
 ] as const;
 
 export function isExceptableRule(rule: string): boolean {
