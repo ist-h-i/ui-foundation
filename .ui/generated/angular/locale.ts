@@ -1,3 +1,4 @@
+import { resolveUiMessage, type UiMessageRequest } from './stable-messages';
 import {Dir,Directionality,type Direction} from '@angular/cdk/bidi';
 import {afterNextRender,computed,DOCUMENT,DestroyRef,Directive,EventEmitter,effect,ElementRef,inject,InjectionToken,Injector,input,isSignal,Pipe,type PipeTransform,type Provider,Renderer2,signal,type Signal} from '@angular/core';
 import {defaultUiLocale,resolveUiLocale,uiMessage,type UiLocaleOptions,type UiLocaleResolved} from './locale-model';
@@ -8,6 +9,10 @@ export function provideUiLocale(options:UiLocaleOptions|Signal<UiLocaleOptions>)
  return [{provide:UI_LOCALE,useFactory:()=>computed(()=>resolveUiLocale(isSignal(options)?options():options))}];
 }
 export function injectUiLocale():Signal<UiLocaleResolved>{return inject(UI_LOCALE);}
+export function injectUiMessage(): (request: UiMessageRequest) => string {
+ const locale=injectUiLocale();
+ return request=>{const current=locale();return resolveUiMessage(request,current.locale,current.translate);};
+}
 export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>,fallback?:()=>string)=>string{
  const locale=injectUiLocale();
  return (source,parameters,fallback)=>{
