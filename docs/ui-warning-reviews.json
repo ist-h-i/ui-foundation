@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.repository.yaml": "388526531f0bc47aba8cb8158efed1ac91c7646fb7da9dc7795f8ea24b4c0b48",
+    "examples/ui.config.repository.yaml": "66d759b1a67fd2c8e9b456672a885b805b8a0819a57bcb9823975aed89a40942",
     "package.json": "5f08ccbc175ab68592cef02bf66d267431a703a7353c41c82047115d99e09d61",
     "package-lock.json": "2ec80d17a924f1414f0425db5cafe9464f4929a8ba2f87d7947d1af8589cadf3",
     "src/config.ts": "2d594b7a57360d2d2fca189d52d161191d6bbf9a1c671c64aab1a2a9a1dae8e1",
@@ -328,7 +328,7 @@
       "diagnostic": {
         "file": "templates/angular/specialist-style.ts",
         "line": 4,
-        "column": 2904,
+        "column": 2524,
         "rule": "unresolved",
         "severity": "warning",
         "message": "Local UI custom property --ui-specialist-columns cannot be resolved to a semantic token.",
@@ -338,7 +338,7 @@
       "category": "public-css-override",
       "detail": "open-css-dimension-coefficient",
       "disposition": "retained-warning",
-      "source_sha256": "2ddb1376f0bae97ab8f7ce7a6d90b07eb0e5c0e3c2bbb4b655d8b90d181289d1",
+      "source_sha256": "78ee1a61b455a31c9fda3c518b5b6d55a119918df20cb273c502ae428bb9d86e",
       "producer": "The actual .ui-specialist-data-table native receives --ui-specialist-columns as static 3/4/5 or a host/native style writer; shared specialistStyles multiplies it by max(semantic column minimum, 8em + semantic cell padding * 2).",
       "reason": "既知の3/4/5は列数の無次元係数で、min-inline-sizeの長さを拡大する構造値。現在の8emは文字幅確保の個別例外であり、追加alias値や任意列数の承認ではない。共有stylesheetは複数owner/nativeへ適用され、任意custom property token列の次元型、各instanceの全供給元・上書き・resetを閉じられない。列数が既知な経路を検査してもUnknownを一括承認しないためwarningを維持する。",
       "remaining_scope": "未知のnative/host/style bag、hostを経由しない別scoped rule、一般CSS算術の次元型/全token grammar・cascade勝者、未知class/id/renderer/配置・alias深さ32/候補512/親探索上限外。",
@@ -352,7 +352,7 @@
         {
           "file": "templates/angular/specialist-style.ts",
           "anchor": "min-inline-size:calc(var(--ui-specialist-columns)",
-          "sha256": "2ddb1376f0bae97ab8f7ce7a6d90b07eb0e5c0e3c2bbb4b655d8b90d181289d1",
+          "sha256": "78ee1a61b455a31c9fda3c518b5b6d55a119918df20cb273c502ae428bb9d86e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -3998,7 +3998,7 @@
       "category": "async-resource",
       "detail": "decoded-media-geometry-or-cascade",
       "disposition": "retained-warning",
-      "source_sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+      "source_sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
       "producer": "bitmap由来 dimensions.width + / + dimensions.height をframe aspect-ratioへ設定。ImageCropperはCropSession.decodeのImageBitmap幅高をturns%2で交換し、frameRatioをwidth/height文字列、frameWidthRatioをwidth/height数値または未decode時1にする。ratioはnullかfinite>0、rotationはfinite90倍数。load revision/destroy stale decodeをdisposeし、crop request revision/visible/disabledを確かめて結果を出す。",
       "reason": "decode済みmediaの実aspect ratioでありdesign token用途ではないが、外部decode APIと可変image寸法を静的には閉じられない。",
       "remaining_scope": "任意bitmap資源とdecode順序、CSS重要度/継承・異常外部alias、ブラウザーごとの全寸法/メモリ制限は未網羅。producer妥当性とconsumer cascadeを分ける。",
@@ -4011,25 +4011,25 @@
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "[style.aspect-ratio]=\"frameRatio()\"",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "protected readonly frameRatio",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "private async load(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "async confirm(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4081,7 +4081,7 @@
       "category": "async-resource",
       "detail": "decoded-media-geometry-or-cascade",
       "disposition": "retained-warning",
-      "source_sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+      "source_sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
       "producer": "dimensions.width / dimensions.height、未decode時1を--ui-crop-ratioへ設定。ImageCropperはCropSession.decodeのImageBitmap幅高をturns%2で交換し、frameRatioをwidth/height文字列、frameWidthRatioをwidth/height数値または未decode時1にする。ratioはnullかfinite>0、rotationはfinite90倍数。load revision/destroy stale decodeをdisposeし、crop request revision/visible/disabledを確かめて結果を出す。",
       "reason": "画像の縦横比は媒体データ。rotationに追従する正当な比率でも任意bitmap寸法は未確認となる。",
       "remaining_scope": "任意bitmap資源とdecode順序、CSS重要度/継承・異常外部alias、ブラウザーごとの全寸法/メモリ制限は未網羅。producer妥当性とconsumer cascadeを分ける。",
@@ -4094,25 +4094,25 @@
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "[style.--ui-crop-ratio]=\"frameWidthRatio()\"",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "protected readonly frameRatio",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "private async load(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "async confirm(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -4164,7 +4164,7 @@
       "category": "async-resource",
       "detail": "decoded-media-geometry-or-cascade",
       "disposition": "retained-warning",
-      "source_sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+      "source_sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
       "producer": "min(100%, calc(var(--ui-size-media-viewport) * var(--ui-crop-ratio,1)))。ImageCropperはCropSession.decodeのImageBitmap幅高をturns%2で交換し、frameRatioをwidth/height文字列、frameWidthRatioをwidth/height数値または未decode時1にする。ratioはnullかfinite>0、rotationはfinite90倍数。load revision/destroy stale decodeをdisposeし、crop request revision/visible/disabledを確かめて結果を出す。",
       "reason": "画像ratio producerと別にCSS aliasはappによるimportant/inherit/無効値を受け入れる。native cascadeの上書き契約を残すため警告を維持する。",
       "remaining_scope": "任意bitmap資源とdecode順序、CSS重要度/継承・異常外部alias、ブラウザーごとの全寸法/メモリ制限は未網羅。producer妥当性とconsumer cascadeを分ける。",
@@ -4177,25 +4177,25 @@
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "inline-size:min(100%,calc(var(--ui-size-media-viewport) * var(--ui-crop-ratio,1)))",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "protected readonly frameRatio",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "private async load(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/image-cropper.ts",
           "anchor": "async confirm(",
-          "sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+          "sha256": "93a54cc7b7a20f9d153523667f41befbbe7447d735d60a53c07fec240ba4e356",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {

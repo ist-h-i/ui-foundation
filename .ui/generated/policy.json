@@ -1322,7 +1322,7 @@
           "source": "@media (max-width:40rem)"
         },
         {
-          "file": "templates/angular/media-style.ts",
+          "file": "templates/angular/image-cropper.ts",
           "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
           "rule": "literal-token",
           "source": ".ui-media-fields{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}"
@@ -1630,18 +1630,6 @@
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
-        },
-        {
-          "file": "templates/angular/specialist-style.ts",
-          "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
-          "rule": "literal-token",
-          "source": ".ui-select-control__chevron{inset-block-start:50%}"
-        },
-        {
-          "file": "templates/angular/specialist-style.ts",
-          "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
-          "rule": "literal-token",
-          "source": ".ui-select-control__chevron{transform:translateY(-50%)}"
         },
         {
           "file": "templates/angular/specialist-style.ts",
@@ -3782,7 +3770,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "c150fb6f183d834cae20843d094b39df9912f43ad8588081c5dacd1dfe74de5c",
+    "configuration_hash": "11a1f56716303c565252902d381c754bc729b26a02fcbfc6a0389e08b746fa0e",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",

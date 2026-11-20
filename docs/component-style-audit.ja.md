@@ -123,7 +123,7 @@
 | `GridItem` | 全 | [`grid-list.ts:10`](../templates/angular/grid-list.ts#L10)。固有CSSなし。投影用のテンプレートと描画コンテキストを受け渡す。 |
 | `GridList` | 全 | [`grid-list.ts:12`](../templates/angular/grid-list.ts#L12)。`styles`、テンプレートのスタイル指定。現配置を維持。部品自身の表示を定義する。 |
 | `Icon` | 全・コア | [`icon.ts:5`](../templates/angular/icon.ts#L5)。`styles`。現配置を維持。部品自身の表示を定義する。 |
-| `ImageCropper` | 全 | [`image-cropper.ts:9`](../templates/angular/image-cropper.ts#L9)。`media-style.ts#mediaStyles`、部品の `styles` 経由、テンプレートのスタイル指定。現配置を維持。部品群で共有する定義を参照する。 |
+| `ImageCropper` | 全 | [`image-cropper.ts:9`](../templates/angular/image-cropper.ts#L9)。`media-style.ts#mediaStyles`、部品の `styles` 経由、テンプレートのスタイル指定。移設。座標と比率の入力グリッドを部品自身に置く。メディア部品の基礎は共有する。 |
 | `Image` | 全 | [`image-media.ts:5`](../templates/angular/image-media.ts#L5)。`media-style.ts#mediaStyles`、部品の `styles` 経由、テンプレートのスタイル指定。現配置を維持。部品群で共有する定義を参照する。 |
 | `ImageViewer` | 全 | [`image-media.ts:12`](../templates/angular/image-media.ts#L12)。`media-style.ts#mediaStyles`、部品の `styles` 経由、テンプレートのスタイル指定。現配置を維持。部品群で共有する定義を参照する。 |
 | `Gallery` | 全 | [`image-media.ts:31`](../templates/angular/image-media.ts#L31)。`media-style.ts#mediaStyles`、部品の `styles` 経由。現配置を維持。部品群で共有する定義を参照する。 |
@@ -231,7 +231,7 @@
 
 表内の `ファイル名#定義名` は、部品ファミリーで共通に使う `styles` 定義を指す。同じソースファイル内の定義は、部品・基底・派生の間で書体、状態、構造を揃える。別ファイルから参照する表示・メディア・専門部品のスタイル、日程ビュー、ツリーポップアップ、Dialog のベースもそれぞれ複数の宣言が利用する。
 
-専門部品の選択欄は `specialistStyles` の scoped なネイティブ入力ルールを使い、`styles.css` の公開選択欄は `select.ui-field-control` を対象にする。ラッパーとシェブロンの公開クラスは共通だが、専門部品の入力と選択欄を組み合わせた scoped ルールも必要なので維持する。
+選択欄のラッパーとシェブロンは `styles.css` に統合した。専門部品には `.ui-field-control` を持たない選択欄もあり、共通 CSS の `select.ui-field-control` は適用されない。専門部品の入力用ルールに勝つよう、選択欄の余白と強制色でのネイティブ表示には `specialistStyles` の scoped 規則を維持する。
 
 ## 共通 CSS の逆引き
 

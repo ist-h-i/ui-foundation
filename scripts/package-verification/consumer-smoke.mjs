@@ -112,6 +112,19 @@ process.once('SIGTERM', () => {
     finally { server.closeAllConnections(); server.close(() => process.exit(143)); }
   })();
 });
+// Resolve expected semantic values in the same profile as each checked control.
+async function expectTokenStyle(locator, property, token) {
+  const expected = await locator.evaluate((element, { property, token }) => {
+    const sample = element.ownerDocument.createElement('span');
+    sample.style.setProperty(property, `var(${token})`);
+    element.parentElement.append(sample);
+    try { return getComputedStyle(sample).getPropertyValue(property); }
+    finally { sample.remove(); }
+  }, { property, token });
+  assert.ok(expected, token);
+  await expect(locator).toHaveCSS(property, expected);
+}
+
 try {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const origin = `http://127.0.0.1:${server.address().port}`;
@@ -143,6 +156,12 @@ try {
   const external = page.locator('a[uiAction] .ui-action-external');
   const label = page.locator('label[for="packed-option"]');
   const option = page.getByRole('checkbox', { name: /^Packed option/ });
+  const field = page.locator('ui-form-field').filter({ has: option });
+  const textLabel = page.locator('label[for="packed-name"]');
+  const groupedField = page.locator('ui-form-field').filter({ has: textLabel });
+  const cropperGrid = page.locator('ui-image-cropper .ui-media-fields');
+  const specialistSelect = page.locator('ui-kanban .ui-select-control > select');
+  const specialistChevron = page.locator('ui-kanban .ui-select-control__chevron');
   const richEditor = page.getByRole('textbox', { name: 'Packed rich text', exact: true });
   await option.check();
   await expect(richEditor).toBeEditable();
@@ -152,6 +171,21 @@ try {
     await expect(page.getByTestId('draft')).toHaveText('package draft');
     assert.equal(await input.evaluate((element, previous) => element === previous, editor), true);
     await expect(icon).toHaveCSS('border-top-left-radius', '50%');
+    await expectTokenStyle(icon, 'padding-inline-start', '--ui-space-control-y');
+    await expectTokenStyle(field, 'margin-block-end', '--ui-space-field');
+    await expect(groupedField).toHaveCSS('margin-block-end', '0px');
+    await expect(textLabel).toHaveCSS('display', 'block');
+    await expectTokenStyle(textLabel, 'font-weight', '--ui-weight-control');
+    await expectTokenStyle(textLabel, 'margin-block-end', '--ui-space-control-gap');
+    await expect(cropperGrid).toHaveCSS('display', 'grid');
+    await expect(specialistSelect).toHaveCSS('appearance', 'none');
+    await expect(specialistChevron).toHaveCSS('position', 'absolute');
+    await expect(specialistChevron).toBeVisible();
+    await page.emulateMedia({ forcedColors: 'active' });
+    await expect(specialistSelect).toHaveCSS('appearance', 'auto');
+    await expect(specialistChevron).toBeHidden();
+    await page.emulateMedia({ forcedColors: 'none' });
+    await expectTokenStyle(cropperGrid, 'column-gap', '--ui-space-field');
     await toggleIcon.focus();
     await page.keyboard.press('Tab');
     await expect(icon).toBeFocused();
@@ -172,7 +206,8 @@ try {
     await expect(option).toBeChecked();
     await expect(label).toHaveCSS('display', 'flex');
     await expect(external).toBeVisible();
-    for (const control of [icon, external, option]) {
+    await expect(cropperGrid).toHaveCSS('display', 'grid');
+    for (const control of [icon, external, option, cropperGrid]) {
       const bounds = await control.boundingBox();
       assert.ok(bounds && bounds.x >= 0 && bounds.x + bounds.width <= 320);
     }
