@@ -8,10 +8,10 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 
 ## Get started
 
-Install the published package in an existing Angular app:
+Install the exact version in an existing Angular app once it is on the registry. To try the release candidate before publication, [install its tarball](docs/ui-library-consumer-guide.en.md#install-and-generate).
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -40,20 +40,9 @@ See the [English component overview](docs/components.en.md), [日本語の部品
 
 ## English and Japanese
 
-Human-facing documentation is English-primary with Japanese editions. Standard AI instructions and references use English; the legacy Japanese Skill remains for compatibility. After sync, read `.agents/skills/project-ui/SKILL.md` with adjacent `project-context.md` and the source YAML.
+Human-facing documentation is available in English and Japanese. After sync, read the English `.agents/skills/project-ui/SKILL.md` with its adjacent `project-context.md` and source YAML.
 
-New English configurations select English built-in text automatically. Use the existing runtime locale provider to override generated defaults or implement a live language switch:
-
-```ts
-import { provideUiLocale, uiEnglishMessages } from './.ui/generated/angular/index';
-
-// Add these providers to the app's bootstrap configuration.
-const providers = provideUiLocale({ locale: 'en-US', messages: uiEnglishMessages });
-```
-
-For Japanese, use `locale: 'ja-JP', messages: uiJapaneseMessages` from the same public entry point. Pass an app-owned signal to switch languages while retaining input and component state. Keep the app's own labels, content and backend errors in its translation system. [Language switching and scopes](docs/ui-library-consumer-guide.en.md#select-english-component-messages)
-
-Existing configurations that omit `default_language` retain Japanese runtime defaults after sync. To migrate one deliberately, add `default_language: en`, review the sync diff, regenerate and verify the app's labels, date/number presentation and workflows. The setting does not translate app-owned text or choose a time zone. It is independent of token profiles. `locale` selects formatting; `messages` selects built-in text. A locale change alone does not translate messages. Date-time components still need an explicit business time zone. Detailed design, API, runtime, specialist and recovery contracts are available in English and Japanese; the standard AI workflow selects the English references.
+New English configurations start with English UI text. Existing configurations that omit `default_language` retain Japanese defaults. Pass the app's locale signal to `provideUiLocale` for live switches. UI Foundation selects its built-in text by locale and accepts app overrides through stable message IDs and named arguments. The app translates its labels, content and backend errors. [Language switching and external translations](docs/ui-library-consumer-guide.en.md#select-english-component-messages) · [Upgrade from beta.4](docs/ui-message-migration.en.md)
 
 ## Configure and verify
 
