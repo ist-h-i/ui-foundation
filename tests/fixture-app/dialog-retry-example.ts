@@ -3,7 +3,7 @@ import { ActionControl, Dialog } from '../../.ui/generated/angular/index';
 
 @Component({
   selector: 'fixture-retry-input',
-  template: `<label>Item name <input [value]="value()" (input)="value.set($any($event.target).value)"></label>`,
+  template: `<label>Item name <input autofocus [value]="value()" (input)="value.set($any($event.target).value)"></label>`,
 })
 export class RegistrationInput {
   readonly value = model('');
@@ -18,7 +18,7 @@ export class RegistrationInput {
       <form (submit)="$event.preventDefault(); save()">
         <fixture-retry-input [(value)]="name" />
         @if (failed()) { <p role="alert">Could not save. Try again.</p> }
-        <button uiAction type="submit" [disabled]="saving()">Save</button>
+        <button uiAction type="submit" [attr.aria-disabled]="saving() ? 'true' : null">Save</button>
       </form>
     </dialog>
   `,

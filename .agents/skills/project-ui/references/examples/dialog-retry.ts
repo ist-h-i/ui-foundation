@@ -26,11 +26,15 @@ export async function verifyRegistrationRetry(page: Page, screen = '/catalog/dia
   const name = dialog.getByRole('textbox', { name: 'Item name' });
   const save = dialog.getByRole('button', { name: 'Save', exact: true });
 
-  await name.pressSequentially(draft);
-  await save.press('Enter');
+  await expect(name).toBeFocused();
+  await page.keyboard.type(draft);
+  await page.keyboard.press('Tab');
+  await expect(save).toBeFocused();
+  await page.keyboard.press('Enter');
   await expect(dialog.getByRole('alert')).toHaveText('Could not save. Try again.');
   await expect(name).toHaveValue(draft);
-  await save.press('Enter');
+  await expect(save).toBeFocused();
+  await page.keyboard.press('Enter');
 
   await expect(dialog).toBeHidden();
   await expect(opener, 'Focus returns to the opener after successful save').toBeFocused();
