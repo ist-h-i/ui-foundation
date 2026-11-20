@@ -15,7 +15,7 @@ This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-f
 | API | YAML `schema_version=1`, CLI init/sync/check and existing flags, explicit exports from the public Angular barrel and generated structure. Manifest/policy/ownership/lock are tool-managed, not app-editable APIs. |
 | Check results | CLI check combines generation consistency and source checks; generated check-ui.cjs checks policy/source. Existing JSON fields and error/warning/not-configured meanings are retained. |
 
-The public barrel references specialist components too, so even a minimal screen must resolve the25 engines and other dependencies listed in the guide. Separate per-use entry points are a future improvement, not optional beta dependencies. Verify additional configurations in the consumer.
+The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. When the installed version provides `angular/core.ts`, apps using only its exports can resolve the smaller dependency set described in the consumer guide. Verify additional configurations in the consumer.
 
 ## Installation and documentation
 
@@ -25,7 +25,7 @@ Consumer API/design/installation/upgrade documents ship in npm `docs/` and gener
 
 Original MIT text ships as `UI-FOUNDATION-LICENSE.txt` in generated output and Skill. Do not overwrite the app's root LICENSE. Preserve it as `ui-foundation/LICENSE.txt` in distributed app output. This license does not change app/third-party terms.
 
-Copy **all contents** of npm `assets/third-party/` and `assets/pdf-source/` into delivered assets. Generated-checker CHECKER-NOTICE.txt and CLI CLI-NOTICE.txt cover different bundles. Generated-app foundation dependencies also need FOUNDATION-NOTICES.txt. Follow the [asset guide](ui-library-consumer-guide.en.md#css-and-distribution-assets). Check actual final HTTP bytes and worker execution separately from file existence.
+Copy all contents of npm `assets/third-party/` into delivered assets. When shipping PDF assets, also copy all contents of `assets/pdf-source/`. Generated-checker CHECKER-NOTICE.txt and CLI CLI-NOTICE.txt cover different bundles. Generated-app foundation dependencies also need FOUNDATION-NOTICES.txt. Follow the [asset guide](ui-library-consumer-guide.en.md#css-and-distribution-assets). Check actual final HTTP bytes and worker execution separately from file existence.
 
 ## Upgrade and recovery
 

@@ -4,7 +4,7 @@
 
 Inputs/events/operations of generated Angular source and the state/work owned by the consuming app. Use the [overview](components.en.md) to select components and the [consumer guide](ui-library-consumer-guide.en.md) for installation/dependencies.
 
-Import standalone components from CLI-synchronized `<output>/angular/index.ts`. Load tokens.css, angular/styles.css and, with Tailwind, tailwind.css. The app owns HTTP, restoration, business decisions, persistence, sending and undo. Distinguish typecheck/build/interactions/automated accessibility/visual-semantic review; automated checks alone do not establish understanding or business effectiveness. Built-in default labels follow generated language/runtime dictionaries; Japanese message keys in examples are not an unconditional Japanese display default.
+Choose the [generated entry point](ui-library-consumer-guide.en.md#import-generated-components) covering the standalone components your app uses. Load tokens.css, angular/styles.css and, with Tailwind, tailwind.css. The app owns HTTP, restoration, business decisions, persistence, sending and undo. Distinguish typecheck/build/interactions/automated accessibility/visual-semantic review; automated checks alone do not establish understanding or business effectiveness. Built-in default labels follow generated language/runtime dictionaries; Japanese message keys in examples are not an unconditional Japanese display default.
 
 ## Tokens and profiles
 
