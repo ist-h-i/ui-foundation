@@ -4,7 +4,7 @@
 
 生成した Angular の公開入口を利用アプリへ組み込み、必要な画面だけで部品を使うためのガイドです。要求カタログの全部品を一つの業務画面に配置する必要はありません。ツリーの選択、予定、一覧編集、添付、専門エディターなどを用途ごとの画面に分け、利用者の目的、欠損の影響、失敗時に保持する入力、復旧経路を先に決めます。
 
-設定項目の正本は [`examples/ui.config.example.yaml`](../examples/ui.config.example.yaml) です。利用アプリでは、そのアプリの `ui.config.yaml` を正本として管理します。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[CLIコマンド](commands.ja.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定やパッケージ版を変更してCLIで同期・検査します。
+設定項目は [日本語の設定例](../examples/ui.config.example.yaml) を参照してください。設定の正本は、そのアプリの `ui.config.yaml` です。[部品契約](ui-components.md)、[トークンと生成契約](design.md)、[CLIコマンド](commands.ja.md)と併せて読みます。生成した `.ui/generated/` は手編集せず、設定やパッケージ版を変更してCLIで同期・検査します。
 
 ## 導入から画面を作るまで
 

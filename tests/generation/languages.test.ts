@@ -46,7 +46,7 @@ test('CLI rejects unsupported or misplaced language before creating configuratio
 test('existing YAML without a language retains Japanese across sync and explicit changes leave tokens untouched',async t=>{
  const root=await mkdtemp(resolve(tmpdir(),'ui-legacy-language-'));t.after(()=>rm(root,{recursive:true,force:true}));
  const {writeFile}=await import('node:fs/promises');
- const source=(await readFile(resolve(repository,'examples/ui.config.example.yaml'),'utf8')).replace(/\nchecks:\n[\s\S]*$/,'\n');
+ const source=(await readFile(resolve(repository,'examples/ui.config.example.yaml'),'utf8')).replace(/\nchecks:\n[\s\S]*$/,'\n').replace(/\ndefault_language: ja\n/g,'\n');
  assert.equal(parseConfig(source).default_language,undefined);
  await writeFile(resolve(root,'ui.config.yaml'),source);await syncProject({root});
  const runtime=await import(pathToFileURL(resolve(root,'.ui/generated/angular/locale-model.ts')).href);
