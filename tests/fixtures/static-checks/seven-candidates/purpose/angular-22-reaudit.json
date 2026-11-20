@@ -5,19 +5,19 @@
   "sites": {
     "D146": {
       "file": "templates/angular/text-input.ts",
-      "line": 142,
+      "line": 171,
       "column": 51,
       "rule": "unresolved",
       "severity": "warning",
-      "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"displayedText()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"\n   (compositionstart)=\"beginComposition($event)\" (compositionend)=\"endComposition($event)\" (blur)=\"touch()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"",
+      "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"displayedText()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"\n   (compositionstart)=\"beginComposition($event)\" (compositionend)=\"endComposition($event)\" (blur)=\"blur()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"",
       "exception": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
     }
   },
   "dependencies": {
     "templates/angular/text-input.ts": {
       "prior_sha256": "2aeb3aa284ddbb2f4ea8ef7cbf9c37258d50e310045df60bff8d9a8e7705070e",
-      "current_sha256": "15cecc64aac7757a42b6325fa1bae7465ef1cf017d0ed0cd62c93b09ecbe840d",
-      "judgment": "D146. The native textarea displays the composition draft and handles composition events. Its max-block-size binding at line 142 reads checkedMaxHeight(), which at line 149 accepts null or a positive finite number. Auto-resize uses the measured scroll height for the separate height property at line 155."
+      "current_sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+      "judgment": "D146. The textarea retains the native candidate until composition ends after an external reset and discards the candidate when made read-only. The max-block-size binding at line 171 still reads checkedMaxHeight(), which at line 178 accepts null or a positive finite number. Auto-resize separately measures the scroll height for the height property at line 184."
     },
     "templates/angular/virtual-data-table.ts": {
       "prior_sha256": "282e75b7f659136b9cafe0e30791a0422982a5105cd55b3de769036cbd4ae16b",
