@@ -1,5 +1,9 @@
 /** Stable, library-owned message IDs and their named parameters. */
 export type UiMessageParameters = {
+  'uiFoundation.alert.closeLabel': undefined;
+  'uiFoundation.resultState.detailsLabel': undefined;
+  'uiFoundation.progressBar.indeterminate': undefined;
+  'uiFoundation.progressBar.description': { readonly value: number; readonly total: number; readonly percent: number };
   'uiFoundation.notificationCenter.statusFilter': undefined;
   'uiFoundation.notificationCenter.categoryFilter': undefined;
   'uiFoundation.notificationCenter.allStatuses': undefined;
@@ -86,7 +90,17 @@ type Dictionary = {
   [Id in UiMessageId]: (message: UiMessageRequest<Id>, locale: string) => string;
 };
 
+function progressDescription({ parameters }: UiMessageRequest<'uiFoundation.progressBar.description'>, locale: string): string {
+  const numbers = new Intl.NumberFormat(locale, { maximumFractionDigits: 12 });
+  const percent = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 });
+  return `${numbers.format(parameters.value)} / ${numbers.format(parameters.total)} (${percent.format(parameters.percent / 100)})`;
+}
+
 const japanese: Dictionary = {
+  'uiFoundation.alert.closeLabel': () => '通知を閉じる',
+  'uiFoundation.resultState.detailsLabel': () => '結果の詳細',
+  'uiFoundation.progressBar.indeterminate': () => '進捗を確認しています。',
+  'uiFoundation.progressBar.description': progressDescription,
   'uiFoundation.notificationCenter.statusFilter': () => "通知の状態",
   'uiFoundation.notificationCenter.categoryFilter': () => "通知の分類",
   'uiFoundation.notificationCenter.allStatuses': () => "すべて",
@@ -164,6 +178,10 @@ const japanese: Dictionary = {
 };
 
 const english: Dictionary = {
+  'uiFoundation.alert.closeLabel': () => 'Close alert',
+  'uiFoundation.resultState.detailsLabel': () => 'Result details',
+  'uiFoundation.progressBar.indeterminate': () => 'Checking progress.',
+  'uiFoundation.progressBar.description': progressDescription,
   'uiFoundation.notificationCenter.statusFilter': () => "Notification status",
   'uiFoundation.notificationCenter.categoryFilter': () => "Notification category",
   'uiFoundation.notificationCenter.allStatuses': () => "All",

@@ -70,3 +70,9 @@ test('notification status and dismiss requests translate complete messages', () 
     return 'App notification, dismiss';
   }), 'App notification, dismiss');
 });
+
+test('progress values and percentages use the active locale as one message', () => {
+  const request = { id: 'uiFoundation.progressBar.description', parameters: { value: 0, total: 1000, percent: 0 } } as const;
+  assert.equal(resolveUiMessage(request, 'en-US'), '0 / 1,000 (0%)');
+  assert.equal(resolveUiMessage(request, 'de-DE'), '0 / 1.000 (0 %)');
+});
