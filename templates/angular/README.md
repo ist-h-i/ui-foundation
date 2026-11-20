@@ -1,6 +1,6 @@
 # Angularテンプレート
 
-PageFrame、ActionControl／ActionLink、FormField／FieldControl、AsyncRegion、ActionFeedbackに加え、RadioGroup、Navigation／Breadcrumb、Tabs、Disclosure、Dialog、DataTable、Paginationの生成元です。Angular 22.2.1を使うstandalone部品です。
+PageFrame、ActionControl／ActionLink、FormField／FieldControl、AsyncRegion、ActionFeedbackに加え、RadioGroup、Navigation／Breadcrumb、Tabs、Disclosure、Dialog、DataTable、Paginationの生成元です。Angular 22.3.0を使うstandalone部品です。
 
 [APIと責任境界](../../docs/ui-components.md)、[利用例](../../tests/fixture-app/app.ts)、[操作試験](../../tests/ui/components.spec.ts)、[プロファイル試験](../../tests/ui/profiles.spec.ts)を参照してください。CLIが設定のoutputへ`angular/`を同期し、利用アプリは生成した`angular/index.ts`をimportします。テンプレートを直接コンパイルする経路は使いません。
 

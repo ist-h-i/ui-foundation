@@ -146,7 +146,7 @@ Collapsing hierarchy that would discard editing/pending paste is deferred throug
 
 VirtualDataTable takes caption/tableId/rows/columns/keyField/state, disabled/busy, height/itemHeight:number|null, overscan, locale/missingLabel/sortable, selectionMode/selectedKeys/rowSelectable and cellTemplates. Outputs: sortRequested:string, selectedKeysChange, columnWidthsChange:Readonly<Record<string,number>>, rangeChange:{start;end}, positionChange:{offset;index}.
 
-Public Angular CDK22.2.1 fixed-size scrolling renders only viewport/small buffer, not all acquired rows as hidden DOM. Preserve ARIA table/rowgroup/row/columnheader/cell relationships, acquired rowcount and rowindex. Height uses explicit itemHeight or measured semantic values, retaining index when profile/200%-text changes row height. ScrollToIndex/scrollToOffset are instant; Home/End/Page keys are connected.
+Public Angular CDK22.3.0 fixed-size scrolling renders only viewport/small buffer, not all acquired rows as hidden DOM. Preserve ARIA table/rowgroup/row/columnheader/cell relationships, acquired rowcount and rowindex. Height uses explicit itemHeight or measured semantic values, retaining index when profile/200%-text changes row height. ScrollToIndex/scrollToOffset are instant; Home/End/Page keys are connected.
 
 Default fixed-height cells are single-line with native cell-local horizontal scroll. Tab into cells and arrows read long values. Apps provide adequate itemHeight for projected templates. CellTemplates uses column-ID own entries only.
 

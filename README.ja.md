@@ -64,13 +64,13 @@ README、利用ガイド、設計・API資料は日英で用意します。AI向
 
 ## 使い始める
 
-npmに公開された版を指定します。公開前に試す場合は[候補版のtarballをインストール](docs/ui-library-consumer-guide.ja.md)します。
+Angular 22.2.1のチームは `npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5` で公開版を導入できます。基本入口と全件入口を利用できます。Angular 22.3とフォーム用の入口を試すには、開発元で `npm ci`、`npm pack` の順に実行します。できたファイルを利用アプリの `vendor/` に置き、アプリのpackage.json・lockfileと一緒にGitへ登録すると、別の開発者とCIも `npm ci` で同じ版を使えます。[導入ガイド](docs/ui-library-consumer-guide.ja.md)
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
+npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
 ```
 
-ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。
+ベータの検証環境はNode.js 24.19.0、macOS arm64、Angular/CDK 22.3.0、TypeScript 6.0.3です。他の構成の確認状況と更新・復旧の条件は[ベータ利用契約](docs/npm-beta-readiness.ja.md)を参照してください。
 
 | 知りたいこと | ドキュメント |
 | --- | --- |

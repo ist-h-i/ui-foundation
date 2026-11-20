@@ -39,7 +39,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml
 node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.yaml --format json
 ```
 
-取り込み先の`package.json`へ`"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"`を追加し、CIやbuildの前段で実行します。CLIは取り込み先のpackage.jsonを自動編集しません。outputを移行したら、このコマンドとアプリ側importも更新します。検査器はNode専用で、アプリのブラウザーbundleには含めません。
+取り込み先の`package.json`へ`"ui:check": "ui-foundation check --config ui.config.yaml --require-source-checks"`を追加し、CIやbuildの前段で実行します。CLIは取り込み先のpackage.jsonを自動編集しません。outputを移行したら、アプリ側のimportを更新します。検査器はNode専用で、アプリのブラウザーbundleには含めません。
 
 同梱版はYAMLを検証し、生成policyとの一致を確認してソースを検査します。生成物を再構築する一致検査と未所有ファイル検出はui-foundation本体のCLIが担当します。同梱版の成功は生成一致の証拠にはなりません。更新は設定やパッケージ版を変更し、`./node_modules/.bin/ui-foundation sync`で反映します。生成・所有権・冪等性・output移行は既存の生成契約に従います。
 

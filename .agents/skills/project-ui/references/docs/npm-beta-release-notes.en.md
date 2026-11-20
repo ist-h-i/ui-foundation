@@ -2,7 +2,11 @@
 
 [Japanese](npm-beta-release-notes.ja.md)
 
-Consumer changes through the `@hiroshi.inoue/ui-foundation@0.1.0-beta.5` candidate. Original CLI/templates/Skill/generated code use MIT (2026 Hiroshi Inoue). Third-party terms remain unchanged.
+Consumer changes through the `@hiroshi.inoue/ui-foundation@0.1.0-beta.6` candidate. Original CLI/templates/Skill/generated code use MIT (2026 Hiroshi Inoue). Third-party terms remain unchanged.
+
+## Beta.6 candidate
+
+The candidate targets Angular and CDK 22.3.0. The new `angular/forms` entry provides text controls without specialist dependencies. PDF reads and virtual rows use signals. Form values respect text composition and clipboard feedback follows its source. To upgrade from beta.5, align app dependencies, sync, compile, and exercise the affected screens.
 
 ## beta.5: Breaking change to library translations
 

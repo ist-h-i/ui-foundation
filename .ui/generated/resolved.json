@@ -2242,7 +2242,7 @@
       {
         "column": 51,
         "file": "templates/angular/text-input.ts",
-        "line": 46,
+        "line": 142,
         "reason": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
         "rule": "unresolved",
         "source": "[style.max-block-size.px]=\"checkedMaxHeight()\""

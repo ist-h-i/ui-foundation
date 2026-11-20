@@ -124,7 +124,7 @@ Page>=1 and totalPages>=0 are safe integers. If totalPages>0, page<=totalPages; 
 
 The following are extended public APIs and usage limits.
 
-Consumers using input components install @angular/forms matching their app; Icon consumers install @lucide/angular. This repository pins22.2.1/1.52.0 for AOT. Lucide uses the [official Angular adapter](https://lucide.dev/guide/angular) and [ISC license](https://lucide.dev/license), without new accounts/paid services. Pass dependency source through Angular linker and verify actual rendered SVG paths.
+Consumers using input components install @angular/forms matching their app; Icon consumers install @lucide/angular. This repository pins22.3.0/1.52.0 for AOT. Lucide uses the [official Angular adapter](https://lucide.dev/guide/angular) and [ISC license](https://lucide.dev/license), without new accounts/paid services. Pass dependency source through Angular linker and verify actual rendered SVG paths.
 
 ### DataTableView and Pagination
 

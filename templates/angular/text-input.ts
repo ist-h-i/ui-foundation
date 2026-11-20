@@ -1,7 +1,7 @@
 import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {injectUiLocale,UiStableMessagePipe} from './locale';
-import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, input, output, signal, viewChild } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
+import { afterNextRender, afterRenderEffect, type AfterRenderRef, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, DOCUMENT, effect, ElementRef, forwardRef, inject, Injector, input, linkedSignal, output, signal, viewChild } from '@angular/core';
+import { COMPOSITION_BUFFER_MODE, NG_VALUE_ACCESSOR, NG_VALIDATORS, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounce, of, Subject, timer } from 'rxjs';
 import { ActionControl } from './action-control';
@@ -16,45 +16,140 @@ const controlStyles = `
   .ui-input-count, .ui-input-format { color: var(--ui-color-muted); font-size: var(--ui-text-small); margin-block: var(--ui-space-control-y); }
   textarea { resize: vertical; max-block-size: var(--ui-size-input-max-height); }
 `;
+
+@Directive()
+abstract class ComposingTextControl extends FieldValueControl<string> {
+  protected readonly emptyValue = '';
+  protected readonly editor = viewChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('editor');
+  // Angular's default text accessor buffers except on Android. The application can override it.
+  private readonly bufferComposition = inject(COMPOSITION_BUFFER_MODE, { optional: true })
+    ?? !/android \d+/i.test(inject(DOCUMENT).defaultView?.navigator.userAgent ?? '');
+  private readonly editable = computed(() => !this.blocked() && !this.readonly());
+  private readonly draft = linkedSignal({
+    source: () => ({ externalValue: this.value(), editable: this.editable() }),
+    computation: (): string | null => null,
+  });
+  protected readonly displayedText = computed(() => this.draft() ?? this.current());
+  private readonly injector = inject(Injector);
+  private lastComposition: string | null = null;
+  private pendingReconciliation?: AfterRenderRef;
+
+  protected coerce(value: unknown): string {
+    return typeof value === 'string' ? value : '';
+  }
+
+  override writeValue(value: unknown): void {
+    super.writeValue(value);
+    this.draft.set(null);
+    this.restoreEditor();
+  }
+
+  protected beginComposition(event: Event): void {
+    this.lastComposition = null;
+    if (this.bufferComposition && this.editable()) this.draft.set(this.text(event));
+  }
+
+  protected edit(event: Event): void {
+    const value = this.text(event);
+    if (!this.editable()) {
+      this.restoreEditor();
+      return;
+    }
+    if (this.draft() !== null) {
+      this.draft.set(value);
+      return;
+    }
+    const input = event as InputEvent;
+    if (this.bufferComposition && input.isComposing) {
+      this.restoreEditor();
+      return;
+    }
+    const taggedFinal = input.inputType === 'insertFromComposition' || input.inputType === 'insertCompositionText';
+    // Chromium can expose a final insertion with data and an empty inputType.
+    const untypedFinal = !input.inputType && input.data != null && (value === this.lastComposition || value === this.current());
+    if (this.lastComposition !== null && (taggedFinal || untypedFinal)) {
+      this.reconcileAfterRender();
+      return;
+    }
+    // Ordinary edits are distinguishable from an old IME replay, even after a reset.
+    this.commit(value);
+  }
+
+  protected endComposition(event: Event): void {
+    if (!this.bufferComposition) return;
+    const value = this.text(event);
+    this.lastComposition = value;
+    if (this.draft() === null) {
+      this.restoreEditor();
+      return;
+    }
+    this.draft.set(null);
+    this.commit(value);
+  }
+
+  protected clear(): void {
+    if (!this.editable()) return;
+    this.draft.set(null);
+    this.commit('');
+    this.restoreEditor();
+    this.editor()?.nativeElement.focus();
+  }
+
+  protected override commit(value: string): void {
+    super.commit(value);
+    if (this.value() !== undefined) this.reconcileAfterRender();
+  }
+
+  private reconcileAfterRender(): void {
+    // Read the owner's decision after Angular has applied parent inputs, including a rejection or reset.
+    this.pendingReconciliation ??= afterNextRender(() => {
+      this.pendingReconciliation = undefined;
+      this.restoreEditor();
+    }, { injector: this.injector });
+  }
+
+  private restoreEditor(): void {
+    const editor = this.editor()?.nativeElement;
+    const value = this.displayedText();
+    if (editor && editor.value !== value) editor.value = value;
+  }
+}
+
 @Component({
  selector: 'ui-text-input', standalone: true, imports: [...fieldImports,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
  providers: [{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>TextInput),multi:true}],
  template: `
   <ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
    <div class="ui-input-group">
-    <input #editor uiFieldControl type="text" [name]="name()" [value]="current()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
-      [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="commit(text($event))" (blur)="touch()">
-    @if (clearable()) { <button uiAction [attr.aria-label]="('uiFoundation.textInput.clearForLabel' | uiStableMessage:{label:label()})" [disabled]="blocked() || readonly() || !current()" (click)="clear()">{{'uiFoundation.textInput.clearForTextInput' | uiStableMessage}}</button> }
+    <input #editor uiFieldControl type="text" [name]="name()" [value]="displayedText()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
+      [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="edit($event)"
+      (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="touch()">
+    @if (clearable()) { <button uiAction [attr.aria-label]="('uiFoundation.textInput.clearForLabel' | uiStableMessage:{label:label()})" [disabled]="blocked() || readonly() || !displayedText()" (click)="clear()">{{'uiFoundation.textInput.clearForTextInput' | uiStableMessage}}</button> }
    </div>
-   @if (showCount()) { <p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textInput.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textInput.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p> }
+   @if (showCount()) { <p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textInput.characterCount' | uiStableMessage:{count:displayedText().length}):('uiFoundation.textInput.characterCountWithLimit' | uiStableMessage:{count:displayedText().length,limit:maxLength()!}) }}</p> }
   </ui-form-field>
  `, styles: controlStyles,
 })
-export class TextInput extends FieldValueControl<string> {
- protected readonly emptyValue='';
+export class TextInput extends ComposingTextControl {
  readonly placeholder=input(''); readonly maxLength=input<number|null>(null); readonly autocomplete=input('off');
  readonly clearable=input(false,{transform:booleanAttribute}); readonly showCount=input(false,{transform:booleanAttribute});
- private readonly editor=viewChild<ElementRef<HTMLInputElement>>('editor');
- protected coerce(value:unknown):string{return typeof value==='string'?value:'';}
- protected clear():void{if(this.blocked()||this.readonly())return;this.commit('');this.editor()?.nativeElement.focus();}
 }
 @Component({
  selector:'ui-textarea',standalone:true,imports:[FormField,FieldControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Textarea),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
-  <textarea #editor uiFieldControl [name]="name()" [value]="current()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
-   [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="commit(text($event))" (blur)="touch()"></textarea>
-  @if(showCount()){<p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textarea.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textarea.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p>}
+  <textarea #editor uiFieldControl [name]="name()" [value]="displayedText()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
+   [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="edit($event)"
+   (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="touch()"></textarea>
+  @if(showCount()){<p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textarea.characterCount' | uiStableMessage:{count:displayedText().length}):('uiFoundation.textarea.characterCountWithLimit' | uiStableMessage:{count:displayedText().length,limit:maxLength()!}) }}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
-export class Textarea extends FieldValueControl<string>{
- protected readonly emptyValue='';readonly rows=input(3);readonly maxLength=input<number|null>(null);readonly maxHeight=input<number|null>(null);
+export class Textarea extends ComposingTextControl{
+ readonly rows=input(3);readonly maxLength=input<number|null>(null);readonly maxHeight=input<number|null>(null);
  protected readonly checkedMaxHeight=computed(()=>{const height=this.maxHeight();if(height!==null&&(!Number.isFinite(height)||height<=0))throw new Error('ui-textarea maxHeight must be a positive pixel size.');return height;});
  readonly autoResize=input(false,{transform:booleanAttribute});readonly showCount=input(false,{transform:booleanAttribute});readonly placeholder=input('');
- private readonly editor=viewChild<ElementRef<HTMLTextAreaElement>>('editor');
- protected coerce(value:unknown):string{return typeof value==='string'?value:'';}
  constructor(){super();const render=afterRenderEffect(onCleanup=>{
-   this.current();this.rows();this.checkedMaxHeight();const automatic=this.autoResize(),element=this.editor()?.nativeElement;if(!element)return;
+   this.displayedText();this.rows();this.checkedMaxHeight();const automatic=this.autoResize(),element=this.editor()?.nativeElement;if(!element)return;
    if(!automatic){element.style.height='';return;}
    const view=element.ownerDocument.defaultView;let frame:number|null=null;
    const resize=()=>{frame=null;if(!element.getClientRects().length)return;const previous=element.style.height;element.style.height='auto';const height=element.scrollHeight+(element.offsetHeight-element.clientHeight)+'px';element.style.height=height;if(previous===height)return;};

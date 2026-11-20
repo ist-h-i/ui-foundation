@@ -25,7 +25,7 @@ test(`Spreadsheet ${profile} ${width}px text${text} ${direction}: frozen rows an
  const forward=direction==='rtl'?'ArrowLeft':'ArrowRight',backward=direction==='rtl'?'ArrowRight':'ArrowLeft';
  for(const [name,value] of [['B1','3'],['C1','5'],['D1','10']]){
   await page.keyboard.press(forward);const cell=sheet.getByRole('textbox',{name,exact:true});await readableCell(cell);await expect(cell).toHaveValue(value);
-  await expect(sheet).toContainText(`選択 ${name} / 値 ${value}`);
+  await expect(sheet).toContainText(`選択 ${name} 値 ${value}`);
  }
  await page.keyboard.press(backward);const c=sheet.getByRole('textbox',{name:'C1',exact:true});await readableCell(c);
  await page.keyboard.press('Enter');await expect(c).toHaveValue('=SUM(A1:B1)');await c.fill('=A1+B1');await page.keyboard.press('Enter');await expect(c).toHaveValue('5');await readableCell(c);
@@ -46,7 +46,7 @@ test(`Spreadsheet ${profile} text200 ${direction}: vertical keyboard scrolling a
  const a=sheet.getByRole('textbox',{name:'A1',exact:true});await a.focus();await page.keyboard.press('Home');
  const forward=direction==='rtl'?'ArrowLeft':'ArrowRight';await page.keyboard.press(forward);await page.keyboard.press(forward);
  for(let row=2;row<=20;row++){await page.keyboard.press('ArrowDown');await readableCell(sheet.getByRole('textbox',{name:'C'+row,exact:true}));}
- await expect(sheet).toContainText('選択 C20 / 値 5');await expect(c20).toHaveValue('5');
+ await expect(sheet).toContainText('選択 C20 値 5');await expect(c20).toHaveValue('5');
  await page.setViewportSize({width:1280,height:900});await readableCell(c20);await expect(c20).toHaveValue('5');
  await page.setViewportSize({width:320,height:900});await readableCell(c20);await expect(c20).toHaveValue('5');
  await page.getByRole('button',{name:'CSVを書き出す',exact:true}).click();await expect(page.getByLabel('書き出した内容',{exact:true})).toHaveValue(csv);

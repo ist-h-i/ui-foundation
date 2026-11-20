@@ -1,0 +1,28 @@
+{
+  "prior_audit_sha256": "1a09d0fa877df7262eac4f798d2aa3076adc5a7e6f588483130f8b4f7a8b6a00",
+  "source_base_commit": "cd97bbee78faf641087e853232ca2bdd7fa39ea7",
+  "scope": "D146 moved with the shared text editing and composition code. The four virtual-table diagnostics match their complete message-migration sites. Each approval retains its original rule, severity, matcher and reason.",
+  "sites": {
+    "D146": {
+      "file": "templates/angular/text-input.ts",
+      "line": 142,
+      "column": 51,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"displayedText()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"\n   (compositionstart)=\"beginComposition($event)\" (compositionend)=\"endComposition($event)\" (blur)=\"touch()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"",
+      "exception": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    }
+  },
+  "dependencies": {
+    "templates/angular/text-input.ts": {
+      "prior_sha256": "2aeb3aa284ddbb2f4ea8ef7cbf9c37258d50e310045df60bff8d9a8e7705070e",
+      "current_sha256": "15cecc64aac7757a42b6325fa1bae7465ef1cf017d0ed0cd62c93b09ecbe840d",
+      "judgment": "D146. The native textarea displays the composition draft and handles composition events. Its max-block-size binding at line 142 reads checkedMaxHeight(), which at line 149 accepts null or a positive finite number. Auto-resize uses the measured scroll height for the separate height property at line 155."
+    },
+    "templates/angular/virtual-data-table.ts": {
+      "prior_sha256": "282e75b7f659136b9cafe0e30791a0422982a5105cd55b3de769036cbd4ae16b",
+      "current_sha256": "36e0794ccb14375f5eb79d7973a867bd09975975db4c0fbf1ba4b4feab9ee64f",
+      "judgment": "R184/R186. The header and viewport use minimumInline(), which multiplies the semantic column minimum by the column count plus the optional selection column. D153/D158. Header and row tracks use the validated saved or declared widths and clamp explicit widths to the column bounds. The table delegates pixel scrolling and position restoration after a row-height change to VirtualScroll. The four bindings at lines 16–18 still read the column computations at lines 68–76, behind the configuration guard at lines 14 and 77."
+    }
+  }
+}

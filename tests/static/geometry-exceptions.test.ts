@@ -14,21 +14,33 @@ const directory=resolve(root,'tests/fixtures/static-checks/warning-followup');
 type Diagnostic={file:string;rule:string;line:number;column:number;source:string;severity:string;exception?:string};
 type Exception={file:string;rule:'unresolved';source:string;line:number;column:number;reason:string};
 type Approval={id:string;reason_ja:string;exception:Exception;diagnostic:Diagnostic;proof_sha256:Record<string,string>;static_value_status:string;universal_runtime_status:string};
-const audit=JSON.parse(await readFile(resolve(directory,'geometry-audit.json'),'utf8'));
+const historicalAudit=await readFile(resolve(directory,'geometry-audit.json'));
+const audit=JSON.parse(historicalAudit.toString('utf8'));
+const messageReview: {
+  prior_audit_sha256: string;
+  dependencies: Record<string, {prior_sha256: string; current_sha256: string; judgment: string}>;
+}=JSON.parse(await readFile(resolve(directory,'message-migration-reaudit.json'),'utf8'));
 const approvals:Approval[]=audit.eligible;
 const example=await readFile(resolve(root,'examples/ui.config.repository.yaml'),'utf8');
 const digest=(data:Uint8Array)=>createHash('sha256').update(data).digest('hex');
 const dependencies=new Map<string,string>();
 for(const item of approvals)for(const[file,hash]of Object.entries(item.proof_sha256)){assert.ok(!dependencies.has(file)||dependencies.get(file)===hash);dependencies.set(file,hash);}
+for(const [file,review] of Object.entries(messageReview.dependencies)){
+  assert.equal(dependencies.get(file),review.prior_sha256,`${file}: re-audit must start at the original proof`);
+  assert.ok(review.judgment.trim(),`${file}: missing geometry purpose review`);
+  dependencies.set(file,review.current_sha256);
+}
 async function validateDependencies(directory:string){for(const[file,hash]of dependencies)assert.equal(digest(await readFile(resolve(directory,file))),hash,`${file}: audited producer/helper changed`);}
 const matches=(d:Diagnostic,e:Exception)=>d.file===e.file&&d.rule===e.rule&&d.line===e.line&&d.column===e.column&&d.source.includes(e.source);
 
 test('only the fourteen audited geometry purposes are configured, retaining Unknown and exact sites',async()=>{
  const config=parseConfig(example);assert.equal(approvals.length,14);assert.equal(new Set(approvals.map(x=>x.id)).size,14);
+ assert.equal(digest(historicalAudit),messageReview.prior_audit_sha256,'historical geometry audit changed');
  const baseline=JSON.parse(await readFile(resolve(root,audit.source_report),'utf8'));
  assert.equal(digest(await readFile(resolve(root,audit.source_report))),audit.source_report_sha256);
  for(const item of approvals){
   assert.equal(item.static_value_status,'Unknown');assert.equal(item.universal_runtime_status,'Unknown');assert.equal(item.exception.reason,item.reason_ja);
+  assert.equal(config.checks!.exceptions.filter(e=>e.reason.startsWith(`[${item.id}] `)).length,1,item.id);
   assert.equal(config.checks!.exceptions.filter(e=>e.file===item.exception.file&&e.rule===item.exception.rule&&e.source===item.exception.source&&e.line===item.exception.line&&e.column===item.exception.column&&e.reason===item.exception.reason).length,1,item.id);
   assert.equal(baseline.source.diagnostics.filter((d:Diagnostic)=>matches(d,item.exception)&&d.severity==='warning').length,1,item.id);
  }
@@ -63,6 +75,12 @@ test('copied CLI scopes every geometry approval by file, rule, source and exact 
  const run=()=>{const result=spawnSync(process.execPath,['foundation/check-ui.cjs','--config','ui.config.yaml','--format','json'],{cwd:fixture,encoding:'utf8',timeout:60_000,env:{...process.env,NODE_PATH:''}});assert.equal(result.error,undefined);return{result,report:JSON.parse(result.stdout)};};
  await assert.rejects(access(resolve(fixture,'node_modules')));
  await save();const uncovered=run();
+ for(const item of approvals){
+  const warnings=uncovered.report.diagnostics.filter((d:Diagnostic)=>matches(d,item.exception));
+  assert.equal(warnings.length,1,item.id);
+  assert.equal(warnings[0].severity,'warning',item.id);
+  assert.equal(warnings[0].source,item.diagnostic.source,item.id);
+ }
  const acceptedExceptions=configuredExceptions.filter(e=>uncovered.report.diagnostics.some((d:Diagnostic)=>d.file===e.file&&d.rule===e.rule&&d.source.includes(e.source)&&(e.line===undefined||d.line===e.line)&&(e.column===undefined||d.column===e.column)));
  config.checks!.exceptions=acceptedExceptions;await save();const accepted=run();assert.equal(accepted.result.status,0,accepted.result.stdout+accepted.result.stderr);
  for(const item of approvals)assert.equal(accepted.report.exceptions.filter((d:Diagnostic)=>matches(d,item.exception)&&d.exception===item.exception.reason).length,1,item.id);

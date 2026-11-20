@@ -6,10 +6,10 @@ import {test,expect,contexts,ready,environment,settle,create,host,update,destroy
 // Firefox diagnoses Chevrotain's intentionally unreachable eval after return.
 // This override applies only to the Spreadsheet cases below; table cases retain
 // the shared fail-on-every-warning fixture. No pageerror is admitted.
-const spreadsheetTest=test.extend({runtimeErrors:async({page,browserName,baseURL},use,testInfo)=>{
+const spreadsheetTest=test.extend({runtimeErrors:async({page,browser,browserName,baseURL},use,testInfo)=>{
  const pins=[
-  {path:'dist/fixture-app/assets/sheet-formula.worker.js',sha256:'eb59c19221be6e346f8c66d4d01aab724e6fb1aa4fa853ad4ce8d38f096f31e5'},
-  {path:'dist/fixture-app/assets/sheet-formula.worker.js.map',sha256:'627c113f30ec86dab311fff0f8dc896c163762789e9c8fdaaba88f0ca5df27f0'},
+  {path:'dist/fixture-app/assets/sheet-formula.worker.js',sha256:'4a9463eff8bedf354b5bd21281a634d4a62ac6a72348d103aa89b43561163a93'},
+  {path:'dist/fixture-app/assets/sheet-formula.worker.js.map',sha256:'f6431718e46b352083b6b0e18656ecab3d45d1dfa48402630651202de1242dc0'},
   {path:'node_modules/chevrotain/src/utils/utils.ts',sha256:'044d850e8605c28f46dbab03a94b7e907e5de04a60a914a818c33a7bd1dac9fc'},
  ];
  const hashes=await Promise.all(pins.map(async pin=>({...pin,actualSha256:createHash('sha256').update(await readFile(new URL('../../'+pin.path,import.meta.url))).digest('hex')})));
@@ -28,7 +28,7 @@ const spreadsheetTest=test.extend({runtimeErrors:async({page,browserName,baseURL
  try{await use(errors);expect(errors,'Spreadsheet browser errors other than the audited upstream Firefox parser diagnostic').toEqual([]);}
  finally{
   page.off('pageerror',onPageError);page.off('console',onConsole);
-  await testInfo.attach('audited-firefox-sheet-worker-diagnostic',{body:JSON.stringify({scope:'Only this Spreadsheet case; every pageerror and other console warning/error fails.',browserName,expected:{type:'warning',text:expectedText,location:{url:workerURL,lineNumber:2,columnNumber:117081}},hashes,upstream:{package:'chevrotain',version:'7.1.2',via:'fast-formula-parser@1.0.19',source:'src/utils/utils.ts',returnLine:473,commentLine:474,unreachableEvalLine:477,mapping:'worker line 2 column 117081 -> upstream line 477 column 2'},admitted},null,2),contentType:'application/json'});
+  await testInfo.attach('audited-firefox-sheet-worker-diagnostic',{body:JSON.stringify({scope:'Only this Spreadsheet case; every pageerror and other console warning/error fails.',browserName,browserVersion:browser.version(),expected:{type:'warning',text:expectedText,location:{url:workerURL,lineNumber:2,columnNumber:117081}},hashes,upstream:{package:'chevrotain',version:'7.1.2',via:'fast-formula-parser@1.0.19',source:'src/utils/utils.ts',returnLine:473,commentLine:474,unreachableEvalLine:477,mapping:'Firefox reports line 2, column 117081. The source map uses zero-based columns and maps line 2, column 117080 to upstream line 477, column 2.'},admitted},null,2),contentType:'application/json'});
  }
 }});
 const state={sort:[],filters:[],search:'',page:1,pageSize:30,columnOrder:[],hiddenColumns:[],columnWidths:{},pinnedColumns:{}};

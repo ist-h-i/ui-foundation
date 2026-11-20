@@ -49,6 +49,10 @@ test('SVG consumer preparation preserves all canonical check inputs and public c
     assert.equal(typeof config.checks.tsconfig,'string');
     await exactInput(config.checks.tsconfig);
   });
+  await t.test('the generator has its license and all packaged documentation',async()=>{
+    const manifest=JSON.parse(await readFile(join(repository,'package.json'),'utf8'));
+    for(const path of ['LICENSE',...manifest.files.filter(path=>path.startsWith('docs/'))]) await exactInput(path);
+  });
   await t.test('every configured source and exception anchor is copied and inventoried',async()=>{
     assert.ok(config.checks.source_roots.length>0);
     const expected=new Set(config.checks.exceptions.map(exception=>exception.file));

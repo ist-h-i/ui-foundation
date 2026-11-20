@@ -2086,7 +2086,7 @@ checks:
     - file: templates/angular/text-input.ts
       rule: unresolved
       source: '[style.max-block-size.px]="checkedMaxHeight()"'
-      line: 46
+      line: 142
       column: 51
       reason: "[D146] Textareaのmax-block-sizeはautoResize後もnative
         editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive

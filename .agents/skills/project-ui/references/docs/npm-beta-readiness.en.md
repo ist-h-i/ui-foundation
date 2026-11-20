@@ -2,7 +2,7 @@
 
 [Japanese](npm-beta-readiness.ja.md)
 
-This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.1.0-beta.4`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
+This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.1.0-beta.6`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
 
 ## Accepted beta scope
 
@@ -10,12 +10,12 @@ This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-f
 | --- | --- |
 | Distribution | One CLI package generates Angular source, CSS, Skill and checker; it is not a compiled Angular library. |
 | Node and OS | Node.js **24.19.0**, macOS arm64; other Node series/OS are unverified. |
-| Consumer | Angular/CDK22.2.1, TypeScript6.0.3 and the recorded lockfile; follow the [dependency guide](ui-library-consumer-guide.en.md#application-dependencies) for foundation/specialist dependencies. |
+| Consumer | Angular/CDK22.3.0, TypeScript6.0.3 and the recorded lockfile; follow the [dependency guide](ui-library-consumer-guide.en.md#application-dependencies) for foundation/specialist dependencies. |
 | Browser | Focused interactions in the verified configuration use Playwright Chromium; verify other browsers/assistive technology in the app's adopted configuration. |
 | API | YAML `schema_version=1`, CLI init/sync/check and existing flags, explicit exports from the public Angular barrel and generated structure. Manifest/policy/ownership/lock are tool-managed, not app-editable APIs. |
 | Check results | CLI check combines generation consistency and source checks; generated check-ui.cjs checks policy/source. Existing JSON fields and error/warning/not-configured meanings are retained. |
 
-The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. When the installed version provides `angular/core.ts`, apps using only its exports can resolve the smaller dependency set described in the consumer guide. Verify additional configurations in the consumer.
+The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. Apps using the public `angular/core.ts` and `angular/forms.ts` entries can use the smaller dependency set in the consumer guide. The forms entry is available starting with beta.6. Verify additional configurations in the consumer.
 
 ## Installation and documentation
 

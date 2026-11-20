@@ -2,7 +2,7 @@ import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterRenderEffect, booleanAttribute, ChangeDetectorRef, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, untracked, viewChild, isSignal, type Signal, type TemplateRef } from '@angular/core';
+import { afterEveryRender, afterRenderEffect, booleanAttribute, ChangeDetectorRef, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, viewChild, isSignal, type Signal, type TemplateRef } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ActionControl } from './action-control';
 import { canFocus } from './focus';import {VirtualScroll} from './virtual-scroll';import {VirtualRows} from './virtual-rows';import {virtualRadioProblem,type VirtualRadioGroup} from './virtual-radio';export type {VirtualRadioGroup,VirtualRadioMember} from './virtual-radio';
@@ -63,9 +63,7 @@ export class VirtualDataTable<T extends object> {
     private readonly measuredRow = signal(0);
     private readonly destroy = inject(DestroyRef);
     private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-    private priorRowSize = 0;
     private owned: HTMLElement | null = null;
-    private readonly renderedRange = signal({start:0,end:0});
     protected readonly rowSize = computed(() => this.itemHeight() ?? this.measuredRow());
     protected readonly utilityCount = computed(() => Number(this.selectionMode() !== 'none'));
     protected readonly minimumInline = computed(() => `calc(var(--ui-size-table-column-min) * ${this.columns().length + this.utilityCount()})`);
@@ -113,17 +111,16 @@ export class VirtualDataTable<T extends object> {
         const viewport = this.viewport();
         if (this.destroy.destroyed || !viewport || this.problem() || !Number.isFinite(offset) || offset < 0)
             return false;
-        this.scroller()?.releaseKeyboard();
-        viewport.scrollToOffset(offset, 'instant');
+        this.scroller()?.scrollToOffset(offset, 'instant');
         return true;
     }
     protected key(event: KeyboardEvent): void {
         const viewport = this.viewport();
         if (!viewport || event.defaultPrevented || event.isComposing || event.keyCode === 229)
             return;
-        if(!event.altKey&&!event.ctrlKey&&!event.metaKey&&this.scroller()?.prepareRadioArrow(event,()=>this.changeDetector.detectChanges()))return;
+        if (!event.altKey && !event.ctrlKey && !event.metaKey && this.scroller()?.prepareRadioArrow(event, this.refreshWindow)) return;
         if (event.key === 'Tab' && !event.altKey && !event.ctrlKey && !event.metaKey) {
-            this.scroller()?.prepareTab(event, () => this.changeDetector.detectChanges());
+            this.scroller()?.prepareTab(event, this.refreshWindow);
             return;
         }
         if (event.target !== viewport.elementRef.nativeElement)
@@ -188,40 +185,22 @@ export class VirtualDataTable<T extends object> {
             const viewport = this.viewport();
             if (!viewport)
                 return;
-            const range = viewport.renderedRangeStream.subscribe(value => {
-                this.renderedRange.set(value);
-                this.rangeChange.emit(value);
-                if (this.owned && !this.owned.isConnected && document.activeElement === document.body && canFocus(viewport.elementRef.nativeElement)) {
-                    this.owned = null;
-                    viewport.elementRef.nativeElement.focus({ preventScroll: true });
-                }
-            }), position = viewport.elementScrolled().subscribe(() => this.positionChange.emit({ offset: viewport.measureScrollOffset(), index: Math.floor(viewport.measureScrollOffset() / this.rowSize()) })), observer = new ResizeObserver(() => viewport.checkViewportSize());
+            const range = viewport.renderedRangeStream.subscribe(value => this.rangeChange.emit(value));
+            const position = viewport.elementScrolled().subscribe(() => {
+                const offset = viewport.measureScrollOffset();
+                this.positionChange.emit({ offset, index: Math.floor(offset / this.rowSize()) });
+            });
+            const observer = new ResizeObserver(() => viewport.checkViewportSize());
             observer.observe(viewport.elementRef.nativeElement);
             onCleanup(() => { range.unsubscribe(); position.unsubscribe(); observer.disconnect(); });
         });
-        afterRenderEffect(() => {
-            this.renderedRange();
-            this.columns();
-            this.rows();
-            const viewport = this.viewport();
-            if (this.owned && !this.owned.isConnected && document.activeElement === document.body && canFocus(viewport?.elementRef.nativeElement ?? null)) {
+        afterEveryRender(() => {
+            if (!this.owned || this.owned.isConnected || document.activeElement !== document.body) return;
+            const viewport = this.viewport()?.elementRef.nativeElement;
+            if (viewport && canFocus(viewport)) {
                 this.owned = null;
-                viewport!.elementRef.nativeElement.focus({ preventScroll: true });
+                viewport.focus({ preventScroll: true });
             }
-        });
-        afterRenderEffect(() => {
-            const size = this.rowSize(), viewport = this.viewport();
-            this.height();
-            this.rows();
-            if (!size || !viewport)
-                return;
-            untracked(() => {
-                const index = this.priorRowSize ? viewport.measureScrollOffset() / this.priorRowSize : 0;
-                viewport.checkViewportSize();
-                if (this.priorRowSize && this.priorRowSize !== size)
-                    viewport.scrollToOffset(index * size, 'instant');
-                this.priorRowSize = size;
-            });
         });
     }
 }

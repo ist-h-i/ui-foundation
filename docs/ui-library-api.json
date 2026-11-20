@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 149,
+  "source_count": 152,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "c65a59bddbddaeeb29745de72cfd0831b60e1547503aa1e78b471dfe15ce6c40",
+      "sha256": "268e2b9a7462d060aac2312b7d9d245a2eccdb2474a4487ac49a740450212dad",
       "declarations": [
         {
           "name": "IconButton",
@@ -644,20 +644,6 @@
               "initializer": "output<MenuSelection>()"
             }
           ]
-        },
-        {
-          "names": [
-            "ClipboardWriter"
-          ],
-          "kind": "type",
-          "declaration": "export type ClipboardWriter = (text: string) => Promise<void>;"
-        },
-        {
-          "names": [
-            "UI_CLIPBOARD_WRITER"
-          ],
-          "kind": "variable",
-          "declaration": "export const UI_CLIPBOARD_WRITER = new InjectionToken<ClipboardWriter>('UI_CLIPBOARD_WRITER', { providedIn: 'root', factory: () => {\n        const document = inject(DOCUMENT);\n        return async (text) => {\n            const clipboard = document.defaultView?.navigator.clipboard;\n            if (!clipboard)\n                throw new Error('Clipboard API is unavailable.');\n            await clipboard.writeText(text);\n        };\n    } });"
         },
         {
           "name": "CopyButton",
@@ -2582,6 +2568,26 @@
           ],
           "kind": "function",
           "declaration": "export function formatColor(color: RgbaColor, format: ColorFormat): string"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/clipboard.ts",
+      "sha256": "5770279b70c9be8426e55e7743e3e87575733e5675d5a1f1f941c8adf1127747",
+      "declarations": [
+        {
+          "names": [
+            "ClipboardWriter"
+          ],
+          "kind": "type",
+          "declaration": "export type ClipboardWriter = (text: string) => Promise<void>;"
+        },
+        {
+          "names": [
+            "UI_CLIPBOARD_WRITER"
+          ],
+          "kind": "variable",
+          "declaration": "export const UI_CLIPBOARD_WRITER = new InjectionToken<ClipboardWriter>('UI_CLIPBOARD_WRITER', {\n  providedIn: 'root',\n  factory: () => {\n    const document = inject(DOCUMENT);\n    return async text => {\n      const clipboard = document.defaultView?.navigator.clipboard;\n      if (!clipboard) throw new Error('Clipboard API is unavailable.');\n      await clipboard.writeText(text);\n    };\n  },\n});"
         }
       ]
     },
@@ -9107,6 +9113,20 @@
       ]
     },
     {
+      "path": "templates/angular/forms.ts",
+      "sha256": "baf30cab92031731a00c1cbb0ef54ae8cedf3638445e40173c70018ba76f88f7",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { FieldControl, FormField } from './form-field';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { TextInput, Textarea } from './text-input';"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/formula-parser.d.ts",
       "sha256": "539ad1a1306bc9c7ed7f31a2a505635fb1ae2e543ee748a967b9248d52a0f8a7",
       "declarations": []
@@ -9842,7 +9862,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "1f7caf02005705409f6cacfd19f73f683e9ed0b4961eb30bc88e7fbc2aabfdc9",
+      "sha256": "94d47b1fad4b442269e43a56e1bec9ac63487e123d2d20f0af075a7ab912a311",
       "declarations": [
         {
           "kind": "export",
@@ -10058,7 +10078,11 @@
         },
         {
           "kind": "export",
-          "declaration": "export {IconButton, ButtonGroup, ToggleButton, SegmentedControl, SplitButton, FloatingActionButton, CopyButton, UI_CLIPBOARD_WRITER, type ClipboardWriter, type SegmentOption, type SegmentValue} from './actions';"
+          "declaration": "export {IconButton, ButtonGroup, ToggleButton, SegmentedControl, SplitButton, FloatingActionButton, CopyButton, type SegmentOption, type SegmentValue} from './actions';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export {UI_CLIPBOARD_WRITER, type ClipboardWriter} from './clipboard';"
         },
         {
           "kind": "export",
@@ -13695,7 +13719,7 @@
     },
     {
       "path": "templates/angular/pdf-adapter.ts",
-      "sha256": "b23a858d39133540c533e2277fd310b85166e833afe552c01e2d01ef7242583a",
+      "sha256": "b7051aa4bef538071c9bffd353338dcdf9e05b838eb5f436b901434011e39378",
       "declarations": [
         {
           "names": [
@@ -13759,8 +13783,21 @@
       ]
     },
     {
+      "path": "templates/angular/pdf-document.ts",
+      "sha256": "bcf3bf642c999bc5b034374474ba16261d944436dbd80dfd70bc9ad69a8d5669",
+      "declarations": [
+        {
+          "names": [
+            "createPdfDocumentResource"
+          ],
+          "kind": "function",
+          "declaration": "export function createPdfDocumentResource(\n  host: HTMLElement,\n  selection: () => (PdfAssetOptions & {source: PdfSource}) | undefined,\n)"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/pdf-viewer.ts",
-      "sha256": "5f7f88975c3d5736a4aa8d4be17b7fd47e5fe4201b19c571c0a08d18ccf8e1e3",
+      "sha256": "0098df8d0685bdb5f2e49558ec509c65fdc52bb825be6978f90fafcef463c842",
       "declarations": [
         {
           "name": "PDFViewer",
@@ -13776,85 +13813,85 @@
             {
               "name": "label",
               "kind": "input",
-              "declaration": "readonly label=input.required<string>();",
+              "declaration": "readonly label = input.required<string>();",
               "initializer": "input.required<string>()"
             },
             {
               "name": "source",
               "kind": "input",
-              "declaration": "readonly source=input<PdfSource|null>(null);",
-              "initializer": "input<PdfSource|null>(null)"
+              "declaration": "readonly source = input<PdfSource | null>(null);",
+              "initializer": "input<PdfSource | null>(null)"
             },
             {
               "name": "workerUrl",
               "kind": "input",
-              "declaration": "readonly workerUrl=input('pdf.worker.mjs');",
+              "declaration": "readonly workerUrl = input('pdf.worker.mjs');",
               "initializer": "input('pdf.worker.mjs')"
             },
             {
               "name": "assetsBaseUrl",
               "kind": "input",
-              "declaration": "readonly assetsBaseUrl=input<string|null>(null);",
-              "initializer": "input<string|null>(null)"
+              "declaration": "readonly assetsBaseUrl = input<string | null>(null);",
+              "initializer": "input<string | null>(null)"
             },
             {
               "name": "page",
               "kind": "input",
-              "declaration": "readonly page=input(1);",
+              "declaration": "readonly page = input(1);",
               "initializer": "input(1)"
             },
             {
               "name": "pageChange",
               "kind": "output",
-              "declaration": "readonly pageChange=output<number>();",
+              "declaration": "readonly pageChange = output<number>();",
               "initializer": "output<number>()"
             },
             {
               "name": "zoom",
               "kind": "input",
-              "declaration": "readonly zoom=input(1);",
+              "declaration": "readonly zoom = input(1);",
               "initializer": "input(1)"
             },
             {
               "name": "zoomChange",
               "kind": "output",
-              "declaration": "readonly zoomChange=output<number>();",
+              "declaration": "readonly zoomChange = output<number>();",
               "initializer": "output<number>()"
             },
             {
               "name": "downloadable",
               "kind": "input",
-              "declaration": "readonly downloadable=input(true,{transform:booleanAttribute});",
-              "initializer": "input(true,{transform:booleanAttribute})"
+              "declaration": "readonly downloadable = input(true, {transform: booleanAttribute});",
+              "initializer": "input(true, {transform: booleanAttribute})"
             },
             {
               "name": "filename",
               "kind": "input",
-              "declaration": "readonly filename=input('document.pdf');",
+              "declaration": "readonly filename = input('document.pdf');",
               "initializer": "input('document.pdf')"
             },
             {
               "name": "disabled",
               "kind": "input",
-              "declaration": "readonly disabled=input(false,{transform:booleanAttribute});",
-              "initializer": "input(false,{transform:booleanAttribute})"
+              "declaration": "readonly disabled = input(false, {transform: booleanAttribute});",
+              "initializer": "input(false, {transform: booleanAttribute})"
             },
             {
               "name": "loaded",
               "kind": "output",
-              "declaration": "readonly loaded=output<number>();",
+              "declaration": "readonly loaded = output<number>();",
               "initializer": "output<number>()"
             },
             {
               "name": "loadFailed",
               "kind": "output",
-              "declaration": "readonly loadFailed=output<'load'|'render'|'download'>();",
-              "initializer": "output<'load'|'render'|'download'>()"
+              "declaration": "readonly loadFailed = output<'load' | 'render' | 'download'>();",
+              "initializer": "output<'load' | 'render' | 'download'>()"
             },
             {
               "name": "download",
               "kind": "method",
-              "declaration": "async download():Promise<void>"
+              "declaration": "async download(): Promise<void>"
             }
           ]
         }
@@ -17268,7 +17305,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "2aeb3aa284ddbb2f4ea8ef7cbf9c37258d50e310045df60bff8d9a8e7705070e",
+      "sha256": "15cecc64aac7757a42b6325fa1bae7465ef1cf017d0ed0cd62c93b09ecbe840d",
       "declarations": [
         {
           "name": "TextInput",
@@ -17280,7 +17317,7 @@
             }
           ],
           "extends": [
-            "extends FieldValueControl<string>"
+            "extends ComposingTextControl"
           ],
           "members": [
             {
@@ -17325,7 +17362,7 @@
             }
           ],
           "extends": [
-            "extends FieldValueControl<string>"
+            "extends ComposingTextControl"
           ],
           "members": [
             {
@@ -19211,7 +19248,7 @@
     },
     {
       "path": "templates/angular/virtual-data-table.ts",
-      "sha256": "282e75b7f659136b9cafe0e30791a0422982a5105cd55b3de769036cbd4ae16b",
+      "sha256": "36e0794ccb14375f5eb79d7973a867bd09975975db4c0fbf1ba4b4feab9ee64f",
       "declarations": [
         {
           "kind": "export",
@@ -19412,7 +19449,7 @@
     },
     {
       "path": "templates/angular/virtual-list.ts",
-      "sha256": "99a3f03df7a515d9e4abd9089cefb242b9ecb0c083c3af01648c58ee1fd3b5d7",
+      "sha256": "9c540660870c13637240e19bf1804a591542f2556aff835b65260ae5a04172f4",
       "declarations": [
         {
           "kind": "export",
@@ -19657,7 +19694,7 @@
     },
     {
       "path": "templates/angular/virtual-rows.ts",
-      "sha256": "1336cf776a0952ae3c0c3bd5c81ca7e8c872d3ee2be6bea2fa9f07e1f2c240ee",
+      "sha256": "572e4876547b7bca64dc121844c51d2ad138eb3229bcf2c2c4ec7088016c00a6",
       "declarations": [
         {
           "name": "VirtualRows",
@@ -19673,41 +19710,42 @@
           ],
           "members": [
             {
-              "name": "dataStream",
-              "kind": "property",
-              "declaration": "readonly dataStream=this.data.asObservable();",
-              "initializer": "this.data.asObservable()"
-            },
-            {
               "name": "uiVirtualRowsOf",
-              "kind": "property",
-              "declaration": "@Input() set uiVirtualRowsOf(items:readonly T[])"
+              "kind": "input",
+              "declaration": "readonly uiVirtualRowsOf = input.required<readonly T[]>();",
+              "initializer": "input.required<readonly T[]>()"
             },
             {
               "name": "uiVirtualRowsTrackBy",
+              "kind": "input",
+              "declaration": "readonly uiVirtualRowsTrackBy = input<TrackByFunction<T>>((_index, item) => item);",
+              "initializer": "input<TrackByFunction<T>>((_index, item) => item)"
+            },
+            {
+              "name": "dataStream",
               "kind": "property",
-              "declaration": "@Input() uiVirtualRowsTrackBy:TrackByFunction<T>=(_index,item)=>item;",
-              "initializer": "(_index,item)=>item"
+              "declaration": "readonly dataStream = this.dataChanges.asObservable();",
+              "initializer": "this.dataChanges.asObservable()"
+            },
+            {
+              "name": "ngOnChanges",
+              "kind": "method",
+              "declaration": "ngOnChanges(changes: SimpleChanges<VirtualRows<T>>): void"
             },
             {
               "name": "ngDoCheck",
               "kind": "method",
-              "declaration": "ngDoCheck():void"
+              "declaration": "ngDoCheck(): void"
             },
             {
               "name": "measureRangeSize",
               "kind": "method",
-              "declaration": "measureRangeSize(range:{start:number;end:number},orientation:'horizontal'|'vertical'):number"
-            },
-            {
-              "name": "ngOnDestroy",
-              "kind": "method",
-              "declaration": "ngOnDestroy():void"
+              "declaration": "measureRangeSize(range: ListRange, orientation: 'horizontal' | 'vertical'): number"
             },
             {
               "name": "ngTemplateContextGuard",
               "kind": "method",
-              "declaration": "static ngTemplateContextGuard<T>(_directive:VirtualRows<T>,_context:unknown):_context is RowContext<T>"
+              "declaration": "static ngTemplateContextGuard<T>(_directive: VirtualRows<T>, _context: unknown): _context is RowContext<T>"
             }
           ]
         }
@@ -19715,8 +19753,45 @@
     },
     {
       "path": "templates/angular/virtual-scroll.ts",
-      "sha256": "826eaf798b70dad85a8221d1105a0ce8ef040be52ef803ba93d8d7fca4332c08",
+      "sha256": "5a21b190f458a7f0180f2eb1e3b165a14b608d2aec3c9747ce4933d7741ec436",
       "declarations": [
+        {
+          "name": "VirtualScrollPosition",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Injectable"
+            }
+          ],
+          "extends": [],
+          "members": [
+            {
+              "name": "itemSize",
+              "kind": "property",
+              "declaration": "itemSize = 0;",
+              "initializer": "0"
+            },
+            {
+              "name": "height",
+              "kind": "property",
+              "declaration": "height = 0;",
+              "initializer": "0"
+            },
+            {
+              "name": "offset",
+              "kind": "property",
+              "declaration": "offset = 0;",
+              "initializer": "0"
+            }
+          ]
+        },
+        {
+          "names": [
+            "FocusedVirtualRow"
+          ],
+          "kind": "interface",
+          "declaration": "export interface FocusedVirtualRow { previous: number; next: number; active: Element; }"
+        },
         {
           "name": "VirtualScroll",
           "kind": "class",
@@ -19823,9 +19898,19 @@
               "declaration": "scrollToIndex(index:number,behavior:ScrollBehavior):void"
             },
             {
+              "name": "scrollToOffset",
+              "kind": "method",
+              "declaration": "scrollToOffset(offset:number,behavior:ScrollBehavior):void"
+            },
+            {
               "name": "releaseKeyboard",
               "kind": "method",
               "declaration": "releaseKeyboard():void"
+            },
+            {
+              "name": "reconcilePosition",
+              "kind": "method",
+              "declaration": "reconcilePosition(focus:FocusedVirtualRow|null):void"
             },
             {
               "name": "point",

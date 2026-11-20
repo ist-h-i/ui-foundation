@@ -172,9 +172,9 @@ for(const profile of ['guided','dense'] as const){
    await expect(formula).toHaveValue('5');const original=await source.textContent();
    await worker.selectOption('/assets/invalid-library-worker.mjs');await expect(status).toHaveText('The calculation could not be confirmed.');
    await expect(formula).toHaveValue('=SUM(A1:B1)');
-   const retry=sheet.getByRole('button',{name:'数式の計算を再試行',exact:true});
+   const retry=sheet.getByRole('button',{name:'Retry formula calculation',exact:true});
    hold=true;await retry.focus();await page.keyboard.press('Enter');await expect.poll(()=>held.length).toBe(1);
-   await expect(retry).toBeDisabled();await expect(status).toHaveText('数式を計算しています。');await readableFocus(status);
+   await expect(retry).toBeDisabled();await expect(status).toHaveText('Calculating formulas.');await readableFocus(status);
    await expect(source).toHaveText(original!);release();
    await expect(status).toHaveText('The calculation could not be confirmed.');await readableFocus(retry);
 
@@ -188,13 +188,13 @@ for(const profile of ['guided','dense'] as const){
 
    hold=true;recover=true;await retry.focus();await page.keyboard.press('Enter');await expect.poll(()=>held.length).toBe(1);
    await expect(status).toBeFocused();release();await expect(formula).toHaveValue('5');
-   await expect(status).toHaveText('計算済み');await expect(retry).toBeDisabled();await readableFocus(status);await expect(source).toHaveText(original!);
+   await expect(status).toHaveText('Calculated');await expect(retry).toBeDisabled();await readableFocus(status);await expect(source).toHaveText(original!);
 
    recover=false;await worker.selectOption('/assets/sheet-formula.worker.js');await expect(formula).toHaveValue('5');
    await worker.selectOption('/assets/invalid-library-worker.mjs');await expect(status).toHaveText('The calculation could not be confirmed.');
    hold=true;await retry.focus();await page.keyboard.press('Enter');await expect.poll(()=>held.length).toBe(1);
    await worker.focus();await worker.selectOption('/assets/sheet-formula.worker.js');await expect(formula).toHaveValue('5');
-   release();await expect(worker).toBeFocused();await expect(status).toHaveText('計算済み');await expect(source).toHaveText(original!);
+   release();await expect(worker).toBeFocused();await expect(status).toHaveText('Calculated');await expect(source).toHaveText(original!);
   }finally{release();await context.unroute(pattern);}
  });
 

@@ -146,7 +146,7 @@ expandedIdsChange/selectedIdsChangeはUI node ID配列、nodesChangeは確認済
 
 VirtualDataTableはcaption/tableId/rows/columns/keyFieldとstate、disabled/busy、height/itemHeight（number|null）、overscan、locale/missingLabel/sortable、selectionMode/selectedKeys/rowSelectable、cellTemplatesを受ける。sortRequested:string、selectedKeysChange、columnWidthsChange:Readonly<Record<string,number>>、rangeChange:{start;end}、positionChange:{offset;index}を返す。
 
-Angular CDK 22.2.1の公開fixed-size scrolling APIを用い、取得済み全rowsをhidden DOMへ残さずviewportと小さいbufferだけ描画する。ARIA table/rowgroup/row/columnheader/cellの関係、取得済みrowcount、各rowindexを保つ。高さは明示itemHeightまたはsemantic tokenの測定値を使い、profile・200%文字拡大で行高が変わったときに同じindexを保つ。scrollToIndex/scrollToOffsetはinstantで移動し、Home/End/Pageキーも接続する。
+Angular CDK 22.3.0の公開fixed-size scrolling APIを用い、取得済み全rowsをhidden DOMへ残さずviewportと小さいbufferだけ描画する。ARIA table/rowgroup/row/columnheader/cellの関係、取得済みrowcount、各rowindexを保つ。高さは明示itemHeightまたはsemantic tokenの測定値を使い、profile・200%文字拡大で行高が変わったときに同じindexを保つ。scrollToIndex/scrollToOffsetはinstantで移動し、Home/End/Pageキーも接続する。
 
 固定行高の既定セルは単行とnativeセル内横scrollを使う。長い値はセルへTabで入り、左右キーでも読める。投影templateの必要なitemHeightはアプリが確保する。cellTemplatesの列IDはown entryだけを参照する。
 

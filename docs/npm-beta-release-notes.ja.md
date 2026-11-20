@@ -2,7 +2,11 @@
 
 [English](npm-beta-release-notes.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.5` 候補版までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者の条件は保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.6` 候補版までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者の条件は保持します。
+
+## beta.6 候補版
+
+Angular・CDK 22.3.0に対応する。フォーム用の軽量な公開入口 `angular/forms` を追加した。PDFの読取と仮想行の更新をsignalsに接続し、文字変換中のフォーム通知とコピー対象を変更した後の結果表示を修正した。beta.5から更新するときはパッケージとアプリの依存を合わせ、再同期して型検査・主要操作を確認する。
 
 ## beta.5 の破壊的変更
 

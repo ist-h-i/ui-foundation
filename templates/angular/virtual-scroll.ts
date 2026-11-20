@@ -1,20 +1,30 @@
-import {afterEveryRender,DestroyRef,Directive,ElementRef,forwardRef,inject,input,signal} from '@angular/core';
+import {afterEveryRender,ChangeDetectorRef,DestroyRef,Directive,ElementRef,forwardRef,inject,Injectable,input,signal} from '@angular/core';
 import {CdkVirtualScrollViewport,VIRTUAL_SCROLL_STRATEGY,type VirtualScrollStrategy} from '@angular/cdk/scrolling';
 import {Subject,distinctUntilChanged} from 'rxjs';
 import {canFocus} from './focus';
 import {VirtualRadios,nativeRadioTabCandidate,type VirtualRadioGroup} from './virtual-radio';
 import type {CollectionKey} from './collection-model';
 
+/** Last stable geometry. A list can retain it when its viewport is recreated. */
+@Injectable()
+export class VirtualScrollPosition {
+ itemSize = 0;
+ height = 0;
+ offset = 0;
+}
+export interface FocusedVirtualRow { previous: number; next: number; active: Element; }
+
 /** Fixed rows with an application-owned window. CDK's wrapper remains at offset zero. */
 @Directive({selector:'cdk-virtual-scroll-viewport[uiVirtualScroll]',standalone:true,providers:[{provide:VIRTUAL_SCROLL_STRATEGY,useExisting:forwardRef(()=>VirtualScroll)}],host:{'(pointerdown)':'point($event)','(focusin)':'focused($event)','(wheel)':'releaseKeyboard()','(focusout)':'leave($event)'}})
 export class VirtualScroll implements VirtualScrollStrategy {
  readonly itemSize=input.required<number>({alias:'uiVirtualScroll'});
+ private readonly position=inject(VirtualScrollPosition,{optional:true,host:true})??new VirtualScrollPosition();
  readonly overscan=input(3,{alias:'uiVirtualOverscan'});
  readonly radioGroups=input<readonly VirtualRadioGroup[]>([],{alias:'uiVirtualRadioGroups'});
  private readonly radios=new VirtualRadios();
  readonly renderRows=input<(()=>void)|null>(null,{alias:'uiVirtualRender'});
  private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
- constructor(){afterEveryRender(()=>this.syncRadios());const document=this.element.ownerDocument;const key=(event:KeyboardEvent)=>this.enter(event);document.addEventListener('keydown',key);inject(DestroyRef).onDestroy(()=>document.removeEventListener('keydown',key));}
+ constructor(){afterEveryRender(()=>{this.finishPosition();this.syncRadios();});const document=this.element.ownerDocument;const key=(event:KeyboardEvent)=>this.enter(event);document.addEventListener('keydown',key);inject(DestroyRef).onDestroy(()=>document.removeEventListener('keydown',key));}
  private enter(event:KeyboardEvent):void{
   const viewport=this.viewport,target=event.target,refresh=this.renderRows();
   if(!viewport||!refresh||!this.radioGroups().length||event.defaultPrevented||event.isComposing||event.keyCode===229||event.key!=='Tab'||event.altKey||event.ctrlKey||event.metaKey||!(target instanceof HTMLElement)||this.element.contains(target)||target.ownerDocument.activeElement!==target)return;
@@ -44,24 +54,141 @@ export class VirtualScroll implements VirtualScrollStrategy {
  private prepared:{origin:number;backwards:boolean}|null=null;
  private preparing=false;
  private viewport:CdkVirtualScrollViewport|null=null;
+ private readonly changeDetector=inject(ChangeDetectorRef);
+ private positionInitialized=false;
+ private inputsChanged=false;
+ private seekFrame:number|null=null;
+ private pendingPosition:{offset:number;measured:number;active:Element|null;revealEditor:boolean}|null=null;
  private keyboard=false;
  private pointerRadio:HTMLInputElement|null=null;
  private readonly index=new Subject<number>();
  readonly scrolledIndexChange=this.index.pipe(distinctUntilChanged());
  attach(viewport:CdkVirtualScrollViewport):void{this.viewport=viewport;this.update();}
- detach():void{this.viewport=null;this.keyboard=false;}
- ngOnDestroy():void{this.radios.destroy();this.index.complete();}
- ngOnChanges():void{this.prepared=null;this.update();}
- onContentScrolled():void{this.prepared=null;this.update();}
+ detach():void{this.viewport=null;this.positionInitialized=false;this.clearSeek();this.releaseKeyboard();}
+ ngOnDestroy():void{this.clearSeek();this.radios.destroy();this.index.complete();}
+ ngOnChanges():void{this.dataChanged();}
+ onContentScrolled():void{this.prepared=null;this.rememberPosition();this.update();}
  onDataLengthChanged():void{this.prepared=null;this.update();}
  onContentRendered():void{}
  onRenderedOffsetChanged():void{}
- scrollToIndex(index:number,behavior:ScrollBehavior):void{this.releaseKeyboard();this.viewport?.scrollToOffset(index*this.itemSize(),behavior);}
- releaseKeyboard():void{this.keyboard=false;this.prepared=null;this.pointerRadio=null;}
+ scrollToIndex(index:number,behavior:ScrollBehavior):void{this.scrollToOffset(index*this.itemSize(),behavior);}
+ scrollToOffset(offset:number,behavior:ScrollBehavior):void{
+  this.releaseKeyboard();
+  this.clearSeek();
+  const view=this.element.ownerDocument.defaultView;
+  if(view)this.seekFrame=view.requestAnimationFrame(()=>{this.seekFrame=null;});
+  this.viewport?.scrollToOffset(offset,behavior);
+  this.rememberPosition();
+ }
+ private clearSeek():void {
+  if(this.seekFrame!==null)this.element.ownerDocument.defaultView?.cancelAnimationFrame(this.seekFrame);
+  this.seekFrame=null;
+ }
+ private endKeyboardNavigation():void{this.keyboard=false;this.prepared=null;this.pointerRadio=null;}
+ releaseKeyboard():void{this.endKeyboardNavigation();this.pendingPosition=null;}
+ private rememberPosition():void {
+  const viewport=this.viewport, position=this.position;
+  if(viewport && !this.pendingPosition && position.itemSize===this.itemSize() && position.height===this.element.clientHeight) {
+   position.offset=viewport.measureScrollOffset();
+  }
+ }
+ reconcilePosition(focus:FocusedVirtualRow|null):void {
+  const viewport=this.viewport, size=this.itemSize(), height=this.element.clientHeight;
+  if(!viewport || !(size>0))return;
+  const inputsChanged=this.inputsChanged;
+  this.inputsChanged=false;
+  if(!height){
+   if(inputsChanged)this.clearSeek();
+   if(viewport.getViewportSize()!==height)viewport.checkViewportSize();
+   else if(inputsChanged)this.update();
+   return;
+  }
+  const position=this.position, measured=viewport.measureScrollOffset();
+  const changed=!this.positionInitialized || position.itemSize!==size || position.height!==height;
+  if(this.pendingPosition && Math.abs(measured-this.pendingPosition.measured)>1)this.pendingPosition=null;
+  const current=this.pendingPosition?.offset??measured;
+  const oldSize=position.itemSize||size, oldHeight=position.height||height;
+  // A native seek can precede CDK's scroll event. Use its actual position unless
+  // remounting or the growing viewport has already clamped the old end offset.
+  const restored=!this.positionInitialized && position.itemSize>0;
+  const clamped=changed && measured<position.offset && Math.abs(measured-(this.element.scrollHeight-height))<=1;
+  const oldOffset=restored||clamped ? position.offset : current;
+  const limit=Math.max(0,viewport.getDataLength()*size-height);
+  const bounded=(offset:number)=>Math.min(limit,Math.max(0,offset));
+  let target=bounded(changed ? oldOffset/oldSize*size : current);
+  // An API seek, or a native position CDK has not yet observed, owns this update
+  // even if the old editor still intersects the viewport.
+  const moved=focus!==null && focus.previous!==focus.next;
+  const nativeSeek=this.positionInitialized && !this.pendingPosition && !clamped && Math.abs(measured-position.offset)>0.5;
+  const seeking=this.seekFrame!==null || nativeSeek;
+  if(inputsChanged || changed || moved)this.clearSeek();
+  const editing=!seeking && focus!==null && (changed || moved)
+   && this.editorWasVisible(focus,oldSize,oldOffset,oldHeight);
+  const revealEditor=editing && size>height;
+  let follow=false;
+  if(editing){
+   const rowTop=focus.next*size;
+   // A fitting row belongs wholly inside the viewport. For a taller row, keep
+   // the viewport inside the row, then measure its projected editor after layout.
+   const minimum=rowTop-Math.max(0,height-size), maximum=rowTop+Math.max(0,size-height);
+   follow=target<minimum || target>maximum || !changed&&!this.indices().includes(focus.next);
+   if(follow){
+    const requested=(oldOffset/oldSize + focus.next-focus.previous)*size;
+    target=bounded(Math.max(minimum,Math.min(maximum,requested)));
+   }
+  }
+  this.positionInitialized=true;
+  position.itemSize=size;
+  position.height=height;
+  position.offset=target;
+  if(!changed && !follow && !revealEditor){
+   if(inputsChanged)this.update();
+   return;
+  }
+  this.releaseKeyboard();
+  if(Math.abs(measured-target)>0.5)viewport.scrollToOffset(target,'instant');
+  const applied=viewport.measureScrollOffset();
+  // The browser may still clamp to the old CDK spacer until its next render.
+  if(Math.abs(target-applied)>1 || revealEditor)this.pendingPosition={offset:target,measured:applied,active:focus && (follow||revealEditor)?focus.active:null,revealEditor};
+  if(viewport.getViewportSize()!==height)viewport.checkViewportSize();
+  else this.update();
+ }
+ private editorWasVisible(focus:FocusedVirtualRow,size:number,offset:number,height:number):boolean {
+  const top=focus.previous*size;
+  if(top>=offset+height || top+size<=offset)return false;
+  const row=focus.active.closest('[data-ui-virtual-index]');
+  if(!row)return true;
+  const rect=focus.active.getBoundingClientRect(), start=top+rect.top-row.getBoundingClientRect().top;
+  return start<offset+height && start+rect.height>offset;
+ }
+ private finishPosition():void {
+  const pending=this.pendingPosition, viewport=this.viewport;
+  if(!pending||!viewport)return;
+  this.pendingPosition=null;
+  if((!pending.active||this.element.ownerDocument.activeElement===pending.active) && Math.abs(viewport.measureScrollOffset()-pending.measured)<=1){
+   if(Math.abs(viewport.measureScrollOffset()-pending.offset)>0.5)viewport.scrollToOffset(pending.offset,'instant');
+   if(pending.revealEditor && pending.active){
+    const rect=pending.active.getBoundingClientRect();
+    const top=this.element.getBoundingClientRect().top+this.element.clientTop;
+    const start=rect.top-top, end=rect.bottom-top-this.element.clientHeight;
+    // Move the nearest edge into view. If the editor spans the viewport, leave it in place.
+    const nearerStart=Math.min(start,end);
+    const delta=nearerStart>0 ? nearerStart : Math.min(0,Math.max(start,end));
+    if(Math.abs(delta)>0.5)viewport.scrollToOffset(viewport.measureScrollOffset()+delta,'instant');
+   }
+  }
+  this.rememberPosition();
+ }
  point(event:PointerEvent):void{this.releaseKeyboard();const target=event.target,control=target instanceof HTMLInputElement?target:target instanceof Element?target.closest('label')?.control:null;if(control instanceof HTMLInputElement&&control.type==='radio'&&this.radios.isManaged(control))this.pointerRadio=control;}
  focused(event:FocusEvent):void{if(event.target!==this.element&&event.target!==this.pointerRadio)this.pointerRadio=null;}
- dataChanged():void{this.prepared=null;}
- leave(event:FocusEvent):void{if(!(event.relatedTarget instanceof Node)||!this.viewport?.elementRef.nativeElement.contains(event.relatedTarget))this.releaseKeyboard();}
+ // Reconcile the new inputs with the current editor before CDK publishes a range.
+ dataChanged():void{this.prepared=null;this.inputsChanged=true;}
+ leave(event:FocusEvent):void{
+  if(event.relatedTarget instanceof Node && this.element.contains(event.relatedTarget))return;
+  this.endKeyboardNavigation();
+  // An obsolete editor may blur while an independent resize/seek awaits the new spacer.
+  if(this.pendingPosition?.active)this.pendingPosition=null;
+ }
  /** Runs in the component's bubbling key handler, after consumer handlers. Never cancels Tab. */
  prepareTab(event:KeyboardEvent,refresh:()=>void):boolean{
   const render=()=>{refresh();this.syncRadios(event.shiftKey);};
@@ -157,8 +284,16 @@ export class VirtualScroll implements VirtualScrollStrategy {
  }
  private update():void{
   const viewport=this.viewport,size=this.itemSize();if(!viewport||!(size>0)||!Number.isFinite(size))return;
+  const position=this.position, height=this.element.clientHeight;
+  // Input changes are reconciled with the old focused view before notifying CDK of a range.
+  if(this.inputsChanged || height>0 && position.itemSize>0 &&
+     (!this.positionInitialized || position.itemSize!==size || position.height!==height)){
+   this.changeDetector.markForCheck();
+   return;
+  }
   const count=viewport.getDataLength(),visible=Math.ceil(viewport.getViewportSize()/size),buffer=this.overscan()+1;
-  const first=Math.min(Math.max(0,count-visible),Math.max(0,Math.floor(viewport.measureScrollOffset()/size)));
+  const offset=this.pendingPosition?.offset??viewport.measureScrollOffset();
+  const first=Math.min(Math.max(0,count-visible),Math.max(0,Math.floor(offset/size)));
   let start=Math.max(0,first-buffer),end=Math.min(count,first+visible+buffer);
   const element=viewport.elementRef.nativeElement,active=element.ownerDocument.activeElement;
   const row=this.keyboard&&active instanceof Element&&active.closest('cdk-virtual-scroll-viewport')===element?active.closest<HTMLElement>('[data-ui-virtual-index]'):null;

@@ -8,10 +8,10 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 
 ## Get started
 
-Install the exact version in an existing Angular app once it is on the registry. To try the release candidate before publication, [install its tarball](docs/ui-library-consumer-guide.en.md#install-and-generate).
+For a team on Angular 22.2.1, install the published version with `npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5`. It provides the core and full entry points. To try the Angular 22.3 candidate and its forms entry, run `npm ci` and `npm pack` in the library checkout. Copy the archive to the app’s `vendor/` directory and commit it with the app’s package manifest and lockfile so teammates and CI can run `npm ci`. [Installation guide](docs/ui-library-consumer-guide.en.md#install-and-generate)
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
+npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -21,7 +21,7 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
 
 Follow the [English installation and integration guide](docs/ui-library-consumer-guide.en.md) for Angular dependencies, styles, workers, assets, updates and recovery. [日本語の導入ガイド](docs/ui-library-consumer-guide.ja.md)
 
-The beta verification environment is Node.js 24.19.0, Angular/CDK 22.2.1 and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
+The beta verification environment is Node.js 24.19.0, Angular/CDK 22.3.0 and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
 
 ## Build with components
 

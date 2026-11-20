@@ -1,0 +1,29 @@
+{
+  "prior_audit_sha256": "28a9ce6298ccf6d1b0ffca7234c188bcde5d159244a8d55be6375d731c1e0889",
+  "source_commit": "cd97bbee78faf641087e853232ca2bdd7fa39ea7",
+  "sites": {
+    "field_alias": {
+      "line": 99,
+      "column": 124,
+      "exception": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。"
+    },
+    "checkbox": {"line": 152, "column": 93}
+  },
+  "dependencies": {
+    "templates/angular/form-field.ts": {
+      "prior_sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
+      "current_sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+      "judgment": "The requirement label now uses a message ID and the field owns its margin, label and requirement styles. The inline host still writes the same 40% grid cap at line 55 and the other label positions remove this override."
+    },
+    "templates/angular/form-layout.ts": {
+      "prior_sha256": "1d8a05d9d022bb8c23330eb409d2d289b4429d1c30e6d53cc035484357ba3783",
+      "current_sha256": "e90f68ee5efddee97ab80df23bca87e0fe8f30d29c21e706ed331e807bf07f5e",
+      "judgment": "The actions and error summary use new message IDs. The inherited inline grid at line 6 still uses the fixed 40% cap. The width() computation at line 12 still supplies the semantic default or positive finite pixel input as the other min() operand."
+    },
+    "templates/angular/styles.css": {
+      "prior_sha256": "cafa6bda56c433d1fe15bff90c0492dd066333371ee36e71728dab41d22fc0a4",
+      "current_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "judgment": "Colocating component styles moved both declarations by twenty lines. The non-checkbox selector still reads the field or inherited grid alias at line 99. The inline checkbox selector still sets the parent-relative 40% cap directly at line 152."
+    }
+  }
+}

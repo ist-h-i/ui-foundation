@@ -6,26 +6,15 @@ UI Foundation generates Angular components, design tokens, a Tailwind theme, a p
 
 ## Install and generate
 
-Run these commands from the app root, where its `package.json` lives. Pin the version for a reproducible installation. Use the tarball command below while the candidate is unpublished.
+For the Angular 22.3 candidate, run `npm ci` and then `npm pack` in the library checkout. Copy the archive into a `vendor/` directory in the app. From the app root, install it and initialize the configuration. Track the archive, `package.json` and `package-lock.json` together so a clean checkout can run `npm ci`.
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
-```
-
-To use a local build, install the tarball produced by `npm pack`.
-
-```sh
-npm install --save-dev --save-exact /path/to/ui-foundation.tgz
-```
-
-After either installation, run the CLI from the app root.
-
-```sh
+npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init
 ```
 
-The package's `engines` field specifies the Node.js version. The beta was tested with Node.js 24.19.0, Angular and CDK 22.2.1, and TypeScript 6.0.3. Install the required dependencies before compiling the generated Angular code. [Application dependencies](#application-dependencies)
+The package's `engines` field specifies the Node.js version. The beta was tested with Node.js 24.19.0, Angular and CDK 22.3.0, and TypeScript 6.0.3. Install the required dependencies before compiling the generated Angular code. [Application dependencies](#application-dependencies)
 
 `init` creates `ui.config.yaml` and refuses to overwrite an existing configuration. Edit the YAML before generating. English is the default configuration language. Use `init --language ja` for Japanese. `init` stores `default_language: en` (or `ja` with `--language ja`), selecting both starter prose and the generated built-in language/Intl defaults. New English apps need no locale provider for English built-in text. Existing YAML remains unchanged by sync; if it omits this setting, generated defaults stay Japanese. Use the bundled examples as schema references. [English example](../examples/ui.config.example.en.yaml) · [日本語の例](../examples/ui.config.example.yaml)
 
@@ -140,6 +129,7 @@ Choose the generated public entry point for your app.
 | Entry point | When to use it |
 | --- | --- |
 | `angular/core.ts` | Only actions, cards, native form fields, and their icons and locale APIs. |
+| `angular/forms.ts` | Text inputs, text areas, and labeled native form fields. |
 | `angular/index.ts` | Any other components or the complete Angular API. |
 
 Use `core` after installing and syncing a version that provides this entry point. For example, with the default output path:
@@ -150,12 +140,18 @@ import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/a
 
 The core entry resolves Angular core, common, CDK and its Angular Forms peer, RxJS, and Lucide. The app still supplies its normal Angular build and bootstrap packages. Use app-owned source files as TypeScript roots and let imports select the generated code. A glob that adds every generated TypeScript file makes the compiler resolve specialist sources too. Load the shared tokens and component styles described above. The core entry requires no app-side `sideEffects` override or specialist CSS and worker assets. The full entry remains available to existing users.
 
-The following standalone component uses the full entry and belongs in `src/app.ts` when the app uses the default output path.
+In an Angular CLI 22.3.0 app that already includes Angular Forms and RxJS, add these two dependencies for the core and forms entries.
+
+```sh
+npm install --save-exact @angular/cdk@22.3.0 @lucide/angular@1.52.0
+```
+
+The following standalone component uses the forms entry with the same dependency set as core and belongs in `src/app.ts` when the app uses the default output path.
 
 ```ts
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TextInput } from '../.ui/generated/angular/index';
+import { TextInput } from '../.ui/generated/angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -191,7 +187,7 @@ A child scope inherits its parent's translator unless it supplies one or uses `t
 
 ## Application dependencies
 
-The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.2.1`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
+The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.3.0`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
 
 For a core-only app, use the [core entry and its dependency set](#import-generated-components). The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
 
@@ -281,7 +277,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 
 The generated checker runs with Node and checks the generated policy against the configuration and selected app sources. Keep it with its sibling `checker-lib/`, `policy.json`, and `CHECKER-NOTICE.txt` files. Use the full CLI for generated-file consistency and ownership checks. Keep the checker out of the browser bundle.
 
-For CI that requires source coverage, run `ui-foundation check --require-source-checks` for generated consistency and source checks, or `node .ui/generated/check-ui.cjs --require-source-checks` for the standalone source check. If `angular.json` lists a project outside `checks.source_roots`, review the reported source root and add coverage or document the deliberate exclusion. To adopt checks in stages, pass a reviewed full JSON report with `--baseline ui-check-baseline.json`. See the linked check contract for output fields and scoped exceptions.
+In an npm script, use `"ui:check": "ui-foundation check --config ui.config.yaml --require-source-checks"`. For CI that requires source coverage, run `ui-foundation check --require-source-checks` for generated consistency and source checks, or `node .ui/generated/check-ui.cjs --require-source-checks` for the standalone source check. If `angular.json` lists a project outside `checks.source_roots`, review the reported source root and add coverage or document the deliberate exclusion. To adopt checks in stages, pass a reviewed full JSON report with `--baseline ui-check-baseline.json`. See the linked check contract for output fields and scoped exceptions.
 
 Fix errors in app source or the YAML, then rerun the check. Warnings record cases the static checker could not establish. `NOT_CONFIGURED` means no source scan was configured. [Static checks and scoped exceptions](static-checks.en.md)
 
