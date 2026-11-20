@@ -365,7 +365,7 @@ export class DepartmentScreen {
 
 ## CSS と配布資産
 
-画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの見た目は公開 API の `variant` で選びます。Tailwind を使う場合、`p-space-section` は同じ余白トークンを参照します。
+画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの見た目は公開 API の `variant` で選びます。Tailwind を使う場合、`p-section` は同じ余白トークンを参照します。
 
 ```html
 <section class="app-actions">

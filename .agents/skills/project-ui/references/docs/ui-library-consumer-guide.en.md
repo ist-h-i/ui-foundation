@@ -262,7 +262,7 @@ For the full entry, install the type dependencies in the app with `npm install -
 
 ## CSS and distribution assets
 
-Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-space-section` uses the same spacing token.
+Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-section` uses the same spacing token.
 
 ```html
 <section class="app-actions">
