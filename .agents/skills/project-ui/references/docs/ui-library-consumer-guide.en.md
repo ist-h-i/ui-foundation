@@ -296,3 +296,9 @@ Build the app and exercise the actual tasks in the browser after synchronization
 To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
 When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Release notes](npm-beta-release-notes.en.md)
+
+## Optional browser test for retrying a save
+
+Copy `skills/ui-development/references/examples/dialog-retry.ts` from the installed npm package, or `references/examples/dialog-retry.ts` from the synchronized Skill. In your existing Playwright suite, import `verifyRegistrationRetry` and call it in a test that receives the `page` fixture. Run that spec with your project's Playwright command.
+
+Set the page URL, accessible names and expected error to match your registration screen. Adjust the intercepted POST route, request body and the two fixture responses to match your API. The example checks the draft after a failed save, retries through the keyboard, and checks focus after the successful retry.

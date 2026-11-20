@@ -1,0 +1,36 @@
+import { expect, type Page } from '@playwright/test';
+
+// Match these values and the response bodies to your application's contract.
+export async function verifyRegistrationRetry(page: Page) {
+  const draft = 'Example draft';
+  const submissions: unknown[] = [];
+  await page.route('**/api/registrations', async route => {
+    if (route.request().method() !== 'POST') {
+      await route.fallback();
+      return;
+    }
+    submissions.push(route.request().postDataJSON());
+    const firstAttempt = submissions.length === 1;
+    await route.fulfill({
+      status: firstAttempt ? 503 : 201,
+      json: firstAttempt ? { code: 'temporarily_unavailable' } : { id: 'registration-1' },
+    });
+  });
+  await page.goto('/catalog/dialog-retry');
+
+  const opener = page.getByRole('button', { name: 'New registration', exact: true });
+  await opener.press('Enter');
+  const dialog = page.getByRole('dialog', { name: 'Register item' });
+  const name = dialog.getByRole('textbox', { name: 'Item name' });
+  const save = dialog.getByRole('button', { name: 'Save', exact: true });
+
+  await name.pressSequentially(draft);
+  await save.press('Enter');
+  await expect(dialog.getByRole('alert')).toHaveText('Could not save. Try again.');
+  await expect(name).toHaveValue(draft);
+  await save.press('Enter');
+
+  await expect(dialog).toBeHidden();
+  await expect(opener).toBeFocused();
+  expect(submissions).toEqual([{ name: draft }, { name: draft }]);
+}

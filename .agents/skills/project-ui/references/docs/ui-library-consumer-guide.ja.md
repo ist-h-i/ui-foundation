@@ -476,3 +476,9 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 ### パッケージの版を更新する
 
 CLIをnpmで更新しただけでは、アプリへコピー済みの部品・Skill・利用者文書は更新されません。再同期すると、生成Skillの`references/docs/`も導入版に更新されます。beta.1からbeta.2では、旧manifestが所有する開発文書等が削除対象になるため、[リリースノート](npm-beta-release-notes.ja.md#beta1からの更新)も確認してください。旧パッケージ版・lockfile・YAML・生成物・Skillを同じ復旧点へ保存し、更新先の依存/API変更を確認してから、上と同じdry-run・sync・checkとアプリ検証を行います。版の選択、中断時のlock、生成先の移動、復旧は[ベータ利用契約](npm-beta-readiness.ja.md#更新と復旧)と[コマンド一覧](commands.ja.md)に従います。
+
+## 保存の再試行を確認する任意のブラウザーテスト
+
+インストールした npm パッケージの `skills/ui-development/references/examples/dialog-retry.ts`、または同期済み Skill の `references/examples/dialog-retry.ts` をコピーします。既存の Playwright テストから `verifyRegistrationRetry` を import し、`page` fixture を渡します。利用アプリの Playwright コマンドでそのテストを実行します。
+
+画面の URL、操作対象のアクセシブルな名前、表示するエラーを利用アプリに合わせて変更します。保存先の POST パス、リクエスト本文、失敗・成功時の模擬応答も合わせてください。この例は保存失敗後の入力保持、キーボードからの再試行、保存成功後のフォーカス復帰を確認します。
