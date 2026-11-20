@@ -1,12 +1,16 @@
-# Beta release notes
+# Release notes
 
 [Japanese](npm-beta-release-notes.ja.md)
 
-Consumer changes through the `@hiroshi.inoue/ui-foundation@0.1.0-beta.6` candidate. Original CLI/templates/Skill/generated code use MIT (2026 Hiroshi Inoue). Third-party terms remain unchanged.
+Consumer changes through `@hiroshi.inoue/ui-foundation@0.1.0`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms apply to their assets.
 
-## Beta.6 candidate
+## 0.1.0
 
-The candidate targets Angular and CDK 22.3.0. The new `angular/forms` entry provides text controls without specialist dependencies. PDF reads and virtual rows use signals. Form values respect text composition and clipboard feedback follows its source. To upgrade from beta.5, align app dependencies, sync, compile, and exercise the affected screens.
+The first regular release uses Angular/CDK 22.3.0 and adds the lightweight `angular/forms` entry for text controls. The beta.6 candidate introduced this entry and updated PDF loading, virtual row behavior, form handling during text composition, and clipboard feedback.
+
+- From `beta.4`, migrate Japanese translation keys and overrides to stable message IDs with named arguments. [Message migration and rollback](ui-message-migration.en.md)
+- From `beta.4` or `beta.5`, align app dependencies with the verified versions for `0.1.0` and use `angular/forms` when your screen needs only its text controls. If your app stays on Angular 21, keep its verified package version pinned until you can move to the tested Angular version. [Application dependencies](ui-library-consumer-guide.en.md#application-dependencies)
+- Save a recovery point, install the new version, and run `sync --dry-run`, `sync`, and `check`. Build the app and exercise its main interactions. [Upgrade and recovery](npm-beta-readiness.en.md#upgrade-and-recovery)
 
 ## beta.5: Breaking change to library translations
 
@@ -48,4 +52,4 @@ After resync, run check, app typecheck/build and key interactions. Manage YAML/o
 
 Restore the saved CLI and matching lockfile/YAML/output/Skill to the same recovery point, then run its check and app verification. Do not mix manifests or claim recovery by adopting/deleting unowned files. Follow [interruption recovery](npm-beta-readiness.en.md#concurrent-execution-and-interruption) for retained markers.
 
-There is one public entry point including specialist components; the [listed engines/dependencies](ui-library-consumer-guide.en.md#application-dependencies) must resolve. Long-term maintenance of multiple older versions, every OS/browser, real-service persistence/undo and user understanding are not guaranteed.
+The full `angular/index.ts` entry includes specialist components and requires the listed engines. Verify your app's browsers, persistence, and undo behavior with its own deployment. [Application dependencies](ui-library-consumer-guide.en.md#application-dependencies)

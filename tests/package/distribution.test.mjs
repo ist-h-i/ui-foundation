@@ -22,8 +22,8 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.6');
-  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'next' });
+  assert.equal(manifest.version, '0.1.0');
+  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'release-candidate' });
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
   for (const name of ['README.md', 'README.ja.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
     'dist/checker-lib/lib.es2022.d.ts', 'templates/angular/index.ts', 'templates/angular/stable-messages.ts', 'skills/ui-development/SKILL.md', 'skills/ui-development/references/examples/locale-adapter.ts', 'docs/commands.en.md', 'docs/components.en.md', 'docs/ui-library-consumer-guide.en.md',

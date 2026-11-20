@@ -1,12 +1,16 @@
-# ベータの変更記録
+# リリースノート
 
 [English](npm-beta-release-notes.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.6` 候補版までの利用者向け変更記録です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者の条件は保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0` までの利用者向け変更記録です。自作の CLI・テンプレート・Skill・生成コードには MIT License（2026 Hiroshi Inoue）、第三者資産にはそれぞれのライセンスが適用されます。
 
-## beta.6 候補版
+## 0.1.0
 
-Angular・CDK 22.3.0に対応する。フォーム用の軽量な公開入口 `angular/forms` を追加した。PDFの読取と仮想行の更新をsignalsに接続し、文字変換中のフォーム通知とコピー対象を変更した後の結果表示を修正した。beta.5から更新するときはパッケージとアプリの依存を合わせ、再同期して型検査・主要操作を確認する。
+最初の通常版は Angular/CDK 22.3.0 に対応し、テキスト入力を使うための軽量な公開入口 `angular/forms` を追加しました。この入口は `beta.6` の候補で追加し、あわせて PDF の読み込み、仮想行の操作、文字変換中のフォーム通知、コピー結果の表示を改善しました。
+
+- `beta.4` から更新する場合は、翻訳の日本語キーと上書きを安定メッセージ ID と名前付き引数に移行します。 [文言の移行と復旧](ui-message-migration.ja.md)
+- `beta.4` または `beta.5` から更新する場合は、アプリの依存関係を `0.1.0` の検証済みの版に合わせます。テキスト入力には `angular/forms` を利用できます。Angular 21 を継続するアプリは、検証済みの Angular に移行できるまで、現在動作を確認できているパッケージ版を固定してください。 [依存関係](ui-library-consumer-guide.ja.md#依存関係)
+- 復旧点を保存して新版を導入し、`sync --dry-run`、`sync`、`check` を実行します。その後、アプリのビルドと主要操作を確認します。 [更新と復旧](npm-beta-readiness.ja.md#更新と復旧)
 
 ## beta.5 の破壊的変更
 
@@ -57,4 +61,4 @@ The release lockfile uses Zod 4.6.7 within Angular Forms' supported range to add
 
 問題があれば、保存した旧CLI版だけでなく、対応するlockfile・YAML・生成物・Skillも同じ復旧点へ戻し、旧CLIの`check`とアプリ検証を行います。新旧manifestを混在させたり、未所有ファイルを採用・削除して復旧したことにしません。markerが残る場合は[中断からの復旧手順](npm-beta-readiness.ja.md#同時実行と中断)に従います。
 
-専門部品を含む公開入口は一つであり、[依存関係](ui-library-consumer-guide.ja.md#依存関係)に記載したengine等の解決が必要です。複数旧版の長期保守、全OS・ブラウザー、実サービスの保存・Undoや利用者理解を保証するものではありません。
+全件入口 `angular/index.ts` で専門部品まで利用するには、ガイドに記載したエンジンなどの解決が必要です。利用アプリのブラウザー、実サービスへの保存、Undo はアプリの配信構成で確認してください。 [依存関係](ui-library-consumer-guide.ja.md#依存関係)

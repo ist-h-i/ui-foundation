@@ -6,15 +6,15 @@ UI Foundation generates Angular components, design tokens, a Tailwind theme, a p
 
 ## Install and generate
 
-For the Angular 22.3 candidate, run `npm ci` and then `npm pack` in the library checkout. Copy the archive into a `vendor/` directory in the app. From the app root, install it and initialize the configuration. Track the archive, `package.json` and `package-lock.json` together so a clean checkout can run `npm ci`.
+From the app root, install the exact package version and initialize the configuration. Commit `package.json` and `package-lock.json` together so teammates and CI can install the same version with `npm ci`.
 
 ```sh
-npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init
 ```
 
-The package's `engines` field specifies the Node.js version. The beta was tested with Node.js 24.19.0, Angular and CDK 22.3.0, and TypeScript 6.0.3. Install the required dependencies before compiling the generated Angular code. [Application dependencies](#application-dependencies)
+The tested baseline for `0.1.0` is Node.js 24.19.0, Angular and CDK 22.3.0, and TypeScript 6.0.3. Install the required dependencies before compiling the generated Angular code. [Application dependencies](#application-dependencies) · [Compatibility and recovery](npm-beta-readiness.en.md)
 
 `init` creates `ui.config.yaml` and refuses to overwrite an existing configuration. Edit the YAML before generating. English is the default configuration language. Use `init --language ja` for Japanese. `init` stores `default_language: en` (or `ja` with `--language ja`), selecting both starter prose and the generated built-in language/Intl defaults. New English apps need no locale provider for English built-in text. Existing YAML remains unchanged by sync; if it omits this setting, generated defaults stay Japanese. Use the bundled examples as schema references. [English example](../examples/ui.config.example.en.yaml) · [日本語の例](../examples/ui.config.example.yaml)
 
@@ -187,7 +187,7 @@ A child scope inherits its parent's translator unless it supplies one or uses `t
 
 ## Application dependencies
 
-The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.3.0`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
+The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The `0.1.0` verification setup uses Angular and CDK `22.3.0`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
 
 For a core-only app, use the [core entry and its dependency set](#import-generated-components). The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
 
@@ -287,7 +287,7 @@ Build the app and exercise the actual tasks in the browser after synchronization
 
 To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
-When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Release notes](npm-beta-release-notes.en.md)
+When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Upgrade to 0.1.0](npm-beta-release-notes.en.md#010)
 
 ## Optional browser test for retrying a save
 
