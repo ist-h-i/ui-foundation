@@ -29,7 +29,14 @@ export class IconButton extends ActionControl {
     }
 }
 @Component({ selector: 'ui-button-group', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush,
-    template: '<ng-content />', host: { class: 'ui-button-group', role: 'group', '[attr.aria-label]': 'label()', '[attr.data-direction]': 'direction()', '[attr.data-connected]': 'connected()', '[attr.data-size]': 'size()', '[style.gap]': 'connected()?"0":gapValue()' } })
+    template: '<ng-content />',
+    styles: `
+        :host { display:flex;flex-wrap:wrap;min-inline-size:0;max-inline-size:100%;font:inherit; }
+        :host([hidden]) { display:none; }
+        :host([data-direction="vertical"]) { flex-direction:column; }
+        :host([data-connected="true"]) { flex-wrap:nowrap; }
+    `,
+    host: { class: 'ui-button-group', role: 'group', '[attr.aria-label]': 'label()', '[attr.data-direction]': 'direction()', '[attr.data-connected]': 'connected()', '[attr.data-size]': 'size()', '[style.gap]': 'connected()?"0":gapValue()' } })
 export class ButtonGroup {
     readonly label = input.required<string>();
     readonly direction = input<'horizontal' | 'vertical'>('horizontal');
