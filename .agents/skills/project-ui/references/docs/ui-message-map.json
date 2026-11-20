@@ -45,18 +45,100 @@
         "parameters": {}
       }
     ],
-    " (数字)": [],
+    " (数字)": [
+      {
+        "id": "uiFoundation.otpInput.numericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
     " (既知 ": [
       {
         "id": "uiFoundation.dataTableView.knownCount",
         "parameters": {}
       }
     ],
-    " (英数字)": [],
-    " / 容量未取得": [],
-    " / 最大 ": [],
-    " の現地日時": [],
-    " を解除": [],
+    " (英数字)": [
+      {
+        "id": "uiFoundation.otpInput.alphanumericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " / 容量未取得": [
+      {
+        "id": "uiFoundation.fileExplorer.itemWithoutSize",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " / 最大 ": [
+      {
+        "id": "uiFoundation.multiSelect.selectedCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " の現地日時": [
+      {
+        "id": "uiFoundation.dateTimePicker.localTimeWithZone",
+        "parameters": {
+          "zone": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " を解除": [
+      {
+        "id": "uiFoundation.filterChips.removeCriterion",
+        "parameters": {
+          "criterion": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.filterChips.removeSearch",
+        "parameters": {
+          "search": [
+            "string"
+          ]
+        }
+      }
+    ],
     " ラベル": [
       {
         "id": "uiFoundation.flowEditor.labelForDiagram",
@@ -71,7 +153,46 @@
         }
       }
     ],
-    " 件": [],
+    " 件": [
+      {
+        "id": "uiFoundation.multiSelect.selectedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.multiSelect.selectedCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
     " 件の候補": [
       {
         "id": "uiFoundation.combobox.suggestionsForSelectionInputCount",
@@ -138,14 +259,32 @@
         }
       }
     ],
-    " 貼付け内容は保持しています。再試行できます。": [],
+    " 貼付け内容は保持しています。再試行できます。": [
+      {
+        "id": "uiFoundation.dataGrid.pasteFailedWithRecovery",
+        "parameters": {
+          "message": [
+            "string"
+          ]
+        }
+      }
+    ],
     " 進捗": [
       {
         "id": "uiFoundation.gantt.progress",
         "parameters": {}
       }
     ],
-    " 進捗を編集": [],
+    " 進捗を編集": [
+      {
+        "id": "uiFoundation.gantt.editTaskProgressLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     " 開始": [
       {
         "id": "uiFoundation.gantt.start",
@@ -219,7 +358,16 @@
         "parameters": {}
       }
     ],
-    "/ 未取得": [],
+    "/ 未取得": [
+      {
+        "id": "uiFoundation.sparkline.missingCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "/ 未確定の入力": [
       {
         "id": "uiFoundation.spreadsheet.selectionWithDraft",
@@ -326,7 +474,16 @@
         "parameters": {}
       }
     ],
-    "Enterで": [],
+    "Enterで": [
+      {
+        "id": "uiFoundation.tree.selectKeyboardHint",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "JSONを検索": [
       {
         "id": "uiFoundation.jsonViewer.searchJSON",
@@ -387,7 +544,16 @@
         "parameters": {}
       }
     ],
-    "Spaceで": [],
+    "Spaceで": [
+      {
+        "id": "uiFoundation.tree.toggleKeyboardHint",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "Timelineの項目・詳細テンプレートは各一つ指定してください。": [
       {
         "id": "uiFoundation.timeline.provideOneItemTemplateAndOneDetailTemplateForTheTimeline",
@@ -425,7 +591,24 @@
         }
       }
     ],
-    "{column}の列移動: {action}": [],
+    "{column}の列移動: {action}": [
+      {
+        "id": "uiFoundation.tableControls.moveColumnEarlierLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tableControls.moveColumnLaterLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
     "{column}の条件 {number}: {action}": [
       {
         "id": "uiFoundation.columnFilter.actionColumnConditionNumber",
@@ -569,9 +752,51 @@
         }
       }
     ],
-    "· 回転": [],
-    "· 時間帯:": [],
-    "— 未取得": [],
+    "· 回転": [
+      {
+        "id": "uiFoundation.imageCropper.rotationDegrees",
+        "parameters": {
+          "angle": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "· 時間帯:": [
+      {
+        "id": "uiFoundation.scheduler.displaySummary",
+        "parameters": {
+          "zone": [
+            "string"
+          ],
+          "to": [
+            "string"
+          ],
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ],
+          "from": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "— 未取得": [
+      {
+        "id": "uiFoundation.meterGroup.unavailableCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "、": [],
     "。": [],
     "いいえ": [
@@ -612,7 +837,19 @@
         "parameters": {}
       }
     ],
-    "か月目": [],
+    "か月目": [
+      {
+        "id": "uiFoundation.dateRangePicker.calendarMonthLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "month": [
+            "number"
+          ]
+        }
+      }
+    ],
     "ここへファイルをドロップできます。": [
       {
         "id": "uiFoundation.fileUpload.dropFilesHere",
@@ -691,7 +928,24 @@
         "parameters": {}
       }
     ],
-    "しました。": [],
+    "しました。": [
+      {
+        "id": "uiFoundation.transferList.itemsAddedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.itemsRemovedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "すべて": [
       {
         "id": "uiFoundation.columnFilter.all",
@@ -793,8 +1047,43 @@
         "parameters": {}
       }
     ],
-    "にわたる予定": [],
-    "の": [],
+    "にわたる予定": [
+      {
+        "id": "uiFoundation.scheduler.multiDayEvent",
+        "parameters": {
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の": [
+      {
+        "id": "uiFoundation.dateRangePicker.calendarMonthLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "month": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.proposedDestinationLabelPositionPositionPressEnterToConfirm",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
     "のMarkdown": [
       {
         "id": "uiFoundation.markdownEditor.markdownForLabel",
@@ -825,7 +1114,16 @@
         }
       }
     ],
-    "のタスク": [],
+    "のタスク": [
+      {
+        "id": "uiFoundation.gantt.taskRegionLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "のデータ": [
       {
         "id": "uiFoundation.chart.dataForLabel",
@@ -836,7 +1134,16 @@
         }
       }
     ],
-    "のページ": [],
+    "のページ": [
+      {
+        "id": "uiFoundation.dataTableView.paginationLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
     "のページ表示": [
       {
         "id": "uiFoundation.pDFViewer.pageViewForLabel",
@@ -857,10 +1164,49 @@
         }
       }
     ],
-    "の予定表示": [],
-    "の仮の位置は": [],
-    "の仮の位置を選んでいます。": [],
-    "の仮想スクロール領域": [],
+    "の予定表示": [
+      {
+        "id": "uiFoundation.scheduler.viewLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の仮の位置は": [
+      {
+        "id": "uiFoundation.sortableList.proposedItemPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の仮の位置を選んでいます。": [
+      {
+        "id": "uiFoundation.sortableList.choosePositionForItem",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の仮想スクロール領域": [
+      {
+        "id": "uiFoundation.virtualDataTable.viewportLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の候補": [
       {
         "id": "uiFoundation.combobox.suggestionsForLabel",
@@ -937,7 +1283,16 @@
         }
       }
     ],
-    "の列条件": [],
+    "の列条件": [
+      {
+        "id": "uiFoundation.columnFilter.regionLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の前の月": [
       {
         "id": "uiFoundation.calendar.previousMonthForLabel",
@@ -996,8 +1351,26 @@
         }
       }
     ],
-    "の子組織を展開": [],
-    "の子組織を折り畳む": [],
+    "の子組織を展開": [
+      {
+        "id": "uiFoundation.organizationChart.expandLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子組織を折り畳む": [
+      {
+        "id": "uiFoundation.organizationChart.collapseLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の子項目": [
       {
         "id": "uiFoundation.cascader.childItemsForLabel",
@@ -1036,7 +1409,16 @@
         }
       }
     ],
-    "の操作領域": [],
+    "の操作領域": [
+      {
+        "id": "uiFoundation.fileExplorer.actionRegionLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の日付": [],
     "の日付を選択": [
       {
@@ -1078,9 +1460,39 @@
         }
       }
     ],
-    "の条件": [],
-    "の条件 ": [],
-    "の条件を追加": [],
+    "の条件": [
+      {
+        "id": "uiFoundation.columnFilter.criterionLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の条件 ": [
+      {
+        "id": "uiFoundation.columnFilter.criterionLabelNumbered",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "number": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の条件を追加": [
+      {
+        "id": "uiFoundation.columnFilter.addLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の次の月": [
       {
         "id": "uiFoundation.calendar.nextMonthForLabel",
@@ -1091,7 +1503,27 @@
         }
       }
     ],
-    "の比較方法": [],
+    "の比較方法": [
+      {
+        "id": "uiFoundation.columnFilter.operatorLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnFilter.operatorLabelNumbered",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "number": [
+            "number"
+          ]
+        }
+      }
+    ],
     "の添付": [
       {
         "id": "uiFoundation.messageList.attachmentsForLabel",
@@ -1140,9 +1572,36 @@
         }
       }
     ],
-    "の移動先を編集": [],
-    "の移動先を選んでいます。": [],
-    "の移動入力": [],
+    "の移動先を編集": [
+      {
+        "id": "uiFoundation.scheduler.editEvent",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動先を選んでいます。": [
+      {
+        "id": "uiFoundation.transferList.choosingItemDestination",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動入力": [
+      {
+        "id": "uiFoundation.scheduler.moveForm",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の範囲で指定してください。": [
       {
         "id": "uiFoundation.pdfViewer.pageInputRange",
@@ -1425,7 +1884,24 @@
         }
       }
     ],
-    "まで": [],
+    "まで": [
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.fileUpload.perFileLimit",
+        "parameters": {
+          "size": [
+            "string"
+          ]
+        }
+      }
+    ],
     "やり直す": [
       {
         "id": "uiFoundation.richTextEditor.toolbarRedo",
@@ -1452,7 +1928,30 @@
         "parameters": {}
       }
     ],
-    "を": [],
+    "を": [
+      {
+        "id": "uiFoundation.sortableList.movedToPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.movedLabelToPositionPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
     "をクリア": [
       {
         "id": "uiFoundation.cascader.clearForLabel",
@@ -1634,7 +2133,16 @@
         }
       }
     ],
-    "を取得できません。": [],
+    "を取得できません。": [
+      {
+        "id": "uiFoundation.image.loadFailed",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "を含む": [
       {
         "id": "uiFoundation.filterBuilder.operatorContains",
@@ -1722,7 +2230,19 @@
         }
       }
     ],
-    "を表示: ": [],
+    "を表示: ": [
+      {
+        "id": "uiFoundation.imageGallery.showImage",
+        "parameters": {
+          "position": [
+            "number"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      }
+    ],
     "を解除": [
       {
         "id": "uiFoundation.filterChips.removeCriterion",
@@ -2334,7 +2854,19 @@
         }
       }
     ],
-    "ページ。文字内容は下のページの文字を開いて確認できます。": [],
+    "ページ。文字内容は下のページの文字を開いて確認できます。": [
+      {
+        "id": "uiFoundation.pdfViewer.pagePreviewLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "page": [
+            "number"
+          ]
+        }
+      }
+    ],
     "ページと表示件数を正の整数にしてください。": [
       {
         "id": "uiFoundation.table.invalidPageSettings",
@@ -2377,7 +2909,16 @@
         "parameters": {}
       }
     ],
-    "ページ番号を1から": [],
+    "ページ番号を1から": [
+      {
+        "id": "uiFoundation.pdfViewer.pageInputRange",
+        "parameters": {
+          "pages": [
+            "number"
+          ]
+        }
+      }
+    ],
     "ページ選択": [
       {
         "id": "uiFoundation.pagination.chooseAPage",
@@ -2797,8 +3338,95 @@
         "parameters": {}
       }
     ],
-    "件": [],
-    "件)": [],
+    "件": [
+      {
+        "id": "uiFoundation.dataView.itemsCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.notificationCenter.status",
+        "parameters": {
+          "visible": [
+            "number"
+          ],
+          "unread": [
+            "number"
+          ],
+          "loading": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.pagination.itemsCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.scheduler.eventCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.sparkline.missingCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件)": [
+      {
+        "id": "uiFoundation.dataTableView.rowGroupCount",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "件のコマンド": [
       {
         "id": "uiFoundation.commandPalette.commandsCount",
@@ -2819,9 +3447,42 @@
         }
       }
     ],
-    "件の取得済み行)": [],
-    "件は受け付けできません。": [],
-    "件まで": [],
+    "件の取得済み行)": [
+      {
+        "id": "uiFoundation.virtualDataTable.captionWithCount",
+        "parameters": {
+          "caption": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件は受け付けできません。": [
+      {
+        "id": "uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected",
+        "parameters": {
+          "accepted": [
+            "number"
+          ],
+          "rejected": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件まで": [
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "件を": [
       {
         "id": "uiFoundation.transferList.itemsAddedCount",
@@ -2840,8 +3501,58 @@
         }
       }
     ],
-    "件を受け付けました。": [],
-    "件・": [],
+    "件を受け付けました。": [
+      {
+        "id": "uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected",
+        "parameters": {
+          "accepted": [
+            "number"
+          ],
+          "rejected": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件・": [
+      {
+        "id": "uiFoundation.dataTableView.aggregateValue",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "label": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.aggregateValueWithMissing",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "label": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "known": [
+            "number"
+          ],
+          "missing": [
+            "number"
+          ],
+          "missingLabel": [
+            "string"
+          ]
+        }
+      }
+    ],
     "件数": [
       {
         "id": "uiFoundation.badge.count",
@@ -2916,7 +3627,16 @@
         }
       }
     ],
-    "件）": [],
+    "件）": [
+      {
+        "id": "uiFoundation.breadcrumb.omittedLevelCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "任意": [
       {
         "id": "uiFoundation.formField.optional",
@@ -4022,8 +4742,58 @@
         "parameters": {}
       }
     ],
-    "固定:": [],
-    "固定: ": [],
+    "固定:": [
+      {
+        "id": "uiFoundation.columnChooser.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnChooser.pinSelectLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "固定: ": [
+      {
+        "id": "uiFoundation.columnChooser.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnChooser.pinSelectLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
     "固定しない": [
       {
         "id": "uiFoundation.columnChooser.unpinned",
@@ -4082,7 +4852,16 @@
         "parameters": {}
       }
     ],
-    "変化 ": [],
+    "変化 ": [
+      {
+        "id": "uiFoundation.sparkline.delta",
+        "parameters": {
+          "delta": [
+            "string"
+          ]
+        }
+      }
+    ],
     "変更前": [
       {
         "id": "uiFoundation.diffViewer.before",
@@ -4458,7 +5237,16 @@
         "parameters": {}
       }
     ],
-    "形式: ": [],
+    "形式: ": [
+      {
+        "id": "uiFoundation.fileUpload.acceptedFormats",
+        "parameters": {
+          "formats": [
+            "string"
+          ]
+        }
+      }
+    ],
     "形式の制限なし": [
       {
         "id": "uiFoundation.fileUpload.anyFormat",
@@ -4719,7 +5507,46 @@
         "parameters": {}
       }
     ],
-    "文字": [],
+    "文字": [
+      {
+        "id": "uiFoundation.textInput.characterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textInput.characterCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textarea.characterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textarea.characterCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
     "文字起こし": [
       {
         "id": "uiFoundation.mediaPlayer.transcript",
@@ -5130,7 +5957,24 @@
         "parameters": {}
       }
     ],
-    "未取得・削除済み: ": [],
+    "未取得・削除済み: ": [
+      {
+        "id": "uiFoundation.cascader.unavailableItemLabel",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.unavailableItemLabel",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      }
+    ],
     "未取得・削除済みの経路があります。選択を確認してください。": [
       {
         "id": "uiFoundation.cascader.somePathsAreUnavailableOrHaveBeenDeletedReviewYourSelection",
@@ -5363,7 +6207,30 @@
         "parameters": {}
       }
     ],
-    "桁": [],
+    "桁": [
+      {
+        "id": "uiFoundation.otpInput.alphanumericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.otpInput.numericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
     "桁数には1から64の整数を指定してください。": [
       {
         "id": "uiFoundation.oTPInput.enterALengthFrom1To64Characters",
@@ -5744,7 +6611,19 @@
         "parameters": {}
       }
     ],
-    "番目です。": [],
+    "番目です。": [
+      {
+        "id": "uiFoundation.sortableList.proposedItemPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
     "番目へ移動しました。": [
       {
         "id": "uiFoundation.transferList.movedLabelToPositionPosition",
@@ -5774,7 +6653,16 @@
         "parameters": {}
       }
     ],
-    "省略した階層（": [],
+    "省略した階層（": [
+      {
+        "id": "uiFoundation.breadcrumb.omittedLevelCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。": [
       {
         "id": "uiFoundation.spreadsheet.useTheArrowKeysToSelectCellsPressEnterOrF2ToEditEnterToRequestTheChangeAndEscapeTo",
@@ -6151,7 +7039,16 @@
         "parameters": {}
       }
     ],
-    "箇所の差分 /": [],
+    "箇所の差分 /": [
+      {
+        "id": "uiFoundation.diffViewer.differenceCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "範囲をリセット": [
       {
         "id": "uiFoundation.imageCropper.resetCropArea",
@@ -6218,7 +7115,16 @@
         "parameters": {}
       }
     ],
-    "継続中:": [],
+    "継続中:": [
+      {
+        "id": "uiFoundation.scheduler.continuingEvent",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
     "編集": [
       {
         "id": "uiFoundation.inlineEdit.edit",
@@ -6483,7 +7389,16 @@
         "parameters": {}
       }
     ],
-    "表の設定を確認してください。": [],
+    "表の設定を確認してください。": [
+      {
+        "id": "uiFoundation.dataTableView.configurationErrorDetails",
+        "parameters": {
+          "message": [
+            "string"
+          ]
+        }
+      }
+    ],
     "表をコピー": [
       {
         "id": "uiFoundation.tableToolbar.copyTable",
@@ -6575,7 +7490,31 @@
         "parameters": {}
       }
     ],
-    "表示タイムゾーン:": [],
+    "表示タイムゾーン:": [
+      {
+        "id": "uiFoundation.scheduler.displaySummary",
+        "parameters": {
+          "zone": [
+            "string"
+          ],
+          "to": [
+            "string"
+          ],
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ],
+          "from": [
+            "string"
+          ]
+        }
+      }
+    ],
     "表示ページ": [
       {
         "id": "uiFoundation.tableToolbar.pageShown",
@@ -6884,7 +7823,12 @@
         "parameters": {}
       }
     ],
-    "貼付ける行の列数を揃えてください。": [],
+    "貼付ける行の列数を揃えてください。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
     "貼付けを再試行": [
       {
         "id": "uiFoundation.dataGrid.retryPaste",
@@ -7163,7 +8107,16 @@
         "parameters": {}
       }
     ],
-    "適用中": [],
+    "適用中": [
+      {
+        "id": "uiFoundation.dataTableView.activeFilterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "適用条件": [
       {
         "id": "uiFoundation.filterChips.appliedCriteria",
@@ -7353,7 +8306,16 @@
         "parameters": {}
       }
     ],
-    "選択中のタブの操作: ": [],
+    "選択中のタブの操作: ": [
+      {
+        "id": "uiFoundation.tabs.selectedTabActionsLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "選択中のタブを前へ": [
       {
         "id": "uiFoundation.tabs.moveSelectedTabEarlier",
@@ -7708,7 +8670,16 @@
         "parameters": {}
       }
     ],
-    "（変更不可）": [],
+    "（変更不可）": [
+      {
+        "id": "uiFoundation.transferList.lockedItem",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
     "（必須）": [
       {
         "id": "uiFoundation.colorPicker.required",
@@ -7751,6 +8722,15 @@
         }
       }
     ],
-    "（移動先として無効）": []
+    "（移動先として無効）": [
+      {
+        "id": "uiFoundation.scheduler.disabledDestination",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ]
   }
 }
