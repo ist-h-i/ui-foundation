@@ -584,13 +584,23 @@ export function customPropertyResolver(context: StyleContext, origin: CustomProp
   return stylesheetAliases(postcss.root(), context, false, origin, layer)(scopes);
 }
 
+function normalizedCondition(value: string): string {
+  return valueParser(value).walk(token => {
+    if (token.type === 'space') token.value = ' ';
+    if (token.type === 'function' || token.type === 'div') {
+      token.before = '';
+      token.after = '';
+    }
+  }).toString().trim();
+}
+
 function stylesheetBaselineContext(node: postcss.Node): string[] {
   const context: string[] = [];
   for (let owner = node.parent; owner; owner = owner.parent) {
     if (owner.type === 'rule') context.push(JSON.stringify(['selector', (owner as postcss.Rule).selector]));
     if (owner.type === 'atrule') {
       const rule = owner as postcss.AtRule;
-      context.push(JSON.stringify(['at-rule', rule.name, rule.params]));
+      context.push(JSON.stringify(['at-rule', rule.name, normalizedCondition(rule.params)]));
     }
   }
   return ['Stylesheet', ...context.reverse()];
@@ -621,7 +631,10 @@ export function checkCSS(css: string, location: SourceLocation, context: StyleCo
       const selector = node.parent?.type === 'rule' ? (node.parent as postcss.Rule).selector : undefined;
       const original = selector ? `${selector}{${node.toString()}}` : node.toString();
       const prefix = `${node.prop}:${node.value} :: `;
-      const innerContext: StyleContext = { ...context, emit: (issue) => context.emit(withBaselineContext({ ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') }, ...stylesheetBaselineContext(node))) };
+      const innerContext: StyleContext = { ...context, emit: issue => {
+        const mapped = { ...issue, source: original + (issue.source.startsWith(prefix) ? ' :: ' + issue.source.slice(prefix.length) : '') };
+        context.emit(issue.severity === 'error' ? withBaselineContext(mapped, ...stylesheetBaselineContext(node)) : mapped);
+      } };
       checkStyle(node.prop, node.value, { ...location, offset: location.offset + offset }, innerContext, aliases(selectorScopes(node.parent?.type === 'rule' ? node.parent as postcss.Rule : undefined)));
     });
   } catch (error) {

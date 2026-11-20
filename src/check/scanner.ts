@@ -9,7 +9,7 @@ import { checkCSS, checkClasses, checkStyle, collectLocalClasses, customProperty
 import { createUtilityResolver } from './tailwind.ts';
 import { proveClassDomain } from './class-domain.ts';
 import { boundedSearch } from './bounded-search.ts';
-import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, typescriptBaselineContext, withBaselineContext, workspaceSourceRoots } from './application.ts';
+import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, templateOpeningContext, typescriptBaselineContext, withBaselineContext, workspaceSourceRoots } from './application.ts';
 import type { AngularDeclaration, CheckSourcesOptions, SourceDiagnostic, SourceLocation, SourceReport, StyleContext, ScopedCustomProperty, CustomPropertyOrigin, CustomPropertyResolver } from './types.ts';
 
 const forbidden = new Set(['node_modules', '.git', '.agents', 'dist', 'build', 'coverage', 'artifacts']);
@@ -1211,8 +1211,11 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
   const resolutionCache = ts.createModuleResolutionCache(root, compilerHost.getCanonicalFileName, compilerOptions);
   function resolveImport(module: ts.StringLiteralLike, source: ts.SourceFile) {
-    return ts.resolveModuleName(module.text, source.fileName, compilerOptions, compilerHost, resolutionCache, undefined,
-      program.getModeForUsageLocation(source, module)).resolvedModule?.resolvedFileName;
+    return resolveSpecifier(module.text, source, module);
+  }
+  function resolveSpecifier(specifier: string, source: ts.SourceFile, original: ts.StringLiteralLike) {
+    return ts.resolveModuleName(specifier, source.fileName, compilerOptions, compilerHost, resolutionCache, undefined,
+      ts.getModeForUsageLocation(source, original, compilerOptions)).resolvedModule?.resolvedFileName;
   }
   // Read only the entry points required to recommend a replacement. Adding the
   // entire barrel to the compiler program would also resolve specialist engines.
@@ -1224,12 +1227,15 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       if (!fileAllowed(entry)) continue;
       const text = readAllowed(entry);
       if (text === undefined) continue;
-      const source = ts.createSourceFile(entry, text, ts.ScriptTarget.Latest);
+      const source = ts.createSourceFile(entry, text, {
+        languageVersion: ts.ScriptTarget.Latest,
+        impliedNodeFormat: ts.getImpliedNodeFormatForFile(entry, resolutionCache.getPackageJsonInfoCache(), compilerHost, compilerOptions),
+      }, true);
       const exportsForFile = new Map<string, Set<string>>();
       for (const statement of source.statements) {
         if (!ts.isExportDeclaration(statement) || !statement.moduleSpecifier || !ts.isStringLiteralLike(statement.moduleSpecifier)
           || !statement.exportClause || !ts.isNamedExports(statement.exportClause)) continue;
-        const target = ts.resolveModuleName(statement.moduleSpecifier.text, entry, compilerOptions, compilerHost, resolutionCache).resolvedModule?.resolvedFileName;
+        const target = resolveImport(statement.moduleSpecifier, source);
         if (!target) continue;
         let names = exportsForFile.get(target);
         if (!names) { names = new Set(); exportsForFile.set(target, names); }
@@ -1248,8 +1254,11 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       const preferred = names.length ? [...exportsByEntry()].find(([, files]) => names.every(name => files.get(resolved)?.has(name))) : undefined;
       let suggestion = 'Use a public API where available, or request a public export for this dependency.';
       if (preferred) {
-        const specifier = relative(path.dirname(source.fileName), preferred[0]).replace(/\.ts$/, '');
-        suggestion = `Import the same names from '${specifier.startsWith('.') ? specifier : './' + specifier}' instead.`;
+        const candidate = relative(path.dirname(source.fileName), preferred[0]).replace(/\.ts$/, '');
+        const relativeEntry = candidate.startsWith('.') ? candidate : './' + candidate;
+        const specifiers = module.text.endsWith('.js') ? [relativeEntry + '.js', relativeEntry] : [relativeEntry, relativeEntry + '.js'];
+        const specifier = specifiers.find(value => resolveSpecifier(value, source, module) === preferred[0]);
+        if (specifier) suggestion = `Import the same names from '${specifier}' instead.`;
       }
       emit(diagnostic(loc(source.fileName, source.text, module.getStart(source)), 'generated-internal-import', 'warning',
         `Import resolves to internal generated file ${relative(root, resolved)}.`, suggestion, module.getText(source)));
@@ -1265,7 +1274,9 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
         inspectReference(node.moduleSpecifier, clause && ts.isNamedExports(clause) ? clause.elements.map(element => (element.propertyName ?? element.name).text) : []);
       }
       if (ts.isImportTypeNode(node) && ts.isLiteralTypeNode(node.argument) && ts.isStringLiteralLike(node.argument.literal)) {
-        inspectReference(node.argument.literal);
+        let exported = node.qualifier;
+        while (exported && ts.isQualifiedName(exported)) exported = exported.left;
+        inspectReference(node.argument.literal, exported ? [exported.text] : []);
       }
       if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword && node.arguments[0] && ts.isStringLiteralLike(node.arguments[0])) {
         inspectReference(node.arguments[0]);
@@ -1548,7 +1559,8 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       if (!node || typeof node !== 'object' || visited.has(node)) return; visited.add(node);
       const opening = node.startSourceSpan;
       const context = opening ? [...ancestors, template.slice(opening.start.offset, opening.end.offset)] : ancestors;
-      const emitAtNode = (item: SourceDiagnostic) => ctx.emit(withBaselineContext(item, 'Template', ...context));
+      const emitAtNode = (item: SourceDiagnostic) => ctx.emit(item.severity === 'error'
+        ? withBaselineContext(item, 'Template', ...context.map(templateOpeningContext)) : item);
       if ((node.name || node.tagName) && node.attributes && node.inputs) {
         const elementName = node.name ?? 'ng-template';
         const renderedAttributes = node.name || node.tagName === 'ng-template' ? node.attributes : [];
@@ -2634,10 +2646,14 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       continue;
     }
     const source = program.getSourceFile(path.resolve(root, diagnostic.file));
-    const context = source ? typescriptBaselineContext(source, diagnostic.line, diagnostic.column) : ['Source'];
+    const context = source ? typescriptBaselineContext(source, diagnostic.line, diagnostic.column) : [];
     const item = withBaselineContext(diagnostic, ...context);
-    const key = fingerprint(item), count = baseline?.get(key) ?? 0;
-    if (baseline && count > 0) {
+    if (!baseline || !item.baseline_context) {
+      active.push(item);
+      continue;
+    }
+    const key = fingerprint(item), count = baseline.get(key) ?? 0;
+    if (count > 0) {
       baseline.set(key, count - 1);
       existing.push(item);
     } else active.push(item);

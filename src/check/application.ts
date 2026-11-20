@@ -16,43 +16,62 @@ export function isExceptableRule(rule: string): boolean {
 
 export function withBaselineContext(diagnostic: SourceDiagnostic, ...context: string[]): SourceDiagnostic {
   if (diagnostic.severity !== 'error' || !isExceptableRule(diagnostic.rule)) return diagnostic;
-  return { ...diagnostic, baseline_context: [...context, ...(diagnostic.baseline_context ?? [])] };
+  const combined = [...context, ...(diagnostic.baseline_context ?? [])];
+  return { ...diagnostic, baseline_context: combined.length ? combined : null };
 }
 
 export function fingerprint(diagnostic: Pick<SourceDiagnostic, 'file' | 'rule' | 'message' | 'source' | 'baseline_context'>): string {
   return JSON.stringify([diagnostic.file, diagnostic.rule, diagnostic.message, diagnostic.source, diagnostic.baseline_context]);
 }
 
-function tokens(text: string): string {
-  const scanner = ts.createScanner(ts.ScriptTarget.Latest, true, ts.LanguageVariant.Standard, text);
+function tokens(node: ts.Node, source: ts.SourceFile): string {
   const result: string[] = [];
-  for (let token = scanner.scan(); token !== ts.SyntaxKind.EndOfFileToken; token = scanner.scan()) {
-    result.push(scanner.getTokenText());
+  function collect(token: ts.Node): void {
+    if (ts.isJSDoc(token)) return;
+    const children = token.getChildren(source);
+    if (children.length) children.forEach(collect);
+    else if (token.getWidth(source)) result.push(token.getText(source));
   }
+  collect(node);
   return JSON.stringify(result);
+}
+
+export function templateOpeningContext(opening: string): string {
+  // Opening-tag whitespace is a separator. Quoted attribute values are single
+  // tokens so changing a space inside a value still changes the context.
+  if (!opening.startsWith('<')) return opening.trim();
+  return JSON.stringify(opening.match(/"[^"]*"|'[^']*'|[^\s"'=<>]+|[=<>]/g) ?? []);
 }
 
 /** Identify the named scope and statement containing a TypeScript finding independently of line and column. */
 export function typescriptBaselineContext(source: ts.SourceFile, line: number, column: number): string[] {
   const lines = source.getLineStarts();
   const position = lines[line - 1] === undefined ? -1 : lines[line - 1] + column - 1;
-  const context = ['TypeScript'];
+  const context: string[] = [];
+  const expression = (node: ts.Node | undefined) => node ? tokens(node, source) : null;
+  const branch = (first: ts.Node) => position < first.getStart(source) ? 'condition' : position < first.getEnd() ? 'then' : 'else';
   function visit(node: ts.Node): void {
     if (position < node.getStart(source) || position >= node.getEnd()) return;
     if (ts.isClassLike(node) || ts.isFunctionDeclaration(node) || ts.isFunctionExpression(node)
         || ts.isMethodDeclaration(node) || ts.isAccessor(node) || ts.isVariableDeclaration(node)
         || ts.isPropertyDeclaration(node) || ts.isPropertyAssignment(node)) {
-      context.push(JSON.stringify([node.kind, node.name ? tokens(node.name.getText(source)) : null]));
+      context.push(JSON.stringify([node.kind, node.name ? tokens(node.name, source) : null]));
     }
-    if (ts.isIfStatement(node)) {
-      context.push(JSON.stringify(['if', tokens(node.expression.getText(source)), position < node.thenStatement.getEnd() ? 'then' : 'else']));
+    if (ts.isIfStatement(node)) context.push(JSON.stringify(['if', expression(node.expression), branch(node.thenStatement)]));
+    if (ts.isConditionalExpression(node)) context.push(JSON.stringify(['conditional', expression(node.condition), branch(node.whenTrue)]));
+    if (ts.isForOfStatement(node) || ts.isForInStatement(node)) {
+      context.push(JSON.stringify([node.kind, expression(node.initializer), expression(node.expression), ts.isForOfStatement(node) && !!node.awaitModifier]));
     }
-    if (ts.isCaseClause(node)) context.push(JSON.stringify(['case', tokens(node.expression.getText(source))]));
-    if (ts.isExpressionStatement(node) || ts.isReturnStatement(node)) context.push(tokens(node.getText(source)));
+    if (ts.isForStatement(node)) context.push(JSON.stringify(['for', expression(node.initializer), expression(node.condition), expression(node.incrementor)]));
+    if (ts.isWhileStatement(node) || ts.isDoStatement(node) || ts.isSwitchStatement(node) || ts.isCaseClause(node)) {
+      context.push(JSON.stringify([node.kind, expression(node.expression)]));
+    }
+    if (ts.isDefaultClause(node)) context.push('default case');
+    if (ts.isExpressionStatement(node) || ts.isReturnStatement(node)) context.push(tokens(node, source));
     ts.forEachChild(node, visit);
   }
   visit(source);
-  return context;
+  return context.length ? ['TypeScript', ...context] : [];
 }
 
 export function readBaseline(text: string): Map<string, number> {
@@ -69,6 +88,7 @@ export function readBaseline(text: string): Map<string, number> {
       throw new Error('The source baseline contains an invalid diagnostic.');
     }
     if (item.severity === 'error' && isExceptableRule(item.rule)) {
+      if (item.baseline_context === null) continue;
       if (!Array.isArray(item.baseline_context) || !item.baseline_context.length || item.baseline_context.some((label: unknown) => typeof label !== 'string')) {
         throw new Error('Capture a new full JSON source report with this checker version to record structural baseline context.');
       }
