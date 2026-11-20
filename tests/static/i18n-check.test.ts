@@ -1,0 +1,416 @@
+import assert from 'node:assert/strict';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { test, type TestContext } from 'node:test';
+import { checkSources } from '../../src/check/scanner.ts';
+import { createSourcePolicy } from '../../src/check/policy.ts';
+import type { I18nChecks, SourceDiagnostic } from '../../src/check/types.ts';
+import { parseConfig, resolveConfig } from '../../src/config.ts';
+
+const config = await readFile(new URL('../../examples/ui.config.example.en.yaml', import.meta.url), 'utf8');
+const i18n: I18nChecks = {
+  functions: ['t', 'translation.label'],
+  pipes: ['translate'],
+  dictionaries: [{ file: 'messages.json', complete: true }],
+  display_bindings: ['toastMessage'],
+};
+const messages = {
+  'order.save': 'Save order',
+  'order.field': 'Order reference',
+  'order.count': { parameters: { count: 'number' } },
+  'order.retry': 'Try again in {minutes} minutes',
+};
+
+async function consumer(t: TestContext, template: string) {
+  const root = await mkdtemp(resolve(tmpdir(), 'ui-check-i18n-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const save = (file: string, content: string) => writeFile(resolve(root, file), content);
+  await mkdir(resolve(root, 'src'));
+  await save('src/order.html', template);
+  await save('messages.json', JSON.stringify(messages));
+  const manifest = parseConfig(config);
+  manifest.checks = { source_roots: ['src'], approved_components: [], exceptions: [], i18n };
+  return {
+    save, checks: manifest.checks,
+    async check(baselinePath?: string) {
+      const resolved = resolveConfig(manifest);
+      return checkSources({ root, config: resolved, policy: createSourcePolicy(resolved), baselinePath });
+    },
+  };
+}
+
+const i18nOnly = (items: SourceDiagnostic[]) => items.filter(item => item.rule.startsWith('i18n-'));
+
+test('finds shown text and fixed server-error copy in app UI without flagging data, routes, IDs or Angular i18n', async t => {
+  const fixture = await consumer(t, `<button data-testid="save-order" aria-label="Save">保存</button>
+<input placeholder="Order reference" i18n-title title="Translated help" [value]="draft">
+<button i18n>Native translation</button>
+<button [attr.aria-label]="t('order.save')">{{ 'order.save' | translate }}</button>
+<label [attr.aria-label]="translation.label('order.field')">{{ 'uiFoundation.actionControl.busy' | uiStableMessage }}</label>
+<a href="/orders" [routerLink]="'/orders/closed'" [attr.data-code]="'ACTIVE'" i18n>Orders</a>
+<app-notice [toastMessage]="failed ? errorByCode[code] : response.text"></app-notice>
+<app-notice toastMessage="Please retry"></app-notice>
+<p>{{ response.text }} {{ code }} {{ draft }}</p>
+<p [attr.data-payload]="'USER_PAYLOAD'"></p>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+@Component({selector:'app-notice',template:''}) class Notice {}
+@Component({selector:'app-order',templateUrl:'./order.html',imports:[Notice]}) export class Order {
+  readonly errorByCode = { EXPIRED: 'The order has expired' };
+}
+`);
+  const report = await fixture.check();
+  const findings = i18nOnly(report.diagnostics);
+  assert.ok(report.valid, JSON.stringify(report.diagnostics));
+  assert.deepEqual(findings.map(({ line, rule, severity }) => ({ line, rule, severity })), [1, 1, 2, 7, 8]
+    .map(line => ({ line, rule: 'i18n-raw-text', severity: 'warning' })));
+  assert.ok(findings.every(item => item.file === 'src/order.html' && item.column > 0 && item.suggestion.includes('i18n')));
+});
+
+test('checks required arguments and literal types on application functions, registered pipes and built-ins', async t => {
+  const fixture = await consumer(t, `<span>{{ t('order.count') }}</span>
+<span>{{ 'order.count' | translate:{ count: 'two' } }}</span>
+<span>{{ 'uiFoundation.listbox.selectedCount' | uiStableMessage:{ count: 'two' } }}</span>
+<span>{{ t('order.retry') }}</span>
+<span>{{ t('order.count', { count: 2 }) }}</span>
+<span>{{ t('order.retry', { minutes: 2 }) }}</span>
+<span>{{ 'uiFoundation.listbox.selectedCount' | uiStableMessage:{ count: 2 } }}</span>
+<span>{{ 'uiFoundation.unknown' | uiStableMessage }}</span>`);
+  await fixture.save('src/order.ts', `import {injectUiMessage} from '../.ui/generated/angular/core';
+declare function t(id: string, args?: Record<string, unknown>): string;
+const wrongCount: string = 'two';
+export const appMessage = t('order.count', { count: wrongCount });
+const builtInText = injectUiMessage();
+export const libraryMessage = builtInText({id:'uiFoundation.listbox.selectedCount', parameters:{count:'two'}});
+`);
+  const report = await fixture.check();
+  assert.equal(report.valid, false);
+  const errors = i18nOnly(report.diagnostics);
+  assert.deepEqual(errors.map(item => [item.file, item.line, item.rule, item.severity]), [
+    ['src/order.html', 1, 'i18n-message-arguments', 'error'],
+    ['src/order.html', 2, 'i18n-message-arguments', 'error'],
+    ['src/order.html', 3, 'i18n-message-arguments', 'error'],
+    ['src/order.html', 4, 'i18n-message-arguments', 'error'],
+    ['src/order.html', 8, 'i18n-message-reference', 'error'],
+    ['src/order.ts', 4, 'i18n-message-arguments', 'error'],
+    ['src/order.ts', 6, 'i18n-message-arguments', 'error'],
+  ]);
+  assert.match(errors[0].message, /requires.+count/);
+  assert.match(errors[1].message, /count.+number/);
+});
+
+test('distinguishes unresolved references and fragments from legacy calls and honors opt-in', async t => {
+  const fixture = await consumer(t, `<p>{{ t(activeId) }}</p>
+<p>{{ t('lazy.notice') }}</p>
+<p>{{ t('order.count', pendingArgs) }}</p>
+<p>{{ t('order.save') + recipient }}</p>
+<p>{{ '保存してください' | uiMessage }}</p>
+<p>{{ t('保存してください') }}</p>`);
+  fixture.checks.i18n = { ...i18n, dictionaries: [{ file: 'messages.json', complete: false }] };
+  const report = await fixture.check();
+  const findings = i18nOnly(report.diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule, item.severity]), [
+    [1, 'i18n-unconfirmed', 'warning'], [2, 'i18n-unconfirmed', 'warning'],
+    [3, 'i18n-unconfirmed', 'warning'], [4, 'i18n-fragment', 'warning'],
+    [5, 'i18n-legacy-key', 'error'], [6, 'i18n-legacy-key', 'error'],
+  ]);
+  assert.match(findings[0].message, /statically/);
+  assert.match(findings[1].suggestion, /lazy-loaded/);
+  delete fixture.checks.i18n;
+  assert.deepEqual(i18nOnly((await fixture.check()).diagnostics), []);
+});
+
+test('catches a dictionary-only deletion with a baseline and applies a single reasoned exception', async t => {
+  const fixture = await consumer(t, `<button>{{ t('order.save') }}</button>
+<button>{{ t('order.existing') }}</button>
+<button aria-label="Emergency">!</button>`);
+  const baseline = await fixture.check();
+  assert.deepEqual(i18nOnly(baseline.diagnostics).map(item => item.rule), ['i18n-message-reference', 'i18n-raw-text']);
+  await fixture.save('baseline.json', JSON.stringify(baseline));
+  const { 'order.save': _removed, ...remaining } = messages;
+  await fixture.save('messages.json', JSON.stringify(remaining));
+  fixture.checks.exceptions.push({
+    file: 'src/order.html', rule: 'i18n-raw-text', source: 'aria-label="Emergency"',
+    reason: 'Regulatory copy may change only after the next compliance review.',
+  });
+  const report = await fixture.check('baseline.json');
+  assert.equal(report.valid, false);
+  assert.deepEqual(report.diagnostics.map(item => [item.rule, item.line]), [['i18n-message-reference', 1]]);
+  assert.deepEqual(report.existing_diagnostics?.map(item => [item.rule, item.line]), [['i18n-message-reference', 2]]);
+  assert.deepEqual(report.exceptions.map(item => [item.rule, item.line, item.exception]), [
+    ['i18n-raw-text', 3, fixture.checks.exceptions[0].reason],
+  ]);
+});
+
+test('recognizes generated translation imports and keeps app-local imports and shadowed calls independent', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/locale.ts', 'export const uiMessage = (input: string) => input;\n');
+  await fixture.save('src/order.ts', `import {uiMessage} from './locale';
+import {injectUiMessageText as injectText, uiMessage as oldMessage} from '../.ui/generated/angular';
+const text = injectText();
+export const app = uiMessage('app.local');
+export function passthrough() { const text = (input: string) => input; return text('app.shadow'); }
+export const generated = text('uiFoundation.unknown');
+export const legacy = oldMessage('保存');
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [2, 'i18n-legacy-key'],
+    [6, 'i18n-message-reference'],
+  ]);
+});
+
+test('checks optional expressions and chained handlers and handles statically known argument keys and shapes', async t => {
+  const fixture = await consumer(t, `<p>{{ t?.('order.optional') }}</p>
+<button (click)="t('order.chained'); dismiss()" i18n>Dismiss</button>
+<p>{{ t('order.' + 'composed') }}</p>
+<p>{{ 'order.count' | translate:{ count: [] } }}</p>`);
+  await fixture.save('src/order.ts', `declare function t(id: string, args?: Record<string, unknown>): string;
+const known = 'order.fromConst';
+export const missing = t(known);
+export const correct = t('order.count', { ['count']: 2 });
+export const wrong = t('order.count', { count: [] });
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ['src/order.html', 1, 'i18n-message-reference'],
+    ['src/order.html', 2, 'i18n-message-reference'],
+    ['src/order.html', 3, 'i18n-message-reference'],
+    ['src/order.html', 4, 'i18n-message-arguments'],
+    ['src/order.ts', 3, 'i18n-message-reference'],
+    ['src/order.ts', 5, 'i18n-message-arguments'],
+  ]);
+});
+
+test('finds fixed error copy reached through display bindings and Angular host metadata', async t => {
+  const fixture = await consumer(t, `<p [textContent]="errors.EXPIRED"></p>
+<p [textContent]="getError(response.code)"></p>
+<p [innerHTML]="'Please retry'"></p>
+<input type="submit" value="Save order">
+<input [value]="response.text" data-testid="status">
+<p [textContent]="response.text"></p>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.html',
+  host: {'aria-label': 'Order actions', '[attr.title]': "'Order help'"},
+})
+export class Order {
+  readonly errors = { EXPIRED: 'Your order has expired' } as const;
+  getError(code: keyof typeof this.errors) { return this.errors[code]; }
+}
+declare function metadata(options: unknown): ClassDecorator;
+@metadata({host: {'aria-label': 'Other metadata'}})
+export class Other {}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ...[1, 2, 3, 4].map(line => ['src/order.html', line, 'i18n-raw-text']),
+    ['src/order.ts', 5, 'i18n-raw-text'],
+    ['src/order.ts', 5, 'i18n-raw-text'],
+  ]);
+});
+
+test('a reasoned argument exception remains bound to its recorded call when the ID changes', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('messages.json', JSON.stringify({ ...messages, 'order.amendCount': messages['order.count'] }));
+  const checkSource = async (id: string) => {
+    await fixture.save('src/order.ts', `declare function t(id: string, args: Record<string, unknown>): string;
+export const displayed = t('${id}', { count: 'two' });
+`);
+    return fixture.check();
+  };
+  const original = (await checkSource('order.count')).diagnostics.find(item => item.rule === 'i18n-message-arguments')!;
+  assert.equal(original.source, "t('order.count', { count: 'two' })");
+  assert.equal(original.column, 52);
+  fixture.checks.exceptions.push({
+    file: 'src/order.ts', rule: original.rule, source: original.source,
+    reason: 'The app shows a fixed status until its data source provides a numeric count.',
+  });
+  assert.equal((await checkSource('order.count')).exceptions.length, 1);
+  const changed = await checkSource('order.amendCount');
+  assert.equal(changed.exceptions.length, 0);
+  assert.ok(changed.diagnostics.some(item => item.rule === 'i18n-message-arguments' && item.message.includes('order.amendCount')));
+});
+
+test('recognizes generated member translators in templates and host expressions without taking over local names', async t => {
+  const fixture = await consumer(t, `<p>{{ builtin('uiFoundation.missing') }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount', parameters: { count: 'two' } }) }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount' }) }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount', parameters: { count: 2 } }) }}</p>
+<p>{{ uiMessage('Legacy work order') }}</p>
+<p>{{ 'order.save' | uiStableMessage }}</p>
+@for (alias of aliases; track alias) { <p>{{ alias('app.local') }}</p> }
+<p>{{ this.alias('uiFoundation.stillMissing') }}</p>
+<p [textContent]="errors?.EXPIRED"></p>`);
+  fixture.checks.i18n = { ...i18n, pipes: ['translate', 'uiStableMessage'] };
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import * as ui from '../.ui/generated/angular/core';
+import {injectUiMessage as factory} from '../.ui/generated/angular';
+@Component({
+  selector:'app-order', templateUrl:'./order.html',
+  host:{'[attr.aria-label]':'fixedLabel','[attr.title]':'errors?.EXPIRED','[attr.aria-description]':"builtin('uiFoundation.hostMissing')"}
+})
+export class Order {
+  readonly errors = { EXPIRED: 'Order expired' };
+  readonly fixedLabel = 'Fixed order';
+  readonly builtin = ui.injectUiMessageText();
+  readonly request = factory();
+  readonly alias = ui.injectUiMessageText();
+  readonly aliases = [(label: string) => label];
+  uiMessage(label: string) { return label; }
+}
+const oldMessage = ui.uiMessage('保存');
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ['src/order.html', 1, 'i18n-message-reference'],
+    ['src/order.html', 2, 'i18n-message-arguments'],
+    ['src/order.html', 3, 'i18n-message-arguments'],
+    ['src/order.html', 8, 'i18n-message-reference'],
+    ['src/order.html', 9, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-message-reference'],
+    ['src/order.ts', 17, 'i18n-legacy-key'],
+  ]);
+});
+
+test('checks closed incompatible unions and typed request shapes without guessing about mixed unions', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/order.ts', `import {injectUiMessage} from '../.ui/generated/angular/core';
+declare function t(id: string, args: Record<string, unknown>): string;
+declare let wrong: string | boolean;
+declare let mixed: string | number;
+declare const unknownShape: Record<string, unknown>;
+const id = 'uiFoundation.listbox.selectedCount';
+const parameters = {count: 2};
+const translated = injectUiMessage();
+export const valid = translated({id, parameters});
+export const validSpread = translated({id, ...{parameters}});
+export const validObject = translated({ id: 'uiFoundation.listbox.selectedCount', parameters });
+export const validRequest = translated({ id, parameters } as const);
+export const wrongArg = t('order.count', {count: wrong});
+export const possible = t('order.count', {count: mixed});
+export const fragment = t('order.count', {count: 2}) + ' remaining';
+export const missing = translated({id, parameters: {}});
+export const unconfirmed = translated({id, parameters: unknownShape});
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [13, 'i18n-message-arguments'],
+    [15, 'i18n-fragment'],
+    [16, 'i18n-message-arguments'],
+    [17, 'i18n-unconfirmed'],
+  ]);
+});
+
+test('a template-local control value is not displayed copy and translated aliases still check their references', async t => {
+  const fixture = await consumer(t, `@let code = 'OPEN';
+@if (result.code === code) { <p i18n>Order is open</p> }
+@let label = t('order.missing');
+<p>{{ t('order.count', {count: 'tw' + 'o'}) }}</p>`);
+  assert.deepEqual(i18nOnly((await fixture.check()).diagnostics).map(item => [item.line, item.rule]), [
+    [3, 'i18n-message-reference'],
+    [4, 'i18n-message-arguments'],
+  ]);
+});
+
+test('uses lexical ownership for generated wrappers, app data, template references and displayed aliases', async t => {
+  const fixture = await consumer(t, `<p>{{ text('uiFoundation.outside') }}</p>
+@for (text of api.formatters; track text) { <p>{{ text(api.id) }}</p> }
+<p>{{ text('uiFoundation.sibling') }}</p>
+@for (name of api.names; track name) { <p>{{ name }}</p> }
+<p>{{ name }}</p>
+@if (ready) { <input #text><p>{{ text.value }}</p><p>{{ this.text('uiFoundation.explicit') }}</p> }
+<ng-template let-name><p>{{ name }}</p></ng-template>
+@let state = 'OPEN';
+@if (order.status === state) { <p i18n>Order is open</p> }
+@let label = 'Save order';
+<button>{{ label }}</button>
+@if (ready) { @let label = api.name; <button>{{ label }}</button> }
+<button>{{ label }}</button>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import {injectUiMessageText} from '../.ui/generated/angular/core';
+@Component({selector: 'app-order', templateUrl: './order.html'})
+export class Order {
+  readonly text = injectUiMessageText();
+  readonly name = 'Fixed component label';
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [1, 'i18n-message-reference'],
+    [3, 'i18n-message-reference'],
+    [5, 'i18n-raw-text'],
+    [6, 'i18n-message-reference'],
+    [11, 'i18n-raw-text'],
+    [13, 'i18n-raw-text'],
+  ]);
+});
+
+test('the proven request wrapper takes precedence over a configured function with the same name', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/order.ts', `import {injectUiMessage} from '../.ui/generated/angular/core';
+export class Order {
+  readonly t = injectUiMessage();
+  valid() { return this.t({id: 'uiFoundation.listbox.selectedCount', parameters: {count: 1}}); }
+  invalid() { return this.t({id: 'uiFoundation.listbox.selectedCount', parameters: {count: 'two'}}); }
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-message-arguments']]);
+});
+
+test('classifies consumed aliases in their defining view and scans Angular switch case groups', async t => {
+  const fixture = await consumer(t, `@let controlState = 'OPEN';
+@if (status === controlState) { <p i18n>Notice</p> }
+@let message = errorByCode[status];
+<p>{{ message }}</p>
+@let branchLabel = status ? 'Fixed condition A' : 'Fixed condition B';
+<button [attr.aria-label]="branchLabel"></button>
+@let label = this.label;
+<p>{{ label }}</p>
+@let id = 'uiFoundation.noSuch';
+<p>{{ text(id) }}</p>
+@switch (status) { @case ('OPEN') { <button>Open order</button><p>{{ text('uiFoundation.noSuchInCase') }}</p> } }
+@for (errorByCode of api.catalogs; track errorByCode) { <p>{{ message }}</p><p>{{ errorByCode[status] }}</p> }
+@let translated = text('uiFoundation.noSuchAtDeclaration');
+<p>{{ translated }}</p>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import {injectUiMessageText} from '../.ui/generated/angular/core';
+@Component({selector: 'app-order', templateUrl: './order.html'})
+export class Order {
+  readonly label = 'Fixed component label';
+  readonly status = 'OPEN';
+  readonly errorByCode: Record<string, string> = { OPEN: 'Please reopen the order' };
+  readonly text = injectUiMessageText();
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [4, 'i18n-raw-text'], [6, 'i18n-raw-text'], [8, 'i18n-raw-text'],
+    [10, 'i18n-message-reference'],
+    [11, 'i18n-raw-text'], [11, 'i18n-message-reference'],
+    [12, 'i18n-raw-text'], [13, 'i18n-message-reference'],
+  ]);
+  assert.deepEqual(findings.filter(item => item.rule === 'i18n-message-reference').map(item => item.message.match(/uiFoundation\.\w+/)?.[0]),
+    ['uiFoundation.noSuch', 'uiFoundation.noSuchInCase', 'uiFoundation.noSuchAtDeclaration']);
+});
+
+test('selects the exact status-map entry and detects a translated fragment through a local alias', async t => {
+  const fixture = await consumer(t, `@let selected = ('ORDER');
+@let activeMessage = errors[selected];
+<p>{{ activeMessage }}</p>
+@let translated = t('order.save');
+<p>{{ (translated) + author }}</p>
+<button>{{ ('Grouped fixed copy') }}</button>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+@Component({selector:'app-order', templateUrl: './order.html'}) export class Order {
+  receivedMessage = '';
+  author = '';
+  readonly errors = { ORDER: this.receivedMessage, SERVER: 'Fixed server message' };
+}`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-fragment'], [6, 'i18n-raw-text']]);
+});

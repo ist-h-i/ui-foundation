@@ -10,6 +10,8 @@ import { createUtilityResolver } from './tailwind.ts';
 import { proveClassDomain } from './class-domain.ts';
 import { boundedSearch } from './bounded-search.ts';
 import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, templateOpeningContext, typescriptBaselineContext, withBaselineContext, withBaselineSubject, workspaceSourceRoots } from './application.ts';
+import libraryMessageArguments from '../../docs/ui-message-arguments.json' with { type: 'json' };
+import { createMessageChecks, readMessageDictionary, type I18nFinding, type MessageDictionary } from './i18n.ts';
 import type { AngularDeclaration, CheckSourcesOptions, SourceDiagnostic, SourceLocation, SourceReport, StyleContext, ScopedCustomProperty, CustomPropertyOrigin, CustomPropertyResolver } from './types.ts';
 
 const forbidden = new Set(['node_modules', '.git', '.agents', 'dist', 'build', 'coverage', 'artifacts']);
@@ -1050,6 +1052,26 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       return await fs.readFile(file, 'utf8');
     } catch (error) { problem(file, 'source-error', `Cannot read source: ${(error as Error).message}`); return; }
   }
+  const dictionaries: MessageDictionary[] = [];
+  for (const definition of checks.i18n?.dictionaries ?? []) {
+    const file = path.resolve(root, definition.file);
+    const text = await safeFile(file);
+    if (text === undefined) continue;
+    try { dictionaries.push(readMessageDictionary(text, definition.complete)); }
+    catch (error) { problem(file, 'source-error', `Cannot use message dictionary: ${(error as Error).message}`, text); }
+  }
+  const messages = checks.i18n ? createMessageChecks(checks.i18n, dictionaries, {
+    messages: new Map(Object.entries(libraryMessageArguments)),
+    complete: true,
+  }) : undefined;
+  const emitMessage = (file: string, text: string, source: string, position: (at: number) => number, context?: string[]): I18nFinding =>
+    (rule, severity, message, suggestion, start, end, site = [], displaySpan = { start, end }) => {
+      checked++;
+      const excerpt = source.slice(displaySpan.start, displaySpan.end).trim();
+      const item = withBaselineSubject(diagnostic(loc(file, text, position(start)), rule, severity, message, suggestion, excerpt),
+        'i18n', message, excerpt);
+      emit(context ? withBaselineContext(item, ...context, ...site) : item);
+    };
   const excludedProjects: NonNullable<SourceReport['excluded_projects']> = [];
   const workspace = path.join(root, 'angular.json');
   let hasWorkspace = false;
@@ -1209,6 +1231,11 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
   const angularOutput = path.join(output, 'angular');
   const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
+  const generatedAngularImport = (specifier: ts.StringLiteralLike): boolean =>
+    (specifier.text.startsWith('.') && within(angularOutput, path.resolve(path.dirname(specifier.getSourceFile().fileName), specifier.text)))
+    || (checker.getSymbolAtLocation(specifier)?.declarations?.some(declaration =>
+      within(angularOutput, path.resolve(declaration.getSourceFile().fileName))) ?? false);
+
   const resolutionCache = ts.createModuleResolutionCache(root, compilerHost.getCanonicalFileName, compilerOptions);
   function resolveImport(module: ts.StringLiteralLike, source: ts.SourceFile) {
     return resolveSpecifier(module.text, source, module);
@@ -1554,6 +1581,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   function inspectTemplate(file: string, text: string, template: string, offset: number, members = new Map<string, ts.Expression>(), scope?: Set<Declaration>, position?: (offset: number) => number, classes = globalClasses) {
     const parsed = parseTemplate(template, relative(root, file), { preserveWhitespaces: false }); checked++;
     if (parsed.errors?.length) { for (const error of parsed.errors) problem(file, 'parse-error', error.msg, text, position ? position(error.span.start.offset) : offset + error.span.start.offset); return; }
+    messages?.template(parsed.nodes, emitMessage(file, text, template, position ?? (at => offset + at), ['Angular message']), members, (start, end) => templateOpeningContext(template.slice(start, end)), checker, generatedAngularImport);
     const visited = new Set<object>();
     function visit(node: any, ancestors: string[]) {
       if (!node || typeof node !== 'object' || visited.has(node)) return; visited.add(node);
@@ -2618,10 +2646,19 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     if (file.endsWith('.html')) inspectTemplate(file, text, text, 0);
     if (/\.(css|scss)$/.test(file)) checkCSS(text, loc(file, text), stylesheetContext(text), file.endsWith('.scss'));
   }
+  if (messages) {
+    for (const [file, text] of all) {
+      if (!file.endsWith('.ts')) continue;
+      const source = program.getSourceFile(file);
+      if (source) messages.typescript(source, checker, emitMessage(file, text, text, at => at), generatedAngularImport);
+    }
+  }
   // Exceptions are precise, auditable, and cannot suppress source/parse failures.
   const suppressed = new Set<SourceDiagnostic>();
   for (const exception of checks.exceptions) {
-    const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule && d.source.includes(exception.source) && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
+    const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule
+      && (d.rule.startsWith('i18n-') ? d.source === exception.source : d.source.includes(exception.source))
+      && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
     if (!isExceptableRule(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
     else { const match = matches[0]!; suppressed.add(match); const { baseline_context: _context, baseline_subject: _subject, ...finding } = match; exceptions.push({ ...finding, exception: exception.reason }); }
   }

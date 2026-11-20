@@ -37,6 +37,8 @@ Use the generated `angular/core.ts` entry for the action, card, and native form-
 
 Before choosing a translation key, identify who owns the text. Use the app's translation system for business labels, labels supplied via component inputs, data, and backend errors. For built-in controls, descriptions, and feedback, use the stable `UiMessageRequest` ID and its typed named arguments. Translate complete sentences, including count variations. Read the [working dictionary adapter](references/examples/locale-adapter.ts) and [language switch guide](../../docs/ui-library-consumer-guide.en.md#select-english-component-messages) for app-owned loading and built-in fallbacks. Leave drafts and in-flight operations in place during a language change. New configurations default to English; Japanese starters and YAML that omits `default_language` keep Japanese.
 
+Check added display and accessible copy against the app’s translation configuration. [Translation checks and fixes](references/i18n-check.md)
+
 Treat pending, failed, partially available, stale, and unknown results as distinct states. Keep the draft and the information the user can still act on. Connect a component's request events and public completion methods to the app's actual operations. The app owns I/O, permissions, deduplication, and confirmation that persistence, cancellation, or undo succeeded. Correlate responses with request IDs where the public contract supplies them.
 
 Use the relevant component contracts to guide implementation and choose the checks for the screen.

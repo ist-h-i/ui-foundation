@@ -41,6 +41,62 @@ Add `"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"` to t
 
 The standalone checker validates YAML, compares it with generated policy and scans source. Reconstructing generated output and detecting unowned files are responsibilities of the full CLI. Standalone success does not establish generation consistency. Update configuration/package version and run `./node_modules/.bin/ui-foundation sync`; generation, ownership, idempotence and migration follow the [design contract](design.en.md).
 
+## Translation checks
+
+Enable `checks.i18n` in an app that uses the stable message ID contract. Leave the key absent when using the previous translation API. The check scans Angular templates and TypeScript in `checks.source_roots` and reads only the dictionaries you select.
+
+```yaml
+checks:
+  source_roots: [src]
+  i18n:
+    functions: [t]
+    pipes: [translate]
+    dictionaries:
+      - file: src/orders.messages.json
+        complete: true
+```
+
+Register the function and pipe names your app actually uses. Functions receive the ID and optional named argument object, as in `t('order.count', {count: 3})`. Pipes receive the ID on the left and an optional named object after the colon. Set `display_bindings: [toastMessage]` to include a custom display input. Set up a generated `injectUiMessageText()` or `injectUiMessage()` field on the Angular component to have its direct calls checked in templates and host bindings. The checker reads only statically supported IDs and named argument shapes. When a template-local name hides the field, use `this` to refer to the component field explicitly.
+
+Use a flat JSON file for app-owned message IDs. A string can declare required names with `{name}` placeholders. Use a `parameters` object for explicit types. Supported types are `string`, `number`, `boolean`, and `null`. The checker resolves the library's own IDs and types from the shipped contract. Selected app files form one dictionary scope, so an ID found in any selected file is present. To detect a missing ID for a particular language, check that language’s complete catalog without selecting other languages’ copies.
+
+```json
+{
+  "order.save": "Save order",
+  "order.count": { "parameters": { "count": "number" } }
+}
+```
+
+Suppose the following template creates a raw-text warning for the button label, another for the accessible label, and an argument error for `count`.
+
+<!-- i18n-check: before -->
+```html
+<button data-testid="save-order" aria-label="Save order">保存</button>
+<p>{{ t('order.count', {count: '3'}) }}</p>
+<p>{{ 'uiFoundation.actionControl.busy' | uiStableMessage }}</p>
+<p>{{ order.reference }}</p>
+```
+
+Add the copy to the app's catalog and pass the number as a named argument. Angular `i18n` and `i18n-aria-label` are also accepted for copy owned by Angular's localization flow.
+
+<!-- i18n-check: after -->
+```html
+<button data-testid="save-order" [attr.aria-label]="t('order.save')">{{ 'order.save' | translate }}</button>
+<p>{{ t('order.count', {count: 3}) }}</p>
+<p>{{ 'uiFoundation.actionControl.busy' | uiStableMessage }}</p>
+<p>{{ order.reference }}</p>
+```
+
+| Diagnostic | Action |
+| --- | --- |
+| `i18n-raw-text` warning | Translate the displayed text, including app-defined error messages selected by a backend status code. Test IDs, route properties, and received data are outside this rule. |
+| `i18n-message-reference` or `i18n-message-arguments` error | Fix the ID or selected dictionary. Pass the required named arguments with the indicated types. Removing an ID from a complete dictionary can create an error without any template edits. |
+| `i18n-fragment` warning | Move the whole sentence into one message and pass inserted values in its argument object. |
+| `i18n-unconfirmed` warning | Verify which ID, arguments, and dictionary are used at runtime. Set `complete: false` for a selected dictionary that represents only part of the app's available messages. |
+| `i18n-legacy-key` error | Use a stable library ID or register the app's translation path and use an app-owned ID. |
+
+After changing the YAML, run the installed CLI's `sync`, then run `check --format json`. Both the CLI and generated checker use the same source rules. Use a reviewed baseline for existing errors. For a deliberate one-site exception, copy the complete `source` value from the diagnostic and record the reason and review trigger. Confirm lazy catalogs and language switching in the actual app.
+
 ## Workspace coverage and existing findings
 
 When the project root contains `angular.json`, the checker compares each project's `sourceRoot` (or `root` when omitted) with `checks.source_roots`. A project outside those roots yields an `uncovered-project` warning with its name and path. The scan still uses only the configured roots. To document an intentionally excluded project, add its name and reason under `checks.excluded_projects`:

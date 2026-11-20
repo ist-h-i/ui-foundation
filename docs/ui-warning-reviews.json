@@ -4,10 +4,10 @@
     "examples/ui.config.repository.yaml": "2e8fe650385fe5e6e9db3548238af1fb9001dfb8038efbc935d9d756777240a9",
     "package.json": "d15961d56c29b179efe30baabab22d9b0b5ee97aa97df04922085857bdc42164",
     "package-lock.json": "d0520267589f4ad5389e09bf889d8bdc38a268e55753512e68865066b89c9653",
-    "src/config.ts": "2d594b7a57360d2d2fca189d52d161191d6bbf9a1c671c64aab1a2a9a1dae8e1",
+    "src/config.ts": "444fc57398f497fe8b382a1901e8d4377e27c4a2dc82824bb3031b0e7807f461",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
     "src/sync.ts": "31065689fc6169b46bc11347c0ca4e2d6542e313116282ef5e81d26bbd2747bc",
-    "src/check/application.ts": "5238a90ac4f96c9b33af5a4f0fb204a11abfbeef4fa7dc89c51e9e4ee91ae2cf",
+    "src/check/application.ts": "d8215c454d7f816184872b7c6d207c601d71bf83644de1f6ea679a57a35bee52",
     "src/check/bounded-search.ts": "007557dd0be3e13506c23b0eca87909a396d571c260df609b90a895af0b90f8f",
     "src/check/bundle.ts": "bcff52e444c63faeb7a2c875a9a3e94211b5603b37b77b6ac539b5e14b0c00b6",
     "src/check/canonical.ts": "6645f7e87893e28c67433615add9c841922fce1fd81ae40cb161ba670c417dd7",
@@ -15,10 +15,10 @@
     "src/check/entry.ts": "8cc7cedd8c5c8478635afe9e01c4feb04d30b6c17f0594d07cc82396913f3299",
     "src/check/policy.ts": "7657b3050d8a63e5be226fbedf91211d783d01058ad2dea91679deb70925be42",
     "src/check/report.ts": "c0b262dabfecb9a7febbff5a57e7517777cf77a6117af85e93cd6569be3b3468",
-    "src/check/scanner.ts": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+    "src/check/scanner.ts": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
     "src/check/styles.ts": "2d49119d0b4bc953afd2479b7004aa9eecf4d7f54fb3e54bb96009498ea18f46",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
-    "src/check/types.ts": "d5da4570748c96eee2cd1147bd975aa0726a1a79693b3ec23a0dba7a62f3dea6",
+    "src/check/types.ts": "be71f7618feface64b14c86c2804b03204e63b5812215de659342ab3ace54c6c",
     "src/warning-review.ts": "b91a4e326f6b9b8633bc48714bf338d5fe4ecbafeecd80b4d10e2d329c9291e8",
     "src/warning-review-cli.ts": "9751597d24dadd07f0db8a59dad2421044f1ab345794e00b271ddf32ee7a24a5",
     "tests/static/warning-review.test.ts": "aa1e8c5e5b085b3fda49fbe5788034b7b6f5e6e98ac69cad49a030505cb56e34",
@@ -26,7 +26,8 @@
     "tests/static/write-sinks-portable.test.ts": "bb61341b61775c05d834fe318ef66f162cca3b759c0e91f7c6cf1855b2dcfb57",
     "src/sync-lock.ts": "6145864d21dc441d7477284c46d69b944679382fe04e1fec10d65882a885b3f0",
     "src/skill-docs.ts": "15ccdc9ba5ddc5126eb6e4c8b10cee4132a53475e72850008e6eed6aae378c7f",
-    "scripts/build-package.ts": "f6cb5ee465e4b797c40dbb4b4078bc5b66b773c14ae61a153d39dd150ab3a13a"
+    "scripts/build-package.ts": "f6cb5ee465e4b797c40dbb4b4078bc5b66b773c14ae61a153d39dd150ab3a13a",
+    "src/check/i18n.ts": "da8f7f189f719fb1933c8bc13ac71ba5afe791de60dc9b1851d981f8c0e6010a"
   },
   "reviews": [
     {
@@ -166,7 +167,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -280,7 +281,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -412,7 +413,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8186,7 +8187,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8288,7 +8289,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8390,7 +8391,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8504,7 +8505,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8618,7 +8619,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8726,7 +8727,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8810,7 +8811,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8906,7 +8907,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9002,7 +9003,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9098,7 +9099,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "4f70ea6c834e1761701365c9b6e1f07d66742f00eafe50afc1eab038fb4c3ea4",
+          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
           "scope": "Read source at audited snapshot."
         },
         {

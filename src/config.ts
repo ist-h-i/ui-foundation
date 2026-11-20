@@ -186,7 +186,7 @@ function validateConfig(input: unknown, source: SourceLocations): FoundationConf
 }
 
 function validateChecks(input: unknown, validator: Validator): ChecksConfig {
-  const checks = validator.object(input, 'checks', ['source_roots', 'tsconfig', 'approved_components', 'exceptions', 'excluded_projects'], ['tsconfig', 'approved_components', 'exceptions', 'excluded_projects']);
+  const checks = validator.object(input, 'checks', ['source_roots', 'tsconfig', 'approved_components', 'exceptions', 'excluded_projects', 'i18n'], ['tsconfig', 'approved_components', 'exceptions', 'excluded_projects', 'i18n']);
   const path = (value: unknown, at: string): string => {
     const text = validator.text(value, at);
     if (text !== text.trim() || /[\\\u0000-\u001f<>:"|?*]/.test(text) || text.startsWith('/')
@@ -233,7 +233,43 @@ function validateChecks(input: unknown, validator: Validator): ChecksConfig {
     return { name: validator.text(item.name, `${at}.name`), reason: validator.text(item.reason, `${at}.reason`) };
   });
   if (new Set(excluded_projects.map(item => item.name)).size !== excluded_projects.length) validator.issue('checks.excluded_projects', 'Duplicate excluded projects');
-  return { source_roots, ...(own(checks, 'excluded_projects') ? { excluded_projects } : {}), ...(own(checks, 'tsconfig') ? { tsconfig: path(checks.tsconfig, 'checks.tsconfig') } : {}), approved_components, exceptions };
+  let i18n: ChecksConfig['i18n'];
+  if (own(checks, 'i18n')) {
+    const at = 'checks.i18n';
+    const section = validator.object(checks.i18n, at, ['functions', 'pipes', 'dictionaries', 'display_bindings'],
+      ['functions', 'pipes', 'dictionaries', 'display_bindings']);
+    const list = (key: string) => own(section, key) ? validator.list(section[key], `${at}.${key}`, false) : [];
+    const nameList = (key: string, pattern: RegExp) => {
+      const names = list(key).map((value, index) => {
+        const location = `${at}.${key}.${index}`;
+        const name = validator.text(value, location);
+        if (!pattern.test(name)) validator.issue(location, 'Expected a supported identifier');
+        return name;
+      });
+      if (new Set(names).size !== names.length) validator.issue(`${at}.${key}`, 'Duplicate identifiers');
+      return names;
+    };
+    if (own(section, 'dictionaries') && !Array.isArray(section.dictionaries)) {
+      validator.issue(`${at}.dictionaries`, 'Expected a list');
+    }
+    const dictionaryEntries: unknown[] = Array.isArray(section.dictionaries) ? section.dictionaries : [];
+    const dictionaries = dictionaryEntries.map((value, index) => {
+      const location = `${at}.dictionaries.${index}`;
+      const entry = validator.object(value, location, ['file', 'complete'], ['complete']);
+      if (own(entry, 'complete') && typeof entry.complete !== 'boolean') validator.issue(`${location}.complete`, 'Expected a boolean');
+      const file = path(entry.file, `${location}.file`);
+      if (!file.endsWith('.json')) validator.issue(`${location}.file`, 'Expected a JSON dictionary');
+      return { file, complete: entry.complete !== false };
+    });
+    if (new Set(dictionaries.map(entry => entry.file)).size !== dictionaries.length) validator.issue(`${at}.dictionaries`, 'Duplicate dictionary files');
+    i18n = {
+      functions: nameList('functions', /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/),
+      pipes: nameList('pipes', /^[A-Za-z_$][\w$]*$/),
+      display_bindings: nameList('display_bindings', /^[A-Za-z][\w-]*$/),
+      dictionaries,
+    };
+  }
+  return { source_roots, ...(own(checks, 'excluded_projects') ? { excluded_projects } : {}), ...(own(checks, 'tsconfig') ? { tsconfig: path(checks.tsconfig, 'checks.tsconfig') } : {}), approved_components, exceptions, ...(i18n ? { i18n } : {}) };
 }
 
 /** Parse only literal YAML values; diagnostics retain the original key/value locations. */

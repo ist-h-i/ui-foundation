@@ -2,12 +2,19 @@ import type { PrimitiveType, ResolvedConfig } from '../config.ts';
 
 export interface ComponentApproval { module: string; export: string; reason: string }
 export interface CheckException { file: string; rule: string; source: string; reason: string; line?: number; column?: number }
+export interface I18nChecks {
+  functions: string[];
+  pipes: string[];
+  dictionaries: { file: string; complete: boolean }[];
+  display_bindings: string[];
+}
 export interface ChecksConfig {
   source_roots: string[];
   tsconfig?: string;
   excluded_projects?: { name: string; reason: string }[];
   approved_components: ComponentApproval[];
   exceptions: CheckException[];
+  i18n?: I18nChecks;
 }
 export interface SourceDiagnostic {
   file: string;
