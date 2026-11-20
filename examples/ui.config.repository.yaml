@@ -811,7 +811,7 @@ checks:
         .ui-org-children>.ui-org-item:last-child::after{block-size:calc(50% +
         var(--ui-space-field) / 2)}"
       reason: 階層node間のSVG/CSS接続線を子領域の中心・全幅へ結ぶ相対座標。nodeの文字・余白は意味トークンに追随する。
-    - file: templates/angular/page-frame.ts
+    - file: templates/angular/page-frame.css
       rule: literal-token
       source: "@media (max-width:40rem)"
       reason: レスポンシブ配置の切替境界。CSSのmedia queryでは意味CSS変数を参照できないため、この境界を個別に固定する。
@@ -897,7 +897,7 @@ checks:
       rule: literal-token
       source: ".ui-sr-only{clip-path: inset(50%)}"
       reason: 読み上げ用ラベルをDOMへ残して視覚上だけクリップするための1px／負のmargin／50%形状。通常の部品余白・寸法ではない。
-    - file: templates/angular/styles.css
+    - file: templates/angular/page-frame.css
       rule: literal-token
       source: ".ui-page-frame__heading{flex: 1 1 16rem}"
       reason: PageFrame見出しと補助操作の折返しを決めるflex配置の基準幅。見出しの書体・文字サイズ・領域余白は意味トークンへ接続する。
@@ -2235,7 +2235,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 119
+      line: 101
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。

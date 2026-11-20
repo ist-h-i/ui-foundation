@@ -26,7 +26,7 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.4
 ./node_modules/.bin/ui-foundation init --language ja
 ```
 
-Node.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 公開入口は専門部品も参照するため、小さな画面でも[依存関係](#依存関係)のパッケージを型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
+Node.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 全件入口を使う場合は、小さな画面でも[依存関係](#依存関係)の専門エンジンまで型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
 
 npm install後は`node_modules/@hiroshi.inoue/ui-foundation/docs/`で、導入した版の利用者文書を読めます。`sync`すると同じ文書が`.agents/skills/project-ui/references/docs/`へコピーされ、アプリ用のSkillと`project-context.md`も生成されます。開発元の計画・ADR・要求マトリクス・監査・検証履歴は配布せず、導入時の必須入力にはしません。
 
@@ -230,7 +230,22 @@ Tailwind v4を処理するビルド環境が必要です。生成部品のTypeSc
 
 ## 公開入口と Angular のビルド
 
-利用アプリは生成先の `angular/index.ts` を入口にします。以下は生成先が `.ui/generated/` の場合です。内部 controller、private field、fixture の実装に依存しません。
+利用する部品に応じて、生成先の公開入口を選びます。
+
+| 公開入口 | 用途 |
+| --- | --- |
+| `angular/core.ts` | 操作部品、Card、ネイティブ入力欄と、対応するアイコン・翻訳 API を使う。 |
+| `angular/index.ts` | ほかの部品を使う場合や、全件の Angular API が必要な場合に使う。 |
+
+`core` を提供する版を導入して同期すると、生成先が既定の `.ui/generated/` の場合は次のように指定できます。
+
+```ts
+import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/angular/core';
+```
+
+`core` は Angular core・common・CDK と CDK の peer である Angular Forms、RxJS、Lucide を参照します。アプリのビルドと起動に必要な Angular パッケージも用意してください。TypeScript の検査対象にはアプリのソースを指定し、生成コードは import を通じて取り込みます。全生成ソースを glob で指定すると、専門部品の依存関係まで型検査対象になります。共通のトークンと部品用 CSS を読み込んでください。`core` を使うための `sideEffects` 指定や専門部品の CSS・worker は不要です。既存の全件入口も引き続き利用できます。
+
+以下の例では全件入口を使用します。
 
 最初はテキスト入力を一つ組み込めます。次は`src/app.ts`に置くstandalone componentの例です。既存のアプリでは、自分の画面へimportとtemplateを組み込んでください。
 
@@ -323,7 +338,7 @@ export class DepartmentScreen {
 
 ベータの検証構成は Angular/CDK `22.2.1`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
 
-追加 runtime engine は次の 25 件です。公開 barrel はそれらを参照する生成ソースへつながるため、最小 consumer の strict compile でも解決可能にしておきます。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
+全件入口 `angular/index.ts` から参照される追加 runtime engine は次の 25 件です。この入口を使うときは、画面で使う部品が少なくても strict compile で解決できるようにします。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
 
 | パッケージ | 検証版 | 用途 |
 | --- | --- | --- |
@@ -353,7 +368,7 @@ export class DepartmentScreen {
 | `jsbarcode` | `3.12.3` | Barcode |
 | `temporal-polyfill` | `1.0.5` | Scheduler の時刻・time zone |
 
-利用アプリの型検査用に `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16` を実行します。公開入口の `angular/index.ts` は地図部品も参照するため、基本部品だけを使う場合も GeoJSON の型が必要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
+全件入口を使うアプリの型検査用に `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16` を実行します。公開入口の `angular/index.ts` は地図部品も参照するため、基本部品だけを使う場合も GeoJSON の型が必要です。ビルド用の Angular compiler/CLI、TypeScript、使用する bundler/linker もアプリの toolchain に用意します。
 
 `fast-formula-parser` の型は生成した `formula-parser.d.ts` にあります。公開 barrel の `SheetResult` export から `sheet-formula.ts` の triple-slash reference を経由して読み込まれます。この経路で最小 consumer の型付き parser 利用は検査できます。生成 barrel を読まずに parser だけを import した別の root file では型宣言が自動で現れるとは限りません。必要ならアプリの当該 worker/入口から生成型宣言を明示的に参照します。型宣言を `any` の module stub へ置き換えません。
 
@@ -361,7 +376,7 @@ export class DepartmentScreen {
 
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
-この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/`と`assets/pdf-source/`はファイルを選別せず、**全内容**を配布成果物に含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
+この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/` は全内容を配布成果物に含めます。PDF 資産を配布する場合は `assets/pdf-source/` の全内容も含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
 
 部品の inline CSS に加え、生成した `tokens.css`、`angular/styles.css`、専門部品を使う画面では `angular/specialist.css` を global CSS として取り込みます。MapView には実使用版の `maplibre-gl/dist/maplibre-gl.css` も必要です。アプリの utility CSS も用途別セマンティックトークンを使います。primitive 値の直接参照や旧 preset/density API の互換層は追加しません。
 
@@ -485,3 +500,9 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 ### パッケージの版を更新する
 
 CLIをnpmで更新しただけでは、アプリへコピー済みの部品・Skill・利用者文書は更新されません。再同期すると、生成Skillの`references/docs/`も導入版に更新されます。beta.1からbeta.2では、旧manifestが所有する開発文書等が削除対象になるため、[リリースノート](npm-beta-release-notes.ja.md#beta1からの更新)も確認してください。旧パッケージ版・lockfile・YAML・生成物・Skillを同じ復旧点へ保存し、更新先の依存/API変更を確認してから、上と同じdry-run・sync・checkとアプリ検証を行います。版の選択、中断時のlock、生成先の移動、復旧は[ベータ利用契約](npm-beta-readiness.ja.md#更新と復旧)と[コマンド一覧](commands.ja.md)に従います。
+
+## 保存の再試行を確認する任意のブラウザーテスト
+
+インストールした npm パッケージの `skills/ui-development/references/examples/dialog-retry.ts`、または同期済み Skill の `references/examples/dialog-retry.ts` をコピーします。既存の Playwright テストから `verifyRegistrationRetry` を import し、`page` fixture を渡します。利用アプリの Playwright コマンドでそのテストを実行します。 `baseURL` を設定して画面の相対パスを使うか、画面の URL 全体を渡します。Tab 操作とフォーカスの期待値は画面に合わせ、保存失敗後の移動先も指定します。
+
+画面の URL、操作対象のアクセシブルな名前、表示するエラーを利用アプリに合わせて変更します。保存先の POST パス、リクエスト本文、失敗・成功時の模擬応答も合わせてください。この例は保存失敗後の入力保持、キーボードからの再試行、保存成功後のフォーカス復帰を確認します。

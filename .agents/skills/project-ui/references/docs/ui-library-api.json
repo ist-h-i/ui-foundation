@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 146,
+  "source_count": 147,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -3215,6 +3215,48 @@
               "declaration": "complete(value: unknown = undefined): boolean"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/core.ts",
+      "sha256": "fa1fc17d2cac0795855f0f5b8a5bd2d66c0cb090b7e94f371cbca6eaa8e5f51a",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { Card, CardHeader, CardBody, CardFooter, CardMedia, CardActions, CardTemplate, type CardArea, type CardContext } from './card';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { FormField, FieldControl } from './form-field';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { Icon, provideUiIcons } from './icon';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { UI_LOCALE, UiLocaleScope, UiMessagePipe, provideUiLocale, injectUiLocale, injectUiText } from './locale';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { defaultUiLocale, resolveUiLocale, uiMessage } from './locale-model';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { uiEnglishMessages } from './locale-en';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { uiJapaneseMessages } from './locale-ja';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export type { UiDirection, UiMessages, UiLocaleOptions, UiLocaleResolved } from './locale-model';"
         }
       ]
     },
@@ -13226,7 +13268,7 @@
     },
     {
       "path": "templates/angular/page-frame.ts",
-      "sha256": "73cdb0d6a82e016de1f71529bfb76cb89e46f8fd52f3d5deb56eee036e020614",
+      "sha256": "dfbb7e36abafbf5ffeda17881a36990bc1e51aaa191a25618d27933c67636b86",
       "declarations": [
         {
           "name": "PageFrame",
