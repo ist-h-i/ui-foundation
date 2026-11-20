@@ -141,3 +141,94 @@ test('catches a dictionary-only deletion with a baseline and applies a single re
     ['i18n-raw-text', 3, fixture.checks.exceptions[0].reason],
   ]);
 });
+
+test('recognizes generated translation imports and keeps app-local imports and shadowed calls independent', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/locale.ts', 'export const uiMessage = (input: string) => input;\n');
+  await fixture.save('src/order.ts', `import {uiMessage} from './locale';
+import {injectUiMessageText as injectText, uiMessage as oldMessage} from '../.ui/generated/angular';
+const text = injectText();
+export const app = uiMessage('app.local');
+export function passthrough() { const text = (input: string) => input; return text('app.shadow'); }
+export const generated = text('uiFoundation.unknown');
+export const legacy = oldMessage('保存');
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [2, 'i18n-legacy-key'],
+    [6, 'i18n-message-reference'],
+  ]);
+});
+
+test('checks optional expressions and chained handlers and handles statically known argument keys and shapes', async t => {
+  const fixture = await consumer(t, `<p>{{ t?.('order.optional') }}</p>
+<button (click)="t('order.chained'); dismiss()" i18n>Dismiss</button>
+<p>{{ t('order.' + 'composed') }}</p>
+<p>{{ 'order.count' | translate:{ count: [] } }}</p>`);
+  await fixture.save('src/order.ts', `declare function t(id: string, args?: Record<string, unknown>): string;
+const known = 'order.fromConst';
+export const missing = t(known);
+export const correct = t('order.count', { ['count']: 2 });
+export const wrong = t('order.count', { count: [] });
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ['src/order.html', 1, 'i18n-message-reference'],
+    ['src/order.html', 2, 'i18n-message-reference'],
+    ['src/order.html', 3, 'i18n-message-reference'],
+    ['src/order.html', 4, 'i18n-message-arguments'],
+    ['src/order.ts', 3, 'i18n-message-reference'],
+    ['src/order.ts', 5, 'i18n-message-arguments'],
+  ]);
+});
+
+test('finds fixed error copy reached through display bindings and Angular host metadata', async t => {
+  const fixture = await consumer(t, `<p [textContent]="errors.EXPIRED"></p>
+<p [textContent]="getError(response.code)"></p>
+<p [innerHTML]="'Please retry'"></p>
+<input type="submit" value="Save order">
+<input [value]="response.text" data-testid="status">
+<p [textContent]="response.text"></p>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.html',
+  host: {'aria-label': 'Order actions', '[attr.title]': "'Order help'"},
+})
+export class Order {
+  readonly errors = { EXPIRED: 'Your order has expired' } as const;
+  getError(code: keyof typeof this.errors) { return this.errors[code]; }
+}
+declare function metadata(options: unknown): ClassDecorator;
+@metadata({host: {'aria-label': 'Other metadata'}})
+export class Other {}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ...[1, 2, 3, 4].map(line => ['src/order.html', line, 'i18n-raw-text']),
+    ['src/order.ts', 5, 'i18n-raw-text'],
+    ['src/order.ts', 5, 'i18n-raw-text'],
+  ]);
+});
+
+test('a reasoned argument exception remains bound to its recorded call when the ID changes', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('messages.json', JSON.stringify({ ...messages, 'order.amendCount': messages['order.count'] }));
+  const checkSource = async (id: string) => {
+    await fixture.save('src/order.ts', `declare function t(id: string, args: Record<string, unknown>): string;
+export const displayed = t('${id}', { count: 'two' });
+`);
+    return fixture.check();
+  };
+  const original = (await checkSource('order.count')).diagnostics.find(item => item.rule === 'i18n-message-arguments')!;
+  assert.equal(original.source, "t('order.count', { count: 'two' })");
+  assert.equal(original.column, 52);
+  fixture.checks.exceptions.push({
+    file: 'src/order.ts', rule: original.rule, source: original.source,
+    reason: 'The app shows a fixed status until its data source provides a numeric count.',
+  });
+  assert.equal((await checkSource('order.count')).exceptions.length, 1);
+  const changed = await checkSource('order.amendCount');
+  assert.equal(changed.exceptions.length, 0);
+  assert.ok(changed.diagnostics.some(item => item.rule === 'i18n-message-arguments' && item.message.includes('order.amendCount')));
+});

@@ -1065,9 +1065,9 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     complete: true,
   }) : undefined;
   const emitMessage = (file: string, text: string, source: string, position: (at: number) => number, context?: string[]): I18nFinding =>
-    (rule, severity, message, suggestion, start, end, site = []) => {
+    (rule, severity, message, suggestion, start, end, site = [], displaySpan = { start, end }) => {
       checked++;
-      const excerpt = source.slice(start, end).trim();
+      const excerpt = source.slice(displaySpan.start, displaySpan.end).trim();
       const item = withBaselineSubject(diagnostic(loc(file, text, position(start)), rule, severity, message, suggestion, excerpt),
         'i18n', message, excerpt);
       emit(context ? withBaselineContext(item, ...context, ...site) : item);
@@ -2646,13 +2646,19 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     for (const [file, text] of all) {
       if (!file.endsWith('.ts')) continue;
       const source = program.getSourceFile(file);
-      if (source) messages.typescript(source, checker, emitMessage(file, text, text, at => at));
+      if (source) messages.typescript(source, checker, emitMessage(file, text, text, at => at), specifier => {
+        if (specifier.text.startsWith('.') && within(path.join(output, 'angular'), path.resolve(path.dirname(file), specifier.text))) return true;
+        return checker.getSymbolAtLocation(specifier)?.declarations?.some(declaration =>
+          within(path.join(output, 'angular'), path.resolve(declaration.getSourceFile().fileName))) ?? false;
+      });
     }
   }
   // Exceptions are precise, auditable, and cannot suppress source/parse failures.
   const suppressed = new Set<SourceDiagnostic>();
   for (const exception of checks.exceptions) {
-    const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule && d.source.includes(exception.source) && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
+    const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule
+      && (d.rule.startsWith('i18n-') ? d.source === exception.source : d.source.includes(exception.source))
+      && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
     if (!isExceptableRule(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
     else { const match = matches[0]!; suppressed.add(match); const { baseline_context: _context, baseline_subject: _subject, ...finding } = match; exceptions.push({ ...finding, exception: exception.reason }); }
   }

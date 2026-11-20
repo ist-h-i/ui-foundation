@@ -1,4 +1,4 @@
-import { AST, ASTWithSource, Binary, BindingPipe, Call, Conditional, ImplicitReceiver, Interpolation, KeyedRead, LiteralMap, LiteralPrimitive, PropertyRead, ThisReceiver } from '@angular/compiler';
+import { AST, ASTWithSource, Binary, BindingPipe, Call, Chain, Conditional, ImplicitReceiver, Interpolation, KeyedRead, Lexer, LiteralArray, LiteralMap, LiteralPrimitive, NonNullAssert, ParseLocation, ParseSourceFile, ParseSourceSpan, Parser, PropertyRead, SafeCall, SafePropertyRead, ThisReceiver } from '@angular/compiler';
 import ts from 'typescript';
 import type { I18nChecks } from './types.ts';
 
@@ -8,7 +8,7 @@ export interface MessageDictionary {
   complete: boolean;
 }
 export type I18nRule = 'i18n-raw-text' | 'i18n-message-reference' | 'i18n-message-arguments' | 'i18n-fragment' | 'i18n-unconfirmed' | 'i18n-legacy-key';
-export type I18nFinding = (rule: I18nRule, severity: 'error' | 'warning', message: string, suggestion: string, start: number, end: number, site?: string[]) => void;
+export type I18nFinding = (rule: I18nRule, severity: 'error' | 'warning', message: string, suggestion: string, start: number, end: number, site?: string[], excerpt?: Span) => void;
 type Argument = { kind?: string; start: number; end: number };
 type Span = { start: number; end: number };
 
@@ -17,9 +17,19 @@ const parameterSyntax = /^[A-Za-z_$][\w$]*$/;
 const types = new Set(['string', 'number', 'boolean', 'null']);
 const bindingNames = new Set([
   'aria-label', 'aria-description', 'aria-valuetext', 'aria-roledescription', 'label', 'placeholder',
-  'alt', 'title', 'textContent', 'innerText', 'message', 'errorMessage', 'notice', 'emptyMessage', 'loadingMessage',
+  'alt', 'title', 'textContent', 'innerText', 'innerHTML', 'message', 'errorMessage', 'notice', 'emptyMessage', 'loadingMessage',
 ]);
 const legacyFunctions = new Set(['uiMessage', 'injectUiText']);
+const bindingParser = new Parser(new Lexer());
+function knownAngularId(value: AST | undefined): string | undefined {
+  if (value instanceof LiteralPrimitive && typeof value.value === 'string') return value.value;
+  if (value instanceof Binary && value.operation === '+') {
+    const left = knownAngularId(value.left);
+    const right = knownAngularId(value.right);
+    if (left !== undefined && right !== undefined) return left + right;
+  }
+  if (value instanceof NonNullAssert) return knownAngularId(value.expression);
+}
 const displayInstruction = "Wrap display text in Angular i18n or call a configured function such as t('feature.message').";
 
 export function readMessageDictionary(json: string, complete: boolean): MessageDictionary {
@@ -69,7 +79,7 @@ function applicationText(value: unknown): value is string {
   return typeof value === 'string' && /\p{L}/u.test(value) && !/^\s*$/.test(value);
 }
 function referenceName(node: AST): string | undefined {
-  if (node instanceof PropertyRead) {
+  if (node instanceof PropertyRead || node instanceof SafePropertyRead) {
     if (node.receiver instanceof ImplicitReceiver || node.receiver instanceof ThisReceiver) return node.name;
     const owner = referenceName(node.receiver);
     if (owner) return `${owner}.${node.name}`;
@@ -130,7 +140,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
           'Use the same parameter definitions in each selected dictionary.');
       } else if (accepted.length && args[name].kind !== undefined && !accepted.includes(args[name].kind!)) {
         emit('i18n-message-arguments', 'error', `Message "${id}" expects "${name}" to have type ${accepted.join(' or ')}.`,
-          `Pass the original ${accepted.join(' or ')} value as "${name}".`, args[name].start, args[name].end);
+          `Pass the original ${accepted.join(' or ')} value as "${name}".`, args[name].start, args[name].end, undefined, span);
       }
     }
   }
@@ -146,43 +156,49 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       'Use uiStableMessage with a library ID, or a configured app translator with an app-owned ID.', span.start, span.end);
   }
 
-  function qArguments(value: AST | undefined): Record<string, Argument> | undefined {
+  function angularArguments(value: AST | undefined): Record<string, Argument> | undefined {
     if (!value) return {};
     if (!(value instanceof LiteralMap)) return;
     if (value.keys.some(key => !('key' in key))) return;
     return Object.fromEntries(value.keys.flatMap((key, index) => {
       if (!('key' in key)) return [];
       const expression = value.values[index];
-      return [[key.key, { ...expression.sourceSpan, kind: expression instanceof LiteralPrimitive ? literalKind(expression.value) : undefined }]];
+      return [[key.key, { ...expression.sourceSpan, kind: expression instanceof LiteralPrimitive ? literalKind(expression.value)
+        : expression instanceof LiteralArray ? 'array' : expression instanceof LiteralMap ? 'object' : undefined }]];
     }));
   }
   function angularTranslation(value: AST): boolean {
     if (value instanceof ASTWithSource) return angularTranslation(value.ast);
     if (value instanceof BindingPipe) return value.name === 'uiStableMessage' || configuredPipe.has(value.name);
-    if (value instanceof Call) return configuredFunction.has(referenceName(value.receiver) ?? '');
+    if (value instanceof Call || value instanceof SafeCall) return configuredFunction.has(referenceName(value.receiver) ?? '');
     return false;
   }
   function inspectAngular(value: AST, shown: boolean, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>) {
     if (value instanceof ASTWithSource) return inspectAngular(value.ast, shown, emit, members);
+    if (value instanceof Chain) {
+      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members);
+      return;
+    }
+    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members);
     if (value instanceof BindingPipe) {
-      if (value.name === 'uiMessage') { legacy(value.name, value.sourceSpan, emit); return; }
+      if (value.name === 'uiMessage' && !configuredPipe.has(value.name)) { legacy(value.name, value.sourceSpan, emit); return; }
       if (angularTranslation(value)) {
-        checkReference(value.name, value.exp instanceof LiteralPrimitive ? value.exp.value : undefined, qArguments(value.args[0]), value.sourceSpan, emit);
+        checkReference(value.name, knownAngularId(value.exp), angularArguments(value.args[0]), value.sourceSpan, emit);
         return;
       }
       inspectAngular(value.exp, shown, emit, members);
       return;
     }
-    if (value instanceof Call) {
+    if (value instanceof Call || value instanceof SafeCall) {
       const name = referenceName(value.receiver);
-      if (shown && name && value.args.length === 0) {
+      if (shown && name) {
         const initializer = members.get(name);
-        if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit);
+        if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit, members);
       }
-      if (name && legacyFunctions.has(name)) legacy(name, value.sourceSpan, emit);
+      if (name && legacyFunctions.has(name) && !configuredFunction.has(name)) legacy(name, value.sourceSpan, emit);
       else if (name && configuredFunction.has(name)) {
         const id = value.args[0];
-        checkReference(name, id instanceof LiteralPrimitive ? id.value : undefined, qArguments(value.args[1]), value.sourceSpan, emit);
+        checkReference(name, knownAngularId(id), angularArguments(value.args[1]), value.sourceSpan, emit);
       }
       else for (const argument of value.args) inspectAngular(argument, false, emit, members);
       return;
@@ -209,31 +225,72 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       return;
     }
     if (shown && value instanceof KeyedRead) {
-      const name = referenceName(value.receiver);
-      const initializer = name && members.get(name);
-      if (initializer && ts.isObjectLiteralExpression(initializer)) {
-        for (const property of initializer.properties) {
-          if (ts.isPropertyAssignment(property)) inspectDisplayInitializer(property.initializer, value.sourceSpan, emit);
-        }
+      const owner = referenceName(value.receiver);
+      const initializer = owner && members.get(owner);
+      if (initializer) {
+        const key = value.key instanceof LiteralPrimitive && typeof value.key.value === 'string' ? value.key.value : undefined;
+        inspectMapValue(initializer, key, value.sourceSpan, emit, members, new Set());
       }
     }
     if (shown && value instanceof LiteralPrimitive) raw(value.value, value.sourceSpan, emit);
     if (shown && value instanceof PropertyRead) {
       const name = referenceName(value);
       const initializer = name && members.get(name);
-      if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit);
-
+      if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit, members);
+      const owner = referenceName(value.receiver);
+      const map = owner && members.get(owner);
+      if (map) inspectMapValue(map, value.name, value.sourceSpan, emit, members, new Set());
     }
   }
 
-  function inspectDisplayInitializer(expression: ts.Expression, span: Span, emit: I18nFinding): void {
+  function propertyKey(name: ts.PropertyName) {
+    const node = ts.isComputedPropertyName(name) ? name.expression : name;
+    return ts.isIdentifier(node) && !ts.isComputedPropertyName(name) || ts.isStringLiteralLike(node) || ts.isNumericLiteral(node)
+      ? node.text : undefined;
+  }
+  function inspectMapValue(map: ts.Expression, key: string | undefined, span: Span, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, seen: Set<ts.Node>) {
+    if (ts.isAsExpression(map) || ts.isSatisfiesExpression(map) || ts.isParenthesizedExpression(map)) {
+      inspectMapValue(map.expression, key, span, emit, members, seen);
+    } else if (ts.isObjectLiteralExpression(map)) {
+      for (const item of map.properties) {
+        if (ts.isPropertyAssignment(item) && (key === undefined || propertyKey(item.name) === key)) {
+          inspectDisplayInitializer(item.initializer, span, emit, members, seen);
+        }
+      }
+    }
+  }
+
+  function inspectDisplayInitializer(expression: ts.Expression, span: Span, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, seen = new Set<ts.Node>()): void {
+    if (seen.has(expression)) return;
+    seen.add(expression);
+    const inspect = (value: ts.Expression) => inspectDisplayInitializer(value, span, emit, members, seen);
     if (ts.isStringLiteralLike(expression)) raw(expression.text, span, emit);
     else if (ts.isConditionalExpression(expression)) {
-      inspectDisplayInitializer(expression.whenTrue, span, emit);
-      inspectDisplayInitializer(expression.whenFalse, span, emit);
+      inspect(expression.whenTrue);
+      inspect(expression.whenFalse);
+    } else if (ts.isIdentifier(expression) && ts.isMethodDeclaration(expression.parent)) {
+      const method = expression.parent;
+      if (method.body) for (const statement of method.body.statements) {
+        if (ts.isReturnStatement(statement) && statement.expression) inspect(statement.expression);
+      }
+    } else if (ts.isElementAccessExpression(expression) || ts.isPropertyAccessExpression(expression)) {
+      const owner = expression.expression;
+      if (ts.isPropertyAccessExpression(owner) && owner.expression.kind === ts.SyntaxKind.ThisKeyword) {
+        const map = members.get(owner.name.text);
+        const argument = ts.isElementAccessExpression(expression) ? expression.argumentExpression : expression.name;
+        const key = ts.isPropertyAccessExpression(expression) || ts.isStringLiteralLike(argument) ? argument.getText().replace(/^['"]|['"]$/g, '') : undefined;
+        if (map) inspectMapValue(map, key, span, emit, members, seen);
+      }
     } else if (ts.isCallExpression(expression) && ts.isIdentifier(expression.expression)
         && ['input', 'model', 'signal'].includes(expression.expression.text) && expression.arguments[0]) {
-      inspectDisplayInitializer(expression.arguments[0], span, emit);
+      inspect(expression.arguments[0]);
+    } else if (ts.isAsExpression(expression) || ts.isSatisfiesExpression(expression) || ts.isParenthesizedExpression(expression)) {
+      inspect(expression.expression);
+    } else if (ts.isBinaryExpression(expression) && [ts.SyntaxKind.QuestionQuestionToken, ts.SyntaxKind.BarBarToken, ts.SyntaxKind.PlusToken].includes(expression.operatorToken.kind)) {
+      if (expression.operatorToken.kind === ts.SyntaxKind.PlusToken && [expression.left, expression.right].some(side =>
+        ts.isCallExpression(side) && configuredFunction.has(side.expression.getText().replace(/^this\./, '')))) fragment(span, emit);
+      inspect(expression.left);
+      inspect(expression.right);
     }
   }
 
@@ -244,7 +301,8 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       visited.add(node);
       const current = node.startSourceSpan;
       const site = current ? [...ancestor, context(current.start.offset, current.end.offset)] : ancestor;
-      const local: I18nFinding = (rule, severity, message, suggestion, start, end) => emit(rule, severity, message, suggestion, start, end, site);
+      const local: I18nFinding = (rule, severity, message, suggestion, start, end, _, excerpt) =>
+        emit(rule, severity, message, suggestion, start, end, site, excerpt);
       const attrs = node.attributes ?? [];
       const buttonInput = node.name === 'input' && attrs.some(attribute =>
         attribute.name === 'type' && typeof attribute.value === 'string' && /^(?:submit|reset|button)$/i.test(attribute.value));
@@ -267,63 +325,134 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
     for (const node of nodes) walk(node);
   }
-  function typescript(source: ts.SourceFile, checker: ts.TypeChecker, emit: I18nFinding) {
-    const wrappers = new Map<string, 'request' | 'positional'>();
-    const namespace = new Set<string>();
-    const imports = new Map<string, string>();
+  function typescript(source: ts.SourceFile, checker: ts.TypeChecker, emit: I18nFinding, libraryImport: (specifier: ts.StringLiteralLike) => boolean) {
+    const wrappers = new Map<ts.Symbol, 'request' | 'positional'>();
+    const namespace = new Set<ts.Symbol>();
+    const imports = new Map<ts.Symbol, string>();
+    const angularDecorators = new Set<ts.Symbol>();
+    const angularNamespace = new Set<ts.Symbol>();
+    const isAngularOwner = (node: ts.Expression) => {
+      const symbol = checker.getSymbolAtLocation(node);
+      if (symbol && angularDecorators.has(symbol)) return true;
+      if (!ts.isPropertyAccessExpression(node) || !['Component', 'Directive'].includes(node.name.text)) return false;
+      const owner = checker.getSymbolAtLocation(node.expression);
+      return !!owner && angularNamespace.has(owner);
+    };
     const span = (node: ts.Node): Span => ({ start: node.getStart(source), end: node.getEnd() });
     const name = (node: ts.Expression) => node.getText(source).replace(/^this\./, '');
     const unwrapped = (node: ts.Expression): ts.Expression => ts.isParenthesizedExpression(node) || ts.isAsExpression(node) || ts.isSatisfiesExpression(node)
       ? unwrapped(node.expression) : node;
+    const callSymbol = (node: ts.Expression) => checker.getSymbolAtLocation(ts.isPropertyAccessExpression(node) ? node.name : node);
+    const knownId = (input: ts.Expression | undefined): string | undefined => {
+      if (!input) return;
+      const node = unwrapped(input);
+      if (ts.isStringLiteralLike(node)) return node.text;
+      if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
+        const left = knownId(node.left);
+        const right = knownId(node.right);
+        if (left !== undefined && right !== undefined) return left + right;
+      }
+      const type = checker.getTypeAtLocation(node);
+      if (type.isStringLiteral()) return type.value;
+    };
     const field = (node: ts.ObjectLiteralExpression, key: string) => node.properties
-      .find((item): item is ts.PropertyAssignment => ts.isPropertyAssignment(item) && item.name.getText(source).replace(/^['"]|['"]$/g, '') === key)?.initializer;
+      .find((item): item is ts.PropertyAssignment => ts.isPropertyAssignment(item) && propertyKey(item.name) === key)?.initializer;
     const args = (value: ts.Expression | undefined) => {
       if (!value) return {};
       const node = unwrapped(value);
       if (!ts.isObjectLiteralExpression(node)) return;
-      if (node.properties.some(property => !ts.isPropertyAssignment(property) && !ts.isShorthandPropertyAssignment(property))) return;
+      if (node.properties.some(property => (!ts.isPropertyAssignment(property) && !ts.isShorthandPropertyAssignment(property)) || propertyKey(property.name) === undefined)) return;
       return Object.fromEntries(node.properties.map(property => {
         const assignment = property as ts.PropertyAssignment | ts.ShorthandPropertyAssignment;
-        const label = assignment.name.getText(source).replace(/^['"]|['"]$/g, '');
+        const label = propertyKey(assignment.name)!;
         const expression = ts.isPropertyAssignment(assignment) ? assignment.initializer : assignment.name;
         const type = checker.getTypeAtLocation(expression);
         const known = type.flags & ts.TypeFlags.StringLike ? 'string' : type.flags & ts.TypeFlags.NumberLike ? 'number'
-          : type.flags & ts.TypeFlags.BooleanLike ? 'boolean' : type.flags & ts.TypeFlags.Null ? 'null' : undefined;
+          : type.flags & ts.TypeFlags.BooleanLike ? 'boolean' : type.flags & ts.TypeFlags.Null ? 'null'
+          : type.flags & ts.TypeFlags.BigIntLike ? 'bigint' : type.flags & ts.TypeFlags.Object ? 'object'
+          : type.flags & ts.TypeFlags.Undefined ? 'undefined' : undefined;
         return [label, { ...span(expression), kind: known }];
       }));
     };
     for (const statement of source.statements) {
       if (!ts.isImportDeclaration(statement) || !ts.isStringLiteralLike(statement.moduleSpecifier)) continue;
-      if (!/(?:^|\/)(?:angular(?:\/core|\/index)?|locale(?:-model)?)$/.test(statement.moduleSpecifier.text)) continue;
       const bindings = statement.importClause?.namedBindings;
-      if (bindings && ts.isNamespaceImport(bindings)) namespace.add(bindings.name.text);
+      if (statement.moduleSpecifier.text === '@angular/core') {
+        if (bindings && ts.isNamespaceImport(bindings)) {
+          const symbol = checker.getSymbolAtLocation(bindings.name);
+          if (symbol) angularNamespace.add(symbol);
+        }
+        if (bindings && ts.isNamedImports(bindings)) for (const binding of bindings.elements) {
+          if (!['Component', 'Directive'].includes((binding.propertyName ?? binding.name).text)) continue;
+          const symbol = checker.getSymbolAtLocation(binding.name);
+          if (symbol) angularDecorators.add(symbol);
+        }
+      }
+      if (!libraryImport(statement.moduleSpecifier)) continue;
+      if (bindings && ts.isNamespaceImport(bindings)) {
+        const symbol = checker.getSymbolAtLocation(bindings.name);
+        if (symbol) namespace.add(symbol);
+      }
       if (bindings && ts.isNamedImports(bindings)) for (const binding of bindings.elements) {
         const original = (binding.propertyName ?? binding.name).text;
-        imports.set(binding.name.text, original);
+        const symbol = checker.getSymbolAtLocation(binding.name);
+        if (symbol) imports.set(symbol, original);
         if (legacyFunctions.has(original) || ['UiMessagePipe', 'uiEnglishMessages', 'uiJapaneseMessages', 'UiMessages'].includes(original)) legacy(original, span(binding), emit);
       }
     }
-    const imported = (raw: string) => imports.get(raw) ?? (namespace.has(raw.split('.')[0]) ? raw.split('.')[1] : undefined);
+    const imported = (expression: ts.Expression) => {
+      const symbol = callSymbol(expression);
+      if (symbol && imports.has(symbol)) return imports.get(symbol);
+      if (ts.isPropertyAccessExpression(expression)) {
+        const owner = checker.getSymbolAtLocation(expression.expression);
+        if (owner && namespace.has(owner)) return expression.name.text;
+      }
+    };
     function findWrappers(node: ts.Node) {
       if ((ts.isVariableDeclaration(node) || ts.isPropertyDeclaration(node)) && node.initializer
           && ts.isCallExpression(node.initializer) && ts.isIdentifier(node.name)) {
-        const factory = imported(name(node.initializer.expression));
-        if (factory === 'injectUiMessage') wrappers.set(node.name.text, 'request');
-        if (factory === 'injectUiMessageText') wrappers.set(node.name.text, 'positional');
+        const factory = imported(node.initializer.expression);
+        const declared = checker.getSymbolAtLocation(node.name);
+        if (declared && factory === 'injectUiMessage') wrappers.set(declared, 'request');
+        if (declared && factory === 'injectUiMessageText') wrappers.set(declared, 'positional');
       }
       ts.forEachChild(node, findWrappers);
     }
     findWrappers(source);
     function visit(node: ts.Node) {
+      if (ts.isPropertyAssignment(node) && propertyKey(node.name) === 'host' && ts.isObjectLiteralExpression(node.initializer)
+          && ts.isObjectLiteralExpression(node.parent) && ts.isCallExpression(node.parent.parent) && ts.isDecorator(node.parent.parent.parent)
+          && isAngularOwner(node.parent.parent.expression)) {
+        for (const item of node.initializer.properties) {
+          if (!ts.isPropertyAssignment(item) || !ts.isStringLiteralLike(item.initializer)) continue;
+          const key = propertyKey(item.name);
+          if (key === undefined) continue;
+          const property = key.match(/^\[(?:attr\.)?([A-Za-z][\w-]*)\]$/)?.[1];
+          if (property && display.has(property)) {
+            const value = item.initializer.text;
+            const input = new ParseSourceFile(value, source.fileName);
+            const start = new ParseLocation(input, 0, 0, 0);
+            const expression = bindingParser.parseBinding(value, new ParseSourceSpan(start, start.moveBy(value.length)), 0);
+            if (!expression.errors.length) {
+              const site = span(item);
+              // Angular parses the decoded string, so report the original host property span.
+              inspectAngular(expression, true, (rule, severity, message, suggestion) =>
+                emit(rule, severity, message, suggestion, site.start, site.end), new Map());
+            }
+          } else if (display.has(key)) raw(item.initializer.text, span(item), emit);
+        }
+      }
       if (ts.isCallExpression(node)) {
         const target = name(node.expression);
         const subject = node.arguments[0] && unwrapped(node.arguments[0]);
-        if (configuredFunction.has(target) || wrappers.get(target) === 'positional') {
-          checkReference(target, subject && ts.isStringLiteralLike(subject) ? subject.text : undefined, args(node.arguments[1]), span(node), emit);
-        } else if (wrappers.has(target) || imported(target) === 'resolveUiMessage') {
+        const symbol = callSymbol(node.expression);
+        const wrapper = symbol && wrappers.get(symbol);
+        if (configuredFunction.has(target) || wrapper === 'positional') {
+          checkReference(target, knownId(subject), args(node.arguments[1]), span(node), emit);
+        } else if (wrapper === 'request' || imported(node.expression) === 'resolveUiMessage') {
           const object = subject && ts.isObjectLiteralExpression(subject) ? subject : undefined;
           const id = object && field(object, 'id');
-          checkReference(target, id && ts.isStringLiteralLike(id) ? id.text : undefined, object ? args(field(object, 'parameters')) : undefined, span(node), emit);
+          checkReference(target, knownId(id), object ? args(field(object, 'parameters')) : undefined, span(node), emit);
         }
       }
       ts.forEachChild(node, visit);

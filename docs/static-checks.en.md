@@ -58,7 +58,7 @@ checks:
 
 Register the function and pipe names your app actually uses. Functions receive the ID and optional named argument object, as in `t('order.count', {count: 3})`. Pipes receive the ID on the left and an optional named object after the colon. Set `display_bindings: [toastMessage]` to include a custom display input.
 
-Use a flat JSON file for app-owned message IDs. A string can declare required names with `{name}` placeholders. Use a `parameters` object for explicit types. Supported types are `string`, `number`, `boolean`, and `null`. The checker resolves the library's own IDs and types from the shipped contract.
+Use a flat JSON file for app-owned message IDs. A string can declare required names with `{name}` placeholders. Use a `parameters` object for explicit types. Supported types are `string`, `number`, `boolean`, and `null`. The checker resolves the library's own IDs and types from the shipped contract. Selected app files form one dictionary scope, so an ID found in any selected file is present. To detect a missing ID for a particular language, check that language’s complete catalog without selecting other languages’ copies.
 
 ```json
 {
@@ -95,7 +95,7 @@ Add the copy to the app's catalog and pass the number as a named argument. Angul
 | `i18n-unconfirmed` warning | Verify which ID, arguments, and dictionary are used at runtime. Set `complete: false` for a selected dictionary that represents only part of the app's available messages. |
 | `i18n-legacy-key` error | Use a stable library ID or register the app's translation path and use an app-owned ID. |
 
-After changing the YAML, run the installed CLI's `sync`, then run `check --format json`. Both the CLI and generated checker use the same source rules. Use a reviewed baseline for existing errors, and record the reason and review trigger for a deliberate one-site exception. Confirm lazy catalogs and language switching in the actual app.
+After changing the YAML, run the installed CLI's `sync`, then run `check --format json`. Both the CLI and generated checker use the same source rules. Use a reviewed baseline for existing errors. For a deliberate one-site exception, copy the complete `source` value from the diagnostic and record the reason and review trigger. Confirm lazy catalogs and language switching in the actual app.
 
 ## Workspace coverage and existing findings
 
