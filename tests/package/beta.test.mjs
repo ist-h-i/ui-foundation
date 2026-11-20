@@ -235,14 +235,20 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   // Resolve the consumer runtime from the root lock, then install the tarball
   // into that independent tree. No dependency is linked to the source checkout.
   const lock = JSON.parse(await readFile(resolve(repository, 'package-lock.json'), 'utf8'));
-  const runtimeManifest = { name: 'private-beta-package-consumer', version: '0.0.0', private: true, type: 'module', devDependencies: manifest.devDependencies };
+  const devDependencies = { ...manifest.devDependencies };
+  delete devDependencies.tailwindcss;
+  delete devDependencies['@tailwindcss/cli'];
+  const runtimeManifest = { name: 'private-beta-package-consumer', version: '0.0.0', private: true, type: 'module', devDependencies };
   lock.name = runtimeManifest.name; lock.version = runtimeManifest.version;
-  lock.packages[''] = { ...lock.packages[''], name: runtimeManifest.name, version: runtimeManifest.version };
+  lock.packages[''] = { ...lock.packages[''], name: runtimeManifest.name, version: runtimeManifest.version, devDependencies };
   delete lock.packages[''].bin;
   await writeFile(resolve(consumer, 'package.json'), JSON.stringify(runtimeManifest));
   await writeFile(resolve(consumer, 'package-lock.json'), JSON.stringify(lock));
   await isolated('npm', ['ci', '--ignore-scripts', '--no-audit', '--no-fund'], 180_000);
   await install(candidate);
+  for (const name of ['tailwindcss', '@tailwindcss/cli']) {
+    await assert.rejects(lstat(resolve(consumer, 'node_modules', name)), { code: 'ENOENT' });
+  }
   const typescript = resolve(consumer, 'node_modules/typescript');
   assert.equal((await lstat(typescript)).isSymbolicLink(), false);
   assert.ok(!(await realpath(typescript)).startsWith(repository));
@@ -259,6 +265,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   await isolated(process.execPath, [resolve(consumer, 'node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js'), '-p', 'tsconfig.json'], 180_000);
   const smoke = JSON.parse(await isolated(process.execPath, ['consumer-smoke.mjs', manifest.name], 180_000));
   assert.deepEqual(await readFile(resolve(consumer, 'public/ui-foundation/LICENSE.txt')), ownLicense);
+  assert.equal(smoke.stylesWithoutTailwind, true);
   assert.equal(smoke.strictAot, true); assert.equal(smoke.englishWithoutLocaleProvider, true); assert.equal(smoke.inputAndProfileRetention, true);
   assert.equal(smoke.lazyLocaleAdapter, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);

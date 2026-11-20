@@ -55,6 +55,12 @@ export class FieldControl {
     '[style.--ui-field-label-columns]': 'labelPosition() === "inline" ? "min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)" : null',
   },
   styles: `
+    :host { margin-block-end: var(--ui-space-field); }
+    .ui-form-field-label {
+      display: block;
+      font-weight: var(--ui-weight-control);
+      margin-block-end: var(--ui-space-control-gap);
+    }
     .ui-form-field-requirement {
       margin-inline-start: var(--ui-space-control-gap);
       font-size: var(--ui-text-small);

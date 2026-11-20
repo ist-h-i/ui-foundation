@@ -1322,7 +1322,7 @@
           "source": "@media (max-width:40rem)"
         },
         {
-          "file": "templates/angular/media-style.ts",
+          "file": "templates/angular/image-cropper.ts",
           "reason": "実viewport／親領域を上限とする配置比率。狭幅・文字拡大で内容を表示領域内に保ち、内側の余白や部品寸法は意味トークンへ接続する。",
           "rule": "literal-token",
           "source": ".ui-media-fields{grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--ui-size-grid-item)),1fr))}"
@@ -1633,18 +1633,6 @@
         },
         {
           "file": "templates/angular/specialist-style.ts",
-          "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
-          "rule": "literal-token",
-          "source": ".ui-select-control__chevron{inset-block-start:50%}"
-        },
-        {
-          "file": "templates/angular/specialist-style.ts",
-          "reason": "対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。",
-          "rule": "literal-token",
-          "source": ".ui-select-control__chevron{transform:translateY(-50%)}"
-        },
-        {
-          "file": "templates/angular/specialist-style.ts",
           "reason": "専門表の文字列とnative listのmarkerを文字倍率に応じて収める下限。表幅・余白の基準は意味トークンへ接続する。",
           "rule": "literal-token",
           "source": ".ui-specialist-data-table{min-inline-size:calc(var(--ui-specialist-columns) * max(var(--ui-size-table-column-min),calc(8em + var(--ui-space-table-x) * 2)))}"
@@ -1734,10 +1722,10 @@
           "source": ".ui-action:disabled, .ui-action--disabled, .ui-action--busy{border-color: GrayText}"
         },
         {
-          "file": "templates/angular/styles.css",
+          "file": "templates/angular/actions.ts",
           "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
           "rule": "literal-token",
-          "source": ".ui-icon-button[data-shape=\"round\"]{border-radius:50%}"
+          "source": ":host([data-shape=\"round\"]){border-radius:50%}"
         },
         {
           "column": 544,
@@ -3218,7 +3206,7 @@
         {
           "column": 124,
           "file": "templates/angular/styles.css",
-          "line": 100,
+          "line": 99,
           "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
           "rule": "literal-token",
           "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
@@ -3782,7 +3770,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "9d04472f04ddd7baf296d335374ce165cdfdcc20d99f029769a8ae905ef41191",
+    "configuration_hash": "11a1f56716303c565252902d381c754bc729b26a02fcbfc6a0389e08b746fa0e",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",

@@ -86,10 +86,19 @@ export class ActionControl {
   standalone: true,
   imports: [Icon,UiStableMessagePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    .ui-action-external {
+      order:3;
+      font-size:var(--ui-text-small);
+      white-space:normal;
+      overflow-wrap:anywhere;
+      min-inline-size:0;
+    }
+  `,
   template: `
     <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
     <span class="ui-action-label" style="order:1"><ng-content /></span>
-    @if (external()) {<span class="ui-action-external" style="order:3">{{'uiFoundation.actionLink.external' | uiStableMessage}}<span aria-hidden="true">↗</span></span>}
+    @if (external()) {<span class="ui-action-external">{{'uiFoundation.actionLink.external' | uiStableMessage}}<span aria-hidden="true">↗</span></span>}
     @if (busy()) {
       <span class="ui-action-busy">{{'uiFoundation.actionControl.busy' | uiStableMessage}}</span>
     }
