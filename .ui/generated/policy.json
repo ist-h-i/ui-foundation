@@ -3218,7 +3218,7 @@
         {
           "column": 124,
           "file": "templates/angular/styles.css",
-          "line": 119,
+          "line": 101,
           "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
           "rule": "literal-token",
           "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
@@ -3230,7 +3230,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "bc6867af7cf2300f2cc1075e0e693e6a857e11498b4ba28d08a45b093aa84f02",
+    "configuration_hash": "c448ab0ead8513b2cd06995a30931e22710e9b10fd585244e6e56af5c83a2a11",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
