@@ -266,7 +266,7 @@ Load the generated `angular/specialist.css` globally for screens using specialis
 
 The CLI, templates, Skill, and generated code carry the MIT license. Retain the package's `LICENSE` and the generated `UI-FOUNDATION-LICENSE.txt` files. Copy the generated license text into the distributable as `ui-foundation/LICENSE.txt`. Preserve third-party notices and corresponding sources alongside their assets. The CLI and checker notices cover their respective tools.
 
-In this table, `assets/` refers to the installed UI Foundation package's assets. Copy both asset trees in full, including original notices, PDF font source archives, build recipes, and font mapping. Keep the deployment paths and component URLs in sync.
+In this table, `assets/` refers to the installed UI Foundation package's assets. Copy the third-party notice tree in full. When distributing PDF assets, also copy the complete PDF source tree, including original notices, font source archives, build recipes, and font mapping. Keep the deployment paths and component URLs in sync.
 
 | Source | Example public location | Component setting |
 | --- | --- | --- |

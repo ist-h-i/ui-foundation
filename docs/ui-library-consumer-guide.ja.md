@@ -367,7 +367,7 @@ export class DepartmentScreen {
 
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
-この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/`と`assets/pdf-source/`はファイルを選別せず、**全内容**を配布成果物に含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
+この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/` は全内容を配布成果物に含めます。PDF 資産を配布する場合は `assets/pdf-source/` の全内容も含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
 
 部品の inline CSS に加え、生成した `tokens.css`、`angular/styles.css`、専門部品を使う画面では `angular/specialist.css` を global CSS として取り込みます。MapView には実使用版の `maplibre-gl/dist/maplibre-gl.css` も必要です。アプリの utility CSS も用途別セマンティックトークンを使います。primitive 値の直接参照や旧 preset/density API の互換層は追加しません。
 

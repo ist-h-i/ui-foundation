@@ -25,7 +25,7 @@ npm内の`docs/`と生成Skillの`references/docs/`へ、API・設計・導入�
 
 自作部分のMIT本文は生成outputと生成Skillの`UI-FOUNDATION-LICENSE.txt`に同梱する。利用アプリのroot LICENSEを上書きせず、配布成果物には`ui-foundation/LICENSE.txt`として保存する。この許諾で利用アプリ自身や第三者コードの条件を変更しない。
 
-第三者通知とPDF source kitはnpm内の`assets/third-party/`・`assets/pdf-source/`を**全内容**配信成果物へコピーする。生成checkerのCHECKER-NOTICE.txtとCLIのCLI-NOTICE.txtは対象が別。生成アプリの基盤依存にはFOUNDATION-NOTICES.txtも必要。[資産配信](ui-library-consumer-guide.ja.md#css-と配布資産)を参照する。最終HTTP応答のバイト列とworker実行を、単なるファイル存在とは分けて確認する。
+npm 内の `assets/third-party/` は全内容を配信成果物に含める。PDF 資産を配信する場合は `assets/pdf-source/` の全内容も含める。生成checkerのCHECKER-NOTICE.txtとCLIのCLI-NOTICE.txtは対象が別。生成アプリの基盤依存にはFOUNDATION-NOTICES.txtも必要。[資産配信](ui-library-consumer-guide.ja.md#css-と配布資産)を参照する。最終HTTP応答のバイト列とworker実行を、単なるファイル存在とは分けて確認する。
 
 ## 更新と復旧
 

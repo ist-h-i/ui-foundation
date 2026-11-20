@@ -25,7 +25,7 @@ Consumer API/design/installation/upgrade documents ship in npm `docs/` and gener
 
 Original MIT text ships as `UI-FOUNDATION-LICENSE.txt` in generated output and Skill. Do not overwrite the app's root LICENSE. Preserve it as `ui-foundation/LICENSE.txt` in distributed app output. This license does not change app/third-party terms.
 
-Copy **all contents** of npm `assets/third-party/` and `assets/pdf-source/` into delivered assets. Generated-checker CHECKER-NOTICE.txt and CLI CLI-NOTICE.txt cover different bundles. Generated-app foundation dependencies also need FOUNDATION-NOTICES.txt. Follow the [asset guide](ui-library-consumer-guide.en.md#css-and-distribution-assets). Check actual final HTTP bytes and worker execution separately from file existence.
+Copy all contents of npm `assets/third-party/` into delivered assets. When shipping PDF assets, also copy all contents of `assets/pdf-source/`. Generated-checker CHECKER-NOTICE.txt and CLI CLI-NOTICE.txt cover different bundles. Generated-app foundation dependencies also need FOUNDATION-NOTICES.txt. Follow the [asset guide](ui-library-consumer-guide.en.md#css-and-distribution-assets). Check actual final HTTP bytes and worker execution separately from file existence.
 
 ## Upgrade and recovery
 
