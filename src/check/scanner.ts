@@ -1231,6 +1231,11 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
   const angularOutput = path.join(output, 'angular');
   const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
+  const generatedAngularImport = (specifier: ts.StringLiteralLike): boolean =>
+    (specifier.text.startsWith('.') && within(angularOutput, path.resolve(path.dirname(specifier.getSourceFile().fileName), specifier.text)))
+    || (checker.getSymbolAtLocation(specifier)?.declarations?.some(declaration =>
+      within(angularOutput, path.resolve(declaration.getSourceFile().fileName))) ?? false);
+
   const resolutionCache = ts.createModuleResolutionCache(root, compilerHost.getCanonicalFileName, compilerOptions);
   function resolveImport(module: ts.StringLiteralLike, source: ts.SourceFile) {
     return resolveSpecifier(module.text, source, module);
@@ -1576,7 +1581,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   function inspectTemplate(file: string, text: string, template: string, offset: number, members = new Map<string, ts.Expression>(), scope?: Set<Declaration>, position?: (offset: number) => number, classes = globalClasses) {
     const parsed = parseTemplate(template, relative(root, file), { preserveWhitespaces: false }); checked++;
     if (parsed.errors?.length) { for (const error of parsed.errors) problem(file, 'parse-error', error.msg, text, position ? position(error.span.start.offset) : offset + error.span.start.offset); return; }
-    messages?.template(parsed.nodes, emitMessage(file, text, template, position ?? (at => offset + at), ['Angular message']), members, (start, end) => templateOpeningContext(template.slice(start, end)));
+    messages?.template(parsed.nodes, emitMessage(file, text, template, position ?? (at => offset + at), ['Angular message']), members, (start, end) => templateOpeningContext(template.slice(start, end)), checker, generatedAngularImport);
     const visited = new Set<object>();
     function visit(node: any, ancestors: string[]) {
       if (!node || typeof node !== 'object' || visited.has(node)) return; visited.add(node);
@@ -2642,15 +2647,10 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     if (/\.(css|scss)$/.test(file)) checkCSS(text, loc(file, text), stylesheetContext(text), file.endsWith('.scss'));
   }
   if (messages) {
-    const checker = program.getTypeChecker();
     for (const [file, text] of all) {
       if (!file.endsWith('.ts')) continue;
       const source = program.getSourceFile(file);
-      if (source) messages.typescript(source, checker, emitMessage(file, text, text, at => at), specifier => {
-        if (specifier.text.startsWith('.') && within(path.join(output, 'angular'), path.resolve(path.dirname(file), specifier.text))) return true;
-        return checker.getSymbolAtLocation(specifier)?.declarations?.some(declaration =>
-          within(path.join(output, 'angular'), path.resolve(declaration.getSourceFile().fileName))) ?? false;
-      });
+      if (source) messages.typescript(source, checker, emitMessage(file, text, text, at => at), generatedAngularImport);
     }
   }
   // Exceptions are precise, auditable, and cannot suppress source/parse failures.

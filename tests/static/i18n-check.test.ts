@@ -232,3 +232,86 @@ export const displayed = t('${id}', { count: 'two' });
   assert.equal(changed.exceptions.length, 0);
   assert.ok(changed.diagnostics.some(item => item.rule === 'i18n-message-arguments' && item.message.includes('order.amendCount')));
 });
+
+test('recognizes generated member translators in templates and host expressions without taking over local names', async t => {
+  const fixture = await consumer(t, `<p>{{ builtin('uiFoundation.missing') }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount', parameters: { count: 'two' } }) }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount' }) }}</p>
+<p>{{ request({ id: 'uiFoundation.listbox.selectedCount', parameters: { count: 2 } }) }}</p>
+<p>{{ uiMessage('Legacy work order') }}</p>
+<p>{{ 'order.save' | uiStableMessage }}</p>
+@for (alias of aliases; track alias) { <p>{{ alias('app.local') }}</p> }
+<p>{{ this.alias('uiFoundation.stillMissing') }}</p>
+<p [textContent]="errors?.EXPIRED"></p>`);
+  fixture.checks.i18n = { ...i18n, pipes: ['translate', 'uiStableMessage'] };
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import * as ui from '../.ui/generated/angular/core';
+import {injectUiMessage as factory} from '../.ui/generated/angular';
+@Component({
+  selector:'app-order', templateUrl:'./order.html',
+  host:{'[attr.aria-label]':'fixedLabel','[attr.title]':'errors?.EXPIRED','[attr.aria-description]':"builtin('uiFoundation.hostMissing')"}
+})
+export class Order {
+  readonly errors = { EXPIRED: 'Order expired' };
+  readonly fixedLabel = 'Fixed order';
+  readonly builtin = ui.injectUiMessageText();
+  readonly request = factory();
+  readonly alias = ui.injectUiMessageText();
+  readonly aliases = [(label: string) => label];
+  uiMessage(label: string) { return label; }
+}
+const oldMessage = ui.uiMessage('保存');
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.file, item.line, item.rule]), [
+    ['src/order.html', 1, 'i18n-message-reference'],
+    ['src/order.html', 2, 'i18n-message-arguments'],
+    ['src/order.html', 3, 'i18n-message-arguments'],
+    ['src/order.html', 8, 'i18n-message-reference'],
+    ['src/order.html', 9, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-raw-text'],
+    ['src/order.ts', 6, 'i18n-message-reference'],
+    ['src/order.ts', 17, 'i18n-legacy-key'],
+  ]);
+});
+
+test('checks closed incompatible unions and typed request shapes without guessing about mixed unions', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/order.ts', `import {injectUiMessage} from '../.ui/generated/angular/core';
+declare function t(id: string, args: Record<string, unknown>): string;
+declare let wrong: string | boolean;
+declare let mixed: string | number;
+declare const unknownShape: Record<string, unknown>;
+const id = 'uiFoundation.listbox.selectedCount';
+const parameters = {count: 2};
+const translated = injectUiMessage();
+export const valid = translated({id, parameters});
+export const validSpread = translated({id, ...{parameters}});
+export const validObject = translated({ id: 'uiFoundation.listbox.selectedCount', parameters });
+export const validRequest = translated({ id, parameters } as const);
+export const wrongArg = t('order.count', {count: wrong});
+export const possible = t('order.count', {count: mixed});
+export const fragment = t('order.count', {count: 2}) + ' remaining';
+export const missing = translated({id, parameters: {}});
+export const unconfirmed = translated({id, parameters: unknownShape});
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [13, 'i18n-message-arguments'],
+    [15, 'i18n-fragment'],
+    [16, 'i18n-message-arguments'],
+    [17, 'i18n-unconfirmed'],
+  ]);
+});
+
+test('a template-local control value is not displayed copy and translated aliases still check their references', async t => {
+  const fixture = await consumer(t, `@let code = 'OPEN';
+@if (result.code === code) { <p i18n>Order is open</p> }
+@let label = t('order.missing');
+<p>{{ t('order.count', {count: 'tw' + 'o'}) }}</p>`);
+  assert.deepEqual(i18nOnly((await fixture.check()).diagnostics).map(item => [item.line, item.rule]), [
+    [3, 'i18n-message-reference'],
+    [4, 'i18n-message-arguments'],
+  ]);
+});
