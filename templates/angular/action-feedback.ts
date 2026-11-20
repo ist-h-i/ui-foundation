@@ -24,6 +24,12 @@ export type ActionFeedbackState = {
       <ng-content />
     </div>
   `,
+    styles: `
+    :host([data-state="success"]) .ui-action-feedback__panel {
+      background: var(--ui-color-success-surface);
+      color: var(--ui-color-success);
+    }
+  `,
 })
 export class ActionFeedback {
  protected readonly uiText_ActionFeedback=injectUiText();

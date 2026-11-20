@@ -262,6 +262,18 @@ For the full entry, install the type dependencies in the app with `npm install -
 
 ## CSS and distribution assets
 
+Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-space-section` uses the same spacing token.
+
+```html
+<section class="app-actions">
+  <button uiAction variant="primary">Save</button>
+</section>
+```
+
+```css
+.app-actions { padding: var(--ui-space-section); }
+```
+
 Load the generated `angular/specialist.css` globally for screens using specialist components. MapView also needs the CSS from the installed MapLibre version.
 
 The CLI, templates, Skill, and generated code carry the MIT license. Retain the package's `LICENSE` and the generated `UI-FOUNDATION-LICENSE.txt` files. Copy the generated license text into the distributable as `ui-foundation/LICENSE.txt`. Preserve third-party notices and corresponding sources alongside their assets. The CLI and checker notices cover their respective tools.

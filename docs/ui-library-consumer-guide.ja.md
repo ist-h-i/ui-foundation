@@ -365,6 +365,18 @@ export class DepartmentScreen {
 
 ## CSS と配布資産
 
+画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの見た目は公開 API の `variant` で選びます。Tailwind を使う場合、`p-space-section` は同じ余白トークンを参照します。
+
+```html
+<section class="app-actions">
+  <button uiAction variant="primary">保存</button>
+</section>
+```
+
+```css
+.app-actions { padding: var(--ui-space-section); }
+```
+
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
 この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/` は全内容を配布成果物に含めます。PDF 資産を配布する場合は `assets/pdf-source/` の全内容も含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。

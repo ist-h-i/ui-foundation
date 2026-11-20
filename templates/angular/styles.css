@@ -162,7 +162,6 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   background: var(--ui-color-background);
   border-radius: var(--ui-radius-surface);
 }
-.ui-async-region__notice { margin-block-end: var(--ui-space-field); }
 .ui-async-region__message, .ui-action-feedback__message { margin-block: 0 var(--ui-space-control-gap); }
 .ui-async-region[data-state="partial"] .ui-async-region__notice,
 .ui-async-region[data-state="stale"] .ui-async-region__notice,
@@ -175,10 +174,6 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 .ui-action-feedback[data-state="error"] .ui-action-feedback__panel {
   background: var(--ui-color-error-surface);
   color: var(--ui-color-danger);
-}
-.ui-action-feedback[data-state="success"] .ui-action-feedback__panel {
-  background: var(--ui-color-success-surface);
-  color: var(--ui-color-success);
 }
 
 .ui-radio-option {
