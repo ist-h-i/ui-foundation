@@ -1083,3 +1083,61 @@ test('internal import type advice uses a resolvable public specifier in a NodeNe
   assert.equal(findings.length, 1);
   assert.match(findings[0].suggestion, /index\.js'/);
 });
+
+test('baseline distinguishes try arms and tolerates unrelated edits in callback bodies', async t => {
+  const subjects = [
+    ["try { document.body.style.color = 'red'; } catch { document.body.style.color = 'var(--ui-color-text)'; }",
+      "try { document.body.style.color = 'var(--ui-color-text)'; } catch { document.body.style.color = 'red'; }", false],
+    ["const run = (task: () => void) => task();\nrun(() => { document.body.style.color = 'red'; });",
+      "const run = (task: () => void) => task();\nrun(() => { const note = 'independent'; document.body.style.color = 'red'; });", true],
+    ["declare function run(name: string, task: () => void): void;\nrun('a', () => { document.body.style.color = 'red'; });\nrun('b', () => { document.body.style.color = 'var(--ui-color-text)'; });",
+      "declare function run(name: string, task: () => void): void;\nrun('a', () => { document.body.style.color = 'var(--ui-color-text)'; });\nrun('b', () => { document.body.style.color = 'red'; });", false],
+  ] as const;
+  for (const [before, after, valid] of subjects) {
+    const file = 'app/context.ts';
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, valid, after);
+    assert.equal(checked.existing_diagnostics?.length, valid ? 1 : 0, after);
+  }
+});
+
+test('baseline uses parsed subject identity instead of the raw CSS and HTML diagnostic evidence', async t => {
+  const sources = [
+    ['app/context.css', '.one { color: red }', '.one { color:\n\n red }'],
+    ['app/context.html', '<main><span style="color: red"></span></main>',
+      '<main><span\n\n style = "color:\n\n red"></span></main>'],
+    ['app/context.ts', "document.body.style.cssText = 'color: red';",
+      "document.body.style.cssText = 'color:\\n\\n red';"],
+  ] as const;
+  for (const [file, before, after] of sources) {
+    const { config, root, scan } = await fixture(t, { [file]: before });
+    const previous = await scan();
+    assert.equal(errors(previous).length, 1, before);
+    await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+    await writeFile(resolve(root, file), after);
+    const checked = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+    assert.equal(checked.valid, true, after);
+    assert.equal(checked.existing_diagnostics?.length, 1, after);
+    assert.notEqual(previous.diagnostics[0].source, checked.existing_diagnostics?.[0].source, file);
+  }
+});
+
+test('baseline preserves selector combinators in CSS scope conditions', async t => {
+  const file = 'app/scope.css';
+  const { config, root, scan } = await fixture(t, {
+    [file]: '@scope (.a :hover) { .one { color: red } }\n@scope (.a:hover) { .one { color: var(--ui-color-text) } }',
+  });
+  const previous = await scan();
+  assert.equal(errors(previous).length, 1);
+  await writeFile(resolve(root, 'baseline.json'), JSON.stringify(previous));
+  await writeFile(resolve(root, file), '@scope (.a :hover) { .one { color: var(--ui-color-text) } }\n@scope (.a:hover) { .one { color: red } }');
+  const moved = await checkSources({ root, config, policy: createSourcePolicy(config), baselinePath: 'baseline.json' });
+  assert.equal(moved.valid, false);
+  assert.equal(moved.existing_diagnostics?.length, 0);
+  assert.equal(errors(moved).length, 1);
+});

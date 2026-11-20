@@ -20,8 +20,13 @@ export function withBaselineContext(diagnostic: SourceDiagnostic, ...context: st
   return { ...diagnostic, baseline_context: combined.length ? combined : null };
 }
 
-export function fingerprint(diagnostic: Pick<SourceDiagnostic, 'file' | 'rule' | 'message' | 'source' | 'baseline_context'>): string {
-  return JSON.stringify([diagnostic.file, diagnostic.rule, diagnostic.message, diagnostic.source, diagnostic.baseline_context]);
+export function withBaselineSubject(diagnostic: SourceDiagnostic, ...subject: string[]): SourceDiagnostic {
+  if (diagnostic.severity !== 'error' || !isExceptableRule(diagnostic.rule)) return diagnostic;
+  return { ...diagnostic, baseline_subject: JSON.stringify([...subject, diagnostic.baseline_subject ?? null]) };
+}
+
+export function fingerprint(diagnostic: Pick<SourceDiagnostic, 'file' | 'rule' | 'baseline_subject' | 'baseline_context'>): string {
+  return JSON.stringify([diagnostic.file, diagnostic.rule, diagnostic.baseline_subject, diagnostic.baseline_context]);
 }
 
 function tokens(node: ts.Node, source: ts.SourceFile): string {
@@ -37,10 +42,14 @@ function tokens(node: ts.Node, source: ts.SourceFile): string {
 }
 
 export function templateOpeningContext(opening: string): string {
-  // Opening-tag whitespace is a separator. Quoted attribute values are single
-  // tokens so changing a space inside a value still changes the context.
+  // Attribute formatting does not identify a site. Quoted data attributes
+  // retain their values; declarations inside style have their own CSS descriptor.
   if (!opening.startsWith('<')) return opening.trim();
-  return JSON.stringify(opening.match(/"[^"]*"|'[^']*'|[^\s"'=<>]+|[=<>]/g) ?? []);
+  const parts = opening.match(/"[^"]*"|'[^']*'|[^\s"'=<>]+|[=<>]/g) ?? [];
+  for (let index = 2; index + 2 < parts.length; index++) {
+    if (parts[index]?.toLowerCase() === 'style' && parts[index + 1] === '=') parts[index + 2] = '<inline style>';
+  }
+  return JSON.stringify(parts);
 }
 
 /** Identify the named scope and statement containing a TypeScript finding independently of line and column. */
@@ -48,10 +57,12 @@ export function typescriptBaselineContext(source: ts.SourceFile, line: number, c
   const lines = source.getLineStarts();
   const position = lines[line - 1] === undefined ? -1 : lines[line - 1] + column - 1;
   const context: string[] = [];
+  let site: string | undefined;
+  const contains = (node: ts.Node) => position >= node.getStart(source) && position < node.getEnd();
   const expression = (node: ts.Node | undefined) => node ? tokens(node, source) : null;
   const branch = (first: ts.Node) => position < first.getStart(source) ? 'condition' : position < first.getEnd() ? 'then' : 'else';
   function visit(node: ts.Node): void {
-    if (position < node.getStart(source) || position >= node.getEnd()) return;
+    if (!contains(node)) return;
     if (ts.isClassLike(node) || ts.isFunctionDeclaration(node) || ts.isFunctionExpression(node)
         || ts.isMethodDeclaration(node) || ts.isAccessor(node) || ts.isVariableDeclaration(node)
         || ts.isPropertyDeclaration(node) || ts.isPropertyAssignment(node)) {
@@ -67,10 +78,27 @@ export function typescriptBaselineContext(source: ts.SourceFile, line: number, c
       context.push(JSON.stringify([node.kind, expression(node.expression)]));
     }
     if (ts.isDefaultClause(node)) context.push('default case');
-    if (ts.isExpressionStatement(node) || ts.isReturnStatement(node)) context.push(tokens(node, source));
+    if (ts.isTryStatement(node)) {
+      if (contains(node.tryBlock)) context.push('try body');
+      else if (node.catchClause && contains(node.catchClause)) context.push('catch body');
+      else if (node.finallyBlock && contains(node.finallyBlock)) context.push('finally body');
+    }
+    if (ts.isCallExpression(node)) {
+      const argument = node.arguments.findIndex(contains);
+      if (argument >= 0) {
+        const otherArguments = node.arguments.map((item, index) => index === argument || ts.isArrowFunction(item) || ts.isFunctionExpression(item)
+          ? null : expression(item));
+        context.push(JSON.stringify(['call argument', expression(node.expression), argument, otherArguments]));
+      }
+    }
+    if (ts.isExpressionStatement(node) || ts.isReturnStatement(node)) site = tokens(node, source);
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind >= ts.SyntaxKind.FirstAssignment && node.operatorToken.kind <= ts.SyntaxKind.LastAssignment) {
+      site = JSON.stringify(['assignment', expression(node.left), node.operatorToken.kind]);
+    }
     ts.forEachChild(node, visit);
   }
   visit(source);
+  if (site) context.push(site);
   return context.length ? ['TypeScript', ...context] : [];
 }
 
@@ -89,7 +117,8 @@ export function readBaseline(text: string): Map<string, number> {
     }
     if (item.severity === 'error' && isExceptableRule(item.rule)) {
       if (item.baseline_context === null) continue;
-      if (!Array.isArray(item.baseline_context) || !item.baseline_context.length || item.baseline_context.some((label: unknown) => typeof label !== 'string')) {
+      if (typeof item.baseline_subject !== 'string' || !item.baseline_subject
+          || !Array.isArray(item.baseline_context) || !item.baseline_context.length || item.baseline_context.some((label: unknown) => typeof label !== 'string')) {
         throw new Error('Capture a new full JSON source report with this checker version to record structural baseline context.');
       }
       const key = fingerprint(item);

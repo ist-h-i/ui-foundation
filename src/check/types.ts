@@ -20,6 +20,7 @@ export interface SourceDiagnostic {
   source: string;
   exception?: string;
   baseline_context?: string[] | null;
+  baseline_subject?: string;
 }
 export interface SourceReport {
   status: 'not_configured' | 'passed' | 'warnings' | 'failed';

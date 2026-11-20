@@ -9,7 +9,7 @@ import { checkCSS, checkClasses, checkStyle, collectLocalClasses, customProperty
 import { createUtilityResolver } from './tailwind.ts';
 import { proveClassDomain } from './class-domain.ts';
 import { boundedSearch } from './bounded-search.ts';
-import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, templateOpeningContext, typescriptBaselineContext, withBaselineContext, workspaceSourceRoots } from './application.ts';
+import { fingerprint, isExceptableRule, publicAngularEntries, readBaseline, templateOpeningContext, typescriptBaselineContext, withBaselineContext, withBaselineSubject, workspaceSourceRoots } from './application.ts';
 import type { AngularDeclaration, CheckSourcesOptions, SourceDiagnostic, SourceLocation, SourceReport, StyleContext, ScopedCustomProperty, CustomPropertyOrigin, CustomPropertyResolver } from './types.ts';
 
 const forbidden = new Set(['node_modules', '.git', '.agents', 'dist', 'build', 'coverage', 'artifacts']);
@@ -1559,8 +1559,10 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
       if (!node || typeof node !== 'object' || visited.has(node)) return; visited.add(node);
       const opening = node.startSourceSpan;
       const context = opening ? [...ancestors, template.slice(opening.start.offset, opening.end.offset)] : ancestors;
-      const emitAtNode = (item: SourceDiagnostic) => ctx.emit(item.severity === 'error'
-        ? withBaselineContext(item, 'Template', ...context.map(templateOpeningContext)) : item);
+      const emitAtNode = (item: SourceDiagnostic) => {
+        const finding = item.rule === 'unapproved-component' ? withBaselineSubject(item, 'Angular declaration', item.message) : item;
+        ctx.emit(finding.severity === 'error' ? withBaselineContext(finding, 'Template', ...context.map(templateOpeningContext)) : finding);
+      };
       if ((node.name || node.tagName) && node.attributes && node.inputs) {
         const elementName = node.name ?? 'ng-template';
         const renderedAttributes = node.name || node.tagName === 'ng-template' ? node.attributes : [];
@@ -2621,7 +2623,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   for (const exception of checks.exceptions) {
     const matches = diagnostics.filter(d => d.file === exception.file && d.rule === exception.rule && d.source.includes(exception.source) && (exception.line === undefined || d.line === exception.line) && (exception.column === undefined || d.column === exception.column));
     if (!isExceptableRule(exception.rule) || matches.length !== 1 || suppressed.has(matches[0]!)) problem(path.resolve(root, exception.file), 'exception-error', `Exception must match exactly one unsuppressed diagnostic: ${exception.rule} (${matches.length} matches).`, exception.source);
-    else { const match = matches[0]!; suppressed.add(match); const { baseline_context: _context, ...finding } = match; exceptions.push({ ...finding, exception: exception.reason }); }
+    else { const match = matches[0]!; suppressed.add(match); const { baseline_context: _context, baseline_subject: _subject, ...finding } = match; exceptions.push({ ...finding, exception: exception.reason }); }
   }
   let baseline: Map<string, number> | undefined;
   if (options.baselinePath !== undefined) {
@@ -2647,7 +2649,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
     }
     const source = program.getSourceFile(path.resolve(root, diagnostic.file));
     const context = source ? typescriptBaselineContext(source, diagnostic.line, diagnostic.column) : [];
-    const item = withBaselineContext(diagnostic, ...context);
+    const item = diagnostic.baseline_subject ? withBaselineContext(diagnostic, ...context) : { ...diagnostic, baseline_context: null };
     if (!baseline || !item.baseline_context) {
       active.push(item);
       continue;
