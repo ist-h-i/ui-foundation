@@ -32,7 +32,8 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
   private readonly editable = computed(() => !this.blocked() && !this.readonly());
   private readonly composition = linkedSignal({
     source: () => ({ externalValue: this.value(), editable: this.editable() }),
-    computation: (_source, previous): TextComposition | null => this.discardComposition(previous?.value ?? null),
+    computation: (source, previous): TextComposition | null =>
+      source.editable ? this.discardComposition(previous?.value ?? null) : null,
   });
   protected readonly displayedText = computed(() => this.composition()?.text ?? this.current());
   private readonly injector = inject(Injector);

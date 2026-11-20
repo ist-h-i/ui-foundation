@@ -17305,7 +17305,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "0b1552dd4b4abaca8ddd99413c231ad4b4a4f1e4a5c967b1a519795e64327d5d",
+      "sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
       "declarations": [
         {
           "name": "TextInput",
@@ -19449,7 +19449,7 @@
     },
     {
       "path": "templates/angular/virtual-list.ts",
-      "sha256": "d2bd1aef67cfadb40481a633f1ce347f540955078bd27acd808322a28a98e462",
+      "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
       "declarations": [
         {
           "kind": "export",
@@ -19506,8 +19506,8 @@
             {
               "name": "refreshWindow",
               "kind": "property",
-              "declaration": "readonly refreshWindow=()=>this.changeDetector.detectChanges();",
-              "initializer": "()=>this.changeDetector.detectChanges()"
+              "declaration": "readonly refreshWindow=()=>{\n  this.captureRowFocus();\n  this.changeDetector.detectChanges();\n };",
+              "initializer": "()=>{\n  this.captureRowFocus();\n  this.changeDetector.detectChanges();\n }"
             },
             {
               "name": "items",
@@ -19596,6 +19596,11 @@
               "name": "scrollToOffset",
               "kind": "method",
               "declaration": "scrollToOffset(offset:number):boolean"
+            },
+            {
+              "name": "ngDoCheck",
+              "kind": "method",
+              "declaration": "ngDoCheck():void"
             }
           ]
         }

@@ -284,19 +284,25 @@ test('virtual list restores owned focus when an in-place replacement removes the
   runtime.update(id, {height: 241});
   const focusRestored = !input.isConnected && document.activeElement === viewport;
   const rangeRetained = fixture.range() === previousRange;
+  const replacement = viewport.querySelector<HTMLInputElement>('[data-virtual-key="number:3"] input')!;
+  replacement.focus();
+  replacement.blur();
+  rows[0] = {...rows[0], id: 4};
+  runtime.update(id, {height: 242});
+  const explicitBlurPreserved = !replacement.isConnected && document.activeElement === document.body;
   const outside = document.createElement('button');
   document.body.append(outside);
   try {
    outside.focus();
-   rows[0] = {...rows[0], id: 4};
-   runtime.update(id, {height: 242});
-   return {focusRestored, rangeRetained, outsideFocused: document.activeElement === outside};
+   rows[0] = {...rows[0], id: 5};
+   runtime.update(id, {height: 243});
+   return {focusRestored, rangeRetained, explicitBlurPreserved, outsideFocused: document.activeElement === outside};
   } finally {
    outside.remove();
   }
  }, id);
- expect(result).toEqual({focusRestored: true, rangeRetained: true, outsideFocused: true});
- await expect(host(page, id).getByRole('textbox', {name: '再検証入力 4', exact: true})).toBeVisible();
+ expect(result).toEqual({focusRestored: true, rangeRetained: true, explicitBlurPreserved: true, outsideFocused: true});
+ await expect(host(page, id).getByRole('textbox', {name: '再検証入力 5', exact: true})).toBeVisible();
  await destroy(page, id);
 });
 

@@ -116,6 +116,30 @@ for (const field of fields) {
     }
   });
 
+  test(`${field} discards native composition on read-only and accepts the first unlocked edit`, async ({ page }) => {
+    await page.goto(`/catalog/text-composition?field=${field}`);
+    const editor = page.locator('#reactive');
+    const toggle = page.getByRole('button', { name: '読み取り専用を切り替える' });
+    await editor.focus();
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send('Input.imeSetComposition', { text: 'とう', selectionStart: 2, selectionEnd: 2 });
+      await expect(editor).toHaveValue('とう');
+      await toggle.dispatchEvent('click');
+      await expect(editor).toHaveJSProperty('readOnly', true);
+      await session.send('Input.insertText', { text: '東京' });
+      await expect(editor).toHaveValue('');
+      await expectChanges(page, [], []);
+      await toggle.dispatchEvent('click');
+      await expect(editor).toHaveJSProperty('readOnly', false);
+      await session.send('Input.insertText', { text: '京都' });
+      await expect(editor).toHaveValue('京都');
+      await expectChanges(page, ['京都']);
+    } finally {
+      await session.detach();
+    }
+  });
+
   test(`${field} respects nullable reset, readonly and disabled during a composition`, async ({ page }) => {
     await page.goto(`/catalog/text-composition?field=${field}`);
     const editor = page.locator('#reactive');
