@@ -241,14 +241,14 @@
 | --- | --- |
 | フォーム間隔 | FormLayout のホスト、横並びで投影される子、狭幅での折り返し。FormField の単体余白をグループ内で解除する。 |
 | 共有ホスト | PageFrame / FormField / AsyncRegion / ActionFeedback / RadioGroup のフォントと表示。ホストと投影された通知・操作の非表示にも適用する。 |
-| 読み上げ本文 | AsyncRegion / ActionFeedback / FileExplorer 等の状態通知に使う `.ui-sr-only`。読み上げ用テキストを画面で隠す。 |
+| 読み上げ本文 | AsyncRegion / ActionFeedback / DataTableView の状態通知と IconButton の補足に使う `.ui-sr-only`。読み上げ用テキストを画面で隠す。 |
 | 操作の共通形 | ActionControl / ActionLink / IconButton / ToggleButton が同じホスト、状態、子要素のクラスを使う。関連部品内のアイコンボタンもこの API を使う。 |
 | 共有フォーカス | 操作系、FieldControl の入力と Typography のホストに共通。強制色の対象は操作系と入力。 |
 | 操作の押下 | IconButton / ToggleButton の押下状態が同じ色を使う。 |
 | 操作グループ | ButtonGroup に投影されるアクションのサイズを継承し、連結時に方向と位置に応じて伸縮・境界線・角丸を調整する。 |
 | フィールドの投影 | FormField が投影された入力の種類を見て、ラベル・入力・補足の位置を決める。入力とラベルをまたぐ。 |
 | 入力の共通形 | FieldControl のネイティブ入力、ほかの標準部品のネイティブ入力、利用側マークアップの `.ui-field-control` に適用する。 |
-| 選択欄 | Select / Listbox / DataTableView 等とアプリの選択欄が同じラッパー・選択欄・シェブロンを共有する。強制色ではネイティブ表示。 |
+| 選択欄 | Select / Pagination / DataTableView 等とアプリの選択欄が同じラッパー・選択欄・シェブロンを共有する。強制色ではネイティブ表示。 |
 | フォーム補足 | FormField / FormGroup / RadioGroup がヒントとエラーに同じクラスを使う。 |
 | 状態通知 | AsyncRegion と ActionFeedback が通知面・本文・注意・エラーの表現を共有する。 |
 | ラジオの投影 | RadioGroup の中で、利用側が描くラベル `.ui-radio-option` と RadioOption のネイティブ入力へ適用する。 |
