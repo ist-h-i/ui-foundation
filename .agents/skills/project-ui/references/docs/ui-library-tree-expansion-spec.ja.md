@@ -92,7 +92,7 @@ TreeSelect/Cascaderはnative comboboxからmanual popover内の非modal dialog�
 
 見た目は[設計](design.md)の二段階トークンの役割契約に従う。YAMLの `default_profile` / `profiles` と `data-ui-profile="ID"` で全semantic対応を切り替える。font.body/code、text、leading、weight、space、size、color、border、radiusを用途ごとに接続し、プリミティブを部品へ直接書かない。共通motion.duration/easingも正本のsemantic役割であり、独自の固定animation値を追加しない。文字・余白・操作寸法をguided/denseで変え、選択・取得・投影フォーム・focusを作り直さない。popupはlogical CSSと自身のscroll領域を使い、320px/文字200%でも必須操作を残す。reduced motionではsmooth scrollを抑止する。
 
-公開 `provideUiLocale` / `[uiLocale]` (`UiLocaleScope`) はlocale、messages、directionなどをscopeへ供給する。明示component localeはproviderより優先する。既定localeは生成時の `default_language` に従い、英語は `en-US`、日本語と項目のない既存YAMLは `ja-JP`。directionは未指定ならアプリのdirを継承する。UiLocaleScopeはnative lang/dirと公開CDK Directionalityを接続し、アプリの明示Dirや外部属性を尊重して自身の所有属性だけを復元する。辞書が変えるのはライブラリ文言であり、raw ID、label、description、app errorを翻訳・置換しない。
+公開 `provideUiLocale` / `[uiLocale]` (`UiLocaleScope`) はlocale、translate、directionなどをscopeへ供給する。明示component localeはproviderより優先する。既定localeは生成時の `default_language` に従い、英語は `en-US`、日本語と項目のない既存YAMLは `ja-JP`。directionは未指定ならアプリのdirを継承する。UiLocaleScopeはnative lang/dirと公開CDK Directionalityを接続し、アプリの明示Dirや外部属性を尊重して自身の所有属性だけを復元する。辞書が変えるのはライブラリ文言であり、raw ID、label、description、app errorを翻訳・置換しない。
 
 公開純関数は `treeNodes`、`treeBranch`、`treeUnloaded`、`treeEntries`、`treeEntry`、`treePath`、`treeFilter`、`treeVisible`、`treeComplete`、`treeCheckState`、`treeToggleCheck`、`treeSelectionProblem`、`cascaderPathProblem`。DOM符号化・load内部状態のhelperや共有popup baseをconsumerへ公開するものではない。
 

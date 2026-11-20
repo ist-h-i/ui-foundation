@@ -1,10 +1,8 @@
+import type { UiMessageTranslator } from './stable-messages';
 import {uiDefaultLanguage} from './locale-defaults';
-import {uiEnglishMessages} from './locale-en';
 import type {DateInputFormat} from './date-model';
 
 export type UiDirection='ltr'|'rtl';
-/** Keys are library-owned Japanese fallback text, never application data. */
-export type UiMessages=Readonly<Record<string,string>>;
 export interface UiLocaleOptions{
  locale?:string;
  direction?:UiDirection|null;
@@ -13,7 +11,7 @@ export interface UiLocaleOptions{
  civilDateOptions?:Intl.DateTimeFormatOptions;
  dateTimeOptions?:Intl.DateTimeFormatOptions;
  numberOptions?:Intl.NumberFormatOptions;
- messages?:UiMessages;
+ translate?:UiMessageTranslator|null;
 }
 export interface UiLocaleResolved{
  readonly locale:string;
@@ -23,9 +21,9 @@ export interface UiLocaleResolved{
  readonly civilDateOptions:Readonly<Intl.DateTimeFormatOptions>;
  readonly dateTimeOptions:Readonly<Intl.DateTimeFormatOptions>;
  readonly numberOptions:Readonly<Intl.NumberFormatOptions>;
- readonly messages:UiMessages;
+ readonly translate:UiMessageTranslator|null;
 }
-export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:uiDefaultLanguage==='en'?'en-US':'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),messages:uiDefaultLanguage==='en'?uiEnglishMessages:Object.freeze({})});
+export const defaultUiLocale:UiLocaleResolved=Object.freeze({locale:uiDefaultLanguage==='en'?'en-US':'ja-JP',direction:null,timeZone:null,dateInputFormat:'native',civilDateOptions:Object.freeze({dateStyle:'full'}),dateTimeOptions:Object.freeze({dateStyle:'medium',timeStyle:'short'}),numberOptions:Object.freeze({}),translate:null});
 const formats:readonly DateInputFormat[]=['native','yyyy-MM-dd','yyyy/MM/dd','dd/MM/yyyy','MM/dd/yyyy'];
 /** Validate an explicit runtime choice. No browser language/timezone or YAML inference. */
 export function resolveUiLocale(options:UiLocaleOptions,parent:UiLocaleResolved=defaultUiLocale):UiLocaleResolved{
@@ -40,12 +38,7 @@ export function resolveUiLocale(options:UiLocaleOptions,parent:UiLocaleResolved=
  if(civilDateOptions.timeZone!==undefined&&civilDateOptions.timeZone!=='UTC')throw new RangeError('Civil date formatting cannot convert a timezone.');
  if(dateTimeOptions.timeZone!==undefined)throw new RangeError('Set UI timeZone explicitly instead of dateTimeOptions.timeZone.');
  try{new Intl.NumberFormat(locale,numberOptions).format(0);new Intl.Collator(locale);new Intl.DateTimeFormat(locale,{...civilDateOptions,timeZone:'UTC'}).format(0);new Intl.DateTimeFormat(locale,{...dateTimeOptions,timeZone:timeZone??'UTC'}).format(0);}catch{throw new RangeError('UI locale, timezone or Intl format options are invalid.');}
- const supplied=options.messages===undefined?{}:options.messages;if(!supplied||typeof supplied!=='object'||Array.isArray(supplied)||Object.entries(supplied).some(([key,value])=>!key.trim()||typeof value!=='string'||!value.trim()))throw new TypeError('UI messages require nonempty fallback keys and text values.');
- const messages=Object.fromEntries([...Object.entries(parent.messages),...Object.entries(supplied)]);
- return Object.freeze({locale,direction,timeZone,dateInputFormat,civilDateOptions:Object.freeze({...civilDateOptions}),dateTimeOptions:Object.freeze({...dateTimeOptions}),numberOptions:Object.freeze({...numberOptions}),messages:Object.freeze(messages)});
-}
-/** Angular text interpolation remains responsible for HTML escaping. */
-export function uiMessage(source:string,messages:UiMessages,parameters:Readonly<Record<string,string|number>>={}):string{
- const chosen=Object.hasOwn(messages,source)?messages[source]:source;
- return chosen.replace(/\{([\w]+)\}/g,(match,key:string)=>Object.hasOwn(parameters,key)?String(parameters[key]):match);
+ const translate=options.translate===undefined?parent.translate:options.translate;
+ if(translate!==null&&typeof translate!=='function')throw new TypeError('UI message translator must be a function or null.');
+ return Object.freeze({locale,direction,timeZone,dateInputFormat,civilDateOptions:Object.freeze({...civilDateOptions}),dateTimeOptions:Object.freeze({...dateTimeOptions}),numberOptions:Object.freeze({...numberOptions}),translate});
 }

@@ -1,4 +1,6 @@
-import {uiMessage} from './locale-model';
+import { uiMessageText, type UiMessageText } from './stable-messages';
+
+const japaneseText = uiMessageText(() => 'ja-JP');
 /** Numeric and colour values are UI data, independent of Angular and persistence. */
 export interface NumberDomain { min: number; max: number; step: number; }
 export interface NumericRange { start: number; end: number; }
@@ -24,18 +26,18 @@ export function snapNumber(value: number, domain: NumberDomain): number {
   const index = Math.min(steps, Math.max(0, Math.round((value - domain.min) / domain.step)));
   return Math.max(domain.min, Math.min(domain.max, rounded(domain.min + index * domain.step, domain.step)));
 }
-export function numericValueError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null {
+export function numericValueError(value: unknown, domain: NumberDomain, text: UiMessageText = japaneseText): string | null {
   numberDomain(domain);
-  if (typeof value !== 'number' || !Number.isFinite(value)) return text('数値を指定してください。');
-  if (value < domain.min || value > domain.max) return text('{min} から {max} の範囲で指定してください。',{min:domain.min,max:domain.max});
+  if (typeof value !== 'number' || !Number.isFinite(value)) return text('uiFoundation.numericField.numericValueRequired');
+  if (value < domain.min || value > domain.max) return text('uiFoundation.numericField.valueOutsideRange',{min:domain.min,max:domain.max});
   const steps = (value - domain.min) / domain.step;
-  return Math.abs(steps - Math.round(steps)) <= 1e-8 ? null : text('{step} 刻みで指定してください。',{step:domain.step});
+  return Math.abs(steps - Math.round(steps)) <= 1e-8 ? null : text('uiFoundation.numericField.invalidIncrement',{step:domain.step});
 }
-export function numericRangeError(value: unknown, domain: NumberDomain, text=(source:string,parameters:Readonly<Record<string,string|number>>={})=>uiMessage(source,{},parameters)): string | null {
-  if (!value || typeof value !== 'object') return text('開始値と終了値を指定してください。');
+export function numericRangeError(value: unknown, domain: NumberDomain, text: UiMessageText = japaneseText): string | null {
+  if (!value || typeof value !== 'object') return text('uiFoundation.numericField.rangeEndpointsRequired');
   const range = value as Partial<NumericRange>;
   return numericValueError(range.start, domain, text) ?? numericValueError(range.end, domain, text)
-    ?? (range.start! > range.end! ? text('開始値は終了値以下にしてください。') : null);
+    ?? (range.start! > range.end! ? text('uiFoundation.numericField.invalidRangeOrder') : null);
 }
 function numericToken(value: string): number | null {
   return /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value) && Number.isFinite(Number(value)) ? Number(value) : null;

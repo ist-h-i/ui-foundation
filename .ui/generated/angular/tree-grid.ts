@@ -1,6 +1,6 @@
-import {injectUiText as injectUiDiagnosticText} from './locale';
-import {injectUiText as injectUiRuntimeText} from './locale';
-import {injectUiLocale,UiMessagePipe} from './locale';
+import {injectUiMessageText as injectUiDiagnosticText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
+import {injectUiLocale,UiStableMessagePipe} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { DataGrid, type GridPasteRequest, type GridTreeRow } from './data-grid';
@@ -10,14 +10,14 @@ import { installTableControlFocus } from './table-runtime';
 import { nextTreeRequestId } from './tree-load-sequence';
 import { treeBeginLoad, treeBranch, treeCancelLoads, treeEntries, treeEntry, treeFailLoad, treeNodes, treeResolveLoad, treeUnloaded, treeVisible, treeWithLoads, type TreeLoadCancellation, type TreeLoadRequest, type TreeLoads, type TreeNode } from './tree-model';
 /** Hierarchy owns UI string IDs; row data keeps the application's business key type. */
-@Component({ selector: 'ui-tree-grid,ui-tree-table', standalone: true, imports: [ActionControl, DataGrid,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, host: { 'data-table-owner': '', tabindex: '-1', '[attr.aria-label]': 'caption()' }, template: `
+@Component({ selector: 'ui-tree-grid,ui-tree-table', standalone: true, imports: [ActionControl, DataGrid,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, host: { 'data-table-owner': '', tabindex: '-1', '[attr.aria-label]': 'caption()' }, template: `
  @if(problem()){<p role="alert">{{problem()}}</p>}@else{
  <ui-data-grid #grid [caption]="caption()" [gridId]="gridId()" [rows]="rows()" [columns]="columns()" [keyField]="keyField()" [treeRows]="metadata()" [editable]="editable()" [disabled]="disabled()" [busy]="busy()" [rowSelection]="selectionMode()" [selectedKeys]="selectedKeys()" [locale]="effectiveLocale()" (treeToggleRequested)="toggle($event)" (selectedKeysChange)="selected($event)" (saveRequested)="saveRequested.emit($event)" (pasteRequested)="pasteRequested.emit($event)" (rowsChange)="edited($event)"/>
- @for(record of loadRecords();track record.requestId){<p [attr.role]="record.status==='error'?'alert':'status'">{{nodeLabel(record.nodeId)}}: {{record.status==='loading'?('子の行を取得しています。' | uiMessage):record.message}}@if(record.status==='error'){<button uiAction data-table-control type="button" [disabled]="disabled()||busy()" (click)="requestLoad(record.nodeId)">{{'子の行を再取得:' | uiMessage}} {{nodeLabel(record.nodeId)}}</button>}</p>}}
- @if(collapseDeferredIds().length){<p role="status">{{'編集中または保存待機中の行があります。保存または取消が終わるまで、階層を閉じる操作を保留しています。' | uiMessage}}</p>}
- @if(incomplete()){<p>{{'未取得の子の行があります。展開して取得できます。' | uiMessage}}</p>}`, styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;font:inherit;color:var(--ui-color-text);}:host([hidden]){display:none;}p{overflow-wrap:anywhere;}` })
+ @for(record of loadRecords();track record.requestId){<p [attr.role]="record.status==='error'?'alert':'status'">{{record.status==='loading'?('uiFoundation.treeGrid.loadingBranch' | uiStableMessage:{label:nodeLabel(record.nodeId)}):('uiFoundation.treeGrid.branchError' | uiStableMessage:{label:nodeLabel(record.nodeId),message:record.message??''})}}@if(record.status==='error'){<button uiAction data-table-control type="button" [disabled]="disabled()||busy()" (click)="requestLoad(record.nodeId)">{{ 'uiFoundation.treeGrid.retryBranch' | uiStableMessage:{label:nodeLabel(record.nodeId)} }}</button>}</p>}}
+ @if(collapseDeferredIds().length){<p role="status">{{'uiFoundation.treeGrid.someRowsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToCollapseTheHierarchy' | uiStableMessage}}</p>}
+ @if(incomplete()){<p>{{'uiFoundation.treeGrid.someChildRowsHaveYetToLoadExpandTheRowToLoadThem' | uiStableMessage}}</p>}`, styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;font:inherit;color:var(--ui-color-text);}:host([hidden]){display:none;}p{overflow-wrap:anywhere;}` })
 export class TreeGrid<T extends object> {
- private readonly uiDiagnostic_TreeGrid=(()=>{const text=injectUiDiagnosticText();return (value:string|null):string|null=>value===null?null:text(value);})();
+ private readonly uiDiagnostic_TreeGrid=injectUiDiagnosticText();
 
  private readonly uiRuntimeText_TreeGrid=injectUiRuntimeText();
 
@@ -73,11 +73,11 @@ export class TreeGrid<T extends object> {
         try {
             const source = treeWithLoads(treeNodes(this.nodes()), this.loads()), entries = treeEntries(source);
             if (entries.some(entry => !entry.node.data || typeof entry.node.data !== 'object'))
-                return this.uiRuntimeText_TreeGrid('階層の各行に列と行キーを持つdataを指定してください。');
-            return this.uiDiagnostic_TreeGrid(tableConfigurationError(entries.map(entry => entry.node.data!), this.columns(), this.keyField(), createTableState()));
+                return this.uiRuntimeText_TreeGrid("uiFoundation.treeGrid.provideDataWithColumnsAndARowKeyForEachRowInTheHierarchy");
+            return tableConfigurationError(entries.map(entry => entry.node.data!), this.columns(), this.keyField(), createTableState(), this.uiDiagnostic_TreeGrid);
         }
         catch {
-            return this.uiRuntimeText_TreeGrid('階層のID、親子関係、取得済みの子を確認してください。');
+            return this.uiRuntimeText_TreeGrid("uiFoundation.treeGrid.checkTheIDsParentChildRelationshipsAndLoadedChildRows");
         }
     });
     protected nodeLabel(id: string): string { return treeEntry(this.resolved(), id)?.node.label ?? id; }

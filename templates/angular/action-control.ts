@@ -1,4 +1,4 @@
-import {UiMessagePipe} from './locale';
+import {UiStableMessagePipe} from './locale';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -44,13 +44,13 @@ function guardActivation(isBlocked: () => boolean): void {
 @Component({
   selector: 'button[uiAction]',
   standalone: true,
-  imports: [Icon,UiMessagePipe],
+  imports: [Icon,UiStableMessagePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
     <span class="ui-action-label" style="order:1"><ng-content /></span>
     @if (busy()) {
-      <span class="ui-action-busy">{{'処理中' | uiMessage}}</span>
+      <span class="ui-action-busy">{{'uiFoundation.actionControl.busy' | uiStableMessage}}</span>
     }
   `,
   host: {
@@ -83,6 +83,9 @@ export class ActionControl {
 
 @Component({
   selector: 'a[uiAction]',
+  standalone: true,
+  imports: [Icon,UiStableMessagePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: `
     .ui-action-external {
       order:3;
@@ -92,15 +95,12 @@ export class ActionControl {
       min-inline-size:0;
     }
   `,
-  standalone: true,
-  imports: [Icon,UiMessagePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
     <span class="ui-action-label" style="order:1"><ng-content /></span>
-    @if (external()) {<span class="ui-action-external">{{'外部リンク' | uiMessage}}<span aria-hidden="true">↗</span></span>}
+    @if (external()) {<span class="ui-action-external">{{'uiFoundation.actionLink.external' | uiStableMessage}}<span aria-hidden="true">↗</span></span>}
     @if (busy()) {
-      <span class="ui-action-busy">{{'処理中' | uiMessage}}</span>
+      <span class="ui-action-busy">{{'uiFoundation.actionControl.busy' | uiStableMessage}}</span>
     }
   `,
   host: {

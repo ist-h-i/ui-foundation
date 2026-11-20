@@ -135,8 +135,8 @@ export {ColumnFilter,ColumnChooser,FilterChips,SearchPanel,TableToolbar,tableOpe
 export {copyTableMatrix,downloadTableCsv,createTablePrintDocument} from './table-output';
 export {tableDraft,parseTableDraft,tableEditProblem,validateTableRowDraft,tableEditStillCurrent,tableHeaderProblem,tableHeaderRows,tableCellHeaders,aggregateTable,groupTable,flattenTableGroups,gridCellMove,gridRangeContains,gridRangeCells,tableOutputRows,tableOutputMatrix,serializeTableMatrix,parseTableMatrix,prepareTablePaste,cloneTableState,type TableEditableColumn,type TableEditChange,type TableEditRequest,type TableDraftResult,type TableHeaderGroup,type TableHeaderCell,type TableAggregateKind,type TableAggregate,type TableAggregateValue,type TableRowGroup,type TableGroupEntry,type GridCell as TableGridCell,type GridRange,type TableOutputScope,type TablePasteResult} from './table-advanced-model';
 
-export {UI_LOCALE,UiLocaleScope,UiMessagePipe,provideUiLocale,injectUiLocale,injectUiText} from './locale';
-export {defaultUiLocale,resolveUiLocale,uiMessage} from './locale-model';
-export {uiEnglishMessages} from './locale-en';
-export {uiJapaneseMessages} from './locale-ja';
-export type {UiDirection,UiMessages,UiLocaleOptions,UiLocaleResolved} from './locale-model';
+export {UI_LOCALE,UiLocaleScope,UiStableMessagePipe,provideUiLocale,injectUiLocale,injectUiMessage,injectUiMessageText} from './locale';
+export {defaultUiLocale,resolveUiLocale} from './locale-model';
+export type {UiDirection,UiLocaleOptions,UiLocaleResolved} from './locale-model';
+
+export type { UiMessageId, UiMessageParameters, UiMessageRequest, UiMessageTranslator } from './stable-messages';

@@ -105,3 +105,22 @@ for(const profile of ['guided','dense'])test.describe(`choice catalog ${profile}
   if(state==='invalid'){await page.locator('#bad-amount').click();await page.locator('#invalid-filter').click();await page.locator('#color-text').fill('hsl(');}if(state==='pending'){await page.locator('ui-inline-edit').getByRole('button',{name:'編集',exact:true}).click();await page.locator('#inline').fill('保存待ち');await page.locator('#inline').press('Enter');}if(state==='narrow'){await page.setViewportSize({width:320,height:800});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByLabel('RTL',{exact:true}).check();await page.locator('#restore-nested').click();}await expect(page.locator('ui-color-picker').getByRole('group',{name:'色の候補',exact:true})).toBeVisible();const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();await info.attach('axe-coverage',{body:JSON.stringify({profile,state,incomplete:result.incomplete.map(item=>({id:item.id,impact:item.impact,nodes:item.nodes.length})),violations:result.violations}),contentType:'application/json'});expect(result.violations).toEqual([]);
  });
 });
+
+test('the completed filter save is translated again without repeating the request or replacing the input', async ({page}) => {
+  await page.goto('/catalog/choices');
+  const builder = page.locator('ui-filter-builder');
+  const item = await rule(page);
+  await item.getByRole('combobox', {name: '項目', exact: true}).selectOption('field:amount');
+  const input = item.getByRole('textbox', {name: '値', exact: true});
+  await input.fill('15');
+  const original = await input.elementHandle();
+  await builder.getByRole('button', {name: '条件を保存', exact: true}).click();
+  await page.locator('#filter-approve').click();
+  await expect(builder).toContainText('条件を保存しました。');
+  await page.locator('#filter-language').click();
+  await expect(builder).toContainText('Criteria saved.');
+  await expect(page.locator('#filter-request-count')).toHaveText('1');
+  const translated = item.getByRole('textbox', {name: 'Value', exact: true});
+  await expect(translated).toHaveValue('15');
+  expect(await translated.evaluate((element, before) => element === before, original)).toBe(true);
+});

@@ -23,19 +23,45 @@ const currentEvidence = resolve(root, 'tests/fixtures/static-checks/seven-candid
 const example = await readFile(resolve(root, 'examples/ui.config.repository.yaml'), 'utf8');
 interface Diagnostic {file:string;line:number;column:number;rule:string;source:string;severity:string}
 interface Approval {id:string;origin:'legacy'|'candidate';exception:{file:string;line:number;column:number;rule:string;source:string;reason:string};proof_sha256:Record<string,string>}
+interface CurrentAudit {
+  sites: Record<string, Diagnostic & {exception: string}>;
+  dependencies: Record<string, {prior_sha256:string;current_sha256:string;judgment:string}>;
+}
 const proof = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-proof-current.json'), 'utf8'));
 const approvals: Approval[] = proof.current_purpose_proofs;
 const candidates = JSON.parse(await readFile(resolve(evidence, 'candidate-purpose-audit.json'), 'utf8')).records as {id:string; baseline_diagnostic:Diagnostic; match_source:string}[];
 const originalCandidates = JSON.parse(await readFile(resolve(evidence,'../baseline-classification.json'),'utf8')).records.filter((x: {bucket:string}) => x.bucket === 'reasoned_exception_candidate') as {id:string; diagnostic:Diagnostic; reason_ja:string}[];
 const historicalApprovals: Approval[] = JSON.parse(await readFile(resolve(historicalEvidence, 'approved-exceptions.json'), 'utf8')).records;
 const baseline: Diagnostic[] = JSON.parse(await readFile(resolve(historicalEvidence, 'baseline-check.json'), 'utf8')).source.diagnostics;
-const current: Diagnostic[] = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-sites-current.json'), 'utf8')).diagnostics;
+const historicalSites: Diagnostic[] = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-sites-current.json'), 'utf8')).diagnostics;
+const currentAudit: CurrentAudit = JSON.parse(await readFile(resolve(currentEvidence, 'message-migration-reaudit.json'), 'utf8'));
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
-async function validateProofDependencies(item: Approval, directory = root): Promise<void> {
+async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
-    assert.equal(sha256(await readFile(resolve(directory, file))), hash,
+    const update = currentAudit.dependencies[file];
+    if (update) {
+      assert.equal(update.prior_sha256, hash, `${item.id}: re-audit must match the prior proof dependency`);
+      assert.ok(update.judgment.trim(), `${item.id}: changed dependency requires a purpose judgment`);
+    }
+    assert.equal(sha256(await readFile(resolve(directory, file))), update?.current_sha256 ?? hash,
       `${item.id}: producer/helper changed; re-audit its purpose before refreshing this proof`);
   }
+}
+
+function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string, original: {
+  file: string; rule: string; source: string; reason: string; line?: number; column?: number;
+}, severity: 'warning' | 'error') {
+  const site = currentAudit.sites[id];
+  assert.ok(site, `${id}: current checker evidence required`);
+  assert.equal(site.file, original.file);
+  assert.equal(site.rule, original.rule);
+  assert.equal(site.severity, severity, `${id}: the re-audit cannot change the admitted severity`);
+  assert.ok(site.source.includes(original.source), `${id}: retain the same matching source`);
+  assert.equal(site.exception, original.reason, `${id}: retain the original purpose`);
+  assert.equal(config.checks!.exceptions.filter(x => x.file === original.file && x.rule === original.rule
+    && x.source === original.source && x.reason === original.reason
+    && x.line === (original.line === undefined ? undefined : site.line)
+    && x.column === (original.column === undefined ? undefined : site.column)).length, 1, id);
 }
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
@@ -72,11 +98,10 @@ test('project exceptions retain one-site scope, legacy purposes and separately r
       assert.equal(e.reason, `[${item.id}] ${original.reason_ja} 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。`);
       assert.equal(proof.candidate_decisions.find((x: {id:string}) => x.id === item.id).disposition, 'reasoned_exception');
     }
-    const matches = current.filter(d => d.file === e.file && d.line === e.line && d.column === e.column && d.rule === e.rule && d.source.includes(e.source));
-    assert.equal(matches.length, 1, `${item.id}: current source site`);
+    const matches = historicalSites.filter(d => d.file === e.file && d.line === e.line && d.column === e.column && d.rule === e.rule && d.source.includes(e.source));
+    assert.equal(matches.length, 1, `${item.id}: frozen reviewed source site`);
     assert.equal(matches[0].severity, 'warning', `${item.id}: a purpose may not suppress a literal error`);
-    assert.equal(config.checks!.exceptions.filter(x => x.file === e.file && x.rule === e.rule && x.source === e.source
-      && x.line === e.line && x.column === e.column && x.reason === e.reason).length, 1, item.id);
+    validateAdmittedSite(config, item.id, e, 'warning');
     await validateProofDependencies(item);
   }
   for (const decision of proof.candidate_decisions.filter((x: {disposition:string}) => x.disposition !== 'reasoned_exception')) {
@@ -196,11 +221,12 @@ test('copied CLI suppresses only its exact reviewed warning and still rejects li
 test('newly exposed fixed fragment exceptions retain the precise value and audited producer', async () => {
   const ledger=JSON.parse(await readFile(resolve(currentEvidence,'literal-purpose-proof-current.json'),'utf8'));
   const config=parseConfig(example);
+  assert.deepEqual(Object.keys(currentAudit.sites).sort(), [...approvals, ...ledger.records].map(record=>record.id).sort());
   for(const record of ledger.records){
     const e=record.exception;
     assert.equal(e.rule,'literal-token');assert.ok(/dynamic expression; fixed (?:12ch|100%)\)/.test(e.source));
-    assert.equal(config.checks!.exceptions.filter(x=>x.file===e.file&&x.rule===e.rule&&x.source===e.source&&x.reason===e.reason).length,1);
-    for(const [file,hash]of Object.entries(record.proof_sha256))assert.equal(sha256(await readFile(resolve(root,file))),hash);
+    validateAdmittedSite(config, record.id, e, 'error');
+    await validateProofDependencies(record);
   }
   assert.equal(sha256(await readFile(resolve(root,ledger.source_report))),ledger.source_report_sha256);
   assert.equal(ledger.records.length,2);

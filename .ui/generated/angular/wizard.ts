@@ -1,7 +1,7 @@
 import {uiMessageState} from './locale';
-import {injectUiText as injectUiRuntimeText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText} from './locale';
+import {injectUiMessageText} from './locale';
 import { AfterContentChecked, OnDestroy, afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, ElementRef, forwardRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { canFocus } from './focus';
@@ -34,7 +34,7 @@ export class WizardStep implements OnDestroy {
 export class Wizard implements AfterContentChecked {
  private readonly uiRuntimeText_Wizard=injectUiRuntimeText();
 
- protected readonly uiText_Wizard=injectUiText();
+ protected readonly uiText_Wizard=injectUiMessageText();
   readonly controlId = input.required<string>();
   readonly label = input.required<string>();
   readonly current = input('');
@@ -45,19 +45,19 @@ export class Wizard implements AfterContentChecked {
   readonly deferTransitions = input(false, { transform: booleanAttribute });
   readonly nonlinear = input(false, { transform: booleanAttribute });
   readonly stepsLabel = input<string>();
- protected readonly uiEffective_stepsLabel=uiLocaleComputed(()=>this.stepsLabel()??this.uiText_Wizard('入力の段階'));
+ protected readonly uiEffective_stepsLabel=uiLocaleComputed(()=>this.stepsLabel()??this.uiText_Wizard("uiFoundation.wizard.formSteps"));
   readonly backLabel = input<string>();
- protected readonly uiEffective_backLabel=uiLocaleComputed(()=>this.backLabel()??this.uiText_Wizard('戻る'));
+ protected readonly uiEffective_backLabel=uiLocaleComputed(()=>this.backLabel()??this.uiText_Wizard("uiFoundation.wizard.back"));
   readonly nextLabel = input<string>();
- protected readonly uiEffective_nextLabel=uiLocaleComputed(()=>this.nextLabel()??this.uiText_Wizard('次へ'));
+ protected readonly uiEffective_nextLabel=uiLocaleComputed(()=>this.nextLabel()??this.uiText_Wizard("uiFoundation.wizard.next"));
   readonly completeLabel = input<string>();
- protected readonly uiEffective_completeLabel=uiLocaleComputed(()=>this.completeLabel()??this.uiText_Wizard('完了'));
+ protected readonly uiEffective_completeLabel=uiLocaleComputed(()=>this.completeLabel()??this.uiText_Wizard("uiFoundation.wizard.finish"));
   readonly emptyLabel = input<string>();
- protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_Wizard('利用できる段階がありません。'));
+ protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_Wizard("uiFoundation.wizard.thereAreNoAvailableSteps"));
   readonly pendingLabel = input<string>();
- protected readonly uiEffective_pendingLabel=uiLocaleComputed(()=>this.pendingLabel()??this.uiText_Wizard('移動できるか確認しています。'));
+ protected readonly uiEffective_pendingLabel=uiLocaleComputed(()=>this.pendingLabel()??this.uiText_Wizard("uiFoundation.wizard.checkingWhetherYouCanContinue"));
   readonly completedLabel = input<string>();
- protected readonly uiEffective_completedLabel=uiLocaleComputed(()=>this.completedLabel()??this.uiText_Wizard('段階を完了しました。'));
+ protected readonly uiEffective_completedLabel=uiLocaleComputed(()=>this.completedLabel()??this.uiText_Wizard("uiFoundation.wizard.stepCompleted"));
   readonly transitionRequested = output<WizardTransition>();
   readonly completionAccepted = output<string>();
   private readonly projected = contentChildren(WizardStep, { descendants: true });
@@ -91,7 +91,7 @@ export class Wizard implements AfterContentChecked {
     afterRenderEffect(() => {
       const id = this.activeStepId(), request = this.pending(); this.steps(); this.nextTarget(); this.backTarget(); this.activeStep()?.canProceed(); this.nextAvailable();
       untracked(() => {
-        if (request && !this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard('段階の条件が変わったため、もう一度確認してください。')]); }
+        if (request && !this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard("uiFoundation.wizard.theConditionsForThisStepHaveChangedReviewItAgain")]); }
         const active = this.element.ownerDocument.activeElement;
         const hiddenOwned = this.element.contains(active) && !(active as HTMLElement).getClientRects().length;
         if ((this.pendingFocus && (active === this.element.ownerDocument.body || this.element.contains(active))) || hiddenOwned) this.activeStep()?.focusStart();
@@ -132,7 +132,7 @@ export class Wizard implements AfterContentChecked {
   approve(requestId: number): boolean {
     const request = this.pending();
     if (this.destroy.destroyed || !request || request.requestId !== requestId) return false;
-    if (!this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard('段階の条件が変わったため、もう一度確認してください。')]); return false; }
+    if (!this.validTransition(request)) { this.pending.set(null); this.problem.setMessage([() => this.uiRuntimeText_Wizard("uiFoundation.wizard.theConditionsForThisStepHaveChangedReviewItAgain")]); return false; }
     this.pending.set(null); this.problem.set('');
     if (request.to === null) { this.finished.set(true); this.completionAccepted.emit(request.from); return true; }
     const history = [...this.history()];

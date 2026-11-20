@@ -54,7 +54,7 @@ async function verifySkillReferences(consumer, allowedDocs) {
   return checked;
 }
 
-test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 480_000 }, async t => {
+test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-beta-'));
   const consumer = resolve(root, 'consumer');
   await mkdir(consumer);
@@ -68,7 +68,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
         await mkdir(evidence, { recursive: true });
         await cp(candidate, resolve(evidence, 'candidate.tgz'));
         await run('tar', ['-xzf', candidate, '-C', evidence], { cwd: root, timeout: 15_000 });
-        for (const [source, target] of [['public', 'dist'], ['bundle-metafile.json', 'bundle-metafile.json'], ['.ui', '.ui'], ['.agents', '.agents'], ['ui.config.yaml', 'ui.config.yaml'], ['consumer.ts', 'consumer.ts'], ['tsconfig.json', 'tsconfig.json']]) {
+        for (const [source, target] of [['public', 'dist'], ['bundle-metafile.json', 'bundle-metafile.json'], ['.ui', '.ui'], ['.agents', '.agents'], ['ui.config.yaml', 'ui.config.yaml'], ['consumer.ts', 'consumer.ts'], ['locale-adapter.ts', 'locale-adapter.ts'], ['tsconfig.json', 'tsconfig.json']]) {
           const path = resolve(consumer, source);
           try { await lstat(path); }
           catch (error) { if (error.code === 'ENOENT') continue; throw error; }
@@ -88,8 +88,8 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.4');
-  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'beta' });
+  assert.equal(manifest.version, '0.1.0-beta.5');
+  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'next' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
   const execute = (file, args, cwd = consumer, timeout = 120_000) => run(file, args, { cwd, timeout, signal: t.signal });
@@ -123,6 +123,8 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.deepEqual(installedManifest, candidateDetails.manifest, 'npm must preserve the candidate metadata');
   const cli = (...args) => isolated(process.execPath, [resolve(installed, 'dist/cli.js'), ...args]);
   await cli('init');
+  assert.match(await cli('sync', '--dry-run'), /Dry run: no files written/);
+  await assert.rejects(readFile(resolve(consumer, '.ui/generated/manifest.json')), { code: 'ENOENT' });
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/application.ts'), 'export const consumerApplication = true;\n');
   await cli('sync');
@@ -132,6 +134,50 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(JSON.parse(await cli('check', '--format', 'json')).valid, true);
   const skillReferences = await verifySkillReferences(consumer, allowedDocs);
   const candidateState = await snapshot(consumer);
+
+  // Exercise the actual public predecessor, pinned by its registry integrity.
+  const predecessor = '0.1.0-beta.4';
+  const [previousPack] = JSON.parse(await execute('npm', [
+    'pack', `${manifest.name}@${predecessor}`, '--json', '--ignore-scripts', '--pack-destination', root,
+  ], root));
+  const previousTarball = resolve(root, previousPack.filename);
+  const previousIntegrity = createHash('sha512').update(await readFile(previousTarball)).digest('base64');
+  assert.equal(`sha512-${previousIntegrity}`, 'sha512-7UbBKngs68d6qsf2q8jHFT+I4oauJ/cu7mHeJFDQ6+KTv6BOeAtvrzOVmfRMgtPwH09DvIbcelMeFcHFrMixUQ==');
+  await install(previousTarball);
+  await cli('sync');
+  await cli('check');
+  const previousState = await snapshot(consumer);
+  const previousConfig = await readFile(resolve(consumer, 'ui.config.yaml'));
+  const retiredEntries = [
+    '.agents/skills/project-ui/SKILL.en.md',
+    '.agents/skills/project-ui/SKILL.ja.md',
+    '.ui/generated/angular/locale-en.ts',
+    '.ui/generated/angular/locale-ja.ts',
+  ];
+  const editedSkill = resolve(consumer, retiredEntries[1]);
+  const ownedSkill = await readFile(editedSkill, 'utf8');
+  await writeFile(editedSkill, `${ownedSkill}\nConsumer-owned notes.\n`);
+  await install(candidate);
+  const editedState = await snapshot(consumer);
+  await assert.rejects(cli('sync'), /conflict|manually|edited/i);
+  assertSnapshot(await snapshot(consumer), editedState, 'retiring an edited legacy Skill must preserve all prior files');
+  await writeFile(editedSkill, ownedSkill);
+  const dryRun = await cli('sync', '--dry-run');
+  for (const entry of retiredEntries) assert.ok(dryRun.includes(entry), dryRun);
+  assertSnapshot(await snapshot(consumer), previousState, 'dry run must preserve the previous output');
+  await cli('sync');
+  for (const entry of retiredEntries) await assert.rejects(readFile(resolve(consumer, entry)), { code: 'ENOENT' });
+  await cli('check');
+  assertSnapshot(await snapshot(consumer), candidateState, 'upgrading beta.4 must produce the candidate-owned files');
+  await install(previousTarball);
+  await cli('sync');
+  await cli('check');
+  assertSnapshot(await snapshot(consumer), previousState, 'rolling back to beta.4 must restore its owned files');
+  assert.deepEqual(await readFile(resolve(consumer, 'ui.config.yaml')), previousConfig);
+  assert.equal(await readFile(resolve(consumer, 'src/application.ts'), 'utf8'), 'export const consumerApplication = true;\n');
+  await install(candidate);
+  await cli('sync');
+  t.diagnostic(`public ${predecessor} → candidate → ${predecessor}: reviewed retirement, edited Skill protection, and output rollback passed`);
 
   // These private, unpublished tarballs model a real differing-version upgrade.
   // Their metadata and explicit template delta never modify the candidate.
@@ -210,6 +256,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   for (const [source, target] of [['consumer.ts', 'consumer.ts'], ['consumer-smoke.mjs', 'consumer-smoke.mjs']]) {
     await cp(resolve(repository, 'scripts/package-verification', source), resolve(consumer, target));
   }
+  await cp(resolve(installed, 'skills/ui-development/references/examples/locale-adapter.ts'), resolve(consumer, 'locale-adapter.ts'));
   await writeFile(resolve(consumer, 'tsconfig.json'), JSON.stringify({
     compilerOptions: { target: 'ES2022', module: 'ESNext', moduleResolution: 'bundler', lib: ['ES2022', 'DOM'], strict: true, experimentalDecorators: true, skipLibCheck: true, noEmitOnError: true, rootDir: '.', outDir: 'compiled' },
     angularCompilerOptions: { strictTemplates: true, strictInjectionParameters: true, compilationMode: 'full' },
@@ -220,6 +267,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.deepEqual(await readFile(resolve(consumer, 'public/ui-foundation/LICENSE.txt')), ownLicense);
   assert.equal(smoke.stylesWithoutTailwind, true);
   assert.equal(smoke.strictAot, true); assert.equal(smoke.englishWithoutLocaleProvider, true); assert.equal(smoke.inputAndProfileRetention, true);
+  assert.equal(smoke.lazyLocaleAdapter, true);
   assert.equal(smoke.sheetCalculation, true); assert.equal(smoke.pdfCanvas, true); assert.equal(smoke.mapCanvas, true);
   assert.ok(smoke.servedAssetHashes > 20);
   const metafileBytes = await readFile(resolve(consumer, 'bundle-metafile.json'));

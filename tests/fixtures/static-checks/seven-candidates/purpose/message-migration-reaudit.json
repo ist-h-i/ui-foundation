@@ -1,0 +1,729 @@
+{
+  "source_commit": "18090a0d9c487e1a46366cc57c535ee310b08948",
+  "checker_report_sha256": "6065811132dbde41735538c0f488f74896a9a02bb5e541105c9a0eab36e24a8f",
+  "historical_proof_commit": "345025561b8fe8a53f99ffe52a0a30455443dabc",
+  "scope": "The exact checker report admitted these 66 previously reviewed style exceptions. File, matching source, rule, severity and justification retain their historic case identity. Current coordinates and reviewed file digests are read separately from the historical release artifacts.",
+  "sites": {
+    "R009": {
+      "file": "templates/angular/chart.ts",
+      "line": 18,
+      "column": 845,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<td [style.padding-inline-start]=\"indent(row.depth)\"> :: [style.padding-inline-start]=\"indent(row.depth)\">{{row.point.label}}</td><td>{{row.point.value===null?('uiFoundation.chart.unavailable' | uiStableMessage):numberText(row.point.value)}}</td><td>{{row.point.x??'—'}}, {{row.point.y??'—'}}</td><td><button type=\"button\" [disabled]=\"disabled()||busy()||!!problem()\" [attr.aria-pressed]=\"selected()?.seriesId===row.seriesId&&selected()?.pointId===row.point.id\" (click)=\"select(row.seriesId,row.point.id)\">{{'uiFoundation.chart.selectForLabel' | uiStableMessage:{label:row.point.label} }}</button></td></tr>}</tbody></table></div></figure>`})",
+      "exception": "[R009] Chartの階層行の字下げ。depthは外部CSS値ではなくchartPointRowsが0から増分生成し、rows()はchartProblemの深さ32・循環検証に合格した系列だけを渡す。意味トークンに非負整数係数を掛ける用途に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R018": {
+      "file": "templates/angular/data-grid.ts",
+      "line": 38,
+      "column": 68,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<table [style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'\" [attr.role]=\"treeRows()?'treegrid':'grid'\" [attr.aria-label]=\"caption()\" [attr.aria-describedby]=\"gridId()+'-instructions'\" [attr.aria-rowcount]=\"rows().length+1\" [attr.aria-colcount]=\"columns().length\" [attr.aria-multiselectable]=\"selectionMode()==='range'||rowSelection()==='multiple'?'true':null\" [attr.aria-busy]=\"blocked()?'true':null\" (keydown)=\"key($event)\" (paste)=\"paste($event)\"> :: [style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'\" [attr.role]=\"treeRows()?'treegrid':'grid'\" [attr.aria-label]=\"caption()\" [attr.aria-describedby]=\"gridId()+'-instructions'\" [attr.aria-rowcount]=\"rows().length+1\" [attr.aria-colcount]=\"columns().length\" [attr.aria-multiselectable]=\"selectionMode()==='range'||rowSelection()==='multiple'?'true':null\" [attr.aria-busy]=\"blocked()?'true':null\" (keydown)=\"key($event)\" (paste)=\"paste($event)\"><caption>{{caption()}}</caption><thead><tr role=\"row\">@for(column of columns();track column.id){<th role=\"columnheader\" scope=\"col\" [id]=\"headerId(column.id)\">{{column.header}}</th>}</tr></thead><tbody>",
+      "exception": "[R018] 表の最小幅は列数を係数にしてtable-column-min/control/table-xの意味トークンと文字幅を組み合わせる。係数は配列lengthで非負整数、表示中は設定検証により1列以上であり、任意CSSやDOM計測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R043": {
+      "file": "templates/angular/diagram.ts",
+      "line": 20,
+      "column": 1311,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<button #diagramNode type=\"button\" class=\"ui-diagram-node\" [style.left.px]=\"node.x*zoom()\" [style.top.px]=\"node.y*zoom()\" [style.inline-size.px]=\"nodeWidth()\" [style.min-block-size.px]=\"nodeHeight()\" [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\"> :: [style.left.px]=\"node.x*zoom()\" [style.top.px]=\"node.y*zoom()\" [style.inline-size.px]=\"nodeWidth()\" [style.min-block-size.px]=\"nodeHeight()\" [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\">{{node.label}}</button>}</div></div>",
+      "exception": "[R043] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R044": {
+      "file": "templates/angular/diagram.ts",
+      "line": 20,
+      "column": 1343,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<button #diagramNode type=\"button\" class=\"ui-diagram-node\" [style.left.px]=\"node.x*zoom()\" [style.top.px]=\"node.y*zoom()\" [style.inline-size.px]=\"nodeWidth()\" [style.min-block-size.px]=\"nodeHeight()\" [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\"> :: [style.top.px]=\"node.y*zoom()\" [style.inline-size.px]=\"nodeWidth()\" [style.min-block-size.px]=\"nodeHeight()\" [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\">{{node.label}}</button>}</div></div>",
+      "exception": "[R044] Diagramノード配置のleft/topは検証済みモデル座標と拡大率だけ。diagramProblemが有限0〜1000000の座標を検証し、zoomは有限0.25〜4、異常時displayModel.nodesは空。ノード寸法やDOM測定を含まない該当bindingだけのデータ配置例外にできる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R047": {
+      "file": "templates/angular/diagram.ts",
+      "line": 20,
+      "column": 1452,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<button #diagramNode type=\"button\" class=\"ui-diagram-node\" [style.left.px]=\"node.x*zoom()\" [style.top.px]=\"node.y*zoom()\" [style.inline-size.px]=\"nodeWidth()\" [style.min-block-size.px]=\"nodeHeight()\" [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\"> :: [style.transform]=\"'scale('+zoom()+')'\" [attr.aria-pressed]=\"selected()===node.id\" [disabled]=\"disabled()||busy()\" (click)=\"selectionChange.emit(node.id)\" (keydown)=\"nodeKey($event,node)\">{{node.label}}</button>}</div></div>",
+      "exception": "[R047] Diagramのscale()は有限0.25〜4に検証されたzoomだけで生成するデータ表示倍率。異常zoomでdisplayModel.nodesは空となりnode transform bindingは生成されない。DOM実測のノード寸法診断へは広げない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R048": {
+      "file": "templates/angular/diff-json.ts",
+      "line": 27,
+      "column": 1236,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<th scope=\"row\" [style.padding-inline-start]=\"indent(row)\"> :: [style.padding-inline-start]=\"indent(row)\">@if(row.container){<button type=\"button\" [disabled]=\"blocked()\" [attr.aria-expanded]=\"expanded().has(row.id)\" (click)=\"toggle(row.id)\">{{expanded().has(row.id)?('uiFoundation.jsonViewer.collapseLabel' | uiStableMessage:{label:rowLabel(row)}):('uiFoundation.jsonViewer.expandLabel' | uiStableMessage:{label:rowLabel(row)})}}</button>}@else{<span>{{rowLabel(row)}}</span>}</th><td><bdi dir=\"ltr\">{{row.type}}</bdi></td><td><code dir=\"ltr\">{{row.container?'…':row.source}}</code></td></tr>}</tbody></table></div>@if(model().error){<pre dir=\"ltr\">{{source()}}</pre>}</section>`})",
+      "exception": "[R048] JSON階層の字下げはjsonRowsが0から生成するdepth（最大64）の係数をcontrol-x/control-gapに掛ける。任意外部CSSやDOM計測ではなく、検証された構文木の階層表現に限定される。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R049": {
+      "file": "templates/angular/display-content.ts",
+      "line": 12,
+      "column": 104,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div #content class=\"ui-read-content\" [id]=\"controlId()\" [attr.data-expanded]=\"expansion()\" [style.--ui-read-lines]=\"lineCount()\"> :: [style.--ui-read-lines]=\"lineCount()\">{{text()}}</div>@if(overflow()){<button type=\"button\" data-read-toggle [attr.aria-expanded]=\"expansion()\" [attr.aria-controls]=\"controlId()\" (click)=\"toggle()\">{{expansion()?uiEffective_collapseLabel():uiEffective_expandLabel()}}</button>}`,",
+      "exception": "[R049] 全文表示の視覚クリップ行数という数値構造係数。sink producerはdisplayIntegerを呼び、safe integerかつ1..100の範囲を検査してから返す。通常の色／余白を置換する値ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R052": {
+      "file": "templates/angular/display-content.ts",
+      "line": 31,
+      "column": 644,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<code [attr.class]=\"languageClass()\" [style.--ui-code-number-digits]=\"numberDigits()\"> :: [style.--ui-code-number-digits]=\"numberDigits()\">@for(line of sourceLines();track $index){<span class=\"ui-code-line\" [attr.data-numbers]=\"lineNumbers()\">@if(lineNumbers()){<span class=\"ui-code-numbers\" aria-hidden=\"true\">{{$index+1}}</span>}<span class=\"ui-code-text\">{{line}}</span></span>}</code></pre></div>`,",
+      "exception": "[R052] コード行番号欄の桁数は原文分割後の配列lengthをString化した文字数。外部CSS文字列や意匠値を返さず、正の整数のデータ係数になる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R064": {
+      "file": "templates/angular/display.ts",
+      "line": 76,
+      "column": 12,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.--ui-avatar-graphemes]=\"letterCount()\"> :: tr.data-size]':'size()','[attr.data-shape]':'shape()','[style.--ui-avatar-graphemes]':'letterCount()'},",
+      "exception": "[R064] Avatar fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0除算を排除した正整数のデータ係数。semantic text-avatarを基準にする。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R068": {
+      "file": "templates/angular/display.ts",
+      "line": 137,
+      "column": 491,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<span [style.inline-size.%]=\"item.value/maximum()*100\" [attr.data-tone]=\"item.tone??'neutral'\" [attr.title]=\"item.label\"> :: [style.inline-size.%]=\"item.value/maximum()*100\" [attr.data-tone]=\"item.tone??'neutral'\" [attr.title]=\"item.label\"></span>}}</div><div class=\"ui-meter-items\">@for(item of items();track item.id){<div class=\"ui-meter-entry ui-display-tone\" [attr.data-tone]=\"item.tone??'neutral'\"><ui-meter [controlId]=\"controlId()+'-'+item.id\" [label]=\"item.label\" [value]=\"item.value\" [maximum]=\"maximum()\" [unit]=\"unit()\" [locale]=\"effectiveLocale()\" [format]=\"effectiveFormat()\" /></div>}</div>`,",
+      "exception": "[R068] MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaximumは正finite、各値は0〜maximum、合計超過を拒否しnullは幅要素を生成しない。意味色を使う区分のデータ長に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R083": {
+      "file": "templates/angular/file-explorer.ts",
+      "line": 11,
+      "column": 937,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<button data-collection-control type=\"button\" class=\"ui-explorer-row\" [attr.role]=\"view()==='tree'?'treeitem':null\" [attr.data-explorer-id]=\"row.node.id\" [attr.aria-level]=\"view()==='tree'?row.depth+1:null\" [attr.aria-expanded]=\"view()==='tree'&&row.node.kind==='folder'?expanded().has(row.node.id):null\" [attr.aria-selected]=\"view()==='tree'?selected().includes(row.node.id):null\" [attr.aria-pressed]=\"view()==='tree'?null:selected().includes(row.node.id)\" [tabIndex]=\"view()==='tree'?(focusTarget()===row.node.id?0:-1):0\" [disabled]=\"blocked()||row.node.disabled\" [style.padding-inline-start]=\"indent(row)\" (focus)=\"focused.set(row.node.id)\" (click)=\"select(row.node)\" (dblclick)=\"open(row.node)\" (keydown)=\"key($event,row)\"> :: [style.padding-inline-start]=\"indent(row)\" (focus)=\"focused.set(row.node.id)\" (click)=\"select(row.node)\" (dblclick)=\"open(row.node)\" (keydown)=\"key($event,row)\">{{row.node.kind==='folder'?(expanded().has(row.node.id)?'▾ ':'▸ '):' '}}{{row.node.size===undefined?row.node.label:row.node.size===null?('uiFoundation.fileExplorer.itemWithoutSize' | uiStableMessage:{label:row.node.label}):('uiFoundation.fileExplorer.itemAndSize' | uiStableMessage:{label:row.node.label,count:row.node.size})}}</button>@if(view()!=='tree'&&row.node.kind==='folder'){<button data-collection-control type=\"button\" [disabled]=\"blocked()||row.node.disabled\" (click)=\"toggle(row.node.id)\">{{expanded().has(row.node.id)?('uiFoundation.fileExplorer.collapse' | uiStableMessage):('uiFoundation.fileExplorer.expand' | uiStableMessage)}}</button>}</li>}</ul>",
+      "exception": "[R083] FileExplorer階層の字下げ。explorerRowsがdepthを0から生成し>64、重複ID/循環を拒否、problem時rowsは空。tree表示では意味space tokenの整数係数、他viewは意味tokenそのもの。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R085": {
+      "file": "templates/angular/form-layout.ts",
+      "line": 6,
+      "column": 65,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.--ui-form-columns]=\"checkedColumns()\"> :: s:'ui-form-layout','[style.--ui-form-columns]':'checkedColumns()', '[style.--ui-form-gap]':'spacing() === \"0\" ? \"0\" : spacing() === \"var(--ui-space-control-gap)\" ? \"var(--ui-space-control-gap)\" : spacing() === \"var(--ui-space-section)\" ? \"var(--ui-space-section)\" : \"var(--ui-space-field)\"', '[style.--ui-form-label-width]':'width()', '[style.--ui-form-label-layout]':'labelPosition() === \"inline\" ? \"grid\" : \"block\"', '[style.--ui-form-label-columns]':'labelPosition() === \"inline\" ? \"min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)\" : \"none\"', '[attr.data-direction]':'direction()'}})",
+      "exception": "[R085] FormLayout列数は構造count。checkedColumns producer内でpositiveIntegerを呼びsafe integer>0を検査してから同値を返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R100": {
+      "file": "templates/angular/image-media.ts",
+      "line": 7,
+      "column": 34,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<figure tabindex=\"-1\" [style.aspect-ratio]=\"ratioValue()\"> :: [style.aspect-ratio]=\"ratioValue()\">@if(!failed()){<img #image [src]=\"src()\" [alt]=\"alt()\" [attr.loading]=\"loading()\" [style.object-fit]=\"fitValue() === 'cover' ? 'cover' : fitValue() === 'fill' ? 'fill' : fitValue() === 'none' ? 'none' : fitValue() === 'scale-down' ? 'scale-down' : 'contain'\" (load)=\"loaded.emit()\" (error)=\"fail()\">}@else{<div class=\"ui-media-error\" role=\"status\"><p>{{ 'uiFoundation.image.loadFailed' | uiStableMessage:{label:alt()||('uiFoundation.image.decorativeImage' | uiStableMessage)} }}</p><button uiAction (click)=\"retry()\">{{'uiFoundation.image.reloadImage' | uiStableMessage}}</button></div>}@if(caption()){<figcaption>{{caption()}}</figcaption>}</figure>`,styles:mediaStyles+`figure{display:flex;flex-direction:column;}img{inline-size:100%;min-block-size:0;flex:1;}figcaption{flex:none;}`})",
+      "exception": "[R100] Image aspect-ratioはpositiveMediaNumberを経由するfinite正数またはnullのみ。任意CSSstringではなく画像の表示縦横比というデータ値に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R107": {
+      "file": "templates/angular/image-media.ts",
+      "line": 47,
+      "column": 56,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-image-compare-frame\" [style.aspect-ratio]=\"ratioValue()\"> :: [style.aspect-ratio]=\"ratioValue()\"><img [src]=\"before().src\" [alt]=\"before().alt\" (error)=\"error.set('uiFoundation.imageCompare.beforeLoadFailed')\"><img [src]=\"after().src\" [alt]=\"after().alt\" [style.clip-path]=\"clip()\" (error)=\"error.set('uiFoundation.imageCompare.afterLoadFailed')\"><div class=\"ui-image-compare-line\" [attr.data-direction]=\"direction()\" [style.left.%]=\"direction()==='horizontal'?positionValue():null\" [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"></div></div><figcaption>{{before().alt}} / {{after().alt}}</figcaption></figure><label>{{uiEffective_label()}}<input type=\"range\" dir=\"ltr\" min=\"0\" max=\"100\" step=\"1\" [value]=\"positionValue()\" [disabled]=\"disabled()\" (input)=\"setPosition($event)\" [attr.aria-valuetext]=\"'uiFoundation.imageCompare.showAfterPercent' | uiStableMessage:{position:positionValue()}\"></label>@if(error()){<p role=\"status\" class=\"ui-media-error\">{{error()! | uiStableMessage}}</p>}`,styles:mediaStyles+`.ui-image-compare-frame{position:relative;overflow:hidden;}.ui-image-compare-frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;}.ui-image-compare-line{position:absolute;border-color:var(--ui-color-focus);}.ui-image-compare-line[data-direction=\"horizontal\"]{inset-block:0;border-inline-start:var(--ui-border-focus) solid;}.ui-image-compare-line[data-direction=\"vertical\"]{inset-inline:0;border-block-start:var(--ui-border-focus) solid;}`})",
+      "exception": "[R107] ImageCompare aspect-ratioはpositiveMediaNumberで検証済みfinite正数。画像比較frameの縦横比を表すデータ値で、任意CSSstringやDOM実測ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R108": {
+      "file": "templates/angular/image-media.ts",
+      "line": 47,
+      "column": 250,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<img [src]=\"after().src\" [alt]=\"after().alt\" [style.clip-path]=\"clip()\" (error)=\"error.set('uiFoundation.imageCompare.afterLoadFailed')\"> :: [style.clip-path]=\"clip()\" (error)=\"error.set('uiFoundation.imageCompare.afterLoadFailed')\"><div class=\"ui-image-compare-line\" [attr.data-direction]=\"direction()\" [style.left.%]=\"direction()==='horizontal'?positionValue():null\" [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"></div></div><figcaption>{{before().alt}} / {{after().alt}}</figcaption></figure><label>{{uiEffective_label()}}<input type=\"range\" dir=\"ltr\" min=\"0\" max=\"100\" step=\"1\" [value]=\"positionValue()\" [disabled]=\"disabled()\" (input)=\"setPosition($event)\" [attr.aria-valuetext]=\"'uiFoundation.imageCompare.showAfterPercent' | uiStableMessage:{position:positionValue()}\"></label>@if(error()){<p role=\"status\" class=\"ui-media-error\">{{error()! | uiStableMessage}}</p>}`,styles:mediaStyles+`.ui-image-compare-frame{position:relative;overflow:hidden;}.ui-image-compare-frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;}.ui-image-compare-line{position:absolute;border-color:var(--ui-color-focus);}.ui-image-compare-line[data-direction=\"horizontal\"]{inset-block:0;border-inline-start:var(--ui-border-focus) solid;}.ui-image-compare-line[data-direction=\"vertical\"]{inset-inline:0;border-block-start:var(--ui-border-focus) solid;}`})",
+      "exception": "[R108] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R109": {
+      "file": "templates/angular/image-media.ts",
+      "line": 47,
+      "column": 413,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-image-compare-line\" [attr.data-direction]=\"direction()\" [style.left.%]=\"direction()==='horizontal'?positionValue():null\" [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"> :: [style.left.%]=\"direction()==='horizontal'?positionValue():null\" [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"></div></div><figcaption>{{before().alt}} / {{after().alt}}</figcaption></figure><label>{{uiEffective_label()}}<input type=\"range\" dir=\"ltr\" min=\"0\" max=\"100\" step=\"1\" [value]=\"positionValue()\" [disabled]=\"disabled()\" (input)=\"setPosition($event)\" [attr.aria-valuetext]=\"'uiFoundation.imageCompare.showAfterPercent' | uiStableMessage:{position:positionValue()}\"></label>@if(error()){<p role=\"status\" class=\"ui-media-error\">{{error()! | uiStableMessage}}</p>}`,styles:mediaStyles+`.ui-image-compare-frame{position:relative;overflow:hidden;}.ui-image-compare-frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;}.ui-image-compare-line{position:absolute;border-color:var(--ui-color-focus);}.ui-image-compare-line[data-direction=\"horizontal\"]{inset-block:0;border-inline-start:var(--ui-border-focus) solid;}.ui-image-compare-line[data-direction=\"vertical\"]{inset-inline:0;border-block-start:var(--ui-border-focus) solid;}`})",
+      "exception": "[R109] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R110": {
+      "file": "templates/angular/image-media.ts",
+      "line": 47,
+      "column": 478,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-image-compare-line\" [attr.data-direction]=\"direction()\" [style.left.%]=\"direction()==='horizontal'?positionValue():null\" [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"> :: [style.top.%]=\"direction()==='vertical'?positionValue():null\" aria-hidden=\"true\"></div></div><figcaption>{{before().alt}} / {{after().alt}}</figcaption></figure><label>{{uiEffective_label()}}<input type=\"range\" dir=\"ltr\" min=\"0\" max=\"100\" step=\"1\" [value]=\"positionValue()\" [disabled]=\"disabled()\" (input)=\"setPosition($event)\" [attr.aria-valuetext]=\"'uiFoundation.imageCompare.showAfterPercent' | uiStableMessage:{position:positionValue()}\"></label>@if(error()){<p role=\"status\" class=\"ui-media-error\">{{error()! | uiStableMessage}}</p>}`,styles:mediaStyles+`.ui-image-compare-frame{position:relative;overflow:hidden;}.ui-image-compare-frame img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;}.ui-image-compare-line{position:absolute;border-color:var(--ui-color-focus);}.ui-image-compare-line[data-direction=\"horizontal\"]{inset-block:0;border-inline-start:var(--ui-border-focus) solid;}.ui-image-compare-line[data-direction=\"vertical\"]{inset-inline:0;border-block-start:var(--ui-border-focus) solid;}`})",
+      "exception": "[R110] 画像比較のclipと境界left/topはcomparePositionがfinite0〜100を検証した割合からだけ生成する。clipは固定inset形式の残率、left/topは該当方向だけpositionまたはnull。データ比較量の表示に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R116": {
+      "file": "templates/angular/layout.ts",
+      "line": 27,
+      "column": 12,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.grid-template-columns]=\"&quot;repeat(&quot;+resolved().columns+&quot;,minmax(0,1fr))&quot;\"> :: yle.grid-template-columns]':'\"repeat(\"+resolved().columns+\",minmax(0,1fr))\"','[style.grid-template-rows]':'\"repeat(\"+resolved().rows+\",auto)\"','[style.gap]':'resolvedGap() === \"0\" ? \"0\" : resolvedGap() === \"var(--ui-space-control-gap)\" ? \"var(--ui-space-control-gap)\" : resolvedGap() === \"var(--ui-space-section)\" ? \"var(--ui-space-section)\" : \"var(--ui-space-field)\"','[attr.data-columns]':'resolved().columns','[attr.data-rows]':'resolved().rows'},template:'<ng-content />',styles:common+`:host{display:grid;}`})",
+      "exception": "[R116] gridAtWidthはpublic/default/breakpointの全列・行countを正のsafe integerとして検査する。repeatの列数は構造上のデータ数で、minmax(0,1fr)の固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R117": {
+      "file": "templates/angular/layout.ts",
+      "line": 27,
+      "column": 12,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.grid-template-rows]=\"&quot;repeat(&quot;+resolved().rows+&quot;,auto)&quot;\"> :: yle.grid-template-columns]':'\"repeat(\"+resolved().columns+\",minmax(0,1fr))\"','[style.grid-template-rows]':'\"repeat(\"+resolved().rows+\",auto)\"','[style.gap]':'resolvedGap() === \"0\" ? \"0\" : resolvedGap() === \"var(--ui-space-control-gap)\" ? \"var(--ui-space-control-gap)\" : resolvedGap() === \"var(--ui-space-section)\" ? \"var(--ui-space-section)\" : \"var(--ui-space-field)\"','[attr.data-columns]':'resolved().columns','[attr.data-rows]':'resolved().rows'},template:'<ng-content />',styles:common+`:host{display:grid;}`})",
+      "exception": "[R117] gridAtWidthがdefault/breakpointの行数を正のsafe integerとして検査して返す。repeatの行数は構造上のデータ数でauto trackの固定文法のみを組み立てる用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R119": {
+      "file": "templates/angular/layout.ts",
+      "line": 33,
+      "column": 63,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.grid-column]=\"columnValue()\"> :: yle.grid-column]':'columnValue()','[style.grid-row]':'rowValue()','[style.min-inline-size]':'\"0\"'}})",
+      "exception": "[R119] GridCellのcolumn/spanはsafe positive整数検査し、gridAtWidthで検査された列count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R120": {
+      "file": "templates/angular/layout.ts",
+      "line": 33,
+      "column": 63,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.grid-row]=\"rowValue()\"> :: yle.grid-column]':'columnValue()','[style.grid-row]':'rowValue()','[style.min-inline-size]':'\"0\"'}})",
+      "exception": "[R120] GridCellのrow/spanはsafe positive整数検査し、gridAtWidthで検査された行count内へclampしてauto/index / span N文法を組み立てる。セル構造のindex/spanとして用途例外。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R131": {
+      "file": "templates/angular/layout.ts",
+      "line": 53,
+      "column": 113,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.aspect-ratio]=\"ratioValue()\"> :: yle.aspect-ratio]':'ratioValue()','[style.--ui-content-fit]':'checkedFit()'},template:'<ng-content />',styles:common+`:host{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden;}`})",
+      "exception": "[R131] AspectRatioの比率はratioValueでNumber.isFiniteかつ正数を確認してから返す無次元の配置比率。任意CSS文字列・DOM実測・色/文字/余白の固定値を含まない構造用途に限定する。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R153": {
+      "file": "templates/angular/scheduler-view.ts",
+      "line": 9,
+      "column": 243,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<ol class=\"ui-scheduler-plane\" [attr.data-scheduler-view]=\"shownView()\" [style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\"> :: [style.gridTemplateColumns]=\"'repeat('+layout().columns+', minmax(var(--ui-size-grid-item), 1fr))'\">",
+      "exception": "[R153] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R154": {
+      "file": "templates/angular/scheduler-view.ts",
+      "line": 10,
+      "column": 105,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<li class=\"ui-scheduler-day\" [hidden]=\"shownView()==='list'\" [style.gridColumn]=\"day.column\" [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\" [attr.aria-current]=\"day.date===shownDate()?'date':null\"> :: [style.gridColumn]=\"day.column\" [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\" [attr.aria-current]=\"day.date===shownDate()?'date':null\"><h3>{{day.label}}</h3><p>{{uiRuntimeText_SchedulerController('uiFoundation.scheduler.eventCount',{count: day.count})}}</p>@for(title of day.continuing;track $index){<p>{{uiRuntimeText_SchedulerController('uiFoundation.scheduler.continuingEvent',{title})}}</p>}</li>}",
+      "exception": "[R154] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R155": {
+      "file": "templates/angular/scheduler-view.ts",
+      "line": 10,
+      "column": 137,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<li class=\"ui-scheduler-day\" [hidden]=\"shownView()==='list'\" [style.gridColumn]=\"day.column\" [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\" [attr.aria-current]=\"day.date===shownDate()?'date':null\"> :: [style.gridRow]=\"day.row\" [attr.data-scheduler-day]=\"day.date\" [attr.data-outside-month]=\"!day.inMonth\" [attr.aria-current]=\"day.date===shownDate()?'date':null\"><h3>{{day.label}}</h3><p>{{uiRuntimeText_SchedulerController('uiFoundation.scheduler.eventCount',{count: day.count})}}</p>@for(title of day.continuing;track $index){<p>{{uiRuntimeText_SchedulerController('uiFoundation.scheduler.continuingEvent',{title})}}</p>}</li>}",
+      "exception": "[R155] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R156": {
+      "file": "templates/angular/scheduler-view.ts",
+      "line": 11,
+      "column": 112,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<li class=\"ui-scheduler-event\" [hidden]=\"!entry.visible\" [style.gridColumn]=\"entry.problem?'1 / -1':entry.column\" [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\"> :: [style.gridColumn]=\"entry.problem?'1 / -1':entry.column\" [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\">",
+      "exception": "[R156] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R157": {
+      "file": "templates/angular/scheduler-view.ts",
+      "line": 11,
+      "column": 169,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<li class=\"ui-scheduler-event\" [hidden]=\"!entry.visible\" [style.gridColumn]=\"entry.problem?'1 / -1':entry.column\" [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\"> :: [style.gridRow]=\"entry.row\" [attr.data-scheduler-event]=\"entry.event.id\">",
+      "exception": "[R157] 予定のカレンダー配置に使う数値構造係数。schedulerLayoutが日付配列／イベント順から整数を生成し、アプリ入力のCSS値を直接採用しない。列数は1/7、行・列位置は初期1からindexまたは正数加算で作る。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R159": {
+      "file": "templates/angular/selection-input.ts",
+      "line": 85,
+      "column": 231,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-options\" [attr.data-direction]=\"direction()\" [style.--ui-option-columns]=\"checkedColumns()\"> :: [style.--ui-option-columns]=\"checkedColumns()\">@for(option of group.options;track option.value){",
+      "exception": "[R159] CheckboxGroup列数はoptionの構造count。checkedColumns computedがsafe integer>=1を検査してから返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R163": {
+      "file": "templates/angular/splitter.ts",
+      "line": 9,
+      "column": 126,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<section #primary tabindex=\"0\" [id]=\"splitterId()+'-primary'\" [attr.aria-label]=\"primaryLabel()\" [hidden]=\"primaryHidden()\" [style.flex]=\"value()+' 1 0%'\" class=\"ui-splitter-pane\"> :: [style.flex]=\"value()+' 1 0%'\" class=\"ui-splitter-pane\"><div class=\"ui-splitter-inner\"><ng-content select=\"[uiSplitPrimary]\" /></div></section>",
+      "exception": "[R163] Splitterのflex-growはvalue()がsplitterBoundsでfinite min/max/valueを検査し0〜100内へclampした配置配分。shrink=1/basis=0%は固定の構造文法で、UIの色/文字/余白/px寸法を固定する用途ではない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R164": {
+      "file": "templates/angular/splitter.ts",
+      "line": 11,
+      "column": 126,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<section #secondary tabindex=\"0\" class=\"ui-splitter-pane\" [attr.aria-label]=\"secondaryLabel()\" [hidden]=\"secondaryHidden()\" [style.flex]=\"(folded()?100:(100-value()))+' 1 0%'\"> :: [style.flex]=\"(folded()?100:(100-value()))+' 1 0%'\"><div class=\"ui-splitter-inner\"><ng-content /></div></section></div>`,",
+      "exception": "[R164] Splitterのsecondary flex-growはfolded時100、通常は100からsplitterBounds検査済みvalueを引いた0〜100の配分。固定shrink=1/basis=0%と合わせた構造文法で、任意CSS文字列やUIの固定px値を渡さない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R184": {
+      "file": "templates/angular/virtual-data-table.ts",
+      "line": 16,
+      "column": 158,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div role=\"row\" aria-rowindex=\"1\" class=\"ui-virtual-table__row ui-virtual-table__header\" [style.grid-template-columns]=\"gridColumns()\" [style.min-inline-size]=\"minimumInline()\"> :: [style.min-inline-size]=\"minimumInline()\">@if(selectionMode()!=='none'){<div role=\"columnheader\">@if(selectionMode()==='multiple'){<input data-table-virtual-control type=\"checkbox\" [attr.aria-label]=\"('uiFoundation.virtualDataTable.selectAllLoadedVisibleRows' | uiStableMessage)\" [checked]=\"allSelected()\" [indeterminate]=\"someSelected()&&!allSelected()\" [disabled]=\"busy()||disabled()||!selectionRows().length\" (change)=\"selectAll($event)\">}@else{{{'uiFoundation.virtualDataTable.selection' | uiStableMessage}}}</div>}@for(column of columns();track column.id){<div role=\"columnheader\" [id]=\"headerId(column.id)\" [attr.data-column-id]=\"column.id\" [attr.aria-colindex]=\"$index+1+utilityCount()\" [attr.aria-sort]=\"ariaSort(column.id)\">@if(sortable()&&column.sortable!==false){<button uiAction data-table-virtual-control type=\"button\" [disabled]=\"busy()||disabled()\" [attr.aria-label]=\"uiRuntimeText_VirtualDataTable('uiFoundation.virtualDataTable.sortColumnLabel', {column: column.header})\" (click)=\"sortRequested.emit(column.id)\">{{column.header}}</button>}@else{ {{column.header}} }</div>}</div></div>",
+      "exception": "[R184] min-inline-sizeは固定semantic table-column-min × (実列配列length + boolean由来utilityCount)だけ。非空列をconfigurationで検査してproblem時はsinkを描画しない。実データ列数を反映する構造用途例外であり、px入力のgridColumnsとは別に扱う。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R186": {
+      "file": "templates/angular/virtual-data-table.ts",
+      "line": 17,
+      "column": 258,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<cdk-virtual-scroll-viewport #viewport role=\"rowgroup\" tabindex=\"0\" class=\"ui-virtual-table__viewport\" [attr.aria-label]=\"uiRuntimeText_VirtualDataTable('uiFoundation.virtualDataTable.viewportLabel', {caption: caption()})\" [style.block-size.px]=\"height()\" [style.min-inline-size]=\"minimumInline()\" [uiVirtualScroll]=\"rowSize()\" [uiVirtualOverscan]=\"overscan()\" [uiVirtualRadioGroups]=\"effectiveRadioGroups()\" [uiVirtualRender]=\"refreshWindow\" (keydown)=\"key($event)\"> :: [style.min-inline-size]=\"minimumInline()\" [uiVirtualScroll]=\"rowSize()\" [uiVirtualOverscan]=\"overscan()\" [uiVirtualRadioGroups]=\"effectiveRadioGroups()\" [uiVirtualRender]=\"refreshWindow\" (keydown)=\"key($event)\"><div class=\"ui-virtual-window\" [style.padding-block-start.px]=\"scroller()?.offset()??0\">",
+      "exception": "[R186] headerと同じminimumInlineを仮想viewportへ用いる。固定semantic table-column-min × (非空実列配列length + boolean由来utilityCount)による構造列数の用途例外であり、row高/px列幅の実測値を含まない。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D002": {
+      "file": "templates/angular/anchor-navigation.ts",
+      "line": 10,
+      "column": 104,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.inset-block-start.px]=\"checkedOffset()\"> :: ttr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': \"checkedOffset()+'px'\" }, changeDetection: ChangeDetectionStrategy.OnPush,",
+      "exception": "[D002] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D003": {
+      "file": "templates/angular/anchor-navigation.ts",
+      "line": 10,
+      "column": 104,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.--ui-anchor-offset]=\"checkedOffset()+'px'\"> :: ttr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': \"checkedOffset()+'px'\" }, changeDetection: ChangeDetectionStrategy.OnPush,",
+      "exception": "[D003] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D005": {
+      "file": "templates/angular/anchor-navigation.ts",
+      "line": 73,
+      "column": 25,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "target.style.setProperty('scroll-margin-block-start', margin);",
+      "exception": "[D005] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D012": {
+      "file": "templates/angular/choice-controls.ts",
+      "line": 164,
+      "column": 1760,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<span class=\"ui-color-swatch\" aria-hidden=\"true\" [style.background-color]=\"choice.value\"> :: [style.background-color]=\"choice.value\"></span>{{choice.label??choice.value}}</button>}</div>}<output class=\"ui-choice-value\">{{current()||('uiFoundation.colorPicker.noSelection' | uiStableMessage)}}</output>@if(error()||problem()){<p class=\"ui-choice-error\" [id]=\"controlId()+'-error'\">{{error()||problem()}}</p>}</fieldset>`,",
+      "exception": "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで検証、alpha禁止・ラベル・重複も拒否するため、データ色として狭い理由付き例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D043": {
+      "file": "templates/angular/display-content.ts",
+      "line": 13,
+      "column": 196,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": ".ui-read-content[data-expanded=\"false\"]{-webkit-line-clamp:var(--ui-read-lines)}",
+      "exception": "[D043] 全文をDOMに保持し見た目だけ折り畳むline-clampの行数。lineCountはdisplayInteger(lines,1,100)を通りCSS custom propertyへ供給される。行数はtoken化する視覚尺度とは別の構造パラメータであるため、この消費箇所の例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D045": {
+      "file": "templates/angular/display-content.ts",
+      "line": 32,
+      "column": 832,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": ".ui-code-line[data-numbers=\"true\"]{grid-template-columns:calc(var(--ui-code-number-digits)*1ch) minmax(0,1fr)}",
+      "exception": "[D045] 行番号欄の幅は表示コードの行数をString化した桁数であり、情報量に応じた構造係数。sourceLinesはsplitで最低1行となり、numberDigitsはその配列長の文字数なので0除算や任意CSS文字列を出力しない。データ量に基づく欄幅として局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D046": {
+      "file": "templates/angular/display-content.ts",
+      "line": 50,
+      "column": 77,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-watermark-layer\" aria-hidden=\"true\" [style.opacity]=\"opacityValue()\" [attr.data-position]=\"position()\"> :: [style.opacity]=\"opacityValue()\" [attr.data-position]=\"position()\"><span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,",
+      "exception": "[D046] 装飾watermarkの利用者指定opacityはnull時semantic token、指定時はNumber.isFiniteかつ0〜1を検証して数値を返す。公開の装飾パラメータとしてこのbinding限定の例外候補であり、任意の通常UI透明度の許可ではない。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D047": {
+      "file": "templates/angular/display-content.ts",
+      "line": 50,
+      "column": 182,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"> :: [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,",
+      "exception": "[D047] watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D048": {
+      "file": "templates/angular/display-content.ts",
+      "line": 50,
+      "column": 217,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<span #tile class=\"ui-watermark-tile\" [style.inline-size]=\"widthValue()\" [style.block-size]=\"heightValue()\"> :: [style.block-size]=\"heightValue()\"></span>@if(repeat()&&dimensions();as size){<svg class=\"ui-watermark-pattern\" width=\"100%\" height=\"100%\" aria-hidden=\"true\" focusable=\"false\"><defs><pattern [id]=\"patternId()\" patternUnits=\"userSpaceOnUse\" [attr.width]=\"size.width\" [attr.height]=\"size.height\"><text [attr.x]=\"size.width/2\" [attr.y]=\"size.height/2\" text-anchor=\"middle\" dominant-baseline=\"middle\">{{content()}}</text></pattern></defs><rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,",
+      "exception": "[D048] watermark tileの利用者指定寸法。nullはsemantic token式、指定値はNumber.isFiniteかつ>0で拒否検証してpx化する。装飾の繰返し間隔を設定する公開パラメータであり、この二bindingの理由付き候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D051": {
+      "file": "templates/angular/display-content.ts",
+      "line": 50,
+      "column": 684,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<rect width=\"100%\" height=\"100%\" [attr.fill]=\"'url(#'+patternId()+')'\" /> :: [attr.fill]=\"'url(#'+patternId()+')'\" /></svg>}@else if(!repeat()){<span class=\"ui-watermark-single\">{{content()}}</span>}</div>`,",
+      "exception": "[D051] rectのfillは任意色や外部URLではなく、同componentのdefs/patternを参照するurl(#id)。patternIdはsimple IDの正規表現検証と内部serialを結合するため、ローカルSVG参照の構造用途として局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D056": {
+      "file": "templates/angular/display.ts",
+      "line": 78,
+      "column": 670,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": ".ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}",
+      "exception": "[D056] fallback initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えMath.max(2, count)を供給し、0除算を避ける。semantic text tokenを基準にした文字量の補正として、このCSS消費箇所に限る例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D057": {
+      "file": "templates/angular/display.ts",
+      "line": 101,
+      "column": 80,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<dl [attr.aria-label]=\"label()\" [attr.data-direction]=\"direction()\" [style.--ui-description-columns]=\"checkedColumns()\"> :: [style.--ui-description-columns]=\"checkedColumns()\">@for(item of items();track item.id){<div class=\"ui-description\"><dt>{{item.label}}</dt><dd>@if(valueTemplate();as custom){<ng-container [ngTemplateOutlet]=\"custom.template\" [ngTemplateOutletContext]=\"{$implicit:item,value:item.value,missing:item.value==null}\" /> }@else{ {{item.value==null?uiEffective_missingLabel():item.value===''?uiEffective_emptyLabel():item.value}} }</dd></div>}</dl>`,",
+      "exception": "[D057] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D058": {
+      "file": "templates/angular/display.ts",
+      "line": 102,
+      "column": 62,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}",
+      "exception": "[D058] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D063": {
+      "file": "templates/angular/drawer.ts",
+      "line": 51,
+      "column": 22,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "this.element.style.setProperty('--ui-panel-width', width + 'px');",
+      "exception": "[D063] Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D064": {
+      "file": "templates/angular/drawer.ts",
+      "line": 53,
+      "column": 22,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "this.element.style.setProperty('--ui-panel-height', height + 'px');",
+      "exception": "[D064] Drawer/BottomSheetの明示width/heightをnative panelの幾何に反映するproducer。panelSizeはnullまたはpositive finiteだけを許し、nullはproperty除去、数値はpx化する。構造寸法の限定例外候補だが、通常のUIサイズをsemantic既定値から外す必要性はowner判断を要する。残余リスクはviewport超過、resize/resetと外部CSSの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D066": {
+      "file": "templates/angular/drawer.ts",
+      "line": 100,
+      "column": 99,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "this.element.style.setProperty('--ui-sheet-height',height===null?ratio*100+'dvh':height*ratio+'px');});",
+      "exception": "[D066] BottomSheetの段階操作をheightへ反映する構造寸法。sheetStagesは各ratioをfinite・0超1以下・昇順、stageを有効整数indexに制限し、heightはpanelSizeでpositive finite/nullへ制限する。出力はratio*100 dvhまたはheight*ratio pxでありtoken集合には閉じない。残余リスクは極端なheight、browser viewport単位、段階変更時の可用領域。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D083": {
+      "file": "templates/angular/image-cropper.ts",
+      "line": 10,
+      "column": 580,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'uiFoundation.imageCropper.aspectRatio' | uiStableMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'uiFoundation.imageCropper.customRatio' | uiStableMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'uiFoundation.imageCropper.freeform' | uiStableMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'uiFoundation.imageCropper.width' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'uiFoundation.imageCropper.height' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'uiFoundation.imageCropper.rotateRight90' | uiStableMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'uiFoundation.imageCropper.resetCropArea' | uiStableMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'uiFoundation.imageCropper.applyCrop' | uiStableMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'uiFoundation.imageCropper.rotationDegrees' | uiStableMessage:{angle:turns()*90} }}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,",
+      "exception": "[D083] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D084": {
+      "file": "templates/angular/image-cropper.ts",
+      "line": 10,
+      "column": 629,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'uiFoundation.imageCropper.aspectRatio' | uiStableMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'uiFoundation.imageCropper.customRatio' | uiStableMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'uiFoundation.imageCropper.freeform' | uiStableMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'uiFoundation.imageCropper.width' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'uiFoundation.imageCropper.height' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'uiFoundation.imageCropper.rotateRight90' | uiStableMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'uiFoundation.imageCropper.resetCropArea' | uiStableMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'uiFoundation.imageCropper.applyCrop' | uiStableMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'uiFoundation.imageCropper.rotationDegrees' | uiStableMessage:{angle:turns()*90} }}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,",
+      "exception": "[D084] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D085": {
+      "file": "templates/angular/image-cropper.ts",
+      "line": 10,
+      "column": 678,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'uiFoundation.imageCropper.aspectRatio' | uiStableMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'uiFoundation.imageCropper.customRatio' | uiStableMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'uiFoundation.imageCropper.freeform' | uiStableMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'uiFoundation.imageCropper.width' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'uiFoundation.imageCropper.height' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'uiFoundation.imageCropper.rotateRight90' | uiStableMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'uiFoundation.imageCropper.resetCropArea' | uiStableMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'uiFoundation.imageCropper.applyCrop' | uiStableMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'uiFoundation.imageCropper.rotationDegrees' | uiStableMessage:{angle:turns()*90} }}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,",
+      "exception": "[D085] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D086": {
+      "file": "templates/angular/image-cropper.ts",
+      "line": 10,
+      "column": 739,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-crop-selection\" aria-hidden=\"true\" [style.left.%]=\"100*range.x1/dimensions().width\" [style.top.%]=\"100*range.y1/dimensions().height\" [style.width.%]=\"100*(range.x2-range.x1)/dimensions().width\" [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"> :: [style.height.%]=\"100*(range.y2-range.y1)/dimensions().height\"></div>}</div><div class=\"ui-media-fields\"><label>{{'uiFoundation.imageCropper.aspectRatio' | uiStableMessage}}<span class=\"ui-select-control\"><select class=\"ui-field-control\" [value]=\"ratioValue()??'free'\" [disabled]=\"blocked()\" (change)=\"changeRatio($event)\">@if(customRatio()){<option [value]=\"ratioValue()\">{{'uiFoundation.imageCropper.customRatio' | uiStableMessage}} {{ratioValue()}}</option>}<option value=\"free\">{{'uiFoundation.imageCropper.freeform' | uiStableMessage}}</option><option value=\"1\">1:1</option><option value=\"1.3333333333333333\">4:3</option><option value=\"1.7777777777777777\">16:9</option></select><svg class=\"ui-select-control__chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m6 9 6 6 6-6\" /></svg></span></label><label>X<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().width\" [value]=\"bounds()?.x1??0\" [disabled]=\"blocked()\" (change)=\"edit('x',$event)\"></label><label>Y<input type=\"number\" min=\"0\" step=\"1\" [max]=\"dimensions().height\" [value]=\"bounds()?.y1??0\" [disabled]=\"blocked()\" (change)=\"edit('y',$event)\"></label><label>{{'uiFoundation.imageCropper.width' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().width\" [value]=\"cropWidth()\" [disabled]=\"blocked()\" (change)=\"edit('width',$event)\"></label><label>{{'uiFoundation.imageCropper.height' | uiStableMessage}}<input type=\"number\" min=\"1\" step=\"1\" [max]=\"dimensions().height\" [value]=\"cropHeight()\" [disabled]=\"blocked()||ratioValue()!==null\" (change)=\"edit('height',$event)\"></label></div><div class=\"ui-media-actions\"><button uiAction [disabled]=\"blocked()\" (click)=\"rotate()\">{{'uiFoundation.imageCropper.rotateRight90' | uiStableMessage}}</button><button uiAction [disabled]=\"blocked()\" (click)=\"reset()\">{{'uiFoundation.imageCropper.resetCropArea' | uiStableMessage}}</button><button uiAction [busy]=\"working()\" [disabled]=\"disabled()||!visible()||!session()||!!validation()\" (click)=\"confirm()\">{{'uiFoundation.imageCropper.applyCrop' | uiStableMessage}}</button></div><p tabindex=\"-1\" class=\"ui-crop-status\" role=\"status\" aria-atomic=\"true\">{{status()}} {{'uiFoundation.imageCropper.rotationDegrees' | uiStableMessage:{angle:turns()*90} }}</p>@if(validation()||cropError()){<p class=\"ui-media-error\" role=\"status\">{{validation()||cropError()}}</p>}`,",
+      "exception": "[D086] crop selectionのleft/top/width/heightは元画像座標を画像寸法で割った百分率。previewBoundsはsessionがありcropBoundsErrorを通る場合だけrangeを返すため、有限正寸法・画像内で正のrangeが実検証される。画像内の選択領域というデータgeometry用途の局所例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D094": {
+      "file": "templates/angular/layout.ts",
+      "line": 15,
+      "column": 12,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.max-inline-size]=\"maximum()\"> :: yle.max-inline-size]':'maximum()','[style.padding]':'inset()','[attr.data-align]':'align()','[attr.data-background]':'background()'},",
+      "exception": "[D094] Containerのmax-inline-sizeは本文領域の上限という構造寸法。numeric branchでpositive finiteを検査しmin(100%, value px)に制限、他branchはsemantic contentまたは100%。数値branchはtokenに帰着しないためSにはできない。残余リスクは極端に小さいcapによる本文/操作の可読性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D107": {
+      "file": "templates/angular/layout.ts",
+      "line": 49,
+      "column": 182,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div #viewport tabindex=\"0\" role=\"region\" [attr.aria-label]=\"label()\" [style.block-size]=\"heightValue()\" [attr.data-direction]=\"direction()\" (scroll)=\"positionChange.emit(positionOf($event))\"> :: [style.block-size]=\"heightValue()\" [attr.data-direction]=\"direction()\" (scroll)=\"positionChange.emit(positionOf($event))\"><ng-content /></div>`,styles:common+`:host{display:block;}div{box-sizing:border-box;max-inline-size:100%;overscroll-behavior:contain;}div[data-direction=\"both\"]{overflow:auto;}div[data-direction=\"vertical\"]{overflow-y:auto;overflow-x:hidden;}div[data-direction=\"horizontal\"]{overflow-x:auto;overflow-y:hidden;}div:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`})",
+      "exception": "[D107] ScrollAreaのblock-sizeは内容をスクロールさせる領域の構造寸法。heightValueは数値をpositive finiteに検査し、auto/semantic viewportと区別してpx化する。無限個の数値出力のためSではない。残余リスクは小さいscrollportの操作可能性、focus/scrollと大きな内容の関係。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D108": {
+      "file": "templates/angular/layout.ts",
+      "line": 51,
+      "column": 123,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.top]=\"edge()===&quot;top&quot;?offsetValue():null\"> :: yle.position]':'enabled()?\"sticky\":\"static\"','[style.top]':'edge()===\"top\"?offsetValue():null','[style.bottom]':'edge()===\"bottom\"?offsetValue():null','[class.ui-sticky-region--active]':'enabled()'},template:'<ng-content />',styles:common+`:host{display:block;}:host(.ui-sticky-region--active){background:var(--ui-color-surface);z-index:1;}`})",
+      "exception": "[D108] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D109": {
+      "file": "templates/angular/layout.ts",
+      "line": 51,
+      "column": 123,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div [style.bottom]=\"edge()===&quot;bottom&quot;?offsetValue():null\"> :: yle.position]':'enabled()?\"sticky\":\"static\"','[style.top]':'edge()===\"top\"?offsetValue():null','[style.bottom]':'edge()===\"bottom\"?offsetValue():null','[class.ui-sticky-region--active]':'enabled()'},template:'<ng-content />',styles:common+`:host{display:block;}:host(.ui-sticky-region--active){background:var(--ui-color-surface);z-index:1;}`})",
+      "exception": "[D109] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。残余リスクは大きなoffset、祖先scrollport/CSSのsticky条件、edge変更時の可視性。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D121": {
+      "file": "templates/angular/mega-menu.ts",
+      "line": 14,
+      "column": 234,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<nav [attr.aria-label]=\"label()\" class=\"ui-mega-columns\" [style.--ui-mega-columns]=\"checkedColumns()\"> :: [style.--ui-mega-columns]=\"checkedColumns()\">",
+      "exception": "[D121] MegaMenuの--ui-mega-columnsはナビゲーション列数を決める構造係数。checkedColumnsはpositiveIntegerを通し、positiveIntegerはNumber.isSafeIntegerかつ>0を強制する。寸法tokenを選ぶ処理ではないためSではない。残余リスクは過大count、CSS repeat/minmaxでの内容密度、外部alias上書き。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D131": {
+      "file": "templates/angular/selection-input.ts",
+      "line": 26,
+      "column": 28,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": ".ui-options{grid-template-columns:repeat(var(--ui-option-columns,1),minmax(0,1fr))}",
+      "exception": "[D131] --ui-option-columnsは色/寸法のtheme値ではなく、checkbox選択肢を何列に組むかという正整数の構造data。実bindingはcheckedColumnsのみで、safe integerかつ1以上を満たさなければthrowする。CSS repeatの列数引数という用途に限定した理由付き例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D134": {
+      "file": "templates/angular/splitter.ts",
+      "line": 8,
+      "column": 80,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div #panes class=\"ui-splitter-panes\" [attr.data-orientation]=\"orientation()\" [style.block-size]=\"heightValue()\"> :: [style.block-size]=\"heightValue()\">",
+      "exception": "[D134] Splitterのpanes block-sizeは分割scroll領域の外枠高さ。heightValueはviewport tokenまたはpositive finite pxのみを返す。pixel branchはsemantic token適合にできず、構造用途の限定例外候補。残余リスクは小さい高さでの両pane/handleの操作、orientationと内容overflow。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D146": {
+      "file": "templates/angular/text-input.ts",
+      "line": 46,
+      "column": 51,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"current()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"commit(text($event))\" (blur)=\"touch()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"commit(text($event))\" (blur)=\"touch()\"></textarea>",
+      "exception": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D153": {
+      "file": "templates/angular/virtual-data-table.ts",
+      "line": 16,
+      "column": 112,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div role=\"row\" aria-rowindex=\"1\" class=\"ui-virtual-table__row ui-virtual-table__header\" [style.grid-template-columns]=\"gridColumns()\" [style.min-inline-size]=\"minimumInline()\"> :: [style.grid-template-columns]=\"gridColumns()\" [style.min-inline-size]=\"minimumInline()\">@if(selectionMode()!=='none'){<div role=\"columnheader\">@if(selectionMode()==='multiple'){<input data-table-virtual-control type=\"checkbox\" [attr.aria-label]=\"('uiFoundation.virtualDataTable.selectAllLoadedVisibleRows' | uiStableMessage)\" [checked]=\"allSelected()\" [indeterminate]=\"someSelected()&&!allSelected()\" [disabled]=\"busy()||disabled()||!selectionRows().length\" (change)=\"selectAll($event)\">}@else{{{'uiFoundation.virtualDataTable.selection' | uiStableMessage}}}</div>}@for(column of columns();track column.id){<div role=\"columnheader\" [id]=\"headerId(column.id)\" [attr.data-column-id]=\"column.id\" [attr.aria-colindex]=\"$index+1+utilityCount()\" [attr.aria-sort]=\"ariaSort(column.id)\">@if(sortable()&&column.sortable!==false){<button uiAction data-table-virtual-control type=\"button\" [disabled]=\"busy()||disabled()\" [attr.aria-label]=\"uiRuntimeText_VirtualDataTable('uiFoundation.virtualDataTable.sortColumnLabel', {column: column.header})\" (click)=\"sortRequested.emit(column.id)\">{{column.header}}</button>}@else{ {{column.header}} }</div>}</div></div>",
+      "exception": "[D153] gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D158": {
+      "file": "templates/angular/virtual-data-table.ts",
+      "line": 18,
+      "column": 339,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div role=\"row\" class=\"ui-virtual-table__row\" [attr.data-ui-virtual-index]=\"index\" [attr.aria-rowindex]=\"index+2\" [attr.data-virtual-row-key]=\"encodedKey(row)\" [style.block-size.px]=\"rowSize()\" [style.grid-template-columns]=\"gridColumns()\"> :: [style.grid-template-columns]=\"gridColumns()\">@if(selectionMode()!=='none'){<div role=\"cell\"><input data-table-virtual-control [type]=\"selectionMode()==='single'?'radio':'checkbox'\" [name]=\"tableId()+'-virtual-selection'\" [value]=\"encodedKey(row)\" [attr.aria-label]=\"uiRuntimeText_VirtualDataTable('uiFoundation.virtualDataTable.selectRowLabel', {row: rowLabel(row)})\" [checked]=\"selectedKeys().includes(rowKey(row))\" [disabled]=\"busy()||disabled()||!rowSelectable()(row)\" (change)=\"select(row,$event)\"></div>}@for(column of columns();track column.id){<div role=\"cell\" class=\"ui-virtual-table__cell\" tabindex=\"0\" [attr.aria-colindex]=\"$index+1+utilityCount()\" [attr.aria-describedby]=\"headerId(column.id)\">@if(cellTemplate(column);as template){<ng-container [ngTemplateOutlet]=\"template\" [ngTemplateOutletContext]=\"{$implicit:row,value:cellValue(row,column),column}\"/>}@else{<span>{{cellText(row,column)}}</span>}</div>}</div>",
+      "exception": "[D158] gridColumnsは表のcolumn/stateに保存された列幅dataをpxへ反映し、未指定列だけsemantic最小幅や1frを使う。実producerはtableConfigurationErrorによる有限正数・min/max順序検査をproblem表示で遮断し、明示幅をmin/max clampする。列幅状態を保持する構造dataとして狭い例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D171": {
+      "file": "tests/fixture-app/runtime-priority2-tables.ts",
+      "line": 9,
+      "column": 127,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div data-resize-column [style.width.px]=\"width()\" style=\"box-sizing:border-box;position:relative;min-width:0\"> :: [style.width.px]=\"width()\" style=\"box-sizing:border-box;position:relative;min-width:0\"><span>申請の可変列</span><button type=\"button\" uiTableColumnResize label=\"申請列の幅\" [value]=\"width()\" [minimum]=\"80\" [maximum]=\"300\" [disabled]=\"disabled()||busy()\" (resizeChange)=\"resize($event)\" style=\"position:absolute;inset-inline-end:0;top:0;height:100%\">境界</button></div>`})",
+      "exception": "[D171] 列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D175": {
+      "file": "tests/fixture-app/table-catalog.ts",
+      "line": 24,
+      "column": 160,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"resize-demo\" [style.width.px]=\"width()\"> :: [style.width.px]=\"width()\"><button #resizeHandle type=\"button\" class=\"resize-handle\" uiTableColumnResize label=\"申請名の列幅\" [value]=\"width()\" [minimum]=\"80\" [maximum]=\"300\" [disabled]=\"busy()\" (resizeChange)=\"width.set($event)\"></button></div></div>",
+      "exception": "[D175] 列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "existing-data-grid-12ch": {
+      "file": "templates/angular/data-grid.ts",
+      "line": 38,
+      "column": 68,
+      "rule": "literal-token",
+      "severity": "error",
+      "source": "<table [style.min-inline-size]=\"'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'\" [attr.role]=\"treeRows()?'treegrid':'grid'\" [attr.aria-label]=\"caption()\" [attr.aria-describedby]=\"gridId()+'-instructions'\" [attr.aria-rowcount]=\"rows().length+1\" [attr.aria-colcount]=\"columns().length\" [attr.aria-multiselectable]=\"selectionMode()==='range'||rowSelection()==='multiple'?'true':null\" [attr.aria-busy]=\"blocked()?'true':null\" (keydown)=\"key($event)\" (paste)=\"paste($event)\"> :: min-inline-size:(dynamic expression; fixed 12ch)",
+      "exception": "日付文字列／編集表の文字列を省略せず収めるための文字幅に対する下限。操作領域と余白は別の意味トークンへ接続する。"
+    },
+    "F001": {
+      "file": "templates/angular/layout.ts",
+      "line": 15,
+      "column": 12,
+      "rule": "literal-token",
+      "severity": "error",
+      "source": "<div [style.max-inline-size]=\"maximum()\"> :: max-inline-size:(dynamic expression; fixed 100%)",
+      "exception": "[F001] Containerの100%は親領域を超えないための配置上限とfull幅。content時はsize.contentとminで組み合わせる。任意のpx入力を許可する例外ではなく、具体値100%の診断一箇所だけに限定する。"
+    }
+  },
+  "dependencies": {
+    "templates/angular/chart.ts": {
+      "prior_sha256": "f7aca5bc1e58d7b50fe30c28482ddffdeb99289efedeb451d1e654f706d9dba4",
+      "current_sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "judgment": "Rows still require a valid chart model. Indent consumes chartPointRows depth as a semantic gap multiplier."
+    },
+    "templates/angular/specialist-model.ts": {
+      "prior_sha256": "89d2a2d8c30063c67520ac9b4e3eae847794aab38985a3f1d898eb2e3393bccd",
+      "current_sha256": "4abfdef16cb6d421c88a0734b885d4f116e43297b23e6666db282f19bc7122b5",
+      "judgment": "Chart depth/cycle limits, Diagram node finiteness and coordinate bounds, and FileExplorer depth/repeated-ID checks still reject invalid data. Diagnostic translation does not supply the numeric values."
+    },
+    "templates/angular/data-grid.ts": {
+      "prior_sha256": "79c3cd9887da671dfc7625fb6da5ef161bdeca1ce8a830096eaa4e6fc6b5d644",
+      "current_sha256": "18fa75ba3a280a2d40212716db42afb98b04a2b45f60137cf868064847cc9887",
+      "judgment": "Table minimum width still combines a fixed 12ch text-width floor, semantic tokens and the number of configured columns. Column validation still guards the table; hierarchy messages and the separate indent path do not supply that width."
+    },
+    "templates/angular/table-model.ts": {
+      "prior_sha256": "bb81cf4bca1085c8708323df47770f5cc2a03fbf3d07f8dfe00a96205a5a8155",
+      "current_sha256": "f4636765aa674780244c57fe67ae5e2b0043215e54f34e2956e6a55c963f4d8e",
+      "judgment": "Table guards still reject empty columns and nonfinite or nonpositive widths, including stored widths, and reject reversed minimum/maximum limits. Error text changes separately from these conditions."
+    },
+    "templates/angular/diagram.ts": {
+      "prior_sha256": "0a2cfdabd95e246afc730b732390a4f4e67e97c5ae9c02516b9ca8f4d5dbb9af",
+      "current_sha256": "54fffaeb558a559280437d51fe40efc3fa4fc3d0fcfa288ce897334d68f4db33",
+      "judgment": "Rendered nodes still come from displayModel only after model validation and finite zoom in the 0.25–4 range. The left, top and transform bindings still use node positions and zoom."
+    },
+    "templates/angular/diff-json.ts": {
+      "prior_sha256": "e414bac111632d00e4952a3d8b9fe98a70d7f1efb85130404df16726daeececc",
+      "current_sha256": "618f36e81e38c9aad6642b0a4df43110c5c6829a211f06702d3b70df6fbce53e",
+      "judgment": "The JSON view uses depth from the parsed row for indentation. Localized row labels and search do not supply that coefficient."
+    },
+    "templates/angular/json-model.ts": {
+      "prior_sha256": "4000e1562873ae37e360502466ad87bd37fd0b8191b131b4f1a3144c628ba799",
+      "current_sha256": "c667b58e79ddacda21f375e84c396cd3061981b68b9641859fb83020ea297dff",
+      "judgment": "JSON traversal still starts depth at zero, increments once per nesting level and rejects depth above 64 and row count at 10,000 before output. Parsing and diagnostics do not supply external CSS."
+    },
+    "templates/angular/display-content.ts": {
+      "prior_sha256": "fbf2693cfbd4d96d6f89b34602b4b607e908a4dccd42a8d85a91d7034b96b4f5",
+      "current_sha256": "0a29991a9b529184d7001a4fa89810d88f39d1a2de2aac034458986a9fc702e5",
+      "judgment": "Text clipping still uses validated integer lineCount and code numberDigits is derived from line length count. Other reviewed preview counters and render bounds still use their existing validated producers."
+    },
+    "templates/angular/display.ts": {
+      "prior_sha256": "c199817791fdec0f7ccfbb3fb55bea2339d6cd8b58b866819f814b487787dd96",
+      "current_sha256": "be95bd5a7b85c366df56c4513659c930fca562fe3d7d748e2282ffd94ae0121e",
+      "judgment": "Avatar grapheme count, MeterGroup value-to-maximum ratio, Statistic/Meter data values and Descriptions positive column count still use their bounded producers instead of message strings."
+    },
+    "templates/angular/file-explorer.ts": {
+      "prior_sha256": "741c54ffaedce3a4f279ec3b83c63a07587de390d43a7e378279c0a3f23c558b",
+      "current_sha256": "35dbb12368fe1d536001225788cf0e69fb63db8e2d905c49f26e4ce994dd31f2",
+      "judgment": "Rows still require a valid tree, and indent uses explorerRows-generated depth. The hierarchy message and formatted file size do not supply indentation."
+    },
+    "templates/angular/form-layout.ts": {
+      "prior_sha256": "1d8a05d9d022bb8c23330eb409d2d289b4429d1c30e6d53cc035484357ba3783",
+      "current_sha256": "e90f68ee5efddee97ab80df23bca87e0fe8f30d29c21e706ed331e807bf07f5e",
+      "judgment": "FormLayout checkedColumns still calls positiveInteger before the host property receives its structural count."
+    },
+    "templates/angular/image-media.ts": {
+      "prior_sha256": "88fa4a112e71352e642bdf97db38ec12522d32e87b7f95e8a36a9e01a15a42c2",
+      "current_sha256": "8ed61946a25131f439551529cae0ea77c8150e5edd5001d194f046b09d9b6c4f",
+      "judgment": "Image and comparison ratios still use positiveMediaNumber. Comparison clip and position remain derived from the bounded percentage and direction."
+    },
+    "templates/angular/media-model.ts": {
+      "prior_sha256": "ad52962e5c11b08c1627bc20d7af9d42f3fbca2969306c7cf1a646a5221bf982",
+      "current_sha256": "2fa9c07d8d174af43881ca0add66a259f42e86fddedb50ad2e96b73a40e4252f",
+      "judgment": "positiveMediaNumber still rejects nonfinite and nonpositive values, comparePosition enforces 0–100, and cropBoundsError still requires positive dimensions and a positive in-image rectangle."
+    },
+    "templates/angular/scheduler-controller.ts": {
+      "prior_sha256": "b9509a7a5bb7c7156c7a5d4b5893510022f38ec730323b5718fdaa3fec8c522c",
+      "current_sha256": "f11a11a3e9ea22efc3d2fdbead5a87fe3133a3b5e3f10614da7fd370374c97df",
+      "judgment": "Scheduler geometry still comes from schedulerLayout using current events and configuration. Translation changes result messages, separating them from date, coordinate and column producers."
+    },
+    "templates/angular/scheduler-model.ts": {
+      "prior_sha256": "914d4b238bf1495029df8b8c0018313b7cf2a832d0c1a975f938c0f81aa48f13",
+      "current_sha256": "73a38ebf7e4ee5961f2f501102ccbbfdafa767b209df290a3e7f919505173110",
+      "judgment": "Existing calendar/date/time validation and finite range clipping still determine schedule positions and lengths. The translation arguments carry only error and display text."
+    },
+    "templates/angular/scheduler-view.ts": {
+      "prior_sha256": "adc1bcb35be07f7e35d424238408caa6b82752d863095426b4eff94bf6cca742",
+      "current_sha256": "f31e3db1ac37635ada7637194942aef7bb6590c4f94c6a5dff9be343643527d9",
+      "judgment": "Existing style sites still consume schedule geometry or screen layout counts, while the localized text changes around those bindings."
+    },
+    "templates/angular/selection-input.ts": {
+      "prior_sha256": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
+      "current_sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "judgment": "MultiSelect columns still come from checkedColumns as a positive safe integer and feed repeat() only."
+    },
+    "templates/angular/splitter.ts": {
+      "prior_sha256": "2c40fa1908cb90d8e013bdfe5ebee2ea6564655fed78655dfd7be75553c5f224",
+      "current_sha256": "2702852ab7fdf12359e191c8cedf5284e26b397cd38c3f2be425d77ed376cfac",
+      "judgment": "Splitter geometry remains a positive finite height/viewport token and finite split coefficients, separate from labels and keyboard guidance."
+    },
+    "templates/angular/virtual-data-table.ts": {
+      "prior_sha256": "c6be9ef1fc75f469daeb91204c77512b2ebb43f1342af4fc34188c9022f2bb3b",
+      "current_sha256": "282e75b7f659136b9cafe0e30791a0422982a5105cd55b3de769036cbd4ae16b",
+      "judgment": "gridColumns and minimumInline still consume semantic widths, positive bounded column data and width clamps. Table configuration checks still gate the rendered rows."
+    },
+    "templates/angular/choice-controls.ts": {
+      "prior_sha256": "db4a7c4f907e119d261c14a39fe05f37592b78baed092f07fed1154e4cea03c1",
+      "current_sha256": "f3662a7e9a174bac731ce0388e1aa9d37efc4695923afb8637eb7bde91766b70",
+      "judgment": "Palette values still pass parseColor and the palette validation before swatches render; translations do not supply background values."
+    },
+    "templates/angular/choice-model.ts": {
+      "prior_sha256": "e243a2d61df4fd47ba03c62842d2d6f04232a2cbf2bdd16a3c9a15b3fd53819a",
+      "current_sha256": "c775491826cea761491f54caa0f8e6dc970900ab7e70e123a636bd12b7289e48",
+      "judgment": "parseColor and the numeric color representation stay the same. Changes to numeric choice diagnostics do not affect the palette parser."
+    },
+    "templates/angular/drawer.ts": {
+      "prior_sha256": "d1201dd15048d0d2aca1004de0c25d01dd8197523e1210b499b63e011e8b2f41",
+      "current_sha256": "3cc4d92842c3b8873433cd91ca1261aad186a2d113289c9f306471218eea521a",
+      "judgment": "Drawer and BottomSheet still validate width/height with panelSize and sheet stages with sheetStages before writing pixel or viewport geometry."
+    },
+    "templates/angular/image-cropper.ts": {
+      "prior_sha256": "f78c7e7aedea12845101be6ab5d6a1810207c7ffecfeff7b51076364bb738b6e",
+      "current_sha256": "c6e02a61b4b6b7af48ab150eaa2be6e357385cb630aefc8e38ba2bbaffe6a72a",
+      "judgment": "Crop preview still requires a session and a rectangle passing cropBoundsError. All four preview style sinks consume only rectangle and image dimensions."
+    },
+    "templates/angular/mega-menu.ts": {
+      "prior_sha256": "ede568dc4114ed733f1d0ad473f9909ce32912b991ee84fcba531135b2d23cee",
+      "current_sha256": "6518889e328a066b60f00bb7a4fee9a8c93bdeb04a1cc725990a22d9dbce54a3",
+      "judgment": "checkedColumns still uses positiveInteger before writing the structural count for the navigation grid."
+    },
+    "templates/angular/text-input.ts": {
+      "prior_sha256": "6f0e334c7718abf75604a2166b820304d53cb3dab3611313b213390a290fa7d9",
+      "current_sha256": "2aeb3aa284ddbb2f4ea8ef7cbf9c37258d50e310045df60bff8d9a8e7705070e",
+      "judgment": "Textarea checkedMaxHeight still accepts only null or a positive finite value before setting the native editor cap."
+    }
+  }
+}

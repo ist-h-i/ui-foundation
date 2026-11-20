@@ -216,6 +216,52 @@ try {
     if (profile === 'guided') await page.getByRole('button', { name: 'Switch profile', exact: true }).click();
   }
   assert.notEqual(fontSizes[0], fontSizes[1]);
+  const translatedRegion = page.getByTestId('translated-region');
+  const message = page.getByTestId('scoped-message');
+  const cardToggle = translatedRegion.getByRole('button', { expanded: false });
+  const japanese = '/translations/ja-JP.json';
+  const arabic = '/translations/ar.json';
+  let releaseJapanese;
+  const japaneseResponse = new Promise(resolve => { releaseJapanese = resolve; });
+  await page.route(`**${japanese}`, async route => {
+    await japaneseResponse;
+    await route.fulfill({ json: { 'uiFoundation.dialog.closeAction': 'アプリの閉じる操作' } });
+  });
+  await page.route(`**${arabic}`, route => route.fulfill({ json: {
+    'uiFoundation.dialog.closeAction': 'uiFoundation.dialog.closeAction',
+    'uiFoundation.card.expand': '{title} — عرض التفاصيل',
+  } }));
+  try {
+    const japaneseRequested = page.waitForRequest(request => new URL(request.url()).pathname === japanese);
+    await page.getByRole('button', { name: 'Japanese', exact: true }).click();
+    await japaneseRequested;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ja-JP');
+    await expect(message).toHaveText('閉じる');
+    const arabicReceived = page.waitForResponse(response => new URL(response.url()).pathname === arabic);
+    await page.getByRole('button', { name: 'Arabic', exact: true }).click();
+    await arabicReceived;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ar');
+    await expect(translatedRegion).toHaveAttribute('dir', 'rtl');
+    await expect(message).toHaveText('Close');
+    await expect(cardToggle).toHaveText('Application card — عرض التفاصيل');
+    const japaneseReceived = page.waitForResponse(response => new URL(response.url()).pathname === japanese);
+    await input.focus();
+    releaseJapanese();
+    await japaneseReceived;
+    await expect(translatedRegion).toHaveAttribute('lang', 'ar');
+    await expect(message).toHaveText('Close');
+    await expect(input).toBeFocused();
+    await page.getByRole('button', { name: 'Japanese', exact: true }).click();
+    await expect(message).toHaveText('アプリの閉じる操作');
+    await expect(cardToggle).toHaveText('展開: Application card');
+    await expect(translatedRegion).toHaveAttribute('dir', 'ltr');
+    await expect(translatedRegion.getByRole('heading', { name: 'Application card' })).toBeVisible();
+    await expect(input).toHaveValue('package draft');
+    assert.equal(await input.evaluate((element, previous) => element === previous, editor), true);
+    await expect(page.getByTestId('default-message')).toHaveText('Close');
+  } finally {
+    releaseJapanese();
+  }
   await expect(page.locator('ui-spreadsheet').getByRole('textbox', { name: 'C1', exact: true })).toHaveValue('5');
   await expect(page.locator('ui-pdf-viewer canvas')).toBeVisible({ timeout: 30_000 });
   await page.locator('ui-pdf-viewer summary').click();
@@ -224,7 +270,7 @@ try {
   await expect(page.locator('ui-map canvas')).toBeVisible();
   for (const expected of ['/assets/sheet-formula.worker.js', '/assets/pdf/pdf.worker.mjs', '/assets/maplibre/maplibre-gl-worker.mjs']) assert.ok(workers.includes(expected), `worker not started: ${expected}`);
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ strictAot: true, stylesWithoutTailwind: true, englishWithoutLocaleProvider: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
+  console.log(JSON.stringify({ strictAot: true, stylesWithoutTailwind: true, englishWithoutLocaleProvider: true, lazyLocaleAdapter: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
 } finally {
   await browser?.close();
   server.closeAllConnections();

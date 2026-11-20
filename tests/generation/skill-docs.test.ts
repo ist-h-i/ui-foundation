@@ -100,14 +100,22 @@ test('generated Skill consumer documents and links resolve without checkout or n
   assert.deepEqual([...docs.keys()].sort(), [...allowed, 'examples/ui.config.example.yaml', 'examples/ui.config.example.en.yaml'].sort());
   for (const path of [...consumerDocuments, 'docs/ui-components.md', 'docs/design.md', 'docs/ui-library-api.json']) assert.ok(docs.has(path), `missing ${path}`);
   assert.ok(![...docs.keys()].some(path => /(?:development|implementation-plan|release-plan|matrix|verification|^docs\/adr\/)/.test(path)));
+  const localeAdapter = 'examples/locale-adapter.ts';
+  assert.ok(metadata.files.includes('skills/ui-development/'));
+  await readFile(resolve(root, 'skills/ui-development/references', localeAdapter));
   for (const [path, text] of docs) if (path.endsWith('.md')) {
     for (const match of text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
       const target = match[1];
       if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) continue;
-      assert.ok(docs.has(posix.normalize(posix.join(posix.dirname(path), target.split('#')[0]))), `broken ${path} -> ${target}`);
+      const destination = posix.normalize(posix.join(posix.dirname(path), target.split('#')[0]));
+      assert.ok(docs.has(destination) || destination === localeAdapter, `broken ${path} -> ${target}`);
     }
   }
   const skill = await readFile(resolve(root, 'skills/ui-development/SKILL.md'), 'utf8');
+  assert.ok(skill.includes(`](references/${localeAdapter})`));
+  for (const language of ['en', 'ja']) {
+    assert.ok(docs.get(`docs/ui-library-consumer-guide.${language}.md`)?.includes(`](../${localeAdapter})`));
+  }
   assert.doesNotMatch(skill, /プロジェクトルートの`docs\/|checkoutのsrc\/cli/);
   for (const match of skill.matchAll(/references\/(docs\/[^\s`）)]+?\.(?:md|json))/g)) assert.ok(docs.has(match[1]), `Skill reference missing ${match[1]}`);
 });

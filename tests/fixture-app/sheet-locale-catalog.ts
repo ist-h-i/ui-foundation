@@ -16,7 +16,7 @@ export const sheetAppFailure='The application refused this calculation.';
 export class SheetLocaleCatalog {
  readonly profile=signal('guided');readonly worker=signal('/assets/sheet-formula.worker.js');readonly second=signal(false);
  readonly sheet:SheetModel={rows:[[2,3,'=SUM(A1:B1)']]};
- readonly options=computed<UiLocaleOptions>(()=>({locale:this.second()?'de-DE':'en-US',messages:{[sheetLibraryFailure]:this.second()?'Die Berechnung konnte nicht bestätigt werden.':'The calculation could not be confirmed.',[sheetAppFailure]:'This dictionary entry must not replace the app failure.'}}));
+ readonly options=computed<UiLocaleOptions>(()=>({locale:this.second()?'de-DE':'en-US',translate:request=>request.id==='uiFoundation.spreadsheet.calculationUnconfirmed'?(this.second()?'Die Berechnung konnte nicht bestätigt werden.':'The calculation could not be confirmed.'):undefined}));
  changeProfile(event:Event):void{this.profile.set((event.target as HTMLSelectElement).value);}
  changeWorker(event:Event):void{this.worker.set((event.target as HTMLSelectElement).value);}
 }

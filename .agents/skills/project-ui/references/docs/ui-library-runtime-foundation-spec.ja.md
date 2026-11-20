@@ -6,11 +6,11 @@
 
 ## 公開locale API
 
-`provideUiLocale(options | Signal<UiLocaleOptions>)`は`UI_LOCALE: Signal<UiLocaleResolved>`を提供する。局所`UiLocaleScope`は`[uiLocale]`で親の値を継承する。部品は`injectUiLocale()`と`injectUiText()`、`UiMessagePipe`を読む。純関数`resolveUiLocale/uiMessage`も公開する。`UiText`という公開型はない。
+`provideUiLocale(options | Signal<UiLocaleOptions>)` は `UI_LOCALE: Signal<UiLocaleResolved>` を提供する。`UiLocaleScope` は `[uiLocale]` で親の値を継承する。設定の参照は `injectUiLocale()`、引数付きの文言は `injectUiMessage()` に `UiMessageRequest` を渡して表示する。テンプレートでは、IDと名前付き引数を `UiStableMessagePipe` に渡せる。`resolveUiLocale` と `resolveUiMessage` は公開の純関数。
 
-optionsは`locale/direction/timeZone/dateInputFormat/civilDateOptions/dateTimeOptions/numberOptions/messages`。YAMLの`default_language: en`で生成した場合は`en-US`と英語辞書、`ja`または項目のない既存設定は`ja-JP`と日本語fallbackが既定。方向/timezoneは未指定、日付入力は`native`、civil表示は`dateStyle:full`、日時は`dateStyle:medium,timeStyle:short`。明示した部品propを共通値より優先する。不正なIntl設定や辞書shapeを診断し、hostの言語/timezoneへ黙って変更しない。runtime APIからYAML/profileを変更しない。
+設定項目は `locale/direction/timeZone/dateInputFormat/civilDateOptions/dateTimeOptions/numberOptions/translate`。YAMLの `default_language: en` は `en-US`、`ja` と項目のない既存設定は `ja-JP` が既定。方向とタイムゾーンは未指定、日付入力は `native`、暦日は `dateStyle:full`、日時は `dateStyle:medium,timeStyle:short`。明示した部品の入力設定を優先する。不正なIntl設定や翻訳関数の型は診断する。実行時の設定はYAMLやプロファイルを変更しない。
 
-辞書はライブラリ所有の既定文言をキーにし、未指定は元の文言を表示する。同梱の英語辞書は、生成済みの公開入口から `uiEnglishMessages` を import し、`provideUiLocale` の `messages` に指定して選択する。静的説明・操作・状態・構造診断の表示へ適用し、アプリのラベル・候補名称・本文・backend失敗本文は原文を保つ。純モデルが返す診断は既定の文言を維持し、通常はUIの表示時に翻訳する。FilterBuilderの必須条件が空の場合は、Validatorが返すメッセージにも辞書が適用される。辞書/パラメータはown propertyを読み、Angular text interpolationがHTMLをescapeする。
+`translate(request, locale)` には、部品が持つ操作・状態・構造上の診断などの安定IDと名前付き引数を渡す。辞書の読み込み中は `undefined` を返せる。未取得、空欄、IDそのままの戻り値は、日本語ロケールなら標準の日本語、それ以外では標準の英語で表示する。子領域は親の翻訳関数を継承し、独自の関数や `translate: null@ を設定できる。アプリのラベル・候補名・本文・APIエラーはアプリが翻訳する。Angularのテキスト補間はHTMLをエスケープする。[利用ガイドと接続例](ui-library-consumer-guide.ja.md#locale文言rtl-の責任)
 
 ## 日付・数値・方向
 

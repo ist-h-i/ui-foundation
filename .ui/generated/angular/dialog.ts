@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText,UiMessagePipe} from './locale';
+import {injectUiMessage,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, ElementRef, inject, input, output, signal, TemplateRef, untracked, } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -42,15 +42,15 @@ export const DIALOG_HEADER_TEMPLATE = `
         @else { <ng-content select="[uiDialogHeader]" /><h2>{{ title() || label() }}</h2> }
       </div>
       <div class="ui-dialog__handles">
-        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
-        @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
-        @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
+        @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'uiFoundation.dialog.moveLabel' | uiStableMessage" [attr.title]="'uiFoundation.dialog.moveInstructions' | uiStableMessage">{{'uiFoundation.dialog.moveAction' | uiStableMessage}}</button> }
+        @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('uiFoundation.dialog.restoreSize' | uiStableMessage) : ('uiFoundation.dialog.maximize' | uiStableMessage) }}</button> }
+        @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'uiFoundation.dialog.closeLabel' | uiStableMessage">{{'uiFoundation.dialog.closeAction' | uiStableMessage}}</button> }
       </div>
     </header>
     @if (!showHeader() && (draggable() || maximizable() || closable())) { <div class="ui-dialog__handles ui-dialog__standalone-handles">
-      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログを移動' | uiMessage" [attr.title]="'矢印キーで移動、Shiftで大きく移動' | uiMessage">{{'移動' | uiMessage}}</button> }
-      @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }
-      @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'ダイアログを閉じる' | uiMessage">{{'閉じる' | uiMessage}}</button> }
+      @if (draggable()) { <button uiAction uiMoveHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'uiFoundation.dialog.moveLabel' | uiStableMessage" [attr.title]="'uiFoundation.dialog.moveInstructions' | uiStableMessage">{{'uiFoundation.dialog.moveAction' | uiStableMessage}}</button> }
+      @if (maximizable()) { <button uiAction [disabled]="busy()" [attr.aria-pressed]="maximized()" (click)="toggleMaximized()">{{ maximized() ? ('uiFoundation.dialog.restoreSize' | uiStableMessage) : ('uiFoundation.dialog.maximize' | uiStableMessage) }}</button> }
+      @if (closable()) { <button uiAction class="ui-dialog__close" [disabled]="busy()" (click)="finish('close-button')" [attr.aria-label]="'uiFoundation.dialog.closeLabel' | uiStableMessage">{{'uiFoundation.dialog.closeAction' | uiStableMessage}}</button> }
     </div> }
   `;
 export const DIALOG_BODY_TEMPLATE = `
@@ -64,7 +64,7 @@ export const DIALOG_FOOTER_TEMPLATE = `
       @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{$implicit:context()}" /> }
       @else { <ng-content select="[uiDialogFooter]" /> }
     </footer>
-    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'ダイアログのサイズを変更' | uiMessage" [attr.title]="'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage">{{'サイズ変更' | uiMessage}}</button></div> }
+    @if (resizable()) { <div class="ui-dialog__handles"><button uiAction uiResizeHandle [target]="element" [uiHandleDisabled]="busy() || maximized()" [disabled]="busy() || maximized()" (rectChange)="setRect($event)" [attr.aria-label]="'uiFoundation.dialog.resizeLabel' | uiStableMessage" [attr.title]="'uiFoundation.dialog.resizeInstructions' | uiStableMessage">{{'uiFoundation.dialog.resizeAction' | uiStableMessage}}</button></div> }
     <p role="status" aria-atomic="true" class="ui-dialog__status">{{ busy() ? uiEffective_busyLabel() : '' }}</p>
   `;
 export const DIALOG_TEMPLATE = DIALOG_HEADER_TEMPLATE + DIALOG_BODY_TEMPLATE + DIALOG_FOOTER_TEMPLATE;
@@ -92,7 +92,7 @@ export const DIALOG_STYLES = `
 /** Native HTML owns modal inertness and Tab confinement. DOM ancestry keeps profiles/RTL. */
 @Component({
     selector: 'dialog[uiDialog]', standalone: true,
-    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle,UiMessagePipe],
+    imports: [NgTemplateOutlet, ActionControl, MoveHandle, ResizeHandle,UiStableMessagePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: DIALOG_TEMPLATE,
     host: {
@@ -105,7 +105,7 @@ export const DIALOG_STYLES = `
     styles: DIALOG_STYLES,
 })
 export class Dialog {
- protected readonly uiText_Dialog=injectUiText();
+ protected readonly uiText_Dialog=injectUiMessage();
     readonly label = input.required<string>();
     readonly title = input('');
     readonly open = input(false, { transform: booleanAttribute });
@@ -123,7 +123,7 @@ export class Dialog {
     readonly maximizable = input(false, { transform: booleanAttribute });
     readonly busy = input(false, { transform: booleanAttribute });
     readonly busyLabel = input<string>();
- protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_Dialog('処理しています。'));
+ protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_Dialog({id:'uiFoundation.dialog.busy'}));
     readonly closeRequested = output<DialogCloseRequest>();
     readonly completed = output<DialogResult>();
     readonly cancelled = output<void>();

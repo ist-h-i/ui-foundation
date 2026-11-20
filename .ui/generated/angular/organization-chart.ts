@@ -1,4 +1,4 @@
-import {UiMessagePipe} from './locale';
+import {UiStableMessagePipe} from './locale';
 import {NgTemplateOutlet} from '@angular/common';
 import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,computed,contentChild,DestroyRef,ElementRef,inject,input,linkedSignal,output,signal,untracked} from '@angular/core';
 import {canFocus} from './focus';
@@ -7,17 +7,17 @@ import {treeBranch,treeDomIdToken,treeEntries,treeEntry,treeNodes,treePath,type 
 
 export type OrganizationDirection='top-down'|'bottom-up'|'left-right'|'right-left';
 
-@Component({selector:'ui-organization-chart',standalone:true,imports:[NgTemplateOutlet,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'ui-organization-chart',standalone:true,imports:[NgTemplateOutlet,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  template:`<div class="ui-org-viewport" dir="ltr" role="region" tabindex="0" [attr.aria-label]="label()" [attr.aria-busy]="busy()?'true':null" [attr.data-direction]="direction()">
  <ul class="ui-org-roots" dir="ltr"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:checkedNodes()}" /></ul>
- @if(!checkedNodes().length){<p [attr.dir]="textDirection()">{{'組織の項目はありません。' | uiMessage}}</p>}
+ @if(!checkedNodes().length){<p [attr.dir]="textDirection()">{{'uiFoundation.organizationChart.thereAreNoOrganizationItems' | uiStableMessage}}</p>}
  </div>
  <ng-template #entries let-nodes="nodes">@for(node of nodes;track node.id){<li class="ui-org-item" [attr.data-org-id]="node.id">
   <div class="ui-org-node" [attr.dir]="textDirection()" [attr.data-disabled]="disabledNode(node.id)">
    @if(nodeTemplate();as custom){<ng-container [ngTemplateOutlet]="custom.template" [ngTemplateOutletContext]="context(node.id)" />}@else{<strong>{{node.label}}</strong>@if(node.description){<p>{{node.description}}</p>}}
-   @if(branch(node)){<button type="button" [disabled]="disabled()||busy()||disabledNode(node.id)" [attr.data-org-toggle]="node.id" [attr.aria-label]="node.label+(expanded().includes(node.id)?('の子組織を折り畳む' | uiMessage):('の子組織を展開' | uiMessage))" [attr.aria-expanded]="expanded().includes(node.id)" [attr.aria-controls]="chartId()+'-children-'+encode(node.id)" (click)="toggle(node)">{{expanded().includes(node.id)?('子組織を折り畳む' | uiMessage):('子組織を展開' | uiMessage)}}</button>}
+   @if(branch(node)){<button type="button" [disabled]="disabled()||busy()||disabledNode(node.id)" [attr.data-org-toggle]="node.id" [attr.aria-label]="(expanded().includes(node.id)?('uiFoundation.organizationChart.collapseLabel' | uiStableMessage:{label:node.label}):('uiFoundation.organizationChart.expandLabel' | uiStableMessage:{label:node.label}))" [attr.aria-expanded]="expanded().includes(node.id)" [attr.aria-controls]="chartId()+'-children-'+encode(node.id)" (click)="toggle(node)">{{expanded().includes(node.id)?('uiFoundation.organizationChart.collapseChildOrganizations' | uiStableMessage):('uiFoundation.organizationChart.expandChildOrganizations' | uiStableMessage)}}</button>}
   </div>
-  @if(branch(node)){<ul class="ui-org-children" [id]="chartId()+'-children-'+encode(node.id)" [hidden]="!expanded().includes(node.id)" [attr.aria-label]="node.label+('の子組織' | uiMessage)">@if(node.children===undefined){<li class="ui-org-missing"><p role="status" [attr.dir]="textDirection()">{{'子組織の情報は未取得です。取得した階層をアプリから接続してください。' | uiMessage}}</p></li>}@else{<ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:node.children}" />}</ul>}
+  @if(branch(node)){<ul class="ui-org-children" [id]="chartId()+'-children-'+encode(node.id)" [hidden]="!expanded().includes(node.id)" [attr.aria-label]="('uiFoundation.organizationChart.suborganizationsForLabel' | uiStableMessage:{label:node.label})">@if(node.children===undefined){<li class="ui-org-missing"><p role="status" [attr.dir]="textDirection()">{{'uiFoundation.organizationChart.childOrganizationsHaveNotBeenLoadedPassTheLoadedHierarchyFromTheApp' | uiStableMessage}}</p></li>}@else{<ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{nodes:node.children}" />}</ul>}
  </li>}</ng-template>`,styles:`
  :host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);}
  :host([hidden]),[hidden]{display:none!important;}

@@ -1,4 +1,6 @@
-import {uiMessage,type UiMessages} from './locale-model';
+import { uiMessageText, type UiMessageText } from './stable-messages';
+
+const japaneseText = uiMessageText(() => 'ja-JP');
 /** Pure client-side table operations. Server mode does not call this pipeline. */
 export type TableKey = string | number;
 export type TableColumnType = 'text' | 'number' | 'date' | 'boolean';
@@ -38,12 +40,12 @@ export function createTableState(pageSize = 10): TableState {
 export function tableValue<T extends object>(row: T, column: TableColumn<T>): unknown { return row[column.field]; }
 /** Column IDs are arbitrary strings; inherited properties are never configured entries. */
 export function tableOwnValue<V>(record: Readonly<Record<string, V>>, id: string): V | undefined { return Object.hasOwn(record, id) ? record[id] : undefined; }
-export function tableText<T extends object>(row: T, column: TableColumn<T>, locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, messages:UiMessages={}): string {
+export function tableText<T extends object>(row: T, column: TableColumn<T>, locale = 'ja-JP', missing = '未取得', numberOptions:Intl.NumberFormatOptions={}, text: UiMessageText = uiMessageText(() => locale)): string {
   const value = tableValue(row, column);
   if (typed(value, column.type) === null) return missing;
   if (column.format) return column.format(value, row);
   if (typeof value === 'number') return Number.isFinite(value) ? new Intl.NumberFormat(locale,numberOptions).format(value) : missing;
-  if (typeof value === 'boolean') return uiMessage(value ? 'はい' : 'いいえ',messages);
+  if (typeof value === 'boolean') return text(value ? 'uiFoundation.table.booleanTrue' : 'uiFoundation.table.booleanFalse');
   return String(value);
 }
 function typed(value: unknown, type: TableColumnType = 'text'): string | number | boolean | null {
@@ -150,13 +152,13 @@ export function fitTableColumns<T extends object>(columns: readonly TableColumn<
   }
   return widths;
 }
-export function tableConfigurationError<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], key: keyof T & string, state: TableState): string | null {
-  if (!columns.length || new Set(columns.map(c => c.id)).size !== columns.length || columns.some(c => !c.id.trim() || !c.header.trim())) return '列IDと見出しを一意に指定してください。';
-  if (columns.every(column => state.hiddenColumns.includes(column.id))) return '少なくとも一列を表示してください。';
+export function tableConfigurationError<T extends object>(rows: readonly T[], columns: readonly TableColumn<T>[], key: keyof T & string, state: TableState, text: UiMessageText = japaneseText): string | null {
+  if (!columns.length || new Set(columns.map(c => c.id)).size !== columns.length || columns.some(c => !c.id.trim() || !c.header.trim())) return text('uiFoundation.table.invalidColumns');
+  if (columns.every(column => state.hiddenColumns.includes(column.id))) return text('uiFoundation.table.columnRequired');
   const keys = rows.map(row => row[key]);
-  if (keys.some(value => !(typeof value === 'string' && value.length > 0 || typeof value === 'number' && Number.isFinite(value))) || new Set(keys).size !== keys.length) return '行キーを一意な文字列または有限の数値にしてください。';
-  if (!Number.isSafeInteger(state.page) || state.page < 1 || !Number.isSafeInteger(state.pageSize) || state.pageSize < 1) return 'ページと表示件数を正の整数にしてください。';
-  if (columns.some(c => [c.width, c.minWidth, c.maxWidth].some(v => v !== undefined && (!Number.isFinite(v) || v <= 0)) || c.minWidth !== undefined && c.maxWidth !== undefined && c.minWidth > c.maxWidth)) return '列幅の範囲を確認してください。';
-  if (Object.values(state.columnWidths).some(width => !Number.isFinite(width) || width <= 0)) return '保存した列幅を確認してください。';
+  if (keys.some(value => !(typeof value === 'string' && value.length > 0 || typeof value === 'number' && Number.isFinite(value))) || new Set(keys).size !== keys.length) return text('uiFoundation.table.invalidRowKeys');
+  if (!Number.isSafeInteger(state.page) || state.page < 1 || !Number.isSafeInteger(state.pageSize) || state.pageSize < 1) return text('uiFoundation.table.invalidPageSettings');
+  if (columns.some(c => [c.width, c.minWidth, c.maxWidth].some(v => v !== undefined && (!Number.isFinite(v) || v <= 0)) || c.minWidth !== undefined && c.maxWidth !== undefined && c.minWidth > c.maxWidth)) return text('uiFoundation.table.invalidColumnWidthBounds');
+  if (Object.values(state.columnWidths).some(width => !Number.isFinite(width) || width <= 0)) return text('uiFoundation.table.invalidSavedWidths');
   return null;
 }

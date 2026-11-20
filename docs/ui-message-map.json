@@ -1,0 +1,8736 @@
+{
+  "description": "The beta.4 keys and their stable IDs by component. An empty list means that the earlier text was a fragment or that no direct replacement could be verified. Locate its component and use the complete message and its named arguments.",
+  "from": "0.1.0-beta.4",
+  "to": "0.1.0-beta.5",
+  "messages": {
+    " (必須)": [
+      {
+        "id": "uiFoundation.colorPicker.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dateRangePicker.requiredLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.formField.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.multiSelect.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.radioGroup.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rangeSlider.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rating.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.required",
+        "parameters": {}
+      }
+    ],
+    " (数字)": [
+      {
+        "id": "uiFoundation.otpInput.numericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " (既知 ": [
+      {
+        "id": "uiFoundation.dataTableView.knownCount",
+        "parameters": {}
+      }
+    ],
+    " (英数字)": [
+      {
+        "id": "uiFoundation.otpInput.alphanumericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " / 容量未取得": [
+      {
+        "id": "uiFoundation.fileExplorer.itemWithoutSize",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " / 最大 ": [
+      {
+        "id": "uiFoundation.multiSelect.selectedCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " の現地日時": [
+      {
+        "id": "uiFoundation.dateTimePicker.localTimeWithZone",
+        "parameters": {
+          "zone": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " を解除": [
+      {
+        "id": "uiFoundation.filterChips.removeCriterion",
+        "parameters": {
+          "criterion": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.filterChips.removeSearch",
+        "parameters": {
+          "search": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " ラベル": [
+      {
+        "id": "uiFoundation.flowEditor.labelForDiagram",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.labelForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " 件": [
+      {
+        "id": "uiFoundation.multiSelect.selectedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.multiSelect.selectedCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " 件の候補": [
+      {
+        "id": "uiFoundation.combobox.suggestionsForSelectionInputCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " 件選択": [
+      {
+        "id": "uiFoundation.treeSelect.selectedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    " 変更前": [
+      {
+        "id": "uiFoundation.diffViewer.before",
+        "parameters": {}
+      }
+    ],
+    " 変更後": [
+      {
+        "id": "uiFoundation.diffViewer.after",
+        "parameters": {}
+      }
+    ],
+    " 横位置": [
+      {
+        "id": "uiFoundation.flowEditor.horizontalPosition",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.horizontalPositionForDiagramForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " 終了": [
+      {
+        "id": "uiFoundation.gantt.end",
+        "parameters": {}
+      }
+    ],
+    " 縦位置": [
+      {
+        "id": "uiFoundation.flowEditor.verticalPosition",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.verticalPositionForDiagramForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " 貼付け内容は保持しています。再試行できます。": [
+      {
+        "id": "uiFoundation.dataGrid.pasteFailedWithRecovery",
+        "parameters": {
+          "message": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " 進捗": [
+      {
+        "id": "uiFoundation.gantt.progress",
+        "parameters": {}
+      }
+    ],
+    " 進捗を編集": [
+      {
+        "id": "uiFoundation.gantt.editTaskProgressLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    " 開始": [
+      {
+        "id": "uiFoundation.gantt.start",
+        "parameters": {}
+      }
+    ],
+    "(必須)": [
+      {
+        "id": "uiFoundation.colorPicker.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.formField.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.multiSelect.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.radioGroup.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rangeSlider.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rating.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.required",
+        "parameters": {}
+      }
+    ],
+    "/ 値": [
+      {
+        "id": "uiFoundation.spreadsheet.selectionSummary",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "/ 外部更新と編集内容が競合しています。編集を確定する前に確認してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.anExternalUpdateConflictsWithYourEditsReviewTheChangesBeforeConfirming",
+        "parameters": {}
+      }
+    ],
+    "/ 未取得": [
+      {
+        "id": "uiFoundation.sparkline.missingCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "/ 未確定の入力": [
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "0.5倍": [
+      {
+        "id": "uiFoundation.mediaPlayer.halfSpeed",
+        "parameters": {}
+      }
+    ],
+    "1.5倍": [
+      {
+        "id": "uiFoundation.mediaPlayer.oneAndHalfSpeed",
+        "parameters": {}
+      }
+    ],
+    "1つ以上に一致する行を表示": [
+      {
+        "id": "uiFoundation.columnFilter.matchAnyHelp",
+        "parameters": {}
+      }
+    ],
+    "1件 ": [
+      {
+        "id": "uiFoundation.fileUpload.perFileLimit",
+        "parameters": {
+          "size": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "1件ずつ": [
+      {
+        "id": "uiFoundation.fileUpload.oneAtATime",
+        "parameters": {}
+      }
+    ],
+    "1倍": [
+      {
+        "id": "uiFoundation.mediaPlayer.normalSpeed",
+        "parameters": {}
+      }
+    ],
+    "2倍": [
+      {
+        "id": "uiFoundation.mediaPlayer.doubleSpeed",
+        "parameters": {}
+      }
+    ],
+    ": 取得済み": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorPresent",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.meterGroup.availableForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "CSVを出力": [
+      {
+        "id": "uiFoundation.tableToolbar.exportCSV",
+        "parameters": {}
+      }
+    ],
+    "CSVを書き出す": [
+      {
+        "id": "uiFoundation.spreadsheet.exportCSV",
+        "parameters": {}
+      }
+    ],
+    "CSVを読み込む": [
+      {
+        "id": "uiFoundation.spreadsheet.importCSV",
+        "parameters": {}
+      }
+    ],
+    "CSVを読み込めません。": [
+      {
+        "id": "uiFoundation.spreadsheet.unableToImportTheCSVFile",
+        "parameters": {}
+      }
+    ],
+    "CSVファイル名を指定してください。": [
+      {
+        "id": "uiFoundation.tableOutput.csvFilenameRequired",
+        "parameters": {}
+      }
+    ],
+    "Enterで": [
+      {
+        "id": "uiFoundation.tree.selectKeyboardHint",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "JSONを検索": [
+      {
+        "id": "uiFoundation.jsonViewer.searchJSON",
+        "parameters": {}
+      }
+    ],
+    "Markdownの表示": [
+      {
+        "id": "uiFoundation.markdownEditor.markdownDisplay",
+        "parameters": {}
+      }
+    ],
+    "PDFのダウンロードを開始しました。": [
+      {
+        "id": "uiFoundation.pDFViewer.thePDFDownloadHasStarted",
+        "parameters": {}
+      }
+    ],
+    "PDFをダウンロード": [
+      {
+        "id": "uiFoundation.pDFViewer.downloadPDF",
+        "parameters": {}
+      }
+    ],
+    "PDFをダウンロードできません。再試行してください。": [
+      {
+        "id": "uiFoundation.pDFViewer.unableToDownloadThePDFTryAgain",
+        "parameters": {}
+      }
+    ],
+    "PDFを再取得": [
+      {
+        "id": "uiFoundation.pDFViewer.reloadPDF",
+        "parameters": {}
+      }
+    ],
+    "PDFを読み込みました。": [
+      {
+        "id": "uiFoundation.pDFViewer.pDFLoaded",
+        "parameters": {}
+      }
+    ],
+    "PDFを読み込めません。表示対象とworker・補助ファイルの配信設定を確認して再試行してください。": [
+      {
+        "id": "uiFoundation.pDFViewer.unableToLoadThePDFCheckTheSourceAndHowTheWorkerAndSupportingFilesAreServedThenTryAga",
+        "parameters": {}
+      }
+    ],
+    "PDFを読込み中です。": [
+      {
+        "id": "uiFoundation.pDFViewer.loadingPDF",
+        "parameters": {}
+      }
+    ],
+    "PDFを選択してください。": [
+      {
+        "id": "uiFoundation.pDFViewer.selectAPDF",
+        "parameters": {}
+      }
+    ],
+    "Spaceで": [
+      {
+        "id": "uiFoundation.tree.toggleKeyboardHint",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "Timelineの項目・詳細テンプレートは各一つ指定してください。": [
+      {
+        "id": "uiFoundation.timeline.provideOneItemTemplateAndOneDetailTemplateForTheTimeline",
+        "parameters": {}
+      }
+    ],
+    "UTCオフセットの変化をまたぐ予定です。表示時刻は指定したタイムゾーンで確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.offsetTransition",
+        "parameters": {}
+      }
+    ],
+    "hex・rgb・hsl形式の色を確認してください。": [
+      {
+        "id": "uiFoundation.colorPicker.enterAColorInHexRGBOrHSLFormat",
+        "parameters": {}
+      }
+    ],
+    "http、https、mailtoのURLを入力してください。": [
+      {
+        "id": "uiFoundation.richTextEditor.enterAnHTTPHTTPSOrMailtoURL",
+        "parameters": {}
+      }
+    ],
+    "{accepted}件を受け付けました。{rejected}件は受け付けできません。": [
+      {
+        "id": "uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected",
+        "parameters": {
+          "accepted": [
+            "number"
+          ],
+          "rejected": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{column}の列移動: {action}": [
+      {
+        "id": "uiFoundation.tableControls.moveColumnEarlierLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tableControls.moveColumnLaterLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "{column}の条件 {number}: {action}": [
+      {
+        "id": "uiFoundation.columnFilter.actionColumnConditionNumber",
+        "parameters": {
+          "column": [
+            "string",
+            "number"
+          ],
+          "number": [
+            "number"
+          ],
+          "action": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "{count}件を削除しました。": [
+      {
+        "id": "uiFoundation.transferList.itemsRemovedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{count}件を追加しました。": [
+      {
+        "id": "uiFoundation.transferList.itemsAddedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{label}を{position}番目へ移動しました。": [
+      {
+        "id": "uiFoundation.transferList.movedLabelToPositionPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{limit}件まで選択してください。": [
+      {
+        "id": "uiFoundation.collection.selectionLimit",
+        "parameters": {
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{limit}件まで選択してください。現在の選択は保持しています。削除して修復できます。": [
+      {
+        "id": "uiFoundation.transferList.currentSelectionLimit",
+        "parameters": {
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{limit}件まで選択できます。今回の追加は行っていません。": [
+      {
+        "id": "uiFoundation.transferList.additionLimit",
+        "parameters": {
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{min} から {max} の範囲で指定してください。": [
+      {
+        "id": "uiFoundation.numericField.valueOutsideRange",
+        "parameters": {
+          "min": [
+            "number"
+          ],
+          "max": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{row}行目・{column}: {message}": [
+      {
+        "id": "uiFoundation.tablePaste.invalidCell",
+        "parameters": {
+          "row": [
+            "number"
+          ],
+          "column": [
+            "string"
+          ],
+          "message": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "{row}行目・{column}は編集できません。": [
+      {
+        "id": "uiFoundation.tablePaste.readonlyCell",
+        "parameters": {
+          "row": [
+            "number"
+          ],
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "{step} 刻みで指定してください。": [
+      {
+        "id": "uiFoundation.numericField.invalidIncrement",
+        "parameters": {
+          "step": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "{ui0}文字以内で入力してください。": [
+      {
+        "id": "uiFoundation.inlineEdit.enterNoMoreThanUi0Characters",
+        "parameters": {
+          "ui0": [
+            "string",
+            "number"
+          ]
+        }
+      }
+    ],
+    "· 回転": [
+      {
+        "id": "uiFoundation.imageCropper.rotationDegrees",
+        "parameters": {
+          "angle": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "· 時間帯:": [
+      {
+        "id": "uiFoundation.scheduler.displaySummary",
+        "parameters": {
+          "zone": [
+            "string"
+          ],
+          "to": [
+            "string"
+          ],
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ],
+          "from": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "— 未取得": [
+      {
+        "id": "uiFoundation.meterGroup.unavailableCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "、": [],
+    "。": [],
+    "いいえ": [
+      {
+        "id": "uiFoundation.columnFilter.no",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.no",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterChips.no",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.table.booleanFalse",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.no",
+        "parameters": {}
+      }
+    ],
+    "いずれか": [
+      {
+        "id": "uiFoundation.columnFilter.any",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.any",
+        "parameters": {}
+      }
+    ],
+    "いずれかに一致 (OR)": [
+      {
+        "id": "uiFoundation.filterBuilder.matchAnyOR",
+        "parameters": {}
+      }
+    ],
+    "か月目": [
+      {
+        "id": "uiFoundation.dateRangePicker.calendarMonthLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "month": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "ここへファイルをドロップできます。": [
+      {
+        "id": "uiFoundation.fileUpload.dropFilesHere",
+        "parameters": {}
+      }
+    ],
+    "このページの文字は取得できません。元のPDFをダウンロードして確認できます。": [
+      {
+        "id": "uiFoundation.pDFViewer.theTextOnThisPageIsUnavailableDownloadTheOriginalPDFToReviewIt",
+        "parameters": {}
+      }
+    ],
+    "このページをすべて選択": [
+      {
+        "id": "uiFoundation.dataTableView.selectAllOnThisPage",
+        "parameters": {}
+      }
+    ],
+    "この予定は移動できません。": [
+      {
+        "id": "uiFoundation.scheduler.eventLocked",
+        "parameters": {}
+      }
+    ],
+    "この内容とサイズではQRコードを作成できません。内容またはサイズを確認してください。": [
+      {
+        "id": "uiFoundation.qRCode.unableToCreateAQRCodeWithThisContentAndSizeCheckTheContentOrSize",
+        "parameters": {}
+      }
+    ],
+    "この形式・内容・サイズではバーコードを作成できません。形式の桁数とサイズを確認してください。": [
+      {
+        "id": "uiFoundation.barcode.unableToCreateABarcodeWithThisFormatContentAndSizeCheckTheRequiredNumberOfDigitsAndT",
+        "parameters": {}
+      }
+    ],
+    "この期間・リソース・時間帯に表示できる予定はありません。表示条件を変更できます。": [
+      {
+        "id": "uiFoundation.scheduler.noEvents",
+        "parameters": {}
+      }
+    ],
+    "この移動は許可されていません。": [
+      {
+        "id": "uiFoundation.transferList.thisMoveIsNotAllowed",
+        "parameters": {}
+      }
+    ],
+    "この移動は許可されていません。入力は保持しています。": [
+      {
+        "id": "uiFoundation.schedulerController.thisMoveIsUnavailableYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "この経路で確定": [
+      {
+        "id": "uiFoundation.cascader.confirmThisPath",
+        "parameters": {}
+      }
+    ],
+    "この項目で使える演算子を選んでください。": [
+      {
+        "id": "uiFoundation.filterBuilder.chooseAnOperatorSupportedByThisField",
+        "parameters": {}
+      }
+    ],
+    "この順序変更は許可されていません。": [
+      {
+        "id": "uiFoundation.transferList.thisReorderIsNotAllowed",
+        "parameters": {}
+      }
+    ],
+    "さらに読み込む": [
+      {
+        "id": "uiFoundation.infiniteScroll.loadMore",
+        "parameters": {}
+      }
+    ],
+    "しました。": [
+      {
+        "id": "uiFoundation.transferList.itemsAddedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.itemsRemovedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "すべて": [
+      {
+        "id": "uiFoundation.columnFilter.all",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.all",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.notificationCenter.allCategories",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.notificationCenter.allStatuses",
+        "parameters": {}
+      }
+    ],
+    "すべてに一致 (AND)": [
+      {
+        "id": "uiFoundation.filterBuilder.matchAllAND",
+        "parameters": {}
+      }
+    ],
+    "すべての項目を表示しています。": [
+      {
+        "id": "uiFoundation.infiniteScroll.allItemsAreDisplayed",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.timeline.allItemsAreDisplayed",
+        "parameters": {}
+      }
+    ],
+    "その他の操作": [
+      {
+        "id": "uiFoundation.splitButton.menuLabel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.toolbar.moreActions",
+        "parameters": {}
+      }
+    ],
+    "で並べ替え": [
+      {
+        "id": "uiFoundation.dataTableView.sortColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.sortColumnWithOrder",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "marker": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.sortColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "で始まる": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorStartsWith",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.startsWith",
+        "parameters": {}
+      }
+    ],
+    "と異なる": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorNeq",
+        "parameters": {}
+      }
+    ],
+    "と等しい": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorEq",
+        "parameters": {}
+      }
+    ],
+    "なし": [
+      {
+        "id": "uiFoundation.gantt.none",
+        "parameters": {}
+      }
+    ],
+    "にわたる予定": [
+      {
+        "id": "uiFoundation.scheduler.multiDayEvent",
+        "parameters": {
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の": [
+      {
+        "id": "uiFoundation.dateRangePicker.calendarMonthLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "month": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.proposedDestinationLabelPositionPositionPressEnterToConfirm",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "のMarkdown": [
+      {
+        "id": "uiFoundation.markdownEditor.markdownForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のカレンダーを開く": [
+      {
+        "id": "uiFoundation.datePicker.openCalendarLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のセル": [
+      {
+        "id": "uiFoundation.spreadsheet.cellForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のタスク": [
+      {
+        "id": "uiFoundation.gantt.taskRegionLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のデータ": [
+      {
+        "id": "uiFoundation.chart.dataForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のページ": [
+      {
+        "id": "uiFoundation.dataTableView.paginationLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のページ表示": [
+      {
+        "id": "uiFoundation.pDFViewer.pageViewForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "のメッセージを再送": [
+      {
+        "id": "uiFoundation.messageList.resendMessageForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の予定表示": [
+      {
+        "id": "uiFoundation.scheduler.viewLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の仮の位置は": [
+      {
+        "id": "uiFoundation.sortableList.proposedItemPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の仮の位置を選んでいます。": [
+      {
+        "id": "uiFoundation.sortableList.choosePositionForItem",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の仮想スクロール領域": [
+      {
+        "id": "uiFoundation.virtualDataTable.viewportLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の候補": [
+      {
+        "id": "uiFoundation.combobox.suggestionsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.combobox.suggestionsForSelectionInputCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.suggestionsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の候補を検索": [
+      {
+        "id": "uiFoundation.multiSelect.searchSuggestionsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の値と選択": [
+      {
+        "id": "uiFoundation.chart.valuesAndSelectionForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の入力済み項目": [
+      {
+        "id": "uiFoundation.tagInput.enteredValuesForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の出力と一括操作": [
+      {
+        "id": "uiFoundation.dataTableView.exportAndBulkActionsLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の列境界": [
+      {
+        "id": "uiFoundation.dataTableView.columnBoundaryLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の列条件": [
+      {
+        "id": "uiFoundation.columnFilter.regionLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の前の月": [
+      {
+        "id": "uiFoundation.calendar.previousMonthForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の印刷": [
+      {
+        "id": "uiFoundation.tableOutput.printFrameTitle",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の図": [
+      {
+        "id": "uiFoundation.flowEditor.diagramForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.gantt.diagramLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の地図": [
+      {
+        "id": "uiFoundation.mapView.mapForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子組織": [
+      {
+        "id": "uiFoundation.organizationChart.suborganizationsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子組織を展開": [
+      {
+        "id": "uiFoundation.organizationChart.expandLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子組織を折り畳む": [
+      {
+        "id": "uiFoundation.organizationChart.collapseLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子項目": [
+      {
+        "id": "uiFoundation.cascader.childItemsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の子項目を取得しています。": [
+      {
+        "id": "uiFoundation.cascader.loadingChildItemsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tree.loadingChildItemsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の対象": [
+      {
+        "id": "uiFoundation.menu.targetForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の操作領域": [
+      {
+        "id": "uiFoundation.fileExplorer.actionRegionLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の日付": [],
+    "の日付を選択": [
+      {
+        "id": "uiFoundation.datePicker.selectDateLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の日付一覧": [
+      {
+        "id": "uiFoundation.calendar.datesForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の書式": [
+      {
+        "id": "uiFoundation.richTextEditor.formattingForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の月を選択": [
+      {
+        "id": "uiFoundation.calendar.selectMonthForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の条件": [
+      {
+        "id": "uiFoundation.columnFilter.criterionLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の条件 ": [
+      {
+        "id": "uiFoundation.columnFilter.criterionLabelNumbered",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "number": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の条件を追加": [
+      {
+        "id": "uiFoundation.columnFilter.addLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の次の月": [
+      {
+        "id": "uiFoundation.calendar.nextMonthForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の比較方法": [
+      {
+        "id": "uiFoundation.columnFilter.operatorLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnFilter.operatorLabelNumbered",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "number": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の添付": [
+      {
+        "id": "uiFoundation.messageList.attachmentsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の添付を外す": [
+      {
+        "id": "uiFoundation.messageComposer.removeAttachmentForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動位置を選ぶ": [
+      {
+        "id": "uiFoundation.sortableList.chooseNewPositionForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.chooseNewPositionForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動先": [
+      {
+        "id": "uiFoundation.kanban.destinationForKanbanForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動先を編集": [
+      {
+        "id": "uiFoundation.scheduler.editEvent",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動先を選んでいます。": [
+      {
+        "id": "uiFoundation.transferList.choosingItemDestination",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の移動入力": [
+      {
+        "id": "uiFoundation.scheduler.moveForm",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の範囲で指定してください。": [
+      {
+        "id": "uiFoundation.pdfViewer.pageInputRange",
+        "parameters": {
+          "pages": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "の系列を表示": [
+      {
+        "id": "uiFoundation.chart.showSeriesForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の終了日": [
+      {
+        "id": "uiFoundation.dateRangePicker.endDateLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の編集": [
+      {
+        "id": "uiFoundation.flowEditor.editorForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の行編集": [
+      {
+        "id": "uiFoundation.dataTableView.rowEditorLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の表領域": [
+      {
+        "id": "uiFoundation.dataTableView.tableRegionLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の詳細": [
+      {
+        "id": "uiFoundation.timeline.detailsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の追加取得": [
+      {
+        "id": "uiFoundation.dataTableView.loadMoreLabel",
+        "parameters": {
+          "caption": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.timeline.loadMoreForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の送信を取消": [
+      {
+        "id": "uiFoundation.uploadList.cancelUploadForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の送信進捗": [
+      {
+        "id": "uiFoundation.uploadList.uploadProgressForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の選択を解除": [
+      {
+        "id": "uiFoundation.multiSelect.deselectForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.deselectForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の選択済み項目": [
+      {
+        "id": "uiFoundation.treeSelect.selectedItemsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の選択肢": [
+      {
+        "id": "uiFoundation.combobox.optionsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の開始日": [
+      {
+        "id": "uiFoundation.dateRangePicker.startDateLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の階層": [
+      {
+        "id": "uiFoundation.jsonViewer.treeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.jsonViewer.treeLimit",
+        "parameters": {}
+      }
+    ],
+    "の階層を検索": [
+      {
+        "id": "uiFoundation.treeSelect.searchTheTreeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の階層を選択": [
+      {
+        "id": "uiFoundation.cascader.selectALevelForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の項目": [
+      {
+        "id": "uiFoundation.fileExplorer.itemsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "の領域": [
+      {
+        "id": "uiFoundation.mapView.regionsForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "はい": [
+      {
+        "id": "uiFoundation.columnFilter.yes",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.yes",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterChips.yes",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.table.booleanTrue",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.yes",
+        "parameters": {}
+      }
+    ],
+    "はい、またはいいえを選択してください。": [
+      {
+        "id": "uiFoundation.tableEdit.booleanRequired",
+        "parameters": {}
+      }
+    ],
+    "はい・いいえを選んでください。": [
+      {
+        "id": "uiFoundation.filterBuilder.chooseYesOrNo",
+        "parameters": {}
+      }
+    ],
+    "への入力": [
+      {
+        "id": "uiFoundation.chat.messageInputForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "へ移動": [
+      {
+        "id": "uiFoundation.megaMenu.openForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.sideNav.openForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "ほか": [
+      {
+        "id": "uiFoundation.avatarGroup.showMoreCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "まで": [
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.fileUpload.perFileLimit",
+        "parameters": {
+          "size": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "やり直す": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarRedo",
+        "parameters": {}
+      }
+    ],
+    "より前": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorBefore",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.before",
+        "parameters": {}
+      }
+    ],
+    "より後": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorAfter",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.after",
+        "parameters": {}
+      }
+    ],
+    "を": [
+      {
+        "id": "uiFoundation.sortableList.movedToPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.movedLabelToPositionPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "をクリア": [
+      {
+        "id": "uiFoundation.cascader.clearForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.combobox.clearForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dateInput.clearLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.datePicker.clearLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textInput.clearForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.clearForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を上へ": [
+      {
+        "id": "uiFoundation.sortableList.moveUpLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.moveUpForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を下へ": [
+      {
+        "id": "uiFoundation.sortableList.moveDownLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.moveDownForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を再試行": [
+      {
+        "id": "uiFoundation.cascader.retryForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tree.retryForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.uploadList.retryForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を削除": [
+      {
+        "id": "uiFoundation.flowEditor.removeConnection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.removeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tag.removeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.removeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.uploadList.removeForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を削除 (": [
+      {
+        "id": "uiFoundation.tagInput.removeValue",
+        "parameters": {
+          "value": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "を前へ": [
+      {
+        "id": "uiFoundation.kanban.moveEarlierForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.sortableList.moveEarlierLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を取得できません。": [
+      {
+        "id": "uiFoundation.image.loadFailed",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を含む": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorContains",
+        "parameters": {}
+      }
+    ],
+    "を増やす": [
+      {
+        "id": "uiFoundation.knob.increaseLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を変更。": [],
+    "を展開": [
+      {
+        "id": "uiFoundation.tree.expandLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を後へ": [
+      {
+        "id": "uiFoundation.kanban.moveLaterForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を後ろへ": [
+      {
+        "id": "uiFoundation.sortableList.moveBackwardLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を折り畳む": [
+      {
+        "id": "uiFoundation.tree.collapseLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を拡大": [
+      {
+        "id": "uiFoundation.splitter.expandForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を減らす": [
+      {
+        "id": "uiFoundation.knob.decreaseLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を縮小": [
+      {
+        "id": "uiFoundation.splitter.shrinkForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を表示: ": [
+      {
+        "id": "uiFoundation.imageGallery.showImage",
+        "parameters": {
+          "position": [
+            "number"
+          ],
+          "description": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を解除": [
+      {
+        "id": "uiFoundation.filterChips.removeCriterion",
+        "parameters": {
+          "criterion": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.filterChips.removeSearch",
+        "parameters": {
+          "search": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を追加": [
+      {
+        "id": "uiFoundation.transferList.addForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を選ぶ": [
+      {
+        "id": "uiFoundation.cascader.chooseForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.chooseForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を選択": [
+      {
+        "id": "uiFoundation.chart.selectForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.gridList.selectForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.selectForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "を選択。": [
+      {
+        "id": "uiFoundation.tree.selectKeyboardHint",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "アプリから移動完了が通知されました。": [
+      {
+        "id": "uiFoundation.schedulerController.theAppReportedThatTheMoveIsComplete",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.schedulerController.theAppReportedThatTheMoveIsCompleteCheckTheLatestSchedule",
+        "parameters": {}
+      }
+    ],
+    "アプリから移動完了が通知されました。最新の予定を確認してください。": [
+      {
+        "id": "uiFoundation.schedulerController.theAppReportedThatTheMoveIsCompleteCheckTheLatestSchedule",
+        "parameters": {}
+      }
+    ],
+    "アプリが確認した貼付け内容を反映しました。": [
+      {
+        "id": "uiFoundation.dataGrid.thePastedContentConfirmedByTheAppWasApplied",
+        "parameters": {}
+      }
+    ],
+    "エディターを準備しています。": [
+      {
+        "id": "uiFoundation.codeEditor.preparingTheEditor",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.richTextEditor.preparingTheEditor",
+        "parameters": {}
+      }
+    ],
+    "エディターを準備できません。入力内容は保持されています。": [
+      {
+        "id": "uiFoundation.codeEditor.unableToPrepareTheEditorYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "カルーセル": [
+      {
+        "id": "uiFoundation.gallery.carousel",
+        "parameters": {}
+      }
+    ],
+    "カレンダー": [
+      {
+        "id": "uiFoundation.datePicker.calendar",
+        "parameters": {}
+      }
+    ],
+    "クリア": [
+      {
+        "id": "uiFoundation.combobox.clearForSelectionInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dateInput.clearForDateInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.datePicker.clearForDateInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchInput.clear",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchInput.clearSearchText",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.textInput.clearForTextInput",
+        "parameters": {}
+      }
+    ],
+    "クリップボードを確認しています。": [
+      {
+        "id": "uiFoundation.dataGrid.checkingTheClipboard",
+        "parameters": {}
+      }
+    ],
+    "クリップボードを読み取れませんでした。セルを選んで貼付けを再試行できます。": [
+      {
+        "id": "uiFoundation.dataGrid.unableToReadTheClipboardSelectACellAndTryPastingAgain",
+        "parameters": {}
+      }
+    ],
+    "グラフ": [
+      {
+        "id": "uiFoundation.chart.chart",
+        "parameters": {}
+      }
+    ],
+    "グラフの言語・数値書式・日時書式を確認してください。": [
+      {
+        "id": "uiFoundation.chart.checkTheChartLocaleNumberFormatAndDate",
+        "parameters": {}
+      }
+    ],
+    "グラフを描画できません。データ表で確認してください。": [
+      {
+        "id": "uiFoundation.chart.unableToRenderTheChartCheckTheDataTable",
+        "parameters": {}
+      }
+    ],
+    "グラフを準備しています。": [
+      {
+        "id": "uiFoundation.chart.preparingTheChart",
+        "parameters": {}
+      }
+    ],
+    "グリッド": [
+      {
+        "id": "uiFoundation.fileExplorer.grid",
+        "parameters": {}
+      }
+    ],
+    "グリッドの説明とIDを指定してください。": [
+      {
+        "id": "uiFoundation.dataGrid.provideADescriptionAndIDForTheGrid",
+        "parameters": {}
+      }
+    ],
+    "グリッド表示": [
+      {
+        "id": "uiFoundation.dataView.gridView",
+        "parameters": {}
+      }
+    ],
+    "グループ列を一意な列IDにしてください。": [],
+    "グループ列を確認してください。": [
+      {
+        "id": "uiFoundation.dataTableView.checkTheGroupingColumns",
+        "parameters": {}
+      }
+    ],
+    "コピー": [
+      {
+        "id": "uiFoundation.copyButton.action",
+        "parameters": {}
+      }
+    ],
+    "コピーしています。": [
+      {
+        "id": "uiFoundation.dataGrid.copying",
+        "parameters": {}
+      }
+    ],
+    "コピーしました": [
+      {
+        "id": "uiFoundation.copyButton.success",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.diffViewer.copied",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.copied",
+        "parameters": {}
+      }
+    ],
+    "コピーしました。": [
+      {
+        "id": "uiFoundation.copyButton.success",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.diffViewer.copied",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.copied",
+        "parameters": {}
+      }
+    ],
+    "コピーできません。再試行してください。": [
+      {
+        "id": "uiFoundation.diffViewer.unableToCopyTryAgain",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.unableToCopyTryAgain",
+        "parameters": {}
+      }
+    ],
+    "コピーできませんでした。再試行してください。": [
+      {
+        "id": "uiFoundation.copyButton.failure",
+        "parameters": {}
+      }
+    ],
+    "コピーできませんでした。再試行できます。": [
+      {
+        "id": "uiFoundation.dataGrid.unableToCopyYouCanTryAgain",
+        "parameters": {}
+      }
+    ],
+    "コピー中": [
+      {
+        "id": "uiFoundation.diffViewer.copying",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.copying",
+        "parameters": {}
+      }
+    ],
+    "コマンド": [
+      {
+        "id": "uiFoundation.commandPalette.commandsForCommandPalette",
+        "parameters": {}
+      }
+    ],
+    "コマンドを実行しています。": [
+      {
+        "id": "uiFoundation.commandPalette.runningTheCommand",
+        "parameters": {}
+      }
+    ],
+    "コマンドを検索": [
+      {
+        "id": "uiFoundation.commandPalette.searchCommands",
+        "parameters": {}
+      }
+    ],
+    "コード": [
+      {
+        "id": "uiFoundation.codeBlock.code",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.richTextEditor.toolbarCode",
+        "parameters": {}
+      }
+    ],
+    "コードをコピー": [
+      {
+        "id": "uiFoundation.codeBlock.copyCode",
+        "parameters": {}
+      }
+    ],
+    "サイズ変更": [
+      {
+        "id": "uiFoundation.dialog.resizeAction",
+        "parameters": {}
+      }
+    ],
+    "サイドバー": [
+      {
+        "id": "uiFoundation.pageFrame.sidebarLabel",
+        "parameters": {}
+      }
+    ],
+    "スライド": [
+      {
+        "id": "uiFoundation.gallery.slide",
+        "parameters": {}
+      }
+    ],
+    "セルへ貼付け": [
+      {
+        "id": "uiFoundation.dataGrid.pasteIntoCell",
+        "parameters": {}
+      }
+    ],
+    "タイムゾーン未設定": [
+      {
+        "id": "uiFoundation.dateTimePicker.timeZoneNotSet",
+        "parameters": {}
+      }
+    ],
+    "タスク": [
+      {
+        "id": "uiFoundation.gantt.task",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gantt.taskRegionLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "タスクボード": [
+      {
+        "id": "uiFoundation.kanban.taskBoard",
+        "parameters": {}
+      }
+    ],
+    "ダイアログのサイズを変更": [
+      {
+        "id": "uiFoundation.dialog.resizeLabel",
+        "parameters": {}
+      }
+    ],
+    "ダイアログを移動": [
+      {
+        "id": "uiFoundation.dialog.moveLabel",
+        "parameters": {}
+      }
+    ],
+    "ダイアログを閉じる": [
+      {
+        "id": "uiFoundation.commandPalette.closeDialog",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dialog.closeLabel",
+        "parameters": {}
+      }
+    ],
+    "ダウンロード": [
+      {
+        "id": "uiFoundation.fileExplorer.download",
+        "parameters": {}
+      }
+    ],
+    "チェックした表示中の項目を一括移動できます。移動ハンドル、追加・削除、上下ボタンはキーボードでも操作できます。": [
+      {
+        "id": "uiFoundation.transferList.moveAllCheckedItemsInViewAtOnceTheMoveHandleAndTheAddRemoveUpAndDownButtonsAlsoWo",
+        "parameters": {}
+      }
+    ],
+    "チェック対象": [
+      {
+        "id": "uiFoundation.tree.itemsToCheck",
+        "parameters": {}
+      }
+    ],
+    "テキスト": [
+      {
+        "id": "uiFoundation.codeBlock.text",
+        "parameters": {}
+      }
+    ],
+    "データはありません。": [
+      {
+        "id": "uiFoundation.dataGrid.noData",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.noData",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.noData",
+        "parameters": {}
+      }
+    ],
+    "ノード": [
+      {
+        "id": "uiFoundation.flowEditor.node",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.nodeLabelAndPosition",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.nodeLabelRequired",
+        "parameters": {}
+      }
+    ],
+    "ノードのラベルと配置": [
+      {
+        "id": "uiFoundation.flowEditor.nodeLabelAndPosition",
+        "parameters": {}
+      }
+    ],
+    "ノードのラベルを入力してください。": [
+      {
+        "id": "uiFoundation.flowEditor.nodeLabelRequired",
+        "parameters": {}
+      }
+    ],
+    "ノードを追加": [
+      {
+        "id": "uiFoundation.flowEditor.addNode",
+        "parameters": {}
+      }
+    ],
+    "パスワードを表示": [
+      {
+        "id": "uiFoundation.passwordInput.showPassword",
+        "parameters": {}
+      }
+    ],
+    "パスワードを隠す": [
+      {
+        "id": "uiFoundation.passwordInput.hidePassword",
+        "parameters": {}
+      }
+    ],
+    "パレットの書式・透明度・説明と重複を確認してください。": [
+      {
+        "id": "uiFoundation.colorPicker.checkThePaletteSFormatOpacityAndDescriptionsAndCheckForDuplicates",
+        "parameters": {}
+      }
+    ],
+    "パンくず": [
+      {
+        "id": "uiFoundation.breadcrumb.breadcrumbs",
+        "parameters": {}
+      }
+    ],
+    "ヒートマップは横軸・縦軸とも区分軸を指定してください。": [
+      {
+        "id": "uiFoundation.chart.useCategoryAxesForBothAxesOfThe",
+        "parameters": {}
+      }
+    ],
+    "ファイル": [
+      {
+        "id": "uiFoundation.fileExplorer.files",
+        "parameters": {}
+      }
+    ],
+    "ファイルはありません。": [
+      {
+        "id": "uiFoundation.uploadList.noFiles",
+        "parameters": {}
+      }
+    ],
+    "ファイルを検索": [
+      {
+        "id": "uiFoundation.fileExplorer.searchFiles",
+        "parameters": {}
+      }
+    ],
+    "ファイルを選択": [
+      {
+        "id": "uiFoundation.fileUpload.chooseFiles",
+        "parameters": {}
+      }
+    ],
+    "ファイル選択の値には File の配列を指定してください。": [
+      {
+        "id": "uiFoundation.fileUpload.useAnArrayOfFileObjectsAsThe",
+        "parameters": {}
+      }
+    ],
+    "ファイル階層を確認してください。": [
+      {
+        "id": "uiFoundation.fileExplorer.checkTheFolderStructure",
+        "parameters": {}
+      }
+    ],
+    "フォルダー作成を要求": [
+      {
+        "id": "uiFoundation.fileExplorer.requestNewFolder",
+        "parameters": {}
+      }
+    ],
+    "フォームのファイル選択": [
+      {
+        "id": "uiFoundation.fileUpload.chooseFilesForTheForm",
+        "parameters": {}
+      }
+    ],
+    "フォームの操作": [
+      {
+        "id": "uiFoundation.formActions.formActions",
+        "parameters": {}
+      }
+    ],
+    "フロー": [
+      {
+        "id": "uiFoundation.flowEditor.flow",
+        "parameters": {}
+      }
+    ],
+    "プレビュー": [
+      {
+        "id": "uiFoundation.markdownEditor.preview",
+        "parameters": {}
+      }
+    ],
+    "ページ": [
+      {
+        "id": "uiFoundation.dataView.pageProgress",
+        "parameters": {
+          "page": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.pDFViewer.page",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pDFViewer.pageDisplayed",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pDFViewer.pageText",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pDFViewer.pageViewForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.pagination.pageInformationIsUnavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.pageProgress",
+        "parameters": {
+          "page": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "ページ。文字内容は下のページの文字を開いて確認できます。": [
+      {
+        "id": "uiFoundation.pdfViewer.pagePreviewLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "page": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "ページと表示件数を正の整数にしてください。": [
+      {
+        "id": "uiFoundation.table.invalidPageSettings",
+        "parameters": {}
+      }
+    ],
+    "ページの文字": [
+      {
+        "id": "uiFoundation.pDFViewer.pageText",
+        "parameters": {}
+      }
+    ],
+    "ページはありません": [
+      {
+        "id": "uiFoundation.pagination.noPages",
+        "parameters": {}
+      }
+    ],
+    "ページを描画中です。": [
+      {
+        "id": "uiFoundation.pDFViewer.renderingPage",
+        "parameters": {}
+      }
+    ],
+    "ページを表示しました。": [
+      {
+        "id": "uiFoundation.pDFViewer.pageDisplayed",
+        "parameters": {}
+      }
+    ],
+    "ページを表示できません。別のページまたは表示倍率で再試行してください。": [
+      {
+        "id": "uiFoundation.pDFViewer.unableToDisplayThisPageTryAnotherPageOrZoomLevel",
+        "parameters": {}
+      }
+    ],
+    "ページ情報を表示できません": [
+      {
+        "id": "uiFoundation.pagination.pageInformationIsUnavailable",
+        "parameters": {}
+      }
+    ],
+    "ページ番号を1から": [
+      {
+        "id": "uiFoundation.pdfViewer.pageInputRange",
+        "parameters": {
+          "pages": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "ページ選択": [
+      {
+        "id": "uiFoundation.pagination.chooseAPage",
+        "parameters": {}
+      }
+    ],
+    "マーカーと領域": [
+      {
+        "id": "uiFoundation.mapView.markersAndRegions",
+        "parameters": {}
+      }
+    ],
+    "メッセージを入力": [
+      {
+        "id": "uiFoundation.messageComposer.enterAMessage",
+        "parameters": {}
+      }
+    ],
+    "メディアを再取得": [
+      {
+        "id": "uiFoundation.mediaPlayer.reloadMedia",
+        "parameters": {}
+      }
+    ],
+    "メディアを取得できません。表示対象と形式を確認して再試行してください。": [
+      {
+        "id": "uiFoundation.mediaPlayer.unableToLoadTheMediaCheckTheSourceAndFormatThenTryAgain",
+        "parameters": {}
+      }
+    ],
+    "ラベル": [
+      {
+        "id": "uiFoundation.flowEditor.labelForDiagram",
+        "parameters": {}
+      }
+    ],
+    "リスト表示": [
+      {
+        "id": "uiFoundation.dataView.listView",
+        "parameters": {}
+      }
+    ],
+    "リソース未割当": [
+      {
+        "id": "uiFoundation.scheduler.unassigned",
+        "parameters": {}
+      }
+    ],
+    "リンクを設定": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarLink",
+        "parameters": {}
+      }
+    ],
+    "リンクを設定する文字を選択してください。": [
+      {
+        "id": "uiFoundation.richTextEditor.selectTheTextToLink",
+        "parameters": {}
+      }
+    ],
+    "リンク・画像URL": [
+      {
+        "id": "uiFoundation.richTextEditor.linkOrImageURL",
+        "parameters": {}
+      }
+    ],
+    "ルートには条件グループを指定してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.useACriteriaGroupAtTheRoot",
+        "parameters": {}
+      }
+    ],
+    "一括削除": [
+      {
+        "id": "uiFoundation.transferList.removeInBulk",
+        "parameters": {}
+      }
+    ],
+    "一括追加": [
+      {
+        "id": "uiFoundation.transferList.addInBulk",
+        "parameters": {}
+      }
+    ],
+    "一時停止": [
+      {
+        "id": "uiFoundation.mediaPlayer.pause",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mediaPlayer.pausedOrStopped",
+        "parameters": {}
+      }
+    ],
+    "一時停止または停止中": [
+      {
+        "id": "uiFoundation.mediaPlayer.pausedOrStopped",
+        "parameters": {}
+      }
+    ],
+    "一致する候補はありません。": [
+      {
+        "id": "uiFoundation.multiSelect.noMatchingSuggestions",
+        "parameters": {}
+      }
+    ],
+    "一致する項目はありません。": [
+      {
+        "id": "uiFoundation.tree.noMatchingItems",
+        "parameters": {}
+      }
+    ],
+    "一覧": [
+      {
+        "id": "uiFoundation.fileExplorer.list",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.scheduler.list",
+        "parameters": {}
+      }
+    ],
+    "一覧が更新されたため、移動を取り消しました。": [
+      {
+        "id": "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceled",
+        "parameters": {}
+      }
+    ],
+    "一覧のキーと説明には重複しない有効な値を指定してください。": [
+      {
+        "id": "uiFoundation.collection.provideAValidUniqueKeyAndDescriptionFor",
+        "parameters": {}
+      }
+    ],
+    "一覧のキーと説明を読み取れません。": [
+      {
+        "id": "uiFoundation.collection.couldNotReadTheListKeyAndDescription",
+        "parameters": {}
+      }
+    ],
+    "一覧のページ": [
+      {
+        "id": "uiFoundation.dataView.listPage",
+        "parameters": {}
+      }
+    ],
+    "一覧の列数と項目幅を確認してください。": [
+      {
+        "id": "uiFoundation.gridList.checkTheColumnCountAndItemWidth",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.masonry.checkTheColumnCountAndItemWidth",
+        "parameters": {}
+      }
+    ],
+    "一覧の更新により、移動を取り消しました。": [
+      {
+        "id": "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceledForSortableList",
+        "parameters": {}
+      }
+    ],
+    "一覧の更新により移動を取り消しました。指を離して終了してください。": [
+      {
+        "id": "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceledLiftYourFingerToFinish",
+        "parameters": {}
+      }
+    ],
+    "一覧の検索、表示、ページ条件を確認してください。": [
+      {
+        "id": "uiFoundation.dataView.invalidPageSettings",
+        "parameters": {}
+      }
+    ],
+    "一覧の表示条件を確認してください。": [
+      {
+        "id": "uiFoundation.dataView.checkTheListDisplaySettings",
+        "parameters": {}
+      }
+    ],
+    "一覧の説明を指定してください。": [
+      {
+        "id": "uiFoundation.collectionPresentation.provideADescriptionForTheList",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.virtualList.provideADescriptionForTheList",
+        "parameters": {}
+      }
+    ],
+    "一覧の選択を解除": [
+      {
+        "id": "uiFoundation.gridList.clearListSelection",
+        "parameters": {}
+      }
+    ],
+    "一覧の項目キーには一意な文字列または有限の数値を指定してください。": [
+      {
+        "id": "uiFoundation.gridList.useAUniqueStringOrFiniteNumberForEachItemKey",
+        "parameters": {}
+      }
+    ],
+    "一覧をすべて選択": [
+      {
+        "id": "uiFoundation.gridList.selectAllItemsInTheList",
+        "parameters": {}
+      }
+    ],
+    "一覧を再取得": [
+      {
+        "id": "uiFoundation.dataTableView.reloadList",
+        "parameters": {}
+      }
+    ],
+    "一覧を取得しています。": [
+      {
+        "id": "uiFoundation.dataTableView.loadingTheList",
+        "parameters": {}
+      }
+    ],
+    "一覧を取得できません。": [
+      {
+        "id": "uiFoundation.dataTableView.couldNotLoadTheList",
+        "parameters": {}
+      }
+    ],
+    "上へ": [
+      {
+        "id": "uiFoundation.sortableList.moveUpForSortableList",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveUpForTransferList",
+        "parameters": {}
+      }
+    ],
+    "上下で同じ階層を移動、左右で子・親の階層へ移動します。": [
+      {
+        "id": "uiFoundation.cascader.useUpAndDownToMoveWithinALevelUseRightToMoveToAChildLevelOrLeftToReturnToTheParen",
+        "parameters": {}
+      }
+    ],
+    "上下で移動、左右で展開・親へ戻る。": [
+      {
+        "id": "uiFoundation.tree.useUpAndDownToMoveUseRightToExpandOrLeftToReturnToTheParent",
+        "parameters": {}
+      }
+    ],
+    "下へ": [
+      {
+        "id": "uiFoundation.sortableList.moveDownForSortableList",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveDownForTransferList",
+        "parameters": {}
+      }
+    ],
+    "下書き": [
+      {
+        "id": "uiFoundation.messageList.sendDraft",
+        "parameters": {}
+      }
+    ],
+    "不透明度": [
+      {
+        "id": "uiFoundation.colorPicker.opacity",
+        "parameters": {}
+      }
+    ],
+    "並び順": [
+      {
+        "id": "uiFoundation.dataView.sortOrder",
+        "parameters": {}
+      }
+    ],
+    "中程度": [
+      {
+        "id": "uiFoundation.passwordInput.strengthMedium",
+        "parameters": {}
+      }
+    ],
+    "予定が外部で変更されています。入力を保持しています。現在の予定で入力を戻すか、変更内容を確認してください。": [
+      {
+        "id": "uiFoundation.schedulerController.theEventChangedElsewhereYourInputHasBeenKeptRestoreTheCurrentEventDetailsOrReviewYourC",
+        "parameters": {}
+      }
+    ],
+    "予定に未取得または重複したリソースがあります。元の予定を保持しています。": [
+      {
+        "id": "uiFoundation.scheduler.invalidEventResources",
+        "parameters": {}
+      }
+    ],
+    "予定の操作は無効です。": [
+      {
+        "id": "uiFoundation.scheduler.disabled",
+        "parameters": {}
+      }
+    ],
+    "予定の日時には有効なオフセット付きISO文字列を指定してください。元の予定を保持しています。": [
+      {
+        "id": "uiFoundation.scheduler.invalidEventTimestamp",
+        "parameters": {}
+      }
+    ],
+    "予定の終了日時は開始より後にしてください。元の予定を保持しています。": [
+      {
+        "id": "uiFoundation.scheduler.invalidEventOrder",
+        "parameters": {}
+      }
+    ],
+    "予定の表示": [
+      {
+        "id": "uiFoundation.scheduler.view",
+        "parameters": {}
+      }
+    ],
+    "予定は読み取り専用です。表示方式と期間は変更できます。": [
+      {
+        "id": "uiFoundation.scheduler.readonly",
+        "parameters": {}
+      }
+    ],
+    "予定移動は各予定の「移動先を編集」から開始できます。": [
+      {
+        "id": "uiFoundation.scheduler.moveInstructions",
+        "parameters": {}
+      }
+    ],
+    "人を表示": [
+      {
+        "id": "uiFoundation.avatarGroup.showMoreCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "以上": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorGte",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.atLeast",
+        "parameters": {}
+      }
+    ],
+    "以下": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorLte",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.atMost",
+        "parameters": {}
+      }
+    ],
+    "仮の移動先：{label}。Enterで確定します。": [
+      {
+        "id": "uiFoundation.transferList.proposedDestinationLabelPressEnterToConfirm",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "仮の移動先：{label}の{position}番目。Enterで確定します。": [
+      {
+        "id": "uiFoundation.transferList.proposedDestinationLabelPositionPositionPressEnterToConfirm",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "仮想radio groupには重複しないformと名前を指定してください。": [
+      {
+        "id": "uiFoundation.virtualRadio.useAUniqueFormAndNameCombinationFor",
+        "parameters": {}
+      }
+    ],
+    "仮想radio groupのメンバーと行キーを確認してください。": [
+      {
+        "id": "uiFoundation.virtualRadio.checkTheVirtualRadioGroupMembersAndRow",
+        "parameters": {}
+      }
+    ],
+    "仮想radio groupのメンバーを確認してください。": [
+      {
+        "id": "uiFoundation.virtualRadio.checkTheVirtualRadioGroupMembers",
+        "parameters": {}
+      }
+    ],
+    "仮想radio groupの名前、form、メンバーを確認してください。": [
+      {
+        "id": "uiFoundation.virtualRadio.checkTheVirtualRadioGroupNameFormAnd",
+        "parameters": {}
+      }
+    ],
+    "仮想radio groupの選択値を確認してください。": [
+      {
+        "id": "uiFoundation.virtualRadio.checkTheSelectedValueInTheVirtualRadio",
+        "parameters": {}
+      }
+    ],
+    "仮想表の説明、行高、領域高、先読みを確認してください。": [
+      {
+        "id": "uiFoundation.virtualDataTable.checkTheVirtualTableDescriptionRowHeightViewportHeightAndOverscan",
+        "parameters": {}
+      }
+    ],
+    "件": [
+      {
+        "id": "uiFoundation.dataView.itemsCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.notificationCenter.status",
+        "parameters": {
+          "visible": [
+            "number"
+          ],
+          "unread": [
+            "number"
+          ],
+          "loading": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.pagination.itemsCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.scheduler.eventCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.sparkline.missingCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.tagInput.enteredCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件)": [
+      {
+        "id": "uiFoundation.dataTableView.rowGroupCount",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件のコマンド": [
+      {
+        "id": "uiFoundation.commandPalette.commandsCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件の一致": [
+      {
+        "id": "uiFoundation.diffViewer.matchesCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件の取得済み行)": [
+      {
+        "id": "uiFoundation.virtualDataTable.captionWithCount",
+        "parameters": {
+          "caption": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件は受け付けできません。": [
+      {
+        "id": "uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected",
+        "parameters": {
+          "accepted": [
+            "number"
+          ],
+          "rejected": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件まで": [
+      {
+        "id": "uiFoundation.fileUpload.fileLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件を": [
+      {
+        "id": "uiFoundation.transferList.itemsAddedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.itemsRemovedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件を受け付けました。": [
+      {
+        "id": "uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected",
+        "parameters": {
+          "accepted": [
+            "number"
+          ],
+          "rejected": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件・": [
+      {
+        "id": "uiFoundation.dataTableView.aggregateValue",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "label": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.aggregateValueWithMissing",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "label": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "known": [
+            "number"
+          ],
+          "missing": [
+            "number"
+          ],
+          "missingLabel": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "件数": [
+      {
+        "id": "uiFoundation.badge.count",
+        "parameters": {}
+      }
+    ],
+    "件数の上限を超えています。": [
+      {
+        "id": "uiFoundation.fileUpload.rejectedCount",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileUpload.tooManyFiles",
+        "parameters": {}
+      }
+    ],
+    "件表示": [
+      {
+        "id": "uiFoundation.transferList.shownCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件表示、未読": [
+      {
+        "id": "uiFoundation.notificationCenter.status",
+        "parameters": {
+          "visible": [
+            "number"
+          ],
+          "unread": [
+            "number"
+          ],
+          "loading": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    ],
+    "件選択": [
+      {
+        "id": "uiFoundation.multiSelect.selectedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.multiSelect.selectedCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件選択 ·": [
+      {
+        "id": "uiFoundation.transferList.selectedCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "件）": [
+      {
+        "id": "uiFoundation.breadcrumb.omittedLevelCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "任意": [
+      {
+        "id": "uiFoundation.formField.optional",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.radioGroup.optional",
+        "parameters": {}
+      }
+    ],
+    "会話": [
+      {
+        "id": "uiFoundation.chat.conversation",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageList.conversation",
+        "parameters": {}
+      }
+    ],
+    "位置は0〜1000000の範囲で入力してください。": [
+      {
+        "id": "uiFoundation.flowEditor.nodePositionRange",
+        "parameters": {}
+      }
+    ],
+    "位置は変わりませんでした。": [
+      {
+        "id": "uiFoundation.sortableList.thePositionStayedTheSame",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.thePositionStayedTheSame",
+        "parameters": {}
+      }
+    ],
+    "低くする": [
+      {
+        "id": "uiFoundation.bottomSheet.decreaseHeight",
+        "parameters": {}
+      }
+    ],
+    "依存": [
+      {
+        "id": "uiFoundation.gantt.dependency",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gantt.dependencyCycle",
+        "parameters": {}
+      }
+    ],
+    "保存": [
+      {
+        "id": "uiFoundation.formDialog.save",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.save",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.save",
+        "parameters": {}
+      }
+    ],
+    "保存した列幅を確認してください。": [
+      {
+        "id": "uiFoundation.table.invalidSavedWidths",
+        "parameters": {}
+      }
+    ],
+    "保存した条件へ戻す": [
+      {
+        "id": "uiFoundation.filterBuilder.restoreSavedFilters",
+        "parameters": {}
+      }
+    ],
+    "保存した貼付け先がありません。セルを選び直してください。": [
+      {
+        "id": "uiFoundation.dataGrid.thePasteDestinationHasNotBeenSavedSelectTheCellsAgain",
+        "parameters": {}
+      }
+    ],
+    "保存していない変更があります。閉じますか。": [
+      {
+        "id": "uiFoundation.formDialog.closeWithUnsavedChanges",
+        "parameters": {}
+      }
+    ],
+    "保存しています。": [
+      {
+        "id": "uiFoundation.formDialog.saving",
+        "parameters": {}
+      }
+    ],
+    "保存せずに閉じる": [
+      {
+        "id": "uiFoundation.formDialog.closeWithoutSaving",
+        "parameters": {}
+      }
+    ],
+    "保存条件": [
+      {
+        "id": "uiFoundation.searchPanel.savedFilters",
+        "parameters": {}
+      }
+    ],
+    "保存条件の名前": [
+      {
+        "id": "uiFoundation.searchPanel.nameForSavedFilters",
+        "parameters": {}
+      }
+    ],
+    "保存済み条件を除去": [
+      {
+        "id": "uiFoundation.filterBuilder.removeSavedFilters",
+        "parameters": {}
+      }
+    ],
+    "保存結果を確認しています。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkingWhetherTheChangesWereSaved",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.checkingWhetherTheChangesWereSaved",
+        "parameters": {}
+      }
+    ],
+    "保存結果を確認しています。入力内容を保持しています。": [
+      {
+        "id": "uiFoundation.tableEditors.checkingWhetherTheChangesWereSavedYourInputHasBeenKept",
+        "parameters": {}
+      }
+    ],
+    "保持している値：": [
+      {
+        "id": "uiFoundation.transferList.keptValue",
+        "parameters": {}
+      }
+    ],
+    "候補": [
+      {
+        "id": "uiFoundation.transferList.availableItems",
+        "parameters": {}
+      }
+    ],
+    "候補から選択してください。": [
+      {
+        "id": "uiFoundation.combobox.chooseFromTheSuggestions",
+        "parameters": {}
+      }
+    ],
+    "候補から項目を選んでください。": [
+      {
+        "id": "uiFoundation.tagInput.chooseAnItemFromTheSuggestions",
+        "parameters": {}
+      }
+    ],
+    "候補が更新されたため、移動していません。": [
+      {
+        "id": "uiFoundation.transferList.theAvailableItemsChangedSoTheMoveDidNotGoThrough",
+        "parameters": {}
+      }
+    ],
+    "候補が更新されたため、移動を取り消しました。": [
+      {
+        "id": "uiFoundation.transferList.theAvailableItemsChangedSoTheMoveWasCanceled",
+        "parameters": {}
+      }
+    ],
+    "候補が更新されたため、順序を変更していません。": [
+      {
+        "id": "uiFoundation.transferList.theAvailableItemsChangedSoTheOrderWasKept",
+        "parameters": {}
+      }
+    ],
+    "候補にない項目を確認してください。": [
+      {
+        "id": "uiFoundation.tagInput.reviewTheItemsThatAreMissingFromTheSuggestions",
+        "parameters": {}
+      }
+    ],
+    "候補のキーを読み取れません。値は保持しています。": [
+      {
+        "id": "uiFoundation.transferList.couldNotReadTheOptionKeysTheValue",
+        "parameters": {}
+      }
+    ],
+    "候補の更新により、移動を取り消しました。": [
+      {
+        "id": "uiFoundation.transferList.theAvailableItemsChangedSoTheMoveWasCanceledForTransferList",
+        "parameters": {}
+      }
+    ],
+    "候補の無効・非表示には真偽値を指定してください。": [
+      {
+        "id": "uiFoundation.transferList.useBooleanValuesForDisabledAndHiddenOptions",
+        "parameters": {}
+      }
+    ],
+    "候補の状態を読み取れません。": [
+      {
+        "id": "uiFoundation.transferList.couldNotReadTheStateOfTheAvailable",
+        "parameters": {}
+      }
+    ],
+    "候補の経路:": [
+      {
+        "id": "uiFoundation.cascader.optionPathLabel",
+        "parameters": {
+          "path": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "候補の高さと先読み件数を確認してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidVirtualConfiguration",
+        "parameters": {}
+      }
+    ],
+    "候補を取得しています。": [
+      {
+        "id": "uiFoundation.combobox.loadingSuggestions",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchInput.loadingSuggestions",
+        "parameters": {}
+      }
+    ],
+    "候補を検索": [
+      {
+        "id": "uiFoundation.listbox.searchLabel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.searchOptions",
+        "parameters": {}
+      }
+    ],
+    "候補を選択するまで入力は確定されません。": [
+      {
+        "id": "uiFoundation.combobox.chooseASuggestionToConfirmYourEntry",
+        "parameters": {}
+      }
+    ],
+    "候補検索の言語を確認してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidSearchLocale",
+        "parameters": {}
+      }
+    ],
+    "値": [
+      {
+        "id": "uiFoundation.chart.value",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.value",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.value",
+        "parameters": {}
+      }
+    ],
+    "値を文字列として表示できません。フォームをresetして修復できます。": [
+      {
+        "id": "uiFoundation.transferList.couldNotDisplayTheValueAsTextResetTheFormToRecover",
+        "parameters": {}
+      }
+    ],
+    "値を確認してください。": [
+      {
+        "id": "uiFoundation.numericFieldControl.checkTheValue",
+        "parameters": {}
+      }
+    ],
+    "値を選択": [
+      {
+        "id": "uiFoundation.filterBuilder.selectAValue",
+        "parameters": {}
+      }
+    ],
+    "停止": [
+      {
+        "id": "uiFoundation.mediaPlayer.stop",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mediaPlayer.stopped",
+        "parameters": {}
+      }
+    ],
+    "停止しました。": [
+      {
+        "id": "uiFoundation.mediaPlayer.stopped",
+        "parameters": {}
+      }
+    ],
+    "元に戻す": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarUndo",
+        "parameters": {}
+      }
+    ],
+    "元の値または編集列が更新されました。入力を確認してから保存してください。": [
+      {
+        "id": "uiFoundation.tableEditorSession.theOriginalValueOrEditedColumnChangedReviewYourInputBeforeSaving",
+        "parameters": {}
+      }
+    ],
+    "元の大きさに戻す": [
+      {
+        "id": "uiFoundation.dialog.restoreSize",
+        "parameters": {}
+      }
+    ],
+    "元の項目がありません。": [
+      {
+        "id": "uiFoundation.tableEdit.missingOriginalValue",
+        "parameters": {}
+      }
+    ],
+    "元の順": [
+      {
+        "id": "uiFoundation.dataView.originalOrder",
+        "parameters": {}
+      }
+    ],
+    "先頭セルの左右で階層を開閉し、Spaceで行を選択します。": [
+      {
+        "id": "uiFoundation.dataGrid.useTheLeftAndRightArrowKeysInTheFirstCellToCollapseOrExpandTheRowPressSpaceToSelect",
+        "parameters": {}
+      }
+    ],
+    "先頭側": [
+      {
+        "id": "uiFoundation.columnChooser.leadingSide",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.leadingSide",
+        "parameters": {}
+      }
+    ],
+    "入れ子の条件": [
+      {
+        "id": "uiFoundation.filterBuilder.nestedConditions",
+        "parameters": {}
+      }
+    ],
+    "入力が途中です。": [
+      {
+        "id": "uiFoundation.maskedInput.theInputIsIncomplete",
+        "parameters": {}
+      }
+    ],
+    "入力した日付:": [
+      {
+        "id": "uiFoundation.columnFilter.dateEntered",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.dateEntered",
+        "parameters": {}
+      }
+    ],
+    "入力した現地日時を保持して要求します。DSTの欠落・重複時刻、開始と終了の順序、業務上の移動許可はアプリが確認します。": [
+      {
+        "id": "uiFoundation.scheduler.moveValidationHelp",
+        "parameters": {}
+      }
+    ],
+    "入力してください。": [
+      {
+        "id": "uiFoundation.inlineEdit.enterAValue",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEdit.valueRequired",
+        "parameters": {}
+      }
+    ],
+    "入力の段階": [
+      {
+        "id": "uiFoundation.wizard.formSteps",
+        "parameters": {}
+      }
+    ],
+    "入力を戻す": [
+      {
+        "id": "uiFoundation.formActions.resetInput",
+        "parameters": {}
+      }
+    ],
+    "入力中の項目を追加するか、入力欄をクリアしてください。": [
+      {
+        "id": "uiFoundation.tagInput.addTheCurrentItemOrClearTheField",
+        "parameters": {}
+      }
+    ],
+    "入力値が範囲外です。": [
+      {
+        "id": "uiFoundation.tableEdit.outOfRange",
+        "parameters": {}
+      }
+    ],
+    "入力値を解釈できませんでした。": [
+      {
+        "id": "uiFoundation.tableEdit.unreadableDraft",
+        "parameters": {}
+      }
+    ],
+    "入力内容の検証を完了できませんでした。": [
+      {
+        "id": "uiFoundation.inlineEdit.couldNotFinishValidatingTheInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEdit.draftValidationFailed",
+        "parameters": {}
+      }
+    ],
+    "入力内容を確認してください": [
+      {
+        "id": "uiFoundation.formErrorSummary.checkYourInput",
+        "parameters": {}
+      }
+    ],
+    "入力書式:": [
+      {
+        "id": "uiFoundation.maskedInput.inputFormat",
+        "parameters": {}
+      }
+    ],
+    "入力書式: ": [
+      {
+        "id": "uiFoundation.maskedInput.inputFormat",
+        "parameters": {}
+      }
+    ],
+    "入力書式と未入力文字の設定を確認してください。": [
+      {
+        "id": "uiFoundation.maskedInput.checkTheInputFormatAndThePlaceholderCharacter",
+        "parameters": {}
+      }
+    ],
+    "入力書式に合わない文字を確認してください。": [
+      {
+        "id": "uiFoundation.maskedInput.checkForCharactersThatDoNotMatchTheInputFormat",
+        "parameters": {}
+      }
+    ],
+    "入力途中": [
+      {
+        "id": "uiFoundation.scheduler.incomplete",
+        "parameters": {}
+      }
+    ],
+    "入力途中の値は条件へ適用していません。直前の有効な条件を保っています。": [
+      {
+        "id": "uiFoundation.columnFilter.theIncompleteValueHasYetToBeAppliedTheLastValidFilterRemainsActive",
+        "parameters": {}
+      }
+    ],
+    "入力途中の現地日時を確認してください。": [
+      {
+        "id": "uiFoundation.schedulerController.checkTheIncompleteLocalDateAndTime",
+        "parameters": {}
+      }
+    ],
+    "全リソースを表示": [
+      {
+        "id": "uiFoundation.scheduler.showAllResources",
+        "parameters": {}
+      }
+    ],
+    "全体検索": [
+      {
+        "id": "uiFoundation.dataTableView.searchAllColumns",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchPanel.searchAllColumns",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableToolbar.searchAllColumns",
+        "parameters": {}
+      }
+    ],
+    "全文を確認": [
+      {
+        "id": "uiFoundation.diffViewer.reviewFullText",
+        "parameters": {}
+      }
+    ],
+    "全文を表示": [
+      {
+        "id": "uiFoundation.readMore.showFullText",
+        "parameters": {}
+      }
+    ],
+    "全条件に一致する行を表示": [
+      {
+        "id": "uiFoundation.columnFilter.matchAllHelp",
+        "parameters": {}
+      }
+    ],
+    "全画面": [
+      {
+        "id": "uiFoundation.mediaPlayer.fullScreen",
+        "parameters": {}
+      }
+    ],
+    "全画面表示に切り替えできません。": [
+      {
+        "id": "uiFoundation.mediaPlayer.couldNotSwitchToFullScreen",
+        "parameters": {}
+      }
+    ],
+    "内容を読み込んでいます。": [
+      {
+        "id": "uiFoundation.card.loading",
+        "parameters": {}
+      }
+    ],
+    "再生": [
+      {
+        "id": "uiFoundation.mediaPlayer.play",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mediaPlayer.playbackSpeed",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mediaPlayer.playing",
+        "parameters": {}
+      }
+    ],
+    "再生できません。形式・取得状態を確認して再試行してください。": [
+      {
+        "id": "uiFoundation.mediaPlayer.couldNotPlayTheMediaCheckItsFormatAndAvailabilityThenTryAgain",
+        "parameters": {}
+      }
+    ],
+    "再生中": [
+      {
+        "id": "uiFoundation.mediaPlayer.playing",
+        "parameters": {}
+      }
+    ],
+    "再生速度": [
+      {
+        "id": "uiFoundation.mediaPlayer.playbackSpeed",
+        "parameters": {}
+      }
+    ],
+    "再試行": [
+      {
+        "id": "uiFoundation.asyncRegion.retryAction",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.commandPalette.retry",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.commandPalette.retrySelectedCommand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.infiniteScroll.retry",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.retryForFileUpload",
+        "parameters": {}
+      }
+    ],
+    "凡例": [
+      {
+        "id": "uiFoundation.chart.legend",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sparkline.legend",
+        "parameters": {}
+      }
+    ],
+    "処理しています。": [
+      {
+        "id": "uiFoundation.actionFeedback.busy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.confirmPopover.working",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dialog.busy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.popover.working",
+        "parameters": {}
+      }
+    ],
+    "処理中": [
+      {
+        "id": "uiFoundation.actionButton.busy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.actionControl.busy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tag.working",
+        "parameters": {}
+      }
+    ],
+    "処理中です。": [
+      {
+        "id": "uiFoundation.cascader.working",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.treeSelect.working",
+        "parameters": {}
+      }
+    ],
+    "処理中です。移動入力は保持しています。": [
+      {
+        "id": "uiFoundation.scheduler.busy",
+        "parameters": {}
+      }
+    ],
+    "出力対象": [
+      {
+        "id": "uiFoundation.tableToolbar.exportScope",
+        "parameters": {}
+      }
+    ],
+    "分割表示": [
+      {
+        "id": "uiFoundation.markdownEditor.splitView",
+        "parameters": {}
+      }
+    ],
+    "切抜きを作成しています。": [
+      {
+        "id": "uiFoundation.imageCropper.creatingTheCrop",
+        "parameters": {}
+      }
+    ],
+    "切抜きを作成しました。": [
+      {
+        "id": "uiFoundation.imageCropper.cropCreated",
+        "parameters": {}
+      }
+    ],
+    "切抜きを作成できません。範囲を確認して再試行してください。": [
+      {
+        "id": "uiFoundation.imageCropper.couldNotCreateTheCropCheckTheCropAreaAndTryAgain",
+        "parameters": {}
+      }
+    ],
+    "切抜きを確定": [
+      {
+        "id": "uiFoundation.imageCropper.applyCrop",
+        "parameters": {}
+      }
+    ],
+    "切抜き範囲が指定した比率に合いません。": [
+      {
+        "id": "uiFoundation.imageCropper.theCropAreaDoesNotMatchTheSelected",
+        "parameters": {}
+      }
+    ],
+    "切抜き範囲を変更できます。": [
+      {
+        "id": "uiFoundation.imageCropper.youCanAdjustTheCropArea",
+        "parameters": {}
+      }
+    ],
+    "切抜き範囲を画像内の正の範囲にしてください。": [
+      {
+        "id": "uiFoundation.imageCropper.chooseACropAreaInsideTheImageWith",
+        "parameters": {}
+      }
+    ],
+    "列": [],
+    "列IDと見出しを一意に指定してください。": [
+      {
+        "id": "uiFoundation.table.invalidColumns",
+        "parameters": {}
+      }
+    ],
+    "列で絞り込む": [
+      {
+        "id": "uiFoundation.dataTableView.filterByColumn",
+        "parameters": {}
+      }
+    ],
+    "列の設定": [
+      {
+        "id": "uiFoundation.columnChooser.columnSettings",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.columnSettings",
+        "parameters": {}
+      }
+    ],
+    "列の設定を戻す": [
+      {
+        "id": "uiFoundation.columnChooser.resetColumnSettings",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.resetColumnSettings",
+        "parameters": {}
+      }
+    ],
+    "列を前へ": [
+      {
+        "id": "uiFoundation.tableControls.moveColumnEarlierLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "列を前へ移動": [
+      {
+        "id": "uiFoundation.tableControls.moveEarlier",
+        "parameters": {}
+      }
+    ],
+    "列を後へ": [
+      {
+        "id": "uiFoundation.tableControls.moveColumnLaterLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "列を後へ移動": [
+      {
+        "id": "uiFoundation.tableControls.moveLater",
+        "parameters": {}
+      }
+    ],
+    "列グループのID、見出し、階層を確認してください。": [
+      {
+        "id": "uiFoundation.tableHeader.invalidGroupHierarchy",
+        "parameters": {}
+      }
+    ],
+    "列グループの列IDが不明または重複しています。": [
+      {
+        "id": "uiFoundation.tableHeader.unknownOrDuplicateColumn",
+        "parameters": {}
+      }
+    ],
+    "列グループを確認してください。": [
+      {
+        "id": "uiFoundation.tableHeader.invalidGroups",
+        "parameters": {}
+      }
+    ],
+    "列幅:": [
+      {
+        "id": "uiFoundation.columnChooser.columnWidthLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "width": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.columnWidthLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ],
+          "width": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "列幅の範囲を確認してください。": [
+      {
+        "id": "uiFoundation.table.invalidColumnWidthBounds",
+        "parameters": {}
+      }
+    ],
+    "利用できる段階がありません。": [
+      {
+        "id": "uiFoundation.wizard.thereAreNoAvailableSteps",
+        "parameters": {}
+      }
+    ],
+    "刻み幅には正の数を指定してください。": [
+      {
+        "id": "uiFoundation.numberInput.enterAPositiveStepSize",
+        "parameters": {}
+      }
+    ],
+    "削除": [
+      {
+        "id": "uiFoundation.notificationCenter.delete",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tagInput.removeForStructuredInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.removeForTransferList",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.removeForFileUpload",
+        "parameters": {}
+      }
+    ],
+    "削除:": [
+      {
+        "id": "uiFoundation.notificationCenter.delete",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tagInput.removeForStructuredInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.removeForTransferList",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.removeForFileUpload",
+        "parameters": {}
+      }
+    ],
+    "削除を要求": [
+      {
+        "id": "uiFoundation.fileExplorer.requestDeletion",
+        "parameters": {}
+      }
+    ],
+    "前のページ": [
+      {
+        "id": "uiFoundation.pDFViewer.previousPage",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.previousPage",
+        "parameters": {}
+      }
+    ],
+    "前の期間": [
+      {
+        "id": "uiFoundation.scheduler.previousPeriod",
+        "parameters": {}
+      }
+    ],
+    "前の画像": [
+      {
+        "id": "uiFoundation.imageViewer.previousImage",
+        "parameters": {}
+      }
+    ],
+    "前の編集の保存結果を確認しています。": [
+      {
+        "id": "uiFoundation.dataGrid.checkingTheSaveResultOfThePreviousEdit",
+        "parameters": {}
+      }
+    ],
+    "前へ": [
+      {
+        "id": "uiFoundation.dataView.previous",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gallery.previous",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.kanban.previous",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.previous",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.previous",
+        "parameters": {}
+      }
+    ],
+    "前月": [
+      {
+        "id": "uiFoundation.calendar.previousMonthForCalendar",
+        "parameters": {}
+      }
+    ],
+    "単一選択では1件だけ選択してください。": [
+      {
+        "id": "uiFoundation.treeSelect.selectOnlyOneItemInSingleSelectMode",
+        "parameters": {}
+      }
+    ],
+    "単一選択には一つの値を指定してください。": [
+      {
+        "id": "uiFoundation.listbox.singleValueRequired",
+        "parameters": {}
+      }
+    ],
+    "印刷対象の表題を指定してください。": [
+      {
+        "id": "uiFoundation.tableOutput.printTitleRequired",
+        "parameters": {}
+      }
+    ],
+    "印刷領域が終了しています。": [
+      {
+        "id": "uiFoundation.tableOutput.printFrameClosed",
+        "parameters": {}
+      }
+    ],
+    "印刷領域を作成できませんでした。": [
+      {
+        "id": "uiFoundation.tableOutput.printFrameUnavailable",
+        "parameters": {}
+      }
+    ],
+    "原文をコピー": [
+      {
+        "id": "uiFoundation.jsonViewer.copyOriginalText",
+        "parameters": {}
+      }
+    ],
+    "取得済み": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorPresent",
+        "parameters": {}
+      }
+    ],
+    "取得済み検索結果": [
+      {
+        "id": "uiFoundation.tableToolbar.loadedSearchResults",
+        "parameters": {}
+      }
+    ],
+    "取得済み表示行をすべて選択": [
+      {
+        "id": "uiFoundation.virtualDataTable.selectAllLoadedVisibleRows",
+        "parameters": {}
+      }
+    ],
+    "取得済み選択行": [
+      {
+        "id": "uiFoundation.tableToolbar.loadedSelectedRows",
+        "parameters": {}
+      }
+    ],
+    "取消": [
+      {
+        "id": "uiFoundation.confirmDialog.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.confirmPopover.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.formActions.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.formDialog.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.cancel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.cancelUploadForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "取消済み": [
+      {
+        "id": "uiFoundation.uploadQueue.canceled",
+        "parameters": {}
+      }
+    ],
+    "受け取った全行": [
+      {
+        "id": "uiFoundation.tableToolbar.allReceivedRows",
+        "parameters": {}
+      }
+    ],
+    "受け取った全行の集計": [
+      {
+        "id": "uiFoundation.dataTableView.summaryOfAllReceivedRows",
+        "parameters": {}
+      }
+    ],
+    "受け取った行の集計": [
+      {
+        "id": "uiFoundation.dataTableView.receivedRowSummary",
+        "parameters": {}
+      }
+    ],
+    "受付形式に合いません。": [
+      {
+        "id": "uiFoundation.fileUpload.rejectedType",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileUpload.theFileFormatIsNotAccepted",
+        "parameters": {}
+      }
+    ],
+    "右へ90度回転": [
+      {
+        "id": "uiFoundation.imageCropper.rotateRight90",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.imageViewer.rotateRight90",
+        "parameters": {}
+      }
+    ],
+    "合計": [
+      {
+        "id": "uiFoundation.dataTableView.total",
+        "parameters": {}
+      }
+    ],
+    "合計 ": [
+      {
+        "id": "uiFoundation.dataTableView.total",
+        "parameters": {}
+      }
+    ],
+    "同じ現地日時が二度現れる場合の扱いです。": [
+      {
+        "id": "uiFoundation.scheduler.repeatedTimeHelp",
+        "parameters": {}
+      }
+    ],
+    "同じ行を上下へ固定できません。": [
+      {
+        "id": "uiFoundation.dataTableView.theSameRowCannotBePinnedAtBothTheTopAndBottom",
+        "parameters": {}
+      }
+    ],
+    "同じ項目は追加できません。": [
+      {
+        "id": "uiFoundation.tagInput.thisItemHasAlreadyBeenAdded",
+        "parameters": {}
+      }
+    ],
+    "名前変更を要求": [
+      {
+        "id": "uiFoundation.fileExplorer.requestRename",
+        "parameters": {}
+      }
+    ],
+    "含む": [
+      {
+        "id": "uiFoundation.tableOperator.contains",
+        "parameters": {}
+      }
+    ],
+    "固定:": [
+      {
+        "id": "uiFoundation.columnChooser.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnChooser.pinSelectLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "固定: ": [
+      {
+        "id": "uiFoundation.columnChooser.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.columnChooser.pinSelectLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.pinColumnLabel",
+        "parameters": {
+          "column": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "固定しない": [
+      {
+        "id": "uiFoundation.columnChooser.unpinned",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.unpinned",
+        "parameters": {}
+      }
+    ],
+    "固定の行数・列数を確認してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.checkTheNumberOfPinnedRowsAndColumns",
+        "parameters": {}
+      }
+    ],
+    "固定行・固定列・集計・階層見出し・詳細・編集・行操作は通常表を選択してください。": [
+      {
+        "id": "uiFoundation.dataTableView.useTheStandardTableForPinnedRowsOrColumnsSummariesNestedHeadersDetailsEditingOrRowAc",
+        "parameters": {}
+      }
+    ],
+    "地図": [
+      {
+        "id": "uiFoundation.mapView.mapForMap",
+        "parameters": {}
+      }
+    ],
+    "地図の一部を表示できません。マーカーと領域の一覧を確認してください。": [
+      {
+        "id": "uiFoundation.mapView.partOfTheMapCouldNotBeDisplayedCheckTheListOfMarkersAndRegions",
+        "parameters": {}
+      }
+    ],
+    "地図を描画できません。マーカーと領域の一覧を確認してください。": [
+      {
+        "id": "uiFoundation.mapView.couldNotDrawTheMapCheckTheListOfMarkersAndRegions",
+        "parameters": {}
+      }
+    ],
+    "地図を準備しています。": [
+      {
+        "id": "uiFoundation.mapView.preparingTheMap",
+        "parameters": {}
+      }
+    ],
+    "型": [
+      {
+        "id": "uiFoundation.jsonViewer.type",
+        "parameters": {}
+      }
+    ],
+    "増減": [
+      {
+        "id": "uiFoundation.statistic.change",
+        "parameters": {}
+      }
+    ],
+    "変化 ": [
+      {
+        "id": "uiFoundation.sparkline.delta",
+        "parameters": {
+          "delta": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "変更前": [
+      {
+        "id": "uiFoundation.diffViewer.before",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.diffViewer.beforeLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "変更前の次の一致": [
+      {
+        "id": "uiFoundation.diffViewer.nextMatchInTheOriginalVersion",
+        "parameters": {}
+      }
+    ],
+    "変更前をコピー": [
+      {
+        "id": "uiFoundation.diffViewer.copyOriginalVersion",
+        "parameters": {}
+      }
+    ],
+    "変更後": [
+      {
+        "id": "uiFoundation.diffViewer.after",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.diffViewer.afterLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "変更後の次の一致": [
+      {
+        "id": "uiFoundation.diffViewer.nextMatchInTheChangedVersion",
+        "parameters": {}
+      }
+    ],
+    "変更後をコピー": [
+      {
+        "id": "uiFoundation.diffViewer.copyChangedVersion",
+        "parameters": {}
+      }
+    ],
+    "外す": [
+      {
+        "id": "uiFoundation.messageComposer.remove",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageComposer.removeAttachmentForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "外部リンク": [
+      {
+        "id": "uiFoundation.actionLink.external",
+        "parameters": {}
+      }
+    ],
+    "外部更新を確認してください。入力内容は保持されています。": [
+      {
+        "id": "uiFoundation.spreadsheet.reviewTheExternalChangesYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "太字": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarBold",
+        "parameters": {}
+      }
+    ],
+    "失敗": [
+      {
+        "id": "uiFoundation.uploadQueue.failed",
+        "parameters": {}
+      }
+    ],
+    "子の行を再取得:": [
+      {
+        "id": "uiFoundation.treeGrid.retryBranch",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "子の行を取得しています。": [
+      {
+        "id": "uiFoundation.treeGrid.loadingBranch",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "子組織の情報は未取得です。取得した階層をアプリから接続してください。": [
+      {
+        "id": "uiFoundation.organizationChart.childOrganizationsHaveNotBeenLoadedPassTheLoadedHierarchyFromTheApp",
+        "parameters": {}
+      }
+    ],
+    "子組織を展開": [
+      {
+        "id": "uiFoundation.organizationChart.expandChildOrganizations",
+        "parameters": {}
+      }
+    ],
+    "子組織を折り畳む": [
+      {
+        "id": "uiFoundation.organizationChart.collapseChildOrganizations",
+        "parameters": {}
+      }
+    ],
+    "字幕": [
+      {
+        "id": "uiFoundation.mediaPlayer.captions",
+        "parameters": {}
+      }
+    ],
+    "字幕なし": [
+      {
+        "id": "uiFoundation.mediaPlayer.noCaptions",
+        "parameters": {}
+      }
+    ],
+    "存在する日付をYYYY-MM-DDで指定してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.enterAValidDateInYyyyMmDd",
+        "parameters": {}
+      }
+    ],
+    "安定した行キーは編集できません。": [
+      {
+        "id": "uiFoundation.tableEdit.rowKeyImmutable",
+        "parameters": {}
+      }
+    ],
+    "完了": [
+      {
+        "id": "uiFoundation.wizard.finish",
+        "parameters": {}
+      }
+    ],
+    "実在する日付を入力してください。": [
+      {
+        "id": "uiFoundation.tableEdit.validDateRequired",
+        "parameters": {}
+      }
+    ],
+    "実行できるコマンド": [
+      {
+        "id": "uiFoundation.commandPalette.availableCommands",
+        "parameters": {}
+      }
+    ],
+    "容量の上限を超えています。": [
+      {
+        "id": "uiFoundation.fileUpload.rejectedSize",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileUpload.theFileExceedsTheSizeLimit",
+        "parameters": {}
+      }
+    ],
+    "容量の制限なし": [
+      {
+        "id": "uiFoundation.fileUpload.noSizeLimit",
+        "parameters": {}
+      }
+    ],
+    "容量未取得": [
+      {
+        "id": "uiFoundation.messageComposer.sizeUnavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageList.sizeUnavailable",
+        "parameters": {}
+      }
+    ],
+    "小型の推移": [
+      {
+        "id": "uiFoundation.sparkline.compactTrendChart",
+        "parameters": {}
+      }
+    ],
+    "小数桁には0から100の整数を指定してください。": [
+      {
+        "id": "uiFoundation.numberInput.enterAWholeNumberOfDecimalPlacesFrom0To100",
+        "parameters": {}
+      }
+    ],
+    "少なくとも一列を表示してください。": [
+      {
+        "id": "uiFoundation.table.columnRequired",
+        "parameters": {}
+      }
+    ],
+    "展開": [
+      {
+        "id": "uiFoundation.dataTableView.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileExplorer.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.panel.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sideNav.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sideNav.expandDestination",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.splitter.expandForSplitter",
+        "parameters": {}
+      }
+    ],
+    "展開: ": [
+      {
+        "id": "uiFoundation.dataGrid.expandRowLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileExplorer.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.panel.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sideNav.expand",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.splitter.expandForSplitter",
+        "parameters": {}
+      }
+    ],
+    "工程表": [
+      {
+        "id": "uiFoundation.gantt.ganttChart",
+        "parameters": {}
+      }
+    ],
+    "工程表を描画できません。タスク表で確認してください。": [
+      {
+        "id": "uiFoundation.gantt.couldNotDrawTheGanttChartReviewTheTaskTable",
+        "parameters": {}
+      }
+    ],
+    "左右キーで移動先、上下キーで選択済みの位置を選び、Enterで確定、Escapeで取消。": [
+      {
+        "id": "uiFoundation.transferList.useLeftAndRightToChooseADestinationAndUpAndDownToPositionTheItemAmongTheSelectedItems",
+        "parameters": {}
+      }
+    ],
+    "差分": [
+      {
+        "id": "uiFoundation.diffViewer.differencesForDiffJson",
+        "parameters": {}
+      }
+    ],
+    "差分を検索": [
+      {
+        "id": "uiFoundation.diffViewer.searchDifferences",
+        "parameters": {}
+      }
+    ],
+    "差分エディターを準備できません。全文は保持されています。": [
+      {
+        "id": "uiFoundation.diffViewer.couldNotStartTheDiffEditorTheFullTextIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "幅": [
+      {
+        "id": "uiFoundation.imageCropper.width",
+        "parameters": {}
+      }
+    ],
+    "平均": [
+      {
+        "id": "uiFoundation.dataTableView.average",
+        "parameters": {}
+      }
+    ],
+    "年": [],
+    "度": [
+      {
+        "id": "uiFoundation.imageCropper.rotationDegrees",
+        "parameters": {
+          "angle": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.imageViewer.rotationDegrees",
+        "parameters": {
+          "angle": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "座標": [
+      {
+        "id": "uiFoundation.chart.coordinates",
+        "parameters": {}
+      }
+    ],
+    "引用符の後に区切り以外の文字があります。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "弱い": [
+      {
+        "id": "uiFoundation.passwordInput.strengthWeak",
+        "parameters": {}
+      }
+    ],
+    "強い": [
+      {
+        "id": "uiFoundation.passwordInput.strengthStrong",
+        "parameters": {}
+      }
+    ],
+    "強度:": [
+      {
+        "id": "uiFoundation.passwordInput.strengthMedium",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.strengthStrong",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.strengthWeak",
+        "parameters": {}
+      }
+    ],
+    "形式: ": [
+      {
+        "id": "uiFoundation.fileUpload.acceptedFormats",
+        "parameters": {
+          "formats": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "形式の制限なし": [
+      {
+        "id": "uiFoundation.fileUpload.anyFormat",
+        "parameters": {}
+      }
+    ],
+    "形式不明": [
+      {
+        "id": "uiFoundation.uploadList.unknownFormat",
+        "parameters": {}
+      }
+    ],
+    "後へ": [
+      {
+        "id": "uiFoundation.kanban.moveLaterForKanban",
+        "parameters": {}
+      }
+    ],
+    "後ろへ": [
+      {
+        "id": "uiFoundation.sortableList.moveBack",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveBackwardLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "必須": [
+      {
+        "id": "uiFoundation.colorPicker.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.formField.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.multiSelect.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.radioGroup.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rangeSlider.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rating.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.required",
+        "parameters": {}
+      }
+    ],
+    "戻る": [
+      {
+        "id": "uiFoundation.tour.back",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.wizard.back",
+        "parameters": {}
+      }
+    ],
+    "折り畳み": [
+      {
+        "id": "uiFoundation.splitter.collapsed",
+        "parameters": {}
+      }
+    ],
+    "折り畳む": [
+      {
+        "id": "uiFoundation.fileExplorer.collapse",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.panel.collapse",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.readMore.collapse",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.splitter.collapse",
+        "parameters": {}
+      }
+    ],
+    "折畳み": [
+      {
+        "id": "uiFoundation.sideNav.collapse",
+        "parameters": {}
+      }
+    ],
+    "拡大": [
+      {
+        "id": "uiFoundation.flowEditor.zoomIn",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mapView.zoomIn",
+        "parameters": {}
+      }
+    ],
+    "拡大率": [
+      {
+        "id": "uiFoundation.flowEditor.zoom",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.imageViewer.zoom",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mapView.zoomValue",
+        "parameters": {
+          "zoom": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.pDFViewer.zoom",
+        "parameters": {}
+      }
+    ],
+    "拡大率は0.25〜4にしてください。": [
+      {
+        "id": "uiFoundation.flowEditor.setTheZoomLevelToAValueBetween025And4",
+        "parameters": {}
+      }
+    ],
+    "指定した桁数と文字種を確認してください。": [
+      {
+        "id": "uiFoundation.oTPInput.checkTheRequiredLengthAndCharacterType",
+        "parameters": {}
+      }
+    ],
+    "指定比率": [
+      {
+        "id": "uiFoundation.imageCropper.customRatio",
+        "parameters": {}
+      }
+    ],
+    "接続": [
+      {
+        "id": "uiFoundation.flowEditor.connection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.connectionUnknownNode",
+        "parameters": {}
+      }
+    ],
+    "接続する": [
+      {
+        "id": "uiFoundation.flowEditor.connect",
+        "parameters": {}
+      }
+    ],
+    "接続を削除": [
+      {
+        "id": "uiFoundation.flowEditor.removeConnection",
+        "parameters": {}
+      }
+    ],
+    "接続元": [
+      {
+        "id": "uiFoundation.flowEditor.source",
+        "parameters": {}
+      }
+    ],
+    "接続先": [
+      {
+        "id": "uiFoundation.flowEditor.destination",
+        "parameters": {}
+      }
+    ],
+    "操作": [
+      {
+        "id": "uiFoundation.dataTableView.actions",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.actions",
+        "parameters": {}
+      }
+    ],
+    "操作結果はアプリが反映します。エラー時も入力した名前を保持します。": [
+      {
+        "id": "uiFoundation.fileExplorer.theAppAppliesTheResultTheNameYouEnteredIsKeptIfAnErrorOccurs",
+        "parameters": {}
+      }
+    ],
+    "数値の範囲設定を確認してください。": [
+      {
+        "id": "uiFoundation.numberInput.checkTheNumberRangeSettings",
+        "parameters": {}
+      }
+    ],
+    "数値の言語設定を確認してください。": [
+      {
+        "id": "uiFoundation.numberInput.checkTheNumberLocaleSettings",
+        "parameters": {}
+      }
+    ],
+    "数値を指定してください。": [
+      {
+        "id": "uiFoundation.numericField.numericValueRequired",
+        "parameters": {}
+      }
+    ],
+    "数式の計算を再試行": [
+      {
+        "id": "uiFoundation.spreadsheet.retryFormulaCalculation",
+        "parameters": {}
+      }
+    ],
+    "数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculationStartFailed",
+        "parameters": {}
+      }
+    ],
+    "数式を含むJSONを書き出す": [
+      {
+        "id": "uiFoundation.spreadsheet.exportJSONWithFormulas",
+        "parameters": {}
+      }
+    ],
+    "数式を計算しています。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculatingFormulas",
+        "parameters": {}
+      }
+    ],
+    "数式を計算できません。元のセルは保持されています。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculationFailed",
+        "parameters": {}
+      }
+    ],
+    "整形できませんでした。原文を表示しています。": [
+      {
+        "id": "uiFoundation.codeBlock.formatFailed",
+        "parameters": {}
+      }
+    ],
+    "文字": [
+      {
+        "id": "uiFoundation.textInput.characterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textInput.characterCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textarea.characterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.textarea.characterCountWithLimit",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "limit": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "文字起こし": [
+      {
+        "id": "uiFoundation.mediaPlayer.transcript",
+        "parameters": {}
+      }
+    ],
+    "文書を表示できません。元の内容は保持されています。": [
+      {
+        "id": "uiFoundation.richTextEditor.couldNotDisplayTheDocumentTheOriginalContentHasBeenKept",
+        "parameters": {}
+      }
+    ],
+    "文書形式またはURLを確認してください。元の内容は保持されています。": [
+      {
+        "id": "uiFoundation.richTextEditor.checkTheDocumentFormatOrURLTheOriginalContentHasBeenKept",
+        "parameters": {}
+      }
+    ],
+    "斜体": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarItalic",
+        "parameters": {}
+      }
+    ],
+    "新しいノード": [
+      {
+        "id": "uiFoundation.flowEditor.newNode",
+        "parameters": {}
+      }
+    ],
+    "新しい名前": [
+      {
+        "id": "uiFoundation.fileExplorer.newName",
+        "parameters": {}
+      }
+    ],
+    "既知の件数": [
+      {
+        "id": "uiFoundation.dataTableView.knownCount",
+        "parameters": {}
+      }
+    ],
+    "既読": [
+      {
+        "id": "uiFoundation.notificationCenter.read",
+        "parameters": {}
+      }
+    ],
+    "既読にする": [
+      {
+        "id": "uiFoundation.notificationCenter.markRead",
+        "parameters": {}
+      }
+    ],
+    "日": [
+      {
+        "id": "uiFoundation.gantt.dayScale",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.scheduler.day",
+        "parameters": {}
+      }
+    ],
+    "日付選択を取消": [
+      {
+        "id": "uiFoundation.datePicker.cancelDateSelection",
+        "parameters": {}
+      }
+    ],
+    "日時にはタイムゾーンのオフセットを含むISO文字列を指定してください。": [
+      {
+        "id": "uiFoundation.timeline.useAnIsoDateTimeStringWithA",
+        "parameters": {}
+      }
+    ],
+    "日時の値を確認してください。": [
+      {
+        "id": "uiFoundation.timeline.checkTheDateAndTimeValue",
+        "parameters": {}
+      }
+    ],
+    "日時の暦日・時刻・オフセットを確認してください。": [
+      {
+        "id": "uiFoundation.timeline.checkTheCalendarDateTimeAndOffset",
+        "parameters": {}
+      }
+    ],
+    "日時の言語とタイムゾーンを明示してください。": [
+      {
+        "id": "uiFoundation.timeline.specifyTheDateAndTimeLocaleAndTime",
+        "parameters": {}
+      }
+    ],
+    "日時の言語・タイムゾーン・表示形式を確認してください。": [
+      {
+        "id": "uiFoundation.timeline.checkTheDateAndTimeLocaleTimeZone",
+        "parameters": {}
+      }
+    ],
+    "日時は未取得です。": [
+      {
+        "id": "uiFoundation.timeline.theDateAndTimeHaveNotBeenLoaded",
+        "parameters": {}
+      }
+    ],
+    "日時を表示できません。": [
+      {
+        "id": "uiFoundation.timeline.couldNotDisplayTheDateAndTime",
+        "parameters": {}
+      }
+    ],
+    "早い方": [
+      {
+        "id": "uiFoundation.scheduler.earlierTime",
+        "parameters": {}
+      }
+    ],
+    "昇順": [
+      {
+        "id": "uiFoundation.dataView.ascending",
+        "parameters": {}
+      }
+    ],
+    "時間軸": [
+      {
+        "id": "uiFoundation.gantt.timeline",
+        "parameters": {}
+      }
+    ],
+    "時間軸のタイムゾーンは独立した設定で明示してください。": [
+      {
+        "id": "uiFoundation.chart.specifyTheTimeAxisTimeZoneInIts",
+        "parameters": {}
+      }
+    ],
+    "時間軸のタイムゾーンを明示してください。": [
+      {
+        "id": "uiFoundation.chart.specifyTheTimeAxisTimeZone",
+        "parameters": {}
+      }
+    ],
+    "最上位": [
+      {
+        "id": "uiFoundation.cascader.topLevel",
+        "parameters": {}
+      }
+    ],
+    "最初": [
+      {
+        "id": "uiFoundation.pagination.first",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.firstPage",
+        "parameters": {}
+      }
+    ],
+    "最初のページ": [
+      {
+        "id": "uiFoundation.pagination.firstPage",
+        "parameters": {}
+      }
+    ],
+    "最大": [
+      {
+        "id": "uiFoundation.dataTableView.maximum",
+        "parameters": {}
+      }
+    ],
+    "最大件数には0以上の整数を指定してください。": [
+      {
+        "id": "uiFoundation.tagInput.enterAWholeNumberOfZeroOrGreaterForTheMaximumCount",
+        "parameters": {}
+      }
+    ],
+    "最大件数に達しています。": [
+      {
+        "id": "uiFoundation.tagInput.theMaximumNumberOfItemsHasBeenReached",
+        "parameters": {}
+      }
+    ],
+    "最大件数を超えています。項目を削除してください。": [
+      {
+        "id": "uiFoundation.tagInput.tooManyItemsRemoveSomeToContinue",
+        "parameters": {}
+      }
+    ],
+    "最大化": [
+      {
+        "id": "uiFoundation.dialog.maximize",
+        "parameters": {}
+      }
+    ],
+    "最小": [
+      {
+        "id": "uiFoundation.dataTableView.minimum",
+        "parameters": {}
+      }
+    ],
+    "最小値・最大値・正の刻みを確認してください。": [
+      {
+        "id": "uiFoundation.numericFieldControl.checkTheMinimumMaximumAndPositiveStepSize",
+        "parameters": {}
+      }
+    ],
+    "最後": [
+      {
+        "id": "uiFoundation.pagination.last",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.lastPage",
+        "parameters": {}
+      }
+    ],
+    "最後のページ": [
+      {
+        "id": "uiFoundation.pagination.lastPage",
+        "parameters": {}
+      }
+    ],
+    "月": [
+      {
+        "id": "uiFoundation.gantt.month",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.scheduler.month",
+        "parameters": {}
+      }
+    ],
+    "有効な日付を入力してください。": [
+      {
+        "id": "uiFoundation.dateRangePicker.invalidEndpoint",
+        "parameters": {}
+      }
+    ],
+    "有効な日時を指定してください。元の項目は保持しています。": [
+      {
+        "id": "uiFoundation.timeline.provideAValidDateAndTimeTheOriginal",
+        "parameters": {}
+      }
+    ],
+    "有限の数値を入力してください。": [
+      {
+        "id": "uiFoundation.tableEdit.numberRequired",
+        "parameters": {}
+      }
+    ],
+    "有限の数値を指定してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.enterAFiniteNumber",
+        "parameters": {}
+      }
+    ],
+    "期間と0〜100の進捗を確認してください。入力内容は保持されています。": [
+      {
+        "id": "uiFoundation.gantt.checkTheDateRangeAndEnterProgressFrom0To100YourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "期間をクリア": [
+      {
+        "id": "uiFoundation.dateRangePicker.clearDateRange",
+        "parameters": {}
+      }
+    ],
+    "期間・依存関係・進捗": [
+      {
+        "id": "uiFoundation.gantt.dateRangeDependenciesAndProgress",
+        "parameters": {}
+      }
+    ],
+    "未入力": [
+      {
+        "id": "uiFoundation.inlineEdit.noInput",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.scheduler.empty",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.noInput",
+        "parameters": {}
+      }
+    ],
+    "未割当の予定は表示対象外です。": [
+      {
+        "id": "uiFoundation.scheduler.hideUnassigned",
+        "parameters": {}
+      }
+    ],
+    "未割当の予定も表示します。": [
+      {
+        "id": "uiFoundation.scheduler.showUnassigned",
+        "parameters": {}
+      }
+    ],
+    "未取得": [
+      {
+        "id": "uiFoundation.chart.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataGrid.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.descriptions.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.operatorMissing",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gantt.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.meter.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.statistic.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditorSession.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.missing",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.unavailable",
+        "parameters": {}
+      }
+    ],
+    "未取得: ": [
+      {
+        "id": "uiFoundation.chart.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataGrid.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.descriptions.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.operatorMissing",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gantt.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.meter.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.statistic.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditorSession.unavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableOperator.missing",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.unavailable",
+        "parameters": {}
+      }
+    ],
+    "未取得の子の行があります。展開して取得できます。": [
+      {
+        "id": "uiFoundation.treeGrid.someChildRowsHaveYetToLoadExpandTheRowToLoadThem",
+        "parameters": {}
+      }
+    ],
+    "未取得の子項目があるため、親子連動のチェックは確定できません。展開して確認してください。": [
+      {
+        "id": "uiFoundation.tree.someChildrenHaveYetToLoadSoTheirSharedCheckboxStateCannotBeConfirmedExpandTheItemToCh",
+        "parameters": {}
+      }
+    ],
+    "未取得の子項目は検索に含まれません。": [
+      {
+        "id": "uiFoundation.tree.childrenThatHaveYetToLoadAreExcludedFromSearch",
+        "parameters": {}
+      }
+    ],
+    "未取得・削除済み: ": [
+      {
+        "id": "uiFoundation.cascader.unavailableItemLabel",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.treeSelect.unavailableItemLabel",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "未取得・削除済みの経路があります。選択を確認してください。": [
+      {
+        "id": "uiFoundation.cascader.somePathsAreUnavailableOrHaveBeenDeletedReviewYourSelection",
+        "parameters": {}
+      }
+    ],
+    "未取得・削除済みの選択項目があります。選択を確認してください。": [
+      {
+        "id": "uiFoundation.treeSelect.someSelectedItemsAreUnavailableOrHaveBeenDeletedReviewYourSelection",
+        "parameters": {}
+      }
+    ],
+    "未満": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorLt",
+        "parameters": {}
+      }
+    ],
+    "未設定のグループは絞り込み条件に使いません。": [
+      {
+        "id": "uiFoundation.filterBuilder.unconfiguredGroupsAreExcludedFromFilters",
+        "parameters": {}
+      }
+    ],
+    "未評価": [
+      {
+        "id": "uiFoundation.passwordInput.unrated",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rating.unrated",
+        "parameters": {}
+      }
+    ],
+    "未読": [
+      {
+        "id": "uiFoundation.notificationCenter.unread",
+        "parameters": {}
+      }
+    ],
+    "未読に戻す": [
+      {
+        "id": "uiFoundation.notificationCenter.markUnread",
+        "parameters": {}
+      }
+    ],
+    "未選択": [
+      {
+        "id": "uiFoundation.cascader.noSelection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.colorPicker.noSelection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.select.noSelection",
+        "parameters": {}
+      }
+    ],
+    "末尾側": [
+      {
+        "id": "uiFoundation.columnChooser.trailingSide",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.trailingSide",
+        "parameters": {}
+      }
+    ],
+    "末端の項目を選択してください。": [
+      {
+        "id": "uiFoundation.cascader.selectALeafItem",
+        "parameters": {}
+      }
+    ],
+    "条件が変更されたため、前の保存結果は現在の編集へ適用しません。": [
+      {
+        "id": "uiFoundation.filterBuilder.theCriteriaChangedTheResultOfTheEarlierSaveWasKeptSeparateFromThisEdit",
+        "parameters": {}
+      }
+    ],
+    "条件なし": [
+      {
+        "id": "uiFoundation.columnFilter.noCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件に一致する候補はありません。": [
+      {
+        "id": "uiFoundation.listbox.noSearchResults",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.noMatchingOptions",
+        "parameters": {}
+      }
+    ],
+    "条件に一致する結果はありません。": [
+      {
+        "id": "uiFoundation.dataTableView.noMatchingResults",
+        "parameters": {}
+      }
+    ],
+    "条件に一致する選択はありません。": [
+      {
+        "id": "uiFoundation.transferList.noMatchingSelectedItems",
+        "parameters": {}
+      }
+    ],
+    "条件に一致する項目はありません。": [
+      {
+        "id": "uiFoundation.dataView.noMatchingItems",
+        "parameters": {}
+      }
+    ],
+    "条件に合う通知はありません。": [
+      {
+        "id": "uiFoundation.notificationCenter.empty",
+        "parameters": {}
+      }
+    ],
+    "条件のIDは重複しない非空文字列にしてください。": [
+      {
+        "id": "uiFoundation.filterBuilder.useAUniqueNonemptyStringForEachCriterion",
+        "parameters": {}
+      }
+    ],
+    "条件の値を指定してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.provideAValueForTheCriterion",
+        "parameters": {}
+      }
+    ],
+    "条件の構造または循環を確認してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkTheCriteriaStructureForInvalidEntriesOr",
+        "parameters": {}
+      }
+    ],
+    "条件の結合": [
+      {
+        "id": "uiFoundation.filterBuilder.combineCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件の結合:": [
+      {
+        "id": "uiFoundation.filterBuilder.combineCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件の結合: ": [
+      {
+        "id": "uiFoundation.filterBuilder.combineCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件の項目ID・説明・種類と重複を確認してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkTheCriteriaFieldIdsDescriptionsAndTypes",
+        "parameters": {}
+      }
+    ],
+    "条件の項目と演算子を確認してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkTheCriterionFieldAndOperator",
+        "parameters": {}
+      }
+    ],
+    "条件の項目を選んでください。": [
+      {
+        "id": "uiFoundation.filterBuilder.chooseAFieldForTheCriterion",
+        "parameters": {}
+      }
+    ],
+    "条件をすべて解除": [
+      {
+        "id": "uiFoundation.filterChips.clearAllCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件を保存": [
+      {
+        "id": "uiFoundation.filterBuilder.saveCriteria",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchPanel.saveCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件を保存しました。": [
+      {
+        "id": "uiFoundation.filterBuilder.criteriaSaved",
+        "parameters": {}
+      }
+    ],
+    "条件を解除": [
+      {
+        "id": "uiFoundation.columnFilter.clearCriteria",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.clearCriteria",
+        "parameters": {}
+      }
+    ],
+    "条件を追加": [
+      {
+        "id": "uiFoundation.filterBuilder.addCriterion",
+        "parameters": {}
+      }
+    ],
+    "条件を追加してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.conditionRequired",
+        "parameters": {}
+      }
+    ],
+    "条件グループとAND/ORを確認してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkTheCriteriaGroupAndItsAndOr",
+        "parameters": {}
+      }
+    ],
+    "条件グループを追加": [
+      {
+        "id": "uiFoundation.filterBuilder.addCriteriaGroup",
+        "parameters": {}
+      }
+    ],
+    "桁": [
+      {
+        "id": "uiFoundation.otpInput.alphanumericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.otpInput.numericLength",
+        "parameters": {
+          "count": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "桁数には1から64の整数を指定してください。": [
+      {
+        "id": "uiFoundation.oTPInput.enterALengthFrom1To64Characters",
+        "parameters": {}
+      }
+    ],
+    "案内を完了": [
+      {
+        "id": "uiFoundation.tour.finishTour",
+        "parameters": {}
+      }
+    ],
+    "案内を閉じる": [
+      {
+        "id": "uiFoundation.tour.closeTour",
+        "parameters": {}
+      }
+    ],
+    "検索": [
+      {
+        "id": "uiFoundation.dataView.search",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchInput.search",
+        "parameters": {}
+      }
+    ],
+    "検索:": [
+      {
+        "id": "uiFoundation.dataView.search",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchInput.search",
+        "parameters": {}
+      }
+    ],
+    "検索の言語を確認してください。": [
+      {
+        "id": "uiFoundation.transferList.checkTheSearchLanguage",
+        "parameters": {}
+      }
+    ],
+    "検索を解除": [
+      {
+        "id": "uiFoundation.dataTableView.clearSearch",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataView.clearSearch",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchPanel.clearSearch",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableToolbar.clearSearch",
+        "parameters": {}
+      }
+    ],
+    "検索条件": [
+      {
+        "id": "uiFoundation.searchPanel.searchCriteria",
+        "parameters": {}
+      }
+    ],
+    "検索結果の集計": [
+      {
+        "id": "uiFoundation.dataTableView.searchResultSummary",
+        "parameters": {}
+      }
+    ],
+    "検索結果をすべて選択": [
+      {
+        "id": "uiFoundation.dataTableView.selectAllSearchResults",
+        "parameters": {}
+      }
+    ],
+    "検索語をクリア": [
+      {
+        "id": "uiFoundation.searchInput.clearSearchText",
+        "parameters": {}
+      }
+    ],
+    "横位置": [
+      {
+        "id": "uiFoundation.flowEditor.horizontalPosition",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.horizontalPositionForDiagramForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "次のページ": [
+      {
+        "id": "uiFoundation.pDFViewer.nextPage",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.nextPage",
+        "parameters": {}
+      }
+    ],
+    "次の差分": [
+      {
+        "id": "uiFoundation.diffViewer.nextDifference",
+        "parameters": {}
+      }
+    ],
+    "次の期間": [
+      {
+        "id": "uiFoundation.scheduler.nextPeriod",
+        "parameters": {}
+      }
+    ],
+    "次の画像": [
+      {
+        "id": "uiFoundation.imageViewer.nextImage",
+        "parameters": {}
+      }
+    ],
+    "次へ": [
+      {
+        "id": "uiFoundation.dataView.next",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gallery.next",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.next",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tour.next",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.wizard.next",
+        "parameters": {}
+      }
+    ],
+    "次月": [
+      {
+        "id": "uiFoundation.calendar.nextMonthForCalendar",
+        "parameters": {}
+      }
+    ],
+    "段落": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarParagraph",
+        "parameters": {}
+      }
+    ],
+    "段階の条件が変わったため、もう一度確認してください。": [
+      {
+        "id": "uiFoundation.wizard.theConditionsForThisStepHaveChangedReviewItAgain",
+        "parameters": {}
+      }
+    ],
+    "段階を完了しました。": [
+      {
+        "id": "uiFoundation.wizard.stepCompleted",
+        "parameters": {}
+      }
+    ],
+    "比率": [
+      {
+        "id": "uiFoundation.imageCropper.aspectRatio",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.imageCropper.aspectRatioChanged",
+        "parameters": {}
+      }
+    ],
+    "比率を変更しました。": [
+      {
+        "id": "uiFoundation.imageCropper.aspectRatioChanged",
+        "parameters": {}
+      }
+    ],
+    "比較できません": [
+      {
+        "id": "uiFoundation.sparkline.comparisonUnavailable",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.statistic.comparisonUnavailable",
+        "parameters": {}
+      }
+    ],
+    "比較前の画像を取得できません。": [
+      {
+        "id": "uiFoundation.imageCompare.beforeLoadFailed",
+        "parameters": {}
+      }
+    ],
+    "比較境界": [
+      {
+        "id": "uiFoundation.imageCompare.comparisonBoundary",
+        "parameters": {}
+      }
+    ],
+    "比較後の画像を{position}%表示": [
+      {
+        "id": "uiFoundation.imageCompare.showAfterPercent",
+        "parameters": {
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "比較後の画像を取得できません。": [
+      {
+        "id": "uiFoundation.imageCompare.afterLoadFailed",
+        "parameters": {}
+      }
+    ],
+    "添付ファイル": [
+      {
+        "id": "uiFoundation.messageComposer.attachments",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadList.attachments",
+        "parameters": {}
+      }
+    ],
+    "演算子": [
+      {
+        "id": "uiFoundation.filterBuilder.operator",
+        "parameters": {}
+      }
+    ],
+    "演算子を選択": [
+      {
+        "id": "uiFoundation.filterBuilder.selectAnOperator",
+        "parameters": {}
+      }
+    ],
+    "無効な行へ貼付けできません。": [
+      {
+        "id": "uiFoundation.dataGrid.cannotPasteIntoADisabledRow",
+        "parameters": {}
+      }
+    ],
+    "無効な項目が経路に含まれています。": [
+      {
+        "id": "uiFoundation.cascader.thePathContainsADisabledItem",
+        "parameters": {}
+      }
+    ],
+    "無効な項目が選択されています。": [
+      {
+        "id": "uiFoundation.treeSelect.aDisabledItemIsSelected",
+        "parameters": {}
+      }
+    ],
+    "現在の予定で入力を戻す": [
+      {
+        "id": "uiFoundation.scheduler.resetDraft",
+        "parameters": {}
+      }
+    ],
+    "現在の選択と選択肢を確認してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidSelection",
+        "parameters": {}
+      }
+    ],
+    "現在の選択にはキーの配列またはnullを指定してください。フォームをresetして修復できます。": [
+      {
+        "id": "uiFoundation.transferList.useAnArrayOfKeysOrNullFor",
+        "parameters": {}
+      }
+    ],
+    "現在の選択に不正・重複・候補にないキーがあります。値は保持しています。フォームをresetして修復できます。": [
+      {
+        "id": "uiFoundation.transferList.theCurrentSelectionContainsInvalidDuplicateOrUnavailable",
+        "parameters": {}
+      }
+    ],
+    "画像": [
+      {
+        "id": "uiFoundation.gallery.imageToShow",
+        "parameters": {}
+      }
+    ],
+    "画像のhttp・https URLと代替説明を入力してください。": [
+      {
+        "id": "uiFoundation.richTextEditor.enterAnHTTPOrHTTPSImageURLAndAlternativeText",
+        "parameters": {}
+      }
+    ],
+    "画像の代替説明": [
+      {
+        "id": "uiFoundation.richTextEditor.imageAlternativeText",
+        "parameters": {}
+      }
+    ],
+    "画像の寸法を確認できません。": [
+      {
+        "id": "uiFoundation.imageCropper.couldNotDetermineTheImageDimensions",
+        "parameters": {}
+      }
+    ],
+    "画像の座標で範囲を指定するか、画像上で始点から終点へドラッグします。": [
+      {
+        "id": "uiFoundation.imageCropper.setTheCropAreaUsingImageCoordinatesOrDragAcrossTheImageFromStartToEnd",
+        "parameters": {}
+      }
+    ],
+    "画像はありません。": [
+      {
+        "id": "uiFoundation.gallery.noImages",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.imageViewer.noImages",
+        "parameters": {}
+      }
+    ],
+    "画像を再取得": [
+      {
+        "id": "uiFoundation.image.reloadImage",
+        "parameters": {}
+      }
+    ],
+    "画像を回転しました。": [
+      {
+        "id": "uiFoundation.imageCropper.imageRotated",
+        "parameters": {}
+      }
+    ],
+    "画像を挿入": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarImage",
+        "parameters": {}
+      }
+    ],
+    "画像を読み込めません。形式とデータを確認して選び直してください。": [
+      {
+        "id": "uiFoundation.imageCropper.couldNotLoadTheImageCheckItsFormatAndDataThenSelectItAgain",
+        "parameters": {}
+      }
+    ],
+    "画像を読込み中です。": [
+      {
+        "id": "uiFoundation.imageCropper.loadingTheImage",
+        "parameters": {}
+      }
+    ],
+    "画像を選択してください。": [
+      {
+        "id": "uiFoundation.imageCropper.selectAnImage",
+        "parameters": {}
+      }
+    ],
+    "画像ビューアー": [
+      {
+        "id": "uiFoundation.imageViewer.imageViewer",
+        "parameters": {}
+      }
+    ],
+    "画像表示領域": [
+      {
+        "id": "uiFoundation.imageViewer.imageDisplayArea",
+        "parameters": {}
+      }
+    ],
+    "番目です。": [
+      {
+        "id": "uiFoundation.sortableList.proposedItemPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "番目へ移動しました。": [
+      {
+        "id": "uiFoundation.transferList.movedLabelToPositionPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "目盛り": [
+      {
+        "id": "uiFoundation.rangeSlider.tickMarks",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.slider.tickMarks",
+        "parameters": {}
+      }
+    ],
+    "目盛りには範囲内の重複しない数値を指定してください。": [
+      {
+        "id": "uiFoundation.numericFieldControl.useUniqueValuesWithinTheRangeForTickMarks",
+        "parameters": {}
+      }
+    ],
+    "省略した階層（": [
+      {
+        "id": "uiFoundation.breadcrumb.omittedLevelCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "矢印でセルを選択。Enter / F2で編集し、Enterで変更を要求、Escapeで編集を戻します。Shift＋矢印は範囲選択。": [
+      {
+        "id": "uiFoundation.spreadsheet.useTheArrowKeysToSelectCellsPressEnterOrF2ToEditEnterToRequestTheChangeAndEscapeTo",
+        "parameters": {}
+      }
+    ],
+    "矢印キーでセルを移動します。Shiftと矢印で範囲を選択し、EnterまたはF2で編集します。コピー・貼付けは選択したセルから行います。": [
+      {
+        "id": "uiFoundation.dataGrid.useTheArrowKeysToMoveBetweenCellsHoldShiftAndPressAnArrowKeyToSelectARangePressEnte",
+        "parameters": {}
+      }
+    ],
+    "矢印キーで仮の位置を変更し、Enterで確定、Escapeで取り消します。": [
+      {
+        "id": "uiFoundation.sortableList.useTheArrowKeysToAdjustTheProposedPositionEnterToConfirmAndEscapeToCancel",
+        "parameters": {}
+      }
+    ],
+    "矢印キーで幅と高さを変更、Shiftで大きく変更": [
+      {
+        "id": "uiFoundation.dialog.resizeInstructions",
+        "parameters": {}
+      }
+    ],
+    "矢印キーで日、Home/Endで週、PageUp/PageDownで月を移動します。Shiftを押すと年を移動します。": [
+      {
+        "id": "uiFoundation.calendar.useTheArrowKeysToMoveByDayHomeAndEndToMoveWithinTheWeekAndPageUpAndPageDownToMov",
+        "parameters": {}
+      }
+    ],
+    "矢印キーで移動、Shiftで大きく移動": [
+      {
+        "id": "uiFoundation.dialog.moveInstructions",
+        "parameters": {}
+      }
+    ],
+    "確認": [
+      {
+        "id": "uiFoundation.confirmDialog.confirmation",
+        "parameters": {}
+      }
+    ],
+    "確認しました": [
+      {
+        "id": "uiFoundation.alertDialog.acknowledged",
+        "parameters": {}
+      }
+    ],
+    "確認する": [
+      {
+        "id": "uiFoundation.confirmPopover.confirm",
+        "parameters": {}
+      }
+    ],
+    "移動": [
+      {
+        "id": "uiFoundation.dialog.moveAction",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.move",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveCanceled",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveCanceledLiftYourFingerToFinish",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.movedToPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.transferList.move",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveAllCheckedItemsInViewAtOnceTheMoveHandleAndTheAddRemoveUpAndDownButtonsAlsoWo",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveCanceled",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.movedLabelToPositionPosition",
+        "parameters": {
+          "label": [
+            "string"
+          ],
+          "position": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "移動する項目と候補の状態を確認してください。": [
+      {
+        "id": "uiFoundation.transferList.checkTheItemsToMoveAndTheState",
+        "parameters": {}
+      }
+    ],
+    "移動する項目と移動先を確認してください。": [
+      {
+        "id": "uiFoundation.transferList.checkTheItemsToMoveAndTheirDestination",
+        "parameters": {}
+      }
+    ],
+    "移動する項目はありません。": [
+      {
+        "id": "uiFoundation.sortableList.thereAreNoItemsToMove",
+        "parameters": {}
+      }
+    ],
+    "移動できません。": [
+      {
+        "id": "uiFoundation.kanban.unableToMove",
+        "parameters": {}
+      }
+    ],
+    "移動できませんでした。入力を保持しています。": [
+      {
+        "id": "uiFoundation.schedulerController.unableToMoveYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "移動できるか確認しています。": [
+      {
+        "id": "uiFoundation.wizard.checkingWhetherYouCanContinue",
+        "parameters": {}
+      }
+    ],
+    "移動の許可を確認できません。入力は保持しています。": [
+      {
+        "id": "uiFoundation.schedulerController.unableToVerifyWhetherTheMoveIsAllowedYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "移動を取り消しました。": [
+      {
+        "id": "uiFoundation.sortableList.moveCanceled",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.sortableList.moveCanceledLiftYourFingerToFinish",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveCanceled",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      }
+    ],
+    "移動を取り消しました。指を離して終了してください。": [
+      {
+        "id": "uiFoundation.sortableList.moveCanceledLiftYourFingerToFinish",
+        "parameters": {}
+      }
+    ],
+    "移動を要求": [
+      {
+        "id": "uiFoundation.scheduler.requestMove",
+        "parameters": {}
+      }
+    ],
+    "移動ボタンで位置を変えられます。ハンドルを押すとキーボードで仮の位置を選べます。": [
+      {
+        "id": "uiFoundation.sortableList.useTheMoveButtonsToChangePositionActivateTheHandleToChooseAPreviewPositionWithTheKeyboa",
+        "parameters": {}
+      }
+    ],
+    "移動一覧の識別子と説明を指定してください。": [
+      {
+        "id": "uiFoundation.sortableList.provideAnIDAndDescriptionForTheReorderableList",
+        "parameters": {}
+      }
+    ],
+    "移動中です。Escapeで取り消し、指を離すと終了します。": [
+      {
+        "id": "uiFoundation.sortableList.movingPressEscapeToCancelOrLiftYourFingerToFinish",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.movingPressEscapeToCancelOrLiftYourFingerToFinish",
+        "parameters": {}
+      }
+    ],
+    "移動先": [
+      {
+        "id": "uiFoundation.kanban.destination",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.kanban.destinationForKanbanForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "移動先が更新されています。もう一度位置を選んでください。": [
+      {
+        "id": "uiFoundation.transferList.theDestinationChangedChooseAPositionAgain",
+        "parameters": {}
+      }
+    ],
+    "移動先のタイムゾーンを明示してください。": [
+      {
+        "id": "uiFoundation.scheduler.moveZoneRequired",
+        "parameters": {}
+      }
+    ],
+    "移動先のタイムゾーンを確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidMoveZone",
+        "parameters": {}
+      }
+    ],
+    "移動先のリソース": [
+      {
+        "id": "uiFoundation.scheduler.destinationResources",
+        "parameters": {}
+      }
+    ],
+    "移動先のリソースを確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidMoveResources",
+        "parameters": {}
+      }
+    ],
+    "移動先の終了:": [
+      {
+        "id": "uiFoundation.scheduler.endPreview",
+        "parameters": {}
+      }
+    ],
+    "移動先の開始:": [
+      {
+        "id": "uiFoundation.scheduler.startPreview",
+        "parameters": {}
+      }
+    ],
+    "移動先の開始・終了の現地日時を確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidMoveTimestamps",
+        "parameters": {}
+      }
+    ],
+    "移動先を展開": [
+      {
+        "id": "uiFoundation.sideNav.expandDestination",
+        "parameters": {}
+      }
+    ],
+    "移動先を折り畳む": [
+      {
+        "id": "uiFoundation.sideNav.collapseDestination",
+        "parameters": {}
+      }
+    ],
+    "移動先を編集": [
+      {
+        "id": "uiFoundation.scheduler.editDestination",
+        "parameters": {}
+      }
+    ],
+    "移動先タイムゾーン": [
+      {
+        "id": "uiFoundation.scheduler.destinationZone",
+        "parameters": {}
+      }
+    ],
+    "移動入力を初期状態へ戻しました。": [
+      {
+        "id": "uiFoundation.schedulerController.theMoveFormWasReset",
+        "parameters": {}
+      }
+    ],
+    "移動入力を閉じる": [
+      {
+        "id": "uiFoundation.scheduler.closeDraft",
+        "parameters": {}
+      }
+    ],
+    "移動可否を確認できないため、移動していません。": [
+      {
+        "id": "uiFoundation.transferList.couldNotVerifyWhetherTheMoveIsAllowed",
+        "parameters": {}
+      }
+    ],
+    "移動対象が更新されたため、移動を取り消しました。": [
+      {
+        "id": "uiFoundation.transferList.theItemsChangedSoTheMoveWasCanceled",
+        "parameters": {}
+      }
+    ],
+    "移動欄の識別子と説明を指定してください。": [
+      {
+        "id": "uiFoundation.transferList.provideAnIDAndDescriptionForTheTransferList",
+        "parameters": {}
+      }
+    ],
+    "移動結果を確認しています。": [
+      {
+        "id": "uiFoundation.schedulerController.checkingTheMoveResult",
+        "parameters": {}
+      }
+    ],
+    "移動要求は失効しました。入力を保持しています。": [
+      {
+        "id": "uiFoundation.schedulerController.theMoveRequestExpiredYourInputIsStillAvailable",
+        "parameters": {}
+      }
+    ],
+    "種別には説明のある文字列を指定してください。元の項目は保持しています。": [
+      {
+        "id": "uiFoundation.timeline.provideADescriptiveStringForTheTypeThe",
+        "parameters": {}
+      }
+    ],
+    "種別の値を確認してください。": [
+      {
+        "id": "uiFoundation.timeline.checkTheTypeValue",
+        "parameters": {}
+      }
+    ],
+    "種別は未取得です。": [
+      {
+        "id": "uiFoundation.timeline.theTypeHasNotBeenLoaded",
+        "parameters": {}
+      }
+    ],
+    "空の文字列": [
+      {
+        "id": "uiFoundation.descriptions.emptyString",
+        "parameters": {}
+      }
+    ],
+    "空欄": [
+      {
+        "id": "uiFoundation.spreadsheet.blank",
+        "parameters": {}
+      }
+    ],
+    "等しい": [
+      {
+        "id": "uiFoundation.tableOperator.equal",
+        "parameters": {}
+      }
+    ],
+    "箇所の差分 /": [
+      {
+        "id": "uiFoundation.diffViewer.differenceCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "範囲をリセット": [
+      {
+        "id": "uiFoundation.imageCropper.resetCropArea",
+        "parameters": {}
+      }
+    ],
+    "系列": [
+      {
+        "id": "uiFoundation.chart.series",
+        "parameters": {}
+      }
+    ],
+    "終了": [
+      {
+        "id": "uiFoundation.gantt.end",
+        "parameters": {}
+      }
+    ],
+    "終了の現地日時": [
+      {
+        "id": "uiFoundation.scheduler.localEnd",
+        "parameters": {}
+      }
+    ],
+    "終了の重複時刻": [
+      {
+        "id": "uiFoundation.scheduler.endRepeatedTime",
+        "parameters": {}
+      }
+    ],
+    "終了値": [
+      {
+        "id": "uiFoundation.rangeSlider.endValue",
+        "parameters": {}
+      }
+    ],
+    "終了日は開始日以降を指定してください。": [
+      {
+        "id": "uiFoundation.dateRangePicker.invalidOrder",
+        "parameters": {}
+      }
+    ],
+    "終了日を選ぶ": [
+      {
+        "id": "uiFoundation.dateRangePicker.chooseAnEndDate",
+        "parameters": {}
+      }
+    ],
+    "組織の項目はありません。": [
+      {
+        "id": "uiFoundation.organizationChart.thereAreNoOrganizationItems",
+        "parameters": {}
+      }
+    ],
+    "結果の詳細": [
+      {
+        "id": "uiFoundation.resultState.detailsLabel",
+        "parameters": {}
+      }
+    ],
+    "結果を確認できません": [
+      {
+        "id": "uiFoundation.uploadQueue.couldNotVerifyTheResult",
+        "parameters": {}
+      }
+    ],
+    "継続中:": [
+      {
+        "id": "uiFoundation.scheduler.continuingEvent",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "編集": [
+      {
+        "id": "uiFoundation.inlineEdit.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.markdownEditor.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.specialistEditorControl.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditorSession.edit",
+        "parameters": {}
+      }
+    ],
+    "編集: ": [
+      {
+        "id": "uiFoundation.dataTableView.editRow",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.editRowLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.inlineEdit.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.markdownEditor.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.specialistEditorControl.edit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditorSession.edit",
+        "parameters": {}
+      }
+    ],
+    "編集できる列がありません。": [
+      {
+        "id": "uiFoundation.tableEditorSession.thereAreNoEditableColumns",
+        "parameters": {}
+      }
+    ],
+    "編集を保存または取消してから貼付けしてください。": [
+      {
+        "id": "uiFoundation.dataGrid.saveOrCancelTheEditBeforePasting",
+        "parameters": {}
+      }
+    ],
+    "編集を続ける": [
+      {
+        "id": "uiFoundation.formDialog.keepEditing",
+        "parameters": {}
+      }
+    ],
+    "編集中または保存待機中の行があります。保存または取消が終わるまで、階層を閉じる操作を保留しています。": [
+      {
+        "id": "uiFoundation.treeGrid.someRowsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToCollapseTheHierarchy",
+        "parameters": {}
+      }
+    ],
+    "編集中または保存待機中の行・列があります。検索・列表示・ページの変更は、先に編集を保存するか取り消すまで保留しています。": [
+      {
+        "id": "uiFoundation.dataTableView.someRowsOrColumnsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToChangeTheSear",
+        "parameters": {}
+      }
+    ],
+    "編集値の範囲を確認してください。": [
+      {
+        "id": "uiFoundation.tableEdit.invalidEditBounds",
+        "parameters": {}
+      }
+    ],
+    "編集列のID、項目名、見出しを一意に指定してください。": [
+      {
+        "id": "uiFoundation.tableEdit.invalidEditableColumns",
+        "parameters": {}
+      }
+    ],
+    "編集欄のID、説明、列設定を確認してください。": [
+      {
+        "id": "uiFoundation.tableEditorSession.checkTheEditorIDDescriptionAndColumnSettings",
+        "parameters": {}
+      }
+    ],
+    "編集欄の説明、行数、最大文字数を確認してください。": [
+      {
+        "id": "uiFoundation.inlineEdit.checkTheEditorDescriptionRowCountAndCharacterLimit",
+        "parameters": {}
+      }
+    ],
+    "縦位置": [
+      {
+        "id": "uiFoundation.flowEditor.verticalPosition",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.verticalPositionForDiagramForLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "縦座標": [
+      {
+        "id": "uiFoundation.chart.verticalCoordinate",
+        "parameters": {}
+      }
+    ],
+    "縮小": [
+      {
+        "id": "uiFoundation.flowEditor.zoomOut",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mapView.zoomOut",
+        "parameters": {}
+      }
+    ],
+    "自動追加取得の表示領域を確認してください。手動で取得できます。": [
+      {
+        "id": "uiFoundation.infiniteScroll.checkTheAreaThatTriggersAutomaticLoadingYouCanStillLoadMoreItemsManually",
+        "parameters": {}
+      }
+    ],
+    "自動送りを停止": [
+      {
+        "id": "uiFoundation.gallery.stopSlideshow",
+        "parameters": {}
+      }
+    ],
+    "自動送りを開始": [
+      {
+        "id": "uiFoundation.gallery.startSlideshow",
+        "parameters": {}
+      }
+    ],
+    "自動配置": [
+      {
+        "id": "uiFoundation.flowEditor.autoLayout",
+        "parameters": {}
+      }
+    ],
+    "自由": [
+      {
+        "id": "uiFoundation.imageCropper.freeform",
+        "parameters": {}
+      }
+    ],
+    "自由に入力できます。": [
+      {
+        "id": "uiFoundation.combobox.youCanEnterYourOwnValue",
+        "parameters": {}
+      }
+    ],
+    "自由に色を選ぶ": [
+      {
+        "id": "uiFoundation.colorPicker.chooseAnyColor",
+        "parameters": {}
+      }
+    ],
+    "色の候補": [
+      {
+        "id": "uiFoundation.colorPicker.colorChoices",
+        "parameters": {}
+      }
+    ],
+    "色の値": [
+      {
+        "id": "uiFoundation.colorPicker.colorValue",
+        "parameters": {}
+      }
+    ],
+    "色の書式と操作の説明を確認してください。": [
+      {
+        "id": "uiFoundation.colorPicker.checkTheColorFormatAndControlDescription",
+        "parameters": {}
+      }
+    ],
+    "色を選んでください。": [
+      {
+        "id": "uiFoundation.colorPicker.chooseAColor",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.colorPicker.chooseAColorWithFullOpacity",
+        "parameters": {}
+      }
+    ],
+    "行": [
+      {
+        "id": "uiFoundation.spreadsheet.row",
+        "parameters": {}
+      }
+    ],
+    "行を編集": [
+      {
+        "id": "uiFoundation.dataTableView.editRow",
+        "parameters": {}
+      }
+    ],
+    "行を選択: ": [
+      {
+        "id": "uiFoundation.dataGrid.selectRowLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.dataTableView.selectRowLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.selectRowLabel",
+        "parameters": {
+          "row": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "行キーを一意な文字列または有限の数値にしてください。": [
+      {
+        "id": "uiFoundation.table.invalidRowKeys",
+        "parameters": {}
+      }
+    ],
+    "行編集": [
+      {
+        "id": "uiFoundation.dataTableView.rowEditing",
+        "parameters": {}
+      }
+    ],
+    "表IDと表題が必要です。": [
+      {
+        "id": "uiFoundation.dataTableView.aTableIDAndCaptionAreRequired",
+        "parameters": {}
+      }
+    ],
+    "表の操作": [
+      {
+        "id": "uiFoundation.tableToolbar.tableActions",
+        "parameters": {}
+      }
+    ],
+    "表の設定を確認してください。": [
+      {
+        "id": "uiFoundation.dataTableView.configurationErrorDetails",
+        "parameters": {
+          "message": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "表をコピー": [
+      {
+        "id": "uiFoundation.tableToolbar.copyTable",
+        "parameters": {}
+      }
+    ],
+    "表を印刷": [
+      {
+        "id": "uiFoundation.tableToolbar.printTable",
+        "parameters": {}
+      }
+    ],
+    "表示": [
+      {
+        "id": "uiFoundation.passwordInput.show",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.showPassword",
+        "parameters": {}
+      }
+    ],
+    "表示:": [
+      {
+        "id": "uiFoundation.numberInput.formattedNumber",
+        "parameters": {
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.numberInput.formattedNumberWithUnit",
+        "parameters": {
+          "value": [
+            "string"
+          ],
+          "unit": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.passwordInput.show",
+        "parameters": {}
+      }
+    ],
+    "表示するリソース": [
+      {
+        "id": "uiFoundation.scheduler.visibleResources",
+        "parameters": {}
+      }
+    ],
+    "表示する時間帯は同じ日の開始時刻より後に終了時刻を指定してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidTimeBand",
+        "parameters": {}
+      }
+    ],
+    "表示する画像": [
+      {
+        "id": "uiFoundation.gallery.imageToShow",
+        "parameters": {}
+      }
+    ],
+    "表示する選択はありません。": [
+      {
+        "id": "uiFoundation.transferList.thereAreNoSelectedItemsToDisplay",
+        "parameters": {}
+      }
+    ],
+    "表示する項目はありません。": [
+      {
+        "id": "uiFoundation.collectionPresentation.thereAreNoItemsToDisplay",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.gridList.thereAreNoItemsToDisplay",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.virtualList.thereAreNoItemsToDisplay",
+        "parameters": {}
+      }
+    ],
+    "表示をリセット": [
+      {
+        "id": "uiFoundation.imageViewer.resetView",
+        "parameters": {}
+      }
+    ],
+    "表示タイムゾーン:": [
+      {
+        "id": "uiFoundation.scheduler.displaySummary",
+        "parameters": {
+          "zone": [
+            "string"
+          ],
+          "to": [
+            "string"
+          ],
+          "start": [
+            "string"
+          ],
+          "end": [
+            "string"
+          ],
+          "count": [
+            "number"
+          ],
+          "from": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "表示ページ": [
+      {
+        "id": "uiFoundation.tableToolbar.pageShown",
+        "parameters": {}
+      }
+    ],
+    "表示ページの集計": [
+      {
+        "id": "uiFoundation.dataTableView.summaryForThisPage",
+        "parameters": {}
+      }
+    ],
+    "表示中の有効な候補をすべて選択": [
+      {
+        "id": "uiFoundation.transferList.selectAllAvailableOptionsShown",
+        "parameters": {}
+      }
+    ],
+    "表示中の有効な選択をすべて選択": [
+      {
+        "id": "uiFoundation.transferList.selectAllAvailableSelectedItemsShown",
+        "parameters": {}
+      }
+    ],
+    "表示中の選択を解除": [
+      {
+        "id": "uiFoundation.listbox.clearVisible",
+        "parameters": {}
+      }
+    ],
+    "表示中をすべて選択": [
+      {
+        "id": "uiFoundation.listbox.selectVisible",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.multiSelect.selectAllShown",
+        "parameters": {}
+      }
+    ],
+    "表示件数": [
+      {
+        "id": "uiFoundation.dataView.itemsPerPage",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.pagination.itemsPerPage",
+        "parameters": {}
+      }
+    ],
+    "表示件数の選択肢と現在の値を確認してください。": [
+      {
+        "id": "uiFoundation.dataView.checkThePageSizeOptionsAndTheCurrentValue",
+        "parameters": {}
+      }
+    ],
+    "表示方式": [
+      {
+        "id": "uiFoundation.fileExplorer.view",
+        "parameters": {}
+      }
+    ],
+    "表示日": [
+      {
+        "id": "uiFoundation.scheduler.displayDate",
+        "parameters": {}
+      }
+    ],
+    "表示日へ移動": [
+      {
+        "id": "uiFoundation.scheduler.jumpToDate",
+        "parameters": {}
+      }
+    ],
+    "表示日・表示方式・週の開始日・一覧の日数を確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidViewSettings",
+        "parameters": {}
+      }
+    ],
+    "表示言語とタイムゾーンを明示してください。": [
+      {
+        "id": "uiFoundation.scheduler.localeAndZoneRequired",
+        "parameters": {}
+      }
+    ],
+    "表示言語またはタイムゾーンを確認してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidLocaleOrZone",
+        "parameters": {}
+      }
+    ],
+    "表示領域、行の高さと先読み件数を確認してください。": [
+      {
+        "id": "uiFoundation.virtualList.checkTheViewportRowHeightAndOverscanCount",
+        "parameters": {}
+      }
+    ],
+    "表示領域の高さ": [
+      {
+        "id": "uiFoundation.bottomSheet.heightLabel",
+        "parameters": {}
+      }
+    ],
+    "表示領域を準備しています。": [
+      {
+        "id": "uiFoundation.virtualList.preparingTheViewport",
+        "parameters": {}
+      }
+    ],
+    "表示領域を離れたため移動を取り消しました。": [
+      {
+        "id": "uiFoundation.sortableList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.moveCanceledAfterLeavingTheViewport",
+        "parameters": {}
+      }
+    ],
+    "表計算": [
+      {
+        "id": "uiFoundation.spreadsheet.spreadsheet",
+        "parameters": {}
+      }
+    ],
+    "表領域の説明、表示サイズ、スクロール位置を確認してください。": [
+      {
+        "id": "uiFoundation.tableContainer.checkTheTableRegionDescriptionViewportSizeAndScrollPosition",
+        "parameters": {}
+      }
+    ],
+    "表領域を準備しています。": [
+      {
+        "id": "uiFoundation.virtualDataTable.preparingTheTableViewport",
+        "parameters": {}
+      }
+    ],
+    "装飾画像": [
+      {
+        "id": "uiFoundation.image.decorativeImage",
+        "parameters": {}
+      }
+    ],
+    "補助操作": [
+      {
+        "id": "uiFoundation.floatingActionButton.menuLabel",
+        "parameters": {}
+      }
+    ],
+    "複数選択には値の配列を指定してください。": [
+      {
+        "id": "uiFoundation.listbox.multipleValueRequired",
+        "parameters": {}
+      }
+    ],
+    "複数選択可": [
+      {
+        "id": "uiFoundation.fileUpload.multipleSelectionsAllowed",
+        "parameters": {}
+      }
+    ],
+    "要確認": [
+      {
+        "id": "uiFoundation.scheduler.confirmTime",
+        "parameters": {}
+      }
+    ],
+    "見出し": [
+      {
+        "id": "uiFoundation.richTextEditor.toolbarHeading",
+        "parameters": {}
+      }
+    ],
+    "親メニューに戻る": [
+      {
+        "id": "uiFoundation.menu.backToParentMenu",
+        "parameters": {}
+      }
+    ],
+    "解除": [
+      {
+        "id": "uiFoundation.treeSelect.clearForTreeSelect",
+        "parameters": {}
+      }
+    ],
+    "計算が時間内に終わりませんでした。セルの原文は保持されています。再計算してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculationTimedOut",
+        "parameters": {}
+      }
+    ],
+    "計算の期限設定を確認してください。セルの原文は保持されています。": [
+      {
+        "id": "uiFoundation.spreadsheet.invalidCalculationTimeout",
+        "parameters": {}
+      }
+    ],
+    "計算の準備が時間内に終わりませんでした。セルの原文は保持されています。再計算してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculationPreparationTimedOut",
+        "parameters": {}
+      }
+    ],
+    "計算済み": [
+      {
+        "id": "uiFoundation.spreadsheet.calculated",
+        "parameters": {}
+      }
+    ],
+    "計算結果を確認できませんでした。セルの原文は保持されています。再計算してください。": [
+      {
+        "id": "uiFoundation.spreadsheet.calculationUnconfirmed",
+        "parameters": {}
+      }
+    ],
+    "評価を確認してください。": [
+      {
+        "id": "uiFoundation.rating.checkTheRating",
+        "parameters": {}
+      }
+    ],
+    "評価を解除": [
+      {
+        "id": "uiFoundation.rating.clearRating",
+        "parameters": {}
+      }
+    ],
+    "評価を選んでください。": [
+      {
+        "id": "uiFoundation.rating.chooseARating",
+        "parameters": {}
+      }
+    ],
+    "評価数は1から20の整数とし、解除操作の説明を指定してください。": [
+      {
+        "id": "uiFoundation.rating.setTheRatingCountToAWholeNumberBetween1And20AndProvideALabelForClearingTheRating",
+        "parameters": {}
+      }
+    ],
+    "該当するコマンドはありません。": [
+      {
+        "id": "uiFoundation.commandPalette.noMatchingCommands",
+        "parameters": {}
+      }
+    ],
+    "詳細": [
+      {
+        "id": "uiFoundation.dataTableView.details",
+        "parameters": {}
+      }
+    ],
+    "詳細: ": [
+      {
+        "id": "uiFoundation.dataTableView.details",
+        "parameters": {}
+      }
+    ],
+    "詳細の展開には、重複しない現在の項目キーを指定してください。": [
+      {
+        "id": "uiFoundation.timeline.provideAUniqueCurrentItemKeyForEachExpandedDetail",
+        "parameters": {}
+      }
+    ],
+    "詳細を表示": [
+      {
+        "id": "uiFoundation.timeline.showDetails",
+        "parameters": {}
+      }
+    ],
+    "読み取り中に貼付け先の選択、行、列または編集が変わりました。内容を確認してから再試行してください。": [
+      {
+        "id": "uiFoundation.dataGrid.theSelectionRowsColumnsOrEditsAtThePasteDestinationChangedWhileReadingReviewTheContent",
+        "parameters": {}
+      }
+    ],
+    "読み込み中": [
+      {
+        "id": "uiFoundation.messageList.loading",
+        "parameters": {}
+      }
+    ],
+    "読み込むCSV": [
+      {
+        "id": "uiFoundation.spreadsheet.cSVToImport",
+        "parameters": {}
+      }
+    ],
+    "読み込んでいます。": [
+      {
+        "id": "uiFoundation.infiniteScroll.loading",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.mediaPlayer.loading",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.timeline.loading",
+        "parameters": {}
+      }
+    ],
+    "読込み結果を確認できません。現在の会話は保持されています。": [
+      {
+        "id": "uiFoundation.messageList.couldNotConfirmTheLoadResultTheCurrentConversationHasBeenKept",
+        "parameters": {}
+      }
+    ],
+    "貼付ける行の列数を揃えてください。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "貼付けを再試行": [
+      {
+        "id": "uiFoundation.dataGrid.retryPaste",
+        "parameters": {}
+      }
+    ],
+    "貼付け先が更新されました。内容を確認してから再試行してください。": [
+      {
+        "id": "uiFoundation.dataGrid.thePasteDestinationHasChangedReviewItAndTryAgain",
+        "parameters": {}
+      }
+    ],
+    "貼付け内容の保存結果を確認しています。": [
+      {
+        "id": "uiFoundation.dataGrid.checkingWhetherThePastedContentWasSaved",
+        "parameters": {}
+      }
+    ],
+    "貼付け内容の引用符が不正です。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "貼付け内容の引用符が閉じていません。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "貼付け内容の行、列、引用符を確認してください。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "貼付け範囲が表の範囲外です。": [
+      {
+        "id": "uiFoundation.tablePaste.rangeOutsideTable",
+        "parameters": {}
+      }
+    ],
+    "超える": [
+      {
+        "id": "uiFoundation.filterBuilder.operatorGt",
+        "parameters": {}
+      }
+    ],
+    "軸の種別と範囲を確認してください。": [
+      {
+        "id": "uiFoundation.chart.checkTheAxisTypeAndRange",
+        "parameters": {}
+      }
+    ],
+    "追加": [
+      {
+        "id": "uiFoundation.tagInput.add",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tagInput.addTheCurrentItemOrClearTheField",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.addForTransferList",
+        "parameters": {}
+      }
+    ],
+    "追加できる候補はありません。": [
+      {
+        "id": "uiFoundation.transferList.thereAreNoOptionsToAdd",
+        "parameters": {}
+      }
+    ],
+    "追加取得の説明を指定してください。": [
+      {
+        "id": "uiFoundation.infiniteScroll.provideADescriptionForLoadingMoreItems",
+        "parameters": {}
+      }
+    ],
+    "送信": [
+      {
+        "id": "uiFoundation.formActions.send",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageComposer.send",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageComposer.sending",
+        "parameters": {}
+      }
+    ],
+    "送信する添付": [
+      {
+        "id": "uiFoundation.messageComposer.attachmentsToSend",
+        "parameters": {}
+      }
+    ],
+    "送信中": [
+      {
+        "id": "uiFoundation.messageComposer.sending",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.messageList.sendSending",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadQueue.sending",
+        "parameters": {}
+      }
+    ],
+    "送信失敗": [
+      {
+        "id": "uiFoundation.messageList.sendFailed",
+        "parameters": {}
+      }
+    ],
+    "送信待ち": [
+      {
+        "id": "uiFoundation.uploadQueue.queued",
+        "parameters": {}
+      }
+    ],
+    "送信済み": [
+      {
+        "id": "uiFoundation.messageList.sendSent",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.uploadQueue.sent",
+        "parameters": {}
+      }
+    ],
+    "送信結果を確認できません": [
+      {
+        "id": "uiFoundation.messageList.sendUnknown",
+        "parameters": {}
+      }
+    ],
+    "送信結果を確認できません。入力内容は保持されています。アプリで結果を確認してください。": [
+      {
+        "id": "uiFoundation.messageComposer.couldNotConfirmWhetherTheMessageWasSentYourInputHasBeenKeptCheckTheResultInTheApp",
+        "parameters": {}
+      }
+    ],
+    "透明度を含まない色を選んでください。": [
+      {
+        "id": "uiFoundation.colorPicker.chooseAColorWithFullOpacity",
+        "parameters": {}
+      }
+    ],
+    "途中の階層は選択できません。末端の項目を選択してください。": [
+      {
+        "id": "uiFoundation.cascader.onlyLeafItemsCanBeSelectedSelectAnItemAtTheEndOfThePath",
+        "parameters": {}
+      }
+    ],
+    "途中の階層も選択できます。": [
+      {
+        "id": "uiFoundation.cascader.youCanAlsoSelectIntermediateItems",
+        "parameters": {}
+      }
+    ],
+    "通常表へ切り替える": [
+      {
+        "id": "uiFoundation.dataTableView.switchToStandardTable",
+        "parameters": {}
+      }
+    ],
+    "通知の分類": [
+      {
+        "id": "uiFoundation.notificationCenter.categoryFilter",
+        "parameters": {}
+      }
+    ],
+    "通知の取得を再試行": [
+      {
+        "id": "uiFoundation.notificationCenter.retry",
+        "parameters": {}
+      }
+    ],
+    "通知の状態": [
+      {
+        "id": "uiFoundation.notificationCenter.statusFilter",
+        "parameters": {}
+      }
+    ],
+    "通知を取得しています。": [
+      {
+        "id": "uiFoundation.notificationCenter.loading",
+        "parameters": {}
+      }
+    ],
+    "通知を追加取得": [
+      {
+        "id": "uiFoundation.notificationCenter.loadMore",
+        "parameters": {}
+      }
+    ],
+    "通知を閉じる": [
+      {
+        "id": "uiFoundation.alert.closeLabel",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.snackbar.dismiss",
+        "parameters": {}
+      }
+    ],
+    "通知を閉じる: ": [
+      {
+        "id": "uiFoundation.alert.closeLabel",
+        "parameters": {}
+      }
+    ],
+    "週": [
+      {
+        "id": "uiFoundation.gantt.week",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.scheduler.week",
+        "parameters": {}
+      }
+    ],
+    "進捗": [
+      {
+        "id": "uiFoundation.gantt.progress",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.progressBar.description",
+        "parameters": {
+          "value": [
+            "number"
+          ],
+          "total": [
+            "number"
+          ],
+          "percent": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "進捗を確認しています。": [
+      {
+        "id": "uiFoundation.progressBar.indeterminate",
+        "parameters": {}
+      }
+    ],
+    "進捗を確認中": [
+      {
+        "id": "uiFoundation.uploadList.checkingProgress",
+        "parameters": {}
+      }
+    ],
+    "遅い方": [
+      {
+        "id": "uiFoundation.scheduler.laterTime",
+        "parameters": {}
+      }
+    ],
+    "過去のメッセージを読み込む": [
+      {
+        "id": "uiFoundation.messageList.loadEarlierMessages",
+        "parameters": {}
+      }
+    ],
+    "過去のメッセージを読み込めません。再試行してください。": [
+      {
+        "id": "uiFoundation.messageList.couldNotLoadEarlierMessagesTryAgain",
+        "parameters": {}
+      }
+    ],
+    "適用中": [
+      {
+        "id": "uiFoundation.dataTableView.activeFilterCount",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "適用条件": [
+      {
+        "id": "uiFoundation.filterChips.appliedCriteria",
+        "parameters": {}
+      }
+    ],
+    "適用条件はありません。": [
+      {
+        "id": "uiFoundation.filterChips.thereAreNoActiveFilters",
+        "parameters": {}
+      }
+    ],
+    "選択": [
+      {
+        "id": "uiFoundation.chart.selection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.selection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.flowEditor.selection",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.spreadsheet.selectionSummary",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.virtualDataTable.selection",
+        "parameters": {}
+      }
+    ],
+    "選択された階層に未取得の子項目があります。": [
+      {
+        "id": "uiFoundation.treeSelect.someChildrenOfTheSelectedNodesHaveYetToLoad",
+        "parameters": {}
+      }
+    ],
+    "選択した期間が上限を超えています。": [
+      {
+        "id": "uiFoundation.dateRangePicker.overDayLimit",
+        "parameters": {}
+      }
+    ],
+    "選択してください": [
+      {
+        "id": "uiFoundation.listbox.selectionRequired",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchPanel.selectAnOption",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.treeSelect.selectAnOption",
+        "parameters": {}
+      }
+    ],
+    "選択してください。": [
+      {
+        "id": "uiFoundation.listbox.selectionRequired",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.searchPanel.selectAnOption",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.treeSelect.selectAnOption",
+        "parameters": {}
+      }
+    ],
+    "選択できない日が期間に含まれています。": [
+      {
+        "id": "uiFoundation.dateRangePicker.unavailableDay",
+        "parameters": {}
+      }
+    ],
+    "選択できない項目が含まれています。": [
+      {
+        "id": "uiFoundation.treeSelect.theSelectionContainsUnavailableItems",
+        "parameters": {}
+      }
+    ],
+    "選択できない項目です。": [
+      {
+        "id": "uiFoundation.cascader.thisItemCannotBeSelected",
+        "parameters": {}
+      }
+    ],
+    "選択できる期間を確認してください。": [
+      {
+        "id": "uiFoundation.dateRangePicker.outOfBounds",
+        "parameters": {}
+      }
+    ],
+    "選択は無効です。": [
+      {
+        "id": "uiFoundation.cascader.selectionIsDisabled",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.treeSelect.selectionIsDisabled",
+        "parameters": {}
+      }
+    ],
+    "選択は読み取り専用です。": [
+      {
+        "id": "uiFoundation.cascader.selectionIsReadOnly",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.treeSelect.selectionIsReadOnly",
+        "parameters": {}
+      }
+    ],
+    "選択を完了": [
+      {
+        "id": "uiFoundation.treeSelect.doneSelecting",
+        "parameters": {}
+      }
+    ],
+    "選択を解除": [
+      {
+        "id": "uiFoundation.multiSelect.clearSelection",
+        "parameters": {}
+      }
+    ],
+    "選択セルをコピー": [
+      {
+        "id": "uiFoundation.dataGrid.copySelectedCells",
+        "parameters": {}
+      }
+    ],
+    "選択セルをコピーしました。": [
+      {
+        "id": "uiFoundation.dataGrid.selectedCellsCopied",
+        "parameters": {}
+      }
+    ],
+    "選択上限には正の整数を指定してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidSelectionLimit",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.useAPositiveIntegerForTheSelectionLimit",
+        "parameters": {}
+      }
+    ],
+    "選択上限または現在の値を確認してください。": [
+      {
+        "id": "uiFoundation.listbox.selectedCountWithInvalidSelection",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "選択中のコマンドを再試行": [
+      {
+        "id": "uiFoundation.commandPalette.retrySelectedCommand",
+        "parameters": {}
+      }
+    ],
+    "選択中のタブの操作: ": [
+      {
+        "id": "uiFoundation.tabs.selectedTabActionsLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "選択中のタブを前へ": [
+      {
+        "id": "uiFoundation.tabs.moveSelectedTabEarlier",
+        "parameters": {}
+      }
+    ],
+    "選択中のタブを後ろへ": [
+      {
+        "id": "uiFoundation.tabs.moveSelectedTabLater",
+        "parameters": {}
+      }
+    ],
+    "選択中のタブを閉じる": [
+      {
+        "id": "uiFoundation.tabs.closeSelectedTab",
+        "parameters": {}
+      }
+    ],
+    "選択対象": [
+      {
+        "id": "uiFoundation.tree.itemsToSelect",
+        "parameters": {}
+      }
+    ],
+    "選択欄の識別子と説明を指定してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidControlIdentity",
+        "parameters": {}
+      }
+    ],
+    "選択済み": [
+      {
+        "id": "uiFoundation.transferList.selectedForTransferList",
+        "parameters": {}
+      }
+    ],
+    "選択済みを検索": [
+      {
+        "id": "uiFoundation.transferList.searchSelectedItems",
+        "parameters": {}
+      }
+    ],
+    "選択肢": [
+      {
+        "id": "uiFoundation.multiSelect.options",
+        "parameters": {}
+      }
+    ],
+    "選択肢から選択してください。": [
+      {
+        "id": "uiFoundation.tableEdit.optionRequired",
+        "parameters": {}
+      }
+    ],
+    "選択肢の値と説明・グループを確認してください。": [
+      {
+        "id": "uiFoundation.listbox.invalidOptions",
+        "parameters": {}
+      }
+    ],
+    "選択肢の値・説明と重複を確認してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.checkTheOptionValuesAndDescriptionsAndLook",
+        "parameters": {}
+      }
+    ],
+    "選択肢はありません。": [
+      {
+        "id": "uiFoundation.listbox.noOptions",
+        "parameters": {}
+      }
+    ],
+    "選択肢は配列で指定してください。": [
+      {
+        "id": "uiFoundation.filterBuilder.provideTheOptionsAsAnArray",
+        "parameters": {}
+      }
+    ],
+    "選択項目": [
+      {
+        "id": "uiFoundation.treeSelect.selectedItem",
+        "parameters": {}
+      }
+    ],
+    "配置を計算できません。現在の図は保持されています。": [
+      {
+        "id": "uiFoundation.flowEditor.couldNotCalculateTheLayoutTheCurrentDiagramHasBeenKept",
+        "parameters": {}
+      }
+    ],
+    "重複した選択項目があります。": [
+      {
+        "id": "uiFoundation.treeSelect.someSelectedItemsAreDuplicated",
+        "parameters": {}
+      }
+    ],
+    "重複した項目を確認してください。": [
+      {
+        "id": "uiFoundation.tagInput.reviewTheDuplicateItems",
+        "parameters": {}
+      }
+    ],
+    "閉じる": [
+      {
+        "id": "uiFoundation.cascader.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.commandPalette.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.commandPalette.closeDialog",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dialog.closeAction",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.megaMenu.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.popover.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.snackbar.dismiss",
+        "parameters": {}
+      }
+    ],
+    "閉じる: ": [
+      {
+        "id": "uiFoundation.cascader.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.commandPalette.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dataTableView.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.dialog.closeAction",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.megaMenu.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.popover.close",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.snackbar.dismiss",
+        "parameters": {}
+      }
+    ],
+    "開く": [
+      {
+        "id": "uiFoundation.dataTableView.open",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileExplorer.open",
+        "parameters": {}
+      }
+    ],
+    "開始": [
+      {
+        "id": "uiFoundation.gantt.start",
+        "parameters": {}
+      }
+    ],
+    "開始と終了のDST重複時刻の確認方法を指定してください。": [
+      {
+        "id": "uiFoundation.scheduler.invalidMoveDisambiguation",
+        "parameters": {}
+      }
+    ],
+    "開始の現地日時": [
+      {
+        "id": "uiFoundation.scheduler.localStart",
+        "parameters": {}
+      }
+    ],
+    "開始の重複時刻": [
+      {
+        "id": "uiFoundation.scheduler.startRepeatedTime",
+        "parameters": {}
+      }
+    ],
+    "開始値": [
+      {
+        "id": "uiFoundation.rangeSlider.startValue",
+        "parameters": {}
+      }
+    ],
+    "開始値と終了値を指定してください。": [
+      {
+        "id": "uiFoundation.numericField.rangeEndpointsRequired",
+        "parameters": {}
+      }
+    ],
+    "開始値は終了値以下にしてください。": [
+      {
+        "id": "uiFoundation.numericField.invalidRangeOrder",
+        "parameters": {}
+      }
+    ],
+    "開始日と終了日を選択してください。": [
+      {
+        "id": "uiFoundation.dateRangePicker.endpointsRequired",
+        "parameters": {}
+      }
+    ],
+    "開始日を選ぶ": [
+      {
+        "id": "uiFoundation.dateRangePicker.chooseAStartDate",
+        "parameters": {}
+      }
+    ],
+    "降順": [
+      {
+        "id": "uiFoundation.dataView.descending",
+        "parameters": {}
+      }
+    ],
+    "除去": [
+      {
+        "id": "uiFoundation.filterBuilder.remove",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.removeSavedFilters",
+        "parameters": {}
+      }
+    ],
+    "階層": [
+      {
+        "id": "uiFoundation.fileExplorer.hierarchy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileExplorer.hierarchyTooDeep",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.jsonViewer.hierarchy",
+        "parameters": {}
+      }
+    ],
+    "階層のID、親子関係、取得済みの子を確認してください。": [
+      {
+        "id": "uiFoundation.treeGrid.checkTheIDsParentChildRelationshipsAndLoadedChildRows",
+        "parameters": {}
+      }
+    ],
+    "階層の各行に列と行キーを持つdataを指定してください。": [
+      {
+        "id": "uiFoundation.treeGrid.provideDataWithColumnsAndARowKeyForEachRowInTheHierarchy",
+        "parameters": {}
+      }
+    ],
+    "階層を選択してください": [
+      {
+        "id": "uiFoundation.cascader.selectALevelForCascader",
+        "parameters": {}
+      }
+    ],
+    "階層行と表示行の対応を確認してください。": [
+      {
+        "id": "uiFoundation.dataGrid.checkThatHierarchyRowsMatchTheDisplayedRows",
+        "parameters": {}
+      }
+    ],
+    "隠す": [
+      {
+        "id": "uiFoundation.passwordInput.hide",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.hidePassword",
+        "parameters": {}
+      }
+    ],
+    "集計列がありません。": [],
+    "集計列と方法を確認してください。": [
+      {
+        "id": "uiFoundation.dataTableView.checkTheSummaryColumnsAndCalculationMethods",
+        "parameters": {}
+      }
+    ],
+    "集計方法が不正です。": [],
+    "音量": [
+      {
+        "id": "uiFoundation.mediaPlayer.volume",
+        "parameters": {}
+      }
+    ],
+    "項目": [
+      {
+        "id": "uiFoundation.chart.item",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.filterBuilder.item",
+        "parameters": {}
+      }
+    ],
+    "項目はありません。": [
+      {
+        "id": "uiFoundation.tree.noItems",
+        "parameters": {}
+      }
+    ],
+    "項目を選択": [
+      {
+        "id": "uiFoundation.filterBuilder.selectAField",
+        "parameters": {}
+      }
+    ],
+    "項目を選択してください。": [
+      {
+        "id": "uiFoundation.transferList.selectAnItem",
+        "parameters": {}
+      }
+    ],
+    "順序変更の可否を確認できないため、変更していません。": [
+      {
+        "id": "uiFoundation.transferList.couldNotVerifyWhetherReorderingIsAllowedThe",
+        "parameters": {}
+      }
+    ],
+    "高くする": [
+      {
+        "id": "uiFoundation.bottomSheet.increaseHeight",
+        "parameters": {}
+      }
+    ],
+    "高さ": [
+      {
+        "id": "uiFoundation.imageCropper.height",
+        "parameters": {}
+      }
+    ],
+    "（変更不可）": [
+      {
+        "id": "uiFoundation.transferList.lockedItem",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "（必須）": [
+      {
+        "id": "uiFoundation.colorPicker.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.formField.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.inlineEdit.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.multiSelect.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.radioGroup.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rangeSlider.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.rating.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.tableEditors.required",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.transferList.requiredLabel",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "（移動先として無効）": [
+      {
+        "id": "uiFoundation.scheduler.disabledDestination",
+        "parameters": {
+          "label": [
+            "string"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,8 +1,7 @@
 import {uiMessageState} from './locale';
-import {injectUiText as injectUiDiagnosticText} from './locale';
-import {injectUiText as injectUiRuntimeText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiLocale,injectUiText,UiMessagePipe} from './locale';
+import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, untracked, viewChildren } from '@angular/core';
 import { ActionControl } from './action-control';
 import { canFocus } from './focus';
@@ -31,25 +30,24 @@ export interface GridPasteRequest<T extends object> {
 }
 let gridPasteSequence = 0;
 /** Cell-navigation widget. App-confirmed edits/pastes are the only source of rowsChange. */
-@Component({ selector: 'ui-data-grid', standalone: true, imports: [ActionControl, CellEditor,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, host: { 'data-table-owner': '', tabindex: '-1', '[attr.aria-label]': 'caption()', '(focusin)': 'focusIn($event)', '(focusout)': 'focusOut($event)' }, template: `
- <p [id]="gridId()+'-instructions'">{{'矢印キーでセルを移動します。Shiftと矢印で範囲を選択し、EnterまたはF2で編集します。コピー・貼付けは選択したセルから行います。' | uiMessage}}{{treeRows()?('先頭セルの左右で階層を開閉し、Spaceで行を選択します。' | uiMessage):''}}</p>
+@Component({ selector: 'ui-data-grid', standalone: true, imports: [ActionControl, CellEditor,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush, host: { 'data-table-owner': '', tabindex: '-1', '[attr.aria-label]': 'caption()', '(focusin)': 'focusIn($event)', '(focusout)': 'focusOut($event)' }, template: `
+ <p [id]="gridId()+'-instructions'">{{'uiFoundation.dataGrid.useTheArrowKeysToMoveBetweenCellsHoldShiftAndPressAnArrowKeyToSelectARangePressEnte' | uiStableMessage}}{{treeRows()?('uiFoundation.dataGrid.useTheLeftAndRightArrowKeysInTheFirstCellToCollapseOrExpandTheRowPressSpaceToSelect' | uiStableMessage):''}}</p>
  @if(problem()){<p role="alert">{{problem()}}</p>}
- <div class="ui-data-grid__actions"><button uiAction data-table-control type="button" [disabled]="blocked()||clipboardBusy()" (click)="copy()">{{'選択セルをコピー' | uiMessage}}</button><button uiAction data-table-control type="button" [disabled]="blocked()||clipboardBusy()||!editable()" (click)="readPaste()">{{'セルへ貼付け' | uiMessage}}</button></div>
- <p role="status" aria-atomic="true">{{status()}}</p>@if(lastFailedPaste()){<button uiAction data-table-control type="button" [disabled]="blocked()" (click)="retryPaste()">{{'貼付けを再試行' | uiMessage}}</button>}
+ <div class="ui-data-grid__actions"><button uiAction data-table-control type="button" [disabled]="blocked()||clipboardBusy()" (click)="copy()">{{'uiFoundation.dataGrid.copySelectedCells' | uiStableMessage}}</button><button uiAction data-table-control type="button" [disabled]="blocked()||clipboardBusy()||!editable()" (click)="readPaste()">{{'uiFoundation.dataGrid.pasteIntoCell' | uiStableMessage}}</button></div>
+ <p role="status" aria-atomic="true">{{status()}}</p>@if(lastFailedPaste()){<button uiAction data-table-control type="button" [disabled]="blocked()" (click)="retryPaste()">{{'uiFoundation.dataGrid.retryPaste' | uiStableMessage}}</button>}
  <div class="ui-data-grid__viewport" [hidden]="!!problem()"><table [style.min-inline-size]="'calc(max(var(--ui-size-table-column-min), calc(12ch + var(--ui-size-control) + var(--ui-space-control-gap) + 2 * var(--ui-space-table-x))) * '+columns().length+')'" [attr.role]="treeRows()?'treegrid':'grid'" [attr.aria-label]="caption()" [attr.aria-describedby]="gridId()+'-instructions'" [attr.aria-rowcount]="rows().length+1" [attr.aria-colcount]="columns().length" [attr.aria-multiselectable]="selectionMode()==='range'||rowSelection()==='multiple'?'true':null" [attr.aria-busy]="blocked()?'true':null" (keydown)="key($event)" (paste)="paste($event)"><caption>{{caption()}}</caption><thead><tr role="row">@for(column of columns();track column.id){<th role="columnheader" scope="col" [id]="headerId(column.id)">{{column.header}}</th>}</tr></thead><tbody>
  @for(row of rows();track rowKey(row);let ri=$index){<tr role="row" [attr.data-row-key]="rowKey(row)" [attr.aria-rowindex]="ri+2" [attr.aria-level]="treeRows()?.[ri]?.level??null" [attr.aria-posinset]="treeRows()?.[ri]?.position??null" [attr.aria-setsize]="treeRows()?.[ri]?.setSize??null" [attr.aria-expanded]="treeRows()?.[ri]?.branch?treeRows()![ri].expanded:null" [attr.aria-busy]="treeRows()?.[ri]?.loading?'true':null" [attr.aria-selected]="rowSelection()!=='none'?selectedKeys().includes(rowKey(row)):null">
  @for(column of columns();track column.id;let ci=$index){<td role="gridcell" data-table-control data-grid-cell [attr.data-row-index]="ri" [attr.data-column-index]="ci" [attr.tabindex]="active().row===ri&&active().column===ci?0:-1" [attr.headers]="headerId(column.id)" [attr.aria-selected]="selectionMode()!=='none'?selected({row:ri,column:ci}):null" [attr.aria-disabled]="blocked()||treeRows()?.[ri]?.disabled?'true':null" [class.ui-data-grid__selected]="selected({row:ri,column:ci})" (click)="clickCell(ri,ci,$event)" (dblclick)="editCell(ri,ci)">
- @if(ci===0&&!problem()&&treeRows()?.[ri];as meta){<span class="ui-data-grid__hierarchy" [style.padding-inline-start]="indent(meta.level)">@if(meta.branch){<button uiAction data-table-control type="button" tabindex="-1" [attr.aria-label]="(meta.expanded?('閉じる: ' | uiMessage):('展開: ' | uiMessage))+cellText(row,column)" [attr.aria-expanded]="meta.expanded" [disabled]="blocked()||meta.disabled" (click)="toggleTree(ri,$event)">{{meta.expanded?'−':'+'}}</button>}@if(rowSelection()!=='none'){<input data-table-control type="checkbox" tabindex="-1" [attr.aria-label]="('行を選択: ' | uiMessage)+cellText(row,column)" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="blocked()||meta.disabled||meta.selectable===false" (change)="selectRow(ri)">}</span>}
+ @if(ci===0&&!problem()&&treeRows()?.[ri];as meta){<span class="ui-data-grid__hierarchy" [style.padding-inline-start]="indent(meta.level)">@if(meta.branch){<button uiAction data-table-control type="button" tabindex="-1" [attr.aria-label]="uiRuntimeText_DataGrid(meta.expanded ? 'uiFoundation.dataGrid.collapseRowLabel' : 'uiFoundation.dataGrid.expandRowLabel', {row: cellText(row,column)})" [attr.aria-expanded]="meta.expanded" [disabled]="blocked()||meta.disabled" (click)="toggleTree(ri,$event)">{{meta.expanded?'−':'+'}}</button>}@if(rowSelection()!=='none'){<input data-table-control type="checkbox" tabindex="-1" [attr.aria-label]="uiRuntimeText_DataGrid('uiFoundation.dataGrid.selectRowLabel', {row: cellText(row,column)})" [checked]="selectedKeys().includes(rowKey(row))" [disabled]="blocked()||meta.disabled||meta.selectable===false" (change)="selectRow(ri)">}</span>}
  @if(editable()&&column.editable!==false&&column.field!==keyField()){<ui-cell-editor #editor [row]="row" [keyField]="keyField()" [column]="column" [controlId]="fieldId(rowKey(row),column.id)" [label]="column.header+'・'+rowLabel(row)" [tabEntry]="false" [restoreStartFocus]="false" [disabled]="disabled()||!!treeRows()?.[ri]?.disabled||!!pendingPaste()" [busy]="busy()" [locale]="effectiveLocale()" [missingLabel]="uiEffective_missingLabel()" (saveRequested)="saveRequested.emit($event)" (rowChange)="edited($event)" (editingChange)="editingChanged(editor,ri,ci,$event)"/>}@else{<span>{{cellText(row,column)}}</span>}
  </td>}</tr>}@empty{<tr role="row"><td role="gridcell" [attr.colspan]="columns().length">{{uiEffective_emptyLabel()}}</td></tr>}
  </tbody></table></div>`, styles: `
  :host{display:block;min-inline-size:0;max-inline-size:100%;font:inherit;color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}p{overflow-wrap:anywhere;}.ui-data-grid__actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}.ui-data-grid__viewport{overflow:auto;max-inline-size:100%;max-block-size:var(--ui-size-table-viewport);overscroll-behavior:contain;}table{border-collapse:separate;border-spacing:0;inline-size:100%;min-inline-size:100%;table-layout:fixed;}caption{font-weight:var(--ui-weight-control);text-align:start;padding-block:var(--ui-space-table-y);}th,td{min-inline-size:var(--ui-size-table-column-min);padding:var(--ui-space-table-y) var(--ui-space-table-x);text-align:start;vertical-align:top;border:var(--ui-border-control) solid var(--ui-color-border);overflow-wrap:anywhere;}thead{background:var(--ui-color-background);}td.ui-data-grid__selected{background:var(--ui-color-background);box-shadow:inset 0 0 0 var(--ui-border-control) var(--ui-color-action);}td:focus-visible,:host:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}.ui-data-grid__hierarchy{display:inline-flex;align-items:center;gap:var(--ui-space-control-gap);max-inline-size:100%;box-sizing:border-box;}input[type=checkbox]{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);accent-color:var(--ui-color-action);}@media(forced-colors:active){td.ui-data-grid__selected{outline:var(--ui-border-control) solid Highlight;}}` })
 export class DataGrid<T extends object> {
- private readonly uiDiagnostic_DataGrid=(()=>{const text=injectUiDiagnosticText();return (value:string|null):string|null=>value===null?null:text(value);})();
 
- private readonly uiRuntimeText_DataGrid=injectUiRuntimeText();
+ protected readonly uiRuntimeText_DataGrid=injectUiRuntimeText();
 
- protected readonly uiText_DataGrid=injectUiText();
+ protected readonly uiText_DataGrid=injectUiMessageText();
     readonly caption = input.required<string>();
     readonly gridId = input.required<string>();
     readonly rows = input.required<readonly T[]>();
@@ -63,9 +61,9 @@ export class DataGrid<T extends object> {
     readonly selectionChange = output<GridRange>();
     protected readonly uiLocaleDefaults=injectUiLocale();readonly locale=input<string>();protected readonly effectiveLocale=computed(()=>this.locale()??this.uiLocaleDefaults().locale);
     readonly missingLabel = input<string>();
- protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_DataGrid('未取得'));
+ protected readonly uiEffective_missingLabel=uiLocaleComputed(()=>this.missingLabel()??this.uiText_DataGrid("uiFoundation.dataGrid.unavailable"));
     readonly emptyLabel = input<string>();
- protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_DataGrid('データはありません。'));
+ protected readonly uiEffective_emptyLabel=uiLocaleComputed(()=>this.emptyLabel()??this.uiText_DataGrid("uiFoundation.dataGrid.noData"));
     readonly saveRequested = output<TableEditRequest<T>>();
     readonly pasteRequested = output<GridPasteRequest<T>>();
     readonly rowsChange = output<readonly T[]>();
@@ -94,11 +92,11 @@ export class DataGrid<T extends object> {
     private ownedCell: HTMLElement | null = null;
     private shouldFocus = false;
     private currentEditor: CellEditor<T> | null = null;
-    protected readonly problem = computed(() => this.uiDiagnostic_DataGrid(tableConfigurationError(this.rows(), this.columns(), this.keyField(), createTableState())) || this.uiDiagnostic_DataGrid(tableEditProblem(this.columns(), this.keyField())) || (!this.caption().trim() || !this.gridId().trim() ? this.uiRuntimeText_DataGrid('グリッドの説明とIDを指定してください。') : this.treeRows() && (this.treeRows()!.length !== this.rows().length || this.treeRows()!.some(row => !row.id.trim() || !Number.isSafeInteger(row.level) || row.level < 1 || row.level > 100 || row.position < 1 || row.setSize < row.position)) ? this.uiRuntimeText_DataGrid('階層行と表示行の対応を確認してください。') : null));
+    protected readonly problem = computed(() => tableConfigurationError(this.rows(), this.columns(), this.keyField(), createTableState(), this.uiRuntimeText_DataGrid) || tableEditProblem(this.columns(), this.keyField(), this.uiRuntimeText_DataGrid) || (!this.caption().trim() || !this.gridId().trim() ? this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.provideADescriptionAndIDForTheGrid") : this.treeRows() && (this.treeRows()!.length !== this.rows().length || this.treeRows()!.some(row => !row.id.trim() || !Number.isSafeInteger(row.level) || row.level < 1 || row.level > 100 || row.position < 1 || row.setSize < row.position)) ? this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.checkThatHierarchyRowsMatchTheDisplayedRows") : null));
     protected readonly blocked = computed(() => this.disabled() || this.busy() || !!this.pendingPaste() || !!this.problem());
     protected rowKey(row: T): TableKey { return row[this.keyField()] as TableKey; }
-    protected rowLabel(row: T): string { return tableText(row, this.columns()[0], this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages); }
-    protected cellText(row: T, column: TableEditableColumn<T>): string { return tableText(row, column, this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiLocaleDefaults().messages); }
+    protected rowLabel(row: T): string { return tableText(row, this.columns()[0], this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiRuntimeText_DataGrid); }
+    protected cellText(row: T, column: TableEditableColumn<T>): string { return tableText(row, column, this.effectiveLocale(), this.uiEffective_missingLabel(),this.uiLocaleDefaults().numberOptions,this.uiRuntimeText_DataGrid); }
     protected fieldId(key: TableKey, column: string): string { return this.gridId() + '-edit-' + tableDomIdPair(typeof key + ':' + key, column); }
     protected headerId(column: string): string { return this.gridId() + '-header-' + tableDomIdToken(column); }
     protected selected(cell: GridCell): boolean { const range = this.selection() ?? { anchor: this.active(), focus: this.active() }; return this.selectionMode() !== 'none' && gridRangeContains(range, cell); }
@@ -177,7 +175,7 @@ export class DataGrid<T extends object> {
             if (this.currentEditor && this.currentEditor !== editor) {
                 if (this.currentEditor.pendingRequestId() !== null) {
                     editor.cancelEdit();
-                    this.status.setMessage([() => this.uiRuntimeText_DataGrid('前の編集の保存結果を確認しています。')]);
+                    this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.checkingTheSaveResultOfThePreviousEdit")]);
                     return;
                 }
                 this.currentEditor.cancelEdit();
@@ -272,18 +270,18 @@ export class DataGrid<T extends object> {
             return false;
         const generation = ++this.clipboardGeneration, text = serializeTableMatrix(this.copyMatrix());
         this.clipboardBusy.set(true);
-        this.status.setMessage([() => this.uiRuntimeText_DataGrid('コピーしています。')]);
+        this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.copying")]);
         try {
             const writer = this.clipboardWriter() ?? ((value: string) => navigator.clipboard.writeText(value));
             await writer(text);
             if (generation !== this.clipboardGeneration || this.destroy.destroyed)
                 return false;
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('選択セルをコピーしました。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.selectedCellsCopied")]);
             return true;
         }
         catch {
             if (generation === this.clipboardGeneration && !this.destroy.destroyed)
-                this.status.setMessage([() => this.uiRuntimeText_DataGrid('コピーできませんでした。再試行できます。')]);
+                this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.unableToCopyYouCanTryAgain")]);
             return false;
         }
         finally {
@@ -295,7 +293,7 @@ export class DataGrid<T extends object> {
         if (this.destroy.destroyed || this.blocked() || this.clipboardBusy() || !this.editable())
             return false;
         if (this.currentEditor?.isEditing()) {
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('編集を保存または取消してから貼付けしてください。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.saveOrCancelTheEditBeforePasting")]);
             return false;
         }
         const sourceRows = [...this.rows()], sourceColumns = [...this.columns()], start = { ...this.active() };
@@ -304,21 +302,21 @@ export class DataGrid<T extends object> {
         const targetKey = this.rowKey(sourceRows[start.row]), targetColumn = sourceColumns[start.column].id;
         const generation = ++this.clipboardGeneration;
         this.clipboardBusy.set(true);
-        this.status.setMessage([() => this.uiRuntimeText_DataGrid('クリップボードを確認しています。')]);
+        this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.checkingTheClipboard")]);
         try {
             const reader = this.clipboardReader() ?? (() => navigator.clipboard.readText()), text = await reader();
             if (generation !== this.clipboardGeneration || this.destroy.destroyed)
                 return false;
             const active = this.active();
             if (!this.validCell(active) || this.rowKey(this.rows()[active.row]) !== targetKey || this.columns()[active.column].id !== targetColumn || sourceRows.length !== this.rows().length || sourceRows.some((row, index) => row !== this.rows()[index]) || sourceColumns.length !== this.columns().length || sourceColumns.some((column, index) => column !== this.columns()[index]) || this.currentEditor?.isEditing()) {
-                this.status.setMessage([() => this.uiRuntimeText_DataGrid('読み取り中に貼付け先の選択、行、列または編集が変わりました。内容を確認してから再試行してください。')]);
+                this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.theSelectionRowsColumnsOrEditsAtThePasteDestinationChangedWhileReadingReviewTheContent")]);
                 return false;
             }
             return this.requestPaste(text);
         }
         catch {
             if (generation === this.clipboardGeneration && !this.destroy.destroyed)
-                this.status.setMessage([() => this.uiRuntimeText_DataGrid('クリップボードを読み取れませんでした。セルを選んで貼付けを再試行できます。')]);
+                this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.unableToReadTheClipboardSelectACellAndTryPastingAgain")]);
             return false;
         }
         finally {
@@ -336,7 +334,7 @@ export class DataGrid<T extends object> {
         if (this.blocked() || !this.editable())
             return false;
         if (this.currentEditor?.isEditing()) {
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('編集を保存または取消してから貼付けしてください。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.saveOrCancelTheEditBeforePasting")]);
             return false;
         }
         let matrix: readonly (readonly string[])[];
@@ -344,7 +342,7 @@ export class DataGrid<T extends object> {
             matrix = parseTableMatrix(text);
         }
         catch {
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('貼付け内容の行、列、引用符を確認してください。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent")]);
             return false;
         }
         const result = prepareTablePaste(this.rows(), this.columns(), this.keyField(), this.active(), matrix,this.uiRuntimeText_DataGrid);
@@ -353,13 +351,13 @@ export class DataGrid<T extends object> {
             return false;
         }
         if (result.requests.some(request => { const index = this.rows().findIndex(row => this.rowKey(row) === request.key); return this.treeRows()?.[index]?.disabled; })) {
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('無効な行へ貼付けできません。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.cannotPasteIntoADisabledRow")]);
             return false;
         }
         const request = { requestId: ++gridPasteSequence, rows: this.rows(), changes: result.requests, matrix, start: { ...this.active() } };
         this.pasteColumns = [...this.columns()];
         this.pendingPaste.set(request);
-        this.status.setMessage([() => this.uiRuntimeText_DataGrid('貼付け内容の保存結果を確認しています。')]);
+        this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.checkingWhetherThePastedContentWasSaved")]);
         this.pasteRequested.emit(request);
         return true;
     }
@@ -379,7 +377,7 @@ export class DataGrid<T extends object> {
         this.pendingPaste.set(null);
         this.pasteColumns = [];
         this.lastFailedPaste.set(null);
-        this.status.setMessage([() => this.uiRuntimeText_DataGrid('アプリが確認した貼付け内容を反映しました。')]);
+        this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.thePastedContentConfirmedByTheAppWasApplied")]);
         this.rowsChange.emit(this.rows().map(row => patches.get(this.rowKey(row)) ?? row));
         return true;
     }
@@ -389,7 +387,7 @@ export class DataGrid<T extends object> {
             return false;
         this.pendingPaste.set(null);
         this.pasteColumns = [];
-        this.status.setMessage([String(message), () => this.uiRuntimeText_DataGrid(' 貼付け内容は保持しています。再試行できます。')]);
+        this.status.setMessage([() => this.uiRuntimeText_DataGrid('uiFoundation.dataGrid.pasteFailedWithRecovery', { message })]);
         this.lastFailedPaste.set({ matrix: request.matrix, key: this.rowKey(request.rows[request.start.row]), column: this.columns()[request.start.column].id });
         return true;
     }
@@ -404,7 +402,7 @@ export class DataGrid<T extends object> {
             return false;
         const row = this.rows().findIndex(item => this.rowKey(item) === saved.key), column = this.columns().findIndex(item => item.id === saved.column);
         if (row < 0 || column < 0) {
-            this.status.setMessage([() => this.uiRuntimeText_DataGrid('保存した貼付け先がありません。セルを選び直してください。')]);
+            this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.thePasteDestinationHasNotBeenSavedSelectTheCellsAgain")]);
             return false;
         }
         this.choose({ row, column }, false, false);
@@ -427,7 +425,7 @@ export class DataGrid<T extends object> {
                 if (request && !this.pasteCurrent(request)) {
                     this.pendingPaste.set(null);
                     this.pasteColumns = [];
-                    this.status.setMessage([() => this.uiRuntimeText_DataGrid('貼付け先が更新されました。内容を確認してから再試行してください。')]);
+                    this.status.setMessage([() => this.uiRuntimeText_DataGrid("uiFoundation.dataGrid.thePasteDestinationHasChangedReviewItAndTryAgain")]);
                 }
                 const focused = this.host.ownerDocument.activeElement;
                 if (this.ownedCell && !this.ownedCell.isConnected && (focused === this.host.ownerDocument.body || focused === this.host))

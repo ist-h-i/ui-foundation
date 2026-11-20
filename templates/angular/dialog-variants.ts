@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText,UiMessagePipe} from './locale';
+import {injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgComponentOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, Injectable, InjectionToken, Injector, input, output, signal, Type, viewChild, DestroyRef, ElementRef, untracked } from '@angular/core';
 import { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult } from './dialog';
@@ -8,7 +8,7 @@ import { ActionControl } from './action-control';
 @Component({ selector: 'ui-confirm-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<dialog uiDialog [label]="label()" [title]="title()||label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" [disabled]="context.busy" (click)="context.finish('confirm',true)">{{uiEffective_confirmLabel()}}</button><button uiAction [disabled]="context.busy" (click)="context.finish('cancel',false)">{{uiEffective_cancelLabel()}}</button></ng-template></dialog>` })
 export class ConfirmDialog {
- protected readonly uiText_ConfirmDialog=injectUiText();
+ protected readonly uiText_ConfirmDialog=injectUiMessageText();
     readonly label = input.required<string>();
     readonly message = input.required<string>();
     readonly title = input('');
@@ -16,9 +16,9 @@ export class ConfirmDialog {
     readonly openChange = output<boolean>();
     readonly busy = input(false, { transform: booleanAttribute });
     readonly confirmLabel = input<string>();
- protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmDialog('確認'));
+ protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.confirmation"));
     readonly cancelLabel = input<string>();
- protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmDialog('取消'));
+ protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.cancel"));
     readonly closeOnOutsideClick = input(false, { transform: booleanAttribute });
     readonly closeRequested = output<DialogCloseRequest>();
     readonly completed = output<DialogResult>();
@@ -26,25 +26,25 @@ export class ConfirmDialog {
 @Component({ selector: 'ui-alert-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<dialog uiDialog role="alertdialog" [label]="label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [closable]="false" [closeOnEscape]="false" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" autofocus (click)="context.finish('confirm',true)">{{uiEffective_acknowledgeLabel()}}</button></ng-template></dialog>` })
 export class AlertDialog {
- protected readonly uiText_AlertDialog=injectUiText();
+ protected readonly uiText_AlertDialog=injectUiMessageText();
     readonly label = input.required<string>();
     readonly message = input.required<string>();
     readonly acknowledgeLabel = input<string>();
- protected readonly uiEffective_acknowledgeLabel=uiLocaleComputed(()=>this.acknowledgeLabel()??this.uiText_AlertDialog('確認しました'));
+ protected readonly uiEffective_acknowledgeLabel=uiLocaleComputed(()=>this.acknowledgeLabel()??this.uiText_AlertDialog("uiFoundation.alertDialog.acknowledged"));
     readonly open = input(false, { transform: booleanAttribute });
     readonly openChange = output<boolean>();
     readonly closeRequested = output<DialogCloseRequest>();
     readonly completed = output<DialogResult>();
 }
-@Component({ selector: 'ui-form-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-form-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     styles: `fieldset{min-inline-size:0;margin-block:var(--ui-space-field);padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);}legend{max-inline-size:100%;overflow-wrap:anywhere;}.ui-form-dialog-guard-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-field);}[role="status"]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
     template: `<dialog uiDialog [label]="label()" [title]="label()" [open]="open()" (openChange)="changed($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="requested($event)" (completed)="completed.emit($event)">
-  <ng-content /><p #saveStatus tabindex="-1" role="status" aria-atomic="true">{{busy()?('保存しています。' | uiMessage):error()}}</p>
-  @if(held();as request){<fieldset><legend>{{'保存していない変更があります。閉じますか。' | uiMessage}}</legend><div class="ui-form-dialog-guard-actions"><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'編集を続ける' | uiMessage}}</button><button uiAction variant="danger" [disabled]="busy()" (click)="discard(request)">{{'保存せずに閉じる' | uiMessage}}</button></div></fieldset>}
-  <ng-template uiDialogTemplate="footer"><button #saveButton uiAction variant="primary" [disabled]="busy()||!valid()" (click)="save()">{{uiEffective_saveLabel()}}</button><button uiAction [disabled]="busy()" (click)="cancel()">{{'取消' | uiMessage}}</button></ng-template>
+  <ng-content /><p #saveStatus tabindex="-1" role="status" aria-atomic="true">{{busy()?('uiFoundation.formDialog.saving' | uiStableMessage):error()}}</p>
+  @if(held();as request){<fieldset><legend>{{'uiFoundation.formDialog.closeWithUnsavedChanges' | uiStableMessage}}</legend><div class="ui-form-dialog-guard-actions"><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'uiFoundation.formDialog.keepEditing' | uiStableMessage}}</button><button uiAction variant="danger" [disabled]="busy()" (click)="discard(request)">{{'uiFoundation.formDialog.closeWithoutSaving' | uiStableMessage}}</button></div></fieldset>}
+  <ng-template uiDialogTemplate="footer"><button #saveButton uiAction variant="primary" [disabled]="busy()||!valid()" (click)="save()">{{uiEffective_saveLabel()}}</button><button uiAction [disabled]="busy()" (click)="cancel()">{{'uiFoundation.formDialog.cancel' | uiStableMessage}}</button></ng-template>
  </dialog>` })
 export class FormDialog {
- protected readonly uiText_FormDialog=injectUiText();
+ protected readonly uiText_FormDialog=injectUiMessageText();
     readonly label = input.required<string>();
     readonly open = input(false, { transform: booleanAttribute });
     readonly openChange = output<boolean>();
@@ -53,7 +53,7 @@ export class FormDialog {
     readonly valid = input(true, { transform: booleanAttribute });
     readonly error = input('');
     readonly saveLabel = input<string>();
- protected readonly uiEffective_saveLabel=uiLocaleComputed(()=>this.saveLabel()??this.uiText_FormDialog('保存'));
+ protected readonly uiEffective_saveLabel=uiLocaleComputed(()=>this.saveLabel()??this.uiText_FormDialog("uiFoundation.formDialog.save"));
     readonly closeOnOutsideClick = input(false, { transform: booleanAttribute });
     readonly saveRequested = output<void>();
     readonly closeRequested = output<DialogCloseRequest>();
