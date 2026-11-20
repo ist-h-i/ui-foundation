@@ -43,7 +43,7 @@ export class Cascader<T = unknown> extends TreePopupControl implements Validator
   });
   inject(DestroyRef).onDestroy(()=>{this.destroyed=true;this.invalidateLoads('destroy');this.popupHost.removeEventListener('focusin',focused);this.popupHost.removeEventListener('focusout',exited);});
  }
- protected nodeLabel(id:string):string{return treeEntry(this.resolvedNodes(),id)?.node.label??this.uiRuntimeText_Cascader("uiFoundation.cascader.unavailableOrDeleted")+id;}
+ protected nodeLabel(id:string):string{return treeEntry(this.resolvedNodes(),id)?.node.label??this.uiRuntimeText_Cascader("uiFoundation.cascader.unavailableItemLabel",{value:id});}
  protected disabledNode(id:string):boolean{return treeEntry(this.resolvedNodes(),id)?.disabled===true;}
  private candidate(id:string):HTMLButtonElement|null{return [...(this.popup()?.nativeElement.querySelectorAll<HTMLButtonElement>('[data-cascader-id]')??[])].find(element=>element.getAttribute('data-cascader-id')===id)??null;}
  protected focusPopup():void{this.draft.set(this.current());const popup=this.popup()?.nativeElement,target=popup?.querySelector<HTMLButtonElement>('[data-cascader-id]:not(:disabled)')??popup?.querySelector<HTMLButtonElement>('[data-cascader-close]')??null;if(canFocus(target))target.focus();}

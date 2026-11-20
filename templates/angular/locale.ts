@@ -1,4 +1,4 @@
-import { resolveUiMessage, uiMessageText, type UiMessageText, type UiMessageParameters, type UiMessageRequest, type UiMessageId } from './stable-messages';
+import { resolveUiMessage, uiMessageText, type UiMessageText, type UiMessageArguments, type UiMessageRequest } from './stable-messages';
 import {Dir,Directionality,type Direction} from '@angular/cdk/bidi';
 import {afterNextRender,computed,DOCUMENT,DestroyRef,Directive,EventEmitter,effect,ElementRef,inject,InjectionToken,Injector,input,isSignal,Pipe,type PipeTransform,type Provider,Renderer2,signal,type Signal} from '@angular/core';
 import {defaultUiLocale,resolveUiLocale,type UiLocaleOptions,type UiLocaleResolved} from './locale-model';
@@ -21,8 +21,8 @@ export function injectUiMessageText(): UiMessageText {
 @Pipe({name:'uiStableMessage',standalone:true,pure:false})
 export class UiStableMessagePipe implements PipeTransform{
  private readonly text=injectUiMessageText();
- transform<Id extends UiMessageId>(id: Id, ...parameters: UiMessageParameters[Id] extends undefined ? [] : [UiMessageParameters[Id]]):string{
-  return this.text(id,...parameters);
+ transform(...args: UiMessageArguments):string{
+  return this.text(...args);
  }
 }
 export type UiMessagePart=string|(()=>string);

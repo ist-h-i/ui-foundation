@@ -26,7 +26,7 @@ const controlStyles = `
       [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="commit(text($event))" (blur)="touch()">
     @if (clearable()) { <button uiAction [attr.aria-label]="('uiFoundation.textInput.clearForLabel' | uiStableMessage:{label:label()})" [disabled]="blocked() || readonly() || !current()" (click)="clear()">{{'uiFoundation.textInput.clearForTextInput' | uiStableMessage}}</button> }
    </div>
-   @if (showCount()) { <p class="ui-input-count">{{ current().length }}{{ maxLength() !== null ? ' / ' + maxLength() : '' }} {{'uiFoundation.textInput.characters' | uiStableMessage}}</p> }
+   @if (showCount()) { <p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textInput.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textInput.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p> }
   </ui-form-field>
  `, styles: controlStyles,
 })
@@ -44,7 +44,7 @@ export class TextInput extends FieldValueControl<string> {
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="current()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
    [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="commit(text($event))" (blur)="touch()"></textarea>
-  @if(showCount()){<p class="ui-input-count">{{ current().length }}{{ maxLength() !== null ? ' / ' + maxLength() : '' }} {{'uiFoundation.textarea.characters' | uiStableMessage}}</p>}
+  @if(showCount()){<p class="ui-input-count">{{ maxLength()===null?('uiFoundation.textarea.characterCount' | uiStableMessage:{count:current().length}):('uiFoundation.textarea.characterCountWithLimit' | uiStableMessage:{count:current().length,limit:maxLength()!}) }}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
 export class Textarea extends FieldValueControl<string>{

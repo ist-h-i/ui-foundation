@@ -31,7 +31,7 @@ import { ActionControl } from './action-control';
       <p aria-live="polite" aria-atomic="true">
         @if (!valid()) {  {{'uiFoundation.pagination.pageInformationIsUnavailable' | uiStableMessage}} }
         @else if (pages() === 0) {  {{'uiFoundation.pagination.noPages' | uiStableMessage}} }
-        @else { {{ page() }} / {{ pages() }} {{'uiFoundation.pagination.page' | uiStableMessage}} }
+        @else { {{ 'uiFoundation.pagination.pageProgress' | uiStableMessage:{page:page(),total:pages()!} }} }
         @if (valid() && totalItems() !== null) { · {{'uiFoundation.pagination.itemsCount' | uiStableMessage:{count:totalItems()!} }} }
       </p>
       <button uiAction [attr.aria-label]="'uiFoundation.pagination.nextPage' | uiStableMessage"

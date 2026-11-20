@@ -1,5 +1,11 @@
-import {uiMessageText as createUiMessageText, type UiMessageText} from './stable-messages';
+import {uiMessageText as createUiMessageText, type UiMessageText, type UiStaticMessageId} from './stable-messages';
 const japaneseText = createUiMessageText(() => 'ja-JP');
+const englishText = createUiMessageText(() => 'en');
+class SpecialistDiagnostic extends Error {
+  constructor(readonly id: UiStaticMessageId) { super(); }
+}
+function rejectDiagnostic(id: UiStaticMessageId): never { throw new SpecialistDiagnostic(id); }
+
 /** Public read models. Persistence, remote operations, undo and policy remain app owned. */
 export type ChartKind = 'line' | 'bar' | 'area' | 'pie' | 'doughnut' | 'scatter' | 'heatmap' | 'radar' | 'gauge' | 'treemap';
 export const chartKinds: readonly ChartKind[] = ['line','bar','area','pie','doughnut','scatter','heatmap','radar','gauge','treemap'];
@@ -15,47 +21,47 @@ export function sparklineSummary(points: readonly ChartPoint[]): SparklineSummar
   const first = points[0]?.value ?? null, last = points.at(-1)?.value ?? null;
   return {first,last,delta:first === null || last === null ? null : last-first, missing:points.filter(p => p.value === null).length};
 }
-export function requireIds(items: readonly {id:string}[], label: string): void {
+export function requireIds(items: readonly {id:string}[], label: string, diagnostic?: UiStaticMessageId): void {
   const ids = new Set<string>();
-  for (const item of items) { if (!item || typeof item.id !== 'string' || !item.id.trim() || ids.has(item.id)) throw new Error(`${label}: stable unique IDs are required`); ids.add(item.id); }
+  for (const item of items) { if (!item || typeof item.id !== 'string' || !item.id.trim() || ids.has(item.id)) { if (diagnostic) rejectDiagnostic(diagnostic); throw new Error(`${label}: stable unique IDs are required`); } ids.add(item.id); }
 }
-export function chartProblem(kind: ChartKind, series: readonly ChartSeries[], text: UiMessageText = japaneseText): string | null {
+export function chartProblem(kind: ChartKind, series: readonly ChartSeries[], text: UiMessageText = englishText): string | null {
   try {
-    if (!chartKinds.includes(kind)) throw new Error('Unknown chart kind');
-    requireIds(series,'Series');
+    if (!chartKinds.includes(kind)) rejectDiagnostic('uiFoundation.chart.unknownKind');
+    requireIds(series,'Series','uiFoundation.chart.invalidSeriesIds');
     let count=0;const ids=new Set<string>();
     const visit = (points:readonly ChartPoint[],seen:Set<ChartPoint>,depth:number):void => {
-      if(depth>32) throw new Error('Chart tree is too deep');
-      requireIds(points,'Points');
+      if(depth>32) rejectDiagnostic('uiFoundation.chart.treeTooDeep');
+      requireIds(points,'Points','uiFoundation.chart.invalidPointIds');
       for(const point of points) {
-        if(seen.has(point)) throw new Error('Chart tree contains a cycle');
-        if(ids.has(point.id))throw new Error('Point IDs must be unique throughout each series');ids.add(point.id);if(++count>10000)throw new Error('Chart has too many points');
-        if(typeof point.label !== 'string' || (point.value !== null && !Number.isFinite(point.value))) throw new Error('Chart values must be finite or explicitly missing');
-        if((kind==='scatter' || kind==='heatmap') && (!Number.isFinite(point.x) || !Number.isFinite(point.y))) throw new Error('Coordinates are required');
-        if(['pie','doughnut','treemap','gauge','radar'].includes(kind) && point.value!==null && point.value<0) throw new Error('This chart requires non-negative values');
+        if(seen.has(point)) rejectDiagnostic('uiFoundation.chart.treeCycle');
+        if(ids.has(point.id))rejectDiagnostic('uiFoundation.chart.duplicatePointIds');ids.add(point.id);if(++count>10000)rejectDiagnostic('uiFoundation.chart.tooManyPoints');
+        if(typeof point.label !== 'string' || (point.value !== null && !Number.isFinite(point.value))) rejectDiagnostic('uiFoundation.chart.invalidValue');
+        if((kind==='scatter' || kind==='heatmap') && (!Number.isFinite(point.x) || !Number.isFinite(point.y))) rejectDiagnostic('uiFoundation.chart.missingCoordinates');
+        if(['pie','doughnut','treemap','gauge','radar'].includes(kind) && point.value!==null && point.value<0) rejectDiagnostic('uiFoundation.chart.negativeValue');
         if(point.children) {seen.add(point); visit(point.children,seen,depth+1);seen.delete(point);}
       }
     };
-    for(const item of series){ids.clear();if(typeof item.label!=='string')throw new Error('Series label is required');if(['line','bar','area'].includes(kind)&&new Set(item.points.map(point=>point.label)).size!==item.points.length)throw new Error('Category labels must be unique within a series');visit(item.points,new Set(),0);}
+    for(const item of series){ids.clear();if(typeof item.label!=='string')rejectDiagnostic('uiFoundation.chart.missingSeriesLabel');if(['line','bar','area'].includes(kind)&&new Set(item.points.map(point=>point.label)).size!==item.points.length)rejectDiagnostic('uiFoundation.chart.duplicateCategoryLabels');visit(item.points,new Set(),0);}
     return null;
-  } catch(error) {return error instanceof Error ? error.message : 'Invalid chart data';}
+  } catch(error) {return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.chart.invalidData');}
 }
 export type LngLat = readonly [longitude:number,latitude:number];
 export interface MapMarker { id:string; label:string; coordinate:LngLat; }
 export interface MapRegion { id:string; label:string; rings:readonly (readonly LngLat[])[]; }
 export interface MapCamera { center:LngLat; zoom:number; }
-export function mapProblem(markers:readonly MapMarker[],regions:readonly MapRegion[],camera:MapCamera, text: UiMessageText = japaneseText):string|null {
+export function mapProblem(markers:readonly MapMarker[],regions:readonly MapRegion[],camera:MapCamera, text: UiMessageText = englishText):string|null {
   const coordinate=(v:LngLat)=>Array.isArray(v)&&v.length===2&&Number.isFinite(v[0])&&Number.isFinite(v[1])&&Math.abs(v[0])<=180&&Math.abs(v[1])<=90;
   try {
-    requireIds([...markers,...regions],'Map objects');
-    if(!coordinate(camera.center)||!Number.isFinite(camera.zoom)||camera.zoom<0||camera.zoom>22) throw new Error('Map camera is invalid');
-    for(const marker of markers)if(!coordinate(marker.coordinate))throw new Error('Marker coordinates are invalid');
+    requireIds([...markers,...regions],'Map objects','uiFoundation.mapView.invalidObjectIds');
+    if(!coordinate(camera.center)||!Number.isFinite(camera.zoom)||camera.zoom<0||camera.zoom>22) rejectDiagnostic('uiFoundation.mapView.invalidCamera');
+    for(const marker of markers)if(!coordinate(marker.coordinate))rejectDiagnostic('uiFoundation.mapView.invalidMarker');
     for(const region of regions) {
-      if(!region.rings.length)throw new Error('A region needs polygon rings');
-      for(const ring of region.rings)if(ring.length<4||ring.some(p=>!coordinate(p))||ring[0][0]!==ring.at(-1)![0]||ring[0][1]!==ring.at(-1)![1])throw new Error('Region rings must be closed polygons');
+      if(!region.rings.length)rejectDiagnostic('uiFoundation.mapView.missingRegionPolygon');
+      for(const ring of region.rings)if(ring.length<4||ring.some(p=>!coordinate(p))||ring[0][0]!==ring.at(-1)![0]||ring[0][1]!==ring.at(-1)![1])rejectDiagnostic('uiFoundation.mapView.invalidRegionPolygon');
     }
     return null;
-  }catch(error){return error instanceof Error?error.message:'Invalid map data';}
+  }catch(error){return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.mapView.invalidData');}
 }
 export interface GanttTask {id:string;label:string;start:string;end:string;progress:number|null;dependencies:readonly string[];}
 export type GanttScale='day'|'week'|'month';
@@ -94,8 +100,8 @@ export function ganttProblem(tasks:readonly GanttTask[], text: UiMessageText = d
 export interface BoardColumn {id:string;label:string;limit?:number;}
 export interface BoardCard {id:string;label:string;columnId:string;description?:string;disabled?:boolean;}
 export interface BoardMove {cardId:string;fromColumn:string;toColumn:string;index:number;}
-export function boardProblem(columns:readonly BoardColumn[],cards:readonly BoardCard[], text: UiMessageText = japaneseText):string|null {
-  try{requireIds(columns,'Columns');requireIds(cards,'Cards');for(const column of columns)if(column.limit!==undefined&&(!Number.isInteger(column.limit)||column.limit<0))throw new Error('Column limits must be non-negative integers');for(const card of cards)if(!columns.some(c=>c.id===card.columnId))throw new Error('Unknown card column');return null;}catch(error){return error instanceof Error?error.message:'Invalid board';}
+export function boardProblem(columns:readonly BoardColumn[],cards:readonly BoardCard[], text: UiMessageText = englishText):string|null {
+  try{requireIds(columns,'Columns','uiFoundation.kanban.invalidColumnIds');requireIds(cards,'Cards','uiFoundation.kanban.invalidCardIds');for(const column of columns)if(column.limit!==undefined&&(!Number.isInteger(column.limit)||column.limit<0))rejectDiagnostic('uiFoundation.kanban.invalidColumnLimit');for(const card of cards)if(!columns.some(c=>c.id===card.columnId))rejectDiagnostic('uiFoundation.kanban.unknownCardColumn');return null;}catch(error){return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.kanban.invalidBoard');}
 }
 export function moveBoardCard(columns:readonly BoardColumn[],cards:readonly BoardCard[],move:BoardMove):readonly BoardCard[] {
   const problem=boardProblem(columns,cards);if(problem)throw new Error(problem);
@@ -113,23 +119,23 @@ export interface SheetAddress {row:number;column:number;}
 export interface SheetSelection {anchor:SheetAddress;focus:SheetAddress;}
 export interface SheetEdit {address:SheetAddress;previous:SheetCell;value:SheetCell;}
 export function columnName(index:number):string {if(!Number.isInteger(index)||index<0)throw new Error('Invalid column');let value=index+1,text='';while(value){value--;text=String.fromCharCode(65+value%26)+text;value=Math.floor(value/26);}return text;}
-export function sheetProblem(sheet:SheetModel, text: UiMessageText = japaneseText):string|null {
-  if(!sheet||!Array.isArray(sheet.rows)||sheet.rows.length>1000)return 'A sheet has at most 1,000 rows';const width=sheet.rows[0]?.length??0;
-  if(width>100||sheet.rows.length*width>10000)return 'A sheet has at most 100 columns and 10,000 cells';
-  for(const row of sheet.rows){if(!Array.isArray(row)||row.length!==width)return 'Sheet rows must be rectangular';for(const cell of row)if(!(cell===null||typeof cell==='boolean'||typeof cell==='string'&&cell.length<=8192||typeof cell==='number'&&Number.isFinite(cell)))return 'Invalid sheet cell';}return null;
+export function sheetProblem(sheet:SheetModel, text: UiMessageText = englishText):string|null {
+  if(!sheet||!Array.isArray(sheet.rows)||sheet.rows.length>1000)return text('uiFoundation.spreadsheet.rowLimit');const width=sheet.rows[0]?.length??0;
+  if(width>100||sheet.rows.length*width>10000)return text('uiFoundation.spreadsheet.cellLimit');
+  for(const row of sheet.rows){if(!Array.isArray(row)||row.length!==width)return text('uiFoundation.spreadsheet.unevenRows');for(const cell of row)if(!(cell===null||typeof cell==='boolean'||typeof cell==='string'&&cell.length<=8192||typeof cell==='number'&&Number.isFinite(cell)))return text('uiFoundation.spreadsheet.invalidCell');}return null;
 }
 export function editSheet(sheet:SheetModel,edit:SheetEdit):SheetModel {
   const {row,column}=edit.address;if(sheetProblem(sheet)||!Number.isInteger(row)||!Number.isInteger(column)||row<0||column<0||!sheet.rows[row]||column>=sheet.rows[row].length)throw new Error('Cell address is invalid');
   if(sheet.rows[row][column]!==edit.previous)throw new Error('Cell changed before edit');const rows=sheet.rows.map(r=>[...r]);rows[row][column]=edit.value;const result={rows};const problem=sheetProblem(result);if(problem)throw new Error(problem);return result;
 }
 /** CSV import preserves formula source and leading zeroes. No evaluation is performed during parsing. */
-export function importSheetCsv(text:string):SheetModel {
-  if(text.length>2_000_000)throw new Error('CSV exceeds the import limit');
+export function importSheetCsv(source:string, text: UiMessageText = englishText):SheetModel {
+  if(source.length>2_000_000)throw new Error(text('uiFoundation.spreadsheet.csvSizeLimit'));
   const rows:SheetCell[][]=[],row:SheetCell[]= [];let cell='',quoted=false,closed=false;
   const pushCell=()=>{row.push(cell);cell='';closed=false;};const pushRow=()=>{pushCell();rows.push([...row]);row.length=0;};
-  for(let i=0;i<text.length;i++){const char=text[i];if(quoted){if(char==='"'){if(text[i+1]==='"'){cell+='"';i++;}else{quoted=false;closed=true;}}else cell+=char;continue;}if(char==='"'&&!cell&&!closed){quoted=true;continue;}if(char===','){pushCell();continue;}if(char==='\r'||char==='\n'){if(char==='\r'&&text[i+1]==='\n')i++;pushRow();continue;}if(closed)throw new Error('Unexpected CSV text after a closing quote');cell+=char;}
-  if(quoted)throw new Error('Unclosed CSV quote');if(cell||row.length||!rows.length)pushRow();
-  const width=Math.max(...rows.map(r=>r.length),0);for(const cells of rows)while(cells.length<width)cells.push(null);const sheet={rows};const problem=sheetProblem(sheet);if(problem)throw new Error(problem);return sheet;
+  for(let i=0;i<source.length;i++){const char=source[i];if(quoted){if(char==='"'){if(source[i+1]==='"'){cell+='"';i++;}else{quoted=false;closed=true;}}else cell+=char;continue;}if(char==='"'&&!cell&&!closed){quoted=true;continue;}if(char===','){pushCell();continue;}if(char==='\r'||char==='\n'){if(char==='\r'&&source[i+1]==='\n')i++;pushRow();continue;}if(closed)throw new Error(text('uiFoundation.spreadsheet.csvUnexpectedText'));cell+=char;}
+  if(quoted)throw new Error(text('uiFoundation.spreadsheet.csvUnclosedQuote'));if(cell||row.length||!rows.length)pushRow();
+  const width=Math.max(...rows.map(r=>r.length),0);for(const cells of rows)while(cells.length<width)cells.push(null);const sheet={rows};const problem=sheetProblem(sheet,text);if(problem)throw new Error(problem);return sheet;
 }
 export function exportSheetCsv(sheet:SheetModel):string {const problem=sheetProblem(sheet);if(problem)throw new Error(problem);return sheet.rows.map(row=>row.map(cell=>'"'+String(cell??'').replaceAll('"','""')+'"').join(',')).join('\r\n');}
 export interface ExplorerNode {id:string;label:string;kind:'file'|'folder';children?:readonly ExplorerNode[];disabled?:boolean;size?:number|null;}
@@ -146,8 +152,8 @@ export interface DiagramNode {id:string;label:string;x:number;y:number;}
 export interface DiagramEdge {id:string;from:string;to:string;label?:string;}
 export interface DiagramModel {nodes:readonly DiagramNode[];edges:readonly DiagramEdge[];}
 export type DiagramChange={type:'move';id:string;x:number;y:number}|{type:'label';id:string;label:string}|{type:'connect';edge:DiagramEdge}|{type:'remove-node';id:string}|{type:'remove-edge';id:string}|{type:'add';node:DiagramNode};
-export function diagramProblem(model:DiagramModel, text: UiMessageText = japaneseText):string|null {
-  try{requireIds(model.nodes,'Nodes');requireIds(model.edges,'Connections');for(const node of model.nodes){if(typeof node.label!=='string'||!node.label.trim())throw new Error('Node labels must not be empty');if(!Number.isFinite(node.x)||!Number.isFinite(node.y)||node.x<0||node.y<0||node.x>1e6||node.y>1e6)throw new Error('Node coordinates are invalid');}for(const edge of model.edges)if(!model.nodes.some(n=>n.id===edge.from)||!model.nodes.some(n=>n.id===edge.to))throw new Error('Connection refers to an unknown node');return null;}catch(error){return error instanceof Error?error.message:'Invalid diagram';}
+export function diagramProblem(model:DiagramModel, text: UiMessageText = englishText):string|null {
+  try{requireIds(model.nodes,'Nodes','uiFoundation.flowEditor.invalidNodeIds');requireIds(model.edges,'Connections','uiFoundation.flowEditor.invalidConnectionIds');for(const node of model.nodes){if(typeof node.label!=='string'||!node.label.trim())rejectDiagnostic('uiFoundation.flowEditor.emptyNodeLabel');if(!Number.isFinite(node.x)||!Number.isFinite(node.y)||node.x<0||node.y<0||node.x>1e6||node.y>1e6)rejectDiagnostic('uiFoundation.flowEditor.invalidNodeCoordinates');}for(const edge of model.edges)if(!model.nodes.some(n=>n.id===edge.from)||!model.nodes.some(n=>n.id===edge.to))rejectDiagnostic('uiFoundation.flowEditor.connectionUnknownNode');return null;}catch(error){return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.flowEditor.invalidDiagram');}
 }
 export function changeDiagram(model:DiagramModel,change:DiagramChange):DiagramModel {
   const problem=diagramProblem(model);if(problem)throw new Error(problem);let nodes=[...model.nodes],edges=[...model.edges];
@@ -162,8 +168,8 @@ export interface ChatDraft {text:string;attachments:readonly ChatAttachment[];}
 export interface ChatSendRequest {requestId:number;draft:ChatDraft;}
 export interface ChatRetryRequest {messageId:string;}
 export interface ChatLoadRequest {requestId:number;cursor:string|null;}
-export function chatProblem(messages:readonly ChatMessage[], text: UiMessageText = japaneseText):string|null {
-  try{requireIds(messages,'Messages');for(const message of messages){if(!['draft','sending','sent','failed','unknown'].includes(message.state))throw new Error('Unknown send state');requireIds(message.attachments,'Attachments');for(const attachment of message.attachments)if(attachment.size!==null&&(!Number.isFinite(attachment.size)||attachment.size<0))throw new Error('Attachment size is invalid');}return null;}catch(error){return error instanceof Error?error.message:'Invalid messages';}
+export function chatProblem(messages:readonly ChatMessage[], text: UiMessageText = englishText):string|null {
+  try{requireIds(messages,'Messages','uiFoundation.messageList.invalidMessageIds');for(const message of messages){if(!['draft','sending','sent','failed','unknown'].includes(message.state))rejectDiagnostic('uiFoundation.messageList.unknownSendState');requireIds(message.attachments,'Attachments','uiFoundation.messageList.invalidAttachmentIds');for(const attachment of message.attachments)if(attachment.size!==null&&(!Number.isFinite(attachment.size)||attachment.size<0))rejectDiagnostic('uiFoundation.messageList.invalidAttachmentSize');}return null;}catch(error){return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.messageList.invalidData');}
 }
 export function chatCanSend(draft:ChatDraft):boolean{return !!draft.text.trim()||draft.attachments.length>0;}
 /** Escape neither changes markdown semantics nor grants trust. Only explicit safe URL schemes are accepted. */

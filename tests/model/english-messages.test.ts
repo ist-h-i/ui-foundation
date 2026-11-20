@@ -27,3 +27,34 @@ test('parameterized numeric/selection diagnostics and retained paste feedback fo
  const grouped=groupTable(rows,[{id:'enabled',field:'enabled',header:'Enabled',type:'boolean'}],['enabled'],[],'en-US','Missing');
  assert.equal(grouped[0].label,'Yes');
 });
+
+test('whole message requests and specialist diagnostics retain typed, reorderable parameters', async () => {
+ const {diagramProblem,importSheetCsv}=await import('../../templates/angular/specialist-model.ts');
+ const {captureUiMessage}=await import('../../templates/angular/stable-messages.ts');
+ const keys: string[] = [];
+ let locale = 'ja-JP';
+ const text = uiMessageText(() => locale, () => (request) => {
+  keys.push(request.id);
+  if (request.id === 'uiFoundation.tree.expandLabel') return `Expand now: ${request.parameters.label}`;
+ });
+ assert.equal(text('uiFoundation.tree.expandLabel', {label: 'App label'}), 'Expand now: App label');
+ assert.equal(diagramProblem({nodes:[{id:'a',label:' ',x:0,y:0}],edges:[]},text),'ノードのラベルを指定してください。');
+ assert.ok(keys.includes('uiFoundation.flowEditor.emptyNodeLabel'));
+ const diagnostic = captureUiMessage(text);
+ assert.throws(() => importSheetCsv('"abc', diagnostic.capture), /引用符/);
+ assert.equal(diagnostic.render()!(), 'CSVの引用符が閉じていません。');
+ locale = 'en-US';
+ assert.equal(diagnostic.render()!(), 'Unclosed CSV quote');
+ assert.equal(text('uiFoundation.avatarGroup.showMoreCount', {count:1}),'Show 1 more person');
+ assert.equal(text('uiFoundation.avatarGroup.showMoreCount', {count:2}),'Show 2 more people');
+});
+
+function messageTypeChecks(
+  text: ReturnType<typeof uiMessageText>,
+  id: 'uiFoundation.collection.selectionLimit' | 'uiFoundation.card.expand',
+): void {
+  // @ts-expect-error A limit alone cannot satisfy the possible card request.
+  text(id, {limit: 2});
+  if (id === 'uiFoundation.collection.selectionLimit') text(id, {limit: 2});
+}
+void messageTypeChecks;

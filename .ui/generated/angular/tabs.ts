@@ -21,7 +21,7 @@ export class TabPanel {
   @for(panel of panels();track panel.panelId()){<button #tabButton type="button" role="tab" [id]="panel.tabId()" [disabled]="panel.disabled()" [attr.aria-controls]="panel.panelId()" [attr.aria-selected]="activePanelId()===panel.panelId()" [attr.tabindex]="!panel.disabled()&&focusPanelId()===panel.panelId()?0:-1" [attr.aria-keyshortcuts]="panel.closable()?'Delete':null" (focus)="onTabFocus(panel.panelId())" (keydown)="onKeydown($event,panel)" (click)="selectPanel(panel.panelId())">{{panel.label()}}</button>}
  </div>
  <ng-content />
- @if(activePanel()&&(reorderable()||activePanel()?.closable())){<div class="ui-tab-actions" role="group" [attr.aria-label]="('uiFoundation.tabs.actionsForTheSelectedTab' | uiStableMessage)+(activePanel()?.label()??'')">
+ @if(activePanel()&&(reorderable()||activePanel()?.closable())){<div class="ui-tab-actions" role="group" [attr.aria-label]="'uiFoundation.tabs.selectedTabActionsLabel' | uiStableMessage:{label:activePanel()?.label()??''}">
   @if(reorderable()){<button uiAction [disabled]="activeIndex()<=0" (click)="reorder(activePanelId(),-1)">{{'uiFoundation.tabs.moveSelectedTabEarlier' | uiStableMessage}}</button><button uiAction [disabled]="activeIndex()<0||activeIndex()>=panels().length-1" (click)="reorder(activePanelId(),1)">{{'uiFoundation.tabs.moveSelectedTabLater' | uiStableMessage}}</button>}
   @if(activePanel()?.closable()){<button uiAction (click)="requestClose(activePanelId())">{{'uiFoundation.tabs.closeSelectedTab' | uiStableMessage}}</button>}
  </div>}`,

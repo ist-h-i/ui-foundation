@@ -549,13 +549,6 @@ export const diagnosticMessages = {
     "en": "Could not load the after image.",
     "parameters": {}
   },
-  "uiFoundation.sortableList.proposedPosition": {
-    "ja": "仮の位置: {position}番目です。",
-    "en": "Proposed position: {position}.",
-    "parameters": {
-      "position": "number"
-    }
-  },
   "uiFoundation.pdfViewer.pageInputRange": {
     "ja": "1から{pages}の範囲で指定してください。",
     "en": "Enter a page number from 1 to {pages}.",
@@ -747,5 +740,471 @@ export const diagnosticMessages = {
     "parameters": {
       "label": "string"
     }
-  }
+  },
+  "uiFoundation.tree.toggleKeyboardHint": {
+    "ja": " Spaceで{label}を切り替えます。",
+    "en": " Press Space to toggle {label}.",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.tree.selectKeyboardHint": {
+    "ja": " Enterで{label}を選択します。",
+    "en": " Press Enter to select {label}.",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.tree.collapseLabel": {
+    "ja": "{label}を折り畳む",
+    "en": "Collapse {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.tree.expandLabel": {
+    "ja": "{label}を展開",
+    "en": "Expand {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.sortableList.moveUpLabel": {
+    "ja": "{label}を上へ",
+    "en": "Move {label} up",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.sortableList.moveEarlierLabel": {
+    "ja": "{label}を前へ",
+    "en": "Move {label} earlier",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.sortableList.moveDownLabel": {
+    "ja": "{label}を下へ",
+    "en": "Move {label} down",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.sortableList.moveBackwardLabel": {
+    "ja": "{label}を後ろへ",
+    "en": "Move {label} later",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.tabs.selectedTabActionsLabel": {
+    "ja": "選択中タブの操作: {label}",
+    "en": "Actions for the selected tab: {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.diffViewer.beforeLabel": {
+    "ja": "{label} 変更前",
+    "en": "{label}: before",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.diffViewer.afterLabel": {
+    "ja": "{label} 変更後",
+    "en": "{label}: after",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.cascader.unavailableItemLabel": {
+    "ja": "未取得・削除済み: {value}",
+    "en": "Unavailable or deleted: {value}",
+    "parameters": {
+      "value": "string"
+    }
+  },
+  "uiFoundation.treeSelect.unavailableItemLabel": {
+    "ja": "未取得・削除済み: {value}",
+    "en": "Unavailable or deleted: {value}",
+    "parameters": {
+      "value": "string"
+    }
+  },
+  "uiFoundation.pagination.pageProgress": {
+    "ja": "{page} / {total} ページ",
+    "en": "Page {page} of {total}",
+    "parameters": {
+      "page": "number",
+      "total": "number"
+    }
+  },
+  "uiFoundation.dataView.pageProgress": {
+    "ja": "{page} / {total} ページ",
+    "en": "Page {page} of {total}",
+    "parameters": {
+      "page": "number",
+      "total": "number"
+    }
+  },
+  "uiFoundation.messageList.attachmentSize": {
+    "ja": "{count} バイト",
+    "en": "{count} bytes",
+    "parameters": {
+      "count": "number"
+    },
+    "one": "{count} byte"
+  },
+  "uiFoundation.diffViewer.differenceCount": {
+    "ja": "{count} 件の差分",
+    "en": "{count} differences",
+    "parameters": {
+      "count": "number"
+    },
+    "one": "{count} difference"
+  },
+  "uiFoundation.otpInput.alphanumericLength": {
+    "ja": "{count} / {total} 文字 (英数字)",
+    "en": "{count} of {total} characters (letters and numbers)",
+    "parameters": {
+      "count": "number",
+      "total": "number"
+    }
+  },
+  "uiFoundation.otpInput.numericLength": {
+    "ja": "{count} / {total} 文字 (数字)",
+    "en": "{count} of {total} characters (digits)",
+    "parameters": {
+      "count": "number",
+      "total": "number"
+    }
+  },
+  "uiFoundation.breadcrumb.omittedLevelCount": {
+    "ja": "省略した階層（{count}件）",
+    "en": "Omitted levels ({count} items)",
+    "parameters": {
+      "count": "number"
+    },
+    "one": "Omitted levels ({count} item)"
+  },
+  "uiFoundation.image.loadFailed": {
+    "ja": "{label}を取得できません。",
+    "en": "Could not load {label}.",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.textInput.characterCount": {
+    "ja": "{count} 文字",
+    "en": "{count} characters",
+    "parameters": {
+      "count": "number"
+    },
+    "one": "{count} character"
+  },
+  "uiFoundation.textInput.characterCountWithLimit": {
+    "ja": "{count} / {limit} 文字",
+    "en": "{count} of {limit} characters",
+    "parameters": {
+      "count": "number",
+      "limit": "number"
+    }
+  },
+  "uiFoundation.textarea.characterCount": {
+    "ja": "{count} 文字",
+    "en": "{count} characters",
+    "parameters": {
+      "count": "number"
+    },
+    "one": "{count} character"
+  },
+  "uiFoundation.textarea.characterCountWithLimit": {
+    "ja": "{count} / {limit} 文字",
+    "en": "{count} of {limit} characters",
+    "parameters": {
+      "count": "number",
+      "limit": "number"
+    }
+  },
+  "uiFoundation.chart.unknownKind": {
+    "ja": "グラフの種類を確認してください。",
+    "en": "Unknown chart kind",
+    "parameters": {}
+  },
+  "uiFoundation.chart.invalidSeriesIds": {
+    "ja": "系列ごとに一意のIDを指定してください。",
+    "en": "Series: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.chart.treeTooDeep": {
+    "ja": "グラフの階層が深すぎます。",
+    "en": "Chart tree is too deep",
+    "parameters": {}
+  },
+  "uiFoundation.chart.invalidPointIds": {
+    "ja": "データ点ごとに一意のIDを指定してください。",
+    "en": "Points: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.chart.treeCycle": {
+    "ja": "グラフの階層に循環があります。",
+    "en": "Chart tree contains a cycle",
+    "parameters": {}
+  },
+  "uiFoundation.chart.duplicatePointIds": {
+    "ja": "系列内のデータ点のIDを一意にしてください。",
+    "en": "Point IDs must be unique throughout each series",
+    "parameters": {}
+  },
+  "uiFoundation.chart.tooManyPoints": {
+    "ja": "グラフのデータ点が多すぎます。",
+    "en": "Chart has too many points",
+    "parameters": {}
+  },
+  "uiFoundation.chart.invalidValue": {
+    "ja": "グラフの値に有限の数値を指定してください。欠損値は明示してください。",
+    "en": "Chart values must be finite or explicitly missing",
+    "parameters": {}
+  },
+  "uiFoundation.chart.missingCoordinates": {
+    "ja": "座標を指定してください。",
+    "en": "Coordinates are required",
+    "parameters": {}
+  },
+  "uiFoundation.chart.negativeValue": {
+    "ja": "このグラフには0以上の値を指定してください。",
+    "en": "This chart requires non-negative values",
+    "parameters": {}
+  },
+  "uiFoundation.chart.missingSeriesLabel": {
+    "ja": "系列のラベルを指定してください。",
+    "en": "Series label is required",
+    "parameters": {}
+  },
+  "uiFoundation.chart.duplicateCategoryLabels": {
+    "ja": "系列内の区分ラベルを一意にしてください。",
+    "en": "Category labels must be unique within a series",
+    "parameters": {}
+  },
+  "uiFoundation.chart.invalidData": {
+    "ja": "グラフのデータを確認してください。",
+    "en": "Invalid chart data",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.invalidObjectIds": {
+    "ja": "地図上の項目ごとに一意のIDを指定してください。",
+    "en": "Map objects: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.invalidCamera": {
+    "ja": "地図の表示位置と拡大率を確認してください。",
+    "en": "Map camera is invalid",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.invalidMarker": {
+    "ja": "マーカーの座標を確認してください。",
+    "en": "Marker coordinates are invalid",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.missingRegionPolygon": {
+    "ja": "領域を示す多角形を指定してください。",
+    "en": "A region needs polygon rings",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.invalidRegionPolygon": {
+    "ja": "領域には閉じた多角形を指定してください。",
+    "en": "Region rings must be closed polygons",
+    "parameters": {}
+  },
+  "uiFoundation.mapView.invalidData": {
+    "ja": "地図のデータを確認してください。",
+    "en": "Invalid map data",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.invalidColumnIds": {
+    "ja": "列ごとに一意のIDを指定してください。",
+    "en": "Columns: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.invalidCardIds": {
+    "ja": "カードごとに一意のIDを指定してください。",
+    "en": "Cards: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.invalidColumnLimit": {
+    "ja": "列の件数上限は0以上の整数で指定してください。",
+    "en": "Column limits must be non-negative integers",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.unknownCardColumn": {
+    "ja": "カードの列を確認してください。",
+    "en": "Unknown card column",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.invalidBoard": {
+    "ja": "ボードのデータを確認してください。",
+    "en": "Invalid board",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.rowLimit": {
+    "ja": "シートは1,000行までです。",
+    "en": "A sheet has at most 1,000 rows",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.cellLimit": {
+    "ja": "シートは100列、10,000セルまでです。",
+    "en": "A sheet has at most 100 columns and 10,000 cells",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.unevenRows": {
+    "ja": "各行のセル数をそろえてください。",
+    "en": "Sheet rows must be rectangular",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.invalidCell": {
+    "ja": "セルの値を確認してください。",
+    "en": "Invalid sheet cell",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.csvSizeLimit": {
+    "ja": "CSVが読み込み上限を超えています。",
+    "en": "CSV exceeds the import limit",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.csvUnexpectedText": {
+    "ja": "閉じ引用符の直後に区切り以外の文字があります。",
+    "en": "Unexpected CSV text after a closing quote",
+    "parameters": {}
+  },
+  "uiFoundation.spreadsheet.csvUnclosedQuote": {
+    "ja": "CSVの引用符が閉じていません。",
+    "en": "Unclosed CSV quote",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.invalidNodeIds": {
+    "ja": "ノードごとに一意のIDを指定してください。",
+    "en": "Nodes: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.invalidConnectionIds": {
+    "ja": "接続ごとに一意のIDを指定してください。",
+    "en": "Connections: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.emptyNodeLabel": {
+    "ja": "ノードのラベルを指定してください。",
+    "en": "Node labels must not be empty",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.invalidNodeCoordinates": {
+    "ja": "ノードの座標を確認してください。",
+    "en": "Node coordinates are invalid",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.connectionUnknownNode": {
+    "ja": "接続先のノードを確認してください。",
+    "en": "Connection refers to an unknown node",
+    "parameters": {}
+  },
+  "uiFoundation.flowEditor.invalidDiagram": {
+    "ja": "図のデータを確認してください。",
+    "en": "Invalid diagram",
+    "parameters": {}
+  },
+  "uiFoundation.messageList.invalidMessageIds": {
+    "ja": "メッセージごとに一意のIDを指定してください。",
+    "en": "Messages: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.messageList.invalidAttachmentIds": {
+    "ja": "添付ごとに一意のIDを指定してください。",
+    "en": "Attachments: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.messageList.unknownSendState": {
+    "ja": "メッセージの送信状態を確認してください。",
+    "en": "Unknown send state",
+    "parameters": {}
+  },
+  "uiFoundation.messageList.invalidAttachmentSize": {
+    "ja": "添付の容量を確認してください。",
+    "en": "Attachment size is invalid",
+    "parameters": {}
+  },
+  "uiFoundation.messageList.invalidData": {
+    "ja": "メッセージのデータを確認してください。",
+    "en": "Invalid messages",
+    "parameters": {}
+  },
+  "uiFoundation.organizationChart.collapseLabel": {
+    "ja": "{label}の子組織を折り畳む",
+    "en": "Collapse suborganizations of {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.organizationChart.expandLabel": {
+    "ja": "{label}の子組織を展開",
+    "en": "Expand suborganizations of {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.jsonViewer.collapseLabel": {
+    "ja": "{label} 折り畳む",
+    "en": "Collapse {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.jsonViewer.expandLabel": {
+    "ja": "{label} 展開",
+    "en": "Expand {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.fileExplorer.actionRegionLabel": {
+    "ja": "{label}の操作領域",
+    "en": "{label} actions",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.fileExplorer.itemAndSize": {
+    "ja": "{label} / {count} バイト",
+    "en": "{label} / {count} bytes",
+    "parameters": {
+      "label": "string",
+      "count": "number"
+    },
+    "one": "{label} / {count} byte"
+  },
+  "uiFoundation.fileExplorer.itemWithoutSize": {
+    "ja": "{label} / 容量未取得",
+    "en": "{label} / size unavailable",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.gantt.dayScale": {
+    "ja": "日",
+    "en": "Day",
+    "parameters": {}
+  },
+  "uiFoundation.transferList.lockedItem": {
+    "ja": "{label}（移動不可）",
+    "en": "{label} (locked)",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.transferList.requiredLabel": {
+    "ja": "{label}（必須）",
+    "en": "{label} (required)",
+    "parameters": {
+      "label": "string"
+    }
+  },
 } as const;

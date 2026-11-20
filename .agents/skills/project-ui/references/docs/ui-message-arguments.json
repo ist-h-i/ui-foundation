@@ -6,13 +6,6 @@
   "uiFoundation.alert.closeLabel": {},
   "uiFoundation.alertDialog.acknowledged": {},
   "uiFoundation.asyncRegion.retryAction": {},
-  "uiFoundation.avatarGroup.morePeople": {},
-  "uiFoundation.avatarGroup.morePeopleForLabel": {
-    "label": [
-      "string"
-    ]
-  },
-  "uiFoundation.avatarGroup.show": {},
   "uiFoundation.avatarGroup.showMoreCount": {
     "count": [
       "number"
@@ -24,40 +17,33 @@
   "uiFoundation.bottomSheet.heightLabel": {},
   "uiFoundation.bottomSheet.increaseHeight": {},
   "uiFoundation.breadcrumb.breadcrumbs": {},
-  "uiFoundation.breadcrumb.items": {},
-  "uiFoundation.breadcrumb.itemsCount": {
+  "uiFoundation.breadcrumb.omittedLevelCount": {
     "count": [
       "number"
     ]
   },
-  "uiFoundation.breadcrumb.omittedLevels": {},
-  "uiFoundation.calendar.dates": {},
   "uiFoundation.calendar.datesForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.calendar.month": {},
   "uiFoundation.calendar.monthNumber": {
     "month": [
       "number"
     ]
   },
-  "uiFoundation.calendar.nextMonth": {},
   "uiFoundation.calendar.nextMonthForCalendar": {},
   "uiFoundation.calendar.nextMonthForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.calendar.previousMonth": {},
   "uiFoundation.calendar.previousMonthForCalendar": {},
   "uiFoundation.calendar.previousMonthForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.calendar.selectMonth": {},
   "uiFoundation.calendar.selectMonthForLabel": {
     "label": [
       "string"
@@ -75,19 +61,16 @@
     ]
   },
   "uiFoundation.card.loading": {},
-  "uiFoundation.cascader.childItems": {},
   "uiFoundation.cascader.childItemsForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.cascader.choose": {},
   "uiFoundation.cascader.chooseForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.cascader.clear": {},
   "uiFoundation.cascader.clearForLabel": {
     "label": [
       "string"
@@ -95,7 +78,6 @@
   },
   "uiFoundation.cascader.close": {},
   "uiFoundation.cascader.confirmThisPath": {},
-  "uiFoundation.cascader.loadingChildItems": {},
   "uiFoundation.cascader.loadingChildItemsForLabel": {
     "label": [
       "string"
@@ -104,14 +86,12 @@
   "uiFoundation.cascader.noSelection": {},
   "uiFoundation.cascader.onlyLeafItemsCanBeSelectedSelectAnItemAtTheEndOfThePath": {},
   "uiFoundation.cascader.optionPath": {},
-  "uiFoundation.cascader.retry": {},
   "uiFoundation.cascader.retryForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.cascader.selectALeafItem": {},
-  "uiFoundation.cascader.selectALevel": {},
   "uiFoundation.cascader.selectALevelForCascader": {},
   "uiFoundation.cascader.selectALevelForLabel": {
     "label": [
@@ -124,7 +104,11 @@
   "uiFoundation.cascader.thePathContainsADisabledItem": {},
   "uiFoundation.cascader.thisItemCannotBeSelected": {},
   "uiFoundation.cascader.topLevel": {},
-  "uiFoundation.cascader.unavailableOrDeleted": {},
+  "uiFoundation.cascader.unavailableItemLabel": {
+    "value": [
+      "string"
+    ]
+  },
   "uiFoundation.cascader.useUpAndDownToMoveWithinALevelUseRightToMoveToAChildLevelOrLeftToReturnToTheParen": {},
   "uiFoundation.cascader.working": {},
   "uiFoundation.cascader.youCanAlsoSelectIntermediateItems": {},
@@ -132,16 +116,23 @@
   "uiFoundation.chart.checkTheAxisTypeAndRange": {},
   "uiFoundation.chart.checkTheChartLocaleNumberFormatAndDate": {},
   "uiFoundation.chart.coordinates": {},
-  "uiFoundation.chart.data": {},
   "uiFoundation.chart.dataForLabel": {
     "label": [
       "string"
     ]
   },
+  "uiFoundation.chart.duplicateCategoryLabels": {},
+  "uiFoundation.chart.duplicatePointIds": {},
+  "uiFoundation.chart.invalidData": {},
+  "uiFoundation.chart.invalidPointIds": {},
+  "uiFoundation.chart.invalidSeriesIds": {},
+  "uiFoundation.chart.invalidValue": {},
   "uiFoundation.chart.item": {},
   "uiFoundation.chart.legend": {},
+  "uiFoundation.chart.missingCoordinates": {},
+  "uiFoundation.chart.missingSeriesLabel": {},
+  "uiFoundation.chart.negativeValue": {},
   "uiFoundation.chart.preparingTheChart": {},
-  "uiFoundation.chart.select": {},
   "uiFoundation.chart.selectForLabel": {
     "label": [
       "string"
@@ -149,7 +140,6 @@
   },
   "uiFoundation.chart.selection": {},
   "uiFoundation.chart.series": {},
-  "uiFoundation.chart.showSeries": {},
   "uiFoundation.chart.showSeriesForLabel": {
     "label": [
       "string"
@@ -157,11 +147,14 @@
   },
   "uiFoundation.chart.specifyTheTimeAxisTimeZone": {},
   "uiFoundation.chart.specifyTheTimeAxisTimeZoneInIts": {},
+  "uiFoundation.chart.tooManyPoints": {},
+  "uiFoundation.chart.treeCycle": {},
+  "uiFoundation.chart.treeTooDeep": {},
   "uiFoundation.chart.unableToRenderTheChartCheckTheDataTable": {},
   "uiFoundation.chart.unavailable": {},
+  "uiFoundation.chart.unknownKind": {},
   "uiFoundation.chart.useCategoryAxesForBothAxesOfThe": {},
   "uiFoundation.chart.value": {},
-  "uiFoundation.chart.valuesAndSelection": {},
   "uiFoundation.chart.valuesAndSelectionForLabel": {
     "label": [
       "string"
@@ -169,7 +162,6 @@
   },
   "uiFoundation.chart.verticalCoordinate": {},
   "uiFoundation.chat.conversation": {},
-  "uiFoundation.chat.messageInput": {},
   "uiFoundation.chat.messageInputForLabel": {
     "label": [
       "string"
@@ -202,7 +194,6 @@
   "uiFoundation.colorPicker.opacity": {},
   "uiFoundation.colorPicker.required": {},
   "uiFoundation.columnChooser.columnSettings": {},
-  "uiFoundation.columnChooser.columnWidth": {},
   "uiFoundation.columnChooser.columnWidthLabel": {
     "column": [
       "string"
@@ -217,8 +208,6 @@
       "string"
     ]
   },
-  "uiFoundation.columnChooser.pinned": {},
-  "uiFoundation.columnChooser.pinnedForTableControls": {},
   "uiFoundation.columnChooser.pinSelectLabel": {
     "column": [
       "string"
@@ -239,7 +228,6 @@
       "string"
     ]
   },
-  "uiFoundation.columnFilter.addFilterCondition": {},
   "uiFoundation.columnFilter.addLabel": {
     "column": [
       "string"
@@ -248,15 +236,11 @@
   "uiFoundation.columnFilter.all": {},
   "uiFoundation.columnFilter.any": {},
   "uiFoundation.columnFilter.clearCriteria": {},
-  "uiFoundation.columnFilter.columnFilters": {},
-  "uiFoundation.columnFilter.combineCriteria": {},
-  "uiFoundation.columnFilter.combineCriteriaForTableControls": {},
   "uiFoundation.columnFilter.combineLabel": {
     "column": [
       "string"
     ]
   },
-  "uiFoundation.columnFilter.comparisonOperator": {},
   "uiFoundation.columnFilter.criterionLabel": {
     "column": [
       "string"
@@ -271,8 +255,6 @@
     ]
   },
   "uiFoundation.columnFilter.dateEntered": {},
-  "uiFoundation.columnFilter.filterCondition": {},
-  "uiFoundation.columnFilter.filterConditionForTableControls": {},
   "uiFoundation.columnFilter.matchAllHelp": {},
   "uiFoundation.columnFilter.matchAnyHelp": {},
   "uiFoundation.columnFilter.no": {},
@@ -295,12 +277,10 @@
       "string"
     ]
   },
-  "uiFoundation.columnFilter.remove": {},
   "uiFoundation.columnFilter.theIncompleteValueHasYetToBeAppliedTheLastValidFilterRemainsActive": {},
   "uiFoundation.columnFilter.yes": {},
   "uiFoundation.combobox.chooseASuggestionToConfirmYourEntry": {},
   "uiFoundation.combobox.chooseFromTheSuggestions": {},
-  "uiFoundation.combobox.clear": {},
   "uiFoundation.combobox.clearForLabel": {
     "label": [
       "string"
@@ -308,19 +288,16 @@
   },
   "uiFoundation.combobox.clearForSelectionInput": {},
   "uiFoundation.combobox.loadingSuggestions": {},
-  "uiFoundation.combobox.options": {},
   "uiFoundation.combobox.optionsForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.combobox.suggestions": {},
   "uiFoundation.combobox.suggestionsForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.combobox.suggestionsForSelectionInput": {},
   "uiFoundation.combobox.suggestionsForSelectionInputCount": {
     "count": [
       "number"
@@ -330,7 +307,6 @@
   "uiFoundation.commandPalette.availableCommands": {},
   "uiFoundation.commandPalette.close": {},
   "uiFoundation.commandPalette.closeDialog": {},
-  "uiFoundation.commandPalette.commands": {},
   "uiFoundation.commandPalette.commandsCount": {
     "count": [
       "number"
@@ -356,7 +332,6 @@
   "uiFoundation.dataGrid.checkingWhetherThePastedContentWasSaved": {},
   "uiFoundation.dataGrid.checkThatHierarchyRowsMatchTheDisplayedRows": {},
   "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent": {},
-  "uiFoundation.dataGrid.close": {},
   "uiFoundation.dataGrid.collapseRowLabel": {
     "row": [
       "string"
@@ -364,7 +339,6 @@
   },
   "uiFoundation.dataGrid.copying": {},
   "uiFoundation.dataGrid.copySelectedCells": {},
-  "uiFoundation.dataGrid.expand": {},
   "uiFoundation.dataGrid.expandRowLabel": {
     "row": [
       "string"
@@ -381,7 +355,6 @@
   "uiFoundation.dataGrid.retryPaste": {},
   "uiFoundation.dataGrid.saveOrCancelTheEditBeforePasting": {},
   "uiFoundation.dataGrid.selectedCellsCopied": {},
-  "uiFoundation.dataGrid.selectRow": {},
   "uiFoundation.dataGrid.selectRowLabel": {
     "row": [
       "string"
@@ -396,7 +369,6 @@
   "uiFoundation.dataGrid.unavailable": {},
   "uiFoundation.dataGrid.useTheArrowKeysToMoveBetweenCellsHoldShiftAndPressAnArrowKeyToSelectARangePressEnte": {},
   "uiFoundation.dataGrid.useTheLeftAndRightArrowKeysInTheFirstCellToCollapseOrExpandTheRowPressSpaceToSelect": {},
-  "uiFoundation.dataGrid.yourPastedContentIsStillAvailableYouCanTryAgain": {},
   "uiFoundation.dataTableView.actions": {},
   "uiFoundation.dataTableView.activeFilterCount": {
     "count": [
@@ -434,23 +406,18 @@
       "string"
     ]
   },
-  "uiFoundation.dataTableView.applied": {},
   "uiFoundation.dataTableView.aTableIDAndCaptionAreRequired": {},
   "uiFoundation.dataTableView.average": {},
   "uiFoundation.dataTableView.checkTheGroupingColumns": {},
   "uiFoundation.dataTableView.checkTheSummaryColumnsAndCalculationMethods": {},
-  "uiFoundation.dataTableView.checkTheTableSettings": {},
   "uiFoundation.dataTableView.clearSearch": {},
   "uiFoundation.dataTableView.close": {},
-  "uiFoundation.dataTableView.column": {},
-  "uiFoundation.dataTableView.columnBoundary": {},
   "uiFoundation.dataTableView.columnBoundaryLabel": {
     "column": [
       "string"
     ]
   },
   "uiFoundation.dataTableView.columnSettings": {},
-  "uiFoundation.dataTableView.columnWidth": {},
   "uiFoundation.dataTableView.columnWidthLabel": {
     "column": [
       "string"
@@ -466,8 +433,6 @@
   },
   "uiFoundation.dataTableView.couldNotLoadTheList": {},
   "uiFoundation.dataTableView.details": {},
-  "uiFoundation.dataTableView.detailsForDataTableView": {},
-  "uiFoundation.dataTableView.edit": {},
   "uiFoundation.dataTableView.editRow": {},
   "uiFoundation.dataTableView.editRowLabel": {
     "row": [
@@ -475,19 +440,15 @@
     ]
   },
   "uiFoundation.dataTableView.expand": {},
-  "uiFoundation.dataTableView.exportAndBulkActions": {},
   "uiFoundation.dataTableView.exportAndBulkActionsLabel": {
     "caption": [
       "string"
     ]
   },
   "uiFoundation.dataTableView.filterByColumn": {},
-  "uiFoundation.dataTableView.items": {},
-  "uiFoundation.dataTableView.known": {},
   "uiFoundation.dataTableView.knownCount": {},
   "uiFoundation.dataTableView.leadingSide": {},
   "uiFoundation.dataTableView.loadingTheList": {},
-  "uiFoundation.dataTableView.loadMore": {},
   "uiFoundation.dataTableView.loadMoreLabel": {
     "caption": [
       "string"
@@ -498,7 +459,6 @@
   "uiFoundation.dataTableView.noData": {},
   "uiFoundation.dataTableView.noMatchingResults": {},
   "uiFoundation.dataTableView.open": {},
-  "uiFoundation.dataTableView.pages": {},
   "uiFoundation.dataTableView.paginationLabel": {
     "caption": [
       "string"
@@ -509,7 +469,6 @@
       "string"
     ]
   },
-  "uiFoundation.dataTableView.pinned": {},
   "uiFoundation.dataTableView.receivedRowSummary": {},
   "uiFoundation.dataTableView.reloadList": {},
   "uiFoundation.dataTableView.resetColumnSettings": {},
@@ -519,7 +478,6 @@
     ]
   },
   "uiFoundation.dataTableView.rowEditing": {},
-  "uiFoundation.dataTableView.rowEditor": {},
   "uiFoundation.dataTableView.rowEditorLabel": {
     "row": [
       "string"
@@ -538,14 +496,12 @@
   "uiFoundation.dataTableView.selectAllOnThisPage": {},
   "uiFoundation.dataTableView.selectAllSearchResults": {},
   "uiFoundation.dataTableView.selection": {},
-  "uiFoundation.dataTableView.selectRow": {},
   "uiFoundation.dataTableView.selectRowLabel": {
     "row": [
       "string"
     ]
   },
   "uiFoundation.dataTableView.someRowsOrColumnsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToChangeTheSear": {},
-  "uiFoundation.dataTableView.sort": {},
   "uiFoundation.dataTableView.sortColumnLabel": {
     "column": [
       "string"
@@ -562,7 +518,6 @@
   "uiFoundation.dataTableView.summaryForThisPage": {},
   "uiFoundation.dataTableView.summaryOfAllReceivedRows": {},
   "uiFoundation.dataTableView.switchToStandardTable": {},
-  "uiFoundation.dataTableView.tableRegion": {},
   "uiFoundation.dataTableView.tableRegionLabel": {
     "caption": [
       "string"
@@ -581,7 +536,6 @@
   "uiFoundation.dataView.descending": {},
   "uiFoundation.dataView.gridView": {},
   "uiFoundation.dataView.invalidPageSettings": {},
-  "uiFoundation.dataView.items": {},
   "uiFoundation.dataView.itemsCount": {
     "count": [
       "number"
@@ -593,11 +547,17 @@
   "uiFoundation.dataView.next": {},
   "uiFoundation.dataView.noMatchingItems": {},
   "uiFoundation.dataView.originalOrder": {},
-  "uiFoundation.dataView.page": {},
+  "uiFoundation.dataView.pageProgress": {
+    "page": [
+      "number"
+    ],
+    "total": [
+      "number"
+    ]
+  },
   "uiFoundation.dataView.previous": {},
   "uiFoundation.dataView.search": {},
   "uiFoundation.dataView.sortOrder": {},
-  "uiFoundation.dateInput.clear": {},
   "uiFoundation.dateInput.clearForDateInput": {},
   "uiFoundation.dateInput.clearLabel": {
     "label": [
@@ -611,27 +571,22 @@
     ]
   },
   "uiFoundation.datePicker.cancelDateSelection": {},
-  "uiFoundation.datePicker.clear": {},
   "uiFoundation.datePicker.clearForDateInput": {},
   "uiFoundation.datePicker.clearLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.datePicker.date": {},
-  "uiFoundation.datePicker.inputFormat": {},
   "uiFoundation.datePicker.inputFormatHint": {
     "format": [
       "string"
     ]
   },
-  "uiFoundation.datePicker.openCalendar": {},
   "uiFoundation.datePicker.openCalendarLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.datePicker.selectDate": {},
   "uiFoundation.datePicker.selectDateLabel": {
     "label": [
       "string"
@@ -648,7 +603,6 @@
   "uiFoundation.dateRangePicker.chooseAnEndDate": {},
   "uiFoundation.dateRangePicker.chooseAStartDate": {},
   "uiFoundation.dateRangePicker.clearDateRange": {},
-  "uiFoundation.dateRangePicker.endDate": {},
   "uiFoundation.dateRangePicker.endDateLabel": {
     "label": [
       "string"
@@ -657,23 +611,19 @@
   "uiFoundation.dateRangePicker.endpointsRequired": {},
   "uiFoundation.dateRangePicker.invalidEndpoint": {},
   "uiFoundation.dateRangePicker.invalidOrder": {},
-  "uiFoundation.dateRangePicker.month": {},
   "uiFoundation.dateRangePicker.outOfBounds": {},
   "uiFoundation.dateRangePicker.overDayLimit": {},
-  "uiFoundation.dateRangePicker.required": {},
   "uiFoundation.dateRangePicker.requiredLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.dateRangePicker.startDate": {},
   "uiFoundation.dateRangePicker.startDateLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.dateRangePicker.unavailableDay": {},
-  "uiFoundation.dateTimePicker.localTime": {},
   "uiFoundation.dateTimePicker.localTimeWithZone": {
     "zone": [
       "string"
@@ -702,17 +652,28 @@
   "uiFoundation.dialog.resizeLabel": {},
   "uiFoundation.dialog.restoreSize": {},
   "uiFoundation.diffViewer.after": {},
-  "uiFoundation.diffViewer.afterForDiffJson": {},
+  "uiFoundation.diffViewer.afterLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.diffViewer.before": {},
-  "uiFoundation.diffViewer.beforeForDiffJson": {},
+  "uiFoundation.diffViewer.beforeLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.diffViewer.copied": {},
   "uiFoundation.diffViewer.copyChangedVersion": {},
   "uiFoundation.diffViewer.copying": {},
   "uiFoundation.diffViewer.copyOriginalVersion": {},
   "uiFoundation.diffViewer.couldNotStartTheDiffEditorTheFullTextIsStillAvailable": {},
-  "uiFoundation.diffViewer.differences": {},
+  "uiFoundation.diffViewer.differenceCount": {
+    "count": [
+      "number"
+    ]
+  },
   "uiFoundation.diffViewer.differencesForDiffJson": {},
-  "uiFoundation.diffViewer.matches": {},
   "uiFoundation.diffViewer.matchesCount": {
     "count": [
       "number"
@@ -724,7 +685,11 @@
   "uiFoundation.diffViewer.reviewFullText": {},
   "uiFoundation.diffViewer.searchDifferences": {},
   "uiFoundation.diffViewer.unableToCopyTryAgain": {},
-  "uiFoundation.fileExplorer.actions": {},
+  "uiFoundation.fileExplorer.actionRegionLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.fileExplorer.checkTheFolderStructure": {},
   "uiFoundation.fileExplorer.collapse": {},
   "uiFoundation.fileExplorer.download": {},
@@ -732,8 +697,20 @@
   "uiFoundation.fileExplorer.files": {},
   "uiFoundation.fileExplorer.grid": {},
   "uiFoundation.fileExplorer.hierarchy": {},
-  "uiFoundation.fileExplorer.items": {},
+  "uiFoundation.fileExplorer.itemAndSize": {
+    "label": [
+      "string"
+    ],
+    "count": [
+      "number"
+    ]
+  },
   "uiFoundation.fileExplorer.itemsForLabel": {
+    "label": [
+      "string"
+    ]
+  },
+  "uiFoundation.fileExplorer.itemWithoutSize": {
     "label": [
       "string"
     ]
@@ -745,10 +722,8 @@
   "uiFoundation.fileExplorer.requestNewFolder": {},
   "uiFoundation.fileExplorer.requestRename": {},
   "uiFoundation.fileExplorer.searchFiles": {},
-  "uiFoundation.fileExplorer.sizeUnavailable": {},
   "uiFoundation.fileExplorer.theAppAppliesTheResultTheNameYouEnteredIsKeptIfAnErrorOccurs": {},
   "uiFoundation.fileExplorer.view": {},
-  "uiFoundation.fileUpload.accepted": {},
   "uiFoundation.fileUpload.acceptedFormats": {
     "formats": [
       "string"
@@ -771,26 +746,20 @@
       "number"
     ]
   },
-  "uiFoundation.fileUpload.filesMaximum": {},
-  "uiFoundation.fileUpload.format": {},
-  "uiFoundation.fileUpload.max": {},
   "uiFoundation.fileUpload.multipleSelectionsAllowed": {},
   "uiFoundation.fileUpload.noSizeLimit": {},
   "uiFoundation.fileUpload.oneAtATime": {},
-  "uiFoundation.fileUpload.perFile": {},
   "uiFoundation.fileUpload.perFileLimit": {
     "size": [
       "string"
     ]
   },
-  "uiFoundation.fileUpload.rejected": {},
   "uiFoundation.fileUpload.rejectedCount": {},
   "uiFoundation.fileUpload.rejectedSize": {},
   "uiFoundation.fileUpload.rejectedType": {},
   "uiFoundation.fileUpload.theFileExceedsTheSizeLimit": {},
   "uiFoundation.fileUpload.theFileFormatIsNotAccepted": {},
   "uiFoundation.fileUpload.tooManyFiles": {},
-  "uiFoundation.fileUpload.total": {},
   "uiFoundation.fileUpload.useAnArrayOfFileObjectsAsThe": {},
   "uiFoundation.filterBuilder.addCriteriaGroup": {},
   "uiFoundation.filterBuilder.addCriterion": {},
@@ -866,7 +835,6 @@
     ]
   },
   "uiFoundation.filterChips.no": {},
-  "uiFoundation.filterChips.remove": {},
   "uiFoundation.filterChips.removeCriterion": {
     "criterion": [
       "string"
@@ -877,7 +845,6 @@
       "string"
     ]
   },
-  "uiFoundation.filterChips.search": {},
   "uiFoundation.filterChips.thereAreNoActiveFilters": {},
   "uiFoundation.filterChips.yes": {},
   "uiFoundation.floatingActionButton.menuLabel": {},
@@ -886,29 +853,31 @@
   "uiFoundation.flowEditor.autoLayout": {},
   "uiFoundation.flowEditor.connect": {},
   "uiFoundation.flowEditor.connection": {},
+  "uiFoundation.flowEditor.connectionUnknownNode": {},
   "uiFoundation.flowEditor.couldNotCalculateTheLayoutTheCurrentDiagramHasBeenKept": {},
   "uiFoundation.flowEditor.destination": {},
-  "uiFoundation.flowEditor.diagram": {},
   "uiFoundation.flowEditor.diagramForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.flowEditor.editor": {},
   "uiFoundation.flowEditor.editorForLabel": {
     "label": [
       "string"
     ]
   },
+  "uiFoundation.flowEditor.emptyNodeLabel": {},
   "uiFoundation.flowEditor.flow": {},
   "uiFoundation.flowEditor.horizontalPosition": {},
-  "uiFoundation.flowEditor.horizontalPositionForDiagram": {},
   "uiFoundation.flowEditor.horizontalPositionForDiagramForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.flowEditor.label": {},
+  "uiFoundation.flowEditor.invalidConnectionIds": {},
+  "uiFoundation.flowEditor.invalidDiagram": {},
+  "uiFoundation.flowEditor.invalidNodeCoordinates": {},
+  "uiFoundation.flowEditor.invalidNodeIds": {},
   "uiFoundation.flowEditor.labelForDiagram": {},
   "uiFoundation.flowEditor.labelForLabel": {
     "label": [
@@ -931,7 +900,6 @@
   "uiFoundation.flowEditor.nodeLabelAndPosition": {},
   "uiFoundation.flowEditor.nodeLabelRequired": {},
   "uiFoundation.flowEditor.nodePositionRange": {},
-  "uiFoundation.flowEditor.remove": {},
   "uiFoundation.flowEditor.removeConnection": {},
   "uiFoundation.flowEditor.removeForLabel": {
     "label": [
@@ -942,7 +910,6 @@
   "uiFoundation.flowEditor.setTheZoomLevelToAValueBetween025And4": {},
   "uiFoundation.flowEditor.source": {},
   "uiFoundation.flowEditor.verticalPosition": {},
-  "uiFoundation.flowEditor.verticalPositionForDiagram": {},
   "uiFoundation.flowEditor.verticalPositionForDiagramForLabel": {
     "label": [
       "string"
@@ -965,7 +932,6 @@
   "uiFoundation.formField.optional": {},
   "uiFoundation.formField.required": {},
   "uiFoundation.gallery.carousel": {},
-  "uiFoundation.gallery.image": {},
   "uiFoundation.gallery.imageToShow": {},
   "uiFoundation.gallery.next": {},
   "uiFoundation.gallery.noImages": {},
@@ -976,23 +942,20 @@
   "uiFoundation.gantt.checkTheDateRangeAndEnterProgressFrom0To100YourInputIsStillAvailable": {},
   "uiFoundation.gantt.couldNotDrawTheGanttChartReviewTheTaskTable": {},
   "uiFoundation.gantt.dateRangeDependenciesAndProgress": {},
-  "uiFoundation.gantt.dayS": {},
+  "uiFoundation.gantt.dayScale": {},
   "uiFoundation.gantt.dependency": {},
   "uiFoundation.gantt.dependencyCycle": {},
-  "uiFoundation.gantt.diagram": {},
   "uiFoundation.gantt.diagramLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.gantt.editProgress": {},
   "uiFoundation.gantt.editTaskProgressLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.gantt.end": {},
-  "uiFoundation.gantt.endForGantt": {},
   "uiFoundation.gantt.ganttChart": {},
   "uiFoundation.gantt.invalidCivilDate": {},
   "uiFoundation.gantt.invalidDependencyIds": {},
@@ -1002,9 +965,7 @@
   "uiFoundation.gantt.month": {},
   "uiFoundation.gantt.none": {},
   "uiFoundation.gantt.progress": {},
-  "uiFoundation.gantt.progressForGantt": {},
   "uiFoundation.gantt.start": {},
-  "uiFoundation.gantt.startForGantt": {},
   "uiFoundation.gantt.task": {},
   "uiFoundation.gantt.taskEndLabel": {
     "label": [
@@ -1021,7 +982,6 @@
       "string"
     ]
   },
-  "uiFoundation.gantt.tasks": {},
   "uiFoundation.gantt.taskStartLabel": {
     "label": [
       "string"
@@ -1033,7 +993,6 @@
   "uiFoundation.gantt.week": {},
   "uiFoundation.gridList.checkTheColumnCountAndItemWidth": {},
   "uiFoundation.gridList.clearListSelection": {},
-  "uiFoundation.gridList.select": {},
   "uiFoundation.gridList.selectAllItemsInTheList": {},
   "uiFoundation.gridList.selectForLabel": {
     "label": [
@@ -1042,8 +1001,12 @@
   },
   "uiFoundation.gridList.thereAreNoItemsToDisplay": {},
   "uiFoundation.gridList.useAUniqueStringOrFiniteNumberForEachItemKey": {},
-  "uiFoundation.image.couldNotBeLoaded": {},
   "uiFoundation.image.decorativeImage": {},
+  "uiFoundation.image.loadFailed": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.image.reloadImage": {},
   "uiFoundation.imageCompare.afterLoadFailed": {},
   "uiFoundation.imageCompare.beforeLoadFailed": {},
@@ -1069,7 +1032,6 @@
   "uiFoundation.imageCropper.loadingTheImage": {},
   "uiFoundation.imageCropper.resetCropArea": {},
   "uiFoundation.imageCropper.rotateRight90": {},
-  "uiFoundation.imageCropper.rotation": {},
   "uiFoundation.imageCropper.rotationDegrees": {
     "angle": [
       "number"
@@ -1122,11 +1084,19 @@
   "uiFoundation.inlineEdit.noInput": {},
   "uiFoundation.inlineEdit.required": {},
   "uiFoundation.inlineEdit.save": {},
-  "uiFoundation.jsonViewer.collapse": {},
+  "uiFoundation.jsonViewer.collapseLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.jsonViewer.copied": {},
   "uiFoundation.jsonViewer.copying": {},
   "uiFoundation.jsonViewer.copyOriginalText": {},
-  "uiFoundation.jsonViewer.expand": {},
+  "uiFoundation.jsonViewer.expandLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.jsonViewer.hierarchy": {},
   "uiFoundation.jsonViewer.parseErrorAtOffset": {
     "code": [
@@ -1137,7 +1107,6 @@
     ]
   },
   "uiFoundation.jsonViewer.searchJSON": {},
-  "uiFoundation.jsonViewer.tree": {},
   "uiFoundation.jsonViewer.treeForLabel": {
     "label": [
       "string"
@@ -1147,19 +1116,20 @@
   "uiFoundation.jsonViewer.unableToCopyTryAgain": {},
   "uiFoundation.jsonViewer.value": {},
   "uiFoundation.kanban.destination": {},
-  "uiFoundation.kanban.destinationForKanban": {},
   "uiFoundation.kanban.destinationForKanbanForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.kanban.moveEarlier": {},
+  "uiFoundation.kanban.invalidBoard": {},
+  "uiFoundation.kanban.invalidCardIds": {},
+  "uiFoundation.kanban.invalidColumnIds": {},
+  "uiFoundation.kanban.invalidColumnLimit": {},
   "uiFoundation.kanban.moveEarlierForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.kanban.moveLater": {},
   "uiFoundation.kanban.moveLaterForKanban": {},
   "uiFoundation.kanban.moveLaterForLabel": {
     "label": [
@@ -1169,13 +1139,12 @@
   "uiFoundation.kanban.previous": {},
   "uiFoundation.kanban.taskBoard": {},
   "uiFoundation.kanban.unableToMove": {},
-  "uiFoundation.knob.decrease": {},
+  "uiFoundation.kanban.unknownCardColumn": {},
   "uiFoundation.knob.decreaseLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.knob.increase": {},
   "uiFoundation.knob.increaseLabel": {
     "label": [
       "string"
@@ -1206,7 +1175,11 @@
   "uiFoundation.listbox.selectVisible": {},
   "uiFoundation.listbox.singleValueRequired": {},
   "uiFoundation.mapView.couldNotDrawTheMapCheckTheListOfMarkersAndRegions": {},
-  "uiFoundation.mapView.map": {},
+  "uiFoundation.mapView.invalidCamera": {},
+  "uiFoundation.mapView.invalidData": {},
+  "uiFoundation.mapView.invalidMarker": {},
+  "uiFoundation.mapView.invalidObjectIds": {},
+  "uiFoundation.mapView.invalidRegionPolygon": {},
   "uiFoundation.mapView.mapForLabel": {
     "label": [
       "string"
@@ -1214,9 +1187,9 @@
   },
   "uiFoundation.mapView.mapForMap": {},
   "uiFoundation.mapView.markersAndRegions": {},
+  "uiFoundation.mapView.missingRegionPolygon": {},
   "uiFoundation.mapView.partOfTheMapCouldNotBeDisplayedCheckTheListOfMarkersAndRegions": {},
   "uiFoundation.mapView.preparingTheMap": {},
-  "uiFoundation.mapView.regions": {},
   "uiFoundation.mapView.regionsForLabel": {
     "label": [
       "string"
@@ -1226,7 +1199,6 @@
   "uiFoundation.mapView.zoomIn": {},
   "uiFoundation.mapView.zoomOut": {},
   "uiFoundation.markdownEditor.edit": {},
-  "uiFoundation.markdownEditor.markdown": {},
   "uiFoundation.markdownEditor.markdownDisplay": {},
   "uiFoundation.markdownEditor.markdownForLabel": {
     "label": [
@@ -1262,14 +1234,12 @@
   "uiFoundation.mediaPlayer.unableToLoadTheMediaCheckTheSourceAndFormatThenTryAgain": {},
   "uiFoundation.mediaPlayer.volume": {},
   "uiFoundation.megaMenu.close": {},
-  "uiFoundation.megaMenu.open": {},
   "uiFoundation.megaMenu.openForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.menu.backToParentMenu": {},
-  "uiFoundation.menu.target": {},
   "uiFoundation.menu.targetForLabel": {
     "label": [
       "string"
@@ -1280,7 +1250,6 @@
   "uiFoundation.messageComposer.couldNotConfirmWhetherTheMessageWasSentYourInputHasBeenKeptCheckTheResultInTheApp": {},
   "uiFoundation.messageComposer.enterAMessage": {},
   "uiFoundation.messageComposer.remove": {},
-  "uiFoundation.messageComposer.removeAttachment": {},
   "uiFoundation.messageComposer.removeAttachmentForLabel": {
     "label": [
       "string"
@@ -1289,18 +1258,25 @@
   "uiFoundation.messageComposer.send": {},
   "uiFoundation.messageComposer.sending": {},
   "uiFoundation.messageComposer.sizeUnavailable": {},
-  "uiFoundation.messageList.attachments": {},
   "uiFoundation.messageList.attachmentsForLabel": {
     "label": [
       "string"
     ]
   },
+  "uiFoundation.messageList.attachmentSize": {
+    "count": [
+      "number"
+    ]
+  },
   "uiFoundation.messageList.conversation": {},
   "uiFoundation.messageList.couldNotConfirmTheLoadResultTheCurrentConversationHasBeenKept": {},
   "uiFoundation.messageList.couldNotLoadEarlierMessagesTryAgain": {},
+  "uiFoundation.messageList.invalidAttachmentIds": {},
+  "uiFoundation.messageList.invalidAttachmentSize": {},
+  "uiFoundation.messageList.invalidData": {},
+  "uiFoundation.messageList.invalidMessageIds": {},
   "uiFoundation.messageList.loadEarlierMessages": {},
   "uiFoundation.messageList.loading": {},
-  "uiFoundation.messageList.resendMessage": {},
   "uiFoundation.messageList.resendMessageForLabel": {
     "label": [
       "string"
@@ -1312,35 +1288,20 @@
   "uiFoundation.messageList.sendSent": {},
   "uiFoundation.messageList.sendUnknown": {},
   "uiFoundation.messageList.sizeUnavailable": {},
+  "uiFoundation.messageList.unknownSendState": {},
   "uiFoundation.meter.unavailable": {},
-  "uiFoundation.meterGroup.available": {},
   "uiFoundation.meterGroup.availableForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.meterGroup.item": {},
-  "uiFoundation.meterGroup.itemForLabel": {
-    "label": [
-      "string"
-    ]
-  },
-  "uiFoundation.meterGroup.unavailable": {},
   "uiFoundation.meterGroup.unavailableCount": {
     "count": [
       "number"
     ]
   },
   "uiFoundation.multiSelect.clearSelection": {},
-  "uiFoundation.multiSelect.deselect": {},
   "uiFoundation.multiSelect.deselectForLabel": {
-    "label": [
-      "string"
-    ]
-  },
-  "uiFoundation.multiSelect.items": {},
-  "uiFoundation.multiSelect.maximum": {},
-  "uiFoundation.multiSelect.maximumForLabel": {
     "label": [
       "string"
     ]
@@ -1348,14 +1309,12 @@
   "uiFoundation.multiSelect.noMatchingSuggestions": {},
   "uiFoundation.multiSelect.options": {},
   "uiFoundation.multiSelect.required": {},
-  "uiFoundation.multiSelect.searchSuggestions": {},
   "uiFoundation.multiSelect.searchSuggestionsForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.multiSelect.selectAllShown": {},
-  "uiFoundation.multiSelect.selected": {},
   "uiFoundation.multiSelect.selectedCount": {
     "count": [
       "number"
@@ -1435,26 +1394,45 @@
   "uiFoundation.numericFieldControl.useUniqueValuesWithinTheRangeForTickMarks": {},
   "uiFoundation.organizationChart.childOrganizationsHaveNotBeenLoadedPassTheLoadedHierarchyFromTheApp": {},
   "uiFoundation.organizationChart.collapseChildOrganizations": {},
-  "uiFoundation.organizationChart.collapseSuborganizations": {},
+  "uiFoundation.organizationChart.collapseLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.organizationChart.expandChildOrganizations": {},
-  "uiFoundation.organizationChart.expandSuborganizations": {},
-  "uiFoundation.organizationChart.suborganizations": {},
+  "uiFoundation.organizationChart.expandLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.organizationChart.suborganizationsForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.organizationChart.thereAreNoOrganizationItems": {},
-  "uiFoundation.oTPInput.characters": {},
+  "uiFoundation.otpInput.alphanumericLength": {
+    "count": [
+      "number"
+    ],
+    "total": [
+      "number"
+    ]
+  },
   "uiFoundation.oTPInput.checkTheRequiredLengthAndCharacterType": {},
-  "uiFoundation.oTPInput.digits": {},
   "uiFoundation.oTPInput.enterALengthFrom1To64Characters": {},
-  "uiFoundation.oTPInput.lettersAndNumbers": {},
+  "uiFoundation.otpInput.numericLength": {
+    "count": [
+      "number"
+    ],
+    "total": [
+      "number"
+    ]
+  },
   "uiFoundation.pageFrame.sidebarLabel": {},
   "uiFoundation.pagination.chooseAPage": {},
   "uiFoundation.pagination.first": {},
   "uiFoundation.pagination.firstPage": {},
-  "uiFoundation.pagination.items": {},
   "uiFoundation.pagination.itemsCount": {
     "count": [
       "number"
@@ -1466,8 +1444,15 @@
   "uiFoundation.pagination.next": {},
   "uiFoundation.pagination.nextPage": {},
   "uiFoundation.pagination.noPages": {},
-  "uiFoundation.pagination.page": {},
   "uiFoundation.pagination.pageInformationIsUnavailable": {},
+  "uiFoundation.pagination.pageProgress": {
+    "page": [
+      "number"
+    ],
+    "total": [
+      "number"
+    ]
+  },
   "uiFoundation.pagination.previous": {},
   "uiFoundation.pagination.previousPage": {},
   "uiFoundation.panel.collapse": {},
@@ -1482,15 +1467,8 @@
   "uiFoundation.passwordInput.unrated": {},
   "uiFoundation.passwordInput.weak": {},
   "uiFoundation.pDFViewer.downloadPDF": {},
-  "uiFoundation.pDFViewer.enterAPageNumberFrom1To": {},
   "uiFoundation.pDFViewer.loadingPDF": {},
   "uiFoundation.pDFViewer.nextPage": {},
-  "uiFoundation.pDFViewer.openPageTextBelowToReadTheTextOnThisPage": {},
-  "uiFoundation.pDFViewer.openPageTextBelowToReadTheTextOnThisPageForLabel": {
-    "label": [
-      "string"
-    ]
-  },
   "uiFoundation.pDFViewer.page": {},
   "uiFoundation.pDFViewer.pageDisplayed": {},
   "uiFoundation.pdfViewer.pageInputRange": {
@@ -1507,7 +1485,6 @@
     ]
   },
   "uiFoundation.pDFViewer.pageText": {},
-  "uiFoundation.pDFViewer.pageView": {},
   "uiFoundation.pDFViewer.pageViewForLabel": {
     "label": [
       "string"
@@ -1566,7 +1543,6 @@
   "uiFoundation.richTextEditor.couldNotDisplayTheDocumentTheOriginalContentHasBeenKept": {},
   "uiFoundation.richTextEditor.enterAnHTTPHTTPSOrMailtoURL": {},
   "uiFoundation.richTextEditor.enterAnHTTPOrHTTPSImageURLAndAlternativeText": {},
-  "uiFoundation.richTextEditor.formatting": {},
   "uiFoundation.richTextEditor.formattingForLabel": {
     "label": [
       "string"
@@ -1736,7 +1712,6 @@
   "uiFoundation.sideNav.collapseDestination": {},
   "uiFoundation.sideNav.expand": {},
   "uiFoundation.sideNav.expandDestination": {},
-  "uiFoundation.sideNav.open": {},
   "uiFoundation.sideNav.openForLabel": {
     "label": [
       "string"
@@ -1749,8 +1724,6 @@
       "string"
     ]
   },
-  "uiFoundation.sortableList.chooseATemporaryPosition": {},
-  "uiFoundation.sortableList.chooseNewPosition": {},
   "uiFoundation.sortableList.chooseNewPositionForLabel": {
     "label": [
       "string"
@@ -1763,13 +1736,20 @@
   },
   "uiFoundation.sortableList.move": {},
   "uiFoundation.sortableList.moveBack": {},
-  "uiFoundation.sortableList.moveBackward": {},
+  "uiFoundation.sortableList.moveBackwardLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.sortableList.moveCanceled": {},
   "uiFoundation.sortableList.moveCanceledAfterLeavingTheViewport": {},
   "uiFoundation.sortableList.moveCanceledLiftYourFingerToFinish": {},
-  "uiFoundation.sortableList.moved": {},
-  "uiFoundation.sortableList.moveDown": {},
   "uiFoundation.sortableList.moveDownForSortableList": {},
+  "uiFoundation.sortableList.moveDownLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.sortableList.movedToPosition": {
     "label": [
       "string"
@@ -1778,11 +1758,18 @@
       "number"
     ]
   },
-  "uiFoundation.sortableList.moveEarlier": {},
-  "uiFoundation.sortableList.moveUp": {},
+  "uiFoundation.sortableList.moveEarlierLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.sortableList.moveUpForSortableList": {},
+  "uiFoundation.sortableList.moveUpLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.sortableList.movingPressEscapeToCancelOrLiftYourFingerToFinish": {},
-  "uiFoundation.sortableList.position": {},
   "uiFoundation.sortableList.previous": {},
   "uiFoundation.sortableList.proposedItemPosition": {
     "label": [
@@ -1792,13 +1779,7 @@
       "number"
     ]
   },
-  "uiFoundation.sortableList.proposedPosition": {
-    "position": [
-      "number"
-    ]
-  },
   "uiFoundation.sortableList.provideAnIDAndDescriptionForTheReorderableList": {},
-  "uiFoundation.sortableList.temporaryPosition": {},
   "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceled": {},
   "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceledForSortableList": {},
   "uiFoundation.sortableList.theListChangedSoTheMoveWasCanceledLiftYourFingerToFinish": {},
@@ -1806,12 +1787,6 @@
   "uiFoundation.sortableList.thereAreNoItemsToMove": {},
   "uiFoundation.sortableList.useTheArrowKeysToAdjustTheProposedPositionEnterToConfirmAndEscapeToCancel": {},
   "uiFoundation.sortableList.useTheMoveButtonsToChangePositionActivateTheHandleToChooseAPreviewPositionWithTheKeyboa": {},
-  "uiFoundation.sparkline.change": {},
-  "uiFoundation.sparkline.changeForLabel": {
-    "label": [
-      "string"
-    ]
-  },
   "uiFoundation.sparkline.compactTrendChart": {},
   "uiFoundation.sparkline.comparisonUnavailable": {},
   "uiFoundation.sparkline.delta": {
@@ -1819,26 +1794,22 @@
       "string"
     ]
   },
-  "uiFoundation.sparkline.items": {},
   "uiFoundation.sparkline.legend": {},
   "uiFoundation.sparkline.missingCount": {
     "count": [
       "number"
     ]
   },
-  "uiFoundation.sparkline.unavailable": {},
   "uiFoundation.specialistEditorControl.edit": {},
   "uiFoundation.splitButton.menuLabel": {},
   "uiFoundation.splitter.collapse": {},
   "uiFoundation.splitter.collapsed": {},
-  "uiFoundation.splitter.expand": {},
   "uiFoundation.splitter.expandForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.splitter.expandForSplitter": {},
-  "uiFoundation.splitter.shrink": {},
   "uiFoundation.splitter.shrinkForLabel": {
     "label": [
       "string"
@@ -1853,25 +1824,31 @@
   "uiFoundation.spreadsheet.calculationStartFailed": {},
   "uiFoundation.spreadsheet.calculationTimedOut": {},
   "uiFoundation.spreadsheet.calculationUnconfirmed": {},
-  "uiFoundation.spreadsheet.cell": {},
   "uiFoundation.spreadsheet.cellForLabel": {
     "label": [
       "string"
     ]
   },
+  "uiFoundation.spreadsheet.cellLimit": {},
   "uiFoundation.spreadsheet.checkTheNumberOfPinnedRowsAndColumns": {},
+  "uiFoundation.spreadsheet.csvSizeLimit": {},
   "uiFoundation.spreadsheet.cSVToImport": {},
+  "uiFoundation.spreadsheet.csvUnclosedQuote": {},
+  "uiFoundation.spreadsheet.csvUnexpectedText": {},
   "uiFoundation.spreadsheet.exportCSV": {},
   "uiFoundation.spreadsheet.exportJSONWithFormulas": {},
   "uiFoundation.spreadsheet.importCSV": {},
   "uiFoundation.spreadsheet.invalidCalculationTimeout": {},
+  "uiFoundation.spreadsheet.invalidCell": {},
   "uiFoundation.spreadsheet.retryFormulaCalculation": {},
   "uiFoundation.spreadsheet.reviewTheExternalChangesYourInputIsStillAvailable": {},
   "uiFoundation.spreadsheet.row": {},
+  "uiFoundation.spreadsheet.rowLimit": {},
   "uiFoundation.spreadsheet.selection": {},
   "uiFoundation.spreadsheet.spreadsheet": {},
   "uiFoundation.spreadsheet.unableToImportTheCSVFile": {},
   "uiFoundation.spreadsheet.uncommittedInput": {},
+  "uiFoundation.spreadsheet.unevenRows": {},
   "uiFoundation.spreadsheet.useTheArrowKeysToSelectCellsPressEnterOrF2ToEditEnterToRequestTheChangeAndEscapeTo": {},
   "uiFoundation.spreadsheet.value": {},
   "uiFoundation.statistic.change": {},
@@ -1886,22 +1863,11 @@
   "uiFoundation.table.invalidRowKeys": {},
   "uiFoundation.table.invalidSavedWidths": {},
   "uiFoundation.tableContainer.checkTheTableRegionDescriptionViewportSizeAndScrollPosition": {},
-  "uiFoundation.tableControls.actionColumn": {
-    "column": [
-      "string",
-      "number"
-    ],
-    "action": [
-      "string"
-    ]
-  },
-  "uiFoundation.tableControls.moveColumnEarlier": {},
   "uiFoundation.tableControls.moveColumnEarlierLabel": {
     "column": [
       "string"
     ]
   },
-  "uiFoundation.tableControls.moveColumnLater": {},
   "uiFoundation.tableControls.moveColumnLaterLabel": {
     "column": [
       "string"
@@ -1909,8 +1875,6 @@
   },
   "uiFoundation.tableControls.moveEarlier": {},
   "uiFoundation.tableControls.moveLater": {},
-  "uiFoundation.tableControls.moveLaterForTableControls": {},
-  "uiFoundation.tableControls.previous": {},
   "uiFoundation.tableEdit.booleanRequired": {},
   "uiFoundation.tableEdit.draftValidationFailed": {},
   "uiFoundation.tableEdit.invalidEditableColumns": {},
@@ -1989,18 +1953,20 @@
   "uiFoundation.tableToolbar.copyTable": {},
   "uiFoundation.tableToolbar.exportCSV": {},
   "uiFoundation.tableToolbar.exportScope": {},
-  "uiFoundation.tableToolbar.items": {},
   "uiFoundation.tableToolbar.loadedSearchResults": {},
   "uiFoundation.tableToolbar.loadedSelectedRows": {},
   "uiFoundation.tableToolbar.pageShown": {},
   "uiFoundation.tableToolbar.printTable": {},
   "uiFoundation.tableToolbar.searchAllColumns": {},
   "uiFoundation.tableToolbar.tableActions": {},
-  "uiFoundation.tabs.actionsForTheSelectedTab": {},
   "uiFoundation.tabs.closeSelectedTab": {},
   "uiFoundation.tabs.moveSelectedTabEarlier": {},
   "uiFoundation.tabs.moveSelectedTabLater": {},
-  "uiFoundation.tag.remove": {},
+  "uiFoundation.tabs.selectedTabActionsLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.tag.removeForLabel": {
     "label": [
       "string"
@@ -2024,27 +1990,7 @@
       "number"
     ]
   },
-  "uiFoundation.tagInput.enteredValues": {},
   "uiFoundation.tagInput.enteredValuesForLabel": {
-    "label": [
-      "string"
-    ]
-  },
-  "uiFoundation.tagInput.items": {},
-  "uiFoundation.tagInput.itemsCount": {
-    "count": [
-      "number"
-    ]
-  },
-  "uiFoundation.tagInput.itemsForStructuredInput": {},
-  "uiFoundation.tagInput.itemsForStructuredInputForLabel": {
-    "label": [
-      "string"
-    ]
-  },
-  "uiFoundation.tagInput.maximum": {},
-  "uiFoundation.tagInput.remove": {},
-  "uiFoundation.tagInput.removeForLabel": {
     "label": [
       "string"
     ]
@@ -2063,9 +2009,32 @@
   "uiFoundation.tagInput.theMaximumNumberOfItemsHasBeenReached": {},
   "uiFoundation.tagInput.thisItemHasAlreadyBeenAdded": {},
   "uiFoundation.tagInput.tooManyItemsRemoveSomeToContinue": {},
-  "uiFoundation.textarea.characters": {},
-  "uiFoundation.textInput.characters": {},
-  "uiFoundation.textInput.clear": {},
+  "uiFoundation.textarea.characterCount": {
+    "count": [
+      "number"
+    ]
+  },
+  "uiFoundation.textarea.characterCountWithLimit": {
+    "count": [
+      "number"
+    ],
+    "limit": [
+      "number"
+    ]
+  },
+  "uiFoundation.textInput.characterCount": {
+    "count": [
+      "number"
+    ]
+  },
+  "uiFoundation.textInput.characterCountWithLimit": {
+    "count": [
+      "number"
+    ],
+    "limit": [
+      "number"
+    ]
+  },
   "uiFoundation.textInput.clearForLabel": {
     "label": [
       "string"
@@ -2078,14 +2047,12 @@
   "uiFoundation.timeline.checkTheDateAndTimeValue": {},
   "uiFoundation.timeline.checkTheTypeValue": {},
   "uiFoundation.timeline.couldNotDisplayTheDateAndTime": {},
-  "uiFoundation.timeline.details": {},
   "uiFoundation.timeline.detailsForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.timeline.loading": {},
-  "uiFoundation.timeline.loadMore": {},
   "uiFoundation.timeline.loadMoreForLabel": {
     "label": [
       "string"
@@ -2105,7 +2072,6 @@
   "uiFoundation.tour.closeTour": {},
   "uiFoundation.tour.finishTour": {},
   "uiFoundation.tour.next": {},
-  "uiFoundation.transferList.add": {},
   "uiFoundation.transferList.addForLabel": {
     "label": [
       "string"
@@ -2122,13 +2088,11 @@
   "uiFoundation.transferList.checkTheItemsToMoveAndTheirDestination": {},
   "uiFoundation.transferList.checkTheItemsToMoveAndTheState": {},
   "uiFoundation.transferList.checkTheSearchLanguage": {},
-  "uiFoundation.transferList.chooseNewPosition": {},
   "uiFoundation.transferList.chooseNewPositionForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.transferList.choosingADestination": {},
   "uiFoundation.transferList.choosingItemDestination": {
     "label": [
       "string"
@@ -2144,7 +2108,6 @@
       "number"
     ]
   },
-  "uiFoundation.transferList.items": {},
   "uiFoundation.transferList.itemsAddedCount": {
     "count": [
       "number"
@@ -2156,12 +2119,15 @@
     ]
   },
   "uiFoundation.transferList.keptValue": {},
-  "uiFoundation.transferList.locked": {},
+  "uiFoundation.transferList.lockedItem": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.transferList.move": {},
   "uiFoundation.transferList.moveAllCheckedItemsInViewAtOnceTheMoveHandleAndTheAddRemoveUpAndDownButtonsAlsoWo": {},
   "uiFoundation.transferList.moveCanceled": {},
   "uiFoundation.transferList.moveCanceledAfterLeavingTheViewport": {},
-  "uiFoundation.transferList.moved": {},
   "uiFoundation.transferList.movedLabelToPositionPosition": {
     "label": [
       "string"
@@ -2170,14 +2136,12 @@
       "number"
     ]
   },
-  "uiFoundation.transferList.moveDown": {},
   "uiFoundation.transferList.moveDownForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.transferList.moveDownForTransferList": {},
-  "uiFoundation.transferList.moveUp": {},
   "uiFoundation.transferList.moveUpForLabel": {
     "label": [
       "string"
@@ -2187,7 +2151,6 @@
   "uiFoundation.transferList.movingPressEscapeToCancelOrLiftYourFingerToFinish": {},
   "uiFoundation.transferList.noMatchingOptions": {},
   "uiFoundation.transferList.noMatchingSelectedItems": {},
-  "uiFoundation.transferList.position": {},
   "uiFoundation.transferList.proposedDestinationLabelPositionPositionPressEnterToConfirm": {
     "label": [
       "string"
@@ -2202,7 +2165,6 @@
     ]
   },
   "uiFoundation.transferList.provideAnIDAndDescriptionForTheTransferList": {},
-  "uiFoundation.transferList.remove": {},
   "uiFoundation.transferList.removeForLabel": {
     "label": [
       "string"
@@ -2210,20 +2172,22 @@
   },
   "uiFoundation.transferList.removeForTransferList": {},
   "uiFoundation.transferList.removeInBulk": {},
-  "uiFoundation.transferList.required": {},
+  "uiFoundation.transferList.requiredLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.transferList.searchOptions": {},
   "uiFoundation.transferList.searchSelectedItems": {},
   "uiFoundation.transferList.selectAllAvailableOptionsShown": {},
   "uiFoundation.transferList.selectAllAvailableSelectedItemsShown": {},
   "uiFoundation.transferList.selectAnItem": {},
-  "uiFoundation.transferList.selected": {},
   "uiFoundation.transferList.selectedCount": {
     "count": [
       "number"
     ]
   },
   "uiFoundation.transferList.selectedForTransferList": {},
-  "uiFoundation.transferList.shown": {},
   "uiFoundation.transferList.shownCount": {
     "count": [
       "number"
@@ -2246,12 +2210,18 @@
   "uiFoundation.transferList.useBooleanValuesForDisabledAndHiddenOptions": {},
   "uiFoundation.transferList.useLeftAndRightToChooseADestinationAndUpAndDownToPositionTheItemAmongTheSelectedItems": {},
   "uiFoundation.tree.childrenThatHaveYetToLoadAreExcludedFromSearch": {},
-  "uiFoundation.tree.collapse": {},
-  "uiFoundation.tree.enter": {},
-  "uiFoundation.tree.expand": {},
+  "uiFoundation.tree.collapseLabel": {
+    "label": [
+      "string"
+    ]
+  },
+  "uiFoundation.tree.expandLabel": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.tree.itemsToCheck": {},
   "uiFoundation.tree.itemsToSelect": {},
-  "uiFoundation.tree.loadingChildItems": {},
   "uiFoundation.tree.loadingChildItemsForLabel": {
     "label": [
       "string"
@@ -2259,22 +2229,18 @@
   },
   "uiFoundation.tree.noItems": {},
   "uiFoundation.tree.noMatchingItems": {},
-  "uiFoundation.tree.retry": {},
   "uiFoundation.tree.retryForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.tree.select": {},
-  "uiFoundation.tree.selectForLabel": {
+  "uiFoundation.tree.selectKeyboardHint": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.tree.someChildrenHaveYetToLoadSoTheirSharedCheckboxStateCannotBeConfirmedExpandTheItemToCh": {},
-  "uiFoundation.tree.space": {},
-  "uiFoundation.tree.toggle": {},
-  "uiFoundation.tree.toggleForLabel": {
+  "uiFoundation.tree.toggleKeyboardHint": {
     "label": [
       "string"
     ]
@@ -2287,42 +2253,35 @@
   "uiFoundation.treeGrid.someChildRowsHaveYetToLoadExpandTheRowToLoadThem": {},
   "uiFoundation.treeGrid.someRowsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToCollapseTheHierarchy": {},
   "uiFoundation.treeSelect.aDisabledItemIsSelected": {},
-  "uiFoundation.treeSelect.choose": {},
   "uiFoundation.treeSelect.chooseForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.treeSelect.clear": {},
   "uiFoundation.treeSelect.clearForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.treeSelect.clearForTreeSelect": {},
-  "uiFoundation.treeSelect.deselect": {},
   "uiFoundation.treeSelect.deselectForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.treeSelect.doneSelecting": {},
-  "uiFoundation.treeSelect.searchTheTree": {},
   "uiFoundation.treeSelect.searchTheTreeForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.treeSelect.select": {},
   "uiFoundation.treeSelect.selectAnOption": {},
-  "uiFoundation.treeSelect.selected": {},
   "uiFoundation.treeSelect.selectedCount": {
     "count": [
       "number"
     ]
   },
   "uiFoundation.treeSelect.selectedItem": {},
-  "uiFoundation.treeSelect.selectedItems": {},
   "uiFoundation.treeSelect.selectedItemsForLabel": {
     "label": [
       "string"
@@ -2339,39 +2298,38 @@
   "uiFoundation.treeSelect.someChildrenOfTheSelectedNodesHaveYetToLoad": {},
   "uiFoundation.treeSelect.someSelectedItemsAreDuplicated": {},
   "uiFoundation.treeSelect.someSelectedItemsAreUnavailableOrHaveBeenDeletedReviewYourSelection": {},
-  "uiFoundation.treeSelect.suggestions": {},
   "uiFoundation.treeSelect.suggestionsForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.treeSelect.theSelectionContainsUnavailableItems": {},
-  "uiFoundation.treeSelect.unavailableOrDeleted": {},
+  "uiFoundation.treeSelect.unavailableItemLabel": {
+    "value": [
+      "string"
+    ]
+  },
   "uiFoundation.treeSelect.working": {},
   "uiFoundation.uploadList.attachments": {},
   "uiFoundation.uploadList.cancel": {},
-  "uiFoundation.uploadList.cancelUpload": {},
   "uiFoundation.uploadList.cancelUploadForLabel": {
     "label": [
       "string"
     ]
   },
   "uiFoundation.uploadList.checkingProgress": {},
-  "uiFoundation.uploadList.items": {},
   "uiFoundation.uploadList.itemsCount": {
     "count": [
       "number"
     ]
   },
   "uiFoundation.uploadList.noFiles": {},
-  "uiFoundation.uploadList.remove": {},
   "uiFoundation.uploadList.removeForFileUpload": {},
   "uiFoundation.uploadList.removeForLabel": {
     "label": [
       "string"
     ]
   },
-  "uiFoundation.uploadList.retry": {},
   "uiFoundation.uploadList.retryForFileUpload": {},
   "uiFoundation.uploadList.retryForLabel": {
     "label": [
@@ -2379,7 +2337,6 @@
     ]
   },
   "uiFoundation.uploadList.unknownFormat": {},
-  "uiFoundation.uploadList.uploadProgress": {},
   "uiFoundation.uploadList.uploadProgressForLabel": {
     "label": [
       "string"
@@ -2400,18 +2357,15 @@
     ]
   },
   "uiFoundation.virtualDataTable.checkTheVirtualTableDescriptionRowHeightViewportHeightAndOverscan": {},
-  "uiFoundation.virtualDataTable.loadedRows": {},
   "uiFoundation.virtualDataTable.noData": {},
   "uiFoundation.virtualDataTable.preparingTheTableViewport": {},
   "uiFoundation.virtualDataTable.selectAllLoadedVisibleRows": {},
   "uiFoundation.virtualDataTable.selection": {},
-  "uiFoundation.virtualDataTable.selectRow": {},
   "uiFoundation.virtualDataTable.selectRowLabel": {
     "row": [
       "string"
     ]
   },
-  "uiFoundation.virtualDataTable.sort": {},
   "uiFoundation.virtualDataTable.sortColumnLabel": {
     "column": [
       "string"
@@ -2423,7 +2377,6 @@
       "string"
     ]
   },
-  "uiFoundation.virtualDataTable.virtualScrollArea": {},
   "uiFoundation.virtualList.checkTheViewportRowHeightAndOverscanCount": {},
   "uiFoundation.virtualList.preparingTheViewport": {},
   "uiFoundation.virtualList.provideADescriptionForTheList": {},
@@ -2445,6 +2398,5 @@
     "year": [
       "number"
     ]
-  },
-  "uiFoundation.yearPicker.year": {}
+  }
 }

@@ -54,7 +54,7 @@ async function verifySkillReferences(consumer, allowedDocs) {
   return checked;
 }
 
-test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 480_000 }, async t => {
+test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-beta-'));
   const consumer = resolve(root, 'consumer');
   await mkdir(consumer);

@@ -280,27 +280,30 @@ const english: Dictionary = {
   },
 };
 
-/** An external provider can return undefined while loading or for an absent translation. */
-/** Typed argument form used by the pure models as well as Angular callers. */
-export type UiMessageText = <Id extends UiMessageId>(
-  id: Id,
-  ...parameters: UiMessageParameters[Id] extends undefined ? [] : [UiMessageParameters[Id]]
-) => string;
+/** Keep the ID and its arguments correlated, including when the caller supplies a union. */
+type ParameterizedId = Exclude<UiMessageId, UiStaticMessageId>;
+export type UiMessageArguments = [id: UiStaticMessageId] | {
+  [Key in ParameterizedId]: [id: Key, parameters: UiMessageParameters[Key]];
+}[ParameterizedId];
+export type UiMessageText = (...args: UiMessageArguments) => string;
 
 export function uiMessageText(locale: () => string, translator: () => UiMessageTranslator | null = () => null): UiMessageText {
-  return (id, ...parameters) => {
-    // The tuple signature associates the accepted argument record with this ID.
-    const request = { id, ...(parameters.length ? { parameters: parameters[0] } : {}) } as UiMessageRequest;
+  return (...args) => {
+    const [id, parameters] = args;
+    // UiMessageArguments binds both entries to the same member of UiMessageRequest.
+    const request = { id, ...(args.length === 2 ? { parameters } : {}) } as UiMessageRequest;
     return resolveUiMessage(request, locale(), translator());
   };
 }
 
+const japaneseText = uiMessageText(() => 'ja-JP');
+
 /** Capture an operation's diagnostics without invoking the application's translator. */
 export function captureUiMessage(text: UiMessageText) {
   let render: (() => string) | undefined;
-  const capture: UiMessageText = (id, ...parameters) => {
-    render = () => text(id, ...parameters);
-    return uiMessageText(() => 'ja-JP')(id, ...parameters);
+  const capture: UiMessageText = (...args) => {
+    render = () => text(...args);
+    return japaneseText(...args);
   };
   return { capture, render: () => render };
 }
