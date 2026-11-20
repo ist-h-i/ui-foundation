@@ -62,17 +62,39 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.doesNotMatch(await readFile(resolve(installed, 'README.md'), 'utf8'), /has not been published/);
   assert.match(installedMetadata.description, /English and Japanese/);
   cli('init');
-  assert.equal(parse(await readFile(resolve(consumer, 'ui.config.yaml'), 'utf8')).context.product, 'Application management');
-  assert.equal(parse(await readFile(resolve(consumer, 'ui.config.yaml'), 'utf8')).default_language, 'en');
   cli('init', '--language', 'ja', '--config', 'japanese.yaml');
-  assert.equal(parse(await readFile(resolve(consumer, 'japanese.yaml'), 'utf8')).context.product, '申請管理');
-  assert.equal(parse(await readFile(resolve(consumer, 'japanese.yaml'), 'utf8')).default_language, 'ja');
   await assert.rejects(async () => cli('init'), /already exists/i);
   await mkdir(resolve(consumer, 'src'));
   await writeFile(resolve(consumer, 'src/app.ts'), 'export const title: string = "Example";\n');
   cli('sync', '--dry-run');
   await assert.rejects(readFile(resolve(consumer, '.ui/generated/manifest.json')), { code: 'ENOENT' });
-  cli('sync');
+
+  const tokenSettings = ({ primitives, semantic, profiles, default_profile }) => ({
+    primitives,
+    semantic,
+    profiles: Object.fromEntries(Object.entries(profiles).map(([id, profile]) => [id, profile.semantic])),
+    default_profile,
+  });
+  const expectedTokens = tokenSettings(parse(await readFile(resolve(repository, 'examples/ui.config.repository.yaml'), 'utf8')));
+  const expectedChecks = { source_roots: ['src'], approved_components: [], exceptions: [] };
+  for (const [language, filename, examplePath, product] of [
+    ['ja', 'japanese.yaml', 'examples/ui.config.example.yaml', '申請管理'],
+    ['en', 'ui.config.yaml', 'examples/ui.config.example.en.yaml', 'Application management'],
+  ]) {
+    const initialized = parse(await readFile(resolve(consumer, filename), 'utf8'));
+    const packedExample = await readFile(resolve(installed, examplePath), 'utf8');
+    const example = parse(packedExample);
+    assert.deepEqual(example.checks, expectedChecks);
+    assert.deepEqual(initialized.checks, expectedChecks);
+    assert.deepEqual(tokenSettings(example), expectedTokens);
+    assert.deepEqual(tokenSettings(initialized), expectedTokens);
+    assert.equal(initialized.context.product, product);
+    assert.equal(initialized.default_language, language);
+    cli('sync', '--config', filename);
+    assert.deepEqual(await readFile(resolve(consumer, '.agents/skills/project-ui/references', examplePath), 'utf8'), packedExample);
+    const defaults = await readFile(resolve(consumer, '.ui/generated/angular/locale-defaults.ts'), 'utf8');
+    assert.ok(defaults.includes(`= "${language}";`));
+  }
   assert.match(cli('sync'), /current/);
   const documentation = await verifyEnglishDocumentation(installed, resolve(consumer, '.agents/skills/project-ui'));
   t.diagnostic(`Installed and synced English documentation closure: ${JSON.stringify(documentation)}`);

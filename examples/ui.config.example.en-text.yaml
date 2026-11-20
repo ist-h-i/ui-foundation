@@ -1,0 +1,41 @@
+# English text for the consumer starter. Update shared tokens in ui.config.repository.yaml.
+
+context:
+  product: Application management
+  goals:
+    - Review the required information to submit, approve or return an application
+  constraints:
+    - Do not present unavailable information as verified
+    - Keep user input during partial failures
+
+profiles:
+  guided:
+    label: Guided use
+    context:
+      audience:
+        - Occasional users who need to check the application procedure
+      usage: Submit applications one at a time while reading the relevant guidance
+      goals:
+        - Understand required fields and what to review before submission
+      constraints:
+        - Keep the primary action easy to find as explanations are added
+    guidance: >-
+      Show the goal, required fields and results in order. Place guidance near
+      the relevant input. Choose steps to match the workflow and retain
+      information needed for comparison.
+  dense:
+    label: Repeated list and input use
+    context:
+      audience:
+        - Experienced users comparing and processing multiple applications
+      usage: Repeatedly compare lists and enter data during daily work
+      goals:
+        - Keep necessary comparison information and process the selected
+          applications efficiently
+      constraints:
+        - Keep action targets and results explicit
+        - Retain input methods and primary action targets of at least 44px
+    guidance: >-
+      Align comparison fields and place repeated actions near their targets.
+      Collapse details only when appropriate. Keep missing information and
+      recovery paths visible.

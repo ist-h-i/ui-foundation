@@ -29,7 +29,7 @@ test('SVG consumer preparation preserves all canonical check inputs and public c
   const fixtures=join(repository,'tests/consumer-svg-paint');
   const {sourceFiles}=await prepareSvgConsumer({root:repository,work,fixtures});
   const inventory=new Map(sourceFiles.map(file=>[file.path,file]));
-  const configPath='examples/ui.config.example.yaml';
+  const configPath='examples/ui.config.repository.yaml';
   const config=parseYaml(await readFile(join(repository,configPath),'utf8'));
   async function exactInput(path){
     const expected=await readFile(join(repository,path));

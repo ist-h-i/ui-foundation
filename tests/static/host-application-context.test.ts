@@ -9,7 +9,7 @@ import { createSourcePolicy } from '../../src/check/policy.ts';
 import { checkSources } from '../../src/check/scanner.ts';
 import type { CheckException } from '../../src/check/types.ts';
 
-const example = await readFile(new URL('../../examples/ui.config.example.yaml', import.meta.url), 'utf8');
+const example = await readFile(new URL('../../examples/ui.config.repository.yaml', import.meta.url), 'utf8');
 const gap = 'padding:var(--local-gap)';
 async function scan(t: TestContext, source: string, css = '', exceptions: CheckException[] = []) {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-host-applications-'));
