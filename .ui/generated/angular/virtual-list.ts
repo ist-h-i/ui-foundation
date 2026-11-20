@@ -38,8 +38,13 @@ export class VirtualList<T extends object>{
   const document=this.element.ownerDocument,active=document.activeElement;
   // Keep a removal observed during this render until the focus recovery callback.
   if(this.focusedRowBeforeRender&&!this.focusedRowBeforeRender.isConnected&&active===document.body)return;
-  const row=active?.closest('.ui-virtual-row');
-  this.focusedRowBeforeRender=row?.closest('ui-virtual-list')===this.element?row:null;
+  for(let row=active?.closest('.ui-virtual-row');row&&this.element.contains(row);row=row.parentElement?.closest('.ui-virtual-row')){
+   if(row.closest('ui-virtual-list')===this.element){
+    this.focusedRowBeforeRender=row;
+    return;
+   }
+  }
+  this.focusedRowBeforeRender=null;
  }
  constructor(){installCollectionFocus();
   afterRenderEffect(onCleanup=>{const measure=this.measure()?.nativeElement;if(!measure)return;const update=()=>{const size=measure.getBoundingClientRect().height;if(size>0)this.measuredRow.set(size);};update();const observer=new ResizeObserver(update);observer.observe(measure);onCleanup(()=>observer.disconnect());});

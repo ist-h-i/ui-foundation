@@ -306,6 +306,37 @@ test('virtual list restores owned focus when an in-place replacement removes the
  await destroy(page, id);
 });
 
+test('virtual list restores focus when an outer row containing a nested editor is removed', async ({page}) => {
+ await runtimeReady(page, contexts[0]);
+ const outerId = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(1, 3), editors: true, height: 480, itemHeight: 240,
+ });
+ const innerId = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(11, 13), editors: true, height: 120, itemHeight: 48,
+ });
+ const innerEditor = host(page, innerId).getByRole('textbox', {name: '再検証入力 11', exact: true});
+ await expect(innerEditor).toBeVisible();
+ const result = await host(page, outerId).evaluate((outer, {outerId, innerId}) => {
+  const runtime = (window as any).__runtime;
+  const inner = document.getElementById(`runtime-${innerId}`)!;
+  const viewport = outer.querySelector('cdk-virtual-scroll-viewport')!;
+  const row = outer.querySelector('.ui-virtual-row')!;
+  row.append(inner);
+  const editor = inner.querySelector('input')!;
+  editor.focus();
+  const ownedFocus = document.activeElement === editor;
+  runtime.update(outerId, {rows: runtime.instance(outerId).rows().slice(1)});
+  return {
+   ownedFocus,
+   removed: !row.isConnected && !editor.isConnected,
+   restoredFocus: document.activeElement === viewport,
+  };
+ }, {outerId, innerId});
+ expect(result).toEqual({ownedFocus: true, removed: true, restoredFocus: true});
+ await destroy(page, innerId);
+ await destroy(page, outerId);
+});
+
 test('virtual table reuses tracked rows and updates focused, empty and refilled windows in the same render', async ({page}) => {
  await runtimeReady(page, contexts[0]);
  const initial = [{id: 1, code: 'a', name: 'First'}, {id: 2, code: 'b', name: 'Second'}];

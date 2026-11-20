@@ -4749,7 +4749,7 @@
         {
           "file": "tests/ui/static-runtime-reassessment-virtual.spec.ts",
           "anchor": "reassessment virtual listbox",
-          "sha256": "6e2082028963a4fa93209706ef13b581ee2446d0aa5db65b606dfc2bc1414d6d",
+          "sha256": "6eabe6efc282effcfd5f288af0963a5ee5954565d85798dd961294d559bf2fa7",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -4947,7 +4947,7 @@
         {
           "file": "tests/ui/static-runtime-reassessment-virtual.spec.ts",
           "anchor": "reassessment virtual listbox",
-          "sha256": "6e2082028963a4fa93209706ef13b581ee2446d0aa5db65b606dfc2bc1414d6d",
+          "sha256": "6eabe6efc282effcfd5f288af0963a5ee5954565d85798dd961294d559bf2fa7",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7079,7 +7079,7 @@
       "category": "runtime-input",
       "detail": "virtual-list-public-viewport-height",
       "disposition": "retained-warning",
-      "source_sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+      "source_sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
       "producer": "height input → problem() finite positive/null 検査 → virtual list CDK viewport block-size.px。null は semantic collection-viewport CSS。",
       "reason": "利用側が渡す任意正数の領域高は通常 UI 寸法。null の semantic default と入力 validation は任意px branch を token または data 専用寸法とは証明しない。",
       "remaining_scope": "任意高さ/行数/投影内容、全 CSS/media と native input/CDK range 更新順序は未確認。",
@@ -7093,25 +7093,25 @@
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "[style.block-size.px]=\"height()\"",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "readonly items=input.required",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "protected readonly problem=",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "afterRenderEffect(onCleanup=>{const viewport=",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7123,7 +7123,7 @@
         {
           "file": "tests/ui/static-runtime-reassessment-virtual.spec.ts",
           "anchor": "reassessment virtual ${kind}",
-          "sha256": "6e2082028963a4fa93209706ef13b581ee2446d0aa5db65b606dfc2bc1414d6d",
+          "sha256": "6eabe6efc282effcfd5f288af0963a5ee5954565d85798dd961294d559bf2fa7",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -7145,7 +7145,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-leading-window-offset",
       "disposition": "retained-warning",
-      "source_sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+      "source_sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
       "producer": "共有のVirtualScrollが実スクロール位置、直前の行高と表示領域、編集中の行キーと入力欄の位置から表示位置を決める。同じ更新で明示されたスクロールを優先する。CDKのデータ長とキーボードで保持する行を含めた昇順indicesの先頭へitemSizeを掛け、wrapperのpadding-block-start.pxへ渡す。",
       "reason": "offset は実行時 render window の構造位置で、semantic余白ではない。一方、CDK range と保持行・実DOM行高の同期、multiplication と lifetime が前提であり、単なる finite 入力や最初の0から全producerを証明できない。",
       "remaining_scope": "任意 itemSize/count/key/projection と全 CDK/radio/keyboard更新順序、数値overflowを含む全入力の geometry は未証明。",
@@ -7159,7 +7159,7 @@
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "[style.padding-block-start.px]=\"scroller()?.offset()??0\"",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7223,7 +7223,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-retained-gap-offset",
       "disposition": "retained-warning",
-      "source_sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+      "source_sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
       "producer": "VirtualScrollの昇順indices → VirtualRowsのrowsInWindowで隣接するindexの差から1を引き、itemSizeを掛ける → row context gap → 各slotのpadding-block-start.px。",
       "reason": "保持 focus/radio 行の間の省略データ行を表す構造 gap。index が昇順で current count に対応し、実 row 高が同じ itemSize である前提を AST 評価だけでは全場合に証明できない。geometry 目的だけで一括例外化しない。",
       "remaining_scope": "任意 count/track key/itemSize/CSS と data 差替え・CDK render の全順序、全数値範囲での gap と実配置の一致は未証明。",
@@ -7237,7 +7237,7 @@
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "[style.padding-block-start.px]=\"gap\"",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7289,7 +7289,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-list-fixed-row-height",
       "disposition": "retained-warning",
-      "source_sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+      "source_sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
       "producer": "itemHeight input または semantic measure span の正の DOMRect.height → measuredRow/rowSize → rendered list row block-size.px と uiVirtualScroll.itemSize。",
       "reason": "任意の固定行高または実測高を使うため意味トークンの閉じた出力ではない。rowSize>0 と input validation は fixed-size engine と任意 projected 内容の実高一致を証明しない。",
       "remaining_scope": "任意 template/variable height、全CSSと key/range/measure 更新順序、極端なsize/countは未証明。",
@@ -7303,19 +7303,19 @@
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "[style.block-size.px]=\"rowSize()\"",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "protected readonly rowSize=",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "afterRenderEffect(onCleanup=>{const measure=",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7355,7 +7355,7 @@
       "category": "virtual-scroll",
       "detail": "virtual-list-measured-row-inline-size",
       "disposition": "retained-warning",
-      "source_sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+      "source_sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
       "producer": "CDK viewport.clientWidth の正値 → ResizeObserver 内 viewportInline signal → rendered row inline-size.px。",
       "reason": "横scrollbarを含まない実測幅を行へ転写する構造目的。正値guardはhidden時 stale 値/scrollbar/外部box CSSと実行時幅の一致を保証せず、semantic token とも限らない。",
       "remaining_scope": "任意 scrollbar/box sizing/width CSSと全 viewport 再生成・render 順序での一致は未確認。",
@@ -7369,19 +7369,19 @@
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "[style.inline-size.px]=\"viewportInline()\"",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "protected readonly viewportInline=",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/virtual-list.ts",
           "anchor": "const width=viewport.elementRef.nativeElement.clientWidth",
-          "sha256": "385bb74ea4fc227fdc68c53d3aed48612151d6369ef70974bad683f5c97da9e8",
+          "sha256": "778b62cf7c5f1ac7e2494e2a0501e4f2d46a82606e47e9fdd71ae303932a510e",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7393,7 +7393,7 @@
         {
           "file": "tests/ui/static-runtime-reassessment-virtual.spec.ts",
           "anchor": "reassessment virtual ${kind}",
-          "sha256": "6e2082028963a4fa93209706ef13b581ee2446d0aa5db65b606dfc2bc1414d6d",
+          "sha256": "6eabe6efc282effcfd5f288af0963a5ee5954565d85798dd961294d559bf2fa7",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
