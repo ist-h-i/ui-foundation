@@ -186,12 +186,7 @@
         "parameters": {}
       }
     ],
-    "/ 値": [
-      {
-        "id": "uiFoundation.spreadsheet.value",
-        "parameters": {}
-      }
-    ],
+    "/ 値": [],
     "/ 外部更新と編集内容が競合しています。編集を確定する前に確認してください。": [
       {
         "id": "uiFoundation.spreadsheet.anExternalUpdateConflictsWithYourEditsReviewTheChangesBeforeConfirming",
@@ -199,12 +194,7 @@
       }
     ],
     "/ 未取得": [],
-    "/ 未確定の入力": [
-      {
-        "id": "uiFoundation.spreadsheet.uncommittedInput",
-        "parameters": {}
-      }
-    ],
+    "/ 未確定の入力": [],
     "0.5倍": [
       {
         "id": "uiFoundation.mediaPlayer.halfSpeed",
@@ -917,7 +907,16 @@
         }
       }
     ],
-    "の印刷": [],
+    "の印刷": [
+      {
+        "id": "uiFoundation.tableOutput.printFrameTitle",
+        "parameters": {
+          "title": [
+            "string"
+          ]
+        }
+      }
+    ],
     "の図": [
       {
         "id": "uiFoundation.flowEditor.diagramForLabel",
@@ -1103,7 +1102,16 @@
     "の移動先を編集": [],
     "の移動先を選んでいます。": [],
     "の移動入力": [],
-    "の範囲で指定してください。": [],
+    "の範囲で指定してください。": [
+      {
+        "id": "uiFoundation.pdfViewer.pageInputRange",
+        "parameters": {
+          "pages": [
+            "number"
+          ]
+        }
+      }
+    ],
     "の系列を表示": [
       {
         "id": "uiFoundation.chart.showSeriesForLabel",
@@ -1258,6 +1266,10 @@
             "string"
           ]
         }
+      },
+      {
+        "id": "uiFoundation.jsonViewer.treeLimit",
+        "parameters": {}
       }
     ],
     "の階層を検索": [
@@ -2601,12 +2613,7 @@
         "parameters": {}
       }
     ],
-    "中程度": [
-      {
-        "id": "uiFoundation.passwordInput.medium",
-        "parameters": {}
-      }
-    ],
+    "中程度": [],
     "予定が外部で変更されています。入力を保持しています。現在の予定で入力を戻すか、変更内容を確認してください。": [
       {
         "id": "uiFoundation.schedulerController.theEventChangedElsewhereYourInputHasBeenKeptRestoreTheCurrentEventDetailsOrReviewYourC",
@@ -2815,7 +2822,23 @@
         }
       }
     ],
-    "件表示、未読": [],
+    "件表示、未読": [
+      {
+        "id": "uiFoundation.notificationCenter.status",
+        "parameters": {
+          "visible": [
+            "number"
+          ],
+          "unread": [
+            "number"
+          ],
+          "loading": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    ],
     "件選択": [
       {
         "id": "uiFoundation.multiSelect.selectedCount",
@@ -3058,8 +3081,12 @@
     ],
     "候補の経路:": [
       {
-        "id": "uiFoundation.cascader.optionPath",
-        "parameters": {}
+        "id": "uiFoundation.cascader.optionPathLabel",
+        "parameters": {
+          "path": [
+            "string"
+          ]
+        }
       }
     ],
     "候補の高さと先読み件数を確認してください。": [
@@ -4100,18 +4127,8 @@
         "parameters": {}
       }
     ],
-    "子の行を再取得:": [
-      {
-        "id": "uiFoundation.treeGrid.reloadChildRows",
-        "parameters": {}
-      }
-    ],
-    "子の行を取得しています。": [
-      {
-        "id": "uiFoundation.treeGrid.loadingChildRows",
-        "parameters": {}
-      }
-    ],
+    "子の行を再取得:": [],
+    "子の行を取得しています。": [],
     "子組織の情報は未取得です。取得した階層をアプリから接続してください。": [
       {
         "id": "uiFoundation.organizationChart.childOrganizationsHaveNotBeenLoadedPassTheLoadedHierarchyFromTheApp",
@@ -4345,22 +4362,25 @@
         "parameters": {}
       }
     ],
-    "引用符の後に区切り以外の文字があります。": [],
-    "弱い": [
+    "引用符の後に区切り以外の文字があります。": [
       {
-        "id": "uiFoundation.passwordInput.weak",
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
         "parameters": {}
       }
     ],
-    "強い": [
-      {
-        "id": "uiFoundation.passwordInput.strong",
-        "parameters": {}
-      }
-    ],
+    "弱い": [],
+    "強い": [],
     "強度:": [
       {
-        "id": "uiFoundation.passwordInput.strength",
+        "id": "uiFoundation.passwordInput.strengthMedium",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.strengthStrong",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.passwordInput.strengthWeak",
         "parameters": {}
       }
     ],
@@ -4488,10 +4508,6 @@
       },
       {
         "id": "uiFoundation.imageViewer.zoom",
-        "parameters": {}
-      },
-      {
-        "id": "uiFoundation.mapView.zoom",
         "parameters": {}
       },
       {
@@ -6400,10 +6416,6 @@
     ],
     "表示": [
       {
-        "id": "uiFoundation.numberInput.display",
-        "parameters": {}
-      },
-      {
         "id": "uiFoundation.passwordInput.show",
         "parameters": {}
       },
@@ -6413,10 +6425,6 @@
       }
     ],
     "表示:": [
-      {
-        "id": "uiFoundation.numberInput.display",
-        "parameters": {}
-      },
       {
         "id": "uiFoundation.passwordInput.show",
         "parameters": {}
@@ -6794,8 +6802,18 @@
         "parameters": {}
       }
     ],
-    "貼付け内容の引用符が不正です。": [],
-    "貼付け内容の引用符が閉じていません。": [],
+    "貼付け内容の引用符が不正です。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
+    "貼付け内容の引用符が閉じていません。": [
+      {
+        "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
+        "parameters": {}
+      }
+    ],
     "貼付け内容の行、列、引用符を確認してください。": [
       {
         "id": "uiFoundation.dataGrid.checkTheRowsColumnsAndQuotationMarksInThePastedContent",
@@ -7071,8 +7089,29 @@
         "parameters": {}
       },
       {
-        "id": "uiFoundation.spreadsheet.selection",
-        "parameters": {}
+        "id": "uiFoundation.spreadsheet.selectionSummary",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ]
+        }
+      },
+      {
+        "id": "uiFoundation.spreadsheet.selectionWithDraft",
+        "parameters": {
+          "address": [
+            "string"
+          ],
+          "value": [
+            "string"
+          ],
+          "draft": [
+            "string"
+          ]
+        }
       },
       {
         "id": "uiFoundation.virtualDataTable.selection",
@@ -7197,7 +7236,16 @@
         "parameters": {}
       }
     ],
-    "選択上限または現在の値を確認してください。": [],
+    "選択上限または現在の値を確認してください。": [
+      {
+        "id": "uiFoundation.listbox.selectedCountWithInvalidSelection",
+        "parameters": {
+          "count": [
+            "number"
+          ]
+        }
+      }
+    ],
     "選択中のコマンドを再試行": [
       {
         "id": "uiFoundation.commandPalette.retrySelectedCommand",
@@ -7454,6 +7502,10 @@
     "階層": [
       {
         "id": "uiFoundation.fileExplorer.hierarchy",
+        "parameters": {}
+      },
+      {
+        "id": "uiFoundation.fileExplorer.hierarchyTooDeep",
         "parameters": {}
       },
       {

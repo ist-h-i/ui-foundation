@@ -53,11 +53,14 @@ function validCivil(value: string): boolean {
     date.setUTCHours(0, 0, 0, 0);
     return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }
+type SnapshotMessageRenderer = (render: () => string) => string;
+const renderMessage: SnapshotMessageRenderer = render => render();
+
 /** Blank nullable values and incomplete/invalid drafts remain distinct. */
-export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T, text?: UiMessageText): TableDraftResult {
+export function parseTableDraft<T extends object>(raw: string, column: TableEditableColumn<T>, row: T, text?: UiMessageText, snapshot: SnapshotMessageRenderer = renderMessage): TableDraftResult {
     const invalid = (id: UiStaticMessageId): TableDraftResult => {
         const messageText = () => (text ?? japaneseText)(id);
-        return { valid: false, message: messageText(), ...(text ? { messageText } : {}) };
+        return { valid: false, message: snapshot(messageText), ...(text ? { messageText } : {}) };
     };
     if (column.required && !raw.trim())
         return invalid('uiFoundation.tableEdit.valueRequired');
@@ -111,7 +114,7 @@ export function tableEditProblem<T extends object>(columns: readonly TableEditab
         return text('uiFoundation.tableEdit.rowKeyImmutable');
     return null;
 }
-export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string, text?: UiMessageText): {
+export function validateTableRowDraft<T extends object>(row: T, columns: readonly TableEditableColumn<T>[], raw: Readonly<Record<string, string>>, keyField: keyof T & string, text?: UiMessageText, snapshot: SnapshotMessageRenderer = renderMessage): {
     errorText?: Readonly<Record<string,()=>string>>;
     value: T;
     changes: readonly TableEditChange[];
@@ -124,10 +127,10 @@ export function validateTableRowDraft<T extends object>(row: T, columns: readonl
             continue;
         if (!Object.hasOwn(row, column.field)) {
             errorText[column.id] = () => (text ?? japaneseText)('uiFoundation.tableEdit.missingOriginalValue');
-            errors[column.id] = errorText[column.id]();
+            errors[column.id] = snapshot(errorText[column.id]);
             continue;
         }
-        const result = parseTableDraft(raw[column.id], column, row, text);
+        const result = parseTableDraft(raw[column.id], column, row, text, snapshot);
         if (!result.valid) {
             errors[column.id] = result.message;errorText[column.id]=result.messageText??(()=>result.message);
             continue;
@@ -145,7 +148,7 @@ export function validateTableRowDraft<T extends object>(row: T, columns: readonl
         }
         catch {
             errorText[column.id] = () => (text ?? japaneseText)('uiFoundation.tableEdit.draftValidationFailed');
-            errors[column.id] = errorText[column.id]();
+            errors[column.id] = snapshot(errorText[column.id]);
         }
     }
     return { value, changes, errors, ...(text?{errorText}:{}) };

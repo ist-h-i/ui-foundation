@@ -58,3 +58,23 @@ function messageTypeChecks(
   if (id === 'uiFoundation.collection.selectionLimit') text(id, {limit: 2});
 }
 void messageTypeChecks;
+
+test('RowEditor diagnostics render in the active locale without rerunning application validation', async () => {
+ const {computed, signal, untracked}=await import('@angular/core');
+ const {validateTableRowDraft}=await import('../../templates/angular/table-advanced-model.ts');
+ const locale=signal('en-US');
+ const source={id:'row', amount:10, title:'Application'};
+ let validations=0;
+ const columns=[
+  {id:'amount', field:'amount' as const, header:'Amount', type:'number' as const},
+  {id:'title', field:'title' as const, header:'Title', type:'text' as const, validateValue: () => {validations++; return null;}},
+ ];
+ const row=computed(()=>validateTableRowDraft(source, columns, {amount:'invalid',title:'Draft'}, 'id', uiMessageText(locale), untracked));
+ const issue=computed(()=>row().errorText?.amount());
+ assert.equal(issue(),'Enter a finite number.');
+ assert.equal(validations,1);
+ locale.set('ja-JP');
+ assert.equal(issue(),'有限の数値を入力してください。');
+ assert.equal(validations,1);
+ assert.equal(row().changes[0].value,'Draft');
+});

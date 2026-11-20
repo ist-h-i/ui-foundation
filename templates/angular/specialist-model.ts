@@ -103,13 +103,13 @@ export interface BoardMove {cardId:string;fromColumn:string;toColumn:string;inde
 export function boardProblem(columns:readonly BoardColumn[],cards:readonly BoardCard[], text: UiMessageText = englishText):string|null {
   try{requireIds(columns,'Columns','uiFoundation.kanban.invalidColumnIds');requireIds(cards,'Cards','uiFoundation.kanban.invalidCardIds');for(const column of columns)if(column.limit!==undefined&&(!Number.isInteger(column.limit)||column.limit<0))rejectDiagnostic('uiFoundation.kanban.invalidColumnLimit');for(const card of cards)if(!columns.some(c=>c.id===card.columnId))rejectDiagnostic('uiFoundation.kanban.unknownCardColumn');return null;}catch(error){return text(error instanceof SpecialistDiagnostic ? error.id : 'uiFoundation.kanban.invalidBoard');}
 }
-export function moveBoardCard(columns:readonly BoardColumn[],cards:readonly BoardCard[],move:BoardMove):readonly BoardCard[] {
-  const problem=boardProblem(columns,cards);if(problem)throw new Error(problem);
+export function moveBoardCard(columns:readonly BoardColumn[],cards:readonly BoardCard[],move:BoardMove,text:UiMessageText=englishText):readonly BoardCard[] {
+  const problem=boardProblem(columns,cards,text);if(problem)throw new Error(problem);
   const card=cards.find(c=>c.id===move.cardId),target=columns.find(c=>c.id===move.toColumn);
-  if(!card||card.columnId!==move.fromColumn||card.disabled||!target)throw new Error('Card move is unavailable');
+  if(!card||card.columnId!==move.fromColumn||card.disabled||!target)throw new Error(text('uiFoundation.kanban.cardMoveUnavailable'));
   const targetCards=cards.filter(c=>c.columnId===target.id&&c.id!==card.id);
-  if(!Number.isInteger(move.index)||move.index<0||move.index>targetCards.length)throw new Error('Card position is invalid');
-  if(target.limit!==undefined&&targetCards.length>=target.limit&&target.id!==card.columnId)throw new Error('Column limit reached');
+  if(!Number.isInteger(move.index)||move.index<0||move.index>targetCards.length)throw new Error(text('uiFoundation.kanban.invalidCardPosition'));
+  if(target.limit!==undefined&&targetCards.length>=target.limit&&target.id!==card.columnId)throw new Error(text('uiFoundation.kanban.targetColumnFull'));
   const reordered=[...targetCards.slice(0,move.index),{...card,columnId:target.id},...targetCards.slice(move.index)];
   return columns.flatMap(column=>column.id===target.id?reordered:cards.filter(c=>c.columnId===column.id&&c.id!==card.id));
 }
@@ -143,9 +143,9 @@ export type ExplorerView='tree'|'list'|'grid';
 export type ExplorerOperation='open'|'rename'|'delete'|'create-folder'|'download';
 export interface ExplorerRequest {operation:ExplorerOperation;nodeId:string|null;name?:string;}
 export interface ExplorerRow {node:ExplorerNode;depth:number;ancestors:readonly string[];}
-export function explorerRows(nodes:readonly ExplorerNode[],expanded:readonly string[],query='',includeCollapsed=false,locale='ja-JP'):readonly ExplorerRow[] {
+export function explorerRows(nodes:readonly ExplorerNode[],expanded:readonly string[],query='',includeCollapsed=false,locale='ja-JP',text:UiMessageText=englishText):readonly ExplorerRow[] {
   const rows:ExplorerRow[]=[],ids=new Set<string>();const all:ExplorerRow[]=[];
-  const visit=(items:readonly ExplorerNode[],ancestors:readonly string[],depth:number):void=>{if(depth>64)throw new Error('File hierarchy is too deep');requireIds(items,'Files');for(const node of items){if(ids.has(node.id))throw new Error('File hierarchy has duplicate IDs or a cycle');ids.add(node.id);if(node.kind!=='file'&&node.kind!=='folder')throw new Error('Unknown file kind');if(node.kind==='file'&&node.children?.length)throw new Error('Files cannot contain children');const row={node,ancestors,depth};all.push(row);if(node.children)visit(node.children,[...ancestors,node.id],depth+1);}};visit(nodes,[],0);
+  const visit=(items:readonly ExplorerNode[],ancestors:readonly string[],depth:number):void=>{if(depth>64)throw new Error(text('uiFoundation.fileExplorer.hierarchyTooDeep'));try{requireIds(items,'Files');}catch{throw new Error(text('uiFoundation.fileExplorer.invalidFileIds'));}for(const node of items){if(ids.has(node.id))throw new Error(text('uiFoundation.fileExplorer.invalidHierarchy'));ids.add(node.id);if(node.kind!=='file'&&node.kind!=='folder')throw new Error(text('uiFoundation.fileExplorer.unknownFileKind'));if(node.kind==='file'&&node.children?.length)throw new Error(text('uiFoundation.fileExplorer.fileHasChildren'));const row={node,ancestors,depth};all.push(row);if(node.children)visit(node.children,[...ancestors,node.id],depth+1);}};visit(nodes,[],0);
   const search=query.trim().toLocaleLowerCase(locale);for(const row of all)if(search?row.node.label.toLocaleLowerCase(locale).includes(search):includeCollapsed||row.ancestors.every(id=>expanded.includes(id)))rows.push(row);return rows;
 }
 export interface DiagramNode {id:string;label:string;x:number;y:number;}

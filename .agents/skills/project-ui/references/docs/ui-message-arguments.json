@@ -85,7 +85,11 @@
   },
   "uiFoundation.cascader.noSelection": {},
   "uiFoundation.cascader.onlyLeafItemsCanBeSelectedSelectAnItemAtTheEndOfThePath": {},
-  "uiFoundation.cascader.optionPath": {},
+  "uiFoundation.cascader.optionPathLabel": {
+    "path": [
+      "string"
+    ]
+  },
   "uiFoundation.cascader.retryForLabel": {
     "label": [
       "string"
@@ -694,9 +698,13 @@
   "uiFoundation.fileExplorer.collapse": {},
   "uiFoundation.fileExplorer.download": {},
   "uiFoundation.fileExplorer.expand": {},
+  "uiFoundation.fileExplorer.fileHasChildren": {},
   "uiFoundation.fileExplorer.files": {},
   "uiFoundation.fileExplorer.grid": {},
   "uiFoundation.fileExplorer.hierarchy": {},
+  "uiFoundation.fileExplorer.hierarchyTooDeep": {},
+  "uiFoundation.fileExplorer.invalidFileIds": {},
+  "uiFoundation.fileExplorer.invalidHierarchy": {},
   "uiFoundation.fileExplorer.itemAndSize": {
     "label": [
       "string"
@@ -723,6 +731,7 @@
   "uiFoundation.fileExplorer.requestRename": {},
   "uiFoundation.fileExplorer.searchFiles": {},
   "uiFoundation.fileExplorer.theAppAppliesTheResultTheNameYouEnteredIsKeptIfAnErrorOccurs": {},
+  "uiFoundation.fileExplorer.unknownFileKind": {},
   "uiFoundation.fileExplorer.view": {},
   "uiFoundation.fileUpload.acceptedFormats": {
     "formats": [
@@ -1092,6 +1101,7 @@
   "uiFoundation.jsonViewer.copied": {},
   "uiFoundation.jsonViewer.copying": {},
   "uiFoundation.jsonViewer.copyOriginalText": {},
+  "uiFoundation.jsonViewer.emptySource": {},
   "uiFoundation.jsonViewer.expandLabel": {
     "label": [
       "string"
@@ -1106,15 +1116,19 @@
       "number"
     ]
   },
+  "uiFoundation.jsonViewer.rootLabel": {},
   "uiFoundation.jsonViewer.searchJSON": {},
+  "uiFoundation.jsonViewer.sourceTooLarge": {},
   "uiFoundation.jsonViewer.treeForLabel": {
     "label": [
       "string"
     ]
   },
+  "uiFoundation.jsonViewer.treeLimit": {},
   "uiFoundation.jsonViewer.type": {},
   "uiFoundation.jsonViewer.unableToCopyTryAgain": {},
   "uiFoundation.jsonViewer.value": {},
+  "uiFoundation.kanban.cardMoveUnavailable": {},
   "uiFoundation.kanban.destination": {},
   "uiFoundation.kanban.destinationForKanbanForLabel": {
     "label": [
@@ -1123,6 +1137,7 @@
   },
   "uiFoundation.kanban.invalidBoard": {},
   "uiFoundation.kanban.invalidCardIds": {},
+  "uiFoundation.kanban.invalidCardPosition": {},
   "uiFoundation.kanban.invalidColumnIds": {},
   "uiFoundation.kanban.invalidColumnLimit": {},
   "uiFoundation.kanban.moveEarlierForLabel": {
@@ -1137,6 +1152,7 @@
     ]
   },
   "uiFoundation.kanban.previous": {},
+  "uiFoundation.kanban.targetColumnFull": {},
   "uiFoundation.kanban.taskBoard": {},
   "uiFoundation.kanban.unableToMove": {},
   "uiFoundation.kanban.unknownCardColumn": {},
@@ -1195,9 +1211,13 @@
       "string"
     ]
   },
-  "uiFoundation.mapView.zoom": {},
   "uiFoundation.mapView.zoomIn": {},
   "uiFoundation.mapView.zoomOut": {},
+  "uiFoundation.mapView.zoomValue": {
+    "zoom": [
+      "number"
+    ]
+  },
   "uiFoundation.markdownEditor.edit": {},
   "uiFoundation.markdownEditor.markdownDisplay": {},
   "uiFoundation.markdownEditor.markdownForLabel": {
@@ -1370,9 +1390,21 @@
   "uiFoundation.notificationCenter.unread": {},
   "uiFoundation.numberInput.checkTheNumberLocaleSettings": {},
   "uiFoundation.numberInput.checkTheNumberRangeSettings": {},
-  "uiFoundation.numberInput.display": {},
   "uiFoundation.numberInput.enterAPositiveStepSize": {},
   "uiFoundation.numberInput.enterAWholeNumberOfDecimalPlacesFrom0To100": {},
+  "uiFoundation.numberInput.formattedNumber": {
+    "value": [
+      "string"
+    ]
+  },
+  "uiFoundation.numberInput.formattedNumberWithUnit": {
+    "value": [
+      "string"
+    ],
+    "unit": [
+      "string"
+    ]
+  },
   "uiFoundation.numericField.invalidIncrement": {
     "step": [
       "number"
@@ -1459,13 +1491,12 @@
   "uiFoundation.panel.expand": {},
   "uiFoundation.passwordInput.hide": {},
   "uiFoundation.passwordInput.hidePassword": {},
-  "uiFoundation.passwordInput.medium": {},
   "uiFoundation.passwordInput.show": {},
   "uiFoundation.passwordInput.showPassword": {},
-  "uiFoundation.passwordInput.strength": {},
-  "uiFoundation.passwordInput.strong": {},
+  "uiFoundation.passwordInput.strengthMedium": {},
+  "uiFoundation.passwordInput.strengthStrong": {},
+  "uiFoundation.passwordInput.strengthWeak": {},
   "uiFoundation.passwordInput.unrated": {},
-  "uiFoundation.passwordInput.weak": {},
   "uiFoundation.pDFViewer.downloadPDF": {},
   "uiFoundation.pDFViewer.loadingPDF": {},
   "uiFoundation.pDFViewer.nextPage": {},
@@ -1844,13 +1875,29 @@
   "uiFoundation.spreadsheet.reviewTheExternalChangesYourInputIsStillAvailable": {},
   "uiFoundation.spreadsheet.row": {},
   "uiFoundation.spreadsheet.rowLimit": {},
-  "uiFoundation.spreadsheet.selection": {},
+  "uiFoundation.spreadsheet.selectionSummary": {
+    "address": [
+      "string"
+    ],
+    "value": [
+      "string"
+    ]
+  },
+  "uiFoundation.spreadsheet.selectionWithDraft": {
+    "address": [
+      "string"
+    ],
+    "value": [
+      "string"
+    ],
+    "draft": [
+      "string"
+    ]
+  },
   "uiFoundation.spreadsheet.spreadsheet": {},
   "uiFoundation.spreadsheet.unableToImportTheCSVFile": {},
-  "uiFoundation.spreadsheet.uncommittedInput": {},
   "uiFoundation.spreadsheet.unevenRows": {},
   "uiFoundation.spreadsheet.useTheArrowKeysToSelectCellsPressEnterOrF2ToEditEnterToRequestTheChangeAndEscapeTo": {},
-  "uiFoundation.spreadsheet.value": {},
   "uiFoundation.statistic.change": {},
   "uiFoundation.statistic.comparisonUnavailable": {},
   "uiFoundation.statistic.unavailable": {},
@@ -2246,10 +2293,26 @@
     ]
   },
   "uiFoundation.tree.useUpAndDownToMoveUseRightToExpandOrLeftToReturnToTheParent": {},
+  "uiFoundation.treeGrid.branchError": {
+    "label": [
+      "string"
+    ],
+    "message": [
+      "string"
+    ]
+  },
   "uiFoundation.treeGrid.checkTheIDsParentChildRelationshipsAndLoadedChildRows": {},
-  "uiFoundation.treeGrid.loadingChildRows": {},
+  "uiFoundation.treeGrid.loadingBranch": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.treeGrid.provideDataWithColumnsAndARowKeyForEachRowInTheHierarchy": {},
-  "uiFoundation.treeGrid.reloadChildRows": {},
+  "uiFoundation.treeGrid.retryBranch": {
+    "label": [
+      "string"
+    ]
+  },
   "uiFoundation.treeGrid.someChildRowsHaveYetToLoadExpandTheRowToLoadThem": {},
   "uiFoundation.treeGrid.someRowsAreBeingEditedOrAreWaitingToSaveSaveOrCancelTheEditsToCollapseTheHierarchy": {},
   "uiFoundation.treeSelect.aDisabledItemIsSelected": {},

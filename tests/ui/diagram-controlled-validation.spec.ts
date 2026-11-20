@@ -44,7 +44,7 @@ for(const profile of profiles){
 
  test(profile+': Diagram rejects invalid external models before canvas rendering and recovers without publishing edits',async({page})=>{
   await open(page,profile);
-  for(const [button,diagnostic] of [['外部の空ラベル','Node labels must not be empty'],['外部の負座標','Node coordinates are invalid']]){
+  for(const [button,diagnostic] of [['外部の空ラベル','ノードのラベルを指定してください。'],['外部の負座標','ノードの座標を確認してください。']]){
    await page.getByRole('button',{name:button!,exact:true}).click();await expect(page.getByRole('alert')).toContainText(diagnostic!);await expect(page.locator('.ui-diagram-node')).toHaveCount(0);await expect(page.locator('tbody tr')).toHaveCount(2);await expect(page.locator('tbody input').first()).toBeDisabled();await expect(page.locator('[data-diagram-requests]')).toHaveText('0');
    await page.getByRole('button',{name:'元のモデルへ戻す',exact:true}).click();await expect(page.getByRole('alert')).toHaveCount(0);await expect(page.locator('.ui-diagram-node')).toHaveCount(2);await expect(page.locator('tbody input').first()).toBeEnabled();
   }

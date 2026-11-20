@@ -45,15 +45,20 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   private focusAfterFinish = false;
   private observedCurrent: string | undefined;
   private validatorChanged: () => void = () => {};
-  protected readonly configurationError = computed(() => ![this.label(), this.uiEffective_editLabel(), this.uiEffective_saveLabel(), this.uiEffective_cancelLabel(), this.uiEffective_emptyLabel(), this.uiEffective_busyLabel()].every(value => value.trim()) || !Number.isSafeInteger(this.rows()) || this.rows() < 1 || this.maxLength() !== null && (!Number.isSafeInteger(this.maxLength()) || this.maxLength()! < 0) ? this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.checkTheEditorDescriptionRowCountAndCharacterLimit") : null);
-  protected readonly draftError = computed(() => this.configurationError() ?? this.checkValue(this.draft()));
+  private readonly invalidConfiguration = computed(() =>
+    ![this.label(), this.editLabel(), this.saveLabel(), this.cancelLabel(), this.emptyLabel(), this.busyLabel()].every(value => value === undefined || value.trim())
+    || !Number.isSafeInteger(this.rows()) || this.rows() < 1 || this.maxLength() !== null && (!Number.isSafeInteger(this.maxLength()) || this.maxLength()! < 0));
+  protected readonly configurationError = computed(() => this.invalidConfiguration()
+    ? this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.checkTheEditorDescriptionRowCountAndCharacterLimit") : null);
+  private readonly draftDiagnostic = computed(() => this.invalidConfiguration() ? undefined : this.checkValue(this.draft()));
+  protected readonly draftError = computed(() => this.configurationError() ?? this.draftDiagnostic()?.() ?? null);
   protected readonly problem = computed(() => this.resultError() || (this.editing() ? this.draftError() : this.configurationError()));
   protected readonly descriptions = computed(() => [this.hint() ? this.controlId() + '-hint' : '', this.error() || this.problem() ? this.controlId() + '-error' : ''].filter(Boolean).join(' ') || null);
   constructor() {
     super();
     afterRenderEffect(() => {
       const current = this.current();
-      this.editing(); this.editor(); this.configurationError(); this.draft(); this.required(); this.maxLength(); this.validateValue();
+      this.editing(); this.editor(); this.invalidConfiguration(); this.draft(); this.required(); this.maxLength(); this.validateValue();
       untracked(() => { this.syncExternalValue(current); this.validatorChanged(); if (this.focusAfterStart && this.editing() && canFocus(this.editor()?.nativeElement ?? null)) { this.focusAfterStart = false; this.editor()!.nativeElement.focus(); }
         if (this.focusAfterFinish && !this.editing() && canFocus(this.start()?.nativeElement ?? null)) { this.focusAfterFinish = false; this.start()!.nativeElement.focus({ preventScroll: true }); }
       });
@@ -79,10 +84,11 @@ export class InlineEdit extends ValueControl<string> implements Validator {
     if (this.current() === request.previousValue) return true;
     this.syncExternalValue(this.current()); return false;
   }
-  private checkValue(value: string): string | null {
-    if (this.required() && !value.trim()) return this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.enterAValue");
-    if (this.maxLength() !== null && [...value].length > this.maxLength()!) return this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.enterNoMoreThanUi0Characters",{ui0:String(this.maxLength())});
-    try { return this.validateValue()?.(value) ?? null; } catch { return this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.couldNotFinishValidatingTheInput"); }
+  private checkValue(value: string): (() => string) | null {
+    if (this.required() && !value.trim()) return () => this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.enterAValue");
+    const limit = this.maxLength();
+    if (limit !== null && [...value].length > limit) return () => this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.enterNoMoreThanUi0Characters",{ui0:String(limit)});
+    try { const message = this.validateValue()?.(value); return message ? () => message : null; } catch { return () => this.uiRuntimeText_InlineEdit("uiFoundation.inlineEdit.couldNotFinishValidatingTheInput"); }
   }
   protected begin(): void {
     if (this.blocked() || this.readonly() || this.configurationError() || this.editing()) return;
@@ -134,7 +140,7 @@ export class InlineEdit extends ValueControl<string> implements Validator {
   }
   registerOnValidatorChange(callback: () => void): void { this.validatorChanged = callback; }
   validate(control: AbstractControl): ValidationErrors | null {
-    const error = this.configurationError() ?? this.checkValue(this.editing() ? this.draft() : this.coerce(control.value));
+    const error = this.configurationError() ?? this.checkValue(this.editing() ? this.draft() : this.coerce(control.value))?.();
     return error ? { inlineEdit: error } : null;
   }
 }

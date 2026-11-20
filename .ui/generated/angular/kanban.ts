@@ -1,3 +1,4 @@
+import {captureUiMessage} from './stable-messages';
 import {uiMessageState} from './locale';
 import {injectUiMessageText as injectUiDiagnosticText} from './locale';
 import {injectUiMessageText as injectUiRuntimeText} from './locale';
@@ -26,7 +27,7 @@ export class Kanban {
   this.focusRecovery.set(null);
  });}
  cardsIn(id:string):readonly BoardCard[]{return this.cards().filter(card=>card.columnId===id);}
- move(card:BoardCard,toColumn:string,index:number):void{if(this.blocked()||card.disabled)return;const request={cardId:card.id,fromColumn:card.columnId,toColumn,index};try{moveBoardCard(this.columns(),this.cards(),request);this.moveError.set(null);const active=this.host.nativeElement.ownerDocument.activeElement;if(active&&this.host.nativeElement.contains(active))this.focusRecovery.set({id:card.id,element:active});this.moveRequested.emit(request);}catch(error){this.moveError.setMessage(error instanceof Error ? [String(error.message)] : [() => this.uiRuntimeText_Kanban("uiFoundation.kanban.unableToMove")]);}}
+ move(card:BoardCard,toColumn:string,index:number):void{if(this.blocked()||card.disabled)return;const request={cardId:card.id,fromColumn:card.columnId,toColumn,index},diagnostic=captureUiMessage(this.uiRuntimeText_Kanban);try{moveBoardCard(this.columns(),this.cards(),request,diagnostic.capture);this.moveError.set(null);const active=this.host.nativeElement.ownerDocument.activeElement;if(active&&this.host.nativeElement.contains(active))this.focusRecovery.set({id:card.id,element:active});this.moveRequested.emit(request);}catch{const render=diagnostic.render();this.moveError.setMessage(render ? [render] : [() => this.uiRuntimeText_Kanban("uiFoundation.kanban.unableToMove")]);}}
  changeColumn(card:BoardCard,event:Event):void{const target=(event.target as HTMLSelectElement).value;this.move(card,target,this.cardsIn(target).filter(c=>c.id!==card.id).length);(event.target as HTMLSelectElement).value=card.columnId;}
  dropped(event:CdkDragDrop<string,string,string>):void{const card=this.cards().find(c=>c.id===event.item.data);if(card)this.move(card,event.container.data,event.currentIndex);}
 }

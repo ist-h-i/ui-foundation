@@ -71,14 +71,14 @@ export class Textarea extends FieldValueControl<string>{
   <div class="ui-input-group"><input uiFieldControl [type]="revealed() ? 'text' : 'password'" [name]="name()" [value]="current()" [attr.autocomplete]="autocomplete()"
    [disabled]="blocked()" [readOnly]="readonly()" (input)="commit(text($event))" (blur)="touch()">
    <button uiAction [attr.aria-label]="revealed() ? ('uiFoundation.passwordInput.hidePassword' | uiStableMessage) : ('uiFoundation.passwordInput.showPassword' | uiStableMessage)" [attr.aria-pressed]="revealed()" [disabled]="blocked()" (click)="revealed.set(!revealed())">{{revealed()?('uiFoundation.passwordInput.hide' | uiStableMessage):('uiFoundation.passwordInput.show' | uiStableMessage)}}</button></div>
-  @if(strength()!=='unknown'){<p class="ui-input-count">{{'uiFoundation.passwordInput.strength' | uiStableMessage}} {{strengthLabel()}}</p>}
+  @if(strength()!=='unknown'){<p class="ui-input-count">{{strengthLabel()}}</p>}
  </ui-form-field>`,styles:controlStyles,
 })
 export class PasswordInput extends FieldValueControl<string>{
  private readonly uiRuntimeText_PasswordInput=injectUiRuntimeText();
 
  protected readonly emptyValue='';readonly autocomplete=input('current-password');readonly strength=input<'weak'|'medium'|'strong'|'unknown'>('unknown');
- protected readonly revealed=signal(false);protected readonly strengthLabel=computed(()=>({weak:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.weak"),medium:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.medium"),strong:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strong"),unknown:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.unrated")})[this.strength()]);
+ protected readonly revealed=signal(false);protected readonly strengthLabel=computed(()=>({weak:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthWeak"),medium:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthMedium"),strong:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.strengthStrong"),unknown:this.uiRuntimeText_PasswordInput("uiFoundation.passwordInput.unrated")})[this.strength()]);
  protected coerce(value:unknown):string{return typeof value==='string'?value:'';}
 }
 export interface SearchRequest{query:string;requestId:number}
@@ -115,7 +115,7 @@ export class SearchInput extends FieldValueControl<string>{
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-input-group"><input #editor uiFieldControl type="number" [name]="name()" [value]="current() ?? ''" [attr.min]="min()" [attr.max]="max()" [attr.step]="step()"
    [disabled]="blocked() || configurationError() !== null" [readOnly]="readonly()" (input)="changed($event)" (blur)="touch()">@if(unit()){<span>{{unit()}}</span>}</div>
-  @if(current()!==null){<p class="ui-input-format">{{'uiFoundation.numberInput.display' | uiStableMessage}} {{formatted()}} {{unit()}}</p>}
+  @if(current()!==null){<p class="ui-input-format">{{unit()?('uiFoundation.numberInput.formattedNumberWithUnit' | uiStableMessage:{value:formatted(),unit:unit()!}):('uiFoundation.numberInput.formattedNumber' | uiStableMessage:{value:formatted()})}}</p>}
   @if(configurationError()){<p class="ui-input-format" role="alert">{{configurationError()}}</p>}
  </ui-form-field>`,styles:controlStyles,
 })

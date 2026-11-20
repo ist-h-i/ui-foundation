@@ -9,7 +9,9 @@ const contracts = new Map();
 
 async function readModule(name) {
   const file = `${directory}/${name}.ts`;
-  return ts.createSourceFile(file, await readFile(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  const source = ts.createSourceFile(file, await readFile(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  assert.equal(source.parseDiagnostics.length, 0, `Invalid TypeScript in ${file}`);
+  return source;
 }
 
 function members(module, variable) {

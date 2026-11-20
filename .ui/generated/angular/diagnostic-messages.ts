@@ -1207,4 +1207,147 @@ export const diagnosticMessages = {
       "label": "string"
     }
   },
+  "uiFoundation.kanban.cardMoveUnavailable": {
+    "ja": "このカードは移動できません。",
+    "en": "Card move is unavailable",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.invalidCardPosition": {
+    "ja": "カードの移動先の位置を確認してください。",
+    "en": "Card position is invalid",
+    "parameters": {}
+  },
+  "uiFoundation.kanban.targetColumnFull": {
+    "ja": "移動先の列が件数上限に達しています。",
+    "en": "Column limit reached",
+    "parameters": {}
+  },
+  "uiFoundation.fileExplorer.hierarchyTooDeep": {
+    "ja": "フォルダーの階層が深すぎます。",
+    "en": "File hierarchy is too deep",
+    "parameters": {}
+  },
+  "uiFoundation.fileExplorer.invalidHierarchy": {
+    "ja": "フォルダーの階層にIDの重複または循環があります。",
+    "en": "File hierarchy has duplicate IDs or a cycle",
+    "parameters": {}
+  },
+  "uiFoundation.fileExplorer.unknownFileKind": {
+    "ja": "項目の種類を確認してください。",
+    "en": "Unknown file kind",
+    "parameters": {}
+  },
+  "uiFoundation.fileExplorer.fileHasChildren": {
+    "ja": "ファイルの下には項目を配置できません。",
+    "en": "Files cannot contain children",
+    "parameters": {}
+  },
+  "uiFoundation.fileExplorer.invalidFileIds": {
+    "ja": "項目ごとに一意のIDを指定してください。",
+    "en": "Files: stable unique IDs are required",
+    "parameters": {}
+  },
+  "uiFoundation.jsonViewer.emptySource": {
+    "ja": "JSONが空です。",
+    "en": "JSON is empty",
+    "parameters": {}
+  },
+  "uiFoundation.jsonViewer.sourceTooLarge": {
+    "ja": "JSONが表示できるサイズの上限を超えています。",
+    "en": "JSON exceeds the viewer limit",
+    "parameters": {}
+  },
+  "uiFoundation.jsonViewer.treeLimit": {
+    "ja": "JSONの階層が表示上限を超えています。",
+    "en": "JSON hierarchy exceeds the viewer limit",
+    "parameters": {}
+  },
+  "uiFoundation.jsonViewer.rootLabel": {
+    "ja": "ルート",
+    "en": "Root",
+    "parameters": {}
+  },
+  "uiFoundation.cascader.optionPathLabel": {
+    "ja": "候補の経路: {path}",
+    "en": "Option path: {path}",
+    "parameters": {
+      "path": "string"
+    }
+  },
+  "uiFoundation.treeGrid.loadingBranch": {
+    "ja": "{label}: 子行を取得しています。",
+    "en": "Loading child rows for {label}.",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.treeGrid.branchError": {
+    "ja": "{label}: {message}",
+    "en": "{label}: {message}",
+    "parameters": {
+      "label": "string",
+      "message": "string"
+    }
+  },
+  "uiFoundation.treeGrid.retryBranch": {
+    "ja": "子行を再取得 {label}",
+    "en": "Reload child rows for {label}",
+    "parameters": {
+      "label": "string"
+    }
+  },
+  "uiFoundation.mapView.zoomValue": {
+    "ja": "ズーム {zoom}",
+    "en": "Zoom: {zoom}",
+    "parameters": {
+      "zoom": "number"
+    }
+  },
+  "uiFoundation.spreadsheet.selectionSummary": {
+    "ja": "選択 {address} 値 {value}",
+    "en": "Selected {address}, value {value}",
+    "parameters": {
+      "address": "string",
+      "value": "string"
+    }
+  },
+  "uiFoundation.spreadsheet.selectionWithDraft": {
+    "ja": "選択 {address} 値 {value} 未確定入力 {draft}",
+    "en": "Selected {address}, value {value}, uncommitted input {draft}",
+    "parameters": {
+      "address": "string",
+      "value": "string",
+      "draft": "string"
+    }
+  },
+  "uiFoundation.passwordInput.strengthWeak": {
+    "ja": "強度: 弱い",
+    "en": "Strength: Weak",
+    "parameters": {}
+  },
+  "uiFoundation.passwordInput.strengthMedium": {
+    "ja": "強度: 普通",
+    "en": "Strength: Medium",
+    "parameters": {}
+  },
+  "uiFoundation.passwordInput.strengthStrong": {
+    "ja": "強度: 強い",
+    "en": "Strength: Strong",
+    "parameters": {}
+  },
+  "uiFoundation.numberInput.formattedNumber": {
+    "ja": "表示: {value}",
+    "en": "Display: {value}",
+    "parameters": {
+      "value": "string"
+    }
+  },
+  "uiFoundation.numberInput.formattedNumberWithUnit": {
+    "ja": "表示: {value} {unit}",
+    "en": "Display: {value} {unit}",
+    "parameters": {
+      "value": "string",
+      "unit": "string"
+    }
+  }
 } as const;
