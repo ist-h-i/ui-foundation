@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText} from './locale';
+import {injectUiMessageText} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, effect, ElementRef, inject, input, linkedSignal, output, signal, TemplateRef, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -233,14 +233,14 @@ export abstract class AnchoredPopup {
 const popupTemplate = `<header [hidden]="!showHeader()" class="ui-popup-header"><div class="ui-popup-heading">@if(template('header');as area){<ng-container [ngTemplateOutlet]="area.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="[uiPopupHeader]" /><h2>{{label()}}</h2>}</div>@if(showCloseButton()){<button uiAction data-popup-action [disabled]="busy()" (click)="close('close-button')">{{uiEffective_closeLabel()}}</button>}</header><div class="ui-popup-body">@if(template('body');as area){<ng-container [ngTemplateOutlet]="area.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content />}</div><div class="ui-popup-actions">@if(template('actions');as area){<ng-container [ngTemplateOutlet]="area.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="[uiPopupActions]" />}</div>@if(!showHeader()&&showCloseButton()){<button uiAction data-popup-action [disabled]="busy()" (click)="close('close-button')">{{uiEffective_closeLabel()}}</button>}<p role="status" aria-atomic="true" class="ui-popup-status">{{busy()?uiEffective_busyLabel():''}}</p>`;
 @Component({selector:'ui-popover',standalone:true,imports:[NgTemplateOutlet,ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,template:popupTemplate,styles:popupStyles,host:interactiveHost})
 export class Popover extends AnchoredPopup {
- protected readonly uiText_Popover=injectUiText();
+ protected readonly uiText_Popover=injectUiMessageText();
     readonly label=input.required<string>();
     readonly showHeader=input(true,{transform:booleanAttribute});
     readonly showCloseButton=input(true,{transform:booleanAttribute});
     readonly closeLabel=input<string>();
- protected readonly uiEffective_closeLabel=uiLocaleComputed(()=>this.closeLabel()??this.uiText_Popover('閉じる'));
+ protected readonly uiEffective_closeLabel=uiLocaleComputed(()=>this.closeLabel()??this.uiText_Popover("uiFoundation.popover.close"));
     readonly busyLabel=input<string>();
- protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_Popover('処理しています。'));
+ protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_Popover("uiFoundation.popover.working"));
     readonly focusOnOpen=input(true,{transform:booleanAttribute});
     private readonly templates=contentChildren(PopupTemplate);
     constructor() {
@@ -293,15 +293,15 @@ export class Tooltip extends AnchoredPopup {
 @Component({selector:'ui-confirm-popover',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,
     template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
 export class ConfirmPopover extends AnchoredPopup {
- protected readonly uiText_ConfirmPopover=injectUiText();
+ protected readonly uiText_ConfirmPopover=injectUiMessageText();
     readonly label=input.required<string>();
     readonly message=input.required<string>();
     readonly confirmLabel=input<string>();
- protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmPopover('確認する'));
+ protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.confirm"));
     readonly cancelLabel=input<string>();
- protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmPopover('取消'));
+ protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.cancel"));
     readonly busyLabel=input<string>();
- protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_ConfirmPopover('処理しています。'));
+ protected readonly uiEffective_busyLabel=uiLocaleComputed(()=>this.busyLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.working"));
     readonly error=input('');
     readonly confirmRequested=output<void>();
     // Only bridge the emit-to-render interval. The app owns processing and results.

@@ -1,6 +1,6 @@
 {
   "name": "@hiroshi.inoue/ui-foundation",
-  "version": "0.1.0-beta.4",
+  "version": "0.1.0-beta.5",
   "private": false,
   "bin": {
     "ui-foundation": "dist/cli.js"
@@ -35,6 +35,10 @@
     "docs/ui-library-specialist-expansion-spec.ja.md",
     "docs/ui-library-runtime-foundation-spec.ja.md",
     "docs/ui-library-api.json",
+    "docs/ui-message-migration.en.md",
+    "docs/ui-message-migration.ja.md",
+    "docs/ui-message-map.json",
+    "docs/ui-message-arguments.json",
     "README.ja.md",
     "examples/ui.config.example.en.yaml",
     "docs/commands.en.md",
@@ -61,7 +65,7 @@
     "node": "24.19.0"
   },
   "scripts": {
-    "package:build": "npm run config:examples -- --check && npm run docs:tokens -- --check && tsx scripts/build-package.ts",
+    "package:build": "npm run config:examples -- --check && npm run docs:tokens -- --check && node scripts/catalog-message-arguments.mjs --check && tsx scripts/build-package.ts",
     "prepack": "npm run package:build",
     "test:package": "node --test --test-concurrency=1 tests/package/*.test.mjs",
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.repository.yaml",
@@ -71,7 +75,7 @@
     "build": "npm run ui:check && ngc -p tsconfig.json && node scripts/build.mjs && tailwindcss -i tests/fixture-app/styles.css -o dist/fixture-app/styles.css",
     "start": "npm run build && node scripts/serve.mjs",
     "test": "npm run ui:check:warnings && npm run typecheck && npm run test:config && npm run test:generation && npm run test:package && npm run test:static && npm run test:model && npm run test:ui && npm run test:svg-paint",
-    "test:model": "tsx --test tests/model/*.test.ts",
+    "test:model": "node scripts/catalog-message-arguments.mjs --check && tsx --test tests/model/*.test.ts",
     "config:examples": "tsx scripts/render-config-examples.ts",
     "docs:tokens": "tsx scripts/render-token-tables.ts",
     "test:config": "npm run docs:tokens -- --check && npm run config:examples -- --check && tsx --test tests/config/*.test.ts",
@@ -146,6 +150,6 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public",
-    "tag": "beta"
+    "tag": "next"
   }
 }

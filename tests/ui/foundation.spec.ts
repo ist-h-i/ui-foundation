@@ -21,7 +21,7 @@ test('bundled English messages update existing controls and file feedback',async
  await expect(status).toBeVisible();
  await page.evaluate(()=>{
   const app=(window as any).__stage;
-  app.rootLocale.update((options:any)=>({...options,locale:'en-US',messages:app.englishMessages}));
+  app.rootLocale.update((options:any)=>({...options,locale:'en-US'}));
  });
  await expect(picker).toBeVisible();
  await expect(upload.getByText('Files accepted: 1. Files rejected: 1.',{exact:true})).toBeVisible();
@@ -29,15 +29,15 @@ test('bundled English messages update existing controls and file feedback',async
  await expect(page.locator('#scope-message')).toHaveText('Find scoped');
  await page.evaluate(()=>{
   const app=(window as any).__stage;
-  app.rootLocale.update((options:any)=>({...options,messages:{
-   '件を受け付けました。':' accepted. ',
-   '件は受け付けできません。':' rejected.',
-  }}));
+  app.rootLocale.update((options:any)=>({...options,translate:(request:{id:string;parameters?:{accepted:number;rejected:number}})=>
+    request.id==='uiFoundation.fileUpload.filesAcceptedAcceptedFilesRejectedRejected' && request.parameters
+      ? request.parameters.accepted+' accepted. '+request.parameters.rejected+' rejected.'
+      : undefined}));
  });
  await expect(upload.getByText('1 accepted. 1 rejected.',{exact:true})).toBeVisible();
  await page.evaluate(()=>{
   const app=(window as any).__stage;
-  app.rootLocale.update((options:any)=>({...options,locale:'ja-JP',messages:undefined}));
+  app.rootLocale.update((options:any)=>({...options,locale:'ja-JP',translate:undefined}));
  });
  await expect(status).toBeVisible();
 });
@@ -45,13 +45,13 @@ for(const profile of ['guided','dense'] as const)test(`Japanese child scope and 
  await page.setViewportSize({width:320,height:800});await page.addStyleTag({content:'html{font-size:200%}'});await page.evaluate(profile=>(window as any).__stage.profile.set(profile),profile);
  const input=page.locator('#range-case input').first();
  await input.fill('31/02/2026');await input.focus();await input.evaluate(element=>(window as any).__languageDraft=element);
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US',messages:app.englishMessages}));app.scope.set({locale:'ja-JP',messages:app.japaneseMessages});});
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US'}));app.scope.set({locale:'ja-JP'});});
  await expect(page.locator('#scope-message')).toHaveText('検索');
  await expect(page.locator('#scope')).toHaveAttribute('lang','ja-JP');
  await expect(page.locator('#composer-case button[type=submit]')).toHaveText('Send');
  await expect(input).toBeFocused();await expect(input).toHaveValue('31/02/2026');
  expect(await input.evaluate(element=>element===(window as any).__languageDraft)).toBe(true);
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP',messages:app.japaneseMessages}));app.scope.set({locale:'en-US',messages:app.englishMessages});});
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP'}));app.scope.set({locale:'en-US'});});
  await expect(page.locator('#scope-message')).toHaveText('Search');
  await expect(page.locator('#composer-case button[type=submit]')).toHaveText('送信');
  await expect(input).toBeFocused();await expect(input).toHaveValue('31/02/2026');
@@ -61,7 +61,7 @@ test('numeric, selection, editor and retained paste diagnostics translate withou
  const cell=probe.locator('[data-grid-cell]').first();await cell.focus();
  await cell.evaluate(element=>{const clipboard=new DataTransfer();clipboard.setData('text/plain','oops');element.dispatchEvent(new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData:clipboard}));});
  await expect(probe).toContainText('1行目・App quantity: 有限の数値を入力してください。');
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US',messages:app.englishMessages}));});
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'en-US'}));});
  await expect(probe.locator('ui-slider')).toContainText('Enter a value from 0 to 100.');
  await expect(probe.locator('ui-range-slider')).toContainText('The start value must be less than or equal to the end value.');
  await expect(probe.locator('ui-knob')).toContainText('Enter a value from 0 to 100.');
@@ -88,7 +88,7 @@ test('numeric, selection, editor and retained paste diagnostics translate withou
  await expect(probe).toContainText('Row 1, App quantity: Enter a finite number.');
  await cell.getByRole('button').click();const editor=probe.locator('[data-table-editor]');await editor.fill('');
  await expect(probe.locator('ui-cell-editor')).toContainText('Enter a value.');
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP',messages:app.japaneseMessages}));});
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.update((current:any)=>({...current,locale:'ja-JP'}));});
  await expect(probe.locator('ui-cell-editor')).toContainText('入力してください。');
  await expect(editor).toHaveValue('');await expect(editor).toBeFocused();
  await expect(probe).toContainText('App quantity');
@@ -107,7 +107,7 @@ test('number options inherit and individual props win without converting the nat
 });
 test('scope honors later application attributes and removes only its own attributes at destroy',async({page})=>{
  await page.locator('#scope').evaluate(element=>{(window as any).__scopeElement=element;element.setAttribute('dir','ltr');});
- await page.evaluate(()=>{(window as any).__stage.scope.set({locale:'tr-TR',direction:'rtl',messages:{検索:'Search Turkish'}});});await expect(page.locator('#scope')).toHaveAttribute('dir','ltr');await expect(page.locator('#scope')).toHaveAttribute('lang','tr-TR');await expect(page.locator('#scope-message')).toHaveText('Search Turkish');
+ await page.evaluate(()=>{(window as any).__stage.scope.set({locale:'tr-TR',direction:'rtl',translate:(request:{id:string})=>request.id==='uiFoundation.searchInput.search'?'Search Turkish':undefined});});await expect(page.locator('#scope')).toHaveAttribute('dir','ltr');await expect(page.locator('#scope')).toHaveAttribute('lang','tr-TR');await expect(page.locator('#scope-message')).toHaveText('Search Turkish');
  await page.evaluate(()=>{(window as any).__stage.showScope.set(false);});await expect(page.locator('#scope')).toHaveCount(0);expect(await page.evaluate(()=>(window as any).__scopeElement.getAttribute('dir'))).toBe('ltr');expect(await page.evaluate(()=>(window as any).__scopeElement.getAttribute('lang'))).toBe(null);
  await page.evaluate(()=>{(window as any).__stage.rootLocale.set({locale:'de-DE',direction:'rtl'});});expect(await page.evaluate(()=>(window as any).__scopeElement.getAttribute('lang'))).toBe(null);
 });
@@ -141,7 +141,7 @@ test('FileUpload updateOn blur confirms only when leaving the whole intake',asyn
 });
 test('locale and profile changes preserve focused Composer/editor DOM, drafts, and explicit labels',async({page})=>{
  const textarea=page.locator('#composer-case textarea');await textarea.fill('保持するメモ');await textarea.focus();await textarea.evaluate(element=>{(window as any).__composerDOM=element;(element as HTMLTextAreaElement).setSelectionRange(1,4);});
- await page.evaluate(()=>{const app=(window as any).__stage;app.profile.set('dense');app.rootLocale.set({locale:'en-US',dateInputFormat:'dd/MM/yyyy',timeZone:'UTC',messages:{メッセージを入力:'Draft message',送信:'Send',申請の添付:'Must not translate app label'}});});await expect(textarea).toBeFocused();await expect(textarea).toHaveValue('保持するメモ');expect(await textarea.evaluate(element=>element===(window as any).__composerDOM)).toBe(true);expect(await textarea.evaluate(element=>(element as HTMLTextAreaElement).selectionStart)).toBe(1);await expect(page.locator('#composer-case')).toContainText('Draft message');await expect(page.locator('#composer-case button[type=submit]')).toHaveText('Send');await expect(page.locator('#upload-case label').first()).toContainText('申請の添付');
+ await page.evaluate(()=>{const app=(window as any).__stage;app.profile.set('dense');app.rootLocale.set({locale:'en-US',dateInputFormat:'dd/MM/yyyy',timeZone:'UTC',translate:(request:{id:string})=>request.id==='uiFoundation.messageComposer.enterAMessage'?'Draft message':undefined});});await expect(textarea).toBeFocused();await expect(textarea).toHaveValue('保持するメモ');expect(await textarea.evaluate(element=>element===(window as any).__composerDOM)).toBe(true);expect(await textarea.evaluate(element=>(element as HTMLTextAreaElement).selectionStart)).toBe(1);await expect(page.locator('#composer-case')).toContainText('Draft message');await expect(page.locator('#composer-case button[type=submit]')).toHaveText('Send');await expect(page.locator('#upload-case label').first()).toContainText('申請の添付');
  const code=page.locator('[data-editor=code] .cm-content');await expect(code).toBeVisible();await code.click();await page.keyboard.press('ControlOrMeta+A');await page.keyboard.type('const next = 7;');await expect(page.locator('#code-value')).toHaveText('const next = 7;');await code.evaluate(element=>(window as any).__codeDOM=element);await page.evaluate(()=>{(window as any).__stage.profile.set('guided');});expect(await code.evaluate(element=>element===(window as any).__codeDOM)).toBe(true);await expect(code).toBeFocused();await expect(page.locator('#code-value')).toHaveText('const next = 7;');
 });
 test('FileUpload remount keeps retained files, unique intake IDs, and attempts newer than retained retries',async({page},info)=>{
@@ -182,7 +182,7 @@ test('Turkish search reaches native selection, Tree and model query paths throug
  const tree=page.locator('[data-form=TreeSelect]');await tree.getByRole('button',{name:'TreeSelectを選ぶ',exact:true}).click();await tree.locator('input[type=search]').fill('i');await expect(tree.locator('[data-tree-id="b"]')).toBeVisible();await expect(tree.locator('[data-tree-id="a"]')).toHaveCount(0);
 });
 test('Timeline and Scheduler inherit explicit zone/date options, preserve raw app kind, and diagnose unset zone',async({page})=>{
- await page.evaluate(()=>{(window as any).__stage.rootLocale.set({locale:'en-US',dateInputFormat:'dd/MM/yyyy',timeZone:'UTC',dateTimeOptions:{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'},messages:{'種別は未取得です。':'Kind unavailable','日時は未取得です。':'Time unavailable'}});});const timeline=page.locator('#profile-categories ui-timeline');await expect(timeline.locator('.ui-timeline-type').nth(0)).toHaveText('種別は未取得です。');await expect(timeline.locator('.ui-timeline-type').nth(1)).toHaveText('Kind unavailable');await expect(timeline.locator('time')).toHaveAttribute('datetime','2026-10-06T01:00:00.000Z');await expect(timeline.locator('time')).toContainText('01:00');await expect(timeline).toContainText('Time unavailable');await expect(page.locator('#profile-categories ui-scheduler')).toContainText('UTC');
+ await page.evaluate(()=>{(window as any).__stage.rootLocale.set({locale:'en-US',dateInputFormat:'dd/MM/yyyy',timeZone:'UTC',dateTimeOptions:{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'},translate:(request:{id:string})=>({'uiFoundation.timeline.theTypeHasNotBeenLoaded':'Kind unavailable','uiFoundation.timeline.theDateAndTimeHaveNotBeenLoaded':'Time unavailable'} as Record<string,string>)[request.id]});});const timeline=page.locator('#profile-categories ui-timeline');await expect(timeline.locator('.ui-timeline-type').nth(0)).toHaveText('種別は未取得です。');await expect(timeline.locator('.ui-timeline-type').nth(1)).toHaveText('Kind unavailable');await expect(timeline.locator('time')).toHaveAttribute('datetime','2026-10-06T01:00:00.000Z');await expect(timeline.locator('time')).toContainText('01:00');await expect(timeline).toContainText('Time unavailable');await expect(page.locator('#profile-categories ui-scheduler')).toContainText('UTC');
  await page.evaluate(()=>{(window as any).__stage.rootLocale.set({locale:'en-US',timeZone:null,dateInputFormat:'dd/MM/yyyy'});});await expect(timeline.getByRole('alert').first()).toContainText('タイムゾーン');await expect(page.locator('#profile-categories ui-scheduler').getByRole('alert').first()).toContainText('タイムゾーン');expect(await page.evaluate(()=>(window as any).__stage.range.value)).toEqual({start:'2026-02-01',end:'2026-02-07'});
 });
 for(const profile of ['guided','dense'] as const){test(profile+': categories inherit complete semantic profile and preserve input/focus at narrow RTL 200%',async({page},info)=>{
@@ -219,7 +219,7 @@ test('zoneless OnPush consumers observe direct FormControl values for vendor edi
 });
 
 test('library structural diagnostics use scoped messages while app failure text and invalid task values retain their meaning',async({page})=>{
- await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.set({locale:'en-US',timeZone:'UTC',dateInputFormat:'dd/MM/yyyy',messages:{'Task end precedes start':'End comes before start','App backend failure':'Must not translate app text'}});app.profileSpecimens().ganttTasks.update((tasks:any[])=>tasks.map(task=>({...task,end:'2026-10-01'})));});await expect(page.locator('#gantt-inherited [role=alert]')).toHaveText('End comes before start');await expect(page.locator('#gantt-inherited input[type=date]').nth(1)).toHaveValue('2026-10-01');expect(await page.evaluate(()=>(window as any).__stage.profileSpecimens().ganttTasks()[0].end)).toBe('2026-10-01');
+ await page.evaluate(()=>{const app=(window as any).__stage;app.rootLocale.set({locale:'en-US',timeZone:'UTC',dateInputFormat:'dd/MM/yyyy',translate:(request:{id:string})=>request.id==='uiFoundation.gantt.invalidTaskOrder'?'End comes before start':undefined});app.profileSpecimens().ganttTasks.update((tasks:any[])=>tasks.map(task=>({...task,end:'2026-10-01'})));});await expect(page.locator('#gantt-inherited [role=alert]')).toHaveText('End comes before start');await expect(page.locator('#gantt-inherited input[type=date]').nth(1)).toHaveValue('2026-10-01');expect(await page.evaluate(()=>(window as any).__stage.profileSpecimens().ganttTasks()[0].end)).toBe('2026-10-01');
  await page.locator('#composer-case button[type=submit]').click();expect(await page.evaluate(()=>{const form=(window as any).__stage.newForms();return form.composer().failSend(form.requests()[0].requestId,'App backend failure');})).toBe(true);await expect(page.locator('#composer-case [role=alert]')).toHaveText('App backend failure');await expect(page.locator('#composer-value')).toHaveText('確認用下書き');
 });
 

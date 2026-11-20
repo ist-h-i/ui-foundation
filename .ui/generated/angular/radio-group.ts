@@ -1,4 +1,4 @@
-import {UiMessagePipe} from './locale';
+import {UiStableMessagePipe} from './locale';
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, Directive, forwardRef, inject, input, output, signal } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 
@@ -27,14 +27,14 @@ export class RadioOption {
   }
 }
 
-@Component({imports:[UiMessagePipe],
+@Component({imports:[UiStableMessagePipe],
   selector: 'ui-radio-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>RadioGroup),multi:true}],
   host: { class: 'ui-radio-group' },
   template: `
     <fieldset class="ui-radio-group__fieldset" [disabled]="blocked()" [attr.aria-describedby]="descriptionIds()" (focusout)="left($event)">
-      <legend class="ui-radio-group__legend">{{ label() }} <span>{{ required() ? ('必須' | uiMessage) : ('任意' | uiMessage) }}</span></legend>
+      <legend class="ui-radio-group__legend">{{ label() }} <span>{{ required() ? ('uiFoundation.radioGroup.required' | uiStableMessage) : ('uiFoundation.radioGroup.optional' | uiStableMessage) }}</span></legend>
       <div class="ui-radio-group__options" [attr.data-direction]="direction()"><ng-content /></div>
       @if (hint()) { <p class="ui-form-field-hint" [id]="name() + '-hint'">{{ hint() }}</p> }
       @if (hasError()) { <p class="ui-form-field-error" [id]="name() + '-error'" role="alert">{{ error() }}</p> }

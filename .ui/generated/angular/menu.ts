@@ -1,5 +1,5 @@
 import {computed as localeComputed} from '@angular/core';
-import {injectUiLocale,UiMessagePipe} from './locale';
+import {injectUiLocale,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -9,10 +9,10 @@ import { OverlayRegistry, observeOverlay, positionOverlay, type OverlayPlacement
 import { menuCommands, menuPath, selectMenuCheck, validateMenu, visibleMenuItems, type MenuItem, type MenuSelection } from './menu-model';
 export * from './menu-model';
 export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backwards?:boolean}
-@Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-menu,ui-dropdown-menu,ui-context-menu', standalone: true, imports: [NgTemplateOutlet, ActionControl, Icon,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<button #anchor uiAction [id]="menuId()+'-trigger'" [disabled]="!menubar()&&(disabled()||!commands(nodes()).length)" [attr.aria-disabled]="disabled()||!commands(nodes()).length?'true':null" [attr.role]="menubar()?'menuitem':null" [attr.tabindex]="triggerTabIndex()" aria-haspopup="menu" [attr.aria-expanded]="opened()" [attr.aria-controls]="menuId()" (click)="toggle()" (keydown)="triggerKey($event)" (pointerenter)="hoverOpen()" (pointerleave)="hoverLeave($event)">
   <ng-content select="[uiMenuTrigger]" />{{label()}}</button>
-  @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="label()+('の対象' | uiMessage)" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
+  @if(trigger()==='context'){<div #contextTarget class="ui-menu__context" tabindex="0" [attr.aria-label]="('uiFoundation.menu.targetForLabel' | uiStableMessage:{label:label()})" (contextmenu)="contextMenu($event)" (keydown)="contextKey($event)" (pointerdown)="hold($event)" (pointermove)="moveHold($event)" (pointerup)="stopHold()" (pointercancel)="stopHold()"><ng-content select="[uiMenuContext]" /></div>}
   <div #popup popover="manual" class="ui-menu__popup" [id]="menuId()" (pointerleave)="hoverLeave($event)" (pointerenter)="stopHoverClose()">
    <ul role="menu" [attr.aria-labelledby]="menuId()+'-trigger'"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(nodes()),parent:null,depth:0}" /></ul>
   </div>
@@ -24,7 +24,7 @@ export interface MenuRootNavigation {direction:'next'|'previous'|'exit';backward
      @if(item.icon){<ui-icon [name]="item.icon" />}@if(item.type==='checkbox'||item.type==='radio'){<span aria-hidden="true">{{item.checked?'✓':'○'}}</span>}<span class="ui-menu__label">{{item.label}}</span>@if(commands(item.children??[]).length){<span aria-hidden="true">›</span>}
     </button>
     @if(expanded()[depth]===item.id&&commands(item.children??[]).length){<ul [id]="itemId(item.id)+'-children'" role="menu" [attr.aria-labelledby]="itemId(item.id)" [attr.data-menu-parent]="item.id" class="ui-menu__submenu"><ng-container [ngTemplateOutlet]="entries" [ngTemplateOutletContext]="{items:visible(item.children??[]),parent:item,depth:depth+1}" />
-     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="opened()&&focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'親メニューに戻る' | uiMessage}}</button></li>
+     <li role="none"><button type="button" role="menuitem" [attr.tabindex]="opened()&&focusedBack()===item.id?0:-1" (focus)="rememberFocus(item.id,true)" [attr.data-menu-back]="item.id" (click)="closeLevel(depth+1)" (keydown)="key($event,null,item,depth+1)">{{'uiFoundation.menu.backToParentMenu' | uiStableMessage}}</button></li>
     </ul>}</li>}
    }
   </ng-template>`,

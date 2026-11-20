@@ -1,16 +1,19 @@
+import {uiMessageText as createUiMessageText, type UiMessageText} from './stable-messages';
+const japaneseText = createUiMessageText(() => 'ja-JP');
 import {resolveUiMessage,type UiMessageRequest} from './stable-messages';
 /** Collection presentation data only. I/O, persistence and undo belong to the app. */
 export type CollectionKey = string | number;
 export interface CollectionViewState { query: string; sort: 'none' | 'asc' | 'desc'; page: number; pageSize: number; layout: 'list' | 'grid'; }
 export interface CollectionMove<T> { item: T; fromIndex: number; toIndex: number; items: readonly T[]; reason: 'button' | 'pointer' | 'keyboard'; }
 export function createCollectionView(overrides: Partial<CollectionViewState> = {}): CollectionViewState { return { query: '', sort: 'none', page: 1, pageSize: 10, layout: 'list', ...overrides }; }
-export function collectionProblem<T>(items: readonly T[], key: (item: T) => CollectionKey, label: (item: T) => string): string | null {
+export function collectionProblem<T>(items: readonly T[], key: (item: T) => CollectionKey, label: (item: T) => string, text: UiMessageText = japaneseText): string | null {
  const seen=new Set<CollectionKey>();
- try { for(const item of items){const id=key(item),name=label(item);if(typeof id!=='string'&&typeof id!=='number'||typeof id==='number'&&!Number.isFinite(id)||typeof id==='string'&&!id.trim()||seen.has(id)||typeof name!=='string'||!name.trim())return '一覧のキーと説明には重複しない有効な値を指定してください。';seen.add(id);} }
- catch{return '一覧のキーと説明を読み取れません。';}return null;
+ try { for(const item of items){const id=key(item),name=label(item);if(typeof id!=='string'&&typeof id!=='number'||typeof id==='number'&&!Number.isFinite(id)||typeof id==='string'&&!id.trim()||seen.has(id)||typeof name!=='string'||!name.trim())return text("uiFoundation.collection.provideAValidUniqueKeyAndDescriptionFor");seen.add(id);} }
+ catch{return text("uiFoundation.collection.couldNotReadTheListKeyAndDescription");}return null;
 }
+export class InvalidCollectionPageSettings extends Error {}
 export function collectionPage<T>(items: readonly T[], label: (item: T) => string, state: CollectionViewState, locale='ja-JP'):{items:readonly T[];total:number;pages:number;page:number}{
- if(typeof state.query!=='string'||!['none','asc','desc'].includes(state.sort)||!['list','grid'].includes(state.layout)||!Number.isSafeInteger(state.page)||state.page<1||!Number.isSafeInteger(state.pageSize)||state.pageSize<1)throw new Error('一覧の検索、表示、ページ条件を確認してください。');
+ if(typeof state.query!=='string'||!['none','asc','desc'].includes(state.sort)||!['list','grid'].includes(state.layout)||!Number.isSafeInteger(state.page)||state.page<1||!Number.isSafeInteger(state.pageSize)||state.pageSize<1)throw new InvalidCollectionPageSettings(japaneseText('uiFoundation.dataView.invalidPageSettings'));
  const query=state.query.toLocaleLowerCase(locale),collator=new Intl.Collator(locale,{numeric:true,sensitivity:'base'});
  const filtered=items.map((item,index)=>({item,index,label:label(item)})).filter(row=>row.label.toLocaleLowerCase(locale).includes(query));
  if(state.sort!=='none')filtered.sort((a,b)=>(state.sort==='asc'?1:-1)*collator.compare(a.label,b.label)||a.index-b.index);
@@ -25,7 +28,12 @@ export function moveCollection<T>(items:readonly T[],fromIndex:number,toIndex:nu
 export interface ListChoice {value:string;label:string;disabled?:boolean;group?:string}
 export type ListboxValue=string|readonly string[]|null;
 export function selectedListValues(value:unknown):readonly string[]{return typeof value==='string'?[value]:Array.isArray(value)?value.filter((item):item is string=>typeof item==='string'):[];}
-export function listSelectionDiagnostic(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null):UiMessageRequest|null{
+type ListSelectionMessage = UiMessageRequest<
+  'uiFoundation.listbox.invalidOptions' | 'uiFoundation.listbox.invalidSelectionLimit' |
+  'uiFoundation.listbox.multipleValueRequired' | 'uiFoundation.listbox.singleValueRequired' |
+  'uiFoundation.listbox.invalidSelection' | 'uiFoundation.listbox.selectionRequired' | 'uiFoundation.collection.selectionLimit'
+>;
+export function listSelectionDiagnostic(options:readonly ListChoice[],value:unknown,multiple:boolean,required:boolean,maxSelected:number|null):ListSelectionMessage|null{
  const known=new Set<string>();for(const option of options){if(!option||typeof option.value!=='string'||!option.value.trim()||typeof option.label!=='string'||!option.label.trim()||known.has(option.value)||option.group!==undefined&&(typeof option.group!=='string'||!option.group.trim()))return {id:'uiFoundation.listbox.invalidOptions'};known.add(option.value);}
  if(maxSelected!==null&&(!Number.isSafeInteger(maxSelected)||maxSelected<1))return {id:'uiFoundation.listbox.invalidSelectionLimit'};
  if(value!==null&&(multiple?!Array.isArray(value):typeof value!=='string'))return multiple?{id:'uiFoundation.listbox.multipleValueRequired'}:{id:'uiFoundation.listbox.singleValueRequired'};

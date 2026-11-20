@@ -1,3 +1,4 @@
+import {resolveUiMessage} from './stable-messages';
 import type {SheetModel} from './specialist-model';
 import type {SheetResult} from './sheet-formula';
 
@@ -12,35 +13,36 @@ function validResults(value:unknown,sheet:SheetModel):value is readonly (readonl
   return (result.value===null||['string','number','boolean'].includes(typeof result.value))&&(typeof result.value!=='number'||Number.isFinite(result.value))&&(result.error===null||typeof result.error==='string');
  }));
 }
+type CalculationMessageId = 'uiFoundation.spreadsheet.invalidCalculationTimeout' | 'uiFoundation.spreadsheet.calculationUnconfirmed' | 'uiFoundation.spreadsheet.calculationTimedOut' | 'uiFoundation.spreadsheet.calculationStartFailed' | 'uiFoundation.spreadsheet.calculationPreparationTimedOut' | 'uiFoundation.spreadsheet.calculationFailed';
 /** UI calculation adapter: bounded phases, stale discard, cancellation and teardown; no persisted I/O. */
 export class SheetFormulaRunner {
  private worker:Worker|null=null;private timer:ReturnType<typeof setTimeout>|null=null;private requestId=0;private destroyed=false;
- calculate(sheet:SheetModel,url:URL|string,completed:(results:readonly (readonly SheetResult[])[]|null,error:string|null)=>void,timeouts:Readonly<SheetWorkerTimeouts>=defaultSheetWorkerTimeouts):void{
+ calculate(sheet:SheetModel,url:URL|string,completed:(results:readonly (readonly SheetResult[])[]|null,error:string|null,id?:CalculationMessageId)=>void,timeouts:Readonly<SheetWorkerTimeouts>=defaultSheetWorkerTimeouts):void{
   this.cancel();if(this.destroyed)return;const requestId=++this.requestId;
-  if(!timeouts||!validDeadline(timeouts.startupMs)||!validDeadline(timeouts.calculationMs)){completed(null,'計算の期限設定を確認してください。セルの原文は保持されています。');return;}
+  if(!timeouts||!validDeadline(timeouts.startupMs)||!validDeadline(timeouts.calculationMs)){completed(null,resolveUiMessage({id:'uiFoundation.spreadsheet.invalidCalculationTimeout'},'ja-JP'),'uiFoundation.spreadsheet.invalidCalculationTimeout');return;}
   const {startupMs,calculationMs}=timeouts;
   try{
    const worker=this.worker=new Worker(url,{type:'module'});let started=false;
-   const finish=(results:readonly (readonly SheetResult[])[]|null,error:string|null)=>{if(this.destroyed||requestId!==this.requestId)return;this.cancel();completed(results,error);};
+   const finish=(results:readonly (readonly SheetResult[])[]|null,error:string|null,id?:CalculationMessageId)=>{if(this.destroyed||requestId!==this.requestId)return;this.cancel();completed(results,error,id);};
    worker.onmessage=(event:MessageEvent<unknown>)=>{
     if(this.destroyed||requestId!==this.requestId)return;
-    const result=event.data as {type?:unknown;version?:unknown;requestId?:unknown;results?:unknown;error?:unknown}|null;
+    const result=event.data as {type?:unknown;version?:unknown;requestId?:unknown;results?:unknown;error?:unknown;errorId?:unknown}|null;
     if(!result||typeof result!=='object')return;
     if(result.type==='sheet-ready'){
-     if(result.version!==1)return finish(null,'計算結果を確認できませんでした。セルの原文は保持されています。再計算してください。');
+     if(result.version!==1)return finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationUnconfirmed'},'ja-JP'),'uiFoundation.spreadsheet.calculationUnconfirmed');
      if(started)return;started=true;this.clearTimer();
-     this.timer=setTimeout(()=>finish(null,'計算が時間内に終わりませんでした。セルの原文は保持されています。再計算してください。'),calculationMs);
-     try{worker.postMessage({requestId,sheet});}catch{finish(null,'数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。');}
+     this.timer=setTimeout(()=>finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationTimedOut'},'ja-JP'),'uiFoundation.spreadsheet.calculationTimedOut'),calculationMs);
+     try{worker.postMessage({requestId,sheet});}catch{finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationStartFailed'},'ja-JP'),'uiFoundation.spreadsheet.calculationStartFailed');}
      return;
     }
     if(!started||result.requestId!==requestId)return;
-    if(result.results===null){if(typeof result.error!=='string'||!result.error)return finish(null,'計算結果を確認できませんでした。セルの原文は保持されています。再計算してください。');return finish(null,result.error);}
-    if(!validResults(result.results,sheet)||result.error!==null)return finish(null,'計算結果を確認できませんでした。セルの原文は保持されています。再計算してください。');
+    if(result.results===null){if(typeof result.error!=='string'||!result.error)return finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationUnconfirmed'},'ja-JP'),'uiFoundation.spreadsheet.calculationUnconfirmed');return finish(null,result.error,result.errorId==='uiFoundation.spreadsheet.calculationFailed'?result.errorId:undefined);}
+    if(!validResults(result.results,sheet)||result.error!==null)return finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationUnconfirmed'},'ja-JP'),'uiFoundation.spreadsheet.calculationUnconfirmed');
     finish(result.results,null);
    };
-   worker.onerror=event=>{event.preventDefault();finish(null,'数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。');};
-   this.timer=setTimeout(()=>finish(null,'計算の準備が時間内に終わりませんでした。セルの原文は保持されています。再計算してください。'),startupMs);
-  }catch{if(!this.destroyed&&requestId===this.requestId){this.cancel();completed(null,'数式の計算を開始できませんでした。セルの原文は保持されています。再計算してください。');}}
+   worker.onerror=event=>{event.preventDefault();finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationStartFailed'},'ja-JP'),'uiFoundation.spreadsheet.calculationStartFailed');};
+   this.timer=setTimeout(()=>finish(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationPreparationTimedOut'},'ja-JP'),'uiFoundation.spreadsheet.calculationPreparationTimedOut'),startupMs);
+  }catch{if(!this.destroyed&&requestId===this.requestId){this.cancel();completed(null,resolveUiMessage({id:'uiFoundation.spreadsheet.calculationStartFailed'},'ja-JP'),'uiFoundation.spreadsheet.calculationStartFailed');}}
  }
  private clearTimer():void{if(this.timer!==null)clearTimeout(this.timer);this.timer=null;}
  private cancel():void{this.requestId++;this.clearTimer();this.worker?.terminate();this.worker=null;}

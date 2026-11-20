@@ -1,3 +1,5 @@
+import {uiMessageText as createUiMessageText, type UiMessageText} from './stable-messages';
+const japaneseText = createUiMessageText(() => 'ja-JP');
 /** Serializable UI conditions. No SQL, code evaluation, network or persistence. */
 export type FilterFieldType = 'text' | 'number' | 'date' | 'boolean' | 'choice';
 export type FilterOperator = 'contains' | 'startsWith' | 'eq' | 'neq' | 'gt' | 'gte' | 'lt' | 'lte' | 'before' | 'after' | 'missing' | 'present';
@@ -14,19 +16,19 @@ export function filterOperators(type: FilterFieldType): readonly FilterOperator[
   return common;
 }
 export function emptyFilter(id = 'root'): FilterGroup { return { type: 'group', id, match: 'and', children: [] }; }
-export function filterStructureError(source: unknown): string | null {
+export function filterStructureError(source: unknown, text: UiMessageText = japaneseText): string | null {
   const ids = new Set<string>(), seen = new WeakSet<object>();
   const visit = (candidate: unknown): string | null => {
-    if (!candidate || typeof candidate !== 'object' || seen.has(candidate)) return '条件の構造または循環を確認してください。';
+    if (!candidate || typeof candidate !== 'object' || seen.has(candidate)) return text("uiFoundation.filterBuilder.checkTheCriteriaStructureForInvalidEntriesOr");
     seen.add(candidate); const node = candidate as Partial<FilterNode>;
-    if (typeof node.id !== 'string' || !node.id.trim() || ids.has(node.id)) return '条件のIDは重複しない非空文字列にしてください。';
+    if (typeof node.id !== 'string' || !node.id.trim() || ids.has(node.id)) return text("uiFoundation.filterBuilder.useAUniqueNonemptyStringForEachCriterion");
     ids.add(node.id);
-    if (node.type === 'rule') return typeof node.field === 'string' && typeof node.operator === 'string' ? null : '条件の項目と演算子を確認してください。';
-    if (node.type !== 'group' || !['and', 'or'].includes(node.match!) || !Array.isArray(node.children)) return '条件グループとAND/ORを確認してください。';
+    if (node.type === 'rule') return typeof node.field === 'string' && typeof node.operator === 'string' ? null : text("uiFoundation.filterBuilder.checkTheCriterionFieldAndOperator");
+    if (node.type !== 'group' || !['and', 'or'].includes(node.match!) || !Array.isArray(node.children)) return text("uiFoundation.filterBuilder.checkTheCriteriaGroupAndItsAndOr");
     for (const child of node.children) { const error = visit(child); if (error) return error; }
     return null;
   };
-  if ((source as Partial<FilterGroup> | null)?.type !== 'group') return 'ルートには条件グループを指定してください。';
+  if ((source as Partial<FilterGroup> | null)?.type !== 'group') return text("uiFoundation.filterBuilder.useACriteriaGroupAtTheRoot");
   return visit(source);
 }
 export function decimalFilterValue(value: unknown): number | null {
@@ -47,24 +49,24 @@ function operand(value: unknown, type: FilterFieldType, rule: boolean): string |
   if (type === 'boolean') return typeof value === 'boolean' ? value : rule && (value === 'true' || value === 'false') ? value === 'true' : null;
   return typeof value === 'string' ? value : null;
 }
-export function filterProblems(root: unknown, fields: readonly FilterField[]): readonly FilterProblem[] {
+export function filterProblems(root: unknown, fields: readonly FilterField[], text: UiMessageText = japaneseText): readonly FilterProblem[] {
   const structure = filterStructureError(root); if (structure) return [{ nodeId: 'root', message: structure }];
   const byId = new Map<string, FilterField>();
   for (const field of fields) {
-    if (!field || typeof field.id !== 'string' || typeof field.label !== 'string' || !field.id.trim() || !field.label.trim() || !['text', 'number', 'date', 'boolean', 'choice'].includes(field.type) || byId.has(field.id)) return [{ nodeId: (root as FilterGroup).id, message: '条件の項目ID・説明・種類と重複を確認してください。' }];
+    if (!field || typeof field.id !== 'string' || typeof field.label !== 'string' || !field.id.trim() || !field.label.trim() || !['text', 'number', 'date', 'boolean', 'choice'].includes(field.type) || byId.has(field.id)) return [{ nodeId: (root as FilterGroup).id, message: text("uiFoundation.filterBuilder.checkTheCriteriaFieldIdsDescriptionsAndTypes") }];
     const values = new Set<string>();
-    if (field.type === 'choice' && field.options !== undefined && !Array.isArray(field.options)) return [{ nodeId: (root as FilterGroup).id, message: '選択肢は配列で指定してください。' }];
-    if (field.type === 'choice') for (const option of field.options ?? []) { if (!option || typeof option.value !== 'string' || typeof option.label !== 'string' || !option.label.trim() || values.has(option.value)) return [{ nodeId: (root as FilterGroup).id, message: '選択肢の値・説明と重複を確認してください。' }]; values.add(option.value); }
+    if (field.type === 'choice' && field.options !== undefined && !Array.isArray(field.options)) return [{ nodeId: (root as FilterGroup).id, message: text("uiFoundation.filterBuilder.provideTheOptionsAsAnArray") }];
+    if (field.type === 'choice') for (const option of field.options ?? []) { if (!option || typeof option.value !== 'string' || typeof option.label !== 'string' || !option.label.trim() || values.has(option.value)) return [{ nodeId: (root as FilterGroup).id, message: text("uiFoundation.filterBuilder.checkTheOptionValuesAndDescriptionsAndLook") }]; values.add(option.value); }
     byId.set(field.id, field);
   }
   const result: FilterProblem[] = [];
   const visit = (node: FilterNode): void => {
     if (node.type === 'group') { node.children.forEach(visit); return; }
     const field = byId.get(node.field);
-    if (!field) { result.push({ nodeId: node.id, message: '条件の項目を選んでください。' }); return; }
-    if (!filterOperators(field.type).includes(node.operator)) { result.push({ nodeId: node.id, message: 'この項目で使える演算子を選んでください。' }); return; }
+    if (!field) { result.push({ nodeId: node.id, message: text("uiFoundation.filterBuilder.chooseAFieldForTheCriterion") }); return; }
+    if (!filterOperators(field.type).includes(node.operator)) { result.push({ nodeId: node.id, message: text("uiFoundation.filterBuilder.chooseAnOperatorSupportedByThisField") }); return; }
     if (node.operator === 'missing' || node.operator === 'present') return;
-    if (operand(node.value, field.type, true) === null || field.type === 'choice' && !(field.options ?? []).some(option => option.value === node.value)) result.push({ nodeId: node.id, message: field.type === 'date' ? '存在する日付をYYYY-MM-DDで指定してください。' : field.type === 'number' ? '有限の数値を指定してください。' : field.type === 'boolean' ? 'はい・いいえを選んでください。' : '条件の値を指定してください。' });
+    if (operand(node.value, field.type, true) === null || field.type === 'choice' && !(field.options ?? []).some(option => option.value === node.value)) result.push({ nodeId: node.id, message: field.type === 'date' ? text("uiFoundation.filterBuilder.enterAValidDateInYyyyMmDd") : field.type === 'number' ? text("uiFoundation.filterBuilder.enterAFiniteNumber") : field.type === 'boolean' ? text("uiFoundation.filterBuilder.chooseYesOrNo") : text("uiFoundation.filterBuilder.provideAValueForTheCriterion") });
   };
   visit(root as FilterGroup); return result;
 }

@@ -29,6 +29,8 @@ npm 内の `assets/third-party/` は全内容を配信成果物に含める。PD
 
 ## 更新と復旧
 
+[beta.4から安定メッセージIDへ移行](ui-message-migration.ja.md)
+
 1. 作業前に、現在のパッケージ版・lockfile・YAML・生成ディレクトリ・`.agents/skills/project-ui/`を同じGit commitまたはバックアップへ保存する。業務コード・入力データは生成領域へ置かない。
 2. リリースノートの再同期要否、YAML/依存/APIの変更、アプリ側の手順、復旧点を確認してCLIの版を更新する。npmの版更新だけではコピー済みコードは修正されない。
 3. 同一rootの実行を一つにし、`sync --dry-run`で差分、Skill、通知、manifestを確認する。手編集や未所有ファイルがある場合は停止理由を解消し、上書きで通さない。

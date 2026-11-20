@@ -1,9 +1,10 @@
+import { uiMessageText, type UiMessageText } from './stable-messages';
 import { serializeTableMatrix } from './table-advanced-model';
 /** App-side browser adapters. Return values confirm API completion, never a saved file or printed page. */
 export async function copyTableMatrix(matrix: readonly (readonly string[])[], writer: (text: string) => Promise<void> = (text) => navigator.clipboard.writeText(text)): Promise<void> { await writer(serializeTableMatrix(matrix)); }
-export function downloadTableCsv(matrix: readonly (readonly string[])[], filename: string, document: Document = globalThis.document): void {
+export function downloadTableCsv(matrix: readonly (readonly string[])[], filename: string, document: Document = globalThis.document, text = uiMessageText(() => document.documentElement.lang || 'ja-JP')): void {
     if (!filename.trim())
-        throw new Error('CSVファイル名を指定してください。');
+        throw new Error(text('uiFoundation.tableOutput.csvFilenameRequired'));
     const blob = new Blob(['\uFEFF', serializeTableMatrix(matrix, ',')], { type: 'text/csv;charset=utf-8' }), url = URL.createObjectURL(blob), anchor = document.createElement('a');
     anchor.href = url;
     anchor.download = filename;
@@ -18,21 +19,22 @@ export function downloadTableCsv(matrix: readonly (readonly string[])[], filenam
     }
 }
 /** The app owns the frame's lifetime, the print action and afterprint cleanup. Pass the token/profile scope explicitly when scoped below the document root. */
-export function createTablePrintDocument(matrix: readonly (readonly string[])[], title: string, document: Document = globalThis.document, scope: Element = document.documentElement): {
+export function createTablePrintDocument(matrix: readonly (readonly string[])[], title: string, document: Document = globalThis.document, scope: Element = document.documentElement,
+    text: UiMessageText = uiMessageText(() => scope.closest('[lang]')?.getAttribute('lang') || document.documentElement.lang || 'ja-JP')): {
     frame: HTMLIFrameElement;
     print: () => void;
     destroy: () => void;
 } {
     if (!title.trim())
-        throw new Error('印刷対象の表題を指定してください。');
+        throw new Error(text('uiFoundation.tableOutput.printTitleRequired'));
     const frame = document.createElement('iframe');
-    frame.title = title + 'の印刷';
+    frame.title = text('uiFoundation.tableOutput.printFrameTitle', { title });
     frame.hidden = true;
     document.body.append(frame);
     const target = frame.contentDocument;
     if (!target) {
         frame.remove();
-        throw new Error('印刷領域を作成できませんでした。');
+        throw new Error(text('uiFoundation.tableOutput.printFrameUnavailable'));
     }
     target.title = title;
     target.documentElement.lang = document.documentElement.lang;
@@ -71,7 +73,7 @@ export function createTablePrintDocument(matrix: readonly (readonly string[])[],
     let destroyed = false;
     return { frame, print: () => {
             if (destroyed || !frame.contentWindow)
-                throw new Error('印刷領域が終了しています。');
+                throw new Error(text('uiFoundation.tableOutput.printFrameClosed'));
             frame.contentWindow.print();
         }, destroy: () => { destroyed = true; frame.remove(); } };
 }

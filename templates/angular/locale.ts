@@ -1,7 +1,7 @@
-import { resolveUiMessage, type UiMessageRequest, type UiStaticMessageId } from './stable-messages';
+import { resolveUiMessage, uiMessageText, type UiMessageText, type UiMessageParameters, type UiMessageRequest, type UiMessageId } from './stable-messages';
 import {Dir,Directionality,type Direction} from '@angular/cdk/bidi';
 import {afterNextRender,computed,DOCUMENT,DestroyRef,Directive,EventEmitter,effect,ElementRef,inject,InjectionToken,Injector,input,isSignal,Pipe,type PipeTransform,type Provider,Renderer2,signal,type Signal} from '@angular/core';
-import {defaultUiLocale,resolveUiLocale,uiMessage,type UiLocaleOptions,type UiLocaleResolved} from './locale-model';
+import {defaultUiLocale,resolveUiLocale,type UiLocaleOptions,type UiLocaleResolved} from './locale-model';
 
 export const UI_LOCALE=new InjectionToken<Signal<UiLocaleResolved>>('UI_LOCALE',{providedIn:'root',factory:()=>computed(()=>defaultUiLocale)});
 /** The app owns the source signal. Updating it preserves existing controls/overlays. */
@@ -13,27 +13,17 @@ export function injectUiMessage(): (request: UiMessageRequest) => string {
  const locale=injectUiLocale();
  return request=>{const current=locale();return resolveUiMessage(request,current.locale,current.translate);};
 }
+/** Construct once; read the active locale on every render. */
+export function injectUiMessageText(): UiMessageText {
+ const locale=injectUiLocale();
+ return uiMessageText(()=>locale().locale,()=>locale().translate);
+}
 @Pipe({name:'uiStableMessage',standalone:true,pure:false})
 export class UiStableMessagePipe implements PipeTransform{
- private readonly text=injectUiMessage();
- transform(id:UiStaticMessageId):string{
-  // Every member of this union is a request with no named arguments.
-  const request={id} as UiMessageRequest<UiStaticMessageId>;
-  return this.text(request);
+ private readonly text=injectUiMessageText();
+ transform<Id extends UiMessageId>(id: Id, ...parameters: UiMessageParameters[Id] extends undefined ? [] : [UiMessageParameters[Id]]):string{
+  return this.text(id,...parameters);
  }
-}
-export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>,fallback?:()=>string)=>string{
- const locale=injectUiLocale();
- return (source,parameters,fallback)=>{
-  const messages=locale().messages;
-  // Prefer the parameterized key, then honor dictionaries written for the
-  // earlier, fully composed Japanese message before using a fragment fallback.
-  if(!Object.hasOwn(messages,source)&&parameters){
-   const composed=uiMessage(source,{},parameters);
-   if(Object.hasOwn(messages,composed))return uiMessage(composed,messages);
-  }
-  return fallback&&!Object.hasOwn(messages,source)?fallback():uiMessage(source,messages,parameters);
- };
 }
 export type UiMessagePart=string|(()=>string);
 export interface UiMessageState<T extends string|null|undefined> extends Signal<T>{
@@ -49,12 +39,6 @@ export function uiMessageState<T extends string|null|undefined>(initial:T,initia
  const readonlyValue=computed(()=>value());
  const set=(next:T|string)=>state.set({value:next});
  return Object.assign(value,{set,update:(updater:(current:T|string)=>T|string)=>set(updater(value())),asReadonly:()=>readonlyValue,setMessage:(parts:readonly UiMessagePart[])=>state.set({parts:[...parts]})});
-}
-/** Use only on library-owned fallback text. Application labels/errors pass through. */
-@Pipe({name:'uiMessage',standalone:true,pure:false})
-export class UiMessagePipe implements PipeTransform{
- private readonly locale=injectUiLocale();
- transform(source:string,parameters?:Readonly<Record<string,string|number>>):string{return uiMessage(source,this.locale().messages,parameters);}
 }
 function scopedLocale():Signal<UiLocaleResolved>{
  const injector=inject(Injector),parent=inject(UI_LOCALE,{skipSelf:true});

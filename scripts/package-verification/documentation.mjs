@@ -55,7 +55,10 @@ export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot
   }
   const skillRoots = [resolve(packageRoot, 'skills/ui-development'), ...(generatedSkillRoot ? [resolve(generatedSkillRoot)] : [])];
   for (const root of skillRoots) {
-    for (const file of ['SKILL.md', 'SKILL.en.md', 'references/token-design.md', 'references/ui-library-runtime.md']) await inspect(resolve(root, file));
+    for (const file of ['SKILL.md', 'references/token-design.md', 'references/ui-library-runtime.md', 'references/component-checks.md']) await inspect(resolve(root, file));
+    for (const retired of ['SKILL.en.md', 'SKILL.ja.md']) {
+      await assert.rejects(readFile(resolve(root, retired)), { code: 'ENOENT' });
+    }
   }
   if (generatedSkillRoot) for (const file of documents) {
     const path = resolve(generatedSkillRoot, 'references', file);

@@ -1,4 +1,4 @@
-import {injectUiText as injectUiRuntimeText} from './locale';
+import {injectUiMessageText as injectUiRuntimeText} from './locale';
 import { afterRenderEffect, booleanAttribute, computed, ElementRef, inject, output, ChangeDetectionStrategy, Component, input, ViewEncapsulation, } from '@angular/core';
 @Component({
     selector: 'ui-table-container',
@@ -56,7 +56,7 @@ export class TableContainer {
         left: number;
     }>();
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-    protected readonly problem = computed(() => !this.label().trim() || [this.height(), this.maxHeight()].some(value => value !== null && (!Number.isFinite(value) || value <= 0)) || [this.scrollTop(), this.scrollLeft()].some(value => value !== null && !Number.isFinite(value)) ? this.uiRuntimeText_TableContainer('表領域の説明、表示サイズ、スクロール位置を確認してください。') : null);
+    protected readonly problem = computed(() => !this.label().trim() || [this.height(), this.maxHeight()].some(value => value !== null && (!Number.isFinite(value) || value <= 0)) || [this.scrollTop(), this.scrollLeft()].some(value => value !== null && !Number.isFinite(value)) ? this.uiRuntimeText_TableContainer("uiFoundation.tableContainer.checkTheTableRegionDescriptionViewportSizeAndScrollPosition") : null);
     protected scrolled(): void { this.scrollChange.emit({ top: this.element.scrollTop, left: this.element.scrollLeft }); }
     constructor() {
         let previousTop: number | null = null, previousLeft: number | null = null;

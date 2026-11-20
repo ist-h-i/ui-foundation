@@ -1,3 +1,5 @@
+import {uiMessageText as createUiMessageText, type UiMessageText} from './stable-messages';
+const japaneseText = createUiMessageText(() => 'ja-JP');
 /** Public read models. Persistence, remote operations, undo and policy remain app owned. */
 export type ChartKind = 'line' | 'bar' | 'area' | 'pie' | 'doughnut' | 'scatter' | 'heatmap' | 'radar' | 'gauge' | 'treemap';
 export const chartKinds: readonly ChartKind[] = ['line','bar','area','pie','doughnut','scatter','heatmap','radar','gauge','treemap'];
@@ -7,7 +9,7 @@ export interface ChartAxis { label: string; type: 'category' | 'value' | 'time';
 export interface ChartSelection { seriesId: string; pointId: string; }
 export interface ChartPointRow {seriesId:string;seriesLabel:string;point:ChartPoint;depth:number;}
 export function chartPointRows(series:readonly ChartSeries[]):readonly ChartPointRow[]{const rows:ChartPointRow[]=[];for(const item of series){const visit=(points:readonly ChartPoint[],depth:number)=>{for(const point of points){rows.push({seriesId:item.id,seriesLabel:item.label,point,depth});if(point.children)visit(point.children,depth+1);}};visit(item.points,0);}return rows;}
-export function chartAxisProblem(x:ChartAxis,y:ChartAxis,kind?:ChartKind):string|null{for(const axis of [x,y])if(!['category','value','time'].includes(axis.type)||typeof axis.label!=='string'||axis.min!==undefined&&!Number.isFinite(axis.min)||axis.max!==undefined&&!Number.isFinite(axis.max)||axis.min!==undefined&&axis.max!==undefined&&axis.min>=axis.max)return '軸の種別と範囲を確認してください。';if(kind==='heatmap'&&(x.type!=='category'||y.type!=='category'))return 'ヒートマップは横軸・縦軸とも区分軸を指定してください。';return null;}
+export function chartAxisProblem(x:ChartAxis,y:ChartAxis,kind?:ChartKind, text: UiMessageText = japaneseText):string|null{for(const axis of [x,y])if(!['category','value','time'].includes(axis.type)||typeof axis.label!=='string'||axis.min!==undefined&&!Number.isFinite(axis.min)||axis.max!==undefined&&!Number.isFinite(axis.max)||axis.min!==undefined&&axis.max!==undefined&&axis.min>=axis.max)return text("uiFoundation.chart.checkTheAxisTypeAndRange");if(kind==='heatmap'&&(x.type!=='category'||y.type!=='category'))return text("uiFoundation.chart.useCategoryAxesForBothAxesOfThe");return null;}
 export interface SparklineSummary { first: number | null; last: number | null; delta: number | null; missing: number; }
 export function sparklineSummary(points: readonly ChartPoint[]): SparklineSummary {
   const first = points[0]?.value ?? null, last = points.at(-1)?.value ?? null;
@@ -17,7 +19,7 @@ export function requireIds(items: readonly {id:string}[], label: string): void {
   const ids = new Set<string>();
   for (const item of items) { if (!item || typeof item.id !== 'string' || !item.id.trim() || ids.has(item.id)) throw new Error(`${label}: stable unique IDs are required`); ids.add(item.id); }
 }
-export function chartProblem(kind: ChartKind, series: readonly ChartSeries[]): string | null {
+export function chartProblem(kind: ChartKind, series: readonly ChartSeries[], text: UiMessageText = japaneseText): string | null {
   try {
     if (!chartKinds.includes(kind)) throw new Error('Unknown chart kind');
     requireIds(series,'Series');
@@ -42,7 +44,7 @@ export type LngLat = readonly [longitude:number,latitude:number];
 export interface MapMarker { id:string; label:string; coordinate:LngLat; }
 export interface MapRegion { id:string; label:string; rings:readonly (readonly LngLat[])[]; }
 export interface MapCamera { center:LngLat; zoom:number; }
-export function mapProblem(markers:readonly MapMarker[],regions:readonly MapRegion[],camera:MapCamera):string|null {
+export function mapProblem(markers:readonly MapMarker[],regions:readonly MapRegion[],camera:MapCamera, text: UiMessageText = japaneseText):string|null {
   const coordinate=(v:LngLat)=>Array.isArray(v)&&v.length===2&&Number.isFinite(v[0])&&Number.isFinite(v[1])&&Math.abs(v[0])<=180&&Math.abs(v[1])<=90;
   try {
     requireIds([...markers,...regions],'Map objects');
@@ -64,19 +66,35 @@ export function civilEpoch(date:string):number {
   if(!Number.isFinite(value)||new Date(value).toISOString().slice(0,10)!==date)throw new Error('Civil date does not exist');
   return value;
 }
-export function ganttProblem(tasks:readonly GanttTask[]):string|null {
-  try {
-    requireIds(tasks,'Tasks');const byId=new Map(tasks.map(task=>[task.id,task]));
-    for(const task of tasks){if(civilEpoch(task.start)>civilEpoch(task.end))throw new Error('Task end precedes start');if(task.progress!==null&&(!Number.isFinite(task.progress)||task.progress<0||task.progress>100))throw new Error('Progress must be 0–100 or explicitly unknown');requireIds(task.dependencies.map(id=>({id})),'Dependencies');for(const id of task.dependencies)if(!byId.has(id))throw new Error('Unknown dependency');}
-    const visiting=new Set<string>(),visited=new Set<string>();
-    const visit=(id:string):void=>{if(visiting.has(id))throw new Error('Dependency cycle');if(visited.has(id))return;visiting.add(id);for(const next of byId.get(id)!.dependencies)visit(next);visiting.delete(id);visited.add(id);};
-    for(const task of tasks)visit(task.id);return null;
-  }catch(error){return error instanceof Error?error.message:'Invalid Gantt tasks';}
+const defaultGanttText = createUiMessageText(() => 'en');
+export function ganttProblem(tasks:readonly GanttTask[], text: UiMessageText = defaultGanttText):string|null {
+  try { requireIds(tasks, 'Tasks'); } catch { return text('uiFoundation.gantt.invalidTaskIds'); }
+  const byId = new Map(tasks.map(task => [task.id, task]));
+  for (const task of tasks) {
+    try {
+      if (civilEpoch(task.start) > civilEpoch(task.end)) return text('uiFoundation.gantt.invalidTaskOrder');
+    } catch { return text('uiFoundation.gantt.invalidCivilDate'); }
+    if (task.progress !== null && (!Number.isFinite(task.progress) || task.progress < 0 || task.progress > 100)) return text('uiFoundation.gantt.invalidProgress');
+    if (!task.dependencies) return text('uiFoundation.gantt.invalidDependencyIds');
+    try { requireIds(task.dependencies.map(id => ({ id })), 'Dependencies'); } catch { return text('uiFoundation.gantt.invalidDependencyIds'); }
+    if (task.dependencies.some(id => !byId.has(id))) return text('uiFoundation.gantt.unknownDependency');
+  }
+  const visiting = new Set<string>(), visited = new Set<string>();
+  const hasCycle = (id: string): boolean => {
+    if (visiting.has(id)) return true;
+    if (visited.has(id)) return false;
+    visiting.add(id);
+    const result = byId.get(id)!.dependencies.some(hasCycle);
+    visiting.delete(id);
+    visited.add(id);
+    return result;
+  };
+  return tasks.some(task => hasCycle(task.id)) ? text('uiFoundation.gantt.dependencyCycle') : null;
 }
 export interface BoardColumn {id:string;label:string;limit?:number;}
 export interface BoardCard {id:string;label:string;columnId:string;description?:string;disabled?:boolean;}
 export interface BoardMove {cardId:string;fromColumn:string;toColumn:string;index:number;}
-export function boardProblem(columns:readonly BoardColumn[],cards:readonly BoardCard[]):string|null {
+export function boardProblem(columns:readonly BoardColumn[],cards:readonly BoardCard[], text: UiMessageText = japaneseText):string|null {
   try{requireIds(columns,'Columns');requireIds(cards,'Cards');for(const column of columns)if(column.limit!==undefined&&(!Number.isInteger(column.limit)||column.limit<0))throw new Error('Column limits must be non-negative integers');for(const card of cards)if(!columns.some(c=>c.id===card.columnId))throw new Error('Unknown card column');return null;}catch(error){return error instanceof Error?error.message:'Invalid board';}
 }
 export function moveBoardCard(columns:readonly BoardColumn[],cards:readonly BoardCard[],move:BoardMove):readonly BoardCard[] {
@@ -95,7 +113,7 @@ export interface SheetAddress {row:number;column:number;}
 export interface SheetSelection {anchor:SheetAddress;focus:SheetAddress;}
 export interface SheetEdit {address:SheetAddress;previous:SheetCell;value:SheetCell;}
 export function columnName(index:number):string {if(!Number.isInteger(index)||index<0)throw new Error('Invalid column');let value=index+1,text='';while(value){value--;text=String.fromCharCode(65+value%26)+text;value=Math.floor(value/26);}return text;}
-export function sheetProblem(sheet:SheetModel):string|null {
+export function sheetProblem(sheet:SheetModel, text: UiMessageText = japaneseText):string|null {
   if(!sheet||!Array.isArray(sheet.rows)||sheet.rows.length>1000)return 'A sheet has at most 1,000 rows';const width=sheet.rows[0]?.length??0;
   if(width>100||sheet.rows.length*width>10000)return 'A sheet has at most 100 columns and 10,000 cells';
   for(const row of sheet.rows){if(!Array.isArray(row)||row.length!==width)return 'Sheet rows must be rectangular';for(const cell of row)if(!(cell===null||typeof cell==='boolean'||typeof cell==='string'&&cell.length<=8192||typeof cell==='number'&&Number.isFinite(cell)))return 'Invalid sheet cell';}return null;
@@ -128,7 +146,7 @@ export interface DiagramNode {id:string;label:string;x:number;y:number;}
 export interface DiagramEdge {id:string;from:string;to:string;label?:string;}
 export interface DiagramModel {nodes:readonly DiagramNode[];edges:readonly DiagramEdge[];}
 export type DiagramChange={type:'move';id:string;x:number;y:number}|{type:'label';id:string;label:string}|{type:'connect';edge:DiagramEdge}|{type:'remove-node';id:string}|{type:'remove-edge';id:string}|{type:'add';node:DiagramNode};
-export function diagramProblem(model:DiagramModel):string|null {
+export function diagramProblem(model:DiagramModel, text: UiMessageText = japaneseText):string|null {
   try{requireIds(model.nodes,'Nodes');requireIds(model.edges,'Connections');for(const node of model.nodes){if(typeof node.label!=='string'||!node.label.trim())throw new Error('Node labels must not be empty');if(!Number.isFinite(node.x)||!Number.isFinite(node.y)||node.x<0||node.y<0||node.x>1e6||node.y>1e6)throw new Error('Node coordinates are invalid');}for(const edge of model.edges)if(!model.nodes.some(n=>n.id===edge.from)||!model.nodes.some(n=>n.id===edge.to))throw new Error('Connection refers to an unknown node');return null;}catch(error){return error instanceof Error?error.message:'Invalid diagram';}
 }
 export function changeDiagram(model:DiagramModel,change:DiagramChange):DiagramModel {
@@ -144,7 +162,7 @@ export interface ChatDraft {text:string;attachments:readonly ChatAttachment[];}
 export interface ChatSendRequest {requestId:number;draft:ChatDraft;}
 export interface ChatRetryRequest {messageId:string;}
 export interface ChatLoadRequest {requestId:number;cursor:string|null;}
-export function chatProblem(messages:readonly ChatMessage[]):string|null {
+export function chatProblem(messages:readonly ChatMessage[], text: UiMessageText = japaneseText):string|null {
   try{requireIds(messages,'Messages');for(const message of messages){if(!['draft','sending','sent','failed','unknown'].includes(message.state))throw new Error('Unknown send state');requireIds(message.attachments,'Attachments');for(const attachment of message.attachments)if(attachment.size!==null&&(!Number.isFinite(attachment.size)||attachment.size<0))throw new Error('Attachment size is invalid');}return null;}catch(error){return error instanceof Error?error.message:'Invalid messages';}
 }
 export function chatCanSend(draft:ChatDraft):boolean{return !!draft.text.trim()||draft.attachments.length>0;}
@@ -153,4 +171,4 @@ export function safeEditorUrl(raw:string,allowImage=false):string|null {
   try{const url=new URL(raw);if(!['http:','https:'].includes(url.protocol)&&!(url.protocol==='mailto:'&&!allowImage))return null;if(url.username||url.password)return null;return url.href;}catch{return null;}
 }
 
-export function chartLocaleProblem(locale:string,timeZone:string|null,numberOptions:Intl.NumberFormatOptions,dateTimeOptions:Intl.DateTimeFormatOptions,hasTimeAxis:boolean):string|null{if(hasTimeAxis&&(timeZone===null||!timeZone.trim()))return '時間軸のタイムゾーンを明示してください。';if(dateTimeOptions.timeZone!==undefined)return '時間軸のタイムゾーンは独立した設定で明示してください。';try{new Intl.NumberFormat(locale,numberOptions);new Intl.DateTimeFormat(locale,{...dateTimeOptions,timeZone:timeZone??'UTC'});}catch{return 'グラフの言語・数値書式・日時書式を確認してください。';}return null;}
+export function chartLocaleProblem(locale:string,timeZone:string|null,numberOptions:Intl.NumberFormatOptions,dateTimeOptions:Intl.DateTimeFormatOptions,hasTimeAxis:boolean, text: UiMessageText = japaneseText):string|null{if(hasTimeAxis&&(timeZone===null||!timeZone.trim()))return text("uiFoundation.chart.specifyTheTimeAxisTimeZone");if(dateTimeOptions.timeZone!==undefined)return text("uiFoundation.chart.specifyTheTimeAxisTimeZoneInIts");try{new Intl.NumberFormat(locale,numberOptions);new Intl.DateTimeFormat(locale,{...dateTimeOptions,timeZone:timeZone??'UTC'});}catch{return text("uiFoundation.chart.checkTheChartLocaleNumberFormatAndDate");}return null;}

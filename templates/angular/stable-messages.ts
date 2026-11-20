@@ -1,5 +1,11 @@
+import { diagnosticMessages } from './diagnostic-messages';
+import { componentMessages } from './component-messages';
+import { tableSchedulerMessages } from './table-scheduler-messages';
+
+const patterns = { ...componentMessages, ...diagnosticMessages, ...tableSchedulerMessages };
+
 /** Stable, library-owned message IDs and their named parameters. */
-export type UiMessageParameters = {
+type ManualMessageParameters = {
   'uiFoundation.alert.closeLabel': undefined;
   'uiFoundation.resultState.detailsLabel': undefined;
   'uiFoundation.progressBar.indeterminate': undefined;
@@ -71,6 +77,17 @@ export type UiMessageParameters = {
   'uiFoundation.collection.selectionLimit': { readonly limit: number };
 };
 
+type ComponentCatalog = typeof patterns;
+type ComponentId = keyof ComponentCatalog;
+type ArgumentType<T> = T extends 'number' ? number : T extends 'string' ? string : string | number;
+type ComponentParameters<Id extends ComponentId> = keyof ComponentCatalog[Id]['parameters'] extends never
+  ? undefined
+  : { readonly [Name in keyof ComponentCatalog[Id]['parameters']]: ArgumentType<ComponentCatalog[Id]['parameters'][Name]> };
+
+export type UiMessageParameters = ManualMessageParameters & {
+  [Id in ComponentId]: ComponentParameters<Id>;
+};
+
 export type UiMessageId = keyof UiMessageParameters;
 export type UiStaticMessageId = {
   [Id in UiMessageId]: UiMessageParameters[Id] extends undefined ? Id : never;
@@ -87,7 +104,7 @@ export type UiMessageRequest<Id extends UiMessageId = UiMessageId> = Requests[Id
 export type UiMessageTranslator = (request: UiMessageRequest, locale: string) => string | undefined;
 
 type Dictionary = {
-  [Id in UiMessageId]: (message: UiMessageRequest<Id>, locale: string) => string;
+  [Id in keyof ManualMessageParameters]: (message: UiMessageRequest<Id>, locale: string) => string;
 };
 
 function progressDescription({ parameters }: UiMessageRequest<'uiFoundation.progressBar.description'>, locale: string): string {
@@ -264,11 +281,51 @@ const english: Dictionary = {
 };
 
 /** An external provider can return undefined while loading or for an absent translation. */
-export function resolveUiMessage<Id extends UiMessageId>(request: UiMessageRequest<Id> & UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string {
+/** Typed argument form used by the pure models as well as Angular callers. */
+export type UiMessageText = <Id extends UiMessageId>(
+  id: Id,
+  ...parameters: UiMessageParameters[Id] extends undefined ? [] : [UiMessageParameters[Id]]
+) => string;
+
+export function uiMessageText(locale: () => string, translator: () => UiMessageTranslator | null = () => null): UiMessageText {
+  return (id, ...parameters) => {
+    // The tuple signature associates the accepted argument record with this ID.
+    const request = { id, ...(parameters.length ? { parameters: parameters[0] } : {}) } as UiMessageRequest;
+    return resolveUiMessage(request, locale(), translator());
+  };
+}
+
+/** Capture an operation's diagnostics without invoking the application's translator. */
+export function captureUiMessage(text: UiMessageText) {
+  let render: (() => string) | undefined;
+  const capture: UiMessageText = (id, ...parameters) => {
+    render = () => text(id, ...parameters);
+    return uiMessageText(() => 'ja-JP')(id, ...parameters);
+  };
+  return { capture, render: () => render };
+}
+
+function componentRequest(request: UiMessageRequest): request is UiMessageRequest<ComponentId> {
+  return Object.hasOwn(patterns, request.id);
+}
+
+export function resolveUiMessage(request: UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string {
   const translated = translate?.(request, locale);
-  // Some adapters return the lookup key when their dictionary is unavailable.
   if (translated?.trim() && translated.trim() !== request.id) return translated;
 
-  const dictionary = /^ja(?:-|$)/i.test(locale) ? japanese : english;
-  return dictionary[request.id](request, locale);
+  const useJapanese = /^ja(?:-|$)/i.test(locale);
+  if (componentRequest(request)) {
+    const message: { readonly ja: string; readonly en: string; readonly one?: string } = patterns[request.id];
+    const parameters: Readonly<Record<string, string | number>> = 'parameters' in request ? request.parameters : {};
+    const copy = useJapanese ? message.ja : message.one && parameters['count'] === 1 ? message.one : message.en;
+    return copy.replace(/\{(\w+)\}/g, (placeholder: string, name: string) => {
+      if (!Object.hasOwn(parameters, name)) return placeholder;
+      const value = parameters[name];
+      return typeof value === 'number' ? new Intl.NumberFormat(locale, { maximumSignificantDigits: 17 }).format(value) : value;
+    });
+  }
+  const dictionary = useJapanese ? japanese : english;
+  // Both dictionaries implement precisely the same argument map.
+  const format = dictionary[request.id] as (input: typeof request, language: string) => string;
+  return format(request, locale);
 }

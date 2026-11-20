@@ -1,4 +1,4 @@
-import {injectUiLocale,UiMessagePipe} from './locale';
+import {injectUiLocale,UiStableMessagePipe} from './locale';
 import {NgTemplateOutlet} from '@angular/common';
 import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,computed,contentChild,DestroyRef,Directive,ElementRef,forwardRef,inject,input,linkedSignal,output,signal,TemplateRef,viewChildren} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -8,16 +8,16 @@ import {addCivilDays,calendarDays,civilDate,localCivilISO,civilLabel,shiftCivilM
 export interface CalendarDayContext{$implicit:string;day:number;inMonth:boolean;selected:boolean;disabled:boolean}
 @Directive({selector:'ng-template[uiCalendarDay]',standalone:true})
 export class CalendarDay{readonly template=inject<TemplateRef<CalendarDayContext>>(TemplateRef);static ngTemplateContextGuard(_directive:CalendarDay,_context:unknown):_context is CalendarDayContext{return true;}}
-@Component({selector:'ui-calendar',standalone:true,imports:[ActionControl,NgTemplateOutlet,UiMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+@Component({selector:'ui-calendar',standalone:true,imports:[ActionControl,NgTemplateOutlet,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Calendar),multi:true}],
  template:`<section class="ui-calendar" [attr.aria-label]="label()" [attr.aria-describedby]="descriptionIds()">
-  <div class="ui-calendar__heading"><button uiAction [disabled]="blocked() || previousMonth()===month()" [attr.aria-label]="label()+('の前の月' | uiMessage)" (click)="navigate(-1)">{{'前月' | uiMessage}}</button>
+  <div class="ui-calendar__heading"><button uiAction [disabled]="blocked() || previousMonth()===month()" [attr.aria-label]="('uiFoundation.calendar.previousMonthForLabel' | uiStableMessage:{label:label()})" (click)="navigate(-1)">{{'uiFoundation.calendar.previousMonthForCalendar' | uiStableMessage}}</button>
    <h3 [id]="controlId()+'-heading'" aria-live="polite" aria-atomic="true">{{heading()}}</h3>
-   <button uiAction [disabled]="blocked() || nextMonth()===month()" [attr.aria-label]="label()+('の次の月' | uiMessage)" (click)="navigate(1)">{{'次月' | uiMessage}}</button></div>
+   <button uiAction [disabled]="blocked() || nextMonth()===month()" [attr.aria-label]="('uiFoundation.calendar.nextMonthForLabel' | uiStableMessage:{label:label()})" (click)="navigate(1)">{{'uiFoundation.calendar.nextMonthForCalendar' | uiStableMessage}}</button></div>
   @if(view()==='year'){
-   <div class="ui-calendar__months" [attr.aria-label]="label()+('の月を選択' | uiMessage)">@for(item of months;track item){<button uiAction [disabled]="blocked()" [attr.aria-pressed]="month().endsWith('-'+item)" (click)="setMonth(month().slice(0,4)+'-'+item)">{{Number(item)}}{{'月' | uiMessage}}</button>}</div>
+   <div class="ui-calendar__months" [attr.aria-label]="('uiFoundation.calendar.selectMonthForLabel' | uiStableMessage:{label:label()})">@for(item of months;track item){<button uiAction [disabled]="blocked()" [attr.aria-pressed]="month().endsWith('-'+item)" (click)="setMonth(month().slice(0,4)+'-'+item)">{{'uiFoundation.calendar.monthNumber' | uiStableMessage:{month:Number(item)} }}</button>}</div>
   }
-  <div class="ui-calendar__days" role="region" [attr.aria-label]="label()+('の日付一覧' | uiMessage)" tabindex="0"><table role="grid" [attr.aria-labelledby]="controlId()+'-heading'" [attr.aria-readonly]="readonly()">
+  <div class="ui-calendar__days" role="region" [attr.aria-label]="('uiFoundation.calendar.datesForLabel' | uiStableMessage:{label:label()})" tabindex="0"><table role="grid" [attr.aria-labelledby]="controlId()+'-heading'" [attr.aria-readonly]="readonly()">
    <thead><tr>@for(day of weekdays();track day.long){<th scope="col" [abbr]="day.long">{{day.short}}</th>}</tr></thead>
    <tbody>@for(week of weeks();track $index){<tr>@for(day of week;track $index){<td [attr.aria-selected]="day.date && (current()===day.date || selectedDates().includes(day.date)) ? 'true' : null" [class.ui-calendar__outside]="!day.inMonth">
     @if(day.date){<button #dayButton type="button" [attr.data-date]="day.date" [attr.aria-label]="dayLabel(day.date)" [attr.aria-current]="day.date===today()?'date':null"
@@ -29,7 +29,7 @@ export class CalendarDay{readonly template=inject<TemplateRef<CalendarDayContext
    </td>}</tr>}</tbody>
   </table></div>
   @if(hint()){<p [id]="controlId()+'-hint'">{{hint()}}</p>}@if(error()){<p class="ui-calendar__error" [id]="controlId()+'-error'" role="alert">{{error()}}</p>}
-  <p class="ui-calendar__help">{{'矢印キーで日、Home/Endで週、PageUp/PageDownで月を移動します。Shiftを押すと年を移動します。' | uiMessage}}</p>
+  <p class="ui-calendar__help">{{'uiFoundation.calendar.useTheArrowKeysToMoveByDayHomeAndEndToMoveWithinTheWeekAndPageUpAndPageDownToMov' | uiStableMessage}}</p>
  </section>`,
  styles:`:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);}:host([hidden]){display:none;}.ui-calendar{border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);padding:var(--ui-space-control-y);}.ui-calendar__heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--ui-space-control-gap);}h3{font-size:var(--ui-text-body);margin:0;}.ui-calendar__days{overflow-x:auto;max-inline-size:100%;overscroll-behavior-inline:contain;}table{inline-size:100%;min-inline-size:calc(7 * max(var(--ui-size-control), 2em + var(--ui-space-control-gap)));table-layout:fixed;border-collapse:collapse;}th,td{text-align:center;padding:0;}th{font-size:var(--ui-text-small);}td button{white-space:nowrap;inline-size:100%;min-block-size:var(--ui-size-control);padding:var(--ui-space-control-y) 0;border:var(--ui-border-control) solid transparent;background:var(--ui-color-surface);color:var(--ui-color-text);font:inherit;border-radius:var(--ui-radius-control);}td[aria-selected="true"] button{background:var(--ui-color-action);color:var(--ui-color-on-action);}td button[aria-disabled="true"],.ui-calendar__outside button{color:var(--ui-color-muted);}td[aria-selected="true"] button[aria-disabled="true"]{color:var(--ui-color-on-action);}button:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus));}button[aria-current="date"]{border-color:var(--ui-color-border);}.ui-calendar__months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ui-space-control-gap);margin-block:var(--ui-space-field);}.ui-calendar__help{color:var(--ui-color-muted);font-size:var(--ui-text-small);overflow-wrap:anywhere;}.ui-calendar__error{color:var(--ui-color-danger);}`,
 })

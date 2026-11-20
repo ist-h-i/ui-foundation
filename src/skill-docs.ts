@@ -1,10 +1,11 @@
 import { lstat, readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const example = 'examples/ui.config.example.yaml';
 const englishExample = 'examples/ui.config.example.en.yaml';
+const localeAdapter = 'skills/ui-development/references/examples/locale-adapter.ts';
 
 /** Share the npm files allowlist instead of discovering repository documents. */
 export async function renderSkillDocumentation(resourceRoot: string = root): Promise<Map<string, string>> {
@@ -31,6 +32,8 @@ export async function renderSkillDocumentation(resourceRoot: string = root): Pro
   }
   if (!files.includes(example)) throw new Error(`Package files must include the Skill example: ${example}`);
   const sources = new Map([...documents, example, ...(files.includes(englishExample) ? [englishExample] : [])].sort().map(path => [resolve(base, path), path]));
+  const bundlesLocaleAdapter = files.includes('skills/ui-development/');
+  if (bundlesLocaleAdapter) await readResource(localeAdapter);
   const result = new Map<string, string>();
   for (const [source, destination] of sources) {
     let text = await readResource(destination);
@@ -40,7 +43,12 @@ export async function renderSkillDocumentation(resourceRoot: string = root): Pro
       text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (link, label: string, target: string) => {
         if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target)) return link;
         const path = target.split('#')[0];
-        if (sources.has(resolve(dirname(source), path))) return link;
+        const resolved = resolve(dirname(source), path);
+        if (sources.has(resolved)) return link;
+        if (bundlesLocaleAdapter && resolved === resolve(base, localeAdapter)) {
+          const relative = posix.relative(posix.dirname(destination), 'examples/locale-adapter.ts');
+          return `[${label}](${relative}${target.slice(path.length)})`;
+        }
         const japanese = destination.endsWith('.ja.md') || ['docs/design.md', 'docs/ui-components.md'].includes(destination);
         return japanese ? `${label}（開発元の参考資料: \`${target}\`。この生成Skillには含めない）`
           : `${label} (authoring reference: \`${target}\`; not included in this generated Skill)`;
