@@ -228,7 +228,7 @@ To support an app-wide language switch, pass a `Signal<UiLocaleOptions>` to `pro
 
 The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The beta verification setup uses Angular and CDK `22.2.1`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.
 
-The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
+For a core-only app, use the [core entry and its dependency set](#import-generated-components). The full `angular/index.ts` entry point references components in all categories, so the application compiler must resolve these packages even for a screen that imports a single component from it. Several engines load on demand at runtime.
 
 | Package | Tested version | Used for |
 | --- | --- | --- |
@@ -258,7 +258,7 @@ The full `angular/index.ts` entry point references components in all categories,
 | `jsbarcode` | `3.12.3` | Barcodes |
 | `temporal-polyfill` | `1.0.5` | Scheduler time and time zones |
 
-Install the type dependencies in the app with `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16`. The public `angular/index.ts` entry point references the map component and its GeoJSON types, even when the app uses only basic components. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
+For the full entry, install the type dependencies in the app with `npm install --save-dev @types/qrcode@1.5.6 @types/geojson@7946.0.16`. The public `angular/index.ts` entry point references the map component and its GeoJSON types, even when the app uses only basic components. The generated `formula-parser.d.ts` supplies types for `fast-formula-parser`. If an independent app worker or entry point imports the parser directly, make sure its TypeScript project can see that generated declaration.
 
 ## CSS and distribution assets
 
