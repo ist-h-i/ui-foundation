@@ -10,7 +10,7 @@ for(const profile of profiles){
   const chart=page.locator('#chart > ui-chart'),selection=chart.getByRole('button',{name:'承認を選択',exact:true});await selection.focus();await selection.press('Space');await expect(page.locator('[data-chart-selection]')).toHaveText('two');
   const chartGeometry=await chart.locator('table').evaluate(table=>{const local=table.closest('.ui-specialist-scroll')!;return {table:table.getBoundingClientRect().width,viewport:local.clientWidth,scroll:local.scrollWidth,column:table.querySelector('th')!.getBoundingClientRect().width};});
   expect(chartGeometry.scroll).toBeGreaterThan(chartGeometry.viewport);expect(chartGeometry.column).toBeGreaterThan(150);
-  await openSpecialistSurface(page,'Diff / JSON');const json=page.locator('ui-json-viewer');await json.getByRole('button',{name:'"nested" を展開',exact:true}).click();await json.getByLabel('JSONを検索',{exact:true}).fill('false');await expect(json.locator('tbody')).toContainText('false');
+  await openSpecialistSurface(page,'Diff / JSON');const json=page.locator('ui-json-viewer');await json.getByRole('button',{name:'"nested" 展開',exact:true}).click();await json.getByLabel('JSONを検索',{exact:true}).fill('false');await expect(json.locator('tbody')).toContainText('false');
   expect(await json.locator('table').evaluate(table=>{const local=table.closest('.ui-specialist-scroll')!;return local.scrollWidth>local.clientWidth;})).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth)).toBe(true);
   await info.attach('sparkline-and-table-observation',{body:JSON.stringify({profile,colors,chartGeometry}),contentType:'application/json'});

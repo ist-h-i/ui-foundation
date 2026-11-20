@@ -2,6 +2,391 @@ import {type Locator,type Page} from '@playwright/test';
 import {test,expect,contexts,ready as runtimeReady,environment,settle,create,host,update,destroy,record,type Context} from './css-override-test';
 const rows=Array.from({length:1000},(_,id)=>({id,name:`申請 ${id} `+'長い内容と保持する名前 '.repeat(8),amount:id}));
 const state={page:1,pageSize:1000,search:'',sort:[],filters:[],columnOrder:[],hiddenColumns:[],columnWidths:{name:1,amount:9999},pinnedColumns:{}};
+
+for (const kind of ['list', 'table'] as const) {
+ test(`virtual ${kind} reorders the focused editor without blurring or changing its selection`, async ({page}) => {
+  await runtimeReady(page, contexts[0]);
+  const id = await create(page, 'RuntimeReassessmentVirtual', {
+   kind, rows: rows.slice(1, 3), editors: true, height: 240, itemHeight: 48, overscan: 1,
+  });
+  const root = host(page, id);
+  const editor = root.getByRole('textbox', {name: '再検証入力 2', exact: true});
+  await editor.fill('提出前');
+  await settle(page);
+  const orders = [[2, 1], [3, 1, 4, 2], [2, 4, 1, 3], [2]];
+  const observations = await editor.evaluate((element, {id, orders}) => {
+   const input = element as HTMLInputElement;
+   const viewport = input.closest('cdk-virtual-scroll-viewport')!;
+   const runtime = (window as any).__runtime;
+   // This part of the draft exists only in the editor until its next input event.
+   input.setRangeText('の下書き', input.value.length, input.value.length, 'end');
+   input.setSelectionRange(1, 4, 'backward');
+   let blurs = 0;
+   const onBlur = () => { blurs++; };
+   input.addEventListener('blur', onBlur);
+   try {
+    return orders.map(order => {
+     runtime.update(id, {rows: order.map(id => ({id, name: '申請 ' + id, amount: id}))});
+     const editors = [...viewport.querySelectorAll<HTMLInputElement>('input')];
+     return {
+      order: editors.map(editor => editor.getAttribute('aria-label')),
+      sameEditor: editors[order.indexOf(2)] === input,
+      focused: document.activeElement === input, value: input.value,
+      selection: [input.selectionStart, input.selectionEnd, input.selectionDirection], blurs,
+     };
+    });
+   } finally {
+    input.removeEventListener('blur', onBlur);
+   }
+  }, {id, orders});
+  expect(observations).toEqual(orders.map(order => ({
+   order: order.map(id => '再検証入力 ' + id), sameEditor: true, focused: true,
+   value: '提出前の下書き', selection: [1, 4, 'backward'], blurs: 0,
+  })));
+  await update(page, id, {rows: []});
+  await expect(root.getByRole('textbox')).toHaveCount(0);
+  await destroy(page, id);
+ });
+
+ test(`virtual ${kind} keeps the visible editor when its key moves to a distant window`, async ({page}) => {
+  await runtimeReady(page, contexts[0]);
+  const initial = rows.slice(1, 41);
+  const id = await create(page, 'RuntimeReassessmentVirtual', {
+   kind, rows: initial, editors: true, height: 144, itemHeight: 48, overscan: 0,
+  });
+  const root = host(page, id);
+  const editor = root.getByRole('textbox', {name: '再検証入力 2', exact: true});
+  await editor.fill('下書き');
+  await settle(page);
+  const observed = await editor.evaluate(async (element, {id, kind, initial}) => {
+   const runtime = (window as any).__runtime;
+   const fixture = runtime.instance(id);
+   const component = kind === 'list' ? fixture.list() : fixture.table();
+   const input = element as HTMLInputElement;
+   const viewport = input.closest<HTMLElement>('cdk-virtual-scroll-viewport')!;
+   const frames = () => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+   const state = (index: number) => {
+    const range = fixture.range();
+    const bounds = viewport.getBoundingClientRect(), editorBounds = input.getBoundingClientRect();
+    return {
+     focused: document.activeElement === input, blurs, value: input.value,
+     selection: [input.selectionStart, input.selectionEnd, input.selectionDirection],
+     exactRow: input.closest<HTMLElement>('[data-ui-virtual-index]')?.dataset['uiVirtualIndex'] === String(index),
+     inRange: range.start <= index && index < range.end,
+     bounded: viewport.querySelectorAll('[data-ui-virtual-index]').length <= 7,
+     visible: editorBounds.bottom > bounds.top && editorBounds.top < bounds.bottom,
+    };
+   };
+   input.setRangeText('未確定', 3, 3, 'end');
+   input.setSelectionRange(1, 4, 'backward');
+   let blurs = 0;
+   input.addEventListener('blur', () => { blurs++; }, {once: true});
+   const reversed = [...initial].reverse();
+   const expanded = [...Array.from({length: 100}, (_, i) => ({id: 1000 + i, name: '追加', amount: i})), ...reversed];
+   const retained = [];
+   for (const data of [reversed, expanded, initial]) {
+    const index = data.findIndex(row => row.id === 2);
+    runtime.update(id, {rows: data});
+    retained.push(state(index));
+    await frames();
+    retained.push(state(index));
+   }
+   runtime.update(id, {rows: initial.filter(row => row.id !== 2)});
+   await frames();
+   const removed = !input.isConnected && document.activeElement === viewport;
+
+   runtime.update(id, {rows: initial});
+   const next = viewport.querySelector<HTMLInputElement>('[aria-label="再検証入力 2"]')!;
+   next.focus();
+   component.scrollToIndex(20);
+   runtime.update(id, {rows: reversed});
+   await frames();
+   const explicitRange = fixture.range();
+   const explicitScroll = explicitRange.start <= 20 && 20 < explicitRange.end && !next.isConnected;
+   const outside = document.getElementById('runtime-anchor')!;
+   outside.focus();
+   runtime.update(id, {rows: initial});
+   await frames();
+   return {retained, removed, explicitScroll, outside: document.activeElement === outside};
+  }, {id, kind, initial});
+  for (const snapshot of observed.retained) expect(snapshot).toEqual({
+   focused: true, blurs: 0, value: '下書き未確定', selection: [1, 4, 'backward'],
+   exactRow: true, inRange: true, bounded: true, visible: true,
+  });
+  expect(observed.removed).toBe(true);
+  expect(observed.explicitScroll).toBe(true);
+  expect(observed.outside).toBe(true);
+  await destroy(page, id);
+ });
+
+ test(`virtual ${kind} combines a keyed reorder with row and viewport resizing`, async ({page}) => {
+  await runtimeReady(page, contexts[0]);
+  const initial = rows.slice(0, 100);
+  for (const {geometry, next, bottom} of [
+   {geometry: {itemHeight: 96, height: 97}, next: 19, bottom: false},
+   {geometry: {itemHeight: 240, height: 97}, next: 21, bottom: true},
+   ...[{itemHeight: 96, height: 149}, {itemHeight: 48, height: 97}, {itemHeight: 96, height: 97}]
+    .map(geometry => ({geometry, next: 79, bottom: false})),
+  ]) {
+   const id = await create(page, 'RuntimeReassessmentVirtual', {
+    kind, rows: initial, editors: true, height: 149, itemHeight: 48, overscan: 0,
+   });
+   const root = host(page, id);
+   await expect(root.getByRole('textbox').first()).toBeVisible();
+   await root.evaluate((_, {id, kind}) => {
+    const fixture = (window as any).__runtime.instance(id);
+    (kind === 'list' ? fixture.list() : fixture.table()).scrollToOffset(947);
+   }, {id, kind});
+   const editor = root.getByRole('textbox', {name: '再検証入力 20', exact: true});
+   await expect(editor).toBeVisible();
+   const observations = await editor.evaluate(async (node, {id, geometry, initial, next, bottom}) => {
+    const input = node as HTMLInputElement, viewport = input.closest<HTMLElement>('cdk-virtual-scroll-viewport')!;
+    const runtime = (window as any).__runtime;
+    if (bottom) {
+     // A projected editor can sit at the bottom of a row taller than its viewport.
+     input.closest<HTMLElement>('[data-ui-virtual-index]')!.style.position = 'relative';
+     Object.assign(input.style, {position: 'absolute', bottom: '3px', top: 'auto', height: '26px', minHeight: '0'});
+    }
+    input.focus({preventScroll: true});
+    input.setRangeText('編集中', 0, input.value.length, 'end');
+    input.setSelectionRange(0, 2, 'backward');
+    let blurs = 0;
+    input.addEventListener('blur', () => { blurs++; }, {once: true});
+    const fullyVisible = (element: Element) => {
+     const rect = element.getBoundingClientRect(), top = viewport.getBoundingClientRect().top + viewport.clientTop;
+     return rect.top >= top - 1 && rect.bottom <= top + viewport.clientHeight + 1;
+    };
+    const originallyVisible = fullyVisible(input);
+    const read = () => {
+     const range = runtime.instance(id).range(), row = input.closest<HTMLElement>('[data-ui-virtual-index]')!;
+     return {
+      focused: document.activeElement === input, value: input.value, blurs,
+      selection: [input.selectionStart, input.selectionEnd, input.selectionDirection],
+      row: row.dataset['uiVirtualIndex'],
+      rowFits: geometry.itemHeight > viewport.clientHeight || fullyVisible(row),
+      inRange: range.start <= next && next < range.end,
+      visible: fullyVisible(input),
+      bounded: viewport.querySelectorAll('[data-ui-virtual-index]').length <= Math.ceil(geometry.height / geometry.itemHeight) + 2,
+     };
+    };
+    const fixture = runtime.instance(id);
+    const ranges: {start: number; end: number}[] = [];
+    const subscription = (fixture.list() ?? fixture.table()).rangeChange.subscribe((range: {start: number; end: number}) => ranges.push(range));
+    let snapshots;
+    try {
+     const reordered = [...initial];
+     if (next !== 79) [reordered[next], reordered[20]] = [reordered[20]!, reordered[next]!];
+     else reordered.reverse();
+     runtime.update(id, {...geometry, rows: reordered});
+     const immediate = read();
+     await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+     snapshots = [immediate, read()];
+    } finally {
+     subscription.unsubscribe();
+    }
+    // A native scroll can occur before the CDK scroll event and the next input update.
+    viewport.scrollTop = 50 * geometry.itemHeight;
+    runtime.update(id, {rows: initial, itemHeight: 2 * geometry.itemHeight, height: 149});
+    await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    const range = fixture.range();
+    return {snapshots, ranges, originallyVisible, explicit: {
+     offset: viewport.scrollTop, includesRequestedRow: range.start <= 50 && 50 < range.end, released: !input.isConnected,
+    }};
+   }, {id, geometry, initial, next, bottom});
+   expect(observations.originallyVisible).toBe(true);
+   expect(observations.explicit).toEqual({offset: 100 * geometry.itemHeight, includesRequestedRow: true, released: true});
+   expect(observations.ranges.length).toBeGreaterThan(0);
+   for (const range of observations.ranges) {
+    expect(range.start).toBeLessThanOrEqual(next);
+    expect(range.end).toBeGreaterThan(next);
+   }
+   for (const snapshot of observations.snapshots) expect(snapshot, JSON.stringify(geometry)).toEqual({
+    focused: true, value: '編集中', blurs: 0, selection: [0, 2, 'backward'], row: String(next), rowFits: true,
+    inRange: true, visible: true, bounded: true,
+   });
+   await destroy(page, id);
+  }
+ });
+
+ test(`virtual ${kind} prioritizes an explicit scroll for one update while the editor is still partly visible`, async ({page}) => {
+  await runtimeReady(page, contexts[0]);
+  const initial = rows.slice(0, 100);
+  for (const method of ['offset', 'index', 'native', 'consumed', 'settled', 'settled-native'] as const) {
+   const id = await create(page, 'RuntimeReassessmentVirtual', {
+    kind, rows: initial, editors: true, itemHeight: 48, height: 149, overscan: 0,
+   });
+   const root = host(page, id);
+   await expect(root.getByRole('textbox').first()).toBeVisible();
+   await root.evaluate((_, id) => {
+    const fixture = (window as any).__runtime.instance(id);
+    (fixture.list() ?? fixture.table()).scrollToOffset(947);
+   }, id);
+   const editor = root.getByRole('textbox', {name: '再検証入力 20', exact: true});
+   await expect(editor).toBeVisible();
+   const result = await editor.evaluate(async (element, {id, initial, method}) => {
+    const input = element as HTMLInputElement, viewport = input.closest<HTMLElement>('cdk-virtual-scroll-viewport')!;
+    const runtime = (window as any).__runtime, fixture = runtime.instance(id), component = fixture.list() ?? fixture.table();
+    const frames = () => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    await frames();
+    input.focus({preventScroll: true});
+    input.setRangeText('編集中', 0, input.value.length, 'end');
+    input.setSelectionRange(0, 2, 'backward');
+    let blurs = 0;
+    input.addEventListener('blur', () => blurs++);
+    if (method === 'native' || method === 'settled-native') viewport.scrollTop = 865;
+    else if (method === 'index') component.scrollToIndex(18);
+    else component.scrollToOffset(865);
+    const rect = input.getBoundingClientRect(), top = viewport.getBoundingClientRect().top + viewport.clientTop;
+    const partlyVisible = rect.top < top + viewport.clientHeight && rect.bottom > top + viewport.clientHeight;
+    if (method === 'consumed') runtime.update(id, {rows: [...initial]});
+    if (method === 'settled' || method === 'settled-native') await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+    const reordered = [...initial];
+    [reordered[19], reordered[20]] = [reordered[20]!, reordered[19]!];
+    runtime.update(id, {rows: reordered, itemHeight: 96, height: 97});
+    const read = () => {
+     const range = fixture.range();
+     return {
+      offset: viewport.scrollTop, inRange: range.start <= 18 && 18 < range.end,
+      focused: document.activeElement === input, draft: input.value, blurs,
+      selection: [input.selectionStart, input.selectionEnd, input.selectionDirection],
+     };
+    };
+    const immediate = read();
+    await frames();
+    return {partlyVisible, snapshots: [immediate, read()]};
+   }, {id, initial, method});
+   expect(result.partlyVisible).toBe(true);
+   const settled = method === 'consumed' || method === 'settled' || method === 'settled-native';
+   const expected = settled ? (kind === 'list' ? 1824 : 1823) : (method === 'index' ? 1728 : 1730);
+   for (const snapshot of result.snapshots) expect(snapshot, method).toEqual({
+    offset: expected, inRange: true, focused: true, draft: '編集中', blurs: 0, selection: [0, 2, 'backward'],
+   });
+   await destroy(page, id);
+  }
+ });
+
+}
+
+test('virtual list restores owned focus when an in-place replacement removes the focused row', async ({page}) => {
+ await runtimeReady(page, contexts[0]);
+ const id = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(1, 3), editors: true, height: 240, itemHeight: 48, overscan: 0,
+ });
+ const editor = host(page, id).getByRole('textbox', {name: '再検証入力 1', exact: true});
+ await editor.focus();
+ const result = await editor.evaluate((input, id) => {
+  const runtime = (window as any).__runtime;
+  const fixture = runtime.instance(id);
+  const rows = fixture.rows();
+  const viewport = input.closest('cdk-virtual-scroll-viewport')!;
+  const previousRange = fixture.range();
+  rows[0] = {...rows[0], id: 3};
+  runtime.update(id, {height: 241});
+  const focusRestored = !input.isConnected && document.activeElement === viewport;
+  const rangeRetained = fixture.range() === previousRange;
+  const replacement = viewport.querySelector<HTMLInputElement>('[data-virtual-key="number:3"] input')!;
+  replacement.focus();
+  replacement.blur();
+  rows[0] = {...rows[0], id: 4};
+  runtime.update(id, {height: 242});
+  const explicitBlurPreserved = !replacement.isConnected && document.activeElement === document.body;
+  const outside = document.createElement('button');
+  document.body.append(outside);
+  try {
+   outside.focus();
+   rows[0] = {...rows[0], id: 5};
+   runtime.update(id, {height: 243});
+   return {focusRestored, rangeRetained, explicitBlurPreserved, outsideFocused: document.activeElement === outside};
+  } finally {
+   outside.remove();
+  }
+ }, id);
+ expect(result).toEqual({focusRestored: true, rangeRetained: true, explicitBlurPreserved: true, outsideFocused: true});
+ await expect(host(page, id).getByRole('textbox', {name: '再検証入力 5', exact: true})).toBeVisible();
+ await destroy(page, id);
+});
+
+test('virtual list restores focus when an outer row containing a nested editor is removed', async ({page}) => {
+ await runtimeReady(page, contexts[0]);
+ const outerId = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(1, 3), editors: true, height: 480, itemHeight: 240,
+ });
+ const innerId = await create(page, 'RuntimeReassessmentVirtual', {
+  kind: 'list', rows: rows.slice(11, 13), editors: true, height: 120, itemHeight: 48,
+ });
+ const innerEditor = host(page, innerId).getByRole('textbox', {name: '再検証入力 11', exact: true});
+ await expect(innerEditor).toBeVisible();
+ const result = await host(page, outerId).evaluate((outer, {outerId, innerId}) => {
+  const runtime = (window as any).__runtime;
+  const inner = document.getElementById(`runtime-${innerId}`)!;
+  const viewport = outer.querySelector('cdk-virtual-scroll-viewport')!;
+  const row = outer.querySelector('.ui-virtual-row')!;
+  row.append(inner);
+  const editor = inner.querySelector('input')!;
+  editor.focus();
+  const ownedFocus = document.activeElement === editor;
+  runtime.update(outerId, {rows: runtime.instance(outerId).rows().slice(1)});
+  return {
+   ownedFocus,
+   removed: !row.isConnected && !editor.isConnected,
+   restoredFocus: document.activeElement === viewport,
+  };
+ }, {outerId, innerId});
+ expect(result).toEqual({ownedFocus: true, removed: true, restoredFocus: true});
+ await destroy(page, innerId);
+ await destroy(page, outerId);
+});
+
+test('virtual table reuses tracked rows and updates focused, empty and refilled windows in the same render', async ({page}) => {
+ await runtimeReady(page, contexts[0]);
+ const initial = [{id: 1, code: 'a', name: 'First'}, {id: 2, code: 'b', name: 'Second'}];
+ const id = await create(page, 'VirtualDataTable', {
+  tableId: 'keyed-rows', caption: 'Requests', keyField: 'id', rows: initial,
+  columns: [{id: 'name', field: 'name', header: 'Request'}], height: 160, itemHeight: 48,
+ });
+ const table = host(page, id);
+ const cell = table.locator('[data-virtual-row-key="number:1"] [role="cell"]');
+ await cell.focus();
+ const result = await table.evaluate((root, {id, initial}) => {
+  const runtime = (window as any).__runtime;
+  const viewport = root.querySelector('cdk-virtual-scroll-viewport')!;
+  const rendered = () => [...viewport.querySelectorAll<HTMLElement>('[data-virtual-row-key]')];
+  const range = () => runtime.inspect(id).events.filter((event: {name: string}) => event.name === 'rangeChange').at(-1)?.value;
+  const [first, second] = rendered();
+  const focused = document.activeElement;
+  const replacements = initial.map(row => ({...row, name: row.name + ' updated'}));
+  runtime.update(id, {rows: replacements});
+  const sameKey = rendered()[0] === first && document.activeElement === focused;
+  const label = rendered()[0]?.textContent?.trim();
+
+  replacements[0] = {...replacements[0]!, name: 'First revised'};
+  runtime.update(id, {disabled: true});
+  const inPlaceLabel = rendered()[0]?.textContent?.trim();
+
+  runtime.update(id, {rows: [...replacements].reverse()});
+  const reordered = rendered()[0] === second && rendered()[1] === first;
+  const indices = rendered().map(row => row.getAttribute('aria-rowindex'));
+  first!.querySelector<HTMLElement>('[role="cell"]')!.focus();
+  runtime.update(id, {keyField: 'code'});
+  const rekeyed = rendered().map(row => row.dataset['virtualRowKey']);
+  const oldRowsRemoved = !first!.isConnected && !second!.isConnected;
+  const recoveredFocus = document.activeElement === viewport;
+
+  runtime.update(id, {rows: []});
+  const empty = {count: rendered().length, range: range(), status: !!root.querySelector('[role="status"]')};
+  runtime.update(id, {rows: [replacements[0]]});
+  const refilled = {keys: rendered().map(row => row.dataset['virtualRowKey']), range: range()};
+  return {sameKey, label, inPlaceLabel, reordered, indices, rekeyed, oldRowsRemoved, recoveredFocus, empty, refilled};
+ }, {id, initial});
+ expect(result).toEqual({
+  sameKey: true, label: 'First updated', inPlaceLabel: 'First revised', reordered: true, indices: ['2', '3'],
+  rekeyed: ['string:b', 'string:a'], oldRowsRemoved: true, recoveredFocus: true,
+  empty: {count: 0, range: {start: 0, end: 0}, status: true},
+  refilled: {keys: ['string:a'], range: {start: 0, end: 1}},
+ });
+ await destroy(page, id);
+});
+
 function nextContext(c:Context):Context{return {...c,profile:c.profile==='guided'?'dense':'guided',width:c.width===1280?320:1280,font:c.font==='100%'?'200%':'100%',dir:c.dir==='ltr'?'rtl':'ltr',motion:c.motion==='reduce'?'no-preference':'reduce'} as Context;}
 async function ready(page:Page,context:Context){await runtimeReady(page,context);await page.locator('#runtime-slot').evaluate(el=>{const slot=el as HTMLElement;slot.style.padding='calc(var(--ui-border-focus) + var(--ui-border-focus-offset))';slot.style.boxSizing='border-box';});await settle(page);}
 /** Enter through native Tab order without a frame wait between keys; no reverse Tab or direct target focus.

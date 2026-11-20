@@ -88,7 +88,7 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.5');
+  assert.equal(manifest.version, '0.1.0-beta.6');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'next' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
@@ -135,14 +135,18 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   const skillReferences = await verifySkillReferences(consumer, allowedDocs);
   const candidateState = await snapshot(consumer);
 
-  // Exercise the actual public predecessor, pinned by its registry integrity.
+  async function publicTarball(version, integrity) {
+    const [pack] = JSON.parse(await execute('npm', [
+      'pack', `${manifest.name}@${version}`, '--json', '--ignore-scripts', '--pack-destination', root,
+    ], root));
+    const path = resolve(root, pack.filename);
+    const digest = createHash('sha512').update(await readFile(path)).digest('base64');
+    assert.equal(`sha512-${digest}`, integrity, version);
+    return path;
+  }
+
   const predecessor = '0.1.0-beta.4';
-  const [previousPack] = JSON.parse(await execute('npm', [
-    'pack', `${manifest.name}@${predecessor}`, '--json', '--ignore-scripts', '--pack-destination', root,
-  ], root));
-  const previousTarball = resolve(root, previousPack.filename);
-  const previousIntegrity = createHash('sha512').update(await readFile(previousTarball)).digest('base64');
-  assert.equal(`sha512-${previousIntegrity}`, 'sha512-7UbBKngs68d6qsf2q8jHFT+I4oauJ/cu7mHeJFDQ6+KTv6BOeAtvrzOVmfRMgtPwH09DvIbcelMeFcHFrMixUQ==');
+  const previousTarball = await publicTarball(predecessor, 'sha512-7UbBKngs68d6qsf2q8jHFT+I4oauJ/cu7mHeJFDQ6+KTv6BOeAtvrzOVmfRMgtPwH09DvIbcelMeFcHFrMixUQ==');
   await install(previousTarball);
   await cli('sync');
   await cli('check');
@@ -175,9 +179,29 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assertSnapshot(await snapshot(consumer), previousState, 'rolling back to beta.4 must restore its owned files');
   assert.deepEqual(await readFile(resolve(consumer, 'ui.config.yaml')), previousConfig);
   assert.equal(await readFile(resolve(consumer, 'src/application.ts'), 'utf8'), 'export const consumerApplication = true;\n');
+  t.diagnostic(`public ${predecessor} → candidate → ${predecessor}: reviewed retirement, edited Skill protection, and output rollback passed`);
+
+  const beta5 = await publicTarball('0.1.0-beta.5', 'sha512-QG2sL9xtgi34yXl2009PbgoUMo4j46v/x+shbBobtYiZ4ZUKWnp6eXEv7dZ3u5JHwJRYp6QeURvchoawfHTA5w==');
+  await install(beta5);
+  await cli('sync');
+  await cli('check');
+  const beta5State = await snapshot(consumer);
+  const formsEntry = '.ui/generated/angular/forms.ts';
+  assert.equal(Object.hasOwn(beta5State, formsEntry), false);
+  await install(candidate);
+  assert.ok((await cli('sync', '--dry-run')).includes(formsEntry));
+  assertSnapshot(await snapshot(consumer), beta5State, 'previewing the Angular upgrade must preserve beta.5');
+  await cli('sync');
+  await cli('check');
+  assertSnapshot(await snapshot(consumer), candidateState, 'upgrading beta.5 must generate the candidate-owned files');
+  await install(beta5);
+  await cli('sync');
+  await cli('check');
+  assertSnapshot(await snapshot(consumer), beta5State, 'rolling back the Angular upgrade must restore beta.5');
+  assert.deepEqual(await readFile(resolve(consumer, 'ui.config.yaml')), previousConfig);
   await install(candidate);
   await cli('sync');
-  t.diagnostic(`public ${predecessor} → candidate → ${predecessor}: reviewed retirement, edited Skill protection, and output rollback passed`);
+  t.diagnostic('public beta.5 → candidate → beta.5: new forms entry, config preservation and rollback passed');
 
   // These private, unpublished tarballs model a real differing-version upgrade.
   // Their metadata and explicit template delta never modify the candidate.

@@ -1,7 +1,7 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessage,UiStableMessagePipe} from './locale';
-import { DOCUMENT } from '@angular/common';
-import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, InjectionToken, input, linkedSignal, output, signal } from '@angular/core';
+import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, signal } from '@angular/core';
+import { UI_CLIPBOARD_WRITER } from './clipboard';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { ActionControl, type ActionSize } from './action-control';
 import { Icon } from './icon';
@@ -198,16 +198,8 @@ export class FloatingActionButton {
             this.action.emit();
     }
 }
-export type ClipboardWriter = (text: string) => Promise<void>;
-export const UI_CLIPBOARD_WRITER = new InjectionToken<ClipboardWriter>('UI_CLIPBOARD_WRITER', { providedIn: 'root', factory: () => {
-        const document = inject(DOCUMENT);
-        return async (text) => {
-            const clipboard = document.defaultView?.navigator.clipboard;
-            if (!clipboard)
-                throw new Error('Clipboard API is unavailable.');
-            await clipboard.writeText(text);
-        };
-    } });
+interface CopyTarget { readonly text: string }
+type CopyResult = { kind: 'success' } | { kind: 'error'; error: unknown };
 @Component({ selector: 'ui-copy-button', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
     host: { tabindex: '-1' },
     template: `<button uiAction icon="copy" [disabled]="disabled()" [busy]="pending()||busy()" (click)="copy()">{{uiEffective_label()}}</button><p role="status" aria-atomic="true" class="ui-copy-result" [attr.data-result]="state()">{{state()==='success'?uiEffective_successMessage():state()==='error'?uiEffective_errorMessage():''}}</p>`,
@@ -227,11 +219,17 @@ export class CopyButton {
     readonly copied = output<void>();
     readonly failed = output<unknown>();
     protected readonly pending = signal(false);
-    protected readonly state = signal<'idle' | 'success' | 'error'>('idle');
+    private readonly target = computed<CopyTarget>(() => ({ text: this.text() }));
+    private readonly feedback = signal<{ target: CopyTarget; result: CopyResult } | null>(null);
+    protected readonly state = computed(() => {
+        const target = this.target();
+        const feedback = this.feedback();
+        return feedback?.target === target ? feedback.result.kind : 'idle';
+    });
     private readonly writer = inject(UI_CLIPBOARD_WRITER);
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     private deadline: PausableDeadline | null = null;
-    private alive = true;
+    private readonly destroy = inject(DestroyRef);
     constructor() {
         effect(() => {
             const seconds = this.durationSeconds();
@@ -244,32 +242,31 @@ export class CopyButton {
         afterRenderEffect(() => {
             if (!this.pending() && !this.busy() && !this.disabled() && this.element.ownerDocument.activeElement === this.element) restoreFocus(this.element.querySelector<HTMLElement>(':scope > button'));
         });
-        inject(DestroyRef).onDestroy(() => { this.alive = false; this.deadline?.cancel(); });
+        this.destroy.onDestroy(() => this.deadline?.cancel());
     }
     protected async copy(): Promise<void> {
-        if (this.pending() || this.disabled() || this.busy())
-            return;
+        if (this.pending() || this.disabled() || this.busy()) return;
+        const target = this.target();
         this.deadline?.cancel();
-        this.state.set('idle');
+        this.feedback.set(null);
         this.pending.set(true);
+        let result: CopyResult;
         try {
-            await this.writer(this.text());
-            if (!this.alive)
-                return;
-            this.state.set('success');
-            this.copied.emit();
+            await this.writer(target.text);
+            result = { kind: 'success' };
+        } catch (error) {
+            result = { kind: 'error', error };
         }
-        catch (error) {
-            if (!this.alive)
-                return;
-            this.state.set('error');
-            this.failed.emit(error);
-        }
-        finally {
-            if (this.alive) {
-                this.pending.set(false);
-                this.deadline = new PausableDeadline(this.durationSeconds() * 1000, () => this.state.set('idle'), { now: () => Date.now(), set: (callback, ms) => setTimeout(callback, ms), clear: handle => clearTimeout(handle as ReturnType<typeof setTimeout>) });
-            }
-        }
+        if (this.destroy.destroyed) return;
+        this.pending.set(false);
+        if (target !== this.target()) return;
+        this.feedback.set({ target, result });
+        this.deadline = new PausableDeadline(this.durationSeconds() * 1000, () => this.feedback.set(null), {
+            now: () => Date.now(),
+            set: (callback, ms) => setTimeout(callback, ms),
+            clear: handle => clearTimeout(handle as ReturnType<typeof setTimeout>),
+        });
+        if (result.kind === 'success') this.copied.emit();
+        else this.failed.emit(result.error);
     }
 }

@@ -22,7 +22,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.5');
+  assert.equal(manifest.version, '0.1.0-beta.6');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'next' });
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
   for (const name of ['README.md', 'README.ja.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
@@ -158,5 +158,18 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const warning = JSON.parse(run(process.execPath, [checker, '--format', 'json'], standalone));
   assert.ok(warning.diagnostics.some(item => item.severity === 'warning'));
   assert.equal(warning.diagnostics.filter(item => item.severity === 'error').length, 0);
+  // Only the three files a team checks in reach the second checkout.
+  const project = resolve(root, 'team-project');
+  const checkout = resolve(root, 'new-checkout');
+  const archive = `vendor/${manifest.name.slice(1).replace('/', '-')}-${manifest.version}.tgz`;
+  await mkdir(resolve(project, 'vendor'), { recursive: true });
+  await writeFile(resolve(project, 'package.json'), JSON.stringify({ private: true }));
+  await cp(candidate.tarball, resolve(project, archive));
+  run('npm', ['install', '--offline', '--save-dev', '--save-exact', '--ignore-scripts', '--no-audit', '--no-fund', './' + archive], project);
+  assert.equal(JSON.parse(await readFile(resolve(project, 'package.json'), 'utf8')).devDependencies[manifest.name], 'file:' + archive);
+  await mkdir(resolve(checkout, 'vendor'), { recursive: true });
+  for (const name of [archive, 'package.json', 'package-lock.json']) await cp(resolve(project, name), resolve(checkout, name));
+  run('npm', ['ci', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--cache', resolve(root, 'new-cache')], checkout);
+  assert.equal(JSON.parse(await readFile(resolve(checkout, 'node_modules', manifest.name, 'package.json'), 'utf8')).version, manifest.version);
   t.diagnostic(`tarball ${candidate.origin} sha256=${candidate.sha256}: ${paths.length} files, ${candidate.size} bytes; offline clean install and standalone checker verified`);
 });

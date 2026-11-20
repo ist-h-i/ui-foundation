@@ -126,7 +126,7 @@ native modal Dialogと入力focusを維持するcombobox/listbox、group名と�
 
 以下は拡張部品の公開APIと利用上の制約です。
 
-Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`、Iconを使うconsumerは`@lucide/angular`を導入します。このrepoでは22.2.1／1.52.0を固定し、AOTで利用します。Lucideは[公式Angular adapter](https://lucide.dev/guide/angular)と[ISCライセンス](https://lucide.dev/license)を確認しました。追加のアカウントや有償serviceは使用しません。アイコンの依存ソースはAngular linkerを通し、実際に描画したSVGで検証します。
+Angular入力部品を使うconsumerはアプリと同じ版の`@angular/forms`、Iconを使うconsumerは`@lucide/angular`を導入します。このrepoでは22.3.0／1.52.0を固定し、AOTで利用します。Lucideは[公式Angular adapter](https://lucide.dev/guide/angular)と[ISCライセンス](https://lucide.dev/license)を確認しました。追加のアカウントや有償serviceは使用しません。アイコンの依存ソースはAngular linkerを通し、実際に描画したSVGで検証します。
 
 ### DataTableView と Pagination
 

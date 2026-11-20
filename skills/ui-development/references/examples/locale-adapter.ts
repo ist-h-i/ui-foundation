@@ -1,5 +1,5 @@
 import { computed, signal } from '@angular/core';
-import type { UiLocaleOptions, UiMessageRequest } from './.ui/generated/angular';
+import type { UiLocaleOptions, UiMessageRequest } from './.ui/generated/angular/core';
 
 type Language = 'en-US' | 'ja-JP' | 'ar';
 type Dictionary = Readonly<Record<string, unknown>>;

@@ -2,7 +2,7 @@ import path from 'node:path';
 import ts from 'typescript';
 import type { SourceDiagnostic } from './types.ts';
 
-export const publicAngularEntries = ['core.ts', 'index.ts'] as const;
+export const publicAngularEntries = ['core.ts', 'forms.ts', 'index.ts'] as const;
 
 // Share the rule list between the YAML parser, scanner and baseline comparison.
 export const exceptableRules = [

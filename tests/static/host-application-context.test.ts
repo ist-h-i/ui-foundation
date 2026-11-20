@@ -225,17 +225,54 @@ test('native finite selector branches retain separate identities through foreign
   }
 });
 
-test('the project label-cap exception retains the audited fixed ratio and producer dependencies', async () => {
-  const audit = JSON.parse(await readFile(new URL('../fixtures/static-checks/host-applications/form-label-cap-audit.json', import.meta.url), 'utf8'));
-  for (const [file, expected] of Object.entries(audit.producer_sha256)) {
-    const actual = createHash('sha256').update(await readFile(new URL('../../' + file, import.meta.url))).digest('hex');
-    assert.equal(actual, expected, `${file}: re-audit the structural label cap before refreshing the proof`);
+test('the project label-cap exception retains the audited fixed ratio and producer dependencies', async t => {
+  const evidence = new URL('../fixtures/static-checks/host-applications/', import.meta.url);
+  const historical = await readFile(new URL('form-label-cap-audit.json', evidence));
+  const audit = JSON.parse(historical.toString('utf8'));
+  const review = JSON.parse(await readFile(new URL('form-label-cap-reaudit.json', evidence), 'utf8'));
+  const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
+  assert.equal(sha256(historical), review.prior_audit_sha256, 'historical label-cap audit changed');
+  const files = Object.keys(audit.producer_sha256);
+  assert.deepEqual(Object.keys(review.dependencies).sort(), [...files].sort());
+  const root = await mkdtemp(resolve(tmpdir(), 'ui-project-label-cap-'));
+  t.after(() => rm(root, {recursive:true, force:true}));
+  for (const file of files) {
+    const dependency = review.dependencies[file];
+    assert.equal(dependency.prior_sha256, audit.producer_sha256[file], file);
+    assert.ok(dependency.judgment.trim(), file);
+    const bytes = await readFile(new URL('../../' + file, import.meta.url));
+    assert.equal(sha256(bytes), dependency.current_sha256, `${file}: re-audit the structural label cap before refreshing the proof`);
+    const target = resolve(root,file);
+    await mkdir(resolve(target,'..'), {recursive:true});
+    await writeFile(target,bytes);
   }
-  const config = parseConfig(example), issue = audit.new_diagnostic;
-  assert.equal(config.checks!.exceptions.filter(e => e.file === issue.file && e.rule === issue.rule && e.line === issue.line && e.column === issue.column && e.source === issue.source).length, 1);
-  assert.equal(audit.existing_checkbox_exception.file, 'templates/angular/styles.css');
-  assert.equal(audit.existing_checkbox_exception.line, 172);
-  assert.ok(audit.existing_checkbox_exception.source.includes('40%'));
+  const fieldSite = review.sites.field_alias;
+  const alias = {...audit.new_diagnostic, line:fieldSite.line, column:fieldSite.column, exception:fieldSite.exception};
+  const checkbox = {...audit.existing_checkbox_exception, line:review.sites.checkbox.line, column:review.sites.checkbox.column};
+  const sites = [alias, checkbox], input = parseConfig(example);
+  const exceptions = sites.map(site => {
+    const matches = input.checks!.exceptions.filter(e => e.file === site.file && e.rule === site.rule && e.source === site.source && e.reason === site.exception);
+    assert.equal(matches.length, 1, site.source);
+    return matches[0];
+  });
+  assert.equal(exceptions[0].line, alias.line);
+  assert.equal(exceptions[0].column, alias.column);
+  input.checks = {source_roots:files, approved_components:[], exceptions};
+  const config = resolveConfig(input);
+  const inspect = () => checkSources({root, config, policy:createSourcePolicy(config)});
+  const admitted = await inspect();
+  assert.equal(admitted.exceptions.length, 2);
+  for (const site of sites) {
+    const matched = admitted.exceptions.filter(d => d.exception === site.exception);
+    assert.equal(matched.length, 1, site.source);
+    assert.partialDeepStrictEqual(matched[0], site);
+  }
+  const field = resolve(root,'templates/angular/form-field.ts');
+  await writeFile(field, (await readFile(field,'utf8')).replace('40%', '41%'));
+  const changed = await inspect();
+  assert.deepEqual(changed.exceptions.map(d => d.exception), [checkbox.exception]);
+  assert.ok(changed.diagnostics.some(d => d.rule === 'exception-error' && d.file === alias.file && d.source === alias.source));
+  assert.ok(changed.diagnostics.some(d => d.rule === 'literal-token' && d.file === alias.file && d.line === alias.line && d.column === alias.column && d.message.includes('Concrete value 41%')));
 });
 
 

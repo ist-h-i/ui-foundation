@@ -1,0 +1,32 @@
+{
+  "prior_audit_sha256": "5e54d1ed9730a22ea34ea16f3923b05e2b4f3af68b519a08a949ab877b75e6d3",
+  "source_commit": "cd97bbee78faf641087e853232ca2bdd7fa39ea7",
+  "scope": "The message-ID migration changed five of the eleven geometry proof files. The fourteen original warning sites, coordinates and reasons still match the checker. The original audit retains the data flow, rejected cases and runtime limits for each site.",
+  "dependencies": {
+    "templates/angular/command-palette.ts": {
+      "prior_sha256": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
+      "current_sha256": "5c9ebb9ccd5b74fea51382ee632e33cdf0b6abaeba98c72f3a6430301cfd86a8",
+      "judgment": "D014–D016. The translated labels and result count may change actual text sizes. The opened dialog still measures its controls and available viewport space at lines 133–156, then uses those measurements for the recovery inset and height at 163–164 and the results height at 171–177."
+    },
+    "templates/angular/dialog.ts": {
+      "prior_sha256": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
+      "current_sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
+      "judgment": "N004 and D014–D016. The translated move and resize buttons at lines 45, 51 and 67 still send the handle's clamped rectangle to setRect. Lines 249–263 still clear inline geometry before applying that rectangle when restored. The native dialog measured by CommandPalette is the same element."
+    },
+    "templates/angular/menu.ts": {
+      "prior_sha256": "cd2d50d883f508f46bb199cf9539236f5328bd0d36de71142e5729fd678bae39",
+      "current_sha256": "751e059adc4f9bed7651958e28c054ddad5530c7a56a2ee680c8b43985a0d0e9",
+      "judgment": "D124–D125. Context-target and submenu labels changed. Menu still supplies native pointer coordinates or a measured target rectangle at lines 423, 440–441 and 458–459 to positionOverlay at 388. The viewport-clamped left/top assignments are still in overlay.ts at 112–113."
+    },
+    "templates/angular/selection-input.ts": {
+      "prior_sha256": "31fd93eeb206b5e8bb59f2c60f371273d9d35ee729c603a5c691f7e9cc0b06db",
+      "current_sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "judgment": "D132. Labels, status messages and their lookups changed. Lines 139–144 still require an open, enabled control with an available editor, copy its measured width to the popover and release the resize observer on cleanup."
+    },
+    "templates/angular/tour.ts": {
+      "prior_sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
+      "current_sha256": "221c79c0a301d9ecc7a38c1a7626f7417a65933ec3c113b87cbd7bfe11e377a0",
+      "judgment": "D148–D151. The translated tour labels changed. Lines 125–137 still read the eligible target's DOM rectangle while the popover is open. The aria-hidden highlight at line 16 still receives only that rectangle's left, top, width and height."
+    }
+  }
+}

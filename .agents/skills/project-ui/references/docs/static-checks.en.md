@@ -37,7 +37,7 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml
 node .ui/generated/check-ui.cjs --root /absolute/application --config ui.config.yaml --format json
 ```
 
-Add `"ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"` to the app's `package.json` and run it before CI/build. The CLI does not edit the app's package.json automatically. Update this command and app imports when moving output. The checker runs in Node and must not enter the browser bundle.
+Add `"ui:check": "ui-foundation check --config ui.config.yaml --require-source-checks"` to the app's `package.json` and run it before CI/build. The CLI does not edit the app's package.json automatically. Update app imports when moving output. The checker runs in Node and must not enter the browser bundle.
 
 The standalone checker validates YAML, compares it with generated policy and scans source. Reconstructing generated output and detecting unowned files are responsibilities of the full CLI. Standalone success does not establish generation consistency. Update configuration/package version and run `./node_modules/.bin/ui-foundation sync`; generation, ownership, idempotence and migration follow the [design contract](design.en.md).
 

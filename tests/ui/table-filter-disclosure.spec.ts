@@ -92,7 +92,7 @@ for(const profile of ['guided','dense']){
    await expect(summary).toContainText('適用中 1 列');
    await host.getByLabel('承認の条件',{exact:true}).selectOption('false');
    await expect(summary).toContainText('適用中 2 列');
-   await host.getByRole('button',{name:'承認の条件 1 を解除',exact:true}).click();
+   await host.getByRole('button',{name:'承認の条件 1: 条件を解除',exact:true}).click();
    await expect(summary).toContainText('適用中 1 列');
    await summary.click();
    await viewport.evaluate(node=>node.scrollTop=300);
@@ -147,7 +147,7 @@ for(const profile of ['guided','dense']){
    await expect(amount).toHaveAttribute('aria-invalid','true');
    expect(await amount.evaluate(node=>(node as HTMLInputElement).validity.badInput)).toBe(true);
    await expect(summary).toContainText('適用中 1 列');
-   await host.getByRole('button',{name:'金額の条件 1 を解除',exact:true}).click();
+   await host.getByRole('button',{name:'金額の条件 1: 条件を解除',exact:true}).click();
    await expect(summary).toContainText('適用中 0 列');
    await expect(host.locator('tbody tr[data-row-key]')).toHaveCount(2);
   });

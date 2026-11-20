@@ -39,6 +39,8 @@ Angular/TypeScriptの既存standalone、signal、OnPush、native HTMLを使う�
 
 生成先のTypeScript/CSS/Skillを直接編集しない。設定・templates/angular・skills/ui-developmentを直し、sync/checkを実行する。生成物はGitで追跡する。未同期を合格にしたり、checkを成功するダミーへ置き換えたりしない。
 
+Angularの読取状態、フォーム、仮想化とnpm導入の変更順は[Angular移行と修正計画](angular-modernization-plan.ja.md)にまとめる。
+
 ## 検証
 
 設定と生成試験、TypeScript/Angularコンパイル、実ブラウザー操作、自動アクセシビリティ、描画レビューを区別する。実施したコマンドと結果だけを報告し、要素数・部品使用率・色ペア合格をUX品質へ置き換えない。
@@ -126,7 +128,7 @@ npm run test:static
 
 ## 依存と成熟候補の判断
 
-設定・templateを直し `npm run ui:sync` → `npm run ui:check` を行い、生成先のAngular public barrelとtokens.cssを利用する。検証したAngular/CDKは `22.2.1`、RxJSは `7.8.2`。生成ソースはpackage manager設定を自動配布するものではない。利用アプリは **runtime依存 `temporal-polyfill: "1.0.5"`** を自身のpackage/lockへ宣言する。root検証用devDependenciesが利用アプリへ自動的に導入されるとは扱わない。consumerの正規install・strict AOT・browser buildでも依存を解決する。
+設定・templateを直し `npm run ui:sync` → `npm run ui:check` を行い、生成先のAngular public barrelとtokens.cssを利用する。現行のAngular/CDKは `22.3.0`、RxJSは `7.8.2`。生成ソースはpackage manager設定を自動配布するものではない。利用アプリは **runtime依存 `temporal-polyfill: "1.0.5"`** を自身のpackage/lockへ宣言する。root検証用devDependenciesが利用アプリへ自動的に導入されるとは扱わない。consumerの正規install・strict AOT・browser buildでも依存を解決する。
 
 | 対象 | 判断と根拠 |
 | --- | --- |

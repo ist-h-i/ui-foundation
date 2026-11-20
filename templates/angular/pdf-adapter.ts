@@ -51,7 +51,13 @@ export class PdfSession {
    await workerStarted(worker,signal,timeoutMs);signal.throwIfAborted();
    pdfWorker=engine.PDFWorker.create({port:worker});
    signal.addEventListener('abort',abort,{once:true});worker.addEventListener('error',workerError,{once:true});
-   const input=typeof source==='string'?{url:mediaResourceUrl(source,owner)}:{data:source instanceof Uint8Array?source.slice():new Uint8Array(await source.arrayBuffer())};
+   let input: {url: string} | {data: Uint8Array};
+   if (typeof source === 'string') input = {url: mediaResourceUrl(source, owner)};
+   else if (source instanceof Uint8Array) input = {data: source.slice()};
+   else {
+    const bytes = await Promise.race([source.arrayBuffer(), interrupted]);
+    input = {data: new Uint8Array(bytes)};
+   }
    signal.throwIfAborted();
    task=engine.getDocument({...input,...assets,worker:pdfWorker,enableXfa:false});
    const document=await Promise.race([task.promise,interrupted]);

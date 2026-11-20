@@ -2,6 +2,27 @@ import AxeBuilder from '@axe-core/playwright';
 import {test,expect} from './catalog-test';
 for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
  test.beforeEach(async({page})=>{await page.goto('/catalog/actions');await page.getByLabel('表示設定',{exact:true}).selectOption(profile);});
+ test('コピー先に渡した内容だけに完了を表示する', async ({page}) => {
+   const draft = page.getByLabel('コピーする下書き', {exact: true});
+   const copy = page.locator('ui-copy-button').getByRole('button');
+   const status = page.locator('ui-copy-button').getByRole('status');
+   const finish = page.getByRole('button', {name: '保留したコピーを完了', exact: true});
+   await page.getByLabel('コピー経路', {exact: true}).selectOption('pending');
+   await draft.fill('A');
+   await copy.click();
+   await expect(copy).toBeDisabled();
+   await draft.fill('B');
+   await draft.fill('A');
+   await finish.click();
+   await expect(copy).toBeEnabled();
+   await expect(status).toBeEmpty();
+   await expect(page.getByTestId('copy-result')).toContainText('実行 1 / 成功 0 / 失敗 0');
+   await copy.click();
+   await finish.click();
+   await expect(status).toHaveText('コピーしました。');
+   await draft.fill('次の下書き');
+   await expect(status).toBeEmpty();
+ });
  test('Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映',async({page})=>{const primary=page.getByRole('button',{name:/^確認して申請する/});await expect(primary).toHaveAttribute('data-variant','primary');await page.getByLabel('操作のサイズ',{exact:true}).selectOption('small');await expect(primary).toHaveAttribute('data-size','small');const small=await primary.evaluate(el=>({font:parseFloat(getComputedStyle(el).fontSize),height:el.getBoundingClientRect().height}));expect(small.height).toBeGreaterThanOrEqual(44);await page.getByLabel('操作のサイズ',{exact:true}).selectOption('large');await expect(primary).toHaveAttribute('data-size','large');expect(await primary.evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThan(small.font);await page.getByLabel('幅いっぱいに表示',{exact:true}).check();await expect(primary).toHaveAttribute('data-width','full');expect(await primary.evaluate(el=>el.getBoundingClientRect().width/(el.parentElement!.getBoundingClientRect().width))).toBeGreaterThan(0.98);const positions=()=>primary.evaluate(el=>({icon:el.querySelector('.ui-action-icon')!.getBoundingClientRect().x,label:el.querySelector('.ui-action-label')!.getBoundingClientRect().x}));expect((await positions()).icon).toBeLessThan((await positions()).label);await page.getByLabel('アイコンを末尾に表示',{exact:true}).check();await expect.poll(async()=>{const p=await positions();return p.icon>p.label;}).toBe(true);await primary.click();await page.getByRole('button',{name:'送信',exact:true}).click();await page.getByRole('button',{name:'入力を戻す',exact:true}).click();await expect(page.getByTestId('action-result')).toHaveText('操作 1 / 遷移 0');await expect(page.getByTestId('native-result')).toHaveText('送信 1 / 戻す 1');});
  test('disabled/busyは手動dispatchも抑止しLinkは外部表示と安全なrelを保持',async({page})=>{const primary=page.getByRole('button',{name:/^確認して申請する/}),link=page.getByRole('link',{name:/参照資料/});await expect(link).toHaveAttribute('href','#action-result');await expect(link).toHaveAttribute('target','_blank');await expect(link).toHaveAttribute('rel','nofollow noopener noreferrer');await link.click();await expect(page.getByTestId('action-result')).toHaveText('操作 0 / 遷移 1');await page.getByLabel('処理中にする',{exact:true}).check();await expect(primary).toBeDisabled();await expect(primary).toHaveAttribute('aria-busy','true');await expect(link).not.toHaveAttribute('href');await primary.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})));await link.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})));await expect(page.getByTestId('action-result')).toHaveText('操作 0 / 遷移 1');await page.getByLabel('処理中にする',{exact:true}).uncheck();await page.getByLabel('操作を無効にする',{exact:true}).check();await expect(primary).toBeDisabled();await expect(link).toHaveAttribute('aria-disabled','true');});
  test('IconButtonとToggleは説明を保ち、Space/Enterで選択し処理中は抑止',async({page})=>{const icon=page.getByRole('button',{name:'確認済み',exact:true}),toggle=page.getByRole('button',{name:'履歴を固定',exact:true});await expect(icon).toHaveAttribute('data-shape','round');await expect(icon).toHaveAttribute('aria-pressed','false');await icon.press('Space');await expect(icon).toHaveAttribute('aria-pressed','true');await toggle.press('Enter');await expect(toggle).toHaveAttribute('aria-pressed','true');await expect(toggle).toContainText('固定中');await expect(toggle).toHaveAccessibleName('履歴を固定');await toggle.press('Space');await expect(toggle).toHaveAttribute('aria-pressed','false');await expect(toggle).toContainText('未固定');await page.getByLabel('処理中にする',{exact:true}).check();await expect(toggle).toBeDisabled();await toggle.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true})));await expect(toggle).toHaveAttribute('aria-pressed','false');});

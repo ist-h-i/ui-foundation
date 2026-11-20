@@ -54,7 +54,7 @@ for (const profile of ['guided','dense']) {
   });
   test('first/last/page size and pagination OFF control the actual rendered records',async({page})=>{
    const table=page.locator('ui-data-table');const nav=table.getByRole('navigation',{name:'申請一覧のページ'});
-   await expect(nav).toContainText('1 / 3 ページ · 6 件');await expect(nav.getByRole('button',{name:'最初のページ'})).toBeDisabled();
+   await expect(nav).toContainText('1 / 3 ページ · 6件');await expect(nav.getByRole('button',{name:'最初のページ'})).toBeDisabled();
    await nav.getByRole('button',{name:'最後のページ'}).click();await expect(table.locator('tbody tr[data-row-key]').first()).toHaveAttribute('data-row-key','5');
    await expect(nav.getByRole('button',{name:'次のページ'})).toBeDisabled();await nav.getByRole('button',{name:'最初のページ'}).click();
    await nav.getByLabel('表示件数',{exact:true}).selectOption('4');await expect(table.locator('tbody tr[data-row-key]')).toHaveCount(4);
@@ -63,7 +63,7 @@ for (const profile of ['guided','dense']) {
   test('column hide/order/pin/resize can be saved, restored and reset using keyboard alternatives',async({page})=>{
    const table=page.locator('ui-data-table');await table.locator('.ui-data-table__columns > summary').click();
    await table.getByLabel('金額',{exact:true}).uncheck();await expect(table.locator('th[data-column-id="amount"]')).toHaveCount(0);
-   await table.getByRole('button',{name:'申請日列を前へ',exact:true}).click();await expect(table.locator('th[data-column-id]').nth(1)).toHaveAttribute('data-column-id','date');
+   await table.getByRole('button',{name:'申請日の列移動: 列を前へ移動',exact:true}).click();await expect(table.locator('th[data-column-id]').nth(1)).toHaveAttribute('data-column-id','date');
    await table.getByLabel('固定: 申請名',{exact:true}).selectOption('start');await table.getByLabel('固定: 状態',{exact:true}).selectOption('end');
    await expect(table.locator('th[data-column-id="name"]')).toHaveCSS('position','sticky');
    const range=table.getByRole('slider',{name:/列幅: 申請名/});await range.focus();await page.keyboard.press('End');await expect(range).toHaveValue('500');

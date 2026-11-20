@@ -9,7 +9,7 @@ import { checkoutIsolation, run } from '../../scripts/package-verification/run.m
 
 const repository = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-test('the packed core entry compiles and bundles without specialist dependencies', { timeout: 360_000 }, async t => {
+test('the packed core, forms and locale example compile and bundle without specialist dependencies', { timeout: 360_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-core-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'app');
@@ -40,10 +40,12 @@ test('the packed core entry compiles and bundles without specialist dependencies
   const cli = (...args) => isolated(process.execPath, [`node_modules/${candidate.manifest.name}/dist/cli.js`, ...args]);
   await cli('init');
   await cli('sync');
+  await cp(resolve(app, 'node_modules', candidate.manifest.name, 'skills/ui-development/references/examples/locale-adapter.ts'), resolve(app, 'locale-adapter.ts'));
   await writeFile(resolve(app, 'src/main.ts'), `
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { ActionControl, Card, provideUiIcons } from '../.ui/generated/angular/core';
+import { ActionControl, Card, provideUiIcons, provideUiLocale } from '../.ui/generated/angular/core';
+import { createLocaleAdapter } from '../locale-adapter';
 
 @Component({
   selector: 'app-root',
@@ -56,20 +58,28 @@ export class App {
     await bootstrapApplication(Form);
   }
 }
-void bootstrapApplication(App, { providers: [provideUiIcons()] });
+void bootstrapApplication(App, { providers: [provideUiIcons(), provideUiLocale(createLocaleAdapter().options)] });
 `);
   await writeFile(resolve(app, 'src/form.ts'), `
 import { Component } from '@angular/core';
-import { FieldControl, FormField } from '../.ui/generated/angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FieldControl, FormField, TextInput } from '../.ui/generated/angular/forms';
 
 @Component({
   selector: 'app-form',
-  imports: [FieldControl, FormField],
-  template: '<ui-form-field controlId="name" label="Name"><input uiFieldControl /></ui-form-field>',
+  imports: [FieldControl, FormField, TextInput, ReactiveFormsModule],
+  template: '<ui-form-field controlId="name" label="Name"><input uiFieldControl /></ui-form-field><ui-text-input controlId="note" label="Note" [formControl]="note" />',
 })
-export class Form {}
+export class Form { readonly note = new FormControl<string | null>(''); }
 `);
-  await cli('check');
+  const check = () => cli('check', '--require-source-checks');
+  await check();
+  const tokensPath = resolve(app, '.ui/generated/tokens.css');
+  const tokens = await readFile(tokensPath, 'utf8');
+  await writeFile(tokensPath, tokens + '\n/* local edit */\n');
+  await assert.rejects(check(), /tokens\.css/);
+  await writeFile(tokensPath, tokens);
+  await check();
   await writeFile(resolve(app, 'tsconfig.json'), JSON.stringify({
     compilerOptions: {
       target: 'ES2022', module: 'ESNext', moduleResolution: 'bundler', lib: ['ES2022', 'DOM'],
@@ -96,7 +106,7 @@ export class Form {}
   await install(versions);
   for (const name of ['main.ts', 'form.ts']) {
     const path = resolve(app, 'src', name);
-    await writeFile(path, (await readFile(path, 'utf8')).replace('/angular/core', '/angular/index'));
+    await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms)\b/g, '.ui/generated/angular/index'));
   }
   const full = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'index', ...full, specialistInputs: full.specialistInputs.length }));

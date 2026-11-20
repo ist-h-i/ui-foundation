@@ -56,7 +56,7 @@ for(const profile of ['guided','dense']){
   });
   test('time intervals/12-hour display, explicit local timezone, month/year bounds and disable retain values',async({page})=>{
    const root=page.locator('date-catalog'),time=page.locator('#event-time');await time.fill('09:10');await page.locator('date-catalog').getByLabel('月曜から表示',{exact:true}).focus();await expect(time).toHaveAttribute('aria-invalid','true');await time.fill('13:15');await expect(time).not.toHaveAttribute('aria-invalid');await expect(root.locator('ui-time-picker')).toContainText('午後');
-   await page.locator('#event-datetime').fill('2026-11-01T01:30');await expectValues(page,{datetime:'2026-11-01T01:30'});await expect(root.locator('ui-date-time-picker')).toContainText('Asia/Tokyo の現地日時');
+   await page.locator('#event-datetime').fill('2026-11-01T01:30');await expectValues(page,{datetime:'2026-11-01T01:30'});await expect(root.locator('ui-date-time-picker')).toContainText('Asia/Tokyo の現地時刻 · 2026-11-01T01:30');
    await page.locator('#event-month').fill('2027-01');await root.getByLabel('月曜から表示',{exact:true}).focus();await expect(page.locator('#event-month')).toHaveAttribute('aria-invalid','true');await page.locator('#event-month').fill('2026-12');
    await page.locator('#event-year').fill('2031');await root.getByLabel('月曜から表示',{exact:true}).focus();await expect(page.locator('#event-year')).toHaveAttribute('aria-invalid','true');await page.locator('#event-year').fill('2030');
    await root.getByRole('button',{name:'日付入力を無効にする',exact:true}).click();await expect(time).toBeDisabled();await root.getByRole('button',{name:'日付入力を有効にする',exact:true}).click();await expect(time).toHaveValue('13:15');

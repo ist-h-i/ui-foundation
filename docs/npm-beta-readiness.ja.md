@@ -2,7 +2,7 @@
 
 [English](npm-beta-readiness.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.4`の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0-beta.6`の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
 
 ## ベータで受け入れる範囲
 
@@ -10,12 +10,12 @@
 | --- | --- |
 | 配布 | 一つのCLIパッケージがAngularソース・CSS・Skill・検査器を生成する。Angularのコンパイル済みライブラリではない |
 | NodeとOS | Node.js **24.19.0**、macOS arm64。他のNode系列・OSは未検証 |
-| 利用アプリ | Angular/CDK 22.2.1、TypeScript 6.0.3と記録したlockfile。基礎・専門部品の依存は[利用ガイド](ui-library-consumer-guide.ja.md#依存関係)に従う |
+| 利用アプリ | Angular/CDK 22.3.0、TypeScript 6.0.3と記録したlockfile。基礎・専門部品の依存は[利用ガイド](ui-library-consumer-guide.ja.md#依存関係)に従う |
 | ブラウザー | 検証構成の重点操作はPlaywright Chromium。その他のブラウザーや支援技術は利用アプリの採用構成で確認する |
 | API | YAML schema_version=1、CLIのinit/sync/checkと既存flags、公開Angular barrelの明示export、生成先の構造。manifest/policy/ownership/lockはツールが管理し、アプリが手編集するAPIにしない |
 | 検査結果 | CLIのcheckは生成一致＋ソース検査。生成check-ui.cjsはpolicyとソース検査。JSONの既存フィールドとエラー/警告/未設定の意味を維持する |
 
-全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の25エンジンなどを型解決できる必要があります。`angular/core.ts` を提供する版でその公開 API だけを使う場合は、利用ガイドに記載の基本部品の依存で型解決できます。未検証の追加構成は利用アプリで確認します。
+全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の25エンジンなどを型解決できる必要があります。`angular/core.ts` とbeta.6で加わる `angular/forms.ts` の公開APIは、利用ガイドに記載の基本部品の依存で型解決できます。追加構成は利用アプリで確認します。
 
 ## 導入と文書
 

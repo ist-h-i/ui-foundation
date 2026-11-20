@@ -7,7 +7,7 @@ Run the installed CLI from the consuming app's root, where its YAML and source d
 ```text
 ui-foundation init [--config ui.config.yaml] [--language en|ja]
 ui-foundation sync [--config ui.config.yaml] [--dry-run] [--from-output previous/path]
-ui-foundation check [--config ui.config.yaml] [--format text|json]
+ui-foundation check [--config ui.config.yaml] [--format text|json] [--require-source-checks] [--baseline PATH]
 ui-foundation --help
 ui-foundation -h
 ```
@@ -21,6 +21,8 @@ Use `./node_modules/.bin/ui-foundation` to select the installed version. With no
 | `--dry-run` | `sync` | Validate and print planned changes without writing generated files; still acquires the sync lock |
 | `--from-output PATH` | `sync` | Explicit previous output for legacy v1 migration without an ownership registry |
 | `--format text\|json` | `check` | Output format; defaults to text |
+| `--require-source-checks` | `check` | Fail if source checks are missing from the configuration |
+| `--baseline PATH` | `check` | Compare with a reviewed source report at a project-relative JSON path |
 | `--help`, `-h` | Standalone | Print usage |
 
 Place options after the command and separate their values with spaces. Duplicate, unknown, unsupported or incomplete options fail with exit code 1. There is no `--config=...`, `sync --help`, `--force`, `--root` or `--version` option in the main CLI.

@@ -1,21 +1,178 @@
-import {uiMessageState} from './locale';
-import {injectUiMessageText as injectUiRuntimeText} from './locale';
-import {UiStableMessagePipe} from './locale';
-import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,computed,DestroyRef,ElementRef,inject,input,linkedSignal,output,signal,untracked,viewChild} from '@angular/core';
-import {ActionControl} from './action-control';import {PdfSession,type PdfSource} from './pdf-adapter';import {mediaStyles} from './media-style';
+import {
+  afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef,
+  effect, ElementRef, inject, input, linkedSignal, output, untracked, viewChild,
+} from '@angular/core';
+import {ActionControl} from './action-control';
+import {injectUiMessageText, UiStableMessagePipe} from './locale';
+import {mediaStyles} from './media-style';
+import type {PdfSession, PdfSource} from './pdf-adapter';
+import {createPdfDocumentResource} from './pdf-document';
+import type {UiMessageArguments} from './stable-messages';
+
+interface PdfRenderRequest {
+  session: PdfSession;
+  page: number;
+  zoom: number;
+  canvas: HTMLCanvasElement;
+}
+
+interface PdfViewerState {
+  /** A rendered page can have an empty text layer. */
+  text: string | null;
+  status: UiMessageArguments | null;
+  error: UiMessageArguments | null;
+  downloading: boolean;
+}
+
 @Component({selector:'ui-pdf-viewer,ui-file-preview',standalone:true,imports:[ActionControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
- template:`<p>{{label()}}</p><div class="ui-media-actions"><button uiAction [disabled]="!session()||pageValue()<=1||disabled()" (click)="move(-1)">{{'uiFoundation.pDFViewer.previousPage' | uiStableMessage}}</button><label>{{'uiFoundation.pDFViewer.page' | uiStableMessage}}<input type="number" min="1" [max]="pages()" [value]="pageValue()" [disabled]="!session()||disabled()" (change)="setPage($event)"></label><button uiAction [disabled]="!session()||pageValue()>=pages()||disabled()" (click)="move(1)">{{'uiFoundation.pDFViewer.nextPage' | uiStableMessage}}</button><label>{{'uiFoundation.pDFViewer.zoom' | uiStableMessage}}<span class="ui-select-control"><select class="ui-field-control" [value]="zoomValue()" [disabled]="disabled()" (change)="setZoom($event)"><option value="0.5">50%</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></label>@if(downloadable()){<button uiAction [busy]="downloadBusy()" [disabled]="!session()||disabled()" (click)="download()">{{'uiFoundation.pDFViewer.downloadPDF' | uiStableMessage}}</button>}</div><p role="status" aria-atomic="true">{{status()}} · {{pages()?pageValue():0}} / {{pages()}}</p>@if(error()){<p class="ui-media-error">{{error()}}</p><button uiAction [disabled]="disabled()" (click)="retry()">{{'uiFoundation.pDFViewer.reloadPDF' | uiStableMessage}}</button>}<div class="ui-pdf-viewport" role="region" tabindex="0" [attr.aria-label]="('uiFoundation.pDFViewer.pageViewForLabel' | uiStableMessage:{label:label()})"><canvas #canvas role="img" [attr.aria-label]="'uiFoundation.pdfViewer.pagePreviewLabel' | uiStableMessage:{label:label(),page:pageValue()}" [hidden]="!rendered()"></canvas></div>@if(rendered()){<details><summary>{{'uiFoundation.pDFViewer.pageText' | uiStableMessage}}</summary><p class="ui-pdf-text">{{text()||('uiFoundation.pDFViewer.theTextOnThisPageIsUnavailableDownloadTheOriginalPDFToReviewIt' | uiStableMessage)}}</p></details>}`,
+ template:`<p>{{label()}}</p><div class="ui-media-actions"><button uiAction [disabled]="!session()||pageValue()<=1||disabled()" (click)="move(-1)">{{'uiFoundation.pDFViewer.previousPage' | uiStableMessage}}</button><label>{{'uiFoundation.pDFViewer.page' | uiStableMessage}}<input type="number" min="1" [max]="pages()" [value]="pageValue()" [disabled]="!session()||disabled()" (change)="setPage($event)"></label><button uiAction [disabled]="!session()||pageValue()>=pages()||disabled()" (click)="move(1)">{{'uiFoundation.pDFViewer.nextPage' | uiStableMessage}}</button><label>{{'uiFoundation.pDFViewer.zoom' | uiStableMessage}}<span class="ui-select-control"><select class="ui-field-control" [value]="zoomValue()" [disabled]="disabled()" (change)="setZoom($event)"><option value="0.5">50%</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select><svg class="ui-select-control__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></span></label>@if(downloadable()){<button uiAction [busy]="view().downloading" [disabled]="!session()||disabled()" (click)="download()">{{'uiFoundation.pDFViewer.downloadPDF' | uiStableMessage}}</button>}</div><p role="status" aria-atomic="true">{{status()}} · {{pages()?pageValue():0}} / {{pages()}}</p>@if(error()){<p class="ui-media-error">{{error()}}</p><button uiAction [disabled]="disabled()" (click)="retry()">{{'uiFoundation.pDFViewer.reloadPDF' | uiStableMessage}}</button>}<div class="ui-pdf-viewport" role="region" tabindex="0" [attr.aria-label]="('uiFoundation.pDFViewer.pageViewForLabel' | uiStableMessage:{label:label()})"><canvas #canvas role="img" [attr.aria-label]="'uiFoundation.pdfViewer.pagePreviewLabel' | uiStableMessage:{label:label(),page:pageValue()}" [hidden]="view().text === null"></canvas></div>@if(view().text !== null){<details><summary>{{'uiFoundation.pDFViewer.pageText' | uiStableMessage}}</summary><p class="ui-pdf-text">{{view().text||('uiFoundation.pDFViewer.theTextOnThisPageIsUnavailableDownloadTheOriginalPDFToReviewIt' | uiStableMessage)}}</p></details>}`,
  styles:mediaStyles+`.ui-pdf-viewport{max-block-size:var(--ui-size-media-viewport);overflow:auto;}.ui-pdf-viewport canvas{max-inline-size:none;}.ui-pdf-text{white-space:pre-wrap;}.ui-media-actions label{flex:1 1 var(--ui-size-grid-item);}summary{cursor:pointer;min-block-size:var(--ui-size-control);}`})
 export class PDFViewer {
- private readonly uiRuntimeText_PDFViewer=injectUiRuntimeText();
+  readonly label = input.required<string>();
+  readonly source = input<PdfSource | null>(null);
+  readonly workerUrl = input('pdf.worker.mjs');
+  readonly assetsBaseUrl = input<string | null>(null);
+  readonly page = input(1);
+  readonly pageChange = output<number>();
+  readonly zoom = input(1);
+  readonly zoomChange = output<number>();
+  readonly downloadable = input(true, {transform: booleanAttribute});
+  readonly filename = input('document.pdf');
+  readonly disabled = input(false, {transform: booleanAttribute});
+  readonly loaded = output<number>();
+  readonly loadFailed = output<'load' | 'render' | 'download'>();
 
- readonly label=input.required<string>();readonly source=input<PdfSource|null>(null);readonly workerUrl=input('pdf.worker.mjs');readonly assetsBaseUrl=input<string|null>(null);readonly page=input(1);readonly pageChange=output<number>();readonly zoom=input(1);readonly zoomChange=output<number>();readonly downloadable=input(true,{transform:booleanAttribute});readonly filename=input('document.pdf');readonly disabled=input(false,{transform:booleanAttribute});readonly loaded=output<number>();readonly loadFailed=output<'load'|'render'|'download'>();
- protected readonly session=signal<PdfSession|null>(null);protected readonly pages=computed(()=>this.session()?.pages??0);private readonly requestedPage=linkedSignal(()=>{const page=this.page();if(!Number.isSafeInteger(page)||page<1)throw new Error('PDF page must be a positive integer.');return page;});protected readonly pageValue=computed(()=>Math.min(this.requestedPage(),Math.max(1,this.pages())));protected readonly zoomValue=linkedSignal(()=>{const zoom=this.zoom();if(!Number.isFinite(zoom)||zoom<0.25||zoom>4)throw new Error('PDF zoom must be .25–4.');return zoom;});protected readonly status=uiMessageState("", [() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.selectAPDF")]);protected readonly error=uiMessageState('');protected readonly text=signal('');protected readonly rendered=signal(false);protected readonly downloadBusy=signal(false);
- private readonly canvas=viewChild<ElementRef<HTMLCanvasElement>>('canvas');private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private readonly reload=signal(0);private generation=0;private rendering=0;private destroyed=false;private loading:AbortController|null=null;
- constructor(){afterRenderEffect(()=>{const source=this.source(),workerUrl=this.workerUrl(),assetsBaseUrl=this.assetsBaseUrl();this.reload();untracked(()=>{void this.load(source,workerUrl,assetsBaseUrl);});});afterRenderEffect(()=>{const session=this.session(),page=this.pageValue(),zoom=this.zoomValue(),canvas=this.canvas()?.nativeElement;if(session&&canvas)untracked(()=>{void this.render(session,page,zoom,canvas);});});inject(DestroyRef).onDestroy(()=>{this.destroyed=true;this.generation++;this.rendering++;this.loading?.abort();void this.session()?.dispose();this.session.set(null);});}
- private async load(source:PdfSource|null,workerUrl:string,assetsBaseUrl:string|null):Promise<void>{const generation=++this.generation;this.rendering++;this.loading?.abort();const controller=new AbortController();this.loading=controller;const old=this.session();this.session.set(null);void old?.dispose();this.rendered.set(false);this.text.set('');this.error.set('');this.downloadBusy.set(false);this.status.setMessage(source ? [() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.loadingPDF")] : [() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.selectAPDF")]);if(!source)return;
-  try{const session=await PdfSession.load(source,this.element.ownerDocument,{workerUrl,assetsBaseUrl},controller.signal);if(this.destroyed||generation!==this.generation){await session.dispose();return;}this.session.set(session);this.status.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.pDFLoaded")]);this.loaded.emit(session.pages);}catch{if(!this.destroyed&&generation===this.generation){this.error.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.unableToLoadThePDFCheckTheSourceAndHowTheWorkerAndSupportingFilesAreServedThenTryAga")]);this.status.set('');this.loadFailed.emit('load');}}}
- private async render(session:PdfSession,page:number,zoom:number,canvas:HTMLCanvasElement):Promise<void>{const revision=++this.rendering;session.cancelRender();this.rendered.set(false);this.status.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.renderingPage")]);this.error.set('');try{const result=await session.render(page,zoom,canvas);if(this.destroyed||revision!==this.rendering||this.session()!==session)return;this.text.set(result.text);this.rendered.set(true);this.status.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.pageDisplayed")]);}catch{if(!this.destroyed&&revision===this.rendering&&this.session()===session){this.error.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.unableToDisplayThisPageTryAnotherPageOrZoomLevel")]);this.status.set('');this.loadFailed.emit('render');}}}
- protected move(offset:number):void{if(this.disabled()||!this.session())return;const page=Math.max(1,Math.min(this.pages(),this.pageValue()+offset));this.requestedPage.set(page);this.pageChange.emit(page);}protected setPage(event:Event):void{if(this.disabled()||!this.session())return;const value=Number((event.target as HTMLInputElement).value);if(!Number.isSafeInteger(value)||value<1||value>this.pages()){this.error.setMessage([()=>this.uiRuntimeText_PDFViewer('uiFoundation.pdfViewer.pageInputRange',{pages:this.pages()})]);return;}this.requestedPage.set(value);this.pageChange.emit(value);}protected setZoom(event:Event):void{if(this.disabled())return;const value=Number((event.target as HTMLSelectElement).value);this.zoomValue.set(value);this.zoomChange.emit(value);}protected retry():void{if(!this.disabled())this.reload.update(value=>value+1);}
- async download():Promise<void>{const session=this.session(),generation=this.generation;if(!session||this.disabled()||this.downloadBusy())return;this.downloadBusy.set(true);let url:string|null=null;try{const blob=await session.blob();if(this.destroyed||generation!==this.generation)return;url=URL.createObjectURL(blob);const anchor=this.element.ownerDocument.createElement('a');anchor.href=url;anchor.download=this.filename();anchor.click();this.status.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.thePDFDownloadHasStarted")]);}catch{if(!this.destroyed&&generation===this.generation){this.error.setMessage([() => this.uiRuntimeText_PDFViewer("uiFoundation.pDFViewer.unableToDownloadThePDFTryAgain")]);this.loadFailed.emit('download');}}finally{if(url)URL.revokeObjectURL(url);if(!this.destroyed&&generation===this.generation)this.downloadBusy.set(false);}}
+  private readonly message = injectUiMessageText();
+  private readonly lifetime = inject(DestroyRef);
+  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly canvas = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
+  private readonly document = createPdfDocumentResource(this.element, () => {
+    const source = this.source();
+    return source ? {source, workerUrl: this.workerUrl(), assetsBaseUrl: this.assetsBaseUrl()} : undefined;
+  });
+
+  // A reload retains the resource's previous value. Only a resolved session can render or download.
+  protected readonly session = computed(() => this.document.status() === 'resolved' ? this.document.value() : undefined);
+  protected readonly pages = computed(() => this.session()?.pages ?? 0);
+  private readonly requestedPage = linkedSignal(() => {
+    const page = this.page();
+    if (!Number.isSafeInteger(page) || page < 1) throw new Error('PDF page must be a positive integer.');
+    return page;
+  });
+  protected readonly pageValue = computed(() => Math.min(this.requestedPage(), Math.max(1, this.pages())));
+  protected readonly zoomValue = linkedSignal(() => {
+    const zoom = this.zoom();
+    if (!Number.isFinite(zoom) || zoom < 0.25 || zoom > 4) throw new Error('PDF zoom must be .25–4.');
+    return zoom;
+  });
+
+  protected readonly view = linkedSignal({
+    source: this.session,
+    computation: (): PdfViewerState => ({
+      text: null, status: ['uiFoundation.pDFViewer.pDFLoaded'], error: null, downloading: false,
+    }),
+  });
+  protected readonly status = computed(() => {
+    if (this.document.status() === 'idle') return this.message('uiFoundation.pDFViewer.selectAPDF');
+    if (this.document.isLoading()) return this.message('uiFoundation.pDFViewer.loadingPDF');
+    const status = this.view().status;
+    return this.session() && status ? this.message(...status) : '';
+  });
+  protected readonly error = computed(() => {
+    if (this.document.status() === 'error') {
+      return this.message('uiFoundation.pDFViewer.unableToLoadThePDFCheckTheSourceAndHowTheWorkerAndSupportingFilesAreServedThenTryAga');
+    }
+    const error = this.view().error;
+    return this.session() && error ? this.message(...error) : '';
+  });
+  private readonly renderRequest = computed((): PdfRenderRequest | undefined => {
+    const session = this.session(), canvas = this.canvas()?.nativeElement;
+    return session && canvas ? {session, canvas, page: this.pageValue(), zoom: this.zoomValue()} : undefined;
+  });
+
+  constructor() {
+    effect(() => {
+      const snapshot = this.document.snapshot();
+      if (snapshot.status === 'error') untracked(() => this.loadFailed.emit('load'));
+      else if (snapshot.status === 'resolved' && snapshot.value) {
+        const pages = snapshot.value.pages;
+        untracked(() => this.loaded.emit(pages));
+      }
+    });
+    afterRenderEffect(onCleanup => {
+      const request = this.renderRequest();
+      if (!request) return;
+      onCleanup(() => request.session.cancelRender());
+      untracked(() => { void this.render(request); });
+    });
+  }
+
+  private async render(request: PdfRenderRequest): Promise<void> {
+    const current = () => !this.lifetime.destroyed && this.renderRequest() === request;
+    this.view.update(view => ({...view, text: null, status: ['uiFoundation.pDFViewer.renderingPage'], error: null}));
+    try {
+      const {text} = await request.session.render(request.page, request.zoom, request.canvas);
+      if (current()) this.view.update(view => ({...view, text, status: ['uiFoundation.pDFViewer.pageDisplayed']}));
+    } catch {
+      if (current()) {
+        this.view.update(view => ({...view, status: null, error: ['uiFoundation.pDFViewer.unableToDisplayThisPageTryAnotherPageOrZoomLevel']}));
+        this.loadFailed.emit('render');
+      }
+    }
+  }
+
+  protected move(offset: number): void {
+    if (this.disabled() || !this.session()) return;
+    const page = Math.max(1, Math.min(this.pages(), this.pageValue() + offset));
+    this.requestedPage.set(page);
+    this.pageChange.emit(page);
+  }
+
+  protected setPage(event: Event): void {
+    if (this.disabled() || !this.session()) return;
+    const value = Number((event.target as HTMLInputElement).value);
+    if (!Number.isSafeInteger(value) || value < 1 || value > this.pages()) {
+      this.view.update(view => ({...view, error: ['uiFoundation.pdfViewer.pageInputRange', {pages: this.pages()}]}));
+      return;
+    }
+    this.requestedPage.set(value);
+    this.pageChange.emit(value);
+  }
+
+  protected setZoom(event: Event): void {
+    if (this.disabled()) return;
+    const zoom = Number((event.target as HTMLSelectElement).value);
+    this.zoomValue.set(zoom);
+    this.zoomChange.emit(zoom);
+  }
+
+  protected retry(): void {
+    if (!this.disabled()) this.document.reload();
+  }
+
+  async download(): Promise<void> {
+    const session = this.session();
+    if (!session || this.disabled() || this.view().downloading) return;
+    const current = () => !this.lifetime.destroyed && this.session() === session;
+    this.view.update(view => ({...view, downloading: true}));
+    let url: string | undefined;
+    try {
+      const blob = await session.blob();
+      if (!current()) return;
+      url = URL.createObjectURL(blob);
+      const anchor = this.element.ownerDocument.createElement('a');
+      anchor.href = url;
+      anchor.download = this.filename();
+      anchor.click();
+      this.view.update(view => ({...view, status: ['uiFoundation.pDFViewer.thePDFDownloadHasStarted']}));
+    } catch {
+      if (current()) {
+        this.view.update(view => ({...view, error: ['uiFoundation.pDFViewer.unableToDownloadThePDFTryAgain']}));
+        this.loadFailed.emit('download');
+      }
+    } finally {
+      if (url) URL.revokeObjectURL(url);
+      if (current()) this.view.update(view => ({...view, downloading: false}));
+    }
+  }
 }

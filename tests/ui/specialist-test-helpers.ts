@@ -61,7 +61,7 @@ export async function prepareSpecialistAccessibilityState(page:Page,name:Special
   }
   case 'Markdown':await page.locator('#markdown .cm-content').fill('# 更新した案内\n\n**確認**を続けます。');await expect(page.locator('#markdown ui-markdown-preview h1')).toHaveText('更新した案内');break;
   case 'Code':await page.locator('#code .cm-content').fill('applicationTotal');await page.getByLabel('言語',{exact:true}).selectOption('typescript');break;
-  case 'Diff / JSON':await page.getByLabel('差分を検索',{exact:true}).fill('total');await page.getByRole('button',{name:'"nested" を展開',exact:true}).click();await page.getByLabel('JSONを検索',{exact:true}).fill('false');break;
+  case 'Diff / JSON':await page.getByLabel('差分を検索',{exact:true}).fill('total');await page.getByRole('button',{name:'"nested" 展開',exact:true}).click();await page.getByLabel('JSONを検索',{exact:true}).fill('false');break;
   case 'FileExplorer':await page.locator('[data-explorer-id=root]').press('ArrowRight');await page.getByLabel('ファイルを検索',{exact:true}).fill('説明');await page.getByLabel('表示方式',{exact:true}).selectOption('grid');await page.locator('[data-explorer-id=txt]').press('Space');await page.getByLabel('新しい名前',{exact:true}).fill('保持する名前.txt');await page.getByRole('button',{name:'名前変更を要求',exact:true}).click();await expect(page.locator('#files [role=alert]')).toContainText('保存を拒否');break;
   case 'Diagram':await page.getByRole('button',{name:'ノードを追加',exact:true}).click();await page.getByLabel('接続元',{exact:true}).selectOption('b');await page.getByLabel('接続先',{exact:true}).selectOption('a');await page.getByRole('button',{name:'接続する',exact:true}).click();await page.getByRole('button',{name:'自動配置',exact:true}).click();await page.locator('#flow').getByRole('button',{name:'拡大',exact:true}).click();break;
   case 'Chat':{

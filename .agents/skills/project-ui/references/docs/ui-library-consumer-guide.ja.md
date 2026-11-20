@@ -18,15 +18,15 @@
 
 ### パッケージを導入する
 
-既存のAngularアプリのルート（`package.json`のあるディレクトリ）で実行します。候補版の公開前は、npmの版指定の代わりに `npm install --save-dev --save-exact /path/to/ui-foundation.tgz` でtarballを導入します。
+Angular 22.3向け候補版を試すには、ライブラリ側で `npm ci`、`npm pack` の順に実行し、できたファイルを利用アプリの `vendor/` に置きます。アプリのルートでインストールして設定を初期化します。配布ファイル、`package.json`、`package-lock.json` を一緒にGitへ登録すると、チームの新しい環境でも `npm ci` で導入できます。
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5
+npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init --language ja
 ```
 
-Node.js 24.19.0、macOS arm64、Angular/CDK 22.2.1、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 全件入口を使う場合は、小さな画面でも[依存関係](#依存関係)の専門エンジンまで型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
+Node.js 24.19.0、macOS arm64、Angular/CDK 22.3.0、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 全件入口を使う場合は、小さな画面でも[依存関係](#依存関係)の専門エンジンまで型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
 
 npm install後は`node_modules/@hiroshi.inoue/ui-foundation/docs/`で、導入した版の利用者文書を読めます。`sync`すると同じ文書が`.agents/skills/project-ui/references/docs/`へコピーされ、アプリ用のSkillと`project-context.md`も生成されます。開発元の計画・ADR・要求マトリクス・監査・検証履歴は配布せず、導入時の必須入力にはしません。
 
@@ -100,17 +100,17 @@ node .ui/generated/check-ui.cjs --config ui.config.yaml
 node .ui/generated/check-ui.cjs --config ui.config.yaml --format json
 ```
 
-利用アプリの既存 `package.json` の `scripts` へ、次の項目を追加し、CIやbuildの前段で実行します。`output` を変えた場合は、検査コマンドのパスとアプリのimportも更新します。
+利用アプリの既存 `package.json` の `scripts` へ、次の項目を追加し、CIやbuildの前段で実行します。このコマンドは設定から生成先を読み取ります。
 
 ```json
 {
   "scripts": {
-    "ui:check": "node .ui/generated/check-ui.cjs --config ui.config.yaml"
+    "ui:check": "ui-foundation check --config ui.config.yaml --require-source-checks"
   }
 }
 ```
 
-上の`ui:check`は利用アプリで追加するスクリプトの例です。ui-foundationをインストールしても、このスクリプトがアプリへ自動追加されるわけではありません。設定の同期と生成一致の確認には、上記のインストール済みCLIを利用アプリのルートから実行してください。本体CLIの `check` は設定・生成物の一致と指定ソースを検査します。同梱版は設定と生成policyの一致・指定ソースを検査し、生成物全体の一致や所有範囲の確認は代替しません。policy未同期を検出したら、生成物を手直しせず本体CLIで再同期します。
+上の`ui:check`は利用アプリで追加するスクリプトの例です。ui-foundationをインストールしても、このスクリプトがアプリへ自動追加されるわけではありません。このスクリプトは、生成一致と設定したアプリソースを確認します。本体CLIの `check` は設定・生成物の一致と指定ソースを検査します。同梱版は設定と生成policyの一致・指定ソースを検査し、生成物全体の一致や所有範囲の確認は代替しません。policy未同期を検出したら、生成物を手直しせず本体CLIで再同期します。
 
 ### 判定と修正の進め方
 
@@ -237,6 +237,7 @@ Tailwind v4を処理するビルド環境が必要です。生成部品のTypeSc
 | 公開入口 | 用途 |
 | --- | --- |
 | `angular/core.ts` | 操作部品、Card、ネイティブ入力欄と、対応するアイコン・翻訳 API を使う。 |
+| `angular/forms.ts` | テキスト入力、複数行入力、ラベル付きのネイティブ入力欄を使う。 |
 | `angular/index.ts` | ほかの部品を使う場合や、全件の Angular API が必要な場合に使う。 |
 
 `core` を提供する版を導入して同期すると、生成先が既定の `.ui/generated/` の場合は次のように指定できます。
@@ -247,14 +248,20 @@ import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/a
 
 `core` は Angular core・common・CDK と CDK の peer である Angular Forms、RxJS、Lucide を参照します。アプリのビルドと起動に必要な Angular パッケージも用意してください。TypeScript の検査対象にはアプリのソースを指定し、生成コードは import を通じて取り込みます。全生成ソースを glob で指定すると、専門部品の依存関係まで型検査対象になります。共通のトークンと部品用 CSS を読み込んでください。`core` を使うための `sideEffects` 指定や専門部品の CSS・worker は不要です。既存の全件入口も引き続き利用できます。
 
-以下の例では全件入口を使用します。
+Angular CLI 22.3.0で作り、Angular FormsとRxJSを含むアプリなら、基本部品とフォームに追加する依存は次の2つです。
+
+```sh
+npm install --save-exact @angular/cdk@22.3.0 @lucide/angular@1.52.0
+```
+
+フォーム用の入口は `core` と同じ依存構成で使えます。
 
 最初はテキスト入力を一つ組み込めます。次は`src/app.ts`に置くstandalone componentの例です。既存のアプリでは、自分の画面へimportとtemplateを組み込んでください。
 
 ```ts
 import {Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {TextInput} from '../.ui/generated/angular/index';
+import {TextInput} from '../.ui/generated/angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -338,7 +345,7 @@ export class DepartmentScreen {
 
 ## 依存関係
 
-ベータの検証構成は Angular/CDK `22.2.1`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
+ベータの検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
 
 全件入口 `angular/index.ts` から参照される追加 runtime engine は次の 25 件です。この入口を使うときは、画面で使う部品が少なくても strict compile で解決できるようにします。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
 

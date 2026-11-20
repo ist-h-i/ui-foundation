@@ -55,7 +55,8 @@ export {type LayoutSpace, type LayoutBreakpoint, type GridPlacement} from './lay
 export {Panel, Accordion, AccordionItem} from './panels';
 export {Splitter} from './splitter';
 
-export {IconButton, ButtonGroup, ToggleButton, SegmentedControl, SplitButton, FloatingActionButton, CopyButton, UI_CLIPBOARD_WRITER, type ClipboardWriter, type SegmentOption, type SegmentValue} from './actions';
+export {IconButton, ButtonGroup, ToggleButton, SegmentedControl, SplitButton, FloatingActionButton, CopyButton, type SegmentOption, type SegmentValue} from './actions';
+export {UI_CLIPBOARD_WRITER, type ClipboardWriter} from './clipboard';
 export {Toolbar, type ToolbarItem} from './toolbar';
 
 export { Alert, EmptyState, ResultState, ProgressBar, Spinner, Skeleton, LoadingOverlay, progressValue, type FeedbackSeverity, type ProgressValue } from './feedback';

@@ -9,6 +9,7 @@ import { test } from 'node:test';
 import { stringify } from 'yaml';
 import { parseConfig, resolveConfig } from '../../src/config.ts';
 import { createSourcePolicy } from '../../src/check/policy.ts';
+import { checkSources } from '../../src/check/scanner.ts';
 import { cropBoundsError, positiveMediaNumber, comparePosition } from '../../templates/angular/media-model.ts';
 import { splitterBounds } from '../../templates/angular/layout-model.ts';
 import { panelSize, sheetStages } from '../../templates/angular/floating-model.ts';
@@ -34,16 +35,23 @@ const originalCandidates = JSON.parse(await readFile(resolve(evidence,'../baseli
 const historicalApprovals: Approval[] = JSON.parse(await readFile(resolve(historicalEvidence, 'approved-exceptions.json'), 'utf8')).records;
 const baseline: Diagnostic[] = JSON.parse(await readFile(resolve(historicalEvidence, 'baseline-check.json'), 'utf8')).source.diagnostics;
 const historicalSites: Diagnostic[] = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-sites-current.json'), 'utf8')).diagnostics;
-const currentAudit: CurrentAudit = JSON.parse(await readFile(resolve(currentEvidence, 'message-migration-reaudit.json'), 'utf8'));
+const messageAuditBytes = await readFile(resolve(currentEvidence, 'message-migration-reaudit.json'));
+const messageAudit: CurrentAudit = JSON.parse(messageAuditBytes.toString('utf8'));
+const angularAudit: CurrentAudit & {prior_audit_sha256:string} =
+  JSON.parse(await readFile(resolve(currentEvidence, 'angular-22-reaudit.json'), 'utf8'));
+const currentSites = {...messageAudit.sites, ...angularAudit.sites};
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
-    const update = currentAudit.dependencies[file];
-    if (update) {
-      assert.equal(update.prior_sha256, hash, `${item.id}: re-audit must match the prior proof dependency`);
+    let reviewedHash = hash;
+    for (const audit of [messageAudit, angularAudit]) {
+      const update = audit.dependencies[file];
+      if (!update) continue;
+      assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
       assert.ok(update.judgment.trim(), `${item.id}: changed dependency requires a purpose judgment`);
+      reviewedHash = update.current_sha256;
     }
-    assert.equal(sha256(await readFile(resolve(directory, file))), update?.current_sha256 ?? hash,
+    assert.equal(sha256(await readFile(resolve(directory, file))), reviewedHash,
       `${item.id}: producer/helper changed; re-audit its purpose before refreshing this proof`);
   }
 }
@@ -51,7 +59,7 @@ async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha2
 function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string, original: {
   file: string; rule: string; source: string; reason: string; line?: number; column?: number;
 }, severity: 'warning' | 'error') {
-  const site = currentAudit.sites[id];
+  const site = currentSites[id];
   assert.ok(site, `${id}: current checker evidence required`);
   assert.equal(site.file, original.file);
   assert.equal(site.rule, original.rule);
@@ -66,6 +74,7 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(messageAuditBytes), angularAudit.prior_audit_sha256, 'historical message-migration audit changed');
   assert.equal(new Set(approvals.map(item => item.id)).size, approvals.length);
   assert.equal(approvals.filter(item => item.origin === 'legacy').length, 32);
   assert.equal(proof.candidate_decisions.length, 32);
@@ -107,6 +116,44 @@ test('project exceptions retain one-site scope, legacy purposes and separately r
   for (const decision of proof.candidate_decisions.filter((x: {disposition:string}) => x.disposition !== 'reasoned_exception')) {
     assert.ok(!config.checks!.exceptions.some(x => x.reason.startsWith(`[${decision.id}] `)), `${decision.id}: no unnecessary exception`);
   }
+});
+
+test('the checker admits the five re-audited Angular sites and rejects the prior textarea position', async t => {
+  const fixture = await mkdtemp(resolve(tmpdir(), 'ui-angular-purpose-'));
+  t.after(() => rm(fixture, {recursive:true, force:true}));
+  const reviewed = approvals.filter(item => Object.keys(item.proof_sha256).some(file => file in angularAudit.dependencies));
+  assert.deepEqual(reviewed.map(item => item.id).sort(), ['D146','D153','D158','R184','R186']);
+  const input = parseConfig(example);
+  const exceptions = input.checks!.exceptions.filter(e => reviewed.some(item => item.exception.reason === e.reason));
+  const files = [...new Set(exceptions.map(e => e.file))];
+  for (const file of files) {
+    const target = resolve(fixture, file);
+    await mkdir(resolve(target,'..'), {recursive:true});
+    await cp(resolve(root, file), target);
+  }
+  input.checks = {source_roots:files, approved_components:[], exceptions};
+  const scan = () => {
+    const config = resolveConfig(input);
+    return checkSources({root:fixture, config, policy:createSourcePolicy(config)});
+  };
+  const admitted = await scan();
+  assert.equal(admitted.exceptions.length, reviewed.length);
+  for (const item of reviewed) {
+    const matches = admitted.exceptions.filter(d => d.exception === item.exception.reason);
+    assert.equal(matches.length, 1, item.id);
+    assert.partialDeepStrictEqual(matches[0], currentSites[item.id], item.id);
+  }
+
+  const {exception:reason, ...warning} = angularAudit.sites.D146;
+  const textarea = exceptions.find(e => e.reason === reason)!;
+  textarea.line = messageAudit.sites.D146.line;
+  textarea.column = messageAudit.sites.D146.column;
+  const stale = await scan();
+  assert.ok(stale.diagnostics.some(d => d.file === textarea.file && d.rule === 'exception-error' && d.source === textarea.source));
+  const unapproved = stale.diagnostics.filter(d => d.file === warning.file && d.line === warning.line && d.column === warning.column && d.rule === warning.rule);
+  assert.equal(unapproved.length, 1);
+  assert.partialDeepStrictEqual(unapproved[0], warning);
+  assert.equal(stale.exceptions.length, reviewed.length - 1);
 });
 
 test('the actual proof dependency validator rejects changed producer and helper files', async t => {
@@ -221,7 +268,7 @@ test('copied CLI suppresses only its exact reviewed warning and still rejects li
 test('newly exposed fixed fragment exceptions retain the precise value and audited producer', async () => {
   const ledger=JSON.parse(await readFile(resolve(currentEvidence,'literal-purpose-proof-current.json'),'utf8'));
   const config=parseConfig(example);
-  assert.deepEqual(Object.keys(currentAudit.sites).sort(), [...approvals, ...ledger.records].map(record=>record.id).sort());
+  assert.deepEqual(Object.keys(currentSites).sort(), [...approvals, ...ledger.records].map(record=>record.id).sort());
   for(const record of ledger.records){
     const e=record.exception;
     assert.equal(e.rule,'literal-token');assert.ok(/dynamic expression; fixed (?:12ch|100%)\)/.test(e.source));
