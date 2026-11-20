@@ -50,6 +50,8 @@ Use the relevant component contracts to guide implementation and choose the chec
 
 ## Verify and report
 
+When changing save, retry, or dialog focus, adapt the [optional registration retry test](../../docs/ui-library-consumer-guide.en.md#optional-browser-test-for-retrying-a-save) to the app.
+
 Run the installed CLI's `check`, app type checks and build, and focused browser tests of the changed tasks. Where configured, the source checker scans the selected Angular, CSS, and SCSS files. Record warnings and skipped checks with the scope they leave open. Fix generation mismatches by updating the source configuration and rerunning sync.
 
 For each relevant profile and language, inspect the layout at narrow widths and enlarged text. Verify keyboard focus, reduced motion, visible and accessible labels, and what happens when the user changes settings during editing or a request. Check success, pending, failure, missing data, and recovery with the app's actual inputs. Distinguish build and static-check results, observed interactions, automated accessibility results, and visual or user review.
