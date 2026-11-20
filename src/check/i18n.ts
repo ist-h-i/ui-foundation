@@ -1,4 +1,4 @@
-import { AST, ASTWithSource, Binary, BindingPipe, Call, Chain, Conditional, ImplicitReceiver, Interpolation, KeyedRead, Lexer, LiteralArray, LiteralMap, LiteralPrimitive, NonNullAssert, ParseLocation, ParseSourceFile, ParseSourceSpan, Parser, PropertyRead, SafeCall, SafeKeyedRead, TmplAstLetDeclaration, SafePropertyRead, ThisReceiver } from '@angular/compiler';
+import { AST, ASTWithSource, Binary, BindingPipe, Call, Chain, Conditional, ImplicitReceiver, Interpolation, KeyedRead, Lexer, LiteralArray, LiteralMap, LiteralPrimitive, NonNullAssert, ParseLocation, ParseSourceFile, ParseSourceSpan, Parser, PropertyRead, SafeCall, SafeKeyedRead, TmplAstElement, TmplAstLetDeclaration, SafePropertyRead, ThisReceiver } from '@angular/compiler';
 import ts from 'typescript';
 import type { I18nChecks } from './types.ts';
 
@@ -214,35 +214,48 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
   }
   type TemplateWrapper = (receiver: AST) => Wrapper | undefined;
-  function angularTranslation(value: AST, wrapper: TemplateWrapper): boolean {
-    if (value instanceof ASTWithSource) return angularTranslation(value.ast, wrapper);
+  type ViewLocals = Map<string, string | undefined>;
+  const implicitName = (receiver: AST): string | undefined => {
+    if (receiver instanceof PropertyRead || receiver instanceof SafePropertyRead) {
+      return receiver.receiver instanceof ImplicitReceiver ? receiver.name : implicitName(receiver.receiver);
+    }
+  };
+  function componentName(receiver: AST, locals: ViewLocals): string | undefined {
+    const root = implicitName(receiver);
+    return root && locals.has(root) ? undefined : referenceName(receiver);
+  }
+  function angularTranslation(value: AST, wrapper: TemplateWrapper, locals: ViewLocals): boolean {
+    if (value instanceof ASTWithSource) return angularTranslation(value.ast, wrapper, locals);
     if (value instanceof BindingPipe) return value.name === 'uiStableMessage' || configuredPipe.has(value.name);
-    if (value instanceof Call || value instanceof SafeCall) return !!wrapper(value.receiver) || configuredFunction.has(referenceName(value.receiver) ?? '');
+    if (value instanceof Call || value instanceof SafeCall) {
+      const name = componentName(value.receiver, locals);
+      return !!name && (!!wrapper(value.receiver) || configuredFunction.has(name));
+    }
     return false;
   }
-  function inspectAngular(value: AST, shown: boolean, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, wrapper: TemplateWrapper) {
-    if (value instanceof ASTWithSource) return inspectAngular(value.ast, shown, emit, members, wrapper);
+  function inspectAngular(value: AST, shown: boolean, emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, wrapper: TemplateWrapper, locals: ViewLocals) {
+    if (value instanceof ASTWithSource) return inspectAngular(value.ast, shown, emit, members, wrapper, locals);
     if (value instanceof Chain) {
-      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper);
+      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals);
       return;
     }
-    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members, wrapper);
+    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members, wrapper, locals);
     if (value instanceof BindingPipe) {
       if (value.name === 'uiMessage' && !configuredPipe.has(value.name)) { legacy(value.name, value.sourceSpan, emit); return; }
-      if (angularTranslation(value, wrapper)) {
+      if (angularTranslation(value, wrapper, locals)) {
         checkReference(value.name, knownAngularId(value.exp), angularArguments(value.args[0]), value.sourceSpan, emit, value.name === 'uiStableMessage' && !configuredPipe.has(value.name));
         return;
       }
-      inspectAngular(value.exp, shown, emit, members, wrapper);
+      inspectAngular(value.exp, shown, emit, members, wrapper, locals);
       return;
     }
     if (value instanceof Call || value instanceof SafeCall) {
-      const name = referenceName(value.receiver);
+      const name = componentName(value.receiver, locals);
       if (shown && name) {
         const initializer = members.get(name);
         if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit, members);
       }
-      const kind = wrapper(value.receiver);
+      const kind = name && wrapper(value.receiver);
       if (name && kind === 'request') {
         const request = value.args[0];
         const object = request instanceof LiteralMap && request.keys.every(key => 'key' in key) ? request : undefined;
@@ -251,32 +264,32 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       } else if (name && (kind === 'positional' || configuredFunction.has(name))) {
         checkReference(name, knownAngularId(value.args[0]), angularArguments(value.args[1]), value.sourceSpan, emit, !!kind);
       }
-      else for (const argument of value.args) inspectAngular(argument, false, emit, members, wrapper);
+      else for (const argument of value.args) inspectAngular(argument, false, emit, members, wrapper, locals);
       return;
     }
     if (value instanceof Conditional) {
-      inspectAngular(value.trueExp, shown, emit, members, wrapper);
-      inspectAngular(value.falseExp, shown, emit, members, wrapper);
+      inspectAngular(value.trueExp, shown, emit, members, wrapper, locals);
+      inspectAngular(value.falseExp, shown, emit, members, wrapper, locals);
       return;
     }
     if (value instanceof Interpolation) {
       if (shown && value.strings.some(applicationText)) {
-        if (value.expressions.some(expression => angularTranslation(expression, wrapper))) fragment(value.sourceSpan, emit);
+        if (value.expressions.some(expression => angularTranslation(expression, wrapper, locals))) fragment(value.sourceSpan, emit);
         raw(value.strings.join(''), value.sourceSpan, emit);
       }
-      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper);
+      for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals);
       return;
     }
     if (value instanceof Binary) {
-      if (value.operation === '+' && (angularTranslation(value.left, wrapper) || angularTranslation(value.right, wrapper))) fragment(value.sourceSpan, emit);
+      if (value.operation === '+' && (angularTranslation(value.left, wrapper, locals) || angularTranslation(value.right, wrapper, locals))) fragment(value.sourceSpan, emit);
       if (['+', '||', '??'].includes(value.operation)) {
-        inspectAngular(value.left, shown, emit, members, wrapper);
-        inspectAngular(value.right, shown, emit, members, wrapper);
+        inspectAngular(value.left, shown, emit, members, wrapper, locals);
+        inspectAngular(value.right, shown, emit, members, wrapper, locals);
       }
       return;
     }
     if (shown && (value instanceof KeyedRead || value instanceof SafeKeyedRead)) {
-      const owner = referenceName(value.receiver);
+      const owner = componentName(value.receiver, locals);
       const initializer = owner && members.get(owner);
       if (initializer) {
         const key = value.key instanceof LiteralPrimitive && typeof value.key.value === 'string' ? value.key.value : undefined;
@@ -285,10 +298,14 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
     if (shown && value instanceof LiteralPrimitive) raw(value.value, value.sourceSpan, emit);
     if (shown && (value instanceof PropertyRead || value instanceof SafePropertyRead)) {
-      const name = referenceName(value);
+      if (value.receiver instanceof ImplicitReceiver && locals.has(value.name)) {
+        raw(locals.get(value.name), value.sourceSpan, emit);
+        return;
+      }
+      const name = componentName(value, locals);
       const initializer = name && members.get(name);
       if (initializer) inspectDisplayInitializer(initializer, value.sourceSpan, emit, members);
-      const owner = referenceName(value.receiver);
+      const owner = componentName(value.receiver, locals);
       const map = owner && members.get(owner);
       if (map) inspectMapValue(map, value.name, value.sourceSpan, emit, members, new Set());
     }
@@ -343,11 +360,10 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
     }
   }
 
-  function memberWrapper(members: ReadonlyMap<string, ts.Expression>, checker: ts.TypeChecker, libraryImport: LibraryImport, localNames = new Set<string>()): TemplateWrapper {
+  function memberWrapper(members: ReadonlyMap<string, ts.Expression>, checker: ts.TypeChecker, libraryImport: LibraryImport): TemplateWrapper {
     return receiver => {
       if (!(receiver instanceof PropertyRead || receiver instanceof SafePropertyRead)
           || !(receiver.receiver instanceof ThisReceiver || receiver.receiver instanceof ImplicitReceiver)) return;
-      if (localNames.has(receiver.name) && !(receiver.receiver instanceof ThisReceiver)) return;
       const expression = members.get(receiver.name);
       if (expression && ts.isCallExpression(expression)) return wrapperKind(importedLibraryName(expression.expression, checker, libraryImport));
     };
@@ -355,20 +371,22 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
 
   function template(nodes: readonly TemplateNode[], emit: I18nFinding, members: ReadonlyMap<string, ts.Expression>, context: (start: number, end: number) => string,
                     checker: ts.TypeChecker, libraryImport: LibraryImport) {
-    // Avoid guessing about a member when a template-local variable can own its name.
-    const localNames = new Set<string>();
-    function aliases(node: TemplateNode) {
-      if (node instanceof TmplAstLetDeclaration) localNames.add(node.name);
-      for (const alias of [...node.references ?? [], ...node.variables ?? [], ...node.contextVariables ?? []]) localNames.add(alias.name);
-      if (node.item) localNames.add(node.item.name);
-      if (node.expressionAlias) localNames.add(node.expressionAlias.name);
-      for (const list of [node.children, node.branches, node.cases]) for (const child of list ?? []) aliases(child);
-      for (const child of [node.placeholder, node.empty, node.loading, node.error]) if (child) aliases(child);
-    }
-    for (const node of nodes) aliases(node);
-    const wrapper = memberWrapper(members, checker, libraryImport, localNames);
+    const wrapper = memberWrapper(members, checker, libraryImport);
     const visited = new Set<TemplateNode>();
-    function walk(node: TemplateNode, translate = false, invisible = false, ancestor: string[] = []) {
+
+    function view(nodes: readonly TemplateNode[], parent: ViewLocals, shadowed: readonly { name: string }[] = []): ViewLocals {
+      const locals = new Map(parent);
+      for (const alias of shadowed) locals.set(alias.name, undefined);
+      function references(node: TemplateNode) {
+        for (const reference of node.references ?? []) locals.set(reference.name, undefined);
+        // Plain elements share the containing view. Embedded templates and control-flow blocks have their own.
+        if (node instanceof TmplAstElement) for (const child of node.children) references(child);
+      }
+      for (const node of nodes) references(node);
+      return locals;
+    }
+
+    function walk(node: TemplateNode, locals: ViewLocals, translate = false, invisible = false, ancestor: string[] = []) {
       if (visited.has(node)) return;
       visited.add(node);
       const current = node.startSourceSpan;
@@ -386,18 +404,36 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
         const shown = !hidden && !translated && (display.has(name) || (buttonInput && name === 'value'));
         if (typeof attribute.value === 'string') {
           if (shown) raw(attribute.value, nodeSpan(attribute), local);
-        } else if (attribute.value) inspectAngular(attribute.value, shown, local, members, wrapper);
+        } else if (attribute.value) inspectAngular(attribute.value, shown, local, members, wrapper, locals);
       }
-      for (const output of node.outputs ?? []) inspectAngular(output.handler, false, local, members, wrapper);
+      for (const output of node.outputs ?? []) inspectAngular(output.handler, false, local, members, wrapper, locals);
       if (typeof node.value === 'string') {
         if (!angularI18n && !hidden) raw(node.value, nodeSpan(node), local);
       } else if (node.value instanceof AST) {
-        inspectAngular(node.value, !(node instanceof TmplAstLetDeclaration) && !angularI18n && !hidden, local, members, wrapper);
+        inspectAngular(node.value, !(node instanceof TmplAstLetDeclaration) && !angularI18n && !hidden, local, members, wrapper, locals);
       }
-      for (const list of [node.children, node.branches, node.cases]) for (const child of list ?? []) walk(child, angularI18n, hidden, site);
-      for (const child of [node.placeholder, node.empty, node.loading, node.error]) if (child) walk(child, angularI18n, hidden, site);
+      if (node instanceof TmplAstLetDeclaration) {
+        const reference = node.value instanceof ASTWithSource ? node.value.ast : node.value;
+        const copy = knownAngularId(reference) ?? (reference instanceof PropertyRead && reference.receiver instanceof ImplicitReceiver
+          ? locals.get(reference.name) : undefined);
+        locals.set(node.name, copy);
+      }
+      if (node.children?.length) {
+        const variables = [...node.variables ?? [], ...node.contextVariables ?? []];
+        if (node.item) variables.push(node.item);
+        if (node.expressionAlias) variables.push(node.expressionAlias);
+        const childLocals = node instanceof TmplAstElement ? locals : view(node.children, locals, variables);
+        for (const child of node.children) walk(child, childLocals, angularI18n, hidden, site);
+      }
+      for (const list of [node.branches, node.cases]) {
+        for (const child of list ?? []) walk(child, locals, angularI18n, hidden, site);
+      }
+      for (const child of [node.placeholder, node.empty, node.loading, node.error]) {
+        if (child) walk(child, locals, angularI18n, hidden, site);
+      }
     }
-    for (const node of nodes) walk(node);
+    const locals = view(nodes, new Map());
+    for (const node of nodes) walk(node, locals);
   }
   function typescript(source: ts.SourceFile, checker: ts.TypeChecker, emit: I18nFinding, libraryImport: LibraryImport) {
     const wrappers = new Map<ts.Symbol, 'request' | 'positional'>();
@@ -540,7 +576,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
               const site = span(item);
               // Angular parses the decoded string, so report the original host property span.
               inspectAngular(expression, true, (rule, severity, message, suggestion) =>
-                emit(rule, severity, message, suggestion, site.start, site.end), members, templateWrapper);
+                emit(rule, severity, message, suggestion, site.start, site.end), members, templateWrapper, new Map());
             }
           } else if (display.has(key)) raw(item.initializer.text, span(item), emit);
         }
@@ -554,8 +590,6 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
         const original = imported(node.expression);
         if (ts.isPropertyAccessExpression(node.expression) && original && legacyFunctions.has(original)) {
           legacy(original, span(node), emit);
-        } else if (wrapper === 'positional' || configuredFunction.has(target)) {
-          checkReference(target, knownId(subject), args(node.arguments[1]), span(node), emit, !!wrapper);
         } else if (wrapper === 'request' || original === 'resolveUiMessage') {
           const key = subject && field(subject, 'id');
           const parameters = subject && field(subject, 'parameters');
@@ -565,6 +599,8 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
           const named = parameters?.value ? args(parameters.value) : parameters?.type && subject ? argumentsFromType(parameters.type, subject)
             : !subject || parameters?.unknown ? undefined : {};
           checkReference(target, id, named, span(node), emit, true);
+        } else if (wrapper === 'positional' || configuredFunction.has(target)) {
+          checkReference(target, knownId(subject), args(node.arguments[1]), span(node), emit, !!wrapper);
         }
       }
       ts.forEachChild(node, visit);

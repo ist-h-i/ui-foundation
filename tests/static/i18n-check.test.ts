@@ -315,3 +315,49 @@ test('a template-local control value is not displayed copy and translated aliase
     [4, 'i18n-message-arguments'],
   ]);
 });
+
+test('uses lexical ownership for generated wrappers, app data, template references and displayed aliases', async t => {
+  const fixture = await consumer(t, `<p>{{ text('uiFoundation.outside') }}</p>
+@for (text of api.formatters; track text) { <p>{{ text(api.id) }}</p> }
+<p>{{ text('uiFoundation.sibling') }}</p>
+@for (name of api.names; track name) { <p>{{ name }}</p> }
+<p>{{ name }}</p>
+@if (ready) { <input #text><p>{{ text.value }}</p><p>{{ this.text('uiFoundation.explicit') }}</p> }
+<ng-template let-name><p>{{ name }}</p></ng-template>
+@let state = 'OPEN';
+@if (order.status === state) { <p i18n>Order is open</p> }
+@let label = 'Save order';
+<button>{{ label }}</button>
+@if (ready) { @let label = api.name; <button>{{ label }}</button> }
+<button>{{ label }}</button>`);
+  await fixture.save('src/order.ts', `import {Component} from '@angular/core';
+import {injectUiMessageText} from '../.ui/generated/angular/core';
+@Component({selector: 'app-order', templateUrl: './order.html'})
+export class Order {
+  readonly text = injectUiMessageText();
+  readonly name = 'Fixed component label';
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [
+    [1, 'i18n-message-reference'],
+    [3, 'i18n-message-reference'],
+    [5, 'i18n-raw-text'],
+    [6, 'i18n-message-reference'],
+    [11, 'i18n-raw-text'],
+    [13, 'i18n-raw-text'],
+  ]);
+});
+
+test('the proven request wrapper takes precedence over a configured function with the same name', async t => {
+  const fixture = await consumer(t, '');
+  await fixture.save('src/order.ts', `import {injectUiMessage} from '../.ui/generated/angular/core';
+export class Order {
+  readonly t = injectUiMessage();
+  valid() { return this.t({id: 'uiFoundation.listbox.selectedCount', parameters: {count: 1}}); }
+  invalid() { return this.t({id: 'uiFoundation.listbox.selectedCount', parameters: {count: 'two'}}); }
+}
+`);
+  const findings = i18nOnly((await fixture.check()).diagnostics);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-message-arguments']]);
+});
