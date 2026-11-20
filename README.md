@@ -8,10 +8,10 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 
 ## Get started
 
-For a team on Angular 22.2.1, install the published version with `npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0-beta.5`. It provides the core and full entry points. To try the Angular 22.3 candidate and its forms entry, run `npm ci` and `npm pack` in the library checkout. Copy the archive to the app’s `vendor/` directory and commit it with the app’s package manifest and lockfile so teammates and CI can run `npm ci`. [Installation guide](docs/ui-library-consumer-guide.en.md#install-and-generate)
+From the root of your Angular app, install `0.1.0`, initialize the configuration, and generate the files. [Installation guide](docs/ui-library-consumer-guide.en.md#install-and-generate)
 
 ```sh
-npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -21,7 +21,7 @@ npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-b
 
 Follow the [English installation and integration guide](docs/ui-library-consumer-guide.en.md) for Angular dependencies, styles, workers, assets, updates and recovery. [日本語の導入ガイド](docs/ui-library-consumer-guide.ja.md)
 
-The beta verification environment is Node.js 24.19.0, Angular/CDK 22.3.0 and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
+The tested baseline for `0.1.0` is Node.js 24.19.0, Angular/CDK 22.3.0, and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
 
 ## Build with components
 
@@ -55,7 +55,7 @@ Edit YAML, preview `sync --dry-run`, run `sync`, then `check`. Keep generated fi
 - [Token and generation contracts](docs/design.en.md)
 - [Detailed component contracts](docs/ui-components.en.md)
 - [Static-check scope and limits](docs/static-checks.en.md)
-- [Beta compatibility and recovery](docs/npm-beta-readiness.en.md)
+- [Compatibility and recovery](docs/npm-beta-readiness.en.md)
 
 ## 日本語の概要
 

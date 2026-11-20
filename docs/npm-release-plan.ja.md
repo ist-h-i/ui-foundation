@@ -1,6 +1,8 @@
 # npm公開の手順と記録
 
-現在の公開対象は`@hiroshi.inoue/ui-foundation@0.1.0-beta.4`、配布タグは`beta`、accessは`public`です。2026/11/06の本人の明示依頼により、英語主・日本語副の配布と新規アプリの英語既定値を検証し、必要なPRの通常merge、新版のnpm公開、公開版の導入確認を進めます。認証状態は公開前に確認し、認証情報は記録へ含めません。既存versionは上書きしません。公開版の導入検証後に`latest`も対象版へ更新し、新規プロジェクト・新規cacheで版指定なしの導入を確認します。
+最初の通常版 `0.1.0` の対象、公開条件、タグ切り替えは [npm ベータ解除公開計画](npm-stable-release-plan.ja.md) を参照してください。
+
+2026/11/06に認可された公開対象は`@hiroshi.inoue/ui-foundation@0.1.0-beta.4`、配布タグは`beta`、accessは`public`です。本人の明示依頼により、英語主・日本語副の配布と新規アプリの英語既定値を検証し、必要なPRの通常merge、新版のnpm公開、公開版の導入確認を進めます。認証状態は公開前に確認し、認証情報は記録へ含めません。既存versionは上書きしません。公開版の導入検証後に`latest`も対象版へ更新し、新規プロジェクト・新規cacheで版指定なしの導入を確認します。
 
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。第三者資産の既存条件を保持し、候補と公開版を同じdigestへ結び付けます。CLI exitだけでは公開成功とせず、registryのstatus・version・tag・integrityと新規取得物の導入結果を確認します。過去のbeta.1検証記録は履歴として保持します。
 
@@ -48,9 +50,9 @@ npm install --save-dev /absolute/path/to/hiroshi.inoue-ui-foundation-0.1.0-beta.
 
 文書は`node_modules/<パッケージ名>/docs/`、PDF source kitと原通知は同パッケージの`assets/pdf-source/`と`assets/third-party/`から取得する。アプリへのコピーとworker配信は[利用ガイド](ui-library-consumer-guide.ja.md#css-と配布資産)に従う。`dist/CLI-NOTICE.txt`と生成先の`CHECKER-NOTICE.txt`は別のbundleに対応する。
 
-## 公開工程と見積り
+## ベータ公開時の工程と見積り
 
-初版の準備・公開工程は履歴として保存済みです。今後の通常インストール向けの公開も次の順で進めます。作業量の目安は1〜2hで、待ち時間や本人の実測時間とは別。過去の準備候補は[保存記録](verification/npm-beta-20261019/README.md)、各公開の実施結果はその公開専用の検証記録を参照する。
+以下の公開コマンド、タグ、対応環境はベータ公開時の記録です。通常版 `0.1.0` の公開操作は [npm ベータ解除公開計画](npm-stable-release-plan.ja.md) に従います。ベータ公開時の作業量の目安は1〜2hでした。過去の準備候補は [保存記録](verification/npm-beta-20261019/README.md) を参照してください。
 
 1. 公開用metadata・案内をcommitへ固定し、CLI・検査器をbuild、`npm pack --ignore-scripts --json`で候補を一度作る。SHA256とnpm integrityを保存する。
 2. `UI_FOUNDATION_PACKAGE_TARBALL`と`UI_FOUNDATION_PACKAGE_SHA256`を指定したpackage試験で、その候補を隔離導入する。入力は一時領域へコピーし前後hashと全metadataを照合する。digest不一致は導入前に失敗させ、候補の再build・再packへ置換しない。

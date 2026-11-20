@@ -1,21 +1,21 @@
-# 公開ベータの利用・更新契約
+# 導入・更新・復旧の利用契約
 
 [English](npm-beta-readiness.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0-beta.6`の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
+`@hiroshi.inoue/ui-foundation@0.1.0` の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
 
-## ベータで受け入れる範囲
+## 検証環境と公開契約
 
-| 境界 | ベータの契約 |
+| 対象 | 契約 |
 | --- | --- |
-| 配布 | 一つのCLIパッケージがAngularソース・CSS・Skill・検査器を生成する。Angularのコンパイル済みライブラリではない |
-| NodeとOS | Node.js **24.19.0**、macOS arm64。他のNode系列・OSは未検証 |
-| 利用アプリ | Angular/CDK 22.3.0、TypeScript 6.0.3と記録したlockfile。基礎・専門部品の依存は[利用ガイド](ui-library-consumer-guide.ja.md#依存関係)に従う |
-| ブラウザー | 検証構成の重点操作はPlaywright Chromium。その他のブラウザーや支援技術は利用アプリの採用構成で確認する |
-| API | YAML schema_version=1、CLIのinit/sync/checkと既存flags、公開Angular barrelの明示export、生成先の構造。manifest/policy/ownership/lockはツールが管理し、アプリが手編集するAPIにしない |
-| 検査結果 | CLIのcheckは生成一致＋ソース検査。生成check-ui.cjsはpolicyとソース検査。JSONの既存フィールドとエラー/警告/未設定の意味を維持する |
+| 配布 | npm パッケージの CLI が Angular ソース、CSS、Skill、検査器を生成する。生成されたソースはアプリがコンパイルする。 |
+| Node と OS | Node.js **24.19.0**、macOS arm64。 |
+| 利用アプリ | Angular/CDK 22.3.0、TypeScript 6.0.3。基本・専門部品の依存関係は利用ガイドに従う。 [依存関係](ui-library-consumer-guide.ja.md#依存関係) |
+| ブラウザー | 主な操作は Playwright Chromium で確認済み。その他のブラウザーや支援技術は利用アプリで確認する。 |
+| API | YAML の `schema_version=1`、文書化した CLI のコマンドと引数、Angular の公開入口が明示する export、セマンティックトークン、安定メッセージ ID と名前付き引数。manifest、policy、所有権情報、同期ロックは CLI が管理する。 |
+| 検査結果 | CLI の `check` は生成一致とソースを検査し、生成した `check-ui.cjs` は policy とソースを検査する。文書化したフィールドと状態の意味を公開契約に含める。 |
 
-全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の25エンジンなどを型解決できる必要があります。`angular/core.ts` とbeta.6で加わる `angular/forms.ts` の公開APIは、利用ガイドに記載の基本部品の依存で型解決できます。追加構成は利用アプリで確認します。
+全件入口 `angular/index.ts` は専門部品まで参照するため、利用時はガイド記載の 25 エンジンなどを型解決できる必要があります。`angular/core.ts` と `angular/forms.ts` の公開 API は、利用ガイドに記載の基本部品の依存関係で型解決できます。
 
 ## 導入と文書
 
@@ -37,7 +37,7 @@ npm 内の `assets/third-party/` は全内容を配信成果物に含める。PD
 4. `sync`とCLI `check`を実行し、生成差分・依存差分・型検査・build・主要操作を確認する。アプリの変更と生成コードを一緒に反映する。
 5. 復旧は、記録した旧CLI版だけでなく、対応するlockfile・YAML・生成物・Skillも同じ復旧点へ戻す。新旧を混在させたり、未知の所有物を旧manifestへ採用しない。旧CLIのcheckとアプリ検証を再実行する。
 
-更新・復旧の技術的な確認だけで、将来の互換性を保証しない。ベータは最新候補を中心に保守し、互換性を壊す変更は版とリリースノートで明示する。複数旧版の長期保守は約束しない。
+`0.1.x` のパッチ更新は、対応する依存バージョンで文書化した公開契約の維持を目指します。互換性に影響する変更と移行手順はリリースノートに記載します。ベータ版から更新する場合は、検証済みの依存バージョンと移行手順を併せて確認してください。 [0.1.0 への移行](npm-beta-release-notes.ja.md#010)
 
 ## 同時実行と中断
 
@@ -57,4 +57,4 @@ markerが残った場合は次の順で復旧する。
 
 Markdown/HTMLの無害化と通信先制御は別の責任。利用アプリは外部画像・媒体のorigin、CSP、ネットワークアクセス、認証を決める。HTTP(S)/Blobの形式検査があることを、外部への通信が禁止されている証拠にしない。
 
-CSV出力は数式対策を既定で有効にするが、既存TSV/コピーは数式を保持する。未信頼の文字列を表計算ソフトへ渡す場合は、アプリが`serializeTableMatrix(matrix, '\t', true)`を使うwriterへ明示接続する。数式保持が必要な処理と安全な文字列出力を同じ成功条件にせず、実際の貼り付け先でも確認する。TSVの既定挙動はこのベータで黙って変更しない。
+CSV 出力は数式対策を既定で有効にします。TSV とコピーでは数式を保持します。信頼できない文字列を表計算ソフトへ渡す場合は、アプリの出力処理に `serializeTableMatrix(matrix, '\t', true)` を接続し、実際の貼り付け先でも確認してください。

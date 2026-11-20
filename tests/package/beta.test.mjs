@@ -54,8 +54,8 @@ async function verifySkillReferences(consumer, allowedDocs) {
   return checked;
 }
 
-test('beta tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 720_000 }, async t => {
-  const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-beta-'));
+test('release tarball is isolated from checkout, upgrades safely, and builds/operates a real Angular consumer', { timeout: 720_000 }, async t => {
+  const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-release-'));
   const consumer = resolve(root, 'consumer');
   await mkdir(consumer);
   let candidate, candidateDetails, tarballDigest, finalReport;
@@ -88,8 +88,8 @@ test('beta tarball is isolated from checkout, upgrades safely, and builds/operat
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0-beta.6');
-  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'next' });
+  assert.equal(manifest.version, '0.1.0');
+  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'release-candidate' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
   const execute = (file, args, cwd = consumer, timeout = 120_000) => run(file, args, { cwd, timeout, signal: t.signal });

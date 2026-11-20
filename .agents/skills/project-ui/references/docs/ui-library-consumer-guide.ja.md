@@ -18,15 +18,15 @@
 
 ### パッケージを導入する
 
-Angular 22.3向け候補版を試すには、ライブラリ側で `npm ci`、`npm pack` の順に実行し、できたファイルを利用アプリの `vendor/` に置きます。アプリのルートでインストールして設定を初期化します。配布ファイル、`package.json`、`package-lock.json` を一緒にGitへ登録すると、チームの新しい環境でも `npm ci` で導入できます。
+アプリのルートでパッケージの版を指定してインストールし、設定を初期化します。`package.json` と `package-lock.json` を一緒に Git へ登録すると、開発環境や CI で `npm ci` を使って同じ版を導入できます。
 
 ```sh
-npm install --save-dev --save-exact ./vendor/hiroshi.inoue-ui-foundation-0.1.0-beta.6.tgz
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0
 ./node_modules/.bin/ui-foundation --help
 ./node_modules/.bin/ui-foundation init --language ja
 ```
 
-Node.js 24.19.0、macOS arm64、Angular/CDK 22.3.0、TypeScript 6.0.3がベータの検証環境です。生成UIを使うには、Angular/RxJS/CDK、アイコン、専門部品のエンジンなどをアプリ側に導入します。**CLIのインストールだけで、生成UIの依存が揃うわけではありません。** 全件入口を使う場合は、小さな画面でも[依存関係](#依存関係)の専門エンジンまで型解決できる必要があります。[ベータ利用契約](npm-beta-readiness.ja.md)も確認してください。
+`0.1.0` の検証環境は Node.js 24.19.0、macOS arm64、Angular/CDK 22.3.0、TypeScript 6.0.3 です。**生成 UI に必要な依存関係は、アプリ側で導入します。** 全件入口を使う場合は、画面で使う部品の数にかかわらず、専門部品のエンジンまで型解決できる必要があります。 [依存関係](#依存関係) · [利用契約](npm-beta-readiness.ja.md)
 
 npm install後は`node_modules/@hiroshi.inoue/ui-foundation/docs/`で、導入した版の利用者文書を読めます。`sync`すると同じ文書が`.agents/skills/project-ui/references/docs/`へコピーされ、アプリ用のSkillと`project-context.md`も生成されます。開発元の計画・ADR・要求マトリクス・監査・検証履歴は配布せず、導入時の必須入力にはしません。
 
@@ -345,7 +345,7 @@ export class DepartmentScreen {
 
 ## 依存関係
 
-ベータの検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
+`0.1.0` の検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
 
 全件入口 `angular/index.ts` から参照される追加 runtime engine は次の 25 件です。この入口を使うときは、画面で使う部品が少なくても strict compile で解決できるようにします。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
 
@@ -494,7 +494,7 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 
 ### パッケージの版を更新する
 
-CLIをnpmで更新しただけでは、アプリへコピー済みの部品・Skill・利用者文書は更新されません。再同期すると、生成Skillの`references/docs/`も導入版に更新されます。beta.1からbeta.2では、旧manifestが所有する開発文書等が削除対象になるため、[リリースノート](npm-beta-release-notes.ja.md#beta1からの更新)も確認してください。旧パッケージ版・lockfile・YAML・生成物・Skillを同じ復旧点へ保存し、更新先の依存/API変更を確認してから、上と同じdry-run・sync・checkとアプリ検証を行います。版の選択、中断時のlock、生成先の移動、復旧は[ベータ利用契約](npm-beta-readiness.ja.md#更新と復旧)と[コマンド一覧](commands.ja.md)に従います。
+CLI を npm で更新した後、再同期してアプリの部品・Skill・利用者文書を更新します。旧パッケージ版・lockfile・YAML・生成物・Skill を同じ復旧点へ保存し、更新先の依存関係と API の変更を確認してから、上と同じ dry-run・sync・check とアプリ検証を行います。`0.1.0` へ移行するときは、移行元のベータ版に応じた手順を確認してください。 [0.1.0 への移行](npm-beta-release-notes.ja.md#010) · [更新と復旧](npm-beta-readiness.ja.md#更新と復旧) · [コマンド一覧](commands.ja.md)
 
 ## 保存の再試行を確認する任意のブラウザーテスト
 

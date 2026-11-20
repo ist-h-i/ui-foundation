@@ -2,12 +2,12 @@
 
 [Japanese](ui-message-migration.ja.md)
 
-`0.1.0-beta.5` is a breaking prerelease. The previous release is `@hiroshi.inoue/ui-foundation@0.1.0-beta.4`. Keep that exact version and its lockfile, YAML, generated UI, and generated Skill if your app relies on Japanese source keys. The installed beta.4 package contains the matching usage guide.
+Stable message IDs were introduced in `0.1.0-beta.5` and are used by `0.1.0`. If your app still relies on Japanese source keys, keep `@hiroshi.inoue/ui-foundation@0.1.0-beta.4` and its matching lockfile, YAML, generated UI, and generated Skill until you can migrate. The installed beta.4 package contains the matching usage guide.
 
 ## Choose the new version
 
 1. Save an app checkpoint with its package manifest, lockfile, source code, YAML, generated UI, and `.agents/skills/project-ui/`. Keep a copy of any local edits in generator-owned files.
-2. Install the candidate explicitly with `npm install --save-dev --save-exact /absolute/path/to/candidate.tgz`. Once it is on npm, the same command can use `@hiroshi.inoue/ui-foundation@0.1.0-beta.5`. Confirm the installed version and lockfile before running its bin.
+2. Install the release with `npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0`. Confirm the installed version and lockfile before running its CLI.
 3. Run `./node_modules/.bin/ui-foundation sync --dry-run` and inspect the planned removals. The old `angular/locale-en.ts`, `angular/locale-ja.ts`, `SKILL.en.md`, and `SKILL.ja.md` leave the generated directories. If sync reports an edited or unowned file, save the edits separately and resolve ownership before syncing. Use `.agents/skills/project-ui/SKILL.md` in prompts or automation that referenced an old Skill path.
 4. Run `./node_modules/.bin/ui-foundation sync`, update app imports and translations, then run `./node_modules/.bin/ui-foundation check`, the app's strict AOT build, and focused browser tests. Verify settings and documented dependency compatibility before adopting the update.
 
@@ -33,4 +33,4 @@ Use the [shared lazy dictionary example](../examples/locale-adapter.ts) with the
 
 Restore the saved app source, package manifest, lockfile, YAML, generated directory, and project Skill together from the checkpoint. Reinstall with the old lockfile and confirm the package is `0.1.0-beta.4`. Run its installed CLI's `check` and rerun the app build and representative workflows. If the owned directories were omitted from the backup, regenerate them with the exact old package and restored YAML in a clean checkout. Keep local edits in the saved copy until their ownership is resolved.
 
-The packed consumer uses Angular/CDK 22.2.1 and TypeScript 6.0.3. Angular 21/TypeScript 5.9 is outside that matrix. The existing `Popover` template calls a native Popover API that was incompatible with the tested TypeScript 5.9 DOM declarations. Verify the target app/compiler before adopting the generated full entry point. [Beta verification scope](npm-beta-readiness.en.md)
+The `0.1.0` baseline is Angular/CDK 22.3.0 and TypeScript 6.0.3. The earlier beta.5 verification used Angular/CDK 22.2.1. When Angular 21 and TypeScript 5.9 were tried, the native API in the `Popover` template was incompatible with those DOM declarations. [Tested environment and public contract](npm-beta-readiness.en.md)

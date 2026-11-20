@@ -1,21 +1,21 @@
-# Public beta installation, upgrade and recovery contract
+# Installation, upgrade and recovery contract
 
 [Japanese](npm-beta-readiness.ja.md)
 
-This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.1.0-beta.6`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
+This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.1.0`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
 
-## Accepted beta scope
+## Tested environment and public contract
 
 | Boundary | Contract |
 | --- | --- |
-| Distribution | One CLI package generates Angular source, CSS, Skill and checker; it is not a compiled Angular library. |
-| Node and OS | Node.js **24.19.0**, macOS arm64; other Node series/OS are unverified. |
-| Consumer | Angular/CDK22.3.0, TypeScript6.0.3 and the recorded lockfile; follow the [dependency guide](ui-library-consumer-guide.en.md#application-dependencies) for foundation/specialist dependencies. |
-| Browser | Focused interactions in the verified configuration use Playwright Chromium; verify other browsers/assistive technology in the app's adopted configuration. |
-| API | YAML `schema_version=1`, CLI init/sync/check and existing flags, explicit exports from the public Angular barrel and generated structure. Manifest/policy/ownership/lock are tool-managed, not app-editable APIs. |
-| Check results | CLI check combines generation consistency and source checks; generated check-ui.cjs checks policy/source. Existing JSON fields and error/warning/not-configured meanings are retained. |
+| Distribution | The npm package provides a CLI that generates Angular source, CSS, Skill, and a source checker. The app compiles the generated source. |
+| Node and OS | Node.js **24.19.0** on macOS arm64. |
+| Consumer | Angular/CDK 22.3.0 and TypeScript 6.0.3. Follow the [dependency guide](ui-library-consumer-guide.en.md#application-dependencies) for foundation and specialist dependencies. |
+| Browser | Focused interactions were verified in Playwright Chromium. Verify other browsers and assistive technology in your app. |
+| API | YAML `schema_version=1`, documented CLI commands and flags, explicit exports from the public Angular entries, semantic tokens, and stable message IDs and their named arguments. The CLI manages the manifest, policy, ownership data, and sync lock. |
+| Check results | CLI `check` combines generation consistency and source checks. Generated `check-ui.cjs` checks policy and source. Documented fields and status meanings are part of the public contract. |
 
-The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. Apps using the public `angular/core.ts` and `angular/forms.ts` entries can use the smaller dependency set in the consumer guide. The forms entry is available starting with beta.6. Verify additional configurations in the consumer.
+The full `angular/index.ts` entry references specialist components, so apps that use it must resolve the 25 engines and other dependencies listed in the guide. Apps using the public `angular/core.ts` and `angular/forms.ts` entries can use the smaller dependency set in the consumer guide.
 
 ## Installation and documentation
 
@@ -37,7 +37,7 @@ Copy all contents of npm `assets/third-party/` into delivered assets. When shipp
 4. Run sync and CLI check; inspect generated/dependency changes, typecheck, build and key interactions. Adopt app and generated changes together.
 5. Roll back the saved CLI **and matching lockfile, YAML, output and Skill** to the same recovery point. Do not mix versions or adopt unknown files into an old manifest. Rerun the old CLI check and app verification.
 
-Technical upgrade/recovery tests do not guarantee future compatibility. The beta primarily maintains the latest candidate, identifies incompatible changes by version/release notes and does not promise long-term maintenance of multiple old versions.
+Patch releases in `0.1.x` aim to preserve the documented public contract for the supported versions. Release notes identify incompatible changes and any migration steps. For a beta upgrade, review the tested dependency versions and the migration instructions together. [Upgrade to 0.1.0](npm-beta-release-notes.en.md#010)
 
 ## Concurrent execution and interruption
 
@@ -57,4 +57,4 @@ Recover a retained marker as follows:
 
 Markdown/HTML sanitization and destination control are separate. The app selects external image/media origins, CSP, network access and authentication. HTTP(S)/Blob shape checks do not establish prohibition of outbound requests.
 
-CSV enables formula mitigation by default; existing TSV/copy retains formulas. For untrusted strings sent to spreadsheet software, explicitly connect an app writer using `serializeTableMatrix(matrix, '\t', true)`. Formula-preserving workflows and safe-string output have different acceptance criteria; verify the actual paste destination. The beta does not silently change default TSV behavior.
+CSV enables formula mitigation by default. TSV and copy retain formulas. For untrusted strings sent to spreadsheet software, explicitly connect an app writer using `serializeTableMatrix(matrix, '\t', true)` and verify the paste destination.
