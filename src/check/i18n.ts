@@ -1,4 +1,4 @@
-import { AST, ASTWithSource, Binary, BindingPipe, Call, Chain, Conditional, ImplicitReceiver, Interpolation, KeyedRead, Lexer, LiteralArray, LiteralMap, LiteralPrimitive, NonNullAssert, ParseLocation, ParseSourceFile, ParseSourceSpan, Parser, PropertyRead, SafeCall, SafeKeyedRead, TmplAstElement, TmplAstLetDeclaration, SafePropertyRead, ThisReceiver } from '@angular/compiler';
+import { AST, ASTWithSource, Binary, BindingPipe, Call, Chain, Conditional, ImplicitReceiver, Interpolation, KeyedRead, Lexer, LiteralArray, LiteralMap, LiteralPrimitive, NonNullAssert, ParenthesizedExpression, ParseLocation, ParseSourceFile, ParseSourceSpan, Parser, PropertyRead, SafeCall, SafeKeyedRead, TmplAstElement, TmplAstLetDeclaration, SafePropertyRead, ThisReceiver } from '@angular/compiler';
 import ts from 'typescript';
 import type { I18nChecks } from './types.ts';
 
@@ -33,7 +33,7 @@ function knownAngularId(value: AST | undefined, locals: ViewLocals, aliasDepth =
     if (left !== undefined && right !== undefined) return left + right;
   }
   if (value instanceof ASTWithSource) return knownAngularId(value.ast, locals, aliasDepth);
-  if (value instanceof NonNullAssert) return knownAngularId(value.expression, locals, aliasDepth);
+  if (value instanceof NonNullAssert || value instanceof ParenthesizedExpression) return knownAngularId(value.expression, locals, aliasDepth);
   if (value instanceof PropertyRead && value.receiver instanceof ImplicitReceiver && aliasDepth < maxAliasDepth) {
     const alias = locals.get(value.name);
     if (alias) return knownAngularId(alias.initializer, alias.scope, aliasDepth + 1);
@@ -233,7 +233,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
   }
   function angularTranslation(value: AST, wrapper: TemplateWrapper, locals: ViewLocals, depth = 0): boolean {
     if (value instanceof ASTWithSource) return angularTranslation(value.ast, wrapper, locals, depth);
-    if (value instanceof NonNullAssert) return angularTranslation(value.expression, wrapper, locals, depth);
+    if (value instanceof NonNullAssert || value instanceof ParenthesizedExpression) return angularTranslation(value.expression, wrapper, locals, depth);
     if (value instanceof PropertyRead && value.receiver instanceof ImplicitReceiver && depth < maxAliasDepth) {
       const alias = locals.get(value.name);
       return !!alias && angularTranslation(alias.initializer, wrapper, alias.scope, depth + 1);
@@ -251,7 +251,7 @@ export function createMessageChecks(config: I18nChecks, dictionaries: readonly M
       for (const expression of value.expressions) inspectAngular(expression, shown, emit, members, wrapper, locals, aliasDepth);
       return;
     }
-    if (value instanceof NonNullAssert) return inspectAngular(value.expression, shown, emit, members, wrapper, locals, aliasDepth);
+    if (value instanceof NonNullAssert || value instanceof ParenthesizedExpression) return inspectAngular(value.expression, shown, emit, members, wrapper, locals, aliasDepth);
     if (value instanceof BindingPipe) {
       if (value.name === 'uiMessage' && !configuredPipe.has(value.name)) {
         if (!aliasDepth) legacy(value.name, value.sourceSpan, emit);

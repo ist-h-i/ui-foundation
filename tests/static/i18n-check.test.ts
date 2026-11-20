@@ -399,11 +399,12 @@ export class Order {
 });
 
 test('selects the exact status-map entry and detects a translated fragment through a local alias', async t => {
-  const fixture = await consumer(t, `@let selected = 'ORDER';
+  const fixture = await consumer(t, `@let selected = ('ORDER');
 @let activeMessage = errors[selected];
 <p>{{ activeMessage }}</p>
 @let translated = t('order.save');
-<p>{{ translated + author }}</p>`);
+<p>{{ (translated) + author }}</p>
+<button>{{ ('Grouped fixed copy') }}</button>`);
   await fixture.save('src/order.ts', `import {Component} from '@angular/core';
 @Component({selector:'app-order', templateUrl: './order.html'}) export class Order {
   receivedMessage = '';
@@ -411,5 +412,5 @@ test('selects the exact status-map entry and detects a translated fragment throu
   readonly errors = { ORDER: this.receivedMessage, SERVER: 'Fixed server message' };
 }`);
   const findings = i18nOnly((await fixture.check()).diagnostics);
-  assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-fragment']]);
+  assert.deepEqual(findings.map(item => [item.line, item.rule]), [[5, 'i18n-fragment'], [6, 'i18n-raw-text']]);
 });
