@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText} from './locale';
+import {injectUiMessage} from './locale';
 import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, output, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
 import { focusBeforeHiding } from './layout';
@@ -28,12 +28,12 @@ export type AsyncRegionState = {
   `,
 })
 export class AsyncRegion {
- protected readonly uiText_AsyncRegion=injectUiText();
+ protected readonly uiText_AsyncRegion=injectUiMessage();
     readonly state = input.required<AsyncRegionState>();
     readonly retryAvailable = input(false);
     readonly retryBusy = input(false);
     readonly retryLabel = input<string>();
- protected readonly uiEffective_retryLabel=uiLocaleComputed(()=>this.retryLabel()??this.uiText_AsyncRegion('再試行'));
+ protected readonly uiEffective_retryLabel=uiLocaleComputed(()=>this.retryLabel()??this.uiText_AsyncRegion({id:'uiFoundation.asyncRegion.retryAction'}));
     readonly retry = output<void>();
     readonly focusFallback = input<HTMLElement | null>(null);
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;

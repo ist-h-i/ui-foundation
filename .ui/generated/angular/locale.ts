@@ -1,4 +1,4 @@
-import { resolveUiMessage, type UiMessageRequest } from './stable-messages';
+import { resolveUiMessage, type UiMessageRequest, type UiStaticMessageId } from './stable-messages';
 import {Dir,Directionality,type Direction} from '@angular/cdk/bidi';
 import {afterNextRender,computed,DOCUMENT,DestroyRef,Directive,EventEmitter,effect,ElementRef,inject,InjectionToken,Injector,input,isSignal,Pipe,type PipeTransform,type Provider,Renderer2,signal,type Signal} from '@angular/core';
 import {defaultUiLocale,resolveUiLocale,uiMessage,type UiLocaleOptions,type UiLocaleResolved} from './locale-model';
@@ -12,6 +12,15 @@ export function injectUiLocale():Signal<UiLocaleResolved>{return inject(UI_LOCAL
 export function injectUiMessage(): (request: UiMessageRequest) => string {
  const locale=injectUiLocale();
  return request=>{const current=locale();return resolveUiMessage(request,current.locale,current.translate);};
+}
+@Pipe({name:'uiStableMessage',standalone:true,pure:false})
+export class UiStableMessagePipe implements PipeTransform{
+ private readonly text=injectUiMessage();
+ transform(id:UiStaticMessageId):string{
+  // Every member of this union is a request with no named arguments.
+  const request={id} as UiMessageRequest<UiStaticMessageId>;
+  return this.text(request);
+ }
 }
 export function injectUiText():(source:string,parameters?:Readonly<Record<string,string|number>>,fallback?:()=>string)=>string{
  const locale=injectUiLocale();

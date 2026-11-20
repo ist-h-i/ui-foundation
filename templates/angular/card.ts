@@ -1,5 +1,5 @@
 import {computed as uiLocaleComputed} from '@angular/core';
-import {injectUiText,UiMessagePipe} from './locale';
+import {injectUiMessage} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, Directive, effect, afterRenderEffect, ElementRef, inject, input, linkedSignal, output, TemplateRef, viewChild, viewChildren, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
@@ -41,15 +41,15 @@ export class CardMedia extends CardRegion {
 @Component({ selector: 'ui-card-actions', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content />', styles: regionStyles + ':host{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}:host([data-align="center"]){justify-content:center;}:host([data-align="end"]){justify-content:end;}' })
 export class CardActions extends CardRegion {
 }
-@Component({ selector: 'ui-card', standalone: true, imports: [NgTemplateOutlet, ActionControl,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
+@Component({ selector: 'ui-card', standalone: true, imports: [NgTemplateOutlet, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[attr.data-appearance]': 'appearance()', '[attr.data-orientation]': 'orientation()', '[attr.data-padding]': 'padding()' },
     template: `<article #article tabindex="-1" [attr.aria-label]="label()||title()||null" [attr.aria-busy]="loading()">
   <header data-card-area="header" [hidden]="!showHeader()"><div class="ui-card__heading">
    @if(template('header');as header){<ng-container [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{$implicit:context()}" />}
    @else{<ng-content select="ui-card-header,[uiCardHeader]" />@if(title()){<h2>{{title()}}</h2>}@if(subtitle()){<p class="ui-card__subtitle">{{subtitle()}}</p>}}
-   @if(collapsible()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?('展開' | uiMessage):('折り畳む' | uiMessage)}}: {{title()||label()}}</button>}
+   @if(collapsible()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{toggleLabel()}}</button>}
   </div></header>
-  @if(collapsible()&&!showHeader()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{folded()?('展開' | uiMessage):('折り畳む' | uiMessage)}}: {{title()||label()}}</button>}
+  @if(collapsible()&&!showHeader()){<button #toggle uiAction [attr.aria-expanded]="!folded()" [attr.aria-controls]="cardId()+'-content'" (click)="toggleCollapsed()">{{toggleLabel()}}</button>}
   <div #content [id]="cardId()+'-content'" [hidden]="collapsible()&&folded()" class="ui-card__content">
    <div class="ui-card__media" data-card-area="media" [hidden]="!showMedia()">@if(template('media');as media){<ng-container [ngTemplateOutlet]="media.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content select="ui-card-media,[uiCardMedia]" />}</div>
    <div class="ui-card__body" data-card-area="body" [hidden]="!showBody()">@if(template('body');as body){<ng-container [ngTemplateOutlet]="body.template" [ngTemplateOutletContext]="{$implicit:context()}" />}@else{<ng-content />}</div>
@@ -61,7 +61,11 @@ export class CardActions extends CardRegion {
     styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);overflow-wrap:anywhere;--ui-card-inset:var(--ui-space-section);}:host([hidden]){display:none;}:host([data-appearance="plain"]){border-color:transparent;}:host([data-appearance="raised"]){box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);}:host([data-padding="compact"]){--ui-card-inset:var(--ui-space-control-y);}:host([data-padding="none"]){--ui-card-inset:0px;}article{min-inline-size:0;padding:var(--ui-card-inset);display:grid;gap:var(--ui-card-inset);}[hidden]{display:none!important;}header:has(>.ui-card__heading:empty),[data-card-area]:empty,.ui-card__loading:empty{display:none;}h2{font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);margin:0;}p{margin:0;}.ui-card__heading{display:grid;gap:var(--ui-space-control-gap);}.ui-card__subtitle,.ui-card__loading{color:var(--ui-color-muted);font-size:var(--ui-text-small);}.ui-card__content{display:none;gap:var(--ui-card-inset);min-inline-size:0;}.ui-card__content:has(>[data-card-area]:not(:empty):not([hidden])){display:grid;}:host([data-orientation="horizontal"]) .ui-card__content{grid-template-columns:repeat(2,minmax(0,1fr));}:host([data-orientation="horizontal"]) footer,:host([data-orientation="horizontal"]) .ui-card__actions{grid-column:1/-1;}@media(max-width:40rem){:host([data-orientation="horizontal"]) .ui-card__content{grid-template-columns:minmax(0,1fr);}}article:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
 })
 export class Card {
- protected readonly uiText_Card=injectUiText();
+ protected readonly uiText_Card=injectUiMessage();
+    protected readonly toggleLabel = uiLocaleComputed(() => this.uiText_Card({
+        id: this.folded() ? 'uiFoundation.card.expand' : 'uiFoundation.card.collapse',
+        parameters: { title: this.title() || this.label() },
+    }));
     readonly cardId = input.required<string>();
     readonly title = input('');
     readonly subtitle = input('');
@@ -79,7 +83,7 @@ export class Card {
     readonly collapsedChange = output<boolean>();
     readonly loading = input(false, { transform: booleanAttribute });
     readonly loadingLabel = input<string>();
- protected readonly uiEffective_loadingLabel=uiLocaleComputed(()=>this.loadingLabel()??this.uiText_Card('内容を読み込んでいます。'));
+ protected readonly uiEffective_loadingLabel=uiLocaleComputed(()=>this.loadingLabel()??this.uiText_Card({id:'uiFoundation.card.loading'}));
     protected readonly folded = linkedSignal(() => this.collapsed());
     private readonly templates = contentChildren(CardTemplate);
     private readonly content = viewChild<unknown, ElementRef<HTMLElement>>('content', { read: ElementRef });

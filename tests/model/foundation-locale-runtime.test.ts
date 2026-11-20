@@ -2,7 +2,7 @@ import '@angular/compiler';
 import {createEnvironmentInjector,runInInjectionContext,signal,type EnvironmentInjector} from '@angular/core';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
-import {injectUiLocale,injectUiText,provideUiLocale,UI_LOCALE} from '../../.ui/generated/angular/locale';
+import {injectUiLocale,injectUiMessage,injectUiText,provideUiLocale,UI_LOCALE} from '../../.ui/generated/angular/locale';
 import type {UiLocaleOptions} from '../../.ui/generated/angular/locale-model';
 import {uiEnglishMessages} from '../../.ui/generated/angular/locale-en';
 import {listSelectionProblem} from '../../.ui/generated/angular/collection-model';
@@ -37,4 +37,22 @@ test('provider and message service run in a server DI context without reading br
   assert.ok(Object.isFrozen(uiEnglishMessages));
   injector.destroy();assert.throws(()=>injector!.get(UI_LOCALE));injector=undefined;
  }finally{injector?.destroy();for(const [key,descriptor] of [['document',oldDocument],['window',oldWindow]] as const){if(descriptor)Object.defineProperty(globalThis,key,descriptor);else Reflect.deleteProperty(globalThis,key);}}
+});
+
+test('the stable-message provider reads the current locale and asynchronously loaded translation', () => {
+ const options = signal<UiLocaleOptions>({locale:'en-US'});
+ const ready = signal(false);
+ const injector=createEnvironmentInjector(provideUiLocale(options),null as unknown as EnvironmentInjector);
+ try {
+  const text = runInInjectionContext(injector,injectUiMessage);
+  const request={id:'uiFoundation.dialog.closeLabel'} as const;
+  assert.equal(text(request),'Close dialog');
+  options.set({locale:'ja-JP',translate:(message,locale)=>
+    ready()&&locale==='ja-JP'&&message.id===request.id?'閉じて戻る':undefined});
+  assert.equal(text(request),'ダイアログを閉じる');
+  ready.set(true);
+  assert.equal(text(request),'閉じて戻る');
+  options.update(value=>({...value,locale:'en-US'}));
+  assert.equal(text(request),'Close dialog');
+ } finally { injector.destroy(); }
 });

@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "templates/angular/action-control.ts",
-      "sha256": "badbd9a03ad03b18a6a915fb4698a8d0a9b6c630ae6d496e92a72315026f2c86",
+      "sha256": "070ba4a79067ee09953513283a5421ca646e7147197df19f05a8e833bff4b10b",
       "declarations": [
         {
           "names": [
@@ -172,7 +172,7 @@
     },
     {
       "path": "templates/angular/action-feedback.ts",
-      "sha256": "359158e426d51730d5ae3ac695f670b6f91c6381f594ad67660d704cdee30717",
+      "sha256": "7916f155ef639b315e07542af3483123bc3d529896c9e22eb4a4f7723ef55e08",
       "declarations": [
         {
           "names": [
@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "5e0a6ee3e546bbf03c7d45372499db3357152470a47e460de938f7a145cabfff",
+      "sha256": "6f02ae784de30c8d84d6b2f58af6c720cf35b94af7a1b0cbc24d68a9ea269e45",
       "declarations": [
         {
           "name": "IconButton",
@@ -830,7 +830,7 @@
     },
     {
       "path": "templates/angular/async-region.ts",
-      "sha256": "51bb13e2d0d5518fecad263b65bd2c620f3ba99c8a0ed5ac6eefa7e6a31d7a1f",
+      "sha256": "e3ad5f0e2fbf86e9d19ea6d6345538ada6a07069dfc8a3e334d76686112308f9",
       "declarations": [
         {
           "names": [
@@ -1132,7 +1132,7 @@
     },
     {
       "path": "templates/angular/card.ts",
-      "sha256": "641e2cbf941854fecae2503f721b9b84b7556e9c0ba9a73ee3dc590b180b5c9b",
+      "sha256": "eb4b549096dbbaae2dfc198518daa132be7c368473d91dfda77b0f6a2fd47dd9",
       "declarations": [
         {
           "names": [
@@ -5162,7 +5162,7 @@
     },
     {
       "path": "templates/angular/dialog.ts",
-      "sha256": "bba2cd978843a86f22fefa1718fe8531fe8c610d4d5d0c187a7abb66f32af56b",
+      "sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
       "declarations": [
         {
           "names": [
@@ -5245,7 +5245,7 @@
             "DIALOG_HEADER_TEMPLATE"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_HEADER_TEMPLATE = `\n    <header [hidden]=\"!showHeader()\" class=\"ui-dialog__header\">\n      <div class=\"ui-dialog__title\">\n        @if (template('header'); as header) { <ng-container [ngTemplateOutlet]=\"header.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n        @else { <ng-content select=\"[uiDialogHeader]\" /><h2>{{ title() || label() }}</h2> }\n      </div>\n      <div class=\"ui-dialog__handles\">\n        @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n        @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n        @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'ダイアログを閉じる' | uiMessage\">{{'閉じる' | uiMessage}}</button> }\n      </div>\n    </header>\n    @if (!showHeader() && (draggable() || maximizable() || closable())) { <div class=\"ui-dialog__handles ui-dialog__standalone-handles\">\n      @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログを移動' | uiMessage\" [attr.title]=\"'矢印キーで移動、Shiftで大きく移動' | uiMessage\">{{'移動' | uiMessage}}</button> }\n      @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('元の大きさに戻す' | uiMessage) : ('最大化' | uiMessage) }}</button> }\n      @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'ダイアログを閉じる' | uiMessage\">{{'閉じる' | uiMessage}}</button> }\n    </div> }\n  `;"
+          "declaration": "export const DIALOG_HEADER_TEMPLATE = `\n    <header [hidden]=\"!showHeader()\" class=\"ui-dialog__header\">\n      <div class=\"ui-dialog__title\">\n        @if (template('header'); as header) { <ng-container [ngTemplateOutlet]=\"header.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n        @else { <ng-content select=\"[uiDialogHeader]\" /><h2>{{ title() || label() }}</h2> }\n      </div>\n      <div class=\"ui-dialog__handles\">\n        @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'uiFoundation.dialog.moveLabel' | uiStableMessage\" [attr.title]=\"'uiFoundation.dialog.moveInstructions' | uiStableMessage\">{{'uiFoundation.dialog.moveAction' | uiStableMessage}}</button> }\n        @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('uiFoundation.dialog.restoreSize' | uiStableMessage) : ('uiFoundation.dialog.maximize' | uiStableMessage) }}</button> }\n        @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'uiFoundation.dialog.closeLabel' | uiStableMessage\">{{'uiFoundation.dialog.closeAction' | uiStableMessage}}</button> }\n      </div>\n    </header>\n    @if (!showHeader() && (draggable() || maximizable() || closable())) { <div class=\"ui-dialog__handles ui-dialog__standalone-handles\">\n      @if (draggable()) { <button uiAction uiMoveHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'uiFoundation.dialog.moveLabel' | uiStableMessage\" [attr.title]=\"'uiFoundation.dialog.moveInstructions' | uiStableMessage\">{{'uiFoundation.dialog.moveAction' | uiStableMessage}}</button> }\n      @if (maximizable()) { <button uiAction [disabled]=\"busy()\" [attr.aria-pressed]=\"maximized()\" (click)=\"toggleMaximized()\">{{ maximized() ? ('uiFoundation.dialog.restoreSize' | uiStableMessage) : ('uiFoundation.dialog.maximize' | uiStableMessage) }}</button> }\n      @if (closable()) { <button uiAction class=\"ui-dialog__close\" [disabled]=\"busy()\" (click)=\"finish('close-button')\" [attr.aria-label]=\"'uiFoundation.dialog.closeLabel' | uiStableMessage\">{{'uiFoundation.dialog.closeAction' | uiStableMessage}}</button> }\n    </div> }\n  `;"
         },
         {
           "names": [
@@ -5259,7 +5259,7 @@
             "DIALOG_FOOTER_TEMPLATE"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_FOOTER_TEMPLATE = `\n    <footer [hidden]=\"!showFooter()\" class=\"ui-dialog__footer\">\n      @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]=\"footer.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content select=\"[uiDialogFooter]\" /> }\n    </footer>\n    @if (resizable()) { <div class=\"ui-dialog__handles\"><button uiAction uiResizeHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'ダイアログのサイズを変更' | uiMessage\" [attr.title]=\"'矢印キーで幅と高さを変更、Shiftで大きく変更' | uiMessage\">{{'サイズ変更' | uiMessage}}</button></div> }\n    <p role=\"status\" aria-atomic=\"true\" class=\"ui-dialog__status\">{{ busy() ? uiEffective_busyLabel() : '' }}</p>\n  `;"
+          "declaration": "export const DIALOG_FOOTER_TEMPLATE = `\n    <footer [hidden]=\"!showFooter()\" class=\"ui-dialog__footer\">\n      @if (template('footer'); as footer) { <ng-container [ngTemplateOutlet]=\"footer.template\" [ngTemplateOutletContext]=\"{$implicit:context()}\" /> }\n      @else { <ng-content select=\"[uiDialogFooter]\" /> }\n    </footer>\n    @if (resizable()) { <div class=\"ui-dialog__handles\"><button uiAction uiResizeHandle [target]=\"element\" [uiHandleDisabled]=\"busy() || maximized()\" [disabled]=\"busy() || maximized()\" (rectChange)=\"setRect($event)\" [attr.aria-label]=\"'uiFoundation.dialog.resizeLabel' | uiStableMessage\" [attr.title]=\"'uiFoundation.dialog.resizeInstructions' | uiStableMessage\">{{'uiFoundation.dialog.resizeAction' | uiStableMessage}}</button></div> }\n    <p role=\"status\" aria-atomic=\"true\" class=\"ui-dialog__status\">{{ busy() ? uiEffective_busyLabel() : '' }}</p>\n  `;"
         },
         {
           "names": [
@@ -6702,7 +6702,7 @@
     },
     {
       "path": "templates/angular/drawer.ts",
-      "sha256": "d1201dd15048d0d2aca1004de0c25d01dd8197523e1210b499b63e011e8b2f41",
+      "sha256": "3cc4d92842c3b8873433cd91ca1261aad186a2d113289c9f306471218eea521a",
       "declarations": [
         {
           "name": "Drawer",
@@ -11307,7 +11307,7 @@
     },
     {
       "path": "templates/angular/locale.ts",
-      "sha256": "8697c733c05a52cbd87bc5c05173993c67fca704065efc3d69c09b995b23a188",
+      "sha256": "8040b0333f2e52867240380eb999e278c37423f7064f41e6a5bdf77e0196bb84",
       "declarations": [
         {
           "names": [
@@ -11336,6 +11336,25 @@
           ],
           "kind": "function",
           "declaration": "export function injectUiMessage(): (request: UiMessageRequest) => string"
+        },
+        {
+          "name": "UiStableMessagePipe",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Pipe"
+            }
+          ],
+          "extends": [
+            "implements PipeTransform"
+          ],
+          "members": [
+            {
+              "name": "transform",
+              "kind": "method",
+              "declaration": "transform(id:UiStaticMessageId):string"
+            }
+          ]
         },
         {
           "names": [
@@ -15778,14 +15797,14 @@
     },
     {
       "path": "templates/angular/stable-messages.ts",
-      "sha256": "41b8292eb2884f3079f9a8c36bf34a51b1775bd71305c8c8631688b824f3aee7",
+      "sha256": "5dee97bb97bb47aebb7e453003d3d94f9a19abaa55fe815c1d61e4b4e68fdd66",
       "declarations": [
         {
           "names": [
             "UiMessageParameters"
           ],
-          "kind": "interface",
-          "declaration": "export interface UiMessageParameters {\n  'uiFoundation.pageFrame.sidebarLabel': undefined;\n  'uiFoundation.collection.selectionLimit': { readonly limit: number };\n}"
+          "kind": "type",
+          "declaration": "export type UiMessageParameters = {\n  'uiFoundation.actionButton.busy': undefined;\n  'uiFoundation.actionControl.busy': undefined;\n  'uiFoundation.actionFeedback.busy': undefined;\n  'uiFoundation.actionLink.external': undefined;\n  'uiFoundation.asyncRegion.retryAction': undefined;\n  'uiFoundation.bottomSheet.decreaseHeight': undefined;\n  'uiFoundation.bottomSheet.heightLabel': undefined;\n  'uiFoundation.bottomSheet.increaseHeight': undefined;\n  'uiFoundation.card.loading': undefined;\n  'uiFoundation.copyButton.action': undefined;\n  'uiFoundation.copyButton.failure': undefined;\n  'uiFoundation.copyButton.success': undefined;\n  'uiFoundation.dialog.busy': undefined;\n  'uiFoundation.dialog.closeAction': undefined;\n  'uiFoundation.dialog.closeLabel': undefined;\n  'uiFoundation.dialog.maximize': undefined;\n  'uiFoundation.dialog.moveAction': undefined;\n  'uiFoundation.dialog.moveInstructions': undefined;\n  'uiFoundation.dialog.moveLabel': undefined;\n  'uiFoundation.dialog.resizeAction': undefined;\n  'uiFoundation.dialog.resizeInstructions': undefined;\n  'uiFoundation.dialog.resizeLabel': undefined;\n  'uiFoundation.dialog.restoreSize': undefined;\n  'uiFoundation.floatingActionButton.menuLabel': undefined;\n  'uiFoundation.pageFrame.sidebarLabel': undefined;\n  'uiFoundation.segmentedControl.requiredMarker': undefined;\n  'uiFoundation.splitButton.menuLabel': undefined;\n  'uiFoundation.card.collapse': { readonly title: string };\n  'uiFoundation.card.expand': { readonly title: string };\n  'uiFoundation.collection.selectionLimit': { readonly limit: number };\n};"
         },
         {
           "names": [
@@ -15796,10 +15815,17 @@
         },
         {
           "names": [
+            "UiStaticMessageId"
+          ],
+          "kind": "type",
+          "declaration": "export type UiStaticMessageId = {\n  [Id in UiMessageId]: UiMessageParameters[Id] extends undefined ? Id : never;\n}[UiMessageId];"
+        },
+        {
+          "names": [
             "UiMessageRequest"
           ],
           "kind": "type",
-          "declaration": "export type UiMessageRequest = {\n  [Id in UiMessageId]: UiMessageParameters[Id] extends undefined\n    ? { readonly id: Id }\n    : { readonly id: Id; readonly parameters: UiMessageParameters[Id] }\n}[UiMessageId];"
+          "declaration": "export type UiMessageRequest<Id extends UiMessageId = UiMessageId> = Requests[Id];"
         },
         {
           "names": [
@@ -15813,7 +15839,7 @@
             "resolveUiMessage"
           ],
           "kind": "function",
-          "declaration": "export function resolveUiMessage(request: UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string"
+          "declaration": "export function resolveUiMessage<Id extends UiMessageId>(request: UiMessageRequest<Id> & UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string"
         }
       ]
     },

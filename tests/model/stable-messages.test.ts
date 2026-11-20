@@ -18,3 +18,23 @@ test('English defaults use complete messages for zero and plural limits', () => 
   assert.equal(resolveUiMessage({ id, parameters: { limit: 0 } }, 'en-US'), 'Selection is unavailable.');
   assert.equal(resolveUiMessage({ id, parameters: { limit: 1200 } }, 'en-US'), 'Select up to 1,200 items.');
 });
+
+test('app-owned titles are passed unchanged to whole-message formatters', () => {
+  const request = { id: 'uiFoundation.card.collapse', parameters: { title: '変更前の下書き' } } as const;
+  assert.equal(resolveUiMessage(request, 'ja-JP'), '折り畳む: 変更前の下書き');
+  assert.equal(resolveUiMessage(request, 'en-US'), 'Collapse: 変更前の下書き');
+  assert.equal(resolveUiMessage(request, 'ja-JP', observed => {
+    assert.equal(observed.id, 'uiFoundation.card.collapse');
+    return observed.id === 'uiFoundation.card.collapse' ? `${observed.parameters.title} を閉じる` : undefined;
+  }), '変更前の下書き を閉じる');
+});
+
+function verifyRequestTypesOnly() {
+  // @ts-expect-error Named arguments are required.
+  resolveUiMessage({ id: 'uiFoundation.collection.selectionLimit' }, 'en-US');
+  // @ts-expect-error The limit must be numeric.
+  resolveUiMessage({ id: 'uiFoundation.collection.selectionLimit', parameters: { limit: '1' } }, 'en-US');
+  // @ts-expect-error Japanese labels are not IDs.
+  resolveUiMessage({ id: 'サイドバー' }, 'en-US');
+}
+void verifyRequestTypesOnly;
