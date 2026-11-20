@@ -24,6 +24,9 @@ Angular/TypeScriptの既存standalone、signal、OnPush、native HTMLを使う�
 
 ## 開発元のサンプルと検証
 
+開発元の設定は `examples/ui.config.repository.yaml` です。ここでトークンとプロファイルの対応を編集し、英語の説明は `examples/ui.config.example.en-text.yaml` で管理します。`npm run config:examples` で配布用の日英ひな形を再生成します。開発元の検査パス・承認・例外は開発用の設定に置きます。必須トークンを変更した場合は `npm run docs:tokens` で日英の設計資料の表を更新します。
+
+
 次はこのリポジトリのcheckoutで使う既存の手順です。npmパッケージをインストールした利用先アプリの手順は[usage](ui-library-consumer-guide.ja.md)を参照してください。
 
 <details>

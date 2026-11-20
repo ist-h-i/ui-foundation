@@ -40,8 +40,11 @@ context/guidanceの文章からCLIが見た目を推測しない。プロファ�
 | radius | control, surface | length |
 | size | control, icon, dialog, content, table-column-min, table-viewport, input-max-height, form-label, grid-item, sidebar, avatar, elevation-blur, overlay-min, dialog-min, drawer-inline, drawer-block, navigation-rail, mega-menu, navigation-column, knob, collection-item, collection-viewport, media-viewport, visualization-viewport | length |
 | border | control, focus, focus-offset | length |
-| motion | duration, easing | duration / easing |
-| opacity | watermark, map-region | number（0〜1） |
+| motion | duration | duration |
+| motion | easing | easing |
+| opacity | watermark, map-region | number |
+
+不透明度の値域は0〜1です。
 
 Avatarの文字には`text.avatar`、地図領域の透明度には`opacity.map-region`を使う。これらを持たない既存設定は役割を追加してから再同期する。設定例では前者を既存のAvatar寸法と同じプリミティブ、後者を0.25へ対応させ、両プロファイルの従来の表示を維持している。
 

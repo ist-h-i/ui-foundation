@@ -1,7 +1,7 @@
-# Source of truth for values and mappings adopted by people and AI.
-# Context/guidance informs screen design; the CLI never infers token values from prose.
+# Starter configuration. Edit your app’s ui.config.yaml.
+# Context and guidance inform screen design. The CLI does not infer token values from prose.
+
 schema_version: 1
-default_language: en
 context:
   product: Application management
   goals:
@@ -188,7 +188,9 @@ profiles:
       constraints:
         - Keep the primary action easy to find as explanations are added
     guidance: >-
-      Show the goal, required fields and results in order. Place guidance near the relevant input. Choose steps to match the workflow and retain information needed for comparison.
+      Show the goal, required fields and results in order. Place guidance near
+      the relevant input. Choose steps to match the workflow and retain
+      information needed for comparison.
     semantic: {}
   dense:
     label: Repeated list and input use
@@ -197,12 +199,15 @@ profiles:
         - Experienced users comparing and processing multiple applications
       usage: Repeatedly compare lists and enter data during daily work
       goals:
-        - Keep necessary comparison information and process the selected applications efficiently
+        - Keep necessary comparison information and process the selected
+          applications efficiently
       constraints:
         - Keep action targets and results explicit
         - Retain input methods and primary action targets of at least 44px
     guidance: >-
-      Align comparison fields and place repeated actions near their targets. Collapse details only when appropriate. Keep missing information and recovery paths visible.
+      Align comparison fields and place repeated actions near their targets.
+      Collapse details only when appropriate. Keep missing information and
+      recovery paths visible.
     semantic:
       size.avatar: avatar-dense
       text.avatar: avatar-dense
@@ -234,3 +239,9 @@ profiles:
       radius.control: round-dense
       radius.surface: surface-dense
 
+checks:
+  source_roots:
+    - src
+  approved_components: []
+  exceptions: []
+default_language: en
