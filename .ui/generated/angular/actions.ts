@@ -14,6 +14,10 @@ import { focusBeforeHiding } from './layout';
 import { restoreFocus } from './focus';
 @Component({ selector: 'button[uiIconButton]', standalone: true, imports: [Icon,UiMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<ui-icon [name]="icon()!" />@if(busy()){<span class="ui-sr-only">{{'処理中' | uiMessage}}</span>}`,
+    styles: `
+        :host { padding:var(--ui-space-control-y); }
+        :host([data-shape="round"]) { border-radius:50%; }
+    `,
     host: { class: 'ui-action ui-icon-button', '[attr.aria-label]': 'label()', '[attr.aria-pressed]': 'selected()===null?null:selected()', '[attr.data-shape]': 'shape()' } })
 export class IconButton extends ActionControl {
     override readonly icon = input.required<string | null>();

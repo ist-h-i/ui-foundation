@@ -80,7 +80,8 @@ await copyAsset(`node_modules/${packageName}/dist/CLI-NOTICE.txt`, 'assets/CLI-N
 await copyAsset('.ui/generated/UI-FOUNDATION-LICENSE.txt', 'ui-foundation/LICENSE.txt');
 await cp('.ui/generated/tokens.css', resolve(output, 'tokens.css'));
 await cp('.ui/generated/angular/styles.css', resolve(output, 'styles.css'));
-await writeFile(resolve(output, 'index.html'), '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/assets/maplibre/maplibre-gl.css"></head><body><package-consumer></package-consumer><script type="module" src="/main.js"></script></body></html>');
+await cp('.ui/generated/angular/specialist.css', resolve(output, 'specialist.css'));
+await writeFile(resolve(output, 'index.html'), '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/specialist.css"><link rel="stylesheet" href="/assets/maplibre/maplibre-gl.css"></head><body><package-consumer></package-consumer><script type="module" src="/main.js"></script></body></html>');
 
 // A self-contained, valid PDF fixture: no source-tree media is read or copied.
 let pdf = '%PDF-1.4\n';
@@ -137,11 +138,45 @@ try {
   await input.fill('package draft');
   const editor = await input.elementHandle();
   const fontSizes = [];
+  const icon = page.getByRole('button', { name: 'Open folder', exact: true });
+  const toggleIcon = page.getByRole('button', { name: 'Toggle folder availability', exact: true });
+  const external = page.locator('a[uiAction] .ui-action-external');
+  const label = page.locator('label[for="packed-option"]');
+  const option = page.getByRole('checkbox', { name: /^Packed option/ });
+  const richEditor = page.getByRole('textbox', { name: 'Packed rich text', exact: true });
+  await option.check();
+  await expect(richEditor).toBeEditable();
   for (const profile of ['guided', 'dense']) {
     await expect(page.locator('section[data-ui-profile]').first()).toHaveAttribute('data-ui-profile', profile);
     await expect(input).toHaveValue('package draft');
     await expect(page.getByTestId('draft')).toHaveText('package draft');
     assert.equal(await input.evaluate((element, previous) => element === previous, editor), true);
+    await expect(icon).toHaveCSS('border-top-left-radius', '50%');
+    await toggleIcon.focus();
+    await page.keyboard.press('Tab');
+    await expect(icon).toBeFocused();
+    await expect(icon).toHaveCSS('outline-style', 'solid');
+    await toggleIcon.click();
+    await expect(icon).toBeDisabled();
+    await expect(icon).toHaveCSS('cursor', 'not-allowed');
+    await toggleIcon.click();
+    await expect(icon).toBeEnabled();
+    await expect(external).toHaveCSS('order', '3');
+    await expect(external).toHaveCSS('white-space', 'normal');
+    await expect(label).toHaveCSS('display', 'flex');
+    await expect(option).toBeChecked();
+    await richEditor.focus();
+    await expect(richEditor).toHaveCSS('outline-style', 'solid');
+    assert.ok(await richEditor.evaluate(element => Number.parseFloat(getComputedStyle(element).minBlockSize) > 0));
+    await page.setViewportSize({ width: 320, height: 720 });
+    await expect(option).toBeChecked();
+    await expect(label).toHaveCSS('display', 'flex');
+    await expect(external).toBeVisible();
+    for (const control of [icon, external, option]) {
+      const bounds = await control.boundingBox();
+      assert.ok(bounds && bounds.x >= 0 && bounds.x + bounds.width <= 320);
+    }
+    await page.setViewportSize({ width: 1280, height: 720 });
     fontSizes.push(await input.evaluate(element => getComputedStyle(element).fontSize));
     if (profile === 'guided') await page.getByRole('button', { name: 'Switch profile', exact: true }).click();
   }
@@ -154,7 +189,7 @@ try {
   await expect(page.locator('ui-map canvas')).toBeVisible();
   for (const expected of ['/assets/sheet-formula.worker.js', '/assets/pdf/pdf.worker.mjs', '/assets/maplibre/maplibre-gl-worker.mjs']) assert.ok(workers.includes(expected), `worker not started: ${expected}`);
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ strictAot: true, englishWithoutLocaleProvider: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
+  console.log(JSON.stringify({ strictAot: true, stylesWithoutTailwind: true, englishWithoutLocaleProvider: true, inputAndProfileRetention: true, sheetCalculation: true, pdfCanvas: true, mapCanvas: true, servedAssetHashes: assets.length, fontSizes, workers, bundle: bundleEvidence }));
 } finally {
   await browser?.close();
   server.closeAllConnections();

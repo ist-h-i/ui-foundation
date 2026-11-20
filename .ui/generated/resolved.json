@@ -930,10 +930,10 @@
         "source": ".ui-action:disabled, .ui-action--disabled, .ui-action--busy{border-color: GrayText}"
       },
       {
-        "file": "templates/angular/styles.css",
+        "file": "templates/angular/actions.ts",
         "reason": "円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。",
         "rule": "literal-token",
-        "source": ".ui-icon-button[data-shape=\"round\"]{border-radius:50%}"
+        "source": ":host([data-shape=\"round\"]){border-radius:50%}"
       },
       {
         "column": 544,
@@ -2414,7 +2414,7 @@
       {
         "column": 124,
         "file": "templates/angular/styles.css",
-        "line": 100,
+        "line": 99,
         "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
         "rule": "literal-token",
         "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"

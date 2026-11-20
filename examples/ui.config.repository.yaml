@@ -933,9 +933,9 @@ checks:
       source: ".ui-action:disabled, .ui-action--disabled,
         .ui-action--busy{border-color: GrayText}"
       reason: forced-colorsの支援環境では利用者のOSシステム色を優先する。通常状態のテーマ色を上書きするものではない。
-    - file: templates/angular/styles.css
+    - file: templates/angular/actions.ts
       rule: literal-token
-      source: .ui-icon-button[data-shape="round"]{border-radius:50%}
+      source: :host([data-shape="round"]){border-radius:50%}
       reason: 円形部品は親の実寸に対する半径50%で形状を維持する。固定pixelの角丸やprofileのsurface半径とは用途が異なる。
     - file: templates/angular/table-controls.ts
       rule: literal-token
@@ -2235,7 +2235,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 100
+      line: 99
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。
