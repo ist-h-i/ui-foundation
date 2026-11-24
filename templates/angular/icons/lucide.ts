@@ -12,8 +12,13 @@ function readClosestIcons(): UiIconRegistry {
   // at a shared level Lucide's token reflects the order of native and bridged providers.
   let scope: Injector | null = inject(Injector);
   while (scope) {
-    if (scope.get(LUCIDE_ICONS, null, { self: true }) === native) return native;
-    if (scope.get(UI_ICON_REGISTRY, null, { self: true }) === selected) return selected;
+    const hasNative = scope.get(LUCIDE_ICONS, null, { self: true }) === native;
+    const hasSelected = scope.get(UI_ICON_REGISTRY, null, { self: true }) === selected;
+    if (hasNative) {
+      // Lucide supplies an empty root registry even when the app only configures its paint.
+      return hasSelected && Object.keys(native).length === 0 ? selected : native;
+    }
+    if (hasSelected) return selected;
     scope = scope.get(Injector, null, { skipSelf: true });
   }
   return native;
