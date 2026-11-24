@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 170,
+  "source_count": 173,
   "files": [
     {
       "path": "templates/angular/action-control.ts",
@@ -1440,6 +1440,16 @@
       ]
     },
     {
+      "path": "templates/angular/chart-engine.ts",
+      "sha256": "8070ecd96d0f9d9cec33566dfc0c2e1d52dc4b1075b005ecc31d6f48d0b8d5c2",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { init } from './sparkline-engine';"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/chart-options.ts",
       "sha256": "53c8f4bfaa871bff1fee7970eb794179a28166b97ed8583b6b1ed83138e50a73",
       "declarations": [
@@ -1503,7 +1513,7 @@
     },
     {
       "path": "templates/angular/chart.ts",
-      "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
       "declarations": [
         {
           "name": "Chart",
@@ -9132,8 +9142,18 @@
       "declarations": []
     },
     {
+      "path": "templates/angular/gantt-engine.ts",
+      "sha256": "11b9d57d59c3ffbcca8c956b27d1f55f217e89e2ce56799436d4b23be69562a6",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { init };"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/gantt.ts",
-      "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+      "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
       "declarations": [
         {
           "names": [
@@ -15331,6 +15351,16 @@
               "declaration": "cancelKeyboard():void"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/sparkline-engine.ts",
+      "sha256": "ea407afa2fdd4028604445a67c7fb7105f6aa25cbcd6f54fafa8a4c746620d70",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export { init };"
         }
       ]
     },
