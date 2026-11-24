@@ -1,7 +1,10 @@
-import { inject, Injector, type Provider } from '@angular/core';
+import { ApplicationRef, inject, InjectionToken, Injector, type Provider } from '@angular/core';
 import { LUCIDE_CONFIG, LUCIDE_ICONS } from '@lucide/angular';
 import { provideUiIcons as provideDefaults } from './defaults';
 import { UI_ICON_LUCIDE, UI_ICON_REGISTRY, type UiIconInput, type UiIconLucideAdapter, type UiIconRegistry } from './registry';
+
+// This scope explicitly linked both public registries, so even an empty later native provider wins.
+const SHARED_REGISTRATION = new InjectionToken<boolean>('UI shared Lucide registration');
 
 function readClosestIcons(): UiIconRegistry {
   // Resolve both tokens normally first, so projected views retain Angular's visibility rules.
@@ -16,7 +19,10 @@ function readClosestIcons(): UiIconRegistry {
     const hasSelected = scope.get(UI_ICON_REGISTRY, null, { self: true }) === selected;
     if (hasNative) {
       // Lucide supplies an empty root registry even when the app only configures its paint.
-      return hasSelected && Object.keys(native).length === 0 ? selected : native;
+      if (hasSelected && Object.keys(native).length === 0
+        && !scope.get(SHARED_REGISTRATION, false, { self: true })
+        && scope.get(ApplicationRef, null, { self: true })?.injector === scope) return selected;
+      return native;
     }
     if (hasSelected) return selected;
     scope = scope.get(Injector, null, { skipSelf: true });
@@ -38,6 +44,7 @@ export function provideUiLucideInterop(): Provider {
 export function provideUiIcons(...icons: UiIconInput[]): Provider {
   return [
     provideDefaults(...icons),
+    { provide: SHARED_REGISTRATION, useValue: true },
     { provide: LUCIDE_ICONS, useExisting: UI_ICON_REGISTRY },
     provideUiLucideInterop(),
   ];
