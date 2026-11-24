@@ -3,7 +3,7 @@ import {injectUiLocale,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 import { focusOutsideMenu, restoreFocus } from './focus';
 import { OverlayRegistry, observeOverlay, positionOverlay, type OverlayPlacement } from './overlay';
 import { menuCommands, menuPath, selectMenuCheck, validateMenu, visibleMenuItems, type MenuItem, type MenuSelection } from './menu-model';

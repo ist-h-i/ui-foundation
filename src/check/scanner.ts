@@ -1230,7 +1230,7 @@ export async function checkSources(options: CheckSourcesOptions): Promise<Source
   if (libraryRoot) for (const library of compilerOptions.lib ?? []) if (!fileAllowed(path.join(libraryRoot, library))) problem(path.join(libraryRoot, library), 'source-error', 'Requested TypeScript standard library is unavailable; DOM type coverage cannot be established.');
   const program = ts.createProgram([...all.keys()].filter(f => f.endsWith('.ts')), compilerOptions, compilerHost), checker = program.getTypeChecker(), evaluator = new Evaluator(checker, libraryRoots, undefined, undefined, program.getSourceFiles().filter(source => !source.isDeclarationFile && !within(targetDependencies, source.fileName)));
   const angularOutput = path.join(output, 'angular');
-  const entryFiles = publicAngularEntries.map(name => path.join(angularOutput, name));
+  const entryFiles = publicAngularEntries(options.config).map(name => path.join(angularOutput, name));
   const generatedAngularImport = (specifier: ts.StringLiteralLike): boolean =>
     (specifier.text.startsWith('.') && within(angularOutput, path.resolve(path.dirname(specifier.getSourceFile().fileName), specifier.text)))
     || (checker.getSymbolAtLocation(specifier)?.declarations?.some(declaration =>

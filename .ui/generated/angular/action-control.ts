@@ -12,7 +12,7 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 
 export type ActionSize = 'small' | 'medium' | 'large';
 export type ActionVariant = 'primary' | 'secondary' | 'danger';

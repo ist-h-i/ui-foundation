@@ -2,7 +2,11 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessage} from './locale';
 import { afterNextRender, type AfterRenderRef, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, linkedSignal, output, signal, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
+import { fallbackIcons } from './icons/registry';
+import { shape as circleCheckIcon } from './icons/circle-check';
+import { shape as circleAlertIcon } from './icons/circle-alert';
+import { shape as infoIcon } from './icons/info';
 import { restoreFocus, tabbableElements } from './focus';
 import { focusBeforeHiding } from './layout';
 export type FeedbackSeverity = 'info' | 'success' | 'warning' | 'error';
@@ -78,6 +82,7 @@ export class EmptyState {
     }
 }
 @Component({ selector: 'ui-result-state', standalone: true, imports: [ActionControl, Icon], changeDetection: ChangeDetectionStrategy.OnPush, host: { '[attr.data-severity]': 'status()==="unknown"?"warning":status()' },
+    viewProviders: [fallbackIcons(circleCheckIcon, circleAlertIcon, infoIcon)],
     template: `<div class="ui-feedback-frame"><div role="status" aria-atomic="true"><h2><ui-icon [name]="icon()" /> {{title()}}</h2><p class="ui-feedback-message" tabindex="-1">{{message()}}</p></div>@if(details()){<details [open]="detailsOpen()" (toggle)="detailsChange($event)"><summary>{{uiEffective_detailsLabel()}}</summary><p>{{details()}}</p></details>}<ng-content /><div class="ui-feedback-actions"><ng-content select="[uiResultActions]" />@if(actionLabel()){<button uiAction data-feedback-action [busy]="busy()" [disabled]="disabled()" (click)="requestAction()">{{actionLabel()}}</button>}</div></div>`, styles: common + severity + `summary{min-block-size:var(--ui-size-control);cursor:pointer;}h2{display:flex;align-items:baseline;gap:var(--ui-space-control-gap);}` })
 export class ResultState {
  protected readonly uiText_ResultState=injectUiMessage();

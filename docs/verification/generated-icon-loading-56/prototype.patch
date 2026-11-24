@@ -1,0 +1,184 @@
+diff --git a/templates/angular/icon.ts b/templates/angular/icon.ts
+index 3de34d7..cc06a66 100644
+--- a/templates/angular/icon.ts
++++ b/templates/angular/icon.ts
+@@ -1,10 +1,2 @@
+-import {booleanAttribute,ChangeDetectionStrategy,Component,effect,input,type Provider} from '@angular/core';
+-import {LucideDynamicIcon,provideLucideIcons,LucideCircleCheck,LucideCircleAlert,LucideInfo,LucideSearch,LucideX,LucideChevronRight,LucideChevronDown,LucideCopy,LucideCalendar,LucideMenu,LucidePlus,LucideLoaderCircle,type LucideIcon,type LucideIconData} from '@lucide/angular';
+-/** A small default registry; consumers register additional tree-shakable Lucide icons. */
+-export function provideUiIcons(...icons:Array<LucideIcon|LucideIconData>):Provider{return provideLucideIcons(LucideCircleCheck,LucideCircleAlert,LucideInfo,LucideSearch,LucideX,LucideChevronRight,LucideChevronDown,LucideCopy,LucideCalendar,LucideMenu,LucidePlus,LucideLoaderCircle,...icons);}
+-@Component({selector:'ui-icon',standalone:true,imports:[LucideDynamicIcon],changeDetection:ChangeDetectionStrategy.OnPush,
+- host:{'[attr.data-size]':'size()','[attr.data-severity]':'severity()','[attr.aria-hidden]':'decorative()?"true":null'},
+- template:`<svg [lucideIcon]="name()" [title]="decorative()?null:label()" [attr.role]="decorative()?null:'img'" [attr.aria-label]="decorative()?null:label()" [attr.aria-hidden]="decorative()?'true':null" focusable="false"></svg>`,
+- styles:`:host{display:inline-flex;inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);flex:0 0 auto;vertical-align:middle;color:inherit;}:host([hidden]){display:none;}:host([data-size="small"]){inline-size:calc(var(--ui-size-icon)*0.75);block-size:calc(var(--ui-size-icon)*0.75);}:host([data-size="large"]){inline-size:calc(var(--ui-size-icon)*1.5);block-size:calc(var(--ui-size-icon)*1.5);}:host([data-severity="muted"]){color:var(--ui-color-muted);}:host([data-severity="info"]){color:var(--ui-color-text);}:host([data-severity="success"]){color:var(--ui-color-success);}:host([data-severity="warning"]){color:var(--ui-color-warning);}:host([data-severity="danger"]){color:var(--ui-color-danger);}svg{inline-size:100%;block-size:100%;color:inherit;}`,
+-})
+-export class Icon{readonly name=input.required<string>();readonly size=input<'small'|'medium'|'large'>('medium');readonly severity=input<'inherit'|'muted'|'info'|'success'|'warning'|'danger'>('inherit');readonly decorative=input(true,{transform:booleanAttribute});readonly label=input<string|null>(null);constructor(){effect(()=>{if(!this.name().trim())throw new Error('ui-icon name must be nonempty.');if(!this.decorative()&&!this.label()?.trim())throw new Error('Informative ui-icon requires a nonempty label.');});}}
++export {Icon} from './icons/renderer';
++export {provideUiIcons} from './icons/defaults';
+diff --git a/templates/angular/icons/calendar.ts b/templates/angular/icons/calendar.ts
+new file mode 100644
+index 0000000..9bf9379
+--- /dev/null
++++ b/templates/angular/icons/calendar.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"calendar","size":24,"node":[["path",{"d":"M8 2v3","key":"1ioesn"}],["path",{"d":"M16 2v3","key":"otl347"}],["rect",{"x":"3","y":"3","width":"18","height":"18","rx":"2","key":"h1oib"}],["path",{"d":"M3 9h18","key":"1pudct"}]]};
+diff --git a/templates/angular/icons/chevron-down.ts b/templates/angular/icons/chevron-down.ts
+new file mode 100644
+index 0000000..325fb9e
+--- /dev/null
++++ b/templates/angular/icons/chevron-down.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"chevron-down","size":24,"node":[["path",{"d":"m6 9 6 6 6-6","key":"qrunsl"}]]};
+diff --git a/templates/angular/icons/chevron-right.ts b/templates/angular/icons/chevron-right.ts
+new file mode 100644
+index 0000000..ab3f04a
+--- /dev/null
++++ b/templates/angular/icons/chevron-right.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"chevron-right","size":24,"node":[["path",{"d":"m9 18 6-6-6-6","key":"mthhwq"}]]};
+diff --git a/templates/angular/icons/circle-alert.ts b/templates/angular/icons/circle-alert.ts
+new file mode 100644
+index 0000000..0acd5bf
+--- /dev/null
++++ b/templates/angular/icons/circle-alert.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"circle-alert","size":24,"node":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["line",{"x1":"12","x2":"12","y1":"8","y2":"12","key":"1pkeuh"}],["line",{"x1":"12","x2":"12.01","y1":"16","y2":"16","key":"4dfq90"}]],"aliases":["alert-circle"]};
+diff --git a/templates/angular/icons/circle-check.ts b/templates/angular/icons/circle-check.ts
+new file mode 100644
+index 0000000..bb2bb66
+--- /dev/null
++++ b/templates/angular/icons/circle-check.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"circle-check","size":24,"node":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"m16 9-5.5 5.5L8 12","key":"xofnsj"}]],"aliases":["check-circle-2"]};
+diff --git a/templates/angular/icons/copy.ts b/templates/angular/icons/copy.ts
+new file mode 100644
+index 0000000..89e18cf
+--- /dev/null
++++ b/templates/angular/icons/copy.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"copy","size":24,"node":[["rect",{"width":"14","height":"14","x":"8","y":"8","rx":"2","ry":"2","key":"17jyea"}],["path",{"d":"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2","key":"zix9uf"}]]};
+diff --git a/templates/angular/icons/defaults.ts b/templates/angular/icons/defaults.ts
+new file mode 100644
+index 0000000..da9e6f8
+--- /dev/null
++++ b/templates/angular/icons/defaults.ts
+@@ -0,0 +1,15 @@
++import {shape as i0} from './circle-check';
++import {shape as i1} from './circle-alert';
++import {shape as i2} from './info';
++import {shape as i3} from './search';
++import {shape as i4} from './x';
++import {shape as i5} from './chevron-right';
++import {shape as i6} from './chevron-down';
++import {shape as i7} from './copy';
++import {shape as i8} from './calendar';
++import {shape as i9} from './menu';
++import {shape as i10} from './plus';
++import {shape as i11} from './loader-circle';
++const defaults = [i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11];
++import {selected,type Shape} from './registry';
++export function provideUiIcons(...extra: Shape[]) {return selected(...defaults,...extra);}
+diff --git a/templates/angular/icons/folder.ts b/templates/angular/icons/folder.ts
+new file mode 100644
+index 0000000..0883e7d
+--- /dev/null
++++ b/templates/angular/icons/folder.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"folder","size":24,"node":[["path",{"d":"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z","key":"1kt360"}]]};
+diff --git a/templates/angular/icons/info.ts b/templates/angular/icons/info.ts
+new file mode 100644
+index 0000000..461ef2d
+--- /dev/null
++++ b/templates/angular/icons/info.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"info","size":24,"node":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"M12 16v-4","key":"1dtifu"}],["path",{"d":"M12 8h.01","key":"e9boi3"}]]};
+diff --git a/templates/angular/icons/loader-circle.ts b/templates/angular/icons/loader-circle.ts
+new file mode 100644
+index 0000000..94e3546
+--- /dev/null
++++ b/templates/angular/icons/loader-circle.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"loader-circle","size":24,"node":[["path",{"d":"M21 12a9 9 0 1 1-6.219-8.56","key":"13zald"}]],"aliases":["loader-2"]};
+diff --git a/templates/angular/icons/menu.ts b/templates/angular/icons/menu.ts
+new file mode 100644
+index 0000000..0d7e6a7
+--- /dev/null
++++ b/templates/angular/icons/menu.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"menu","size":24,"node":[["path",{"d":"M4 5h16","key":"1tepv9"}],["path",{"d":"M4 12h16","key":"1lakjw"}],["path",{"d":"M4 19h16","key":"1djgab"}]]};
+diff --git a/templates/angular/icons/plus.ts b/templates/angular/icons/plus.ts
+new file mode 100644
+index 0000000..eabbca4
+--- /dev/null
++++ b/templates/angular/icons/plus.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"plus","size":24,"node":[["path",{"d":"M5 12h14","key":"1ays0h"}],["path",{"d":"M12 5v14","key":"s699le"}]]};
+diff --git a/templates/angular/icons/registry.ts b/templates/angular/icons/registry.ts
+new file mode 100644
+index 0000000..403ce56
+--- /dev/null
++++ b/templates/angular/icons/registry.ts
+@@ -0,0 +1,4 @@
++import {InjectionToken} from '@angular/core';
++export interface Shape { size?:number; width?:number; height?:number; aliases?:string[]; name: string; node: [string, Record<string,string>][]; }
++export const ICONS = new InjectionToken<readonly Shape[]>('probe icons');
++export function selected(...icons: Shape[]) { return {provide: ICONS, useValue: icons}; }
+diff --git a/templates/angular/icons/renderer.ts b/templates/angular/icons/renderer.ts
+new file mode 100644
+index 0000000..6de1408
+--- /dev/null
++++ b/templates/angular/icons/renderer.ts
+@@ -0,0 +1,18 @@
++import {booleanAttribute, ChangeDetectionStrategy,Component,effect,input,inject} from '@angular/core';
++import {ICONS} from './registry';
++@Component({selector:'ui-icon',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,
++ host:{'[attr.data-size]':'size()','[attr.data-severity]':'severity()','[attr.aria-hidden]':'decorative()?"true":null'},
++ template:`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" [attr.role]="decorative()?null:'img'" [attr.aria-hidden]="decorative()?'true':null" [attr.aria-label]="decorative()?null:label()">
++  @for (part of parts(); track $index) {
++    @switch (part[0]) {
++      @case ('path') {<svg:path [attr.d]="part[1]['d']" />}
++      @case ('circle') {<svg:circle [attr.cx]="part[1]['cx']" [attr.cy]="part[1]['cy']" [attr.r]="part[1]['r']" />}
++      @case ('rect') {<svg:rect [attr.x]="part[1]['x']" [attr.y]="part[1]['y']" [attr.width]="part[1]['width']" [attr.height]="part[1]['height']" [attr.rx]="part[1]['rx']" />}
++      @case ('line') {<svg:line [attr.x1]="part[1]['x1']" [attr.y1]="part[1]['y1']" [attr.x2]="part[1]['x2']" [attr.y2]="part[1]['y2']" />}
++      @case ('polyline') {<svg:polyline [attr.points]="part[1]['points']" />}
++    }
++  }
++</svg>`,
++ styles:`:host{display:inline-flex;inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);flex:0 0 auto;vertical-align:middle;color:inherit;}:host([hidden]){display:none;}:host([data-size="small"]){inline-size:calc(var(--ui-size-icon)*0.75);block-size:calc(var(--ui-size-icon)*0.75);}:host([data-size="large"]){inline-size:calc(var(--ui-size-icon)*1.5);block-size:calc(var(--ui-size-icon)*1.5);}:host([data-severity="muted"]){color:var(--ui-color-muted);}:host([data-severity="info"]){color:var(--ui-color-text);}:host([data-severity="success"]){color:var(--ui-color-success);}:host([data-severity="warning"]){color:var(--ui-color-warning);}:host([data-severity="danger"]){color:var(--ui-color-danger);}svg{inline-size:100%;block-size:100%;color:inherit;}`,
++})
++export class Icon{ private readonly icons=inject(ICONS,{optional:true})??[]; parts(){return this.icons.find(i=>i.name===this.name())?.node??[];}readonly name=input.required<string>();readonly size=input<'small'|'medium'|'large'>('medium');readonly severity=input<'inherit'|'muted'|'info'|'success'|'warning'|'danger'>('inherit');readonly decorative=input(true,{transform:booleanAttribute});readonly label=input<string|null>(null);constructor(){effect(()=>{if(!this.name().trim())throw new Error('ui-icon name must be nonempty.');if(!this.decorative()&&!this.label()?.trim())throw new Error('Informative ui-icon requires a nonempty label.');});}}
+diff --git a/templates/angular/icons/search.ts b/templates/angular/icons/search.ts
+new file mode 100644
+index 0000000..675607b
+--- /dev/null
++++ b/templates/angular/icons/search.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"search","size":24,"node":[["path",{"d":"m21 21-4.34-4.34","key":"14j7rj"}],["circle",{"cx":"11","cy":"11","r":"8","key":"4ej97u"}]]};
+diff --git a/templates/angular/icons/x.ts b/templates/angular/icons/x.ts
+new file mode 100644
+index 0000000..8c1b3e9
+--- /dev/null
++++ b/templates/angular/icons/x.ts
+@@ -0,0 +1,2 @@
++import type {Shape} from './registry';
++export const shape: Shape = {"name":"x","size":24,"node":[["path",{"d":"M18 6 6 18","key":"1bl5f8"}],["path",{"d":"m6 6 12 12","key":"d8bk6v"}]]};
+diff --git a/templates/angular/icons.ts b/templates/angular/icons.ts
+new file mode 100644
+index 0000000..b52c08b
+--- /dev/null
++++ b/templates/angular/icons.ts
+@@ -0,0 +1,2 @@
++export {Icon} from './icons/renderer';
++export {selected} from './icons/registry';

@@ -20,6 +20,7 @@ export interface FoundationConfig {
   output: string;
   default_profile: string;
   default_language?: 'en' | 'ja';
+  icons?: { lucide_interop: boolean };
   primitives: Record<string, Primitive>;
   semantic: Record<string, string>;
   profiles: Record<string, Profile>;
@@ -122,9 +123,15 @@ function validValue(type: PrimitiveType, value: unknown): boolean {
 
 function validateConfig(input: unknown, source: SourceLocations): FoundationConfig {
   const validator = new Validator(source);
-  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles', 'checks', 'default_language'], ['checks', 'default_language']);
+  const root = validator.object(input, '$', ['schema_version', 'context', 'output', 'default_profile', 'primitives', 'semantic', 'profiles', 'checks', 'default_language', 'icons'], ['checks', 'default_language', 'icons']);
   if (root.schema_version !== 1) validator.issue('schema_version', 'Only schema_version: 1 is supported');
   if (own(root, 'default_language') && root.default_language !== 'en' && root.default_language !== 'ja') validator.issue('default_language', 'Default language must be en or ja');
+  let icons: FoundationConfig['icons'];
+  if (own(root, 'icons')) {
+    const settings = validator.object(root.icons, 'icons', ['lucide_interop'], ['lucide_interop']);
+    if (typeof settings.lucide_interop === 'boolean') icons = { lucide_interop: settings.lucide_interop };
+    else if (own(settings, 'lucide_interop')) validator.issue('icons.lucide_interop', 'Expected a boolean');
+  }
   const context = validator.object(root.context, 'context', ['product', 'goals', 'constraints']);
   const output = validator.text(root.output, 'output');
   if (output !== output.trim() || !output || output.startsWith('/') || /[\\\u0000-\u001f<>:"|?*]/.test(output)
@@ -176,6 +183,7 @@ function validateConfig(input: unknown, source: SourceLocations): FoundationConf
     output,
     default_profile: defaultProfile,
     ...(own(root, 'default_language') ? { default_language: root.default_language as 'en' | 'ja' } : {}),
+    ...(icons ? { icons } : {}),
     primitives,
     semantic: validator.semantics(root.semantic, 'semantic'),
     profiles,
@@ -410,6 +418,7 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
     output: config.output,
     default_profile: config.default_profile,
     ...(config.default_language ? { default_language: config.default_language } : {}),
+    ...(config.icons ? { icons: config.icons } : {}),
     primitives: config.primitives,
     profiles,
     ...(config.checks ? { checks: config.checks } : {}),

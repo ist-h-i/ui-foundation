@@ -12,6 +12,18 @@ const edited = (change: (config: any) => void): string => {
   return stringify(config, { aliasDuplicateObjects: false });
 };
 const resolve = (source = example) => resolveConfig(parseConfig(source));
+test('Lucide interoperability is optional and requires an explicit boolean', () => {
+  assert.equal(resolve().icons, undefined);
+  for (const enabled of [true, false]) {
+    assert.deepEqual(resolve(edited(config => { config.icons = { lucide_interop: enabled }; })).icons,
+      { lucide_interop: enabled });
+  }
+  for (const value of ['true', 1, null]) {
+    rejects(edited(config => { config.icons = { lucide_interop: value }; }), /Expected a boolean/);
+  }
+  rejects(edited(config => { config.icons = { lucide: true }; }), /Unknown key "lucide"/);
+  assert.equal(resolve(edited(config => { config.icons = {}; })).icons, undefined);
+});
 test('visualization viewport remains independent from table and media roles across profiles',()=>{
  const result=resolve();
  for(const profile of ['guided','dense'])assert.equal(result.profiles[profile].semantic['size.visualization-viewport'].value,'480px');

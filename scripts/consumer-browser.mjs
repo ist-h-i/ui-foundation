@@ -53,6 +53,16 @@ try{
     await page.evaluate(profile=>{document.documentElement.setAttribute('data-ui-profile',profile);document.documentElement.style.fontSize='200%';},profile);
     await expect(page.getByRole('img',{name:'確認',exact:true})).toBeVisible();
     assert.ok(await page.getByRole('img',{name:'確認',exact:true}).locator('path,circle').count());
+    for (const id of ['interop-raw', 'interop-parent']) {
+      await expect(page.locator(`#${id} circle`)).toHaveAttribute('r', '3');
+    }
+    const child = page.locator('#interop-child svg');
+    await expect(child).toHaveAttribute('stroke', '#123456');
+    await expect(child).toHaveAttribute('stroke-width', '3');
+    await expect(child).toHaveAttribute('width', '36');
+    await expect(child.locator('rect')).toHaveAttribute('width', '9');
+    await expect(child.locator('rect')).toHaveAttribute('vector-effect', 'non-scaling-stroke');
+    await expect(page.locator('#interop-external svg.lucide-folder path')).toHaveCount(1);
     await page.locator('#title').fill('生成先の入力');
     await expect(page.getByTestId('consumer-value')).toHaveText('生成先の入力');
     const cardField=page.getByRole('textbox',{name:'Cardの下書き'});

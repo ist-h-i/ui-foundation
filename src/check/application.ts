@@ -1,8 +1,16 @@
 import path from 'node:path';
 import ts from 'typescript';
+import type { FoundationConfig } from '../config.ts';
+import { iconDataNames, lucideInteropEntry } from '../icon-catalog.ts';
 import type { SourceDiagnostic } from './types.ts';
 
-export const publicAngularEntries = ['core.ts', 'forms.ts', 'index.ts'] as const;
+export function publicAngularEntries(config: Pick<FoundationConfig, 'icons'>): string[] {
+  return [
+    'icons.ts', 'icons/defaults.ts', ...iconDataNames.map(name => `icons/${name}.ts`),
+    'core.ts', 'forms.ts', 'index.ts',
+    ...(config.icons?.lucide_interop ? [lucideInteropEntry] : []),
+  ];
+}
 
 // Share the rule list between the YAML parser, scanner and baseline comparison.
 export const exceptableRules = [

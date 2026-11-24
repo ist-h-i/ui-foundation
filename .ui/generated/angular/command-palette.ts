@@ -5,7 +5,7 @@ import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component
 import { ActionControl } from './action-control';
 import { Dialog, type DialogCloseRequest, type DialogResult } from './dialog';
 import { ShortcutHint } from './display';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 import { commandShortcut, matchesCommandShortcut, searchCommands, validNavigationId, type PaletteCommand } from './navigation-model';
 /** The palette emits invocation intent. Execution, result and persistent history belong to the app. */
 @Component({ selector: 'ui-command-palette', standalone: true, imports: [ActionControl, Dialog, ShortcutHint, Icon,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,

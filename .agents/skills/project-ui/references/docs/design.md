@@ -16,6 +16,7 @@
 - `context`：product、goals、constraints。AIが読む判断材料。
 - `output`：プロジェクト内の生成専用ディレクトリ。
 - `default_profile`：既定のプロファイルID。
+- `icons.lucide_interop`：任意の真偽値。`true` で Lucide DI と接続する専用入口を生成する。省略時は個別データと標準の描画部品を生成する。
 - `default_language`：任意の `en` / `ja`。生成部品の初期文言とIntl localeを選ぶ。`init` は `en`、`init --language ja` は `ja` を保存する。項目のない既存設定は日本語を維持する。time zone・native日付入力書式・業務データ・見た目のトークンは変更しない。
 - `primitives`：名前から`{ type, value }`への対応。具体値を置く唯一の層。
 - `semantic`：役割名からプリミティブ名への参照。全プロファイルの基となる対応。

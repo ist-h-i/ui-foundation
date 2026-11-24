@@ -6,7 +6,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 const directory = 'templates/angular';
 const digest = value => createHash('sha256').update(value).digest('hex');
 const records = [];
-for (const name of (await readdir(directory)).filter(name => name.endsWith('.ts')).sort()) {
+for (const name of (await readdir(directory, { recursive: true })).filter(name => name.endsWith('.ts')).sort()) {
   const path = `${directory}/${name}`;
   const text = await readFile(path, 'utf8');
   const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);

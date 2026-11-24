@@ -16,6 +16,7 @@ The app owns `ui.config.yaml` as its sole configuration source. Bundled `example
 - `context`: product/goals/constraints, used as AI decision context.
 - `output`: project-local dedicated generated directory.
 - `default_profile`: default profile ID.
+- `icons.lucide_interop` is an optional boolean. Set it to `true` to generate the Lucide DI integration entry. By default the app uses generated icon data and the shared renderer.
 - `default_language`: optional `en`/`ja`, selecting initial built-in messages/Intl locale. Init writes `en`; `init --language ja` writes `ja`; older omitted settings retain Japanese. Time zone, native date-input format, business data and visual tokens are unchanged.
 - `primitives`: names mapped to `{ type, value }`, the only layer holding concrete design values.
 - `semantic`: roles referencing primitive names, forming the base for all profiles.

@@ -954,6 +954,20 @@ test('baseline comparison handles line shifts, replacements, duplicate findings 
   assert.equal((await compare()).valid, false);
 });
 
+test('icon entries are public individually and the optional Lucide entry follows the configuration', async t => {
+  const base = '../.ui/generated/angular/';
+  const names = ['icons', 'icons/defaults', 'icons/search', 'icons/folder', 'icons/registry', 'icons/lucide', 'icons/unowned'];
+  const { root, config, scan } = await fixture(t, {
+    'app/use.ts': names.map((name, i) => `export { probe as p${i} } from '${base}${name}';`).join('\n'),
+    ...Object.fromEntries(names.map(name => [`.ui/generated/angular/${name}.ts`, 'export const probe = 1;'])),
+  });
+  const internal = (report: SourceReport) => warnings(report)
+    .filter(item => item.rule === 'generated-internal-import').map(item => item.line);
+  assert.deepEqual(internal(await scan()), [5, 6, 7]);
+  const enabled = { ...config, icons: { lucide_interop: true } };
+  assert.deepEqual(internal(await checkSources({ root, config: enabled, policy: createSourcePolicy(enabled) })), [5, 7]);
+});
+
 test('generated internal imports follow TypeScript aliases and recommend the public export', async t => {
   const { scan } = await fixture(t, {
     'app/main.ts': [

@@ -21,7 +21,7 @@ test('the packed core, forms and locale example compile and bundle without speci
   const versions = candidate.manifest.devDependencies;
   const dependencies = [
     '@angular/cdk', '@angular/common', '@angular/compiler', '@angular/compiler-cli', '@angular/core',
-    '@angular/forms', '@angular/platform-browser', '@babel/core', '@lucide/angular', 'esbuild', 'rxjs', 'typescript',
+    '@angular/forms', '@angular/platform-browser', '@babel/core', 'esbuild', 'rxjs', 'typescript',
   ];
   const appManifest = {
     private: true,
@@ -34,7 +34,7 @@ test('the packed core, forms and locale example compile and bundle without speci
   }
   await install(Object.fromEntries(dependencies.map(name => [name, versions[name]])));
   const specialistPackages = ['maplibre-gl', 'pdfjs-dist', 'fast-formula-parser'];
-  for (const name of specialistPackages) {
+  for (const name of [...specialistPackages, '@lucide/angular']) {
     await assert.rejects(readFile(resolve(app, 'node_modules', name, 'package.json')), { code: 'ENOENT' });
   }
   const cli = (...args) => isolated(process.execPath, [`node_modules/${candidate.manifest.name}/dist/cli.js`, ...args]);

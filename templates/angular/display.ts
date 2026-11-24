@@ -2,7 +2,9 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChild, Directive, effect, ElementRef, inject, input, linkedSignal, output, TemplateRef, untracked } from '@angular/core';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
+import { fallbackIcons } from './icons/registry';
+import { shape as closeIcon } from './icons/x';
 import { restoreFocus } from './focus';
 import { focusBeforeHiding } from './layout';
 import { layoutKeyword } from './layout-model';
@@ -54,6 +56,7 @@ export class Badge {
 
 /** Selection and removal are separate native buttons. The app owns actual data removal. */
 @Component({selector:'ui-tag,ui-chip',standalone:true,imports:[Icon,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
+ viewProviders:[fallbackIcons(closeIcon)],
  template:`<span class="ui-tag-frame ui-display-tone" [attr.data-tone]="tone()" [attr.data-disabled]="blocked()">
  @if(selectable()){<button type="button" data-tag-action="select" [disabled]="blocked()" [attr.aria-pressed]="selection()" (click)="toggle()">@if(icon()){<ui-icon [name]="icon()!" />}<span>{{label()}}</span></button>}
  @else{<span class="ui-tag-label">@if(icon()){<ui-icon [name]="icon()!" />}{{label()}}</span>}

@@ -65,7 +65,7 @@
     "node": "24.19.0"
   },
   "scripts": {
-    "package:build": "npm run config:examples -- --check && npm run docs:tokens -- --check && node scripts/catalog-message-arguments.mjs --check && tsx scripts/build-package.ts",
+    "package:build": "node scripts/render-icon-data.mjs --check && npm run config:examples -- --check && npm run docs:tokens -- --check && node scripts/catalog-message-arguments.mjs --check && tsx scripts/build-package.ts",
     "prepack": "npm run package:build",
     "test:package": "node --test --test-concurrency=1 tests/package/*.test.mjs",
     "ui:sync": "tsx src/cli.ts sync --config examples/ui.config.repository.yaml",
@@ -114,6 +114,7 @@
     "@codemirror/view": "6.43.13",
     "@dagrejs/dagre": "3.1.1",
     "@lucide/angular": "1.52.0",
+    "@lucide/icons": "1.52.0",
     "@playwright/test": "1.63.0",
     "@tailwindcss/cli": "4.3.0",
     "@types/node": "26.6.4",

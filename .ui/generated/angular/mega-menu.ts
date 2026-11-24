@@ -5,7 +5,7 @@ import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component
 import { ActionControl } from './action-control';
 import { AnchoredPopup } from './floating-panel';
 import { tabbableElements } from './focus';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 import { positiveInteger } from './layout-model';
 import { navigationHref, navigationNodes, validNavigationId, visibleNavigation, type MegaMenuGroup, type NavigationNode } from './navigation-model';
 /** A grouped navigation popup uses native links/disclosures, without menu-widget key interception. */
