@@ -117,8 +117,12 @@ async function setUp(name, major, candidate) {
     delete lock.packages['node_modules/@hiroshi.inoue/ui-foundation'];
   }
   const manifest = { name: lock.name, private: true, dependencies: lock.packages[''].dependencies };
+  const compiler = candidate ? {
+    ...tsconfig,
+    angularCompilerOptions: { strictTemplates: true, strictInjectionParameters: true, strictInputAccessModifiers: true, typeCheckHostBindings: true },
+  } : tsconfig;
   for (const [file, value] of Object.entries({
-    'package.json': manifest, 'package-lock.json': lock, 'angular.json': angular, 'tsconfig.app.json': tsconfig,
+    'package.json': manifest, 'package-lock.json': lock, 'angular.json': angular, 'tsconfig.app.json': compiler,
   })) await writeFile(join(app, file), JSON.stringify(value, null, 2) + '\n');
   await writeFile(join(app, 'src/index.html'), '<!doctype html><html><head><meta charset="utf-8"><base href="/"></head><body><app-root></app-root></body></html>\n');
   // Mount the public icon example as the app root for the source check. The
@@ -220,7 +224,8 @@ async function measureDevelopment(app, label, browser) {
       if ((await readFile(log, 'utf8')).includes('Application bundle generation failed')) break;
       await delay(350);
     }
-    throw new Error('Angular dev server failed to start. See ' + log);
+    const startupLog = await readFile(log, 'utf8');
+    throw new Error('Angular dev server failed to start. See ' + log + '\n' + startupLog.slice(0, 4000));
   } finally {
     if (server.exitCode === null && !server.signalCode) server.kill();
     await stopped;
@@ -283,21 +288,25 @@ const variants = candidate ? { candidate: ['empty', 'selected', 'defaults', 'spl
   : { published: ['empty', 'direct', 'core'], prototype: ['core', 'selected', 'defaults'] };
 const browser = await chromium.launch({ channel: 'chromium' });
 try {
-  for (const major of majors) for (const [name, labels] of Object.entries(variants)) {
-    const app = await setUp(name, major, candidate);
-    const records = {};
-    for (const label of labels) {
-      await writeFile(join(app, 'src/main.ts'), label === 'split' ? splitShell : shell);
-      await writeFile(join(app, 'src/probe.ts'), probe(cases[label]));
-      const development = await measureDevelopment(app, label, browser);
-      const production = await measureProduction(app, label, major, candidate);
-      const record = { variant: name, entry: label, angular: major, chromium: browser.version(), development, production };
-      if (candidate) record.candidateSha256 = candidate.sha256;
-      records[label] = record;
-      await writeFile(join(app, label + '.json'), JSON.stringify(record, null, 2) + '\n');
-      console.log('Measured', JSON.stringify(record));
+  for (const major of majors) {
+    for (const [name, labels] of Object.entries(variants)) {
+      const app = await setUp(name, major, candidate);
+      const angularVersion = JSON.parse(await readFile(join(app, 'node_modules/@angular/core/package.json'), 'utf8')).version;
+      const nodeVersion = execFileSync(angularNode, ['--version'], { encoding: 'utf8' }).trim();
+      const records = {};
+      for (const label of labels) {
+        await writeFile(join(app, 'src/main.ts'), label === 'split' ? splitShell : shell);
+        await writeFile(join(app, 'src/probe.ts'), probe(cases[label]));
+        const development = await measureDevelopment(app, label, browser);
+        const production = await measureProduction(app, label, major, candidate);
+        const record = { variant: name, entry: label, angular: angularVersion, node: nodeVersion, chromium: browser.version(), development, production };
+        if (candidate) record.candidateSha256 = candidate.sha256;
+        records[label] = record;
+        await writeFile(join(app, label + '.json'), JSON.stringify(record, null, 2) + '\n');
+        console.log('Measured', JSON.stringify(record));
+      }
+      if (candidate) enforceBudgets(records);
     }
-    if (candidate) enforceBudgets(records);
   }
   if (candidate) await assertFrozenCandidate(candidate);
 } finally {

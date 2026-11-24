@@ -1,6 +1,6 @@
 # 0007　生成アイコンの描画とデータを分ける
 
-2026年11月25日採用。対象は Angular の生成元と公開入口。製品への実装・配布は後続とする。[Issue #56](https://github.com/ist-h-i/ui-foundation/issues/56)・[測定条件と横展開の結果](../verification/generated-icon-loading-56/README.md)
+2026年11月25日採用。対象は Angular の生成元と公開入口。生成元・公開入口・配布候補の回帰試験に適用する。[Issue #56](https://github.com/ist-h-i/ui-foundation/issues/56)・[測定条件と横展開の結果](../verification/generated-icon-loading-56/README.md)
 
 ## 判断の根拠
 

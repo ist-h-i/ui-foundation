@@ -63,6 +63,13 @@ try{
     await expect(child.locator('rect')).toHaveAttribute('width', '9');
     await expect(child.locator('rect')).toHaveAttribute('vector-effect', 'non-scaling-stroke');
     await expect(page.locator('#interop-external svg.lucide-folder path')).toHaveCount(1);
+    await expect(page.locator('#interop-selected svg.lucide-folder path')).toHaveCount(1);
+    await expect(page.locator('#interop-native-grandchild rect')).toHaveAttribute('width', '9');
+    await page.locator('#interop-change').click();
+    await expect(page.locator('#interop-selected svg.lucide-local-mark line')).toHaveAttribute('x2', '7');
+    await page.locator('#interop-missing').click();
+    await expect(page.locator('#interop-missing-result')).toHaveText("Error: Unable to resolve icon 'shared'");
+    await expect(page.locator('#interop-selected svg.lucide-folder path')).toHaveCount(1);
     await page.locator('#title').fill('生成先の入力');
     await expect(page.getByTestId('consumer-value')).toHaveText('生成先の入力');
     const cardField=page.getByRole('textbox',{name:'Cardの下書き'});

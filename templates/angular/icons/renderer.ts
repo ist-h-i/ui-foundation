@@ -16,7 +16,7 @@ import { UI_ICON_FALLBACKS, UI_ICON_LUCIDE, UI_ICON_REGISTRY, type UiIconAttribu
     '[attr.vector-effect]': "attributes()['vector-effect']",
   },
 })
-class IconPaint {
+export class IconPaint {
   readonly attributes = input.required<UiIconAttributes>({ alias: 'uiIconPaint' });
 }
 

@@ -9593,7 +9593,7 @@
     },
     {
       "path": "templates/angular/icons/lucide.ts",
-      "sha256": "aa53edee99f4ed064bb284c049e47daf2644b4e77f98c5080d287cd46a8a678a",
+      "sha256": "0729da5b51df6d9c8b11384b319918afb362b30857580825fc7587db516e0e70",
       "declarations": [
         {
           "names": [
@@ -9729,8 +9729,27 @@
     },
     {
       "path": "templates/angular/icons/renderer.ts",
-      "sha256": "a938f47aef217c9fb85ebf0a6b82a2d8c555fece1b3b094597759d18ea86f793",
+      "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
       "declarations": [
+        {
+          "name": "IconPaint",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Directive",
+              "selector": "'[uiIconPaint]'"
+            }
+          ],
+          "extends": [],
+          "members": [
+            {
+              "name": "attributes",
+              "kind": "input",
+              "declaration": "readonly attributes = input.required<UiIconAttributes>({ alias: 'uiIconPaint' });",
+              "initializer": "input.required<UiIconAttributes>({ alias: 'uiIconPaint' })"
+            }
+          ]
+        },
         {
           "name": "Icon",
           "kind": "class",

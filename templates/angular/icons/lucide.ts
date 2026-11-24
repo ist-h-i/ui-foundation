@@ -1,10 +1,26 @@
-import { inject, type Provider } from '@angular/core';
+import { inject, Injector, type Provider } from '@angular/core';
 import { LUCIDE_CONFIG, LUCIDE_ICONS } from '@lucide/angular';
 import { provideUiIcons as provideDefaults } from './defaults';
-import { UI_ICON_LUCIDE, UI_ICON_REGISTRY, type UiIconInput, type UiIconLucideAdapter } from './registry';
+import { UI_ICON_LUCIDE, UI_ICON_REGISTRY, type UiIconInput, type UiIconLucideAdapter, type UiIconRegistry } from './registry';
+
+function readClosestIcons(): UiIconRegistry {
+  // Resolve both tokens normally first, so projected views retain Angular's visibility rules.
+  const native = inject(LUCIDE_ICONS);
+  const selected = inject(UI_ICON_REGISTRY);
+  if (selected === native) return native;
+  // The public tokens can be provided independently. The closest registration wins, and
+  // at a shared level Lucide's token reflects the order of native and bridged providers.
+  let scope: Injector | null = inject(Injector);
+  while (scope) {
+    if (scope.get(LUCIDE_ICONS, null, { self: true }) === native) return native;
+    if (scope.get(UI_ICON_REGISTRY, null, { self: true }) === selected) return selected;
+    scope = scope.get(Injector, null, { skipSelf: true });
+  }
+  return native;
+}
 
 const adapter: UiIconLucideAdapter = {
-  readIcons: () => inject(LUCIDE_ICONS),
+  readIcons: readClosestIcons,
   readConfig: () => inject(LUCIDE_CONFIG),
 };
 
