@@ -359,6 +359,8 @@ import { shape as search } from '../.ui/generated/angular/icons/search';
 
 生の `svg[lucideIcon]` や `provideLucideIcons`・`provideLucideConfig` と登録や設定を共有しているアプリは、更新時に `@lucide/angular@1.52.0` を導入し、YAML に `icons: { lucide_interop: true }` を指定して同期してください。登録用の import を `angular/icons/lucide` に切り替え、この入口の `provideUiIcons(...extraIcons)` を使うと登録を共有できます。既存の Lucide レジストリを使う場合は、同じ入口の `provideUiLucideInterop()` を追加します。アプリが `@lucide/angular` のクラスを直接 import したルートには、そのパッケージの読み込みが発生します。
 
+アプリのルートで通常の `selected(...)` と空の `provideLucideIcons()` を並べると、`ui-icon` は選択した図形を使います。生の Lucide と同じ登録順で空にしたい場合は、互換入口の `provideUiIcons(...)` の後に空の `provideLucideIcons()` を置いてください。
+
 ## 依存関係
 
 `0.1.0` の検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
