@@ -105,7 +105,10 @@ test('native multi-code-unit text keeps its full content and intended cursor',()
  const insert=()=>transaction??=f.state.update({changes:{from:3,insert:'🧩'},selection:cm.EditorSelection.single(3),userEvent:'input.type'});
  assert.equal(f.guard.input(f.view,3,3,'🧩',insert),false);f.model.dispatch(insert());assert.equal(f.state.doc.toString(),'abc🧩');assert.equal(f.state.selection.main.head,5);
 });
-for(const stale of [false,true])test(`Markdown HTML closing handlers still run with a ${stale?'stale':'correct'} default input selection`,()=>{
+for(const stale of [false,true])test(`Markdown HTML closing handlers still run with a ${stale?'stale':'correct'} default input selection`,t=>{
+ // Keep CodeMirror's parse deadline from depending on CPU scheduling in this small fixture.
+ const now=Date.now();
+ t.mock.method(Date,'now',()=>now);
  const guard=codeInputSelectionGuard(cm),node={} as Node;
  let state=cm.EditorState.create({doc:'<div',selection:{anchor:4},extensions:[EditorView.inputHandler.of(guard.input),cm.EditorState.transactionFilter.of(guard.filter),markdown()]});
  const events:string[]=[];
