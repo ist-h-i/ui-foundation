@@ -41,16 +41,26 @@ const angularAuditBytes = await readFile(resolve(currentEvidence, 'angular-22-re
 const angularAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(angularAuditBytes.toString('utf8'));
 const iconAuditBytes = await readFile(resolve(currentEvidence, 'generated-icon-reaudit.json'));
 const iconAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(iconAuditBytes.toString('utf8'));
+const layoutAuditBytes = await readFile(resolve(currentEvidence, 'layout-entry-reaudit.json'));
 const layoutAudit: Pick<CurrentAudit, 'dependencies'> & {
   prior_audit_sha256: string;
   positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
-} = JSON.parse(await readFile(resolve(currentEvidence, 'layout-entry-reaudit.json'), 'utf8'));
+} = JSON.parse(layoutAuditBytes.toString('utf8'));
+const formAudit: {
+  prior_audit_sha256: string;
+  site: Pick<Diagnostic, 'file' | 'line' | 'column'>;
+  dependency: {prior_file: string; prior_sha256: string; current_sha256: string; judgment: string};
+} = JSON.parse(await readFile(resolve(currentEvidence, 'form-dictionary-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
 for (const [id, {line, column}] of Object.entries(layoutAudit.positions)) {
   assert.ok(currentSites[id], `${id}: missing reviewed site before the layout entry change`);
   currentSites[id] = {...currentSites[id], line, column};
 }
+currentSites.D146 = {...currentSites.D146, ...formAudit.site};
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
+function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
+  return item.id === 'D146' && path === formAudit.dependency.prior_file ? formAudit.site.file : path;
+}
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
@@ -61,7 +71,13 @@ async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha2
       assert.ok(update.judgment.trim(), `${item.id}: changed dependency requires a purpose judgment`);
       reviewedHash = update.current_sha256;
     }
-    assert.equal(sha256(await readFile(resolve(directory, file))), reviewedHash,
+    const currentFile = currentProofFile(item, file);
+    if (currentFile !== file) {
+      assert.equal(formAudit.dependency.prior_sha256, reviewedHash, 'D146: relocation must start from the previous proof');
+      assert.ok(formAudit.dependency.judgment.trim(), 'D146: relocation requires a purpose judgment');
+      reviewedHash = formAudit.dependency.current_sha256;
+    }
+    assert.equal(sha256(await readFile(resolve(directory, currentFile))), reviewedHash,
       `${item.id}: producer/helper changed; re-audit its purpose before refreshing this proof`);
   }
 }
@@ -71,12 +87,13 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 }, severity: 'warning' | 'error') {
   const site = currentSites[id];
   assert.ok(site, `${id}: current checker evidence required`);
-  assert.equal(site.file, original.file);
+  const file = currentProofFile({id}, original.file);
+  assert.equal(site.file, file);
   assert.equal(site.rule, original.rule);
   assert.equal(site.severity, severity, `${id}: the re-audit cannot change the admitted severity`);
   assert.ok(site.source.includes(original.source), `${id}: retain the same matching source`);
   assert.equal(site.exception, original.reason, `${id}: retain the original purpose`);
-  assert.equal(config.checks!.exceptions.filter(x => x.file === original.file && x.rule === original.rule
+  assert.equal(config.checks!.exceptions.filter(x => x.file === file && x.rule === original.rule
     && x.source === original.source && x.reason === original.reason
     && x.line === (original.line === undefined ? undefined : site.line)
     && x.column === (original.column === undefined ? undefined : site.column)).length, 1, id);
@@ -84,6 +101,7 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(layoutAuditBytes), formAudit.prior_audit_sha256, 'historical layout entry audit changed');
   assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
   assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');
   assert.equal(sha256(messageAuditBytes), angularAudit.prior_audit_sha256, 'historical message-migration audit changed');
@@ -174,7 +192,7 @@ test('the checker admits the five re-audited Angular sites and rejects the prior
     assert.partialDeepStrictEqual(matches[0], currentSites[item.id], item.id);
   }
 
-  const {exception:reason, ...warning} = angularAudit.sites.D146;
+  const {exception:reason, ...warning} = currentSites.D146;
   const textarea = exceptions.find(e => e.reason === reason)!;
   textarea.line = messageAudit.sites.D146.line;
   textarea.column = messageAudit.sites.D146.column;
@@ -191,7 +209,8 @@ test('the actual proof dependency validator rejects changed producer and helper 
   t.after(() => rm(temporary, { recursive:true, force:true }));
   const covered = new Set<string>();
   for (const item of approvals) {
-    for (const file of Object.keys(item.proof_sha256)) {
+    for (const previousFile of Object.keys(item.proof_sha256)) {
+      const file = currentProofFile(item, previousFile);
       if (covered.has(file)) continue;
       covered.add(file);
       const target = resolve(temporary,file);
@@ -205,7 +224,7 @@ test('the actual proof dependency validator rejects changed producer and helper 
     // A same-length edit exercises the content hash, independent of sink source/position.
     const mutated = Buffer.from(original); mutated[0] = mutated[0] === 32 ? 33 : 32;
     await writeFile(target,mutated);
-    const dependent = approvals.find(item => file in item.proof_sha256)!;
+    const dependent = approvals.find(item => Object.keys(item.proof_sha256).some(previousFile => currentProofFile(item, previousFile) === file))!;
     await assert.rejects(validateProofDependencies(dependent,temporary), /producer\/helper changed/);
     await writeFile(target,original);
   }

@@ -1,0 +1,14 @@
+{
+  "prior_audit_sha256": "24e668076d7c50297f74f73860780031fb6913cae40255c2795ba10681cc16ad",
+  "site": {
+    "file": "templates/angular/text-controls.ts",
+    "line": 174,
+    "column": 51
+  },
+  "dependency": {
+    "prior_file": "templates/angular/text-input.ts",
+    "prior_sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+    "current_sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+    "judgment": "D146. The Angular textarea moved to the forms text-controls module. The native max-block-size binding still reads checkedMaxHeight, which returns only null or a finite positive value. The Japanese reason, cap input, and resize procedure stay the same."
+  }
+}
