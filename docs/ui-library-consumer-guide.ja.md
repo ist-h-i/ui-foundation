@@ -242,6 +242,8 @@ Tailwind v4を処理するビルド環境が必要です。生成部品のTypeSc
 | `angular/disclosure.ts` | `Disclosure` で内容を開閉する。 |
 | `angular/index.ts` | ほかの部品を使う場合や、全件の Angular API が必要な場合に使う。 |
 
+`layout` と `disclosure` は `@angular/core` と共通の生成トークン・部品用 CSS を使います。この2つの入口だけを利用するアプリでは、CDK や専門部品向けの依存は不要です。
+
 `core` を提供する版を導入して同期すると、生成先が既定の `.ui/generated/` の場合は次のように指定できます。
 
 ```ts

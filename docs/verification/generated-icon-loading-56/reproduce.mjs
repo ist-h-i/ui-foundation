@@ -199,6 +199,7 @@ async function measurePage(browser, url, label) {
       await summary.press('Space');
       await draft.waitFor({ state: 'hidden' });
       await summary.press('Enter');
+      await draft.waitFor({ state: 'visible' });
       assert.equal(await draft.inputValue(), 'Retained input');
     } else if (label === 'basics') {
       for (const selector of ['button[uiAction]', 'a[uiAction]', 'ui-card', 'ui-text-input input']) {
