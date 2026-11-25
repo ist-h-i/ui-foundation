@@ -4,7 +4,7 @@
 
 画面で実現したい操作から、生成される Angular 部品を探すための一覧です。導入と生成は [CLI コマンド](commands.ja.md)、アプリへの組込み・依存関係・CSS・worker の配置は [生成 UI の利用ガイド](ui-library-consumer-guide.ja.md)を参照してください。
 
-下表の名前は、生成先の `angular/index.ts` から import する公開名です。npm パッケージ本体から Angular 部品を直接 import する使い方ではありません。生成先の既定値は `.ui/generated/` です。必要な standalone 部品と、使う投影用 directive を利用画面の `imports` に追加します。
+下表は Angular の公開名です。利用する部品に合わせて生成先の公開入口を選びます。 [公開入口と Angular のビルド](ui-library-consumer-guide.ja.md#公開入口と-angular-のビルド)npm パッケージ本体から Angular 部品を直接 import する使い方ではありません。生成先の既定値は `.ui/generated/` です。必要な standalone 部品と、使う投影用 directive を利用画面の `imports` に追加します。
 
 一覧では用途の近い部品を同じ行にまとめています。型・純関数・サービスを含む公開 API 全体は [API 目録](ui-library-api.json)、入力・イベント・復旧の詳細は各行のリンクを参照してください。
 
