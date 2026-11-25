@@ -268,7 +268,7 @@ export async function auditPackage({ root, packageRoot, delivery, tarball, skipN
     }
     for (const file of files) {
       const original = await readFile(join(root, path, file.path));
-      for (const [kind, notice, selected] of [['cli', cliNotice, cli.some(p => p.name === name)], ['checker', checkerNotice, checker.some(p => p.name === name)], ['generated-app', runtimeNotice, runtime.paths.includes(path)]]) {
+      for (const [kind, notice, selected] of [['cli', cliNotice, cli.some(p => p.name === name)], ['checker', checkerNotice, checker.some(p => p.name === name)], ['generated-app', runtimeNotice, runtime.paths.includes(path)], ['generated-icon-data', runtimeNotice, name === '@lucide/icons']]) {
         if (selected) noticeChecks.push({ kind, name, version: item.version, path, file: file.path, sourceKind: file.kind, sha256: sha256(original), exact: noticeContainsOriginal(notice, name, item.version, original) });
       }
     }

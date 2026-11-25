@@ -28,6 +28,8 @@ const { metafile } = await build({
   }}],
 });
 
+assert.ok(!Object.keys(metafile.inputs).some(path => path.includes('/@lucide/angular/')),
+  'basic components and the full catalog must resolve without the optional Angular Lucide adapter');
 const outputs = metafile.outputs;
 function followStaticImports(path, seen = new Set()) {
   if (seen.has(path)) return seen;

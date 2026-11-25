@@ -22,6 +22,32 @@ async function project(t: TestContext) {
   return { root, source, config: parseConfig(source) };
 }
 
+test('the optional Lucide adapter follows configuration, manifest ownership and removal', async t => {
+  const { root, source } = await project(t);
+  const path = '.ui/generated/angular/icons/lucide.ts';
+  const configuration = resolve(root, 'ui.config.yaml');
+  await syncProject({ root });
+  assert.equal(await readFile(resolve(root, '.ui/generated/LUCIDE-LICENSE.txt'), 'utf8'),
+    await readFile(resolve(repository, 'assets/third-party/LUCIDE-LICENSE.txt'), 'utf8'));
+  await assert.rejects(readFile(resolve(root, path)), { code: 'ENOENT' });
+  await writeFile(configuration, source + '\nicons:\n  lucide_interop: true\n');
+  const enabled = await syncProject({ root });
+  assert.ok(enabled.changes.some(change => change.path === path && change.kind === 'create'));
+  const contents = await readFile(resolve(root, path), 'utf8');
+  assert.match(contents, /from '@lucide\/angular'/);
+  const manifest = JSON.parse(await readFile(resolve(root, '.ui/generated/manifest.json'), 'utf8'));
+  assert.ok(manifest.files[path].sha256);
+  assert.deepEqual(await syncProject({ root }), { written: false, changes: [] });
+
+  await writeFile(configuration, source + '\nicons:\n  lucide_interop: false\n');
+  await writeFile(resolve(root, path), contents + '\n// local edit\n');
+  await assert.rejects(syncProject({ root }), /edited/);
+  assert.match(await readFile(resolve(root, path), 'utf8'), /local edit/);
+  await writeFile(resolve(root, path), contents);
+  assert.ok((await syncProject({ root })).changes.some(change => change.path === path && change.kind === 'delete'));
+  await assert.rejects(readFile(resolve(root, path)), { code: 'ENOENT' });
+});
+
 test('dry-run writes nothing; repeated generation is stable and check observes the generated output', async t => {
   const { root } = await project(t);
   const plan = await syncProject({ root, dryRun: true });

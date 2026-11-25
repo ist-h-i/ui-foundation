@@ -145,7 +145,7 @@ URL・現在地・履歴と Angular Router の設定はアプリが所有しま�
 | `HelpText` / `ShortcutHint` / `ReadMore` | 常設説明、キー表示、実際にあふれた文章の展開。 | [文字・情報・数値表示](ui-components.md#文字情報数値表示) |
 | `CodeBlock` / `InlineCode` / `Watermark` | コードの文字表示・コピー、装飾用の透かし。 | [文字・情報・数値表示](ui-components.md#文字情報数値表示) |
 
-Descriptions の値の差替えには `DescriptionTemplate` を使います。Icon は `@lucide/angular` と `provideUiIcons` による登録が必要です。ShortcutHint はキー処理を実装せず、Watermark は認証やコピー防止を保証しません。
+Descriptions の値の差替えには `DescriptionTemplate` を使います。Icon は個別データまたは `provideUiIcons()` で登録します。ShortcutHint はキー処理を実装せず、Watermark は認証やコピー防止を保証しません。
 
 ## ファイル・画像・音声・動画
 

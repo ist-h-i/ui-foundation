@@ -246,12 +246,12 @@ Tailwind v4を処理するビルド環境が必要です。生成部品のTypeSc
 import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/angular/core';
 ```
 
-`core` は Angular core・common・CDK と CDK の peer である Angular Forms、RxJS、Lucide を参照します。アプリのビルドと起動に必要な Angular パッケージも用意してください。TypeScript の検査対象にはアプリのソースを指定し、生成コードは import を通じて取り込みます。全生成ソースを glob で指定すると、専門部品の依存関係まで型検査対象になります。共通のトークンと部品用 CSS を読み込んでください。`core` を使うための `sideEffects` 指定や専門部品の CSS・worker は不要です。既存の全件入口も引き続き利用できます。
+`core` は Angular core・common・CDK と CDK の peer である Angular Forms、RxJS を参照します。アプリのビルドと起動に必要な Angular パッケージも用意してください。TypeScript の検査対象にはアプリのソースを指定し、生成コードは import を通じて取り込みます。全生成ソースを glob で指定すると、専門部品の依存関係まで型検査対象になります。共通のトークンと部品用 CSS を読み込んでください。`core` を使うための `sideEffects` 指定や専門部品の CSS・worker は不要です。既存の全件入口も引き続き利用できます。
 
-Angular CLI 22.3.0で作り、Angular FormsとRxJSを含むアプリなら、基本部品とフォームに追加する依存は次の2つです。
+Angular CLI 22.3.0で作り、Angular FormsとRxJSを含むアプリなら、基本部品とフォームには CDK を追加します。
 
 ```sh
-npm install --save-exact @angular/cdk@22.3.0 @lucide/angular@1.52.0
+npm install --save-exact @angular/cdk@22.3.0
 ```
 
 フォーム用の入口は `core` と同じ依存構成で使えます。
@@ -343,9 +343,27 @@ export class DepartmentScreen {
 
 ナビゲーション、パンくず、メニューなどはUI部品です。Angular Routerのルート定義、`RouterOutlet`、認証・未保存状態に応じた遷移制御は利用アプリが実装します。生成部品と`RouterLink`などの合成は未検証です。リンクを置くだけでSPAの画面遷移が実装されるとは扱わず、採用する構成で現在地表示、無効・処理中のリンク、戻る操作などを確認してください。
 
+## アイコンの登録
+
+アイコンを1種類だけ使う場合は、表示する部品やルートにその図形を登録します。遅延ルート専用の図形は、そのルートのファイルで読み込みます。
+
+```ts
+import { Icon, selected } from '../.ui/generated/angular/icons';
+import { shape as search } from '../.ui/generated/angular/icons/search';
+
+// @Component({ imports: [Icon], providers: [selected(search)], ... })
+// <ui-icon name="search" />
+```
+
+既定12種類を使うには `angular/icons/defaults` の `provideUiIcons()` を登録します。従来の `angular/core` と `angular/index` からも利用できます。遅延ルートで検索と矢印を使う場合は、そのルートで `icons/search` と `icons/chevron-right` の図形を読み、`selected(search, chevronRight)` を登録します。子の injector に登録すると、そのスコープでは子の登録を使います。
+
+生の `svg[lucideIcon]` や `provideLucideIcons`・`provideLucideConfig` と登録や設定を共有しているアプリは、更新時に `@lucide/angular@1.52.0` を導入し、YAML に `icons: { lucide_interop: true }` を指定して同期してください。登録用の import を `angular/icons/lucide` に切り替え、この入口の `provideUiIcons(...extraIcons)` を使うと登録を共有できます。既存の Lucide レジストリを使う場合は、同じ入口の `provideUiLucideInterop()` を追加します。アプリが `@lucide/angular` のクラスを直接 import したルートには、そのパッケージの読み込みが発生します。
+
+アプリのルートで通常の `selected(...)` と空の `provideLucideIcons()` を並べると、`ui-icon` は選択した図形を使います。生の Lucide と同じ登録順で空にしたい場合は、互換入口の `provideUiIcons(...)` の後に空の `provideLucideIcons()` を置いてください。
+
 ## 依存関係
 
-`0.1.0` の検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。アイコンの公開入口を解決する`@lucide/angular@1.52.0`も必要です。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
+`0.1.0` の検証構成は Angular/CDK `22.3.0`、RxJS `7.8.2`、TypeScript `6.0.3` を使用します。Node の要求版は `package.json` の `engines` に従います。Tailwindを使う場合の検証版は`tailwindcss@4.3.0`です。リポジトリ上の `devDependencies` 分類だけを見て生成部品の runtime engine を省かないでください。利用する生成ソースをアプリで解決できる依存と、再現可能な lockfile が必要です。
 
 全件入口 `angular/index.ts` から参照される追加 runtime engine は次の 25 件です。この入口を使うときは、画面で使う部品が少なくても strict compile で解決できるようにします。実際のブラウザー bundle では複数の engine が動的 import により分割されます。
 

@@ -37,14 +37,16 @@ const baseline: Diagnostic[] = JSON.parse(await readFile(resolve(historicalEvide
 const historicalSites: Diagnostic[] = JSON.parse(await readFile(resolve(currentEvidence, 'purpose-sites-current.json'), 'utf8')).diagnostics;
 const messageAuditBytes = await readFile(resolve(currentEvidence, 'message-migration-reaudit.json'));
 const messageAudit: CurrentAudit = JSON.parse(messageAuditBytes.toString('utf8'));
-const angularAudit: CurrentAudit & {prior_audit_sha256:string} =
-  JSON.parse(await readFile(resolve(currentEvidence, 'angular-22-reaudit.json'), 'utf8'));
-const currentSites = {...messageAudit.sites, ...angularAudit.sites};
+const angularAuditBytes = await readFile(resolve(currentEvidence, 'angular-22-reaudit.json'));
+const angularAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(angularAuditBytes.toString('utf8'));
+const iconAudit: CurrentAudit & {prior_audit_sha256:string} =
+  JSON.parse(await readFile(resolve(currentEvidence, 'generated-icon-reaudit.json'), 'utf8'));
+const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -74,6 +76,7 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');
   assert.equal(sha256(messageAuditBytes), angularAudit.prior_audit_sha256, 'historical message-migration audit changed');
   assert.equal(new Set(approvals.map(item => item.id)).size, approvals.length);
   assert.equal(approvals.filter(item => item.origin === 'legacy').length, 32);

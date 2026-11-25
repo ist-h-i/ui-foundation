@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.repository.yaml": "9e54d01ad183567622753ec2d516fc3b1eacc443d62fe748392baead0f7ad73c",
-    "package.json": "feb9491c7ff8818315ca85bafad9fc8e510052c1b23bb36dea59b9644a710d0e",
-    "package-lock.json": "e5584d4e400c6945efdaf4343188870b51f9fb72e8d108fb911370e92fc1a2af",
-    "src/config.ts": "444fc57398f497fe8b382a1901e8d4377e27c4a2dc82824bb3031b0e7807f461",
+    "examples/ui.config.repository.yaml": "3fad0e3ac0e5c9836d0ac5030218ca44e520e62c7f2052bfaf16c076fd6bba29",
+    "package.json": "34f43c32b9133eae3747f6cb0b3dbcc67a4823c32a09df73e268e974a532cdf5",
+    "package-lock.json": "0686b6cfe76a63c1d9497ee4ded53a49f09e03fdcbc1255292b0bedbaacc94ef",
+    "src/config.ts": "6ce714e7a20ca1343cbe597eb0a0dadd437de71d1fdd6c5baa77ed6f397373ca",
     "src/roles.ts": "979e6e2e5f49a72a21a73597ca5817fbeb94110375303f219d326a1d7ffe3260",
-    "src/sync.ts": "31065689fc6169b46bc11347c0ca4e2d6542e313116282ef5e81d26bbd2747bc",
-    "src/check/application.ts": "9943a95e67daf50c940e500131ad31685098d8a04fe0be2658ad8bd0d9e028a5",
+    "src/sync.ts": "372090263cae3b6b0a0d3042114a6694574de917fb547ed4a31dbe0153343a61",
+    "src/check/application.ts": "a35c752a5ac67535b6fab103d09c9ad147cfd22c8583d2a349704b0876fa1603",
     "src/check/bounded-search.ts": "007557dd0be3e13506c23b0eca87909a396d571c260df609b90a895af0b90f8f",
     "src/check/bundle.ts": "bcff52e444c63faeb7a2c875a9a3e94211b5603b37b77b6ac539b5e14b0c00b6",
     "src/check/canonical.ts": "6645f7e87893e28c67433615add9c841922fce1fd81ae40cb161ba670c417dd7",
@@ -15,7 +15,7 @@
     "src/check/entry.ts": "8cc7cedd8c5c8478635afe9e01c4feb04d30b6c17f0594d07cc82396913f3299",
     "src/check/policy.ts": "7657b3050d8a63e5be226fbedf91211d783d01058ad2dea91679deb70925be42",
     "src/check/report.ts": "c0b262dabfecb9a7febbff5a57e7517777cf77a6117af85e93cd6569be3b3468",
-    "src/check/scanner.ts": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+    "src/check/scanner.ts": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
     "src/check/styles.ts": "2d49119d0b4bc953afd2479b7004aa9eecf4d7f54fb3e54bb96009498ea18f46",
     "src/check/tailwind.ts": "7d4147bee78cc6a70abed1f149297139909c684b459603670b3a0f79b8696802",
     "src/check/types.ts": "be71f7618feface64b14c86c2804b03204e63b5812215de659342ab3ace54c6c",
@@ -27,7 +27,8 @@
     "src/sync-lock.ts": "6145864d21dc441d7477284c46d69b944679382fe04e1fec10d65882a885b3f0",
     "src/skill-docs.ts": "15ccdc9ba5ddc5126eb6e4c8b10cee4132a53475e72850008e6eed6aae378c7f",
     "scripts/build-package.ts": "f6cb5ee465e4b797c40dbb4b4078bc5b66b773c14ae61a153d39dd150ab3a13a",
-    "src/check/i18n.ts": "da8f7f189f719fb1933c8bc13ac71ba5afe791de60dc9b1851d981f8c0e6010a"
+    "src/check/i18n.ts": "da8f7f189f719fb1933c8bc13ac71ba5afe791de60dc9b1851d981f8c0e6010a",
+    "src/icon-catalog.ts": "3277ca01966a896f728023565aeeaf09e74a981ff2d38e06ec0d9156bcb38fd7"
   },
   "reviews": [
     {
@@ -167,7 +168,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -281,7 +282,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -413,7 +414,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -817,7 +818,7 @@
       "category": "runtime-input",
       "detail": "runtime-structural-columns",
       "disposition": "retained-warning",
-      "source_sha256": "4f2eced950b38468966f1042657607a953436826d1ccda221a9bf41e769f9422",
+      "source_sha256": "90c070baf6e2eedb2cea0e01fdc883a37c2864889f4ddca17da95f7ed6898ae7",
       "producer": "resolvedColumns() を CSS column-count に設定。Masonry.problemがcolumns/maxColumnsの正のsafe integer、minimumItemWidthの有限正数、breakpointの非負minWidth/正整数列数を検証する。resolvedColumnsは降順breakpoint、明示columns、または測定幅/minimum/gapから1..maxColumnsのfloorを採る。ResizeObserverはeffect cleanupで切断する。",
       "reason": "列数は配置用の非負整数で正当だが、実測・可変inputによる値域と全内容を静的に閉じられないため保持する。",
       "remaining_scope": "実DOM幅・semantic minimum・computed gap、任意breakpoint/column inputと投影card内容を全域静的証明していない。検査器はAngular computedやobserverの実行をしない。",
@@ -830,19 +831,19 @@
         {
           "file": "templates/angular/collection-views.ts",
           "anchor": "[style.column-count]=\"resolvedColumns()\"",
-          "sha256": "4f2eced950b38468966f1042657607a953436826d1ccda221a9bf41e769f9422",
+          "sha256": "90c070baf6e2eedb2cea0e01fdc883a37c2864889f4ddca17da95f7ed6898ae7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/collection-views.ts",
           "anchor": "protected readonly problem=computed(()=>this.itemProblem()??(this.columns()",
-          "sha256": "4f2eced950b38468966f1042657607a953436826d1ccda221a9bf41e769f9422",
+          "sha256": "90c070baf6e2eedb2cea0e01fdc883a37c2864889f4ddca17da95f7ed6898ae7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/collection-views.ts",
           "anchor": "protected readonly resolvedColumns=computed(",
-          "sha256": "4f2eced950b38468966f1042657607a953436826d1ccda221a9bf41e769f9422",
+          "sha256": "90c070baf6e2eedb2cea0e01fdc883a37c2864889f4ddca17da95f7ed6898ae7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3131,7 +3132,7 @@
       "id": "D067",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 14,
+        "line": 18,
         "column": 423,
         "rule": "unresolved",
         "severity": "warning",
@@ -3142,7 +3143,7 @@
       "category": "public-css-override",
       "detail": "feedback-inherited-state-palette",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "data-severity 条件で host の --ui-feedback-ink/surface を semantic color に設定 → child .ui-feedback-frame の color/background var(alias,semantic fallback)。",
       "reason": "success/warning/error の既知宣言は意味トークンだが、info や未知状態は host 定義がなく祖先 alias や外部 writer が届く。color と surface の正当な組は CSS 上書きで独立に壊せるため、全状態を意味トークンと断定したり data/構造例外にできない。",
       "remaining_scope": "任意 color expression・cascade・背景合成・利用者設定/forced colors・全 state 語彙での意味と視認性は未証明。",
@@ -3156,19 +3157,19 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "color:var(--ui-feedback-ink,var(--ui-color-text))",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "const severity =",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "'[attr.data-severity]'",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3191,7 +3192,7 @@
       "id": "D068",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 14,
+        "line": 18,
         "column": 473,
         "rule": "unresolved",
         "severity": "warning",
@@ -3202,7 +3203,7 @@
       "category": "public-css-override",
       "detail": "feedback-inherited-state-palette",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "data-severity 条件で host の --ui-feedback-ink/surface を semantic color に設定 → child .ui-feedback-frame の color/background var(alias,semantic fallback)。",
       "reason": "success/warning/error の既知宣言は意味トークンだが、info や未知状態は host 定義がなく祖先 alias や外部 writer が届く。color と surface の正当な組は CSS 上書きで独立に壊せるため、全状態を意味トークンと断定したり data/構造例外にできない。",
       "remaining_scope": "任意 color expression・cascade・背景合成・利用者設定/forced colors・全 state 語彙での意味と視認性は未証明。",
@@ -3216,19 +3217,19 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "background:var(--ui-feedback-surface,var(--ui-color-background))",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "const severity =",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "'[attr.data-severity]'",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3251,7 +3252,7 @@
       "id": "D069",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 137,
+        "line": 142,
         "column": 310,
         "rule": "unresolved",
         "severity": "warning",
@@ -3262,7 +3263,7 @@
       "category": "runtime-input",
       "detail": "spinner-public-dimension",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "size input → sizeValue(): finite positive number は px、small/medium/large は semantic token または 2*control → SVG inline/block-size。",
       "reason": "任意の正数は通常 UI の視覚サイズであり、guard があるだけでは token 準拠や data 由来寸法にはならない。両軸の numeric branch が残るので closed semantic set として静的成功にできない。",
       "remaining_scope": "任意の正数サイズと配置・周辺文字での可読性、全 CSS 上書きと timer/lifetime 順序は未確認。",
@@ -3276,25 +3277,25 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "[style.inline-size]=\"sizeValue()\"",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly sizeValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "Spinner size must be positive",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "onCleanup(() => clearTimeout(timer))",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3317,7 +3318,7 @@
       "id": "D070",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 137,
+        "line": 142,
         "column": 344,
         "rule": "unresolved",
         "severity": "warning",
@@ -3328,7 +3329,7 @@
       "category": "runtime-input",
       "detail": "spinner-public-dimension",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "size input → sizeValue(): finite positive number は px、small/medium/large は semantic token または 2*control → SVG inline/block-size。",
       "reason": "任意の正数は通常 UI の視覚サイズであり、guard があるだけでは token 準拠や data 由来寸法にはならない。両軸の numeric branch が残るので closed semantic set として静的成功にできない。",
       "remaining_scope": "任意の正数サイズと配置・周辺文字での可読性、全 CSS 上書きと timer/lifetime 順序は未確認。",
@@ -3342,25 +3343,25 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "[style.block-size]=\"sizeValue()\"",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly sizeValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "Spinner size must be positive",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "onCleanup(() => clearTimeout(timer))",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3383,7 +3384,7 @@
       "id": "D071",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 169,
+        "line": 174,
         "column": 278,
         "rule": "unresolved",
         "severity": "warning",
@@ -3394,7 +3395,7 @@
       "category": "runtime-input",
       "detail": "skeleton-public-dimension",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "shape/width/height/diameter input → widthValue/heightValue → dimension() の finite positive number px または semantic/full/text 出力 → skeleton span inline/block-size。circle は auto と aspect-ratio 1。",
       "reason": "numeric dimension は閉じた意味トークン集合ではない。画面の予約領域という意図だけで実データの生成寸法との対応を証明したことにはならず、一般 UI 寸法を一括 data 例外にしない。",
       "remaining_scope": "任意寸法/shape と将来 content の対応、外部 CSS・animation の全状態、すべての予約領域が実データと一致することは未確認。",
@@ -3408,25 +3409,25 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "[style.inline-size]=\"widthValue()\"",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly widthValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly heightValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "private dimension(",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3449,7 +3450,7 @@
       "id": "D072",
       "diagnostic": {
         "file": "templates/angular/feedback.ts",
-        "line": 169,
+        "line": 174,
         "column": 313,
         "rule": "unresolved",
         "severity": "warning",
@@ -3460,7 +3461,7 @@
       "category": "runtime-input",
       "detail": "skeleton-public-dimension",
       "disposition": "retained-warning",
-      "source_sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+      "source_sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
       "producer": "shape/width/height/diameter input → widthValue/heightValue → dimension() の finite positive number px または semantic/full/text 出力 → skeleton span inline/block-size。circle は auto と aspect-ratio 1。",
       "reason": "numeric dimension は閉じた意味トークン集合ではない。画面の予約領域という意図だけで実データの生成寸法との対応を証明したことにはならず、一般 UI 寸法を一括 data 例外にしない。",
       "remaining_scope": "任意寸法/shape と将来 content の対応、外部 CSS・animation の全状態、すべての予約領域が実データと一致することは未確認。",
@@ -3474,25 +3475,25 @@
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "[style.block-size]=\"shape() === 'circle' ? 'auto' : heightValue()\"",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly widthValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "protected readonly heightValue",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/feedback.ts",
           "anchor": "private dimension(",
-          "sha256": "752dc10645bc3b183026a137deb84bf74cc3ab1e1dcbfa1a5d234ab43c9c0972",
+          "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -5401,7 +5402,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "6518889e328a066b60f00bb7a4fee9a8c93bdeb04a1cc725990a22d9dbce54a3",
+      "source_sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
       "producer": "auto-fit minmax式内のvar(--ui-mega-columns)で希望列数に応じたfractionを作る。MegaMenu.checkedColumnsはpositiveIntegerで列数を検証してnavの--ui-mega-columnsへ書く。consumerはsemantic minimum columnとgap、全体100%を使うauto-fit/minmax/min/max/calcで列幅を決める。Popupのfocus/close lifecycleは継承先に委譲する。",
       "reason": "構造用の列数aliasだが、外部CSSがinherit/invalid値を与えられるconsumerをvalidated producerと同一視できないため保持する。",
       "remaining_scope": "validated列数と別にconsumer alias・semantic minimum/gap・auto-fit CSS layoutは外部上書き可能で、全viewport/内容/CSS優先度の完全性は証明しない。",
@@ -5414,13 +5415,13 @@
         {
           "file": "templates/angular/mega-menu.ts",
           "anchor": "calc((100% - (var(--ui-mega-columns) - 1) * var(--ui-space-field)) / var(--ui-mega-columns))",
-          "sha256": "6518889e328a066b60f00bb7a4fee9a8c93bdeb04a1cc725990a22d9dbce54a3",
+          "sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/mega-menu.ts",
           "anchor": "protected readonly checkedColumns",
-          "sha256": "6518889e328a066b60f00bb7a4fee9a8c93bdeb04a1cc725990a22d9dbce54a3",
+          "sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -5454,7 +5455,7 @@
       "category": "runtime-input",
       "detail": "runtime-public-geometry-input",
       "disposition": "retained-warning",
-      "source_sha256": "9954049761043279ceff77e573a730c0114de863b882b5896c3b7493cd9b5ea6",
+      "source_sha256": "aeb649ea404a8891ef3e8a139a0e15be067e0f2d5366d06b2edf6ddc235fa48a",
       "producer": "folded()?null:checkedWidth() をnav inline-size.pxへ設定。SideNav.checkedWidthはnullまたはfinite>0を返す。folded時はbindingをnullに戻してCSS rail tokenを使い、展開時だけcheckedWidthをpxへ渡す。nav自体はmax-inline-size100%に制限される。",
       "reason": "native railへの復帰と公開pixel幅の二経路がある。妥当な入力検証でも任意幅のtoken適合/画面結果は閉じないのでwarningを維持する。",
       "remaining_scope": "任意正数widthと親width/CSS cascadeの全組合せを静的token集合へ閉じられない。公開pixel入力は用途限定構造値で、全描画品質の証明ではない。",
@@ -5467,13 +5468,13 @@
         {
           "file": "templates/angular/navigation-tree.ts",
           "anchor": "[style.inline-size.px]=\"folded()?null:checkedWidth()\"",
-          "sha256": "9954049761043279ceff77e573a730c0114de863b882b5896c3b7493cd9b5ea6",
+          "sha256": "aeb649ea404a8891ef3e8a139a0e15be067e0f2d5366d06b2edf6ddc235fa48a",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/navigation-tree.ts",
           "anchor": "protected readonly checkedWidth",
-          "sha256": "9954049761043279ceff77e573a730c0114de863b882b5896c3b7493cd9b5ea6",
+          "sha256": "aeb649ea404a8891ef3e8a139a0e15be067e0f2d5366d06b2edf6ddc235fa48a",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -8187,7 +8188,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8289,7 +8290,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8391,7 +8392,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8438,7 +8439,7 @@
       "id": "N005",
       "diagnostic": {
         "file": "templates/angular/display.ts",
-        "line": 78,
+        "line": 81,
         "column": 51,
         "rule": "unresolved",
         "severity": "warning",
@@ -8449,7 +8450,7 @@
       "category": "public-css-override",
       "detail": "open-avatar-dimension-alias",
       "disposition": "retained-warning",
-      "source_sha256": "be95bd5a7b85c366df56c4513659c930fca562fe3d7d748e2282ffd94ae0121e",
+      "source_sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
       "producer": "Avatar own host styles set --ui-avatar-scale to 1/.75/1.25 from data-size and --ui-avatar-size to semantic --ui-size-avatar multiplied by that scale; consumer is --ui-avatar-size:calc(var(--ui-size-avatar)*var(--ui-avatar-scale)).",
       "reason": "既定のscale1/.75/1.25は意味寸法へ掛ける無次元係数として許可され、avatar-sizeはその算術alias。この警告はscaleの供給域に対するもの。CSS/styleによるscale自体・size自体の上書きはinput.sizeの有限3値とは別の経路であり、inputの型または既定値から閉じたと認定できない。既知候補を検査し、未知writer/cascadeが残るため警告を維持する。円形50%等の既存用途例外はこのaliasを承認しない。",
       "remaining_scope": "scale/sizeへの任意CSS token列・型不適合・reset/important・全cascade、未知producerと供給先、任意name/font/locale/画像decode/環境での使用寸法とglyph fit。",
@@ -8463,7 +8464,7 @@
         {
           "file": "templates/angular/display.ts",
           "anchor": "--ui-avatar-scale:1;--ui-avatar-size:calc",
-          "sha256": "be95bd5a7b85c366df56c4513659c930fca562fe3d7d748e2282ffd94ae0121e",
+          "sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8505,7 +8506,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8552,7 +8553,7 @@
       "id": "N006",
       "diagnostic": {
         "file": "templates/angular/display.ts",
-        "line": 78,
+        "line": 81,
         "column": 139,
         "rule": "unresolved",
         "severity": "warning",
@@ -8563,7 +8564,7 @@
       "category": "public-css-override",
       "detail": "open-avatar-dimension-alias",
       "disposition": "retained-warning",
-      "source_sha256": "be95bd5a7b85c366df56c4513659c930fca562fe3d7d748e2282ffd94ae0121e",
+      "source_sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
       "producer": "Avatar own host styles set --ui-avatar-scale to 1/.75/1.25 from data-size and --ui-avatar-size to semantic --ui-size-avatar multiplied by that scale; consumer is inline-size:var(--ui-avatar-size).",
       "reason": "既定のscale1/.75/1.25は意味寸法へ掛ける無次元係数として許可され、avatar-sizeはその算術alias。この警告はサイズaliasからscale依存までの供給域に対するもの。CSS/styleによるscale自体・size自体の上書きはinput.sizeの有限3値とは別の経路であり、inputの型または既定値から閉じたと認定できない。既知候補を検査し、未知writer/cascadeが残るため警告を維持する。円形50%等の既存用途例外はこのaliasを承認しない。",
       "remaining_scope": "scale/sizeへの任意CSS token列・型不適合・reset/important・全cascade、未知producerと供給先、任意name/font/locale/画像decode/環境での使用寸法とglyph fit。",
@@ -8577,7 +8578,7 @@
         {
           "file": "templates/angular/display.ts",
           "anchor": "--ui-avatar-scale:1;--ui-avatar-size:calc",
-          "sha256": "be95bd5a7b85c366df56c4513659c930fca562fe3d7d748e2282ffd94ae0121e",
+          "sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8619,7 +8620,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8727,7 +8728,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8811,7 +8812,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8907,7 +8908,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9003,7 +9004,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9099,7 +9100,7 @@
         {
           "file": "src/check/scanner.ts",
           "anchor": "const writes = unknownGlobalStyleWrites || ctx.customPropertyWrites === 'unknown' ? 'unknown'",
-          "sha256": "67e1336c730f5f62972c60b43f8bbfc5585fcf0ddacc22dbff68ab4e82b86168",
+          "sha256": "9ac612770e721ce9220bf557106874eb54534c43a74e7047056de9ea8960661e",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9113,6 +9114,276 @@
           "anchor": "unsafe alias branches retain warnings while known literals and category violations remain visible",
           "sha256": "71eb18151edd4bf702130b58e735ece58bf434d6b78bd98aa6404e432b9743ec",
           "scope": "Read existing executable test source; not rerun by this audit."
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I001",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 9,
+        "column": 4,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve class list statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [attr.class]=\"attributes()['class']\"> ::  '[attr.class]': \"attributes()['class']\","
+      },
+      "category": "runtime-input",
+      "detail": "SVG子図形のclass",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "IconPaint は登録データの class 属性を選択した図形に渡す。",
+      "reason": "利用者が独自に登録する図形では、class 名と適用される CSS をビルド時に特定できない。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVG子図形のclassのバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.class]",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I002",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 34,
+        "column": 52,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n      focusable=\"false\" [attr.viewBox]=\"viewBox()\" [attr.width]=\"config.size\" [attr.height]=\"config.size\"\n      [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"\n      [attr.role]=\"decorative() ? null : 'img'\" [attr.aria-label]=\"title()\" [attr.aria-hidden]=\"decorative()\"> :: [attr.width]=\"config.size\" [attr.height]=\"config.size\""
+      },
+      "category": "runtime-input",
+      "detail": "SVGの幅",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "Icon.config.size がルート SVG の width 属性に渡る。",
+      "reason": "既定値は24。Lucide 互換設定から任意の幅を受け取り、表示幅はホストの CSS 寸法にも依存する。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVGの幅のバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.width]=\"config.size\" [attr.height]=\"config.size\"",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        },
+        {
+          "file": "scripts/consumer-browser.mjs",
+          "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
+          "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I003",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 34,
+        "column": 79,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n      focusable=\"false\" [attr.viewBox]=\"viewBox()\" [attr.width]=\"config.size\" [attr.height]=\"config.size\"\n      [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"\n      [attr.role]=\"decorative() ? null : 'img'\" [attr.aria-label]=\"title()\" [attr.aria-hidden]=\"decorative()\"> :: [attr.height]=\"config.size\""
+      },
+      "category": "runtime-input",
+      "detail": "SVGの高さ",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "Icon.config.size がルート SVG の height 属性に渡る。",
+      "reason": "既定値は24。Lucide 互換設定から任意の高さを受け取り、表示高はホストの CSS 寸法にも依存する。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVGの高さのバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.height]=\"config.size\"",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        },
+        {
+          "file": "scripts/consumer-browser.mjs",
+          "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
+          "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I004",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 35,
+        "column": 7,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n      focusable=\"false\" [attr.viewBox]=\"viewBox()\" [attr.width]=\"config.size\" [attr.height]=\"config.size\"\n      [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"\n      [attr.role]=\"decorative() ? null : 'img'\" [attr.aria-label]=\"title()\" [attr.aria-hidden]=\"decorative()\"> :: [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\""
+      },
+      "category": "runtime-input",
+      "detail": "SVGの線色",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "Icon.config.color がルート SVG の stroke 属性に渡る。",
+      "reason": "既定値の currentColor は親の色を継承する。Lucide 互換設定で与えられる線色とその描画結果は利用側の設定に依存する。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVGの線色のバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        },
+        {
+          "file": "scripts/consumer-browser.mjs",
+          "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
+          "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I005",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 35,
+        "column": 36,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n      focusable=\"false\" [attr.viewBox]=\"viewBox()\" [attr.width]=\"config.size\" [attr.height]=\"config.size\"\n      [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"\n      [attr.role]=\"decorative() ? null : 'img'\" [attr.aria-label]=\"title()\" [attr.aria-hidden]=\"decorative()\"> :: [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\""
+      },
+      "category": "runtime-input",
+      "detail": "SVGの線幅",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "Icon.strokeWidth は線幅設定を読み、absoluteStrokeWidth 指定時は図形の基準寸法と表示寸法で補正する。",
+      "reason": "既定値は2。登録データの寸法と Lucide 互換設定の組み合わせから、利用時に取り得る線幅を静的に列挙できない。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVGの線幅のバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        },
+        {
+          "file": "scripts/consumer-browser.mjs",
+          "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
+          "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "I006",
+      "diagnostic": {
+        "file": "templates/angular/icons/renderer.ts",
+        "line": 35,
+        "column": 72,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve class list statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n      focusable=\"false\" [attr.viewBox]=\"viewBox()\" [attr.width]=\"config.size\" [attr.height]=\"config.size\"\n      [attr.stroke]=\"config.color\" [attr.stroke-width]=\"strokeWidth()\" [attr.class]=\"classes()\"\n      [attr.role]=\"decorative() ? null : 'img'\" [attr.aria-label]=\"title()\" [attr.aria-hidden]=\"decorative()\"> :: [attr.class]=\"classes()\""
+      },
+      "category": "runtime-input",
+      "detail": "SVGルートのclass",
+      "disposition": "retained-warning",
+      "source_sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+      "producer": "Icon.classes は登録した名前と別名から lucide 接頭辞を持つクラスを生成する。",
+      "reason": "アプリが名前と別名を追加でき、生成されるクラス名とその CSS 規則は実行時の登録内容に依存する。",
+      "verified_scope": "同梱データの経路と互換設定の読み取り、および下記の試験の対象範囲を確認。",
+      "remaining_scope": "利用アプリが登録する任意の図形・設定・CSS と組み合わせた描画。",
+      "recheck_when": [
+        "SVGルートのclassのバインディング、アイコン登録形式、Lucide 互換設定の変更時"
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/icons/renderer.ts",
+          "anchor": "[attr.class]=\"classes()\"",
+          "sha256": "52b037d211035f87412c07968963876052bee92494306802175c3fac4db954ae",
+          "scope": "対応する Angular 属性バインディングの生成元を確認。"
+        },
+        {
+          "file": "tests/ui/grid-icon.spec.ts",
+          "anchor": "informative icons have names, decorative icons stay hidden, registered custom icons actually draw",
+          "sha256": "bac6be8cc1a1740631c6efa1e49ef12c928eb7e0df35c0547df3aefaa46df3fe",
+          "scope": "登録した図形の描画とアクセシブルな名前、大小のレイアウトを検査する実行可能な試験。"
+        },
+        {
+          "file": "scripts/consumer-browser.mjs",
+          "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
+          "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],
       "producer_static_status": "Unknown",

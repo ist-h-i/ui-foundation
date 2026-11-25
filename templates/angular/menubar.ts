@@ -2,7 +2,7 @@ import {computed as localeComputed} from '@angular/core';
 import {injectUiLocale} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChildren } from '@angular/core';
 import { ActionControl } from './action-control';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 import { tabbableElements } from './focus';
 import { Menu, type MenuRootNavigation } from './menu';
 import { menuCommands, selectMenuCheck, validateMenu, type MenuItem, type MenuSelection } from './menu-model';

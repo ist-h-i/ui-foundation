@@ -4,6 +4,7 @@ import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { stringify } from 'yaml';
 import { parseConfig, resolveConfig, type ResolvedConfig } from './config.ts';
+import { lucideInteropEntry } from './icon-catalog.ts';
 import { renderTailwind, renderTokens } from './tokens.ts';
 import { stableJSON } from './check/canonical.ts';
 import { renderCheckerBundle, renderCheckerNotice, renderCheckerLibraries } from './check/bundle.ts';
@@ -100,6 +101,7 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
   const license = await readFile(resolve(toolRoot, 'LICENSE'), 'utf8');
   const files = new Map<string, string>([
     [`${config.output}/UI-FOUNDATION-LICENSE.txt`, license],
+    [`${config.output}/LUCIDE-LICENSE.txt`, await readFile(resolve(toolRoot, 'assets/third-party/LUCIDE-LICENSE.txt'), 'utf8')],
     [`${skillDirectory}/UI-FOUNDATION-LICENSE.txt`, license],
     [`${config.output}/tokens.css`, renderTokens(config)],
     [`${config.output}/tailwind.css`, renderTailwind(config)],
@@ -110,7 +112,10 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     [`${skillDirectory}/project-context.md`, projectContext(config)],
     [ownershipPath, stableJSON(ownership(config.output))],
   ]);
-  for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) files.set(`${config.output}/angular/${path}`, content);
+  for (const [path, content] of await sourceFiles(resolve(toolRoot, 'templates/angular'))) {
+    if (path === lucideInteropEntry && !config.icons?.lucide_interop) continue;
+    files.set(`${config.output}/angular/${path}`, content);
+  }
   files.set(`${config.output}/angular/locale-defaults.ts`, '/** Generated from default_language; omitted settings retain Japanese for existing apps. */\nexport const uiDefaultLanguage: \'en\' | \'ja\' = ' + JSON.stringify(config.default_language ?? 'ja') + ';\n');
   files.set(`${config.output}/check-ui.cjs`, await renderCheckerBundle());
   files.set(`${config.output}/CHECKER-NOTICE.txt`, await renderCheckerNotice());

@@ -1630,7 +1630,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.--ui-avatar-graphemes]=\"letterCount()\""
-      line: 76
+      line: 79
       column: 12
       reason: "[R064] Avatar
         fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0\
@@ -1639,7 +1639,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.inline-size.%]=\"item.value/maximum()*100\""
-      line: 137
+      line: 140
       column: 491
       reason: "[R068]
         MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaxim\
@@ -1927,7 +1927,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: .ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}
-      line: 78
+      line: 81
       column: 670
       reason: "[D056] fallback
         initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えM\
@@ -1936,7 +1936,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: '[style.--ui-description-columns]="checkedColumns()"'
-      line: 101
+      line: 104
       column: 80
       reason: "[D057]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\
@@ -1946,7 +1946,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}
-      line: 102
+      line: 105
       column: 62
       reason: "[D058]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\

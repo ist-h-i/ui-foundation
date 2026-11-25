@@ -138,12 +138,12 @@ Use `core` after installing and syncing a version that provides this entry point
 import { ActionControl, Card, FormField, FieldControl } from '../.ui/generated/angular/core';
 ```
 
-The core entry resolves Angular core, common, CDK and its Angular Forms peer, RxJS, and Lucide. The app still supplies its normal Angular build and bootstrap packages. Use app-owned source files as TypeScript roots and let imports select the generated code. A glob that adds every generated TypeScript file makes the compiler resolve specialist sources too. Load the shared tokens and component styles described above. The core entry requires no app-side `sideEffects` override or specialist CSS and worker assets. The full entry remains available to existing users.
+The core entry resolves Angular core, common, CDK and its Angular Forms peer, and RxJS. The app still supplies its normal Angular build and bootstrap packages. Use app-owned source files as TypeScript roots and let imports select the generated code. A glob that adds every generated TypeScript file makes the compiler resolve specialist sources too. Load the shared tokens and component styles described above. The core entry requires no app-side `sideEffects` override or specialist CSS and worker assets. The full entry remains available to existing users.
 
-In an Angular CLI 22.3.0 app that already includes Angular Forms and RxJS, add these two dependencies for the core and forms entries.
+In an Angular CLI 22.3.0 app that already includes Angular Forms and RxJS, add CDK for the core and forms entries.
 
 ```sh
-npm install --save-exact @angular/cdk@22.3.0 @lucide/angular@1.52.0
+npm install --save-exact @angular/cdk@22.3.0
 ```
 
 The following standalone component uses the forms entry with the same dependency set as core and belongs in `src/app.ts` when the app uses the default output path.
@@ -184,6 +184,24 @@ Copy the [working lazy dictionary adapter](../skills/ui-development/references/e
 A dictionary can map `uiFoundation.dialog.closeAction` to a translated string, or `uiFoundation.card.expand` to `Show details: {title}`. Keep parameter names from `UiMessageRequest` and translate the whole sentence, including singular/plural or other grammatical cases, in the app's i18n system. After a language switch, the selected locale and direction take effect while the request is pending. A late dictionary response populates its own locale cache. Existing controls and user data stay in place.
 
 A child scope inherits its parent's translator unless it supplies one or uses `translate: null` to select built-in texts. A regional scope wires up native `lang` and `dir`, and respects app-owned attributes. For an app-wide switch, update the document's attributes in your app as well. [Runtime contract](ui-library-runtime-foundation-spec.en.md) · [Upgrade from Japanese keys](ui-message-migration.en.md)
+
+## Register icons
+
+For one icon, register its shape on the component or route that displays it. Import shapes used only on a lazy route in that route’s source file.
+
+```ts
+import { Icon, selected } from '../.ui/generated/angular/icons';
+import { shape as search } from '../.ui/generated/angular/icons/search';
+
+// @Component({ imports: [Icon], providers: [selected(search)], ... })
+// <ui-icon name="search" />
+```
+
+For the standard twelve names, import `provideUiIcons` from `angular/icons/defaults` and call `provideUiIcons()`. Existing imports from `angular/core` and `angular/index` also work. For a lazy route that needs both search and a chevron, import the shapes from `icons/search` and `icons/chevron-right` there and call `selected(search, chevronRight)`. A local registration replaces inherited registrations in that injector.
+
+If you use raw `svg[lucideIcon]`, `provideLucideIcons` or `provideLucideConfig` with UI Foundation, install `@lucide/angular@1.52.0`, set `icons: { lucide_interop: true }` in the source YAML, and sync before updating the app. Switch your provider import to `angular/icons/lucide` and call its `provideUiIcons(...extraIcons)` to share registrations. If your app already supplies its own Lucide registry, keep that registry and add `provideUiLucideInterop()` from the same entry. Passing a class imported from `@lucide/angular` also loads the Angular adapter in that route.
+
+At the application root, combining plain `selected(...)` with an empty `provideLucideIcons()` leaves the selected shapes available to `ui-icon`. To clear both registries in provider order, use `provideUiIcons(...)` from the interop entry followed by the empty native provider.
 
 ## Application dependencies
 

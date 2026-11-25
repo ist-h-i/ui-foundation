@@ -1,7 +1,7 @@
 import {UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, linkedSignal, output, signal, untracked, viewChild } from '@angular/core';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
 import { ActionControl } from './action-control';
 import { NavigationItem } from './navigation';
 import { canFocus } from './focus';

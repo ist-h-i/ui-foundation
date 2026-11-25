@@ -4,7 +4,10 @@ import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untr
 import { UI_CLIPBOARD_WRITER } from './clipboard';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
 import { ActionControl, type ActionSize } from './action-control';
-import { Icon } from './icon';
+import { Icon } from './icons/renderer';
+import { fallbackIcons } from './icons/registry';
+import { shape as plusIcon } from './icons/plus';
+import { shape as copyIcon } from './icons/copy';
 import { Menu, type MenuItem, type MenuSelection } from './menu';
 import { type OverlayPlacement } from './overlay';
 import { layoutSpace, type LayoutSpace } from './layout-model';
@@ -173,6 +176,7 @@ export class SplitButton {
     }
 }
 @Component({ selector: 'ui-floating-action-button,ui-speed-dial', standalone: true, imports: [ActionControl, Menu], changeDetection: ChangeDetectionStrategy.OnPush,
+    viewProviders: [fallbackIcons(plusIcon)],
     host: { '[attr.data-position]': 'position()', '[attr.data-direction]': 'direction()' },
     template: `<div class="ui-floating-actions" role="group" [attr.aria-label]="label()"><button uiAction [icon]="icon()" [busy]="busy()" [disabled]="disabled()" variant="primary" (click)="activate()">{{label()}}</button>@if(items().length){<ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" />}</div>`,
     styles: `:host{position:fixed;z-index:1;max-inline-size:calc(100vw - 2*var(--ui-space-page));inset-block-end:var(--ui-space-page);inset-inline-end:var(--ui-space-page);}:host([hidden]){display:none;}:host([data-position="top-start"]),:host([data-position="top-end"]){inset-block-start:var(--ui-space-page);inset-block-end:auto;}:host([data-position="top-start"]),:host([data-position="bottom-start"]){inset-inline-start:var(--ui-space-page);inset-inline-end:auto;}.ui-floating-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);padding:var(--ui-space-control-gap);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);}` })
@@ -201,6 +205,7 @@ export class FloatingActionButton {
 interface CopyTarget { readonly text: string }
 type CopyResult = { kind: 'success' } | { kind: 'error'; error: unknown };
 @Component({ selector: 'ui-copy-button', standalone: true, imports: [ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
+    viewProviders: [fallbackIcons(copyIcon)],
     host: { tabindex: '-1' },
     template: `<button uiAction icon="copy" [disabled]="disabled()" [busy]="pending()||busy()" (click)="copy()">{{uiEffective_label()}}</button><p role="status" aria-atomic="true" class="ui-copy-result" [attr.data-result]="state()">{{state()==='success'?uiEffective_successMessage():state()==='error'?uiEffective_errorMessage():''}}</p>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}:host(:focus-visible){outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}.ui-copy-result{margin-block:var(--ui-space-control-gap) 0;font-size:var(--ui-text-small);overflow-wrap:anywhere;}.ui-copy-result[data-result="success"]{color:var(--ui-color-success);}.ui-copy-result[data-result="error"]{color:var(--ui-color-danger);}` })

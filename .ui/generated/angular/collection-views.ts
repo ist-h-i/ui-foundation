@@ -5,7 +5,7 @@ import {injectUiLocale,injectUiMessageText,UiStableMessagePipe} from './locale';
 import {NgTemplateOutlet} from '@angular/common';
 import {afterRenderEffect,booleanAttribute,ChangeDetectionStrategy,Component,computed,contentChild,Directive,ElementRef,inject,input,output,signal,TemplateRef,untracked,viewChild} from '@angular/core';
 import {ActionControl} from './action-control';
-import {Icon} from './icon';
+import {Icon} from './icons/renderer';
 import {collectionPage,InvalidCollectionPageSettings,collectionProblem,createCollectionView,type CollectionKey,type CollectionViewState} from './collection-model';
 import {installCollectionFocus} from './collection-runtime';
 
