@@ -21,11 +21,14 @@ const { values: options } = parseArgs({ options: {
   'angular-node': { type: 'string' },
   workspace: { type: 'string' },
   layout: { type: 'boolean' },
+  'form-messages': { type: 'boolean' },
 } });
 assert.ok(['21', '22', 'both'].includes(options.angular), 'Choose --angular 21, 22 or both.');
 assert.ok(options.candidate || options.angular === '22', 'The recorded comparison uses Angular 22.');
 assert.ok(options.angular !== 'both' || !options['angular-node'], 'Choose one Angular version when specifying its Node runtime.');
-assert.ok(!options.layout || options.candidate, '--layout requires --candidate');
+assert.ok(!(options.layout && options['form-messages']), 'Choose one additional probe suite.');
+assert.ok(!(options.layout || options['form-messages']) || options.candidate, 'Additional probe suites require --candidate');
+const formMessages = options['form-messages'];
 const angularNode = options['angular-node'] ? resolve(options['angular-node']) : process.execPath;
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
 const patch = fileURLToPath(new URL('./prototype.patch', import.meta.url));
@@ -37,7 +40,7 @@ const generator = 'node_modules/@hiroshi.inoue/ui-foundation/dist/cli.js';
 
 const build = {
   builder: '@angular/build:application',
-  options: { browser: 'src/main.ts', index: 'src/index.html', tsConfig: 'tsconfig.app.json', outputPath: 'dist', ...(options.layout ? { styles: ['.ui/generated/tokens.css', '.ui/generated/angular/styles.css'] } : {}) },
+  options: { browser: 'src/main.ts', index: 'src/index.html', tsConfig: 'tsconfig.app.json', outputPath: 'dist', ...((options.layout || formMessages) ? { styles: ['.ui/generated/tokens.css', '.ui/generated/angular/styles.css'] } : {}) },
   configurations: {
     development: { optimization: false, sourceMap: true },
     production: { optimization: true, sourceMap: false, outputHashing: 'all', extractLicenses: false },
@@ -93,6 +96,20 @@ const cases = {
     imports: `import {Icon,selected} from '${entry}icons';import {shape} from '${entry}icons/folder';`,
     provider: 'selected(shape)', name: 'folder',
   },
+  ...Object.fromEntries(['core', 'forms'].flatMap(publicEntry => [false, true].map(runtime => {
+    const localeImport = runtime && publicEntry !== 'core' ? `import {provideUiLocale} from '${entry}core';` : '';
+    return [`form-${publicEntry}${runtime ? '-locale' : ''}`, {
+      imports: `import {FormField,FieldControl${runtime && publicEntry === 'core' ? ',provideUiLocale' : ''}} from '${entry}${publicEntry}';${localeImport}`,
+      components: 'FormField,FieldControl', provider: runtime ? 'provideUiLocale(locale)' : '',
+      setup: runtime ? `const locale = signal<import('${entry}core').UiLocaleOptions>({locale:'ja-JP'});
+function switchLocale(mode: string) {
+  locale.set({ locale:'en-US', translate: request => mode === 'custom' ? 'Translated' : mode === 'blank' ? '  ' : request.id });
+}` : '',
+      members: runtime ? 'readonly switchLocale = switchLocale;' : '',
+      content: '<ui-form-field controlId="first" label="Name" required><input uiFieldControl /></ui-form-field><ui-form-field controlId="second" label="Note"><textarea uiFieldControl></textarea></ui-form-field>'
+        + (runtime ? `<button type="button" (pointerdown)="$event.preventDefault()" (click)="switchLocale('custom')">Custom</button><button type="button" (pointerdown)="$event.preventDefault()" (click)="switchLocale('blank')">Blank</button><button type="button" (pointerdown)="$event.preventDefault()" (click)="switchLocale('id')">ID</button>` : ''),
+    }];
+  }))),
   layout: {
     imports: `import {Stack,type LayoutSpace} from '${entry}layout';import {Disclosure} from '${entry}disclosure';`,
     components: 'Stack,Disclosure', provider: '',
@@ -104,9 +121,9 @@ const cases = {
     content: '<button uiAction>Save</button><a uiAction href="/">Home</a><ui-card cardId="card" title="Card" /><ui-text-input controlId="name" label="Name" />',
   },
 };
-function probe({ imports, provider, name = 'search', components = imports ? 'Icon' : '', content = imports ? `<ui-icon name="${name}" />` : '' }) {
+function probe({ imports, provider, name = 'search', components = imports ? 'Icon' : '', setup = '', members = '', content = imports ? `<ui-icon name="${name}" />` : '' }) {
   const template = '<section id="result">' + content + '</section>';
-  return `import {Component} from '@angular/core';\n${imports}\n@Component({selector:'app-probe',imports:[${components}],providers:[${provider}],template:${JSON.stringify(template)}})\nexport class Probe {}\n`;
+  return `import {Component${setup ? ',signal' : ''}} from '@angular/core';\n${imports}\n${setup}\n@Component({selector:'app-probe',imports:[${components}],providers:[${provider}],template:${JSON.stringify(template)}})\nexport class Probe {${members}}\n`;
 }
 function run(cwd, executable, args) {
   execFileSync(executable, args, { cwd, env: environment, stdio: 'inherit' });
@@ -115,7 +132,7 @@ function run(cwd, executable, args) {
 async function setUp(name, major, candidate) {
   const app = join(workspace, candidate ? 'candidate-angular' + major : name);
   await mkdir(join(app, 'src'), { recursive: true });
-  const lock = JSON.parse(gunzipSync(await readFile(new URL(`./angular${major}-lock.json.gz`, import.meta.url))));
+  const lock = JSON.parse(gunzipSync(await readFile(new URL(`./angular${formMessages && major === '21' ? '21.2' : major}-lock.json.gz`, import.meta.url))));
   if (name === 'prototype' || candidate) {
     delete lock.packages[''].dependencies['@lucide/angular'];
     delete lock.packages['node_modules/@lucide/angular'];
@@ -160,7 +177,7 @@ async function setUp(name, major, candidate) {
     for (const dependency of ['@angular/cdk', '@lucide/angular', 'qrcode', 'jsbarcode', 'echarts', '@codemirror/state']) {
       await assert.rejects(access(join(app, 'node_modules', dependency)), { code: 'ENOENT' });
     }
-  } else if (candidate) run(app, process.execPath, [generator, 'check']);
+  } else if (candidate && !formMessages) run(app, process.execPath, [generator, 'check']);
   return app;
 }
 
@@ -185,6 +202,20 @@ async function measurePage(browser, url, label) {
     await page.locator('#result').waitFor({ state: 'attached' });
     if (label === 'split') {
       await page.locator(`#result svg path[d^="${folderPathPrefix}"]`).waitFor({ state: 'attached' });
+    } else if (label.startsWith('form-')) {
+      const requirements = page.locator('#result .ui-form-field-requirement');
+      assert.deepEqual(await requirements.allTextContents(), ['必須', '任意']);
+      if (label.endsWith('-locale')) {
+        const input = page.locator('#first');
+        await input.fill('Retain value');
+        for (const [button, expected] of [['Custom', ['Translated', 'Translated']], ['Blank', ['Required', 'Optional']], ['ID', ['Required', 'Optional']]]) {
+          await page.getByRole('button', { name: button, exact: true }).click();
+          await page.waitForFunction(words => [...document.querySelectorAll('#result .ui-form-field-requirement')]
+            .every((node, index) => node.textContent === words[index]), expected);
+          assert.equal(await input.inputValue(), 'Retain value');
+          assert.ok(await input.evaluate(node => node === node.ownerDocument.activeElement));
+        }
+      }
     } else if (label === 'layout') {
       const stack = page.locator('ui-flex');
       const rows = await stack.getByRole('button').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().top));
@@ -314,9 +345,21 @@ async function measureProduction(app, label, major, candidate, browser) {
       if (forbidden) assert.ok(!code.includes(forbidden), 'The lazy icon shape is in an initial production chunk.');
     }
   }
+  if (label.startsWith('form-')) {
+    const files = new Set([...initial, ...route]);
+    const patterns = /(?:^|\/)(?:component-messages|diagnostic-messages|table-scheduler-messages)\.ts$/;
+    const retained = [...files].flatMap(key => Object.entries(outputs[key].inputs)
+      .filter(([name, info]) => patterns.test(name) && info.bytesInOutput > 0)
+      .map(([name, info]) => ({name, bytes: info.bytesInOutput})));
+    assert.deepEqual(retained, [], 'whole catalogs retained by a native field route');
+    const code = (await Promise.all([...files].map(file => readFile(join(app, out, 'browser', file), 'utf8')))).join('\n');
+    for (const name of ['Required', 'Optional']) assert.ok(code.includes('"' + name + '"'), 'Missing field label ' + name);
+    const messageIds = new Set(code.match(/uiFoundation\.[a-z][a-zA-Z0-9]*\.[a-z][a-zA-Z0-9]*/g));
+    assert.deepEqual([...messageIds].sort(), ['uiFoundation.formField.optional', 'uiFoundation.formField.required']);
+  }
   const bytes = files => [...files].reduce((total, key) => total + outputs[key].bytes, 0);
   const production = { initial: bytes(initial), route: bytes(route) };
-  if (label === 'layout') production.browser = await inspectProduction(browser, join(app, out, 'browser'), label);
+  if (label === 'layout' || label.startsWith('form-')) production.browser = await inspectProduction(browser, join(app, out, 'browser'), label);
   return production;
 }
 
@@ -340,7 +383,7 @@ const candidate = options.candidate ? await prepareCandidate({
   repository, root: workspace, execute: (file, args, cwd) => runProcess(file, args, { cwd }),
 }) : undefined;
 const majors = options.angular === 'both' ? ['21', '22'] : [options.angular];
-const variants = options.layout ? { candidate: ['layout'] } : candidate ? { candidate: ['empty', 'selected', 'defaults', 'split', 'basics'] }
+const variants = formMessages ? { candidate: ['form-core', 'form-forms', 'form-core-locale'] } : options.layout ? { candidate: ['layout'] } : candidate ? { candidate: ['empty', 'selected', 'defaults', 'split', 'basics'] }
   : { published: ['empty', 'direct', 'core'], prototype: ['core', 'selected', 'defaults'] };
 const browser = await chromium.launch({ channel: 'chromium' });
 try {
@@ -385,7 +428,7 @@ try {
         await writeFile(join(app, label + '.json'), JSON.stringify(record, null, 2) + '\n');
         console.log('Measured', JSON.stringify(record));
       }
-      if (candidate && !options.layout) enforceBudgets(records);
+      if (candidate && !options.layout && !formMessages) enforceBudgets(records);
     }
   }
   if (candidate) await assertFrozenCandidate(candidate);

@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import ts from 'typescript';
 
 const output = 'docs/ui-message-arguments.json';
-const sources = ['component-messages', 'diagnostic-messages', 'table-scheduler-messages'];
+const sources = ['component-messages', 'form-field-messages', 'action-control-messages', 'text-control-messages', 'diagnostic-messages', 'table-scheduler-messages'];
 const directory = 'templates/angular';
 const contracts = new Map();
 

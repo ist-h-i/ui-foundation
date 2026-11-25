@@ -2083,10 +2083,10 @@ checks:
         tokenまたはpositive finite pxのみを返す。pixel branchはsemantic
         token適合にできず、構造用途の限定例外候補。残余リスクは小さい高さでの両pane/handleの操作、orientationと内容over\
         flow。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
-    - file: templates/angular/text-input.ts
+    - file: templates/angular/text-controls.ts
       rule: unresolved
       source: '[style.max-block-size.px]="checkedMaxHeight()"'
-      line: 171
+      line: 174
       column: 51
       reason: "[D146] Textareaのmax-block-sizeはautoResize後もnative
         editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive

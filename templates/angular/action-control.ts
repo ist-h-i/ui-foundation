@@ -1,4 +1,5 @@
-import {UiStableMessagePipe} from './locale';
+import { injectComponentMessageText } from './component-message-text';
+import { actionControlMessages } from './action-control-messages';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -44,13 +45,13 @@ function guardActivation(isBlocked: () => boolean): void {
 @Component({
   selector: 'button[uiAction]',
   standalone: true,
-  imports: [Icon,UiStableMessagePipe],
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
     <span class="ui-action-label" style="order:1"><ng-content /></span>
     @if (busy()) {
-      <span class="ui-action-busy">{{'uiFoundation.actionControl.busy' | uiStableMessage}}</span>
+      <span class="ui-action-busy">{{messageText({id: 'uiFoundation.actionControl.busy'})}}</span>
     }
   `,
   host: {
@@ -66,6 +67,7 @@ function guardActivation(isBlocked: () => boolean): void {
   },
 })
 export class ActionControl {
+  protected readonly messageText = injectComponentMessageText(actionControlMessages);
   readonly variant = input<ActionVariant>('secondary');
   readonly size = input<ActionSize | null>(null);
   readonly width = input<'auto' | 'full'>('auto');
@@ -84,7 +86,7 @@ export class ActionControl {
 @Component({
   selector: 'a[uiAction]',
   standalone: true,
-  imports: [Icon,UiStableMessagePipe],
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: `
     .ui-action-external {
@@ -98,9 +100,9 @@ export class ActionControl {
   template: `
     <span class="ui-action-icon" aria-hidden="true" [style.order]="iconPosition()==='end'?2:0"><ng-content select="[uiActionIcon]" />@if(icon()){<ui-icon [name]="icon()!" />}</span>
     <span class="ui-action-label" style="order:1"><ng-content /></span>
-    @if (external()) {<span class="ui-action-external">{{'uiFoundation.actionLink.external' | uiStableMessage}}<span aria-hidden="true">↗</span></span>}
+    @if (external()) {<span class="ui-action-external">{{messageText({id: 'uiFoundation.actionLink.external'})}}<span aria-hidden="true">↗</span></span>}
     @if (busy()) {
-      <span class="ui-action-busy">{{'uiFoundation.actionControl.busy' | uiStableMessage}}</span>
+      <span class="ui-action-busy">{{messageText({id: 'uiFoundation.actionControl.busy'})}}</span>
     }
   `,
   host: {
@@ -120,6 +122,7 @@ export class ActionControl {
   },
 })
 export class ActionLink {
+  protected readonly messageText = injectComponentMessageText(actionControlMessages);
   readonly variant = input<ActionVariant>('secondary');
   readonly size = input<ActionSize | null>(null);
   readonly width = input<'auto' | 'full'>('auto');

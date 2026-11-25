@@ -28,3 +28,14 @@ test('the packed layout and disclosure entries compile and work without CDK or s
     ], { cwd: repository, signal: t.signal, timeout: 350_000 });
     for (const line of result.split('\n').filter(line => line.startsWith('Measured '))) t.diagnostic(line);
   });
+
+test('packed native fields preserve translations and keep unrelated messages out of both entries',
+  { timeout: 610_000 }, async t => {
+    const workspace = await mkdtemp(join(tmpdir(), 'ui-native-field-messages-'));
+    t.after(() => rm(workspace, { recursive: true, force: true }));
+    const result = await run(process.execPath, [
+      'docs/verification/generated-icon-loading-56/reproduce.mjs',
+      '--candidate', '--form-messages', '--angular', 'both', '--workspace', workspace,
+    ], { cwd: repository, signal: t.signal, timeout: 600_000 });
+    for (const line of result.split('\n').filter(line => line.startsWith('Measured '))) t.diagnostic(line);
+  });
