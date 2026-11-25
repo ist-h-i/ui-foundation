@@ -13,8 +13,7 @@ import { type OverlayPlacement } from './overlay';
 import { layoutSpace, type LayoutSpace } from './layout-model';
 import { PausableDeadline } from './notification-model';
 import { ValueControl } from './value-control';
-import { focusBeforeHiding } from './layout';
-import { restoreFocus } from './focus';
+import { restoreFocus, focusBeforeHiding } from './focus';
 @Component({ selector: 'button[uiIconButton]', standalone: true, imports: [Icon,UiStableMessagePipe], changeDetection: ChangeDetectionStrategy.OnPush,
     styles: `
         :host { padding:var(--ui-space-control-y); }

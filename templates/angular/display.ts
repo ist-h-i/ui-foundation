@@ -5,8 +5,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, computed, content
 import { Icon } from './icons/renderer';
 import { fallbackIcons } from './icons/registry';
 import { shape as closeIcon } from './icons/x';
-import { restoreFocus } from './focus';
-import { focusBeforeHiding } from './layout';
+import { restoreFocus, focusBeforeHiding } from './focus';
 import { layoutKeyword } from './layout-model';
 import { displayStyles } from './display-style';
 import { avatarInitials, comparisonDelta, displayInteger, finiteDisplayValue, meterGroupValues, meterValues, numberDisplay, type DisplayTone, type MeterSegment } from './display-model';

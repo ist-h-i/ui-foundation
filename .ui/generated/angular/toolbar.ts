@@ -3,7 +3,7 @@ import {injectUiMessageText} from './locale';
 import { afterNextRender, type AfterRenderRef, afterRenderEffect, Injector, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, output, signal, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
 import { Menu, type MenuItem, type MenuSelection } from './menu';
-import { focusBeforeHiding } from './layout';
+import { focusBeforeHiding } from './focus';
 export interface ToolbarItem {
     id: string;
     label?: string;
