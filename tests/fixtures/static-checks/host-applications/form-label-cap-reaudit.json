@@ -7,13 +7,16 @@
       "column": 124,
       "exception": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。"
     },
-    "checkbox": {"line": 152, "column": 93}
+    "checkbox": {
+      "line": 152,
+      "column": 93
+    }
   },
   "dependencies": {
     "templates/angular/form-field.ts": {
       "prior_sha256": "603bf7048e5ed65ca0ffa0665d5e9ab6a03606cc5e0530570194520056a6f157",
-      "current_sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
-      "judgment": "The requirement label now uses a message ID and the field owns its margin, label and requirement styles. The inline host still writes the same 40% grid cap at line 55 and the other label positions remove this override."
+      "current_sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "judgment": "The requirement label now uses a message ID and the field owns its margin, label and requirement styles. The inline host still writes the same 40% grid cap at line 55 and the other label positions remove this override. Issue #54 changes the translation source for the requirement label. The exact inline grid cap binding and its conditions are unchanged."
     },
     "templates/angular/form-layout.ts": {
       "prior_sha256": "1d8a05d9d022bb8c23330eb409d2d289b4429d1c30e6d53cc035484357ba3783",
