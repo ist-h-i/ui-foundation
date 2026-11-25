@@ -1,0 +1,41 @@
+{
+  "prior_audit_sha256": "31eede21aeb947b7a8a8d69bb77715f1bc3105f4cb79f45fd23abff43a628a0e",
+  "scope": "The layout entry relocates a focus helper. Each position retains the complete prior diagnostic, including its original source, rule, severity and exception reason.",
+  "positions": {
+    "R064": { "line": 78, "column": 12 },
+    "R068": { "line": 139, "column": 491 },
+    "D056": { "line": 80, "column": 670 },
+    "D057": { "line": 103, "column": 80 },
+    "D058": { "line": 104, "column": 62 },
+    "R116": { "line": 20, "column": 12 },
+    "R117": { "line": 20, "column": 12 },
+    "R119": { "line": 26, "column": 63 },
+    "R120": { "line": 26, "column": 63 },
+    "R131": { "line": 46, "column": 113 },
+    "D094": { "line": 8, "column": 12 },
+    "D107": { "line": 42, "column": 182 },
+    "D108": { "line": 44, "column": 123 },
+    "D109": { "line": 44, "column": 123 },
+    "F001": { "line": 8, "column": 12 },
+    "R163": { "line": 9, "column": 126 },
+    "R164": { "line": 11, "column": 126 },
+    "D134": { "line": 8, "column": 80 }
+  },
+  "dependencies": {
+    "templates/angular/display.ts": {
+      "prior_sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
+      "current_sha256": "c5c9d5d0030eecd78b57e40d57791f10aa404272fbb9a92597f1902f6427f608",
+      "judgment": "Combining the two focus imports moves the five display sites up one line. The Avatar grapheme count, Descriptions column guard and MeterGroup proportion use the same producers and CSS."
+    },
+    "templates/angular/layout.ts": {
+      "prior_sha256": "581a9b65f23c7cc516f720fe7027039c7238589a895448e08a4366c404567d75",
+      "current_sha256": "035c2f1bb2e5f4ec645d4a4936370238e2747e535359504c2277aac5251a6322",
+      "judgment": "Moving the focus helper and exporting the three layout types moves the ten sites up seven lines. Container still caps its width at 100% (F001). Its width guard and the grid track counts, cell placement, aspect ratio, scroll area height and sticky offsets retain their reviewed bindings and guards."
+    },
+    "templates/angular/splitter.ts": {
+      "prior_sha256": "2702852ab7fdf12359e191c8cedf5284e26b397cd38c3f2be425d77ed376cfac",
+      "current_sha256": "cb292192ca620c899a917d530a45828951f49bc15b8d6a6eac6ee02881fcf020",
+      "judgment": "Only the import path of the focus helper changes. The pane height and complementary flex coefficients retain their validation, source text and positions."
+    }
+  }
+}

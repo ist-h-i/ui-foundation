@@ -39,14 +39,22 @@ const messageAuditBytes = await readFile(resolve(currentEvidence, 'message-migra
 const messageAudit: CurrentAudit = JSON.parse(messageAuditBytes.toString('utf8'));
 const angularAuditBytes = await readFile(resolve(currentEvidence, 'angular-22-reaudit.json'));
 const angularAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(angularAuditBytes.toString('utf8'));
-const iconAudit: CurrentAudit & {prior_audit_sha256:string} =
-  JSON.parse(await readFile(resolve(currentEvidence, 'generated-icon-reaudit.json'), 'utf8'));
+const iconAuditBytes = await readFile(resolve(currentEvidence, 'generated-icon-reaudit.json'));
+const iconAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(iconAuditBytes.toString('utf8'));
+const layoutAudit: Pick<CurrentAudit, 'dependencies'> & {
+  prior_audit_sha256: string;
+  positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
+} = JSON.parse(await readFile(resolve(currentEvidence, 'layout-entry-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
+for (const [id, {line, column}] of Object.entries(layoutAudit.positions)) {
+  assert.ok(currentSites[id], `${id}: missing reviewed site before the layout entry change`);
+  currentSites[id] = {...currentSites[id], line, column};
+}
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit, iconAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -76,6 +84,7 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
   assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');
   assert.equal(sha256(messageAuditBytes), angularAudit.prior_audit_sha256, 'historical message-migration audit changed');
   assert.equal(new Set(approvals.map(item => item.id)).size, approvals.length);
@@ -118,6 +127,24 @@ test('project exceptions retain one-site scope, legacy purposes and separately r
   }
   for (const decision of proof.candidate_decisions.filter((x: {disposition:string}) => x.disposition !== 'reasoned_exception')) {
     assert.ok(!config.checks!.exceptions.some(x => x.reason.startsWith(`[${decision.id}] `)), `${decision.id}: no unnecessary exception`);
+  }
+});
+
+test('the checker retains all reviewed display, layout and splitter exceptions after relocating the focus helper', async () => {
+  const input = parseConfig(example);
+  const files = Object.keys(layoutAudit.dependencies);
+  const ids = Object.keys(layoutAudit.positions);
+  const reasons = new Set(ids.map(id => currentSites[id].exception));
+  const exceptions = input.checks!.exceptions.filter(exception => reasons.has(exception.reason));
+  input.checks = {source_roots: files, approved_components: [], exceptions};
+  const config = resolveConfig(input);
+  const report = await checkSources({root, config, policy: createSourcePolicy(config)});
+  assert.equal(report.exceptions.length, ids.length);
+  for (const id of ids) {
+    const expected = currentSites[id];
+    const matches = report.exceptions.filter(diagnostic => diagnostic.exception === expected.exception);
+    assert.equal(matches.length, 1, id);
+    assert.partialDeepStrictEqual(matches[0], expected, id);
   }
 });
 
