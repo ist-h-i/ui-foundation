@@ -2,7 +2,7 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessageText} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
-import { focusBeforeHiding } from './layout';
+import { focusBeforeHiding } from './focus';
 const panelStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);overflow-wrap:anywhere;}:host([hidden]),[hidden]{display:none!important;}fieldset{box-sizing:border-box;min-inline-size:0;max-inline-size:100%;margin:0;padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);}fieldset[data-bordered="false"]{border-color:transparent;}legend{max-inline-size:100%;font-weight:var(--ui-weight-heading);}header{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);margin-block-end:var(--ui-space-control-gap);}.ui-panel-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);}.ui-panel-body{min-inline-size:0;}.ui-panel-body[aria-disabled="true"]{color:var(--ui-color-muted);}header:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`;
 /** Fieldset supplies native disabled semantics; inert also blocks custom projected actions. */
 @Component({selector:'ui-panel,ui-fieldset',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,7 @@
 import {UiStableMessagePipe} from './locale';
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, linkedSignal, output, untracked, viewChild } from '@angular/core';
 import { ActionControl } from './action-control';
-import { focusBeforeHiding } from './layout';
+import { focusBeforeHiding } from './focus';
 import { splitterBounds } from './layout-model';
 @Component({selector:'ui-splitter',standalone:true,imports:[ActionControl,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  template:`<div class="ui-splitter-controls">@if(resizable()){<button uiAction [disabled]="disabled()||folded()||value()<=minRatio()" (click)="adjust(-step())">{{'uiFoundation.splitter.shrinkForLabel' | uiStableMessage:{label:primaryLabel()} }}</button><button uiAction [disabled]="disabled()||folded()||value()>=maxRatio()" (click)="adjust(step())">{{'uiFoundation.splitter.expandForLabel' | uiStableMessage:{label:primaryLabel()} }}</button>}@if(collapsible()){<button uiAction [disabled]="disabled()" [attr.aria-expanded]="!primaryHidden()" [attr.aria-controls]="splitterId()+'-primary'" (click)="toggle()">{{primaryHidden()?('uiFoundation.splitter.expandForSplitter' | uiStableMessage):('uiFoundation.splitter.collapse' | uiStableMessage)}}: {{primaryLabel()}}</button>}</div>

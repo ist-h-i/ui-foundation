@@ -130,7 +130,11 @@ Choose the generated public entry point for your app.
 | --- | --- |
 | `angular/core.ts` | Only actions, cards, native form fields, and their icons and locale APIs. |
 | `angular/forms.ts` | Text inputs, text areas, and labeled native form fields. |
+| `angular/layout.ts` | Layout components such as `Stack` and their layout types. |
+| `angular/disclosure.ts` | Expand and collapse content with `Disclosure`. |
 | `angular/index.ts` | Any other components or the complete Angular API. |
+
+`layout` and `disclosure` use `@angular/core` and the shared generated tokens and component styles. Apps using only these entries do not need CDK or specialist dependencies.
 
 Use `core` after installing and syncing a version that provides this entry point. For example, with the default output path:
 

@@ -1630,7 +1630,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.--ui-avatar-graphemes]=\"letterCount()\""
-      line: 79
+      line: 78
       column: 12
       reason: "[R064] Avatar
         fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0\
@@ -1639,7 +1639,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.inline-size.%]=\"item.value/maximum()*100\""
-      line: 140
+      line: 139
       column: 491
       reason: "[R068]
         MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaxim\
@@ -1709,7 +1709,7 @@ checks:
       rule: unresolved
       source: "[style.grid-template-columns]=\"&quot;repeat(&quot;+resolved().columns\
         +&quot;,minmax(0,1fr))&quot;\""
-      line: 27
+      line: 20
       column: 12
       reason: "[R116] gridAtWidthはpublic/default/breakpointの全列・行countを正のsafe
         integerとして検査する。repeatの列数は構造上のデータ数で、minmax(0,1fr)の固定文法のみを組み立てる用途例外。
@@ -1718,7 +1718,7 @@ checks:
       rule: unresolved
       source: "[style.grid-template-rows]=\"&quot;repeat(&quot;+resolved().rows+&quot\
         ;,auto)&quot;\""
-      line: 27
+      line: 20
       column: 12
       reason: "[R117] gridAtWidthがdefault/breakpointの行数を正のsafe
         integerとして検査して返す。repeatの行数は構造上のデータ数でauto trackの固定文法のみを組み立てる用途例外。
@@ -1726,7 +1726,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: "[style.grid-column]=\"columnValue()\""
-      line: 33
+      line: 26
       column: 63
       reason: "[R119] GridCellのcolumn/spanはsafe
         positive整数検査し、gridAtWidthで検査された列count内へclampしてauto/index / span
@@ -1734,7 +1734,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: "[style.grid-row]=\"rowValue()\""
-      line: 33
+      line: 26
       column: 63
       reason: "[R120] GridCellのrow/spanはsafe
         positive整数検査し、gridAtWidthで検査された行count内へclampしてauto/index / span
@@ -1742,7 +1742,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: "[style.aspect-ratio]=\"ratioValue()\""
-      line: 53
+      line: 46
       column: 113
       reason: "[R131]
         AspectRatioの比率はratioValueでNumber.isFiniteかつ正数を確認してから返す無次元の配置比率。任意CSS文字列\
@@ -1927,7 +1927,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: .ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}
-      line: 81
+      line: 80
       column: 670
       reason: "[D056] fallback
         initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えM\
@@ -1936,7 +1936,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: '[style.--ui-description-columns]="checkedColumns()"'
-      line: 104
+      line: 103
       column: 80
       reason: "[D057]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\
@@ -1946,7 +1946,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}
-      line: 105
+      line: 104
       column: 62
       reason: "[D058]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\
@@ -2022,7 +2022,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: '[style.max-inline-size]="maximum()"'
-      line: 15
+      line: 8
       column: 12
       reason: "[D094] Containerのmax-inline-sizeは本文領域の上限という構造寸法。numeric branchでpositive
         finiteを検査しmin(100%, value px)に制限、他branchはsemantic
@@ -2031,7 +2031,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: '[style.block-size]="heightValue()"'
-      line: 49
+      line: 42
       column: 182
       reason: "[D107] ScrollAreaのblock-sizeは内容をスクロールさせる領域の構造寸法。heightValueは数値をpositive
         finiteに検査し、auto/semantic
@@ -2040,7 +2040,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: '[style.top]="edge()===&quot;top&quot;?offsetValue():null"'
-      line: 51
+      line: 44
       column: 123
       reason: "[D108] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic
         space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。\
@@ -2049,7 +2049,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: unresolved
       source: '[style.bottom]="edge()===&quot;bottom&quot;?offsetValue():null"'
-      line: 51
+      line: 44
       column: 123
       reason: "[D109] StickyRegionのtop/bottomは固定領域を避ける構造位置。offsetValueはpageならsemantic
         space、その他はfiniteかつ0以上を検証しpx化する。edge分岐は非該当側をnullへ戻す。数値branchはtokenに閉じない。\
@@ -2136,7 +2136,7 @@ checks:
     - file: templates/angular/layout.ts
       rule: literal-token
       source: max-inline-size:(dynamic expression; fixed 100%)
-      line: 15
+      line: 8
       column: 12
       reason: "[F001]
         Containerの100%は親領域を超えないための配置上限とfull幅。content時はsize.contentとminで組み合わせる。任\
