@@ -1,7 +1,7 @@
 import '@angular/compiler';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { Injector, runInInjectionContext } from '@angular/core';
+import { enableProdMode, Injector, runInInjectionContext } from '@angular/core';
 import { createApplication } from '@angular/platform-browser';
 import { LUCIDE_ICONS, provideLucideConfig, provideLucideIcons } from '@lucide/angular';
 import { selected, UI_ICON_LUCIDE } from '../../templates/angular/icons/registry';
@@ -13,6 +13,7 @@ function resolved(injector: Injector) {
 }
 
 test('root paint configuration preserves an explicit lightweight selection', async () => {
+  enableProdMode();
   const app = await createApplication({ providers: [
     selected(search), provideLucideConfig({ color: 'red' }), provideUiLucideInterop(),
   ] });

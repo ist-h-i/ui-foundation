@@ -104,7 +104,7 @@ node docs/verification/generated-icon-loading-56/reproduce.mjs
 
 両バージョンが strict AOT を通過した。検索の形状を Chromium で確認し、追加のフォルダー形状は遅延側だけに含まれた。基本部品を含む各ケースで Angular 版 Lucide のビルド入力は0件だった。元のボードの合成 E2E は、新規サーバー・新規 Chromium の2回とも従来の URL 待機5秒を通過し、検索の path を表示した。クリック後の最大 JS 応答は両回とも 1,768,855 B、合計は 2,547,853 B。テスト全体はそれぞれ6.6秒と6.7秒だった。
 
-計測に使った tarball の SHA-256 は `fc307750be71ec0a03c9ad5e77dcfdfce3dedaab0ec5318309885752ee023401`。最終候補 `5380be096b7ed76bb4f64689a66e3962b33b7fa56b56cf0f134aaa6cfea36c4b` と展開後の全ファイルを照合した。変更は任意の互換入口 `templates/angular/icons/lucide.ts` と API 一覧だけで、計測に使った通常構成の描画コードは同一だった。開発時の配信と最適化ビルドを再測定するには次を実行する。特定の tarball を固定するには `UI_FOUNDATION_PACKAGE_TARBALL` と `UI_FOUNDATION_PACKAGE_SHA256` を両方指定する。
+計測に使った tarball の SHA-256 は `fc307750be71ec0a03c9ad5e77dcfdfce3dedaab0ec5318309885752ee023401`。最終候補 `42697245967c585141bd4a7bac2467ca802795469664a2513e1cfe72913af22c` と展開後の全ファイルを照合した。変更は任意の互換入口 `templates/angular/icons/lucide.ts` 、API 一覧、日英の利用ガイドで、計測に使った通常構成の描画コードは同一だった。開発時の配信と最適化ビルドを再測定するには次を実行する。特定の tarball を固定するには `UI_FOUNDATION_PACKAGE_TARBALL` と `UI_FOUNDATION_PACKAGE_SHA256` を両方指定する。
 
 ```sh
 node docs/verification/generated-icon-loading-56/reproduce.mjs --candidate --angular both
