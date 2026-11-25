@@ -4,8 +4,9 @@ import { once } from 'node:events';
 import { closeSync, openSync } from 'node:fs';
 import { access, mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
+import { createServer as createHttpServer } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { extname, join, resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
@@ -95,7 +96,7 @@ const cases = {
   layout: {
     imports: `import {Stack,type LayoutSpace} from '${entry}layout';import {Disclosure} from '${entry}disclosure';`,
     components: 'Stack,Disclosure', provider: '',
-    content: '<ui-flex gap="normal"><button type="button">First filter</button><button type="button">Second filter</button><button type="button">Third filter</button><button type="button">Fourth filter</button></ui-flex><ui-disclosure title="Stored input"><textarea aria-label="Draft"></textarea></ui-disclosure>',
+    content: '<ui-flex direction="horizontal" gap="normal"><button type="button">First quick filter</button><button type="button">Second quick filter</button><button type="button">Third quick filter</button><button type="button">Fourth quick filter</button></ui-flex><ui-disclosure title="Stored input"><textarea aria-label="Draft"></textarea></ui-disclosure>',
   },
   basics: {
     imports: `import {ActionControl,ActionLink,Card} from '${entry}core';import {TextInput} from '${entry}forms';`,
@@ -188,7 +189,9 @@ async function measurePage(browser, url, label) {
       const stack = page.locator('ui-flex');
       const rows = await stack.getByRole('button').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().top));
       assert.equal(rows.length, 4);
-      assert.ok(new Set(rows).size > 1, 'filters must wrap on a narrow screen');
+      assert.equal(await stack.evaluate(element => getComputedStyle(element).flexDirection), 'row');
+      assert.equal(rows[0], rows[1], 'the first two filters must share a row');
+      assert.ok(rows.some(row => row > rows[0]), 'filters must wrap onto another row');
       const summary = page.locator('ui-disclosure summary');
       const draft = page.getByRole('textbox', { name: 'Draft' });
       await summary.press('Enter');
@@ -260,7 +263,29 @@ async function measureDevelopment(app, label, browser) {
   }
 }
 
-async function measureProduction(app, label, major, candidate) {
+async function inspectProduction(browser, directory, label) {
+  const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css' };
+  const server = createHttpServer(async (request, response) => {
+    const name = new URL(request.url, 'http://127.0.0.1').pathname.slice(1) || 'index.html';
+    const type = types[extname(name)];
+    if (!type || !/^[\w.-]+$/.test(name)) return response.writeHead(404).end();
+    try {
+      const content = await readFile(join(directory, name));
+      response.writeHead(200, { 'Content-Type': type }).end(content);
+    } catch {
+      response.writeHead(404).end();
+    }
+  });
+  server.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  try {
+    return await measurePage(browser, 'http://127.0.0.1:' + server.address().port, label);
+  } finally {
+    await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
+  }
+}
+
+async function measureProduction(app, label, major, candidate, browser) {
   const out = 'dist/' + label;
   run(app, angularNode, [cli, 'build', '--configuration', 'production', '--stats-json', '--output-path', out]);
   const statsName = major === '21' ? 'stats.json' : 'browser-stats.json';
@@ -289,7 +314,9 @@ async function measureProduction(app, label, major, candidate) {
     }
   }
   const bytes = files => [...files].reduce((total, key) => total + outputs[key].bytes, 0);
-  return { initial: bytes(initial), route: bytes(route) };
+  const production = { initial: bytes(initial), route: bytes(route) };
+  if (label === 'layout') production.browser = await inspectProduction(browser, join(app, out, 'browser'), label);
+  return production;
 }
 
 console.log('Measurement workspace', workspace);
@@ -350,7 +377,7 @@ try {
           run(app, angularNode, ['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js', '-p', 'tsconfig.app.json', '--noEmit']);
         }
         const development = await measureDevelopment(app, label, browser);
-        const production = await measureProduction(app, label, major, candidate);
+        const production = await measureProduction(app, label, major, candidate, browser);
         const record = { variant: name, entry: label, angular: angularVersion, node: nodeVersion, chromium: browser.version(), development, production };
         if (candidate) record.candidateSha256 = candidate.sha256;
         records[label] = record;

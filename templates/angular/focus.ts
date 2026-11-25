@@ -5,7 +5,7 @@ export function canFocus(element: HTMLElement | null): element is HTMLElement {
     // summary and its descendants remain visible in each closed ancestor.
     let details = element.closest('details:not([open])');
     while (details) {
-        const summary = [...details.children].find(child => child.tagName === 'SUMMARY');
+        const summary = Array.from(details.children).find(child => child.tagName === 'SUMMARY');
         if (!summary?.contains(element)) return false;
         details = details.parentElement?.closest('details:not([open])') ?? null;
     }
