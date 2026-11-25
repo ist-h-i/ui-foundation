@@ -3045,8 +3045,8 @@
         },
         {
           "column": 51,
-          "file": "templates/angular/text-input.ts",
-          "line": 171,
+          "file": "templates/angular/text-controls.ts",
+          "line": 174,
           "reason": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.max-block-size.px]=\"checkedMaxHeight()\""
@@ -3770,7 +3770,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "90a38b27d1604819d610a3d4cae1bf9cbf1611b1258cb65143482d97b5460212",
+    "configuration_hash": "963e6e395a2934291f926966e817ba8c4476e507b8a53f1d6ff53486bd684c86",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
@@ -4871,6 +4871,18 @@
         "selector": "ui-tabs"
       },
       {
+        "file": ".ui/generated/angular/text-controls.ts",
+        "kind": "component",
+        "name": "Textarea",
+        "selector": "ui-textarea"
+      },
+      {
+        "file": ".ui/generated/angular/text-controls.ts",
+        "kind": "component",
+        "name": "TextInput",
+        "selector": "ui-text-input"
+      },
+      {
         "file": ".ui/generated/angular/text-input.ts",
         "kind": "component",
         "name": "NumberInput",
@@ -4887,18 +4899,6 @@
         "kind": "component",
         "name": "SearchInput",
         "selector": "ui-search-input"
-      },
-      {
-        "file": ".ui/generated/angular/text-input.ts",
-        "kind": "component",
-        "name": "Textarea",
-        "selector": "ui-textarea"
-      },
-      {
-        "file": ".ui/generated/angular/text-input.ts",
-        "kind": "component",
-        "name": "TextInput",
-        "selector": "ui-text-input"
       },
       {
         "file": ".ui/generated/angular/timeline.ts",

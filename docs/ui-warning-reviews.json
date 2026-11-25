@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.repository.yaml": "3fad0e3ac0e5c9836d0ac5030218ca44e520e62c7f2052bfaf16c076fd6bba29",
+    "examples/ui.config.repository.yaml": "8cde6ed6aeadad00c84ed131ecea7cf388a4b403ac4169b20967bf37b8a99952",
     "package.json": "34f43c32b9133eae3747f6cb0b3dbcc67a4823c32a09df73e268e974a532cdf5",
     "package-lock.json": "0686b6cfe76a63c1d9497ee4ded53a49f09e03fdcbc1255292b0bedbaacc94ef",
     "src/config.ts": "6ce714e7a20ca1343cbe597eb0a0dadd437de71d1fdd6c5baa77ed6f397373ca",
@@ -3516,7 +3516,7 @@
       "id": "D073",
       "diagnostic": {
         "file": "templates/angular/form-field.ts",
-        "line": 51,
+        "line": 52,
         "column": 4,
         "rule": "unresolved",
         "severity": "warning",
@@ -3527,7 +3527,7 @@
       "category": "public-css-override",
       "detail": "form-label-track-inheritance",
       "disposition": "retained-warning",
-      "source_sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+      "source_sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
       "producer": "FormField/FormLayout の labelPosition 分岐 → min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr) を --ui-field/form-label-columns に設定 → native grid consumer。",
       "reason": "文字列自体は固定の構造式でも、継承する --ui-form-label-width は public px と任意 CSS writer を許す。固定 40% や semantic fallback を見て alias 全値を承認すると上書き契約を壊す。",
       "remaining_scope": "任意 alias token stream、全 writer/slot/入れ子 FormLayout、long label の全可読性・全 cascade は未証明。",
@@ -3541,13 +3541,13 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3667,7 +3667,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6202,7 +6202,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6292,7 +6292,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6382,7 +6382,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6472,7 +6472,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6562,7 +6562,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "e2ca6a975d44cee4f1c6f19e3195bf90d17d852625a26b963f3a7be702d2a73a",
+          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6727,8 +6727,8 @@
     {
       "id": "D147",
       "diagnostic": {
-        "file": "templates/angular/text-input.ts",
-        "line": 184,
+        "file": "templates/angular/text-controls.ts",
+        "line": 196,
         "column": 223,
         "rule": "unresolved",
         "severity": "warning",
@@ -6739,7 +6739,7 @@
       "category": "layout-measurement",
       "detail": "runtime-intrinsic-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+      "source_sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
       "producer": "element.scrollHeight + (element.offsetHeight-element.clientHeight) + px をheightへ設定。Textarea.autoResizeはafterRenderEffectでdisplayedText/rows/maxHeightを追跡し、visible DOMだけheight=autoへ戻してscrollHeight+(offsetHeight-clientHeight)をpxへ設定する。checkedMaxHeightはnullかfinite>0。ResizeObserverとprofile/hidden/class MutationObserverをframeへまとめ、cleanupで切断・cancelRAFする。",
       "reason": "内容と実border/scrollbarから求めるnative textarea高は正当な内在寸法であり、全font/内容/CSS条件をstaticには確定できない。",
       "remaining_scope": "native textareaのfont/wrap/scrollbar/borderを全域静的推論できない。任意CSSや全入力/resize順序の品質保証ではなく、可変contentの実測値として保持する。",
@@ -6750,21 +6750,21 @@
       "verified_scope": "intrinsic cloneとの1px以内一致、長文/縮小/hidden中controlled/CVA更新・rows/cap/autoResize切替、maxHeight不正拒否、実observerが予約したframeのdestroy cancelのassertionがある。 今回はtest source/production sourceの読解のみであり、ブラウザー実走の成功を主張しない。",
       "evidence": [
         {
-          "file": "templates/angular/text-input.ts",
+          "file": "templates/angular/text-controls.ts",
           "anchor": "element.style.height=height;",
-          "sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
-          "file": "templates/angular/text-input.ts",
+          "file": "templates/angular/text-controls.ts",
           "anchor": "protected readonly checkedMaxHeight",
-          "sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
-          "file": "templates/angular/text-input.ts",
+          "file": "templates/angular/text-controls.ts",
           "anchor": "const resize=()=>",
-          "sha256": "a539cb53b486c0ec83752866fd8edce8bf7881df9782af16e498af8f249b98f9",
+          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {

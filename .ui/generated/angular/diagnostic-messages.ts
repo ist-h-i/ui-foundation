@@ -895,38 +895,6 @@ export const diagnosticMessages = {
       "label": "string"
     }
   },
-  "uiFoundation.textInput.characterCount": {
-    "ja": "{count} 文字",
-    "en": "{count} characters",
-    "parameters": {
-      "count": "number"
-    },
-    "one": "{count} character"
-  },
-  "uiFoundation.textInput.characterCountWithLimit": {
-    "ja": "{count} / {limit} 文字",
-    "en": "{count} of {limit} characters",
-    "parameters": {
-      "count": "number",
-      "limit": "number"
-    }
-  },
-  "uiFoundation.textarea.characterCount": {
-    "ja": "{count} 文字",
-    "en": "{count} characters",
-    "parameters": {
-      "count": "number"
-    },
-    "one": "{count} character"
-  },
-  "uiFoundation.textarea.characterCountWithLimit": {
-    "ja": "{count} / {limit} 文字",
-    "en": "{count} of {limit} characters",
-    "parameters": {
-      "count": "number",
-      "limit": "number"
-    }
-  },
   "uiFoundation.chart.unknownKind": {
     "ja": "グラフの種類を確認してください。",
     "en": "Unknown chart kind",

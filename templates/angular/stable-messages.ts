@@ -2,7 +2,15 @@ import { diagnosticMessages } from './diagnostic-messages';
 import { componentMessages } from './component-messages';
 import { tableSchedulerMessages } from './table-scheduler-messages';
 
-const patterns = { ...componentMessages, ...diagnosticMessages, ...tableSchedulerMessages };
+import { actionControlMessages } from './action-control-messages';
+import { textControlMessages } from './text-control-messages';
+import { formFieldMessages } from './form-field-messages';
+import { formatUiMessagePattern, translateUiMessage, usesJapaneseMessages } from './message-format';
+
+const patterns = /* @__PURE__ */ (() => ({
+  ...componentMessages, ...formFieldMessages, ...actionControlMessages, ...textControlMessages,
+  ...diagnosticMessages, ...tableSchedulerMessages,
+}))();
 
 /** Stable, library-owned message IDs and their named parameters. */
 type ManualMessageParameters = {
@@ -30,9 +38,7 @@ type ManualMessageParameters = {
   'uiFoundation.snackbar.dismissLabel': { readonly message: string };
   'uiFoundation.notificationCenter.status': { readonly visible: number; readonly unread: number; readonly loading: string | null };
   'uiFoundation.actionButton.busy': undefined;
-  'uiFoundation.actionControl.busy': undefined;
   'uiFoundation.actionFeedback.busy': undefined;
-  'uiFoundation.actionLink.external': undefined;
   'uiFoundation.asyncRegion.retryAction': undefined;
   'uiFoundation.bottomSheet.decreaseHeight': undefined;
   'uiFoundation.bottomSheet.heightLabel': undefined;
@@ -78,14 +84,14 @@ type ManualMessageParameters = {
 };
 
 type ComponentCatalog = typeof patterns;
-type ComponentId = keyof ComponentCatalog;
+export type UiPatternMessageId = keyof ComponentCatalog;
 type ArgumentType<T> = T extends 'number' ? number : T extends 'string' ? string : string | number;
-type ComponentParameters<Id extends ComponentId> = keyof ComponentCatalog[Id]['parameters'] extends never
+type ComponentParameters<Id extends UiPatternMessageId> = keyof ComponentCatalog[Id]['parameters'] extends never
   ? undefined
   : { readonly [Name in keyof ComponentCatalog[Id]['parameters']]: ArgumentType<ComponentCatalog[Id]['parameters'][Name]> };
 
 export type UiMessageParameters = ManualMessageParameters & {
-  [Id in ComponentId]: ComponentParameters<Id>;
+  [Id in UiPatternMessageId]: ComponentParameters<Id>;
 };
 
 export type UiMessageId = keyof UiMessageParameters;
@@ -144,9 +150,7 @@ const japanese: Dictionary = {
       : `${numbers.format(visible)}件表示、未読 ${numbers.format(unread)}件`;
   },
   'uiFoundation.actionButton.busy': () => "処理中",
-  'uiFoundation.actionControl.busy': () => "処理中",
   'uiFoundation.actionFeedback.busy': () => "処理しています。",
-  'uiFoundation.actionLink.external': () => "外部リンク",
   'uiFoundation.asyncRegion.retryAction': () => "再試行",
   'uiFoundation.bottomSheet.decreaseHeight': () => "低くする",
   'uiFoundation.bottomSheet.heightLabel': () => "表示領域の高さ",
@@ -226,9 +230,7 @@ const english: Dictionary = {
       : `${numbers.format(visible)} ${noun} shown. ${numbers.format(unread)} unread.`;
   },
   'uiFoundation.actionButton.busy': () => "Working",
-  'uiFoundation.actionControl.busy': () => "Working",
   'uiFoundation.actionFeedback.busy': () => "Working…",
-  'uiFoundation.actionLink.external': () => "External link",
   'uiFoundation.asyncRegion.retryAction': () => "Retry",
   'uiFoundation.bottomSheet.decreaseHeight': () => "Decrease height",
   'uiFoundation.bottomSheet.heightLabel': () => "Viewport height",
@@ -296,11 +298,10 @@ export function uiMessageText(locale: () => string, translator: () => UiMessageT
   };
 }
 
-const japaneseText = uiMessageText(() => 'ja-JP');
-
 /** Capture an operation's diagnostics without invoking the application's translator. */
 export function captureUiMessage(text: UiMessageText) {
   let render: (() => string) | undefined;
+  const japaneseText = uiMessageText(() => 'ja-JP');
   const capture: UiMessageText = (...args) => {
     render = () => text(...args);
     return japaneseText(...args);
@@ -308,24 +309,17 @@ export function captureUiMessage(text: UiMessageText) {
   return { capture, render: () => render };
 }
 
-function componentRequest(request: UiMessageRequest): request is UiMessageRequest<ComponentId> {
+function componentRequest(request: UiMessageRequest): request is UiMessageRequest<UiPatternMessageId> {
   return Object.hasOwn(patterns, request.id);
 }
 
 export function resolveUiMessage(request: UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string {
-  const translated = translate?.(request, locale);
-  if (translated?.trim() && translated.trim() !== request.id) return translated;
+  const translated = translateUiMessage(request, locale, translate);
+  if (translated !== undefined) return translated;
 
-  const useJapanese = /^ja(?:-|$)/i.test(locale);
+  const useJapanese = usesJapaneseMessages(locale);
   if (componentRequest(request)) {
-    const message: { readonly ja: string; readonly en: string; readonly one?: string } = patterns[request.id];
-    const parameters: Readonly<Record<string, string | number>> = 'parameters' in request ? request.parameters : {};
-    const copy = useJapanese ? message.ja : message.one && parameters['count'] === 1 ? message.one : message.en;
-    return copy.replace(/\{(\w+)\}/g, (placeholder: string, name: string) => {
-      if (!Object.hasOwn(parameters, name)) return placeholder;
-      const value = parameters[name];
-      return typeof value === 'number' ? new Intl.NumberFormat(locale, { maximumSignificantDigits: 17 }).format(value) : value;
-    });
+    return formatUiMessagePattern(patterns[request.id], request, locale);
   }
   const dictionary = useJapanese ? japanese : english;
   // Both dictionaries implement precisely the same argument map.

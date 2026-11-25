@@ -1,4 +1,5 @@
-import {UiStableMessagePipe} from './locale';
+import { formFieldMessages } from './form-field-messages';
+import { injectComponentMessageText } from './component-message-text';
 import {
   AfterContentChecked,
   booleanAttribute,
@@ -30,14 +31,14 @@ export class FieldControl {
   protected readonly field = inject<FormField>(forwardRef(() => FormField));
 }
 
-@Component({imports:[UiStableMessagePipe],
+@Component({
   selector: 'ui-form-field',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <label class="ui-form-field-label" [attr.for]="controlId()">
       {{ label() }}
-      <span class="ui-form-field-requirement">{{ required() ? ('uiFoundation.formField.required' | uiStableMessage) : ('uiFoundation.formField.optional' | uiStableMessage) }}</span>
+      <span class="ui-form-field-requirement">{{ requirementLabel() }}</span>
     </label>
     <ng-content />
     @if (hasHint()) {
@@ -89,6 +90,12 @@ export class FormField implements AfterContentChecked {
     if (this.hasError()) ids.push(this.errorId());
     return [...new Set(ids)].join(' ') || null;
   });
+
+  private readonly messageText = injectComponentMessageText(formFieldMessages);
+  protected requirementLabel(): string {
+    const id = this.required() ? 'uiFoundation.formField.required' : 'uiFoundation.formField.optional';
+    return this.messageText({ id });
+  }
 
   private readonly controls = contentChildren(FieldControl, { descendants: true });
 
