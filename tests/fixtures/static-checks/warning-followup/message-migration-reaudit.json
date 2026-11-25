@@ -1,7 +1,7 @@
 {
   "prior_audit_sha256": "5e54d1ed9730a22ea34ea16f3923b05e2b4f3af68b519a08a949ab877b75e6d3",
   "source_commit": "cd97bbee78faf641087e853232ca2bdd7fa39ea7",
-  "scope": "The message-ID migration changed five of the eleven geometry proof files. The fourteen original warning sites, coordinates and reasons still match the checker. The original audit retains the data flow, rejected cases and runtime limits for each site.",
+  "scope": "The message-ID migration changed five of the eleven geometry proof files. The fourteen original warning sites, coordinates and reasons still match the checker. The original audit retains the data flow, rejected cases and runtime limits for each site. Issue #55 also adds a focus helper and uses Array.from for the same direct details children; the fourteen sites and their approval coordinates are unchanged.",
   "dependencies": {
     "templates/angular/command-palette.ts": {
       "prior_sha256": "48f4419a30224cf68ceee948a212609fea0bfcb9551f3c1cc20973a055678f8a",
@@ -27,6 +27,11 @@
       "prior_sha256": "eb4e4f965791815f934023de81cb6ea7c55f40b4c6f4157806ba299620a45a70",
       "current_sha256": "221c79c0a301d9ecc7a38c1a7626f7417a65933ec3c113b87cbd7bfe11e377a0",
       "judgment": "D148–D151. The translated tour labels changed. Lines 125–137 still read the eligible target's DOM rectangle while the popover is open. The aria-hidden highlight at line 16 still receives only that rectangle's left, top, width and height."
+    },
+    "templates/angular/focus.ts": {
+      "prior_sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+      "current_sha256": "2342a605e91334d8d807002c92bf5d2a59a179d58ba7846998891e98f616e57d",
+      "judgment": "Issue #55. Existing canFocus still finds the first direct SUMMARY child in tree order. restoreFocus, tabbableElements and focusOutsideMenu are preserved. The new focusBeforeHiding helper does not participate in the audited geometry producers or change the fourteen exception sites."
     }
   }
 }
