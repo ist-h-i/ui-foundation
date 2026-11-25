@@ -2,7 +2,7 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessage} from './locale';
 import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, output, untracked } from '@angular/core';
 import { ActionControl } from './action-control';
-import { focusBeforeHiding } from './layout';
+import { focusBeforeHiding } from './focus';
 export type AsyncRegionState = {
     kind: 'ready';
 } | {

@@ -172,7 +172,7 @@
     },
     {
       "path": "templates/angular/action-feedback.ts",
-      "sha256": "f69f79ffac7ccbffbc9250e888131f8758637e1fd69c86e9c956ee7352d02bc2",
+      "sha256": "ea4ca30bc85704218f2fdeba50279809894195d8e9c0b78005f990481ad67721",
       "declarations": [
         {
           "names": [
@@ -246,7 +246,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "e25bb31cfcf0ce62590e515263a850e8097b6b913bd5415d736ee71f433c2994",
+      "sha256": "bb088bf723be73d4f61636d8d2d381a9ab135f9c36971ec5be2c14f8a275c6c2",
       "declarations": [
         {
           "name": "IconButton",
@@ -816,7 +816,7 @@
     },
     {
       "path": "templates/angular/async-region.ts",
-      "sha256": "dee0258d83a35c151399825a9975eba9c7f41b09f49dde81c35fad594a9e57ab",
+      "sha256": "7962a9048854abefbffda0909e1495486441e2f59b383d13f056334c61a466df",
       "declarations": [
         {
           "names": [
@@ -6141,7 +6141,7 @@
     },
     {
       "path": "templates/angular/display.ts",
-      "sha256": "77c72a0cacac84e7cc6c4cd2c7a78b1b8be216a7bdd438de09036e96c8ff851c",
+      "sha256": "c5c9d5d0030eecd78b57e40d57791f10aa404272fbb9a92597f1902f6427f608",
       "declarations": [
         {
           "name": "Typography",
@@ -7023,7 +7023,7 @@
     },
     {
       "path": "templates/angular/feedback.ts",
-      "sha256": "79e87adb82f0a739c28b306277773b5eadc01b339edc134aa5a9b3730454a472",
+      "sha256": "4d4e5094e9f97540404608a1a99e281e30dacb0898002cc58934b103686b601d",
       "declarations": [
         {
           "names": [
@@ -8703,7 +8703,7 @@
     },
     {
       "path": "templates/angular/focus.ts",
-      "sha256": "5b4ad63de73631d1443aa445c9cb5a70f17af4b78500c7e08aa98334918f3887",
+      "sha256": "dcc6ed37474f3b4c7728e3804247544a234975ce651f574288e6ece54ee4ca11",
       "declarations": [
         {
           "names": [
@@ -8732,6 +8732,13 @@
           ],
           "kind": "function",
           "declaration": "export function focusOutsideMenu(anchor: HTMLElement, backwards = false): void"
+        },
+        {
+          "names": [
+            "focusBeforeHiding"
+          ],
+          "kind": "function",
+          "declaration": "export function focusBeforeHiding(root: HTMLElement, fallback: HTMLElement | null = null): void"
         }
       ]
     },
@@ -11123,14 +11130,11 @@
     },
     {
       "path": "templates/angular/layout.ts",
-      "sha256": "581a9b65f23c7cc516f720fe7027039c7238589a895448e08a4366c404567d75",
+      "sha256": "035c2f1bb2e5f4ec645d4a4936370238e2747e535359504c2277aac5251a6322",
       "declarations": [
         {
-          "names": [
-            "focusBeforeHiding"
-          ],
-          "kind": "function",
-          "declaration": "export function focusBeforeHiding(root: HTMLElement, fallback: HTMLElement | null = null): void"
+          "kind": "export",
+          "declaration": "export type { GridPlacement, LayoutBreakpoint, LayoutSpace } from './layout-model';"
         },
         {
           "name": "Container",
@@ -13650,7 +13654,7 @@
     },
     {
       "path": "templates/angular/page-frame.ts",
-      "sha256": "8ffbd40ed0a12d22cba435e1b47b09419fe73485910516d5cb63cdef4afaa16c",
+      "sha256": "0c1474dd95ca69a72dfdf0081580c77b09ff44aaa2a3780a85801cfa2ea27f09",
       "declarations": [
         {
           "name": "PageFrame",
@@ -13861,7 +13865,7 @@
     },
     {
       "path": "templates/angular/panels.ts",
-      "sha256": "972832c62e8f1b80387265a59f0b9931f1d68b3c0c6272dfefeb5af4dfbecaf0",
+      "sha256": "72c5dd17322a20bd6e910b515273b5b06a0e39d924067428c568b0c1853d3e03",
       "declarations": [
         {
           "name": "Panel",
@@ -15846,7 +15850,7 @@
     },
     {
       "path": "templates/angular/splitter.ts",
-      "sha256": "2702852ab7fdf12359e191c8cedf5284e26b397cd38c3f2be425d77ed376cfac",
+      "sha256": "cb292192ca620c899a917d530a45828951f49bc15b8d6a6eac6ee02881fcf020",
       "declarations": [
         {
           "name": "Splitter",
@@ -18191,7 +18195,7 @@
     },
     {
       "path": "templates/angular/toolbar.ts",
-      "sha256": "2b112cff15bf4d63c679ece7b1cb10933f8c8770e78b342f8a0bb0d645ce77b0",
+      "sha256": "1fa1eb67cfc1819d9e91b1c45d5b86f3262506fa89eb643eeb47fea1982c6d48",
       "declarations": [
         {
           "names": [

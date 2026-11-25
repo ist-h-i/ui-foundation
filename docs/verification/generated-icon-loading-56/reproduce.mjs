@@ -19,10 +19,12 @@ const { values: options } = parseArgs({ options: {
   angular: { type: 'string', default: '22' },
   'angular-node': { type: 'string' },
   workspace: { type: 'string' },
+  layout: { type: 'boolean' },
 } });
 assert.ok(['21', '22', 'both'].includes(options.angular), 'Choose --angular 21, 22 or both.');
 assert.ok(options.candidate || options.angular === '22', 'The recorded comparison uses Angular 22.');
 assert.ok(options.angular !== 'both' || !options['angular-node'], 'Choose one Angular version when specifying its Node runtime.');
+assert.ok(!options.layout || options.candidate, '--layout requires --candidate');
 const angularNode = options['angular-node'] ? resolve(options['angular-node']) : process.execPath;
 const repository = fileURLToPath(new URL('../../../', import.meta.url));
 const patch = fileURLToPath(new URL('./prototype.patch', import.meta.url));
@@ -34,7 +36,7 @@ const generator = 'node_modules/@hiroshi.inoue/ui-foundation/dist/cli.js';
 
 const build = {
   builder: '@angular/build:application',
-  options: { browser: 'src/main.ts', index: 'src/index.html', tsConfig: 'tsconfig.app.json', outputPath: 'dist' },
+  options: { browser: 'src/main.ts', index: 'src/index.html', tsConfig: 'tsconfig.app.json', outputPath: 'dist', ...(options.layout ? { styles: ['.ui/generated/tokens.css', '.ui/generated/angular/styles.css'] } : {}) },
   configurations: {
     development: { optimization: false, sourceMap: true },
     production: { optimization: true, sourceMap: false, outputHashing: 'all', extractLicenses: false },
@@ -90,6 +92,11 @@ const cases = {
     imports: `import {Icon,selected} from '${entry}icons';import {shape} from '${entry}icons/folder';`,
     provider: 'selected(shape)', name: 'folder',
   },
+  layout: {
+    imports: `import {Stack,type LayoutSpace} from '${entry}layout';import {Disclosure} from '${entry}disclosure';`,
+    components: 'Stack,Disclosure', provider: '',
+    content: '<ui-flex gap="normal"><button type="button">First filter</button><button type="button">Second filter</button><button type="button">Third filter</button><button type="button">Fourth filter</button></ui-flex><ui-disclosure title="Stored input"><textarea aria-label="Draft"></textarea></ui-disclosure>',
+  },
   basics: {
     imports: `import {ActionControl,ActionLink,Card} from '${entry}core';import {TextInput} from '${entry}forms';`,
     components: 'ActionControl,ActionLink,Card,TextInput', provider: '',
@@ -115,6 +122,10 @@ async function setUp(name, major, candidate) {
   if (candidate) {
     delete lock.packages[''].dependencies['@hiroshi.inoue/ui-foundation'];
     delete lock.packages['node_modules/@hiroshi.inoue/ui-foundation'];
+  }
+  if (options.layout) {
+    delete lock.packages[''].dependencies['@angular/cdk'];
+    delete lock.packages['node_modules/@angular/cdk'];
   }
   const manifest = { name: lock.name, private: true, dependencies: lock.packages[''].dependencies };
   const compiler = candidate ? {
@@ -144,12 +155,16 @@ async function setUp(name, major, candidate) {
   }
   run(app, process.execPath, [generator, 'init', '--language', 'ja']);
   run(app, process.execPath, [generator, 'sync']);
-  if (candidate) run(app, process.execPath, [generator, 'check']);
+  if (options.layout) {
+    for (const dependency of ['@angular/cdk', '@lucide/angular', 'qrcode', 'jsbarcode', 'echarts', '@codemirror/state']) {
+      await assert.rejects(access(join(app, 'node_modules', dependency)), { code: 'ENOENT' });
+    }
+  } else if (candidate) run(app, process.execPath, [generator, 'check']);
   return app;
 }
 
 async function measurePage(browser, url, label) {
-  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const context = await browser.newContext({ serviceWorkers: 'block', ...(label === 'layout' ? { viewport: { width: 320, height: 640 } } : {}) });
   try {
     const page = await context.newPage();
     let phase = 'initial';
@@ -169,6 +184,19 @@ async function measurePage(browser, url, label) {
     await page.locator('#result').waitFor({ state: 'attached' });
     if (label === 'split') {
       await page.locator(`#result svg path[d^="${folderPathPrefix}"]`).waitFor({ state: 'attached' });
+    } else if (label === 'layout') {
+      const stack = page.locator('ui-flex');
+      const rows = await stack.getByRole('button').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().top));
+      assert.equal(rows.length, 4);
+      assert.ok(new Set(rows).size > 1, 'filters must wrap on a narrow screen');
+      const summary = page.locator('ui-disclosure summary');
+      const draft = page.getByRole('textbox', { name: 'Draft' });
+      await summary.press('Enter');
+      await draft.fill('Retained input');
+      await summary.press('Space');
+      await draft.waitFor({ state: 'hidden' });
+      await summary.press('Enter');
+      assert.equal(await draft.inputValue(), 'Retained input');
     } else if (label === 'basics') {
       for (const selector of ['button[uiAction]', 'a[uiAction]', 'ui-card', 'ui-text-input input']) {
         await page.locator('#result ' + selector).first().waitFor({ state: 'attached' });
@@ -284,7 +312,7 @@ const candidate = options.candidate ? await prepareCandidate({
   repository, root: workspace, execute: (file, args, cwd) => runProcess(file, args, { cwd }),
 }) : undefined;
 const majors = options.angular === 'both' ? ['21', '22'] : [options.angular];
-const variants = candidate ? { candidate: ['empty', 'selected', 'defaults', 'split', 'basics'] }
+const variants = options.layout ? { candidate: ['layout'] } : candidate ? { candidate: ['empty', 'selected', 'defaults', 'split', 'basics'] }
   : { published: ['empty', 'direct', 'core'], prototype: ['core', 'selected', 'defaults'] };
 const browser = await chromium.launch({ channel: 'chromium' });
 try {
@@ -297,6 +325,27 @@ try {
       for (const label of labels) {
         await writeFile(join(app, 'src/main.ts'), label === 'split' ? splitShell : shell);
         await writeFile(join(app, 'src/probe.ts'), probe(cases[label]));
+        if (label === 'layout') {
+          const mainFile = join(app, 'src/main.ts');
+          // The source checker fixture covers these components. The Router
+          // shell is used for the independent AOT and browser checks below.
+          await writeFile(mainFile, "import {bootstrapApplication} from '@angular/platform-browser';\nimport {Probe} from './probe';\nbootstrapApplication(Probe);\n");
+          const check = () => JSON.parse(execFileSync(process.execPath, [generator, 'check', '--require-source-checks', '--format', 'json'], { cwd: app, env: environment, encoding: 'utf8' }));
+          const findings = report => report.source.diagnostics.filter(diagnostic => diagnostic.rule === 'generated-internal-import');
+          const report = check();
+          assert.ok(report.valid);
+          assert.ok(['passed', 'warnings'].includes(report.source.status));
+          assert.deepEqual(findings(report), []);
+          const probeFile = join(app, 'src/probe.ts');
+          const source = probe(cases.layout);
+          await writeFile(probeFile, source + `\nimport type {LayoutSpace as InternalLayoutSpace} from '${entry}layout-model';\n`);
+          const internal = findings(check());
+          assert.equal(internal.length, 1);
+          assert.match(internal[0].suggestion, /angular\/layout'/);
+          await writeFile(probeFile, source);
+          await writeFile(mainFile, shell);
+          run(app, angularNode, ['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js', '-p', 'tsconfig.app.json', '--noEmit']);
+        }
         const development = await measureDevelopment(app, label, browser);
         const production = await measureProduction(app, label, major, candidate);
         const record = { variant: name, entry: label, angular: angularVersion, node: nodeVersion, chromium: browser.version(), development, production };
@@ -305,7 +354,7 @@ try {
         await writeFile(join(app, label + '.json'), JSON.stringify(record, null, 2) + '\n');
         console.log('Measured', JSON.stringify(record));
       }
-      if (candidate) enforceBudgets(records);
+      if (candidate && !options.layout) enforceBudgets(records);
     }
   }
   if (candidate) await assertFrozenCandidate(candidate);

@@ -30,3 +30,12 @@ export function focusOutsideMenu(anchor: HTMLElement, backwards = false): void {
     if (target)
         target.focus();
 }
+
+/** Move focus before a retained subtree is hidden; never escape a native modal. */
+export function focusBeforeHiding(root: HTMLElement, fallback: HTMLElement | null = null): void {
+ const active=root.ownerDocument.activeElement as HTMLElement|null;if(!active||!root.contains(active))return;
+ if(fallback&&!root.contains(fallback)&&restoreFocus(fallback))return;
+ const modal=root.closest<HTMLDialogElement>('dialog:modal');const targets=tabbableElements(modal??root.ownerDocument.body).filter(element=>!root.contains(element));
+ const next=targets.find(element=>!!(root.compareDocumentPosition(element)&Node.DOCUMENT_POSITION_FOLLOWING))??targets.at(-1);
+ if(next)restoreFocus(next);else active.blur();
+}

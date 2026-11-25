@@ -1,7 +1,7 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessage} from './locale';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, signal, untracked, viewChild } from '@angular/core';
-import { focusBeforeHiding } from './layout';
+import { focusBeforeHiding } from './focus';
 @Component({selector:'ui-page-frame,ui-app-shell',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,
  host:{class:'ui-page-frame','[attr.data-fixed-header]':'stickyHeader()','[attr.data-fixed-sidebar]':'fixedSidebar()&&enoughRoom()','[attr.data-fixed-footer]':'stickyFooter()','[style.--ui-frame-header-height.px]':'stickyHeader()?headerHeight():0','[style.--ui-frame-footer-height.px]':'stickyFooter()?footerHeight():0','[style.--ui-frame-scroll-height.px]':'scrollHeight()'},
  template:`<header #header class="ui-page-frame__header" [hidden]="!showHeader()"><div class="ui-page-frame__heading">

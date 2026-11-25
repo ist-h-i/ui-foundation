@@ -1,15 +1,8 @@
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, Directive, effect, ElementRef, inject, input, output, signal, untracked, viewChild } from '@angular/core';
-import { canFocus, restoreFocus, tabbableElements } from './focus';
+import { focusBeforeHiding } from './focus';
 import { gridAtWidth, layoutKeyword, layoutSpace, positiveInteger, type GridPlacement, type LayoutBreakpoint, type LayoutSpace } from './layout-model';
+export type { GridPlacement, LayoutBreakpoint, LayoutSpace } from './layout-model';
 
-/** Move focus before a retained subtree is hidden; never escape a native modal. */
-export function focusBeforeHiding(root: HTMLElement, fallback: HTMLElement | null = null): void {
- const active=root.ownerDocument.activeElement as HTMLElement|null;if(!active||!root.contains(active))return;
- if(fallback&&!root.contains(fallback)&&restoreFocus(fallback))return;
- const modal=root.closest<HTMLDialogElement>('dialog:modal');const targets=tabbableElements(modal??root.ownerDocument.body).filter(element=>!root.contains(element));
- const next=targets.find(element=>!!(root.compareDocumentPosition(element)&Node.DOCUMENT_POSITION_FOLLOWING))??targets.at(-1);
- if(next)restoreFocus(next);else active.blur();
-}
 const common=`:host{box-sizing:border-box;min-inline-size:0;max-inline-size:100%;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);overflow-wrap:anywhere;}:host([hidden]){display:none!important;}`;
 @Component({selector:'ui-container,ui-section',standalone:true,changeDetection:ChangeDetectionStrategy.OnPush,
  host:{'[style.max-inline-size]':'maximum()','[style.padding]':'inset()','[attr.data-align]':'align()','[attr.data-background]':'background()'},
