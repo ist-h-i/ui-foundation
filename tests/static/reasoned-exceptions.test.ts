@@ -173,7 +173,8 @@ test('the checker admits the five re-audited Angular sites and rejects the prior
   assert.deepEqual(reviewed.map(item => item.id).sort(), ['D146','D153','D158','R184','R186']);
   const input = parseConfig(example);
   const exceptions = input.checks!.exceptions.filter(e => reviewed.some(item => item.exception.reason === e.reason));
-  const files = [...new Set(exceptions.map(e => e.file))];
+  const previousTextarea = angularAudit.sites.D146;
+  const files = [...new Set([...exceptions.map(e => e.file), previousTextarea.file])];
   for (const file of files) {
     const target = resolve(fixture, file);
     await mkdir(resolve(target,'..'), {recursive:true});
@@ -194,8 +195,9 @@ test('the checker admits the five re-audited Angular sites and rejects the prior
 
   const {exception:reason, ...warning} = currentSites.D146;
   const textarea = exceptions.find(e => e.reason === reason)!;
-  textarea.line = messageAudit.sites.D146.line;
-  textarea.column = messageAudit.sites.D146.column;
+  textarea.file = previousTextarea.file;
+  textarea.line = previousTextarea.line;
+  textarea.column = previousTextarea.column;
   const stale = await scan();
   assert.ok(stale.diagnostics.some(d => d.file === textarea.file && d.rule === 'exception-error' && d.source === textarea.source));
   const unapproved = stale.diagnostics.filter(d => d.file === warning.file && d.line === warning.line && d.column === warning.column && d.rule === warning.rule);
