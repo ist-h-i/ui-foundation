@@ -34,7 +34,7 @@ test('plain text omits grammars and a late language cannot replace a newer choic
   const content = page.locator('.cm-content');
   const select = (name: string) => page.getByRole('button', { name, exact: true }).click();
   await expect(content).toBeEditable();
-  await expect(page.getByRole('status')).toHaveCount(0);
+  await expect(page.locator('ui-code-editor').getByRole('status')).toHaveCount(0);
   expect([...requested]).toEqual([]);
   await select('json');
   await pending.promise;
