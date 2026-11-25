@@ -53,6 +53,7 @@ try{
     await page.evaluate(profile=>{document.documentElement.setAttribute('data-ui-profile',profile);document.documentElement.style.fontSize='200%';},profile);
     await expect(page.getByRole('img',{name:'確認',exact:true})).toBeVisible();
     assert.ok(await page.getByRole('img',{name:'確認',exact:true}).locator('path,circle').count());
+    await expect(page.getByRole('img',{name:'確認',exact:true})).toHaveAttribute('stroke','rebeccapurple');
     for (const id of ['interop-raw', 'interop-parent']) {
       await expect(page.locator(`#${id} circle`)).toHaveAttribute('r', '3');
     }

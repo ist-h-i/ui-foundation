@@ -201,6 +201,8 @@ For the standard twelve names, import `provideUiIcons` from `angular/icons/defau
 
 If you use raw `svg[lucideIcon]`, `provideLucideIcons` or `provideLucideConfig` with UI Foundation, install `@lucide/angular@1.52.0`, set `icons: { lucide_interop: true }` in the source YAML, and sync before updating the app. Switch your provider import to `angular/icons/lucide` and call its `provideUiIcons(...extraIcons)` to share registrations. If your app already supplies its own Lucide registry, keep that registry and add `provideUiLucideInterop()` from the same entry. Passing a class imported from `@lucide/angular` also loads the Angular adapter in that route.
 
+At the application root, combining plain `selected(...)` with an empty `provideLucideIcons()` leaves the selected shapes available to `ui-icon`. To clear both registries in provider order, use `provideUiIcons(...)` from the interop entry followed by the empty native provider.
+
 ## Application dependencies
 
 The npm package installs the CLI. Install the dependencies for the generated code in the consuming app and record the exact versions in its lockfile. The `0.1.0` verification setup uses Angular and CDK `22.3.0`, RxJS `7.8.2`, `@lucide/angular@1.52.0`, TypeScript `6.0.3`, and, when Tailwind is used, `tailwindcss@4.3.0`. Use your Angular compiler and builder to compile the app.

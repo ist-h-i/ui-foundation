@@ -58,6 +58,11 @@
       "prior_sha256": "6518889e328a066b60f00bb7a4fee9a8c93bdeb04a1cc725990a22d9dbce54a3",
       "current_sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
       "judgment": "D121. The Icon import moved to the renderer module. The navigation column count still comes from checkedColumns(), which validates it with positiveInteger before applying the CSS variable."
+    },
+    "templates/angular/chart.ts": {
+      "prior_sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "current_sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
+      "judgment": "R009: the ECharts module selection changed. chartPointRows still supplies validated row depth to indent(row.depth), with the same semantic padding expression and binding position."
     }
   }
 }

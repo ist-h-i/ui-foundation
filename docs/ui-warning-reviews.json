@@ -366,7 +366,7 @@
         {
           "file": "templates/angular/chart.ts",
           "anchor": "style=\"--ui-specialist-columns:5\"",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -584,7 +584,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "source_sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
       "producer": "plot.width > available.width ? plot.width+px : 空文字列。Chart.paint は chartProblem/axis/locale検証後に、semantic theme、surface親clientWidth、computed lineHeight、canvas measureText/FontMetricsと現在seriesをchartPlotLayout/gaugeLayoutへ渡す。mountはdestroy後のimport完了を捨て、scope observerとEChartsを破棄する。",
       "reason": "スクロール可能なplotの最小幅はラベル計測と親幅から作る構造寸法。固定design寸法へ置換できず、測定条件のUnknownが残る。",
       "remaining_scope": "CSS測定、フォント、データ件数・文字長とECharts内部は静的ASTだけで網羅できない。finite test data以外の全series、全engine version、任意CSS供給と全module順序は保証しない。",
@@ -598,13 +598,13 @@
         {
           "file": "templates/angular/chart.ts",
           "anchor": "surface.style.minInlineSize=plot.width>available.width?",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/chart.ts",
           "anchor": "private paint()",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -662,7 +662,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "source_sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
       "producer": "gaugeならgaugeLayout.height、それ以外はchartPlotLayout.heightをpxへ変換。Chart.paint は chartProblem/axis/locale検証後に、semantic theme、surface親clientWidth、computed lineHeight、canvas measureText/FontMetricsと現在seriesをchartPlotLayout/gaugeLayoutへ渡す。mountはdestroy後のimport完了を捨て、scope observerとEChartsを破棄する。",
       "reason": "gauge数・行高・値の長さ・ラベルによる最小高さ。semantic geometry由来でも未知の文字と実測を全列挙できない。",
       "remaining_scope": "CSS測定、フォント、データ件数・文字長とECharts内部は静的ASTだけで網羅できない。finite test data以外の全series、全engine version、任意CSS供給と全module順序は保証しない。",
@@ -676,13 +676,13 @@
         {
           "file": "templates/angular/chart.ts",
           "anchor": "surface.style.minBlockSize=height?",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/chart.ts",
           "anchor": "private paint()",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -740,7 +740,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+      "source_sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
       "producer": "chartOptions(...theme,...geometry) を ECharts.setOption に渡す。Chart.paint は chartProblem/axis/locale検証後に、semantic theme、surface親clientWidth、computed lineHeight、canvas measureText/FontMetricsと現在seriesをchartPlotLayout/gaugeLayoutへ渡す。mountはdestroy後のimport完了を捨て、scope observerとEChartsを破棄する。",
       "reason": "semantic色・書体・線幅とデータ構造を生成するが、実renderer内部の描画は静的検査の対象境界外であり継続警告が妥当。",
       "remaining_scope": "CSS測定、フォント、データ件数・文字長とECharts内部は静的ASTだけで網羅できない。finite test data以外の全series、全engine version、任意CSS供給と全module順序は保証しない。",
@@ -754,13 +754,13 @@
         {
           "file": "templates/angular/chart.ts",
           "anchor": "this.chart.setOption(chartOptions(",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/chart.ts",
           "anchor": "private paint()",
-          "sha256": "4de3cfb5156e5a6a7f469a6b2ee223545f524f1afdfd81f6ec4ee23a591e6e33",
+          "sha256": "08e1442628e40698d03f48b8f1635c841a368cc03a1aeccec0856b53b2994148",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3713,7 +3713,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+      "source_sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
       "producer": "ceil(left + max(parentWidth-left-right,tickSpace*3) + right) をminInlineSizeへ設定。GanttはganttProblemでcivil日付、進捗nullまたは0..100、ID/依存存在/循環を検証する。paintはsemantic theme、実lineHeight/measureText、タスク/日付ラベル幅からplot幅・行高を作り、custom ECharts bars/edges/axesへ渡す。async mount/destroy guardsとscope cleanupがある。",
       "reason": "タスク名・日付labelを読める局所scroll幅は実測/内容から作る構造寸法。任意ラベル/実測をtokenだけへ置換できない。",
       "remaining_scope": "任意task数/label/date optionsとfont測定、全ECharts custom renderer/engine更新は未網羅。consumer CSSの無効値もnative cascadeの契約として残る。",
@@ -3727,19 +3727,19 @@
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "surface.style.minInlineSize=width>surface.parentElement!.clientWidth?",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "private paint()",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "surface.style.minInlineSize",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3791,7 +3791,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+      "source_sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
       "producer": "ceil(max(controlSize*5,max(1,tasks.length)*rowHeight+top+bottom)) をminBlockSizeへ設定。GanttはganttProblemでcivil日付、進捗nullまたは0..100、ID/依存存在/循環を検証する。paintはsemantic theme、実lineHeight/measureText、タスク/日付ラベル幅からplot幅・行高を作り、custom ECharts bars/edges/axesへ渡す。async mount/destroy guardsとscope cleanupがある。",
       "reason": "semantic control/lineHeightと可変task件数による内容高。固定値の違反でなく、engine前の測定完全性が未確認。",
       "remaining_scope": "任意task数/label/date optionsとfont測定、全ECharts custom renderer/engine更新は未網羅。consumer CSSの無効値もnative cascadeの契約として残る。",
@@ -3805,19 +3805,19 @@
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "surface.style.minBlockSize=`${Math.ceil(Math.max(theme.controlSize*5,",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "private paint()",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "surface.style.minInlineSize",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3869,7 +3869,7 @@
       "category": "external-renderer",
       "detail": "external-engine-or-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+      "source_sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
       "producer": "custom renderItem/axis optionをECharts.setOptionへ渡す。GanttはganttProblemでcivil日付、進捗nullまたは0..100、ID/依存存在/循環を検証する。paintはsemantic theme、実lineHeight/measureText、タスク/日付ラベル幅からplot幅・行高を作り、custom ECharts bars/edges/axesへ渡す。async mount/destroy guardsとscope cleanupがある。",
       "reason": "生成色/線幅/書体はsemantic theme由来でもECharts内部での最終renderは静的検査できず、engine境界の警告を維持する。",
       "remaining_scope": "任意task数/label/date optionsとfont測定、全ECharts custom renderer/engine更新は未網羅。consumer CSSの無効値もnative cascadeの契約として残る。",
@@ -3883,19 +3883,19 @@
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "this.chart.setOption(option,{notMerge:true})",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "private paint()",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/gantt.ts",
           "anchor": "surface.style.minInlineSize",
-          "sha256": "27d3f3cfd82e08cab4108fbcb6aa05d58f172e6448edfcdbbb71cb3b2a9db937",
+          "sha256": "18e11411448db9540c1b5618c040ad1f2cd2aa99025d616301b00c96d9420282",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -9198,7 +9198,7 @@
         {
           "file": "scripts/consumer-browser.mjs",
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
-          "sha256": "c2225e4df129733404035ae28f35bba29fabbd9ec6e339c4cbc049e1546971aa",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],
@@ -9244,7 +9244,7 @@
         {
           "file": "scripts/consumer-browser.mjs",
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
-          "sha256": "c2225e4df129733404035ae28f35bba29fabbd9ec6e339c4cbc049e1546971aa",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],
@@ -9290,7 +9290,7 @@
         {
           "file": "scripts/consumer-browser.mjs",
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
-          "sha256": "c2225e4df129733404035ae28f35bba29fabbd9ec6e339c4cbc049e1546971aa",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],
@@ -9336,7 +9336,7 @@
         {
           "file": "scripts/consumer-browser.mjs",
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
-          "sha256": "c2225e4df129733404035ae28f35bba29fabbd9ec6e339c4cbc049e1546971aa",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],
@@ -9382,7 +9382,7 @@
         {
           "file": "scripts/consumer-browser.mjs",
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
-          "sha256": "c2225e4df129733404035ae28f35bba29fabbd9ec6e339c4cbc049e1546971aa",
+          "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
         }
       ],

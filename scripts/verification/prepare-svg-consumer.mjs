@@ -10,7 +10,7 @@ export async function prepareSvgConsumer({root,work,fixtures}){
  const sourceFolders=['src','templates','skills','examples','tests/fixture-app'];
  const manifest=JSON.parse(await readFile(join(root,'package.json'),'utf8'));
  const documentation=manifest.files.filter(path=>path.startsWith('docs/'));
- const sourcePaths=['package.json','package-lock.json','tsconfig.json','LICENSE',...documentation];
+ const sourcePaths=['package.json','package-lock.json','tsconfig.json','LICENSE','assets/third-party/LUCIDE-LICENSE.txt',...documentation];
  const sourceFiles=[];
  async function sourceInventory(relative){for(const item of await readdir(join(root,relative),{withFileTypes:true})){const path=join(relative,item.name);if(item.isDirectory())await sourceInventory(path);else if(item.isFile()){const bytes=await readFile(join(root,path));sourceFiles.push({path,bytes:bytes.length,sha256:digest(bytes)});}}}
  for(const folder of sourceFolders)await sourceInventory(folder);
