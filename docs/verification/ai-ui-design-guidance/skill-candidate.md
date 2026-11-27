@@ -1,6 +1,6 @@
-# Candidate AI UI design guidance — evaluation only
+# Candidate AI UI design guidance — review draft
 
-This is a proposed instruction set for issue #65. It is not part of the distributed Skill and has not been evaluated. Integrate only after the review confirms the scope. Do not copy DADS visual values or add duplicate component runtime rules.
+This is a proposed instruction set for issue #65. It is not part of the distributed Skill. Integrate only after the review confirms the scope. Do not copy DADS visual values or add duplicate component runtime rules.
 
 ## Proposed addition to token-design.md
 
