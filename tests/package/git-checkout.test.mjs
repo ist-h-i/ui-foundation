@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
+import { devNull, tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
@@ -12,7 +12,7 @@ import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-v
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, {
   cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
-  env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '', GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: '/dev/null' },
+  env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '', GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: devNull },
 });
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -110,7 +110,7 @@ test('packed CLI: recover normalized managed bytes for a custom output and verif
       assert.equal(digest(await readFile(resolve(checkout, path))), entry.sha256, path);
     }
     const dryRun = cli(checkout, 'sync', '--dry-run');
-    assert.match(dryRun, /current|no files written/i);
+    assert.match(dryRun, /is current/i);
     assert.equal(JSON.parse(cli(checkout, 'check', '--format', 'json')).valid, true);
     assert.match(cli(checkout, 'sync'), /current/i);
     assert.deepEqual(await readFile(resolve(checkout, manifestPath)), originalManifest);
