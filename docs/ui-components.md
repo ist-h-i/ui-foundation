@@ -368,6 +368,11 @@ InlineEditはEnter（複数行ではControl/Meta＋Enter）で保存要求、Esc
 
 Wizardの`next=undefined`は次の有効な投影段階、`null`は完了、ID指定は分岐。線形設定では訪問済み段階へだけ直接戻れ、`nonlinear=true`では未訪問も選べる。戻るは実移動履歴を使う。保留中に進行可否、from/to、分岐、利用可能な段階が変われば旧承認を失効させる。`deferTransitions=false`はUI移動を即時受理し、trueはアプリのapprove/rejectを待つ。完了はUIの段階終了で、backend提出成功ではない。外部currentの無効IDは最初の有効段階へ表示を戻す。入力の検証・業務分岐・永続化・未保存判断はアプリが決める。親wizardは入れ子wizardの段階を所有しない。
 
+### StepNavigation
+
+ページをまたぐ手続き等でアプリが遷移とフォーム状態を管理する場合は、公開入口 `angular/step-navigation.ts`（または全体カタログ）からStepNavigationを利用する。label、安定IDとstatus/statusLabel、任意のnavigable/disabledを持つitems、currentId（またはnull）、direction、busyを指定する。状態文言はアプリで翻訳する。現在位置と状態は独立しており、現在の段階がエラーでも表現できる。明示的に移動可能・有効かつ現在位置ではない段階だけがstepRequestedでIDを通知する。遷移の採否と結果の状態はアプリが管理する。投影された段階本文・入力保持・遷移承認が必要な場合はWizardを使う。本部品は既存Wizardの動作を変更しない。
+
+
 Filterはtext/number/date/boolean/choiceのfield、型に合う演算子、再帰and/or、安定した重複しないIDを使う。欠損はnull/undefined/型不正で、0/false/空文字と区別する。dateは有効なYYYY-MM-DDまたはDateのUTC日で比較。`compileFilter`は妥当な条件をコピーし、rowのown propertyのみを評価する。空グループは評価から除外、ルートが空なら制限なし。任意コード・SQL・通信を実行しない。不正構造/値/未知fieldはvalidatorと欄の説明へ残す。保存した条件の復元はUI snapshotで、backend保存結果をアプリがcompleteSaveとして返す。fieldsのID/説明/型/選択肢が部品へ反映された時点で保留要求を失効させ、条件データを残して再検証する。completeSave/failSaveでも同じ定義と妥当な条件を要求する。busy/pendingで操作を抑止し、保存失敗draft、reset/外部条件変更/破棄後の古い結果、除去前の自前focusを確認する。復元されたfield/operator/boolean/choiceは、nativeの選択表示を実際のモデルへ合わせる。保存待ち・失敗・成功の自前focus先は、描画後に文字とfocus枠が画面内で読めるように表示する。別の入力や外部操作へ移したfocusと画面位置は応答で動かさない。
 
 Filterの結合条件は「すべて／いずれか」、固定演算子は「と異なる／超える／未満」などの短い既定表示を使います。入れ子・狭幅・文字拡大でも現在値の肯定／否定や境界を読めるようにし、serialized operator IDと条件の評価は表示文言で変更しません。

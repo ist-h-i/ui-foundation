@@ -51,6 +51,7 @@ Card の領域には `CardHeader` / `CardBody` / `CardFooter` / `CardMedia` / `C
 | `ColorPicker` | hex/rgb/hsl、透明度・パレット・文字入力。 | [数値・色・編集・段階・条件](ui-components.md#数値色編集段階条件) |
 | `InlineEdit` | インライン編集、保存要求への応答、失敗時の下書き保持。 | [数値・色・編集・段階・条件](ui-components.md#数値色編集段階条件) |
 | `Wizard` / `WizardStep` | 段階移動・分岐・移動承認待ち。非表示の段階も入力を保持。 | [数値・色・編集・段階・条件](ui-components.md#数値色編集段階条件) |
+| `StepNavigation` | 独立した手続き進行状況。アプリが各段階の状態・現在位置・移動可否を管理する。 | [数値・色・編集・段階・条件](ui-components.md#数値色編集段階条件) |
 | `FilterBuilder` | 型付き項目の再帰 AND/OR 条件、検証・保存要求・復元。 | [数値・色・編集・段階・条件](ui-components.md#数値色編集段階条件) |
 
 候補の表示差替えには `ComboboxOption`、条件の型付き context には `FilterGroupContext` を使います。フォーム対応部品では Angular forms の値と `value/valueChange` のどちらかに所有者を決めます。表示エラーの時機、送信時の検証、保存、OTP の認証成否はアプリが扱います。[フォーム接続の共通契約](ui-library-runtime-foundation-spec.ja.md#フォームと未確定draft)も参照してください。
