@@ -30,16 +30,16 @@ npm run test:package
 node scripts/package-verification/registry.mjs --stage observe
 ```
 
-`registry-unavailable` は未公開を意味しない。対象版が存在しない場合は `unpublished`、対象版が存在する場合は通常配布・候補タグ・固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。固定候補があるときは `--candidate` を指定してregistry integrityも照合する。
+`registry-unavailable` は未公開を意味しない。対象版が存在しない場合は `unpublished`、対象版が存在する場合は通常配布・候補タグ・固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。固定候補があるときは `--candidate` と、候補作成時に独立して記録したSHA-256を `--candidate-sha256` で指定し、候補の固定バイト列とregistry integrityを照合する。
 
-公開操作を認可されたリリース担当者は、`previous_latest`（存在しなければ `none`）を観測結果から明示して次のゲートを実行する。すべて同じ固定候補と公開コミットを使用する。
+公開操作を認可されたリリース担当者は、`previous_latest`（存在しなければ `none`）を観測結果から明示して次のゲートを実行する。すべて同じ固定候補と公開コミットを使用し、`release_sha256` には候補作成時に保存したSHA-256を指定する。候補公開前・公開直後は対象版と異なる旧latestを明示し、候補タグに `latest` を指定しない。
 
 ```sh
-node scripts/package-verification/registry.mjs --stage before-publish --previous-latest "$previous_latest" --candidate "$release_tarball"
+node scripts/package-verification/registry.mjs --stage before-publish --previous-latest "$previous_latest" --candidate "$release_tarball" --candidate-sha256 "$release_sha256"
 # 認可された公開操作の後
-node scripts/package-verification/registry.mjs --stage candidate-published --previous-latest "$previous_latest" --candidate "$release_tarball"
+node scripts/package-verification/registry.mjs --stage candidate-published --previous-latest "$previous_latest" --candidate "$release_tarball" --candidate-sha256 "$release_sha256"
 # 認可されたlatest切り替えの後
-node scripts/package-verification/registry.mjs --stage latest --candidate "$release_tarball"
+node scripts/package-verification/registry.mjs --stage latest --candidate "$release_tarball" --candidate-sha256 "$release_sha256"
 ```
 
 候補公開後は対象版・候補タグ・integrityと旧latestの維持を確認する。通常導入先を切り替えた後は対象版がlatestを指し、新規インストールの版・lockfileのintegrityが一致することを確認する。タグを更新する前後で差異があれば停止する。固定版と通常導入を別々に取得するため、候補公開中に旧latestが正当に残ることを異常扱いしない。
