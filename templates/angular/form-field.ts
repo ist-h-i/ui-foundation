@@ -1,4 +1,5 @@
 import { formFieldMessages } from './form-field-messages';
+import { fieldHintPosition, fieldCharacterWidth, type FieldHintPosition } from './field-appearance';
 import { injectComponentMessageText } from './component-message-text';
 import {
   AfterContentChecked,
@@ -40,8 +41,11 @@ export class FieldControl {
       {{ label() }}
       <span class="ui-form-field-requirement">{{ requirementLabel() }}</span>
     </label>
+    @if (hasHint() && checkedHintPosition() === 'before') {
+      <p class="ui-form-field-hint" [id]="hintId()">{{ hint() }}</p>
+    }
     <ng-content />
-    @if (hasHint()) {
+    @if (hasHint() && checkedHintPosition() === 'after') {
       <p class="ui-form-field-hint" [id]="hintId()">{{ hint() }}</p>
     }
     @if (hasError()) {
@@ -52,6 +56,9 @@ export class FieldControl {
     class: 'ui-form-field',
     '[class.ui-form-field--invalid]': 'hasError()',
     '[attr.data-label-position]': 'labelPosition()',
+    '[attr.data-hint-position]': 'hasHint() && checkedHintPosition() === "before" ? "before" : null',
+    '[attr.data-control-width]': 'checkedCharacterWidth() !== null ? "characters" : null',
+    '[style.--ui-field-control-chars]': 'checkedCharacterWidth()',
     '[style.--ui-field-label-layout]': 'labelPosition() === "inherit" ? null : labelPosition() === "inline" ? "grid" : "block"',
     '[style.--ui-field-label-columns]': 'labelPosition() === "inline" ? "min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)" : null',
   },
@@ -79,6 +86,11 @@ export class FormField implements AfterContentChecked {
   /** Space-separated IDs for extra descriptions supplied by the application. */
   readonly describedBy = input('');
   readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');
+  readonly hintPosition = input<FieldHintPosition>('after');
+  /** Approximate width of the editor in characters; never validates or truncates its value. */
+  readonly controlCharacters = input<number | null>(null);
+  protected readonly checkedHintPosition = computed(() => fieldHintPosition(this.hintPosition()));
+  protected readonly checkedCharacterWidth = computed(() => fieldCharacterWidth(this.controlCharacters()));
 
   readonly hasHint = computed(() => Boolean(this.hint()?.trim()));
   readonly hasError = computed(() => Boolean(this.error()?.trim()));

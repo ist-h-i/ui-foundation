@@ -36,6 +36,8 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 FormFieldのhostへ `[hidden]="true"` を指定すると、チェックボックスのレイアウトを含めて非表示とし、入力はタブ順から外れる。入力のインスタンスは維持し、再表示時に値・選択状態を保持する。
 
+入力前に確認する条件は `hintPosition="before"` で入力欄の前に表示できる。既定値afterは従来のDOM順を維持し、hintのID・aria-describedbyは変えない。`[controlCharacters]="12"` は入力欄の領域を文字数の目安で制限する。利用可能幅を超えず、nullは従来の配置。maxLengthや値検証ではなく、文字種ごとの実幅を保証するものではない。Checkbox/Switchの操作領域は変更しない。FieldValueControl系のテキスト・数値・選択・構造化・日付入力からFormFieldへ伝搬する。FormActionsでは不要なリセットを `[showReset]="false"` で省略する。互換性のため既定値は変更しない。
+
 ### AsyncRegion
 
 `<ui-async-region [state]="state()" [retryAvailable]="true" (retry)="reload()">…</ui-async-region>`。

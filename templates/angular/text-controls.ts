@@ -142,7 +142,7 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
  selector: 'ui-text-input', standalone: true, imports: [FormField, FieldControl, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
  providers: [{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>TextInput),multi:true}],
  template: `
-  <ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
+  <ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
    <div class="ui-input-group">
     <input #editor uiFieldControl type="text" [name]="name()" [value]="displayedText()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
       [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="edit($event)"
@@ -169,7 +169,7 @@ export class TextInput extends ComposingTextControl {
 @Component({
  selector:'ui-textarea',standalone:true,imports:[FormField,FieldControl],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Textarea),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="displayedText()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
    [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="edit($event)"
    (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="blur()"></textarea>

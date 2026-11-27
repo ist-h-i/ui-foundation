@@ -36,6 +36,8 @@ Labels project into .ui-action-label. Long/unbroken names wrap without shrinking
 
 Host hidden=true hides even checkbox layout and removes input from tab order while retaining the instance/value/selection for reappearance.
 
+Optional `hintPosition="before"` presents an input constraint before the editor; the default `after` retains the previous DOM order. The hint ID and aria-describedby contract are unchanged. `[controlCharacters]="12"` limits the projected editor region to an approximate character-based width, capped by the available width; null preserves the original layout. This is not maxLength, validation, or a promise that every glyph fits. Checkbox and switch retain their control sizing. FieldValueControl-based text, numeric, selection, structured and date inputs forward the options to FormField. For FormActions, opt out of unnecessary reset using `[showReset]="false"`; the existing default is retained for compatibility.
+
 ### AsyncRegion
 
 `<ui-async-region [state]="state()" [retryAvailable]="true" (retry)="reload()">…</ui-async-region>`.

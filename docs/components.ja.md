@@ -201,3 +201,5 @@ Descriptions の値の差替えには `DescriptionTemplate` を使います。Ic
 | `/catalog/specialist` / `/catalog/foundation` | [専門部品](https://github.com/ist-h-i/ui-foundation/blob/main/tests/fixture-app/specialist-catalog.ts)・[フォーム・locale・方向・プロファイル](https://github.com/ist-h-i/ui-foundation/blob/main/tests/fixture-app/foundation-catalog.ts) |
 
 fixture の静的検査・操作試験・画像は、それぞれの条件での検証資料です。実スクリーンリーダー、SSR/hydration、任意の Router 統合、利用アプリの通信・復元や業務での使いやすさの確認は、アプリの構成に合わせて行ってください。
+
+入力前に確認すべき条件はFormFieldの補足位置を使って提示する。入力内容に応じて入力欄の幅を調整し、狭い画面でも操作できるようにする。リセットは必要な場合のみ表示する。詳細は[部品仕様](ui-components.md#formfield--fieldcontrol)を参照する。
