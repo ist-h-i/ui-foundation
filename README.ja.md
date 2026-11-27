@@ -81,6 +81,19 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.2.0
 | 設定の構造と生成の契約を調べる | [設計](docs/design.md) |
 | 静的検査の対象と限界を調べる | [静的検査](docs/static-checks.ja.md) |
 
+## 生成物をGitで管理する場合
+
+生成物をコミットする場合は、チェックアウト後もバイト列が変わらないようにします。初回の `git add` より前に、利用アプリのルートの `.gitattributes` へ以下を追加してください。全体に適用する `* text=auto` などの指定より後に記載します。
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+生成先を変更している場合は、`.ui/generated` を設定したパスに置き換えます。属性ファイルもコミットし、より後の指定や下位ディレクトリの属性で改行変換が再び有効にならないことを確認してください。特に `CHECKER-NOTICE.txt` には改行形式が混在する第三者ライセンスの原文が含まれることがあります。所有権のmanifestは生成物のバイト列からハッシュを計算します。
+
+すでにGitで改行が変換されている場合は、まず復旧点を保存します。変換前の検証済みコピーから復元するか、従来の固定パッケージ版と設定を別ディレクトリで使って再生成します。復元対象のSHA-256が既存manifestに記録された値と一致することを確かめ、対象ファイルだけを置き換えます。手編集を許容するためにmanifestのハッシュを書き換えてはいけません。属性と復元したファイルをステージし、差分を確認してから、新規チェックアウトで `sync --dry-run` と `check` を実行します。元のバイト列を確認できない場合は、上書きせず所有権の競合を解消してください。
+
 ## ライセンス
 
 自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[usageの配布資産](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。

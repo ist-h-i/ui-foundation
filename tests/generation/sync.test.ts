@@ -247,3 +247,28 @@ test('an ordinary I/O failure restores files already written and leaves the prev
   await syncProject({ root });
   assert.equal((await checkProject({ root })).valid, true);
 });
+
+test('Git checkout preserves managed bytes with the documented attributes and still rejects notice edits', async t => {
+  const { root } = await project(t);
+  const clone = await mkdtemp(resolve(tmpdir(), 'ui-foundation-git-checkout-'));
+  t.after(() => rm(clone, { recursive: true, force: true }));
+  const git = (...args: string[]) => run('git', args, { cwd: root });
+  await git('init', '--quiet');
+  await git('config', 'user.name', 'UI Foundation Test');
+  await git('config', 'user.email', 'test@example.invalid');
+  await git('config', 'core.autocrlf', 'true');
+  await writeFile(resolve(root, '.gitattributes'), '* text=auto\n.ui/generated/** -text\n.agents/skills/project-ui/** -text\n');
+  await syncProject({ root });
+  await git('add', '--force', '--', '.gitattributes', 'ui.config.yaml', '.ui/generated', '.agents/skills/project-ui');
+  await git('-c', 'commit.gpgsign=false', 'commit', '--quiet', '-m', 'Generated fixture');
+  await git('-c', 'core.autocrlf=true', 'clone', '--quiet', '--no-local', root, clone);
+  const notice = '.ui/generated/CHECKER-NOTICE.txt';
+  assert.deepEqual(await readFile(resolve(clone, notice)), await readFile(resolve(root, notice)));
+  assert.deepEqual(await syncProject({ root: clone, dryRun: true }), { changes: [], written: false });
+  assert.equal((await checkProject({ root: clone })).valid, true);
+  const edited = (await readFile(resolve(clone, notice), 'utf8')) + '\nlocal edit\n';
+  await writeFile(resolve(clone, notice), edited);
+  await assert.rejects(syncProject({ root: clone, dryRun: true }), /Generated file was edited/);
+  await assert.rejects(syncProject({ root: clone }), /\.gitattributes/);
+  assert.equal(await readFile(resolve(clone, notice), 'utf8'), edited);
+});
