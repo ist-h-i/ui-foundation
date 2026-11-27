@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
-import { registryState, assertStage, verifyInstallMetadata } from '../../scripts/package-verification/registry.mjs';
+import { registryState, assertStage, candidateInput, verifyInstallMetadata } from '../../scripts/package-verification/registry.mjs';
 import { verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const target = '0.2.0';
@@ -23,9 +23,24 @@ test('registry checks distinguish unpublished, candidate and latest', () => {
   assertStage(candidate, { stage: 'candidate-published', previousLatest, candidateTag });
   assert.throws(() => assertStage(candidate, { stage: 'latest' }), /latest must point/);
   assert.throws(() => assertStage(candidate, { stage: 'before-publish', previousLatest, candidateTag }), /already published/);
-  assertStage(state({ latest: target }, { [target]: next }), { stage: 'latest' });
+  const alreadyLatest = state({ latest: target, [candidateTag]: target }, { [target]: next });
+  assertStage(alreadyLatest, { stage: 'latest' });
+  assert.throws(() => assertStage(alreadyLatest, { stage: 'candidate-published', previousLatest: target, candidateTag }), /Previous latest must differ/);
+  assert.throws(() => assertStage(unpublished, { stage: 'before-publish', previousLatest, candidateTag: 'latest' }), /separate candidate tag/);
+  assert.throws(() => assertStage(unpublished, { stage: 'before-publish', previousLatest: '', candidateTag }), /previous-latest/);
   assert.throws(() => state({ latest: target }, {}), /missing version/);
   assert.throws(() => assertStage(state({ latest: previousLatest }, { [previousLatest]: old, [target]: next }), { stage: 'candidate-published', previousLatest, candidateTag }), /Candidate tag/);
+});
+
+test('release gates require the independently recorded candidate digest', () => {
+  const candidate = '/candidate.tgz';
+  const digest = 'a'.repeat(64);
+  assert.equal(candidateInput({ stage: 'observe' }), null);
+  assert.throws(() => candidateInput({ stage: 'before-publish' }), /Frozen/);
+  assert.throws(() => candidateInput({ stage: 'observe', candidate }), /supplied together/);
+  assert.throws(() => candidateInput({ stage: 'observe', 'candidate-sha256': digest }), /supplied together/);
+  assert.throws(() => candidateInput({ stage: 'latest', candidate, 'candidate-sha256': 'invalid' }), /SHA256/);
+  assert.deepEqual(candidateInput({ stage: 'latest', candidate, 'candidate-sha256': digest }), { UI_FOUNDATION_PACKAGE_TARBALL: candidate, UI_FOUNDATION_PACKAGE_SHA256: digest });
 });
 
 test('install evidence must match both expected version and registry integrity', () => {
@@ -44,10 +59,18 @@ test('document check rejects stale current pins but preserves migration history'
     await writeFile(resolve(root, path), `npm install --save-dev --save-exact ${name}@${target}\n\nHistorical: ${name}@${previousLatest}\n`);
   }
   for (const suffix of ['en', 'ja']) {
-    await writeFile(resolve(root, `docs/npm-beta-readiness.${suffix}.md`), `# Contract\n\n${name}@${target}\n`);
-    await writeFile(resolve(root, `docs/npm-beta-release-notes.${suffix}.md`), `# Notes\n\n## ${target}\n\n## ${previousLatest}\n`);
+    await writeFile(resolve(root, `docs/npm-beta-readiness.${suffix}.md`), `# Contract\n\n\`${name}@${target}\`\n`);
+    await writeFile(resolve(root, `docs/npm-beta-release-notes.${suffix}.md`), `# Notes\n\n\`${name}@${target}\`\n\n## ${target}\n\n## ${previousLatest}\n`);
   }
   await verifyReleaseVersionDocumentation(root);
+  const contract = resolve(root, 'docs/npm-beta-readiness.en.md');
+  await writeFile(contract, `# Contract\n\n\`${name}@${target}-beta.1\`\n`);
+  await assert.rejects(verifyReleaseVersionDocumentation(root), /Current contract/);
+  await writeFile(contract, `# Contract\n\n\`${name}@${target}\`\n`);
+  const notes = resolve(root, 'docs/npm-beta-release-notes.en.md');
+  await writeFile(notes, `# Notes\n\n\`${name}@${previousLatest}\`\n\n## ${target}\n`);
+  await assert.rejects(verifyReleaseVersionDocumentation(root), /Release note introduction/);
+  await writeFile(notes, `# Notes\n\n\`${name}@${target}\`\n\n## ${target}\n`);
   await writeFile(resolve(root, 'README.ja.md'), `npm install --save-dev --save-exact ${name}@${previousLatest}\n`);
   await assert.rejects(verifyReleaseVersionDocumentation(root), /Current installation example/);
 });
