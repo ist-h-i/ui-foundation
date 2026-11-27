@@ -82,8 +82,9 @@ export async function verifyReleaseVersionDocumentation(packageRoot) {
   }
   for (const suffix of ['en', 'ja']) {
     const contract = await readFile(resolve(packageRoot, `docs/npm-beta-readiness.${suffix}.md`), 'utf8');
-    assert.ok(contract.split('\n').slice(0, 10).join('\n').includes(expected), `Current contract must match package metadata: ${suffix}`);
+    assert.ok(contract.split('\n').slice(0, 10).join('\n').includes('`' + expected + '`'), `Current contract must match package metadata: ${suffix}`);
     const notes = await readFile(resolve(packageRoot, `docs/npm-beta-release-notes.${suffix}.md`), 'utf8');
+    assert.ok(notes.split('\n').slice(0, 10).join('\n').includes('`' + expected + '`'), `Release note introduction must match package metadata: ${suffix}`);
     assert.equal(notes.split('\n').find(line => line.startsWith('## ')), `## ${version}`, `First release note must match package metadata: ${suffix}`);
   }
 }
