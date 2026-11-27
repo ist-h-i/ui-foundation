@@ -446,3 +446,23 @@ test('optional visual hierarchy roles resolve independently and keep older YAML 
   assert.match(renderTokens(legacy), /--ui-text-page-title:/);
   assert.match(renderTailwind(legacy), /--text-size-page-title:/);
 });
+
+
+test('optional hierarchy roles follow the effective profile and reject invalid explicit values', () => {
+  const result = resolve(edited(config => {
+    for (const role of ['text.page-title', 'text.section-title', 'text.subheading']) {
+      delete config.semantic[role];
+      for (const profile of Object.values(config.profiles) as any[]) delete profile.semantic[role];
+    }
+    config.primitives['custom-title'] = {type:'length', value:'2rem'};
+    config.profiles.dense.semantic['text.heading'] = 'custom-title';
+    config.profiles.guided.semantic['text.section-title'] = 'text-guided';
+  }));
+  assert.equal(result.profiles.dense.semantic['text.page-title'].reference, 'custom-title');
+  assert.equal(result.profiles.dense.semantic['text.section-title'].reference, 'custom-title');
+  assert.equal(result.profiles.guided.semantic['text.section-title'].reference, 'text-guided');
+  assert.deepEqual(result.profiles.guided.semantic['text.subheading'], result.profiles.guided.semantic['text.body']);
+  assert.throws(() => resolve(edited(config => {
+    config.semantic['text.page-title'] = 'ink';
+  })), /text.page-title/);
+});

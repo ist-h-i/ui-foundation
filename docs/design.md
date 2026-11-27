@@ -96,3 +96,5 @@ registryなしの従来v1は同じoutputでのsyncで更新する。初回更新
 ## 視覚的な階層の任意トークン
 
 新規設定例では `text.page-title`、`text.section-title`、`text.subheading` を使い、ページタイトル、セクション見出し、小見出しを区別する。旧YAMLで省略した場合は、各プロファイルのheading、heading、bodyのプリミティブ参照をそれぞれ利用する。明示指定が優先され、必須設定は増えない。既存のheadingとTypographyの既定表示は維持する。HTMLの見出しレベルと視覚的な役割は独立して選択する（例：`<h2 uiTypography="section-title">…</h2>`）。新規設定例ではセクション間の余白を項目間より大きくする。既存アプリのYAMLは書き換えない。
+
+PageFrameのタイトルはpage-title、Containerの見出し、Card・Dialogのタイトル、フィードバックの見出し、Wizardの段階見出しはsection-titleを参照する。HTMLの見出しレベル、従来の太さと行高は変更しない。旧設定で新しい役割を省略した場合はtext.headingの値を参照するため、組込み見出しの従来のサイズを維持する。subheadingは明示指定時のみ利用する。
