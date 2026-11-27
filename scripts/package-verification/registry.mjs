@@ -6,7 +6,8 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
-import { verifyReleaseVersionDocumentation } from './documentation.mjs';
+import { verifyEnglishDocumentation, verifyReleaseVersionDocumentation } from './documentation.mjs';
+import { assertFrozenCandidate, prepareCandidate } from './candidate.mjs';
 
 const registry = 'https://registry.npmjs.org/';
 const repository = fileURLToPath(new URL('../../', import.meta.url));
@@ -32,13 +33,26 @@ export function assertStage(state, { stage, previousLatest, candidateTag }) {
     assert.equal(state.latest, state.target, 'latest must point to target');
     return;
   }
-  assert.ok(previousLatest !== undefined, 'Explicit --previous-latest is required');
+  assert.ok(typeof candidateTag === 'string' && candidateTag.length > 0 && candidateTag !== 'latest', 'A separate candidate tag is required');
+  assert.ok(typeof previousLatest === 'string' && previousLatest.length > 0, 'Explicit --previous-latest is required');
+  assert.notEqual(previousLatest, state.target, 'Previous latest must differ from target');
   assert.equal(state.latest, previousLatest === 'none' ? null : previousLatest, 'latest changed unexpectedly');
   if (stage === 'before-publish') assert.equal(state.targetState, 'unpublished', 'Target is already published');
   else {
     assert.notEqual(state.targetState, 'unpublished', 'Target is not published');
     assert.equal(state.tags[candidateTag], state.target, 'Candidate tag must point to target');
   }
+}
+
+export function candidateInput(values) {
+  const path = values.candidate;
+  const sha256 = values['candidate-sha256'];
+  assert.equal(path !== undefined, sha256 !== undefined, '--candidate and --candidate-sha256 must be supplied together');
+  if (values.stage !== 'observe') assert.ok(path, 'Frozen --candidate tarball is required for release gates');
+  if (path === undefined) return null;
+  assert.ok(path.trim(), 'Candidate path must not be empty');
+  assert.match(sha256, /^[a-f0-9]{64}$/, 'Candidate SHA256 must contain 64 lowercase hexadecimal characters');
+  return { UI_FOUNDATION_PACKAGE_TARBALL: path, UI_FOUNDATION_PACKAGE_SHA256: sha256 };
 }
 
 export function verifyInstallMetadata(installed, locked, version, integrity) {
@@ -76,16 +90,19 @@ async function probe(root, name, specification, label, expectedVersion, document
   const docs = ['README.md', 'README.ja.md', ...(metadata.files ?? []).filter(path => path.startsWith('docs/') && path.endsWith('.md')), 'skills/ui-development/SKILL.md'];
   const documentation = Object.fromEntries(await Promise.all(docs.map(async path => [path, hash('sha256', await readFile(resolve(installedRoot, path)), 'hex')])));
   // Older latest versions have their own contract. Do not impose current docs on them.
-  if (expectedVersion === target) await verifyReleaseVersionDocumentation(installedRoot);
+  if (expectedVersion === target) {
+    await verifyReleaseVersionDocumentation(installedRoot);
+    await verifyEnglishDocumentation(installedRoot);
+  }
   return { specification, version: metadata.version, integrity: lock.packages[`node_modules/${name}`].integrity, documentation };
 }
 
 async function main() {
   const report = { observedAt: new Date().toISOString(), registry, status: 'failed' };
-  let root;
+  let root, candidate;
   try {
     const { values } = parseArgs({ options: {
-      stage: { type: 'string', default: 'observe' }, 'previous-latest': { type: 'string' }, candidate: { type: 'string' }
+      stage: { type: 'string', default: 'observe' }, 'previous-latest': { type: 'string' }, candidate: { type: 'string' }, 'candidate-sha256': { type: 'string' }
     } });
     const source = JSON.parse(await readFile(resolve(repository, 'package.json'), 'utf8'));
     const { name, version: target } = source;
@@ -94,25 +111,27 @@ async function main() {
     report.target = target;
     report.candidateTag = source.publishConfig.tag;
     assert.ok(['observe', 'before-publish', 'candidate-published', 'latest'].includes(values.stage), 'Unsupported stage');
-    if (values.stage !== 'observe') assert.ok(values.candidate, 'Frozen --candidate tarball is required for release gates');
+    const input = candidateInput(values);
+    root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-registry-'));
+    if (input) {
+      candidate = await prepareCandidate({ repository, root, env: input,
+        execute: (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8', timeout: 20000, maxBuffer: 16 * 1024 * 1024 }) });
+      report.candidateSha256 = candidate.sha256;
+      report.candidateIntegrity = 'sha512-' + hash('sha512', await readFile(candidate.tarball), 'base64');
+      await assertFrozenCandidate(candidate);
+    }
     const document = await packument(name);
     const state = registryState(document, target);
     Object.assign(report, state);
     assertStage(state, { stage: values.stage, previousLatest: values['previous-latest'], candidateTag: report.candidateTag });
-    if (values.candidate) {
-      const bytes = await readFile(resolve(values.candidate));
-      report.candidateIntegrity = 'sha512-' + hash('sha512', bytes, 'base64');
-      const candidateMetadata = JSON.parse(execFileSync('tar', ['-xOf', resolve(values.candidate), 'package/package.json'], { encoding: 'utf8', timeout: 20000 }));
-      assert.deepEqual(candidateMetadata, source, 'Frozen candidate metadata differs from source');
-      if (state.targetState !== 'unpublished') assert.equal(state.targetIntegrity, report.candidateIntegrity, 'Published bytes differ from frozen candidate');
-    }
-    root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-registry-'));
+    if (candidate && state.targetState !== 'unpublished') assert.equal(state.targetIntegrity, report.candidateIntegrity, 'Published bytes differ from frozen candidate');
     report.installs = {};
     if (state.latest) report.installs.default = await probe(root, name, name, 'default', state.latest, document, target);
     if (state.targetState !== 'unpublished') report.installs.fixed = await probe(root, name, `${name}@${target}`, 'fixed', target, document, target);
     const after = registryState(await packument(name), target);
     assert.deepEqual(after.tags, state.tags, 'Registry tags changed during verification');
     assert.equal(after.targetIntegrity, state.targetIntegrity, 'Target integrity changed during verification');
+    if (candidate) await assertFrozenCandidate(candidate);
     report.status = 'verified';
   } catch (error) {
     report.status = error.code === 'REGISTRY_UNAVAILABLE' ? 'registry-unavailable' : 'failed';
