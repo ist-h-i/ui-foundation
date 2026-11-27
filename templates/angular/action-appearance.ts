@@ -13,6 +13,8 @@ export interface ActionAppearance {
 export function resolveActionAppearance(
   variant: ActionVariant, emphasis: ActionEmphasis | null = null, tone: ActionTone | null = null,
 ): ActionAppearance {
+  if (variant !== 'primary' && variant !== 'secondary' && variant !== 'danger')
+    throw new Error('Invalid action variant');
   if (emphasis !== null && emphasis !== 'primary' && emphasis !== 'secondary' && emphasis !== 'tertiary')
     throw new Error('Invalid action emphasis');
   if (tone !== null && tone !== 'normal' && tone !== 'danger')

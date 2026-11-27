@@ -23,6 +23,7 @@ test('old danger remains visible during migration and invalid new axes fail', ()
   assert.deepEqual(resolveActionAppearance('danger', 'tertiary'), {
     emphasis: 'tertiary', tone: 'danger', toneConflict: false,
   });
+  assert.throws(() => resolveActionAppearance('invalid' as ActionVariant, 'primary', 'danger'), /variant/);
   assert.throws(() => resolveActionAppearance('secondary', 'invalid' as ActionEmphasis), /emphasis/);
   assert.throws(() => resolveActionAppearance('secondary', null, 'invalid' as ActionTone), /tone/);
 });
