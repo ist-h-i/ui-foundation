@@ -30,7 +30,7 @@ npm run test:package
 node scripts/package-verification/registry.mjs --stage observe
 ```
 
-`registry-unavailable` は未公開を意味しない。対象版が存在しない場合は `unpublished`、対象版が存在する場合は通常配布・候補タグ・固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。固定候補があるときは `--candidate` と、候補作成時に独立して記録したSHA-256を `--candidate-sha256` で指定し、候補の固定バイト列とregistry integrityを照合する。
+`registry-unavailable` は未公開を意味しない。対象版が存在しない場合は `unpublished`、対象版が存在する場合は通常配布・候補タグ・固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。通常導入・固定版導入ごとに取得したCLIでinit・sync・dry-run・checkを実行し、生成Skillの所有権と全管理ファイルのハッシュを照合する。対象版は同梱文書のallowlist、生成Skillの文書一覧、英語参照閉包も確認する。旧latestには新しい対象版の文書構造を要求せず、取得版自身のCLI・生成契約で検証する。固定候補があるときは `--candidate` と、候補作成時に独立して記録したSHA-256を `--candidate-sha256` で指定し、候補の固定バイト列とregistry integrityを照合する。
 
 公開操作を認可されたリリース担当者は、`previous_latest`（存在しなければ `none`）を観測結果から明示して次のゲートを実行する。すべて同じ固定候補と公開コミットを使用し、`release_sha256` には候補作成時に保存したSHA-256を指定する。候補公開前・公開直後は対象版と異なる旧latestを明示し、候補タグに `latest` を指定しない。
 

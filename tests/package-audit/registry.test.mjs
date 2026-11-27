@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
-import { registryState, assertStage, candidateInput, verifyInstallMetadata } from '../../scripts/package-verification/registry.mjs';
+import { registryState, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership } from '../../scripts/package-verification/registry.mjs';
 import { verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const target = '0.2.0';
@@ -73,4 +74,28 @@ test('document check rejects stale current pins but preserves migration history'
   await writeFile(notes, `# Notes\n\n\`${name}@${target}\`\n\n## ${target}\n`);
   await writeFile(resolve(root, 'README.ja.md'), `npm install --save-dev --save-exact ${name}@${previousLatest}\n`);
   await assert.rejects(verifyReleaseVersionDocumentation(root), /Current installation example/);
+});
+
+
+test('registry generation evidence verifies actual owned bytes and rejects traversal', async t => {
+  const app = await mkdtemp(resolve(tmpdir(), 'ui-foundation-registry-generation-'));
+  t.after(() => rm(app, { recursive: true, force: true }));
+  await mkdir(resolve(app, '.ui/generated'), { recursive: true });
+  await mkdir(resolve(app, '.agents/skills/project-ui'), { recursive: true });
+  const files = {};
+  for (const path of ['.agents/skills/project-ui/SKILL.md', '.agents/skills/project-ui/ownership.json']) {
+    const text = path + '\n';
+    await writeFile(resolve(app, path), text);
+    files[path] = { sha256: createHash('sha256').update(text).digest('hex') };
+  }
+  const manifest = resolve(app, '.ui/generated/manifest.json');
+  await writeFile(manifest, JSON.stringify({ files }));
+  assert.equal((await verifyGeneratedOwnership(app)).managedFiles, 2);
+  await writeFile(resolve(app, '.agents/skills/project-ui/SKILL.md'), 'manual edit');
+  await assert.rejects(verifyGeneratedOwnership(app), /ownership mismatch/);
+  const path = '.agents/skills/project-ui/SKILL.md';
+  await writeFile(resolve(app, path), path + '\n');
+  files['.ui/generated/../unexpected'] = { sha256: 'a'.repeat(64) };
+  await writeFile(manifest, JSON.stringify({ files }));
+  await assert.rejects(verifyGeneratedOwnership(app), /Unexpected generated ownership path/);
 });
