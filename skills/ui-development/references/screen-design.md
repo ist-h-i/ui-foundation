@@ -9,7 +9,7 @@ Identify the decision, action or information the user needs; identify the affect
 ## Design the hierarchy and action group
 
 - Identify the main heading, information groups, decision-critical values, primary action and supporting information. Use semantic heading levels independently of visual appearance. Align comparable labels and values. Group related elements with smaller gaps; separate groups with larger gaps. Prefer headings and spacing over decorative borders, shadows and nested cards. Add framing when it identifies a distinct entity, state or interaction scope.
-- Make the primary action easy to find, usually one dominant action within the current work unit. Separate secondary actions, cancellation and destructive actions. Visual importance and the risk of executing an action are independent. Use the available public appearance API; do not invent a variant or depend on red alone. Name the affected object and the result. Use a link for navigation and a native button for operations; use an icon alone only when its meaning is clear and it has an accessible name.
+- Make the primary action easy to find, usually one dominant action within the current work unit. Separate secondary actions, cancellation and destructive actions. Visual importance and the risk of executing an action are independent. Use the available public appearance API; do not invent a variant or depend on red alone. When the installed contracts provide separate emphasis and tone inputs, set them independently; keep legacy variants intact during an upgrade. Name the affected object and the result. Use a link for navigation and a native button for operations; use an icon alone only when its meaning is clear and it has an accessible name.
 - Explain a blocked action's reason and remedy near the action. Do not enable unauthorized or duplicate requests to avoid disabled buttons. Offer a correction path when correction is possible. Prefer reversible actions or recovery over unnecessary confirmations. For high-impact irreversible actions, require deliberate confirmation when prevention and recovery cannot sufficiently reduce risk.
 - Verify actual text/background contrast, focus visibility and action identification without color. A status label or warning must convey meaning, not just a badge or icon. Keep actionable information available in dense, narrow and enlarged-text layouts. Use semantic roles rather than copying another design system's values.
 
@@ -26,7 +26,7 @@ Identify the decision, action or information the user needs; identify the affect
 | Multiple independent choices | Checkbox group or MultiSelect | Hiding selected values, allowed count or selection scope |
 | Read-only information | Text or Descriptions | Disabled editable controls when editing is not offered |
 
-Use a persistent, visible label. Put required formats and constraints before commitment; choose a width suited to expected content and available viewport. Use native form semantics and the documented field API. Distinguish required/optional and errors in text, not color alone; associate correction guidance with its field and use an error summary when navigation among multiple errors helps. Keep reset out of routine action groups unless clearing inputs serves the task. Retain input after a recoverable error.
+Use a persistent, visible label. Put required formats and constraints before commitment; choose a width suited to expected content and available viewport. Use native form semantics and the documented field API. When the installed contracts provide hintPosition and controlCharacters, use them for pre-input constraints and an approximate editor width. Neither changes value validation. Distinguish required/optional and errors in text, not color alone; associate correction guidance with its field and use an error summary when navigation among multiple errors helps. Keep reset out of routine action groups unless clearing inputs serves the task. Retain input after a recoverable error.
 
 ## Choose navigation and overlays
 
@@ -35,7 +35,7 @@ Use a persistent, visible label. Put required formats and constraints before com
 | Change view within the same task and object | Tabs or SegmentedControl |
 | Move to another page or object | Navigation, Breadcrumb or app routing links |
 | Optional supporting information | Disclosure or inline help |
-| Ordered procedure with prerequisites | Wizard for mounted step panels and transition requests; app-owned progress display when routing is separate |
+| Ordered procedure with prerequisites | Wizard for mounted step panels and transition requests; StepNavigation if exported by the installed catalog (otherwise an app-owned progress display) when routing is separate |
 | Bounded decision or input that must interrupt the task | Dialog or ConfirmDialog |
 | Related detail or additional actions without replacing the task | Drawer, Popover or inline panel, according to space and focus |
 | Brief supplementary explanation | Tooltip only if keyboard users can access it; do not hide essential instructions there |
@@ -59,7 +59,7 @@ These are composition examples, not mandatory page templates. Inspect public API
 
 ## Choose feedback from scope, duration and recovery
 
-Use ActionFeedback for operation outcomes and recovery; AsyncRegion for independently loaded data; an inline error for a correctable value; Alert for persistent important information; Snackbar for noncritical transient events whose disappearance cannot prevent action or recovery. Use EmptyState only for confirmed absence. Choose Skeleton when showing the known layout is useful, Spinner for indeterminate progress, and ProgressBar only for measured progress. Do not block unaffected content with global loading. Keep unresolved failures, unknown outcomes, scope and recovery available; use existing request and acknowledgement contracts.
+Use ActionFeedback for operation outcomes and recovery; AsyncRegion for independently loaded data; an inline error for a correctable value; Alert for persistent important information; Snackbar for noncritical transient events whose disappearance cannot prevent action or recovery. Use EmptyState only for confirmed absence; do not treat an unconfirmed response as an empty result. Choose Skeleton when showing the known layout is useful, Spinner for indeterminate progress, and ProgressBar only for measured progress. Do not block unaffected content with global loading. Keep unresolved failures, unknown outcomes, scope and recovery available; use existing request and acknowledgement contracts.
 
 ## Verify the design in the app
 
