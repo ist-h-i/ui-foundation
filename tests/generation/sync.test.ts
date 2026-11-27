@@ -261,11 +261,26 @@ test('Git checkout preserves managed bytes with the documented attributes and st
   await syncProject({ root });
   await git('add', '--force', '--', '.gitattributes', 'ui.config.yaml', '.ui/generated', '.agents/skills/project-ui');
   await git('-c', 'commit.gpgsign=false', 'commit', '--quiet', '-m', 'Generated fixture');
-  await git('-c', 'core.autocrlf=true', 'clone', '--quiet', '--no-local', root, clone);
+  await git('clone', '--quiet', '--no-local', '--config', 'core.autocrlf=true', root, clone);
   const notice = '.ui/generated/CHECKER-NOTICE.txt';
   assert.deepEqual(await readFile(resolve(clone, notice)), await readFile(resolve(root, notice)));
   assert.deepEqual(await syncProject({ root: clone, dryRun: true }), { changes: [], written: false });
   assert.equal((await checkProject({ root: clone })).valid, true);
+  // A checkout without the attributes can fail before the notice is examined.
+  const broken = await mkdtemp(resolve(tmpdir(), 'ui-foundation-git-normalized-'));
+  t.after(() => rm(broken, { recursive: true, force: true }));
+  await writeFile(resolve(root, '.gitattributes'), '* text=auto\n');
+  await git('add', '--', '.gitattributes');
+  await git('-c', 'commit.gpgsign=false', 'commit', '--quiet', '-m', 'Remove generated attributes');
+  await git('clone', '--quiet', '--no-local', '--config', 'core.autocrlf=true', root, broken);
+  const ownership = '.agents/skills/project-ui/ownership.json';
+  const normalized = await readFile(resolve(broken, ownership), 'utf8');
+  assert.notEqual(normalized, await readFile(resolve(root, ownership), 'utf8'));
+  assert.match(normalized, /\r\n/);
+  assert.equal((await checkProject({ root: broken })).valid, false);
+  await assert.rejects(syncProject({ root: broken, dryRun: true }), /Ownership registry does not match its manifest[\s\S]*\.gitattributes/);
+  await assert.rejects(syncProject({ root: broken }), /Ownership registry does not match its manifest/);
+  assert.equal(await readFile(resolve(broken, ownership), 'utf8'), normalized);
   const edited = (await readFile(resolve(clone, notice), 'utf8')) + '\nlocal edit\n';
   await writeFile(resolve(clone, notice), edited);
   await assert.rejects(syncProject({ root: clone, dryRun: true }), /Generated file was edited/);
