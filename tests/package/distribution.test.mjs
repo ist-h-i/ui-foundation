@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parse, stringify } from 'yaml';
 import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-verification/candidate.mjs';
-import { verifyEnglishDocumentation } from '../../scripts/package-verification/documentation.mjs';
+import { verifyEnglishDocumentation, verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
@@ -41,6 +41,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', candidate.tarball], consumer);
   const installed = resolve(consumer, 'node_modules', manifest.name);
+  await verifyReleaseVersionDocumentation(installed);
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.equal(installedMetadata.license, manifest.license);
   assert.equal(installedMetadata.version, manifest.version);

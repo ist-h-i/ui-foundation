@@ -70,3 +70,20 @@ export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot
   }
   return { pairedDocuments: pairs.length, englishDocumentsChecked: checked };
 }
+
+// Validate only current entry points, not version-specific migration history.
+export async function verifyReleaseVersionDocumentation(packageRoot) {
+  const { name, version } = JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8'));
+  const expected = `${name}@${version}`;
+  for (const file of ['README.md', 'README.ja.md', 'docs/ui-library-consumer-guide.en.md', 'docs/ui-library-consumer-guide.ja.md']) {
+    const content = await readFile(resolve(packageRoot, file), 'utf8');
+    const pins = content.split('\n').filter(line => /^\s*npm install --save-dev --save-exact /.test(line));
+    assert.equal(pins[0]?.trim(), `npm install --save-dev --save-exact ${expected}`, `Current installation example must match package metadata: ${file}`);
+  }
+  for (const suffix of ['en', 'ja']) {
+    const contract = await readFile(resolve(packageRoot, `docs/npm-beta-readiness.${suffix}.md`), 'utf8');
+    assert.ok(contract.split('\n').slice(0, 10).join('\n').includes(expected), `Current contract must match package metadata: ${suffix}`);
+    const notes = await readFile(resolve(packageRoot, `docs/npm-beta-release-notes.${suffix}.md`), 'utf8');
+    assert.equal(notes.split('\n').find(line => line.startsWith('## ')), `## ${version}`, `First release note must match package metadata: ${suffix}`);
+  }
+}
