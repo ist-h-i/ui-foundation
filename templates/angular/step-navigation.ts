@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, output, untracked } from '@angular/core';
+import { afterNextRender, booleanAttribute, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, untracked } from '@angular/core';
 import { canRequestStep, validateStepNavigation, type StepNavigationItem } from './step-navigation-model';
 import { layoutKeyword } from './layout-model';
 import { restoreFocus } from './focus';
@@ -51,6 +51,9 @@ export class StepNavigation {
   readonly busy = input(false, { transform: booleanAttribute });
   readonly stepRequested = output<string>();
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly injector = inject(Injector);
+  // Bridge only the event-to-render gap; the app owns ongoing transition state.
+  private requestPending = false;
   protected readonly checkedItems = computed(() => validateStepNavigation(this.items(), this.currentId()));
   protected readonly checkedLabel = computed(() => {
     const label = this.label();
@@ -78,6 +81,9 @@ export class StepNavigation {
   }
   protected request(id: string): void {
     const item = this.checkedItems().find(entry => entry.id === id);
-    if (item && this.available(item)) this.stepRequested.emit(id);
+    if (this.requestPending || !item || !this.available(item)) return;
+    this.requestPending = true;
+    afterNextRender(() => { this.requestPending = false; }, { injector: this.injector });
+    this.stepRequested.emit(id);
   }
 }

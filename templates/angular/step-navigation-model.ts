@@ -12,10 +12,14 @@ export interface StepNavigationItem {
 const statuses: readonly StepNavigationStatus[] = ['not-started', 'in-progress', 'complete', 'error', 'skipped'];
 
 export function validateStepNavigation(items: readonly StepNavigationItem[], currentId: string | null): readonly StepNavigationItem[] {
+  if (!Array.isArray(items)) throw new Error('Steps must be an array');
   const ids = new Set<string>();
   for (const item of items) {
-    if (!item.id.trim() || ids.has(item.id)) throw new Error('Step IDs must be nonempty and unique');
-    if (!item.label.trim() || !item.statusLabel.trim()) throw new Error('Steps require a label and status label');
+    if (!item || typeof item.id !== 'string' || !item.id.trim() || ids.has(item.id)) throw new Error('Step IDs must be nonempty and unique');
+    if (typeof item.label !== 'string' || !item.label.trim() || typeof item.statusLabel !== 'string' || !item.statusLabel.trim())
+      throw new Error('Steps require a label and status label');
+    if ((item.navigable !== undefined && typeof item.navigable !== 'boolean')
+      || (item.disabled !== undefined && typeof item.disabled !== 'boolean')) throw new Error('Step availability must be boolean');
     if (!statuses.includes(item.status)) throw new Error('Unknown step status');
     ids.add(item.id);
   }

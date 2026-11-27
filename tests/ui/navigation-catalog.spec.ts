@@ -4,6 +4,25 @@ import type {Page} from '@playwright/test';
 async function noPageOverflow(page:Page){const sizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));expect(sizes.scroll).toBeLessThanOrEqual(sizes.client);}
 for(const profile of ['guided','dense'])test.describe(`navigation catalog ${profile}`,()=>{
  test.beforeEach(async({page})=>{await page.goto('/catalog/navigation');await expect(page.getByRole('heading',{name:'移動先とコマンド',exact:true})).toBeVisible();await page.getByRole('combobox',{name:'表示設定',exact:true}).selectOption(profile);});
+ test('独立した段階表示は進行結果を所有せず、重複要求とフォーカスを制御する',async({page})=>{
+  const steps=page.getByRole('group',{name:'申請の進行状況',exact:true});
+  const current=steps.locator('[aria-current="step"]');
+  await expect(current).toContainText('要修正');
+  const details=steps.getByRole('button',{name:/基本情報/});
+  await details.evaluate(el=>{el.click();el.click();});
+  await expect(page.getByTestId('step-requests')).toHaveText('1 / details');
+  await expect(current).toContainText('確認');
+  await page.getByTestId('step-approve').click();
+  await expect(current).toContainText('基本情報');
+  const review=steps.getByRole('button',{name:/確認 要修正/});
+  await review.focus();await expect(review).toBeFocused();
+  await page.getByTestId('step-busy').dispatchEvent('click');await expect(review).toBeDisabled();await expect(steps).toBeFocused();
+  await page.getByTestId('step-busy').dispatchEvent('click');
+  await review.focus();await page.getByTestId('step-remove').dispatchEvent('click');
+  await expect(review).toHaveCount(0);await expect(steps).toBeFocused();
+  await page.getByTestId('outside').focus();await page.getByTestId('step-busy').dispatchEvent('click');await expect(page.getByTestId('outside')).toBeFocused();
+  await page.setViewportSize({width:320,height:800});await noPageOverflow(page);
+ });
  test('native navigation supports orientation, current page, icons, wrapping and local scrolling',async({page})=>{
   const nav=page.getByTestId('navigation'),link=nav.getByRole('link',{name:'申請内容と承認履歴を詳しく確認する',exact:true});await expect(nav).toHaveAttribute('data-direction','horizontal');await link.click();await expect(page).toHaveURL(/#navigation-details$/);await expect(link).toHaveAttribute('aria-current','page');await expect(nav.locator('ui-icon svg')).toHaveAttribute('aria-hidden','true');await page.getByRole('combobox',{name:'移動先の方向',exact:true}).selectOption('vertical');await expect(nav).toHaveAttribute('data-direction','vertical');await page.getByRole('combobox',{name:'狭い幅の配置',exact:true}).selectOption('scroll');await expect(nav).toHaveAttribute('data-narrow','scroll');await page.setViewportSize({width:320,height:800});await noPageOverflow(page);await link.focus();await expect(link).toBeFocused();
  });

@@ -22,3 +22,11 @@ test('navigation only requests explicitly allowed non-current steps', () => {
   assert.equal(canRequestStep(items[2], 'second', false), false);
   assert.equal(canRequestStep({ ...items[0], navigable: false }, 'second', false), false);
 });
+
+
+test('untyped input rejects invalid availability and preserves explicit state labels', () => {
+  assert.throws(() => validateStepNavigation([{ ...items[0], navigable: 'false' as unknown as boolean }], null), /availability/);
+  assert.throws(() => validateStepNavigation([{ ...items[0], disabled: 0 as unknown as boolean }], null), /availability/);
+  assert.throws(() => validateStepNavigation([{ ...items[0], status: 'done' as StepNavigationItem['status'] }], null), /Unknown step status/);
+  assert.throws(() => validateStepNavigation([{ ...items[0], id: 1 as unknown as string }], null), /Step IDs/);
+});
