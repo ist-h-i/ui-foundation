@@ -55,7 +55,13 @@ export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot
   }
   const skillRoots = [resolve(packageRoot, 'skills/ui-development'), ...(generatedSkillRoot ? [resolve(generatedSkillRoot)] : [])];
   for (const root of skillRoots) {
-    for (const file of ['SKILL.md', 'references/token-design.md', 'references/ui-library-runtime.md', 'references/component-checks.md', 'references/screen-design.md', 'references/i18n-check.md']) await inspect(resolve(root, file));
+    for (const file of ['SKILL.md', 'references/token-design.md', 'references/ui-library-runtime.md', 'references/component-checks.md']) await inspect(resolve(root, file));
+    // Follow optional operational references advertised by the installed Skill.
+    // A prior released version need not contain a reference added in a later version.
+    const skill = await readFile(resolve(root, 'SKILL.md'), 'utf8');
+    for (const file of ['references/screen-design.md', 'references/i18n-check.md']) {
+      if (skill.includes('](' + file + ')')) await inspect(resolve(root, file));
+    }
     for (const retired of ['SKILL.en.md', 'SKILL.ja.md']) {
       await assert.rejects(readFile(resolve(root, retired)), { code: 'ENOENT' });
     }
