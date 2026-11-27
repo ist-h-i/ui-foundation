@@ -12,6 +12,7 @@ import {
   <div class="catalog-settings">
   <button uiAction (click)="toggleDisabled()">{{form.disabled?'入力を有効にする':'入力を無効にする'}}</button>
   <button uiAction (click)="reset()">フォームを初期化</button>
+  <label><input type="checkbox" [checked]="compactEditors()" (change)="compactEditors.set(checked($event))">入力条件を先に表示して幅を指定</label>
   <label><input type="checkbox" [checked]="asyncCandidates()" (change)="asyncCandidates.set(checked($event))">非同期候補</label>
   <label><input type="checkbox" [checked]="freeInput()" (change)="freeInput.set(checked($event))">自由入力を許可</label>
   <label><input type="checkbox" [checked]="readOnly()" (change)="readOnly.set(checked($event))">読取り専用</label>
@@ -20,11 +21,11 @@ import {
   <ui-form-error-summary [errors]="errors()" [visible]="submitted()" />
   <form [formGroup]="form" class="request-form" uiFormLayout [columns]="2" (ngSubmit)="submit()" novalidate>
    <div class="request-form-column" uiFormLayout>
-   <ui-text-input controlId="request-title" label="件名" formControlName="title" [required]="true" [maxLength]="30" [clearable]="true" [showCount]="true" [readonly]="readOnly()" hint="30文字以内で入力してください。" [error]="error('title')" />
+   <ui-text-input controlId="request-title" label="件名" [hintPosition]="compactEditors()?'before':'after'" [controlCharacters]="compactEditors()?8:null" formControlName="title" [required]="true" [maxLength]="30" [clearable]="true" [showCount]="true" [readonly]="readOnly()" hint="30文字以内で入力してください。" [error]="error('title')" />
    <ui-number-input controlId="request-amount" label="申請金額" formControlName="amount" [required]="true" [min]="0" [max]="maxAmount()" [step]="0.5" [fractionDigits]="2" unit="円" [readonly]="readOnly()" [error]="error('amount')" />
-   <ui-select controlId="request-department" label="申請先" formControlName="department" [options]="departments" [required]="true" [clearable]="true" [readonly]="readOnly()" [error]="error('department')" />
+   <ui-select controlId="request-department" label="申請先" [controlCharacters]="compactEditors()?8:null" formControlName="department" [options]="departments" [required]="true" [clearable]="true" [readonly]="readOnly()" [error]="error('department')" />
    <ui-combobox controlId="request-owner" label="担当部署" formControlName="owner" [options]="candidates()" [optionsQuery]="asyncCandidates()?candidateQuery():null" [optionsRequestId]="asyncCandidates()?candidateId():null" [freeInput]="freeInput()" [loading]="candidateLoading()" [readonly]="readOnly()" (queryChange)="query.set($event.query); queryId.set($event.requestId); candidateLoading.set(asyncCandidates())" />
-   <ui-checkbox controlId="request-consent" label="入力内容を確認した" formControlName="consent" [indeterminate]="mixed()" [readonly]="readOnly()" />
+   <ui-checkbox controlId="request-consent" label="入力内容を確認した" [hintPosition]="compactEditors()?'before':'after'" [hint]="compactEditors()?'内容を確認してから選択してください。':null" [controlCharacters]="compactEditors()?8:null" formControlName="consent" [indeterminate]="mixed()" [readonly]="readOnly()" />
    </div>
    <div class="request-form-column" uiFormLayout>
    <ui-textarea controlId="request-note" label="申請の説明" formControlName="note" [autoResize]="true" [rows]="2" [maxHeight]="180" [showCount]="true" [maxLength]="200" [readonly]="readOnly()" />
@@ -52,6 +53,7 @@ export class InputCatalog {
  readonly form=new FormGroup({title:new FormControl('',{nonNullable:true,validators:Validators.required}),note:new FormControl('',{nonNullable:true}),amount:new FormControl<number|null>(null),password:new FormControl('',{nonNullable:true}),department:new FormControl<string|null>(null,Validators.required),reviewers:new FormControl<string[]>([],{nonNullable:true}),consent:new FormControl(false,{nonNullable:true}),notifications:new FormControl(true,{nonNullable:true}),owner:new FormControl<string|null>(null),search:new FormControl('',{nonNullable:true})});
  readonly blurReviewers=new FormControl<string[]>(['a','b'],{nonNullable:true,updateOn:'blur'});readonly blurSnapshot=toSignal(this.blurReviewers.events.pipe(map(()=>JSON.stringify(this.blurReviewers.value)+' / '+this.blurReviewers.touched)),{initialValue:JSON.stringify(this.blurReviewers.value)+' / false'});
  readonly snapshot=toSignal(this.form.events.pipe(map(()=>this.formSnapshot())),{initialValue:this.formSnapshot()});
+ readonly compactEditors=signal(false);
  readonly submitted=signal(false);readonly readOnly=signal(false);readonly mixed=signal(false);readonly switchBusy=signal(false);readonly maxAmount=signal(10000);
  readonly asyncCandidates=signal(false);readonly freeInput=signal(false);readonly query=signal('');readonly candidateQuery=signal<string|null>(null);readonly candidateLoading=signal(false);
  readonly queryId=signal(0);readonly candidateId=signal<number|null>(null);
