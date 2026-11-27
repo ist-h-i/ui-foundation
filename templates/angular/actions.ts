@@ -3,7 +3,7 @@ import {injectUiMessage,UiStableMessagePipe} from './locale';
 import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, signal } from '@angular/core';
 import { UI_CLIPBOARD_WRITER } from './clipboard';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
-import { ActionControl, type ActionSize } from './action-control';
+import { ActionControl, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';
 import { Icon } from './icons/renderer';
 import { fallbackIcons } from './icons/registry';
 import { shape as plusIcon } from './icons/plus';
@@ -149,7 +149,7 @@ export class SegmentedControl extends ValueControl<SegmentValue> implements Vali
     }
 }
 @Component({ selector: 'ui-split-button', standalone: true, imports: [ActionControl, Menu], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<div class="ui-split-button" role="group" [attr.aria-label]="label()"><button uiAction [variant]="variant()" [size]="size()" [icon]="icon()" [disabled]="disabled()" [busy]="busy()" (click)="activate()">{{label()}}</button><ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [closeOnSelect]="closeOnSelect()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" /></div>`,
+    template: `<div class="ui-split-button" role="group" [attr.aria-label]="label()"><button uiAction [variant]="variant()" [emphasis]="emphasis()" [tone]="tone()" [size]="size()" [icon]="icon()" [disabled]="disabled()" [busy]="busy()" (click)="activate()">{{label()}}</button><ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [closeOnSelect]="closeOnSelect()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" /></div>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}.ui-split-button{display:flex;flex-wrap:wrap;align-items:start;gap:var(--ui-space-control-gap);}` })
 export class SplitButton {
  protected readonly uiText_SplitButton=injectUiMessage();
@@ -162,6 +162,8 @@ export class SplitButton {
     readonly busy = input(false, { transform: booleanAttribute });
     readonly size = input<ActionSize>('medium');
     readonly variant = input<'primary' | 'secondary' | 'danger'>('primary');
+    readonly emphasis = input<ActionEmphasis | null>(null);
+    readonly tone = input<ActionTone | null>(null);
     readonly icon = input<string | null>(null);
     readonly placement = input<OverlayPlacement>('bottom-end');
     readonly closeOnSelect = input(true, { transform: booleanAttribute });

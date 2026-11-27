@@ -30,6 +30,8 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 ラベルは部品内の `.ui-action-label` に投影する。長い操作名や区切りのない文字列は折り返し、処理中表示は縮めない。ラベルを省略・切り詰めず、狭い画面や文字拡大時にも操作名と処理中表示を枠内に収める。
 
+任意の `emphasis: 'primary' | 'secondary' | 'tertiary' | null` と `tone: 'normal' | 'danger' | null` で、視覚的な強調度と操作の性質を分離する。省略した軸は旧variantに従い、旧dangerはprimary/dangerに解決する。旧dangerと明示normalの競合時はdangerを維持し、data-action-tone-conflictで識別する。通常操作へ変える場合は旧danger指定を除く。旧APIのみの利用はdata-variantと表示を維持し、新指定時のみdata-emphasis/data-toneを付与する。tertiaryもネイティブbuttonとして動作する。危険操作の名称を明示し、認可・確認・復旧はアプリが担う。SplitButtonの主操作には両軸を伝搬し、ConfirmDialog/ConfirmPopoverは確定操作のみに任意のconfirmToneを指定できる。
+
 ### FormField / FieldControl
 
 `<ui-form-field controlId="name" label="申請名" [required]="true" hint="…" [error]="error()"><input uiFieldControl …></ui-form-field>`。FormFieldは一つのHTML標準input/select/textareaを扱い、FieldControlがid、required、aria-invalid、aria-describedbyを接続する。追加の説明IDは `describedBy`（空白区切り）に渡す。controlIdはアプリ内で一意、空白なしとする。labelは空にせず、input/select/textareaにuiFieldControlを付ける。値と入力イベントは標準HTML／Angular formsでアプリが所有する。checkbox/selectの選択状態も標準要素を使う。radioグループは後述RadioGroupを使う。複合コントロール、独自ControlValueAccessorは初版の範囲外。Angular formsとの接続は標準要素にformControl等を置ける構造で、初版試験はnative value/input/changeのみ。
