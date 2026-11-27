@@ -8,7 +8,7 @@
 
 - `Stack` などのレイアウト部品は `angular/layout`、`Disclosure` は `angular/disclosure` から読み込めます。どちらも Angular Core で利用でき、CDK や専門部品の依存は不要です。 [Issue #55](https://github.com/ist-h-i/ui-foundation/issues/55)
 - `angular/core` や `angular/forms` の `FormField` をネイティブ入力と使う場合、`FormField` は自身のラベル辞書だけを読み込みます。既存の文言 ID と翻訳の上書きは引き続き使えます。 [Issue #54](https://github.com/ist-h-i/ui-foundation/issues/54)
-- 生成アイコン、チャート、CodeEditor の言語機能が読み込むコードを削減しました。Lucide 自体のディレクティブやプロバイダーとアイコン登録を共有するアプリは、YAML で `icons.lucide_interop` を有効にし、`angular/icons/lucide` のプロバイダーに切り替えてください。 [アイコンの登録と移行](ui-library-consumer-guide.ja.md#アイコンの登録)
+- 生成アイコン、チャート、CodeEditor の言語機能が読み込むコードを削減しました。Lucide 自体のディレクティブやプロバイダーとアイコン登録や描画設定を共有するアプリは、YAML で `icons.lucide_interop` を有効にし、`angular/icons/lucide` のプロバイダーに切り替えてください。 [アイコンの登録と移行](ui-library-consumer-guide.ja.md#アイコンの登録)
 
 旧版のパッケージ、lockfile、YAML、生成物、Skill を一組で保存します。`0.2.0` を導入して `sync --dry-run`、`sync`、`check` を実行し、アプリを再ビルドして利用画面を確認してください。 [更新と復旧](npm-beta-readiness.ja.md#更新と復旧)
 

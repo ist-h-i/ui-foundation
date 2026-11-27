@@ -8,7 +8,7 @@ Consumer changes through `@hiroshi.inoue/ui-foundation@0.2.0`. Original CLI/temp
 
 - Import `Stack` and other layout components from `angular/layout` and `Disclosure` from `angular/disclosure`. Both public entries work with Angular Core without CDK or specialist dependencies. [Issue #55](https://github.com/ist-h-i/ui-foundation/issues/55)
 - `FormField` loads only its own built-in labels when used with native controls from `angular/core` or `angular/forms`. Existing message IDs and translation overrides still work. [Issue #54](https://github.com/ist-h-i/ui-foundation/issues/54)
-- Generated icons, charts, and CodeEditor languages load less code. Apps sharing icon registrations with native Lucide directives or providers must enable `icons.lucide_interop` in YAML and use the provider from `angular/icons/lucide`. [Icon registration and migration](ui-library-consumer-guide.en.md#register-icons)
+- Generated icons, charts, and CodeEditor languages load less code. Apps sharing icon registrations or paint settings with native Lucide directives or providers must enable `icons.lucide_interop` in YAML and use the provider from `angular/icons/lucide`. [Icon registration and migration](ui-library-consumer-guide.en.md#register-icons)
 
 Keep the previous package version, lockfile, YAML, generated files and Skill together as a recovery point. Install `0.2.0`, run `sync --dry-run`, `sync`, and `check`, then rebuild and verify the screens you use. [Upgrade and recovery](npm-beta-readiness.en.md#upgrade-and-recovery)
 

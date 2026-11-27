@@ -195,7 +195,7 @@ DateRangePickerの値は`{start,end}`。min/max、maxDays（両端を含む）�
 
 GridListはitems/keyField/labelField/controlId/labelと、`ng-template uiGridItem [uiGridItemOf]="items"`を受け取ります。contextはitem（$implicit）/index/selected。columns=nullは実際の領域幅と意味トークンsize.grid-itemで列数を計算し、columns/maxColumns/minimumItemWidth/itemSize/gap/breakpointsで配置を制御します。breakpointsは`{minWidth,columns}`の領域幅条件です。selectionMode、selectedKeys/selectedKeysChange、itemSelectable、showSelectAll、busy/disabled、emptyMessageを持ちます。選択はnative checkbox/radio。busyは部品の選択操作を抑止し、投影した業務操作はアプリが接続します。
 
-Iconはname、size=small/medium/large、severity、decorative、label。装飾アイコンは支援技術から隠し、意味を持つものはlabelを必須とします。`provideUiIcons()`で業務の基本12種類を登録し、`provideUiIcons(LucideFileText, …)`で必要なアイコンだけ追加できます。同じDI階層で別のLucide providerを置くと登録が上書きされるため、追加も一つのproviderへ渡します。名前だけを登録して描画済み扱いにはせず、SVGの実パスを検証します。
+Iconはname、size=small/medium/large、severity、decorative、label。装飾アイコンは支援技術から隠し、意味を持つものはlabelを必須とします。`provideUiIcons()` で基本の12種類を登録します。ルートで使うアイコンだけを登録するには、各アイコンの形状をまとめて `selected(...shapes)` に渡します。Lucide 自体のディレクティブやプロバイダーと登録や描画設定を共有する場合は、連携を有効にし、利用ガイドに示す順序でプロバイダーを登録してください。表示された SVG のパスを確認します。 [アイコンの登録](ui-library-consumer-guide.ja.md#アイコンの登録)
 
 ### Cardと領域
 
