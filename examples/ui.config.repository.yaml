@@ -47,6 +47,10 @@ primitives:
   small-dense: { type: length, value: 0.875rem }
   heading-guided: { type: length, value: 1.75rem }
   heading-dense: { type: length, value: 1.5rem }
+  section-title-guided: { type: length, value: 1.5rem }
+  section-title-dense: { type: length, value: 1.25rem }
+  subheading-guided: { type: length, value: 1.25rem }
+  subheading-dense: { type: length, value: 1.125rem }
   leading-body: { type: number, value: 1.6 }
   leading-heading: { type: number, value: 1.35 }
   leading-control: { type: number, value: 1.5 }
@@ -130,6 +134,9 @@ semantic:
   text.body: text-guided
   text.small: small-guided
   text.heading: heading-guided
+  text.page-title: heading-guided
+  text.section-title: section-title-guided
+  text.subheading: subheading-guided
   leading.body: leading-body
   leading.heading: leading-heading
   leading.control: leading-control
@@ -137,7 +144,7 @@ semantic:
   weight.heading: bold
   weight.control: semibold
   space.page: space-32
-  space.section: space-24
+  space.section: space-32
   space.field: space-24
   space.control-x: space-24
   space.control-y: space-12
@@ -222,8 +229,11 @@ profiles:
       text.body: text-dense
       text.small: small-dense
       text.heading: heading-dense
+      text.page-title: heading-dense
+      text.section-title: section-title-dense
+      text.subheading: subheading-dense
       space.page: space-16
-      space.section: space-16
+      space.section: space-24
       space.field: space-16
       space.control-x: space-16
       space.control-y: space-8

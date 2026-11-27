@@ -92,3 +92,7 @@ Profile guidance informs information priority, lists/stepwise input and assistan
 `size.sidebar` controls PageFrame sidebar width. Container/Grid default padding/gaps use existing spacing roles. Explicit app widths/ratios/scroll coordinates are placement controls.
 
 `size.drawer-inline` and `size.drawer-block` independently control left/right width and top/bottom height, explicitly mapped in source YAML for guided/dense. Explicit pixel dimensions and BottomSheet viewport ratios are placement control, not direct component access to color/typography/spacing primitives.
+
+## Optional visual hierarchy roles
+
+New starters distinguish page titles, section titles and subheadings using `text.page-title`, `text.section-title` and `text.subheading`. In each existing profile, omitted roles resolve to that profile's heading, heading and body primitive references respectively. Explicit mappings take precedence. These are not additional required YAML fields. The existing `text.heading` role and default Typography appearance remain compatible. Select the semantic HTML heading level independently, then use an explicit visual role when needed (for example, `<h2 uiTypography="section-title">…</h2>`). New starter section spacing is larger than field spacing; existing application mappings are not rewritten.

@@ -421,3 +421,28 @@ test('default_language is optional for existing YAML and accepts only explicit E
  for(const language of ['en','ja'] as const)assert.equal(resolve(edited(config=>{config.default_language=language;})).default_language,language);
  for(const language of ['fr','en-US','',null,1,{}])rejects(edited(config=>{config.default_language=language;}),/default_language|language/);
 });
+
+
+test('optional visual hierarchy roles resolve independently and keep older YAML valid', () => {
+  const next = resolve();
+  assert.equal(next.profiles.guided.semantic['text.page-title'].value, '1.75rem');
+  assert.equal(next.profiles.guided.semantic['text.section-title'].value, '1.5rem');
+  assert.equal(next.profiles.dense.semantic['text.subheading'].value, '1.125rem');
+  for (const profile of ['guided', 'dense']) {
+    assert.notEqual(next.profiles[profile].semantic['space.section'].value, next.profiles[profile].semantic['space.field'].value);
+  }
+  const legacy = resolve(edited(config => {
+    for (const role of ['text.page-title', 'text.section-title', 'text.subheading']) {
+      delete config.semantic[role];
+      for (const profile of Object.values(config.profiles) as any[]) delete profile.semantic[role];
+    }
+  }));
+  for (const profile of ['guided', 'dense']) {
+    const roles = legacy.profiles[profile].semantic;
+    assert.deepEqual(roles['text.page-title'], roles['text.heading']);
+    assert.deepEqual(roles['text.section-title'], roles['text.heading']);
+    assert.deepEqual(roles['text.subheading'], roles['text.body']);
+  }
+  assert.match(renderTokens(legacy), /--ui-text-page-title:/);
+  assert.match(renderTailwind(legacy), /--text-size-page-title:/);
+});

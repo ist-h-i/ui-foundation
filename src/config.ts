@@ -350,7 +350,14 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
   for (const role of Object.keys(CORE_ROLES)) {
     if (!own(config.semantic, role)) validator.issue(`semantic.${role}`, `Required role "${role}" is missing from the base semantic mapping`);
   }
-  const roles = [...new Set([...Object.keys(config.semantic), ...Object.values(config.profiles).flatMap((profile) => Object.keys(profile.semantic))])].sort();
+  // New visual roles are optional in existing YAML. Resolve the fallback from
+  // each profile's effective primitive reference, not from the default profile.
+  const typographyFallbacks: Readonly<Record<string, string>> = {
+    'text.page-title': 'text.heading',
+    'text.section-title': 'text.heading',
+    'text.subheading': 'text.body',
+  };
+  const roles = [...new Set([...Object.keys(config.semantic), ...Object.values(config.profiles).flatMap((profile) => Object.keys(profile.semantic)), ...Object.keys(typographyFallbacks)])].sort();
   const cssVariables = new Map<string, string>();
   const tailwindVariables = new Map<string, string>();
   for (const role of roles) {
@@ -389,6 +396,9 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
   const profiles: Record<string, ResolvedProfile> = {};
   for (const [id, profile] of Object.entries(config.profiles)) {
     const references = { ...config.semantic, ...profile.semantic };
+    for (const [role, fallback] of Object.entries(typographyFallbacks)) {
+      if (!own(references, role) && own(references, fallback)) references[role] = references[fallback];
+    }
     const semantic: Record<string, ResolvedToken> = {};
     for (const role of roles) {
       const path = own(profile.semantic, role) ? `profiles.${id}.semantic.${role}` : `semantic.${role}`;
