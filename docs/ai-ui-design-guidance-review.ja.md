@@ -1,4 +1,4 @@
-# AI向けUI設計規範の精査（第1段階）
+# DADSとの比較によるui-foundationの品質改善計画
 
 対象: #65。調査基準: main `bd49e07fba0dc1eb2e0f724742f402b680cdd9b1`。DADSの参照日は2026-11-28、表示版はβ版 v2.18.3。
 
@@ -8,7 +8,7 @@
 
 人間向けの「UI/UX設計の8つの観点」は判断の背景や価値を説明する記事として扱い、本件では変更しない。AI向けには、観測できる条件と採用・回避・例外・確認方法を記述する。記事との逐条照合は未実施。
 
-本PRは調査記録、採否の暫定案、英語規範案をレビュー対象とする。配布Skillの変更、生成物の同期、動作確認はまだ行っていない。
+改善範囲はSkillに限定しない。デザイン基盤、既存部品の改善、必要な部品の拡充、Skill、日英文書、検査、生成・配布を対象とする。本PRには調査記録、改善計画、英語規範案、操作APIの移行計画を記録する。実コード・配布Skill・生成物の変更と検証は未完了。
 
 ## 既存資産と責務
 
@@ -27,7 +27,7 @@
 
 ## DADSとの差分と採否案
 
-優先度 P0 は誤操作・意味の不一致・情報欠落を直接防ぐもの、P1 は情報探索・比較・理解の効率に寄与するもの。採用案は規範を補う候補であり、既存部品の変更を要求しない。各行の確認条件は規範の内容をレビューする際に使用する。
+優先度 P0 は誤操作・意味の不一致・情報欠落を直接防ぐもの、P1 は情報探索・比較・理解の効率に寄与するもの。採用案は改善候補である。既存部品・トークンでは実現できない項目は公開契約と互換性を精査して実装する。各行の確認条件は規範の内容をレビューする際に使用する。
 
 | 優先度・観点 | 参照元・既存資産 | 採否案と具体的な判断基準 | 避けること・例外 | 確認 |
 | --- | --- | --- | --- | --- |
@@ -50,12 +50,42 @@
 
 DADSの各部品の「使い方」「アクセシビリティ」全ページ、全ケースの詳細照合は未完了。上記の採用候補は確認した概要・基礎規範からの暫定判断である。実装前に未照合の条件や例外、既存の部品テストとの重複を確認し、表を更新する。DADSの文章や画像をそのまま転載せず、判断基準をui-foundationの契約に合わせて記述する。
 
-## 実装案
+## 改善計画
+
+### 1. 共通デザイン基盤・既存部品（優先）
+
+| 観点 | ソースで確認した現状 | 対応候補と確認 |
+| --- | --- | --- |
+| Typography | [display.ts](../templates/angular/display.ts) のH1〜H6の既定はheading。body/heading/smallのみ。 | HTMLの意味と視覚的役割を分離しページ、セクション、小見出し等を拡充。既存headingとYAMLの互換性、狭幅・拡大・profileを確認。 |
+| 余白 | [layout-model.ts](../templates/angular/layout-model.ts) のnormal=space.field、wide=space.section。[標準YAML](../examples/ui.config.repository.yaml) ではguidedは双方24px、denseは双方16px。 | 項目内・項目間・グループ・セクションを区別。既存アプリの設定を自動変更せず、標準設定・生成・日英仕様を同期する。 |
+| 操作 | [action-control.ts](../templates/angular/action-control.ts) のActionVariantはprimary/secondary/danger。危険性と強調度が混在。 | [段階的移行計画](action-emphasis-tone-migration.ja.md) に従い2軸を分離。旧API、関連部品、型・スタイル・試験を確認する。 |
+| フォーム | [form-field.ts](../templates/angular/form-field.ts) はラベル→入力→hint→error、テキスト系入力幅は原則100%。[form-layout.ts](../templates/angular/form-layout.ts) のFormActionsはsubmit/reset/cancelを既定表示。 | 入力条件の事前提示、内容に応じた入力幅、誤操作を避ける操作構成。既定動作を黙って変更せず、ARIA・入力保持・DOM順・キーボード・狭幅を確認する。 |
+| 色・境界・角・影 | 二段階トークン、対比検査、Cardのoutlined/plain/raisedあり。 | 既存を優先し、必要な意味上の役割を拡張。DADSの数値へ統一しない。 |
+
+### 2. Skill・設計規範
 
 - [英語規範案](verification/ai-ui-design-guidance/skill-candidate.md) を精査し、既存token-designへの短い追記と、画面構成・選択基準を扱う on-demand reference に分ける。部品別の詳細操作仕様は既存文書へ委譲する。常に全規範を読み込ませない。
-- SKILL.mdの設計段階に、ページ構成や部品選定を行うときだけ参照文書を読む条件を加える。既存API・YAML・トークン・静的ルールの変更は原則不要。
+- SKILL.mdの設計段階に、ページ構成や部品選定を行うときだけ参照文書を読む条件を加える。改善後の公開API・トークン・実装例と接続し、既存規範との重複を避ける。
 - 配布と生成は既存の同期処理を用いる。新規参照が導入先でも解決できることを検証する。生成物を直接編集せず `npm run ui:sync`、`npm run ui:check`、生成・package試験を実行する。現行テストの英語参照閉包・同梱・同期契約の検査対象に必要に応じ追加する。
 - 規範の形だけを検査する新規静的ルールは作らない。業務上の確定時点、目的、情報の優先度をコードだけで一般的に判定できないため、規範の適用条件・例外・確認方法をレビューする。
+
+### 3. コンポーネントの改善・拡充
+
+| 候補 | 既存資産 | 精査の起点 |
+| --- | --- | --- |
+| StepNavigation | Wizard | 進行状況表示と入力・遷移制御の分離、複数ページ手続き、現在・完了・未着手・エラー・スキップの状態。 |
+| NoticeBlock | HelpText、Alert、Disclosure | 常時表示する補足を障害通知や操作結果と区別できるか。 |
+| ResourceList | List、Card、Tag、Menu | 独立した項目の概要・状態・関連操作の共通行構造。 |
+| TableOfContents | AnchorNavigation | 階層・現在位置・狭幅での開閉。既存scroll root、offset、focus契約を保持。 |
+| ActionGroup | FormActions、ButtonGroup、Toolbar | 新操作APIと配置・折り返しを既存部品で表現できるか。 |
+| LanguageSelector、MobileMenu、StatusLabel、SearchBox | Select、UiLocale、Drawer、SideNav、Tag、Badge、SearchInput、SearchPanel | 既存部品の使い分けと合成例を先に整備し、不足が残る場合は部品化。 |
+| ScrollToTop、EmergencyBanner、Blockquote、BulletList | ActionControl、Alert、ネイティブHTML | 低優先。共通需要、アクセシビリティ、標準HTMLの利用可能性から採否を判断。 |
+
+DADSの詳細規範、現行のAPI・動作試験、実現できない条件、重複、保守負担を確認し、採用した候補は実装・公開仕様・サンプル・日英資料・試験まで対応する。
+
+### 4. 全工程共通
+
+日英の部品一覧・仕様・設計・利用ガイド、fixture、APIカタログ、Skill、生成物、検査を変更単位で同期する。生成資産は直接編集しない。調査・設計資料はnpm配布対象にしない。
 
 ## 検証方針
 
@@ -63,4 +93,4 @@ DADSの各部品の「使い方」「アクセシビリティ」全ページ、�
 
 ## 残作業
 
-調査の追加（DADS詳細仕様、全関連テスト、記事との重複）→採否の更新→英語規範を適切な正本へ反映→生成・配布確認→レビュー。現在の環境ではGitHubへの直接checkoutとnpm取得がDNSエラーとなり、生成・試験を実施できていない。規範の実装・検証は未完了であり、#65の受入条件を満たしたとは扱わない。
+DADS詳細仕様・関連テスト・記事との重複の追加精査→共通基盤の詳細設計・互換実装→Skill・設計規範→採用部品の改善・拡充→各変更の日英資料・サンプル・検査・生成・配布・互換性検証→レビュー。現在の環境ではGitHubへの直接checkoutとnpm取得がDNSエラーとなり、生成・試験を実施できていない。規範の実装・検証は未完了であり、#65の受入条件を満たしたとは扱わない。
