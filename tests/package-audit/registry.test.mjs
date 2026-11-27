@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, rm, symlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { registryState, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership } from '../../scripts/package-verification/registry.mjs';
@@ -98,4 +98,33 @@ test('registry generation evidence verifies actual owned bytes and rejects trave
   files['.ui/generated/../unexpected'] = { sha256: 'a'.repeat(64) };
   await writeFile(manifest, JSON.stringify({ files }));
   await assert.rejects(verifyGeneratedOwnership(app), /Unexpected generated ownership path/);
+});
+
+
+test('generation evidence rejects symlinks and invalid ownership records', async t => {
+  const app = await mkdtemp(resolve(tmpdir(), 'ui-foundation-registry-ownership-'));
+  t.after(() => rm(app, { recursive: true, force: true }));
+  const skillRoot = '.agents/skills/project-ui';
+  await mkdir(resolve(app, '.ui/generated'), { recursive: true });
+  await mkdir(resolve(app, skillRoot), { recursive: true });
+  const text = 'same bytes\n';
+  const target = resolve(app, 'outside.txt');
+  await writeFile(target, text);
+  const skill = skillRoot + '/SKILL.md';
+  const ownership = skillRoot + '/ownership.json';
+  const digest = createHash('sha256').update(text).digest('hex');
+  await writeFile(resolve(app, ownership), text);
+  await writeFile(resolve(app, skill), text);
+  const path = resolve(app, '.ui/generated/manifest.json');
+  const files = { [skill]: null, [ownership]: { sha256: digest } };
+  await writeFile(path, JSON.stringify({ files }));
+  await assert.rejects(verifyGeneratedOwnership(app), /Invalid ownership digest/);
+  files[skill] = { sha256: digest };
+  await writeFile(path, JSON.stringify({ files }));
+  await verifyGeneratedOwnership(app);
+  if (process.platform !== 'win32') {
+    await rm(resolve(app, skill));
+    await symlink(target, resolve(app, skill));
+    await assert.rejects(verifyGeneratedOwnership(app), /Unsafe generated ownership path/);
+  }
 });
