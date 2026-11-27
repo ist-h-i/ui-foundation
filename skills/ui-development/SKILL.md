@@ -21,6 +21,8 @@ After sync, the generated Skill and its references are available under `.agents/
 
 ## Design and synchronize
 
+When planning a screen, changing a workflow or selecting components, read the [screen design and component selection guide](references/screen-design.md). For a localized implementation fix, read only the relevant existing contracts and checks. Confirm that the installed version exposes the APIs used in the design.
+
 1. Identify the user's immediate task, the information they need to decide, and the actions and recovery paths they need. Determine the expected devices and usage conditions from app context.
 2. Reuse the app's components and choose a valid profile. Apply a profile to a particular region with `data-ui-profile`. Keep focus, form input, and active requests when the profile changes.
 3. Use primitive values in YAML and refer to semantic roles from application styles. Use `bg-color-action` for an action background, `text-color-on-action` for its text, and `text-size-body` for a text size. Create a separate semantic role when two uses have different meanings, even if their current values match.

@@ -151,3 +151,29 @@ test('resync retires an unchanged formerly owned developer document and protects
   assert.equal(await readFile(resolve(project, retired), 'utf8'), unowned);
   assert.deepEqual(await readFile(manifestPath), before, 'an ownership conflict must leave the manifest intact');
 });
+
+
+test('screen design guidance is available after sync and protected by generated ownership', async t => {
+  const project = await mkdtemp(resolve(tmpdir(), 'ui-foundation-screen-design-'));
+  t.after(() => rm(project, { recursive: true, force: true }));
+  const config = (await readFile(resolve(root, 'examples/ui.config.example.yaml'), 'utf8')).replace(/\nchecks:\n[\s\S]*$/, '\n');
+  await writeFile(resolve(project, 'ui.config.yaml'), config);
+  await syncProject({ root: project });
+  const skillRoot = '.agents/skills/project-ui';
+  const relative = skillRoot + '/references/screen-design.md';
+  const skill = await readFile(resolve(project, skillRoot, 'SKILL.md'), 'utf8');
+  assert.match(skill, /\]\(references\/screen-design\.md\)/);
+  const source = await readFile(resolve(root, 'skills/ui-development/references/screen-design.md'), 'utf8');
+  const generated = await readFile(resolve(project, relative), 'utf8');
+  assert.equal(generated, source.replaceAll('](../../../docs/', '](docs/'));
+  for (const [, link] of generated.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
+    if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(link)) continue;
+    await readFile(resolve(project, skillRoot, 'references', link.split('#')[0]));
+  }
+  const manifest = JSON.parse(await readFile(resolve(project, '.ui/generated/manifest.json'), 'utf8'));
+  assert.equal(manifest.files[relative].sha256, createHash('sha256').update(generated).digest('hex'));
+  await writeFile(resolve(project, relative), generated + '\nManual edit\n');
+  await assert.rejects(syncProject({ root: project }), /Generated file was edited/);
+  await writeFile(resolve(project, relative), generated);
+  assert.deepEqual(await syncProject({ root: project }), { changes: [], written: false });
+});
