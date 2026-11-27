@@ -37,7 +37,7 @@ Copy all contents of npm `assets/third-party/` into delivered assets. When shipp
 4. Run sync and CLI check; inspect generated/dependency changes, typecheck, build and key interactions. Adopt app and generated changes together.
 5. Roll back the saved CLI **and matching lockfile, YAML, output and Skill** to the same recovery point. Do not mix versions or adopt unknown files into an old manifest. Rerun the old CLI check and app verification.
 
-Patch releases in `0.1.x` aim to preserve the documented public contract for the supported versions. Release notes identify incompatible changes and any migration steps. For a beta upgrade, review the tested dependency versions and the migration instructions together. [Upgrade to 0.1.0](npm-beta-release-notes.en.md#010)
+Patch releases aim to preserve the documented public contract for the supported versions. Release notes identify compatibility changes, including the Lucide interop migration for `0.2.0`. For a beta upgrade, review the tested dependencies and migration instructions together. [Upgrade to 0.2.0](npm-beta-release-notes.en.md#020) · [Upgrade from beta](npm-beta-release-notes.en.md#010)
 
 ## Concurrent execution and interruption
 
