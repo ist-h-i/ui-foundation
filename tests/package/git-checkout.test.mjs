@@ -12,7 +12,7 @@ import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-v
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, {
   cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
-  env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '' },
+  env: { ...process.env, NODE_PATH: '', NODE_OPTIONS: '', GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: '/dev/null' },
 });
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -75,20 +75,26 @@ test('packed CLI: recover normalized managed bytes for a custom output and verif
   cli(recovery, 'sync');
   const recoveredManifest = await readFile(resolve(recovery, manifestPath));
   const normalizedManifest = await readFile(resolve(broken, manifestPath), 'utf8');
-  assert.deepEqual(JSON.parse(normalizedManifest), recorded);
+  const normalize = text => text.replace(/\r\n/g, '\n');
+  assert.equal(normalize(normalizedManifest), normalize(originalManifest.toString('utf8')),
+    'only line-ending conversion of the recorded manifest is recoverable');
   assert.deepEqual(recoveredManifest, originalManifest, 'regenerated manifest must match the original fixed-package record');
-  let restored = 0;
+  // Validate every file before replacing any. A local edit is not a Git conversion.
+  const replacements = [];
   for (const [path, entry] of Object.entries(recorded.files)) {
     assert.ok(path.startsWith(output + '/') || path.startsWith(skill + '/'));
     const bytes = await readFile(resolve(recovery, path));
     assert.equal(digest(bytes), entry.sha256, path);
     const destination = resolve(broken, path);
-    if (digest(await readFile(destination)) !== entry.sha256) {
-      await writeFile(destination, bytes);
-      restored++;
+    const existing = await readFile(destination);
+    if (digest(existing) !== entry.sha256) {
+      assert.equal(normalize(existing.toString('utf8')), normalize(bytes.toString('utf8')),
+        'do not discard a non-line-ending edit: ' + path);
+      replacements.push({ destination, bytes });
     }
   }
-  assert.ok(restored > 0);
+  assert.ok(replacements.length > 0);
+  for (const { destination, bytes } of replacements) await writeFile(destination, bytes);
   await writeFile(resolve(broken, manifestPath), recoveredManifest);
   await writeFile(resolve(broken, '.gitattributes'), attributes);
   git(broken, 'config', 'user.name', 'UI Foundation Test');
@@ -103,8 +109,14 @@ test('packed CLI: recover normalized managed bytes for a custom output and verif
     for (const [path, entry] of Object.entries(recorded.files)) {
       assert.equal(digest(await readFile(resolve(checkout, path))), entry.sha256, path);
     }
-    cli(checkout, 'sync', '--dry-run');
+    const dryRun = cli(checkout, 'sync', '--dry-run');
+    assert.match(dryRun, /current|no files written/i);
     assert.equal(JSON.parse(cli(checkout, 'check', '--format', 'json')).valid, true);
+    assert.match(cli(checkout, 'sync'), /current/i);
+    assert.deepEqual(await readFile(resolve(checkout, manifestPath)), originalManifest);
+    for (const [path, entry] of Object.entries(recorded.files)) {
+      assert.equal(digest(await readFile(resolve(checkout, path))), entry.sha256, path);
+    }
     assert.equal(git(checkout, 'status', '--porcelain').trim(), '');
   }
 });
