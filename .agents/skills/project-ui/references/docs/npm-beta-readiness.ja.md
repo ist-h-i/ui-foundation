@@ -2,7 +2,7 @@
 
 [English](npm-beta-readiness.en.md)
 
-`@hiroshi.inoue/ui-foundation@0.1.0` の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
+`@hiroshi.inoue/ui-foundation@0.2.0` の導入・更新・復旧の契約です。自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）で提供し、第三者資産の既存条件を保持します。
 
 ## 検証環境と公開契約
 

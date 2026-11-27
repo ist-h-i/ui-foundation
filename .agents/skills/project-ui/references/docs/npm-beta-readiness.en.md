@@ -2,7 +2,7 @@
 
 [Japanese](npm-beta-readiness.ja.md)
 
-This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.1.0`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
+This is the installation, upgrade and recovery contract for `@hiroshi.inoue/ui-foundation@0.2.0`. Original CLI/templates/Skill/generated code use the MIT License (2026 Hiroshi Inoue). Existing third-party terms are retained.
 
 ## Tested environment and public contract
 
