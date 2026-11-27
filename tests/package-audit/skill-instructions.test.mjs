@@ -25,6 +25,8 @@ test('instruction copies match the installed version, including newly discovered
     await write(generated, path, text.replaceAll('](../../docs/', '](references/docs/'));
   }
   await write(generated, 'references/docs/design.en.md', '# Generated documentation\n');
+  await write(source, 'references/README.md', '# Human-facing notes\n');
+  await write(source, 'references/nested/README.ja.md', '# Human-facing translation\n');
   assert.deepEqual(await verifySkillInstructionCopies(source, generated), Object.keys(instructions).sort());
   const extra = 'references/nested/screen-design.md';
   await write(source, extra, '# New reference\n');

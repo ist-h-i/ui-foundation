@@ -31,7 +31,7 @@ async function skillInstructions(root, generated = false) {
       if (generated && path === 'references/docs') continue;
       assert.equal(entry.isSymbolicLink(), false, 'Skill reference must not be a symlink: ' + path);
       if (entry.isDirectory()) await visit(path);
-      else if (entry.isFile() && path.endsWith('.md') && !/^README(?:\\.[a-z]+)?\\.md$/.test(entry.name)) files.push(path);
+      else if (entry.isFile() && path.endsWith('.md') && !/^README(?:\.[a-z]+)?\.md$/.test(entry.name)) files.push(path);
     }
   }
   await visit('references');
