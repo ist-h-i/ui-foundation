@@ -193,7 +193,7 @@ DateRangePicker value is {start,end}; takes min/max/maxDays inclusive/disabledDa
 
 GridList takes items/keyField/labelField/controlId/label and typed ng-template uiGridItem [uiGridItemOf]="items", context $implicit item/index/selected. Columns=null computes from actual container width/size.grid-item; columns/maxColumns/minimumItemWidth/itemSize/gap/breakpoints control layout, with breakpoint {minWidth,columns} container-width conditions. SelectionMode/selectedKeys/selectedKeysChange/itemSelectable/showSelectAll/busy/disabled/emptyMessage use native checkbox/radio. Busy blocks component selection; app connects projected business actions.
 
-Icon has name/size:small|medium|large/severity/decorative/label. Decorative icons are hidden from assistive technology; meaningful icons require labels. provideUiIcons() registers12 business defaults; provideUiIcons(LucideFileText, …) adds only required icons. Another Lucide provider in the same DI hierarchy overwrites registration, so pass additions together. Registration by name alone is not rendered evidence; verify actual SVG paths.
+Icon has name/size:small|medium|large/severity/decorative/label. Decorative icons are hidden from assistive technology; meaningful icons require labels. `provideUiIcons()` registers 12 defaults. To register only the icons a route uses, pass their shapes together to `selected(...shapes)`. To share registrations or paint settings with native Lucide directives or providers, enable the Lucide adapter and follow the provider order in the consumer guide. Verify the SVG paths in the rendered app. [Icon registration](ui-library-consumer-guide.en.md#register-icons)
 
 ### Card and regions
 

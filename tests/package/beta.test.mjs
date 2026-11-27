@@ -88,7 +88,7 @@ test('release tarball is isolated from checkout, upgrades safely, and builds/ope
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.1.0');
+  assert.equal(manifest.version, '0.2.0');
   assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'release-candidate' });
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);

@@ -8,10 +8,10 @@ Define colors, typography, spacing, dimensions and shapes once. Generate Angular
 
 ## Get started
 
-From the root of your Angular app, install `0.1.0`, initialize the configuration, and generate the files. [Installation guide](docs/ui-library-consumer-guide.en.md#install-and-generate)
+From the root of your Angular app, install `0.2.0`, initialize the configuration, and generate the files. [Installation guide](docs/ui-library-consumer-guide.en.md#install-and-generate)
 
 ```sh
-npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0
+npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.2.0
 ./node_modules/.bin/ui-foundation init
 ./node_modules/.bin/ui-foundation sync --dry-run
 ./node_modules/.bin/ui-foundation sync
@@ -21,7 +21,7 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.1.0
 
 Follow the [English installation and integration guide](docs/ui-library-consumer-guide.en.md) for Angular dependencies, styles, workers, assets, updates and recovery. [日本語の導入ガイド](docs/ui-library-consumer-guide.ja.md)
 
-The tested baseline for `0.1.0` is Node.js 24.19.0, Angular/CDK 22.3.0, and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
+The tested baseline for `0.2.0` is Node.js 24.19.0, Angular/CDK 22.3.0, and TypeScript 6.0.3 on macOS arm64. The package distributes a CLI and source templates. Your app compiles the generated Angular code and installs its dependencies.
 
 ## Build with components
 
