@@ -284,6 +284,10 @@ test('Git checkout preserves managed bytes with the documented attributes and st
   const edited = (await readFile(resolve(clone, notice), 'utf8')) + '\nlocal edit\n';
   await writeFile(resolve(clone, notice), edited);
   await assert.rejects(syncProject({ root: clone, dryRun: true }), /Generated file was edited/);
-  await assert.rejects(syncProject({ root: clone }), /\.gitattributes/);
+  await assert.rejects(syncProject({ root: clone }), (error: Error) => {
+    assert.match(error.message, /Generated file was edited/);
+    assert.doesNotMatch(error.message, /\.gitattributes/);
+    return true;
+  });
   assert.equal(await readFile(resolve(clone, notice), 'utf8'), edited);
 });
