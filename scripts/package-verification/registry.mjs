@@ -13,13 +13,15 @@ const registry = 'https://registry.npmjs.org/';
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const hash = (algorithm, bytes, encoding) => createHash(algorithm).update(bytes).digest(encoding);
 const canonicalTags = tags => Object.fromEntries(Object.entries(tags).sort(([a], [b]) => a.localeCompare(b, 'en')));
+const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isDigest = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
 
-export function registryState(document, target) {
+export function registryState(document, target, registryStatus = 'found') {
   const tags = canonicalTags(document['dist-tags'] ?? {});
   const versions = document.versions ?? {};
   for (const [tag, version] of Object.entries(tags)) assert.ok(Object.hasOwn(versions, version), `Tag ${tag} points to a missing version`);
   const metadata = Object.hasOwn(versions, target) ? versions[target] : null;
-  return { tags, versions: Object.keys(versions).sort(), target,
+  return { registryStatus, tags, versions: Object.keys(versions).sort(), target,
     targetState: !metadata ? 'unpublished' : tags.latest === target ? 'latest' : 'published',
     targetTags: Object.keys(tags).filter(tag => tags[tag] === target),
     targetIntegrity: metadata?.dist?.integrity ?? null,
@@ -29,6 +31,7 @@ export function registryState(document, target) {
 
 export function assertRegistryUnchanged(before, after) {
   assert.equal(after.target, before.target, 'Registry verification target changed');
+  assert.equal(after.registryStatus, before.registryStatus, 'Registry package status changed during verification');
   assert.deepEqual(after.tags, before.tags, 'Registry tags changed during verification');
   assert.deepEqual(after.versions, before.versions, 'Registry versions changed during verification');
   assert.equal(after.targetIntegrity, before.targetIntegrity, 'Target integrity changed during verification');
@@ -72,16 +75,19 @@ export function verifyInstallMetadata(installed, locked, version, integrity) {
   assert.equal(locked?.integrity, integrity, 'Lockfile integrity mismatch');
 }
 
-async function packument(name) {
+export async function readRegistryPackage(name, fetchPackage = fetch) {
   let response;
-  try { response = await fetch(registry + encodeURIComponent(name), { cache: 'no-store', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); }
+  try { response = await fetchPackage(registry + encodeURIComponent(name), { cache: 'no-store', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); }
   catch (cause) { throw Object.assign(new Error('Official registry could not be reached', { cause }), { code: 'REGISTRY_UNAVAILABLE' }); }
-  if (response.status === 404) return { name, versions: {}, 'dist-tags': {} };
+  if (response.status === 404) return { registryStatus: 'not-found', document: { name, versions: {}, 'dist-tags': {} } };
   if (!response.ok) throw Object.assign(new Error(`Registry HTTP ${response.status}`), { code: 'REGISTRY_UNAVAILABLE' });
   const document = await response.json();
   assert.equal(document.name, name, 'Registry package identity mismatch');
-  assert.ok(document.versions && document['dist-tags'], 'Malformed registry response');
-  return document;
+  assert.ok(isRecord(document.versions) && isRecord(document['dist-tags']), 'Malformed registry response');
+  for (const [tag, version] of Object.entries(document['dist-tags'])) {
+    assert.ok(typeof version === 'string' && Object.hasOwn(document.versions, version), `Tag ${tag} points to a missing version`);
+  }
+  return { registryStatus: 'found', document };
 }
 
 /** Refuse indirect or non-file reads even when their bytes match a recorded hash. */
@@ -102,7 +108,8 @@ export async function verifyGeneratedOwnership(app) {
   const path = '.ui/generated/manifest.json';
   const bytes = await readManagedFile(app, path);
   const manifest = JSON.parse(bytes.toString('utf8'));
-  assert.ok(manifest?.files && typeof manifest.files === 'object' && !Array.isArray(manifest.files), 'Missing generated ownership records');
+  assert.ok(manifest?.version === 1 && typeof manifest.tool_version === 'string' && isDigest(manifest.configuration_hash)
+    && isRecord(manifest.files), 'Missing or malformed generated ownership records');
   const paths = Object.keys(manifest.files);
   assert.ok(paths.includes('.agents/skills/project-ui/SKILL.md'), 'Generated Skill is not owned');
   assert.ok(paths.includes('.agents/skills/project-ui/ownership.json'), 'Skill ownership registry is missing');
@@ -111,25 +118,64 @@ export async function verifyGeneratedOwnership(app) {
       && !relative.split('/').some(part => !part || part === '.' || part === '..')
       && !relative.includes('\\'), 'Unexpected generated ownership path: ' + relative);
     const entry = manifest.files[relative];
-    assert.ok(entry && typeof entry.sha256 === 'string' && /^[a-f0-9]{64}$/.test(entry.sha256),
-      'Invalid ownership digest: ' + relative);
+    assert.ok(isRecord(entry) && isDigest(entry.sha256), 'Invalid ownership digest: ' + relative);
     assert.equal(hash('sha256', await readManagedFile(app, relative), 'hex'), entry.sha256, 'Generated ownership mismatch: ' + relative);
   }
-  return { manifestSha256: hash('sha256', bytes, 'hex'), managedFiles: paths.length };
+  const ownershipPath = '.agents/skills/project-ui/ownership.json';
+  const ownership = JSON.parse(await readManagedFile(app, ownershipPath));
+  assert.deepEqual(ownership, { schema_version: 1, output: '.ui/generated', manifest_path: path }, 'Invalid ownership registry');
+  const actual = [
+    ...await regularFilePaths(resolve(app, '.ui/generated'), '.ui/generated'),
+    ...await regularFilePaths(resolve(app, '.agents/skills/project-ui'), '.agents/skills/project-ui'),
+  ];
+  assert.deepEqual(actual.sort(), [...paths, path].sort(), 'Generated ownership does not cover all files');
+  return { toolVersion: manifest.tool_version, manifestSha256: hash('sha256', bytes, 'hex'), managedFiles: paths.length };
 }
 
-async function generatedDocumentPaths(directory, prefix = 'docs') {
+async function regularFilePaths(directory, prefix) {
   const paths = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    assert.equal(entry.isSymbolicLink(), false, 'Generated documentation must not be a symlink');
+    assert.equal(entry.isSymbolicLink(), false, 'Managed file must not be a symlink: ' + prefix + '/' + entry.name);
     const path = prefix + '/' + entry.name;
-    if (entry.isDirectory()) paths.push(...await generatedDocumentPaths(resolve(directory, entry.name), path));
+    if (entry.isDirectory()) paths.push(...await regularFilePaths(resolve(directory, entry.name), path));
     else {
-      assert.ok(entry.isFile(), 'Generated documentation must be a file');
+      assert.ok(entry.isFile(), 'Expected a regular file: ' + path);
       paths.push(path);
     }
   }
   return paths.sort();
+}
+
+/** Check the installed version's API inventory and its actual CLI copies. */
+export async function verifyInstalledApiCatalog(installedRoot, installedApp) {
+  const catalogPath = 'docs/ui-library-api.json';
+  const catalogBytes = await readManagedFile(installedRoot, catalogPath);
+  const catalog = JSON.parse(catalogBytes);
+  const templates = 'templates/angular';
+  assert.ok(catalog?.schema_version === 1 && catalog.source === templates
+    && Array.isArray(catalog.files) && catalog.source_count === catalog.files.length, 'Invalid API catalog');
+  const paths = await regularFilePaths(resolve(installedRoot, templates), templates);
+  assert.deepEqual(catalog.files.map(entry => entry.path).sort(), paths.filter(path => path.endsWith('.ts')),
+    'API catalog does not cover all installed Angular templates');
+  for (const entry of catalog.files) {
+    const contents = await readManagedFile(installedRoot, entry.path);
+    assert.equal(hash('sha256', contents, 'hex'), entry.sha256, 'API catalog digest mismatch: ' + entry.path);
+    // Lucide's optional interop entry is omitted by the default consumer setup.
+    if (entry.path === templates + '/icons/lucide.ts') continue;
+    const generated = '.ui/generated/angular/' + entry.path.slice(templates.length + 1);
+    const generatedBytes = await readManagedFile(installedApp, generated);
+    if (entry.path === templates + '/locale-defaults.ts') {
+      const { default_language: language } = JSON.parse(await readManagedFile(installedApp, '.ui/generated/resolved.json'));
+      assert.ok(language === 'en' || language === 'ja', 'Invalid generated default language');
+      const declaration = "export const uiDefaultLanguage: 'en' | 'ja' = " + JSON.stringify(language) + ";";
+      assert.ok(generatedBytes.toString('utf8').split('\n').includes(declaration), 'Generated default language differs from resolved config');
+    } else {
+      assert.deepEqual(generatedBytes, contents, 'Generated API differs from installed template: ' + entry.path);
+    }
+  }
+  assert.deepEqual(await readManagedFile(installedApp, '.agents/skills/project-ui/references/' + catalogPath), catalogBytes,
+    'Generated Skill catalog differs from installed API catalog');
+  return { files: catalog.source_count, sha256: hash('sha256', catalogBytes, 'hex') };
 }
 
 async function verifyInstalledGeneration(app, installedRoot, metadata, currentContract) {
@@ -143,6 +189,7 @@ async function verifyInstalledGeneration(app, installedRoot, metadata, currentCo
   await writeFile(resolve(app, 'src/app.ts'), 'export const application = true;\n');
   cli('sync');
   const first = await verifyGeneratedOwnership(app);
+  assert.equal(first.toolVersion, metadata.version, 'Generated tool version differs from installed version');
   cli('sync', '--dry-run');
   const checked = JSON.parse(cli('check', '--format', 'json'));
   assert.equal(checked.valid, true, 'Installed CLI check failed');
@@ -156,10 +203,19 @@ async function verifyInstalledGeneration(app, installedRoot, metadata, currentCo
   // a newer package's expected document layout to an older normal-install version.
   if (currentContract) {
     const allowed = metadata.files.filter(path => path.startsWith('docs/')).sort();
-    assert.deepEqual(await generatedDocumentPaths(resolve(generatedSkillRoot, 'references/docs')), allowed,
+    assert.deepEqual(await regularFilePaths(resolve(generatedSkillRoot, 'references/docs'), 'docs'), allowed,
       'Generated Skill documentation differs from the installed allowlist');
     result.documentation = await verifyEnglishDocumentation(installedRoot, generatedSkillRoot);
+    result.api = await verifyInstalledApiCatalog(installedRoot, app);
     result.documentationContract = 'current-target';
+  }
+  for (const [source, generated] of [
+    ['LICENSE', '.ui/generated/UI-FOUNDATION-LICENSE.txt'],
+    ['LICENSE', '.agents/skills/project-ui/UI-FOUNDATION-LICENSE.txt'],
+    ['dist/CHECKER-NOTICE.txt', '.ui/generated/CHECKER-NOTICE.txt'],
+  ]) {
+    assert.deepEqual(await readManagedFile(app, generated), await readManagedFile(installedRoot, source),
+      'Original license or notice differs from installed bytes: ' + generated);
   }
   return result;
 }
@@ -177,7 +233,7 @@ async function probe(root, name, specification, label, expectedVersion, document
   const lock = JSON.parse(await readFile(resolve(app, 'package-lock.json'), 'utf8'));
   assert.equal(metadata.name, name);
   verifyInstallMetadata(metadata, lock.packages[`node_modules/${name}`], expectedVersion, document.versions[expectedVersion].dist.integrity);
-  const docs = ['README.md', 'README.ja.md', ...(metadata.files ?? []).filter(path => path.startsWith('docs/') && path.endsWith('.md')), 'skills/ui-development/SKILL.md'];
+  const docs = ['README.md', 'README.ja.md', ...(metadata.files ?? []).filter(path => path.startsWith('docs/')), 'skills/ui-development/SKILL.md'];
   const documentation = Object.fromEntries(await Promise.all(docs.map(async path => [path, hash('sha256', await readFile(resolve(installedRoot, path)), 'hex')])));
   // Older latest versions have their own contract. Do not impose current docs on them.
   if (expectedVersion === target) {
@@ -211,8 +267,8 @@ async function main() {
       await assertFrozenCandidate(candidate);
     }
     report.operation = 'registry-observation';
-    const document = await packument(name);
-    const state = registryState(document, target);
+    const { registryStatus, document } = await readRegistryPackage(name);
+    const state = registryState(document, target, registryStatus);
     Object.assign(report, state);
     assertStage(state, { stage: values.stage, previousLatest: values['previous-latest'], candidateTag: report.candidateTag });
     if (candidate && state.targetState !== 'unpublished') assert.equal(state.targetIntegrity, report.candidateIntegrity, 'Published bytes differ from frozen candidate');
@@ -226,7 +282,8 @@ async function main() {
       report.installs.fixed = await probe(root, name, `${name}@${target}`, 'fixed', target, document, target);
     }
     report.operation = 'registry-recheck';
-    const after = registryState(await packument(name), target);
+    const afterPackage = await readRegistryPackage(name);
+    const after = registryState(afterPackage.document, target, afterPackage.registryStatus);
     assertRegistryUnchanged(state, after);
     if (candidate) await assertFrozenCandidate(candidate);
     report.status = 'verified';

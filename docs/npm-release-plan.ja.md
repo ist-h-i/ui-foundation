@@ -13,9 +13,9 @@
 ```sh
 npm run package:build
 npm pack --ignore-scripts --json --pack-destination /absolute/path/to/release-candidate
-# packが返した実ファイル名と独立計算したSHA256を指定する
-UI_FOUNDATION_PACKAGE_TARBALL=/absolute/path/to/candidate.tgz \
-UI_FOUNDATION_PACKAGE_SHA256=<固定したSHA256> \
+# release_tarball と release_sha256 には検証記録の実測値を設定する
+UI_FOUNDATION_PACKAGE_TARBALL="$release_tarball" \
+UI_FOUNDATION_PACKAGE_SHA256="$release_sha256" \
 UI_FOUNDATION_PACKAGE_EVIDENCE=/absolute/path/to/release-evidence \
 npm run test:package
 ```
@@ -30,7 +30,7 @@ npm run test:package
 node scripts/package-verification/registry.mjs --stage observe
 ```
 
-`registry-unavailable` は未公開を意味しない。対象版が存在しない場合は `unpublished`、対象版が存在する場合は通常配布・候補タグ・固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。通常導入・固定版導入ごとに取得したCLIでinit・sync・dry-run・checkを実行し、生成Skillの所有権と全管理ファイルのハッシュを照合する。通常の再同期でも変更なしを確認し、シンボリックリンクや不正な所有権記録は拒否する。対象版は同梱文書のallowlist、生成Skillの文書一覧、英語参照閉包も確認する。旧latestには新しい対象版の文書構造を要求せず、取得版自身のCLI・生成契約で検証する。固定候補があるときは `--candidate` と、候補作成時に独立して記録したSHA-256を `--candidate-sha256` で指定し、候補の固定バイト列とregistry integrityを照合する。
+取得不能は `status: registry-unavailable`、公式registryのHTTP 404は `registryStatus: not-found` として記録する。パッケージを取得できても対象版が存在しない場合は `targetState: unpublished` になる。対象版が公開済みの場合は `targetState` と `targetTags` で通常配布、候補タグ、タグなしの固定版を区別する。観測時は最新タグの有無に応じて通常導入、対象版が公開済みなら固定版導入をそれぞれ新規プロジェクト・新規キャッシュで確認する。公開済み対象版の同梱文書は実パッケージから確認する。通常導入・固定版導入ごとに取得したCLIでinit・sync・dry-run・checkを実行し、生成Skillの所有権と全管理ファイルのハッシュを照合する。通常の再同期でも変更なしを確認し、シンボリックリンクや不正な所有権記録は拒否する。対象版では同梱文書の許可リスト、生成Skillの文書一覧、英語だけで参照をたどれることも確認する。さらにAPIカタログの各ハッシュを同梱されたテンプレートと照合し、生成コードと生成Skillへの反映を確認する。旧latestには新しい対象版の文書構造を要求せず、取得版自身のCLI・生成契約で検証する。固定候補があるときは `--candidate` と、候補作成時に独立して記録したSHA-256を `--candidate-sha256` で指定し、候補の固定バイト列とregistry integrityを照合する。
 
 公開操作を認可されたリリース担当者は、`previous_latest`（存在しなければ `none`）を観測結果から明示して次のゲートを実行する。すべて同じ固定候補と公開コミットを使用し、`release_sha256` には候補作成時に保存したSHA-256を指定する。候補公開前・公開直後は対象版と異なる旧latestを明示し、候補タグに `latest` を指定しない。
 
@@ -54,6 +54,16 @@ node scripts/package-verification/registry.mjs --stage latest --candidate "$rele
 
 公開コミット、候補・registryのdigest、全タグの変更前後、固定版・通常導入の結果、同梱資料と生成Skillの検証、実行日時、未確認範囲を公開証跡に記録する。GitHubの案内、npm公式の版・タグ・README、外部収集サイトの掲載版と取得時点を比較する。外部サイトの差異は公式registryの配布異常と区別し、自リポジトリで修正できる事項を特定する。外部サイトの即時反映は公開完了条件にしない。
 
-2026-11-28の調査（#64、main `bd49e07fba0dc1eb2e0f724742f402b680cdd9b1`）: mainの版は0.2.0、候補タグはrelease-candidate。日英README・導入ガイド・利用契約・リリースノートは0.2.0を案内している。[Socket.dev](https://socket.dev/npm/package/@hiroshi.inoue/ui-foundation) は取得時に0.2.0、latest、対応環境22.3.0を表示しており、前日のbeta.4表示との差は解消していた。これは外部掲載の観測であり、公式タグ・公開時刻・integrityの証拠ではない。公式registryへの npm view はDNSエラー（EAI_AGAIN）、Webでのregistry取得も失敗した。公開有無・全タグ・通常導入・固定版導入・固定候補との照合は未確認。ネットワーク利用可能な環境で上記スクリプトと既存の公開試験を実行する。
+### #64の観測記録（2026-11-28）
+
+| 観測対象 | 結果 |
+| --- | --- |
+| 調査対象のmain | `bd49e07fba0dc1eb2e0f724742f402b680cdd9b1`。package.jsonは0.2.0、公開時に指定する候補タグは `release-candidate`。 |
+| 公式registry | 2026-11-28 15:06 JSTに取得。`latest` は0.2.0、`next` は0.1.0-beta.5、`beta` は0.1.0-beta.4。 |
+| 公式0.2.0 | 2026-11-27 11:07:12.737 JST公開。SHA-512 integrityは `sha512-u2VaaRMPKhdgOkNjyPwEg+DjkukCJmgHf0B2YZ4ZQIITr7rhDVxR4w/kwb6sufgGUbwntkXKwfCAkopQ7MrgQw==`。 |
+| 通常導入と版指定導入 | Node.js 24.19.0、npm 11.17.0で独立したプロジェクトとキャッシュを用意。どちらも0.2.0と公式integrityが一致し、日英文書・生成Skill・CLIの生成と再同期を照合した。 |
+| 人向けの掲載ページ | 11月28日の先行調査ではSocket.devに0.2.0とAngular/CDK 22.3.0が掲載され、11月27日のbeta.4表示との差は解消していた。今回の再確認ではSocket.devとnpmjs.comの掲載ページがHTTP 403を返した。公開版の判定には公式registryの応答と新規導入結果を使用した。 |
+
+公式registryに公開済みの0.2.0と変更後のローカル候補は、各tarballのハッシュで識別する。候補の版番号とタグは次回の公開前に決める。
 
 仕様参照: [npm publish](https://docs.npmjs.com/cli/v11/commands/npm-publish/) · [npm dist-tag](https://docs.npmjs.com/cli/v11/commands/npm-dist-tag/) · [npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)。

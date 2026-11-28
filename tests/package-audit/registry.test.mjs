@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, writeFile, rm, symlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
-import { registryState, assertRegistryUnchanged, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership } from '../../scripts/package-verification/registry.mjs';
+import { registryState, readRegistryPackage, assertRegistryUnchanged, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership, verifyInstalledApiCatalog } from '../../scripts/package-verification/registry.mjs';
 import { verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const target = '0.2.0';
@@ -14,6 +14,27 @@ const old = { dist: { integrity: 'sha512-old' } };
 const next = { dist: { integrity: 'sha512-next' } };
 const fixture = (tags, versions) => ({ 'dist-tags': tags, versions });
 const state = (tags, versions) => registryState(fixture(tags, versions), target);
+const manifestHeader = { version: 1, tool_version: target, configuration_hash: 'c'.repeat(64) };
+const ownershipRecord = JSON.stringify({ schema_version: 1, output: '.ui/generated', manifest_path: '.ui/generated/manifest.json' });
+
+test('registry lookup distinguishes a missing package from an unavailable registry and an unpublished target', async () => {
+  const name = '@scope/package';
+  const missing = await readRegistryPackage(name, async () => new Response(null, { status: 404 }));
+  assert.equal(missing.registryStatus, 'not-found');
+  assert.equal(registryState(missing.document, target, missing.registryStatus).targetState, 'unpublished');
+  const received = await readRegistryPackage(name, async url => {
+    assert.equal(url, 'https://registry.npmjs.org/%40scope%2Fpackage');
+    return Response.json({ name, ...fixture({ latest: previousLatest }, { [previousLatest]: old }) });
+  });
+  assert.equal(received.registryStatus, 'found');
+  assert.equal(registryState(received.document, target, received.registryStatus).targetState, 'unpublished');
+  await assert.rejects(readRegistryPackage(name, async () => new Response(null, { status: 503 })),
+    { code: 'REGISTRY_UNAVAILABLE' });
+  await assert.rejects(readRegistryPackage(name, async () => { throw Error('fetch failed'); }),
+    { code: 'REGISTRY_UNAVAILABLE' });
+  await assert.rejects(readRegistryPackage(name, async () => Response.json({ name, versions: [], 'dist-tags': [] })),
+    /Malformed registry response/);
+});
 
 test('registry checks distinguish unpublished, candidate and latest', () => {
   const unpublished = state({ latest: previousLatest }, { [previousLatest]: old });
@@ -74,6 +95,9 @@ test('document check rejects stale current pins but preserves migration history'
   await writeFile(notes, `# Notes\n\n\`${name}@${target}\`\n\n## ${target}\n`);
   await writeFile(resolve(root, 'README.ja.md'), `npm install --save-dev --save-exact ${name}@${previousLatest}\n`);
   await assert.rejects(verifyReleaseVersionDocumentation(root), /Current installation example/);
+  await writeFile(resolve(root, 'README.ja.md'), `npm install --save-dev --save-exact ${name}@${target}\n`);
+  await rm(resolve(root, 'docs/ui-library-consumer-guide.ja.md'));
+  await assert.rejects(verifyReleaseVersionDocumentation(root), { code: 'ENOENT' });
 });
 
 
@@ -84,19 +108,19 @@ test('registry generation evidence verifies actual owned bytes and rejects trave
   await mkdir(resolve(app, '.agents/skills/project-ui'), { recursive: true });
   const files = {};
   for (const path of ['.agents/skills/project-ui/SKILL.md', '.agents/skills/project-ui/ownership.json']) {
-    const text = path + '\n';
+    const text = path.endsWith('/ownership.json') ? ownershipRecord : path + '\n';
     await writeFile(resolve(app, path), text);
     files[path] = { sha256: createHash('sha256').update(text).digest('hex') };
   }
   const manifest = resolve(app, '.ui/generated/manifest.json');
-  await writeFile(manifest, JSON.stringify({ files }));
+  await writeFile(manifest, JSON.stringify({ ...manifestHeader, files }));
   assert.equal((await verifyGeneratedOwnership(app)).managedFiles, 2);
   await writeFile(resolve(app, '.agents/skills/project-ui/SKILL.md'), 'manual edit');
   await assert.rejects(verifyGeneratedOwnership(app), /ownership mismatch/);
   const path = '.agents/skills/project-ui/SKILL.md';
   await writeFile(resolve(app, path), path + '\n');
   files['.ui/generated/../unexpected'] = { sha256: 'a'.repeat(64) };
-  await writeFile(manifest, JSON.stringify({ files }));
+  await writeFile(manifest, JSON.stringify({ ...manifestHeader, files }));
   await assert.rejects(verifyGeneratedOwnership(app), /Unexpected generated ownership path/);
 });
 
@@ -113,15 +137,28 @@ test('generation evidence rejects symlinks and invalid ownership records', async
   const skill = skillRoot + '/SKILL.md';
   const ownership = skillRoot + '/ownership.json';
   const digest = createHash('sha256').update(text).digest('hex');
-  await writeFile(resolve(app, ownership), text);
+  await writeFile(resolve(app, ownership), ownershipRecord);
   await writeFile(resolve(app, skill), text);
   const path = resolve(app, '.ui/generated/manifest.json');
-  const files = { [skill]: null, [ownership]: { sha256: digest } };
-  await writeFile(path, JSON.stringify({ files }));
+  const files = { [skill]: null, [ownership]: { sha256: createHash('sha256').update(ownershipRecord).digest('hex') } };
+  await writeFile(path, JSON.stringify({ ...manifestHeader, files }));
   await assert.rejects(verifyGeneratedOwnership(app), /Invalid ownership digest/);
   files[skill] = { sha256: digest };
-  await writeFile(path, JSON.stringify({ files }));
+  await writeFile(path, JSON.stringify({ ...manifestHeader, files }));
   await verifyGeneratedOwnership(app);
+  const untracked = resolve(app, skillRoot, 'manual.md');
+  await writeFile(untracked, text);
+  await assert.rejects(verifyGeneratedOwnership(app), /does not cover all files/);
+  await rm(untracked);
+  const invalidRegistry = '{}';
+  await writeFile(resolve(app, ownership), invalidRegistry);
+  const validDigest = files[ownership].sha256;
+  files[ownership].sha256 = createHash('sha256').update(invalidRegistry).digest('hex');
+  await writeFile(path, JSON.stringify({ ...manifestHeader, files }));
+  await assert.rejects(verifyGeneratedOwnership(app), /Invalid ownership registry/);
+  await writeFile(resolve(app, ownership), ownershipRecord);
+  files[ownership].sha256 = validDigest;
+  await writeFile(path, JSON.stringify({ ...manifestHeader, files }));
   if (process.platform !== 'win32') {
     await rm(resolve(app, skill));
     await symlink(target, resolve(app, skill));
@@ -137,6 +174,35 @@ test('registry recheck detects changes beyond the candidate tag', () => {
   assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: old, [target]: next, '0.3.0': next })), /versions changed/);
   assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: next, [target]: next })), /Latest integrity changed/);
   assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: old, [target]: old })), /Target integrity changed/);
+  assert.throws(() => assertRegistryUnchanged(before, { ...before, registryStatus: 'not-found' }), /package status changed/);
   assert.throws(() => assertRegistryUnchanged(before, { ...before, publishedAt: '2026-11-28T00:00:00Z' }), /publication time changed/);
   assert.throws(() => assertRegistryUnchanged(before, state({ latest: target }, { [previousLatest]: old, [target]: next })), /tags changed/);
+});
+
+test('installed API inventory detects missing, stale and mismatched generated templates', async t => {
+  const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-registry-api-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const installed = resolve(root, 'package');
+  const app = resolve(root, 'app');
+  const source = 'templates/angular';
+  const installedCatalog = resolve(installed, 'docs/ui-library-api.json');
+  const generatedCatalog = resolve(app, '.agents/skills/project-ui/references/docs/ui-library-api.json');
+  const generatedFile = resolve(app, '.ui/generated/angular/index.ts');
+  for (const path of [resolve(installed, source), resolve(installedCatalog, '..'), resolve(generatedCatalog, '..'), resolve(generatedFile, '..')]) {
+    await mkdir(path, { recursive: true });
+  }
+  const bytes = 'export const example = true;\n';
+  const entry = { path: source + '/index.ts', sha256: createHash('sha256').update(bytes).digest('hex') };
+  const catalog = files => JSON.stringify({ schema_version: 1, source, source_count: files.length, files });
+  await writeFile(resolve(installed, entry.path), bytes);
+  await writeFile(generatedFile, bytes);
+  await writeFile(installedCatalog, catalog([]));
+  await assert.rejects(verifyInstalledApiCatalog(installed, app), /does not cover all/);
+  await writeFile(installedCatalog, catalog([{ ...entry, sha256: '0'.repeat(64) }]));
+  await assert.rejects(verifyInstalledApiCatalog(installed, app), /API catalog digest mismatch/);
+  await writeFile(installedCatalog, catalog([entry]));
+  await writeFile(generatedCatalog, catalog([entry]));
+  assert.equal((await verifyInstalledApiCatalog(installed, app)).files, 1);
+  await writeFile(generatedFile, 'export const example = false;\n');
+  await assert.rejects(verifyInstalledApiCatalog(installed, app), /Generated API differs from installed template/);
 });
