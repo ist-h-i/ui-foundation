@@ -7,7 +7,7 @@ import type { SourceDiagnostic } from './types.ts';
 export function publicAngularEntries(config: Pick<FoundationConfig, 'icons'>): string[] {
   return [
     'icons.ts', 'icons/defaults.ts', ...iconDataNames.map(name => `icons/${name}.ts`),
-    'core.ts', 'forms.ts', 'layout.ts', 'disclosure.ts', 'index.ts',
+    'core.ts', 'forms.ts', 'layout.ts', 'disclosure.ts', 'step-navigation.ts', 'index.ts',
     ...(config.icons?.lucide_interop ? [lucideInteropEntry] : []),
   ];
 }

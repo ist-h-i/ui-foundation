@@ -1,5 +1,5 @@
 import { afterNextRender, booleanAttribute, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, untracked } from '@angular/core';
-import { canRequestStep, validateStepNavigation, type StepNavigationItem } from './step-navigation-model';
+import { canRequestStep, validateStepNavigation, validateCurrentStepLabel, type StepNavigationItem } from './step-navigation-model';
 import { layoutKeyword } from './layout-model';
 import { restoreFocus } from './focus';
 export type { StepNavigationItem, StepNavigationStatus } from './step-navigation-model';
@@ -12,29 +12,32 @@ export type { StepNavigationItem, StepNavigationStatus } from './step-navigation
   host: { role: 'group', tabindex: '-1', '[attr.aria-label]': 'checkedLabel()', '[attr.aria-busy]': 'busy() ? "true" : null' },
   template: `
     <ol role="list" [attr.data-direction]="checkedDirection()">
-      @for (item of checkedItems(); track item.id) {
+      @for (item of checkedItems(); track item.id; let index = $index) {
         <li [attr.aria-current]="item.id === currentId() ? 'step' : null" [attr.data-status]="item.status">
           @if (item.navigable) {
             <button type="button" [attr.data-step-id]="item.id" [disabled]="!available(item)" (click)="request(item.id)">
-              <span class="ui-step-label">{{item.label}}</span>
+              <span class="ui-step-label">{{index + 1}}. {{item.label}}</span>
               <span class="ui-step-status">{{item.statusLabel}}</span>
+              @if (item.id === currentId()) { <span class="ui-step-current">{{checkedCurrentLabel()}}</span> }
             </button>
           } @else {
-            <span class="ui-step-label">{{item.label}}</span>
+            <span class="ui-step-label">{{index + 1}}. {{item.label}}</span>
             <span class="ui-step-status">{{item.statusLabel}}</span>
+            @if (item.id === currentId()) { <span class="ui-step-current">{{checkedCurrentLabel()}}</span> }
           }
         </li>
       }
     </ol>
   `,
   styles: `
-    :host { display:block; min-inline-size:0; color:var(--ui-color-text); }
+    :host { display:block; min-inline-size:0; color:var(--ui-color-text); background:var(--ui-color-surface); }
     :host([hidden]) { display:none; }
     ol { display:flex; flex-wrap:wrap; gap:var(--ui-space-control-gap); padding:0; margin:0; list-style:none; }
     ol[data-direction="vertical"] { flex-direction:column; align-items:start; }
     li { min-inline-size:0; max-inline-size:100%; padding:var(--ui-space-control-gap); border-inline-start:var(--ui-border-control) solid var(--ui-color-border); overflow-wrap:anywhere; }
     li[aria-current="step"] { border-inline-start-color:var(--ui-color-focus); font-weight:var(--ui-weight-heading); }
-    .ui-step-label,.ui-step-status { display:block; }
+    .ui-step-label,.ui-step-status,.ui-step-current { display:block; }
+    .ui-step-current { font-weight:var(--ui-weight-heading); }
     .ui-step-status { font-size:var(--ui-text-small); color:var(--ui-color-muted); }
     li[data-status="error"] .ui-step-status { color:var(--ui-color-danger); background:var(--ui-color-surface); }
     li[data-status="complete"] .ui-step-status { color:var(--ui-color-success); background:var(--ui-color-success-surface); }
@@ -47,6 +50,9 @@ export class StepNavigation {
   readonly label = input.required<string>();
   readonly items = input.required<readonly StepNavigationItem[]>();
   readonly currentId = input<string | null>(null);
+  /** Translated visible current-step marker, independent of the operation status. */
+  readonly currentLabel = input.required<string>();
+  protected readonly checkedCurrentLabel = computed(() => validateCurrentStepLabel(this.currentLabel()));
   readonly direction = input<'horizontal' | 'vertical'>('horizontal');
   readonly busy = input(false, { transform: booleanAttribute });
   readonly stepRequested = output<string>();

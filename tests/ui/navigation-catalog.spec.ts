@@ -8,12 +8,16 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
   const steps=page.getByRole('group',{name:'申請の進行状況',exact:true});
   const current=steps.locator('[aria-current="step"]');
   await expect(current).toContainText('要修正');
+  await expect(current).toContainText('現在の段階');
+  await expect(steps.getByText('現在の段階',{exact:true})).toHaveCount(1);
   const details=steps.getByRole('button',{name:/基本情報/});
   await details.evaluate(el=>{el.dispatchEvent(new MouseEvent('click',{bubbles:true}));el.dispatchEvent(new MouseEvent('click',{bubbles:true}));});
   await expect(page.getByTestId('step-requests')).toHaveText('1 / details');
   await expect(current).toContainText('確認');
   await page.getByTestId('step-approve').click();
   await expect(current).toContainText('基本情報');
+  await expect(current).toContainText('現在の段階');
+  await expect(steps.getByText('現在の段階',{exact:true})).toHaveCount(1);
   const review=steps.getByRole('button',{name:/確認.*要修正/});
   await review.focus();await expect(review).toBeFocused();
   await page.getByTestId('step-busy').dispatchEvent('click');await expect(review).toBeDisabled();await expect(steps).toBeFocused();

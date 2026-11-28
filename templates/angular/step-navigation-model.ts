@@ -29,3 +29,9 @@ export function validateStepNavigation(items: readonly StepNavigationItem[], cur
 export function canRequestStep(item: StepNavigationItem, currentId: string | null, busy: boolean): boolean {
   return item.navigable === true && item.disabled !== true && item.id !== currentId && !busy;
 }
+
+/** Current location is separate from a step's status; callers supply localized text. */
+export function validateCurrentStepLabel(label: unknown): string {
+  if (typeof label !== 'string' || !label.trim()) throw new Error('StepNavigation requires a nonempty current label');
+  return label;
+}

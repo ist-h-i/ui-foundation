@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { canRequestStep, validateStepNavigation, type StepNavigationItem } from '../../templates/angular/step-navigation-model.ts';
+import { canRequestStep, validateStepNavigation, validateCurrentStepLabel, type StepNavigationItem } from '../../templates/angular/step-navigation-model.ts';
 
 const items: readonly StepNavigationItem[] = [
   { id: 'first', label: 'First', status: 'complete', statusLabel: 'Complete', navigable: true },
@@ -29,4 +29,11 @@ test('untyped input rejects invalid availability and preserves explicit state la
   assert.throws(() => validateStepNavigation([{ ...items[0], disabled: 0 as unknown as boolean }], null), /availability/);
   assert.throws(() => validateStepNavigation([{ ...items[0], status: 'done' as StepNavigationItem['status'] }], null), /Unknown step status/);
   assert.throws(() => validateStepNavigation([{ ...items[0], id: 1 as unknown as string }], null), /Step IDs/);
+});
+
+
+test('the current-step marker is explicit, independent of status and supplied by the app', () => {
+  assert.equal(validateCurrentStepLabel('Current step'), 'Current step');
+  assert.equal(validateCurrentStepLabel('現在の段階'), '現在の段階');
+  for (const value of ['', '  ', null, 1]) assert.throws(() => validateCurrentStepLabel(value), /current label/);
 });
