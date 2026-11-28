@@ -50,6 +50,24 @@ for(const profile of ['guided','dense'])test.describe('表示カタログ '+prof
   expect(geometry.wraps).toBe(true);
   expect(geometry.itemGap).toBeGreaterThan(0);
   expect(geometry.sectionGap).toBeGreaterThan(geometry.itemGap);
+
+  await page.getByLabel('プロファイル',{exact:true}).selectOption(profile);
+  await page.getByLabel('内側で別のプロファイルを使う',{exact:true}).uncheck();
+  await expect(inner).not.toHaveAttribute('data-ui-profile');
+  const sameProfile = await region.evaluate(root => {
+   const size = (element: Element) => parseFloat(getComputedStyle(element).fontSize);
+   const nested = root.querySelector('[data-testid="body-spacing"]')!;
+   return {
+    title: size(root.querySelector('h2[uiTypography="page-title"]')!),
+    section: size(nested.children[0]!),
+    subheading: size(nested.children[1]!),
+    wide: parseFloat(getComputedStyle(root).rowGap),
+    normal: parseFloat(getComputedStyle(nested).rowGap),
+   };
+  });
+  expect(sameProfile.title).toBeGreaterThan(sameProfile.section);
+  expect(sameProfile.section).toBeGreaterThan(sameProfile.subheading);
+  expect(sameProfile.wide).toBeGreaterThan(sameProfile.normal);
  });
 
  test('Badgeは全件数を説明し、上限/0件/dot/論理位置を切替える',async({page})=>{
