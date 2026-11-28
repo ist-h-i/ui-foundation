@@ -67,6 +67,7 @@ export class AnchorNavigation {
     private cleanup: (() => void) | null = null;
     private paddingMeasure: { box: HTMLElement; marker: HTMLElement } | null = null;
     protected readonly entries = computed(() => {
+        this.revision();
         const flat: AnchorNavigationItem[] = [];
         const ids = new Set<string>();
         const visit = (items: readonly AnchorNavigationItem[]): void => {

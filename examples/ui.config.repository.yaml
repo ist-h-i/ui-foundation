@@ -1833,8 +1833,8 @@ checks:
     - file: templates/angular/anchor-navigation.ts
       rule: unresolved
       source: '[style.inset-block-start.px]="checkedOffset()"'
-      line: 10
-      column: 104
+      line: 12
+      column: 122
       reason: "[D002] 固定/sticky
         navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffset\
         はNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非nega\
@@ -1844,8 +1844,8 @@ checks:
     - file: templates/angular/anchor-navigation.ts
       rule: unresolved
       source: "[style.--ui-anchor-offset]=\"checkedOffset()+'px'\""
-      line: 10
-      column: 104
+      line: 12
+      column: 122
       reason: "[D003] 固定/sticky
         navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffset\
         はNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非nega\
@@ -1855,7 +1855,7 @@ checks:
     - file: templates/angular/anchor-navigation.ts
       rule: unresolved
       source: target.style.setProperty('scroll-margin-block-start', margin);
-      line: 73
+      line: 119
       column: 25
       reason: "[D005] 固定/sticky
         navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffset\
@@ -2144,13 +2144,13 @@ checks:
     - file: "templates/angular/anchor-navigation.ts"
       rule: "unresolved"
       source: "box.style.height = height + 'px';"
-      line: 169
+      line: 215
       column: 49
       reason: "[D007] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: "templates/angular/anchor-navigation.ts"
       rule: "unresolved"
       source: "marker.style.top = css;"
-      line: 170
+      line: 216
       column: 39
       reason: "[D008] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: "templates/angular/command-palette.ts"
