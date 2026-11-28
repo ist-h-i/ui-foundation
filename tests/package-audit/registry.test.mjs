@@ -51,6 +51,11 @@ test('registry checks distinguish unpublished, candidate and latest', () => {
   assert.throws(() => assertStage(unpublished, { stage: 'before-publish', previousLatest, candidateTag: 'latest' }), /separate candidate tag/);
   assert.throws(() => assertStage(unpublished, { stage: 'before-publish', previousLatest: '', candidateTag }), /previous-latest/);
   assert.throws(() => state({ latest: target }, {}), /missing version/);
+  assert.throws(() => state({ latest: previousLatest }, { [previousLatest]: old, [target]: null }), /Malformed registry version record/);
+  const noLatest = state({ [candidateTag]: target }, { [target]: next });
+  assertStage(noLatest, { stage: 'candidate-published', previousLatest: 'none', candidateTag });
+  assert.throws(() => assertStage(noLatest, { stage: 'candidate-published', previousLatest: 'none', candidateTag, normalVersion: target }),
+    /normal install already resolves to the candidate/);
   assert.throws(() => assertStage(state({ latest: previousLatest }, { [previousLatest]: old, [target]: next }), { stage: 'candidate-published', previousLatest, candidateTag }), /Candidate tag/);
 });
 

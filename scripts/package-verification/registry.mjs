@@ -19,6 +19,7 @@ const isDigest = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(val
 export function registryState(document, target, registryStatus = 'found') {
   const tags = canonicalTags(document['dist-tags'] ?? {});
   const versions = document.versions ?? {};
+  assert.ok(isRecord(versions) && Object.values(versions).every(isRecord), 'Malformed registry version record');
   for (const [tag, version] of Object.entries(tags)) assert.ok(Object.hasOwn(versions, version), `Tag ${tag} points to a missing version`);
   const metadata = Object.hasOwn(versions, target) ? versions[target] : null;
   return { registryStatus, tags, versions: Object.keys(versions).sort(), target,
@@ -39,7 +40,7 @@ export function assertRegistryUnchanged(before, after) {
   assert.equal(after.publishedAt, before.publishedAt, 'Target publication time changed during verification');
 }
 
-export function assertStage(state, { stage, previousLatest, candidateTag }) {
+export function assertStage(state, { stage, previousLatest, candidateTag, normalVersion }) {
   if (stage === 'observe') return;
   assert.ok(['before-publish', 'candidate-published', 'latest'].includes(stage), 'Unsupported stage');
   if (stage === 'latest') {
@@ -54,6 +55,7 @@ export function assertStage(state, { stage, previousLatest, candidateTag }) {
   else {
     assert.notEqual(state.targetState, 'unpublished', 'Target is not published');
     assert.equal(state.tags[candidateTag], state.target, 'Candidate tag must point to target');
+    assert.notEqual(normalVersion, state.target, 'A normal install already resolves to the candidate');
   }
 }
 
@@ -233,23 +235,36 @@ async function probe(root, name, specification, label, expectedVersion, document
   await writeFile(globalConfig, '');
   // Developer tag, scoped registry and lock settings must not influence this observation.
   const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !/^(?:npm_config_|node_env$|node_options$|node_path$)/i.test(key)));
-  execFileSync('npm', ['install', '--save-dev', '--ignore-scripts', '--no-audit', '--no-fund', '--prefer-online',
-    '--registry=' + registry, '--userconfig', userConfig, '--globalconfig', globalConfig,
-    '--tag=latest', '--package-lock=true', '--include=dev', '--cache', resolve(root, label, 'cache'), '--fetch-retries=0', specification],
-    { cwd: app, env, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
+  try {
+    execFileSync('npm', ['install', '--json', '--save-dev', '--ignore-scripts', '--no-audit', '--no-fund', '--prefer-online',
+      '--registry=' + registry, '--userconfig', userConfig, '--globalconfig', globalConfig,
+      '--tag=latest', '--package-lock=true', '--include=dev', '--cache', resolve(root, label, 'cache'), '--fetch-retries=0', specification],
+      { cwd: app, env, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (error) {
+    if (expectedVersion === null && error.status === 1) {
+      let response;
+      try { response = JSON.parse(error.stdout); } catch { throw error; }
+      if (response?.error?.code === 'ETARGET' && response.error.summary === `No matching version found for ${specification}@*.`) {
+        return { specification, resolution: 'no-compatible-version' };
+      }
+    }
+    throw error;
+  }
   const installedRoot = resolve(app, 'node_modules', name);
   const metadata = JSON.parse(await readFile(resolve(installedRoot, 'package.json'), 'utf8'));
   const lock = JSON.parse(await readFile(resolve(app, 'package-lock.json'), 'utf8'));
   assert.equal(metadata.name, name);
   const locked = lock.packages[`node_modules/${name}`];
-  verifyInstallMetadata(metadata, locked, expectedVersion, document.versions[expectedVersion].dist);
+  const version = expectedVersion ?? metadata.version;
+  assert.ok(Object.hasOwn(document.versions, version), 'Resolved version is absent from the official registry snapshot');
+  verifyInstallMetadata(metadata, locked, version, document.versions[version].dist);
   const docs = ['README.md', 'README.ja.md', ...(metadata.files ?? []).filter(path => path.startsWith('docs/')), 'skills/ui-development/SKILL.md'];
   const documentation = Object.fromEntries(await Promise.all(docs.map(async path => [path, hash('sha256', await readFile(resolve(installedRoot, path)), 'hex')])));
   // Older latest versions have their own contract. Do not impose current docs on them.
-  if (expectedVersion === target) {
+  if (version === target) {
     await verifyReleaseVersionDocumentation(installedRoot);
   }
-  const generation = await verifyInstalledGeneration(app, installedRoot, metadata, expectedVersion === target);
+  const generation = await verifyInstalledGeneration(app, installedRoot, metadata, version === target);
   return { specification, version: metadata.version, integrity: locked.integrity, resolved: locked.resolved, documentation, generation };
 }
 
@@ -280,12 +295,14 @@ async function main() {
     const { registryStatus, document } = await readRegistryPackage(name);
     const state = registryState(document, target, registryStatus);
     Object.assign(report, state);
-    assertStage(state, { stage: values.stage, previousLatest: values['previous-latest'], candidateTag: report.candidateTag });
+    const gate = { stage: values.stage, previousLatest: values['previous-latest'], candidateTag: report.candidateTag };
+    assertStage(state, gate);
     if (candidate && state.targetState !== 'unpublished') assert.equal(state.targetIntegrity, report.candidateIntegrity, 'Published bytes differ from frozen candidate');
     report.installs = {};
-    if (state.latest) {
+    if (state.versions.length) {
       report.operation = 'default-install-and-generation';
       report.installs.default = await probe(root, name, name, 'default', state.latest, document, target);
+      assertStage(state, { ...gate, normalVersion: report.installs.default.version });
     }
     if (state.targetState !== 'unpublished') {
       report.operation = 'fixed-install-and-generation';
