@@ -67,6 +67,27 @@ for(const profile of ['guided','dense'])test.describe(`structured forms ${profil
   await expect(checkbox).toBeChecked();
  });
 
+ test('a wrapped projected checkbox retains its inline label and can move the hint before the row', async ({ page }) => {
+  const checkbox = page.locator('#native-wrapped-check');
+  const field = page.locator('ui-form-field').filter({ has: checkbox });
+  const label = field.locator('label');
+  const hint = field.locator('.ui-form-field-hint');
+  const wrappedPosition = () => checkbox.evaluate(element => {
+   const bounds = element.getBoundingClientRect();
+   const label = element.closest('ui-form-field')!.querySelector('label')!.getBoundingClientRect();
+   const hint = element.closest('ui-form-field')!.querySelector('.ui-form-field-hint')!.getBoundingClientRect();
+   return { inline: bounds.y >= label.y && bounds.y < label.bottom, hintBefore: hint.bottom <= label.y };
+  });
+  await expect(field).toHaveCSS('display', 'grid');
+  await expect(checkbox).toHaveAttribute('aria-describedby', 'native-wrapped-check-hint');
+  await expect(hint).toBeVisible();
+  await expect.poll(wrappedPosition).toEqual({ inline: true, hintBefore: false });
+  await page.getByLabel('横並びのラベル', { exact: true }).check();
+  await expect.poll(wrappedPosition).toEqual({ inline: true, hintBefore: true });
+  await label.click();
+  await expect(checkbox).toBeChecked();
+ });
+
  test('mask inserts its fixed separator while retaining leading zeros in the form value',async({page})=>{
   const editor=page.locator('#structured-mask');await editor.pressSequentially('00123');await expect(editor).toHaveValue('001-23');await expectValues(page,{mask:'00123'});await expect(editor).not.toHaveAttribute('aria-invalid');await expect(page.locator('ui-masked-input').first()).toContainText('___-__');
  });

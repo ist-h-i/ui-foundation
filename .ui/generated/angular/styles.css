@@ -97,10 +97,10 @@
 }
 .ui-form-field-hint { color: var(--ui-color-muted); }
 .ui-form-field-error { color: var(--ui-color-danger); }
-.ui-form-field:not(:has(> input.ui-field-control[type="checkbox"])) { display:var(--ui-field-label-layout,var(--ui-form-label-layout,block)); grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none)); column-gap:var(--ui-space-control-gap); align-items:start; }
-.ui-form-field:not(:has(> input.ui-field-control[type="checkbox"])) > .ui-form-field-label { grid-column:1; grid-row:1; }
-.ui-form-field:not(:has(> input.ui-field-control[type="checkbox"])) > :not(.ui-form-field-label) { grid-column:2; min-inline-size:0; }
-@media(max-width:40rem){.ui-form-field:not(:has(> input.ui-field-control[type="checkbox"])) { display:block; }}
+.ui-form-field:not(:has(input[type="checkbox"])) { display:var(--ui-field-label-layout,var(--ui-form-label-layout,block)); grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none)); column-gap:var(--ui-space-control-gap); align-items:start; }
+.ui-form-field:not(:has(input[type="checkbox"])) > .ui-form-field-label { grid-column:1; grid-row:1; }
+.ui-form-field:not(:has(input[type="checkbox"])) > :not(.ui-form-field-label) { grid-column:2; min-inline-size:0; }
+@media(max-width:40rem){.ui-form-field:not(:has(input[type="checkbox"])) { display:block; }}
 .ui-field-control {
   box-sizing: border-box;
   max-inline-size: 100%;
@@ -130,12 +130,12 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   margin: var(--ui-space-control-gap);
   accent-color: var(--ui-color-action);
 }
-.ui-form-field:not([hidden]):has(> input.ui-field-control[type="checkbox"]) {
+.ui-form-field:not([hidden]):has(input.ui-field-control[type="checkbox"]) {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
 }
-.ui-form-field:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-label {
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label {
   grid-column: 2;
   grid-row: 1;
   display: flex;
@@ -144,15 +144,15 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
   margin-block-end: 0;
   cursor: pointer;
 }
-.ui-form-field:has(> input.ui-field-control[type="checkbox"]) > input.ui-field-control[type="checkbox"] { grid-column: 1; grid-row: 1; }
-.ui-form-field:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-hint,
-.ui-form-field:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-error { grid-column: 1 / -1; }
-.ui-form-field[data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) { grid-template-columns:minmax(0,1fr); }
-.ui-form-field[data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-column:1; grid-row:1; }
-.ui-form-field[data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) > input.ui-field-control[type="checkbox"] { grid-column:1; grid-row:2; }
-.ui-form-field[data-label-position="inline"]:has(> input.ui-field-control[type="checkbox"]) { grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr); gap:var(--ui-space-control-gap); }
-.ui-form-field[data-label-position="inline"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-column:1; grid-row:1; }
-.ui-form-field[data-label-position="inline"]:has(> input.ui-field-control[type="checkbox"]) > input.ui-field-control[type="checkbox"] { grid-column:2; grid-row:1; }
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) input { grid-column: 1; grid-row: 1; }
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-hint,
+.ui-form-field:has(input.ui-field-control[type="checkbox"]) .ui-form-field-error { grid-column: 1 / -1; }
+.ui-form-field[data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) { grid-template-columns:minmax(0,1fr); }
+.ui-form-field[data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label { grid-column:1; grid-row:1; }
+.ui-form-field[data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) input { grid-column:1; grid-row:2; }
+.ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) { grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr); gap:var(--ui-space-control-gap); }
+.ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label { grid-column:1; grid-row:1; }
+.ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) input { grid-column:2; grid-row:1; }
 /* Width applies only to the native editor. Counts, tokens, hints, error text
    and adjacent action buttons keep their available layout width. */
 .ui-field-control[data-field-width="characters"]:not([type="checkbox"]):not([type="radio"]) {
@@ -173,12 +173,12 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 .ui-form-field[data-hint-position="before"] > .ui-form-field-hint { margin-block: 0 var(--ui-space-control-gap); }
 /* For inline checkbox/switch layouts keep the associated label and control in
    the same row, with the constraint above that row. */
-.ui-form-field[data-hint-position="before"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:1; grid-column:1 / -1; }
-.ui-form-field[data-hint-position="before"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-label,
-.ui-form-field[data-hint-position="before"]:has(> input.ui-field-control[type="checkbox"]) > input.ui-field-control[type="checkbox"] { grid-row:2; }
-.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-row:1; }
-.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:2; }
-.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(> input.ui-field-control[type="checkbox"]) > input.ui-field-control[type="checkbox"] { grid-row:3; }
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:1; grid-column:1 / -1; }
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label,
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-row:1; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:3; }
 .ui-field-control[aria-invalid="true"] { border-color: var(--ui-color-danger); }
 .ui-field-control:disabled { background: var(--ui-color-disabled-surface); color: var(--ui-color-muted); }
 

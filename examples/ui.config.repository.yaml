@@ -907,7 +907,7 @@ checks:
       reason: 対象領域の中心へ合わせる相対配置座標。要素の可変寸法に追随させ、固定UI余白としては使わない。
     - file: templates/angular/styles.css
       rule: literal-token
-      source: .ui-form-field[data-label-position="inline"]:has(> input.ui-field-control[type="checkbox"]){grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%)
+      source: .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]){grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%)
         minmax(0,1fr)}
       reason: inline formのラベルが入力領域を奪わないよう親幅40%を上限とする配置比率。基準ラベル幅はsize.form-labelへ接続する。
     - file: templates/angular/styles.css
@@ -2227,9 +2227,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 99
-      column: 124
-      source: ".ui-form-field:not(:has(> input.ui-field-control[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
+      source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。
     - {"file": "tests/fixture-app/foundation-catalog.ts", "rule": "generated-internal-import", "source": "'../../.ui/generated/angular/locale-model'", "line": 5, "column": 36, "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。"}
     - {"file": "tests/fixture-app/foundation-catalog.ts", "rule": "generated-internal-import", "source": "'../../.ui/generated/angular/date-range-picker'", "line": 6, "column": 46, "reason": "開発元の部品別fixtureが生成直後の部品・内部モデル・依存の境界を直接検証する import。公開入口を使う利用アプリの試験とは分け、対象部品や参照先を変更するときに再確認する。"}
