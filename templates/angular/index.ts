@@ -25,6 +25,7 @@ export { Slider, RangeSlider, Knob, Rating, ColorPicker, type SliderTick, type C
 export { numberDomain, snapNumber, numericValueError, numericRangeError, parseColor, formatColor, type NumberDomain, type NumericRange, type RgbaColor, type ColorFormat } from './choice-model';
 export { InlineEdit, type InlineEditRequest } from './inline-edit';
 export { Wizard, WizardStep, type WizardTransition } from './wizard';
+export { StepNavigation, type StepNavigationItem, type StepNavigationStatus } from './step-navigation';
 export { FilterBuilder, FilterGroupContext, type FilterTemplateContext, type FilterSaveRequest } from './filter-builder';
 export { emptyFilter, filterOperators, filterProblems, compileFilter, cloneFilter, editFilter, removeFilter, type FilterFieldType, type FilterOperator, type FilterField, type FilterRule, type FilterGroup, type FilterNode, type FilterProblem } from './filter-model';
 export { Checkbox, Switch, Select, MultiSelect, Combobox, ComboboxOption, type ComboboxOptionContext, type SelectOption } from './selection-input';

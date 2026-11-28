@@ -2858,17 +2858,17 @@
           "source": "[style.min-inline-size]=\"minimumInline()\""
         },
         {
-          "column": 104,
+          "column": 122,
           "file": "templates/angular/anchor-navigation.ts",
-          "line": 10,
+          "line": 12,
           "reason": "[D002] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.inset-block-start.px]=\"checkedOffset()\""
         },
         {
-          "column": 104,
+          "column": 122,
           "file": "templates/angular/anchor-navigation.ts",
-          "line": 10,
+          "line": 12,
           "reason": "[D003] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.--ui-anchor-offset]=\"checkedOffset()+'px'\""
@@ -2876,7 +2876,7 @@
         {
           "column": 25,
           "file": "templates/angular/anchor-navigation.ts",
-          "line": 73,
+          "line": 119,
           "reason": "[D005] 固定/sticky navigationと移動先のscroll-marginに同じ明示offsetを使い、覆われる領域を避ける構造座標。checkedOffsetはNumber.isFiniteとoffset>=0を検査してからreturnし、marginはその値+pxだけから生成する。任意の非negative pxをsemantic tokenへ閉じる証明ではない。残余リスクは大きなoffsetによる可視領域不足、外部targetへの書込、CSS/scroll-rootとの合成。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "target.style.setProperty('scroll-margin-block-start', margin);"
@@ -3124,7 +3124,7 @@
         {
           "column": 49,
           "file": "templates/angular/anchor-navigation.ts",
-          "line": 169,
+          "line": 215,
           "reason": "[D007] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
           "rule": "unresolved",
           "source": "box.style.height = height + 'px';"
@@ -3132,7 +3132,7 @@
         {
           "column": 39,
           "file": "templates/angular/anchor-navigation.ts",
-          "line": 170,
+          "line": 216,
           "reason": "[D008] scrollPaddingBlockStartのcalc等をnative layoutで測る不可視・aria-hidden・pointer-events:none・zero-widthの専用probe。box heightはscroll rootのclientHeight、marker topはそのrootのcomputed scroll-paddingを受け、computed topを読んで非負数値のscroll位置計算へ返す。可視UIのpadding/寸法を承認せず、測定専用DOMの座標変換として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
           "rule": "unresolved",
           "source": "marker.style.top = css;"
@@ -3800,7 +3800,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "b7e2ee27f35da4f62709f220866d3dd177855952bb3e3e4b7d420614e30fd06d",
+    "configuration_hash": "76c9301e20793056a1c0a24e2a958eec0dec4833491f4e2a770814eee4b9dfcb",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
@@ -4821,6 +4821,12 @@
         "kind": "component",
         "name": "Spreadsheet",
         "selector": "ui-spreadsheet"
+      },
+      {
+        "file": ".ui/generated/angular/step-navigation.ts",
+        "kind": "component",
+        "name": "StepNavigation",
+        "selector": "ui-step-navigation"
       },
       {
         "file": ".ui/generated/angular/structured-input.ts",

@@ -36,18 +36,23 @@ const integratedDialogReview: {
 } = JSON.parse(await readFile(resolve(directory, 'integrated-dialog-reaudit.json'), 'utf8'));
 const formAppearanceReview: GeometryReview =
   JSON.parse(await readFile(resolve(directory, 'form-appearance-reaudit.json'), 'utf8'));
+const anchorReview: Pick<GeometryReview, 'dependencies'> & {
+  prior_geometry_audit_sha256: string;
+  geometry_positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
+} = JSON.parse(await readFile(resolve(directory, 'anchor-navigation-reaudit.json'), 'utf8'));
 const originalApprovals: Approval[] = audit.eligible;
 const approvedIds = new Set(originalApprovals.map(item => item.id));
-for (const id of Object.keys(actionAppearanceReview.positions)) assert.ok(approvedIds.has(id), id);
+const positions = {...actionAppearanceReview.positions, ...anchorReview.geometry_positions};
+for (const id of Object.keys(positions)) assert.ok(approvedIds.has(id), id);
 const approvals = originalApprovals.map(item => {
-  const position = actionAppearanceReview.positions[item.id];
+  const position = positions[item.id];
   return position ? {...item, exception:{...item.exception, ...position}, diagnostic:{...item.diagnostic, ...position}} : item;
 });
 const example=await readFile(resolve(root,'examples/ui.config.repository.yaml'),'utf8');
 const digest=(data:Uint8Array)=>createHash('sha256').update(data).digest('hex');
 const dependencies=new Map<string,string>();
 for(const item of approvals)for(const[file,hash]of Object.entries(item.proof_sha256)){assert.ok(!dependencies.has(file)||dependencies.get(file)===hash);dependencies.set(file,hash);}
-for (const audit of [messageReview, actionAppearanceReview, formAppearanceReview]) {
+for (const audit of [messageReview, actionAppearanceReview, formAppearanceReview, anchorReview]) {
   for (const [file, review] of Object.entries(audit.dependencies)) {
     assert.equal(dependencies.get(file), review.prior_sha256, `${file}: re-audit must start at the previous proof`);
     assert.ok(review.judgment.trim(), `${file}: missing geometry purpose review`);
@@ -80,6 +85,9 @@ test('only the fourteen audited geometry purposes are configured, retaining Unkn
  assert.equal(digest(typographyReviewBytes),integratedDialogReview.typography_audit_sha256,'historical Typography audit changed');
  assert.equal(digest(messageReviewBytes),formAppearanceReview.prior_audit_sha256,'prior geometry re-audit changed');
  assert.deepEqual(Object.keys(formAppearanceReview.dependencies),['templates/angular/selection-input.ts']);
+ assert.equal(digest(messageReviewBytes),anchorReview.prior_geometry_audit_sha256,'historical message geometry audit changed');
+ assert.deepEqual(Object.keys(anchorReview.dependencies),['templates/angular/anchor-navigation.ts']);
+ assert.deepEqual(Object.keys(anchorReview.geometry_positions).sort(),['D007','D008']);
  const baseline=JSON.parse(await readFile(resolve(root,audit.source_report),'utf8'));
  assert.equal(digest(await readFile(resolve(root,audit.source_report))),audit.source_report_sha256);
  for(const item of approvals){

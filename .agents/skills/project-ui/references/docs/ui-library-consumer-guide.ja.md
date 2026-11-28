@@ -240,6 +240,7 @@ Tailwind v4を処理するビルド環境が必要です。生成部品のTypeSc
 | `angular/forms.ts` | テキスト入力、複数行入力、ラベル付きのネイティブ入力欄を使う。 |
 | `angular/layout.ts` | `Stack` などの配置部品とレイアウト用の型を使う。 |
 | `angular/disclosure.ts` | `Disclosure` で内容を開閉する。 |
+| `angular/step-navigation.ts` | 導入した版にこの入口がある場合、個別に読み込んで手続きの進行状況を表示できる。 |
 | `angular/index.ts` | ほかの部品を使う場合や、全件の Angular API が必要な場合に使う。 |
 
 `layout` と `disclosure` は `@angular/core` と共通の生成トークン・部品用 CSS を使います。この2つの入口だけを利用するアプリでは、CDK や専門部品向けの依存は不要です。

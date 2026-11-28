@@ -1,4 +1,5 @@
 import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, input, output, signal, untracked, booleanAttribute } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { NavigationItem } from './navigation';
 import { validNavigationId } from './navigation-model';
 import { canFocus } from './focus';
@@ -6,12 +7,42 @@ export interface AnchorNavigationItem {
     id: string;
     label: string;
     target: HTMLElement | null;
+    children?: readonly AnchorNavigationItem[];
 }
-@Component({ selector: 'ui-anchor-navigation', standalone: true, imports: [NavigationItem], host: { '[attr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': "checkedOffset()+'px'" }, changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<nav [attr.aria-label]="label()" ><ul>@for(item of entries();track item.id){<li><a uiNavigationItem [attr.href]="available(item.target)?'#'+encode(item.target!.id):null" [attr.role]="available(item.target)?null:'link'" [attr.tabindex]="available(item.target)?null:0" [attr.aria-disabled]="available(item.target)?null:'true'" [attr.aria-current]="current()===item.id?'location':null" (click)="move($event,item)">{{item.label}}</a></li>}</ul></nav>`,
-    styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}nav{box-sizing:border-box;max-inline-size:100%;max-block-size:calc(100dvh - var(--ui-anchor-offset));overflow:auto;overscroll-behavior:contain;background:var(--ui-color-surface);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);padding:var(--ui-space-control-y);border-inline-start:var(--ui-border-control) solid var(--ui-color-border);}ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);padding:0;margin:0;}li{min-inline-size:0;max-inline-size:100%;}:host([data-position='sticky']){position:sticky;align-self:start;}:host([data-position='fixed']){position:fixed;z-index:1;}[aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}a[aria-current='location']{font-weight:var(--ui-weight-heading);background:var(--ui-color-background);}` })
+@Component({ selector: 'ui-anchor-navigation', standalone: true, imports: [NavigationItem, NgTemplateOutlet], host: { '[attr.data-position]': 'position()', '[style.inset-block-start.px]': 'checkedOffset()', '[style.--ui-anchor-offset]': "checkedOffset()+'px'" }, changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
+      <nav [attr.aria-label]="label()" [attr.aria-labelledby]="labelledBy()" [attr.data-hierarchical]="entries().hierarchical || null">
+        <ng-container [ngTemplateOutlet]="branch" [ngTemplateOutletContext]="{$implicit: items()}" />
+      </nav>
+      <ng-template #branch let-items>
+        <ul role="list">
+          @for (item of branchItems(items); track item.id) {
+            <li>
+              @let target = item.target;
+              @let enabled = available(target);
+              <a uiNavigationItem
+                [attr.href]="enabled && target ? '#' + encode(target.id) : null"
+                [attr.role]="enabled ? null : 'link'"
+                [attr.tabindex]="enabled ? null : 0"
+                [attr.aria-disabled]="enabled ? null : 'true'"
+                [attr.aria-current]="current() === item.id ? 'location' : null"
+                (click)="move($event, item)">{{item.label}}</a>
+              @if (item.children?.length) {
+                <ng-container [ngTemplateOutlet]="branch" [ngTemplateOutletContext]="{$implicit: item.children}" />
+              }
+            </li>
+          }
+        </ul>
+      </ng-template>
+    `,
+    styles: `:host{display:block;min-inline-size:0;max-inline-size:100%;}:host([hidden]){display:none;}nav{box-sizing:border-box;max-inline-size:100%;max-block-size:calc(100dvh - var(--ui-anchor-offset));overflow:auto;overscroll-behavior:contain;background:var(--ui-color-surface);color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);padding:var(--ui-space-control-y);border-inline-start:var(--ui-border-control) solid var(--ui-color-border);}ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);padding:0;margin:0;}li{min-inline-size:0;max-inline-size:100%;}:host([data-position='sticky']){position:sticky;align-self:start;}:host([data-position='fixed']){position:fixed;z-index:1;}[aria-disabled='true']{color:var(--ui-color-muted);cursor:not-allowed;}a[aria-current='location']{font-weight:var(--ui-weight-heading);background:var(--ui-color-background);}
+      nav[data-hierarchical] ul{display:block;}
+      li > ul{padding-inline-start:var(--ui-space-control-x);border-inline-start:var(--ui-border-control) solid var(--ui-color-border);}
+    ` })
 export class AnchorNavigation {
     readonly label = input.required<string>();
+    /** Optional ID of the visible heading or disclosure summary that names the table of contents. */
+    readonly labelledBy = input<string | null>(null);
     readonly items = input<readonly AnchorNavigationItem[]>([]);
     readonly scrollRoot = input<HTMLElement | null>(null);
     readonly offset = input(0);
@@ -35,16 +66,31 @@ export class AnchorNavigation {
     }>();
     private cleanup: (() => void) | null = null;
     private paddingMeasure: { box: HTMLElement; marker: HTMLElement } | null = null;
-    protected readonly entries = computed(() => { this.revision(); const items = this.items(), ids = new Set<string>(); for (const item of items) {
-        if (!validNavigationId(item.id) || ids.has(item.id) || !item.label.trim())
-            throw new Error('Anchor navigation requires unique IDs and labels.');
-        ids.add(item.id);
-        if (item.target && item.target.ownerDocument !== this.element.ownerDocument)
-            throw new Error('Anchor target must belong to the same document.');
-    } return items; });
+    protected readonly entries = computed(() => {
+        this.revision();
+        const flat: AnchorNavigationItem[] = [];
+        const ids = new Set<string>();
+        const visit = (items: readonly AnchorNavigationItem[]): void => {
+            for (const item of items) {
+                if (!validNavigationId(item.id) || ids.has(item.id) || !item.label.trim())
+                    throw new Error('Anchor navigation requires unique IDs and labels.');
+                ids.add(item.id);
+                if (item.target && item.target.ownerDocument !== this.element.ownerDocument)
+                    throw new Error('Anchor target must belong to the same document.');
+                flat.push(item);
+                if (item.children?.length) visit(item.children);
+            }
+        };
+        const items = this.items();
+        visit(items);
+        return { flat, hierarchical: flat.length > items.length };
+    });
+    protected branchItems(items: readonly AnchorNavigationItem[]): readonly AnchorNavigationItem[] {
+        return items;
+    }
     constructor() {
         afterRenderEffect(() => {
-            const items = this.entries(), root = this.scrollRoot(), offset = this.checkedOffset();
+            const items = this.entries().flat, root = this.scrollRoot(), offset = this.checkedOffset();
             if (!this.label().trim())
                 throw new Error('Anchor navigation requires a label.');
             if (root && (root.ownerDocument !== this.element.ownerDocument || items.some(item => item.target && !root.contains(item.target))))
@@ -170,7 +216,7 @@ export class AnchorNavigation {
         if (marker.style.top !== css) marker.style.top = css;
         return Math.max(0, parseFloat(view.getComputedStyle(marker).top) || 0);
     }
-    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.checkedOffset() + this.scrollPadding(root), items = this.items().filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
+    private track(): void { const root = this.scrollRoot(), view = this.element.ownerDocument.defaultView, top = (root ? root.getBoundingClientRect().top + root.clientTop : 0) + this.checkedOffset() + this.scrollPadding(root), items = this.entries().flat.filter(item => this.available(item.target)).sort((a, b) => a.target!.getBoundingClientRect().top - b.target!.getBoundingClientRect().top), bottom = root ? root.scrollTop + root.clientHeight >= root.scrollHeight - 1 : !!view && view.scrollY + view.innerHeight >= this.element.ownerDocument.documentElement.scrollHeight - 1; const current = (bottom ? items.at(-1)?.id : [...items].reverse().find(item => item.target!.getBoundingClientRect().top <= top + 1)?.id) ?? items[0]?.id ?? ''; if (current !== this.current()) {
         this.current.set(current);
         this.currentChange.emit(current);
     } }

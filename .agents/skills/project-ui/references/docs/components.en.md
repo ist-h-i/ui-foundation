@@ -14,7 +14,7 @@ Choose a generated Angular entry for the components you use. [Public entry point
 | Structured input | `MaskedInput`, `OTPInput`, `TagInput`, `Slider`, `RangeSlider`, `Knob`, `Rating`, `ColorPicker`, `InlineEdit`, `Wizard`, `WizardStep`, `FilterBuilder`: constrained input, editing, steps and typed recursive conditions |
 | Dates | `Calendar`, `DatePicker`, `TimePicker`, `DateTimePicker`, `MonthPicker`, `YearPicker`, `DateRangePicker`: civil dates, explicit input formats, ranges and unavailable dates |
 | Scheduling | `Scheduler`, `Agenda`, `Gantt`, `Kanban`: time/resource views, task dependencies and move requests |
-| Navigation | `Navigation`, `NavigationItem`, `Breadcrumb`, `SideNav`, `BottomNavigation`, `AnchorNavigation`, `Tabs`, `TabPanel`, `Menubar`, `MegaMenu`, `CommandPalette`: links, current state, hierarchical actions and retained panels |
+| Navigation | `Navigation`, `NavigationItem`, `Breadcrumb`, `SideNav`, `BottomNavigation`, `AnchorNavigation`, `StepNavigation`, `Tabs`, `TabPanel`, `Menubar`, `MegaMenu`, `CommandPalette`: links, contents, procedure progress, hierarchical actions and retained panels |
 | Overlays | `Dialog`, `ConfirmDialog`, `FormDialog`, `Drawer`, `Popover`, `Tooltip`, `Menu`: shared overlay lifetime, keyboard/focus handling, positioning and confirmation flows |
 | Feedback | `Alert`, `NotificationHost`, `Snackbar`, `ProgressBar`, `Spinner`, `Skeleton`, `EmptyState`: status, missing information, busy states and recovery |
 | Collections | `List`, `Masonry`, `DataView`, `Listbox`, `VirtualList`, `SortableList`, `TransferList`, `InfiniteScroll`, `Timeline`: stable-key rendering, virtualization, movement and incremental loading |

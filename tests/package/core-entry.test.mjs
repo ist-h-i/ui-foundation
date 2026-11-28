@@ -10,7 +10,7 @@ import { checkoutIsolation, run } from '../../scripts/package-verification/run.m
 
 const repository = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-test('the packed core, forms and locale example compile and bundle without specialist dependencies', { timeout: 720_000 }, async t => {
+test('the packed core, forms, step navigation and locale example compile and bundle without specialist dependencies', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-core-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'app');
@@ -51,7 +51,8 @@ test('the packed core, forms and locale example compile and bundle without speci
   await cli('init');
   await cli('sync');
   await cp(resolve(app, 'node_modules', candidate.manifest.name, 'skills/ui-development/references/examples/locale-adapter.ts'), resolve(app, 'locale-adapter.ts'));
-  await writeFile(resolve(app, 'src/main.ts'), `
+  const mainPath = resolve(app, 'src/main.ts');
+  const previousMain = `
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { ActionControl, Card, provideUiIcons, provideUiLocale } from '../.ui/generated/angular/core';
@@ -69,7 +70,8 @@ export class App {
   }
 }
 void bootstrapApplication(App, { providers: [provideUiIcons(), provideUiLocale(createLocaleAdapter().options)] });
-`);
+`;
+  await writeFile(mainPath, previousMain);
   await writeFile(resolve(app, 'src/form.ts'), `
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -124,6 +126,12 @@ export class Form { readonly note = new FormControl<string | null>(''); }
     .replace('FormField, TextInput }', 'FormField, TextInput, type TextInputMode }')
     .replace('label="Note" [formControl]', 'label="Note" hintPosition="before" hint="Reference identifier" [controlCharacters]="10" [inputMode]="inputMode" [formControl]')
     .replace('export class Form {', "export class Form { readonly inputMode: TextInputMode = 'numeric';");
+  const optionalMain = previousMain
+    .replace("import { createLocaleAdapter }", "import { StepNavigation, type StepNavigationItem } from '../.ui/generated/angular/step-navigation';\nimport { createLocaleAdapter }")
+    .replace('imports: [ActionControl, Card]', 'imports: [ActionControl, Card, StepNavigation]')
+    .replace('<button type="button"', '<ui-step-navigation label="Application progress" currentLabel="Current step" [items]="steps" currentId="draft" /><button type="button"')
+    .replace('export class App {', "export class App { readonly steps: readonly StepNavigationItem[] = [{ id: 'draft', label: 'Draft', status: 'in-progress', statusLabel: 'In progress' }];");
+  await writeFile(mainPath, optionalMain);
   await writeFile(formPath, optionalForm);
   await check();
   const output = await compileAndBundle();
@@ -134,6 +142,7 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   assert.deepEqual(output.specialistInputs, []);
   assert.deepEqual(output.specialistOutputs, []);
 
+  await writeFile(mainPath, previousMain);
   await writeFile(formPath, previousForm);
   await installOwnedPackage(published);
   await cli('sync');
@@ -149,10 +158,11 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   await install(versions);
   await cli('sync');
   assert.deepEqual(await readFile(manifestPath), candidateGenerated);
+  await writeFile(mainPath, optionalMain);
   await writeFile(formPath, optionalForm);
   for (const name of ['main.ts', 'form.ts']) {
     const path = resolve(app, 'src', name);
-    await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms)\b/g, '.ui/generated/angular/index'));
+    await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms|step-navigation)\b/g, '.ui/generated/angular/index'));
   }
   const full = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'index', ...full, specialistInputs: full.specialistInputs.length }));

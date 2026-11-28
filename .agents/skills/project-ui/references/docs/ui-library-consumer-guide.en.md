@@ -132,6 +132,7 @@ Choose the generated public entry point for your app.
 | `angular/forms.ts` | Text inputs, text areas, and labeled native form fields. |
 | `angular/layout.ts` | Layout components such as `Stack` and their layout types. |
 | `angular/disclosure.ts` | Expand and collapse content with `Disclosure`. |
+| `angular/step-navigation.ts` | Controlled procedure progress through an individual entry when the installed version generates it. |
 | `angular/index.ts` | Any other components or the complete Angular API. |
 
 `layout` and `disclosure` use `@angular/core` and the shared generated tokens and component styles. Apps using only these entries do not need CDK or specialist dependencies.

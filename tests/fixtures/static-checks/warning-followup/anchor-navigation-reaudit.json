@@ -1,0 +1,21 @@
+{
+  "source_commit": "2cb49c5ac95bef4ea114b2db965da2b6e4ce4bd1",
+  "prior_geometry_audit_sha256": "5fa91b11a3c2bba557815d0b62521e736688bf07970b9187dcc9339cb38429f9",
+  "prior_reasoned_audit_sha256": "1a09d0fa877df7262eac4f798d2aa3076adc5a7e6f588483130f8b4f7a8b6a00",
+  "dependencies": {
+    "templates/angular/anchor-navigation.ts": {
+      "prior_sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+      "current_sha256": "40ed5afc452946db821adfd65ca60e2d229d4a920bb22414cb476ad787cd0413",
+      "judgment": "D002/D003/D005. The two host bindings still use the finite, nonnegative checkedOffset at line 49. The scroll-margin write at line 119 still uses that same offset plus px. Nested entries join the existing target set after unique-ID and document checks, and the render effect still checks scroll-root containment. D007/D008. The unchanged scrollPadding method at lines 195–218 measures within an aria-hidden, noninteractive, zero-width box. Only the scrollport height and computed scroll padding reach the two assignments, and only navigation movement and tracking consume the nonnegative computed result. The destroy hook at line 143 still removes the probe. The CSS alias and arbitrary saved-margin restoration remain outside these approvals. Static values and universal runtime behavior remain Unknown."
+    }
+  },
+  "reasoned_positions": {
+    "D002": { "line": 12, "column": 122 },
+    "D003": { "line": 12, "column": 122 },
+    "D005": { "line": 119, "column": 25 }
+  },
+  "geometry_positions": {
+    "D007": { "line": 215, "column": 49 },
+    "D008": { "line": 216, "column": 39 }
+  }
+}
