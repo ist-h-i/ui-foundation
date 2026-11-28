@@ -245,17 +245,19 @@ For the full entry, install the type dependencies in the app with `npm install -
 
 ## CSS and distribution assets
 
-Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-section` uses the same spacing token.
+Use app-owned styles for page layout and spacing. For example, set the section padding in the app and choose the standard primary action style. With Tailwind, `p-section` uses the same spacing token.
 
 ```html
 <section class="app-actions">
-  <button uiAction variant="primary">Save</button>
+  <button uiAction emphasis="primary">Save</button>
 </section>
 ```
 
 ```css
 .app-actions { padding: var(--ui-space-section); }
 ```
+
+Use the current action inputs when adopting a new appearance. Existing `variant="primary"` and `variant="secondary"` bindings retain their appearance. To migrate `variant="danger"` to the equivalent appearance, use `emphasis="primary" tone="danger"`. Choose a different prominence only when the action has a different priority in its group, and use a label that describes what the action does. See the [action contract](ui-components.en.md#actioncontrol--actionlink).
 
 Load the generated `angular/specialist.css` globally for screens using specialist components. MapView also needs the CSS from the installed MapLibre version.
 

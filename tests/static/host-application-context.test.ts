@@ -231,10 +231,16 @@ test('the project label-cap exception retains the audited fixed ratio and produc
   const audit = JSON.parse(historical.toString('utf8'));
   const priorBytes = await readFile(new URL('form-label-cap-reaudit.json', evidence));
   const prior = JSON.parse(priorBytes.toString('utf8'));
-  const review = JSON.parse(await readFile(new URL('form-appearance-label-cap-reaudit.json', evidence), 'utf8'));
+  const formAppearanceBytes = await readFile(new URL('form-appearance-label-cap-reaudit.json', evidence));
+  const merged = JSON.parse(await readFile(new URL('integrated-form-label-cap-reaudit.json', evidence), 'utf8'));
+  const review = JSON.parse(formAppearanceBytes.toString('utf8'));
   const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
   assert.equal(sha256(historical), prior.prior_audit_sha256, 'historical label-cap audit changed');
   assert.equal(sha256(priorBytes), review.prior_audit_sha256, 'prior label-cap re-audit changed');
+  assert.equal(sha256(formAppearanceBytes), merged.prior_audit_sha256, 'standalone label-cap audit changed');
+  const styles = 'templates/angular/styles.css';
+  assert.equal(merged.dependency.prior_sha256, review.dependencies[styles].current_sha256);
+  assert.ok(merged.dependency.judgment.trim());
   const files = Object.keys(audit.producer_sha256);
   assert.deepEqual(Object.keys(review.dependencies).sort(), [...files].sort());
   const root = await mkdtemp(resolve(tmpdir(), 'ui-project-label-cap-'));
@@ -245,13 +251,13 @@ test('the project label-cap exception retains the audited fixed ratio and produc
     assert.equal(dependency.prior_sha256, prior.dependencies[file].current_sha256, file);
     assert.ok(dependency.judgment.trim(), file);
     const bytes = await readFile(new URL('../../' + file, import.meta.url));
-    assert.equal(sha256(bytes), dependency.current_sha256, `${file}: re-audit the structural label cap before refreshing the proof`);
+    assert.equal(sha256(bytes), file === styles ? merged.dependency.current_sha256 : dependency.current_sha256, `${file}: re-audit the structural label cap before refreshing the proof`);
     const target = resolve(root,file);
     await mkdir(resolve(target,'..'), {recursive:true});
     await writeFile(target,bytes);
   }
-  const alias = {...audit.new_diagnostic, ...review.sites.field_alias};
-  const checkbox = {...audit.existing_checkbox_exception, ...review.sites.checkbox};
+  const alias = {...audit.new_diagnostic, ...review.sites.field_alias, ...merged.positions.field_alias};
+  const checkbox = {...audit.existing_checkbox_exception, ...review.sites.checkbox, ...merged.positions.checkbox};
   assert.equal(alias.exception, prior.sites.field_alias.exception);
   assert.equal(checkbox.exception, audit.existing_checkbox_exception.exception);
   for (const [site, baseline] of [[alias, audit.new_diagnostic], [checkbox, audit.existing_checkbox_exception]]) {

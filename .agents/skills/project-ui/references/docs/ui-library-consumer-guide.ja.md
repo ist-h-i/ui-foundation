@@ -405,11 +405,11 @@ import { shape as search } from '../.ui/generated/angular/icons/search';
 
 ## CSS と配布資産
 
-画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの見た目は公開 API の `variant` で選びます。Tailwind を使う場合、`p-section` は同じ余白トークンを参照します。
+画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの強調度は公開 API の `emphasis` で選びます。Tailwind を使う場合、`p-section` は同じ余白トークンを参照します。
 
 ```html
 <section class="app-actions">
-  <button uiAction variant="primary">保存</button>
+  <button uiAction emphasis="primary">保存</button>
 </section>
 ```
 
@@ -420,6 +420,8 @@ import { shape as search } from '../.ui/generated/angular/icons/search';
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
 この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/` は全内容を配布成果物に含めます。PDF 資産を配布する場合は `assets/pdf-source/` の全内容も含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
+
+新たに見た目を指定するときは、現在の操作APIを使えます。既存の `variant="primary"` と `variant="secondary"` はそのまま使えます。`variant="danger"` を同じ表示の新APIへ移すには、`emphasis="primary" tone="danger"` を指定します。グループ内での優先度に応じて強調度を選び、操作の結果はラベルで伝えます。[操作の仕様](ui-components.md#actioncontrol--actionlink)
 
 部品の inline CSS に加え、生成した `tokens.css`、`angular/styles.css`、専門部品を使う画面では `angular/specialist.css` を global CSS として取り込みます。MapView には実使用版の `maplibre-gl/dist/maplibre-gl.css` も必要です。アプリの utility CSS も用途別セマンティックトークンを使います。primitive 値の直接参照や旧 preset/density API の互換層は追加しません。
 

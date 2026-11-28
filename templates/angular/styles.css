@@ -70,7 +70,7 @@
 .ui-action:hover { background: var(--ui-color-background); }
 .ui-action[data-variant="primary"]:hover { background: var(--ui-color-action-hover); }
 .ui-action[data-variant="danger"]:hover { background: var(--ui-color-danger-hover); }
-.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):where(:not([data-emphasis][aria-pressed="true"])) {
   box-shadow: inset 0 0 0 var(--ui-border-control) currentColor;
 }
 .ui-action:focus-visible, .ui-field-control:focus-visible, .ui-typography:focus-visible {
@@ -85,6 +85,22 @@
   background: var(--ui-color-disabled-surface);
   cursor: not-allowed;
 }
+
+/* Explicit two-axis appearance; keep legacy-only, busy and disabled rules. */
+.ui-action[data-emphasis="primary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-action); background:var(--ui-color-action); color:var(--ui-color-on-action); }
+.ui-action[data-emphasis="primary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-danger); background:var(--ui-color-danger); color:var(--ui-color-on-danger); }
+.ui-action[data-emphasis="primary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-action-hover); }
+.ui-action[data-emphasis="primary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-danger-hover); }
+.ui-action[data-emphasis="secondary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-border); background:var(--ui-color-surface); color:var(--ui-color-text); }
+.ui-action[data-emphasis="tertiary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:transparent; background:var(--ui-color-surface); color:var(--ui-color-link); }
+.ui-action[data-emphasis="secondary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-danger); background:var(--ui-color-surface); color:var(--ui-color-danger); }
+.ui-action[data-emphasis="tertiary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:transparent; background:var(--ui-color-surface); color:var(--ui-color-danger); }
+.ui-action[data-emphasis="secondary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover,
+.ui-action[data-emphasis="tertiary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-background); }
+.ui-action[data-emphasis="secondary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover,
+.ui-action[data-emphasis="tertiary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-error-surface); }
+.ui-action[data-emphasis="tertiary"] .ui-action-label { text-decoration:underline; }
+
 .ui-action-label { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; }
 .ui-action-busy { order:4; flex-shrink: 0; white-space: nowrap; font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); }
 
@@ -229,7 +245,25 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 .ui-action[data-width="full"] { inline-size:100%; }
 .ui-action-icon { display:inline-flex;flex:0 0 auto; }
 .ui-action-icon:empty { display:none; }
-.ui-icon-button[aria-pressed="true"],.ui-toggle-button[aria-pressed="true"] { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
+.ui-icon-button[aria-pressed="true"]:where(:not([data-emphasis])),.ui-toggle-button[aria-pressed="true"]:where(:not([data-emphasis])) { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
+/* Explicit emphasis and risk must not erase selection, or be erased by it.
+   Use an inset indicator that remains independent of the foreground/background. */
+.ui-action[data-emphasis][aria-pressed="true"] {
+  box-shadow:inset 0 0 0 var(--ui-border-focus) currentColor;
+}
+@media (forced-colors: active) {
+  .ui-action[data-emphasis="primary"] { border-width:calc(var(--ui-border-control) + var(--ui-border-focus)); }
+  .ui-action[data-emphasis="tertiary"] { border-style:none; }
+  .ui-action[data-emphasis][aria-pressed="true"] { position:relative; }
+  .ui-action[data-emphasis][aria-pressed="true"]::after {
+    content:"";
+    position:absolute;
+    inset:var(--ui-border-focus);
+    border:var(--ui-border-control) solid currentColor;
+    border-radius:inherit;
+    pointer-events:none;
+  }
+}
 .ui-button-group[data-connected="true"]>.ui-action { flex:1 1 auto; }
 .ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:first-child) { border-inline-start-width:0;border-start-start-radius:0;border-end-start-radius:0; }
 .ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:last-child) { border-start-end-radius:0;border-end-end-radius:0; }

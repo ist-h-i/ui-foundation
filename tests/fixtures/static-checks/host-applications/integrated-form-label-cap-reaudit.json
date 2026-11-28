@@ -1,0 +1,18 @@
+{
+  "prior_audit_sha256": "f7eefb29e3b63689d6e8e137b7bb9404ca588b2eef5b5c0b2d531a12349e0c67",
+  "positions": {
+    "field_alias": {
+      "line": 116,
+      "column": 124
+    },
+    "checkbox": {
+      "line": 169,
+      "column": 93
+    }
+  },
+  "dependency": {
+    "prior_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+    "current_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
+    "judgment": "The action rules inserted in shared CSS move the two form selectors by 16 lines. The literal 40% cap and the alternate form-level or semantic width operand are unchanged, and the field alias still requires its exact source and current position."
+  }
+}

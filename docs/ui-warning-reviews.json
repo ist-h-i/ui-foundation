@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.repository.yaml": "d161b978b73d25c8ee603d2c85eaeec5ff95e2b8d7bd97872b4574f4374f0d7d",
+    "examples/ui.config.repository.yaml": "433981129689ce9fc93f2b154c66cb1cd065fc9f96c9120e56b6be604768279e",
     "package.json": "9a519441603de893e44a637dedc7582e006c9319a12928b55808413d0bd99ad7",
     "package-lock.json": "2e9b4a777802fa1a7be87b98d9e86554de1995ef3284544d34c73f4c79eac8da",
     "src/config.ts": "a209ceff0eebb07fac142aa65103ae1284d6d718da0cbbee00538b9991cc2b63",
@@ -186,7 +186,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -300,7 +300,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -432,7 +432,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -6164,7 +6164,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "repeat(var(--ui-form-columns,1),minmax(0,1fr))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "form列数producerの正整数検証と、上書き可能なCSS consumerを分離する。consumerの全writerを網羅できないためUnknownを保持。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6178,7 +6178,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr))",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6254,7 +6254,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "gap:var(--ui-form-gap,var(--ui-space-field))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "producer側gapは0/semantic3種へ限定済み。既存7px!importantが勝つ契約があるためconsumerを有限意味tokenだけだとは認定しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6268,7 +6268,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "gap: var(--ui-form-gap, var(--ui-space-field))",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6333,7 +6333,7 @@
       "id": "D141",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 100,
+        "line": 116,
         "column": 52,
         "rule": "unresolved",
         "severity": "warning",
@@ -6344,7 +6344,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "通常producerはgrid/block/nullでもglobal aliasの継承・app上書きと:has/media分岐が残る。構造keywordの許可だけで全consumer値を証明しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6358,7 +6358,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6423,7 +6423,7 @@
       "id": "D142",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 100,
+        "line": 116,
         "column": 124,
         "rule": "unresolved",
         "severity": "warning",
@@ -6434,7 +6434,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "fieldまたはformのinline-label track式を継承する。40%上限の既存限定承認を、外部alias全体の承認へ広げない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6448,7 +6448,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6513,7 +6513,7 @@
       "id": "D143",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 153,
+        "line": 169,
         "column": 93,
         "rule": "unresolved",
         "severity": "warning",
@@ -6524,7 +6524,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr) をinline checkboxのcolumnsへ設定。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "公開label幅はvalidated positive pxまたはsemanticだがCSS aliasの上書きとcheckbox特有consumerは任意。40%は正当な入力領域確保の構造上限で、alias全値は未確認。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6538,7 +6538,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6603,7 +6603,7 @@
       "id": "D144",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 224,
+        "line": 240,
         "column": 171,
         "rule": "unresolved",
         "severity": "warning",
@@ -6614,7 +6614,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "object-fit:var(--ui-content-fit) を投影img/video/iframeへ適用。AspectRatioはratio finite>0、fitをlayoutKeyword(contain/cover/fill)で検証しhost --ui-content-fitへ写す。global consumer ui-aspect-ratio > img/video/iframe のobject-fitがaliasを読む。",
       "reason": "validated host keywordを任意CSS上書きから閉鎖しない。global consumerの全供給元とmedia描画が未保証なのでwarningを維持する。",
       "remaining_scope": "fit producerは有限でもglobal consumer aliasのlocal/inherited/important CSSは開いている。任意projected media/iframe内部・external stylesheetと全pixel条件は保証しない。",
@@ -6627,7 +6627,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "object-fit:var(--ui-content-fit)",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -7405,7 +7405,7 @@
       "id": "D164",
       "diagnostic": {
         "file": "tests/fixture-app/actions-catalog.ts",
-        "line": 23,
+        "line": 32,
         "column": 1008,
         "rule": "unresolved",
         "severity": "warning",
@@ -7416,7 +7416,7 @@
       "category": "fixture-input",
       "detail": "fixture-controlled-geometry",
       "disposition": "retained-warning",
-      "source_sha256": "f7ac849e8f8dbbd49aabbb87d55bcae654416a9a720bf003185d2aedd47565bd",
+      "source_sha256": "0013ff9edf137f7183e9e4772573fdec2bb2cb718a3b86018cd5eb4295ff7048",
       "producer": "1000/280/160のoptionからtoolbarWidth signalを更新しconsumer幅へ設定。ActionsCatalog.toolbarWidth signalは1000で開始し、fixture selectのoption値1000/280/160をvalue($event)からunary+で数値化して直接style.inline-size.pxへ渡す。library Toolbarの公開入力ではなく幅縮小/overflow試験のconsumer設定である。",
       "reason": "fixtureの幅境界を作る構造用途は確認できるが、unary+ DOM入力と書換可能signalの静的値域を閉鎖せずwarningを維持する。",
       "remaining_scope": "select由来の通常操作値は有限でもDOM文字列は実行時入力で、signal.set/イベント改変を含む全callsite閉鎖は未証明。現在fixture用途を根拠に任意px全体を暗黙許可しない。",
@@ -7429,19 +7429,19 @@
         {
           "file": "tests/fixture-app/actions-catalog.ts",
           "anchor": "[style.inline-size.px]=\"toolbarWidth()\"",
-          "sha256": "f7ac849e8f8dbbd49aabbb87d55bcae654416a9a720bf003185d2aedd47565bd",
+          "sha256": "0013ff9edf137f7183e9e4772573fdec2bb2cb718a3b86018cd5eb4295ff7048",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/actions-catalog.ts",
           "anchor": "[style.inline-size.px]=\"toolbarWidth()\"",
-          "sha256": "f7ac849e8f8dbbd49aabbb87d55bcae654416a9a720bf003185d2aedd47565bd",
+          "sha256": "0013ff9edf137f7183e9e4772573fdec2bb2cb718a3b86018cd5eb4295ff7048",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/actions-catalog.ts",
           "anchor": "readonly toolbarWidth=signal(1000)",
-          "sha256": "f7ac849e8f8dbbd49aabbb87d55bcae654416a9a720bf003185d2aedd47565bd",
+          "sha256": "0013ff9edf137f7183e9e4772573fdec2bb2cb718a3b86018cd5eb4295ff7048",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -8206,7 +8206,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8308,7 +8308,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8410,7 +8410,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8524,7 +8524,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8638,7 +8638,7 @@
         {
           "file": "tests/static/host-application-context.test.ts",
           "anchor": "separate host applications do not pair an alias with another instance dependency",
-          "sha256": "bb881ba77f9b233a38007f1cdc59a77496a65a8630280edd12b84656f596d4c7",
+          "sha256": "4a8dffcaeee07bdb9c6ae8c47c1d2c8911ac3481addff3a0f556e16730d331f5",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8846,7 +8846,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. font-size consumes it with semantic text/control lengths.",
       "reason": "font-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8860,13 +8860,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8890,13 +8890,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8942,7 +8942,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-block-size consumes it with semantic text/control lengths.",
       "reason": "min-block-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8956,13 +8956,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8986,13 +8986,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -9038,7 +9038,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-inline-size consumes it with semantic text/control lengths.",
       "reason": "min-inline-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -9052,13 +9052,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+          "sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9082,13 +9082,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "2e7544d290221e4b6723ceef73881c26c822fce74c2076579fdb8e540a9b5da0",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -9446,7 +9446,7 @@
       "id": "F076-02",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 159,
+        "line": 175,
         "column": 3,
         "rule": "unresolved",
         "severity": "warning",
@@ -9457,7 +9457,7 @@
       "category": "runtime-input",
       "detail": "optional-character-based-editor-sizing",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
       "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
       "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
@@ -9499,7 +9499,7 @@
       "id": "F076-03",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 164,
+        "line": 180,
         "column": 3,
         "rule": "unresolved",
         "severity": "warning",
@@ -9510,7 +9510,7 @@
       "category": "runtime-input",
       "detail": "optional-character-based-editor-sizing",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
       "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
       "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
@@ -9552,7 +9552,7 @@
       "id": "F076-04",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 170,
+        "line": 186,
         "column": 3,
         "rule": "unresolved",
         "severity": "warning",
@@ -9563,7 +9563,7 @@
       "category": "runtime-input",
       "detail": "optional-character-based-editor-sizing",
       "disposition": "retained-warning",
-      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "source_sha256": "5533d5806a7f846cf55e335e54d95d7bbfbfcaf056a4171a3788c366bdf8f7f7",
       "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
       "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
       "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",

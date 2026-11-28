@@ -52,18 +52,22 @@ const formAudit: {
   site: Pick<Diagnostic, 'file' | 'line' | 'column'>;
   dependency: {prior_file: string; prior_sha256: string; current_sha256: string; judgment: string};
 } = JSON.parse(formAuditBytes.toString('utf8'));
-const formAppearanceAudit: CurrentAudit & {prior_audit_sha256: string} =
-  JSON.parse(await readFile(resolve(currentEvidence, 'form-appearance-reaudit.json'), 'utf8'));
+const actionAppearanceAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(
+  await readFile(resolve(currentEvidence, 'action-appearance-reaudit.json'), 'utf8'),
+);
 const typographyAudit: Pick<CurrentAudit, 'dependencies'> & {
   prior_purpose_audit_sha256: string;
   positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
 } = JSON.parse(await readFile(resolve(currentEvidence, 'typography-reaudit.json'), 'utf8'));
+const formAppearanceAudit: CurrentAudit & {prior_audit_sha256: string} =
+  JSON.parse(await readFile(resolve(currentEvidence, 'form-appearance-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
 for (const [id, {line, column}] of Object.entries({...layoutAudit.positions, ...typographyAudit.positions})) {
   assert.ok(currentSites[id], `${id}: missing previously reviewed site`);
   currentSites[id] = {...currentSites[id], line, column};
 }
 currentSites.D146 = {...currentSites.D146, ...formAudit.site};
+Object.assign(currentSites, actionAppearanceAudit.sites);
 for (const [id, site] of Object.entries(formAppearanceAudit.sites)) {
   const priorSite = currentSites[id];
   assert.ok(priorSite, `${id}: missing reviewed site before the form appearance change`);
@@ -77,7 +81,7 @@ function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, typographyAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, typographyAudit, actionAppearanceAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -120,7 +124,8 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
-  assert.equal(sha256(formAuditBytes), typographyAudit.prior_purpose_audit_sha256, 'historical form dictionary audit changed');
+  assert.equal(sha256(formAuditBytes), typographyAudit.prior_purpose_audit_sha256, 'historical form dictionary audit changed for Typography');
+  assert.equal(sha256(formAuditBytes), actionAppearanceAudit.prior_audit_sha256, 'historical form dictionary audit changed');
   assert.equal(sha256(formAuditBytes), formAppearanceAudit.prior_audit_sha256, 'historical form dictionary audit changed');
   assert.equal(sha256(layoutAuditBytes), formAudit.prior_audit_sha256, 'historical layout entry audit changed');
   assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
@@ -231,6 +236,32 @@ test('the checker admits the reviewed Angular and form appearance sites and reje
     assert.partialDeepStrictEqual(unapproved[0], warning);
     assert.equal(stale.exceptions.length, reviewed.length - 1);
   }
+});
+
+test('the table actions fixture retains the one reviewed resize width site', async () => {
+  const {exception:reason, ...warning} = actionAppearanceAudit.sites.D175;
+  const input = parseConfig(example);
+  const exceptions = input.checks!.exceptions.filter(exception => exception.reason === reason);
+  assert.equal(exceptions.length, 1);
+  input.checks = {source_roots:[warning.file], approved_components:[], exceptions};
+
+  const scan = () => {
+    const config = resolveConfig(input);
+    return checkSources({root, config, policy:createSourcePolicy(config)});
+  };
+  const admitted = await scan();
+  assert.equal(admitted.exceptions.length, 1);
+  assert.partialDeepStrictEqual(admitted.exceptions[0], actionAppearanceAudit.sites.D175);
+
+  const exception = exceptions[0];
+  exception.column = warning.column + 1;
+  const stale = await scan();
+  assert.equal(stale.exceptions.length, 0);
+  assert.ok(stale.diagnostics.some(d => d.file === exception.file && d.rule === 'exception-error' && d.source === exception.source));
+  const unapproved = stale.diagnostics.filter(d =>
+    d.file === warning.file && d.rule === warning.rule && d.line === warning.line && d.column === warning.column);
+  assert.equal(unapproved.length, 1);
+  assert.partialDeepStrictEqual(unapproved[0], warning);
 });
 
 test('the actual proof dependency validator rejects changed producer and helper files', async t => {

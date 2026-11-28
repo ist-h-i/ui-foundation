@@ -1,5 +1,5 @@
 export { PageFrame } from './page-frame';
-export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';
+export { ActionControl, ActionLink, type ActionVariant, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';
 export { FormField, FieldControl, type FieldHintPosition } from './form-field';
 export { AsyncRegion, type AsyncRegionState } from './async-region';
 export { ActionFeedback, type ActionFeedbackState } from './action-feedback';

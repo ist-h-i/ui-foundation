@@ -2,7 +2,7 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessageText} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, effect, ElementRef, inject, input, linkedSignal, output, signal, TemplateRef, untracked } from '@angular/core';
-import { ActionControl } from './action-control';
+import { ActionControl, type ActionTone } from './action-control';
 import { restoreFocus, tabbableElements } from './focus';
 import { availableOverlayAnchor, observeOverlay, OverlayRegistry, positionOverlay, type OverlayPlacement } from './overlay';
 import { popupDelay } from './floating-model';
@@ -291,12 +291,13 @@ export class Tooltip extends AnchoredPopup {
     }
 }
 @Component({selector:'ui-confirm-popover',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,
-    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
+    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" [tone]="confirmTone()" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
 export class ConfirmPopover extends AnchoredPopup {
  protected readonly uiText_ConfirmPopover=injectUiMessageText();
     readonly label=input.required<string>();
     readonly message=input.required<string>();
     readonly confirmLabel=input<string>();
+    readonly confirmTone = input<ActionTone | null>(null);
  protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.confirm"));
     readonly cancelLabel=input<string>();
  protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.cancel"));
