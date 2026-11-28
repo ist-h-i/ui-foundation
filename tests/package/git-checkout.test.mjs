@@ -20,7 +20,7 @@ const skill = '.agents/skills/project-ui';
 const ownership = skill + '/ownership.json';
 const defaultOutput = '.ui/generated';
 const customOutput = 'custom output/generated[1]';
-const customOutputAttribute = '"custom output/generated\\\\[1\\\\]/**" -text';
+const customOutputAttribute = '"/custom output/generated\\\\[1\\\\]/**" -text';
 const configFile = 'ui.config.yaml';
 const appSource = 'export const application = true;\n';
 const attrs = (...outputs) => ['* text=auto', ...outputs.map(output => output === customOutput ? customOutputAttribute : output + '/** -text'), skill + '/** -text', ''].join('\n');
@@ -144,8 +144,9 @@ test('fixed candidate preserves every managed byte in protected LF and CRLF chec
     await gitSeed(seed, output, attrs(output));
     for (const autocrlf of ['false', 'true']) {
       const app = clone(root, seed, basename(seed) + '-' + autocrlf, autocrlf);
-      const checkedAttributes = git(app, 'check-attr', 'text', '--', output + '/CHECKER-NOTICE.txt', ownership);
-      assert.equal(checkedAttributes.trim().split('\n').filter(line => line.endsWith(': text: unset')).length, 2);
+      const managedPaths = [...Object.keys(original.files), original.manifestPath];
+      const checkedAttributes = git(app, 'check-attr', 'text', '--', ...managedPaths);
+      assert.equal(checkedAttributes.trim().split('\n').filter(line => line.endsWith(': text: unset')).length, managedPaths.length);
       await assertCurrent(app, cli, original);
       assert.equal(git(app, 'status', '--porcelain').trim(), '');
     }
