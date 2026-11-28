@@ -92,3 +92,17 @@ Profile guidance informs information priority, lists/stepwise input and assistan
 `size.sidebar` controls PageFrame sidebar width. Container/Grid default padding/gaps use existing spacing roles. Explicit app widths/ratios/scroll coordinates are placement controls.
 
 `size.drawer-inline` and `size.drawer-block` independently control left/right width and top/bottom height, explicitly mapped in source YAML for guided/dense. Explicit pixel dimensions and BottomSheet viewport ratios are placement control, not direct component access to color/typography/spacing primitives.
+
+## Optional visual hierarchy roles
+
+Choose the native HTML heading level from the document outline. Use `page-title` for a page's subject, `section-title` for a group of related content, and `subheading` for divisions within that group. Select these visual roles independently of the heading level. For example, use `<h2 uiTypography="section-title">…</h2>` for a section in a page with an existing `h1`. Typography without an explicit role still uses `heading` on native headings and `body` elsewhere.
+
+| Optional role | Fallback in the same profile |
+| --- | --- |
+| `text.page-title` | `text.heading` |
+| `text.section-title` | `text.heading` |
+| `text.subheading` | `text.body` |
+
+Explicit mappings take precedence. Heading roles share the heading line height and weight. PageFrame titles use `page-title`. Container, Card, Dialog and Drawer titles, floating and mega menu headings, feedback and notification center headings, tour titles, scheduler titles, and Wizard step headings use `section-title`. The Statistic value retains the legacy `heading` size for numerical emphasis.
+
+Use `space.control-gap` within related controls, `space.field` between items and `space.section` between sections or around a contained section. The new starters separate field and section spacing in both profiles. Existing apps keep their YAML and continue to resolve their own spacing and heading mappings.

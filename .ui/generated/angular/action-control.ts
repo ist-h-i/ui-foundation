@@ -16,7 +16,8 @@ import {
 import { Icon } from './icons/renderer';
 
 export type ActionSize = 'small' | 'medium' | 'large';
-export type ActionVariant = 'primary' | 'secondary' | 'danger';
+import { resolveActionAppearance, type ActionVariant, type ActionEmphasis, type ActionTone } from './action-appearance';
+export type { ActionVariant, ActionEmphasis, ActionTone } from './action-appearance';
 
 /**
  * Capture listeners are needed here: an Angular host click listener can share
@@ -60,6 +61,9 @@ function guardActivation(isBlocked: () => boolean): void {
     '[disabled]': 'blocked()',
     '[attr.aria-busy]': 'busy() ? "true" : null',
     '[attr.data-variant]': 'variant()',
+    '[attr.data-emphasis]': 'usesAppearance() ? appearance().emphasis : null',
+    '[attr.data-tone]': 'usesAppearance() ? appearance().tone : null',
+    '[attr.data-action-tone-conflict]': 'usesAppearance() && appearance().toneConflict ? "true" : null',
     '[attr.data-size]': 'size()',
     '[attr.data-width]': 'width()',
     '[class.ui-action--busy]': 'busy()',
@@ -69,6 +73,10 @@ function guardActivation(isBlocked: () => boolean): void {
 export class ActionControl {
   protected readonly messageText = injectComponentMessageText(actionControlMessages);
   readonly variant = input<ActionVariant>('secondary');
+  readonly emphasis = input<ActionEmphasis | null>(null);
+  readonly tone = input<ActionTone | null>(null);
+  protected readonly usesAppearance = computed(() => this.emphasis() !== null || this.tone() !== null);
+  protected readonly appearance = computed(() => resolveActionAppearance(this.variant(), this.emphasis(), this.tone()));
   readonly size = input<ActionSize | null>(null);
   readonly width = input<'auto' | 'full'>('auto');
   readonly icon = input<string | null>(null);
@@ -115,6 +123,9 @@ export class ActionControl {
     '[attr.aria-disabled]': 'blocked() ? "true" : null',
     '[attr.aria-busy]': 'busy() ? "true" : null',
     '[attr.data-variant]': 'variant()',
+    '[attr.data-emphasis]': 'usesAppearance() ? appearance().emphasis : null',
+    '[attr.data-tone]': 'usesAppearance() ? appearance().tone : null',
+    '[attr.data-action-tone-conflict]': 'usesAppearance() && appearance().toneConflict ? "true" : null',
     '[attr.data-size]': 'size()',
     '[attr.data-width]': 'width()',
     '[class.ui-action--busy]': 'busy()',
@@ -124,6 +135,10 @@ export class ActionControl {
 export class ActionLink {
   protected readonly messageText = injectComponentMessageText(actionControlMessages);
   readonly variant = input<ActionVariant>('secondary');
+  readonly emphasis = input<ActionEmphasis | null>(null);
+  readonly tone = input<ActionTone | null>(null);
+  protected readonly usesAppearance = computed(() => this.emphasis() !== null || this.tone() !== null);
+  protected readonly appearance = computed(() => resolveActionAppearance(this.variant(), this.emphasis(), this.tone()));
   readonly size = input<ActionSize | null>(null);
   readonly width = input<'auto' | 'full'>('auto');
   readonly icon = input<string | null>(null);

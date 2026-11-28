@@ -15,6 +15,68 @@ for(const profile of ['guided','dense']){
    await expectValues(page,{title:'部品を購入',amount:1234.5,department:'general'});
    await expect(page.locator('ui-number-input')).toContainText('1,234.50');await expect(page.locator('#request-title')).not.toHaveAttribute('aria-invalid');
   });
+  test('入力欄の幅指定は補助文や操作領域を制限せず、補足の順序とARIAを維持する',async({page})=>{
+   const title=page.locator('#request-title'),field=page.locator('ui-text-input').filter({has:title});
+   const width=()=>title.evaluate(el=>el.getBoundingClientRect().width);
+   const count=field.locator('.ui-input-count');
+   await title.fill('入力を保持');
+   const before=await width(), countBefore=await count.evaluate(el=>el.getBoundingClientRect().width);
+   const initialHint=await title.getAttribute('aria-describedby');
+   await page.getByLabel('入力条件を先に表示して幅を指定',{exact:true}).check();
+   await expect(title).toHaveValue('入力を保持');
+   await expect(title).toHaveAttribute('aria-describedby',initialHint!);
+   await expect(field.locator('.ui-form-field-hint')).toHaveCount(1);
+   expect(await title.evaluate(el=>!!(el.ownerDocument.getElementById('request-title-hint')!.compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+   await expect.poll(width).toBeLessThan(before);
+   expect(await count.evaluate(el=>el.getBoundingClientRect().width)).toBeCloseTo(countBefore,0);
+   const select=page.locator('#request-department');
+   expect(await select.evaluate(el=>{const p=el.parentElement!.getBoundingClientRect();const r=el.getBoundingClientRect();return Math.abs(p.width-r.width)<2;})).toBe(true);
+   const combo = page.locator('#request-owner');
+   await combo.fill('営業');
+   await expect(combo).toHaveAttribute('aria-expanded', 'true');
+   const comboGeometry = await combo.evaluate(el => {
+    const input = el.getBoundingClientRect();
+    const anchor = el.parentElement!.getBoundingClientRect();
+    const popup = el.parentElement!.querySelector('[role="listbox"]')!.getBoundingClientRect();
+    return { input: input.width, anchor: anchor.width, popup: popup.width };
+   });
+   expect(comboGeometry.input).toBeCloseTo(comboGeometry.anchor, 0);
+   expect(comboGeometry.popup).toBeGreaterThanOrEqual(comboGeometry.anchor - 1);
+   await combo.press('Escape');
+   await expect(combo).toBeFocused();
+   const consent=page.locator('#request-consent');
+   await expect(consent).toHaveAttribute('aria-describedby','request-consent-hint');
+   await consent.check();await expectValues(page,{consent:true,title:'入力を保持'});
+   await page.setViewportSize({width:320,height:800});
+   expect(await title.evaluate(el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=document.documentElement.clientWidth+1;})).toBe(true);
+  });
+  test('form actions and support group keep the draft when cancelling an invalid confirmation', async ({ page }) => {
+   const root = page.locator('input-catalog');
+   const actions = root.locator('ui-form-actions');
+   const title = root.locator('#request-title');
+   const support = root.getByRole('group', { name: '補足情報', exact: true });
+   const note = support.locator('#request-note');
+   const summary = root.getByRole('alert', { name: '入力内容を確認してください' });
+
+   await expect(summary).toHaveCount(0);
+   await expect(actions.locator('button[type="reset"]')).toHaveCount(0);
+   await expect(support).toHaveAttribute('aria-describedby', 'request-support-hint');
+   await expect(title).toHaveAttribute('inputmode', 'text');
+   await expect(note).toHaveAttribute('inputmode', 'text');
+   await expect(note).toHaveAttribute('autocomplete', 'off');
+   await title.fill('日程の確認');
+   await note.fill('確認済みの連絡先');
+   await actions.getByRole('button', { name: '申請内容を確認' }).press('Enter');
+   await expect(summary).toBeVisible();
+   await summary.getByRole('button', { name: '申請先: 申請先を選択してください。' }).press('Enter');
+   await expect(root.locator('#request-department')).toBeFocused();
+
+   await actions.getByRole('button', { name: '確認を取り消す' }).click();
+   await expect(summary).toHaveCount(0);
+   await expect(title).toHaveValue('日程の確認');
+   await expect(note).toHaveValue('確認済みの連絡先');
+   await expectValues(page, { title: '日程の確認', note: '確認済みの連絡先' });
+  });
   test('CVA disable/enable and readonly retain the entered value, reset clears without user events',async({page})=>{
    const root=page.locator('input-catalog');await page.locator('#request-title').fill('保持する');await page.locator('#request-note').fill('説明も保持');
    await root.getByRole('button',{name:'入力を無効にする',exact:true}).click();await expect(page.locator('#request-title')).toBeDisabled();await expect(page.locator('#request-department')).toBeDisabled();

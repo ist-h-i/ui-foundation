@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { parse, stringify } from 'yaml';
 import { prepareCandidate, assertFrozenCandidate } from '../../scripts/package-verification/candidate.mjs';
-import { verifyEnglishDocumentation } from '../../scripts/package-verification/documentation.mjs';
+import { verifyEnglishDocumentation, verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
+import { verifyInstalledApiCatalog } from '../../scripts/package-verification/registry.mjs';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const run = (file, args, cwd) => execFileSync(file, args, { cwd, encoding: 'utf8', timeout: 120_000, maxBuffer: 16 * 1024 * 1024,
@@ -22,8 +23,9 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.2.0');
-  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'release-candidate' });
+  assert.equal(manifest.publishConfig.registry, 'https://registry.npmjs.org/');
+  assert.equal(manifest.publishConfig.access, 'public');
+  assert.ok(manifest.publishConfig.tag && manifest.publishConfig.tag !== 'latest', 'A separate candidate tag is required');
   assert.equal(manifest.bin['ui-foundation'], 'dist/cli.js');
   for (const name of ['README.md', 'README.ja.md', 'LICENSE', 'dist/cli.js', 'dist/check-ui.cjs', 'dist/CLI-NOTICE.txt', 'dist/CHECKER-NOTICE.txt', 'dist/CLI-DEPENDENCIES.json',
     'dist/checker-lib/lib.es2022.d.ts', 'templates/angular/index.ts', 'templates/angular/stable-messages.ts', 'skills/ui-development/SKILL.md', 'skills/ui-development/references/examples/locale-adapter.ts', 'docs/commands.en.md', 'docs/components.en.md', 'docs/ui-library-consumer-guide.en.md',
@@ -41,6 +43,7 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   await writeFile(resolve(consumer, 'package.json'), '{"private":true,"type":"module"}');
   run('npm', ['install', '--offline', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--package-lock=false', candidate.tarball], consumer);
   const installed = resolve(consumer, 'node_modules', manifest.name);
+  await verifyReleaseVersionDocumentation(installed);
   const installedMetadata = JSON.parse(await readFile(resolve(installed, 'package.json'), 'utf8'));
   assert.equal(installedMetadata.license, manifest.license);
   assert.equal(installedMetadata.version, manifest.version);
@@ -97,6 +100,8 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   }
   assert.match(cli('sync'), /current/);
   const documentation = await verifyEnglishDocumentation(installed, resolve(consumer, '.agents/skills/project-ui'));
+  const api = await verifyInstalledApiCatalog(installed, consumer);
+  t.diagnostic(`Installed and synced API catalog: ${JSON.stringify(api)}`);
   t.diagnostic(`Installed and synced English documentation closure: ${JSON.stringify(documentation)}`);
   const newGuide = '.agents/skills/project-ui/references/screen-design.md';
   const guide = await readFile(resolve(consumer, newGuide), 'utf8');

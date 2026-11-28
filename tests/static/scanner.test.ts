@@ -968,6 +968,20 @@ test('icon entries are public individually and the optional Lucide entry follows
   assert.deepEqual(internal(await checkSources({ root, config: enabled, policy: createSourcePolicy(enabled) })), [5, 7]);
 });
 
+test('step navigation is a public lightweight entry but its model is internal', async t => {
+  const { scan } = await fixture(t, {
+    'app/use.ts': [
+      "export { StepNavigation } from '../.ui/generated/angular/step-navigation';",
+      "export { validateStepNavigation } from '../.ui/generated/angular/step-navigation-model';",
+    ].join('\n'),
+    '.ui/generated/angular/step-navigation.ts': 'export class StepNavigation {}',
+    '.ui/generated/angular/step-navigation-model.ts': 'export const validateStepNavigation = () => true;',
+  });
+  const findings = warnings(await scan()).filter(item => item.rule === 'generated-internal-import');
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].line, 2);
+});
+
 test('generated internal imports follow TypeScript aliases and recommend the public export', async t => {
   const { scan } = await fixture(t, {
     'app/main.ts': [

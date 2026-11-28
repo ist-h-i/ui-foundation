@@ -53,15 +53,15 @@ const selectionStyles=`
 `;
 @Component({selector:'ui-checkbox',standalone:true,imports:[FormField,FieldControl],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Checkbox),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()"><input uiFieldControl type="checkbox" [name]="name()" [checked]="current()" [indeterminate]="indeterminate()" [disabled]="blocked() || readonly()" (change)="commit(checked($event))" (blur)="touch()"></ui-form-field>`,styles:selectionStyles})
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()"><input uiFieldControl type="checkbox" [name]="name()" [checked]="current()" [indeterminate]="indeterminate()" [disabled]="blocked() || readonly()" (change)="commit(checked($event))" (blur)="touch()"></ui-form-field>`,styles:selectionStyles})
 export class Checkbox extends FieldValueControl<boolean>{protected readonly emptyValue=false;readonly indeterminate=input(false,{transform:booleanAttribute});protected coerce(value:unknown):boolean{return value===true;}}
 @Component({selector:'ui-switch',standalone:true,imports:[FormField,FieldControl],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Switch),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hint]="hint()" [error]="error()"><input uiFieldControl role="switch" type="checkbox" [name]="name()" [checked]="current()" [attr.aria-checked]="current()" [attr.aria-busy]="busy() ? 'true' : null" [disabled]="blocked() || readonly()" (change)="commit(checked($event))" (blur)="touch()"></ui-form-field>`,styles:selectionStyles})
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [hint]="hint()" [error]="error()"><input uiFieldControl role="switch" type="checkbox" [name]="name()" [checked]="current()" [attr.aria-checked]="current()" [attr.aria-busy]="busy() ? 'true' : null" [disabled]="blocked() || readonly()" (change)="commit(checked($event))" (blur)="touch()"></ui-form-field>`,styles:selectionStyles})
 export class Switch extends FieldValueControl<boolean>{protected readonly emptyValue=false;protected coerce(value:unknown):boolean{return value===true;}}
 @Component({selector:'ui-select',standalone:true,imports:[FormField,FieldControl],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Select),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-select-control"><select uiFieldControl [name]="name()" [value]="current() ?? ''" [disabled]="blocked() || readonly()" (change)="choose(text($event))" (blur)="touch()">
    <option value="" [disabled]="!clearable()" [selected]="current()===null">{{uiEffective_placeholder()}}</option>
    @for(group of groups();track group.label){@if(group.label){<optgroup [label]="group.label">@for(option of group.options;track option.value){<option [value]="option.value" [selected]="current()===option.value" [disabled]="!!option.disabled">{{option.label}}</option>}</optgroup>}
@@ -106,7 +106,7 @@ export class MultiSelect extends ValueControl<readonly string[]>{
 }
 @Component({selector:'ui-combobox',standalone:true,imports:[FormField,FieldControl,ActionControl,NgTemplateOutlet,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Combobox),multi:true},{provide:NG_VALIDATORS,useExisting:forwardRef(()=>Combobox),multi:true}],
- template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [required]="required()" [hint]="hint()" [error]="error()">
+ template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
   <div class="ui-combobox-row"><div class="ui-combobox"><input #editor uiFieldControl role="combobox" type="text" autocomplete="off" [name]="name()" [value]="query()" [placeholder]="placeholder()"
    aria-autocomplete="list" aria-haspopup="listbox" [attr.aria-expanded]="open()" [attr.aria-controls]="controlId()+'-list'" [attr.aria-activedescendant]="activeId()"
    [disabled]="blocked()" [readOnly]="readonly()" (input)="changed($event)" (keydown)="key($event)" (focus)="show()" (blur)="leave()">

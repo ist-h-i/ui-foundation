@@ -93,7 +93,15 @@ for(const profile of uiProfiles.profiles){
   test('Confirm/Alert explicit acknowledgement and FormDialog unsaved/failure/retry preserve values',async({page})=>{
    await page.getByRole('button',{name:'確認Dialogを開く'}).click();const confirm=page.getByRole('dialog',{name:'提出の確認'});await expect(confirm).toBeVisible();await confirm.getByRole('button',{name:'確認',exact:true}).click();await expect(confirm).toBeHidden();await expect(page.getByTestId('variant-result')).toHaveText('Dialog結果: confirm / true');
    await page.getByRole('button',{name:'重要通知を開く'}).click();const alert=page.getByRole('alertdialog',{name:'確認が必要な通知'});await expect(alert).toBeVisible();await page.keyboard.press('Escape');await expect(alert).toBeVisible();await alert.getByRole('button',{name:'確認しました'}).click();await expect(alert).toBeHidden();
-   await page.getByRole('button',{name:'FormDialogを開く'}).click();const form=page.getByRole('dialog',{name:'申請名を編集'});const field=form.getByRole('textbox',{name:'Dialog内の申請名'});await field.fill('入力を維持する申請');await page.keyboard.press('Escape');await expect(form.getByRole('button',{name:'編集を続ける'})).toBeFocused();await form.getByRole('button',{name:'編集を続ける'}).click();await expect(field).toBeFocused();await form.getByRole('button',{name:'保存',exact:true}).click();await expect(form.getByRole('status').filter({hasText:'保存に失敗'})).toBeVisible();await expect(field).toHaveValue('入力を維持する申請');await form.getByRole('button',{name:'取消',exact:true}).click();await form.getByRole('button',{name:'保存せずに閉じる'}).click();await expect(form).toBeHidden();
+   await page.getByRole('button',{name:'FormDialogを開く'}).click();const form=page.getByRole('dialog',{name:'申請名を編集'});const field=form.getByRole('textbox',{name:'Dialog内の申請名'});await field.fill('入力を維持する申請');await page.keyboard.press('Escape');await expect(form.getByRole('button',{name:'編集を続ける'})).toBeFocused();await form.getByRole('button',{name:'編集を続ける'}).click();await expect(field).toBeFocused();await form.getByRole('button',{name:'保存',exact:true}).click();await expect(form.getByRole('status').filter({hasText:'保存に失敗'})).toBeVisible();await expect(field).toHaveValue('入力を維持する申請');await form.getByRole('button',{name:'取消',exact:true}).click();
+   const discard=form.getByRole('button',{name:'保存せずに閉じる',exact:true});
+   await page.addStyleTag({content:'.ui-action[data-variant="danger"] { color: rgb(245, 245, 200); }'});
+   await expect(discard).toHaveAttribute('data-variant','danger');
+   await expect(discard).not.toHaveAttribute('data-emphasis');
+   await expect(discard).not.toHaveAttribute('data-tone');
+   await expect(discard).toHaveCSS('color','rgb(245, 245, 200)');
+   await discard.click();
+   await expect(form).toBeHidden();
    await page.getByLabel('保存を失敗させる',{exact:true}).uncheck();await page.getByRole('button',{name:'FormDialogを開く'}).click();await expect(field).toHaveValue('入力を維持する申請');await field.fill('');await expect(form.getByRole('button',{name:'保存',exact:true})).toBeDisabled();await field.fill('再試行した申請');await form.getByRole('button',{name:'保存',exact:true}).click();await expect(form).toBeHidden();await expect(page.getByTestId('variant-result')).toHaveText('Dialog結果: confirm / 再試行した申請');
   });
   test('DynamicDialog passes data/results and scopes interactive notifications inside native modal',async({page})=>{

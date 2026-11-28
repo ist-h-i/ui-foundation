@@ -1,0 +1,11 @@
+{
+  "prior_audit_sha256": "5fa91b11a3c2bba557815d0b62521e736688bf07970b9187dcc9339cb38429f9",
+  "source_commit": "30ffdaf679e199af36ca85173d64ffabf9e244ee",
+  "dependencies": {
+    "templates/angular/selection-input.ts": {
+      "prior_sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "current_sha256": "0135db8886d718261762f13633c3487ae12ecd7083aa9074b6c3c2db1b5830fa",
+      "judgment": "D132. Combobox now forwards FormField hint position and character width. The overlay remains gated by open, enabled and available editor state; resize/scroll observation measures the same native editor rectangle before positioning, and cleanup releases the observer. Any character-width cap affects the editor rectangle without supplying an alternate popup width. The exact diagnostic and exception are unchanged."
+    }
+  }
+}

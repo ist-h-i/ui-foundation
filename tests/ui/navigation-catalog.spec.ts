@@ -4,6 +4,81 @@ import type {Page} from '@playwright/test';
 async function noPageOverflow(page:Page){const sizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));expect(sizes.scroll).toBeLessThanOrEqual(sizes.client);}
 for(const profile of ['guided','dense'])test.describe(`navigation catalog ${profile}`,()=>{
  test.beforeEach(async({page})=>{await page.goto('/catalog/navigation');await expect(page.getByRole('heading',{name:'移動先とコマンド',exact:true})).toBeVisible();await page.getByRole('combobox',{name:'表示設定',exact:true}).selectOption(profile);});
+ test('独立した段階表示は進行結果を所有せず、重複要求とフォーカスを制御する',async({page})=>{
+  const steps=page.getByRole('group',{name:'申請の進行状況',exact:true});
+  const current=steps.locator('[aria-current="step"]');
+  await expect(current).toContainText('要修正');
+  await expect(current).toContainText('現在の段階');
+  await expect(steps.getByText('現在の段階',{exact:true})).toHaveCount(1);
+  await expect(steps.getByRole('button',{name:/代理人の確認/})).toBeEnabled();
+  await steps.evaluate(root=>{
+   for (const id of ['details','details','proxy']) {
+    root.querySelector(`button[data-step-id="${id}"]`)!.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+   }
+  });
+  await expect(page.getByTestId('step-requests')).toHaveText('1 / details');
+  await expect(current).toContainText('確認');
+  await page.getByTestId('step-approve').click();
+  await expect(current).toContainText('基本情報');
+  await expect(current).toContainText('現在の段階');
+  await expect(steps.getByText('現在の段階',{exact:true})).toHaveCount(1);
+  const review=steps.getByRole('button',{name:/確認.*要修正/});
+  await review.focus();await expect(review).toBeFocused();
+  await page.getByTestId('step-busy').dispatchEvent('click');await expect(review).toBeDisabled();await expect(steps).toBeFocused();
+  await page.getByTestId('step-busy').dispatchEvent('click');
+  await review.focus();await page.getByTestId('step-remove').dispatchEvent('click');
+  await expect(review).toHaveCount(0);await expect(steps).toBeFocused();
+  await page.getByTestId('outside').focus();await page.getByTestId('step-busy').dispatchEvent('click');await expect(page.getByTestId('outside')).toBeFocused();
+  await expect(steps.getByRole('listitem')).toHaveCount(3);
+  await expect(steps.getByText('対象外',{exact:true})).toBeVisible();
+  await page.setViewportSize({width:320,height:800});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.getByLabel('RTL',{exact:true}).check();
+  await noPageOverflow(page);
+ });
+ test('階層目次の子リンクへキーで到達し、見出しと現在位置が一致する',async({page})=>{
+  const region=page.getByRole('region',{name:'手続きの参照資料',exact:true});
+  const toc=region.getByRole('navigation',{name:'このページの目次',exact:true});
+  const child=toc.getByRole('link',{name:'資料が手元にない場合',exact:true});
+  const heading=region.getByRole('heading',{name:'資料が手元にない場合',exact:true});
+  await expect(toc.locator('li > ul > li')).toContainText('資料が手元にない場合');
+  await expect(toc.getByRole('list')).toHaveCount(2);
+  await page.setViewportSize({width:320,height:800});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.getByLabel('RTL',{exact:true}).check();
+  await noPageOverflow(page);
+  const summary=region.locator('summary');
+  await summary.press('Enter');
+  await expect(child).toBeHidden();
+  await summary.press('Enter');
+  await page.keyboard.press('Tab');
+  await expect(toc.getByRole('link',{name:'添付資料',exact:true})).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(child).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(heading).toBeFocused();
+  await expect(page).toHaveURL(/#catalog-resource-note$/);
+  await expect(child).toHaveAttribute('aria-current','location');
+ });
+ test('リソース一覧の主リンクと行操作を分け、注釈を通常の読み順に置く',async({page},info)=>{
+  const region=page.getByRole('region',{name:'手続きの参照資料',exact:true});
+  const row=region.getByRole('list',{name:'添付資料',exact:true}).getByRole('listitem').filter({hasText:'申請一覧の案内'});
+  const link=row.getByRole('link',{name:'申請一覧の案内',exact:true});
+  await expect(link).toHaveAttribute('href','#navigation-intro');
+  await expect(row.getByText('確認済み',{exact:true})).toBeVisible();
+  await expect(row.locator('a button, button a')).toHaveCount(0);
+  await link.focus();
+  await page.keyboard.press('Tab');
+  await expect(row.getByRole('button',{name:'申請一覧の案内を選択',exact:true})).toBeFocused();
+  await page.keyboard.press('Space');
+  await expect(page.getByTestId('resource-request')).toHaveText('form');
+  const note=region.getByRole('complementary',{name:'資料が手元にない場合',exact:true});
+  await expect(note).toContainText('入力した内容はそのまま編集できます。');
+  await expect(note.locator('[aria-live], [role="alert"], [role="status"]')).toHaveCount(0);
+  const axe=await new AxeBuilder({page}).include('#catalog-toc').include('ui-anchor-navigation').include('ui-list[label="添付資料"]').include('aside[aria-labelledby="catalog-resource-note"]').analyze();
+  await info.attach('component-composition-axe',{body:JSON.stringify({violations:axe.violations,incomplete:axe.incomplete}),contentType:'application/json'});
+  expect(axe.violations).toEqual([]);
+ });
  test('native navigation supports orientation, current page, icons, wrapping and local scrolling',async({page})=>{
   const nav=page.getByTestId('navigation'),link=nav.getByRole('link',{name:'申請内容と承認履歴を詳しく確認する',exact:true});await expect(nav).toHaveAttribute('data-direction','horizontal');await link.click();await expect(page).toHaveURL(/#navigation-details$/);await expect(link).toHaveAttribute('aria-current','page');await expect(nav.locator('ui-icon svg')).toHaveAttribute('aria-hidden','true');await page.getByRole('combobox',{name:'移動先の方向',exact:true}).selectOption('vertical');await expect(nav).toHaveAttribute('data-direction','vertical');await page.getByRole('combobox',{name:'狭い幅の配置',exact:true}).selectOption('scroll');await expect(nav).toHaveAttribute('data-narrow','scroll');await page.setViewportSize({width:320,height:800});await noPageOverflow(page);await link.focus();await expect(link).toBeFocused();
  });

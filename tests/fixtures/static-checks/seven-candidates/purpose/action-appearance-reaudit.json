@@ -1,0 +1,22 @@
+{
+  "scope": "PR #75 changes to the table action fixture, reviewed at 06dcc28b1a48f449c4cc10e029acaf55594be42e.",
+  "prior_audit_sha256": "0eb600c337f7d52c819feb07f6193b89fba41765453976e57b16165ee5e25339",
+  "sites": {
+    "D175": {
+      "file": "tests/fixture-app/table-catalog.ts",
+      "line": 24,
+      "column": 160,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"resize-demo\" [style.width.px]=\"width()\"> :: [style.width.px]=\"width()\"><button #resizeHandle type=\"button\" class=\"resize-handle\" uiTableColumnResize label=\"申請名の列幅\" [value]=\"width()\" [minimum]=\"80\" [maximum]=\"300\" [disabled]=\"busy()\" (resizeChange)=\"width.set($event)\"></button></div></div>",
+      "exception": "[D175] 列resize操作を試すfixtureの可変widthであり、themeとしての部品寸法ではない。実templateはTableColumnResizeへ80..300の範囲を渡し、widthはresizeChange出力を反映する。directiveは有限value/min/max guardとclampを持ち、境界幅dataとして用途が明確な限定例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    }
+  },
+  "dependencies": {
+    "tests/fixture-app/table-catalog.ts": {
+      "prior_sha256": "bb9cde17eda8251d0836d2e7cf87b375326c881f13ff3e22543a141e3160f3a9",
+      "current_sha256": "347433c712a44aa9d5a42f412aaea79307e7231f897e566efb36529be5270d7d",
+      "judgment": "The fixture adds a danger-toned TableToolbar bulk action on the preceding line. The width signal still starts at 150, receives resizeChange from the unmodified TableColumnResize directive with bounds 80 and 300, and feeds the same pixel-width binding at line 24, column 160. The exact unresolved warning and its purpose remain unchanged. This approval covers that single binding; pointer coordinates and runtime interaction remain outside the static evidence."
+    }
+  }
+}

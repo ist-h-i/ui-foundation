@@ -23,13 +23,71 @@ for(const profile of ['guided','dense'])test.describe(`structured forms ${profil
   expect(parseFloat(gap)).toBeGreaterThan(0);
   await expect(requirement).toHaveCSS('margin-inline-start',gap);
   await expect(field).toHaveCSS('display','grid');
+  await expect(input).toHaveAttribute('aria-describedby', 'native-field-hint native-field-error');
+  await expect(input).toHaveAttribute('aria-invalid', 'true');
+  const constrain = field.locator('.ui-form-field-hint');
+  const hintBeforeControl = await constrain.evaluate(node => {
+   const input = node.ownerDocument.getElementById('native-field')!;
+   return Boolean(node.compareDocumentPosition(input) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  expect(hintBeforeControl).toBe(true);
+  const unit = field.getByText('内部コード', { exact: true });
+  await expect(unit).toBeVisible();
   await input.fill('配置切替前の入力');
   await page.setViewportSize({width:320,height:800});
   await expect(field).toHaveCSS('display','block');
+  await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+  await page.getByLabel('RTL', { exact: true }).check();
+  await expect(unit).toBeVisible();
+  expect(await field.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
   await label.click();
   await expect(input).toBeFocused();
   await expect(input).toHaveValue('配置切替前の入力');
  });
+ test('checkbox constraint follows the label in DOM and remains visible in both layouts', async ({ page }) => {
+  const checkbox = page.locator('#native-check');
+  const field = page.locator('ui-form-field').filter({ has: checkbox });
+  const label = field.locator('label');
+  const hint = field.locator('.ui-form-field-hint');
+  await expect(checkbox).toHaveAttribute('aria-describedby', 'native-check-hint');
+  expect(await hint.evaluate(node => {
+   const label = node.previousElementSibling!;
+   const input = node.ownerDocument.getElementById('native-check')!;
+   return label.tagName === 'LABEL' && Boolean(node.compareDocumentPosition(input) & Node.DOCUMENT_POSITION_FOLLOWING);
+  })).toBe(true);
+  const inlineLabel = (await label.boundingBox())!;
+  const inlineInput = (await checkbox.boundingBox())!;
+  expect((await hint.boundingBox())!.y).toBeLessThan(inlineLabel.y);
+  expect(inlineInput.y).toBeGreaterThanOrEqual(inlineLabel.y);
+  expect(inlineInput.y).toBeLessThan(inlineLabel.y + inlineLabel.height);
+  await page.getByLabel('横並びのラベル', { exact: true }).check();
+  expect((await hint.boundingBox())!.y).toBeGreaterThan((await label.boundingBox())!.y);
+  expect((await checkbox.boundingBox())!.y).toBeGreaterThan((await hint.boundingBox())!.y);
+  await label.click();
+  await expect(checkbox).toBeChecked();
+ });
+
+ test('a wrapped projected checkbox retains its inline label and can move the hint before the row', async ({ page }) => {
+  const checkbox = page.locator('#native-wrapped-check');
+  const field = page.locator('ui-form-field').filter({ has: checkbox });
+  const label = field.locator('label');
+  const hint = field.locator('.ui-form-field-hint');
+  const wrappedPosition = () => checkbox.evaluate(element => {
+   const bounds = element.getBoundingClientRect();
+   const label = element.closest('ui-form-field')!.querySelector('label')!.getBoundingClientRect();
+   const hint = element.closest('ui-form-field')!.querySelector('.ui-form-field-hint')!.getBoundingClientRect();
+   return { inline: bounds.y >= label.y && bounds.y < label.bottom, hintBefore: hint.bottom <= label.y };
+  });
+  await expect(field).toHaveCSS('display', 'grid');
+  await expect(checkbox).toHaveAttribute('aria-describedby', 'native-wrapped-check-hint');
+  await expect(hint).toBeVisible();
+  await expect.poll(wrappedPosition).toEqual({ inline: true, hintBefore: false });
+  await page.getByLabel('横並びのラベル', { exact: true }).check();
+  await expect.poll(wrappedPosition).toEqual({ inline: true, hintBefore: true });
+  await label.click();
+  await expect(checkbox).toBeChecked();
+ });
+
  test('mask inserts its fixed separator while retaining leading zeros in the form value',async({page})=>{
   const editor=page.locator('#structured-mask');await editor.pressSequentially('00123');await expect(editor).toHaveValue('001-23');await expectValues(page,{mask:'00123'});await expect(editor).not.toHaveAttribute('aria-invalid');await expect(page.locator('ui-masked-input').first()).toContainText('___-__');
  });

@@ -70,7 +70,7 @@
 .ui-action:hover { background: var(--ui-color-background); }
 .ui-action[data-variant="primary"]:hover { background: var(--ui-color-action-hover); }
 .ui-action[data-variant="danger"]:hover { background: var(--ui-color-danger-hover); }
-.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):where(:not([data-emphasis][aria-pressed="true"])) {
   box-shadow: inset 0 0 0 var(--ui-border-control) currentColor;
 }
 .ui-action:focus-visible, .ui-field-control:focus-visible, .ui-typography:focus-visible {
@@ -85,12 +85,29 @@
   background: var(--ui-color-disabled-surface);
   cursor: not-allowed;
 }
+
+/* Explicit two-axis appearance; keep legacy-only, busy and disabled rules. */
+.ui-action[data-emphasis="primary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-action); background:var(--ui-color-action); color:var(--ui-color-on-action); }
+.ui-action[data-emphasis="primary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-danger); background:var(--ui-color-danger); color:var(--ui-color-on-danger); }
+.ui-action[data-emphasis="primary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-action-hover); }
+.ui-action[data-emphasis="primary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-danger-hover); }
+.ui-action[data-emphasis="secondary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-border); background:var(--ui-color-surface); color:var(--ui-color-text); }
+.ui-action[data-emphasis="tertiary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:transparent; background:var(--ui-color-surface); color:var(--ui-color-link); }
+.ui-action[data-emphasis="secondary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:var(--ui-color-danger); background:var(--ui-color-surface); color:var(--ui-color-danger); }
+.ui-action[data-emphasis="tertiary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) { border-color:transparent; background:var(--ui-color-surface); color:var(--ui-color-danger); }
+.ui-action[data-emphasis="secondary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover,
+.ui-action[data-emphasis="tertiary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-background); }
+.ui-action[data-emphasis="secondary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover,
+.ui-action[data-emphasis="tertiary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-error-surface); }
+.ui-action[data-emphasis="tertiary"] .ui-action-label { text-decoration:underline; }
+
 .ui-action-label { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; }
 .ui-action-busy { order:4; flex-shrink: 0; white-space: nowrap; font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); }
 
 /* FormLayout owns the space between fields; their standalone margin must not add to it. */
 .ui-form-layout .ui-form-field { margin-block-end: 0; }
 .ui-form-field-hint, .ui-form-field-error {
+  overflow-wrap: anywhere;
   font-size: var(--ui-text-small);
   margin-block: var(--ui-space-control-gap) 0;
 }
@@ -152,6 +169,32 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) { grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr); gap:var(--ui-space-control-gap); }
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label { grid-column:1; grid-row:1; }
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) input { grid-column:2; grid-row:1; }
+/* Width applies only to the native editor. Counts, tokens, hints, error text
+   and adjacent action buttons keep their available layout width. */
+.ui-field-control[data-field-width="characters"]:not([type="checkbox"]):not([type="radio"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
+}
+/* Select's positioned indicator and Combobox's popup anchor need the actual
+   editor width as well. Keep their surrounding row and other actions flexible. */
+.ui-form-field .ui-select-control:has(> select.ui-field-control[data-field-width="characters"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control) + var(--ui-size-icon) + var(--ui-space-control-gap)));
+}
+.ui-form-field .ui-select-control > select.ui-field-control[data-field-width="characters"] {
+  max-inline-size:100%;
+}
+.ui-form-field .ui-combobox:has(> input.ui-field-control[data-field-width="characters"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
+}
+.ui-form-field .ui-combobox > input.ui-field-control[data-field-width="characters"] { max-inline-size:100%; }
+.ui-form-field[data-hint-position="before"] > .ui-form-field-hint { margin-block: 0 var(--ui-space-control-gap); }
+/* For inline checkbox/switch layouts keep the associated label and control in
+   the same row, with the constraint above that row. */
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:1; grid-column:1 / -1; }
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label,
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-row:1; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:3; }
 .ui-field-control[aria-invalid="true"] { border-color: var(--ui-color-danger); }
 .ui-field-control:disabled { background: var(--ui-color-disabled-surface); color: var(--ui-color-muted); }
 
@@ -202,7 +245,25 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 .ui-action[data-width="full"] { inline-size:100%; }
 .ui-action-icon { display:inline-flex;flex:0 0 auto; }
 .ui-action-icon:empty { display:none; }
-.ui-icon-button[aria-pressed="true"],.ui-toggle-button[aria-pressed="true"] { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
+.ui-icon-button[aria-pressed="true"]:where(:not([data-emphasis])),.ui-toggle-button[aria-pressed="true"]:where(:not([data-emphasis])) { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
+/* Explicit emphasis and risk must not erase selection, or be erased by it.
+   Use an inset indicator that remains independent of the foreground/background. */
+.ui-action[data-emphasis][aria-pressed="true"] {
+  box-shadow:inset 0 0 0 var(--ui-border-focus) currentColor;
+}
+@media (forced-colors: active) {
+  .ui-action[data-emphasis="primary"] { border-width:calc(var(--ui-border-control) + var(--ui-border-focus)); }
+  .ui-action[data-emphasis="tertiary"] { border-style:none; }
+  .ui-action[data-emphasis][aria-pressed="true"] { position:relative; }
+  .ui-action[data-emphasis][aria-pressed="true"]::after {
+    content:"";
+    position:absolute;
+    inset:var(--ui-border-focus);
+    border:var(--ui-border-control) solid currentColor;
+    border-radius:inherit;
+    pointer-events:none;
+  }
+}
 .ui-button-group[data-connected="true"]>.ui-action { flex:1 1 auto; }
 .ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:first-child) { border-inline-start-width:0;border-start-start-radius:0;border-end-start-radius:0; }
 .ui-button-group[data-connected="true"][data-direction="horizontal"]>.ui-action:not(:last-child) { border-start-end-radius:0;border-end-end-radius:0; }

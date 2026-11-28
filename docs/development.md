@@ -95,6 +95,9 @@ http://127.0.0.1:4183 の検証アプリで「表示設定」を切り替える�
 
 開発元の[要件](project-brief.ja.md)、[実装・検証計画](implementation-plan.md)、[開発方針](development.md)も参照できます。
 
+Gitの改行変換を確認する配布試験は、候補tarballで既定・カスタム生成先のLFとCRLFチェックアウトを検証します。公開0.2.0の再現・復旧も実行する場合は、公式registryから取得したtarballの絶対パスを `UI_FOUNDATION_PUBLISHED_020_TARBALL` に設定し、`node --test tests/package/git-checkout.test.mjs` を実行してください。試験は0.2.0の公開バイト列と既知のSHA-256を照合します。この変数を設定しない場合、公開版の試験だけがスキップされます。候補を固定する場合は既存の `UI_FOUNDATION_PACKAGE_TARBALL` と `UI_FOUNDATION_PACKAGE_SHA256` を併せて設定します。
+
+
 
 ## 過去ベータの公開ゲート記録
 

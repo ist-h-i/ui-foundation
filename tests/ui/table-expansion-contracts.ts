@@ -73,6 +73,17 @@ export function contractChecks(run:RegisterTableStory,profile:TableProfile):void
     const panel=page.locator('ui-search-panel');await panel.getByRole('button',{name:'部署 等しい 経理 を解除',exact:true}).click();await expect(page.getByTestId('filtered')).toHaveText('検索結果: 3');await panel.getByRole('button',{name:'条件をすべて解除',exact:true}).click();await expect(page.getByTestId('filtered')).toHaveText('検索結果: 1,2,3');
     await filter('申請名').getByLabel('申請名の比較方法',{exact:true}).selectOption('startsWith');await filter('申請名').getByLabel('申請名の条件',{exact:true}).fill('備品');await expect(page.getByTestId('filtered')).toHaveText('検索結果: 1');
     const chooser=page.locator('main > ui-column-chooser');await chooser.locator('summary').click();for(const name of ['金額','申請日','承認','部署']){await chooser.getByRole('checkbox',{name,exact:true}).uncheck();await expect(chooser.getByRole('checkbox',{name,exact:true})).not.toBeChecked();}await expect(chooser.getByRole('checkbox',{name:'申請名',exact:true})).toBeDisabled();await chooser.getByRole('button',{name:'列の設定を戻す',exact:true}).click();await expect(chooser.getByRole('checkbox',{name:'金額',exact:true})).toBeChecked();
-    const toolbar=page.locator('main > ui-table-toolbar');await toolbar.getByRole('button',{name:'一括確認 (2件)',exact:true}).click();await expect(page.getByTestId('bulk')).toHaveText('inspect:1,2');await page.getByLabel('処理中',{exact:true}).check();await expect(toolbar.getByRole('button',{name:'一括確認 (2件)',exact:true})).toBeDisabled();
+    const toolbar=page.locator('main > ui-table-toolbar');
+    const inspect=toolbar.getByRole('button',{name:'一括確認 (2件)',exact:true});
+    const remove=toolbar.getByRole('button',{name:'選んだ申請を削除 (2件)',exact:true});
+    await inspect.click();
+    await expect(page.getByTestId('bulk')).toHaveText('inspect:1,2');
+    await expect(remove).toHaveAttribute('data-emphasis','tertiary');
+    await expect(remove).toHaveAttribute('data-tone','danger');
+    await remove.press('Enter');
+    await expect(page.getByTestId('bulk')).toHaveText('remove:1,2');
+    await page.getByLabel('処理中',{exact:true}).check();
+    await expect(inspect).toBeDisabled();
+    await expect(remove).toBeDisabled();
   });
 }

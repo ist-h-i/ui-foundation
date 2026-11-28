@@ -2,7 +2,7 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessageText} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, effect, ElementRef, inject, input, linkedSignal, output, signal, TemplateRef, untracked } from '@angular/core';
-import { ActionControl } from './action-control';
+import { ActionControl, type ActionTone } from './action-control';
 import { restoreFocus, tabbableElements } from './focus';
 import { availableOverlayAnchor, observeOverlay, OverlayRegistry, positionOverlay, type OverlayPlacement } from './overlay';
 import { popupDelay } from './floating-model';
@@ -30,10 +30,10 @@ const popupStyles = `
  :host:focus-visible { outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus)); }
  [hidden] { display:none!important; }
  .ui-popup-header,.ui-popup-actions { display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap); }
- .ui-popup-heading { flex:1 1 calc(var(--ui-text-heading) * 4);min-inline-size:0; }
+ .ui-popup-heading { flex:1 1 calc(var(--ui-text-section-title) * 4);min-inline-size:0; }
  .ui-popup-header { margin-block-end:var(--ui-space-control-gap); }
  .ui-popup-actions:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
- h2 { margin:0;font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);text-wrap:balance; }
+ h2 { margin:0;font-size:var(--ui-text-section-title);line-height:var(--ui-leading-heading);text-wrap:balance; }
  p { margin-block:var(--ui-space-control-gap);text-wrap:pretty; }
  .ui-popup-status { margin:0;color:var(--ui-color-muted); }
  .ui-popup-error { color:var(--ui-color-danger); }
@@ -291,12 +291,13 @@ export class Tooltip extends AnchoredPopup {
     }
 }
 @Component({selector:'ui-confirm-popover',standalone:true,imports:[ActionControl],changeDetection:ChangeDetectionStrategy.OnPush,
-    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
+    template:`<h2>{{label()}}</h2><p>{{message()}}</p><ng-content /><p class="ui-popup-error" role="status" aria-atomic="true">{{error()}}</p><div class="ui-popup-actions"><button uiAction variant="primary" [tone]="confirmTone()" data-popup-action [disabled]="busy()||pending()" (click)="confirm()">{{uiEffective_confirmLabel()}}</button><button uiAction data-popup-action data-popup-cancel [disabled]="busy()||pending()" (click)="close('cancel',false)">{{uiEffective_cancelLabel()}}</button></div><p class="ui-popup-status" role="status" aria-atomic="true">{{busy()?uiEffective_busyLabel():''}}</p>`,styles:popupStyles,host:interactiveHost})
 export class ConfirmPopover extends AnchoredPopup {
  protected readonly uiText_ConfirmPopover=injectUiMessageText();
     readonly label=input.required<string>();
     readonly message=input.required<string>();
     readonly confirmLabel=input<string>();
+    readonly confirmTone = input<ActionTone | null>(null);
  protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.confirm"));
     readonly cancelLabel=input<string>();
  protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmPopover("uiFoundation.confirmPopover.cancel"));

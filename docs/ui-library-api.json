@@ -2,8 +2,49 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 181,
+  "source_count": 185,
   "files": [
+    {
+      "path": "templates/angular/action-appearance.ts",
+      "sha256": "5cda01255ecb54a4326a1b5b717247f29b6a7ba982197e5434cad01d83075dbf",
+      "declarations": [
+        {
+          "names": [
+            "ActionVariant"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionVariant = 'primary' | 'secondary' | 'danger';"
+        },
+        {
+          "names": [
+            "ActionEmphasis"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionEmphasis = 'primary' | 'secondary' | 'tertiary';"
+        },
+        {
+          "names": [
+            "ActionTone"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionTone = 'normal' | 'danger';"
+        },
+        {
+          "names": [
+            "ActionAppearance"
+          ],
+          "kind": "interface",
+          "declaration": "export interface ActionAppearance {\n  emphasis: ActionEmphasis;\n  tone: ActionTone;\n  toneConflict: boolean;\n}"
+        },
+        {
+          "names": [
+            "resolveActionAppearance"
+          ],
+          "kind": "function",
+          "declaration": "export function resolveActionAppearance(\n  variant: ActionVariant, emphasis: ActionEmphasis | null = null, tone: ActionTone | null = null,\n): ActionAppearance"
+        }
+      ]
+    },
     {
       "path": "templates/angular/action-control-messages.ts",
       "sha256": "7a97b65a203f843a5c4007659f06daacbc943a9614c62b04b4aac5a3392f0e2b",
@@ -19,7 +60,7 @@
     },
     {
       "path": "templates/angular/action-control.ts",
-      "sha256": "438f85f25e3dcb13bbe4225eb3548981efa0dcbcadcaa3d408895f68eec6ac1b",
+      "sha256": "c0b0c0981c58ba2cdadb5f7dc185b055cf3a9eddf4b5618a4624434a642dd6e4",
       "declarations": [
         {
           "names": [
@@ -29,11 +70,8 @@
           "declaration": "export type ActionSize = 'small' | 'medium' | 'large';"
         },
         {
-          "names": [
-            "ActionVariant"
-          ],
-          "kind": "type",
-          "declaration": "export type ActionVariant = 'primary' | 'secondary' | 'danger';"
+          "kind": "export",
+          "declaration": "export type { ActionVariant, ActionEmphasis, ActionTone } from './action-appearance';"
         },
         {
           "name": "ActionControl",
@@ -51,6 +89,18 @@
               "kind": "input",
               "declaration": "readonly variant = input<ActionVariant>('secondary');",
               "initializer": "input<ActionVariant>('secondary')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "size",
@@ -112,6 +162,18 @@
               "kind": "input",
               "declaration": "readonly variant = input<ActionVariant>('secondary');",
               "initializer": "input<ActionVariant>('secondary')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "size",
@@ -259,7 +321,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "bb088bf723be73d4f61636d8d2d381a9ab135f9c36971ec5be2c14f8a275c6c2",
+      "sha256": "10e87d4c01dde7c4caf0e1345f2f4559f6aad01d43a4f1bd6472231e7a1349b7",
       "declarations": [
         {
           "name": "IconButton",
@@ -524,6 +586,18 @@
               "initializer": "input<'primary' | 'secondary' | 'danger'>('primary')"
             },
             {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
+            },
+            {
               "name": "icon",
               "kind": "input",
               "declaration": "readonly icon = input<string | null>(null);",
@@ -595,6 +669,18 @@
               "kind": "input",
               "declaration": "readonly icon = input('plus');",
               "initializer": "input('plus')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "menuLabel",
@@ -749,14 +835,14 @@
     },
     {
       "path": "templates/angular/anchor-navigation.ts",
-      "sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+      "sha256": "40ed5afc452946db821adfd65ca60e2d229d4a920bb22414cb476ad787cd0413",
       "declarations": [
         {
           "names": [
             "AnchorNavigationItem"
           ],
           "kind": "interface",
-          "declaration": "export interface AnchorNavigationItem {\n    id: string;\n    label: string;\n    target: HTMLElement | null;\n}"
+          "declaration": "export interface AnchorNavigationItem {\n    id: string;\n    label: string;\n    target: HTMLElement | null;\n    children?: readonly AnchorNavigationItem[];\n}"
         },
         {
           "name": "AnchorNavigation",
@@ -774,6 +860,12 @@
               "kind": "input",
               "declaration": "readonly label = input.required<string>();",
               "initializer": "input.required<string>()"
+            },
+            {
+              "name": "labelledBy",
+              "kind": "input",
+              "declaration": "readonly labelledBy = input<string | null>(null);",
+              "initializer": "input<string | null>(null)"
             },
             {
               "name": "items",
@@ -1131,7 +1223,7 @@
     },
     {
       "path": "templates/angular/card.ts",
-      "sha256": "eb4b549096dbbaae2dfc198518daa132be7c368473d91dfda77b0f6a2fd47dd9",
+      "sha256": "58ea43d183f9f34bee86322a128fb04e5d58b22249586fbc4a1b1a9ecb91ce3a",
       "declarations": [
         {
           "names": [
@@ -1366,7 +1458,7 @@
     },
     {
       "path": "templates/angular/cascader.ts",
-      "sha256": "67a7d0c3a80114e09579f5e1eeec482ece1b3ae589575753beecd8cac3e60c1e",
+      "sha256": "2097afb77197fb6d659d798b338bdcd331486f4803ca4f48337178ca79dcd81a",
       "declarations": [
         {
           "name": "Cascader",
@@ -2245,7 +2337,7 @@
     },
     {
       "path": "templates/angular/choice-controls.ts",
-      "sha256": "f3662a7e9a174bac731ce0388e1aa9d37efc4695923afb8637eb7bde91766b70",
+      "sha256": "c41eb39e6148d38d8f81589c0f18b2008dfb2511d12cf3c528b6ea34d282c829",
       "declarations": [
         {
           "names": [
@@ -2330,6 +2422,12 @@
           ],
           "members": [
             {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
               "name": "labelPosition",
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
@@ -2377,6 +2475,12 @@
             "extends NumericFieldControl<number>"
           ],
           "members": [
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
             {
               "name": "labelPosition",
               "kind": "input",
@@ -3298,11 +3402,11 @@
     },
     {
       "path": "templates/angular/core.ts",
-      "sha256": "0355653057f5761aee718f1f2bad2241158486ac0f660babf4515029d7868a2b",
+      "sha256": "670ae173224d722c94255b25eea7722a2520a69f168db439f4209f320551bc44",
       "declarations": [
         {
           "kind": "export",
-          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';"
         },
         {
           "kind": "export",
@@ -3310,7 +3414,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -4274,7 +4378,7 @@
     },
     {
       "path": "templates/angular/date-input.ts",
-      "sha256": "2d9275c49be03e0554b8045a48be99627db3899eb6351a85d738aa6086cae37b",
+      "sha256": "25523a2732917ee21e1a98da9828b144e27b0632b60cc3434757bbdc5b7f3968",
       "declarations": [
         {
           "name": "DatePicker",
@@ -4955,7 +5059,7 @@
     },
     {
       "path": "templates/angular/dialog-variants.ts",
-      "sha256": "9916557612bcac5f76607de6ed155b25e64531f40dfa237e79860579ab5f17c6",
+      "sha256": "5926d86bca6e3f28847ae586e239e2955c7796301adacef7fbc76527f3d79134",
       "declarations": [
         {
           "name": "ConfirmDialog",
@@ -5009,6 +5113,12 @@
               "kind": "input",
               "declaration": "readonly confirmLabel = input<string>();",
               "initializer": "input<string>()"
+            },
+            {
+              "name": "confirmTone",
+              "kind": "input",
+              "declaration": "readonly confirmTone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "cancelLabel",
@@ -5291,7 +5401,7 @@
     },
     {
       "path": "templates/angular/dialog.ts",
-      "sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
+      "sha256": "ebec72ac255697b44acc711bc89419990b86ba40f314275066b33df45cd4a5d2",
       "declarations": [
         {
           "names": [
@@ -5338,6 +5448,13 @@
           ],
           "kind": "type",
           "declaration": "export type DialogArea = 'header' | 'body' | 'footer';"
+        },
+        {
+          "names": [
+            "DIALOG_INITIAL_FOCUS"
+          ],
+          "kind": "variable",
+          "declaration": "export const DIALOG_INITIAL_FOCUS = new InjectionToken<(dialog: HTMLDialogElement) => HTMLElement | null>('uiDialog initial focus');"
         },
         {
           "name": "DialogTemplate",
@@ -5402,7 +5519,7 @@
             "DIALOG_STYLES"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host:not(:modal) { z-index:1; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); text-wrap:balance; }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
+          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host:not(:modal) { z-index:1; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-section-title) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-section-title); line-height:var(--ui-leading-heading); text-wrap:balance; }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
         },
         {
           "name": "Dialog",
@@ -6174,7 +6291,7 @@
     },
     {
       "path": "templates/angular/display.ts",
-      "sha256": "c5c9d5d0030eecd78b57e40d57791f10aa404272fbb9a92597f1902f6427f608",
+      "sha256": "2b648569e92d5cf4a66000ee43a610a11c3f03161dc9d7bfc3c54cd47b2d44f3",
       "declarations": [
         {
           "name": "Typography",
@@ -6190,8 +6307,8 @@
             {
               "name": "uiTypography",
               "kind": "input",
-              "declaration": "readonly uiTypography=input<''|'body'|'heading'|'small'>('');",
-              "initializer": "input<''|'body'|'heading'|'small'>('')"
+              "declaration": "readonly uiTypography=input<''|'body'|'heading'|'small'|'page-title'|'section-title'|'subheading'>('');",
+              "initializer": "input<''|'body'|'heading'|'small'|'page-title'|'section-title'|'subheading'>('')"
             },
             {
               "name": "tone",
@@ -6836,7 +6953,7 @@
     },
     {
       "path": "templates/angular/drawer.ts",
-      "sha256": "3cc4d92842c3b8873433cd91ca1261aad186a2d113289c9f306471218eea521a",
+      "sha256": "0d56e1baec477806a98a8883d598fb93639ae76fe09a928de747ceb30f9b3dfb",
       "declarations": [
         {
           "name": "Drawer",
@@ -7056,7 +7173,7 @@
     },
     {
       "path": "templates/angular/feedback.ts",
-      "sha256": "4d4e5094e9f97540404608a1a99e281e30dacb0898002cc58934b103686b601d",
+      "sha256": "ec3ee98f472a3a765109e28d0cf1c511aa4e6b9b4e1a8e456b57b8b28db32c04",
       "declarations": [
         {
           "names": [
@@ -7531,6 +7648,33 @@
               "initializer": "output<void>()"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/field-appearance.ts",
+      "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+      "declarations": [
+        {
+          "names": [
+            "FieldHintPosition"
+          ],
+          "kind": "type",
+          "declaration": "export type FieldHintPosition = 'before' | 'after';"
+        },
+        {
+          "names": [
+            "fieldHintPosition"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldHintPosition(value: unknown): FieldHintPosition"
+        },
+        {
+          "names": [
+            "fieldCharacterWidth"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldCharacterWidth(value: number | null): number | null"
         }
       ]
     },
@@ -8345,7 +8489,7 @@
     },
     {
       "path": "templates/angular/floating-panel.ts",
-      "sha256": "a24279a7a83f2666f6666b15f2897636d6767a2de6789bbfe4ac7ff07005d42b",
+      "sha256": "8a2d3d12317ebcaf27ca4d9f8b1f53641f57346e02f9234737642317bcd2b652",
       "declarations": [
         {
           "names": [
@@ -8702,6 +8846,12 @@
               "initializer": "input<string>()"
             },
             {
+              "name": "confirmTone",
+              "kind": "input",
+              "declaration": "readonly confirmTone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
+            },
+            {
               "name": "cancelLabel",
               "kind": "input",
               "declaration": "readonly cancelLabel=input<string>();",
@@ -8790,8 +8940,12 @@
     },
     {
       "path": "templates/angular/form-field.ts",
-      "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
       "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type { FieldHintPosition } from './field-appearance';"
+        },
         {
           "name": "FieldControl",
           "kind": "class",
@@ -8865,6 +9019,24 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
+            },
+            {
+              "name": "resolvedCharacterWidth",
+              "kind": "property",
+              "declaration": "readonly resolvedCharacterWidth = computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  });",
+              "initializer": "computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  })"
             },
             {
               "name": "hasHint",
@@ -9177,15 +9349,15 @@
     },
     {
       "path": "templates/angular/forms.ts",
-      "sha256": "f324eb077580bc46f4fde5d5948484dbdd9985cde6aca45659dfa309d3cb58d3",
+      "sha256": "555c2021391fffdd96af7ea7907747452e7c5ddf7e0fa52669a5bc18ef259d3d",
       "declarations": [
         {
           "kind": "export",
-          "declaration": "export { FieldControl, FormField } from './form-field';"
+          "declaration": "export { FieldControl, FormField, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         }
       ]
     },
@@ -10267,7 +10439,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "62d4e4f9a1eb8a225ca3b3e6e581e40b650f7f4498519dbaa5aec9e197afaa81",
+      "sha256": "c1235aa202180f911d4315c1ec6c88f13becca5d8a4999c891de92a2d0e6d270",
       "declarations": [
         {
           "kind": "export",
@@ -10275,11 +10447,11 @@
         },
         {
           "kind": "export",
-          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';"
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -10351,7 +10523,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         },
         {
           "kind": "export",
@@ -10376,6 +10548,10 @@
         {
           "kind": "export",
           "declaration": "export { Wizard, WizardStep, type WizardTransition } from './wizard';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { StepNavigation, type StepNavigationItem, type StepNavigationStatus } from './step-navigation';"
         },
         {
           "kind": "export",
@@ -11180,7 +11356,7 @@
     },
     {
       "path": "templates/angular/layout.ts",
-      "sha256": "035c2f1bb2e5f4ec645d4a4936370238e2747e535359504c2277aac5251a6322",
+      "sha256": "227f4b318d626cbb478f43caa20ec664c62063dbbf0c5e4ceca0ec8d4f60dff6",
       "declarations": [
         {
           "kind": "export",
@@ -12403,7 +12579,7 @@
     },
     {
       "path": "templates/angular/mega-menu.ts",
-      "sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
+      "sha256": "5ce7a578dd1d69ae380274fa1141005dd6b63e6631adbbced8f352b8dffc0e9d",
       "declarations": [
         {
           "name": "MegaMenu",
@@ -12466,14 +12642,14 @@
     },
     {
       "path": "templates/angular/menu-model.ts",
-      "sha256": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+      "sha256": "0b09b59f684b77d3c8fb745f113f733ce3aa2109c15d3a9dc3275786b2b61960",
       "declarations": [
         {
           "names": [
             "MenuItem"
           ],
           "kind": "interface",
-          "declaration": "export interface MenuItem {\n    id: string;\n    label?: string;\n    type?: 'item' | 'checkbox' | 'radio' | 'group' | 'separator';\n    icon?: string;\n    disabled?: boolean;\n    visible?: boolean;\n    checked?: boolean;\n    radioGroup?: string;\n    value?: unknown;\n    children?: readonly MenuItem[];\n}"
+          "declaration": "export interface MenuItem {\n    id: string;\n    label?: string;\n    type?: 'item' | 'checkbox' | 'radio' | 'group' | 'separator';\n    icon?: string;\n    disabled?: boolean;\n    visible?: boolean;\n    /** Operation meaning for popup commands, including Toolbar overflow. */\n    tone?: ActionTone;\n    checked?: boolean;\n    radioGroup?: string;\n    value?: unknown;\n    children?: readonly MenuItem[];\n}"
         },
         {
           "names": [
@@ -12521,7 +12697,7 @@
     },
     {
       "path": "templates/angular/menu.ts",
-      "sha256": "b8288012155d9d3efac84aab630760a75c190b5c85de12cc063885bc201813e1",
+      "sha256": "e5a4073132a75557c7d5aea503e9f11197ca2076a533f98d93e697c7d3891402",
       "declarations": [
         {
           "kind": "export",
@@ -12656,7 +12832,7 @@
     },
     {
       "path": "templates/angular/menubar.ts",
-      "sha256": "525688b8af0d64cbef9c6d037c8e563eb965c387af104c0e421b5bdab36dd746",
+      "sha256": "5ff7af5eea89864a4f0ae2b4ef0103b7fa429a15f26dc73e5168812f73397541",
       "declarations": [
         {
           "name": "Menubar",
@@ -13128,7 +13304,7 @@
     },
     {
       "path": "templates/angular/notification-center.ts",
-      "sha256": "94787054ee0bd67f11720bd8278b13c332d920c68b74e3ca63975bd87c361119",
+      "sha256": "f75c5c5f488ea691348c72b4c8018a618d71b66304082aa8f603f5b06179dd3f",
       "declarations": [
         {
           "names": [
@@ -14977,7 +15153,7 @@
     },
     {
       "path": "templates/angular/scheduler-view.ts",
-      "sha256": "f31e3db1ac37635ada7637194942aef7bb6590c4f94c6a5dff9be343643527d9",
+      "sha256": "e90bdb6dbe12d4f1f70103cccb8040d04631e5e3cc11f763fb746cc42c6ac69e",
       "declarations": [
         {
           "names": [
@@ -14991,7 +15167,7 @@
             "schedulerStyles"
           ],
           "kind": "variable",
-          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-heading);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[aria-current=date]{border-color:var(--ui-color-action);color:var(--ui-color-text)}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
+          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-section-title);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[aria-current=date]{border-color:var(--ui-color-action);color:var(--ui-color-text)}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
         }
       ]
     },
@@ -15024,7 +15200,7 @@
     },
     {
       "path": "templates/angular/selection-input.ts",
-      "sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "sha256": "0135db8886d718261762f13633c3487ae12ecd7083aa9074b6c3c2db1b5830fa",
       "declarations": [
         {
           "names": [
@@ -16394,6 +16570,112 @@
       ]
     },
     {
+      "path": "templates/angular/step-navigation-model.ts",
+      "sha256": "fde2078a976b9530842117c092ba6e9090892427c80af544de39a81e6d7f80a3",
+      "declarations": [
+        {
+          "names": [
+            "StepNavigationStatus"
+          ],
+          "kind": "type",
+          "declaration": "export type StepNavigationStatus = 'not-started' | 'in-progress' | 'complete' | 'error' | 'skipped';"
+        },
+        {
+          "names": [
+            "StepNavigationItem"
+          ],
+          "kind": "interface",
+          "declaration": "export interface StepNavigationItem {\n  id: string;\n  label: string;\n  status: StepNavigationStatus;\n  /** Localized status, supplied by the app; never inferred from its color. */\n  statusLabel: string;\n  navigable?: boolean;\n  disabled?: boolean;\n}"
+        },
+        {
+          "names": [
+            "validateStepNavigation"
+          ],
+          "kind": "function",
+          "declaration": "export function validateStepNavigation(items: readonly StepNavigationItem[], currentId: string | null): readonly StepNavigationItem[]"
+        },
+        {
+          "names": [
+            "canRequestStep"
+          ],
+          "kind": "function",
+          "declaration": "export function canRequestStep(item: StepNavigationItem, currentId: string | null, busy: boolean): boolean"
+        },
+        {
+          "names": [
+            "validateCurrentStepLabel"
+          ],
+          "kind": "function",
+          "declaration": "export function validateCurrentStepLabel(label: unknown): string"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/step-navigation.ts",
+      "sha256": "f383c284f706be4e5d2003fa08b260df3873c35f506b96545ce99e4fd082abcc",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type { StepNavigationItem, StepNavigationStatus } from './step-navigation-model';"
+        },
+        {
+          "name": "StepNavigation",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Component",
+              "selector": "'ui-step-navigation'"
+            }
+          ],
+          "extends": [],
+          "members": [
+            {
+              "name": "label",
+              "kind": "input",
+              "declaration": "readonly label = input.required<string>();",
+              "initializer": "input.required<string>()"
+            },
+            {
+              "name": "items",
+              "kind": "input",
+              "declaration": "readonly items = input.required<readonly StepNavigationItem[]>();",
+              "initializer": "input.required<readonly StepNavigationItem[]>()"
+            },
+            {
+              "name": "currentId",
+              "kind": "input",
+              "declaration": "readonly currentId = input<string | null>(null);",
+              "initializer": "input<string | null>(null)"
+            },
+            {
+              "name": "currentLabel",
+              "kind": "input",
+              "declaration": "readonly currentLabel = input.required<string>();",
+              "initializer": "input.required<string>()"
+            },
+            {
+              "name": "direction",
+              "kind": "input",
+              "declaration": "readonly direction = input<'horizontal' | 'vertical'>('horizontal');",
+              "initializer": "input<'horizontal' | 'vertical'>('horizontal')"
+            },
+            {
+              "name": "busy",
+              "kind": "input",
+              "declaration": "readonly busy = input(false, { transform: booleanAttribute });",
+              "initializer": "input(false, { transform: booleanAttribute })"
+            },
+            {
+              "name": "stepRequested",
+              "kind": "output",
+              "declaration": "readonly stepRequested = output<string>();",
+              "initializer": "output<string>()"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "path": "templates/angular/structured-input-model.ts",
       "sha256": "193fb99c9f424ca1e39c302838aeb744a66791e6b31b041143bf193f5ad4a089",
       "declarations": [
@@ -16450,7 +16732,7 @@
     },
     {
       "path": "templates/angular/structured-input.ts",
-      "sha256": "e790d53c7d85631ed0675e5093b625a37d33760751624d9cc8ddecb140a72999",
+      "sha256": "c748494b1cbceb12a8aa6afdb31a61ea9cd477af9a375401bb98ab3b5f7ea985",
       "declarations": [
         {
           "name": "MaskedInput",
@@ -16954,7 +17236,7 @@
     },
     {
       "path": "templates/angular/table-controls.ts",
-      "sha256": "68b5c44d7b6b623df9cec186a74a88e2f564a687549332ccfbec8aaa7152a62a",
+      "sha256": "de7b8dff6ef54fcc84d6c249ccf0dfee609abaf5baf595c4d9c1dcafaba63804",
       "declarations": [
         {
           "names": [
@@ -17159,7 +17441,7 @@
             "TableBulkAction"
           ],
           "kind": "interface",
-          "declaration": "export interface TableBulkAction {\n    id: string;\n    label: string;\n    disabled?: boolean;\n}"
+          "declaration": "export interface TableBulkAction {\n    id: string;\n    label: string;\n    disabled?: boolean;\n    emphasis?: ActionEmphasis;\n    tone?: ActionTone;\n}"
         },
         {
           "names": [
@@ -17798,8 +18080,15 @@
     },
     {
       "path": "templates/angular/text-controls.ts",
-      "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+      "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
       "declarations": [
+        {
+          "names": [
+            "TextInputMode"
+          ],
+          "kind": "type",
+          "declaration": "export type TextInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';"
+        },
         {
           "name": "TextInput",
           "kind": "class",
@@ -17813,6 +18102,12 @@
             "extends ComposingTextControl"
           ],
           "members": [
+            {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
             {
               "name": "placeholder",
               "kind": "input",
@@ -17859,6 +18154,18 @@
           ],
           "members": [
             {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
+            {
+              "name": "autocomplete",
+              "kind": "input",
+              "declaration": "readonly autocomplete=input<string|null>(null);",
+              "initializer": "input<string|null>(null)"
+            },
+            {
               "name": "rows",
               "kind": "input",
               "declaration": "readonly rows=input(3);",
@@ -17900,7 +18207,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "6cb8ff1006aaf0d24e67abeb0df9233a62774acd347093cdffc394b57761b301",
+      "sha256": "96e60baadc58c460d9c21d50d2e59ffd0fae880899bfd0ec3fe462deb7ae61ce",
       "declarations": [
         {
           "kind": "export",
@@ -18332,14 +18639,14 @@
     },
     {
       "path": "templates/angular/toolbar.ts",
-      "sha256": "1fa1eb67cfc1819d9e91b1c45d5b86f3262506fa89eb643eeb47fea1982c6d48",
+      "sha256": "fb13bb4b13710d4cf9fdaf8ace0582f92f5c92e866cff2563d6a06331d326c27",
       "declarations": [
         {
           "names": [
             "ToolbarItem"
           ],
           "kind": "interface",
-          "declaration": "export interface ToolbarItem {\n    id: string;\n    label?: string;\n    icon?: string;\n    type?: 'action' | 'separator';\n    disabled?: boolean;\n    visible?: boolean;\n}"
+          "declaration": "export interface ToolbarItem {\n    id: string;\n    label?: string;\n    icon?: string;\n    type?: 'action' | 'separator';\n    disabled?: boolean;\n    visible?: boolean;\n    emphasis?: ActionEmphasis;\n    tone?: ActionTone;\n}"
         },
         {
           "name": "Toolbar",
@@ -18412,7 +18719,7 @@
     },
     {
       "path": "templates/angular/tour.ts",
-      "sha256": "221c79c0a301d9ecc7a38c1a7626f7417a65933ec3c113b87cbd7bfe11e377a0",
+      "sha256": "b950c1da14174602ec0ca0f029e48661b3952ad07f1bfc898b61635db9d00798",
       "declarations": [
         {
           "names": [
@@ -19328,7 +19635,7 @@
     },
     {
       "path": "templates/angular/tree-select.ts",
-      "sha256": "31d5e4399a5eebf67f4b37ac9c62f1180c5dfc5931cf3f0c458c48f53485b21c",
+      "sha256": "42446eeabf2cdf27a83b63750bf362f9ec2530477267b8950d7f998306161f37",
       "declarations": [
         {
           "name": "TreeSelect",
@@ -19625,7 +19932,7 @@
     },
     {
       "path": "templates/angular/value-control.ts",
-      "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+      "sha256": "5b24d927f75ae0dc43b9ccee7857067f5a3534e0531ef36a90524e716921eba6",
       "declarations": [
         {
           "name": "ValueControl",
@@ -19744,6 +20051,18 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
             }
           ]
         }
@@ -20456,7 +20775,7 @@
     },
     {
       "path": "templates/angular/wizard.ts",
-      "sha256": "9948806ae27d1a535fa40da403a07d0aa8053f52e401b92b091c3c096488e647",
+      "sha256": "5e5221a9e66ffc7d6f4e1027ed026c8eb8eeedbe73b8dc4380c6fde19ab803af",
       "declarations": [
         {
           "names": [

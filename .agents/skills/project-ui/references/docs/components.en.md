@@ -14,7 +14,7 @@ Choose a generated Angular entry for the components you use. [Public entry point
 | Structured input | `MaskedInput`, `OTPInput`, `TagInput`, `Slider`, `RangeSlider`, `Knob`, `Rating`, `ColorPicker`, `InlineEdit`, `Wizard`, `WizardStep`, `FilterBuilder`: constrained input, editing, steps and typed recursive conditions |
 | Dates | `Calendar`, `DatePicker`, `TimePicker`, `DateTimePicker`, `MonthPicker`, `YearPicker`, `DateRangePicker`: civil dates, explicit input formats, ranges and unavailable dates |
 | Scheduling | `Scheduler`, `Agenda`, `Gantt`, `Kanban`: time/resource views, task dependencies and move requests |
-| Navigation | `Navigation`, `NavigationItem`, `Breadcrumb`, `SideNav`, `BottomNavigation`, `AnchorNavigation`, `Tabs`, `TabPanel`, `Menubar`, `MegaMenu`, `CommandPalette`: links, current state, hierarchical actions and retained panels |
+| Navigation | `Navigation`, `NavigationItem`, `Breadcrumb`, `SideNav`, `BottomNavigation`, `AnchorNavigation`, `StepNavigation`, `Tabs`, `TabPanel`, `Menubar`, `MegaMenu`, `CommandPalette`: links, contents, procedure progress, hierarchical actions and retained panels |
 | Overlays | `Dialog`, `ConfirmDialog`, `FormDialog`, `Drawer`, `Popover`, `Tooltip`, `Menu`: shared overlay lifetime, keyboard/focus handling, positioning and confirmation flows |
 | Feedback | `Alert`, `NotificationHost`, `Snackbar`, `ProgressBar`, `Spinner`, `Skeleton`, `EmptyState`: status, missing information, busy states and recovery |
 | Collections | `List`, `Masonry`, `DataView`, `Listbox`, `VirtualList`, `SortableList`, `TransferList`, `InfiniteScroll`, `Timeline`: stable-key rendering, virtualization, movement and incremental loading |
@@ -38,3 +38,5 @@ Use stable keys for collections and tables. Keep drafts outside recycled virtual
 Use semantic tokens and configured profiles. Preserve input, active operations and focus across profile/language changes. Check narrow layouts, enlarged text, RTL where supported, pending/failure/retry and accessibility with the real screen. Keep actionable information and recovery paths visible.
 
 App routing, dirty-state protection and fixed-navigation content offsets remain app responsibilities. Existing link components have not been verified in composition with Angular Router directives. Native file/media/clipboard features retain browser permission and capability limits.
+
+For input constraints that must be read before editing, use the supported FormField hint placement. Limit editor width only when expected input length makes that useful; keep the layout responsive. Show reset only when it serves the user's task. See [component contracts](ui-components.en.md#formfield--fieldcontrol).

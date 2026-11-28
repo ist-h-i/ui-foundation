@@ -17,7 +17,7 @@ const edgeStyles = `
  :host([data-edge="top"]) { top:0;bottom:auto; }
  :host([data-edge="bottom"]) { bottom:0;top:auto; }
  :host([data-maximized="true"]) { top:0;bottom:0;left:0;right:0;width:100vw;height:100dvh; }
- .ui-dialog__title { flex-basis:calc(var(--ui-text-heading) * 4); }
+ .ui-dialog__title { flex-basis:calc(var(--ui-text-section-title) * 4); }
 `;
 @Component({standalone:true,imports:[NgTemplateOutlet,ActionControl,MoveHandle,ResizeHandle,UiStableMessagePipe],changeDetection:ChangeDetectionStrategy.OnPush,template:DIALOG_TEMPLATE,styles:DIALOG_STYLES})
 abstract class EdgePanel extends Dialog {

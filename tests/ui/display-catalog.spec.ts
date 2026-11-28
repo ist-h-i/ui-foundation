@@ -14,6 +14,62 @@ for(const profile of ['guided','dense'])test.describe('表示カタログ '+prof
   for(const tone of ['neutral','muted','info','success','warning','error']){await page.getByLabel('意味色',{exact:true}).selectOption(tone);await expect(text).toHaveAttribute('data-tone',tone);expect((await new AxeBuilder({page}).include('[data-testid="typography"]').analyze()).violations).toEqual([]);}
  });
 
+ test('視覚的役割を変えてもnative見出しレベルを保ちプロファイルに追従する',async({page})=>{
+  const region=page.getByTestId('visual-hierarchy');
+  const names=['ページタイトルの役割','セクションタイトルの役割','小見出しの役割','従来の見出し'];
+  const headings=names.map(name=>region.getByRole('heading',{name,level:2,exact:true}));
+  const [title,section,subheading,legacy]=headings;
+  const inner=page.getByTestId('body-spacing');
+  const related=page.getByTestId('related-content');
+  for(const active of [profile,profile==='guided'?'dense':'guided']){
+   await page.getByLabel('プロファイル',{exact:true}).selectOption(active);
+   const expected=active==='guided'?{page:28,section:20,subheading:18,wide:32,normal:16}:{page:24,section:24,subheading:20,wide:24,normal:24};
+   await expect(title).toHaveCSS('font-size',expected.page+'px');
+   await expect(legacy).toHaveCSS('font-size',expected.page+'px');
+   await expect(section).toHaveCSS('font-size',expected.section+'px');
+   await expect(subheading).toHaveCSS('font-size',expected.subheading+'px');
+   await expect(region).toHaveCSS('row-gap',expected.wide+'px');
+   await expect(inner).toHaveCSS('row-gap',expected.normal+'px');
+  }
+  await page.setViewportSize({width:320,height:800});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.getByLabel('RTL',{exact:true}).check();
+  for(const heading of headings)await expect(heading).toBeVisible();
+  await expect(related).toHaveCSS('direction','rtl');
+  const geometry=await region.evaluate(el=>{
+   const block=el.firstElementChild!, title=block.firstElementChild!, body=block.lastElementChild!;
+   const bounds=(e:Element)=>e.getBoundingClientRect();
+   return {
+    within:el.scrollWidth<=el.clientWidth+1 && document.documentElement.scrollWidth<=innerWidth+1,
+    wraps:bounds(body).height>parseFloat(getComputedStyle(body).lineHeight)*2,
+    itemGap:bounds(body).top-bounds(title).bottom,
+    sectionGap:bounds(el.children[1]!).top-bounds(block).bottom,
+   };
+  });
+  expect(geometry.within).toBe(true);
+  expect(geometry.wraps).toBe(true);
+  expect(geometry.itemGap).toBeGreaterThan(0);
+  expect(geometry.sectionGap).toBeGreaterThan(geometry.itemGap);
+
+  await page.getByLabel('プロファイル',{exact:true}).selectOption(profile);
+  await page.getByLabel('内側で別のプロファイルを使う',{exact:true}).uncheck();
+  await expect(inner).not.toHaveAttribute('data-ui-profile');
+  const sameProfile = await region.evaluate(root => {
+   const size = (element: Element) => parseFloat(getComputedStyle(element).fontSize);
+   const nested = root.querySelector('[data-testid="body-spacing"]')!;
+   return {
+    title: size(root.querySelector('h2[uiTypography="page-title"]')!),
+    section: size(nested.children[0]!),
+    subheading: size(nested.children[1]!),
+    wide: parseFloat(getComputedStyle(root).rowGap),
+    normal: parseFloat(getComputedStyle(nested).rowGap),
+   };
+  });
+  expect(sameProfile.title).toBeGreaterThan(sameProfile.section);
+  expect(sameProfile.section).toBeGreaterThan(sameProfile.subheading);
+  expect(sameProfile.wide).toBeGreaterThan(sameProfile.normal);
+ });
+
  test('Badgeは全件数を説明し、上限/0件/dot/論理位置を切替える',async({page})=>{
   const badge=page.locator('ui-badge');await expect(badge.getByRole('img',{name:'未読件数 123',exact:true})).toHaveText('99+');await page.getByLabel('件数の上限',{exact:true}).fill('200');await expect(badge.getByRole('img')).toHaveText('123');await page.getByLabel('表示件数',{exact:true}).fill('0');await expect(badge.getByRole('img')).toHaveCount(0);await page.getByLabel('0件も表示',{exact:true}).check();await expect(badge.getByRole('img',{name:'未読件数 0',exact:true})).toHaveText('0');await page.getByLabel('ドット表示',{exact:true}).check();await expect(badge.getByRole('img',{name:'未読件数',exact:true})).toBeEmpty();
   for(const position of ['top-start','top-center','top-end','bottom-start','bottom-center','bottom-end','inline']){await page.getByLabel('Badge位置',{exact:true}).selectOption(position);await expect(badge).toHaveAttribute('data-position',position);const inside=await badge.locator('.ui-badge-value').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.parentElement!.getBoundingClientRect();return a.left>=b.left-1&&a.right<=b.right+1;});expect(inside).toBe(true);}

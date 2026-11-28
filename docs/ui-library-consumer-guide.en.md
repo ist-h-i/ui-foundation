@@ -132,6 +132,7 @@ Choose the generated public entry point for your app.
 | `angular/forms.ts` | Text inputs, text areas, and labeled native form fields. |
 | `angular/layout.ts` | Layout components such as `Stack` and their layout types. |
 | `angular/disclosure.ts` | Expand and collapse content with `Disclosure`. |
+| `angular/step-navigation.ts` | Controlled procedure progress through an individual entry when the installed version generates it. |
 | `angular/index.ts` | Any other components or the complete Angular API. |
 
 `layout` and `disclosure` use `@angular/core` and the shared generated tokens and component styles. Apps using only these entries do not need CDK or specialist dependencies.
@@ -245,17 +246,19 @@ For the full entry, install the type dependencies in the app with `npm install -
 
 ## CSS and distribution assets
 
-Use app-owned styles for page layout and spacing. For example, set the section padding in the app and use the standard action variant for the button. With Tailwind, `p-section` uses the same spacing token.
+Use app-owned styles for page layout and spacing. For example, set the section padding in the app and choose the standard primary action style. With Tailwind, `p-section` uses the same spacing token.
 
 ```html
 <section class="app-actions">
-  <button uiAction variant="primary">Save</button>
+  <button uiAction emphasis="primary">Save</button>
 </section>
 ```
 
 ```css
 .app-actions { padding: var(--ui-space-section); }
 ```
+
+Use the current action inputs when adopting a new appearance. Existing `variant="primary"` and `variant="secondary"` bindings retain their appearance. To migrate `variant="danger"` to the equivalent appearance, use `emphasis="primary" tone="danger"`. Choose a different prominence only when the action has a different priority in its group, and use a label that describes what the action does. See the [action contract](ui-components.en.md#actioncontrol--actionlink).
 
 Load the generated `angular/specialist.css` globally for screens using specialist components. MapView also needs the CSS from the installed MapLibre version.
 
@@ -310,6 +313,33 @@ Build the app and exercise the actual tasks in the browser after synchronization
 To migrate an existing Japanese app to an English generated default, set `default_language: en`, inspect the sync diff, sync and check, then verify app-owned translations and date/number presentation. Time zone, native input format and business data are unchanged. Older CLI versions reject the new field, so rollback must restore the saved YAML with the matching package and generated files.
 
 When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Upgrade to 0.2.0](npm-beta-release-notes.en.md#020) · [Upgrade from beta](npm-beta-release-notes.en.md#010)
+
+
+### Preserve managed files in Git
+
+Before tracking generated output and the generated Skill, place these rules after broad text rules in the app's root `.gitattributes`:
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+Replace the first path with the configured output directory in both `.gitattributes` and the attribute check. Start the custom Git attribute pattern with `/` to anchor it at the app root, including for directory names starting with `!` or `#`. Double-quote patterns for paths containing spaces and escape literal brackets inside the quotes with doubled backslashes. For example, an output of `custom output/generated[1]` has this rule:
+
+```gitattributes
+"/custom output/generated\\[1\\]/**" -text
+```
+
+After staging the generated files and attributes, check every staged or tracked file in both directories. Later patterns and attributes closer to a file can change the effective result. Every file must report `text: unset`. Use the actual output path in this example.
+
+```sh
+git --literal-pathspecs ls-files -- 'custom output/generated[1]' .agents/skills/project-ui |
+  git check-attr --stdin text
+```
+
+Avoid any other byte-changing filter or encoding. Managed files include original third-party notice bytes, and the manifest verifies exact content. [Git attribute precedence](https://git-scm.com/docs/gitattributes)
+
+If an existing checkout is already normalized, save a recovery point first. In a separate directory, use the previous locked package and configuration to reproduce the original bytes. Verify the recorded manifest against the recovered manifest (only line-ending differences are acceptable) and every recovered file against its recorded SHA-256. Verify that the affected checkout has only line-ending differences before restoring. If a non-line-ending edit, missing evidence, or another conflict remains, stop and resolve it separately. Do not rewrite hashes to approve edits. Commit the attributes and verified recovery; check a fresh checkout with `sync --dry-run`, `check`, and a no-change sync.
 
 ## Optional browser test for retrying a save
 
