@@ -229,16 +229,20 @@ test('the project label-cap exception retains the audited fixed ratio and produc
   const evidence = new URL('../fixtures/static-checks/host-applications/', import.meta.url);
   const historical = await readFile(new URL('form-label-cap-audit.json', evidence));
   const audit = JSON.parse(historical.toString('utf8'));
-  const review = JSON.parse(await readFile(new URL('form-label-cap-reaudit.json', evidence), 'utf8'));
+  const priorBytes = await readFile(new URL('form-label-cap-reaudit.json', evidence));
+  const prior = JSON.parse(priorBytes.toString('utf8'));
+  const review = JSON.parse(await readFile(new URL('form-appearance-label-cap-reaudit.json', evidence), 'utf8'));
   const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
-  assert.equal(sha256(historical), review.prior_audit_sha256, 'historical label-cap audit changed');
+  assert.equal(sha256(historical), prior.prior_audit_sha256, 'historical label-cap audit changed');
+  assert.equal(sha256(priorBytes), review.prior_audit_sha256, 'prior label-cap re-audit changed');
   const files = Object.keys(audit.producer_sha256);
   assert.deepEqual(Object.keys(review.dependencies).sort(), [...files].sort());
   const root = await mkdtemp(resolve(tmpdir(), 'ui-project-label-cap-'));
   t.after(() => rm(root, {recursive:true, force:true}));
   for (const file of files) {
     const dependency = review.dependencies[file];
-    assert.equal(dependency.prior_sha256, audit.producer_sha256[file], file);
+    assert.equal(prior.dependencies[file].prior_sha256, audit.producer_sha256[file], file);
+    assert.equal(dependency.prior_sha256, prior.dependencies[file].current_sha256, file);
     assert.ok(dependency.judgment.trim(), file);
     const bytes = await readFile(new URL('../../' + file, import.meta.url));
     assert.equal(sha256(bytes), dependency.current_sha256, `${file}: re-audit the structural label cap before refreshing the proof`);
@@ -246,9 +250,13 @@ test('the project label-cap exception retains the audited fixed ratio and produc
     await mkdir(resolve(target,'..'), {recursive:true});
     await writeFile(target,bytes);
   }
-  const fieldSite = review.sites.field_alias;
-  const alias = {...audit.new_diagnostic, line:fieldSite.line, column:fieldSite.column, exception:fieldSite.exception};
-  const checkbox = {...audit.existing_checkbox_exception, line:review.sites.checkbox.line, column:review.sites.checkbox.column};
+  const alias = {...audit.new_diagnostic, ...review.sites.field_alias};
+  const checkbox = {...audit.existing_checkbox_exception, ...review.sites.checkbox};
+  assert.equal(alias.exception, prior.sites.field_alias.exception);
+  assert.equal(checkbox.exception, audit.existing_checkbox_exception.exception);
+  for (const [site, baseline] of [[alias, audit.new_diagnostic], [checkbox, audit.existing_checkbox_exception]]) {
+    for (const key of ['file', 'rule', 'severity', 'source'] as const) assert.equal(site[key], baseline[key]);
+  }
   const sites = [alias, checkbox], input = parseConfig(example);
   const exceptions = sites.map(site => {
     const matches = input.checks!.exceptions.filter(e => e.file === site.file && e.rule === site.rule && e.source === site.source && e.reason === site.exception);
@@ -257,6 +265,8 @@ test('the project label-cap exception retains the audited fixed ratio and produc
   });
   assert.equal(exceptions[0].line, alias.line);
   assert.equal(exceptions[0].column, alias.column);
+  assert.equal(exceptions[1].line, undefined);
+  assert.equal(exceptions[1].column, undefined);
   input.checks = {source_roots:files, approved_components:[], exceptions};
   const config = resolveConfig(input);
   const inspect = () => checkSources({root, config, policy:createSourcePolicy(config)});

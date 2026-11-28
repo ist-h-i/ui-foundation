@@ -1876,7 +1876,7 @@ checks:
     - file: templates/angular/choice-controls.ts
       rule: unresolved
       source: '[style.background-color]="choice.value"'
-      line: 164
+      line: 166
       column: 1760
       reason: "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI
         theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで\
@@ -2096,8 +2096,8 @@ checks:
     - file: templates/angular/text-controls.ts
       rule: unresolved
       source: '[style.max-block-size.px]="checkedMaxHeight()"'
-      line: 174
-      column: 51
+      line: 178
+      column: 119
       reason: "[D146] Textareaのmax-block-sizeはautoResize後もnative
         editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive
         finiteに限定し、その値がこのbindingへ届く。px
@@ -2237,7 +2237,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 99
+      line: 100
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。
