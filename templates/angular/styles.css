@@ -107,6 +107,7 @@
 /* FormLayout owns the space between fields; their standalone margin must not add to it. */
 .ui-form-layout .ui-form-field { margin-block-end: 0; }
 .ui-form-field-hint, .ui-form-field-error {
+  overflow-wrap: anywhere;
   font-size: var(--ui-text-small);
   margin-block: var(--ui-space-control-gap) 0;
 }
@@ -168,6 +169,32 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) { grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr); gap:var(--ui-space-control-gap); }
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) .ui-form-field-label { grid-column:1; grid-row:1; }
 .ui-form-field[data-label-position="inline"]:has(input.ui-field-control[type="checkbox"]) input { grid-column:2; grid-row:1; }
+/* Width applies only to the native editor. Counts, tokens, hints, error text
+   and adjacent action buttons keep their available layout width. */
+.ui-field-control[data-field-width="characters"]:not([type="checkbox"]):not([type="radio"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
+}
+/* Select's positioned indicator and Combobox's popup anchor need the actual
+   editor width as well. Keep their surrounding row and other actions flexible. */
+.ui-form-field .ui-select-control:has(> select.ui-field-control[data-field-width="characters"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control) + var(--ui-size-icon) + var(--ui-space-control-gap)));
+}
+.ui-form-field .ui-select-control > select.ui-field-control[data-field-width="characters"] {
+  max-inline-size:100%;
+}
+.ui-form-field .ui-combobox:has(> input.ui-field-control[data-field-width="characters"]) {
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
+}
+.ui-form-field .ui-combobox > input.ui-field-control[data-field-width="characters"] { max-inline-size:100%; }
+.ui-form-field[data-hint-position="before"] > .ui-form-field-hint { margin-block: 0 var(--ui-space-control-gap); }
+/* For inline checkbox/switch layouts keep the associated label and control in
+   the same row, with the constraint above that row. */
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:1; grid-column:1 / -1; }
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label,
+.ui-form-field[data-hint-position="before"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-label { grid-row:1; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > .ui-form-field-hint { grid-row:2; }
+.ui-form-field[data-hint-position="before"][data-label-position="above"]:has(input.ui-field-control[type="checkbox"]) > :is(input.ui-field-control[type="checkbox"], :has(input.ui-field-control[type="checkbox"])) { grid-row:3; }
 .ui-field-control[aria-invalid="true"] { border-color: var(--ui-color-danger); }
 .ui-field-control:disabled { background: var(--ui-color-disabled-surface); color: var(--ui-color-muted); }
 

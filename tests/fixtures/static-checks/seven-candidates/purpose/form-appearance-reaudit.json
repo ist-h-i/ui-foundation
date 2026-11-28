@@ -1,0 +1,59 @@
+{
+  "prior_audit_sha256": "0eb600c337f7d52c819feb07f6193b89fba41765453976e57b16165ee5e25339",
+  "source_commit": "30ffdaf679e199af36ca85173d64ffabf9e244ee",
+  "sites": {
+    "D012": {
+      "file": "templates/angular/choice-controls.ts",
+      "line": 166,
+      "column": 1760,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<span class=\"ui-color-swatch\" aria-hidden=\"true\" [style.background-color]=\"choice.value\"> :: [style.background-color]=\"choice.value\"></span>{{choice.label??choice.value}}</button>}</div>}<output class=\"ui-choice-value\">{{current()||('uiFoundation.colorPicker.noSelection' | uiStableMessage)}}</output>@if(error()||problem()){<p class=\"ui-choice-error\" [id]=\"controlId()+'-error'\">{{error()||problem()}}</p>}</fieldset>`,",
+      "exception": "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで検証、alpha禁止・ラベル・重複も拒否するため、データ色として狭い理由付き例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D131": {
+      "file": "templates/angular/selection-input.ts",
+      "line": 26,
+      "column": 28,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": ".ui-options{grid-template-columns:repeat(var(--ui-option-columns,1),minmax(0,1fr))}",
+      "exception": "[D131] --ui-option-columnsは色/寸法のtheme値ではなく、checkbox選択肢を何列に組むかという正整数の構造data。実bindingはcheckedColumnsのみで、safe integerかつ1以上を満たさなければthrowする。CSS repeatの列数引数という用途に限定した理由付き例外候補になる。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "D146": {
+      "file": "templates/angular/text-controls.ts",
+      "line": 178,
+      "column": 119,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<textarea #editor uiFieldControl [name]=\"name()\" [value]=\"displayedText()\" [rows]=\"rows()\" [placeholder]=\"placeholder()\" [attr.maxlength]=\"maxLength()\"\n   [attr.autocomplete]=\"autocomplete()\" [attr.inputmode]=\"inputMode()\" [disabled]=\"blocked()\" [readOnly]=\"readonly()\" [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"\n   (compositionstart)=\"beginComposition($event)\" (compositionend)=\"endComposition($event)\" (blur)=\"blur()\"> :: [style.max-block-size.px]=\"checkedMaxHeight()\" (input)=\"edit($event)\"",
+      "exception": "[D146] Textareaのmax-block-sizeはautoResize後もnative editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive finiteに限定し、その値がこのbindingへ届く。px branchはtoken集合に閉じない。残余リスクは上限とrows/autoResize/入力文字拡大の合成による読み取り・編集のしやすさ。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。"
+    },
+    "R159": {
+      "file": "templates/angular/selection-input.ts",
+      "line": 85,
+      "column": 231,
+      "rule": "unresolved",
+      "severity": "warning",
+      "source": "<div class=\"ui-options\" [attr.data-direction]=\"direction()\" [style.--ui-option-columns]=\"checkedColumns()\"> :: [style.--ui-option-columns]=\"checkedColumns()\">@for(option of group.options;track option.value){",
+      "exception": "[R159] CheckboxGroup列数はoptionの構造count。checkedColumns computedがsafe integer>=1を検査してから返す。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。"
+    }
+  },
+  "dependencies": {
+    "templates/angular/text-controls.ts": {
+      "prior_sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+      "current_sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
+      "judgment": "D146. The new autocomplete, inputmode and FormField settings change the diagnostic context. The native maximum block size still comes only from checkedMaxHeight, which accepts null or a finite positive maxHeight. The auto-resize effect still sets height separately from this cap."
+    },
+    "templates/angular/selection-input.ts": {
+      "prior_sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "current_sha256": "0135db8886d718261762f13633c3487ae12ecd7083aa9074b6c3c2db1b5830fa",
+      "judgment": "R159 and D131. Checkbox, Switch, Select and Combobox forward field appearance inputs. The MultiSelect/CheckboxGroup template binding on .ui-options still supplies a positive safe integer from checkedColumns, and the stylesheet reads it as the CSS repeat count with fallback 1."
+    },
+    "templates/angular/choice-controls.ts": {
+      "prior_sha256": "f3662a7e9a174bac731ce0388e1aa9d37efc4695923afb8637eb7bde91766b70",
+      "current_sha256": "c41eb39e6148d38d8f81589c0f18b2008dfb2511d12cf3c528b6ea34d282c829",
+      "judgment": "D012. Slider and Knob now forward hintPosition, shifting the ColorPicker swatch line. The palette remains gated by configurationError, which calls parseColor and rejects invalid values, disallowed alpha, empty supplied labels and duplicates. The parser dependency is unchanged."
+    }
+  }
+}

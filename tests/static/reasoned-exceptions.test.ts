@@ -55,13 +55,25 @@ const formAudit: {
 const actionAppearanceAudit: CurrentAudit & {prior_audit_sha256:string} = JSON.parse(
   await readFile(resolve(currentEvidence, 'action-appearance-reaudit.json'), 'utf8'),
 );
+const typographyAudit: Pick<CurrentAudit, 'dependencies'> & {
+  prior_purpose_audit_sha256: string;
+  positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
+} = JSON.parse(await readFile(resolve(currentEvidence, 'typography-reaudit.json'), 'utf8'));
+const formAppearanceAudit: CurrentAudit & {prior_audit_sha256: string} =
+  JSON.parse(await readFile(resolve(currentEvidence, 'form-appearance-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
-for (const [id, {line, column}] of Object.entries(layoutAudit.positions)) {
-  assert.ok(currentSites[id], `${id}: missing reviewed site before the layout entry change`);
+for (const [id, {line, column}] of Object.entries({...layoutAudit.positions, ...typographyAudit.positions})) {
+  assert.ok(currentSites[id], `${id}: missing previously reviewed site`);
   currentSites[id] = {...currentSites[id], line, column};
 }
 currentSites.D146 = {...currentSites.D146, ...formAudit.site};
 Object.assign(currentSites, actionAppearanceAudit.sites);
+for (const [id, site] of Object.entries(formAppearanceAudit.sites)) {
+  const priorSite = currentSites[id];
+  assert.ok(priorSite, `${id}: missing reviewed site before the form appearance change`);
+  for (const key of ['file', 'rule', 'severity', 'exception'] as const) assert.equal(site[key], priorSite[key], id);
+  currentSites[id] = site;
+}
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
 function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
   return item.id === 'D146' && path === formAudit.dependency.prior_file ? formAudit.site.file : path;
@@ -69,7 +81,7 @@ function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, actionAppearanceAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, typographyAudit, actionAppearanceAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -81,6 +93,12 @@ async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha2
       assert.equal(formAudit.dependency.prior_sha256, reviewedHash, 'D146: relocation must start from the previous proof');
       assert.ok(formAudit.dependency.judgment.trim(), 'D146: relocation requires a purpose judgment');
       reviewedHash = formAudit.dependency.current_sha256;
+    }
+    const appearanceUpdate = formAppearanceAudit.dependencies[currentFile];
+    if (appearanceUpdate) {
+      assert.equal(appearanceUpdate.prior_sha256, reviewedHash, `${item.id}: form appearance audit must match the prior proof dependency`);
+      assert.ok(appearanceUpdate.judgment.trim(), `${item.id}: changed form dependency requires a purpose judgment`);
+      reviewedHash = appearanceUpdate.current_sha256;
     }
     assert.equal(sha256(await readFile(resolve(directory, currentFile))), reviewedHash,
       `${item.id}: producer/helper changed; re-audit its purpose before refreshing this proof`);
@@ -106,7 +124,9 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(formAuditBytes), typographyAudit.prior_purpose_audit_sha256, 'historical form dictionary audit changed for Typography');
   assert.equal(sha256(formAuditBytes), actionAppearanceAudit.prior_audit_sha256, 'historical form dictionary audit changed');
+  assert.equal(sha256(formAuditBytes), formAppearanceAudit.prior_audit_sha256, 'historical form dictionary audit changed');
   assert.equal(sha256(layoutAuditBytes), formAudit.prior_audit_sha256, 'historical layout entry audit changed');
   assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
   assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');
@@ -172,11 +192,17 @@ test('the checker retains all reviewed display, layout and splitter exceptions a
   }
 });
 
-test('the checker admits the five re-audited Angular sites and rejects the prior textarea position', async t => {
+test('the checker admits the reviewed Angular and form appearance sites and rejects stale textarea positions', async t => {
   const fixture = await mkdtemp(resolve(tmpdir(), 'ui-angular-purpose-'));
   t.after(() => rm(fixture, {recursive:true, force:true}));
-  const reviewed = approvals.filter(item => Object.keys(item.proof_sha256).some(file => file in angularAudit.dependencies));
-  assert.deepEqual(reviewed.map(item => item.id).sort(), ['D146','D153','D158','R184','R186']);
+  const appearanceFiles = Object.keys(formAppearanceAudit.dependencies).sort();
+  assert.deepEqual(appearanceFiles, ['templates/angular/choice-controls.ts', 'templates/angular/selection-input.ts', 'templates/angular/text-controls.ts']);
+  const appearanceSites = approvals.filter(item => Object.keys(item.proof_sha256).some(file => appearanceFiles.includes(currentProofFile(item, file))));
+  assert.deepEqual(appearanceSites.map(item => item.id).sort(), ['D012', 'D131', 'D146', 'R159']);
+  assert.deepEqual(Object.keys(formAppearanceAudit.sites).sort(), appearanceSites.map(item => item.id).sort());
+  const reviewed = approvals.filter(item =>
+    appearanceSites.includes(item) || Object.keys(item.proof_sha256).some(file => file in angularAudit.dependencies));
+  assert.deepEqual(reviewed.map(item => item.id).sort(), ['D012', 'D131', 'D146', 'D153', 'D158', 'R159', 'R184', 'R186']);
   const input = parseConfig(example);
   const exceptions = input.checks!.exceptions.filter(e => reviewed.some(item => item.exception.reason === e.reason));
   const previousTextarea = angularAudit.sites.D146;
@@ -201,15 +227,15 @@ test('the checker admits the five re-audited Angular sites and rejects the prior
 
   const {exception:reason, ...warning} = currentSites.D146;
   const textarea = exceptions.find(e => e.reason === reason)!;
-  textarea.file = previousTextarea.file;
-  textarea.line = previousTextarea.line;
-  textarea.column = previousTextarea.column;
-  const stale = await scan();
-  assert.ok(stale.diagnostics.some(d => d.file === textarea.file && d.rule === 'exception-error' && d.source === textarea.source));
-  const unapproved = stale.diagnostics.filter(d => d.file === warning.file && d.line === warning.line && d.column === warning.column && d.rule === warning.rule);
-  assert.equal(unapproved.length, 1);
-  assert.partialDeepStrictEqual(unapproved[0], warning);
-  assert.equal(stale.exceptions.length, reviewed.length - 1);
+  for (const {file, line, column} of [previousTextarea, formAudit.site]) {
+    Object.assign(textarea, {file, line, column});
+    const stale = await scan();
+    assert.ok(stale.diagnostics.some(d => d.file === file && d.rule === 'exception-error' && d.source === textarea.source));
+    const unapproved = stale.diagnostics.filter(d => d.file === warning.file && d.line === warning.line && d.column === warning.column && d.rule === warning.rule);
+    assert.equal(unapproved.length, 1);
+    assert.partialDeepStrictEqual(unapproved[0], warning);
+    assert.equal(stale.exceptions.length, reviewed.length - 1);
+  }
 });
 
 test('the table actions fixture retains the one reviewed resize width site', async () => {

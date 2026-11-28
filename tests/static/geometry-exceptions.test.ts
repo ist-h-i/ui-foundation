@@ -22,9 +22,20 @@ type GeometryReview = {
   dependencies: Record<string, {prior_sha256: string; current_sha256: string; judgment: string}>;
 };
 const messageReview: GeometryReview = JSON.parse(messageReviewBytes.toString('utf8'));
+const actionAppearanceReviewBytes = await readFile(resolve(directory, 'action-appearance-reaudit.json'));
 const actionAppearanceReview: GeometryReview & {
   positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
-} = JSON.parse(await readFile(resolve(directory,'action-appearance-reaudit.json'),'utf8'));
+} = JSON.parse(actionAppearanceReviewBytes.toString('utf8'));
+const typographyReviewBytes = await readFile(resolve(root, 'tests/fixtures/static-checks/seven-candidates/purpose/typography-reaudit.json'));
+const typographyReview: Pick<GeometryReview, 'dependencies'> & {prior_geometry_audit_sha256:string} =
+  JSON.parse(typographyReviewBytes.toString('utf8'));
+const integratedDialogReview: {
+  action_audit_sha256:string;
+  typography_audit_sha256:string;
+  dependency: GeometryReview['dependencies'][string] & {typography_sha256:string};
+} = JSON.parse(await readFile(resolve(directory, 'integrated-dialog-reaudit.json'), 'utf8'));
+const formAppearanceReview: GeometryReview =
+  JSON.parse(await readFile(resolve(directory, 'form-appearance-reaudit.json'), 'utf8'));
 const originalApprovals: Approval[] = audit.eligible;
 const approvedIds = new Set(originalApprovals.map(item => item.id));
 for (const id of Object.keys(actionAppearanceReview.positions)) assert.ok(approvedIds.has(id), id);
@@ -36,13 +47,27 @@ const example=await readFile(resolve(root,'examples/ui.config.repository.yaml'),
 const digest=(data:Uint8Array)=>createHash('sha256').update(data).digest('hex');
 const dependencies=new Map<string,string>();
 for(const item of approvals)for(const[file,hash]of Object.entries(item.proof_sha256)){assert.ok(!dependencies.has(file)||dependencies.get(file)===hash);dependencies.set(file,hash);}
-for (const audit of [messageReview, actionAppearanceReview]) {
+for (const audit of [messageReview, actionAppearanceReview, formAppearanceReview]) {
   for (const [file, review] of Object.entries(audit.dependencies)) {
     assert.equal(dependencies.get(file), review.prior_sha256, `${file}: re-audit must start at the previous proof`);
     assert.ok(review.judgment.trim(), `${file}: missing geometry purpose review`);
     dependencies.set(file, review.current_sha256);
   }
 }
+const dialogFile = 'templates/angular/dialog.ts';
+for (const [file, priorHash] of dependencies) {
+  const review = typographyReview.dependencies[file];
+  if (!review || file === dialogFile) continue;
+  assert.equal(review.prior_sha256, priorHash, file);
+  assert.ok(review.judgment.trim(), file);
+  dependencies.set(file, review.current_sha256);
+}
+const mergedDialog = integratedDialogReview.dependency;
+assert.equal(typographyReview.dependencies[dialogFile].prior_sha256, actionAppearanceReview.dependencies[dialogFile].prior_sha256);
+assert.equal(typographyReview.dependencies[dialogFile].current_sha256, mergedDialog.typography_sha256);
+assert.equal(dependencies.get(dialogFile), mergedDialog.prior_sha256);
+assert.ok(mergedDialog.judgment.trim());
+dependencies.set(dialogFile, mergedDialog.current_sha256);
 async function validateDependencies(directory:string){for(const[file,hash]of dependencies)assert.equal(digest(await readFile(resolve(directory,file))),hash,`${file}: audited producer/helper changed`);}
 const matches=(d:Diagnostic,e:Exception)=>d.file===e.file&&d.rule===e.rule&&d.line===e.line&&d.column===e.column&&d.source.includes(e.source);
 
@@ -50,6 +75,11 @@ test('only the fourteen audited geometry purposes are configured, retaining Unkn
  const config=parseConfig(example);assert.equal(approvals.length,14);assert.equal(new Set(approvals.map(x=>x.id)).size,14);
  assert.equal(digest(historicalAudit),messageReview.prior_audit_sha256,'historical geometry audit changed');
  assert.equal(digest(messageReviewBytes),actionAppearanceReview.prior_audit_sha256,'historical message-migration audit changed');
+ assert.equal(digest(messageReviewBytes),typographyReview.prior_geometry_audit_sha256,'historical geometry message audit changed');
+ assert.equal(digest(actionAppearanceReviewBytes),integratedDialogReview.action_audit_sha256,'historical action audit changed');
+ assert.equal(digest(typographyReviewBytes),integratedDialogReview.typography_audit_sha256,'historical Typography audit changed');
+ assert.equal(digest(messageReviewBytes),formAppearanceReview.prior_audit_sha256,'prior geometry re-audit changed');
+ assert.deepEqual(Object.keys(formAppearanceReview.dependencies),['templates/angular/selection-input.ts']);
  const baseline=JSON.parse(await readFile(resolve(root,audit.source_report),'utf8'));
  assert.equal(digest(await readFile(resolve(root,audit.source_report))),audit.source_report_sha256);
  for(const item of approvals){

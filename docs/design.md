@@ -92,3 +92,17 @@ registryなしの従来v1は同じoutputでのsyncで更新する。初回更新
 `size.sidebar`はPageFrameのsidebar幅を用途別に指定する。ContainerやGridの標準余白・gapは既存space役割を使用し、利用アプリが明示する幅/比率/スクロール座標は配置制御として扱う。
 
 `size.drawer-inline`と`size.drawer-block`はDrawerの標準幅/高さ。左右端の幅と上下端の高さを別用途とし、guided/denseへ正本YAMLで明示対応する。明示的なピクセル寸法とBottomSheetのviewport比率は配置制御であり、色/文字/余白のプリミティブを部品から参照するものではない。
+
+## 視覚的な階層の任意トークン
+
+文書の構造に沿ってHTMLの見出しレベルを決めます。ページの主題には `page-title`、関連する内容をまとめる節には `section-title`、節内の区切りには `subheading` を選べます。たとえば、ページに `h1` がある場合は、節の見出しを `<h2 uiTypography="section-title">…</h2>` とします。Typographyの役割を省略したときは、HTMLの見出しに `heading`、それ以外に `body` を適用します。
+
+| 任意の役割 | 同じプロファイルでの代替役割 |
+| --- | --- |
+| `text.page-title` | `text.heading` |
+| `text.section-title` | `text.heading` |
+| `text.subheading` | `text.body` |
+
+明示した設定が優先されます。見出しに使う役割は、見出し用の行高と太さを共有します。PageFrameのタイトルは `page-title` を参照します。Container、Card、Dialog、Drawer、フローティングパネル、メガメニュー、フィードバック、通知センター、ツアー、Scheduler、Wizardの段階の組込み見出しは `section-title` を参照します。Statisticの数値は、数値の強調に従来の `heading` を使います。
+
+関連する操作の間には `space.control-gap`、項目間には `space.field`、節の間や節全体の内側余白には `space.section` を使います。新しい設定例では、両プロファイルで項目間と節間の余白を区別します。既存アプリは現在のYAMLを使い続け、余白と見出しのサイズはその設定から決まります。

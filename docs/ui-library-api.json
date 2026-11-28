@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 182,
+  "source_count": 183,
   "files": [
     {
       "path": "templates/angular/action-appearance.ts",
@@ -1217,7 +1217,7 @@
     },
     {
       "path": "templates/angular/card.ts",
-      "sha256": "eb4b549096dbbaae2dfc198518daa132be7c368473d91dfda77b0f6a2fd47dd9",
+      "sha256": "58ea43d183f9f34bee86322a128fb04e5d58b22249586fbc4a1b1a9ecb91ce3a",
       "declarations": [
         {
           "names": [
@@ -1452,7 +1452,7 @@
     },
     {
       "path": "templates/angular/cascader.ts",
-      "sha256": "67a7d0c3a80114e09579f5e1eeec482ece1b3ae589575753beecd8cac3e60c1e",
+      "sha256": "2097afb77197fb6d659d798b338bdcd331486f4803ca4f48337178ca79dcd81a",
       "declarations": [
         {
           "name": "Cascader",
@@ -2331,7 +2331,7 @@
     },
     {
       "path": "templates/angular/choice-controls.ts",
-      "sha256": "f3662a7e9a174bac731ce0388e1aa9d37efc4695923afb8637eb7bde91766b70",
+      "sha256": "c41eb39e6148d38d8f81589c0f18b2008dfb2511d12cf3c528b6ea34d282c829",
       "declarations": [
         {
           "names": [
@@ -2416,6 +2416,12 @@
           ],
           "members": [
             {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
               "name": "labelPosition",
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
@@ -2463,6 +2469,12 @@
             "extends NumericFieldControl<number>"
           ],
           "members": [
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
             {
               "name": "labelPosition",
               "kind": "input",
@@ -3384,7 +3396,7 @@
     },
     {
       "path": "templates/angular/core.ts",
-      "sha256": "7ed4a49c99e3f0272f130d3420f6d9ad070cc3f1cc19bb495cc4a9a0d89fe2d6",
+      "sha256": "670ae173224d722c94255b25eea7722a2520a69f168db439f4209f320551bc44",
       "declarations": [
         {
           "kind": "export",
@@ -3396,7 +3408,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -4360,7 +4372,7 @@
     },
     {
       "path": "templates/angular/date-input.ts",
-      "sha256": "2d9275c49be03e0554b8045a48be99627db3899eb6351a85d738aa6086cae37b",
+      "sha256": "25523a2732917ee21e1a98da9828b144e27b0632b60cc3434757bbdc5b7f3968",
       "declarations": [
         {
           "name": "DatePicker",
@@ -5383,7 +5395,7 @@
     },
     {
       "path": "templates/angular/dialog.ts",
-      "sha256": "3ed34f86072b3565ff5a8f1bc32ec8c3088d44b113b4774a38e2e1fefb4810a2",
+      "sha256": "ebec72ac255697b44acc711bc89419990b86ba40f314275066b33df45cd4a5d2",
       "declarations": [
         {
           "names": [
@@ -5501,7 +5513,7 @@
             "DIALOG_STYLES"
           ],
           "kind": "variable",
-          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host:not(:modal) { z-index:1; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); text-wrap:balance; }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
+          "declaration": "export const DIALOG_STYLES = `\n    :host { box-sizing:border-box; inline-size:min(var(--ui-size-dialog),calc(100vw - 2 * var(--ui-space-section))); min-inline-size:min(var(--ui-size-dialog-min),calc(100vw - 2 * var(--ui-space-section))); min-block-size:var(--ui-size-control); max-inline-size:calc(100vw - 2 * var(--ui-space-section)); max-block-size:calc(100dvh - 2 * var(--ui-space-section)); margin:auto; padding:var(--ui-space-section); border:var(--ui-border-control) solid var(--ui-color-border); border-radius:var(--ui-radius-surface); background:var(--ui-color-surface); color:var(--ui-color-text); font-family:var(--ui-font-body); font-size:var(--ui-text-body); font-weight:var(--ui-weight-body); line-height:var(--ui-leading-body); overflow:auto; overflow-wrap:anywhere; }\n    :host:not(:modal) { z-index:1; }\n    :host::backdrop { background:var(--ui-color-backdrop); }\n    :host([data-size=\"small\"]) { inline-size:min(calc(var(--ui-size-dialog) * .75),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"large\"]) { inline-size:min(calc(var(--ui-size-dialog) * 1.5),calc(100vw - 2 * var(--ui-space-section))); }\n    :host([data-size=\"full\"]),:host([data-maximized=\"true\"]) { inline-size:calc(100vw - 2 * var(--ui-space-section)); block-size:calc(100dvh - 2 * var(--ui-space-section)); }\n    :host([data-position=\"top\"]) { margin-block-start:var(--ui-space-section); }\n    :host([data-position=\"bottom\"]) { margin-block-end:var(--ui-space-section); }\n    :host([data-position=\"start\"]) { margin-inline-start:var(--ui-space-section); }\n    :host([data-position=\"end\"]) { margin-inline-end:var(--ui-space-section); }\n    [hidden] { display:none!important; }\n    .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }\n    .ui-dialog__header { margin-block-end:var(--ui-space-field); }\n    .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }\n    .ui-dialog__title { flex:1 1 calc(var(--ui-text-section-title) * 4); min-inline-size:0; }\n    h2 { margin:0; font-size:var(--ui-text-section-title); line-height:var(--ui-leading-heading); text-wrap:balance; }\n    .ui-dialog__footer { margin-block-start:var(--ui-space-field); }\n    .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }\n    .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }\n  `;"
         },
         {
           "name": "Dialog",
@@ -6273,7 +6285,7 @@
     },
     {
       "path": "templates/angular/display.ts",
-      "sha256": "c5c9d5d0030eecd78b57e40d57791f10aa404272fbb9a92597f1902f6427f608",
+      "sha256": "2b648569e92d5cf4a66000ee43a610a11c3f03161dc9d7bfc3c54cd47b2d44f3",
       "declarations": [
         {
           "name": "Typography",
@@ -6289,8 +6301,8 @@
             {
               "name": "uiTypography",
               "kind": "input",
-              "declaration": "readonly uiTypography=input<''|'body'|'heading'|'small'>('');",
-              "initializer": "input<''|'body'|'heading'|'small'>('')"
+              "declaration": "readonly uiTypography=input<''|'body'|'heading'|'small'|'page-title'|'section-title'|'subheading'>('');",
+              "initializer": "input<''|'body'|'heading'|'small'|'page-title'|'section-title'|'subheading'>('')"
             },
             {
               "name": "tone",
@@ -6935,7 +6947,7 @@
     },
     {
       "path": "templates/angular/drawer.ts",
-      "sha256": "3cc4d92842c3b8873433cd91ca1261aad186a2d113289c9f306471218eea521a",
+      "sha256": "0d56e1baec477806a98a8883d598fb93639ae76fe09a928de747ceb30f9b3dfb",
       "declarations": [
         {
           "name": "Drawer",
@@ -7155,7 +7167,7 @@
     },
     {
       "path": "templates/angular/feedback.ts",
-      "sha256": "4d4e5094e9f97540404608a1a99e281e30dacb0898002cc58934b103686b601d",
+      "sha256": "ec3ee98f472a3a765109e28d0cf1c511aa4e6b9b4e1a8e456b57b8b28db32c04",
       "declarations": [
         {
           "names": [
@@ -7630,6 +7642,33 @@
               "initializer": "output<void>()"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/field-appearance.ts",
+      "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+      "declarations": [
+        {
+          "names": [
+            "FieldHintPosition"
+          ],
+          "kind": "type",
+          "declaration": "export type FieldHintPosition = 'before' | 'after';"
+        },
+        {
+          "names": [
+            "fieldHintPosition"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldHintPosition(value: unknown): FieldHintPosition"
+        },
+        {
+          "names": [
+            "fieldCharacterWidth"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldCharacterWidth(value: number | null): number | null"
         }
       ]
     },
@@ -8444,7 +8483,7 @@
     },
     {
       "path": "templates/angular/floating-panel.ts",
-      "sha256": "3360b989b6239094e3f0f89cba66c5a51d22c00a3fd56fc9af6955af16464449",
+      "sha256": "8a2d3d12317ebcaf27ca4d9f8b1f53641f57346e02f9234737642317bcd2b652",
       "declarations": [
         {
           "names": [
@@ -8895,8 +8934,12 @@
     },
     {
       "path": "templates/angular/form-field.ts",
-      "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
       "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type { FieldHintPosition } from './field-appearance';"
+        },
         {
           "name": "FieldControl",
           "kind": "class",
@@ -8970,6 +9013,24 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
+            },
+            {
+              "name": "resolvedCharacterWidth",
+              "kind": "property",
+              "declaration": "readonly resolvedCharacterWidth = computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  });",
+              "initializer": "computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  })"
             },
             {
               "name": "hasHint",
@@ -9282,15 +9343,15 @@
     },
     {
       "path": "templates/angular/forms.ts",
-      "sha256": "f324eb077580bc46f4fde5d5948484dbdd9985cde6aca45659dfa309d3cb58d3",
+      "sha256": "555c2021391fffdd96af7ea7907747452e7c5ddf7e0fa52669a5bc18ef259d3d",
       "declarations": [
         {
           "kind": "export",
-          "declaration": "export { FieldControl, FormField } from './form-field';"
+          "declaration": "export { FieldControl, FormField, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         }
       ]
     },
@@ -10372,7 +10433,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "0a680acbaff3acdc16f4803b7d644031950ca79ec410425e56049264bc0d5916",
+      "sha256": "217ca4b36f22634302106636026efbb18b58fc989fec5377b8a7d13a5e24662a",
       "declarations": [
         {
           "kind": "export",
@@ -10384,7 +10445,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -10456,7 +10517,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         },
         {
           "kind": "export",
@@ -11285,7 +11346,7 @@
     },
     {
       "path": "templates/angular/layout.ts",
-      "sha256": "035c2f1bb2e5f4ec645d4a4936370238e2747e535359504c2277aac5251a6322",
+      "sha256": "227f4b318d626cbb478f43caa20ec664c62063dbbf0c5e4ceca0ec8d4f60dff6",
       "declarations": [
         {
           "kind": "export",
@@ -12508,7 +12569,7 @@
     },
     {
       "path": "templates/angular/mega-menu.ts",
-      "sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
+      "sha256": "5ce7a578dd1d69ae380274fa1141005dd6b63e6631adbbced8f352b8dffc0e9d",
       "declarations": [
         {
           "name": "MegaMenu",
@@ -13233,7 +13294,7 @@
     },
     {
       "path": "templates/angular/notification-center.ts",
-      "sha256": "94787054ee0bd67f11720bd8278b13c332d920c68b74e3ca63975bd87c361119",
+      "sha256": "f75c5c5f488ea691348c72b4c8018a618d71b66304082aa8f603f5b06179dd3f",
       "declarations": [
         {
           "names": [
@@ -15082,7 +15143,7 @@
     },
     {
       "path": "templates/angular/scheduler-view.ts",
-      "sha256": "f31e3db1ac37635ada7637194942aef7bb6590c4f94c6a5dff9be343643527d9",
+      "sha256": "e90bdb6dbe12d4f1f70103cccb8040d04631e5e3cc11f763fb746cc42c6ac69e",
       "declarations": [
         {
           "names": [
@@ -15096,7 +15157,7 @@
             "schedulerStyles"
           ],
           "kind": "variable",
-          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-heading);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[aria-current=date]{border-color:var(--ui-color-action);color:var(--ui-color-text)}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
+          "declaration": "export const schedulerStyles=`:host{display:block;min-inline-size:0;max-inline-size:100%;font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);color:var(--ui-color-text);}:host([hidden]),[hidden]{display:none!important;}h2,h3,p{overflow-wrap:anywhere;}h2{font-size:var(--ui-text-section-title);}h3{font-size:var(--ui-text-body);margin-block:0 var(--ui-space-control-gap);}p{margin-block:var(--ui-space-control-gap);}button,input,select{box-sizing:border-box;max-inline-size:100%;min-block-size:var(--ui-size-control);font:inherit;color:var(--ui-color-text);background:var(--ui-color-surface);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);padding:var(--ui-space-control-y) var(--ui-space-control-gap);overflow-wrap:anywhere;}button:disabled,input:disabled,select:disabled{background:var(--ui-color-disabled-surface);color:var(--ui-color-muted);}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}input[type='checkbox']{inline-size:var(--ui-size-icon);block-size:var(--ui-size-icon);min-block-size:0;accent-color:var(--ui-color-action);}fieldset{min-inline-size:0;max-inline-size:100%;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);}label{overflow-wrap:anywhere;}.ui-scheduler-toolbar,.ui-scheduler-resources,.ui-scheduler-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap);}.ui-scheduler-toolbar h2{flex-basis:100%;}.ui-scheduler-caption,.ui-scheduler-status{font-size:var(--ui-text-small);color:var(--ui-color-muted);}.ui-scheduler-error{color:var(--ui-color-danger);}.ui-scheduler-viewport{max-inline-size:100%;overflow:auto;overscroll-behavior-inline:contain;border:var(--ui-border-control) solid var(--ui-color-border);padding:var(--ui-space-control-gap);box-sizing:border-box;}.ui-scheduler-plane{display:grid;gap:var(--ui-space-control-gap);list-style:none;padding:0;margin:0;align-items:start;}.ui-scheduler-day,.ui-scheduler-event{min-inline-size:0;padding:var(--ui-space-control-gap);box-sizing:border-box;border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);}.ui-scheduler-day{font-size:var(--ui-text-small);background:var(--ui-color-background);}.ui-scheduler-day[aria-current=date]{border-color:var(--ui-color-action);color:var(--ui-color-text)}.ui-scheduler-day[data-outside-month='true']{color:var(--ui-color-muted);}.ui-scheduler-target-time{display:block;}.ui-scheduler-time{font-size:var(--ui-text-small);}.ui-scheduler-move{margin-block-start:var(--ui-space-field);}.ui-scheduler-move>fieldset{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-control-gap);}.ui-scheduler-move fieldset fieldset label{display:block;}.ui-scheduler-plane[data-scheduler-view='list']{display:flex;flex-direction:column;}.ui-scheduler-plane[data-scheduler-view='list']>.ui-scheduler-event{inline-size:100%;}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}`;"
         }
       ]
     },
@@ -15129,7 +15190,7 @@
     },
     {
       "path": "templates/angular/selection-input.ts",
-      "sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "sha256": "0135db8886d718261762f13633c3487ae12ecd7083aa9074b6c3c2db1b5830fa",
       "declarations": [
         {
           "names": [
@@ -16555,7 +16616,7 @@
     },
     {
       "path": "templates/angular/structured-input.ts",
-      "sha256": "e790d53c7d85631ed0675e5093b625a37d33760751624d9cc8ddecb140a72999",
+      "sha256": "c748494b1cbceb12a8aa6afdb31a61ea9cd477af9a375401bb98ab3b5f7ea985",
       "declarations": [
         {
           "name": "MaskedInput",
@@ -17903,8 +17964,15 @@
     },
     {
       "path": "templates/angular/text-controls.ts",
-      "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+      "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
       "declarations": [
+        {
+          "names": [
+            "TextInputMode"
+          ],
+          "kind": "type",
+          "declaration": "export type TextInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';"
+        },
         {
           "name": "TextInput",
           "kind": "class",
@@ -17918,6 +17986,12 @@
             "extends ComposingTextControl"
           ],
           "members": [
+            {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
             {
               "name": "placeholder",
               "kind": "input",
@@ -17964,6 +18038,18 @@
           ],
           "members": [
             {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
+            {
+              "name": "autocomplete",
+              "kind": "input",
+              "declaration": "readonly autocomplete=input<string|null>(null);",
+              "initializer": "input<string|null>(null)"
+            },
+            {
               "name": "rows",
               "kind": "input",
               "declaration": "readonly rows=input(3);",
@@ -18005,7 +18091,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "6cb8ff1006aaf0d24e67abeb0df9233a62774acd347093cdffc394b57761b301",
+      "sha256": "96e60baadc58c460d9c21d50d2e59ffd0fae880899bfd0ec3fe462deb7ae61ce",
       "declarations": [
         {
           "kind": "export",
@@ -18517,7 +18603,7 @@
     },
     {
       "path": "templates/angular/tour.ts",
-      "sha256": "221c79c0a301d9ecc7a38c1a7626f7417a65933ec3c113b87cbd7bfe11e377a0",
+      "sha256": "b950c1da14174602ec0ca0f029e48661b3952ad07f1bfc898b61635db9d00798",
       "declarations": [
         {
           "names": [
@@ -19433,7 +19519,7 @@
     },
     {
       "path": "templates/angular/tree-select.ts",
-      "sha256": "31d5e4399a5eebf67f4b37ac9c62f1180c5dfc5931cf3f0c458c48f53485b21c",
+      "sha256": "42446eeabf2cdf27a83b63750bf362f9ec2530477267b8950d7f998306161f37",
       "declarations": [
         {
           "name": "TreeSelect",
@@ -19730,7 +19816,7 @@
     },
     {
       "path": "templates/angular/value-control.ts",
-      "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+      "sha256": "5b24d927f75ae0dc43b9ccee7857067f5a3534e0531ef36a90524e716921eba6",
       "declarations": [
         {
           "name": "ValueControl",
@@ -19849,6 +19935,18 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
             }
           ]
         }
@@ -20561,7 +20659,7 @@
     },
     {
       "path": "templates/angular/wizard.ts",
-      "sha256": "9948806ae27d1a535fa40da403a07d0aa8053f52e401b92b091c3c096488e647",
+      "sha256": "5e5221a9e66ffc7d6f4e1027ed026c8eb8eeedbe73b8dc4380c6fde19ab803af",
       "declarations": [
         {
           "names": [
