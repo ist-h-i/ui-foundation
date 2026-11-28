@@ -297,7 +297,7 @@ References: [APG Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/), [HTML 
 
 ## Text, information and numeric display
 
-Typography attaches uiTypography/uiHeading/uiText to native h1–h6/p/span/strong/em/etc. Actual tags determine semantics/heading hierarchy; uiTypography:body|heading|small, tone:neutral|muted|info|success|warning|error, align:start|center|end|justify, wrap:wrap|nowrap|balance, emphasis:normal|strong|italic control appearance. Preserve strong/em semantics. Nowrap allows local scrolling and adds tab access only if no existing tabindex/native action; preserve app tabindex.
+Typography attaches uiTypography/uiHeading/uiText to native h1–h6/p/span/strong/em/etc. Actual tags determine semantics/heading hierarchy; uiTypography:body|heading|small|page-title|section-title|subheading (empty uses the legacy native-tag-based default), tone:neutral|muted|info|success|warning|error, align:start|center|end|justify, wrap:wrap|nowrap|balance, emphasis:normal|strong|italic control appearance. Preserve strong/em semantics. Nowrap allows local scrolling and adds tab access only if no existing tabindex/native action; preserve app tabindex.
 
 Badge supports count/maximum/showZero/dot/label/tone and inline/top-bottom×start-center-end positions. Explain complete numbers even when visual display is99+; dot uses label for description. Logical positions support RTL and remain inside target bounds.
 

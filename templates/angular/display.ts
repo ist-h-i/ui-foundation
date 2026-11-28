@@ -22,16 +22,17 @@ import { avatarInitials, comparisonDelta, displayInteger, finiteDisplayValue, me
  '[attr.data-tone]':'tone()'
 }})
 export class Typography {
- readonly uiTypography=input<''|'body'|'heading'|'small'>('');
+ readonly uiTypography=input<''|'body'|'heading'|'small'|'page-title'|'section-title'|'subheading'>('');
  readonly tone=input<DisplayTone>('neutral');readonly align=input<'start'|'center'|'end'|'justify'>('start');
  readonly wrap=input<'wrap'|'nowrap'|'balance'>('wrap');readonly emphasis=input<'normal'|'strong'|'italic'>('normal');
  private readonly element=inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;private readonly tag=this.element.tagName;private addedTabstop=false;
  protected readonly checkedAlign=computed(()=>layoutKeyword(this.align(),['start','center','end','justify'] as const,'Typography align'));
  private readonly checkedTone=computed(()=>layoutKeyword(this.tone(),['neutral','muted','info','success','warning','error'] as const,'Typography tone'));
- private readonly variant=computed(()=>layoutKeyword(this.uiTypography(),['','body','heading','small'] as const,'Typography variant')||(/^H[1-6]$/.test(this.tag)?'heading':'body'));
+ private readonly variant=computed(()=>layoutKeyword(this.uiTypography(),['','body','heading','small','page-title','section-title','subheading'] as const,'Typography variant')||(/^H[1-6]$/.test(this.tag)?'heading':'body'));
  protected readonly fontSize=computed(()=>'var(--ui-text-'+this.variant()+')');
- protected readonly lineHeight=computed(()=>'var(--ui-leading-'+(this.variant()==='heading'?'heading':'body')+')');
- protected readonly fontWeight=computed(()=>'var(--ui-weight-'+(this.variant()==='heading'?'heading':this.emphasis()==='strong'||this.tag==='STRONG'?'control':'body')+')');
+ private readonly isHeading=computed(()=>['heading','page-title','section-title','subheading'].includes(this.variant()));
+ protected readonly lineHeight=computed(()=>this.isHeading()?'var(--ui-leading-heading)':'var(--ui-leading-body)');
+ protected readonly fontWeight=computed(()=>this.isHeading()?'var(--ui-weight-heading)':this.emphasis()==='strong'||this.tag==='STRONG'?'var(--ui-weight-control)':'var(--ui-weight-body)');
  protected readonly foreground=computed(()=>'var(--ui-color-'+({neutral:'text',muted:'muted',info:'link',success:'success',warning:'warning',error:'danger'}[this.checkedTone()])+')');
  protected readonly surface=computed(()=>'var(--ui-color-'+({neutral:'surface',muted:'surface',info:'surface',success:'success-surface',warning:'warning-surface',error:'error-surface'}[this.checkedTone()])+')');
  constructor(){effect(()=>{if(this.wrap()==='nowrap'&&!this.element.hasAttribute('tabindex')&&!this.element.matches('a[href],button,input,select,textarea,summary')){this.element.tabIndex=0;this.addedTabstop=true;}else if(this.wrap()!=='nowrap'&&this.addedTabstop){if(this.element.getAttribute('tabindex')==='0')this.element.removeAttribute('tabindex');this.addedTabstop=false;}});}

@@ -23,6 +23,8 @@ type Review = {
 const messageReviewBytes=await readFile(resolve(directory,'message-migration-reaudit.json'));
 const messageReview:Review=JSON.parse(messageReviewBytes.toString('utf8'));
 const formAppearanceReview:Review=JSON.parse(await readFile(resolve(directory,'form-appearance-reaudit.json'),'utf8'));
+const typographyReview: Pick<typeof messageReview,'dependencies'> & {prior_geometry_audit_sha256:string}
+ =JSON.parse(await readFile(resolve(root,'tests/fixtures/static-checks/seven-candidates/purpose/typography-reaudit.json'),'utf8'));
 const approvals:Approval[]=audit.eligible;
 const example=await readFile(resolve(root,'examples/ui.config.repository.yaml'),'utf8');
 const digest=(data:Uint8Array)=>createHash('sha256').update(data).digest('hex');
@@ -35,12 +37,20 @@ for(const {dependencies: reviewedDependencies} of [messageReview, formAppearance
     dependencies.set(file,review.current_sha256);
   }
 }
+for(const [file,priorHash] of dependencies){
+ const review=typographyReview.dependencies[file];
+ if(!review)continue;
+ assert.equal(review.prior_sha256,priorHash,file);
+ assert.ok(review.judgment.trim(),file);
+ dependencies.set(file,review.current_sha256);
+}
 async function validateDependencies(directory:string){for(const[file,hash]of dependencies)assert.equal(digest(await readFile(resolve(directory,file))),hash,`${file}: audited producer/helper changed`);}
 const matches=(d:Diagnostic,e:Exception)=>d.file===e.file&&d.rule===e.rule&&d.line===e.line&&d.column===e.column&&d.source.includes(e.source);
 
 test('only the fourteen audited geometry purposes are configured, retaining Unknown and exact sites',async()=>{
  const config=parseConfig(example);assert.equal(approvals.length,14);assert.equal(new Set(approvals.map(x=>x.id)).size,14);
  assert.equal(digest(historicalAudit),messageReview.prior_audit_sha256,'historical geometry audit changed');
+ assert.equal(digest(messageReviewBytes),typographyReview.prior_geometry_audit_sha256,'historical geometry message audit changed');
  assert.equal(digest(messageReviewBytes),formAppearanceReview.prior_audit_sha256,'prior geometry re-audit changed');
  assert.deepEqual(Object.keys(formAppearanceReview.dependencies),['templates/angular/selection-input.ts']);
  const baseline=JSON.parse(await readFile(resolve(root,audit.source_report),'utf8'));

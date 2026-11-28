@@ -356,9 +356,9 @@
           "value": "16px"
         },
         "space.section": {
-          "reference": "space-16",
+          "reference": "space-24",
           "type": "length",
-          "value": "16px"
+          "value": "24px"
         },
         "space.table-x": {
           "reference": "space-12",
@@ -385,10 +385,25 @@
           "type": "length",
           "value": "1.5rem"
         },
+        "text.page-title": {
+          "reference": "heading-dense",
+          "type": "length",
+          "value": "1.5rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-dense",
+          "type": "length",
+          "value": "1.25rem"
+        },
         "text.small": {
           "reference": "small-dense",
           "type": "length",
           "value": "0.875rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-dense",
+          "type": "length",
+          "value": "1.125rem"
         },
         "weight.body": {
           "reference": "regular",
@@ -749,9 +764,9 @@
           "value": "32px"
         },
         "space.section": {
-          "reference": "space-24",
+          "reference": "space-32",
           "type": "length",
-          "value": "24px"
+          "value": "32px"
         },
         "space.table-x": {
           "reference": "space-16",
@@ -778,10 +793,25 @@
           "type": "length",
           "value": "1.75rem"
         },
+        "text.page-title": {
+          "reference": "heading-guided",
+          "type": "length",
+          "value": "1.75rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-guided",
+          "type": "length",
+          "value": "1.5rem"
+        },
         "text.small": {
           "reference": "small-guided",
           "type": "length",
           "value": "1rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-guided",
+          "type": "length",
+          "value": "1.25rem"
         },
         "weight.body": {
           "reference": "regular",
@@ -2016,7 +2046,7 @@
           "source": "stroke-width:2"
         },
         {
-          "column": 409,
+          "column": 425,
           "file": "tests/fixture-app/display-catalog.ts",
           "line": 10,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
@@ -2026,7 +2056,7 @@
         {
           "column": 311,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 12,
+          "line": 23,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2034,7 +2064,7 @@
         {
           "column": 390,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 13,
+          "line": 24,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2042,7 +2072,7 @@
         {
           "column": 351,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 14,
+          "line": 25,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2050,7 +2080,7 @@
         {
           "column": 361,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 15,
+          "line": 26,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2058,7 +2088,7 @@
         {
           "column": 337,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 20,
+          "line": 31,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2066,7 +2096,7 @@
         {
           "column": 468,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 27,
+          "line": 38,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2074,7 +2104,7 @@
         {
           "column": 367,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 28,
+          "line": 39,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2082,7 +2112,7 @@
         {
           "column": 318,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 33,
+          "line": 44,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2090,7 +2120,7 @@
         {
           "column": 516,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 36,
+          "line": 47,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2098,7 +2128,7 @@
         {
           "column": 973,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 36,
+          "line": 47,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2106,7 +2136,7 @@
         {
           "column": 552,
           "file": "tests/fixture-app/display-catalog.ts",
-          "line": 47,
+          "line": 58,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -2638,7 +2668,7 @@
         {
           "column": 12,
           "file": "templates/angular/display.ts",
-          "line": 78,
+          "line": 79,
           "reason": "[R064] Avatar fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0除算を排除した正整数のデータ係数。semantic text-avatarを基準にする。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.--ui-avatar-graphemes]=\"letterCount()\""
@@ -2646,7 +2676,7 @@
         {
           "column": 491,
           "file": "templates/angular/display.ts",
-          "line": 139,
+          "line": 140,
           "reason": "[R068] MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaximumは正finite、各値は0〜maximum、合計超過を拒否しnullは幅要素を生成しない。意味色を使う区分のデータ長に限定できる。 用途のみの例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.inline-size.%]=\"item.value/maximum()*100\""
@@ -2910,7 +2940,7 @@
         {
           "column": 670,
           "file": "templates/angular/display.ts",
-          "line": 80,
+          "line": 81,
           "reason": "[D056] fallback initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えMath.max(2, count)を供給し、0除算を避ける。semantic text tokenを基準にした文字量の補正として、このCSS消費箇所に限る例外候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": ".ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}"
@@ -2918,7 +2948,7 @@
         {
           "column": 80,
           "file": "templates/angular/display.ts",
-          "line": 103,
+          "line": 104,
           "reason": "[D057] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "[style.--ui-description-columns]=\"checkedColumns()\""
@@ -2926,7 +2956,7 @@
         {
           "column": 62,
           "file": "templates/angular/display.ts",
-          "line": 104,
+          "line": 105,
           "reason": "[D058] Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、repeatの構造数としてcustom propertyへ供給される。1〜12を列挙できても数値のtoken適合という理由ではなく、列数という構造目的で局所例外の候補。 用途限定の例外であり、実寸法・描画・操作全体の合格を示さない。",
           "rule": "unresolved",
           "source": "dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}"
@@ -3770,7 +3800,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "b9f680061c52e77a66f5bd895a6990dc57fbc446f43fc4da190a5695e9191e1d",
+    "configuration_hash": "9556b2746a8d5d5ed707555b62cf719f8067c9a52fdea7208d8c110b81dc205a",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
@@ -5295,7 +5325,19 @@
         "category": "text",
         "type": "length"
       },
+      "--ui-text-page-title": {
+        "category": "text",
+        "type": "length"
+      },
+      "--ui-text-section-title": {
+        "category": "text",
+        "type": "length"
+      },
       "--ui-text-small": {
+        "category": "text",
+        "type": "length"
+      },
+      "--ui-text-subheading": {
         "category": "text",
         "type": "length"
       },

@@ -361,9 +361,9 @@ Resolved YAML settings for screen design. Edit the source YAML to change configu
           "value": "16px"
         },
         "space.section": {
-          "reference": "space-16",
+          "reference": "space-24",
           "type": "length",
-          "value": "16px"
+          "value": "24px"
         },
         "space.table-x": {
           "reference": "space-12",
@@ -390,10 +390,25 @@ Resolved YAML settings for screen design. Edit the source YAML to change configu
           "type": "length",
           "value": "1.5rem"
         },
+        "text.page-title": {
+          "reference": "heading-dense",
+          "type": "length",
+          "value": "1.5rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-dense",
+          "type": "length",
+          "value": "1.25rem"
+        },
         "text.small": {
           "reference": "small-dense",
           "type": "length",
           "value": "0.875rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-dense",
+          "type": "length",
+          "value": "1.125rem"
         },
         "weight.body": {
           "reference": "regular",
@@ -754,9 +769,9 @@ Resolved YAML settings for screen design. Edit the source YAML to change configu
           "value": "32px"
         },
         "space.section": {
-          "reference": "space-24",
+          "reference": "space-32",
           "type": "length",
-          "value": "24px"
+          "value": "32px"
         },
         "space.table-x": {
           "reference": "space-16",
@@ -783,10 +798,25 @@ Resolved YAML settings for screen design. Edit the source YAML to change configu
           "type": "length",
           "value": "1.75rem"
         },
+        "text.page-title": {
+          "reference": "heading-guided",
+          "type": "length",
+          "value": "1.75rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-guided",
+          "type": "length",
+          "value": "1.5rem"
+        },
         "text.small": {
           "reference": "small-guided",
           "type": "length",
           "value": "1rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-guided",
+          "type": "length",
+          "value": "1.25rem"
         },
         "weight.body": {
           "reference": "regular",
