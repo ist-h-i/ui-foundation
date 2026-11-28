@@ -53,11 +53,34 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
   const before=await toggle.evaluate(el=>getComputedStyle(el).color);
   await icon.press('Space');await expect(icon).toHaveAttribute('aria-pressed','true');await expect(icon).not.toHaveCSS('box-shadow','none');
   await toggle.press('Enter');await expect(toggle).toHaveAttribute('aria-pressed','true');await expect(toggle).not.toHaveCSS('box-shadow','none');await expect(toggle).toHaveCSS('color',before);
+  await page.getByLabel('操作を無効にする',{exact:true}).check();
+  await expect(icon).toBeDisabled();
+  await expect(icon).not.toHaveCSS('box-shadow','none');
+  await expect(icon).toHaveCSS('color',await colorFromToken(icon,'muted'));
+  await page.getByLabel('操作を無効にする',{exact:true}).uncheck();
+  await page.getByLabel('処理中にする',{exact:true}).check();
+  for(const button of [icon,toggle]){
+   await expect(button).toBeDisabled();
+   await expect(button).toHaveAttribute('aria-pressed','true');
+   await expect(button).not.toHaveCSS('box-shadow','none');
+  }
   await page.emulateMedia({forcedColors:'active'});
   await expect(icon).toHaveCSS('border-top-style','double');
   await expect(toggle).toHaveCSS('border-top-style','double');
-  await expect(toggle).toHaveCSS('outline-style','solid');
-  await page.getByLabel('処理中にする',{exact:true}).check();await expect(toggle).toBeDisabled();await toggle.dispatchEvent('click');await expect(toggle).toHaveAttribute('aria-pressed','true');
+  await toggle.dispatchEvent('click');await expect(toggle).toHaveAttribute('aria-pressed','true');
+  for(const [primaryName,secondaryName,tertiaryName] of [
+   ['通常の主操作','通常の副操作','通常の補助操作'], ['危険な主操作','危険な副操作','危険な補助操作'],
+  ]){
+   const primary=region.getByRole('button',{name:primaryName,exact:true});
+   const secondary=region.getByRole('button',{name:secondaryName,exact:true});
+   const tertiary=region.getByRole('button',{name:tertiaryName,exact:true});
+   const borderWidth=(button:Locator)=>button.evaluate(el=>parseFloat(getComputedStyle(el).borderTopWidth));
+   await expect(primary).toHaveCSS('border-top-style','solid');
+   await expect(secondary).toHaveCSS('border-top-style','solid');
+   expect(await borderWidth(primary)).toBeGreaterThan(await borderWidth(secondary));
+   await expect(tertiary).toHaveCSS('border-top-style','none');
+   await expect(tertiary.locator('.ui-action-label')).toHaveCSS('text-decoration-line','underline');
+  }
  });
  test('新旧スタイルのhover、active、無効化と動的な移行を検証する',async({page})=>{
   const region=page.getByRole('region',{name:'操作の強調度と危険性の検証'});
@@ -125,6 +148,18 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
   await expect(cancel).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('confirm-result')).toHaveText('escape');
+  await expect(trigger).toBeFocused();
+ });
+ test('通常の確認は投影autofocusを保ち、開いた後のtone変更はフォーカスを動かさない',async({page})=>{
+  const trigger=page.getByRole('button',{name:'通常の確認を開く',exact:true});
+  await trigger.press('Enter');
+  const dialog=page.getByRole('dialog',{name:'下書き削除の確認',exact:true});
+  await expect(dialog.getByRole('textbox',{name:'確認事項',exact:true})).toBeFocused();
+  const change=dialog.getByRole('button',{name:'危険トーンへ変更',exact:true});
+  await change.press('Enter');
+  await expect(dialog.getByRole('button',{name:'下書きを削除',exact:true})).toHaveAttribute('data-tone','danger');
+  await expect(change).toBeFocused();
+  await page.keyboard.press('Escape');
   await expect(trigger).toBeFocused();
  });
  test('メニューの危険性は実行項目に付き、展開と無効化を保つ',async({page})=>{

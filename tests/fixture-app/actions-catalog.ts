@@ -20,9 +20,9 @@ export class ClipboardHarness {
  <section aria-label="操作の強調度と危険性の検証"><h2>強調度と危険性</h2><div class="catalog-actions"><button uiAction emphasis="primary" tone="normal">通常の主操作</button><button uiAction emphasis="secondary" tone="normal">通常の副操作</button><button uiAction emphasis="tertiary" tone="normal">通常の補助操作</button><a uiAction emphasis="tertiary" href="#action-result">処理結果へ移動</a><button uiAction emphasis="primary" tone="danger">危険な主操作</button><button uiAction emphasis="secondary" tone="danger">危険な副操作</button><button uiAction emphasis="tertiary" tone="danger">危険な補助操作</button><button uiAction variant="danger" [emphasis]="migrationEmphasis()" [tone]="migrationTone()" [busy]="busy()" [disabled]="blocked()">既存の下書きを削除する</button>
  <button uiAction (click)="migrationEmphasis.set('tertiary')">補助操作へ変更</button>
  <button uiAction (click)="migrationTone.set('normal')">通常トーンを指定</button>
- <button uiAction (click)="migrationEmphasis.set(null);migrationTone.set(null)">旧指定へ戻す</button><button uiIconButton icon="circle-check" label="強調度指定の選択操作" emphasis="tertiary" tone="normal" [selected]="explicitSelected()" (click)="explicitSelected.update(toggle)"></button><button uiToggleButton label="危険な選択操作" emphasis="secondary" tone="danger" [(checked)]="explicitPinned" onLabel="選択中" offLabel="未選択" [busy]="busy()"></button></div>
- <button uiAction (click)="confirmOpen.set(true)">削除の確認を開く</button>
- <ui-confirm-dialog label="下書き削除の確認" message="下書きを削除すると元に戻せません。" confirmTone="danger" confirmLabel="下書きを削除" cancelLabel="削除を取りやめる" [(open)]="confirmOpen" [busy]="busy()" (completed)="confirmResult.set($event.reason)" />
+ <button uiAction (click)="migrationEmphasis.set(null);migrationTone.set(null)">旧指定へ戻す</button><button uiIconButton icon="circle-check" label="強調度指定の選択操作" emphasis="tertiary" tone="normal" [selected]="explicitSelected()" [disabled]="blocked()" [busy]="busy()" (click)="explicitSelected.update(toggle)"></button><button uiToggleButton label="危険な選択操作" emphasis="secondary" tone="danger" [(checked)]="explicitPinned" onLabel="選択中" offLabel="未選択" [busy]="busy()"></button></div>
+ <button uiAction (click)="confirmationTone.set('danger');confirmOpen.set(true)">削除の確認を開く</button><button uiAction (click)="confirmationTone.set('normal');confirmOpen.set(true)">通常の確認を開く</button>
+ <ui-confirm-dialog label="下書き削除の確認" message="下書きを削除すると元に戻せません。" [confirmTone]="confirmationTone()" confirmLabel="下書きを削除" cancelLabel="削除を取りやめる" [(open)]="confirmOpen" [busy]="busy()" (completed)="confirmResult.set($event.reason)"><label>確認事項<input class="ui-field-control" autofocus></label><button uiAction (click)="confirmationTone.set('danger')">危険トーンへ変更</button></ui-confirm-dialog>
  <p data-testid="confirm-result">{{confirmResult()}}</p>
  <ui-menubar controlId="action-menu" label="下書きの管理" [items]="dangerMenus" (selected)="dangerMenuResult.set($event.item.id)" />
  <p data-testid="danger-menu-result">{{dangerMenuResult()}}</p></section>
@@ -37,6 +37,7 @@ export class ActionsCatalog {
  readonly migrationEmphasis=signal<ActionEmphasis|null>(null);
  readonly migrationTone=signal<ActionTone|null>(null);
  readonly confirmOpen=signal(false);
+ readonly confirmationTone=signal<ActionTone>('danger');
  readonly confirmResult=signal('');
  readonly dangerMenuResult=signal('');
  readonly dangerMenus:readonly MenuItem[]=[

@@ -70,7 +70,7 @@
 .ui-action:hover { background: var(--ui-color-background); }
 .ui-action[data-variant="primary"]:hover { background: var(--ui-color-action-hover); }
 .ui-action[data-variant="danger"]:hover { background: var(--ui-color-danger-hover); }
-.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+.ui-action:active:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):where(:not([data-emphasis][aria-pressed="true"])) {
   box-shadow: inset 0 0 0 var(--ui-border-control) currentColor;
 }
 .ui-action:focus-visible, .ui-field-control:focus-visible, .ui-typography:focus-visible {
@@ -221,11 +221,13 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 .ui-icon-button[aria-pressed="true"]:not([data-emphasis]),.ui-toggle-button[aria-pressed="true"]:not([data-emphasis]) { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
 /* Explicit emphasis and risk must not erase selection, or be erased by it.
    Use an inset indicator that remains independent of the foreground/background. */
-.ui-action[data-emphasis][aria-pressed="true"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+.ui-action[data-emphasis][aria-pressed="true"] {
   box-shadow:inset 0 0 0 var(--ui-border-focus) currentColor;
 }
 @media (forced-colors: active) {
-  .ui-action[data-emphasis][aria-pressed="true"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
+  .ui-action[data-emphasis="primary"] { border-width:calc(var(--ui-border-control) + var(--ui-border-focus)); }
+  .ui-action[data-emphasis="tertiary"] { border-style:none; }
+  .ui-action[data-emphasis][aria-pressed="true"] {
     border-style:double;
     border-color:currentColor;
     border-width:var(--ui-border-focus);

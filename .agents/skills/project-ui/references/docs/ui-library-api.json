@@ -5041,7 +5041,7 @@
     },
     {
       "path": "templates/angular/dialog-variants.ts",
-      "sha256": "6120fe63846ec09c94d9576410ae82f7459c3ff4aa365e32c3fff35bf239e8cb",
+      "sha256": "5926d86bca6e3f28847ae586e239e2955c7796301adacef7fbc76527f3d79134",
       "declarations": [
         {
           "name": "ConfirmDialog",
@@ -5383,7 +5383,7 @@
     },
     {
       "path": "templates/angular/dialog.ts",
-      "sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
+      "sha256": "3ed34f86072b3565ff5a8f1bc32ec8c3088d44b113b4774a38e2e1fefb4810a2",
       "declarations": [
         {
           "names": [
@@ -5430,6 +5430,13 @@
           ],
           "kind": "type",
           "declaration": "export type DialogArea = 'header' | 'body' | 'footer';"
+        },
+        {
+          "names": [
+            "DIALOG_INITIAL_FOCUS"
+          ],
+          "kind": "variable",
+          "declaration": "export const DIALOG_INITIAL_FOCUS = new InjectionToken<(dialog: HTMLDialogElement) => HTMLElement | null>('uiDialog initial focus');"
         },
         {
           "name": "DialogTemplate",
