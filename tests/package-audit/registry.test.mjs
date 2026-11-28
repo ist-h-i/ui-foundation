@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, writeFile, rm, symlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
-import { registryState, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership } from '../../scripts/package-verification/registry.mjs';
+import { registryState, assertRegistryUnchanged, assertStage, candidateInput, verifyInstallMetadata, verifyGeneratedOwnership } from '../../scripts/package-verification/registry.mjs';
 import { verifyReleaseVersionDocumentation } from '../../scripts/package-verification/documentation.mjs';
 
 const target = '0.2.0';
@@ -127,4 +127,16 @@ test('generation evidence rejects symlinks and invalid ownership records', async
     await symlink(target, resolve(app, skill));
     await assert.rejects(verifyGeneratedOwnership(app), /Unsafe generated ownership path/);
   }
+});
+
+
+test('registry recheck detects changes beyond the candidate tag', () => {
+  const tags = { latest: previousLatest, [candidateTag]: target };
+  const before = state(tags, { [previousLatest]: old, [target]: next });
+  assert.doesNotThrow(() => assertRegistryUnchanged(before, state({ [candidateTag]: target, latest: previousLatest }, { [target]: next, [previousLatest]: old })));
+  assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: old, [target]: next, '0.3.0': next })), /versions changed/);
+  assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: next, [target]: next })), /Latest integrity changed/);
+  assert.throws(() => assertRegistryUnchanged(before, state(tags, { [previousLatest]: old, [target]: old })), /Target integrity changed/);
+  assert.throws(() => assertRegistryUnchanged(before, { ...before, publishedAt: '2026-11-28T00:00:00Z' }), /publication time changed/);
+  assert.throws(() => assertRegistryUnchanged(before, state({ latest: target }, { [previousLatest]: old, [target]: next })), /tags changed/);
 });

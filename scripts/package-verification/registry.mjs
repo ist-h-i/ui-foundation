@@ -19,11 +19,21 @@ export function registryState(document, target) {
   const versions = document.versions ?? {};
   for (const [tag, version] of Object.entries(tags)) assert.ok(Object.hasOwn(versions, version), `Tag ${tag} points to a missing version`);
   const metadata = Object.hasOwn(versions, target) ? versions[target] : null;
-  return { tags, versions: Object.keys(versions), target,
+  return { tags, versions: Object.keys(versions).sort(), target,
     targetState: !metadata ? 'unpublished' : tags.latest === target ? 'latest' : 'published',
     targetTags: Object.keys(tags).filter(tag => tags[tag] === target),
     targetIntegrity: metadata?.dist?.integrity ?? null,
-    publishedAt: document.time?.[target] ?? null, latest: tags.latest ?? null };
+    publishedAt: document.time?.[target] ?? null, latest: tags.latest ?? null,
+    latestIntegrity: tags.latest ? versions[tags.latest]?.dist?.integrity ?? null : null };
+}
+
+export function assertRegistryUnchanged(before, after) {
+  assert.equal(after.target, before.target, 'Registry verification target changed');
+  assert.deepEqual(after.tags, before.tags, 'Registry tags changed during verification');
+  assert.deepEqual(after.versions, before.versions, 'Registry versions changed during verification');
+  assert.equal(after.targetIntegrity, before.targetIntegrity, 'Target integrity changed during verification');
+  assert.equal(after.latestIntegrity, before.latestIntegrity, 'Latest integrity changed during verification');
+  assert.equal(after.publishedAt, before.publishedAt, 'Target publication time changed during verification');
 }
 
 export function assertStage(state, { stage, previousLatest, candidateTag }) {
@@ -217,8 +227,7 @@ async function main() {
     }
     report.operation = 'registry-recheck';
     const after = registryState(await packument(name), target);
-    assert.deepEqual(after.tags, state.tags, 'Registry tags changed during verification');
-    assert.equal(after.targetIntegrity, state.targetIntegrity, 'Target integrity changed during verification');
+    assertRegistryUnchanged(state, after);
     if (candidate) await assertFrozenCandidate(candidate);
     report.status = 'verified';
     report.operation = 'complete';
