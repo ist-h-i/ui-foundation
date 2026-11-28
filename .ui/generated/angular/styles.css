@@ -227,7 +227,7 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 @media (forced-colors: active) {
   .ui-action[data-emphasis][aria-pressed="true"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy) {
     border-style:double;
-    border-color:ButtonText;
+    border-color:currentColor;
     border-width:var(--ui-border-focus);
   }
 }

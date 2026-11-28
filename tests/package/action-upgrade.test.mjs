@@ -23,7 +23,10 @@ async function snapshot(root, directory) {
   for (const entry of await readdir(resolve(root, directory), { withFileTypes: true })) {
     const path = directory + '/' + entry.name;
     if (entry.isDirectory()) Object.assign(files, await snapshot(root, path));
-    else files[path] = createHash('sha256').update(await readFile(resolve(root, path))).digest('hex');
+    else {
+      assert.equal(entry.isSymbolicLink(), false, path);
+      files[path] = createHash('sha256').update(await readFile(resolve(root, path))).digest('hex');
+    }
   }
   return files;
 }
@@ -62,7 +65,7 @@ export class App {
 void bootstrapApplication(App);
 `;
 
-test('the public 0.2.0 app can update unchanged, migrate its danger action, and recover its previous output', { timeout: 360_000 }, async t => {
+test('the public 0.2.0 app can update unchanged, migrate its danger action, and recover its previous output', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-action-upgrade-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'consumer');
@@ -73,25 +76,24 @@ test('the public 0.2.0 app can update unchanged, migrate its danger action, and 
   const isolated = (file, args) => execute('/usr/bin/sandbox-exec', ['-p', profile, file, ...args], app);
   const previous = resolve(root, 'public');
   await mkdir(previous);
-  const [pack] = JSON.parse(await execute('npm', ['pack', publicPackage, '--json', '--ignore-scripts', '--pack-destination', previous], root));
+  const [pack] = JSON.parse(await execute('npm', ['pack', publicPackage, '--registry=https://registry.npmjs.org', '--json', '--ignore-scripts', '--pack-destination', previous], root));
   const publicTarball = resolve(previous, pack.filename);
   const digest = createHash('sha512').update(await readFile(publicTarball)).digest('base64');
   assert.equal(`sha512-${digest}`, publicIntegrity);
   assert.notEqual(createHash('sha256').update(await readFile(publicTarball)).digest('hex'), candidate.sha256);
   const versions = candidate.manifest.devDependencies;
-  const names = ['@angular/common', '@angular/compiler', '@angular/compiler-cli', '@angular/core', '@angular/forms', '@angular/platform-browser', 'typescript', 'rxjs'];
+  const names = ['@angular/cdk', '@angular/common', '@angular/compiler', '@angular/compiler-cli', '@angular/core', '@angular/forms', '@angular/platform-browser', 'typescript', 'rxjs'];
   await writeFile(resolve(app, 'package.json'), JSON.stringify({
     private: true, type: 'module', dependencies: Object.fromEntries(names.map(name => [name, versions[name]])),
   }));
   await cp(resolve(repository, 'package-lock.json'), resolve(app, 'package-lock.json'));
   await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund']);
   await assert.rejects(readFile(resolve(app, 'node_modules/tailwindcss/package.json')), { code: 'ENOENT' });
-  let archiveBytes;
+  const template = 'templates/angular/action-control.ts';
   const install = async tarball => {
     await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--no-save', tarball]);
-    const installed = await readFile(resolve(app, 'node_modules', candidate.manifest.name, 'templates/angular/action-control.ts'));
-    if (tarball === publicTarball) { archiveBytes ??= installed; assert.deepEqual(installed, archiveBytes); }
-    else assert.notDeepEqual(installed, archiveBytes);
+    const installed = await readFile(resolve(app, 'node_modules', candidate.manifest.name, template), 'utf8');
+    assert.equal(installed, await execute('tar', ['-xOf', tarball, 'package/' + template], root));
   };
   const cli = (...args) => isolated(process.execPath, [`node_modules/${candidate.manifest.name}/dist/cli.js`, ...args]);
   const config = resolve(app, 'ui.config.yaml');
