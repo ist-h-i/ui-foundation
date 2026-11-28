@@ -58,7 +58,29 @@ Use the existing [public API inventory](../../../docs/ui-library-api.json) to ch
 | **Edit and save** a registration | Use FormGroup for related fields and FormErrorSummary to reach multiple errors after a submit attempt. Use FormActions `[showReset]="false"` for an ordinary edit. Connect pending, failed and saved outcomes to the app request, and preserve the original draft on failure. Use the [registration retry example](examples/dialog-retry.ts) to exercise failed save, retry and focus return. [Form contracts](../../../docs/ui-components.en.md#structured-inputs-and-form-actions) |
 | **Select and inspect** items in a list plus detail layout | Keep the search and selected record stable while showing details in the adjacent region. Use a title link or native button according to whether selection changes the destination. At narrow widths provide a clear return path to the relevant result. Scope loading and “details unavailable” to the detail area when the list is usable. [List contracts](../../../docs/ui-components.en.md#lists-selection-virtualization-and-movement) |
 | **Find exceptions** in an operations dashboard | Put the decision and time range first, then group counts, comparisons and actionable exceptions. Pass missing values to Statistic as `null` and reserve zero for a measured zero. Use independent AsyncRegion states for distinct sources. Display refreshed or stale values with their status and allow a local retry where safe. [Statistic and text components](../../../docs/ui-components.en.md#text-information-and-numeric-display) |
-| **Complete a sequenced** application | Show sequence, current step and any incomplete requirements. Use Wizard `transitionRequested` for app-validated movement when steps remain mounted, or use StepNavigation if available for route-owned steps. Keep previous input when navigating back. Review the affected records before final submission, and show a receipt only after confirmation from the app. [Step and Wizard contracts](../../../docs/ui-components.en.md#numbers-colors-editing-steps-and-conditions) |
+| **Complete a sequenced** application | Show the current step and any incomplete requirements. In Wizard, set `canProceed` on a WizardStep for local prerequisites. When the app must validate asynchronously before moving, set `[deferTransitions]="true"`, handle `transitionRequested`, and settle its matching ID with `approve(requestId)` or `reject(requestId, message)`. Use StepNavigation when the app owns routing and the installed version exports it. Preserve previous input and show the receipt only after confirmed submission. [Step and Wizard contracts](../../../docs/ui-components.en.md#numbers-colors-editing-steps-and-conditions) |
+
+When the installed Typography contract exposes the page and section roles, keep the document outline and apply a visual role to each heading. When the installed action contract exposes emphasis and tone, use both axes for the actions in the work unit.
+
+```html
+<h1 uiTypography="page-title">{{ pageTitle }}</h1>
+<section aria-labelledby="review-heading">
+  <h2 id="review-heading" uiTypography="section-title">{{ reviewTitle }}</h2>
+  <!-- Put the facts needed for this decision here. -->
+  <button uiAction emphasis="primary" tone="normal" (click)="saveDraft()">{{ saveDraftLabel }}</button>
+</section>
+```
+
+When the installed navigation contracts support these inputs, a route-owned procedure can show progress above the page contents. Localize each visible label, retain the current ID until the app accepts a move, and use the actual destination heading elements in the contents items.
+
+```html
+<ui-step-navigation [label]="procedureLabel" [items]="steps" [currentId]="activeStep"
+  [currentLabel]="currentStepLabel" [busy]="checkingStep" (stepRequested)="requestStep($event)" />
+<h2 id="contents-heading">{{ contentsLabel }}</h2>
+<ui-anchor-navigation [label]="contentsLabel" labelledBy="contents-heading" [items]="contents" />
+```
+
+In the contents model, set `children` only where the destination headings form a hierarchy. Keep required information visible in the page body. [Anchor navigation contract](../../../docs/ui-components.en.md#anchornavigation)
 
 ## Choose feedback from scope, duration and recovery
 

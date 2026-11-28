@@ -81,7 +81,7 @@ test('distribution checks resolve reference-style local links and detect missing
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, text);
   };
-  const files = ['docs/design.en.md', 'docs/ui-components.en.md'];
+  const files = ['docs/design.en.md', 'docs/ui-components.en.md', 'docs/extra.md'];
   await write('package.json', JSON.stringify({ files }));
   for (const file of [
     'README.md', 'assets/pdf-source/README.md', 'assets/pdf-source/README.ja.md',
@@ -94,6 +94,15 @@ test('distribution checks resolve reference-style local links and detect missing
   const skill = 'skills/ui-development/SKILL.md';
   await write(skill, '# Instructions\n\n[Design][rules]\n\n[rules]: ../../docs/design.en.md#rules "Design reference"\n');
   await verifyEnglishDocumentation(root);
+
+  await write('docs/design.en.md', '# Rules\n[Extra rules](extra.md)\n');
+  await write('docs/extra.md', '# Extra rules\n[Back](design.en.md#rules)\n');
+  await verifyEnglishDocumentation(root);
+  await write('docs/extra.md', '# Extra rules\n[Missing](broken.md)\n');
+  await assert.rejects(verifyEnglishDocumentation(root), { code: 'ENOENT' });
+  await write('docs/extra.md', '# Extra rules\n作業手順を確認します。\n');
+  await assert.rejects(verifyEnglishDocumentation(root), /Japanese operational prose.*extra\.md/);
+  await write('docs/extra.md', '# Extra rules\n');
 
   await write(skill, '# Instructions\n\n[Design][rules]\n\n[rules]: ../../docs/design.en.md#missing\n');
   await assert.rejects(verifyEnglishDocumentation(root), /Missing heading/);

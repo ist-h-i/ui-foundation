@@ -41,6 +41,7 @@ export async function verifySkillInstructionCopies(source, generated) {
 
 /** Check the actual package and optional synced Skill, without using checkout-only documents. */
 export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot) {
+  packageRoot = resolve(packageRoot);
   const metadata = JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8'));
   const documents = metadata.files.filter(file => file.startsWith('docs/') && file.endsWith('.md'));
   const pairs = documents.filter(file => /\.ja\.md$/.test(file)).map(file => [file, file.replace(/\.ja\.md$/, '.en.md')]);
@@ -50,13 +51,19 @@ export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot
     await readFile(resolve(packageRoot, en));
   }
   let checked = 0;
-  async function inspect(file, root, englishProse = true) {
+  const inspectedByRoot = new Map();
+  async function inspect(file, root) {
+    if (!inspectedByRoot.has(root)) inspectedByRoot.set(root, new Set());
+    const inspected = inspectedByRoot.get(root);
+    if (inspected.has(file)) return;
+    inspected.add(file);
     const text = await readFile(file, 'utf8');
     const body = prose(text);
     // Japanese language switches and literal dictionary keys/examples are allowed;
     // operational prose must be readable without knowing Japanese.
     const withoutSwitches = body.replace(/\[[^\]]*(?:日本語|Japanese)[^\]]*\]\([^)]+\)/g, '');
-    if (englishProse) assert.equal(japanese.test(withoutSwitches), false, `Japanese operational prose in English document: ${file}`);
+    // The package README has a deliberate Japanese human-facing summary.
+    if (file !== resolve(packageRoot, 'README.md')) assert.equal(japanese.test(withoutSwitches), false, `Japanese operational prose in English document: ${file}`);
     const links = [];
     marked.walkTokens(marked.lexer(text), token => {
       if (token.type === 'link' || token.type === 'image') links.push([token.text, token.href]);
@@ -76,11 +83,12 @@ export async function verifyEnglishDocumentation(packageRoot, generatedSkillRoot
       const content = await readFile(destination, 'utf8');
       if (fragment && destination.endsWith('.md')) assert.ok(headingIds(content).has(fragment), `Missing heading: ${file} -> ${target}`);
       if (isJapaneseDocument(destination)) assert.match(label, /日本語|Japanese/, `English workflow requires Japanese reference: ${file} -> ${target}`);
+      else if (destination.endsWith('.md')) await inspect(destination, root);
     }
     checked++;
   }
   for (const file of documents.filter(file => file.endsWith('.en.md'))) await inspect(resolve(packageRoot, file), packageRoot);
-  await inspect(resolve(packageRoot, 'README.md'), packageRoot, false); // Deliberate Japanese human-facing summary.
+  await inspect(resolve(packageRoot, 'README.md'), packageRoot);
   for (const directory of ['skills/ui-development', 'assets/pdf-source']) {
     await inspect(resolve(packageRoot, directory, 'README.md'), packageRoot);
     await readFile(resolve(packageRoot, directory, 'README.ja.md'));
