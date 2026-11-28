@@ -2,7 +2,22 @@
 
 2026年11月28日に [親Issue #65の16観点](https://github.com/ist-h-i/ui-foundation/issues/65) とデジタル庁デザインシステム（DADS）β版 v2.18.3を照合した。DADSの文章・画像・実装コードは転載していない。部品単位の実装と動作の証拠は担当IssueのPRで確認する。
 
-人間向け記事「UI/UX設計の8つの観点」は判断の背景を説明する。配布Skillでは利用者の目的を起点に、部品を選ぶ条件と画面での確認方法を扱う。今回参照できたのは、[移管元の資料](https://github.com/ist-h-i/ui-foundation/blob/91b6f0084451c7780b7157b2066309b6c4436f42/docs/ai-ui-design-guidance-review.ja.md)に記載された責務の説明まで。記事の本文との逐条照合は未確認。
+## 人間向け記事と配布Skillの照合
+
+2026年11月28日17:11 JSTにSitesの公開版（バージョン3）を取得し、8項目とレビューの問いを配布Skillの参照文書と照合した。記事は設計の判断理由を画面例で説明する。Skillは利用中の公開APIに即して部品を選ぶ条件と、実際の画面での確認方法を示す。取得時の `main` 要素内のHTMLのSHA-256は `5d96d6d2bbc019982954012e68f85b4edcc1159f74c1c318ac299557a9807929`。[UI/UX設計の8つの観点](https://uiux-design-guide.maroneko-tensuke.chatgpt.site)
+
+| 記事の観点 | 配布Skillでの判断と確認 |
+| --- | --- |
+| [人間中心設計](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#human) | 利用者の目的に沿って作業を分け、操作対象、判断材料、復旧や継続の経路を確かめる。[作業単位](../../skills/ui-development/references/screen-design.md#start-with-a-work-unit) |
+| [情報設計・認知負荷](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#information) | 見出しと余白で判断材料を見つけやすくする。同じ属性を比較する場合は表を選ぶ。[トークン設計](../../skills/ui-development/references/token-design.md)・[情報の構造](../../skills/ui-development/references/screen-design.md#choose-information-structures) |
+| [言語・マイクロコピー](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#language) | 操作名から対象と結果が分かることを確認する。業務上の文言と翻訳は利用アプリが管理する。[操作の階層](../../skills/ui-development/references/screen-design.md#design-the-hierarchy-and-action-group)・[実装手順](../../skills/ui-development/SKILL.md#implement-the-interaction) |
+| [アフォーダンス・シグニファイア](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#affordance) | 遷移にはリンク、実行にはボタンを使う。色に頼らず操作対象と状態を識別できることを確認する。[操作の階層](../../skills/ui-development/references/screen-design.md#design-the-hierarchy-and-action-group) |
+| [操作の一貫性](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#interaction) | 公開部品の状態を再利用し、処理中・失敗・確定を実際の要求結果に対応させる。[操作検証](../../skills/ui-development/references/component-checks.md)・[結果の表示](../../skills/ui-development/references/screen-design.md#choose-feedback-from-scope-duration-and-recovery) |
+| [ユニバーサルデザイン・アクセシビリティ](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#accessibility) | キーボードでも操作でき、狭幅や文字拡大で判断材料が失われないことを確かめる。並べ替えではキーボードとポインターで同じ操作条件を適用する。[操作検証](../../skills/ui-development/references/component-checks.md)・[画面での確認](../../skills/ui-development/references/screen-design.md#verify-the-design-in-the-app) |
+| [可逆性・安全性](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#safety) | 取消や復旧で対処できる範囲を確認し、影響の大きい不可逆操作は対象と結果を確定前に示す。[操作の階層](../../skills/ui-development/references/screen-design.md#design-the-hierarchy-and-action-group)・[実装手順](../../skills/ui-development/SKILL.md#implement-the-interaction) |
+| [エラー耐性・部分障害](https://uiux-design-guide.maroneko-tensuke.chatgpt.site/#resilience) | 欠けたデータに依存する結果や操作は、信頼できない場合に限って止める。復旧に必要な情報を示し、独立した領域は使える状態に保つ。今回この条件を明記した。[結果の表示](../../skills/ui-development/references/screen-design.md#choose-feedback-from-scope-duration-and-recovery) |
+
+## DADSとの差分16観点
 
 | 観点 | 採否・担当 | 根拠と例外 | 確認 |
 | --- | --- | --- | --- |
@@ -19,7 +34,7 @@
 | 一覧・比較 | 採用 #72・#73 | 属性比較には表、個別の概要と行内操作にはListとCollectionItemを使う。行内リンクと操作のターゲットを分ける。選択範囲、件数、検索条件を見える位置に置く。 [DADS リソースリスト](https://design.digital.go.jp/dads/components/resource-list/)・[テーブルコントロール](https://design.digital.go.jp/dads/components/table-control/) | ページをまたぐ選択と絞り込みが一括操作にどう反映されるか確認する。 |
 | ダイアログ | 修正採用 #70・#72・#73 | 判断を終えるまで元の作業を中断する必要がある場合に使う。誤操作の予防と復旧で足りない場合は、影響と対象を示して確定を求める。 [DADS モーダルダイアログ](https://design.digital.go.jp/dads/components/modal-dialog/) | 取消、フォーカス復帰、失敗後の入力保持と再試行を確認する。 |
 | 通知・エラー | 修正採用 #72・#73 | 未解決・操作が必要な問題は、該当する範囲で継続して表示する。短時間の通知は消えても操作や復旧に影響しない場合に使う。手続きの補足は本文や名前付きの補足領域に置く。 [DADS 通知バナー](https://design.digital.go.jp/dads/components/notification-banner/usage/)・[注釈ブロック](https://design.digital.go.jp/dads/components/notice-block/) | 一過性の通知が消えても、重要な状態と対応方法を追えるか確認する。 |
-| 非同期・部分障害 | 現行維持 #73 | AsyncRegionとActionFeedbackの状態契約を維持。独立領域は利用可能に保ち、部分欠損・結果不明・確定した失敗を区別する。専門部品のエンジン・依存条件と原文保持の契約を維持する。 [DADS 処理進行](https://design.digital.go.jp/dads/components/progress-indicator/)・[実行時の規範](../../skills/ui-development/references/ui-library-runtime.md) | 失敗した領域だけを安全に再試行でき、入力と他領域が残るか確認する。 |
+| 非同期・部分障害 | 現行維持と確認条件の補足 #73 | AsyncRegionとActionFeedbackの状態契約を維持。独立領域は利用可能に保ち、部分欠損・結果不明・確定した失敗を区別する。専門部品のエンジン・依存条件と原文保持の契約を維持する。 [DADS 処理進行](https://design.digital.go.jp/dads/components/progress-indicator/)・[実行時の規範](../../skills/ui-development/references/ui-library-runtime.md) | 欠損の影響が及ぶ結果や操作を確かめ、再試行しても入力と独立した領域が残ることを確認する。 |
 | アクセシビリティ | 現行維持と選択指針の補足 #69・#70・#72・#73 | 照合した色対、読めるラベル、ネイティブ操作・フォーカスを維持する。装飾アイコンは読み上げから外し、操作アイコンには名前と押しやすい領域を用意する。DADSの寸法目安は用途を確認して適用する。 [DADS アイコン](https://design.digital.go.jp/dads/foundations/icon/accessibility/)・[カラー](https://design.digital.go.jp/dads/foundations/color/) | 操作の識別と到達を、配色、キーボード、狭幅と拡大で確認する。 |
 | 固定寸法・外観 | 一律移植は非採用 #69・#73 | 用途を表すセマンティックと利用環境のプロファイルで決める。DADSのレイアウト例・視覚値を業務用UIの必須条件にしない。 [DADS ローカルデザインシステム](https://design.digital.go.jp/dads/guidance/local-design-system/) | 既存設定からの生成と、新しい意味役割の指定が両方成立するか確認する。 |
 

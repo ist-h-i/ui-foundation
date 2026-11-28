@@ -84,7 +84,9 @@ In the contents model, set `children` only where the destination headings form a
 
 ## Choose feedback from scope, duration and recovery
 
-Use ActionFeedback for operation outcomes and recovery, AsyncRegion for independently loaded data, an inline error for a correctable value, and Alert for persistent important information. For stable procedural guidance, use an inline paragraph or a named aside without live announcement. Reserve Snackbar for noncritical transient events whose disappearance cannot prevent recovery. Use EmptyState only for confirmed absence; do not treat an unconfirmed response as an empty result. Choose Skeleton when showing the known layout is useful, Spinner for indeterminate progress, and ProgressBar only for measured progress. Do not block unaffected content with global loading. Keep unresolved failures, unknown outcomes, scope and recovery available; use existing request and acknowledgement contracts.
+Use ActionFeedback for operation outcomes and recovery, AsyncRegion for independently loaded data, an inline error for a correctable value, and Alert for persistent important information. For stable procedural guidance, use an inline paragraph or a named aside without live announcement. Reserve Snackbar for noncritical transient events whose disappearance cannot prevent recovery. Use EmptyState only for confirmed absence. Choose Skeleton when showing the known layout is useful, Spinner for indeterminate progress, and ProgressBar only for measured progress.
+
+Keep independent information and actions available during loading and partial failure. If missing data makes a decision, total or action unreliable, withhold the dependent result or action and explain what must be recovered. Keep unresolved failures, unknown outcomes and recovery options visible in the affected region. Use existing request and acknowledgement contracts.
 
 ## Verify the design in the app
 
