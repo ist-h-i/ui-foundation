@@ -73,7 +73,7 @@ Card の領域には `CardHeader` / `CardBody` / `CardFooter` / `CardMedia` / `C
 | --- | --- | --- |
 | `Navigation` / `NavigationItem` / `Breadcrumb` | native リンクの配置、現在地、パンくず。 | [Navigation / Breadcrumb / NavigationItem](ui-components.md#navigation--breadcrumb--navigationitem) |
 | `SideNav` / `BottomNavigation` | 階層付きサイドナビと、平坦な画面移動先のバー。 | [SideNav / NavigationRail / BottomNavigation / Dock](ui-components.md#sidenav--navigationrail--bottomnavigation--dock) |
-| `AnchorNavigation` | 同一ページ内の対象への移動と現在位置表示。 | [AnchorNavigation](ui-components.md#anchornavigation) |
+| `AnchorNavigation` | 同一ページ内の対象への移動と現在位置表示。子項目を使った階層目次にも対応。 | [AnchorNavigation](ui-components.md#anchornavigation) |
 | `Tabs` / `TabPanel` | タブと内容の切替。非表示の本文も保持。 | [Tabs / TabPanel](ui-components.md#tabs--tabpanel) |
 | `Menubar` / `MegaMenu` | 階層メニュー、グループ表示、キーボード移動。 | [Menubar / MegaMenu](ui-components.md#menubar--megamenu) |
 | `CommandPalette` | コマンド検索・選択・実行要求と失敗時の再試行。 | [CommandPalette](ui-components.md#commandpalette) |

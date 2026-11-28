@@ -88,7 +88,9 @@ widthは展開時の幅、省略時はsize.sidebar。全体の折畳みはsize.n
 
 ### AnchorNavigation
 
-`<ui-anchor-navigation>`は必須label、`items: readonly {id;label;target:HTMLElement|null}[]`、任意`scrollRoot:HTMLElement|null`、非負pixel `offset=0`、`position='static'|'sticky'|'fixed'`、`behavior='auto'|'smooth'`、`updateHash=true`、currentChange/selectedを持つ。targetは同一documentの実要素で有効なidを持ち、scrollRootを使う場合はその内部へ置く。target=null/hidden/inert/切断時はリンクを無効にして説明を残す。native hrefを保ち、修飾キー付きクリックを横取りしない。
+`<ui-anchor-navigation>`には`label`と`items: readonly AnchorNavigationItem[]`を指定する。各項目は`id`、`label`、移動先のDOM要素または`null`を表す`target`、任意の`children`を持つ。IDは全階層で一意にする。平坦な項目は従来どおり折り返して配置され、子項目は入れ子のリストに表示される。目次の見出しや開閉操作に付けたIDを`labelledBy`へ渡すと、その文言で目次を識別できる。項目の文言は移動先の見出しとそろえる。移動先は同一文書内でHTMLのIDを持ち、`scrollRoot`がある場合はその内部に置く。移動先が未設定・非表示・`inert`・文書から切断のいずれかであればリンクを無効にし、ラベルを表示する。標準の`href`を使用し、修飾キー付きクリックはブラウザーに委ねる。
+
+`scrollRoot: HTMLElement | null`、非負のピクセル値`offset=0`、`position: 'static' | 'sticky' | 'fixed'`、`behavior: 'auto' | 'smooth'`、`updateHash=true`を指定できる。子項目でも`currentChange`と`selected`を受け取れる。
 
 通常のクリックはtargetへ実scrollし、見出しへfocusし、必要なら元のhistory.stateを保ってhashを更新する。offsetはscroll-margin-block-startへ接続し、移動と現在位置はscrollportのscroll-padding-block-start（比率・calcを含む）も合わせる。local rootのscrollTopにも同じ余白を反映する。reduced motion時はsmoothを使わない。scroll/resize/targetの表示/根dir/profile/style変更で現在位置を追跡する。stickyはhost自体を直近scroll領域内に配置する。破棄/対象変更で自前のmargin/tabindexだけを元へ戻し、その間のアプリ変更を上書きしない。CSS値の保存・所有判定・復元は!importantの優先度も含める。固定領域の予約余白、業務上の現在地解釈、URL同期の追加制約はアプリが決める。windowの移動では画面がhtmlのscroll-padding-block-startを設定する。デモはResizeObserverで実ナビ高さを予約し、static/破棄時に自分の値だけ復元する。local scrollRootのoffsetは実際のレイアウトに合わせる。
 
@@ -367,6 +369,11 @@ Colorはhex3/4/6/8桁、rgbのbyte/%、hslの角度/百分率とalphaを解析�
 InlineEditはEnter（複数行ではControl/Meta＋Enter）で保存要求、Escapeで取消。IME変換中はこれらを実行しない。保存待ちで同じeditorをreadonlyにして入力とfocusを保持し、連打を抑止する。保存失敗はそのdraftへ戻り再試行できる。確認済みcompleteはCVAへ公開し、通常の編集commitとは分けてbusy中でも反映する。reset/破棄後の古い結果はfalse。`[value]`の外部変更が部品へ反映された場合も旧要求を失効させ、同じeditorを新しい値へ同期する。complete/failは要求時のpreviousValueも照合する。自分のfocusだけを編集開始/終了時に移し、結果ボタンなど外部focusは奪わない。最大文字数はUnicode codepoint数で、grapheme数ではない。
 
 Wizardの`next=undefined`は次の有効な投影段階、`null`は完了、ID指定は分岐。線形設定では訪問済み段階へだけ直接戻れ、`nonlinear=true`では未訪問も選べる。戻るは実移動履歴を使う。保留中に進行可否、from/to、分岐、利用可能な段階が変われば旧承認を失効させる。`deferTransitions=false`はUI移動を即時受理し、trueはアプリのapprove/rejectを待つ。完了はUIの段階終了で、backend提出成功ではない。外部currentの無効IDは最初の有効段階へ表示を戻す。入力の検証・業務分岐・永続化・未保存判断はアプリが決める。親wizardは入れ子wizardの段階を所有しない。
+
+### StepNavigation
+
+ページをまたぐ手続き等でアプリが遷移とフォーム状態を管理する場合は、公開入口 `angular/step-navigation.ts`（または全体カタログ）からStepNavigationを利用する。label、安定IDとstatus/statusLabel、任意のnavigable/disabledを持つitems、currentId（またはnull）、現在位置を示す翻訳済みcurrentLabel、direction、busyを指定する。各段階には順番を表示し、現在の段階には状態とは独立した文言を表示する。状態文言はアプリで翻訳する。現在位置と状態は独立しており、現在の段階がエラーでも表現できる。明示的に移動可能・有効かつ現在位置ではない段階だけがstepRequestedでIDを通知する。次の描画までの重複要求を抑止し、それ以降の処理中状態・遷移結果はアプリが管理する。フォーカス中の自部品の操作が利用不能になる場合は進行状況グループへフォーカスを戻し、外部のフォーカスは奪わない。遷移の採否と結果の状態はアプリが管理する。投影された段階本文・入力保持・遷移承認が必要な場合はWizardを使う。本部品は既存Wizardの動作を変更しない。
+
 
 Filterはtext/number/date/boolean/choiceのfield、型に合う演算子、再帰and/or、安定した重複しないIDを使う。欠損はnull/undefined/型不正で、0/false/空文字と区別する。dateは有効なYYYY-MM-DDまたはDateのUTC日で比較。`compileFilter`は妥当な条件をコピーし、rowのown propertyのみを評価する。空グループは評価から除外、ルートが空なら制限なし。任意コード・SQL・通信を実行しない。不正構造/値/未知fieldはvalidatorと欄の説明へ残す。保存した条件の復元はUI snapshotで、backend保存結果をアプリがcompleteSaveとして返す。fieldsのID/説明/型/選択肢が部品へ反映された時点で保留要求を失効させ、条件データを残して再検証する。completeSave/failSaveでも同じ定義と妥当な条件を要求する。busy/pendingで操作を抑止し、保存失敗draft、reset/外部条件変更/破棄後の古い結果、除去前の自前focusを確認する。復元されたfield/operator/boolean/choiceは、nativeの選択表示を実際のモデルへ合わせる。保存待ち・失敗・成功の自前focus先は、描画後に文字とfocus枠が画面内で読めるように表示する。別の入力や外部操作へ移したfocusと画面位置は応答で動かさない。
 

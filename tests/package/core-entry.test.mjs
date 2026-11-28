@@ -9,7 +9,7 @@ import { checkoutIsolation, run } from '../../scripts/package-verification/run.m
 
 const repository = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-test('the packed core, forms and locale example compile and bundle without specialist dependencies', { timeout: 360_000 }, async t => {
+test('the packed core, forms, step navigation and locale example compile and bundle without specialist dependencies', { timeout: 360_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-core-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'app');
@@ -45,14 +45,16 @@ test('the packed core, forms and locale example compile and bundle without speci
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { ActionControl, Card, provideUiIcons, provideUiLocale } from '../.ui/generated/angular/core';
+import { StepNavigation, type StepNavigationItem } from '../.ui/generated/angular/step-navigation';
 import { createLocaleAdapter } from '../locale-adapter';
 
 @Component({
   selector: 'app-root',
-  imports: [ActionControl, Card],
-  template: '<ui-card cardId="example" title="Example"><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
+  imports: [ActionControl, Card, StepNavigation],
+  template: '<ui-card cardId="example" title="Example"><ui-step-navigation label="Application progress" currentLabel="Current step" [items]="steps" currentId="draft" /><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
 })
 export class App {
+  readonly steps: readonly StepNavigationItem[] = [{ id: 'draft', label: 'Draft', status: 'in-progress', statusLabel: 'In progress' }];
   async openForm() {
     const { Form } = await import('./form');
     await bootstrapApplication(Form);
@@ -106,7 +108,7 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   await install(versions);
   for (const name of ['main.ts', 'form.ts']) {
     const path = resolve(app, 'src', name);
-    await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms)\b/g, '.ui/generated/angular/index'));
+    await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms|step-navigation)\b/g, '.ui/generated/angular/index'));
   }
   const full = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'index', ...full, specialistInputs: full.specialistInputs.length }));

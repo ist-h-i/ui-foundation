@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 181,
+  "source_count": 183,
   "files": [
     {
       "path": "templates/angular/action-control-messages.ts",
@@ -749,14 +749,14 @@
     },
     {
       "path": "templates/angular/anchor-navigation.ts",
-      "sha256": "f9e6436ee07d1fce5b050ff7ab5c4f68676b794b406ab6d68622f9dbe2f3b328",
+      "sha256": "85d6865582ca48f405404f2b8b8b80661f616826fb2b5f475c721e6756d839b8",
       "declarations": [
         {
           "names": [
             "AnchorNavigationItem"
           ],
           "kind": "interface",
-          "declaration": "export interface AnchorNavigationItem {\n    id: string;\n    label: string;\n    target: HTMLElement | null;\n}"
+          "declaration": "export interface AnchorNavigationItem {\n    id: string;\n    label: string;\n    target: HTMLElement | null;\n    children?: readonly AnchorNavigationItem[];\n}"
         },
         {
           "name": "AnchorNavigation",
@@ -774,6 +774,12 @@
               "kind": "input",
               "declaration": "readonly label = input.required<string>();",
               "initializer": "input.required<string>()"
+            },
+            {
+              "name": "labelledBy",
+              "kind": "input",
+              "declaration": "readonly labelledBy = input<string | null>(null);",
+              "initializer": "input<string | null>(null)"
             },
             {
               "name": "items",
@@ -10267,7 +10273,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "62d4e4f9a1eb8a225ca3b3e6e581e40b650f7f4498519dbaa5aec9e197afaa81",
+      "sha256": "cb3566d48130849d47068f3a9c56a0d279dd95ad5027d357fed755ad6b11f23d",
       "declarations": [
         {
           "kind": "export",
@@ -10376,6 +10382,10 @@
         {
           "kind": "export",
           "declaration": "export { Wizard, WizardStep, type WizardTransition } from './wizard';"
+        },
+        {
+          "kind": "export",
+          "declaration": "export { StepNavigation, type StepNavigationItem, type StepNavigationStatus } from './step-navigation';"
         },
         {
           "kind": "export",
@@ -16390,6 +16400,112 @@
           ],
           "kind": "function",
           "declaration": "export function resolveUiMessage(request: UiMessageRequest, locale: string, translate?: UiMessageTranslator | null): string"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/step-navigation-model.ts",
+      "sha256": "fde2078a976b9530842117c092ba6e9090892427c80af544de39a81e6d7f80a3",
+      "declarations": [
+        {
+          "names": [
+            "StepNavigationStatus"
+          ],
+          "kind": "type",
+          "declaration": "export type StepNavigationStatus = 'not-started' | 'in-progress' | 'complete' | 'error' | 'skipped';"
+        },
+        {
+          "names": [
+            "StepNavigationItem"
+          ],
+          "kind": "interface",
+          "declaration": "export interface StepNavigationItem {\n  id: string;\n  label: string;\n  status: StepNavigationStatus;\n  /** Localized status, supplied by the app; never inferred from its color. */\n  statusLabel: string;\n  navigable?: boolean;\n  disabled?: boolean;\n}"
+        },
+        {
+          "names": [
+            "validateStepNavigation"
+          ],
+          "kind": "function",
+          "declaration": "export function validateStepNavigation(items: readonly StepNavigationItem[], currentId: string | null): readonly StepNavigationItem[]"
+        },
+        {
+          "names": [
+            "canRequestStep"
+          ],
+          "kind": "function",
+          "declaration": "export function canRequestStep(item: StepNavigationItem, currentId: string | null, busy: boolean): boolean"
+        },
+        {
+          "names": [
+            "validateCurrentStepLabel"
+          ],
+          "kind": "function",
+          "declaration": "export function validateCurrentStepLabel(label: unknown): string"
+        }
+      ]
+    },
+    {
+      "path": "templates/angular/step-navigation.ts",
+      "sha256": "f383c284f706be4e5d2003fa08b260df3873c35f506b96545ce99e4fd082abcc",
+      "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type { StepNavigationItem, StepNavigationStatus } from './step-navigation-model';"
+        },
+        {
+          "name": "StepNavigation",
+          "kind": "class",
+          "decorators": [
+            {
+              "name": "Component",
+              "selector": "'ui-step-navigation'"
+            }
+          ],
+          "extends": [],
+          "members": [
+            {
+              "name": "label",
+              "kind": "input",
+              "declaration": "readonly label = input.required<string>();",
+              "initializer": "input.required<string>()"
+            },
+            {
+              "name": "items",
+              "kind": "input",
+              "declaration": "readonly items = input.required<readonly StepNavigationItem[]>();",
+              "initializer": "input.required<readonly StepNavigationItem[]>()"
+            },
+            {
+              "name": "currentId",
+              "kind": "input",
+              "declaration": "readonly currentId = input<string | null>(null);",
+              "initializer": "input<string | null>(null)"
+            },
+            {
+              "name": "currentLabel",
+              "kind": "input",
+              "declaration": "readonly currentLabel = input.required<string>();",
+              "initializer": "input.required<string>()"
+            },
+            {
+              "name": "direction",
+              "kind": "input",
+              "declaration": "readonly direction = input<'horizontal' | 'vertical'>('horizontal');",
+              "initializer": "input<'horizontal' | 'vertical'>('horizontal')"
+            },
+            {
+              "name": "busy",
+              "kind": "input",
+              "declaration": "readonly busy = input(false, { transform: booleanAttribute });",
+              "initializer": "input(false, { transform: booleanAttribute })"
+            },
+            {
+              "name": "stepRequested",
+              "kind": "output",
+              "declaration": "readonly stepRequested = output<string>();",
+              "initializer": "output<string>()"
+            }
+          ]
         }
       ]
     },

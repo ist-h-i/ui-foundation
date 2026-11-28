@@ -19,7 +19,8 @@
 | `FloatingActionButton` | 全 | [`actions.ts:171`](../templates/angular/actions.ts#L171)。`styles`。現配置を維持。部品自身の表示を定義する。 |
 | `CopyButton` | 全 | [`actions.ts:207`](../templates/angular/actions.ts#L207)。`styles`。現配置を維持。部品自身の表示を定義する。 |
 | `Agenda` | 全 | [`agenda.ts:8`](../templates/angular/agenda.ts#L8)。`scheduler-view.ts#schedulerStyles`、部品の `styles` 経由。現配置を維持。部品群で共有する定義を参照する。 |
-| `AnchorNavigation` | 全 | [`anchor-navigation.ts:10`](../templates/angular/anchor-navigation.ts#L10)。`styles`、ホストまたは要素への動的指定。現配置を維持。部品自身の表示を定義する。 |
+| `AnchorNavigation` | 全 | [anchor-navigation.ts](../templates/angular/anchor-navigation.ts)の`styles`と対象要素への動的指定。目次の階層は論理方向の余白・境界線を使用する。 |
+| `StepNavigation` | 全、単独 | [step-navigation.ts](../templates/angular/step-navigation.ts)の`styles`。段階と状態をセマンティックトークンで表示し、追加のCSS読み込みを必要としない。 |
 | `AsyncRegion` | 全 | [`async-region.ts:12`](../templates/angular/async-region.ts#L12)。`styles`。移設済み (#47)。領域の固有余白。通知面・色と非表示は `styles.css`。 |
 | `QRCode` | 全 | [`barcode.ts:8`](../templates/angular/barcode.ts#L8)。`media-style.ts#mediaStyles`、部品の `styles` 経由。現配置を維持。部品群で共有する定義を参照する。 |
 | `Barcode` | 全 | [`barcode.ts:17`](../templates/angular/barcode.ts#L17)。`media-style.ts#mediaStyles`、部品の `styles` 経由。現配置を維持。部品群で共有する定義を参照する。 |
