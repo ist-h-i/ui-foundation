@@ -231,7 +231,7 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
   .ui-action[data-emphasis][aria-pressed="true"]::after {
     content:"";
     position:absolute;
-    inset:var(--ui-space-control-gap);
+    inset:var(--ui-border-focus);
     border:var(--ui-border-control) solid currentColor;
     border-radius:inherit;
     pointer-events:none;

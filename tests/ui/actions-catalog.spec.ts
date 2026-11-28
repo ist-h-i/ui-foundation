@@ -93,6 +93,19 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
   expect(await borderWidth(primaryIcon)).toBeGreaterThan(await borderWidth(toggle));
   await expect(toggle).toHaveCSS('border-top-style','solid');
   await expect(icon).toHaveCSS('border-top-style','none');
+  for(const button of [primaryIcon,icon]){
+   const clearance=await button.evaluate(element=>{
+    (element as HTMLButtonElement).style.setProperty('--ui-space-control-gap','24px');
+    const ring=getComputedStyle(element,'::after');
+    const glyph=element.querySelector('svg')!.getBoundingClientRect();
+    return {
+     inline:parseFloat(ring.width)-parseFloat(ring.borderLeftWidth)-parseFloat(ring.borderRightWidth)-glyph.width,
+     block:parseFloat(ring.height)-parseFloat(ring.borderTopWidth)-parseFloat(ring.borderBottomWidth)-glyph.height,
+    };
+   });
+   expect(clearance.inline).toBeGreaterThan(0);
+   expect(clearance.block).toBeGreaterThan(0);
+  }
   await toggle.dispatchEvent('click');await expect(toggle).toHaveAttribute('aria-pressed','true');
   for(const [primaryName,secondaryName,tertiaryName] of [
    ['通常の主操作','通常の副操作','通常の補助操作'], ['危険な主操作','危険な副操作','危険な補助操作'],

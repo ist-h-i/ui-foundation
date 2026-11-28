@@ -6164,7 +6164,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "repeat(var(--ui-form-columns,1),minmax(0,1fr))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "form列数producerの正整数検証と、上書き可能なCSS consumerを分離する。consumerの全writerを網羅できないためUnknownを保持。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6178,7 +6178,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr))",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6254,7 +6254,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "gap:var(--ui-form-gap,var(--ui-space-field))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "producer側gapは0/semantic3種へ限定済み。既存7px!importantが勝つ契約があるためconsumerを有限意味tokenだけだとは認定しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6268,7 +6268,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "gap: var(--ui-form-gap, var(--ui-space-field))",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6344,7 +6344,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "通常producerはgrid/block/nullでもglobal aliasの継承・app上書きと:has/media分岐が残る。構造keywordの許可だけで全consumer値を証明しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6358,7 +6358,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6434,7 +6434,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "fieldまたはformのinline-label track式を継承する。40%上限の既存限定承認を、外部alias全体の承認へ広げない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6448,7 +6448,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6524,7 +6524,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr) をinline checkboxのcolumnsへ設定。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "公開label幅はvalidated positive pxまたはsemanticだがCSS aliasの上書きとcheckbox特有consumerは任意。40%は正当な入力領域確保の構造上限で、alias全値は未確認。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6538,7 +6538,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6614,7 +6614,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "object-fit:var(--ui-content-fit) を投影img/video/iframeへ適用。AspectRatioはratio finite>0、fitをlayoutKeyword(contain/cover/fill)で検証しhost --ui-content-fitへ写す。global consumer ui-aspect-ratio > img/video/iframe のobject-fitがaliasを読む。",
       "reason": "validated host keywordを任意CSS上書きから閉鎖しない。global consumerの全供給元とmedia描画が未保証なのでwarningを維持する。",
       "remaining_scope": "fit producerは有限でもglobal consumer aliasのlocal/inherited/important CSSは開いている。任意projected media/iframe内部・external stylesheetと全pixel条件は保証しない。",
@@ -6627,7 +6627,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "object-fit:var(--ui-content-fit)",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -8846,7 +8846,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. font-size consumes it with semantic text/control lengths.",
       "reason": "font-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8860,13 +8860,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8890,13 +8890,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -8942,7 +8942,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-block-size consumes it with semantic text/control lengths.",
       "reason": "min-block-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8956,13 +8956,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8986,13 +8986,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
@@ -9038,7 +9038,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+      "source_sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-inline-size consumes it with semantic text/control lengths.",
       "reason": "min-inline-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -9052,13 +9052,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "eab2c4e9dbce371b3905720a2c2d0f39ca5639214800340276d2457723c71581",
+          "sha256": "cfa9443d76ba79125547f62bba4eae3a96d53eba540e2ece01aaf5d298532a80",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9082,13 +9082,13 @@
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "Buttonは種類、サイズ、全幅、icon位置とnative submit/resetを反映",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
           "file": "tests/ui/actions-catalog.spec.ts",
           "anchor": "ButtonGroupの共通サイズ、連結border、方向がnative操作へ適用",
-          "sha256": "374ea71935bf09249477a966e01852d9c110e235ff012bea087cb86d0e88d7a1",
+          "sha256": "4f46a997556707808c7ad9bbb407636da700f19f8c66136904ff9346794ccbc0",
           "scope": "Read existing executable test source; not rerun by this audit."
         },
         {
