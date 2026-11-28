@@ -81,6 +81,19 @@ npm install --save-dev --save-exact @hiroshi.inoue/ui-foundation@0.2.0
 | 設定の構造と生成の契約を調べる | [設計](docs/design.md) |
 | 静的検査の対象と限界を調べる | [静的検査](docs/static-checks.ja.md) |
 
+## 生成物をGitで管理する場合
+
+生成物をコミットする場合は、チェックアウト後もバイト列が変わらないようにします。初回の `git add` より前に、利用アプリのルートの `.gitattributes` へ以下を追加してください。全体に適用する `* text=auto` などの指定より後に記載します。
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+生成先を変更した場合は、属性の先頭のパターンと確認コマンドの最初のパスを設定に合わせます。属性ファイルもコミットし、`git check-attr text -- .ui/generated/CHECKER-NOTICE.txt .agents/skills/project-ui/ownership.json` で両方が `unset` になることを確認します。生成物にはバイト列を変えるフィルターやエンコーディング変換を適用しません。`CHECKER-NOTICE.txt` には改行形式が混在する第三者ライセンスの原文が含まれることがあり、manifestはそのままのバイト列からハッシュを計算します。 [空白や角括弧を含む生成先での設定例](docs/ui-library-consumer-guide.ja.md#gitで管理する生成物の改行を保持する)
+
+すでにGitで改行が変換されている場合は、まず復旧点を保存します。変換前の検証済みコピーから復元するか、従来の固定パッケージ版と設定を別ディレクトリで使って再生成します。復元前に全対象のSHA-256を既存manifestと照合し、既存ファイルとの差が改行のみであることを確認してから置き換えます。改行以外の編集や証拠不足がある場合は上書きしません。手編集を許容するためにmanifestのハッシュを書き換えてはいけません。属性と復元したファイルをステージし、差分を確認してから、新規チェックアウトで `sync --dry-run` と `check` を実行します。所有権ファイル（`ownership.json`）が変換された場合も、同様にmanifestのハッシュと照合して復元します。manifest自体が変換された場合は、検証済みの原本から復元してください。原本がない場合は、改行形式を揃えたうえで再生成したmanifestの全内容が既存manifestと一致し、復元する全ファイルが記録済みハッシュと一致することを確認します。元のバイト列を確認できない場合は、上書きせず所有権の競合を解消してください。
+
 ## ライセンス
 
 自作のCLI・テンプレート・Skill・生成コードは[MIT License](LICENSE)（Copyright © 2026 Hiroshi Inoue）で提供します。利用アプリ自身のコードや第三者資産のライセンスを変更するものではありません。生成先と生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持し、配布成果物へ`ui-foundation/LICENSE.txt`として含めてください。第三者通知と対応ソースも[usageの配布資産](docs/ui-library-consumer-guide.ja.md#css-と配布資産)に従って保持します。

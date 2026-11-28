@@ -44,6 +44,19 @@ Human-facing documentation is available in English and Japanese. After sync, rea
 
 New English configurations start with English UI text. Existing configurations that omit `default_language` retain Japanese defaults. Pass the app's locale signal to `provideUiLocale` for live switches. UI Foundation selects its built-in text by locale and accepts app overrides through stable message IDs and named arguments. The app translates its labels, content and backend errors. [Language switching and external translations](docs/ui-library-consumer-guide.en.md#select-english-component-messages) · [Upgrade from beta.4](docs/ui-message-migration.en.md)
 
+## Track generated files in Git
+
+If generated files are committed, preserve their exact bytes across checkout. Before the first `git add` of the generated output and Skill, put these rules **after** broad text rules in the app's root `.gitattributes`:
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+Use the configured output directory in the first pattern and in the first path passed to `git check-attr`. The guide shows how to quote paths with spaces or brackets. Commit the rules and check the effective attributes with `git check-attr text -- .ui/generated/CHECKER-NOTICE.txt .agents/skills/project-ui/ownership.json`. Both must report `unset`. Keep other byte-changing filters and encodings off managed files. `CHECKER-NOTICE.txt` can contain original third-party text with mixed line endings, and the manifest hashes the exact bytes. [Git attributes for custom output](docs/ui-library-consumer-guide.en.md#preserve-managed-files-in-git)
+
+If Git has already normalized managed files, first save a recovery point. Restore the exact original files from a verified pre-normalization copy or regenerate in a separate directory with the previously installed, locked package version and configuration. Before replacing any file, compare the recovered files' SHA-256 with the existing manifest and verify that the checkout differs only by line endings. Stop on non-line-ending edits or unverifiable bytes. Do not change manifest hashes to accept local edits. After adding the attributes, stage the restored files, review the diff, and verify `sync --dry-run` and `check` in a fresh checkout. If the ownership registry itself was converted, recover it using the same manifest-hash check. If the manifest was converted, restore a verified original; if no original is available, verify that the regenerated manifest matches the entire recorded manifest after line-ending normalization and that every recovered file matches its recorded hash. If the original bytes cannot be verified, stop and resolve the ownership conflict rather than discarding edits.
+
 ## Configure and verify
 
 Primitives hold concrete values. Semantic tokens describe their uses. Named profiles assign values and design guidance for different contexts. The bundled `guided` and `dense` profiles are editable examples; they do not automatically restructure screens.

@@ -518,6 +518,33 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 
 CLI を npm で更新した後、再同期してアプリの部品・Skill・利用者文書を更新します。旧パッケージ版・lockfile・YAML・生成物・Skill を同じ復旧点へ保存し、更新先の依存関係と API の変更を確認してから、上と同じ dry-run・sync・check とアプリ検証を行います。ベータ版から更新するときは、移行元に応じた手順も確認してください。 [0.2.0 への更新](npm-beta-release-notes.ja.md#020) · [ベータ版からの移行](npm-beta-release-notes.ja.md#010) · [更新と復旧](npm-beta-readiness.ja.md#更新と復旧) · [コマンド一覧](commands.ja.md)
 
+
+### Gitで管理する生成物の改行を保持する
+
+生成物とSkillをGitで追跡する前に、利用アプリのルートの `.gitattributes` に、全体に適用する属性より後で次を指定します。
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+属性ファイルと確認コマンドの最初のパスを、設定した生成先に合わせます。属性のパターンは `/` から始め、アプリのルートを基準にします。生成先の先頭が `!` や `#` の場合も同じです。空白を含むパターンは二重引用符で囲み、引用符内の角括弧を文字として扱うには前にバックスラッシュを2個置きます。生成先が `custom output/generated[1]` の例です。
+
+```gitattributes
+"/custom output/generated\\[1\\]/**" -text
+```
+
+属性と生成物をステージした後、2つのディレクトリ内にあるすべての追跡ファイルが `text: unset` になることを確認します。属性ファイル内で後にあるパターンや、対象ファイルに近いディレクトリの属性が優先される場合があります。次のコマンドの生成先は実際の設定に置き換えてください。
+
+```sh
+git --literal-pathspecs ls-files -- 'custom output/generated[1]' .agents/skills/project-ui |
+  git check-attr --stdin text
+```
+
+バイト列を変えるフィルターやエンコーディング変換も適用しません。第三者ライセンスの原文を含む生成物は、manifestのハッシュで照合します。 [Git属性の優先順位](https://git-scm.com/docs/gitattributes)
+
+既に改行が変換された場合は復旧点を保存し、別ディレクトリで従来の固定パッケージと設定から元のバイト列を再現します。記録済みmanifestと再生成したmanifest（改行以外の差を許容しない）、各復元ファイルのSHA-256を照合します。復元前に既存ファイルとの差が改行のみであることを確認します。改行以外の編集、証拠不足、別の競合があれば上書きせず解消してください。ハッシュを書き換えて編集を採用してはいけません。属性と検証済みの復元内容をコミットし、新規checkoutで `sync --dry-run`、`check`、変更なしの再同期を確認します。
+
 ## 保存の再試行を確認する任意のブラウザーテスト
 
 インストールした npm パッケージの `skills/ui-development/references/examples/dialog-retry.ts`、または同期済み Skill の `references/examples/dialog-retry.ts` をコピーします。既存の Playwright テストから `verifyRegistrationRetry` を import し、`page` fixture を渡します。利用アプリの Playwright コマンドでそのテストを実行します。 `baseURL` を設定して画面の相対パスを使うか、画面の URL 全体を渡します。Tab 操作とフォーカスの期待値は画面に合わせ、保存失敗後の移動先も指定します。

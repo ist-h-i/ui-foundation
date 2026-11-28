@@ -311,6 +311,33 @@ To migrate an existing Japanese app to an English generated default, set `defaul
 
 When updating the package or YAML, keep the previous package version, lockfile, configuration, generated files, and Skill together as a recovery point. Review dependencies and API changes. Run `sync --dry-run`, `sync`, and `check`, then repeat the applicable app checks. `npm install` updates the package in `node_modules`. `sync` updates the app's copied artifacts. [Interruption recovery](npm-beta-readiness.en.md) · [Upgrade to 0.2.0](npm-beta-release-notes.en.md#020) · [Upgrade from beta](npm-beta-release-notes.en.md#010)
 
+
+### Preserve managed files in Git
+
+Before tracking generated output and the generated Skill, place these rules after broad text rules in the app's root `.gitattributes`:
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+Replace the first path with the configured output directory in both `.gitattributes` and the attribute check. Start the custom Git attribute pattern with `/` to anchor it at the app root, including for directory names starting with `!` or `#`. Double-quote patterns for paths containing spaces and escape literal brackets inside the quotes with doubled backslashes. For example, an output of `custom output/generated[1]` has this rule:
+
+```gitattributes
+"/custom output/generated\\[1\\]/**" -text
+```
+
+After staging the generated files and attributes, check every staged or tracked file in both directories. Later patterns and attributes closer to a file can change the effective result. Every file must report `text: unset`. Use the actual output path in this example.
+
+```sh
+git --literal-pathspecs ls-files -- 'custom output/generated[1]' .agents/skills/project-ui |
+  git check-attr --stdin text
+```
+
+Avoid any other byte-changing filter or encoding. Managed files include original third-party notice bytes, and the manifest verifies exact content. [Git attribute precedence](https://git-scm.com/docs/gitattributes)
+
+If an existing checkout is already normalized, save a recovery point first. In a separate directory, use the previous locked package and configuration to reproduce the original bytes. Verify the recorded manifest against the recovered manifest (only line-ending differences are acceptable) and every recovered file against its recorded SHA-256. Verify that the affected checkout has only line-ending differences before restoring. If a non-line-ending edit, missing evidence, or another conflict remains, stop and resolve it separately. Do not rewrite hashes to approve edits. Commit the attributes and verified recovery; check a fresh checkout with `sync --dry-run`, `check`, and a no-change sync.
+
 ## Optional browser test for retrying a save
 
 Copy `skills/ui-development/references/examples/dialog-retry.ts` from the installed npm package, or `references/examples/dialog-retry.ts` from the synchronized Skill. In your existing Playwright suite, import `verifyRegistrationRetry` and call it in a test that receives the `page` fixture. Run that spec with your project's Playwright command. Use Playwright's `baseURL` for a relative screen path, or pass the full URL. Adapt the Tab order and focus assertions to the screen, including where focus lands after a failed save.
