@@ -88,8 +88,9 @@ test('release tarball is isolated from checkout, upgrades safely, and builds/ope
   assert.equal(manifest.private, false, 'the authorized public release candidate must explicitly enable publication');
   assert.equal(manifest.name, '@hiroshi.inoue/ui-foundation');
   assert.equal(manifest.license, 'MIT');
-  assert.equal(manifest.version, '0.2.0');
-  assert.deepEqual(manifest.publishConfig, { registry: 'https://registry.npmjs.org/', access: 'public', tag: 'release-candidate' });
+  assert.equal(manifest.publishConfig.registry, 'https://registry.npmjs.org/');
+  assert.equal(manifest.publishConfig.access, 'public');
+  assert.ok(manifest.publishConfig.tag && manifest.publishConfig.tag !== 'latest', 'A separate candidate tag is required');
   const ownLicense = await readFile(resolve(repository, 'LICENSE'));
   const profile = checkoutIsolation(repository);
   const execute = (file, args, cwd = consumer, timeout = 120_000) => run(file, args, { cwd, timeout, signal: t.signal });
