@@ -36,6 +36,12 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 FormFieldのhostへ `[hidden]="true"` を指定すると、チェックボックスのレイアウトを含めて非表示とし、入力はタブ順から外れる。入力のインスタンスは維持し、再表示時に値・選択状態を保持する。
 
+入力形式や編集できない理由など、操作前に必要な情報は `hintPosition="before"` で入力欄の前に示します。ラベルは常に表示し、入力後に参照する補足には既定の `after` を使えます。エラーは該当する項目の近くに、訂正方法が分かる文言で表示します。補足の位置を切り替えても `aria-describedby` が参照するIDは変わりません。Checkbox・Switchの横並び配置では、ラベルと操作部を同じ行に置き、その上に補足を表示します。`labelPosition="above"` ではラベルと操作部の間に補足が入ります。
+
+`[controlCharacters]="12"` はネイティブの入力欄と、該当する場合はSelect・Comboboxのアンカーの幅を文字数の目安で指定します。実際の幅は、配置先の余裕やネイティブ部品の最小寸法に従います。隣接する操作ボタン、補足文、選択済みの値、ポップアップ内の検索欄には適用しません。既定の `null` では幅を制限しません。値の検証や `maxLength` は用途に応じて指定します。Checkbox・Switch・Slider・Knobの寸法はプロファイルに従います。SliderとKnobでは補足の位置を指定できます。RadioGroup・MultiSelect・RangeSliderなど、fieldsetでまとめる部品は独自のラベルと補足の配置を維持します。`FieldHintPosition` 型はcore、forms、全件入口から読み込めます。
+
+閲覧だけを目的とする場合は、通常のテキストやDescriptionsを使えます。一時的に編集できない場合は、理由と次にできる操作を画面上に明示します。入力の保持、エラーを表示する時機、最終検証は利用アプリが管理します。入力の意味や条件をプレースホルダーだけで伝えないでください。
+
 ### AsyncRegion
 
 `<ui-async-region [state]="state()" [retryAvailable]="true" (retry)="reload()">…</ui-async-region>`。
@@ -153,8 +159,8 @@ Paginationは既存の`page/totalPages/pageChange`に加え`totalItems/pageSize/
 
 TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Switch、Select、MultiSelect、Comboboxはnative要素を使うControlValueAccessorです。`controlId/label`は必須、共通で`hint/error/required/disabled/busy/readonly/value/valueChange/name`を持ちます。`[formControl]`／`formControlName`または制御された`value/valueChange`を使い、同じ部品で二つの値の所有者を併用しません。`writeValue`でアプリへ値を返さず、disabled・readonly・busyでは編集を抑止します。表示エラーの文言と表示時機、送信時の最終検証はアプリが所有します。FormFieldで表示するCVAにはlabelPositionも接続し、native fieldsetの選択群はlegendとdirectionを使います。
 
-- TextInput: placeholder、maxLength、autocomplete、clearable、showCount。文字数／maxlengthはnativeのUTF-16単位で扱います。
-- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。autoResizeは入力/CVA更新だけでなく幅、profile、hidden復帰も再計算します。
+- TextInput: placeholder、maxLength、autocomplete、inputMode、clearable、showCount。文字数とmaxlengthはネイティブのUTF-16単位で扱います。`inputMode="numeric"` などを指定しても値は文字列のままで、先頭のゼロを保持します。既定の `null` ではブラウザーに入力モードの選択を任せます。`TextInputMode` 型はformsまたは全件入口から読み込めます。
+- Textarea: rows、autoResize、maxHeight、maxLength、showCount、placeholder、autocomplete、inputMode。autocompleteとinputModeの属性は既定で付与しません。最大高さを超えた内容は内部でスクロールし、手動拡大も許可します。autoResizeは入力/CVA更新だけでなく幅、profile、hidden復帰も再計算します。
 - NumberInput: min/max/step/fractionDigits/grouping/locale/unit。編集はnative number、桁区切りと小数桁は補助表示へ適用します。CVA validatorは範囲・刻み・必須とbadInputを扱い、範囲変更時も再検証します。無効な数値ドラフトで古い値を有効扱いしません。
 - PasswordInput: autocomplete、表示切替とアプリが渡すstrength。強度の安全性を部品が保証したとは扱いません。
 - SearchInput: debounceMs、loading、suggestions/suggestionsQuery/suggestionsRequestId、`searchRequest:{query,requestId}`。入力値は即時更新し、待ち時間後は最新語を一度返します。Enter／検索ボタンは待機を取消して即時に返し、IME変換Enterは処理しません。native searchイベントとの衝突を避けた出力名です。非同期応答はqueryとrequestIdの両方を渡し、同じ語に戻った場合も新しいIDを待ちます。同値CVA resetは応答と待機を無効にします。静的候補だけはsuggestionsRequestId=nullにします。クリア操作の名前は「検索語をクリア」で、aria-controlsで対象の入力を示します。
@@ -163,7 +169,7 @@ TextInput、Textarea、NumberInput、PasswordInput、SearchInput、Checkbox、Sw
 - MultiSelect／`ui-checkbox-group`: options、searchable、showSelectAll、maxSelected、選択済み表示と個別解除、direction=vertical/horizontal、columns。検索で見えなくなった選択を保ち、無効／削除済みの選択も個別解除できます。group外へのfocusoutは`updateOn:'blur'`へ通知します。
 - Combobox: options、freeInput、loading、placeholder、`queryChange:{query,requestId}`、optionsQuery／optionsRequestId。非同期のアプリは応答に両方の識別情報を付け、同じ検索語の古い応答も選択させません。非自由入力の編集で古い選択をnullへ戻し、未確定ドラフトはvalidatorでinvalid。外部resetは同値でもドラフトを初期化します。矢印/Home/End/Enter/Escape/Tabとaria-activedescendantを接続し、無効候補とIME Enterを避けます。`ng-template[uiComboboxOption]`のtyped contextは`$implicit:SelectOption`、active/selected。候補templateは表示内容だけに使い、入れ子の別操作を置きません。native popoverとOverlayRegistry、placementとviewport反転/クランプを使い、native modal内にも留めます。最初のEscapeは候補、その後のEscapeはDialogへ届きます。Tab/outside/選択で同期して登録を解除し、入力focusを別の操作から奪いません。
 
-FormLayout（`[uiFormLayout]`）はcolumns、direction、gap=none/compact/normal/wide、labelPosition=above/inline、labelWidth（正のpx、nullはsize.form-label）を持ちます。FormFieldのlabelPosition=inherit/above/inlineは既定でlayoutを継承し、inline幅は入力を保つため領域の40%まで、viewport 40rem以下では文字入力を縦に戻します。native checkboxは明示above/inlineも指定できます。InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、native fieldへfocusを移してnavigateを返します。FormGroupはgroupId/label/hint/disabledと同じlayout設定を持つnative fieldset/legendです。disabledはnative子操作を無効にし、値を消しません。Angularのvalidationからも除外する場合はアプリがFormGroup.disable()を使います。他の入力カテゴリは[コンポーネント一覧](components.ja.md)から参照できます。
+FormLayout（`[uiFormLayout]`）はcolumns、direction、gap=none/compact/normal/wide、labelPosition=above/inline、labelWidth（正のpx、nullはsize.form-label）を持ちます。FormFieldのlabelPosition=inherit/above/inlineは既定でlayoutを継承し、inline幅は入力を保つため領域の40%まで、viewport 40rem以下では文字入力を縦に戻します。native checkboxは明示above/inlineも指定できます。InputGroupは前後の`uiInputBefore/uiInputAfter`とconnected、FormErrorSummaryはerrors（controlId/label/message）とvisible/titleを受け取り、navigateを通知し、表示済みのネイティブ入力欄にフォーカスを移します。遷移先や閉じた領域に入力欄がある場合は、利用アプリが表示を切り替えてからフォーカスを移してください。複数項目の訂正が必要な場合は、送信の試行後に概要から各項目へ移動できるようにします。FormGroupはgroupId/label/hint/disabledと同じlayout設定を持つnative fieldset/legendです。disabledはnative子操作を無効にし、値を消しません。Angularのvalidationからも除外する場合はアプリがFormGroup.disable()を使います。他の入力カテゴリは[コンポーネント一覧](components.ja.md)から参照できます。
 
 ### 構造化入力とフォーム操作
 
@@ -173,7 +179,7 @@ MaskedInput、OTPInput、TagInputも共通CVAに接続します。書式/未確�
 - OTPInput: digits=1..64（既定6）、kind=numeric/alphanumeric（ASCII英数字）、stripPasteSeparators（既定false）。native text/inputmode/patternとautocomplete=one-time-codeを使います。先頭0、全コードの貼付けを保ち、超過/文字種違いも切り詰めません。明示設定した貼付けだけ空白・ハイフンを除きます。OSからの自動入力と認証成否はこのDOM/操作検証の範囲に含めません。
 - TagInput／ui-token-input: readonly string[]、options、freeInput、allowDuplicates、caseSensitive、maxTokens（nullまたは0以上の整数）。native editor/datalist、追加/個別削除を使います。重複/候補外/上限で拒否したdraftと、復元された不正なcollectionは残して修正できます。未追加のdraftもvalidatorで区別し、resetがdraftを消します。collectionのrequiredを検証し、空のeditorへnative requiredを付けません。削除前はeditorへfocusを残します。データ更新の結果はアプリから受け取ります。
 - RadioGroup: name/label/value/valueChange/required/disabled/hint/errorとdirection。CVAまたは制御された値で初期選択を渡し、各input[uiRadioOption]のvalue/disabledを使います。native矢印で無効候補を飛ばし、グループ退出をtouchedへ接続します。CVA reset後の値はFormControlのnullable/nonNullableとアプリのreset値に従います。
-- FormActions: native submit/reset/cancel、formId（外部formとの関連）、busy/disabled、showSubmit/showReset/showCancel、各label、direction/align、groupのlabel。cancelledは意思表示です。native resetはAngular FormGroupDirective/アプリのreset契約へ届きます。busyで各操作と投影したclickを抑止し、組込み操作のfocusを自領域へ留め、完了後は同じ操作へ戻します。外部focusは奪いません。投影した追加操作のdisabled表示/フォーム対象は利用側が接続します。保存成功・戻る先・取消の結果を部品で先取りしません。
+- FormActions: native submit/reset/cancel、formId（外部formとの関連）、busy/disabled、showSubmit/showReset/showCancel、各label、direction/align、groupのlabel。cancelledは意思表示です。native resetはAngular FormGroupDirective/アプリのreset契約へ届きます。busyで各操作と投影したclickを抑止し、組込み操作のfocusを自領域へ留め、完了後は同じ操作へ戻します。外部focusは奪いません。投影した追加操作のdisabled表示/フォーム対象は利用側が接続します。保存成功・戻る先・取消の結果を部品で先取りしません。通常の申請フォームで一括消去が不要なら `[showReset]="false"` を指定します。リセットを提供する場合は消える範囲を明示し、主操作の近くに誤って押しやすい形で置かないでください。
 
 一次資料: [HTML autofill](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill)、[APG Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)。
 
@@ -350,9 +356,9 @@ ConfirmPopoverは必須`label/message`、`confirmLabel/cancelLabel/busyLabel`、
 
 | 部品 | 設定と値 | 操作とアプリへの出力 |
 | --- | --- | --- |
-| Slider | 数値。`min`/`max`/`step`/`unit`/`ticks: SliderTick[]`/`labelPosition` | native rangeの矢印/Home/End。minを起点としてsnapし、datalist目盛りと文字ラベルを表示。 |
+| Slider | 数値。`min`/`max`/`step`/`unit`/`ticks: SliderTick[]`/`labelPosition`/`hintPosition` | native rangeの矢印/Home/End。minを起点としてsnapし、datalist目盛りと文字ラベルを表示。 |
 | RangeSlider | `{start,end}`。上記の範囲と目盛り、`startLabel`/`endLabel` | native rangeを2個使い、開始≦終了を守る。動く範囲が変わってもDOM順は変えない。 |
-| Knob | 数値。上記の範囲/刻み/単位/`labelPosition` | SVGの270度の指針、native range、pointer capture、増減button。`size.knob`がprofileごとの寸法。 |
+| Knob | 数値。上記の範囲/刻み/単位/`labelPosition`/`hintPosition` | SVGの270度の指針、native range、pointer capture、増減button。`size.knob`がprofileごとの寸法。 |
 | Rating | 数値。`stars`（1〜20）、`halfSteps`/`clearable`/`clearLabel` | native radio群で整数/0.5段階、0へ解除。必須時は0が不正。readonlyで操作を抑止して値の説明を残す。 |
 | ColorPicker | 文字列。`format: hex/rgb/hsl`/`allowAlpha`/`freeSelection`/`palette: ColorChoice[]`/`valueLabel`/`freeLabel`/`alphaLabel`/`paletteLabel` | raw text/native color/alpha range/palette。focus中の文字を保持し、妥当なblurで指定書式へ変換する。 |
 | InlineEdit | 文字列。`multiline`/`rows`/`maxLength`/`validateValue`/`editLabel`/`saveLabel`/`cancelLabel`/`emptyLabel`/`busyLabel` | `saveRequested:{requestId,value,previousValue}`と`editingChange`。アプリが`complete(id,value?)`/`fail(id,message)`を返す。 |

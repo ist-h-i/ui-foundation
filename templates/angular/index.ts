@@ -18,7 +18,7 @@ export { Pagination } from './pagination';
 export { Disclosure } from './disclosure';
 export { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult, type DialogContext } from './dialog';
 export { Tabs, TabPanel } from './tabs';
-export { TextInput, Textarea } from './text-controls';
+export { TextInput, Textarea, type TextInputMode } from './text-controls';
 export { NumberInput, PasswordInput, SearchInput, type SearchRequest } from './text-input';
 export { MaskedInput, OTPInput, TagInput } from './structured-input';
 export { Slider, RangeSlider, Knob, Rating, ColorPicker, type SliderTick, type ColorChoice } from './choice-controls';

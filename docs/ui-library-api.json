@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 181,
+  "source_count": 182,
   "files": [
     {
       "path": "templates/angular/action-control-messages.ts",
@@ -1366,7 +1366,7 @@
     },
     {
       "path": "templates/angular/cascader.ts",
-      "sha256": "67a7d0c3a80114e09579f5e1eeec482ece1b3ae589575753beecd8cac3e60c1e",
+      "sha256": "2097afb77197fb6d659d798b338bdcd331486f4803ca4f48337178ca79dcd81a",
       "declarations": [
         {
           "name": "Cascader",
@@ -2245,7 +2245,7 @@
     },
     {
       "path": "templates/angular/choice-controls.ts",
-      "sha256": "f3662a7e9a174bac731ce0388e1aa9d37efc4695923afb8637eb7bde91766b70",
+      "sha256": "c41eb39e6148d38d8f81589c0f18b2008dfb2511d12cf3c528b6ea34d282c829",
       "declarations": [
         {
           "names": [
@@ -2330,6 +2330,12 @@
           ],
           "members": [
             {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
               "name": "labelPosition",
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
@@ -2377,6 +2383,12 @@
             "extends NumericFieldControl<number>"
           ],
           "members": [
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
             {
               "name": "labelPosition",
               "kind": "input",
@@ -3298,7 +3310,7 @@
     },
     {
       "path": "templates/angular/core.ts",
-      "sha256": "0355653057f5761aee718f1f2bad2241158486ac0f660babf4515029d7868a2b",
+      "sha256": "d015437892f32dbd224e790163dbb46dcf1ca5057f238e5df43d20d1504ba282",
       "declarations": [
         {
           "kind": "export",
@@ -3310,7 +3322,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -4274,7 +4286,7 @@
     },
     {
       "path": "templates/angular/date-input.ts",
-      "sha256": "2d9275c49be03e0554b8045a48be99627db3899eb6351a85d738aa6086cae37b",
+      "sha256": "25523a2732917ee21e1a98da9828b144e27b0632b60cc3434757bbdc5b7f3968",
       "declarations": [
         {
           "name": "DatePicker",
@@ -7535,6 +7547,33 @@
       ]
     },
     {
+      "path": "templates/angular/field-appearance.ts",
+      "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+      "declarations": [
+        {
+          "names": [
+            "FieldHintPosition"
+          ],
+          "kind": "type",
+          "declaration": "export type FieldHintPosition = 'before' | 'after';"
+        },
+        {
+          "names": [
+            "fieldHintPosition"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldHintPosition(value: unknown): FieldHintPosition"
+        },
+        {
+          "names": [
+            "fieldCharacterWidth"
+          ],
+          "kind": "function",
+          "declaration": "export function fieldCharacterWidth(value: number | null): number | null"
+        }
+      ]
+    },
+    {
       "path": "templates/angular/file-draft-model.ts",
       "sha256": "0724ae89683758eaca68efc5be5ec0091a531747bd80154150b4ba4c939a226b",
       "declarations": [
@@ -8790,8 +8829,12 @@
     },
     {
       "path": "templates/angular/form-field.ts",
-      "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "sha256": "f0d696d3a595e46a41d7abac0c376032edd6a13f0f9b19f0538af9b8aab9e44b",
       "declarations": [
+        {
+          "kind": "export",
+          "declaration": "export type { FieldHintPosition } from './field-appearance';"
+        },
         {
           "name": "FieldControl",
           "kind": "class",
@@ -8865,6 +8908,24 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
+            },
+            {
+              "name": "resolvedCharacterWidth",
+              "kind": "property",
+              "declaration": "readonly resolvedCharacterWidth = computed(() => fieldCharacterWidth(this.controlCharacters()));",
+              "initializer": "computed(() => fieldCharacterWidth(this.controlCharacters()))"
             },
             {
               "name": "hasHint",
@@ -9177,15 +9238,15 @@
     },
     {
       "path": "templates/angular/forms.ts",
-      "sha256": "f324eb077580bc46f4fde5d5948484dbdd9985cde6aca45659dfa309d3cb58d3",
+      "sha256": "555c2021391fffdd96af7ea7907747452e7c5ddf7e0fa52669a5bc18ef259d3d",
       "declarations": [
         {
           "kind": "export",
-          "declaration": "export { FieldControl, FormField } from './form-field';"
+          "declaration": "export { FieldControl, FormField, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         }
       ]
     },
@@ -10267,7 +10328,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "62d4e4f9a1eb8a225ca3b3e6e581e40b650f7f4498519dbaa5aec9e197afaa81",
+      "sha256": "6263447a9861ceeaa60c4194119dfc48c4f30185c41dfbbaf6446cf68fa1b9e5",
       "declarations": [
         {
           "kind": "export",
@@ -10279,7 +10340,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { FormField, FieldControl } from './form-field';"
+          "declaration": "export { FormField, FieldControl, type FieldHintPosition } from './form-field';"
         },
         {
           "kind": "export",
@@ -10351,7 +10412,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { TextInput, Textarea } from './text-controls';"
+          "declaration": "export { TextInput, Textarea, type TextInputMode } from './text-controls';"
         },
         {
           "kind": "export",
@@ -15024,7 +15085,7 @@
     },
     {
       "path": "templates/angular/selection-input.ts",
-      "sha256": "f4facd834288d3f5f6424b5c96e9017b3b30d5c2070cfa3466cb973dab127b96",
+      "sha256": "0135db8886d718261762f13633c3487ae12ecd7083aa9074b6c3c2db1b5830fa",
       "declarations": [
         {
           "names": [
@@ -16450,7 +16511,7 @@
     },
     {
       "path": "templates/angular/structured-input.ts",
-      "sha256": "e790d53c7d85631ed0675e5093b625a37d33760751624d9cc8ddecb140a72999",
+      "sha256": "c748494b1cbceb12a8aa6afdb31a61ea9cd477af9a375401bb98ab3b5f7ea985",
       "declarations": [
         {
           "name": "MaskedInput",
@@ -17798,8 +17859,15 @@
     },
     {
       "path": "templates/angular/text-controls.ts",
-      "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+      "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
       "declarations": [
+        {
+          "names": [
+            "TextInputMode"
+          ],
+          "kind": "type",
+          "declaration": "export type TextInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';"
+        },
         {
           "name": "TextInput",
           "kind": "class",
@@ -17813,6 +17881,12 @@
             "extends ComposingTextControl"
           ],
           "members": [
+            {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
             {
               "name": "placeholder",
               "kind": "input",
@@ -17859,6 +17933,18 @@
           ],
           "members": [
             {
+              "name": "inputMode",
+              "kind": "input",
+              "declaration": "readonly inputMode = input<TextInputMode | null>(null);",
+              "initializer": "input<TextInputMode | null>(null)"
+            },
+            {
+              "name": "autocomplete",
+              "kind": "input",
+              "declaration": "readonly autocomplete=input<string|null>(null);",
+              "initializer": "input<string|null>(null)"
+            },
+            {
               "name": "rows",
               "kind": "input",
               "declaration": "readonly rows=input(3);",
@@ -17900,7 +17986,7 @@
     },
     {
       "path": "templates/angular/text-input.ts",
-      "sha256": "6cb8ff1006aaf0d24e67abeb0df9233a62774acd347093cdffc394b57761b301",
+      "sha256": "96e60baadc58c460d9c21d50d2e59ffd0fae880899bfd0ec3fe462deb7ae61ce",
       "declarations": [
         {
           "kind": "export",
@@ -19328,7 +19414,7 @@
     },
     {
       "path": "templates/angular/tree-select.ts",
-      "sha256": "31d5e4399a5eebf67f4b37ac9c62f1180c5dfc5931cf3f0c458c48f53485b21c",
+      "sha256": "42446eeabf2cdf27a83b63750bf362f9ec2530477267b8950d7f998306161f37",
       "declarations": [
         {
           "name": "TreeSelect",
@@ -19625,7 +19711,7 @@
     },
     {
       "path": "templates/angular/value-control.ts",
-      "sha256": "9a0f93d10e7c10c06964963a505759846ab93fd76e94ab5bb9e94c75a3c22214",
+      "sha256": "5b24d927f75ae0dc43b9ccee7857067f5a3534e0531ef36a90524e716921eba6",
       "declarations": [
         {
           "name": "ValueControl",
@@ -19744,6 +19830,18 @@
               "kind": "input",
               "declaration": "readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');",
               "initializer": "input<'inherit' | 'above' | 'inline'>('inherit')"
+            },
+            {
+              "name": "hintPosition",
+              "kind": "input",
+              "declaration": "readonly hintPosition = input<FieldHintPosition>('after');",
+              "initializer": "input<FieldHintPosition>('after')"
+            },
+            {
+              "name": "controlCharacters",
+              "kind": "input",
+              "declaration": "readonly controlCharacters = input<number | null>(null);",
+              "initializer": "input<number | null>(null)"
             }
           ]
         }

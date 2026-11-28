@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
@@ -37,6 +38,15 @@ test('the packed core, forms and locale example compile and bundle without speci
   for (const name of [...specialistPackages, '@lucide/angular']) {
     await assert.rejects(readFile(resolve(app, 'node_modules', name, 'package.json')), { code: 'ENOENT' });
   }
+  const [publishedPack] = JSON.parse(await execute('npm', [
+    'pack', `${candidate.manifest.name}@0.2.0`, '--json', '--ignore-scripts',
+    '--registry', 'https://registry.npmjs.org/', '--pack-destination', root,
+  ], root));
+  const published = resolve(root, publishedPack.filename);
+  const publishedIntegrity = 'sha512-' + createHash('sha512').update(await readFile(published)).digest('base64');
+  assert.equal(publishedIntegrity, 'sha512-u2VaaRMPKhdgOkNjyPwEg+DjkukCJmgHf0B2YZ4ZQIITr7rhDVxR4w/kwb6sufgGUbwntkXKwfCAkopQ7MrgQw==');
+  const installOwnedPackage = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-save', '--no-audit', '--no-fund', tarball]);
+  await installOwnedPackage(published);
   const cli = (...args) => isolated(process.execPath, [`node_modules/${candidate.manifest.name}/dist/cli.js`, ...args]);
   await cli('init');
   await cli('sync');
@@ -93,6 +103,39 @@ export class Form { readonly note = new FormControl<string | null>(''); }
     await isolated(process.execPath, ['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js', '-p', 'tsconfig.json']);
     return JSON.parse(await isolated(process.execPath, ['core-bundle.mjs']));
   }
+  const configPath = resolve(app, 'ui.config.yaml');
+  const manifestPath = resolve(app, '.ui/generated/manifest.json');
+  const formPath = resolve(app, 'src/form.ts');
+  const previousConfig = await readFile(configPath);
+  const previousGenerated = await readFile(manifestPath);
+  const previousForm = await readFile(formPath, 'utf8');
+  await compileAndBundle();
+  await installOwnedPackage(candidate.tarball);
+  await cli('sync');
+  await check();
+  await compileAndBundle();
+  assert.deepEqual(await readFile(configPath), previousConfig);
+  assert.equal(await readFile(formPath, 'utf8'), previousForm);
+  const candidateGenerated = await readFile(manifestPath);
+  assert.notDeepEqual(candidateGenerated, previousGenerated, 'candidate and published package must have different generated files');
+
+  await installOwnedPackage(published);
+  await cli('sync');
+  await check();
+  await compileAndBundle();
+  assert.deepEqual(await readFile(manifestPath), previousGenerated, 'rollback must restore all published ownership hashes');
+  assert.deepEqual(await readFile(configPath), previousConfig);
+  assert.equal(await readFile(formPath, 'utf8'), previousForm);
+  t.diagnostic(`published 0.2.0 (${publishedIntegrity}) → candidate → 0.2.0: unchanged consumer and YAML compiled at each step`);
+
+  await installOwnedPackage(candidate.tarball);
+  await cli('sync');
+  assert.deepEqual(await readFile(manifestPath), candidateGenerated);
+  await writeFile(formPath, previousForm
+    .replace('FormField, TextInput }', 'FormField, TextInput, type TextInputMode }')
+    .replace('label="Note" [formControl]', 'label="Note" hintPosition="before" hint="Reference identifier" [controlCharacters]="10" [inputMode]="inputMode" [formControl]')
+    .replace('export class Form {', "export class Form { readonly inputMode: TextInputMode = 'numeric';"));
+  await check();
   const output = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'core', ...output }));
   assert.ok(output.initialJavaScriptBytes > 0);

@@ -11,6 +11,8 @@ import { FormField, FieldControl } from './form-field';
 import { textControlStyles } from './text-control-style';
 import { FieldValueControl } from './value-control';
 
+export type TextInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+
 interface TextComposition {
   readonly text: string;
   readonly discarded: boolean;
@@ -145,7 +147,7 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
   <ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
    <div class="ui-input-group">
     <input #editor uiFieldControl type="text" [name]="name()" [value]="displayedText()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
-      [attr.autocomplete]="autocomplete()" [disabled]="blocked()" [readOnly]="readonly()" (input)="edit($event)"
+      [attr.autocomplete]="autocomplete()" [attr.inputmode]="inputMode()" [disabled]="blocked()" [readOnly]="readonly()" (input)="edit($event)"
       (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="blur()">
     @if (clearable()) { <button uiAction [attr.aria-label]="messageText({id: 'uiFoundation.textInput.clearForLabel', parameters: {label:label()}})" [disabled]="blocked() || readonly() || !displayedText()" (click)="clear()">{{messageText({id: 'uiFoundation.textInput.clearForTextInput'})}}</button> }
    </div>
@@ -154,6 +156,8 @@ abstract class ComposingTextControl extends FieldValueControl<string> {
  `, styles: textControlStyles,
 })
 export class TextInput extends ComposingTextControl {
+  /** Native keyboard hint; it does not constrain or convert the value. */
+  readonly inputMode = input<TextInputMode | null>(null);
   protected readonly messageText = injectComponentMessageText(textControlMessages);
 
   protected characterCount(): string {
@@ -171,12 +175,14 @@ export class TextInput extends ComposingTextControl {
  providers:[{provide:NG_VALUE_ACCESSOR,useExisting:forwardRef(()=>Textarea),multi:true}],
  template:`<ui-form-field [controlId]="controlId()" [label]="label()" [labelPosition]="labelPosition()" [hintPosition]="hintPosition()" [controlCharacters]="controlCharacters()" [required]="required()" [hint]="hint()" [error]="error()">
   <textarea #editor uiFieldControl [name]="name()" [value]="displayedText()" [rows]="rows()" [placeholder]="placeholder()" [attr.maxlength]="maxLength()"
-   [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="edit($event)"
+   [attr.autocomplete]="autocomplete()" [attr.inputmode]="inputMode()" [disabled]="blocked()" [readOnly]="readonly()" [style.max-block-size.px]="checkedMaxHeight()" (input)="edit($event)"
    (compositionstart)="beginComposition($event)" (compositionend)="endComposition($event)" (blur)="blur()"></textarea>
   @if(showCount()){<p class="ui-input-count">{{ characterCount() }}</p>}
  </ui-form-field>`,styles:textControlStyles,
 })
 export class Textarea extends ComposingTextControl{
+  /** Native keyboard hint; it does not constrain or convert the value. */
+  readonly inputMode = input<TextInputMode | null>(null);
   protected readonly messageText = injectComponentMessageText(textControlMessages);
 
   protected characterCount(): string {
@@ -186,7 +192,7 @@ export class Textarea extends ComposingTextControl{
       ? this.messageText({ id: 'uiFoundation.textarea.characterCount', parameters: { count } })
       : this.messageText({ id: 'uiFoundation.textarea.characterCountWithLimit', parameters: { count, limit } });
   }
- readonly rows=input(3);readonly maxLength=input<number|null>(null);readonly maxHeight=input<number|null>(null);
+ readonly autocomplete=input<string|null>(null);readonly rows=input(3);readonly maxLength=input<number|null>(null);readonly maxHeight=input<number|null>(null);
  protected readonly checkedMaxHeight=computed(()=>{const height=this.maxHeight();if(height!==null&&(!Number.isFinite(height)||height<=0))throw new Error('ui-textarea maxHeight must be a positive pixel size.');return height;});
  readonly autoResize=input(false,{transform:booleanAttribute});readonly showCount=input(false,{transform:booleanAttribute});readonly placeholder=input('');
  constructor(){super();const render=afterRenderEffect(onCleanup=>{

@@ -69,6 +69,8 @@ export class FieldControl {
     :host { margin-block-end: var(--ui-space-field); }
     .ui-form-field-label {
       display: block;
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
       font-weight: var(--ui-weight-control);
       margin-block-end: var(--ui-space-control-gap);
     }
