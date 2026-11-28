@@ -65,8 +65,16 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
    await expect(button).not.toHaveCSS('box-shadow','none');
   }
   await page.emulateMedia({forcedColors:'active'});
-  await expect(icon).toHaveCSS('border-top-style','double');
-  await expect(toggle).toHaveCSS('border-top-style','double');
+  const selectionRing=(button:Locator)=>button.evaluate(el=>getComputedStyle(el,'::after').borderTopStyle);
+  const borderWidth=(button:Locator)=>button.evaluate(el=>parseFloat(getComputedStyle(el).borderTopWidth));
+  const primaryIcon=region.getByRole('button',{name:'主操作の選択ボタン',exact:true});
+  for(const button of [primaryIcon,icon,toggle]){
+   await expect(button).toHaveAttribute('aria-pressed','true');
+   expect(await selectionRing(button)).toBe('solid');
+  }
+  expect(await borderWidth(primaryIcon)).toBeGreaterThan(await borderWidth(toggle));
+  await expect(toggle).toHaveCSS('border-top-style','solid');
+  await expect(icon).toHaveCSS('border-top-style','none');
   await toggle.dispatchEvent('click');await expect(toggle).toHaveAttribute('aria-pressed','true');
   for(const [primaryName,secondaryName,tertiaryName] of [
    ['通常の主操作','通常の副操作','通常の補助操作'], ['危険な主操作','危険な副操作','危険な補助操作'],
@@ -74,7 +82,6 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
    const primary=region.getByRole('button',{name:primaryName,exact:true});
    const secondary=region.getByRole('button',{name:secondaryName,exact:true});
    const tertiary=region.getByRole('button',{name:tertiaryName,exact:true});
-   const borderWidth=(button:Locator)=>button.evaluate(el=>parseFloat(getComputedStyle(el).borderTopWidth));
    await expect(primary).toHaveCSS('border-top-style','solid');
    await expect(secondary).toHaveCSS('border-top-style','solid');
    expect(await borderWidth(primary)).toBeGreaterThan(await borderWidth(secondary));

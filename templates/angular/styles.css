@@ -227,10 +227,14 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 @media (forced-colors: active) {
   .ui-action[data-emphasis="primary"] { border-width:calc(var(--ui-border-control) + var(--ui-border-focus)); }
   .ui-action[data-emphasis="tertiary"] { border-style:none; }
-  .ui-action[data-emphasis][aria-pressed="true"] {
-    border-style:double;
-    border-color:currentColor;
-    border-width:var(--ui-border-focus);
+  .ui-action[data-emphasis][aria-pressed="true"] { position:relative; }
+  .ui-action[data-emphasis][aria-pressed="true"]::after {
+    content:"";
+    position:absolute;
+    inset:var(--ui-space-control-gap);
+    border:var(--ui-border-control) solid currentColor;
+    border-radius:inherit;
+    pointer-events:none;
   }
 }
 .ui-button-group[data-connected="true"]>.ui-action { flex:1 1 auto; }

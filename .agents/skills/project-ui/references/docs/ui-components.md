@@ -32,7 +32,7 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 任意の `emphasis: 'primary' | 'secondary' | 'tertiary' | null` と `tone: 'normal' | 'danger' | null` で、視覚的な強調度と操作の性質を分離する。省略した軸は旧variantに従い、旧dangerはprimary/dangerに解決する。旧dangerと明示normalの競合時はdangerを維持し、data-action-tone-conflictで識別する。通常操作へ変える場合は旧danger指定を除く。旧APIのみの利用はdata-variantと表示を維持し、新指定時のみdata-emphasis/data-toneを付与する。tertiaryはラベルに下線を付け、ネイティブのボタンやリンクとして動作する。危険操作の名称を明示し、認可・確認・復旧はアプリが担う。SplitButtonの主操作には両軸を伝搬し、ConfirmDialog/ConfirmPopoverは確定操作のみに任意のconfirmToneを指定できる。
 
-IconButtonとToggleButtonで新しい軸を指定すると、無効時や処理中も選択状態を表示する。強制配色では枠線の太さとラベルの下線で強調度を表し、選択中は二重線を使う。ConfirmDialogを危険トーンで開いたときは、操作可能な取消ボタンにダイアログ内の初期フォーカスを置く。開いた後にトーンを変えても、その時点のフォーカスを保つ。
+IconButtonとToggleButtonで新しい軸を指定すると、無効時や処理中も選択状態を表示する。強制配色では枠線の太さとラベルの下線で強調度を表し、選択中は強調度の枠線を維持し、その内側に選択を示す線を表示する。ConfirmDialogを危険トーンで開いたときは、操作可能な取消ボタンにダイアログ内の初期フォーカスを置く。開いた後にトーンを変えても、その時点のフォーカスを保つ。
 
 ### FormField / FieldControl
 
