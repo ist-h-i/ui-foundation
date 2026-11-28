@@ -1,0 +1,64 @@
+{
+  "prior_purpose_audit_sha256": "0eb600c337f7d52c819feb07f6193b89fba41765453976e57b16165ee5e25339",
+  "prior_geometry_audit_sha256": "5fa91b11a3c2bba557815d0b62521e736688bf07970b9187dcc9339cb38429f9",
+  "scope": "Reviewed the changed Typography sources against the original static exceptions. The five moved diagnostics retain their message, rule, severity, matching source and reason. No new exception is admitted.",
+  "positions": {
+    "R064": {
+      "line": 79,
+      "column": 12
+    },
+    "R068": {
+      "line": 140,
+      "column": 491
+    },
+    "D056": {
+      "line": 81,
+      "column": 670
+    },
+    "D057": {
+      "line": 104,
+      "column": 80
+    },
+    "D058": {
+      "line": 105,
+      "column": 62
+    }
+  },
+  "dependencies": {
+    "templates/angular/display.ts": {
+      "prior_sha256": "c5c9d5d0030eecd78b57e40d57791f10aa404272fbb9a92597f1902f6427f608",
+      "current_sha256": "2b648569e92d5cf4a66000ee43a610a11c3f03161dc9d7bfc3c54cd47b2d44f3",
+      "judgment": "The added Typography roles use heading line-height and weight. They shift the five Avatar, Descriptions and MeterGroup sites by one line. The grapheme count, bounded column count and proportional meter calculations and their bindings stay the same."
+    },
+    "templates/angular/layout.ts": {
+      "prior_sha256": "035c2f1bb2e5f4ec645d4a4936370238e2747e535359504c2277aac5251a6322",
+      "current_sha256": "227f4b318d626cbb478f43caa20ec664c62063dbbf0c5e4ceca0ec8d4f60dff6",
+      "judgment": "Container changes the section heading font size. The semantic width cap and the fixed 100% containing-block cap, checked grid tracks, cell placement, aspect ratio, scroll height and sticky offsets retain their values, source and validation."
+    },
+    "templates/angular/drawer.ts": {
+      "prior_sha256": "3cc4d92842c3b8873433cd91ca1261aad186a2d113289c9f306471218eea521a",
+      "current_sha256": "0d56e1baec477806a98a8883d598fb93639ae76fe09a928de747ceb30f9b3dfb",
+      "judgment": "Only the dialog-title flex basis follows the section heading size. The finite size overrides, panel sizing and BottomSheet stage guards sit outside that rule and retain their inputs and exact sites."
+    },
+    "templates/angular/mega-menu.ts": {
+      "prior_sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
+      "current_sha256": "5ce7a578dd1d69ae380274fa1141005dd6b63e6631adbbced8f352b8dffc0e9d",
+      "judgment": "Only the group heading font size is changed. The popover coordinates still come from the existing positioning helper and its guarded, layout-derived geometry."
+    },
+    "templates/angular/scheduler-view.ts": {
+      "prior_sha256": "f31e3db1ac37635ada7637194942aef7bb6590c4f94c6a5dff9be343643527d9",
+      "current_sha256": "e90bdb6dbe12d4f1f70103cccb8040d04631e5e3cc11f763fb746cc42c6ac69e",
+      "judgment": "Only the section and item heading font size rules change. The event layout still uses geometry computed and capped by the scheduler model and applies it at the five reviewed table, stacking and timeline sites."
+    },
+    "templates/angular/dialog.ts": {
+      "prior_sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
+      "current_sha256": "735952b10baa1279fc6516ea74354356886973dcff6c267a5570fe554f4f3871",
+      "judgment": "The title text and title flex basis follow the new section heading role. The CommandPalette uses measured content geometry, and the guarded Dialog setRect write retains its coordinate source, clamp and exact site."
+    },
+    "templates/angular/tour.ts": {
+      "prior_sha256": "221c79c0a301d9ecc7a38c1a7626f7417a65933ec3c113b87cbd7bfe11e377a0",
+      "current_sha256": "b950c1da14174602ec0ca0f029e48661b3952ad07f1bfc898b61635db9d00798",
+      "judgment": "Only the tour heading font size changes. The connected visible target still supplies the four native viewport measurements directly to the fixed highlight at the same four sites."
+    }
+  }
+}
