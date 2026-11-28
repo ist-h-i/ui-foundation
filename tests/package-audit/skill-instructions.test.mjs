@@ -28,6 +28,19 @@ test('instruction copies match the installed version, including newly discovered
   await write(source, 'references/README.md', '# Human-facing notes\n');
   await write(source, 'references/nested/README.ja.md', '# Human-facing translation\n');
   assert.deepEqual(await verifySkillInstructionCopies(source, generated), Object.keys(instructions).sort());
+  for (const path of ['references/examples/sample.ts', 'references/examples/sample.css']) {
+    const contents = path.endsWith('.ts') ? 'export const value = 1;\n' : '.sample { color: red; }\n';
+    await write(source, path, contents);
+    await assert.rejects(verifySkillInstructionCopies(source, generated), /instruction files differ/);
+    await write(generated, path, contents);
+    assert.deepEqual(await verifySkillInstructionCopies(source, generated), Object.keys(instructions).sort());
+    await write(generated, path, contents + '\n// changed');
+    await assert.rejects(verifySkillInstructionCopies(source, generated), /instruction differs/);
+    await write(generated, path, contents);
+  }
+  await write(generated, 'references/examples/unowned.ts', 'export {};\n');
+  await assert.rejects(verifySkillInstructionCopies(source, generated), /instruction files differ/);
+  await rm(resolve(generated, 'references/examples/unowned.ts'));
   const extra = 'references/nested/screen-design.md';
   await write(source, extra, '# New reference\n');
   await assert.rejects(verifySkillInstructionCopies(source, generated), /instruction files differ/);

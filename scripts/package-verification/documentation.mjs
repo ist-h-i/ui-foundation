@@ -31,7 +31,7 @@ async function skillInstructions(root, generated = false) {
       if (generated && path === 'references/docs') continue;
       assert.equal(entry.isSymbolicLink(), false, 'Skill reference must not be a symlink: ' + path);
       if (entry.isDirectory()) await visit(path);
-      else if (entry.isFile() && path.endsWith('.md') && !/^README(?:\.[a-z]+)?\.md$/.test(entry.name)) files.push(path);
+      else if (entry.isFile() && /\.(md|ts|css)$/.test(path) && !/^README(?:\.[a-z]+)?\.md$/.test(entry.name)) files.push(path);
     }
   }
   await visit('references');
@@ -52,7 +52,8 @@ export async function verifySkillInstructionCopies(source, generated) {
       assert.equal(await readFile(resolve(generated, path), 'utf8'), expected, 'Generated Skill instruction differs from installed version: ' + path);
     }
   }
-  return paths;
+  // Only Markdown is prose; source examples must match but are not prose-checked.
+  return paths.filter(path => path.endsWith('.md'));
 }
 
 /** Check the actual package and optional synced Skill, without using checkout-only documents. */
