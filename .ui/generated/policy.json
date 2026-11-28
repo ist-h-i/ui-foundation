@@ -356,9 +356,9 @@
           "value": "16px"
         },
         "space.section": {
-          "reference": "space-16",
+          "reference": "space-24",
           "type": "length",
-          "value": "16px"
+          "value": "24px"
         },
         "space.table-x": {
           "reference": "space-12",
@@ -385,10 +385,25 @@
           "type": "length",
           "value": "1.5rem"
         },
+        "text.page-title": {
+          "reference": "heading-dense",
+          "type": "length",
+          "value": "1.5rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-dense",
+          "type": "length",
+          "value": "1.25rem"
+        },
         "text.small": {
           "reference": "small-dense",
           "type": "length",
           "value": "0.875rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-dense",
+          "type": "length",
+          "value": "1.125rem"
         },
         "weight.body": {
           "reference": "regular",
@@ -749,9 +764,9 @@
           "value": "32px"
         },
         "space.section": {
-          "reference": "space-24",
+          "reference": "space-32",
           "type": "length",
-          "value": "24px"
+          "value": "32px"
         },
         "space.table-x": {
           "reference": "space-16",
@@ -778,10 +793,25 @@
           "type": "length",
           "value": "1.75rem"
         },
+        "text.page-title": {
+          "reference": "heading-guided",
+          "type": "length",
+          "value": "1.75rem"
+        },
+        "text.section-title": {
+          "reference": "section-title-guided",
+          "type": "length",
+          "value": "1.5rem"
+        },
         "text.small": {
           "reference": "small-guided",
           "type": "length",
           "value": "1rem"
+        },
+        "text.subheading": {
+          "reference": "subheading-guided",
+          "type": "length",
+          "value": "1.25rem"
         },
         "weight.body": {
           "reference": "regular",
@@ -3770,7 +3800,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "6ba6265e455b55c0897cf3282ac1d0b1e16ea19a7dc8817ea433cccc5b06444d",
+    "configuration_hash": "2e1192cd3c1fd9548275ff17f06508fbdd8112a72b6cf8940931f47bcd9ef163",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
@@ -5295,7 +5325,19 @@
         "category": "text",
         "type": "length"
       },
+      "--ui-text-page-title": {
+        "category": "text",
+        "type": "length"
+      },
+      "--ui-text-section-title": {
+        "category": "text",
+        "type": "length"
+      },
       "--ui-text-small": {
+        "category": "text",
+        "type": "length"
+      },
+      "--ui-text-subheading": {
         "category": "text",
         "type": "length"
       },

@@ -95,6 +95,14 @@ Profile guidance informs information priority, lists/stepwise input and assistan
 
 ## Optional visual hierarchy roles
 
-New starters distinguish page titles, section titles and subheadings using `text.page-title`, `text.section-title` and `text.subheading`. In each existing profile, omitted roles resolve to that profile's heading, heading and body primitive references respectively. Explicit mappings take precedence. These are not additional required YAML fields. The existing `text.heading` role and default Typography appearance remain compatible. Select the semantic HTML heading level independently, then use an explicit visual role when needed (for example, `<h2 uiTypography="section-title">…</h2>`). New starter section spacing is larger than field spacing; existing application mappings are not rewritten.
+Choose the native HTML heading level from the document outline. Use `page-title` for a page's subject, `section-title` for a group of related content, and `subheading` for divisions within that group. Select these visual roles independently of the heading level. For example, use `<h2 uiTypography="section-title">…</h2>` for a section in a page with an existing `h1`. Typography without an explicit role still uses `heading` on native headings and `body` elsewhere.
 
-Built-in PageFrame titles use the page-title role; Container headings, Card and Dialog titles, feedback headings and Wizard step headings use the section-title role. Their HTML heading semantics and existing font weight and line height remain unchanged. Older mappings that omit the new roles resolve these sizes from text.heading, so existing components keep their prior title sizes. The subheading role is an explicit option rather than a change to the default heading size.
+| Optional role | Fallback in the same profile |
+| --- | --- |
+| `text.page-title` | `text.heading` |
+| `text.section-title` | `text.heading` |
+| `text.subheading` | `text.body` |
+
+Explicit mappings take precedence. Heading roles share the heading line height and weight. PageFrame titles use `page-title`. Container, Card, Dialog and Drawer titles, floating and mega menu headings, feedback and notification center headings, tour titles, scheduler titles, and Wizard step headings use `section-title`. The Statistic value retains the legacy `heading` size for numerical emphasis.
+
+Use `space.control-gap` within related controls, `space.field` between items and `space.section` between sections or around a contained section. The new starters separate field and section spacing in both profiles. Existing apps keep their YAML and continue to resolve their own spacing and heading mappings.

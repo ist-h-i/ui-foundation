@@ -432,6 +432,8 @@ test('optional visual hierarchy roles resolve independently and keep older YAML 
     assert.notEqual(next.profiles[profile].semantic['space.section'].value, next.profiles[profile].semantic['space.field'].value);
   }
   const legacy = resolve(edited(config => {
+    config.semantic['space.section'] = config.semantic['space.field'];
+    config.profiles.dense.semantic['space.section'] = config.profiles.dense.semantic['space.field'];
     for (const role of ['text.page-title', 'text.section-title', 'text.subheading']) {
       delete config.semantic[role];
       for (const profile of Object.values(config.profiles) as any[]) delete profile.semantic[role];
@@ -442,6 +444,7 @@ test('optional visual hierarchy roles resolve independently and keep older YAML 
     assert.deepEqual(roles['text.page-title'], roles['text.heading']);
     assert.deepEqual(roles['text.section-title'], roles['text.heading']);
     assert.deepEqual(roles['text.subheading'], roles['text.body']);
+    assert.deepEqual(roles['space.section'], roles['space.field']);
   }
   assert.match(renderTokens(legacy), /--ui-text-page-title:/);
   assert.match(renderTailwind(legacy), /--text-size-page-title:/);

@@ -95,6 +95,14 @@ registryなしの従来v1は同じoutputでのsyncで更新する。初回更新
 
 ## 視覚的な階層の任意トークン
 
-新規設定例では `text.page-title`、`text.section-title`、`text.subheading` を使い、ページタイトル、セクション見出し、小見出しを区別する。旧YAMLで省略した場合は、各プロファイルのheading、heading、bodyのプリミティブ参照をそれぞれ利用する。明示指定が優先され、必須設定は増えない。既存のheadingとTypographyの既定表示は維持する。HTMLの見出しレベルと視覚的な役割は独立して選択する（例：`<h2 uiTypography="section-title">…</h2>`）。新規設定例ではセクション間の余白を項目間より大きくする。既存アプリのYAMLは書き換えない。
+文書の構造に沿ってHTMLの見出しレベルを決めます。ページの主題には `page-title`、関連する内容をまとめる節には `section-title`、節内の区切りには `subheading` を選べます。たとえば、ページに `h1` がある場合は、節の見出しを `<h2 uiTypography="section-title">…</h2>` とします。Typographyの役割を省略したときは、HTMLの見出しに `heading`、それ以外に `body` を適用します。
 
-PageFrameのタイトルはpage-title、Containerの見出し、Card・Dialogのタイトル、フィードバックの見出し、Wizardの段階見出しはsection-titleを参照する。HTMLの見出しレベル、従来の太さと行高は変更しない。旧設定で新しい役割を省略した場合はtext.headingの値を参照するため、組込み見出しの従来のサイズを維持する。subheadingは明示指定時のみ利用する。
+| 任意の役割 | 同じプロファイルでの代替役割 |
+| --- | --- |
+| `text.page-title` | `text.heading` |
+| `text.section-title` | `text.heading` |
+| `text.subheading` | `text.body` |
+
+明示した設定が優先されます。見出しに使う役割は、見出し用の行高と太さを共有します。PageFrameのタイトルは `page-title` を参照します。Container、Card、Dialog、Drawer、フローティングパネル、メガメニュー、フィードバック、通知センター、ツアー、Scheduler、Wizardの段階の組込み見出しは `section-title` を参照します。Statisticの数値は、数値の強調に従来の `heading` を使います。
+
+関連する操作の間には `space.control-gap`、項目間には `space.field`、節の間や節全体の内側余白には `space.section` を使います。新しい設定例では、両プロファイルで項目間と節間の余白を区別します。既存アプリは現在のYAMLを使い続け、余白と見出しのサイズはその設定から決まります。
