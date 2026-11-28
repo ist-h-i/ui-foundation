@@ -51,12 +51,20 @@ const formAudit: {
   site: Pick<Diagnostic, 'file' | 'line' | 'column'>;
   dependency: {prior_file: string; prior_sha256: string; current_sha256: string; judgment: string};
 } = JSON.parse(await readFile(resolve(currentEvidence, 'form-dictionary-reaudit.json'), 'utf8'));
+const anchorAudit: Pick<CurrentAudit, 'dependencies'> & {
+  prior_reasoned_audit_sha256: string;
+  reasoned_positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
+} = JSON.parse(await readFile(resolve(root, 'tests/fixtures/static-checks/warning-followup/anchor-navigation-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
 for (const [id, {line, column}] of Object.entries(layoutAudit.positions)) {
   assert.ok(currentSites[id], `${id}: missing reviewed site before the layout entry change`);
   currentSites[id] = {...currentSites[id], line, column};
 }
 currentSites.D146 = {...currentSites.D146, ...formAudit.site};
+for (const [id, {line, column}] of Object.entries(anchorAudit.reasoned_positions)) {
+  assert.ok(currentSites[id], `${id}: missing reviewed site before the AnchorNavigation change`);
+  currentSites[id] = {...currentSites[id], line, column};
+}
 const sha256 = (data: Uint8Array) => createHash('sha256').update(data).digest('hex');
 function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
   return item.id === 'D146' && path === formAudit.dependency.prior_file ? formAudit.site.file : path;
@@ -64,7 +72,7 @@ function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, anchorAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -105,6 +113,7 @@ test('project exceptions retain one-site scope, legacy purposes and separately r
   assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
   assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');
   assert.equal(sha256(messageAuditBytes), angularAudit.prior_audit_sha256, 'historical message-migration audit changed');
+  assert.equal(sha256(messageAuditBytes), anchorAudit.prior_reasoned_audit_sha256, 'historical AnchorNavigation sites changed');
   assert.equal(new Set(approvals.map(item => item.id)).size, approvals.length);
   assert.equal(approvals.filter(item => item.origin === 'legacy').length, 32);
   assert.equal(proof.candidate_decisions.length, 32);
@@ -146,6 +155,30 @@ test('project exceptions retain one-site scope, legacy purposes and separately r
   for (const decision of proof.candidate_decisions.filter((x: {disposition:string}) => x.disposition !== 'reasoned_exception')) {
     assert.ok(!config.checks!.exceptions.some(x => x.reason.startsWith(`[${decision.id}] `)), `${decision.id}: no unnecessary exception`);
   }
+});
+
+test('the checker admits only the three reviewed AnchorNavigation offset sites', async () => {
+  const input = parseConfig(example);
+  const files = Object.keys(anchorAudit.dependencies);
+  const ids = Object.keys(anchorAudit.reasoned_positions).sort();
+  assert.deepEqual(files, ['templates/angular/anchor-navigation.ts']);
+  assert.deepEqual(ids, ['D002', 'D003', 'D005']);
+  const reasons = new Set(ids.map(id => currentSites[id].exception));
+  const exceptions = input.checks!.exceptions.filter(exception => reasons.has(exception.reason));
+  input.checks = {source_roots: files, approved_components: [], exceptions};
+  const config = resolveConfig(input);
+  const report = await checkSources({root, config, policy: createSourcePolicy(config)});
+  assert.equal(report.exceptions.length, ids.length);
+  for (const id of ids) {
+    const item = approvals.find(approval => approval.id === id)!;
+    validateAdmittedSite(input, id, item.exception, 'warning');
+    await validateProofDependencies(item);
+    const matches = report.exceptions.filter(diagnostic => diagnostic.exception === currentSites[id].exception);
+    assert.equal(matches.length, 1, id);
+    assert.partialDeepStrictEqual(matches[0], currentSites[id], id);
+  }
+  assert.ok(report.diagnostics.some(diagnostic => diagnostic.rule === 'unresolved'
+    && diagnostic.source === 'nav{max-block-size:calc(100dvh - var(--ui-anchor-offset))}'));
 });
 
 test('the checker retains all reviewed display, layout and splitter exceptions after relocating the focus helper', async () => {
