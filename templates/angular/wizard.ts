@@ -9,7 +9,7 @@ export interface WizardTransition { requestId: number; from: string; to: string 
 @Component({ selector: 'ui-wizard-step', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<h3 #heading [id]="headingId()" tabindex="-1">{{label()}}</h3><ng-content />`,
   host: { '[attr.id]': 'panelId()', role: 'group', '[attr.aria-labelledby]': 'headingId()', '[hidden]': '!active()' },
-  styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}h3{font-size:var(--ui-text-heading);font-weight:var(--ui-weight-heading);overflow-wrap:anywhere;}h3:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}` })
+  styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}h3{font-size:var(--ui-text-section-title);font-weight:var(--ui-weight-heading);overflow-wrap:anywhere;}h3:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}` })
 export class WizardStep implements OnDestroy {
   readonly stepId = input.required<string>();
   readonly label = input.required<string>();

@@ -30,10 +30,10 @@ const popupStyles = `
  :host:focus-visible { outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:calc(-1 * var(--ui-border-focus)); }
  [hidden] { display:none!important; }
  .ui-popup-header,.ui-popup-actions { display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-space-control-gap); }
- .ui-popup-heading { flex:1 1 calc(var(--ui-text-heading) * 4);min-inline-size:0; }
+ .ui-popup-heading { flex:1 1 calc(var(--ui-text-section-title) * 4);min-inline-size:0; }
  .ui-popup-header { margin-block-end:var(--ui-space-control-gap); }
  .ui-popup-actions:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
- h2 { margin:0;font-size:var(--ui-text-heading);line-height:var(--ui-leading-heading);text-wrap:balance; }
+ h2 { margin:0;font-size:var(--ui-text-section-title);line-height:var(--ui-leading-heading);text-wrap:balance; }
  p { margin-block:var(--ui-space-control-gap);text-wrap:pretty; }
  .ui-popup-status { margin:0;color:var(--ui-color-muted); }
  .ui-popup-error { color:var(--ui-color-danger); }

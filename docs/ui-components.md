@@ -293,7 +293,7 @@ NotificationService.notify(request)で通知をFIFOへ追加し、NotificationHo
 
 ## 文字・情報・数値表示
 
-`Typography`はnative h1〜h6/p/span/strong/em等へ`uiTypography`/`uiHeading`/`uiText`を付けるdirectiveです。意味と見出し階層は実タグで決まり、`uiTypography=body/heading/small`、tone=neutral/muted/info/success/warning/error、align=start/center/end/justify、wrap=wrap/nowrap/balance、emphasis=normal/strong/italicが見た目を制御します。native strong/emの意味を保ちます。nowrapは内容を局所scrollでき、既にtabindexやnative操作を持たない要素へtab stopを追加します。アプリが指定したtabindexは保持します。
+`Typography`はnative h1〜h6/p/span/strong/em等へ`uiTypography`/`uiHeading`/`uiText`を付けるdirectiveです。意味と見出し階層は実タグで決まり、`uiTypography=body/heading/small/page-title/section-title/subheading`（未指定時は従来どおりnative tagに応じた既定値）、tone=neutral/muted/info/success/warning/error、align=start/center/end/justify、wrap=wrap/nowrap/balance、emphasis=normal/strong/italicが見た目を制御します。native strong/emの意味を保ちます。nowrapは内容を局所scrollでき、既にtabindexやnative操作を持たない要素へtab stopを追加します。アプリが指定したtabindexは保持します。
 
 `Badge`はcount、maximum、showZero、dot、label、toneと、inline/top・bottom×start・center・endのpositionを持ちます。上限表示が99+でも完全数値を説明し、dotはlabelを説明に使います。位置は論理方向でRTLへ接続します。投影した対象の上に重ねる場合も枠内へ収めます。
 

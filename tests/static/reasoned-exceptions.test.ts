@@ -46,14 +46,19 @@ const layoutAudit: Pick<CurrentAudit, 'dependencies'> & {
   prior_audit_sha256: string;
   positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
 } = JSON.parse(layoutAuditBytes.toString('utf8'));
+const formAuditBytes = await readFile(resolve(currentEvidence, 'form-dictionary-reaudit.json'));
 const formAudit: {
   prior_audit_sha256: string;
   site: Pick<Diagnostic, 'file' | 'line' | 'column'>;
   dependency: {prior_file: string; prior_sha256: string; current_sha256: string; judgment: string};
-} = JSON.parse(await readFile(resolve(currentEvidence, 'form-dictionary-reaudit.json'), 'utf8'));
+} = JSON.parse(formAuditBytes.toString('utf8'));
+const typographyAudit: Pick<CurrentAudit, 'dependencies'> & {
+  prior_purpose_audit_sha256: string;
+  positions: Record<string, Pick<Diagnostic, 'line' | 'column'>>;
+} = JSON.parse(await readFile(resolve(currentEvidence, 'typography-reaudit.json'), 'utf8'));
 const currentSites = {...messageAudit.sites, ...angularAudit.sites, ...iconAudit.sites};
-for (const [id, {line, column}] of Object.entries(layoutAudit.positions)) {
-  assert.ok(currentSites[id], `${id}: missing reviewed site before the layout entry change`);
+for (const [id, {line, column}] of Object.entries({...layoutAudit.positions, ...typographyAudit.positions})) {
+  assert.ok(currentSites[id], `${id}: missing previously reviewed site`);
   currentSites[id] = {...currentSites[id], line, column};
 }
 currentSites.D146 = {...currentSites.D146, ...formAudit.site};
@@ -64,7 +69,7 @@ function currentProofFile(item: Pick<Approval, 'id'>, path: string): string {
 async function validateProofDependencies(item: Pick<Approval, 'id' | 'proof_sha256'>, directory = root): Promise<void> {
   for (const [file, hash] of Object.entries(item.proof_sha256)) {
     let reviewedHash = hash;
-    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit]) {
+    for (const audit of [messageAudit, angularAudit, iconAudit, layoutAudit, typographyAudit]) {
       const update = audit.dependencies[file];
       if (!update) continue;
       assert.equal(update.prior_sha256, reviewedHash, `${item.id}: re-audit must match the prior proof dependency`);
@@ -101,6 +106,7 @@ function validateAdmittedSite(config: ReturnType<typeof parseConfig>, id: string
 
 test('project exceptions retain one-site scope, legacy purposes and separately reviewed candidate IDs', async () => {
   const config = parseConfig(example);
+  assert.equal(sha256(formAuditBytes), typographyAudit.prior_purpose_audit_sha256, 'historical form dictionary audit changed');
   assert.equal(sha256(layoutAuditBytes), formAudit.prior_audit_sha256, 'historical layout entry audit changed');
   assert.equal(sha256(iconAuditBytes), layoutAudit.prior_audit_sha256, 'historical generated-icon audit changed');
   assert.equal(sha256(angularAuditBytes), iconAudit.prior_audit_sha256, 'historical Angular 22 audit changed');

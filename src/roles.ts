@@ -31,6 +31,22 @@ export const CORE_ROLES: Readonly<Record<string, PrimitiveType>> = {
   'motion.duration': 'duration', 'motion.easing': 'easing', 'opacity.watermark': 'number', 'opacity.map-region': 'number',
 };
 
+/** Optional visual roles resolve against the same profile's existing semantic reference.
+ * Keep them outside CORE_ROLES: old application YAML remains valid. */
+export const OPTIONAL_ROLE_FALLBACKS: Readonly<Record<string, string>> = {
+  'text.page-title': 'text.heading',
+  'text.section-title': 'text.heading',
+  'text.subheading': 'text.body',
+};
+
+export function withOptionalRoleFallbacks(references: Readonly<Record<string, string>>): Record<string, string> {
+  const resolved = { ...references };
+  for (const [role, fallback] of Object.entries(OPTIONAL_ROLE_FALLBACKS)) {
+    if (!Object.hasOwn(resolved, role) && Object.hasOwn(resolved, fallback)) resolved[role] = resolved[fallback];
+  }
+  return resolved;
+}
+
 export const CATEGORY_TYPES: Readonly<Record<string, readonly PrimitiveType[]>> = {
   color: ['color'], font: ['fontFamily'], text: ['length'], leading: ['number'], weight: ['number'],
   space: ['length'], radius: ['length'], size: ['length'], border: ['length'],
