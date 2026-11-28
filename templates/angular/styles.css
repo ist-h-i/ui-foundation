@@ -156,18 +156,18 @@ input.ui-field-control[type="checkbox"], input.ui-field-control[type="radio"] {
 /* Width applies only to the native editor. Counts, tokens, hints, error text
    and adjacent action buttons keep their available layout width. */
 .ui-field-control[data-field-width="characters"]:not([type="checkbox"]):not([type="radio"]) {
-  max-inline-size: min(100%, max(var(--ui-size-control), calc(var(--ui-field-control-chars) * 1ch + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control))));
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
 }
 /* Select's positioned indicator and Combobox's popup anchor need the actual
    editor width as well. Keep their surrounding row and other actions flexible. */
 .ui-form-field .ui-select-control:has(> select.ui-field-control[data-field-width="characters"]) {
-  max-inline-size: min(100%, max(var(--ui-size-control), calc(var(--ui-field-control-chars) * 1ch + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control) + var(--ui-size-icon) + var(--ui-space-control-gap))));
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control) + var(--ui-size-icon) + var(--ui-space-control-gap)));
 }
 .ui-form-field .ui-select-control > select.ui-field-control[data-field-width="characters"] {
   max-inline-size:100%;
 }
 .ui-form-field .ui-combobox:has(> input.ui-field-control[data-field-width="characters"]) {
-  max-inline-size: min(100%, max(var(--ui-size-control), calc(var(--ui-field-control-chars) * 1ch + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control))));
+  max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)));
 }
 .ui-form-field .ui-combobox > input.ui-field-control[data-field-width="characters"] { max-inline-size:100%; }
 .ui-form-field[data-hint-position="before"] > .ui-form-field-hint { margin-block: 0 var(--ui-space-control-gap); }

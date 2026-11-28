@@ -8829,7 +8829,7 @@
     },
     {
       "path": "templates/angular/form-field.ts",
-      "sha256": "f0d696d3a595e46a41d7abac0c376032edd6a13f0f9b19f0538af9b8aab9e44b",
+      "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
       "declarations": [
         {
           "kind": "export",
@@ -8924,8 +8924,8 @@
             {
               "name": "resolvedCharacterWidth",
               "kind": "property",
-              "declaration": "readonly resolvedCharacterWidth = computed(() => fieldCharacterWidth(this.controlCharacters()));",
-              "initializer": "computed(() => fieldCharacterWidth(this.controlCharacters()))"
+              "declaration": "readonly resolvedCharacterWidth = computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  });",
+              "initializer": "computed(() => {\n    const characters = fieldCharacterWidth(this.controlCharacters());\n    return characters === null ? null : `${characters}ch`;\n  })"
             },
             {
               "name": "hasHint",
