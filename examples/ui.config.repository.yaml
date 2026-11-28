@@ -1866,7 +1866,7 @@ checks:
     - file: templates/angular/choice-controls.ts
       rule: unresolved
       source: '[style.background-color]="choice.value"'
-      line: 164
+      line: 166
       column: 1760
       reason: "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI
         theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで\
@@ -2086,8 +2086,8 @@ checks:
     - file: templates/angular/text-controls.ts
       rule: unresolved
       source: '[style.max-block-size.px]="checkedMaxHeight()"'
-      line: 174
-      column: 51
+      line: 178
+      column: 119
       reason: "[D146] Textareaのmax-block-sizeはautoResize後もnative
         editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive
         finiteに限定し、その値がこのbindingへ届く。px

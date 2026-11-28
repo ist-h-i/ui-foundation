@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "inputs": {
-    "examples/ui.config.repository.yaml": "1b855991beb1cc696091e218b7fca73e36cc45169184bc047b1d2243fe7208d5",
+    "examples/ui.config.repository.yaml": "4f95f78446c22980974e2ef2d56eac7f90b4702711ddea9092b2057427e5eb5b",
     "package.json": "9a519441603de893e44a637dedc7582e006c9319a12928b55808413d0bd99ad7",
     "package-lock.json": "2e9b4a777802fa1a7be87b98d9e86554de1995ef3284544d34c73f4c79eac8da",
     "src/config.ts": "6ce714e7a20ca1343cbe597eb0a0dadd437de71d1fdd6c5baa77ed6f397373ca",
@@ -3516,7 +3516,7 @@
       "id": "D073",
       "diagnostic": {
         "file": "templates/angular/form-field.ts",
-        "line": 52,
+        "line": 58,
         "column": 4,
         "rule": "unresolved",
         "severity": "warning",
@@ -3527,7 +3527,7 @@
       "category": "public-css-override",
       "detail": "form-label-track-inheritance",
       "disposition": "retained-warning",
-      "source_sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "source_sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
       "producer": "FormField/FormLayout の labelPosition 分岐 → min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr) を --ui-field/form-label-columns に設定 → native grid consumer。",
       "reason": "文字列自体は固定の構造式でも、継承する --ui-form-label-width は public px と任意 CSS writer を許す。固定 40% や semantic fallback を見て alias 全値を承認すると上書き契約を壊す。",
       "remaining_scope": "任意 alias token stream、全 writer/slot/入れ子 FormLayout、long label の全可読性・全 cascade は未証明。",
@@ -3541,13 +3541,13 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -3667,7 +3667,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-columns]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6164,7 +6164,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "repeat(var(--ui-form-columns,1),minmax(0,1fr))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "form列数producerの正整数検証と、上書き可能なCSS consumerを分離する。consumerの全writerを網羅できないためUnknownを保持。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6178,7 +6178,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns: repeat(var(--ui-form-columns, 1), minmax(0, 1fr))",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6202,7 +6202,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6254,7 +6254,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "gap:var(--ui-form-gap,var(--ui-space-field))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "producer側gapは0/semantic3種へ限定済み。既存7px!importantが勝つ契約があるためconsumerを有限意味tokenだけだとは認定しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6268,7 +6268,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "gap: var(--ui-form-gap, var(--ui-space-field))",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6292,7 +6292,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6333,7 +6333,7 @@
       "id": "D141",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 99,
+        "line": 100,
         "column": 52,
         "rule": "unresolved",
         "severity": "warning",
@@ -6344,7 +6344,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "通常producerはgrid/block/nullでもglobal aliasの継承・app上書きと:has/media分岐が残る。構造keywordの許可だけで全consumer値を証明しない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6358,7 +6358,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "display:var(--ui-field-label-layout,var(--ui-form-label-layout,block))",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6382,7 +6382,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6423,7 +6423,7 @@
       "id": "D142",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 99,
+        "line": 100,
         "column": 124,
         "rule": "unresolved",
         "severity": "warning",
@@ -6434,7 +6434,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "fieldまたはformのinline-label track式を継承する。40%上限の既存限定承認を、外部alias全体の承認へ広げない。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6448,7 +6448,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6472,7 +6472,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6513,7 +6513,7 @@
       "id": "D143",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 152,
+        "line": 153,
         "column": 93,
         "rule": "unresolved",
         "severity": "warning",
@@ -6524,7 +6524,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr) をinline checkboxのcolumnsへ設定。FormLayoutはcolumnsをpositiveInteger、labelWidthをnullかfinite>0として検証する。spacing→host gapは0と3semantic tokenだけへ写す。FormField metadataはlabelPositionからgrid/block/nullと40% capped trackを生成する。global CSS consumerはform/fieldの継承aliasとsemantic fallback、checkbox :has分岐、media/horizontal overrideでused layoutを決める。",
       "reason": "公開label幅はvalidated positive pxまたはsemanticだがCSS aliasの上書きとcheckbox特有consumerは任意。40%は正当な入力領域確保の構造上限で、alias全値は未確認。",
       "remaining_scope": "finite producerを証明してもglobal CSS consumerを任意owner/class/inline/importantの上書きから閉鎖しない。任意投影form構成/label/viewport/cascadeの全域は未確認。",
@@ -6538,7 +6538,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6562,7 +6562,7 @@
         {
           "file": "templates/angular/form-field.ts",
           "anchor": "'[style.--ui-field-label-layout]'",
-          "sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6603,7 +6603,7 @@
       "id": "D144",
       "diagnostic": {
         "file": "templates/angular/styles.css",
-        "line": 197,
+        "line": 224,
         "column": 171,
         "rule": "unresolved",
         "severity": "warning",
@@ -6614,7 +6614,7 @@
       "category": "public-css-override",
       "detail": "css-cascade-consumer",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "object-fit:var(--ui-content-fit) を投影img/video/iframeへ適用。AspectRatioはratio finite>0、fitをlayoutKeyword(contain/cover/fill)で検証しhost --ui-content-fitへ写す。global consumer ui-aspect-ratio > img/video/iframe のobject-fitがaliasを読む。",
       "reason": "validated host keywordを任意CSS上書きから閉鎖しない。global consumerの全供給元とmedia描画が未保証なのでwarningを維持する。",
       "remaining_scope": "fit producerは有限でもglobal consumer aliasのlocal/inherited/important CSSは開いている。任意projected media/iframe内部・external stylesheetと全pixel条件は保証しない。",
@@ -6627,7 +6627,7 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "object-fit:var(--ui-content-fit)",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -6728,7 +6728,7 @@
       "id": "D147",
       "diagnostic": {
         "file": "templates/angular/text-controls.ts",
-        "line": 196,
+        "line": 202,
         "column": 223,
         "rule": "unresolved",
         "severity": "warning",
@@ -6739,7 +6739,7 @@
       "category": "layout-measurement",
       "detail": "runtime-intrinsic-measurement",
       "disposition": "retained-warning",
-      "source_sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+      "source_sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
       "producer": "element.scrollHeight + (element.offsetHeight-element.clientHeight) + px をheightへ設定。Textarea.autoResizeはafterRenderEffectでdisplayedText/rows/maxHeightを追跡し、visible DOMだけheight=autoへ戻してscrollHeight+(offsetHeight-clientHeight)をpxへ設定する。checkedMaxHeightはnullかfinite>0。ResizeObserverとprofile/hidden/class MutationObserverをframeへまとめ、cleanupで切断・cancelRAFする。",
       "reason": "内容と実border/scrollbarから求めるnative textarea高は正当な内在寸法であり、全font/内容/CSS条件をstaticには確定できない。",
       "remaining_scope": "native textareaのfont/wrap/scrollbar/borderを全域静的推論できない。任意CSSや全入力/resize順序の品質保証ではなく、可変contentの実測値として保持する。",
@@ -6752,19 +6752,19 @@
         {
           "file": "templates/angular/text-controls.ts",
           "anchor": "element.style.height=height;",
-          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+          "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/text-controls.ts",
           "anchor": "protected readonly checkedMaxHeight",
-          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+          "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
           "file": "templates/angular/text-controls.ts",
           "anchor": "const resize=()=>",
-          "sha256": "7f9999e5e398515eedf323a96ca45ef6f59874e77e59ff41c1e7d59de21d500c",
+          "sha256": "93ac9ec38d71fb320dc6cd1fca4d82e9f3de3b3dccea0b1154a077849a2888f1",
           "scope": "生成元・guard・consumerと残る境界のソース参照。"
         },
         {
@@ -8846,7 +8846,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. font-size consumes it with semantic text/control lengths.",
       "reason": "font-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8860,13 +8860,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -8942,7 +8942,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-block-size consumes it with semantic text/control lengths.",
       "reason": "min-block-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -8956,13 +8956,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9038,7 +9038,7 @@
       "category": "public-css-override",
       "detail": "open-action-scale-alias",
       "disposition": "retained-warning",
-      "source_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
       "producer": "Global .ui-action CSS sets --ui-action-size-factor=1; data-size small/medium/large and grouped inherited-size selectors choose .875/1/1.25. min-inline-size consumes it with semantic text/control lengths.",
       "reason": "min-inline-sizeの既知係数は無次元のsize variantであり、semantic長さへの積またはmaxとの合成は規則に適合する。ただしglobal CSSは複数component/nativeとButtonGroupの条件selectorへ届き、任意のclass/id・style/DOM writerと別stylesheetの上書き先をすべて閉じない。あるbuttonの安全値を別instanceのsize-factor供給として使えず、group状態の候補があるだけでは無条件consumerの完全性を認定できない。通常UI寸法のaliasなのでデータ用途例外にはしない。",
       "remaining_scope": "任意factor token列とCSS次元型、unknown class/style bag・dynamic DOM writer、groupとchild stateの全selector/cascade、任意内容/font/inline axis・block axisの使用寸法。",
@@ -9052,13 +9052,13 @@
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:1;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
           "file": "templates/angular/styles.css",
           "anchor": "--ui-action-size-factor:0.875;",
-          "sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+          "sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
           "scope": "Read source at audited snapshot."
         },
         {
@@ -9384,6 +9384,218 @@
           "anchor": "await expect(child).toHaveAttribute('stroke-width', '3')",
           "sha256": "4322e4f084e0cd6448bb4013055b87366b36397f4367f814c6f074b8145eaffb",
           "scope": "互換入口から供給した線色・線幅・サイズ等をブラウザーで検証する試験。"
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "F076-01",
+      "diagnostic": {
+        "file": "templates/angular/form-field.ts",
+        "line": 58,
+        "column": 4,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Cannot fully resolve style value statically. Known literal branches were inspected.",
+        "suggestion": "Use semantic tokens and review unresolved runtime values.",
+        "source": "<div [style.--ui-field-control-width]=\"resolvedCharacterWidth()\"> ::  class: 'ui-form-field',"
+      },
+      "category": "runtime-input",
+      "detail": "optional-character-based-editor-sizing",
+      "disposition": "retained-warning",
+      "source_sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+      "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
+      "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
+      "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
+      "remaining_scope": "App-supplied widths and styles, font metrics, browser layout and the available space can change the measured width. Full runtime behavior is Unknown.",
+      "recheck_when": [
+        "The input range, unit, variable scope or selector changes.",
+        "The field/control association, projected editor, popup anchor or wrapper styling changes."
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/field-appearance.ts",
+          "anchor": "export function fieldCharacterWidth(",
+          "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+          "scope": "Guard for nullable positive safe integer layout input."
+        },
+        {
+          "file": "templates/angular/form-field.ts",
+          "anchor": "readonly resolvedCharacterWidth = computed",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+          "scope": "Scoped serialization to an intrinsic CSS ch length."
+        },
+        {
+          "file": "tests/model/field-appearance.test.ts",
+          "anchor": "character width is optional, integral and positive",
+          "sha256": "812ea38305e867efa1d2289af595863cf36157b3fdb1292cb3f31b13a13b9fed",
+          "scope": "Model regression for invalid numeric values and absent input."
+        },
+        {
+          "file": "tests/ui/inputs.spec.ts",
+          "anchor": "入力欄の幅指定は補助文や操作領域を制限せず",
+          "sha256": "f7a99ec2185a509e9c6039c1902c3fa1ee395e57c2848880a52a89532b7cd627",
+          "scope": "Regression for editor, select arrow, combobox anchor and popup, and separate text or actions."
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "F076-02",
+      "diagnostic": {
+        "file": "templates/angular/styles.css",
+        "line": 159,
+        "column": 3,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-field-control-width cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-field-control[data-field-width=\"characters\"]:not([type=\"checkbox\"]):not([type=\"radio\"]){max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)))}"
+      },
+      "category": "runtime-input",
+      "detail": "optional-character-based-editor-sizing",
+      "disposition": "retained-warning",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
+      "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
+      "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
+      "remaining_scope": "App-supplied widths and styles, font metrics, browser layout and the available space can change the measured width. Full runtime behavior is Unknown.",
+      "recheck_when": [
+        "The input range, unit, variable scope or selector changes.",
+        "The field/control association, projected editor, popup anchor or wrapper styling changes."
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/field-appearance.ts",
+          "anchor": "export function fieldCharacterWidth(",
+          "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+          "scope": "Guard for nullable positive safe integer layout input."
+        },
+        {
+          "file": "templates/angular/form-field.ts",
+          "anchor": "readonly resolvedCharacterWidth = computed",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+          "scope": "Scoped serialization to an intrinsic CSS ch length."
+        },
+        {
+          "file": "tests/model/field-appearance.test.ts",
+          "anchor": "character width is optional, integral and positive",
+          "sha256": "812ea38305e867efa1d2289af595863cf36157b3fdb1292cb3f31b13a13b9fed",
+          "scope": "Model regression for invalid numeric values and absent input."
+        },
+        {
+          "file": "tests/ui/inputs.spec.ts",
+          "anchor": "入力欄の幅指定は補助文や操作領域を制限せず",
+          "sha256": "f7a99ec2185a509e9c6039c1902c3fa1ee395e57c2848880a52a89532b7cd627",
+          "scope": "Regression for editor, select arrow, combobox anchor and popup, and separate text or actions."
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "F076-03",
+      "diagnostic": {
+        "file": "templates/angular/styles.css",
+        "line": 164,
+        "column": 3,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-field-control-width cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-form-field .ui-select-control:has(> select.ui-field-control[data-field-width=\"characters\"]){max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control) + var(--ui-size-icon) + var(--ui-space-control-gap)))}"
+      },
+      "category": "runtime-input",
+      "detail": "optional-character-based-editor-sizing",
+      "disposition": "retained-warning",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
+      "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
+      "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
+      "remaining_scope": "App-supplied widths and styles, font metrics, browser layout and the available space can change the measured width. Full runtime behavior is Unknown.",
+      "recheck_when": [
+        "The input range, unit, variable scope or selector changes.",
+        "The field/control association, projected editor, popup anchor or wrapper styling changes."
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/field-appearance.ts",
+          "anchor": "export function fieldCharacterWidth(",
+          "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+          "scope": "Guard for nullable positive safe integer layout input."
+        },
+        {
+          "file": "templates/angular/form-field.ts",
+          "anchor": "readonly resolvedCharacterWidth = computed",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+          "scope": "Scoped serialization to an intrinsic CSS ch length."
+        },
+        {
+          "file": "tests/model/field-appearance.test.ts",
+          "anchor": "character width is optional, integral and positive",
+          "sha256": "812ea38305e867efa1d2289af595863cf36157b3fdb1292cb3f31b13a13b9fed",
+          "scope": "Model regression for invalid numeric values and absent input."
+        },
+        {
+          "file": "tests/ui/inputs.spec.ts",
+          "anchor": "入力欄の幅指定は補助文や操作領域を制限せず",
+          "sha256": "f7a99ec2185a509e9c6039c1902c3fa1ee395e57c2848880a52a89532b7cd627",
+          "scope": "Regression for editor, select arrow, combobox anchor and popup, and separate text or actions."
+        }
+      ],
+      "producer_static_status": "Unknown",
+      "universal_runtime_status": "Unknown"
+    },
+    {
+      "id": "F076-04",
+      "diagnostic": {
+        "file": "templates/angular/styles.css",
+        "line": 170,
+        "column": 3,
+        "rule": "unresolved",
+        "severity": "warning",
+        "message": "Local UI custom property --ui-field-control-width cannot be resolved to a semantic token.",
+        "suggestion": "Review this unresolved value; use an explicit semantic token where possible.",
+        "source": ".ui-form-field .ui-combobox:has(> input.ui-field-control[data-field-width=\"characters\"]){max-inline-size: max(var(--ui-size-control), calc(var(--ui-field-control-width) + 2 * var(--ui-space-control-x) + 2 * var(--ui-border-control)))}"
+      },
+      "category": "runtime-input",
+      "detail": "optional-character-based-editor-sizing",
+      "disposition": "retained-warning",
+      "source_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "producer": "FormField.controlCharacters defaults to null. fieldCharacterWidth validates a positive safe integer and resolvedCharacterWidth emits a ch length for that field.",
+      "reason": "The optional input expresses the approximate editor width. The native field and the select or combobox anchor use that length with semantic padding and control size. The runtime value is neither a fixed theme token nor a validation limit.",
+      "verified_scope": "The source model checks absence, invalid numeric values and the ch producer. The fixture exercises editor and anchor width, retained content and adjacent UI at both profiles.",
+      "remaining_scope": "App-supplied widths and styles, font metrics, browser layout and the available space can change the measured width. Full runtime behavior is Unknown.",
+      "recheck_when": [
+        "The input range, unit, variable scope or selector changes.",
+        "The field/control association, projected editor, popup anchor or wrapper styling changes."
+      ],
+      "evidence": [
+        {
+          "file": "templates/angular/field-appearance.ts",
+          "anchor": "export function fieldCharacterWidth(",
+          "sha256": "e12b385f3a52c80049ff3975ad7e57ff863c1713294e3f7a7213031c9a0eaa85",
+          "scope": "Guard for nullable positive safe integer layout input."
+        },
+        {
+          "file": "templates/angular/form-field.ts",
+          "anchor": "readonly resolvedCharacterWidth = computed",
+          "sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+          "scope": "Scoped serialization to an intrinsic CSS ch length."
+        },
+        {
+          "file": "tests/model/field-appearance.test.ts",
+          "anchor": "character width is optional, integral and positive",
+          "sha256": "812ea38305e867efa1d2289af595863cf36157b3fdb1292cb3f31b13a13b9fed",
+          "scope": "Model regression for invalid numeric values and absent input."
+        },
+        {
+          "file": "tests/ui/inputs.spec.ts",
+          "anchor": "入力欄の幅指定は補助文や操作領域を制限せず",
+          "sha256": "f7a99ec2185a509e9c6039c1902c3fa1ee395e57c2848880a52a89532b7cd627",
+          "scope": "Regression for editor, select arrow, combobox anchor and popup, and separate text or actions."
         }
       ],
       "producer_static_status": "Unknown",
