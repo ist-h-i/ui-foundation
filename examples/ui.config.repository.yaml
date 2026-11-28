@@ -975,8 +975,8 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 338
-      column: 2033
+      line: 340
+      column: 2095
     - file: templates/angular/table-editors.ts
       rule: literal-token
       source: stroke-width:2
@@ -2174,7 +2174,7 @@ checks:
     - file: "templates/angular/dialog.ts"
       rule: "unresolved"
       source: "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });"
-      line: 262
+      line: 274
       column: 13
       reason: "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: "templates/angular/overlay.ts"
@@ -2227,7 +2227,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 99
+      line: 115
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。

@@ -1782,9 +1782,9 @@
           "source": "stroke-width:2"
         },
         {
-          "column": 2033,
+          "column": 2095,
           "file": "templates/angular/table-controls.ts",
-          "line": 338,
+          "line": 340,
           "reason": "24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。",
           "rule": "literal-token",
           "source": "stroke-width:2"
@@ -3134,7 +3134,7 @@
         {
           "column": 13,
           "file": "templates/angular/dialog.ts",
-          "line": 262,
+          "line": 274,
           "reason": "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。",
           "rule": "unresolved",
           "source": "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });"
@@ -3206,7 +3206,7 @@
         {
           "column": 124,
           "file": "templates/angular/styles.css",
-          "line": 99,
+          "line": 115,
           "reason": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。",
           "rule": "literal-token",
           "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
@@ -3770,7 +3770,7 @@
       ],
       "tsconfig": "tsconfig.json"
     },
-    "configuration_hash": "a8b2be2e2009ddfc478f2e954e1e3ddff30816862a64b062da32e0cabe60c20f",
+    "configuration_hash": "319213223861d169b5d196bcb4593621e7066a68826808a5c920d220a760435d",
     "generated_components": [
       {
         "file": ".ui/generated/angular/action-control.ts",
