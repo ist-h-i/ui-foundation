@@ -316,3 +316,7 @@ When updating the package or YAML, keep the previous package version, lockfile, 
 Copy `skills/ui-development/references/examples/dialog-retry.ts` from the installed npm package, or `references/examples/dialog-retry.ts` from the synchronized Skill. In your existing Playwright suite, import `verifyRegistrationRetry` and call it in a test that receives the `page` fixture. Run that spec with your project's Playwright command. Use Playwright's `baseURL` for a relative screen path, or pass the full URL. Adapt the Tab order and focus assertions to the screen, including where focus lands after a failed save.
 
 Set the page URL, accessible names and expected error to match your registration screen. Adjust the intercepted POST route, request body and the two fixture responses to match your API. The example checks the draft after a failed save, retries through the keyboard, and checks focus after the successful retry.
+
+## Screen design guidance
+
+For screen design, the distributed Skill includes an on-demand English guide to information hierarchy, component selection, action scope and recovery. Use the component contracts for actual inputs, outputs and state. For a local implementation fix, read only the relevant contracts and checks; do not introduce a new page structure unnecessarily.
