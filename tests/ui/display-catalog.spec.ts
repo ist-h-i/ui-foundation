@@ -14,6 +14,22 @@ for(const profile of ['guided','dense'])test.describe('表示カタログ '+prof
   for(const tone of ['neutral','muted','info','success','warning','error']){await page.getByLabel('意味色',{exact:true}).selectOption(tone);await expect(text).toHaveAttribute('data-tone',tone);expect((await new AxeBuilder({page}).include('[data-testid="typography"]').analyze()).violations).toEqual([]);}
  });
 
+ test('視覚的役割を変えてもnative見出しレベルを保ちプロファイルに追従する',async({page})=>{
+  const region=page.getByTestId('visual-hierarchy');
+  const names=['ページタイトルの役割','セクションタイトルの役割','小見出しの役割','従来の見出し'];
+  const sizes=async()=>Promise.all(names.map(name=>region.getByRole('heading',{name,level:2,exact:true}).evaluate(el=>parseFloat(getComputedStyle(el).fontSize))));
+  const initial=await sizes();
+  expect(initial[0]).toBeGreaterThan(initial[1]);expect(initial[1]).toBeGreaterThan(initial[2]);expect(initial[3]).toBe(initial[0]);
+  await page.getByLabel('プロファイル',{exact:true}).selectOption(profile==='guided'?'dense':'guided');
+  const switched=await sizes();expect(switched[0]).not.toBe(initial[0]);
+  expect(switched[0]).toBeGreaterThan(switched[1]);expect(switched[1]).toBeGreaterThan(switched[2]);expect(switched[3]).toBe(switched[0]);
+  await page.setViewportSize({width:320,height:800});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.getByLabel('RTL',{exact:true}).check();
+  for(const name of names)await expect(region.getByRole('heading',{name,level:2,exact:true})).toBeVisible();
+  expect(await region.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+ });
+ 
  test('Badgeは全件数を説明し、上限/0件/dot/論理位置を切替える',async({page})=>{
   const badge=page.locator('ui-badge');await expect(badge.getByRole('img',{name:'未読件数 123',exact:true})).toHaveText('99+');await page.getByLabel('件数の上限',{exact:true}).fill('200');await expect(badge.getByRole('img')).toHaveText('123');await page.getByLabel('表示件数',{exact:true}).fill('0');await expect(badge.getByRole('img')).toHaveCount(0);await page.getByLabel('0件も表示',{exact:true}).check();await expect(badge.getByRole('img',{name:'未読件数 0',exact:true})).toHaveText('0');await page.getByLabel('ドット表示',{exact:true}).check();await expect(badge.getByRole('img',{name:'未読件数',exact:true})).toBeEmpty();
   for(const position of ['top-start','top-center','top-end','bottom-start','bottom-center','bottom-end','inline']){await page.getByLabel('Badge位置',{exact:true}).selectOption(position);await expect(badge).toHaveAttribute('data-position',position);const inside=await badge.locator('.ui-badge-value').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.parentElement!.getBoundingClientRect();return a.left>=b.left-1&&a.right<=b.right+1;});expect(inside).toBe(true);}
