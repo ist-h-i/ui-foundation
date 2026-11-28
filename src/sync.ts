@@ -12,6 +12,7 @@ import { createSourcePolicy } from './check/policy.ts';
 import { checkSources } from './check/scanner.ts';
 import { acquireSyncLock, syncLockName } from './sync-lock.ts';
 import { renderSkillDocumentation } from './skill-docs.ts';
+import { readSkillInstructions, renderSkillInstruction } from './skill-instructions.ts';
 import type { SourceCheckMode, SourceReport } from './check/types.ts';
 export { stableJSON } from './check/canonical.ts';
 
@@ -129,11 +130,8 @@ export async function generatedFiles(config: ResolvedConfig): Promise<Map<string
     profiles: config.profiles, styling: 'semantic-tokens', checks: ['configuration', 'defined-color-pairs', 'generated-consistency', ...(config.checks ? ['application-source-deviations'] : [])],
     source_policy: createSourcePolicy(config, files),
     not_checked: [...(!config.checks ? ['application-source-deviations'] : []), 'runtime-data-flow', 'business-correctness', 'user-understanding', 'overall-visual-quality'] }));
-  const skill = await sourceFiles(resolve(toolRoot, 'skills/ui-development'));
-  if (!skill.has('SKILL.md')) throw new Error('The UI development Skill source is missing.');
-  for (const [path, content] of skill) {
-    // The installed English Skill links to package docs. Sync copies them beside the Skill.
-    files.set(`${skillDirectory}/${path}`, content.replaceAll('](../../docs/', '](references/docs/').replaceAll('](../../../docs/', '](docs/'));
+  for (const [path, content] of await readSkillInstructions(resolve(toolRoot, 'skills/ui-development'))) {
+    files.set(`${skillDirectory}/${path}`, renderSkillInstruction(path, content));
   }
   for (const [path, content] of await renderSkillDocumentation()) files.set(`${skillDirectory}/references/${path}`, content);
   const manifest: Manifest = { version: 1, tool_version: version, configuration_hash: digest(stableJSON(config)),

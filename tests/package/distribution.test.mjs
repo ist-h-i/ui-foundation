@@ -103,6 +103,19 @@ test('packed CLI works offline without checkout dependencies and preserves gener
   const api = await verifyInstalledApiCatalog(installed, consumer);
   t.diagnostic(`Installed and synced API catalog: ${JSON.stringify(api)}`);
   t.diagnostic(`Installed and synced English documentation closure: ${JSON.stringify(documentation)}`);
+  const newGuide = '.agents/skills/project-ui/references/screen-design.md';
+  const guide = await readFile(resolve(consumer, newGuide), 'utf8');
+  const ownershipManifest = await readFile(resolve(consumer, '.ui/generated/manifest.json'), 'utf8');
+  assert.ok(JSON.parse(ownershipManifest).files[newGuide], 'the generated guide must be managed');
+  const manualGuide = guide + '\nLocal decisions recorded by the consumer.\n';
+  await writeFile(resolve(consumer, newGuide), manualGuide);
+  assert.throws(() => cli('sync', '--dry-run'), /screen-design\.md/);
+  assert.throws(() => cli('sync'), /screen-design\.md/);
+  assert.equal(await readFile(resolve(consumer, newGuide), 'utf8'), manualGuide);
+  assert.equal(await readFile(resolve(consumer, '.ui/generated/manifest.json'), 'utf8'), ownershipManifest);
+  await writeFile(resolve(consumer, newGuide), guide);
+  assert.match(cli('sync'), /current/);
+
   assert.match(await readFile(resolve(consumer, '.ui/generated/angular/locale-defaults.ts'), 'utf8'), /"en"/);
   const skillDocs = resolve(consumer, '.agents/skills/project-ui/references/docs');
   const generatedDocs = [];
