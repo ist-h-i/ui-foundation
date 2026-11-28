@@ -1,5 +1,6 @@
 import { booleanAttribute, computed, Directive, input, output, signal } from '@angular/core';
 import type { ControlValueAccessor } from '@angular/forms';
+import type { FieldHintPosition } from './field-appearance';
 
 /** Native editing state/CVA only; application validation and server state remain outside. */
 @Directive({ standalone: true })
@@ -46,4 +47,6 @@ export abstract class ValueControl<T> implements ControlValueAccessor {
 @Directive({standalone:true})
 export abstract class FieldValueControl<T> extends ValueControl<T> {
   readonly labelPosition = input<'inherit' | 'above' | 'inline'>('inherit');
+  readonly hintPosition = input<FieldHintPosition>('after');
+  readonly controlCharacters = input<number | null>(null);
 }

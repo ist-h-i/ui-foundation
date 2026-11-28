@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
@@ -9,7 +10,7 @@ import { checkoutIsolation, run } from '../../scripts/package-verification/run.m
 
 const repository = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-test('the packed core, forms, step navigation and locale example compile and bundle without specialist dependencies', { timeout: 360_000 }, async t => {
+test('the packed core, forms, step navigation and locale example compile and bundle without specialist dependencies', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-core-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'app');
@@ -27,12 +28,21 @@ test('the packed core, forms, step navigation and locale example compile and bun
     private: true,
     type: 'module',
   };
-  async function install(devDependencies) {
+  async function install(devDependencies, tarball = candidate.tarball) {
     await writeFile(resolve(app, 'package.json'), JSON.stringify({ ...appManifest, devDependencies }));
     await cp(resolve(repository, 'package-lock.json'), resolve(app, 'package-lock.json'));
-    await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', candidate.tarball]);
+    await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', tarball]);
   }
-  await install(Object.fromEntries(dependencies.map(name => [name, versions[name]])));
+  const [publishedPack] = JSON.parse(await execute('npm', [
+    'pack', `${candidate.manifest.name}@0.2.0`, '--json', '--ignore-scripts',
+    '--registry', 'https://registry.npmjs.org/', '--pack-destination', root,
+  ], root));
+  const published = resolve(root, publishedPack.filename);
+  const publishedIntegrity = 'sha512-' + createHash('sha512').update(await readFile(published)).digest('base64');
+  assert.equal(publishedIntegrity, 'sha512-u2VaaRMPKhdgOkNjyPwEg+DjkukCJmgHf0B2YZ4ZQIITr7rhDVxR4w/kwb6sufgGUbwntkXKwfCAkopQ7MrgQw==');
+  const installOwnedPackage = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-save', '--no-audit', '--no-fund', tarball]);
+  await install(Object.fromEntries(dependencies.map(name => [name, versions[name]])), published);
+  t.diagnostic('installed the pinned official 0.2.0 consumer with the minimal Angular dependencies');
   const specialistPackages = ['maplibre-gl', 'pdfjs-dist', 'fast-formula-parser'];
   for (const name of [...specialistPackages, '@lucide/angular']) {
     await assert.rejects(readFile(resolve(app, 'node_modules', name, 'package.json')), { code: 'ENOENT' });
@@ -41,27 +51,27 @@ test('the packed core, forms, step navigation and locale example compile and bun
   await cli('init');
   await cli('sync');
   await cp(resolve(app, 'node_modules', candidate.manifest.name, 'skills/ui-development/references/examples/locale-adapter.ts'), resolve(app, 'locale-adapter.ts'));
-  await writeFile(resolve(app, 'src/main.ts'), `
+  const mainPath = resolve(app, 'src/main.ts');
+  const previousMain = `
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { ActionControl, Card, provideUiIcons, provideUiLocale } from '../.ui/generated/angular/core';
-import { StepNavigation, type StepNavigationItem } from '../.ui/generated/angular/step-navigation';
 import { createLocaleAdapter } from '../locale-adapter';
 
 @Component({
   selector: 'app-root',
-  imports: [ActionControl, Card, StepNavigation],
-  template: '<ui-card cardId="example" title="Example"><ui-step-navigation label="Application progress" currentLabel="Current step" [items]="steps" currentId="draft" /><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
+  imports: [ActionControl, Card],
+  template: '<ui-card cardId="example" title="Example"><button type="button" uiAction (click)="openForm()">Open form</button></ui-card>',
 })
 export class App {
-  readonly steps: readonly StepNavigationItem[] = [{ id: 'draft', label: 'Draft', status: 'in-progress', statusLabel: 'In progress' }];
   async openForm() {
     const { Form } = await import('./form');
     await bootstrapApplication(Form);
   }
 }
 void bootstrapApplication(App, { providers: [provideUiIcons(), provideUiLocale(createLocaleAdapter().options)] });
-`);
+`;
+  await writeFile(mainPath, previousMain);
   await writeFile(resolve(app, 'src/form.ts'), `
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -95,6 +105,35 @@ export class Form { readonly note = new FormControl<string | null>(''); }
     await isolated(process.execPath, ['node_modules/@angular/compiler-cli/bundles/src/bin/ngc.js', '-p', 'tsconfig.json']);
     return JSON.parse(await isolated(process.execPath, ['core-bundle.mjs']));
   }
+  const configPath = resolve(app, 'ui.config.yaml');
+  const manifestPath = resolve(app, '.ui/generated/manifest.json');
+  const formPath = resolve(app, 'src/form.ts');
+  const previousConfig = await readFile(configPath);
+  const previousGenerated = await readFile(manifestPath);
+  const previousForm = await readFile(formPath, 'utf8');
+  await compileAndBundle();
+  t.diagnostic('the unchanged isolated consumer compiled using the published package');
+  await installOwnedPackage(candidate.tarball);
+  await cli('sync');
+  await check();
+  await compileAndBundle();
+  assert.deepEqual(await readFile(configPath), previousConfig);
+  assert.equal(await readFile(formPath, 'utf8'), previousForm);
+  const candidateGenerated = await readFile(manifestPath);
+  assert.notDeepEqual(candidateGenerated, previousGenerated, 'candidate and published package must have different generated files');
+
+  const optionalForm = previousForm
+    .replace('FormField, TextInput }', 'FormField, TextInput, type TextInputMode }')
+    .replace('label="Note" [formControl]', 'label="Note" hintPosition="before" hint="Reference identifier" [controlCharacters]="10" [inputMode]="inputMode" [formControl]')
+    .replace('export class Form {', "export class Form { readonly inputMode: TextInputMode = 'numeric';");
+  const optionalMain = previousMain
+    .replace("import { createLocaleAdapter }", "import { StepNavigation, type StepNavigationItem } from '../.ui/generated/angular/step-navigation';\nimport { createLocaleAdapter }")
+    .replace('imports: [ActionControl, Card]', 'imports: [ActionControl, Card, StepNavigation]')
+    .replace('<button type="button"', '<ui-step-navigation label="Application progress" currentLabel="Current step" [items]="steps" currentId="draft" /><button type="button"')
+    .replace('export class App {', "export class App { readonly steps: readonly StepNavigationItem[] = [{ id: 'draft', label: 'Draft', status: 'in-progress', statusLabel: 'In progress' }];");
+  await writeFile(mainPath, optionalMain);
+  await writeFile(formPath, optionalForm);
+  await check();
   const output = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'core', ...output }));
   assert.ok(output.initialJavaScriptBytes > 0);
@@ -103,9 +142,24 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   assert.deepEqual(output.specialistInputs, []);
   assert.deepEqual(output.specialistOutputs, []);
 
+  await writeFile(mainPath, previousMain);
+  await writeFile(formPath, previousForm);
+  await installOwnedPackage(published);
+  await cli('sync');
+  await check();
+  await compileAndBundle();
+  assert.deepEqual(await readFile(manifestPath), previousGenerated, 'rollback must restore all published ownership hashes');
+  assert.deepEqual(await readFile(configPath), previousConfig);
+  assert.equal(await readFile(formPath, 'utf8'), previousForm);
+  t.diagnostic(`published 0.2.0 (${publishedIntegrity}) → candidate → 0.2.0: unchanged consumer and YAML compiled at each step`);
+
   // Compare the two entries with the same app and compiler options. The full
   // entry still has the documented specialist type dependencies.
   await install(versions);
+  await cli('sync');
+  assert.deepEqual(await readFile(manifestPath), candidateGenerated);
+  await writeFile(mainPath, optionalMain);
+  await writeFile(formPath, optionalForm);
   for (const name of ['main.ts', 'form.ts']) {
     const path = resolve(app, 'src', name);
     await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms|step-navigation)\b/g, '.ui/generated/angular/index'));

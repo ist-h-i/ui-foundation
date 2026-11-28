@@ -47,6 +47,10 @@ primitives:
   small-dense: { type: length, value: 0.875rem }
   heading-guided: { type: length, value: 1.75rem }
   heading-dense: { type: length, value: 1.5rem }
+  section-title-guided: { type: length, value: 1.5rem }
+  section-title-dense: { type: length, value: 1.25rem }
+  subheading-guided: { type: length, value: 1.25rem }
+  subheading-dense: { type: length, value: 1.125rem }
   leading-body: { type: number, value: 1.6 }
   leading-heading: { type: number, value: 1.35 }
   leading-control: { type: number, value: 1.5 }
@@ -130,6 +134,9 @@ semantic:
   text.body: text-guided
   text.small: small-guided
   text.heading: heading-guided
+  text.page-title: heading-guided
+  text.section-title: section-title-guided
+  text.subheading: subheading-guided
   leading.body: leading-body
   leading.heading: leading-heading
   leading.control: leading-control
@@ -137,7 +144,7 @@ semantic:
   weight.heading: bold
   weight.control: semibold
   space.page: space-32
-  space.section: space-24
+  space.section: space-32
   space.field: space-24
   space.control-x: space-24
   space.control-y: space-12
@@ -222,8 +229,11 @@ profiles:
       text.body: text-dense
       text.small: small-dense
       text.heading: heading-dense
+      text.page-title: heading-dense
+      text.section-title: section-title-dense
+      text.subheading: subheading-dense
       space.page: space-16
-      space.section: space-16
+      space.section: space-24
       space.field: space-16
       space.control-x: space-16
       space.control-y: space-8
@@ -975,8 +985,8 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 338
-      column: 2033
+      line: 340
+      column: 2095
     - file: templates/angular/table-editors.ts
       rule: literal-token
       source: stroke-width:2
@@ -1026,25 +1036,25 @@ checks:
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 23
+      line: 32
       column: 474
     - file: tests/fixture-app/actions-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 24
+      line: 33
       column: 624
     - file: tests/fixture-app/actions-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 25
+      line: 34
       column: 631
     - file: tests/fixture-app/actions-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 25
+      line: 34
       column: 1169
     - file: tests/fixture-app/app.css
       rule: literal-token
@@ -1149,72 +1159,72 @@ checks:
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
       line: 10
-      column: 409
+      column: 425
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 12
+      line: 23
       column: 311
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 13
+      line: 24
       column: 390
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 14
+      line: 25
       column: 351
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 15
+      line: 26
       column: 361
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 20
+      line: 31
       column: 337
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 27
+      line: 38
       column: 468
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 28
+      line: 39
       column: 367
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 33
+      line: 44
       column: 318
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 36
+      line: 47
       column: 516
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 36
+      line: 47
       column: 973
     - file: tests/fixture-app/display-catalog.ts
       rule: literal-token
       source: stroke-width:2
       reason: 24単位のSVG矢印の線幅2はglyph座標の描画データ。表示寸法と色はsize.icon／color.mutedに追随する。
-      line: 47
+      line: 58
       column: 552
     - file: tests/fixture-app/feedback-catalog.ts
       rule: literal-token
@@ -1630,7 +1640,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.--ui-avatar-graphemes]=\"letterCount()\""
-      line: 78
+      line: 79
       column: 12
       reason: "[R064] Avatar
         fallback文字サイズの除数は表示initialsのgrapheme数をArray.fromで数え、Math.max(2,count)で0\
@@ -1639,7 +1649,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: "[style.inline-size.%]=\"item.value/maximum()*100\""
-      line: 139
+      line: 140
       column: 491
       reason: "[R068]
         MeterGroupの区分幅は値/maximum*100のデータ割合。totals()が先にmeterGroupValuesを実行しmaxim\
@@ -1866,7 +1876,7 @@ checks:
     - file: templates/angular/choice-controls.ts
       rule: unresolved
       source: '[style.background-color]="choice.value"'
-      line: 164
+      line: 166
       column: 1760
       reason: "[D012] paletteの値そのものを利用者が選ぶ色として見せるswatchでありUI
         theme色ではない。templateはconfigurationErrorがない場合だけpaletteを描画し、各値をparseColorで\
@@ -1927,7 +1937,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: .ui-avatar-fallback{font-size:calc(var(--ui-text-avatar)*var(--ui-avatar-scale)*0.76/var(--ui-avatar-graphemes))}
-      line: 80
+      line: 81
       column: 670
       reason: "[D056] fallback
         initialsのgrapheme数に応じfont-sizeを調整するデータ係数。letterCountはIntl.Segmenterで数えM\
@@ -1936,7 +1946,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: '[style.--ui-description-columns]="checkedColumns()"'
-      line: 103
+      line: 104
       column: 80
       reason: "[D057]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\
@@ -1946,7 +1956,7 @@ checks:
     - file: templates/angular/display.ts
       rule: unresolved
       source: dl{grid-template-columns:repeat(var(--ui-description-columns),minmax(0,1fr))}
-      line: 104
+      line: 105
       column: 62
       reason: "[D058]
         Descriptionsの情報配置列数。checkedColumnsはdisplayInteger(columns,1,12)で実検証し、re\
@@ -2086,8 +2096,8 @@ checks:
     - file: templates/angular/text-controls.ts
       rule: unresolved
       source: '[style.max-block-size.px]="checkedMaxHeight()"'
-      line: 174
-      column: 51
+      line: 178
+      column: 119
       reason: "[D146] Textareaのmax-block-sizeはautoResize後もnative
         editorを上限内でスクロールさせる構造制約。checkedMaxHeightはnullまたはpositive
         finiteに限定し、その値がこのbindingへ届く。px
@@ -2174,7 +2184,7 @@ checks:
     - file: "templates/angular/dialog.ts"
       rule: "unresolved"
       source: "Object.assign(this.element.style, { position: 'fixed', left: rect.left + 'px', top: rect.top + 'px', right: 'auto', bottom: 'auto', margin: '0', width: rect.width + 'px', height: rect.height + 'px' });"
-      line: 262
+      line: 274
       column: 13
       reason: "[N004] Dialogの移動・resize操作がPanelHandleのgetBoundingClientRectとnative pointer差分／padding由来の矢印stepから作るviewport内の操作座標。PanelHandle.adjustのmin/maxとviewport clampを通るrectだけをsetRect経由で書く。通常の初期寸法・位置はtoken CSSに戻し、ユーザーが選ぶ幾何をtheme寸法へ置換しない。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: "templates/angular/overlay.ts"
@@ -2227,7 +2237,7 @@ checks:
       reason: "[D152] Tree popupのmin-inline-sizeはeditorの実測widthを、window viewportとnative computed max-inline-sizeの有限・非負px予算で上限化する構造寸法。px以外のmaximumを数値化せずviewportを使う。themeの固定minimumではなく、対象幅と実表示上限を両立する計算として限定する。 用途限定の例外であり、任意入力・全CSS cascade・viewport・OS・補助技術の位置／操作の正しさを保証しない。実行時の数値は静的Unknownのまま。"
     - file: templates/angular/styles.css
       rule: literal-token
-      line: 99
+      line: 116
       column: 124
       source: ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)"
       reason: inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。

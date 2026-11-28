@@ -406,11 +406,11 @@ import { shape as search } from '../.ui/generated/angular/icons/search';
 
 ## CSS と配布資産
 
-画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの見た目は公開 API の `variant` で選びます。Tailwind を使う場合、`p-section` は同じ余白トークンを参照します。
+画面の配置や余白は利用アプリ側で設定します。この例ではセクションの余白をアプリの CSS で指定し、ボタンの強調度は公開 API の `emphasis` で選びます。Tailwind を使う場合、`p-section` は同じ余白トークンを参照します。
 
 ```html
 <section class="app-actions">
-  <button uiAction variant="primary">保存</button>
+  <button uiAction emphasis="primary">保存</button>
 </section>
 ```
 
@@ -421,6 +421,8 @@ import { shape as search } from '../.ui/generated/angular/icons/search';
 自作CLI・テンプレート・Skill・生成コードはMIT License（2026 Hiroshi Inoue）です。npm内の`LICENSE`と、生成outputおよび生成Skillの`UI-FOUNDATION-LICENSE.txt`を保持します。最終成果物へ生成outputの本文を`ui-foundation/LICENSE.txt`としてコピーしてください。利用アプリのroot LICENSEは変更せず、第三者資産の通知・対応ソースをこのMIT本文で置き換えません。
 
 この節で`assets/`と示すコピー元は、インストール済みの`node_modules/@hiroshi.inoue/ui-foundation/assets/`です。`assets/third-party/` は全内容を配布成果物に含めます。PDF 資産を配布する場合は `assets/pdf-source/` の全内容も含めます。前者の`FOUNDATION-NOTICES.txt`と`THIRD-PARTY-NOTICES.txt`、後者の原notice・対応ソースarchive・recipe・font mappingを保持してください。PDFとMapLibreのworkerに付随する原LICENSEも下表に従って含めます。CLIの`CLI-NOTICE.txt`や生成checkerの`CHECKER-NOTICE.txt`は対象が別であり、アプリ配布用の基盤・第三者通知を代替しません。
+
+新たに見た目を指定するときは、現在の操作APIを使えます。既存の `variant="primary"` と `variant="secondary"` はそのまま使えます。`variant="danger"` を同じ表示の新APIへ移すには、`emphasis="primary" tone="danger"` を指定します。グループ内での優先度に応じて強調度を選び、操作の結果はラベルで伝えます。[操作の仕様](ui-components.md#actioncontrol--actionlink)
 
 部品の inline CSS に加え、生成した `tokens.css`、`angular/styles.css`、専門部品を使う画面では `angular/specialist.css` を global CSS として取り込みます。MapView には実使用版の `maplibre-gl/dist/maplibre-gl.css` も必要です。アプリの utility CSS も用途別セマンティックトークンを使います。primitive 値の直接参照や旧 preset/density API の互換層は追加しません。
 
@@ -518,6 +520,33 @@ compile、生成一致、純モデル、native 操作、axe、視覚・意味レ
 ### パッケージの版を更新する
 
 CLI を npm で更新した後、再同期してアプリの部品・Skill・利用者文書を更新します。旧パッケージ版・lockfile・YAML・生成物・Skill を同じ復旧点へ保存し、更新先の依存関係と API の変更を確認してから、上と同じ dry-run・sync・check とアプリ検証を行います。ベータ版から更新するときは、移行元に応じた手順も確認してください。 [0.2.0 への更新](npm-beta-release-notes.ja.md#020) · [ベータ版からの移行](npm-beta-release-notes.ja.md#010) · [更新と復旧](npm-beta-readiness.ja.md#更新と復旧) · [コマンド一覧](commands.ja.md)
+
+
+### Gitで管理する生成物の改行を保持する
+
+生成物とSkillをGitで追跡する前に、利用アプリのルートの `.gitattributes` に、全体に適用する属性より後で次を指定します。
+
+```gitattributes
+.ui/generated/** -text
+.agents/skills/project-ui/** -text
+```
+
+属性ファイルと確認コマンドの最初のパスを、設定した生成先に合わせます。属性のパターンは `/` から始め、アプリのルートを基準にします。生成先の先頭が `!` や `#` の場合も同じです。空白を含むパターンは二重引用符で囲み、引用符内の角括弧を文字として扱うには前にバックスラッシュを2個置きます。生成先が `custom output/generated[1]` の例です。
+
+```gitattributes
+"/custom output/generated\\[1\\]/**" -text
+```
+
+属性と生成物をステージした後、2つのディレクトリ内にあるすべての追跡ファイルが `text: unset` になることを確認します。属性ファイル内で後にあるパターンや、対象ファイルに近いディレクトリの属性が優先される場合があります。次のコマンドの生成先は実際の設定に置き換えてください。
+
+```sh
+git --literal-pathspecs ls-files -- 'custom output/generated[1]' .agents/skills/project-ui |
+  git check-attr --stdin text
+```
+
+バイト列を変えるフィルターやエンコーディング変換も適用しません。第三者ライセンスの原文を含む生成物は、manifestのハッシュで照合します。 [Git属性の優先順位](https://git-scm.com/docs/gitattributes)
+
+既に改行が変換された場合は復旧点を保存し、別ディレクトリで従来の固定パッケージと設定から元のバイト列を再現します。記録済みmanifestと再生成したmanifest（改行以外の差を許容しない）、各復元ファイルのSHA-256を照合します。復元前に既存ファイルとの差が改行のみであることを確認します。改行以外の編集、証拠不足、別の競合があれば上書きせず解消してください。ハッシュを書き換えて編集を採用してはいけません。属性と検証済みの復元内容をコミットし、新規checkoutで `sync --dry-run`、`check`、変更なしの再同期を確認します。
 
 ## 保存の再試行を確認する任意のブラウザーテスト
 

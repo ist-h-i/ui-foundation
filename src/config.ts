@@ -1,5 +1,5 @@
 import { isAlias, isMap, isScalar, isSeq, LineCounter, parseDocument } from 'yaml';
-import { CATEGORY_TYPES, CONTRAST_PAIRS, CORE_ROLES, semanticVariable, tailwindVariable } from './roles.ts';
+import { CATEGORY_TYPES, CONTRAST_PAIRS, CORE_ROLES, OPTIONAL_ROLE_FALLBACKS, withOptionalRoleFallbacks, semanticVariable, tailwindVariable } from './roles.ts';
 import type { PrimitiveType } from './roles.ts';
 import { isExceptableRule } from './check/application.ts';
 import type { ChecksConfig } from './check/types.ts';
@@ -350,7 +350,9 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
   for (const role of Object.keys(CORE_ROLES)) {
     if (!own(config.semantic, role)) validator.issue(`semantic.${role}`, `Required role "${role}" is missing from the base semantic mapping`);
   }
-  const roles = [...new Set([...Object.keys(config.semantic), ...Object.values(config.profiles).flatMap((profile) => Object.keys(profile.semantic))])].sort();
+  // New visual roles are optional in existing YAML. Resolve the fallback from
+  // each profile's effective primitive reference, not from the default profile.
+  const roles = [...new Set([...Object.keys(config.semantic), ...Object.values(config.profiles).flatMap((profile) => Object.keys(profile.semantic)), ...Object.keys(OPTIONAL_ROLE_FALLBACKS)])].sort();
   const cssVariables = new Map<string, string>();
   const tailwindVariables = new Map<string, string>();
   for (const role of roles) {
@@ -388,7 +390,7 @@ export function resolveConfig(input: FoundationConfig): ResolvedConfig {
   for (const [role, reference] of Object.entries(config.semantic)) resolveToken(role, reference, `semantic.${role}`);
   const profiles: Record<string, ResolvedProfile> = {};
   for (const [id, profile] of Object.entries(config.profiles)) {
-    const references = { ...config.semantic, ...profile.semantic };
+    const references = withOptionalRoleFallbacks({ ...config.semantic, ...profile.semantic });
     const semantic: Record<string, ResolvedToken> = {};
     for (const role of roles) {
       const path = own(profile.semantic, role) ? `profiles.${id}.semantic.${role}` : `semantic.${role}`;

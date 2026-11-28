@@ -3,7 +3,7 @@ import {injectUiMessage,UiStableMessagePipe} from './locale';
 import { afterNextRender, afterRenderEffect, type AfterRenderRef, Injector, untracked, booleanAttribute, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, forwardRef, inject, input, linkedSignal, output, signal } from '@angular/core';
 import { UI_CLIPBOARD_WRITER } from './clipboard';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, type AbstractControl, type ValidationErrors, type Validator } from '@angular/forms';
-import { ActionControl, type ActionSize } from './action-control';
+import { ActionControl, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';
 import { Icon } from './icons/renderer';
 import { fallbackIcons } from './icons/registry';
 import { shape as plusIcon } from './icons/plus';
@@ -149,7 +149,7 @@ export class SegmentedControl extends ValueControl<SegmentValue> implements Vali
     }
 }
 @Component({ selector: 'ui-split-button', standalone: true, imports: [ActionControl, Menu], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<div class="ui-split-button" role="group" [attr.aria-label]="label()"><button uiAction [variant]="variant()" [size]="size()" [icon]="icon()" [disabled]="disabled()" [busy]="busy()" (click)="activate()">{{label()}}</button><ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [closeOnSelect]="closeOnSelect()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" /></div>`,
+    template: `<div class="ui-split-button" role="group" [attr.aria-label]="label()"><button uiAction [variant]="variant()" [emphasis]="emphasis()" [tone]="tone()" [size]="size()" [icon]="icon()" [disabled]="disabled()" [busy]="busy()" (click)="activate()">{{label()}}</button><ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [closeOnSelect]="closeOnSelect()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" /></div>`,
     styles: `:host{display:block;min-inline-size:0;}:host([hidden]){display:none;}.ui-split-button{display:flex;flex-wrap:wrap;align-items:start;gap:var(--ui-space-control-gap);}` })
 export class SplitButton {
  protected readonly uiText_SplitButton=injectUiMessage();
@@ -162,6 +162,8 @@ export class SplitButton {
     readonly busy = input(false, { transform: booleanAttribute });
     readonly size = input<ActionSize>('medium');
     readonly variant = input<'primary' | 'secondary' | 'danger'>('primary');
+    readonly emphasis = input<ActionEmphasis | null>(null);
+    readonly tone = input<ActionTone | null>(null);
     readonly icon = input<string | null>(null);
     readonly placement = input<OverlayPlacement>('bottom-end');
     readonly closeOnSelect = input(true, { transform: booleanAttribute });
@@ -177,13 +179,15 @@ export class SplitButton {
 @Component({ selector: 'ui-floating-action-button,ui-speed-dial', standalone: true, imports: [ActionControl, Menu], changeDetection: ChangeDetectionStrategy.OnPush,
     viewProviders: [fallbackIcons(plusIcon)],
     host: { '[attr.data-position]': 'position()', '[attr.data-direction]': 'direction()' },
-    template: `<div class="ui-floating-actions" role="group" [attr.aria-label]="label()"><button uiAction [icon]="icon()" [busy]="busy()" [disabled]="disabled()" variant="primary" (click)="activate()">{{label()}}</button>@if(items().length){<ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" />}</div>`,
+    template: `<div class="ui-floating-actions" role="group" [attr.aria-label]="label()"><button uiAction [icon]="icon()" [busy]="busy()" [disabled]="disabled()" variant="primary" [emphasis]="emphasis()" [tone]="tone()" (click)="activate()">{{label()}}</button>@if(items().length){<ui-menu [menuId]="controlId()+'-menu'" [label]="uiEffective_menuLabel()" [items]="items()" [disabled]="disabled()||busy()" [placement]="placement()" [open]="open()" (openChange)="openChange.emit($event)" (selected)="selected.emit($event)" />}</div>`,
     styles: `:host{position:fixed;z-index:1;max-inline-size:calc(100vw - 2*var(--ui-space-page));inset-block-end:var(--ui-space-page);inset-inline-end:var(--ui-space-page);}:host([hidden]){display:none;}:host([data-position="top-start"]),:host([data-position="top-end"]){inset-block-start:var(--ui-space-page);inset-block-end:auto;}:host([data-position="top-start"]),:host([data-position="bottom-start"]){inset-inline-start:var(--ui-space-page);inset-inline-end:auto;}.ui-floating-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);padding:var(--ui-space-control-gap);border-radius:var(--ui-radius-surface);background:var(--ui-color-surface);box-shadow:0 0 var(--ui-size-elevation-blur) var(--ui-color-shadow);}` })
 export class FloatingActionButton {
  protected readonly uiText_FloatingActionButton=injectUiMessage();
     readonly controlId = input.required<string>();
     readonly label = input.required<string>();
     readonly icon = input('plus');
+    readonly emphasis = input<ActionEmphasis | null>(null);
+    readonly tone = input<ActionTone | null>(null);
     readonly menuLabel = input<string>();
  protected readonly uiEffective_menuLabel=uiLocaleComputed(()=>this.menuLabel()??this.uiText_FloatingActionButton({id:'uiFoundation.floatingActionButton.menuLabel'}));
     readonly items = input<readonly MenuItem[]>([]);

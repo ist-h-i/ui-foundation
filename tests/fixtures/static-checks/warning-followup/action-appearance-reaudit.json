@@ -1,0 +1,22 @@
+{
+  "scope": "PR #75 changes to Dialog and Menu reviewed at 06dcc28b1a48f449c4cc10e029acaf55594be42e.",
+  "prior_audit_sha256": "5fa91b11a3c2bba557815d0b62521e736688bf07970b9187dcc9339cb38429f9",
+  "positions": {
+    "N004": {
+      "line": 274,
+      "column": 13
+    }
+  },
+  "dependencies": {
+    "templates/angular/dialog.ts": {
+      "prior_sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
+      "current_sha256": "3ed34f86072b3565ff5a8f1bc32ec8c3088d44b113b4774a38e2e1fefb4810a2",
+      "judgment": "D014–D016 and N004. Initial focus can now be nominated through an optional injection token supplied by confirmation dialogs. CommandPalette still measures the same native dialog. Dialog move and resize still pass the unchanged PanelHandle rectangle through setRect to layout. Layout clears the inline geometry and applies the same rectangle when the dialog is not maximized. The added focus handling moves the single N004 sink to 274:13; its source and Unknown limits are unchanged."
+    },
+    "templates/angular/menu.ts": {
+      "prior_sha256": "b8288012155d9d3efac84aab630760a75c190b5c85de12cc063885bc201813e1",
+      "current_sha256": "e5a4073132a75557c7d5aea503e9f11197ca2076a533f98d93e697c7d3891402",
+      "judgment": "D124–D125. The added leaf-command tone supplies foreground and interaction background colors without changing popup size rules. The position code still passes the native pointer or touch coordinates or the context target rectangle to positionOverlay. The unchanged overlay source retains the viewport-clamped left and top sinks at 112:5 and 113:5. Arbitrary consumer point values, viewport fit, and runtime operation remain Unknown."
+    }
+  }
+}

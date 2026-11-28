@@ -38,3 +38,5 @@ Use stable keys for collections and tables. Keep drafts outside recycled virtual
 Use semantic tokens and configured profiles. Preserve input, active operations and focus across profile/language changes. Check narrow layouts, enlarged text, RTL where supported, pending/failure/retry and accessibility with the real screen. Keep actionable information and recovery paths visible.
 
 App routing, dirty-state protection and fixed-navigation content offsets remain app responsibilities. Existing link components have not been verified in composition with Angular Router directives. Native file/media/clipboard features retain browser permission and capability limits.
+
+For input constraints that must be read before editing, use the supported FormField hint placement. Limit editor width only when expected input length makes that useful; keep the layout responsive. Show reset only when it serves the user's task. See [component contracts](ui-components.en.md#formfield--fieldcontrol).

@@ -2,9 +2,9 @@ import {Component, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
-import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormGroup, FormActions, Textarea, SearchInput, MaskedInput, OTPInput, TagInput, MultiSelect, RadioGroup, RadioOption, Combobox, ComboboxOption, Dialog, OverlayHost, type SearchRequest, type SelectOption} from '../../.ui/generated/angular';
+import {ActionControl, FormField, FieldControl, FormLayout, InputGroup, FormGroup as UiFormGroup, FormActions, Textarea, SearchInput, MaskedInput, OTPInput, TagInput, MultiSelect, RadioGroup, RadioOption, Combobox, ComboboxOption, Dialog, OverlayHost, type SearchRequest, type SelectOption} from '../../.ui/generated/angular';
 @Component({selector:'fixture-app',standalone:true,
- imports:[ReactiveFormsModule,ActionControl,FormField,FieldControl,FormLayout,UiFormGroup,FormActions,Textarea,SearchInput,MaskedInput,OTPInput,TagInput,MultiSelect,RadioGroup,RadioOption,Combobox,ComboboxOption,Dialog,OverlayHost],
+ imports:[ReactiveFormsModule,ActionControl,FormField,FieldControl,FormLayout,InputGroup,UiFormGroup,FormActions,Textarea,SearchInput,MaskedInput,OTPInput,TagInput,MultiSelect,RadioGroup,RadioOption,Combobox,ComboboxOption,Dialog,OverlayHost],
  template:`
  <main [attr.data-ui-profile]="profile()" [attr.dir]="rtl()?'rtl':'ltr'">
   <h1>フォームと構造化入力</h1><p>書式に合わない場合や処理中でも入力内容を保持し、修正して再操作できることを検証します。</p>
@@ -22,9 +22,9 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
   </div>
   <form id="structured-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
    <ui-form-group groupId="structured-fields" label="提出する内容" [hint]="clearIncomplete()?'整理番号の途中入力は離脱時にクリアします。':'未完成の入力は保持します。'" [disabled]="groupDisabled()" [labelPosition]="inline()?'inline':'above'">
-    <ui-masked-input controlId="structured-mask" label="整理番号" mask="999-99" formControlName="mask" [clearIncompleteOnBlur]="clearIncomplete()" [readonly]="readOnly()" hint="数字3桁と2桁。例: 001-23" />
+    <ui-masked-input controlId="structured-mask" label="整理番号" mask="999-99" formControlName="mask" [clearIncompleteOnBlur]="clearIncomplete()" [readonly]="readOnly()" hintPosition="before" [controlCharacters]="8" hint="数字3桁と2桁。例: 001-23" />
     <ui-otp-input controlId="structured-otp" label="確認コード" formControlName="otp" [digits]="6" [required]="true" [stripPasteSeparators]="stripSeparators()" [readonly]="readOnly()" />
-    <ui-tag-input controlId="structured-tags" label="対象のタグ" formControlName="tags" [options]="['申請','承認','確認']" [freeInput]="freeTags()" [allowDuplicates]="duplicates()" [caseSensitive]="false" [maxTokens]="3" [readonly]="readOnly()" [required]="true" />
+    <ui-tag-input controlId="structured-tags" label="対象のタグ" [controlCharacters]="10" formControlName="tags" [options]="['申請','承認','確認']" [freeInput]="freeTags()" [allowDuplicates]="duplicates()" [caseSensitive]="false" [maxTokens]="3" [readonly]="readOnly()" [required]="true" />
     <div data-testid="textarea-width" [style.inline-size]="narrowNote()?'50%':'100%'" [hidden]="hideNote()"><ui-textarea controlId="structured-note" label="補足" formControlName="note" [autoResize]="true" [maxHeight]="500" [rows]="2" [showCount]="true" [readonly]="readOnly()" /></div>
     <ui-checkbox-group controlId="structured-checks" label="確認担当者" formControlName="checks" [options]="choices" [direction]="horizontal()?'horizontal':'vertical'" [columns]="2" [searchable]="false" [showSelectAll]="false" [maxSelected]="2" [readonly]="readOnly()" />
     <ui-radio-group name="structured-radio" label="提出方法" formControlName="radio" [direction]="horizontal()?'horizontal':'vertical'">
@@ -48,7 +48,8 @@ import {ActionControl, FormField, FieldControl, FormLayout, FormGroup as UiFormG
    <label><input type="checkbox" [checked]="stripSeparators()" (change)="stripSeparators.set(checked($event))">貼付けの空白とハイフンを除く</label>
    <ui-masked-input controlId="letter-mask" label="文字と数字" mask="AA-99" [formControl]="letterMask" /><ui-otp-input controlId="letter-otp" label="英数字コード" kind="alphanumeric" [digits]="4" [formControl]="letterOTP" />
    <button uiAction (click)="form.controls.tags.setValue(['申請','申請','承認','確認'])">上限超過と重複を復元</button>
-   <div uiFormLayout [columns]="2" labelPosition="inline" [labelWidth]="128" gap="compact"><ui-form-field controlId="native-field" label="直接接続した入力" hint="補助説明" error="確認メッセージ"><input uiFieldControl [value]="nativeValue" (input)="nativeValue=text($event)"></ui-form-field><ui-form-field controlId="native-check" label="配置を明示したチェック" [labelPosition]="inline()?'above':'inline'"><input uiFieldControl type="checkbox"></ui-form-field></div>
+   <div uiFormLayout [columns]="2" labelPosition="inline" [labelWidth]="128" gap="compact"><ui-form-field controlId="native-field" label="直接接続した入力" hint="補助説明" hintPosition="before" [controlCharacters]="12" error="確認メッセージ"><ui-input-group [connected]="false"><input uiFieldControl [value]="nativeValue" (input)="nativeValue=text($event)"><span uiInputAfter>内部コード</span></ui-input-group></ui-form-field><ui-form-field controlId="native-check" label="配置を明示したチェック" hint="確認してから選択してください。" hintPosition="before" [labelPosition]="inline()?'above':'inline'"><input uiFieldControl type="checkbox"></ui-form-field></div>
+   <ui-form-field controlId="native-wrapped-check" label="確認のチェック" hint="確認後に選択できます。" [hintPosition]="inline()?'before':'after'"><span><input uiFieldControl type="checkbox"></span></ui-form-field>
   </section>
  </main>`,
  styles:`:host{display:block;min-inline-size:0;}main{padding:var(--ui-space-page);max-inline-size:var(--ui-size-content);margin-inline:auto;color:var(--ui-color-text);font-family:var(--ui-font-body);font-size:var(--ui-text-body);line-height:var(--ui-leading-body);}h1,h2{font-weight:var(--ui-weight-heading);}h1{font-size:var(--ui-text-heading);}h2{font-size:var(--ui-text-body);}section{margin-block:var(--ui-space-section);}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--ui-font-code);}select{inline-size:auto;}.settings{display:flex;flex-wrap:wrap;gap:var(--ui-space-control-gap);margin-block:var(--ui-space-field);align-items:center;}.settings label{display:flex;gap:var(--ui-space-control-gap);align-items:center;min-block-size:var(--ui-size-control);}.option-detail{display:block;font-size:var(--ui-text-small);color:var(--ui-color-muted);}`})

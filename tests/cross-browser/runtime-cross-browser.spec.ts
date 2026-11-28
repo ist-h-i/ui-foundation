@@ -47,12 +47,13 @@ for(const profile of ['guided','dense'] as const){
  });
  test(`DateRange ${profile}: invalid draft, locale/profile, keyboard calendar and focus`,async({page},info)=>{
   await foundation(page,profile);const range=page.locator('#range-case'),start=range.locator('input').first(),picker=range.locator('ui-date-picker').first();
+  await expect(picker.getByRole('button',{name:'期間の開始日のカレンダーを開く',exact:true})).toBeVisible();
   await start.fill('31/02/2026');await start.focus();await start.evaluate(element=>{(window as any).__crossDateEditor=element;(element as HTMLInputElement).setSelectionRange(2,5);});
   await page.evaluate(profile=>{const app=(window as any).__stage;app.profile.set(profile);app.rootLocale.set({locale:'en-US',direction:'rtl',timeZone:'UTC',dateInputFormat:'yyyy-MM-dd'});},other(profile));
   await expect(start).toHaveValue('31/02/2026');await expect(start).toHaveAttribute('placeholder','dd/MM/yyyy');await expect(start).toBeFocused();expect(await start.evaluate(element=>element===(window as any).__crossDateEditor)).toBe(true);expect(await start.evaluate(element=>[(element as HTMLInputElement).selectionStart,(element as HTMLInputElement).selectionEnd])).toEqual([2,5]);
   await expect(page.locator('#range-status')).toHaveText('INVALID');await expect(page.locator('#range-value')).toHaveText('{"start":"2026-02-01","end":"2026-02-07"}');
   await start.fill('02/02/2026');await expect(start).toHaveValue('2026-02-02');await expect(page.locator('#range-status')).toHaveText('VALID');
-  const trigger=picker.getByRole('button',{name:'期間の開始日のカレンダーを開く',exact:true});await trigger.focus();await trigger.press('Enter');const popup=page.locator('dialog:modal');await expect(popup).toBeVisible();const day=popup.locator('button[data-date="2026-02-03"]');await day.focus();await day.press('Enter');await expect(popup).toHaveCount(0);await expect(start).toHaveValue('2026-02-03');await expect(trigger).toBeFocused();
+  const trigger=picker.getByRole('button',{name:'Open calendar for 期間 start date',exact:true});await trigger.focus();await trigger.press('Enter');const popup=page.locator('dialog:modal');await expect(popup).toBeVisible();const day=popup.locator('button[data-date="2026-02-03"]');await day.focus();await day.press('Enter');await expect(popup).toHaveCount(0);await expect(start).toHaveValue('2026-02-03');await expect(trigger).toBeFocused();
   await evidence(page,info,'#range-case');
  });
  test(`Composer ${profile}: pending/reset keeps input and CodeMirror native editing`,async({page},info)=>{

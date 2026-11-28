@@ -2,11 +2,20 @@ import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgComponentOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, Injectable, InjectionToken, Injector, input, output, signal, Type, viewChild, DestroyRef, ElementRef, untracked } from '@angular/core';
-import { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult } from './dialog';
-import { ActionControl } from './action-control';
+import { DIALOG_INITIAL_FOCUS, Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult } from './dialog';
+import { ActionControl, type ActionTone } from './action-control';
 /** Confirmation result is UI intent, not a guarantee that a backend mutation succeeded. */
 @Component({ selector: 'ui-confirm-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<dialog uiDialog [label]="label()" [title]="title()||label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" [disabled]="context.busy" (click)="context.finish('confirm',true)">{{uiEffective_confirmLabel()}}</button><button uiAction [disabled]="context.busy" (click)="context.finish('cancel',false)">{{uiEffective_cancelLabel()}}</button></ng-template></dialog>` })
+    viewProviders: [{
+        provide: DIALOG_INITIAL_FOCUS,
+        useFactory: () => {
+            const host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+            return (dialog: HTMLDialogElement) => dialog.parentElement === host
+                ? dialog.querySelector<HTMLButtonElement>(':scope > .ui-dialog__footer > button[data-confirm-cancel-focus]:enabled')
+                : null;
+        },
+    }],
+    template: `<dialog uiDialog [label]="label()" [title]="title()||label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" [tone]="confirmTone()" [disabled]="context.busy" (click)="context.finish('confirm',true)">{{uiEffective_confirmLabel()}}</button><button uiAction [attr.data-confirm-cancel-focus]="confirmTone() === 'danger' ? '' : null" [disabled]="context.busy" (click)="context.finish('cancel',false)">{{uiEffective_cancelLabel()}}</button></ng-template></dialog>` })
 export class ConfirmDialog {
  protected readonly uiText_ConfirmDialog=injectUiMessageText();
     readonly label = input.required<string>();
@@ -16,6 +25,7 @@ export class ConfirmDialog {
     readonly openChange = output<boolean>();
     readonly busy = input(false, { transform: booleanAttribute });
     readonly confirmLabel = input<string>();
+    readonly confirmTone = input<ActionTone | null>(null);
  protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.confirmation"));
     readonly cancelLabel = input<string>();
  protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.cancel"));

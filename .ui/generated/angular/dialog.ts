@@ -1,7 +1,7 @@
 import {computed as uiLocaleComputed} from '@angular/core';
 import {injectUiMessage,UiStableMessagePipe} from './locale';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, ElementRef, inject, input, output, signal, TemplateRef, untracked, } from '@angular/core';
+import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, contentChildren, DestroyRef, Directive, ElementRef, inject, InjectionToken, input, output, signal, TemplateRef, untracked, } from '@angular/core';
 import { ActionControl } from './action-control';
 import { restoreFocus, tabbableElements } from './focus';
 import { OverlayRegistry } from './overlay';
@@ -24,6 +24,10 @@ export interface DialogContext {
     finish: (reason: DialogCloseReason, value?: unknown, returnValue?: string) => boolean;
 }
 export type DialogArea = 'header' | 'body' | 'footer';
+
+/** @internal Dialog variants can nominate an owned initial focus target. */
+export const DIALOG_INITIAL_FOCUS = new InjectionToken<(dialog: HTMLDialogElement) => HTMLElement | null>('uiDialog initial focus');
+
 @Directive({ selector: 'ng-template[uiDialogTemplate]', standalone: true })
 export class DialogTemplate {
     readonly uiDialogTemplate = input.required<DialogArea>();
@@ -83,8 +87,8 @@ export const DIALOG_STYLES = `
     .ui-dialog__header,.ui-dialog__footer,.ui-dialog__handles { display:flex; flex-wrap:wrap; align-items:center; gap:var(--ui-space-control-gap); }
     .ui-dialog__header { margin-block-end:var(--ui-space-field); }
     .ui-dialog__standalone-handles { justify-content:flex-end; margin-block-end:var(--ui-space-field); }
-    .ui-dialog__title { flex:1 1 calc(var(--ui-text-heading) * 4); min-inline-size:0; }
-    h2 { margin:0; font-size:var(--ui-text-heading); line-height:var(--ui-leading-heading); text-wrap:balance; }
+    .ui-dialog__title { flex:1 1 calc(var(--ui-text-section-title) * 4); min-inline-size:0; }
+    h2 { margin:0; font-size:var(--ui-text-section-title); line-height:var(--ui-leading-heading); text-wrap:balance; }
     .ui-dialog__footer { margin-block-start:var(--ui-space-field); }
     .ui-dialog__status { color:var(--ui-color-muted); font-size:var(--ui-text-small); margin:0; }
     .ui-dialog__status:not(:empty) { margin-block-start:var(--ui-space-control-gap); }
@@ -133,6 +137,7 @@ export class Dialog {
     private readonly rectangle = signal<PanelRect | null>(null);
     private readonly templates = contentChildren(DialogTemplate);
     private readonly registry = inject(OverlayRegistry);
+    private readonly initialFocus = inject(DIALOG_INITIAL_FOCUS, { optional: true });
     private unregister: (() => void) | null = null;
     private destroyed = false;
     private origin: HTMLElement | null = null;
@@ -172,8 +177,15 @@ export class Dialog {
                         this.element.showModal();
                     else
                         this.element.show();
+                    // Native autofocus may choose projected content before the footer.
+                    // Preserve focus if the open event led to a different dialog or scope.
+                    const active = this.element.ownerDocument.activeElement;
+                    const initial = this.initialFocus?.(this.element);
+                    if (initial && this.element.open && active?.closest('dialog') === this.element) {
+                        if (restoreFocus(initial)) initial.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+                    }
                     // A visible close must not replace the established initial content focus.
-                    if (!this.showHeader() && this.element.ownerDocument.activeElement?.matches('.ui-dialog__close')) {
+                    else if (!this.showHeader() && active?.matches('.ui-dialog__close')) {
                         const initial = tabbableElements(this.element).find(element => !element.matches('.ui-dialog__close'));
                         if (initial) restoreFocus(initial, this.element);
                     }
