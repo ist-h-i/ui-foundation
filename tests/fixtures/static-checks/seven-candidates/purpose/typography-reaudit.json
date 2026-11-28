@@ -43,12 +43,12 @@
     "templates/angular/mega-menu.ts": {
       "prior_sha256": "e23705d0d7ba40e404653163d8d0eff5c1797e692e1aac73ddf02216ae54d863",
       "current_sha256": "5ce7a578dd1d69ae380274fa1141005dd6b63e6631adbbced8f352b8dffc0e9d",
-      "judgment": "Only the group heading font size is changed. The popover coordinates still come from the existing positioning helper and its guarded, layout-derived geometry."
+      "judgment": "The menu title h2 uses the section role for its font size and flex basis. The group h3 retains its body role. The popover coordinates still come from the existing positioning helper and its guarded, layout-derived geometry."
     },
     "templates/angular/scheduler-view.ts": {
       "prior_sha256": "f31e3db1ac37635ada7637194942aef7bb6590c4f94c6a5dff9be343643527d9",
       "current_sha256": "e90bdb6dbe12d4f1f70103cccb8040d04631e5e3cc11f763fb746cc42c6ac69e",
-      "judgment": "Only the section and item heading font size rules change. The event layout still uses geometry computed and capped by the scheduler model and applies it at the five reviewed table, stacking and timeline sites."
+      "judgment": "Only the Scheduler h2 font size changes. The item headings retain the body role. The event layout still uses geometry computed and capped by the scheduler model and applies it at the five reviewed table, stacking and timeline sites."
     },
     "templates/angular/dialog.ts": {
       "prior_sha256": "a76cfc8f07b18421ac6c55e434cc8e845d8fdb7061e59448a3cddee7b59fcd97",
