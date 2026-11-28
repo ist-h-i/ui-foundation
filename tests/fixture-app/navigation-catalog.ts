@@ -44,7 +44,7 @@ export class NavigationCatalog {
   {id:'details',label:'基本情報',status:'complete',statusLabel:'完了',navigable:true},
   {id:'review',label:'確認',status:'error',statusLabel:'要修正',navigable:true},
   {id:'submit',label:'提出',status:'not-started',statusLabel:'未着手',navigable:false},
-  {id:'proxy',label:'代理人の確認',status:'skipped',statusLabel:'対象外'},
+  {id:'proxy',label:'代理人の確認',status:'skipped',statusLabel:'対象外',navigable:true},
  ]);
  readonly stepCurrent=signal<string|null>('review');
  readonly stepRequested=signal<string|null>(null);

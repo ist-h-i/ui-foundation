@@ -10,8 +10,12 @@ for(const profile of ['guided','dense'])test.describe(`navigation catalog ${prof
   await expect(current).toContainText('要修正');
   await expect(current).toContainText('現在の段階');
   await expect(steps.getByText('現在の段階',{exact:true})).toHaveCount(1);
-  const details=steps.getByRole('button',{name:/基本情報/});
-  await details.evaluate(el=>{el.dispatchEvent(new MouseEvent('click',{bubbles:true}));el.dispatchEvent(new MouseEvent('click',{bubbles:true}));});
+  await expect(steps.getByRole('button',{name:/代理人の確認/})).toBeEnabled();
+  await steps.evaluate(root=>{
+   for (const id of ['details','details','proxy']) {
+    root.querySelector(`button[data-step-id="${id}"]`)!.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+   }
+  });
   await expect(page.getByTestId('step-requests')).toHaveText('1 / details');
   await expect(current).toContainText('確認');
   await page.getByTestId('step-approve').click();

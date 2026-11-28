@@ -556,7 +556,7 @@
         {
           "file": "tests/ui/navigation-catalog.spec.ts",
           "anchor": "anchor release preserves inline priority",
-          "sha256": "98de8dcd745571f9b6b1607dc1f8f784d6c869dc725bd9f93468f11fbc8f16ae",
+          "sha256": "401b1f648b25dcc99c499e8508a3414f713da5d6c39673d68e34ca2be10dca4c",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7475,7 +7475,7 @@
       "category": "fixture-input",
       "detail": "fixture-measurement-and-app-style-lease",
       "disposition": "retained-warning",
-      "source_sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+      "source_sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
       "producer": "window.innerHeight+px を測定専用box.heightへ設定。NavigationCatalogはfixed/sticky navの高さをpage自身のscroll-paddingへ予約する。隠した測定boxをviewport高にし、marker.topへ元computed CSSを入れてcalc/%をnative layoutでpxへ解決する。reserveはnav高ceil+paddingを設定し、外部writer変更を検知して元値/priorityを更新する。cleanupはobserver/listener/boxを除去し所有中のlastだけを元値/priorityへ戻す。",
       "reason": "%/calc基準を実viewportへ合わせる非表示測定器の高さ。表示用design寸法ではなく実値のUnknownが残る。",
       "remaining_scope": "viewport/nav実矩形と任意page CSSのcalc/priority・保存値は静的に閉じない。測定/所有権復元を固定tokenへ置換するとpage契約を変えてしまう。",
@@ -7488,25 +7488,25 @@
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "box.style.height=root.ownerDocument.defaultView!.innerHeight+'px'",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const resolvePadding=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const reserve=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "onCleanup(()=>{observer.disconnect();",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7524,7 +7524,7 @@
         {
           "file": "tests/ui/navigation-catalog.spec.ts",
           "anchor": "the page reserves a sticky region",
-          "sha256": "98de8dcd745571f9b6b1607dc1f8f784d6c869dc725bd9f93468f11fbc8f16ae",
+          "sha256": "401b1f648b25dcc99c499e8508a3414f713da5d6c39673d68e34ca2be10dca4c",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -7546,7 +7546,7 @@
       "category": "fixture-input",
       "detail": "fixture-measurement-and-app-style-lease",
       "disposition": "retained-warning",
-      "source_sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+      "source_sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
       "producer": "computed scrollPaddingBlockStartのCSS文字列を非表示marker.topへ設定。NavigationCatalogはfixed/sticky navの高さをpage自身のscroll-paddingへ予約する。隠した測定boxをviewport高にし、marker.topへ元computed CSSを入れてcalc/%をnative layoutでpxへ解決する。reserveはnav高ceil+paddingを設定し、外部writer変更を検知して元値/priorityを更新する。cleanupはobserver/listener/boxを除去し所有中のlastだけを元値/priorityへ戻す。",
       "reason": "native CSSエンジンで元のcalc/%を解く測定入力。元page CSSを意味tokenに強制変換せず、任意文字列はUnknownとして保持する。",
       "remaining_scope": "viewport/nav実矩形と任意page CSSのcalc/priority・保存値は静的に閉じない。測定/所有権復元を固定tokenへ置換するとpage契約を変えてしまう。",
@@ -7559,25 +7559,25 @@
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "marker.style.top=css",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const resolvePadding=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const reserve=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "onCleanup(()=>{observer.disconnect();",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7595,7 +7595,7 @@
         {
           "file": "tests/ui/navigation-catalog.spec.ts",
           "anchor": "the page reserves a sticky region",
-          "sha256": "98de8dcd745571f9b6b1607dc1f8f784d6c869dc725bd9f93468f11fbc8f16ae",
+          "sha256": "401b1f648b25dcc99c499e8508a3414f713da5d6c39673d68e34ca2be10dca4c",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -7617,7 +7617,7 @@
       "category": "fixture-input",
       "detail": "fixture-measurement-and-app-style-lease",
       "disposition": "retained-warning",
-      "source_sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+      "source_sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
       "producer": "ceil(anchor.getBoundingClientRect().height)+resolvePadding(base)+px をpage scroll-paddingへ設定。NavigationCatalogはfixed/sticky navの高さをpage自身のscroll-paddingへ予約する。隠した測定boxをviewport高にし、marker.topへ元computed CSSを入れてcalc/%をnative layoutでpxへ解決する。reserveはnav高ceil+paddingを設定し、外部writer変更を検知して元値/priorityを更新する。cleanupはobserver/listener/boxを除去し所有中のlastだけを元値/priorityへ戻す。",
       "reason": "自pageの固定nav実高を予約する寸法。nav/font/CSS/viewportと元paddingに依存し静的に閉じられない。",
       "remaining_scope": "viewport/nav実矩形と任意page CSSのcalc/priority・保存値は静的に閉じない。測定/所有権復元を固定tokenへ置換するとpage契約を変えてしまう。",
@@ -7630,25 +7630,25 @@
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "style.setProperty(key,(Math.ceil(anchor.getBoundingClientRect().height)+resolvePadding(base))+'px')",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const resolvePadding=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const reserve=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "onCleanup(()=>{observer.disconnect();",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7666,7 +7666,7 @@
         {
           "file": "tests/ui/navigation-catalog.spec.ts",
           "anchor": "the page reserves a sticky region",
-          "sha256": "98de8dcd745571f9b6b1607dc1f8f784d6c869dc725bd9f93468f11fbc8f16ae",
+          "sha256": "401b1f648b25dcc99c499e8508a3414f713da5d6c39673d68e34ca2be10dca4c",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
@@ -7688,7 +7688,7 @@
       "category": "fixture-input",
       "detail": "fixture-measurement-and-app-style-lease",
       "disposition": "retained-warning",
-      "source_sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+      "source_sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
       "producer": "現在値/priorityが自分のlastに等しい時だけprevious/priorityを復元。NavigationCatalogはfixed/sticky navの高さをpage自身のscroll-paddingへ予約する。隠した測定boxをviewport高にし、marker.topへ元computed CSSを入れてcalc/%をnative layoutでpxへ解決する。reserveはnav高ceil+paddingを設定し、外部writer変更を検知して元値/priorityを更新する。cleanupはobserver/listener/boxを除去し所有中のlastだけを元値/priorityへ戻す。",
       "reason": "アプリ所有page CSSの復元で、保存値のトークン適合性までこのfixtureが承認しない。外部更新を壊さないため文字列を保持する。",
       "remaining_scope": "viewport/nav実矩形と任意page CSSのcalc/priority・保存値は静的に閉じない。測定/所有権復元を固定tokenへ置換するとpage契約を変えてしまう。",
@@ -7701,25 +7701,25 @@
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "style.setProperty(key,previous,priority)",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const resolvePadding=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "const reserve=",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
           "file": "tests/fixture-app/navigation-catalog.ts",
           "anchor": "onCleanup(()=>{observer.disconnect();",
-          "sha256": "81c17d8dea7f5f44d0ac97b5e97bc151c52d98b0ccfd4955502afa0d20066892",
+          "sha256": "4af6a424062964e596d383324b828fc5bddc6b488f14e3f0822714b338f16bbd",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         },
         {
@@ -7737,7 +7737,7 @@
         {
           "file": "tests/ui/navigation-catalog.spec.ts",
           "anchor": "the page reserves a sticky region",
-          "sha256": "98de8dcd745571f9b6b1607dc1f8f784d6c869dc725bd9f93468f11fbc8f16ae",
+          "sha256": "401b1f648b25dcc99c499e8508a3414f713da5d6c39673d68e34ca2be10dca4c",
           "scope": "実行可能な回帰ソースの参照。実行結果は最終検証記録で別に確認する。"
         }
       ],
