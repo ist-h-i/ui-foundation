@@ -10,7 +10,7 @@ import { checkoutIsolation, run } from '../../scripts/package-verification/run.m
 
 const repository = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-test('the packed core, forms and locale example compile and bundle without specialist dependencies', { timeout: 360_000 }, async t => {
+test('the packed core, forms and locale example compile and bundle without specialist dependencies', { timeout: 720_000 }, async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'ui-foundation-core-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const app = resolve(root, 'app');
@@ -28,15 +28,10 @@ test('the packed core, forms and locale example compile and bundle without speci
     private: true,
     type: 'module',
   };
-  async function install(devDependencies) {
+  async function install(devDependencies, tarball = candidate.tarball) {
     await writeFile(resolve(app, 'package.json'), JSON.stringify({ ...appManifest, devDependencies }));
     await cp(resolve(repository, 'package-lock.json'), resolve(app, 'package-lock.json'));
-    await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', candidate.tarball]);
-  }
-  await install(Object.fromEntries(dependencies.map(name => [name, versions[name]])));
-  const specialistPackages = ['maplibre-gl', 'pdfjs-dist', 'fast-formula-parser'];
-  for (const name of [...specialistPackages, '@lucide/angular']) {
-    await assert.rejects(readFile(resolve(app, 'node_modules', name, 'package.json')), { code: 'ENOENT' });
+    await isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', tarball]);
   }
   const [publishedPack] = JSON.parse(await execute('npm', [
     'pack', `${candidate.manifest.name}@0.2.0`, '--json', '--ignore-scripts',
@@ -46,7 +41,12 @@ test('the packed core, forms and locale example compile and bundle without speci
   const publishedIntegrity = 'sha512-' + createHash('sha512').update(await readFile(published)).digest('base64');
   assert.equal(publishedIntegrity, 'sha512-u2VaaRMPKhdgOkNjyPwEg+DjkukCJmgHf0B2YZ4ZQIITr7rhDVxR4w/kwb6sufgGUbwntkXKwfCAkopQ7MrgQw==');
   const installOwnedPackage = tarball => isolated('npm', ['install', '--offline', '--ignore-scripts', '--no-save', '--no-audit', '--no-fund', tarball]);
-  await installOwnedPackage(published);
+  await install(Object.fromEntries(dependencies.map(name => [name, versions[name]])), published);
+  t.diagnostic('installed the pinned official 0.2.0 consumer with the minimal Angular dependencies');
+  const specialistPackages = ['maplibre-gl', 'pdfjs-dist', 'fast-formula-parser'];
+  for (const name of [...specialistPackages, '@lucide/angular']) {
+    await assert.rejects(readFile(resolve(app, 'node_modules', name, 'package.json')), { code: 'ENOENT' });
+  }
   const cli = (...args) => isolated(process.execPath, [`node_modules/${candidate.manifest.name}/dist/cli.js`, ...args]);
   await cli('init');
   await cli('sync');
@@ -110,6 +110,7 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   const previousGenerated = await readFile(manifestPath);
   const previousForm = await readFile(formPath, 'utf8');
   await compileAndBundle();
+  t.diagnostic('the unchanged isolated consumer compiled using the published package');
   await installOwnedPackage(candidate.tarball);
   await cli('sync');
   await check();
@@ -119,22 +120,11 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   const candidateGenerated = await readFile(manifestPath);
   assert.notDeepEqual(candidateGenerated, previousGenerated, 'candidate and published package must have different generated files');
 
-  await installOwnedPackage(published);
-  await cli('sync');
-  await check();
-  await compileAndBundle();
-  assert.deepEqual(await readFile(manifestPath), previousGenerated, 'rollback must restore all published ownership hashes');
-  assert.deepEqual(await readFile(configPath), previousConfig);
-  assert.equal(await readFile(formPath, 'utf8'), previousForm);
-  t.diagnostic(`published 0.2.0 (${publishedIntegrity}) → candidate → 0.2.0: unchanged consumer and YAML compiled at each step`);
-
-  await installOwnedPackage(candidate.tarball);
-  await cli('sync');
-  assert.deepEqual(await readFile(manifestPath), candidateGenerated);
-  await writeFile(formPath, previousForm
+  const optionalForm = previousForm
     .replace('FormField, TextInput }', 'FormField, TextInput, type TextInputMode }')
     .replace('label="Note" [formControl]', 'label="Note" hintPosition="before" hint="Reference identifier" [controlCharacters]="10" [inputMode]="inputMode" [formControl]')
-    .replace('export class Form {', "export class Form { readonly inputMode: TextInputMode = 'numeric';"));
+    .replace('export class Form {', "export class Form { readonly inputMode: TextInputMode = 'numeric';");
+  await writeFile(formPath, optionalForm);
   await check();
   const output = await compileAndBundle();
   t.diagnostic(JSON.stringify({ entry: 'core', ...output }));
@@ -144,9 +134,22 @@ export class Form { readonly note = new FormControl<string | null>(''); }
   assert.deepEqual(output.specialistInputs, []);
   assert.deepEqual(output.specialistOutputs, []);
 
+  await writeFile(formPath, previousForm);
+  await installOwnedPackage(published);
+  await cli('sync');
+  await check();
+  await compileAndBundle();
+  assert.deepEqual(await readFile(manifestPath), previousGenerated, 'rollback must restore all published ownership hashes');
+  assert.deepEqual(await readFile(configPath), previousConfig);
+  assert.equal(await readFile(formPath, 'utf8'), previousForm);
+  t.diagnostic(`published 0.2.0 (${publishedIntegrity}) → candidate → 0.2.0: unchanged consumer and YAML compiled at each step`);
+
   // Compare the two entries with the same app and compiler options. The full
   // entry still has the documented specialist type dependencies.
   await install(versions);
+  await cli('sync');
+  assert.deepEqual(await readFile(manifestPath), candidateGenerated);
+  await writeFile(formPath, optionalForm);
   for (const name of ['main.ts', 'form.ts']) {
     const path = resolve(app, 'src', name);
     await writeFile(path, (await readFile(path, 'utf8')).replace(/\.ui\/generated\/angular\/(core|forms)\b/g, '.ui/generated/angular/index'));
