@@ -62,6 +62,13 @@ test('packed CLI: recover normalized managed bytes for a custom output and verif
   const ownership = skill + '/ownership.json';
   const normalized = await readFile(resolve(broken, ownership));
   assert.notEqual(digest(normalized), recorded.files[ownership].sha256);
+  assert.throws(() => cli(broken, 'check', '--format', 'json'), error => {
+    const report = JSON.parse(error.stdout);
+    assert.equal(report.valid, false);
+    assert.ok(report.differences.some(difference => difference.includes(ownership)));
+    assert.ok(report.differences.some(difference => difference.includes('.gitattributes')));
+    return true;
+  });
   assert.throws(() => cli(broken, 'sync', '--dry-run'), /manifest|edited/i);
   assert.throws(() => cli(broken, 'sync'), /manifest|edited/i);
   assert.deepEqual(await readFile(resolve(broken, ownership)), normalized, 'conflict must not adopt converted bytes');

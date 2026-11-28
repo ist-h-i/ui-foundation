@@ -329,6 +329,8 @@ export async function checkProject(options: ProjectOptions & SourceCheckMode): P
     await rejectSymlinks(root, containedPath(root, path));
     const actual = await optionalText(containedPath(root, path));
     if (actual !== expected) differences.push(`${actual === undefined ? 'Missing' : 'Changed'}: ${path}`);
+    if (actual !== undefined && actual !== expected && actual.replace(/\r\n/g, '\n') === expected.replace(/\r\n/g, '\n')
+      && !differences.includes(gitRecoveryHint)) differences.push(gitRecoveryHint);
   }
   for (const path of present) if (!files.has(path)) differences.push(`Unowned: ${path}`);
   const source = await checkSources({ root, config, policy: createSourcePolicy(config, files),
