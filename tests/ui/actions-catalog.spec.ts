@@ -39,6 +39,24 @@ for(const profile of ['guided','dense'])test.describe('操作 '+profile,()=>{
  test('disabled/busyは手動dispatchも抑止しLinkは外部表示と安全なrelを保持',async({page})=>{const primary=page.getByRole('button',{name:/^確認して申請する/}),link=page.getByRole('link',{name:/参照資料/});await expect(link).toHaveAttribute('href','#action-result');await expect(link).toHaveAttribute('target','_blank');await expect(link).toHaveAttribute('rel','nofollow noopener noreferrer');await link.click();await expect(page.getByTestId('action-result')).toHaveText('操作 0 / 遷移 1');await page.getByLabel('処理中にする',{exact:true}).check();await expect(primary).toBeDisabled();await expect(primary).toHaveAttribute('aria-busy','true');await expect(link).not.toHaveAttribute('href');await primary.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})));await link.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})));await expect(page.getByTestId('action-result')).toHaveText('操作 0 / 遷移 1');await page.getByLabel('処理中にする',{exact:true}).uncheck();await page.getByLabel('操作を無効にする',{exact:true}).check();await expect(primary).toBeDisabled();await expect(link).toHaveAttribute('aria-disabled','true');});
  test('IconButtonとToggleは説明を保ち、Space/Enterで選択し処理中は抑止',async({page})=>{const icon=page.getByRole('button',{name:'確認済み',exact:true}),toggle=page.getByRole('button',{name:'履歴を固定',exact:true});await expect(icon).toHaveAttribute('data-shape','round');await expect(icon).toHaveAttribute('aria-pressed','false');await icon.press('Space');await expect(icon).toHaveAttribute('aria-pressed','true');await toggle.press('Enter');await expect(toggle).toHaveAttribute('aria-pressed','true');await expect(toggle).toContainText('固定中');await expect(toggle).toHaveAccessibleName('履歴を固定');await toggle.press('Space');await expect(toggle).toHaveAttribute('aria-pressed','false');await expect(toggle).toContainText('未固定');await page.getByLabel('処理中にする',{exact:true}).check();await expect(toggle).toBeDisabled();await toggle.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true})));await expect(toggle).toHaveAttribute('aria-pressed','false');});
  test('選択中のIcon/Toggle/Segmentedは検査済みsurfaceに背景を持ち、祖先背景へ透過しない',async({page})=>{const icon=page.getByRole('button',{name:'確認済み',exact:true}),toggle=page.getByRole('button',{name:'履歴を固定',exact:true});await icon.click();await toggle.click();await expect(icon).toHaveAttribute('aria-pressed','true');await expect(toggle).toHaveAttribute('aria-pressed','true');const selected=page.locator('ui-segmented-control .ui-segment[data-selected="true"]');for(const target of [icon,toggle,selected]){const colors=await target.evaluate(el=>{const expected=document.createElement('span');expected.style.backgroundColor='var(--ui-color-surface)';el.append(expected);const surface=getComputedStyle(expected).backgroundColor;expected.remove();return {surface,background:getComputedStyle(el).backgroundColor};});expect(colors.background).not.toBe('rgba(0, 0, 0, 0)');expect(colors.background).toBe(colors.surface);}});
+ test('旧指定の選択済みボタンは無効化と処理中の色を維持する',async({page})=>{
+  const icon=page.getByRole('button',{name:'確認済み',exact:true});
+  const toggle=page.getByRole('button',{name:'履歴を固定',exact:true});
+  await icon.press('Space');
+  await toggle.press('Enter');
+  await page.getByLabel('操作を無効にする',{exact:true}).check();
+  const expectDisabledColors=async(button:Locator)=>{
+   await expect(button).toBeDisabled();
+   await expect(button).toHaveAttribute('aria-pressed','true');
+   await expect(button).toHaveCSS('color',await colorFromToken(button,'muted'));
+   await expect(button).toHaveCSS('background-color',await colorFromToken(button,'disabled-surface'));
+  };
+  await expectDisabledColors(icon);
+  await expectDisabledColors(toggle);
+  await page.getByLabel('操作を無効にする',{exact:true}).uncheck();
+  await page.getByLabel('処理中にする',{exact:true}).check();
+  await expectDisabledColors(toggle);
+ });
  test('明示した操作の強調度・危険性と選択状態を独立して表現する',async({page})=>{
   const region=page.getByRole('region',{name:'操作の強調度と危険性の検証'});
   for(const [emphasis,normal,danger] of [['primary','通常の主操作','危険な主操作'],['secondary','通常の副操作','危険な副操作'],['tertiary','通常の補助操作','危険な補助操作']]){

@@ -218,7 +218,7 @@ ui-aspect-ratio > img, ui-aspect-ratio > video, ui-aspect-ratio > iframe { box-s
 .ui-action[data-width="full"] { inline-size:100%; }
 .ui-action-icon { display:inline-flex;flex:0 0 auto; }
 .ui-action-icon:empty { display:none; }
-.ui-icon-button[aria-pressed="true"]:not([data-emphasis]),.ui-toggle-button[aria-pressed="true"]:not([data-emphasis]) { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
+.ui-icon-button[aria-pressed="true"]:where(:not([data-emphasis])),.ui-toggle-button[aria-pressed="true"]:where(:not([data-emphasis])) { background:var(--ui-color-surface);color:var(--ui-color-tab-selected); }
 /* Explicit emphasis and risk must not erase selection, or be erased by it.
    Use an inset indicator that remains independent of the foreground/background. */
 .ui-action[data-emphasis][aria-pressed="true"] {
