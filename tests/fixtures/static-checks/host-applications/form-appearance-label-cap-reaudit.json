@@ -1,0 +1,41 @@
+{
+  "prior_audit_sha256": "0c4369a2dcf594385f2074422ec8324e8ea727b4c22383029def841211d972f6",
+  "source_commit": "30ffdaf679e199af36ca85173d64ffabf9e244ee",
+  "sites": {
+    "field_alias": {
+      "file": "templates/angular/styles.css",
+      "line": 100,
+      "column": 124,
+      "rule": "literal-token",
+      "severity": "error",
+      "source": ".ui-form-field:not(:has(input[type=\"checkbox\"])){grid-template-columns:var(--ui-field-label-columns,var(--ui-form-label-columns,none))} :: --ui-field-label-columns=min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)",
+      "exception": "inline formのラベルを親幅40%で制限し入力領域を残す配置比率。checkbox分岐と同じ構造用途。aliasの固定40%式だけに一致させ、任意の幅・別の上書き値は許可しない。"
+    },
+    "checkbox": {
+      "file": "templates/angular/styles.css",
+      "line": 153,
+      "column": 93,
+      "rule": "literal-token",
+      "severity": "error",
+      "source": ".ui-form-field[data-label-position=\"inline\"]:has(input.ui-field-control[type=\"checkbox\"]){grid-template-columns:min(var(--ui-form-label-width,var(--ui-size-form-label)),40%) minmax(0,1fr)}",
+      "exception": "inline formのラベルが入力領域を奪わないよう親幅40%を上限とする配置比率。基準ラベル幅はsize.form-labelへ接続する。"
+    }
+  },
+  "dependencies": {
+    "templates/angular/form-field.ts": {
+      "prior_sha256": "a6783bd5411e94ed8e5f96e7a640b284288eae36e19231a71e6c565b20187af0",
+      "current_sha256": "e5da05fa10106b67579c17373d2c712c7007024e1682e0029ddd1b8feda6e55c",
+      "judgment": "The new hint position and editor character width write separate host state. Only inline labelPosition still writes the 40% grid cap; the other label positions clear that alias. The declaration uses the form-level width or semantic form-label default as its other minimum operand."
+    },
+    "templates/angular/form-layout.ts": {
+      "prior_sha256": "e90f68ee5efddee97ab80df23bca87e0fe8f30d29c21e706ed331e807bf07f5e",
+      "current_sha256": "e90f68ee5efddee97ab80df23bca87e0fe8f30d29c21e706ed331e807bf07f5e",
+      "judgment": "The unchanged inherited label grid uses the fixed 40% cap with the approved semantic default or positive finite caller width."
+    },
+    "templates/angular/styles.css": {
+      "prior_sha256": "8790ce536a343ca96067cea37bb24dfb69b08632714ac26a09dce1584bf3a133",
+      "current_sha256": "ec4b0e940fae88032c45e7996faaf24936dc523b538e1cfc52b1e16af42c9dfd",
+      "judgment": "The non-checkbox selector still consumes the field or inherited label columns. The inline checkbox selector uses the same 40% cap directly, including when a projected wrapper contains the checkbox. Hint or editor width styling introduces no alternate label-cap operand. The alias approval retains the exact selector, declaration, alias value, and current source coordinates; the checker requires exactly one matching diagnostic."
+    }
+  }
+}
