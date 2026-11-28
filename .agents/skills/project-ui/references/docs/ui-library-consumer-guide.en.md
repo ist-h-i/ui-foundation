@@ -321,7 +321,13 @@ Before tracking generated output and the generated Skill, place these rules afte
 .agents/skills/project-ui/** -text
 ```
 
-Replace the first path with the configured output directory. Check effective attributes with `git check-attr text -- .ui/generated/CHECKER-NOTICE.txt .agents/skills/project-ui/ownership.json`: both must be `unset`. Avoid any other byte-changing filter or encoding. Managed files include original third-party notice bytes, and the manifest verifies exact content.
+Replace the first path with the configured output directory in both `.gitattributes` and the attribute check. Double-quote patterns for paths containing spaces. Escape literal brackets in a quoted pattern with doubled backslashes. For example, an output of `custom output/generated[1]` has this rule:
+
+```gitattributes
+"custom output/generated\\[1\\]/**" -text
+```
+
+Run `git check-attr text -- 'custom output/generated[1]/CHECKER-NOTICE.txt' .agents/skills/project-ui/ownership.json` with the actual paths. Both must report `unset`. Avoid any other byte-changing filter or encoding. Managed files include original third-party notice bytes, and the manifest verifies exact content.
 
 If an existing checkout is already normalized, save a recovery point first. In a separate directory, use the previous locked package and configuration to reproduce the original bytes. Verify the recorded manifest against the recovered manifest (only line-ending differences are acceptable) and every recovered file against its recorded SHA-256. Verify that the affected checkout has only line-ending differences before restoring. If a non-line-ending edit, missing evidence, or another conflict remains, stop and resolve it separately. Do not rewrite hashes to approve edits. Commit the attributes and verified recovery; check a fresh checkout with `sync --dry-run`, `check`, and a no-change sync.
 

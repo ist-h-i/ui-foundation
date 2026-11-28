@@ -528,7 +528,13 @@ CLI を npm で更新した後、再同期してアプリの部品・Skill・利
 .agents/skills/project-ui/** -text
 ```
 
-先頭のパスは設定した生成先に合わせます。`git check-attr text -- .ui/generated/CHECKER-NOTICE.txt .agents/skills/project-ui/ownership.json` で両方が `unset` になることを確認し、バイト列を変える他のフィルターやエンコーディングも適用しません。第三者ライセンス原文を含む生成物は、manifestのハッシュで厳密に照合します。
+属性ファイルと確認コマンドの最初のパスを、設定した生成先に合わせます。空白を含むパターンは二重引用符で囲みます。引用符内で角括弧を文字として扱うには、前にバックスラッシュを2個置きます。たとえば生成先が `custom output/generated[1]` の場合は次のように記載します。
+
+```gitattributes
+"custom output/generated\\[1\\]/**" -text
+```
+
+`git check-attr text -- 'custom output/generated[1]/CHECKER-NOTICE.txt' .agents/skills/project-ui/ownership.json` のパスを実際の設定に合わせて実行し、両方が `unset` になることを確認します。バイト列を変えるフィルターやエンコーディング変換も適用しません。第三者ライセンスの原文を含む生成物は、manifestのハッシュで照合します。
 
 既に改行が変換された場合は復旧点を保存し、別ディレクトリで従来の固定パッケージと設定から元のバイト列を再現します。記録済みmanifestと再生成したmanifest（改行以外の差を許容しない）、各復元ファイルのSHA-256を照合します。復元前に既存ファイルとの差が改行のみであることを確認します。改行以外の編集、証拠不足、別の競合があれば上書きせず解消してください。ハッシュを書き換えて編集を採用してはいけません。属性と検証済みの復元内容をコミットし、新規checkoutで `sync --dry-run`、`check`、変更なしの再同期を確認します。
 

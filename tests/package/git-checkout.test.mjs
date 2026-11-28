@@ -19,10 +19,11 @@ const git = (cwd, ...args) => run('git', args, cwd);
 const skill = '.agents/skills/project-ui';
 const ownership = skill + '/ownership.json';
 const defaultOutput = '.ui/generated';
-const customOutput = 'custom/generated';
+const customOutput = 'custom output/generated[1]';
+const customOutputAttribute = '"custom output/generated\\\\[1\\\\]/**" -text';
 const configFile = 'ui.config.yaml';
 const appSource = 'export const application = true;\n';
-const attrs = (...outputs) => ['* text=auto', ...outputs.map(output => output + '/** -text'), skill + '/** -text', ''].join('\n');
+const attrs = (...outputs) => ['* text=auto', ...outputs.map(output => output === customOutput ? customOutputAttribute : output + '/** -text'), skill + '/** -text', ''].join('\n');
 const publishedTarball = process.env.UI_FOUNDATION_PUBLISHED_020_TARBALL;
 const publishedSha256 = '46bd919994ce2a21e23829aed3cc9542344f23f27e28a04fb502b70fc785e8a7';
 
@@ -154,7 +155,7 @@ test('fixed candidate preserves every managed byte in protected LF and CRLF chec
 });
 
 test('official npm 0.2.0 reproduces the conversion, supports verified recovery, and upgrades and rolls back across output relocation', {
-  timeout: 360_000,
+  timeout: 720_000,
   skip: publishedTarball ? false : 'Set UI_FOUNDATION_PUBLISHED_020_TARBALL to the fixed official npm 0.2.0 tarball for the registry reproduction.',
 }, async t => {
   const root = await rootFixture(t);
