@@ -66,9 +66,13 @@ test('release gates require the independently recorded candidate digest', () => 
 });
 
 test('install evidence must match both expected version and registry integrity', () => {
-  verifyInstallMetadata({ version: target }, { version: target, integrity: next.dist.integrity }, target, next.dist.integrity);
-  assert.throws(() => verifyInstallMetadata({ version: previousLatest }, { version: previousLatest, integrity: old.dist.integrity }, target, next.dist.integrity), /Installed version mismatch/);
-  assert.throws(() => verifyInstallMetadata({ version: target }, { version: target, integrity: old.dist.integrity }, target, next.dist.integrity), /integrity mismatch/);
+  const dist = { integrity: next.dist.integrity, tarball: 'https://registry.npmjs.org/@scope/package/-/package-0.2.0.tgz' };
+  const locked = { version: target, integrity: dist.integrity, resolved: dist.tarball };
+  verifyInstallMetadata({ version: target }, locked, target, dist);
+  assert.throws(() => verifyInstallMetadata({ version: previousLatest }, locked, target, dist), /Installed version mismatch/);
+  assert.throws(() => verifyInstallMetadata({ version: target }, { ...locked, integrity: old.dist.integrity }, target, dist), /integrity mismatch/);
+  assert.throws(() => verifyInstallMetadata({ version: target }, { ...locked, resolved: 'file:package.tgz' }, target, dist), /source mismatch/);
+  assert.throws(() => verifyInstallMetadata({ version: target }, locked, target, { ...dist, tarball: 'https://example.invalid/package.tgz' }), /official registry/);
 });
 
 test('document check rejects stale current pins but preserves migration history', async t => {

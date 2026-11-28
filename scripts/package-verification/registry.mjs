@@ -68,11 +68,14 @@ export function candidateInput(values) {
   return { UI_FOUNDATION_PACKAGE_TARBALL: path, UI_FOUNDATION_PACKAGE_SHA256: sha256 };
 }
 
-export function verifyInstallMetadata(installed, locked, version, integrity) {
-  assert.ok(integrity, 'Missing registry integrity');
+export function verifyInstallMetadata(installed, locked, version, dist) {
+  assert.ok(dist.integrity, 'Missing registry integrity');
+  assert.ok(typeof dist.tarball === 'string' && new URL(dist.tarball).origin === new URL(registry).origin,
+    'Registry tarball must come from the official registry');
   assert.equal(installed.version, version, 'Installed version mismatch');
   assert.equal(locked?.version, version, 'Lockfile version mismatch');
-  assert.equal(locked?.integrity, integrity, 'Lockfile integrity mismatch');
+  assert.equal(locked?.integrity, dist.integrity, 'Lockfile integrity mismatch');
+  assert.equal(locked?.resolved, dist.tarball, 'Lockfile tarball source mismatch');
 }
 
 export async function readRegistryPackage(name, fetchPackage = fetch) {
@@ -224,15 +227,22 @@ async function probe(root, name, specification, label, expectedVersion, document
   const app = resolve(root, label, 'app');
   await mkdir(app, { recursive: true });
   await writeFile(resolve(app, 'package.json'), '{"private":true,"type":"module"}\n');
-  // Isolated install and cache, no lifecycle scripts or audit traffic.
+  const userConfig = resolve(root, label, 'user.npmrc');
+  const globalConfig = resolve(root, label, 'global.npmrc');
+  await writeFile(userConfig, '');
+  await writeFile(globalConfig, '');
+  // Developer tag, scoped registry and lock settings must not influence this observation.
+  const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !/^(?:npm_config_|node_env$|node_options$|node_path$)/i.test(key)));
   execFileSync('npm', ['install', '--save-dev', '--ignore-scripts', '--no-audit', '--no-fund', '--prefer-online',
-    '--registry=' + registry, '--cache', resolve(root, label, 'cache'), '--fetch-retries=0', specification],
-    { cwd: app, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
+    '--registry=' + registry, '--userconfig', userConfig, '--globalconfig', globalConfig,
+    '--tag=latest', '--package-lock=true', '--include=dev', '--cache', resolve(root, label, 'cache'), '--fetch-retries=0', specification],
+    { cwd: app, env, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
   const installedRoot = resolve(app, 'node_modules', name);
   const metadata = JSON.parse(await readFile(resolve(installedRoot, 'package.json'), 'utf8'));
   const lock = JSON.parse(await readFile(resolve(app, 'package-lock.json'), 'utf8'));
   assert.equal(metadata.name, name);
-  verifyInstallMetadata(metadata, lock.packages[`node_modules/${name}`], expectedVersion, document.versions[expectedVersion].dist.integrity);
+  const locked = lock.packages[`node_modules/${name}`];
+  verifyInstallMetadata(metadata, locked, expectedVersion, document.versions[expectedVersion].dist);
   const docs = ['README.md', 'README.ja.md', ...(metadata.files ?? []).filter(path => path.startsWith('docs/')), 'skills/ui-development/SKILL.md'];
   const documentation = Object.fromEntries(await Promise.all(docs.map(async path => [path, hash('sha256', await readFile(resolve(installedRoot, path)), 'hex')])));
   // Older latest versions have their own contract. Do not impose current docs on them.
@@ -240,7 +250,7 @@ async function probe(root, name, specification, label, expectedVersion, document
     await verifyReleaseVersionDocumentation(installedRoot);
   }
   const generation = await verifyInstalledGeneration(app, installedRoot, metadata, expectedVersion === target);
-  return { specification, version: metadata.version, integrity: lock.packages[`node_modules/${name}`].integrity, documentation, generation };
+  return { specification, version: metadata.version, integrity: locked.integrity, resolved: locked.resolved, documentation, generation };
 }
 
 async function main() {
