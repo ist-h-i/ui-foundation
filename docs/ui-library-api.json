@@ -2,8 +2,49 @@
   "schema_version": 1,
   "source": "templates/angular",
   "purpose": "Exact source API inventory; compiler inference, inherited inputs and application correctness require consumer validation.",
-  "source_count": 181,
+  "source_count": 182,
   "files": [
+    {
+      "path": "templates/angular/action-appearance.ts",
+      "sha256": "5cda01255ecb54a4326a1b5b717247f29b6a7ba982197e5434cad01d83075dbf",
+      "declarations": [
+        {
+          "names": [
+            "ActionVariant"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionVariant = 'primary' | 'secondary' | 'danger';"
+        },
+        {
+          "names": [
+            "ActionEmphasis"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionEmphasis = 'primary' | 'secondary' | 'tertiary';"
+        },
+        {
+          "names": [
+            "ActionTone"
+          ],
+          "kind": "type",
+          "declaration": "export type ActionTone = 'normal' | 'danger';"
+        },
+        {
+          "names": [
+            "ActionAppearance"
+          ],
+          "kind": "interface",
+          "declaration": "export interface ActionAppearance {\n  emphasis: ActionEmphasis;\n  tone: ActionTone;\n  toneConflict: boolean;\n}"
+        },
+        {
+          "names": [
+            "resolveActionAppearance"
+          ],
+          "kind": "function",
+          "declaration": "export function resolveActionAppearance(\n  variant: ActionVariant, emphasis: ActionEmphasis | null = null, tone: ActionTone | null = null,\n): ActionAppearance"
+        }
+      ]
+    },
     {
       "path": "templates/angular/action-control-messages.ts",
       "sha256": "7a97b65a203f843a5c4007659f06daacbc943a9614c62b04b4aac5a3392f0e2b",
@@ -19,7 +60,7 @@
     },
     {
       "path": "templates/angular/action-control.ts",
-      "sha256": "438f85f25e3dcb13bbe4225eb3548981efa0dcbcadcaa3d408895f68eec6ac1b",
+      "sha256": "c0b0c0981c58ba2cdadb5f7dc185b055cf3a9eddf4b5618a4624434a642dd6e4",
       "declarations": [
         {
           "names": [
@@ -29,11 +70,8 @@
           "declaration": "export type ActionSize = 'small' | 'medium' | 'large';"
         },
         {
-          "names": [
-            "ActionVariant"
-          ],
-          "kind": "type",
-          "declaration": "export type ActionVariant = 'primary' | 'secondary' | 'danger';"
+          "kind": "export",
+          "declaration": "export type { ActionVariant, ActionEmphasis, ActionTone } from './action-appearance';"
         },
         {
           "name": "ActionControl",
@@ -51,6 +89,18 @@
               "kind": "input",
               "declaration": "readonly variant = input<ActionVariant>('secondary');",
               "initializer": "input<ActionVariant>('secondary')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "size",
@@ -112,6 +162,18 @@
               "kind": "input",
               "declaration": "readonly variant = input<ActionVariant>('secondary');",
               "initializer": "input<ActionVariant>('secondary')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "size",
@@ -259,7 +321,7 @@
     },
     {
       "path": "templates/angular/actions.ts",
-      "sha256": "bb088bf723be73d4f61636d8d2d381a9ab135f9c36971ec5be2c14f8a275c6c2",
+      "sha256": "10e87d4c01dde7c4caf0e1345f2f4559f6aad01d43a4f1bd6472231e7a1349b7",
       "declarations": [
         {
           "name": "IconButton",
@@ -524,6 +586,18 @@
               "initializer": "input<'primary' | 'secondary' | 'danger'>('primary')"
             },
             {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
+            },
+            {
               "name": "icon",
               "kind": "input",
               "declaration": "readonly icon = input<string | null>(null);",
@@ -595,6 +669,18 @@
               "kind": "input",
               "declaration": "readonly icon = input('plus');",
               "initializer": "input('plus')"
+            },
+            {
+              "name": "emphasis",
+              "kind": "input",
+              "declaration": "readonly emphasis = input<ActionEmphasis | null>(null);",
+              "initializer": "input<ActionEmphasis | null>(null)"
+            },
+            {
+              "name": "tone",
+              "kind": "input",
+              "declaration": "readonly tone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "menuLabel",
@@ -3298,11 +3384,11 @@
     },
     {
       "path": "templates/angular/core.ts",
-      "sha256": "0355653057f5761aee718f1f2bad2241158486ac0f660babf4515029d7868a2b",
+      "sha256": "7ed4a49c99e3f0272f130d3420f6d9ad070cc3f1cc19bb495cc4a9a0d89fe2d6",
       "declarations": [
         {
           "kind": "export",
-          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';"
         },
         {
           "kind": "export",
@@ -4955,7 +5041,7 @@
     },
     {
       "path": "templates/angular/dialog-variants.ts",
-      "sha256": "9916557612bcac5f76607de6ed155b25e64531f40dfa237e79860579ab5f17c6",
+      "sha256": "6120fe63846ec09c94d9576410ae82f7459c3ff4aa365e32c3fff35bf239e8cb",
       "declarations": [
         {
           "name": "ConfirmDialog",
@@ -5009,6 +5095,12 @@
               "kind": "input",
               "declaration": "readonly confirmLabel = input<string>();",
               "initializer": "input<string>()"
+            },
+            {
+              "name": "confirmTone",
+              "kind": "input",
+              "declaration": "readonly confirmTone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "cancelLabel",
@@ -8345,7 +8437,7 @@
     },
     {
       "path": "templates/angular/floating-panel.ts",
-      "sha256": "a24279a7a83f2666f6666b15f2897636d6767a2de6789bbfe4ac7ff07005d42b",
+      "sha256": "3360b989b6239094e3f0f89cba66c5a51d22c00a3fd56fc9af6955af16464449",
       "declarations": [
         {
           "names": [
@@ -8700,6 +8792,12 @@
               "kind": "input",
               "declaration": "readonly confirmLabel=input<string>();",
               "initializer": "input<string>()"
+            },
+            {
+              "name": "confirmTone",
+              "kind": "input",
+              "declaration": "readonly confirmTone = input<ActionTone | null>(null);",
+              "initializer": "input<ActionTone | null>(null)"
             },
             {
               "name": "cancelLabel",
@@ -10267,7 +10365,7 @@
     },
     {
       "path": "templates/angular/index.ts",
-      "sha256": "62d4e4f9a1eb8a225ca3b3e6e581e40b650f7f4498519dbaa5aec9e197afaa81",
+      "sha256": "0a680acbaff3acdc16f4803b7d644031950ca79ec410425e56049264bc0d5916",
       "declarations": [
         {
           "kind": "export",
@@ -10275,7 +10373,7 @@
         },
         {
           "kind": "export",
-          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';"
+          "declaration": "export { ActionControl, ActionLink, type ActionVariant, type ActionSize, type ActionEmphasis, type ActionTone } from './action-control';"
         },
         {
           "kind": "export",
@@ -12466,14 +12564,14 @@
     },
     {
       "path": "templates/angular/menu-model.ts",
-      "sha256": "17b15859e6dd2fe6ca4ae26fb96dea6626c844e04c654d0055daf507590df57e",
+      "sha256": "0b09b59f684b77d3c8fb745f113f733ce3aa2109c15d3a9dc3275786b2b61960",
       "declarations": [
         {
           "names": [
             "MenuItem"
           ],
           "kind": "interface",
-          "declaration": "export interface MenuItem {\n    id: string;\n    label?: string;\n    type?: 'item' | 'checkbox' | 'radio' | 'group' | 'separator';\n    icon?: string;\n    disabled?: boolean;\n    visible?: boolean;\n    checked?: boolean;\n    radioGroup?: string;\n    value?: unknown;\n    children?: readonly MenuItem[];\n}"
+          "declaration": "export interface MenuItem {\n    id: string;\n    label?: string;\n    type?: 'item' | 'checkbox' | 'radio' | 'group' | 'separator';\n    icon?: string;\n    disabled?: boolean;\n    visible?: boolean;\n    /** Operation meaning for popup commands, including Toolbar overflow. */\n    tone?: ActionTone;\n    checked?: boolean;\n    radioGroup?: string;\n    value?: unknown;\n    children?: readonly MenuItem[];\n}"
         },
         {
           "names": [
@@ -12521,7 +12619,7 @@
     },
     {
       "path": "templates/angular/menu.ts",
-      "sha256": "b8288012155d9d3efac84aab630760a75c190b5c85de12cc063885bc201813e1",
+      "sha256": "e5a4073132a75557c7d5aea503e9f11197ca2076a533f98d93e697c7d3891402",
       "declarations": [
         {
           "kind": "export",
@@ -12656,7 +12754,7 @@
     },
     {
       "path": "templates/angular/menubar.ts",
-      "sha256": "525688b8af0d64cbef9c6d037c8e563eb965c387af104c0e421b5bdab36dd746",
+      "sha256": "5ff7af5eea89864a4f0ae2b4ef0103b7fa429a15f26dc73e5168812f73397541",
       "declarations": [
         {
           "name": "Menubar",
@@ -16954,7 +17052,7 @@
     },
     {
       "path": "templates/angular/table-controls.ts",
-      "sha256": "68b5c44d7b6b623df9cec186a74a88e2f564a687549332ccfbec8aaa7152a62a",
+      "sha256": "de7b8dff6ef54fcc84d6c249ccf0dfee609abaf5baf595c4d9c1dcafaba63804",
       "declarations": [
         {
           "names": [
@@ -17159,7 +17257,7 @@
             "TableBulkAction"
           ],
           "kind": "interface",
-          "declaration": "export interface TableBulkAction {\n    id: string;\n    label: string;\n    disabled?: boolean;\n}"
+          "declaration": "export interface TableBulkAction {\n    id: string;\n    label: string;\n    disabled?: boolean;\n    emphasis?: ActionEmphasis;\n    tone?: ActionTone;\n}"
         },
         {
           "names": [
@@ -18332,14 +18430,14 @@
     },
     {
       "path": "templates/angular/toolbar.ts",
-      "sha256": "1fa1eb67cfc1819d9e91b1c45d5b86f3262506fa89eb643eeb47fea1982c6d48",
+      "sha256": "fb13bb4b13710d4cf9fdaf8ace0582f92f5c92e866cff2563d6a06331d326c27",
       "declarations": [
         {
           "names": [
             "ToolbarItem"
           ],
           "kind": "interface",
-          "declaration": "export interface ToolbarItem {\n    id: string;\n    label?: string;\n    icon?: string;\n    type?: 'action' | 'separator';\n    disabled?: boolean;\n    visible?: boolean;\n}"
+          "declaration": "export interface ToolbarItem {\n    id: string;\n    label?: string;\n    icon?: string;\n    type?: 'action' | 'separator';\n    disabled?: boolean;\n    visible?: boolean;\n    emphasis?: ActionEmphasis;\n    tone?: ActionTone;\n}"
         },
         {
           "name": "Toolbar",

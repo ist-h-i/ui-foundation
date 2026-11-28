@@ -3,10 +3,10 @@ import {injectUiMessageText,UiStableMessagePipe} from './locale';
 import { NgComponentOutlet } from '@angular/common';
 import { afterRenderEffect, booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, Injectable, InjectionToken, Injector, input, output, signal, Type, viewChild, DestroyRef, ElementRef, untracked } from '@angular/core';
 import { Dialog, DialogTemplate, DialogCloseRequest, type DialogCloseReason, type DialogResult } from './dialog';
-import { ActionControl } from './action-control';
+import { ActionControl, type ActionTone } from './action-control';
 /** Confirmation result is UI intent, not a guarantee that a backend mutation succeeded. */
 @Component({ selector: 'ui-confirm-dialog', standalone: true, imports: [Dialog, DialogTemplate, ActionControl], changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<dialog uiDialog [label]="label()" [title]="title()||label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" [disabled]="context.busy" (click)="context.finish('confirm',true)">{{uiEffective_confirmLabel()}}</button><button uiAction [disabled]="context.busy" (click)="context.finish('cancel',false)">{{uiEffective_cancelLabel()}}</button></ng-template></dialog>` })
+    template: `<dialog uiDialog [label]="label()" [title]="title()||label()" [open]="open()" (openChange)="openChange.emit($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="closeRequested.emit($event)" (completed)="completed.emit($event)"><p>{{message()}}</p><ng-content /><ng-template uiDialogTemplate="footer" let-context><button uiAction variant="primary" [tone]="confirmTone()" [disabled]="context.busy" (click)="context.finish('confirm',true)">{{uiEffective_confirmLabel()}}</button><button uiAction [attr.autofocus]="confirmTone() === 'danger' ? '' : null" [disabled]="context.busy" (click)="context.finish('cancel',false)">{{uiEffective_cancelLabel()}}</button></ng-template></dialog>` })
 export class ConfirmDialog {
  protected readonly uiText_ConfirmDialog=injectUiMessageText();
     readonly label = input.required<string>();
@@ -16,6 +16,7 @@ export class ConfirmDialog {
     readonly openChange = output<boolean>();
     readonly busy = input(false, { transform: booleanAttribute });
     readonly confirmLabel = input<string>();
+    readonly confirmTone = input<ActionTone | null>(null);
  protected readonly uiEffective_confirmLabel=uiLocaleComputed(()=>this.confirmLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.confirmation"));
     readonly cancelLabel = input<string>();
  protected readonly uiEffective_cancelLabel=uiLocaleComputed(()=>this.cancelLabel()??this.uiText_ConfirmDialog("uiFoundation.confirmDialog.cancel"));
@@ -40,7 +41,7 @@ export class AlertDialog {
     styles: `fieldset{min-inline-size:0;margin-block:var(--ui-space-field);padding:var(--ui-space-field);border:var(--ui-border-control) solid var(--ui-color-border);border-radius:var(--ui-radius-control);}legend{max-inline-size:100%;overflow-wrap:anywhere;}.ui-form-dialog-guard-actions{display:flex;flex-wrap:wrap;gap:var(--ui-space-field);}[role="status"]:focus-visible{outline:var(--ui-border-focus) solid var(--ui-color-focus);outline-offset:var(--ui-border-focus-offset);}`,
     template: `<dialog uiDialog [label]="label()" [title]="label()" [open]="open()" (openChange)="changed($event)" [showHeader]="true" [busy]="busy()" [closeOnOutsideClick]="closeOnOutsideClick()" (closeRequested)="requested($event)" (completed)="completed.emit($event)">
   <ng-content /><p #saveStatus tabindex="-1" role="status" aria-atomic="true">{{busy()?('uiFoundation.formDialog.saving' | uiStableMessage):error()}}</p>
-  @if(held();as request){<fieldset><legend>{{'uiFoundation.formDialog.closeWithUnsavedChanges' | uiStableMessage}}</legend><div class="ui-form-dialog-guard-actions"><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'uiFoundation.formDialog.keepEditing' | uiStableMessage}}</button><button uiAction variant="danger" [disabled]="busy()" (click)="discard(request)">{{'uiFoundation.formDialog.closeWithoutSaving' | uiStableMessage}}</button></div></fieldset>}
+  @if(held();as request){<fieldset><legend>{{'uiFoundation.formDialog.closeWithUnsavedChanges' | uiStableMessage}}</legend><div class="ui-form-dialog-guard-actions"><button #keepButton uiAction [disabled]="busy()" (click)="keepEditing()">{{'uiFoundation.formDialog.keepEditing' | uiStableMessage}}</button><button uiAction variant="danger" emphasis="primary" tone="danger" [disabled]="busy()" (click)="discard(request)">{{'uiFoundation.formDialog.closeWithoutSaving' | uiStableMessage}}</button></div></fieldset>}
   <ng-template uiDialogTemplate="footer"><button #saveButton uiAction variant="primary" [disabled]="busy()||!valid()" (click)="save()">{{uiEffective_saveLabel()}}</button><button uiAction [disabled]="busy()" (click)="cancel()">{{'uiFoundation.formDialog.cancel' | uiStableMessage}}</button></ng-template>
  </dialog>` })
 export class FormDialog {

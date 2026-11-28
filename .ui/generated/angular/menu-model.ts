@@ -1,3 +1,4 @@
+import type { ActionTone } from './action-appearance';
 export interface MenuItem {
     id: string;
     label?: string;
@@ -5,6 +6,8 @@ export interface MenuItem {
     icon?: string;
     disabled?: boolean;
     visible?: boolean;
+    /** Operation meaning for popup commands, including Toolbar overflow. */
+    tone?: ActionTone;
     checked?: boolean;
     radioGroup?: string;
     value?: unknown;
@@ -25,6 +28,8 @@ export function validateMenu(items: readonly MenuItem[]): readonly MenuItem[] {
             ids.add(item.id);
             if (item.type !== 'separator' && !item.label?.trim())
                 throw new Error('Menu items and groups require labels.');
+            if (item.tone !== undefined && item.tone !== 'normal' && item.tone !== 'danger')
+                throw new Error('Invalid menu item tone.');
             if (item.type === 'separator' && item.children?.length)
                 throw new Error('Menu separators cannot have children.');
             ancestors.add(item);

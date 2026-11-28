@@ -30,7 +30,7 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 ラベルは部品内の `.ui-action-label` に投影する。長い操作名や区切りのない文字列は折り返し、処理中表示は縮めない。ラベルを省略・切り詰めず、狭い画面や文字拡大時にも操作名と処理中表示を枠内に収める。
 
-任意の `emphasis: 'primary' | 'secondary' | 'tertiary' | null` と `tone: 'normal' | 'danger' | null` で、視覚的な強調度と操作の性質を分離する。省略した軸は旧variantに従い、旧dangerはprimary/dangerに解決する。旧dangerと明示normalの競合時はdangerを維持し、data-action-tone-conflictで識別する。通常操作へ変える場合は旧danger指定を除く。旧APIのみの利用はdata-variantと表示を維持し、新指定時のみdata-emphasis/data-toneを付与する。tertiaryもネイティブbuttonとして動作する。危険操作の名称を明示し、認可・確認・復旧はアプリが担う。SplitButtonの主操作には両軸を伝搬し、ConfirmDialog/ConfirmPopoverは確定操作のみに任意のconfirmToneを指定できる。
+任意の `emphasis: 'primary' | 'secondary' | 'tertiary' | null` と `tone: 'normal' | 'danger' | null` で、視覚的な強調度と操作の性質を分離する。省略した軸は旧variantに従い、旧dangerはprimary/dangerに解決する。旧dangerと明示normalの競合時はdangerを維持し、data-action-tone-conflictで識別する。通常操作へ変える場合は旧danger指定を除く。旧APIのみの利用はdata-variantと表示を維持し、新指定時のみdata-emphasis/data-toneを付与する。tertiaryはラベルに下線を付け、ネイティブのボタンやリンクとして動作する。危険操作の名称を明示し、認可・確認・復旧はアプリが担う。SplitButtonの主操作には両軸を伝搬し、ConfirmDialog/ConfirmPopoverは確定操作のみに任意のconfirmToneを指定できる。
 
 IconButton／ToggleButtonの新指定では、選択状態を操作の強調度・危険色と独立した表示で示す。ConfirmDialogのconfirmTone=dangerでは取消操作に初期フォーカスを指定する。フォーカスや色は業務処理の確定を意味しない。
 
@@ -472,4 +472,4 @@ CommandPaletteの局所スクロール内にある再試行ボタンは、フォ
 
 ### 操作群と退避先の表示
 
-ToolbarItemとTableBulkActionには任意のemphasis・toneを指定できる。Toolbarは実表示と幅測定用の操作へ両軸を渡す。退避先のMenuではメニュー内の共通の強調度を使うが、明示したtoneをMenuItemに保持し、ポップアップ内の操作に反映する。操作名で対象と結果を識別できるようにし、危険色だけを認可や確認の代わりにしない。メニューの開閉ボタンへ操作項目のtoneを伝搬しない。FloatingActionButtonでは主操作に両軸を渡し、補助メニューの開閉は独立させる。FormDialogの未保存変更の破棄にはprimary/dangerを明示する。CopyButtonは通常の副操作、ButtonGroupは投影した操作の指定、SegmentedControlは選択部品としての契約を維持する。WizardとFormActionsの固定操作、アプリが所有する遷移・永続化・認可・確認・復旧の契約も維持する。
+ToolbarItemとTableBulkActionには任意のemphasis・toneを指定できる。Toolbarは実表示と幅測定用の操作へ両軸を渡す。退避先のMenuではメニュー内の共通の強調度を使うが、明示したtoneをMenuItemに保持し、ポップアップ内の実行項目に反映する。Menubarのルートにある実行項目も対象とし、サブメニューを開く項目には適用しない。操作名で対象と結果を識別できるようにし、危険色だけを認可や確認の代わりにしない。メニューの開閉ボタンへ操作項目のtoneを伝搬しない。FloatingActionButtonでは主操作に両軸を渡し、補助メニューの開閉は独立させる。FormDialogの未保存変更の破棄にはprimary/dangerを明示する。CopyButtonは通常の副操作、ButtonGroupは投影した操作の指定、SegmentedControlは選択部品としての契約を維持する。WizardとFormActionsの固定操作、アプリが所有する遷移・永続化・認可・確認・復旧の契約も維持する。

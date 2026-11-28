@@ -99,7 +99,7 @@
 .ui-action[data-emphasis="tertiary"][data-tone="normal"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-background); }
 .ui-action[data-emphasis="secondary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover,
 .ui-action[data-emphasis="tertiary"][data-tone="danger"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover { background:var(--ui-color-error-surface); }
-.ui-action[data-emphasis="tertiary"]:not(:disabled):not(.ui-action--disabled):not(.ui-action--busy):hover .ui-action-label { text-decoration:underline; }
+.ui-action[data-emphasis="tertiary"] .ui-action-label { text-decoration:underline; }
 
 .ui-action-label { min-inline-size: 0; white-space: normal; overflow-wrap: anywhere; }
 .ui-action-busy { order:4; flex-shrink: 0; white-space: nowrap; font-size: var(--ui-text-small); font-weight: var(--ui-weight-body); }
