@@ -36,7 +36,7 @@ consumerのイベント処理より前に抑止するため、ActionControl/Acti
 
 FormFieldのhostへ `[hidden]="true"` を指定すると、チェックボックスのレイアウトを含めて非表示とし、入力はタブ順から外れる。入力のインスタンスは維持し、再表示時に値・選択状態を保持する。
 
-入力前に確認する条件は `hintPosition="before"` で入力欄の前に表示できる。既定値afterは従来のDOM順を維持し、hintのID・aria-describedbyは変えない。`[controlCharacters]="12"` はネイティブ入力欄（Select／Comboboxのアンカーを含む）の幅を文字数の目安で制限する。隣接する操作ボタン・補足文・選択済み項目は制限しない。利用可能幅を上限とし、ネイティブ部品の最小幅が優先される場合がある。nullは従来の配置。maxLengthや値検証ではなく、文字種ごとの実幅を保証するものではない。Checkbox/Switchの操作領域は変更しない。FieldValueControl系のテキスト・数値・選択・構造化・日付入力からFormFieldへ伝搬する。FormActionsでは不要なリセットを `[showReset]="false"` で省略する。互換性のため既定値は変更しない。
+入力前に確認する条件は `hintPosition="before"` で入力欄の前に表示できる。既定値afterは従来のDOM順を維持し、hintのID・aria-describedbyは変えない。`[controlCharacters]="12"` はネイティブ入力欄（Select／Comboboxのアンカーを含む）の幅を文字数の目安で制限する。隣接する操作ボタン・補足文・選択済み項目は制限しない。利用可能幅を上限とし、ネイティブ部品の最小幅が優先される場合がある。nullは従来の配置。maxLengthや値検証ではなく、文字種ごとの実幅を保証するものではない。Checkbox/Switchの操作領域は変更しない。FieldValueControl系のテキスト・数値・選択・構造化・日付・階層入力（TreeSelect/Cascader）からFormFieldへ伝搬する。FieldHintPosition型はcore、forms、全件入口から利用できる。入力幅は投影されたFieldControlに限定し、ポップアップ内の検索欄などには適用しない。FormActionsでは不要なリセットを `[showReset]="false"` で省略する。互換性のため既定値は変更しない。
 
 ### AsyncRegion
 

@@ -1,6 +1,6 @@
 export { PageFrame } from './page-frame';
 export { ActionControl, ActionLink, type ActionVariant, type ActionSize } from './action-control';
-export { FormField, FieldControl } from './form-field';
+export { FormField, FieldControl, type FieldHintPosition } from './form-field';
 export { AsyncRegion, type AsyncRegionState } from './async-region';
 export { ActionFeedback, type ActionFeedbackState } from './action-feedback';
 export { RadioGroup, RadioOption } from './radio-group';

@@ -6,6 +6,17 @@ const head='申請管理本部と長い部署名ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const service=async(page:Page,id:string)=>page.locator(id).dispatchEvent('click');
 for(const profile of ['guided','dense'])test.describe('tree catalog '+profile,()=>{
  test.beforeEach(async({page})=>{await page.goto('/catalog/trees');await expect(page.getByRole('heading',{name:'階層の選択と組織の確認',exact:true})).toBeVisible();await page.locator('#profile').selectOption(profile);await expect(page.locator('main')).toHaveAttribute('data-ui-profile',profile);});
+ test('階層入力にも補足位置と入力幅が伝搬し、ポップアップや選択値を狭めない',async({page})=>{
+  for(const id of ['cascade','single']){
+    const editor=page.locator('#'+id),hint=page.locator('#'+id+'-hint');
+    await expect(editor).toHaveAttribute('data-field-width','characters');
+    await expect(hint).toBeVisible();
+    expect(await editor.evaluate(el=>!!(el.ownerDocument.getElementById(el.id+'-hint')!.compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+    await editor.click();await expect(page.locator('#'+id+'-popup')).toBeVisible();
+    await page.keyboard.press('Escape');await expect(editor).toBeFocused();
+  }
+  await expect(page.locator('#multi')).not.toHaveAttribute('data-field-width');
+ });
  test('fresh-escape: TreeSelect handled APG keys and unhandled Escape/Tab preserve native focus and query',async({page})=>{
    const editor=page.locator('#single'),popup=page.locator('#single-popup'),search=page.locator('#single-search'),host=page.locator('ui-tree-select').first();
    await host.evaluate(element=>element.addEventListener('keydown',event=>{if(event instanceof KeyboardEvent&&event.target instanceof Element&&event.target.matches('[role="treeitem"]')){element.setAttribute('data-last-unhandled-key',event.key);element.setAttribute('data-unhandled-default-prevented',String(event.defaultPrevented));}}));

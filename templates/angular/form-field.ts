@@ -1,6 +1,7 @@
 import { formFieldMessages } from './form-field-messages';
 import { fieldHintPosition, fieldCharacterWidth, type FieldHintPosition } from './field-appearance';
 import { injectComponentMessageText } from './component-message-text';
+export type { FieldHintPosition } from './field-appearance';
 import {
   AfterContentChecked,
   booleanAttribute,
@@ -24,6 +25,8 @@ import {
     '[required]': 'uiFieldRequired() ?? field.required()',
     '[attr.aria-invalid]': 'field.hasError() ? "true" : null',
     '[attr.aria-describedby]': 'field.descriptionIds()',
+    '[attr.data-field-width]': 'field.resolvedCharacterWidth() !== null ? "characters" : null',
+    '[style.--ui-field-control-chars]': 'field.resolvedCharacterWidth()',
   },
 })
 export class FieldControl {
@@ -57,8 +60,8 @@ export class FieldControl {
     '[class.ui-form-field--invalid]': 'hasError()',
     '[attr.data-label-position]': 'labelPosition()',
     '[attr.data-hint-position]': 'hasHint() && checkedHintPosition() === "before" ? "before" : null',
-    '[attr.data-control-width]': 'checkedCharacterWidth() !== null ? "characters" : null',
-    '[style.--ui-field-control-chars]': 'checkedCharacterWidth()',
+    '[attr.data-control-width]': 'resolvedCharacterWidth() !== null ? "characters" : null',
+    '[style.--ui-field-control-chars]': 'resolvedCharacterWidth()',
     '[style.--ui-field-label-layout]': 'labelPosition() === "inherit" ? null : labelPosition() === "inline" ? "grid" : "block"',
     '[style.--ui-field-label-columns]': 'labelPosition() === "inline" ? "min(var(--ui-form-label-width, var(--ui-size-form-label)), 40%) minmax(0, 1fr)" : null',
   },
@@ -90,7 +93,7 @@ export class FormField implements AfterContentChecked {
   /** Approximate width of the editor in characters; never validates or truncates its value. */
   readonly controlCharacters = input<number | null>(null);
   protected readonly checkedHintPosition = computed(() => fieldHintPosition(this.hintPosition()));
-  protected readonly checkedCharacterWidth = computed(() => fieldCharacterWidth(this.controlCharacters()));
+  readonly resolvedCharacterWidth = computed(() => fieldCharacterWidth(this.controlCharacters()));
 
   readonly hasHint = computed(() => Boolean(this.hint()?.trim()));
   readonly hasError = computed(() => Boolean(this.error()?.trim()));
